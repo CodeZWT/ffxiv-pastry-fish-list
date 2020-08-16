@@ -3,6 +3,7 @@
     <v-row>
       <v-col cols="12">
         <v-card class="mx-auto" tile>
+          <code>ET: {{ time }}</code>
           <v-list three-line>
             <v-virtual-scroll
               :items="fishList"
@@ -20,7 +21,11 @@
                       {{ getItemName(fish._id) }}
                     </v-list-item-title>
                     <v-list-item-subtitle>
-                      {{ getFishingSpotsName(fish.location) }}
+                      {{ getFishingSpotsName(fish.location) }} @
+                      {{ getZoneName(fish.location) }}
+                    </v-list-item-subtitle>
+                    <v-list-item-subtitle>
+                      {{ getWeatherAt(fish.location) }}
                     </v-list-item-subtitle>
                     <v-list-item-subtitle>
                       <div style="display: flex">
@@ -37,7 +42,9 @@
                             height="24"
                           ></v-img>
                         </div>
-                        <v-icon>mdi-arrow-right</v-icon>
+                        <v-icon v-if="fish.previousWeatherSet.length > 0">
+                          mdi-arrow-right
+                        </v-icon>
                         <div
                           :key="weather.name"
                           v-for="weather in getWeather(fish.weatherSet)"
@@ -69,31 +76,51 @@
 
 <script>
 import { mapState } from "vuex";
+import EorzeaTime from "@/utils/Time";
+import EorzeaWeather from "@/utils/Weather";
 
 const HOST = "https://cafemaker.wakingsands.com";
 
 export default {
   name: "fish-list",
   data: () => ({
-    locale: "en"
+    locale: "ja",
+    time: undefined
   }),
   computed: {
     ...mapState({
-      fishList: state => Object.values(state.fish).filter(it => it._id == 8759),
+      fishList: state => Object.values(state.fish), //.filter(it => it._id == 8759),
       items: "items",
       fishingSpots: "fishingSpots",
-      weatherTypes: "weatherTypes"
+      weatherTypes: "weatherTypes",
+      zones: "zones",
+      weatherRates: "weatherRates"
     })
   },
-  mounted() {},
+  created() {
+    setInterval(() => (this.time = new EorzeaTime()), 1000);
+    // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
+  },
   methods: {
     getItemName(id) {
-      return this.items[id]["name_" + this.locale];
+      return this.getName(this.items[id]);
     },
     getFishingSpotsName(id) {
-      return (
-        this.fishingSpots[id] && this.fishingSpots[id]["name_" + this.locale]
-      );
+      return this.fishingSpots[id] && this.getName(this.fishingSpots[id]);
+    },
+    getZoneName(id) {
+      const fishingSpot = this.fishingSpots[id];
+      if (fishingSpot) {
+        return this.getName(
+          this.zones[this.weatherRates[fishingSpot.territory_id].zone_id]
+        );
+      }
+    },
+    getZoneId(id) {
+      const fishingSpot = this.fishingSpots[id];
+      if (fishingSpot) {
+        return this.weatherRates[fishingSpot.territory_id].zone_id;
+      }
     },
     getItemIconUrl(id) {
       const iconId = this.items[id].icon;
@@ -105,10 +132,23 @@ export default {
     getWeather(weatherSet) {
       return weatherSet.map(id => {
         return {
-          name: this.weatherTypes[id]["name_" + this.locale],
+          name: this.getName(this.weatherTypes[id]),
           icon: this.iconIdToUrl(this.weatherTypes[id].icon)
         };
       });
+    },
+    getName(multiLanguageItem) {
+      return multiLanguageItem["name_" + this.locale];
+    },
+    getWeatherAt(id) {
+      const fishingSpot = this.fishingSpots[id];
+      if (fishingSpot) {
+        return this.getName(
+          this.weatherTypes[
+            EorzeaWeather.weatherAt(fishingSpot.territory_id, Date.now())
+          ]
+        );
+      }
     }
   }
 };
