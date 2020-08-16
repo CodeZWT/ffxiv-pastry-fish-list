@@ -63,6 +63,9 @@
                     <v-list-item-subtitle>
                       {{ fish.startHour }} - {{ fish.endHour }}
                     </v-list-item-subtitle>
+                    <v-list-item-subtitle>
+                      {{ getFishWindow(fish) }}
+                    </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </template>
@@ -78,18 +81,19 @@
 import { mapState } from "vuex";
 import EorzeaTime from "@/utils/Time";
 import EorzeaWeather from "@/utils/Weather";
+import FishWindow from "@/utils/FishWindow";
 
 const HOST = "https://cafemaker.wakingsands.com";
 
 export default {
   name: "fish-list",
   data: () => ({
-    locale: "ja",
+    locale: "en",
     time: undefined
   }),
   computed: {
     ...mapState({
-      fishList: state => Object.values(state.fish), //.filter(it => it._id == 8759),
+      fishList: state => Object.values(state.fish).filter(it => it._id == 8759),
       items: "items",
       fishingSpots: "fishingSpots",
       weatherTypes: "weatherTypes",
@@ -145,9 +149,26 @@ export default {
       if (fishingSpot) {
         return this.getName(
           this.weatherTypes[
-            EorzeaWeather.weatherAt(fishingSpot.territory_id, Date.now())
+            EorzeaWeather.weatherAt(fishingSpot.territory_id, new EorzeaTime())
           ]
         );
+      }
+    },
+    getFishWindow(fish) {
+      console.debug(fish);
+      const fishingSpot = this.fishingSpots[fish.location];
+      if (fishingSpot) {
+        return FishWindow.getNextNFishWindows(
+          fishingSpot.territory_id,
+          new EorzeaTime(),
+          fish.startHour,
+          fish.endHour,
+          fish.previousWeatherSet,
+          fish.weatherSet
+        ).map(([start, end]) => [
+          new Date(start).toLocaleTimeString(),
+          new Date(end).toLocaleTimeString()
+        ]);
       }
     }
   }

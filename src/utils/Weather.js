@@ -21,7 +21,7 @@ function calculateForecastTarget(m) {
 
 export default {
   weatherAt(zone, eorzeaTime) {
-    const seed = calculateForecastTarget(eorzeaTime);
+    const seed = calculateForecastTarget(eorzeaTime.toEarthTime());
     return DATA.WEATHER_RATES[zone].weather_rates.find(it => seed < it[1])[0];
   }
 }
