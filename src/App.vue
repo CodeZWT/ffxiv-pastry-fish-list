@@ -5,20 +5,16 @@
     </v-app-bar>
 
     <v-main>
-      <fish-list />
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import FishList from "./components/FishList";
-
 export default {
   name: "App",
 
-  components: {
-    FishList
-  },
+  components: {},
 
   data: () => ({
     //
