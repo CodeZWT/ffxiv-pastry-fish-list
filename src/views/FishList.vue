@@ -69,18 +69,22 @@
                     <v-list-item-subtitle>
                       {{ getFishWindow(fish) }}
                     </v-list-item-subtitle>
+
                     <v-list-item-subtitle>
-                      <v-img
-                        v-for="bait in fish.bestCatchPath"
-                        :src="getItemIconUrl(bait)"
-                        :key="bait"
-                        :alt="bait"
-                        width="36"
-                        height="36"
-                      ></v-img>
+                      {{ fish.predators }}
                     </v-list-item-subtitle>
                     <v-list-item-subtitle>
-                      {{ fish.tug }} - {{ fish.hookset }}
+                      <div style="display: flex">
+                        <div v-for="bait in getBaits(fish)" :key="bait">
+                          <v-img
+                            :src="getItemIconUrl(bait.bait)"
+                            :key="bait.bait"
+                            width="36"
+                            height="36"
+                          ></v-img>
+                          <code>{{ bait.tug }} - {{ bait.hookset }}</code>
+                        </div>
+                      </div>
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
@@ -110,7 +114,9 @@ export default {
   }),
   computed: {
     ...mapState({
-      fishList: state => Object.values(state.fish).filter(it => it._id == 8759),
+      fishList: state =>
+        Object.values(state.fish).filter(it => it._id == 24205),
+      allFish: "fish",
       items: "items",
       fishingSpots: "fishingSpots",
       weatherTypes: "weatherTypes",
@@ -218,6 +224,30 @@ export default {
           new Date(start).toLocaleTimeString(),
           new Date(end).toLocaleTimeString()
         ]);
+      }
+    },
+    getBaits(fish) {
+      if (fish.bestCatchPath.length < 1) return [];
+      const lastBait = {
+        tug: fish.tug,
+        hookset: fish.hookset,
+        bait: fish.bestCatchPath[fish.bestCatchPath.length - 1]
+      };
+      if (fish.bestCatchPath.length === 1) {
+        return [lastBait];
+      } else {
+        return fish.bestCatchPath.map((bait, index, arr) => {
+          if (index === arr.length - 1) {
+            return lastBait;
+          } else {
+            const baitFish = this.allFish[arr[index + 1]];
+            return {
+              tug: baitFish.tug,
+              hookset: baitFish.hookset,
+              bait: bait
+            };
+          }
+        });
       }
     }
   }
