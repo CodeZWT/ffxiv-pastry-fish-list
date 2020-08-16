@@ -64,7 +64,23 @@
                       {{ fish.startHour }} - {{ fish.endHour }}
                     </v-list-item-subtitle>
                     <v-list-item-subtitle>
+                      {{ getCountDown(fish) }}
+                    </v-list-item-subtitle>
+                    <v-list-item-subtitle>
                       {{ getFishWindow(fish) }}
+                    </v-list-item-subtitle>
+                    <v-list-item-subtitle>
+                      <v-img
+                        v-for="bait in fish.bestCatchPath"
+                        :src="getItemIconUrl(bait)"
+                        :key="bait"
+                        :alt="bait"
+                        width="36"
+                        height="36"
+                      ></v-img>
+                    </v-list-item-subtitle>
+                    <v-list-item-subtitle>
+                      {{ fish.tug }} - {{ fish.hookset }}
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
@@ -82,6 +98,7 @@ import { mapState } from "vuex";
 import EorzeaTime from "@/utils/Time";
 import EorzeaWeather from "@/utils/Weather";
 import FishWindow from "@/utils/FishWindow";
+import prettyMilliseconds from "pretty-ms";
 
 const HOST = "https://cafemaker.wakingsands.com";
 
@@ -152,6 +169,38 @@ export default {
             EorzeaWeather.weatherAt(fishingSpot.territory_id, new EorzeaTime())
           ]
         );
+      }
+    },
+    getCountDown(fish) {
+      const fishingSpot = this.fishingSpots[fish.location];
+      if (fishingSpot) {
+        const [nextFishWindow] = FishWindow.getNextNFishWindows(
+          fishingSpot.territory_id,
+          new EorzeaTime(),
+          fish.startHour,
+          fish.endHour,
+          fish.previousWeatherSet,
+          fish.weatherSet,
+          1
+        );
+        const now = Date.now();
+        if (now <= nextFishWindow[0]) {
+          return {
+            type: "waiting",
+            time: prettyMilliseconds(nextFishWindow[0] - now, {
+              verbose: true,
+              unitCount: 2
+            })
+          };
+        } else if (now <= nextFishWindow[1]) {
+          return {
+            type: "fishing",
+            time: prettyMilliseconds(nextFishWindow[1] - now, {
+              verbose: true,
+              unitCount: 2
+            })
+          };
+        }
       }
     },
     getFishWindow(fish) {
