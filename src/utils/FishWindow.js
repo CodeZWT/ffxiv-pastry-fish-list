@@ -1,6 +1,6 @@
-import EorzeaWeather from "@/utils/Weather";
+import EorzeaWeather from '@/utils/Weather'
 
-const FISH_WINDOW_FORECAST_N = 10;
+const FISH_WINDOW_FORECAST_N = 10
 
 export default {
   computeFishWindowIfExist(territoryId, periodStart, hourStart, hourEnd, previousWeatherSet, weatherSet) {
@@ -15,16 +15,19 @@ export default {
           previousWeatherSet.indexOf(EorzeaWeather.weatherAt(territoryId, prevPeriodStart)) !== -1) &&
         (weatherSet.length === 0 || weatherSet.indexOf(EorzeaWeather.weatherAt(territoryId, periodStart)) !== -1)
       ) {
-        console.debug(prevPeriodStart, periodStart)
-        console.debug(
-          EorzeaWeather.weatherAt(territoryId, prevPeriodStart),
-          EorzeaWeather.weatherAt(territoryId, periodStart)
-        )
+        // console.debug(prevPeriodStart, periodStart)
+        // console.debug(
+        //   EorzeaWeather.weatherAt(territoryId, prevPeriodStart),
+        //   EorzeaWeather.weatherAt(territoryId, periodStart)
+        // )
         return [
           periodHourStart > hourStart ? periodStart : periodStart.timeOfHours(hourStart),
-          periodHourEnd < hourEnd ? periodEnd : periodEnd.timeOfHours(hourEnd),
+          // NOTE:
+          // be careful set day to 24 makes it become next day
+          // so if 24 === 24, just return current time
+          periodHourEnd <= hourEnd ? periodEnd : periodEnd.timeOfHours(hourEnd),
         ].map(et => {
-          console.debug('et', et.toString())
+          // console.debug('et', et.toString())
           return et.toEarthTime()
         })
       }
@@ -46,7 +49,7 @@ export default {
     const fishWindows = []
     let counter = 0
     let time = eorzeaTime.toWeatherCheckPoint()
-    console.debug(new Date(time.time))
+    // console.debug(new Date(time.time))
     while (counter < n) {
       const fishWindow = this.computeFishWindowIfExist(
         territoryId,

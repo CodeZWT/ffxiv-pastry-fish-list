@@ -3,12 +3,13 @@
     <v-row>
       <v-col cols="12">
         <v-card class="mx-auto" tile>
-          <code
-            >ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}</code
-          >
+          <code>
+            ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}
+
+          </code>
           <v-list three-line>
-            <v-virtual-scroll :items="fishList" :item-height="200" height="1000">
-              <template v-slot="{ item: fish, index }">
+            <v-virtual-scroll :items="sortedFishList" :item-height="200" height="1000">
+              <template v-slot="{ item: fish }">
                 <v-list-item :key="fish._id" three-line>
                   <v-list-item-avatar tile>
                     <v-img :src="getItemIconUrl(fish._id)"></v-img>
@@ -48,14 +49,17 @@
                     </v-list-item-subtitle>
                     <v-list-item-subtitle> {{ fish.startHour }} - {{ fish.endHour }}</v-list-item-subtitle>
                     <v-list-item-subtitle>
-                      {{ fishListTimePart[index].countDown }}
+                      {{ getCountDownTypeName(fishListTimePart[fish.refIndex].countDown.type) }}
+                    </v-list-item-subtitle>
+                    <v-list-item-subtitle v-if="hasTimeConstraint(fishListTimePart[fish.refIndex].countDown)">
+                      {{ printCountDownTime(fishListTimePart[fish.refIndex].countDown.time) }}
                     </v-list-item-subtitle>
                     <v-list-item-subtitle
                       v-if="
-                        fishListTimePart[index] &&
-                          fishListTimePart[index].countDown.type !== 'allAvailable' &&
-                          fishListWeatherChangePart[index] &&
-                          fishListWeatherChangePart[index].fishWindows
+                        fishListTimePart[fish.refIndex] &&
+                          hasTimeConstraint(fishListTimePart[fish.refIndex].countDown) &&
+                          fishListWeatherChangePart[fish.refIndex] &&
+                          fishListWeatherChangePart[fish.refIndex].fishWindows
                       "
                     >
                       <v-menu offset-y>
@@ -67,7 +71,7 @@
 
                         <v-list>
                           <v-list-item
-                            v-for="(fishWindow, index) in fishListWeatherChangePart[index].fishWindows"
+                            v-for="(fishWindow, index) in fishListWeatherChangePart[fish.refIndex].fishWindows"
                             :key="index"
                           >
                             <v-list-item-title>
@@ -110,6 +114,7 @@ import EorzeaTime, { WEATHER_CHANGE_INTERVAL } from '@/utils/Time'
 import EorzeaWeather from '@/utils/Weather'
 import FishWindow from '@/utils/FishWindow'
 import prettyMilliseconds from 'pretty-ms'
+import sortBy from 'lodash/sortBy'
 
 const HOST = 'https://cafemaker.wakingsands.com'
 const HOOKSET_ICON = {
@@ -121,6 +126,11 @@ const TUG_ICON = {
   medium: '!!',
   heavy: '!!!',
 }
+
+const COUNT_DOWN_TYPES = ['fishing', 'waiting', 'allAvailable']
+const FISHING = 0
+const WAITING = 1
+const ALL_AVAILABLE = 2
 
 export default {
   name: 'fish-list',
@@ -140,7 +150,7 @@ export default {
       return new Date(this.now)
     },
     fishList() {
-      return Object.values(this.allFish).filter(it => this.bigFish.includes(it._id))
+      return Object.values(this.allFish).filter(it => this.bigFish.includes(it._id)) //this.bigFish.includes(it._id)
     },
     fishListTimePart() {
       return this.fishList.map((fish, index) => {
@@ -148,6 +158,19 @@ export default {
           id: fish._id,
           countDown: this.getCountDown(fish, index, this.now),
         }
+      })
+    },
+    sortedFishIndices() {
+      return sortBy(this.fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
+    },
+    sortedFishList() {
+      return this.sortedFishIndices.map(id => {
+        const fish = this.allFish[id]
+        fish.refIndex = this.fishList.findIndex(it => it._id === fish._id)
+        // if (this.fishListTimePart[fish.refIndex].countDown.type === 0) {
+        //   console.log('11111111111')
+        // }
+        return fish
       })
     },
     ...mapState({
@@ -235,14 +258,14 @@ export default {
         fish.startHour === 0 &&
         fish.endHour === 24
       ) {
-        return { type: 'allAvailable' }
+        return { type: ALL_AVAILABLE }
       }
       const fishingSpot = this.fishingSpots[fish.location]
       if (fishingSpot) {
         const fishWindowsComputed = this.fishListWeatherChangePart[fishIndex]
         let nextTwoFishWindow
         if (fishWindowsComputed) {
-          nextTwoFishWindow = fishWindowsComputed.fishWindows.slice(2)
+          nextTwoFishWindow = fishWindowsComputed.fishWindows.slice(0, 2)
         } else {
           nextTwoFishWindow = FishWindow.getNextNFishWindows(
             fishingSpot.territory_id,
@@ -262,27 +285,30 @@ export default {
         }
         if (now <= nextFishWindow[0]) {
           return {
-            type: 'waiting',
-            time: prettyMilliseconds(nextFishWindow[0] - now, {
-              verbose: true,
-              unitCount: 2,
-              secondsDecimalDigits: 0,
-            }),
+            type: WAITING,
+            time: nextFishWindow[0] - now,
           }
         } else if (now <= nextFishWindow[1]) {
           return {
-            type: 'fishing',
-            time: prettyMilliseconds(nextFishWindow[1] - now, {
-              verbose: true,
-              unitCount: 2,
-              secondsDecimalDigits: 0,
-            }),
+            type: FISHING,
+            time: nextFishWindow[1] - now,
           }
         }
       }
     },
+    printCountDownTime(time) {
+      if (time != null) {
+        return prettyMilliseconds(time, {
+          verbose: true,
+          unitCount: 2,
+          secondsDecimalDigits: 0,
+        })
+      } else {
+        return ''
+      }
+    },
     getFishWindow(fish, now) {
-      console.debug(fish)
+      // console.debug(fish)
       const fishingSpot = this.fishingSpots[fish.location]
       if (fishingSpot) {
         return FishWindow.getNextNFishWindows(
@@ -318,6 +344,12 @@ export default {
           }
         })
       }
+    },
+    hasTimeConstraint(countDown) {
+      return countDown.type !== ALL_AVAILABLE
+    },
+    getCountDownTypeName(countDown) {
+      return COUNT_DOWN_TYPES[countDown]
     },
   },
 }
