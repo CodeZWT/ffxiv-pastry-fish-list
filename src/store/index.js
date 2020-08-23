@@ -1,8 +1,8 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import { DATA } from "@/store/data";
+import Vue from 'vue'
+import Vuex from 'vuex'
+import { DATA } from '@/store/data'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
@@ -14,9 +14,10 @@ export default new Vuex.Store({
     weatherTypes: DATA.WEATHER_TYPES,
     regions: DATA.REGIONS,
     zones: DATA.ZONES,
-    folklore: DATA.FOLKLORE
+    folklore: DATA.FOLKLORE,
+    bigFish: DATA.BIG_FISH,
   },
   mutations: {},
   actions: {},
-  modules: {}
-});
+  modules: {},
+})

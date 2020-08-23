@@ -4,15 +4,10 @@
       <v-col cols="12">
         <v-card class="mx-auto" tile>
           <code
-            >ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }}
-            {{ earthTime.toLocaleTimeString() }}</code
+            >ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}</code
           >
           <v-list three-line>
-            <v-virtual-scroll
-              :items="fishList"
-              :item-height="200"
-              height="1000"
-            >
+            <v-virtual-scroll :items="fishList" :item-height="200" height="1000">
               <template v-slot="{ item: fish, index }">
                 <v-list-item :key="fish._id" three-line>
                   <v-list-item-avatar tile>
@@ -37,12 +32,7 @@
                           v-for="weather in getWeather(fish.previousWeatherSet)"
                           :title="weather.name"
                         >
-                          <v-img
-                            :src="weather.icon"
-                            :alt="weather.name"
-                            width="24"
-                            height="24"
-                          ></v-img>
+                          <v-img :src="weather.icon" :alt="weather.name" width="24" height="24"></v-img>
                         </div>
                         <v-icon v-if="fish.previousWeatherSet.length > 0">
                           mdi-arrow-right
@@ -52,24 +42,20 @@
                           v-for="weather in getWeather(fish.weatherSet)"
                           :title="weather.name"
                         >
-                          <v-img
-                            :src="weather.icon"
-                            :alt="weather.name"
-                            width="24"
-                            height="24"
-                          ></v-img>
+                          <v-img :src="weather.icon" :alt="weather.name" width="24" height="24"></v-img>
                         </div>
                       </div>
                     </v-list-item-subtitle>
-                    <v-list-item-subtitle>
-                      {{ fish.startHour }} - {{ fish.endHour }}
-                    </v-list-item-subtitle>
+                    <v-list-item-subtitle> {{ fish.startHour }} - {{ fish.endHour }}</v-list-item-subtitle>
                     <v-list-item-subtitle>
                       {{ fishListTimePart[index].countDown }}
                     </v-list-item-subtitle>
                     <v-list-item-subtitle
                       v-if="
-                        fishListWeatherChangePart[index].fishWindows != null
+                        fishListTimePart[index] &&
+                          fishListTimePart[index].countDown.type !== 'allAvailable' &&
+                          fishListWeatherChangePart[index] &&
+                          fishListWeatherChangePart[index].fishWindows
                       "
                     >
                       <v-menu offset-y>
@@ -81,13 +67,11 @@
 
                         <v-list>
                           <v-list-item
-                            v-for="(fishWindow,
-                            index) in fishListWeatherChangePart[index]
-                              .fishWindows"
+                            v-for="(fishWindow, index) in fishListWeatherChangePart[index].fishWindows"
                             :key="index"
                           >
                             <v-list-item-title>
-                              {{ fishWindow }}
+                              {{ fishWindow.map(time => new Date(time).toLocaleTimeString()) }}
                             </v-list-item-title>
                           </v-list-item>
                         </v-list>
@@ -96,26 +80,14 @@
 
                     <v-list-item-subtitle>
                       <div style="display: flex">
-                        <div
-                          v-for="bait in getBaits(fish)"
-                          :key="fish._id + bait.bait"
-                        >
+                        <div v-for="bait in getBaits(fish)" :key="fish._id + bait.bait">
                           <v-row>
                             <v-col>
-                              <v-img
-                                :src="getItemIconUrl(bait.bait)"
-                                :key="bait.bait"
-                                width="36"
-                                height="36"
-                              ></v-img>
+                              <v-img :src="getItemIconUrl(bait.bait)" :key="bait.bait" width="36" height="36"></v-img>
                             </v-col>
                             <v-col>
                               <code>{{ tug[bait.tug] }}</code>
-                              <v-img
-                                :src="iconIdToUrl(hookset[bait.hookset])"
-                                width="24"
-                                height="24"
-                              ></v-img>
+                              <v-img :src="iconIdToUrl(hookset[bait.hookset])" width="24" height="24"></v-img>
                             </v-col>
                           </v-row>
                         </div>
@@ -133,167 +105,184 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import EorzeaTime, { WEATHER_CHANGE_INTERVAL } from "@/utils/Time";
-import EorzeaWeather from "@/utils/Weather";
-import FishWindow from "@/utils/FishWindow";
-import prettyMilliseconds from "pretty-ms";
+import { mapState } from 'vuex'
+import EorzeaTime, { WEATHER_CHANGE_INTERVAL } from '@/utils/Time'
+import EorzeaWeather from '@/utils/Weather'
+import FishWindow from '@/utils/FishWindow'
+import prettyMilliseconds from 'pretty-ms'
 
-const HOST = "https://cafemaker.wakingsands.com";
+const HOST = 'https://cafemaker.wakingsands.com'
 const HOOKSET_ICON = {
-  Powerful: "001115",
-  Precision: "001116"
-};
+  Powerful: '001115',
+  Precision: '001116',
+}
 const TUG_ICON = {
-  light: "!",
-  medium: "!!",
-  heavy: "!!!"
-};
+  light: '!',
+  medium: '!!',
+  heavy: '!!!',
+}
 
 export default {
-  name: "fish-list",
+  name: 'fish-list',
   data: () => ({
-    locale: "en",
+    locale: 'en',
     now: Date.now(),
     hookset: HOOKSET_ICON,
     tug: TUG_ICON,
     weatherChangeTrigger: 0,
-    fishListWeatherChangePart: []
+    fishListWeatherChangePart: [],
   }),
   computed: {
     eorzeaTime() {
-      return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now));
+      return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
     },
     earthTime() {
-      return new Date(this.now);
+      return new Date(this.now)
     },
     fishList() {
-      return Object.values(this.allFish).filter((it) => it._id == 24205);
+      return Object.values(this.allFish).filter(it => this.bigFish.includes(it._id))
     },
     fishListTimePart() {
-      return this.fishList.map(fish => {
+      return this.fishList.map((fish, index) => {
         return {
-          countDown: this.getCountDown(fish, this.now)
-        };
-      });
+          id: fish._id,
+          countDown: this.getCountDown(fish, index, this.now),
+        }
+      })
     },
     ...mapState({
-      allFish: "fish",
-      items: "items",
-      fishingSpots: "fishingSpots",
-      weatherTypes: "weatherTypes",
-      zones: "zones",
-      weatherRates: "weatherRates"
-    })
+      allFish: 'fish',
+      items: 'items',
+      fishingSpots: 'fishingSpots',
+      weatherTypes: 'weatherTypes',
+      zones: 'zones',
+      weatherRates: 'weatherRates',
+      bigFish: 'bigFish',
+    }),
   },
   watch: {
     weatherChangeTrigger() {
       this.fishListWeatherChangePart = this.fishList.map(fish => {
         return {
-          fishWindows: this.getFishWindow(fish, this.now)
-        };
-      });
-    }
+          fishWindows: this.getFishWindow(fish, this.now),
+        }
+      })
+    },
   },
   created() {
     setInterval(() => {
-      this.now = Date.now();
+      this.now = Date.now()
       if (this.weatherChangeTrigger === 0) {
-        this.weatherChangeTrigger = 1;
-      } else if (
-        EorzeaTime.toEorzeaTime(this.now) % WEATHER_CHANGE_INTERVAL <=
-        1000
-      ) {
-        this.weatherChangeTrigger *= -1;
+        this.weatherChangeTrigger = 1
+      } else if (EorzeaTime.toEorzeaTime(this.now) % WEATHER_CHANGE_INTERVAL <= 1000) {
+        this.weatherChangeTrigger *= -1
       }
-    }, 1000);
+    }, 1000)
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
   },
   methods: {
     getItemName(id) {
-      return this.getName(this.items[id]);
+      return this.getName(this.items[id])
     },
     getFishingSpotsName(id) {
-      return this.fishingSpots[id] && this.getName(this.fishingSpots[id]);
+      return this.fishingSpots[id] && this.getName(this.fishingSpots[id])
     },
     getZoneName(id) {
-      const fishingSpot = this.fishingSpots[id];
+      const fishingSpot = this.fishingSpots[id]
       if (fishingSpot) {
-        return this.getName(
-          this.zones[this.weatherRates[fishingSpot.territory_id].zone_id]
-        );
+        return this.getName(this.zones[this.weatherRates[fishingSpot.territory_id].zone_id])
       }
     },
     getZoneId(id) {
-      const fishingSpot = this.fishingSpots[id];
+      const fishingSpot = this.fishingSpots[id]
       if (fishingSpot) {
-        return this.weatherRates[fishingSpot.territory_id].zone_id;
+        return this.weatherRates[fishingSpot.territory_id].zone_id
       }
     },
+    // TODO combine icon file together
+    // https://css-tricks.com/css-sprites/
     getItemIconUrl(id) {
-      const iconId = this.items[id].icon;
-      return this.iconIdToUrl(iconId);
+      const iconId = this.items[id].icon
+      return this.iconIdToUrl(iconId)
     },
     iconIdToUrl(iconId) {
-      return `${HOST}/i/${iconId.substring(0, 3)}000/${iconId}.png`;
+      return `${HOST}/i/${iconId.substring(0, 3)}000/${iconId}.png`
     },
     getWeather(weatherSet) {
       return weatherSet.map(id => {
         return {
           name: this.getName(this.weatherTypes[id]),
-          icon: this.iconIdToUrl(this.weatherTypes[id].icon)
-        };
-      });
+          icon: this.iconIdToUrl(this.weatherTypes[id].icon),
+        }
+      })
     },
     getName(multiLanguageItem) {
-      return multiLanguageItem["name_" + this.locale];
+      return multiLanguageItem['name_' + this.locale]
     },
     getWeatherAt(id) {
-      const fishingSpot = this.fishingSpots[id];
+      const fishingSpot = this.fishingSpots[id]
       if (fishingSpot) {
-        return this.getName(
-          this.weatherTypes[
-            EorzeaWeather.weatherAt(fishingSpot.territory_id, new EorzeaTime())
-          ]
-        );
+        return this.getName(this.weatherTypes[EorzeaWeather.weatherAt(fishingSpot.territory_id, new EorzeaTime())])
       }
     },
-    getCountDown(fish, now) {
-      const fishingSpot = this.fishingSpots[fish.location];
+    getCountDown(fish, fishIndex, now) {
+      // utilize 8 hours fish windows computed if exists
+      // and not out of time(use 2 fish window cached if necessary)
+      if (
+        fish.previousWeatherSet.length === 0 &&
+        fish.weatherSet.length === 0 &&
+        fish.startHour === 0 &&
+        fish.endHour === 24
+      ) {
+        return { type: 'allAvailable' }
+      }
+      const fishingSpot = this.fishingSpots[fish.location]
       if (fishingSpot) {
-        const [nextFishWindow] = FishWindow.getNextNFishWindows(
-          fishingSpot.territory_id,
-          new EorzeaTime(),
-          fish.startHour,
-          fish.endHour,
-          fish.previousWeatherSet,
-          fish.weatherSet,
-          1
-        );
+        const fishWindowsComputed = this.fishListWeatherChangePart[fishIndex]
+        let nextTwoFishWindow
+        if (fishWindowsComputed) {
+          nextTwoFishWindow = fishWindowsComputed.fishWindows.slice(2)
+        } else {
+          nextTwoFishWindow = FishWindow.getNextNFishWindows(
+            fishingSpot.territory_id,
+            new EorzeaTime(),
+            fish.startHour,
+            fish.endHour,
+            fish.previousWeatherSet,
+            fish.weatherSet,
+            2
+          )
+        }
+        let nextFishWindow
+        if (now > nextTwoFishWindow[0][1]) {
+          nextFishWindow = nextTwoFishWindow[1]
+        } else {
+          nextFishWindow = nextTwoFishWindow[0]
+        }
         if (now <= nextFishWindow[0]) {
           return {
-            type: "waiting",
+            type: 'waiting',
             time: prettyMilliseconds(nextFishWindow[0] - now, {
               verbose: true,
               unitCount: 2,
-              secondsDecimalDigits: 0
-            })
-          };
+              secondsDecimalDigits: 0,
+            }),
+          }
         } else if (now <= nextFishWindow[1]) {
           return {
-            type: "fishing",
+            type: 'fishing',
             time: prettyMilliseconds(nextFishWindow[1] - now, {
               verbose: true,
               unitCount: 2,
-              secondsDecimalDigits: 0
-            })
-          };
+              secondsDecimalDigits: 0,
+            }),
+          }
         }
       }
     },
     getFishWindow(fish, now) {
-      console.debug(fish);
-      const fishingSpot = this.fishingSpots[fish.location];
+      console.debug(fish)
+      const fishingSpot = this.fishingSpots[fish.location]
       if (fishingSpot) {
         return FishWindow.getNextNFishWindows(
           fishingSpot.territory_id,
@@ -302,36 +291,33 @@ export default {
           fish.endHour,
           fish.previousWeatherSet,
           fish.weatherSet
-        ).map(([start, end]) => [
-          new Date(start).toLocaleTimeString(),
-          new Date(end).toLocaleTimeString()
-        ]);
+        )
       }
     },
     getBaits(fish) {
-      if (fish.bestCatchPath.length < 1) return [];
+      if (fish.bestCatchPath.length < 1) return []
       const lastBait = {
         tug: fish.tug,
         hookset: fish.hookset,
-        bait: fish.bestCatchPath[fish.bestCatchPath.length - 1]
-      };
+        bait: fish.bestCatchPath[fish.bestCatchPath.length - 1],
+      }
       if (fish.bestCatchPath.length === 1) {
-        return [lastBait];
+        return [lastBait]
       } else {
         return fish.bestCatchPath.map((bait, index, arr) => {
           if (index === arr.length - 1) {
-            return lastBait;
+            return lastBait
           } else {
-            const baitFish = this.allFish[arr[index + 1]];
+            const baitFish = this.allFish[arr[index + 1]]
             return {
               tug: baitFish.tug,
               hookset: baitFish.hookset,
-              bait: bait
-            };
+              bait: bait,
+            }
           }
-        });
+        })
       }
-    }
-  }
-};
+    },
+  },
+}
 </script>
