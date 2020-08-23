@@ -125,7 +125,7 @@ const TUG_ICON = {
 export default {
   name: 'fish-list',
   data: () => ({
-    locale: 'en',
+    locale: 'chs',
     now: Date.now(),
     hookset: HOOKSET_ICON,
     tug: TUG_ICON,
@@ -158,6 +158,7 @@ export default {
       zones: 'zones',
       weatherRates: 'weatherRates',
       bigFish: 'bigFish',
+      dataCN: 'dataCN',
     }),
   },
   watch: {
@@ -216,8 +217,8 @@ export default {
         }
       })
     },
-    getName(multiLanguageItem) {
-      return multiLanguageItem['name_' + this.locale]
+    getName(multiLanguageItem, locale = this.locale) {
+      return multiLanguageItem['name_' + locale] ? multiLanguageItem['name_' + locale] : multiLanguageItem['name_en']
     },
     getWeatherAt(id) {
       const fishingSpot = this.fishingSpots[id]
