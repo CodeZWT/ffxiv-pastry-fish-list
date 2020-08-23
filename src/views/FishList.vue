@@ -5,14 +5,13 @@
         <v-card class="mx-auto" tile>
           <code>
             ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}
-
           </code>
           <v-list three-line>
             <v-virtual-scroll :items="sortedFishList" :item-height="200" height="1000">
               <template v-slot="{ item: fish }">
                 <v-list-item :key="fish._id" three-line>
                   <v-list-item-avatar tile>
-                    <v-img :src="getItemIconUrl(fish._id)"></v-img>
+                    <v-img width="40" height="40" :src="getItemIconUrl(fish._id)"></v-img>
                   </v-list-item-avatar>
 
                   <v-list-item-content>
@@ -33,7 +32,7 @@
                           v-for="weather in getWeather(fish.previousWeatherSet)"
                           :title="weather.name"
                         >
-                          <v-img :src="weather.icon" :alt="weather.name" width="24" height="24"></v-img>
+                          <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
                         </div>
                         <v-icon v-if="fish.previousWeatherSet.length > 0">
                           mdi-arrow-right
@@ -43,7 +42,7 @@
                           v-for="weather in getWeather(fish.weatherSet)"
                           :title="weather.name"
                         >
-                          <v-img :src="weather.icon" :alt="weather.name" width="24" height="24"></v-img>
+                          <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
                         </div>
                       </div>
                     </v-list-item-subtitle>
@@ -227,7 +226,12 @@ export default {
     // https://css-tricks.com/css-sprites/
     getItemIconUrl(id) {
       const iconId = this.items[id].icon
+      // const localImg = require(`../assert/${iconId}.png`)
+      // if (localImg) {
+      //   return localImg
+      // } else {
       return this.iconIdToUrl(iconId)
+      // }
     },
     iconIdToUrl(iconId) {
       return `${HOST}/i/${iconId.substring(0, 3)}000/${iconId}.png`
