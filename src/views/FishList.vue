@@ -2,6 +2,9 @@
   <v-container>
     <v-row>
       <v-col cols="12">
+        <div style="height: 200px; width: 200px">
+          <eorzea-map :hierarchy="2" :x="1000" :y="1000" :id="212"/>
+        </div>
         <v-card class="mx-auto" tile>
           <code>
             ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}
@@ -20,9 +23,7 @@
                   <v-list-item-content>
                     <div style="display: flex">
                       <div>
-                        <v-list-item-title>
-                          {{ getItemName(fish._id) }} # {{ fish._id }}
-                        </v-list-item-title>
+                        <v-list-item-title> {{ getItemName(fish._id) }} # {{ fish._id }} </v-list-item-title>
                         <v-list-item-subtitle class="text--primary">
                           {{ getZoneName(fish.location) }}
                         </v-list-item-subtitle>
@@ -115,6 +116,15 @@
                         </v-list-item-subtitle>
                         <v-list-item-subtitle> {{ fish.startHour }} - {{ fish.endHour }}</v-list-item-subtitle>
                       </div>
+                      <div>
+                        <eorzea-map
+                          :id="fishingSpots[fish.location].map"
+                          :x="fishingSpots[fish.location].x"
+                          :y="fishingSpots[fish.location].y"
+                          :hierarchy="fishingSpots[fish.location].hierarchy"
+                        >
+                        </eorzea-map>
+                      </div>
                     </div>
 
                     <!--                    <v-list-item-subtitle>-->
@@ -139,6 +149,7 @@ import FishWindow from '@/utils/FishWindow'
 import prettyMilliseconds from 'pretty-ms'
 import sortBy from 'lodash/sortBy'
 import fisher from '@/assets/fisher.png'
+import EorzeaMap from '@/components/EorzeaMap'
 
 const HOST = 'https://cafemaker.wakingsands.com'
 const HOOKSET_ICON = {
@@ -158,6 +169,7 @@ const ALL_AVAILABLE = 2
 
 export default {
   name: 'fish-list',
+  components: { EorzeaMap },
   data: () => ({
     locale: 'chs',
     now: Date.now(),
