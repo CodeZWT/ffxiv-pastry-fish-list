@@ -21,13 +21,13 @@
                     <div style="display: flex">
                       <div>
                         <v-list-item-title>
-                          {{ getItemName(fish._id) }}
+                          {{ getItemName(fish._id) }} # {{ fish._id }}
                         </v-list-item-title>
                         <v-list-item-subtitle class="text--primary">
                           {{ getZoneName(fish.location) }}
                         </v-list-item-subtitle>
                         <v-list-item-subtitle v-if="getZoneName(fish.location) !== getFishingSpotsName(fish.location)">
-                          {{ getFishingSpotsName(fish.location) }}
+                          {{ getFishingSpotsName(fish.location) }} # {{ fish.location }}
                         </v-list-item-subtitle>
                       </div>
                       <div>
@@ -175,7 +175,7 @@ export default {
       return new Date(this.now)
     },
     fishList() {
-      return Object.values(this.allFish).filter(it => this.bigFish.includes(it._id)) //this.bigFish.includes(it._id)
+      return Object.values(this.allFish).filter(it => this.bigFish.includes(it._id))
     },
     fishListTimePart() {
       return this.fishList.map((fish, index) => {
