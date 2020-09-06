@@ -2,139 +2,173 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <div style="height: 200px; width: 200px">
-          <eorzea-map :hierarchy="2" :x="1000" :y="1000" :id="212"/>
-        </div>
+        <!--        <div style="height: 200px; width: 200px">-->
+        <!--          <eorzea-map :hierarchy="2" :x="1000" :y="1000" :id="212" />-->
+        <!--        </div>-->
         <v-card class="mx-auto" tile>
           <code>
             ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}
           </code>
-          <v-list three-line>
-            <!-- TODO replace list to expansion panels -->
-            <!-- https://vuetifyjs.com/en/components/expansion-panels/#expansion-panels -->
-            <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">
-              <template v-slot="{ item: fish, index }">
-                <v-divider v-if="index !== 0" :key="index" />
-                <v-list-item :key="fish._id" three-line @click="0">
-                  <v-list-item-avatar tile>
-                    <v-img :lazy-src="fisher" width="40" height="40" :src="getItemIconUrl(fish._id)"></v-img>
-                  </v-list-item-avatar>
-
-                  <v-list-item-content>
-                    <div style="display: flex">
-                      <div>
-                        <v-list-item-title> {{ getItemName(fish._id) }} # {{ fish._id }} </v-list-item-title>
-                        <v-list-item-subtitle class="text--primary">
-                          {{ getZoneName(fish.location) }}
-                        </v-list-item-subtitle>
-                        <v-list-item-subtitle v-if="getZoneName(fish.location) !== getFishingSpotsName(fish.location)">
-                          {{ getFishingSpotsName(fish.location) }} # {{ fish.location }}
-                        </v-list-item-subtitle>
-                      </div>
-                      <div>
-                        <v-list-item-subtitle>
-                          <div style="display: flex">
-                            <div v-for="(bait, baitInx) in getBaits(fish)" :key="fish._id + bait.bait">
-                              <div style="display: flex">
-                                <div v-if="baitInx !== 0" style="display: flex; align-items: center">
-                                  <v-icon>mdi-arrow-right</v-icon>
-                                </div>
-                                <div>
-                                  <v-img
-                                    :lazy-src="fisher"
-                                    :src="getItemIconUrl(bait.bait)"
-                                    :key="bait.bait"
-                                    width="36"
-                                    height="36"
-                                  />
-                                </div>
-                                <div>
-                                  <code>{{ tug[bait.tug] }}</code>
-                                  <v-img :src="iconIdToUrl(hookset[bait.hookset])" width="16" height="16" />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </v-list-item-subtitle>
-                      </div>
-                      <div>
-                        <v-list-item-subtitle>
-                          {{ getCountDownTypeName(fishListTimePart[fish.refIndex].countDown.type) }}
-                        </v-list-item-subtitle>
-                        <v-list-item-subtitle v-if="hasTimeConstraint(fishListTimePart[fish.refIndex].countDown)">
-                          {{ printCountDownTime(fishListTimePart[fish.refIndex].countDown.time) }}
-                        </v-list-item-subtitle>
-                        <v-list-item-subtitle
-                          v-if="
-                            fishListTimePart[fish.refIndex] &&
-                              hasTimeConstraint(fishListTimePart[fish.refIndex].countDown) &&
-                              fishListWeatherChangePart[fish.refIndex] &&
-                              fishListWeatherChangePart[fish.refIndex].fishWindows
-                          "
-                        >
-                          <v-menu offset-y>
-                            <template v-slot:activator="{ on, attrs }">
-                              <v-btn icon v-bind="attrs" v-on="on">
-                                <v-icon>mdi-calendar</v-icon>
-                              </v-btn>
-                            </template>
-
-                            <v-list>
-                              <v-list-item
-                                v-for="(fishWindow, index) in fishListWeatherChangePart[fish.refIndex].fishWindows"
-                                :key="index"
-                              >
-                                <v-list-item-title>
-                                  {{ fishWindow.map(time => new Date(time).toLocaleTimeString()) }}
-                                </v-list-item-title>
-                              </v-list-item>
-                            </v-list>
-                          </v-menu>
-                        </v-list-item-subtitle>
-                      </div>
-                      <div>
-                        <v-list-item-subtitle>
-                          <div style="display: flex">
-                            <div
-                              :key="fish._id + weather.name"
-                              v-for="weather in getWeather(fish.previousWeatherSet)"
-                              :title="weather.name"
-                            >
-                              <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
-                            </div>
-                            <v-icon v-if="fish.previousWeatherSet.length > 0">
-                              mdi-arrow-right
-                            </v-icon>
-                            <div
-                              :key="fish._id + '-to-' + weather.name"
-                              v-for="weather in getWeather(fish.weatherSet)"
-                              :title="weather.name"
-                            >
-                              <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
-                            </div>
-                          </div>
-                        </v-list-item-subtitle>
-                        <v-list-item-subtitle> {{ fish.startHour }} - {{ fish.endHour }}</v-list-item-subtitle>
-                      </div>
-                      <div>
-                        <eorzea-map
-                          :id="fishingSpots[fish.location].map"
-                          :x="fishingSpots[fish.location].x"
-                          :y="fishingSpots[fish.location].y"
-                          :hierarchy="fishingSpots[fish.location].hierarchy"
-                        >
-                        </eorzea-map>
-                      </div>
+          <!-- TODO replace list to expansion panels -->
+          <!-- https://vuetifyjs.com/en/components/expansion-panels/#expansion-panels -->
+          <v-expansion-panels v-model="openPanelIndex">
+            <!--              <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">-->
+            <!--                <template v-slot="{ item: fish, index }">-->
+            <v-expansion-panel v-for="(fish, index) in sortedFishList" :key="fish._id">
+              <v-expansion-panel-header>
+                <template v-slot:default="{ open }">
+                  <div>
+                    <div>
+                      <v-fade-transition leave-absolute>
+                        <div v-if="open" key="0">
+                          <v-list-item-title> {{ getItemName(fish._id) }}</v-list-item-title>
+                        </div>
+                        <div v-else key="1">
+                          <fish-list-brief-header
+                            :fish="fish"
+                            :fish-time-part="fishListTimePart[fish.refIndex]"
+                            :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
+                          />
+                        </div>
+                      </v-fade-transition>
                     </div>
+                  </div>
+                </template>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <div style="height: 400px; width: 400px">
+                  <eorzea-map v-if="index === openPanelIndex"
+                    :debug="false"
+                    :id="fishingSpots[fish.location].map"
+                    :x="fishingSpots[fish.location].x"
+                    :y="fishingSpots[fish.location].y"
+                    :hierarchy="fishingSpots[fish.location].hierarchy"
+                  >
+                  </eorzea-map>
+                </div>
+                <!--                    <v-list-item :key="fish._id" three-line @click="0">-->
+                <!--                      <v-list-item-avatar tile>-->
+                <!--                        <v-img :lazy-src="fisher" width="40" height="40" :src="getItemIconUrl(fish._id)"></v-img>-->
+                <!--                      </v-list-item-avatar>-->
 
-                    <!--                    <v-list-item-subtitle>-->
-                    <!--                      {{ getWeatherAt(fish.location) }}-->
-                    <!--                    </v-list-item-subtitle>-->
-                  </v-list-item-content>
-                </v-list-item>
-              </template>
-            </v-virtual-scroll>
-          </v-list>
+                <!--                      <v-list-item-content>-->
+                <!--                        <div style="display: flex">-->
+                <!--                          <div>-->
+                <!--                            <v-list-item-title> {{ getItemName(fish._id) }} # {{ fish._id }} </v-list-item-title>-->
+                <!--                            <v-list-item-subtitle class="text&#45;&#45;primary">-->
+                <!--                              {{ getZoneName(fish.location) }}-->
+                <!--                            </v-list-item-subtitle>-->
+                <!--                            <v-list-item-subtitle-->
+                <!--                              v-if="getZoneName(fish.location) !== getFishingSpotsName(fish.location)"-->
+                <!--                            >-->
+                <!--                              {{ getFishingSpotsName(fish.location) }} # {{ fish.location }}-->
+                <!--                            </v-list-item-subtitle>-->
+                <!--                          </div>-->
+                <!--                          <div>-->
+                <!--                            <v-list-item-subtitle>-->
+                <!--                              <div style="display: flex">-->
+                <!--                                <div v-for="(bait, baitInx) in getBaits(fish)" :key="fish._id + bait.bait">-->
+                <!--                                  <div style="display: flex">-->
+                <!--                                    <div v-if="baitInx !== 0" style="display: flex; align-items: center">-->
+                <!--                                      <v-icon>mdi-arrow-right</v-icon>-->
+                <!--                                    </div>-->
+                <!--                                    <div>-->
+                <!--                                      <v-img-->
+                <!--                                        :lazy-src="fisher"-->
+                <!--                                        :src="getItemIconUrl(bait.bait)"-->
+                <!--                                        :key="bait.bait"-->
+                <!--                                        width="36"-->
+                <!--                                        height="36"-->
+                <!--                                      />-->
+                <!--                                    </div>-->
+                <!--                                    <div>-->
+                <!--                                      <code>{{ tug[bait.tug] }}</code>-->
+                <!--                                      <v-img :src="iconIdToUrl(hookset[bait.hookset])" width="16" height="16" />-->
+                <!--                                    </div>-->
+                <!--                                  </div>-->
+                <!--                                </div>-->
+                <!--                              </div>-->
+                <!--                            </v-list-item-subtitle>-->
+                <!--                          </div>-->
+                <!--                          <div>-->
+                <!--                            <v-list-item-subtitle>-->
+                <!--                              {{ getCountDownTypeName(fishListTimePart[fish.refIndex].countDown.type) }}-->
+                <!--                            </v-list-item-subtitle>-->
+                <!--                            <v-list-item-subtitle v-if="hasTimeConstraint(fishListTimePart[fish.refIndex].countDown)">-->
+                <!--                              {{ printCountDownTime(fishListTimePart[fish.refIndex].countDown.time) }}-->
+                <!--                            </v-list-item-subtitle>-->
+                <!--                            <v-list-item-subtitle-->
+                <!--                              v-if="-->
+                <!--                                fishListTimePart[fish.refIndex] &&-->
+                <!--                                  hasTimeConstraint(fishListTimePart[fish.refIndex].countDown) &&-->
+                <!--                                  fishListWeatherChangePart[fish.refIndex] &&-->
+                <!--                                  fishListWeatherChangePart[fish.refIndex].fishWindows-->
+                <!--                              "-->
+                <!--                            >-->
+                <!--                              <v-menu offset-y>-->
+                <!--                                <template v-slot:activator="{ on, attrs }">-->
+                <!--                                  <v-btn icon v-bind="attrs" v-on="on">-->
+                <!--                                    <v-icon>mdi-calendar</v-icon>-->
+                <!--                                  </v-btn>-->
+                <!--                                </template>-->
+
+                <!--                                <v-list>-->
+                <!--                                  <v-list-item-->
+                <!--                                    v-for="(fishWindow, index) in fishListWeatherChangePart[fish.refIndex].fishWindows"-->
+                <!--                                    :key="index"-->
+                <!--                                  >-->
+                <!--                                    <v-list-item-title>-->
+                <!--                                      {{ fishWindow.map(time => new Date(time).toLocaleTimeString()) }}-->
+                <!--                                    </v-list-item-title>-->
+                <!--                                  </v-list-item>-->
+                <!--                                </v-list>-->
+                <!--                              </v-menu>-->
+                <!--                            </v-list-item-subtitle>-->
+                <!--                          </div>-->
+                <!--                          <div>-->
+                <!--                            <v-list-item-subtitle>-->
+                <!--                              <div style="display: flex">-->
+                <!--                                <div-->
+                <!--                                  :key="fish._id + weather.name"-->
+                <!--                                  v-for="weather in getWeather(fish.previousWeatherSet)"-->
+                <!--                                  :title="weather.name"-->
+                <!--                                >-->
+                <!--                                  <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>-->
+                <!--                                </div>-->
+                <!--                                <v-icon v-if="fish.previousWeatherSet.length > 0">-->
+                <!--                                  mdi-arrow-right-->
+                <!--                                </v-icon>-->
+                <!--                                <div-->
+                <!--                                  :key="fish._id + '-to-' + weather.name"-->
+                <!--                                  v-for="weather in getWeather(fish.weatherSet)"-->
+                <!--                                  :title="weather.name"-->
+                <!--                                >-->
+                <!--                                  <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>-->
+                <!--                                </div>-->
+                <!--                              </div>-->
+                <!--                            </v-list-item-subtitle>-->
+                <!--                            <v-list-item-subtitle> {{ fish.startHour }} - {{ fish.endHour }}</v-list-item-subtitle>-->
+                <!--                          </div>-->
+                <!--                          <div>-->
+                <!--                            <eorzea-map-->
+                <!--                              :id="fishingSpots[fish.location].map"-->
+                <!--                              :x="fishingSpots[fish.location].x"-->
+                <!--                              :y="fishingSpots[fish.location].y"-->
+                <!--                              :hierarchy="fishingSpots[fish.location].hierarchy"-->
+                <!--                            >-->
+                <!--                            </eorzea-map>-->
+                <!--                          </div>-->
+                <!--                        </div>-->
+
+                <!--                        &lt;!&ndash;                    <v-list-item-subtitle>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                      {{ getWeatherAt(fish.location) }}&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                    </v-list-item-subtitle>&ndash;&gt;-->
+                <!--                      </v-list-item-content>-->
+                <!--                    </v-list-item>-->
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+            <!--              </v-virtual-scroll>-->
+          </v-expansion-panels>
         </v-card>
       </v-col>
     </v-row>
@@ -149,6 +183,7 @@ import FishWindow from '@/utils/FishWindow'
 import prettyMilliseconds from 'pretty-ms'
 import sortBy from 'lodash/sortBy'
 import fisher from '@/assets/fisher.png'
+import FishListBriefHeader from '@/components/FishListBriefHeader'
 import EorzeaMap from '@/components/EorzeaMap'
 
 const HOST = 'https://cafemaker.wakingsands.com'
@@ -169,7 +204,7 @@ const ALL_AVAILABLE = 2
 
 export default {
   name: 'fish-list',
-  components: { EorzeaMap },
+  components: { EorzeaMap, FishListBriefHeader },
   data: () => ({
     locale: 'chs',
     now: Date.now(),
@@ -178,6 +213,7 @@ export default {
     weatherChangeTrigger: 0,
     fishListWeatherChangePart: [],
     fisher: fisher,
+    openPanelIndex: 0,
   }),
   computed: {
     eorzeaTime() {
@@ -187,7 +223,9 @@ export default {
       return new Date(this.now)
     },
     fishList() {
-      return Object.values(this.allFish).filter(it => this.bigFish.includes(it._id))
+      return Object.values(this.allFish)
+        .filter(it => this.bigFish.includes(it._id))
+        .slice(0, 3)
     },
     fishListTimePart() {
       return this.fishList.map((fish, index) => {
