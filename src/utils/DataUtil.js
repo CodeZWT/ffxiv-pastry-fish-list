@@ -1,3 +1,5 @@
+import prettyMilliseconds from 'pretty-ms'
+
 const HOST = 'https://cafemaker.wakingsands.com'
 
 export default {
@@ -15,6 +17,26 @@ export default {
   hasTimeConstraint(countDown) {
     return countDown.type !== this.ALL_AVAILABLE
   },
+
+  printCountDownTime(time, dict) {
+    if (time != null) {
+      return prettyMilliseconds(time, {
+        verbose: true,
+        unitCount: 2,
+        secondsDecimalDigits: 0,
+      })
+        .split(' ')
+        .map(it => {
+          if (isNaN(it)) {
+            return dict[it]
+          } else return it
+        })
+        .join('')
+    } else {
+      return ''
+    }
+  },
+  TIME_UNITS: ['days', 'hours', 'minutes', 'seconds'],
 
   TUG_ICON: {
     light: '!',

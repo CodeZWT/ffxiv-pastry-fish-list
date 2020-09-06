@@ -12,11 +12,7 @@
       <div class="text-subtitle-2">
         {{ fish.zone }}
       </div>
-      <div
-        v-if="fish.zone !== fish.fishingSpot"
-        class="text-subtitle-2"
-        :title="fish.fishingSpotId"
-      >
+      <div v-if="fish.zone !== fish.fishingSpot" class="text-subtitle-2" :title="fish.fishingSpotId">
         {{ fish.fishingSpot }}
       </div>
     </v-col>
@@ -52,7 +48,6 @@
 </template>
 
 <script>
-import prettyMilliseconds from 'pretty-ms'
 import { mapGetters } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
@@ -89,7 +84,7 @@ export default {
         baits: this.getBaits(this.value),
         countDownType: DataUtil.getCountDownTypeName(this.fishTimePart.countDown.type),
         countDownTime: this.fishTimePart.countDown.time,
-        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time),
+        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time, this.$t),
         hasTimeConstraint: DataUtil.hasTimeConstraint(this.fishTimePart.countDown),
       }
     },
@@ -97,22 +92,11 @@ export default {
   },
   methods: {
     printCountDownTime(time) {
-      if (time != null) {
-        return prettyMilliseconds(time, {
-          verbose: true,
-          unitCount: 2,
-          secondsDecimalDigits: 0,
-        })
-          .split(' ')
-          .map(it => {
-            if (isNaN(it)) {
-              return this.$t(`fishWindow.${it}`)
-            } else return it
-          })
-          .join('')
-      } else {
-        return ''
-      }
+      const dict = DataUtil.TIME_UNITS.reduce((dict, unit) => {
+        dict[unit] = this.$t(`countDown.unit.${unit}`)
+        return dict
+      }, {})
+      return DataUtil.printCountDownTime(time, dict)
     },
   },
 }
