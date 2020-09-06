@@ -94,7 +94,6 @@ export default {
     },
   },
   data: () => ({
-    locale: 'chs',
     hookset: HOOKSET_ICON,
     tug: TUG_ICON,
     weatherChangeTrigger: 0,
@@ -153,7 +152,7 @@ export default {
         }
       })
     },
-    getName(multiLanguageItem, locale = this.locale) {
+    getName(multiLanguageItem, locale = this.$i18n.locale) {
       return multiLanguageItem['name_' + locale] ? multiLanguageItem['name_' + locale] : multiLanguageItem['name_en']
     },
     getWeatherAt(id) {
@@ -169,6 +168,13 @@ export default {
           unitCount: 2,
           secondsDecimalDigits: 0,
         })
+          .split(' ')
+          .map(it => {
+            if (isNaN(it)) {
+              return this.$t(`fishWindow.${it}`)
+            } else return it
+          })
+          .join('')
       } else {
         return ''
       }
@@ -201,7 +207,7 @@ export default {
       return countDown.type !== ALL_AVAILABLE
     },
     getCountDownTypeName(countDown) {
-      return COUNT_DOWN_TYPES[countDown]
+      return this.$t(`countDown.${COUNT_DOWN_TYPES[countDown]}`)
     },
   },
 }

@@ -1,0 +1,12 @@
+{
+  "fishWindow": {
+    "hours": "小时",
+    "minutes": "分",
+    "seconds": "秒"
+  },
+  "countDown": {
+    "waiting": "距离下次窗口期：",
+    "fishing": "窗口期剩余：",
+    "allAvailable": "全天可钓"
+  }
+}

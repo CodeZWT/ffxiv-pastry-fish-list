@@ -1,15 +1,15 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import FishList from "@/views/FishList";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import FishList from '@/views/FishList'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/",
-    name: "FishList",
-    component: FishList
-  }
+    path: '/',
+    name: 'FishList',
+    component: FishList,
+  },
   // {
   //   path: "/about",
   //   name: "About",
@@ -19,10 +19,10 @@ const routes = [
   //   component: () =>
   //     import(/* webpackChunkName: "about" */ "../views/XXXX.vue")
   // }
-];
+]
 
 const router = new VueRouter({
-  routes
-});
+  routes,
+})
 
-export default router;
+export default router

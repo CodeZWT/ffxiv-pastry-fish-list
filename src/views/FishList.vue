@@ -83,7 +83,6 @@ export default {
   name: 'fish-list',
   components: { FishListItemContent, FishListBriefHeader },
   data: () => ({
-    locale: 'chs',
     now: Date.now(),
     hookset: HOOKSET_ICON,
     tug: TUG_ICON,
@@ -197,7 +196,7 @@ export default {
         }
       })
     },
-    getName(multiLanguageItem, locale = this.locale) {
+    getName(multiLanguageItem, locale = this.$i18n.locale) {
       return multiLanguageItem['name_' + locale] ? multiLanguageItem['name_' + locale] : multiLanguageItem['name_en']
     },
     getWeatherAt(id) {
