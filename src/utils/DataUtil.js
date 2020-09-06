@@ -36,7 +36,7 @@ export default {
       return ''
     }
   },
-  TIME_UNITS: ['days', 'hours', 'minutes', 'seconds'],
+  TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   TUG_ICON: {
     light: '!',
