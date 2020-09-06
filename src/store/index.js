@@ -97,6 +97,9 @@ export default new Vuex.Store({
         }
       })
     },
+    getFishingSpot: state => fishingSpotId => {
+      return state.fishingSpots[fishingSpotId]
+    },
   },
   mutations: {},
   actions: {},

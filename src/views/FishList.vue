@@ -33,7 +33,7 @@
               <v-expansion-panel-content>
                 <fish-list-item-content
                   :open="index === openPanelIndex"
-                  :fish="fish"
+                  :value="fish"
                   :fish-time-part="fishListTimePart[fish.refIndex]"
                   :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
                 ></fish-list-item-content>

@@ -3,12 +3,7 @@
     <v-row>
       <v-col>
         <v-row
-          v-if="
-            fishTimePart &&
-              hasTimeConstraint(fishTimePart.countDown) &&
-              fishWeatherChangePart &&
-              fishWeatherChangePart.fishWindows
-          "
+          v-if="fish.hasTimeConstraint"
         >
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -28,21 +23,13 @@
         </v-row>
         <v-row>
           <div style="display: flex">
-            <div
-              :key="fish._id + weather.name"
-              v-for="weather in getWeather(fish.previousWeatherSet)"
-              :title="weather.name"
-            >
+            <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
               <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
             </div>
             <v-icon v-if="fish.previousWeatherSet.length > 0">
               mdi-arrow-right
             </v-icon>
-            <div
-              :key="fish._id + '-to-' + weather.name"
-              v-for="weather in getWeather(fish.weatherSet)"
-              :title="weather.name"
-            >
+            <div v-for="weather in fish.weatherSetDetail" :key="weather.name" :title="weather.name">
               <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
             </div>
           </div>
@@ -56,10 +43,10 @@
           <eorzea-map
             v-if="open"
             :debug="false"
-            :id="fishingSpots[fish.location].map"
-            :x="fishingSpots[fish.location].x"
-            :y="fishingSpots[fish.location].y"
-            :hierarchy="fishingSpots[fish.location].hierarchy"
+            :id="fish.fishingSpot.map"
+            :x="fish.fishingSpot.x"
+            :y="fish.fishingSpot.y"
+            :hierarchy="fish.fishingSpot.hierarchy"
           >
           </eorzea-map>
         </div>
@@ -69,28 +56,10 @@
 </template>
 
 <script>
-import EorzeaWeather from '@/utils/Weather'
-import EorzeaTime from '@/utils/Time'
-import prettyMilliseconds from 'pretty-ms'
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import EorzeaMap from '@/components/EorzeaMap'
-
-const HOST = 'https://cafemaker.wakingsands.com'
-const HOOKSET_ICON = {
-  Powerful: '001115',
-  Precision: '001116',
-}
-const TUG_ICON = {
-  light: '!',
-  medium: '!!',
-  heavy: '!!!',
-}
-
-const COUNT_DOWN_TYPES = ['fishing', 'waiting', 'allAvailable']
-// const FISHING = 0
-// const WAITING = 1
-const ALL_AVAILABLE = 2
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'FishListItemContent',
@@ -100,7 +69,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    fish: {
+    value: {
       type: Object,
       default: () => ({}),
     },
@@ -114,115 +83,25 @@ export default {
     },
   },
   data: () => ({
-    locale: 'chs',
-    hookset: HOOKSET_ICON,
-    tug: TUG_ICON,
-    weatherChangeTrigger: 0,
     fisher: fisher,
   }),
   computed: {
-    ...mapState({
-      allFish: 'fish',
-      items: 'items',
-      fishingSpots: 'fishingSpots',
-      weatherTypes: 'weatherTypes',
-      zones: 'zones',
-      weatherRates: 'weatherRates',
-      bigFish: 'bigFish',
-      dataCN: 'dataCN',
-    }),
+    fish() {
+      return {
+        startHour: this.value.startHour,
+        endHour: this.value.endHour,
+        hasTimeConstraint: DataUtil.hasTimeConstraint(this.fishTimePart.countDown),
+        fishingSpot: this.getFishingSpot(this.value.location),
+        weatherSet: this.value.weatherSet,
+        weatherSetDetail: this.getWeather(this.value.weatherSet),
+        previousWeatherSet: this.value.previousWeatherSet,
+        previousWeatherSetDetail: this.getWeather(this.value.previousWeatherSet),
+      }
+    },
+    ...mapGetters(['getWeather', 'getFishingSpot']),
   },
   methods: {
-    getItemName(id) {
-      return this.getName(this.items[id])
-    },
-    getFishingSpotsName(id) {
-      return this.fishingSpots[id] && this.getName(this.fishingSpots[id])
-    },
-    getZoneName(id) {
-      const fishingSpot = this.fishingSpots[id]
-      if (fishingSpot) {
-        return this.getName(this.zones[this.weatherRates[fishingSpot.territory_id].zone_id])
-      }
-    },
-    getZoneId(id) {
-      const fishingSpot = this.fishingSpots[id]
-      if (fishingSpot) {
-        return this.weatherRates[fishingSpot.territory_id].zone_id
-      }
-    },
-    // TODO combine icon file together
-    // https://css-tricks.com/css-sprites/
-    getItemIconUrl(id) {
-      const iconId = this.items[id].icon
-      // const localImg = require(`../assert/${iconId}.png`)
-      // if (localImg) {
-      //   return localImg
-      // } else {
-      return this.iconIdToUrl(iconId)
-      // }
-    },
-    iconIdToUrl(iconId) {
-      return `${HOST}/i/${iconId.substring(0, 3)}000/${iconId}.png`
-    },
-    getWeather(weatherSet) {
-      return weatherSet.map(id => {
-        return {
-          name: this.getName(this.weatherTypes[id]),
-          icon: this.iconIdToUrl(this.weatherTypes[id].icon),
-        }
-      })
-    },
-    getName(multiLanguageItem, locale = this.locale) {
-      return multiLanguageItem['name_' + locale] ? multiLanguageItem['name_' + locale] : multiLanguageItem['name_en']
-    },
-    getWeatherAt(id) {
-      const fishingSpot = this.fishingSpots[id]
-      if (fishingSpot) {
-        return this.getName(this.weatherTypes[EorzeaWeather.weatherAt(fishingSpot.territory_id, new EorzeaTime())])
-      }
-    },
-    printCountDownTime(time) {
-      if (time != null) {
-        return prettyMilliseconds(time, {
-          verbose: true,
-          unitCount: 2,
-          secondsDecimalDigits: 0,
-        })
-      } else {
-        return ''
-      }
-    },
-    getBaits(fish) {
-      if (fish.bestCatchPath.length < 1) return []
-      const lastBait = {
-        tug: fish.tug,
-        hookset: fish.hookset,
-        bait: fish.bestCatchPath[fish.bestCatchPath.length - 1],
-      }
-      if (fish.bestCatchPath.length === 1) {
-        return [lastBait]
-      } else {
-        return fish.bestCatchPath.map((bait, index, arr) => {
-          if (index === arr.length - 1) {
-            return lastBait
-          } else {
-            const baitFish = this.allFish[arr[index + 1]]
-            return {
-              tug: baitFish.tug,
-              hookset: baitFish.hookset,
-              bait: bait,
-            }
-          }
-        })
-      }
-    },
-    hasTimeConstraint(countDown) {
-      return countDown.type !== ALL_AVAILABLE
-    },
-    getCountDownTypeName(countDown) {
-      return COUNT_DOWN_TYPES[countDown]
-    },
+
   },
 }
 </script>
