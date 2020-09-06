@@ -1,81 +1,47 @@
 <template>
-  <div class="d-flex justify-center align-content-center">
-    <v-col cols="2">
-      <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
-        <div class="mr-1">
-          <v-img :lazy-src="fisher" width="40" height="40" :src="getItemIconUrl(fish._id)" />
+  <v-layout>
+    <v-row>
+      <v-col>
+        <div
+          v-if="
+            fishTimePart &&
+              hasTimeConstraint(fishTimePart.countDown) &&
+              fishWeatherChangePart &&
+              fishWeatherChangePart.fishWindows
+          "
+        >
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon v-bind="attrs" v-on="on">
+                <v-icon>mdi-calendar</v-icon>
+              </v-btn>
+            </template>
+
+            <v-list>
+              <v-list-item v-for="(fishWindow, index) in fishWeatherChangePart.fishWindows" :key="index">
+                <v-list-item-title>
+                  {{ fishWindow.map(time => new Date(time).toLocaleTimeString()) }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
         </div>
-        <div class="text-subtitle-1" :title="fish._id">{{ getItemName(fish._id) }}</div>
-      </div>
-    </v-col>
-    <v-col cols="2" style="display: flex; flex-direction: column; justify-items: center">
-      <div class="text-subtitle-2">
-        {{ getZoneName(fish.location) }}
-      </div>
-      <div
-        v-if="getZoneName(fish.location) !== getFishingSpotsName(fish.location)"
-        class="text-subtitle-2"
-        :title="fish.location"
-      >
-        {{ getFishingSpotsName(fish.location) }}
-      </div>
-    </v-col>
-    <v-col>
-      <v-list-item-subtitle>
-        <div style="display: flex">
-          <div v-for="(bait, baitInx) in getBaits(fish)" :key="fish._id + bait.bait">
-            <div style="display: flex">
-              <div v-if="baitInx !== 0" style="display: flex; align-items: center">
-                <v-icon>mdi-arrow-right</v-icon>
-              </div>
-              <div>
-                <v-img :lazy-src="fisher" :src="getItemIconUrl(bait.bait)" :key="bait.bait" width="36" height="36" />
-              </div>
-              <div>
-                <code>{{ tug[bait.tug] }}</code>
-                <v-img :src="iconIdToUrl(hookset[bait.hookset])" width="16" height="16" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </v-list-item-subtitle>
-    </v-col>
-    <v-col>
-      <v-list-item-subtitle>
-        {{ getCountDownTypeName(fishTimePart.countDown.type) }}
-      </v-list-item-subtitle>
-      <v-list-item-subtitle v-if="hasTimeConstraint(fishTimePart.countDown)">
-        {{ printCountDownTime(fishTimePart.countDown.time) }}
-      </v-list-item-subtitle>
-    </v-col>
-    <v-col>
-      <v-list-item-subtitle>
-        <div style="display: flex">
-          <div
-            :key="fish._id + weather.name"
-            v-for="weather in getWeather(fish.previousWeatherSet)"
-            :title="weather.name"
+      </v-col>
+      <v-col>
+        <div style="height: 400px; width: 400px">
+          <eorzea-map
+            v-if="open"
+            :debug="false"
+            :id="fishingSpots[fish.location].map"
+            :x="fishingSpots[fish.location].x"
+            :y="fishingSpots[fish.location].y"
+            :hierarchy="fishingSpots[fish.location].hierarchy"
           >
-            <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
-          </div>
-          <v-icon v-if="fish.previousWeatherSet.length > 0">
-            mdi-arrow-right
-          </v-icon>
-          <div
-            :key="fish._id + '-to-' + weather.name"
-            v-for="weather in getWeather(fish.weatherSet)"
-            :title="weather.name"
-          >
-            <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
-          </div>
+          </eorzea-map>
         </div>
-      </v-list-item-subtitle>
-      <v-list-item-subtitle> {{ fish.startHour }} - {{ fish.endHour }}</v-list-item-subtitle>
-    </v-col>
-    <!--                    <v-list-item-subtitle>-->
-    <!--                      {{ getWeatherAt(fish.location) }}-->
-    <!--                    </v-list-item-subtitle>-->
-  </div>
+      </v-col>
+    </v-row>
+  </v-layout>
 </template>
 
 <script>
@@ -84,6 +50,7 @@ import EorzeaTime from '@/utils/Time'
 import prettyMilliseconds from 'pretty-ms'
 import { mapState } from 'vuex'
 import fisher from '@/assets/fisher.png'
+import EorzeaMap from '@/components/EorzeaMap'
 
 const HOST = 'https://cafemaker.wakingsands.com'
 const HOOKSET_ICON = {
@@ -102,8 +69,13 @@ const COUNT_DOWN_TYPES = ['fishing', 'waiting', 'allAvailable']
 const ALL_AVAILABLE = 2
 
 export default {
-  name: 'FishListBriefHeader',
+  name: 'FishListItemContent',
+  components: { EorzeaMap },
   props: {
+    open: {
+      type: Boolean,
+      default: false,
+    },
     fish: {
       type: Object,
       default: () => ({}),
