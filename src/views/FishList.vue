@@ -100,9 +100,7 @@ export default {
       return new Date(this.now)
     },
     fishList() {
-      return Object.values(this.allFish)
-        .filter(it => this.bigFish.includes(it._id))
-        .slice(0, 3)
+      return Object.values(this.allFish).filter(it => this.bigFish.includes(it._id))
     },
     fishListTimePart() {
       return this.fishList.map((fish, index) => {
@@ -116,14 +114,16 @@ export default {
       return sortBy(this.fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
     },
     sortedFishList() {
-      return this.sortedFishIndices.map(id => {
-        const fish = this.allFish[id]
-        fish.refIndex = this.fishList.findIndex(it => it._id === fish._id)
-        // if (this.fishListTimePart[fish.refIndex].countDown.type === 0) {
-        //   console.log('11111111111')
-        // }
-        return fish
-      })
+      return this.sortedFishIndices
+        .map(id => {
+          const fish = this.allFish[id]
+          fish.refIndex = this.fishList.findIndex(it => it._id === fish._id)
+          // if (this.fishListTimePart[fish.refIndex].countDown.type === 0) {
+          //   console.log('11111111111')
+          // }
+          return fish
+        })
+        .filter(it => it._id === 8772)
     },
     ...mapState({
       allFish: 'fish',

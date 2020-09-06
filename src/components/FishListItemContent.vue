@@ -2,7 +2,7 @@
   <v-layout>
     <v-row>
       <v-col>
-        <div
+        <v-row
           v-if="
             fishTimePart &&
               hasTimeConstraint(fishTimePart.countDown) &&
@@ -25,7 +25,31 @@
               </v-list-item>
             </v-list>
           </v-menu>
-        </div>
+        </v-row>
+        <v-row>
+          <div style="display: flex">
+            <div
+              :key="fish._id + weather.name"
+              v-for="weather in getWeather(fish.previousWeatherSet)"
+              :title="weather.name"
+            >
+              <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
+            </div>
+            <v-icon v-if="fish.previousWeatherSet.length > 0">
+              mdi-arrow-right
+            </v-icon>
+            <div
+              :key="fish._id + '-to-' + weather.name"
+              v-for="weather in getWeather(fish.weatherSet)"
+              :title="weather.name"
+            >
+              <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
+            </div>
+          </div>
+        </v-row>
+        <v-row>
+          <div>{{ fish.startHour }} - {{ fish.endHour }}</div>
+        </v-row>
       </v-col>
       <v-col>
         <div style="height: 400px; width: 400px">

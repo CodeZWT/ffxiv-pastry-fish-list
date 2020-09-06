@@ -48,30 +48,6 @@
         {{ printCountDownTime(fishTimePart.countDown.time) }}
       </v-list-item-subtitle>
     </v-col>
-    <v-col>
-      <v-list-item-subtitle>
-        <div style="display: flex">
-          <div
-            :key="fish._id + weather.name"
-            v-for="weather in getWeather(fish.previousWeatherSet)"
-            :title="weather.name"
-          >
-            <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
-          </div>
-          <v-icon v-if="fish.previousWeatherSet.length > 0">
-            mdi-arrow-right
-          </v-icon>
-          <div
-            :key="fish._id + '-to-' + weather.name"
-            v-for="weather in getWeather(fish.weatherSet)"
-            :title="weather.name"
-          >
-            <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
-          </div>
-        </div>
-      </v-list-item-subtitle>
-      <v-list-item-subtitle> {{ fish.startHour }} - {{ fish.endHour }}</v-list-item-subtitle>
-    </v-col>
     <!--                    <v-list-item-subtitle>-->
     <!--                      {{ getWeatherAt(fish.location) }}-->
     <!--                    </v-list-item-subtitle>-->
