@@ -3,27 +3,27 @@
     <v-col cols="2">
       <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
         <div class="mr-1">
-          <v-img :lazy-src="fisher" width="40" height="40" :src="aggregatedFishInfo.icon" />
+          <v-img :lazy-src="fisher" width="40" height="40" :src="fish.icon" />
         </div>
-        <div class="text-subtitle-1" :title="aggregatedFishInfo.id">{{ aggregatedFishInfo.name }}</div>
+        <div class="text-subtitle-1" :title="fish.id">{{ fish.name }}</div>
       </div>
     </v-col>
     <v-col cols="2" style="display: flex; flex-direction: column; justify-items: center">
       <div class="text-subtitle-2">
-        {{ aggregatedFishInfo.zone }}
+        {{ fish.zone }}
       </div>
       <div
-        v-if="aggregatedFishInfo.zone !== aggregatedFishInfo.fishingSpot"
+        v-if="fish.zone !== fish.fishingSpot"
         class="text-subtitle-2"
-        :title="aggregatedFishInfo.fishingSpotId"
+        :title="fish.fishingSpotId"
       >
-        {{ aggregatedFishInfo.fishingSpot }}
+        {{ fish.fishingSpot }}
       </div>
     </v-col>
     <v-col>
       <v-list-item-subtitle>
         <div style="display: flex">
-          <div v-for="(bait, baitInx) in aggregatedFishInfo.baits" :key="baitInx">
+          <div v-for="(bait, baitInx) in fish.baits" :key="baitInx">
             <div style="display: flex">
               <div v-if="baitInx !== 0" style="display: flex; align-items: center">
                 <v-icon>mdi-arrow-right</v-icon>
@@ -42,10 +42,10 @@
     </v-col>
     <v-col>
       <v-list-item-subtitle>
-        {{ $t(aggregatedFishInfo.countDownType) }}
+        {{ $t(fish.countDownType) }}
       </v-list-item-subtitle>
-      <v-list-item-subtitle v-if="aggregatedFishInfo.hasTimeConstraint">
-        {{ aggregatedFishInfo.countDownTimeText }}
+      <v-list-item-subtitle v-if="fish.hasTimeConstraint">
+        {{ fish.countDownTimeText }}
       </v-list-item-subtitle>
     </v-col>
   </div>
@@ -60,7 +60,7 @@ import DataUtil from '@/utils/DataUtil'
 export default {
   name: 'FishListBriefHeader',
   props: {
-    fish: {
+    value: {
       type: Object,
       default: () => ({}),
     },
@@ -78,15 +78,15 @@ export default {
     fisher: fisher,
   }),
   computed: {
-    aggregatedFishInfo() {
+    fish() {
       return {
-        id: this.fish.id,
-        icon: this.getItemIconUrl(this.fish._id),
-        name: this.getItemName(this.fish._id),
-        zone: this.getZoneName(this.fish.location),
-        fishingSpot: this.getFishingSpotsName(this.fish.location),
-        fishingSpotId: this.fish.location,
-        baits: this.getBaits(this.fish),
+        id: this.value.id,
+        icon: this.getItemIconUrl(this.value._id),
+        name: this.getItemName(this.value._id),
+        zone: this.getZoneName(this.value.location),
+        fishingSpot: this.getFishingSpotsName(this.value.location),
+        fishingSpotId: this.value.location,
+        baits: this.getBaits(this.value),
         countDownType: DataUtil.getCountDownTypeName(this.fishTimePart.countDown.type),
         countDownTime: this.fishTimePart.countDown.time,
         countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time),

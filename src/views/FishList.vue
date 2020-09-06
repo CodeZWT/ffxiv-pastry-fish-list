@@ -2,15 +2,10 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <!--        <div style="height: 200px; width: 200px">-->
-        <!--          <eorzea-map :hierarchy="2" :x="1000" :y="1000" :id="212" />-->
-        <!--        </div>-->
         <v-card class="mx-auto" tile>
           <code>
             ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}
           </code>
-          <!-- TODO replace list to expansion panels -->
-          <!-- https://vuetifyjs.com/en/components/expansion-panels/#expansion-panels -->
           <v-expansion-panels v-model="openPanelIndex">
             <!--              <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">-->
             <!--                <template v-slot="{ item: fish, index }">-->
@@ -25,7 +20,7 @@
                         </div>
                         <div v-else key="1">
                           <fish-list-brief-header
-                            :fish="fish"
+                            :value="fish"
                             :fish-time-part="fishListTimePart[fish.refIndex]"
                             :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
                           />
