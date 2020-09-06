@@ -8,7 +8,7 @@
         <div class="text-subtitle-1" :title="fish.id">{{ fish.name }}</div>
       </div>
     </v-col>
-    <v-col cols="2" style="display: flex; flex-direction: column; justify-items: center">
+    <v-col cols="3" style="display: flex; flex-direction: column; justify-items: center">
       <div class="text-subtitle-2">
         {{ fish.zone }}
       </div>
@@ -16,33 +16,29 @@
         {{ fish.fishingSpot }}
       </div>
     </v-col>
-    <v-col>
-      <v-list-item-subtitle>
+    <v-col cols="5" style="display: flex; flex-direction: row; align-items: center">
+      <div v-for="(bait, baitInx) in fish.baits" :key="baitInx">
         <div style="display: flex">
-          <div v-for="(bait, baitInx) in fish.baits" :key="baitInx">
-            <div style="display: flex">
-              <div v-if="baitInx !== 0" style="display: flex; align-items: center">
-                <v-icon>mdi-arrow-right</v-icon>
-              </div>
-              <div>
-                <v-img :lazy-src="fisher" :src="bait.baitIcon" width="36" height="36" />
-              </div>
-              <div>
-                <code>{{ bait.tugIcon }}</code>
-                <v-img :src="bait.hooksetIcon" width="16" height="16" />
-              </div>
-            </div>
+          <div v-if="baitInx !== 0" style="display: flex; align-items: center">
+            <v-icon>mdi-arrow-right</v-icon>
+          </div>
+          <div>
+            <v-img :lazy-src="fisher" :src="bait.baitIcon" width="36" height="36" />
+          </div>
+          <div>
+            <code>{{ bait.tugIcon }}</code>
+            <v-img :src="bait.hooksetIcon" width="16" height="16" />
           </div>
         </div>
-      </v-list-item-subtitle>
+      </div>
     </v-col>
-    <v-col>
-      <v-list-item-subtitle>
+    <v-col cols="2" style="display: flex; flex-direction: column; justify-items: center">
+      <div>
         {{ $t(fish.countDownType) }}
-      </v-list-item-subtitle>
-      <v-list-item-subtitle v-if="fish.hasTimeConstraint">
+      </div>
+      <div v-if="fish.hasTimeConstraint">
         {{ fish.countDownTimeText }}
-      </v-list-item-subtitle>
+      </div>
     </v-col>
   </div>
 </template>
