@@ -1,14 +1,17 @@
 <template>
   <div style="width: 100%; height: 100%">
-    <section v-if="!debug" class="erozea-map-outer">
-      <div class="eorzea-map-glass"></div>
-      <div class="eorzea-map-inner eorzea-map"></div>
-      <div class="eorzea-map-resize-handler"></div>
-    </section>
+    <div v-if="!debug" class="target" style="width: 100%; height: 100%"></div>
     <div v-else style="display: flex; flex-direction: column">
       <code> Map: {{ id }} @ {{ x }}, {{ y }} </code>
       <code> Computed @ {{ mapX }}, {{ mapY }} </code>
       <a :href="mapTestUrl" title="Go To Map Test">Go To Map Test</a>
+    </div>
+    <div class="template" style="display: none">
+      <section class="erozea-map-outer">
+        <div class="eorzea-map-glass"></div>
+        <div class="eorzea-map-inner eorzea-map"></div>
+        <div class="eorzea-map-resize-handler"></div>
+      </section>
     </div>
   </div>
 </template>
@@ -54,21 +57,34 @@ export default {
       return `https://map.wakingsands.com/#f=mark&id=${this.id}&x=${this.mapX}&y=${this.mapY}`
     },
   },
+  watch: {
+    id() {
+      // rerender map
+      if (!this.debug) {
+        this.rerenderMap()
+      }
+    },
+  },
   mounted() {
     if (!this.debug) {
-      const el = this.$el.getElementsByClassName('eorzea-map')[0]
-      const self = this
-      window.YZWF.eorzeaMap.create(el).then(map => {
-        window.map = map
-        map
-          .loadMapKey(self.id) // 23 为地图编号（游戏内 Map 表）
-          .then(() => {
-            self.setMapData(map)
-          })
-      })
+      this.rerenderMap()
     }
   },
   methods: {
+    rerenderMap() {
+      const template = this.$el.getElementsByClassName('template')[0].firstElementChild.cloneNode(true)
+      const target = this.$el.getElementsByClassName('target')[0]
+      target.innerHTML = ''
+      target.appendChild(template)
+      const el = target.firstElementChild
+      const self = this
+      window.YZWF.eorzeaMap.create(el).then(map => {
+        window.map = map
+        map.loadMapKey(self.id).then(() => {
+          self.setMapData(map)
+        })
+      })
+    },
     setMapData(map) {
       // 地图要加载好后才可以加标记
       //const [mapX, mapY] = map.toMapXY3D(1380/2048*42, 275/2048*42)

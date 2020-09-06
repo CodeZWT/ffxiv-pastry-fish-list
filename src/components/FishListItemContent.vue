@@ -39,6 +39,7 @@
         </v-row>
       </v-col>
       <v-col>
+        <code>{{open}}</code>
         <div style="height: 400px; width: 400px">
           <eorzea-map
             v-if="open"
