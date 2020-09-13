@@ -2,6 +2,14 @@
   <v-layout>
     <v-row>
       <v-col>
+        <v-row style="display: flex; justify-items: center">
+          <div>
+            {{ $t(fish.countDownType) }}
+          </div>
+          <div v-if="fish.hasTimeConstraint">
+            {{ fish.countDownTimeText }}
+          </div>
+        </v-row>
         <v-row
           v-if="fish.hasTimeConstraint"
         >
@@ -39,7 +47,6 @@
         </v-row>
       </v-col>
       <v-col>
-        <code>{{open}}</code>
         <div style="height: 400px; width: 400px">
           <eorzea-map
             v-if="open"
@@ -97,12 +104,22 @@ export default {
         weatherSetDetail: this.getWeather(this.value.weatherSet),
         previousWeatherSet: this.value.previousWeatherSet,
         previousWeatherSetDetail: this.getWeather(this.value.previousWeatherSet),
+        countDownType: DataUtil.getCountDownTypeName(this.fishTimePart.countDown.type),
+        countDownTime: this.fishTimePart.countDown.time,
+        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time, this.$t),
       }
     },
     ...mapGetters(['getWeather', 'getFishingSpot']),
   },
   methods: {
-
+    // todo add mixin
+    printCountDownTime(time) {
+      const dict = DataUtil.TIME_UNITS.reduce((dict, unit) => {
+        dict[unit] = this.$t(`countDown.unit.${unit}`)
+        return dict
+      }, {})
+      return DataUtil.printCountDownTime(time, dict)
+    },
   },
 }
 </script>

@@ -32,7 +32,7 @@
         </div>
       </div>
     </v-col>
-    <v-col cols="2" style="display: flex; flex-direction: column; justify-items: center">
+    <v-col cols="2" style="display: flex; flex-direction: column; justify-content: center">
       <div>
         {{ $t(fish.countDownType) }}
       </div>

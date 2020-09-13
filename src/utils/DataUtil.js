@@ -20,16 +20,17 @@ export default {
 
   printCountDownTime(time, dict) {
     if (time != null) {
-      return prettyMilliseconds(time, {
+      return prettyMilliseconds(time - (time % 1000), {
         verbose: true,
         unitCount: 2,
         secondsDecimalDigits: 0,
+        colonNotation: false,
       })
         .split(' ')
         .map(it => {
           if (isNaN(it)) {
             return dict[it]
-          } else return it
+          } else return it.padStart(2, '0')
         })
         .join('')
     } else {
