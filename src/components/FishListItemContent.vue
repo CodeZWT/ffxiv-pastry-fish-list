@@ -126,8 +126,16 @@
         </div>
       </v-col>
     </v-row>
-    <v-row v-for="(cnt, predator) in fish.predators" :key="predator">
-      <code>{{predator}} X {{cnt}}</code>
+    <v-row v-if="fish.hasPredators">
+      前置鱼
+    </v-row>
+    <v-row v-for="(predator, index) in fish.predators" :key="predator._id">
+      <v-divider v-if="index > 0" />
+      <fish-list-brief-header
+        :value="predator"
+        :fish-time-part="predator.fishTimePart"
+        :fish-weather-change-part="predator.fishWeatherChangePart"
+      />
     </v-row>
   </v-layout>
 </template>
@@ -137,10 +145,11 @@ import { mapGetters } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import EorzeaMap from '@/components/EorzeaMap'
 import DataUtil from '@/utils/DataUtil'
+import FishListBriefHeader from '@/components/FishListBriefHeader'
 
 export default {
   name: 'FishListItemContent',
-  components: { EorzeaMap },
+  components: { FishListBriefHeader, EorzeaMap },
   props: {
     open: {
       type: Boolean,
@@ -156,6 +165,10 @@ export default {
     },
     fishWeatherChangePart: {
       type: Object,
+      default: () => ({}),
+    },
+    predators: {
+      type: Array,
       default: () => ({}),
     },
   },
@@ -175,8 +188,8 @@ export default {
         fishEyesIcon: DataUtil.iconIdToUrl(DataUtil.ICON_FISH_EYES),
         fishEyesText: DataUtil.secondsToFishEyesString(this.value.fishEyes),
         fishEyesSeconds: this.value.fishEyes,
-        hasPredators: Object.keys(this.value.predators).length > 0,
-        predators: this.value.predators,
+        hasPredators: this.predators.length > 0,
+        predators: this.predators,
         predatorsIcon: DataUtil.iconIdToUrl(DataUtil.ICON_PREDATORS),
         hasSnagging: this.value.snagging,
         snaggingIcon: DataUtil.iconIdToUrl(DataUtil.ICON_SNAGGING),

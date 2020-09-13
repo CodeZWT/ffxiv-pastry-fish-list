@@ -36,6 +36,7 @@
                   :value="fish"
                   :fish-time-part="fishListTimePart[fish.refIndex]"
                   :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
+                  :predators="getPredators(fish)"
                 ></fish-list-item-content>
               </v-expansion-panel-content>
             </v-expansion-panel>
@@ -92,7 +93,7 @@ export default {
       return new Date(this.now)
     },
     fishList() {
-      return Object.values(this.allFish).filter(it => this.bigFish.includes(it._id))
+      return Object.values(this.allFish)
     },
     fishListTimePart() {
       return this.fishList.map((fish, index) => {
@@ -117,8 +118,21 @@ export default {
             return fish
           })
           // .slice(0, 10)
-          .filter((it, index) => index < 3 || [17589, 24993, 13727, 15627].includes(it._id))
+          .filter((it, index) => index < 3 || [17589, 24993, 13727, 15627, 24994].includes(it._id))
       )
+    },
+    getPredators() {
+      const self = this
+      return fish =>
+        Object.entries(fish.predators).map(([predatorId, count]) => {
+          const refIndex = self.fishList.findIndex(it => it._id === +predatorId)
+          return {
+            ...self.allFish[predatorId],
+            requiredCnt: count,
+            fishTimePart: self.fishListTimePart[refIndex],
+            fishWeatherChangePart: self.fishListWeatherChangePart[refIndex],
+          }
+        })
     },
     ...mapState({
       allFish: 'fish',
