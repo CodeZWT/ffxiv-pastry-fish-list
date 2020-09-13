@@ -15,10 +15,10 @@
                   <div>
                     <div>
                       <v-fade-transition leave-absolute>
-                        <div v-if="open" key="0">
-                          <v-list-item-title> {{ getItemName(fish._id) }}</v-list-item-title>
+                        <div v-if="open">
+                          <fish-list-expanded-header :value="fish" />
                         </div>
-                        <div v-else key="1">
+                        <div v-else>
                           <fish-list-brief-header
                             :value="fish"
                             :fish-time-part="fishListTimePart[fish.refIndex]"
@@ -56,6 +56,7 @@ import fisher from '@/assets/fisher.png'
 import FishListBriefHeader from '@/components/FishListBriefHeader'
 import FishListItemContent from '@/components/FishListItemContent'
 import DataUtil from '@/utils/DataUtil'
+import FishListExpandedHeader from '@/components/FishListExpandedHeader'
 
 const HOOKSET_ICON = {
   Powerful: '001115',
@@ -73,7 +74,7 @@ const ALL_AVAILABLE = 2
 
 export default {
   name: 'fish-list',
-  components: { FishListItemContent, FishListBriefHeader },
+  components: { FishListExpandedHeader, FishListItemContent, FishListBriefHeader },
   data: () => ({
     now: Date.now(),
     hookset: HOOKSET_ICON,
@@ -116,7 +117,7 @@ export default {
             return fish
           })
           // .slice(0, 10)
-          .filter(it => [17589, 24993].includes(it._id))
+          .filter((it, index) => index < 3 || [17589, 24993, 13727, 15627].includes(it._id))
       )
     },
     ...mapState({
@@ -193,11 +194,13 @@ export default {
           return {
             type: WAITING,
             time: nextFishWindow[0] - now,
+            fishWindowTotal: nextFishWindow[1] - nextFishWindow[0],
           }
         } else if (now <= nextFishWindow[1]) {
           return {
             type: FISHING,
             time: nextFishWindow[1] - now,
+            fishWindowTotal: nextFishWindow[1] - nextFishWindow[0],
           }
         }
       }

@@ -12,6 +12,8 @@
     },
     "waiting": "距离下次窗口期：",
     "fishing": "窗口期剩余：",
-    "allAvailable": "全天可钓"
-  }
+    "allAvailable": "全天可钓",
+    "fishWindowBtn": "查看窗口期详情"
+  },
+  "none": "无"
 }

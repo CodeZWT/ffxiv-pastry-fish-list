@@ -81,7 +81,7 @@ export default {
         countDownType: DataUtil.getCountDownTypeName(this.fishTimePart.countDown.type),
         countDownTime: this.fishTimePart.countDown.time,
         countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time, this.$t),
-        hasTimeConstraint: DataUtil.hasTimeConstraint(this.fishTimePart.countDown),
+        hasTimeConstraint: DataUtil.hasCountDown(this.fishTimePart.countDown),
       }
     },
     ...mapGetters(['getItemIconUrl', 'getItemName', 'getZoneName', 'getFishingSpotsName', 'getBaits']),

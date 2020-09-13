@@ -14,7 +14,7 @@ export default {
     return `countDown.${this.COUNT_DOWN_TYPE[countDown]}`
   },
 
-  hasTimeConstraint(countDown) {
+  hasCountDown(countDown) {
     return countDown.type !== this.ALL_AVAILABLE
   },
 
@@ -37,6 +37,13 @@ export default {
       return ''
     }
   },
+
+  secondsToFishEyesString(seconds) {
+    const minute = seconds / 60
+    const second = seconds % 60
+    return minute + '分' + (second === 0 ? '' : second + '秒')
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   TUG_ICON: {
@@ -55,4 +62,8 @@ export default {
   FISHING: 0,
   WAITING: 1,
   ALL_AVAILABLE: 2,
+
+  ICON_PREDATORS: '011101',
+  ICON_SNAGGING: '011102',
+  ICON_FISH_EYES: '011103',
 }
