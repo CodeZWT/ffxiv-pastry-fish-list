@@ -6,7 +6,10 @@
         <div class="mr-1">
           <v-img :lazy-src="fisher" width="40" height="40" :src="fish.icon" />
         </div>
+        <!--   TODO implement a link component for fish     -->
+        <!--        <a target="_blank" rel="noopener noreferrer" :href="`https://cn.ff14angler.com/?search=${fish.name}`">-->
         <div class="text-subtitle-1" :title="fish.id">{{ fish.name }}</div>
+        <!--        </a>-->
       </div>
     </v-col>
     <v-col cols="2" style="display: flex; flex-direction: column; justify-items: center">

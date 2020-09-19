@@ -93,7 +93,7 @@ export default {
       return new Date(this.now)
     },
     fishList() {
-      return Object.values(this.allFish)
+      return Object.values(this.allFish).filter(it => it.location != null)
     },
     fishListTimePart() {
       return this.fishList.map((fish, index) => {
@@ -117,8 +117,8 @@ export default {
             // }
             return fish
           })
-          // .slice(0, 10)
-          .filter((it, index) => index < 3 || [17589, 24993, 13727, 15627, 24994].includes(it._id))
+          // .filter((it, index) => index < 10)
+          .filter((it, index) => index < 10 || [12761, 17589, 24993, 13727, 15627, 24994].includes(it._id))
       )
     },
     getPredators() {

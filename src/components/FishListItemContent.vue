@@ -120,7 +120,7 @@
             :id="fish.fishingSpot.map"
             :x="fish.fishingSpot.x"
             :y="fish.fishingSpot.y"
-            :hierarchy="fish.fishingSpot.hierarchy"
+            :size-factor="fish.fishingSpot.size_factor"
           >
           </eorzea-map>
         </div>

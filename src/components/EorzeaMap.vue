@@ -32,7 +32,7 @@ export default {
       type: Number,
       default: undefined,
     },
-    hierarchy: {
+    sizeFactor: {
       type: Number,
       default: undefined,
     },
@@ -48,10 +48,10 @@ export default {
   },
   computed: {
     mapX() {
-      return +this.pixelToPos(this.hierarchy, this.x).toFixed(2)
+      return +this.pixelToPos(this.sizeFactor, this.x).toFixed(2)
     },
     mapY() {
-      return +this.pixelToPos(this.hierarchy, this.y).toFixed(2)
+      return +this.pixelToPos(this.sizeFactor, this.y).toFixed(2)
     },
     mapTestUrl() {
       return `https://map.wakingsands.com/#f=mark&id=${this.id}&x=${this.mapX}&y=${this.mapY}`
@@ -88,8 +88,8 @@ export default {
     setMapData(map) {
       // 地图要加载好后才可以加标记
       //const [mapX, mapY] = map.toMapXY3D(1380/2048*42, 275/2048*42)
-      // const x = this.pixelToPos(this.hierarchy, this.x)
-      // const y = this.pixelToPos(this.hierarchy, this.y)
+      // const x = this.pixelToPos(this.sizeFactor, this.x)
+      // const y = this.pixelToPos(this.sizeFactor, this.y)
       // const iconUrl = window.YZWF.eorzeaMap.loader.getIconUrl('ui/icon/060000/060561.tex') // 小旗子标记；注意地图 CDN 上只有地图用到的图标
       // const iconUrl = 'https://http.cat/204' // 也可以直接是 URL；如果没有的图标也可以从 cafemaker 上拿
 

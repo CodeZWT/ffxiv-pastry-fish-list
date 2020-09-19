@@ -4,6 +4,7 @@ const HOST = 'https://cafemaker.wakingsands.com'
 
 export default {
   iconIdToUrl(iconId) {
+    if (iconId == null) return ''
     return `${HOST}/i/${iconId.substring(0, 3)}000/${iconId}.png`
   },
   getName(multiLanguageItem, locale = 'chs') {
@@ -39,8 +40,9 @@ export default {
   },
 
   secondsToFishEyesString(seconds) {
-    const minute = seconds / 60
+    if (seconds === true) return ''
     const second = seconds % 60
+    const minute = (seconds - second) / 60
     return minute + '分' + (second === 0 ? '' : second + '秒')
   },
 
