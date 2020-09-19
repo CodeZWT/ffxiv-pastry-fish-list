@@ -107,13 +107,13 @@ export default {
       }, 1000)
     },
 
-    pixelToPos(hierarchy, pixelIndex) {
-      console.log('hierarchy', hierarchy)
-      let factor = 41
-      // if (hierarchy === 1) {
-      //   factor = 20.5
-      // }
-      return (pixelIndex / 2048) * factor + 1
+    // convert pixel coordinate to game map coordinate
+    // e.g. 2048 to 42
+    // ref: https://github.com/xivapi/ffxiv-datamining/blob/master/docs/MapCoordinates.md
+    pixelToPos(sizeFactor, pixelIndex) {
+      const MAP_SIZE_FACTOR_MAGIC = 41
+      const MAP_FILE_PIXEL_MAX = 2048
+      return (MAP_SIZE_FACTOR_MAGIC / (sizeFactor / 100)) * (pixelIndex / MAP_FILE_PIXEL_MAX) + 1
     },
   },
 }
