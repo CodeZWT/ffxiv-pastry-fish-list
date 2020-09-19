@@ -8,24 +8,6 @@
               <v-col cols="6">
                 {{ $t(fish.countDownTypeName) }}
               </v-col>
-              <v-col v-if="fish.hasCountDown" cols="6">
-                <v-menu offset-y>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-bind="attrs" v-on="on" tile outlined>
-                      <v-icon>mdi-calendar</v-icon>
-                      {{ $t('countDown.fishWindowBtn') }}
-                    </v-btn>
-                  </template>
-
-                  <v-list>
-                    <v-list-item v-for="(fishWindow, index) in fishWeatherChangePart.fishWindows" :key="index">
-                      <v-list-item-title>
-                        {{ fishWindow.map(time => new Date(time).toLocaleTimeString()) }}
-                      </v-list-item-title>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
-              </v-col>
             </v-row>
             <v-row v-if="fish.hasCountDown">
               <v-col v-if="fish.countDownType === WAITING">
@@ -43,6 +25,34 @@
                 </v-progress-linear>
               </v-col>
             </v-row>
+            <v-col v-if="fish.hasCountDown">
+              <v-expansion-panels hover flat>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    <v-icon>mdi-calendar</v-icon>
+                    <div>{{ $t('countDown.fishWindowBtn') }}</div>
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <v-simple-table>
+                      <template v-slot:default>
+                        <thead>
+                          <tr>
+                            <th class="text-left">Start</th>
+                            <th class="text-left">End</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(fishWindow, index) in fishWindows" :key="index">
+                            <td>{{ fishWindow.start }}</td>
+                            <td>{{ fishWindow.end }}</td>
+                          </tr>
+                        </tbody>
+                      </template>
+                    </v-simple-table>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
+            </v-col>
           </v-col>
         </v-row>
         <v-row>
@@ -213,6 +223,16 @@ export default {
           (this.fishTimePart.countDown.time / this.fishTimePart.countDown.fishWindowTotal) * 100,
         baits: this.getBaits(this.value),
       }
+    },
+    fishWindows() {
+      return this.fishWeatherChangePart.fishWindows.map(fishWindow => {
+        const start = new Date(fishWindow[0])
+        const end = new Date(fishWindow[1])
+        return {
+          start: start.toLocaleDateString() + ' ' + start.toLocaleTimeString(),
+          end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
+        }
+      })
     },
     ...mapGetters(['getWeather', 'getFishingSpot', 'getBaits', 'getFishingSpotFish', 'getItemName']),
   },
