@@ -111,6 +111,9 @@
             </div>
           </v-col>
         </v-row>
+        <!--        <v-row>-->
+        <!--          <fishing-spot-table :value="fish.fishingSpotFish" />-->
+        <!--        </v-row>-->
       </v-col>
       <v-col>
         <div style="height: 400px; width: 400px">
@@ -176,6 +179,7 @@ export default {
     fisher: fisher,
     FISHING: DataUtil.FISHING,
     WAITING: DataUtil.WAITING,
+    TUGS: Object.keys(DataUtil.TUG_ICON),
   }),
   computed: {
     fish() {
@@ -194,6 +198,7 @@ export default {
         hasSnagging: this.value.snagging,
         snaggingIcon: DataUtil.iconIdToUrl(DataUtil.ICON_SNAGGING),
         fishingSpot: this.getFishingSpot(this.value.location),
+        fishingSpotFish: this.getFishingSpotFish(this.value.location),
         weatherSet: this.value.weatherSet,
         weatherSetDetail: this.getWeather(this.value.weatherSet),
         hasWeatherConstraint: this.value.previousWeatherSet.length > 0 || this.value.weatherSet.length > 0,
@@ -209,7 +214,7 @@ export default {
         baits: this.getBaits(this.value),
       }
     },
-    ...mapGetters(['getWeather', 'getFishingSpot', 'getBaits']),
+    ...mapGetters(['getWeather', 'getFishingSpot', 'getBaits', 'getFishingSpotFish', 'getItemName']),
   },
   methods: {
     // todo add mixin

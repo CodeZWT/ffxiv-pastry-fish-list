@@ -5,7 +5,10 @@ const HOST = 'https://cafemaker.wakingsands.com'
 export default {
   iconIdToUrl(iconId) {
     if (iconId == null) return ''
-    return `${HOST}/i/${iconId.substring(0, 3)}000/${iconId}.png`
+    const iconIdStr = iconId + ''
+    const icon = iconIdStr.padStart(6, '0')
+    const path = icon.substring(0, 3) + '000'
+    return `${HOST}/i/${path}/${icon}.png`
   },
   getName(multiLanguageItem, locale = 'chs') {
     return multiLanguageItem['name_' + locale] ? multiLanguageItem['name_' + locale] : multiLanguageItem['name_en']

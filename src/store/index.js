@@ -6,6 +6,7 @@ import merge from 'lodash/merge'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaWeather from '@/utils/Weather'
 import EorzeaTime from '@/utils/Time'
+import { groupBy } from 'lodash'
 
 Vue.use(Vuex)
 
@@ -14,13 +15,14 @@ export default new Vuex.Store({
     fish: merge(DATA.FISH, DATA_CN.FISH_ANGLER_ID),
     fishingSpots: merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
-    items: merge(DATA.ITEMS, DATA_CN.ITEMS, DATA_CN.BAIT_ITEMS),
+    items: merge(DATA.ITEMS, DATA_CN.ITEMS),
     weatherRates: DATA.WEATHER_RATES,
     weatherTypes: merge(DATA.WEATHER_TYPES, DATA_CN.WEATHER_TYPES),
     regions: DATA.REGIONS,
     zones: merge(DATA.ZONES, DATA_CN.ZONES),
     folklore: DATA.FOLKLORE,
     bigFish: DATA.BIG_FISH,
+    fishingSpotFish: groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
   },
   getters: {
     // TODO combine icon file together
@@ -101,6 +103,13 @@ export default new Vuex.Store({
     },
     getFishingSpot: state => fishingSpotId => {
       return state.fishingSpots[fishingSpotId]
+    },
+    getFishingSpotFish: (state, getters) => fishingSpotId => {
+      return state.fishingSpotFish[fishingSpotId].map(it => ({
+        id: it.fish,
+        tug: it.tug,
+        icon: getters.getItemIconUrl(it.fish),
+      }))
     },
   },
   mutations: {},
