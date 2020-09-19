@@ -94,6 +94,8 @@ export default {
     },
     fishList() {
       return Object.values(this.allFish).filter(it => it.location != null)
+
+
     },
     fishListTimePart() {
       return this.fishList.map((fish, index) => {
@@ -118,7 +120,7 @@ export default {
             return fish
           })
           // .filter((it, index) => index < 10)
-          .filter((it, index) => index < 10 || [12761, 17589, 24993, 13727, 15627, 24994].includes(it._id))
+          .filter((it, index) => index < 10 || [24994].includes(it._id))
       )
     },
     getPredators() {
@@ -222,16 +224,23 @@ export default {
     getFishWindow(fish, now) {
       // console.debug(fish)
       const fishingSpot = this.fishingSpots[fish.location]
-      if (fishingSpot) {
-        return FishWindow.getNextNFishWindows(
-          fishingSpot.territory_id,
-          new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
-          fish.startHour,
-          fish.endHour,
-          fish.previousWeatherSet,
-          fish.weatherSet
-        )
+      if (
+        fishingSpot == null ||
+        (fish.previousWeatherSet.length === 0 &&
+          fish.weatherSet.length === 0 &&
+          fish.startHour === 0 &&
+          fish.endHour === 24)
+      ) {
+        return []
       }
+      return FishWindow.getNextNFishWindows(
+        fishingSpot.territory_id,
+        new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
+        fish.startHour,
+        fish.endHour,
+        fish.previousWeatherSet,
+        fish.weatherSet
+      )
     },
   },
 }

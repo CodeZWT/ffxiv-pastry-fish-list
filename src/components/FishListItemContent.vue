@@ -39,12 +39,14 @@
                           <tr>
                             <th class="text-left">Start</th>
                             <th class="text-left">End</th>
+                            <th class="text-left">时长</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr v-for="(fishWindow, index) in fishWindows" :key="index">
                             <td>{{ fishWindow.start }}</td>
                             <td>{{ fishWindow.end }}</td>
+                            <td>{{ fishWindow.interval }}</td>
                           </tr>
                         </tbody>
                       </template>
@@ -231,6 +233,7 @@ export default {
         return {
           start: start.toLocaleDateString() + ' ' + start.toLocaleTimeString(),
           end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
+          interval: this.printCountDownTime(end - start)
         }
       })
     },

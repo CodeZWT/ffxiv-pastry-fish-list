@@ -1,6 +1,6 @@
 import prettyMilliseconds from 'pretty-ms'
 
-const HOST = 'https://cafemaker.wakingsands.com'
+const HOST = 'https://xivapi.com'
 
 export default {
   iconIdToUrl(iconId) {
@@ -46,7 +46,7 @@ export default {
     if (seconds === true) return ''
     const second = seconds % 60
     const minute = (seconds - second) / 60
-    return minute + '分' + (second === 0 ? '' : second + '秒')
+    return (minute === 0 ? '' : minute + '分') + (second === 0 ? '' : second + '秒')
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],

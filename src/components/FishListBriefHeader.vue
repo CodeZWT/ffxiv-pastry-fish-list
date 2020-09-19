@@ -12,7 +12,7 @@
         <!--        </a>-->
       </div>
     </v-col>
-    <v-col cols="2" style="display: flex; flex-direction: column; justify-items: center">
+    <v-col cols="3" style="display: flex; flex-direction: column; justify-items: center">
       <div class="text-subtitle-2">
         {{ fish.zone }}
       </div>
@@ -36,7 +36,7 @@
         </div>
       </div>
     </v-col>
-    <v-col cols="2">
+    <v-col cols="1">
       <v-row>
         <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
           <v-img :lazy-src="fisher" width="28" height="36" :src="fish.fishEyesIcon" />
