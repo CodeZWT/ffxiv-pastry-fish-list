@@ -27,7 +27,7 @@
             <v-icon>mdi-arrow-right</v-icon>
           </div>
           <div>
-            <v-img :lazy-src="fisher" :src="bait.baitIcon" width="36" height="36" />
+            <v-img :lazy-src="fisher" :src="bait.baitIcon" width="36" height="36" :title="bait.baitName"/>
           </div>
           <div>
             <code>{{ bait.tugIcon }}</code>

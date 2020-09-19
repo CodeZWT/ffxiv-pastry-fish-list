@@ -14,7 +14,7 @@ export default new Vuex.Store({
     fish: merge(DATA.FISH, DATA_CN.FISH_ANGLER_ID),
     fishingSpots: merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
-    items: merge(DATA.ITEMS, DATA_CN.ITEMS),
+    items: merge(DATA.ITEMS, DATA_CN.ITEMS, DATA_CN.BAIT_ITEMS),
     weatherRates: DATA.WEATHER_RATES,
     weatherTypes: merge(DATA.WEATHER_TYPES, DATA_CN.WEATHER_TYPES),
     regions: DATA.REGIONS,
@@ -54,13 +54,14 @@ export default new Vuex.Store({
         tugIcon: DataUtil.TUG_ICON[fish.tug],
         hookset: fish.hookset,
         hooksetIcon: DataUtil.iconIdToUrl(DataUtil.HOOKSET_ICON[fish.hookset]),
-        bait: baitId,
+        baitId: baitId,
+        baitName: getters.getItemName(baitId),
         baitIcon: getters.getItemIconUrl(baitId),
       }
       if (fish.bestCatchPath.length === 1) {
         return [lastBait]
       } else {
-        return fish.bestCatchPath.map((bait, index, arr) => {
+        return fish.bestCatchPath.map((baitId, index, arr) => {
           if (index === arr.length - 1) {
             return lastBait
           } else {
@@ -70,8 +71,9 @@ export default new Vuex.Store({
               tugIcon: DataUtil.TUG_ICON[fish.tug],
               hookset: baitFish.hookset,
               hooksetIcon: DataUtil.iconIdToUrl(DataUtil.HOOKSET_ICON[fish.hookset]),
-              bait: bait,
-              baitIcon: getters.getItemIconUrl(bait),
+              baitId: baitId,
+              baitName: getters.getItemName(baitId),
+              baitIcon: getters.getItemIconUrl(baitId),
             }
           }
         })
