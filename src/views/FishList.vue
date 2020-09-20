@@ -23,6 +23,7 @@
                             :value="fish"
                             :fish-time-part="fishListTimePart[fish.refIndex]"
                             :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
+                            :predators="getPredators(fish)"
                           />
                         </div>
                       </v-fade-transition>

@@ -144,14 +144,15 @@
     <v-row v-if="fish.hasPredators">
       前置鱼
     </v-row>
-    <v-row v-for="(predator, index) in fish.predators" :key="predator._id">
-      <v-divider v-if="index > 0" />
-      <fish-list-brief-header
-        :value="predator"
-        :fish-time-part="predator.fishTimePart"
-        :fish-weather-change-part="predator.fishWeatherChangePart"
-      />
-    </v-row>
+    <fish-predators :value="fish.predators" />
+    <!--    <v-row v-for="(predator, index) in fish.predators" :key="predator._id">-->
+    <!--      <v-divider v-if="index > 0" />-->
+    <!--      <fish-list-brief-header-->
+    <!--        :value="predator"-->
+    <!--        :fish-time-part="predator.fishTimePart"-->
+    <!--        :fish-weather-change-part="predator.fishWeatherChangePart"-->
+    <!--      />-->
+    <!--    </v-row>-->
   </v-layout>
 </template>
 
@@ -160,11 +161,11 @@ import { mapGetters } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import EorzeaMap from '@/components/EorzeaMap'
 import DataUtil from '@/utils/DataUtil'
-import FishListBriefHeader from '@/components/FishListBriefHeader'
+import FishPredators from '@/components/FishPredators'
 
 export default {
   name: 'FishListItemContent',
-  components: { FishListBriefHeader, EorzeaMap },
+  components: { FishPredators, EorzeaMap },
   props: {
     open: {
       type: Boolean,
@@ -184,7 +185,7 @@ export default {
     },
     predators: {
       type: Array,
-      default: () => ({}),
+      default: () => ([]),
     },
   },
   data: () => ({
@@ -233,7 +234,7 @@ export default {
         return {
           start: start.toLocaleDateString() + ' ' + start.toLocaleTimeString(),
           end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
-          interval: this.printCountDownTime(end - start)
+          interval: this.printCountDownTime(end - start),
         }
       })
     },
