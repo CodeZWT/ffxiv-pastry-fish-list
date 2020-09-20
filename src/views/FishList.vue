@@ -2,48 +2,46 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="mx-auto" tile>
-          <code>
-            ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}
-          </code>
-          <v-expansion-panels v-model="openPanelIndex">
-            <!--              <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">-->
-            <!--                <template v-slot="{ item: fish, index }">-->
-            <v-expansion-panel v-for="(fish, index) in sortedFishList" :key="index">
-              <v-expansion-panel-header>
-                <template v-slot:default="{ open }">
+        <code>
+          ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}
+        </code>
+        <v-expansion-panels v-model="openPanelIndex">
+          <!--              <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">-->
+          <!--                <template v-slot="{ item: fish, index }">-->
+          <v-expansion-panel v-for="(fish, index) in sortedFishList" :key="index">
+            <v-expansion-panel-header>
+              <template v-slot:default="{ open }">
+                <div>
                   <div>
-                    <div>
-                      <v-fade-transition leave-absolute>
-                        <div v-if="open">
-                          <fish-list-expanded-header :value="fish" />
-                        </div>
-                        <div v-else>
-                          <fish-list-brief-header
-                            :value="fish"
-                            :fish-time-part="fishListTimePart[fish.refIndex]"
-                            :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
-                            :predators="getPredators(fish)"
-                          />
-                        </div>
-                      </v-fade-transition>
-                    </div>
+                    <v-fade-transition leave-absolute>
+                      <div v-if="open">
+                        <fish-list-expanded-header :value="fish" />
+                      </div>
+                      <div v-else>
+                        <fish-list-brief-header
+                          :value="fish"
+                          :fish-time-part="fishListTimePart[fish.refIndex]"
+                          :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
+                          :predators="getPredators(fish)"
+                        />
+                      </div>
+                    </v-fade-transition>
                   </div>
-                </template>
-              </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <fish-list-item-content
-                  :open="index === openPanelIndex"
-                  :value="fish"
-                  :fish-time-part="fishListTimePart[fish.refIndex]"
-                  :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
-                  :predators="getPredators(fish)"
-                ></fish-list-item-content>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-            <!--              </v-virtual-scroll>-->
-          </v-expansion-panels>
-        </v-card>
+                </div>
+              </template>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <fish-list-item-content
+                :open="index === openPanelIndex"
+                :value="fish"
+                :fish-time-part="fishListTimePart[fish.refIndex]"
+                :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
+                :predators="getPredators(fish)"
+              ></fish-list-item-content>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <!--              </v-virtual-scroll>-->
+        </v-expansion-panels>
       </v-col>
     </v-row>
   </v-container>
@@ -95,8 +93,6 @@ export default {
     },
     fishList() {
       return Object.values(this.allFish).filter(it => it.location != null)
-
-
     },
     fishListTimePart() {
       return this.fishList.map((fish, index) => {

@@ -2,6 +2,13 @@
   <div class="d-flex justify-center align-content-center">
     <v-col cols="6">
       <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
+        <toggle-button :value="fish.completed" @input="setCompleted($event)" />
+        <toggle-button
+          :value="fish.pinned"
+          checked-icon="mdi-pin"
+          unchecked-icon="mdi-pin-outline"
+          @input="setPinned($event)"
+        />
         <div class="mr-1">
           <v-img :lazy-src="fisher" width="40" height="40" :src="fish.icon" />
         </div>
@@ -34,12 +41,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import copy from 'clipboard-copy'
+import ToggleButton from '@/components/basic/ToggleButton'
 
 export default {
   name: 'FishListExpandedHeader',
+  components: { ToggleButton },
   props: {
     value: {
       type: Object,
@@ -53,7 +62,9 @@ export default {
   computed: {
     fish() {
       return {
-        id: this.value.id,
+        id: this.value._id,
+        completed: this.getFishCompleted(this.value._id),
+        pinned: this.getFishPinned(this.value._id),
         icon: this.getItemIconUrl(this.value._id),
         name: this.getItemName(this.value._id),
         zone: this.getZoneName(this.value.location),
@@ -63,7 +74,15 @@ export default {
         anglerLocationId: this.getFishingSpot(this.value.location).anglerLocationId,
       }
     },
-    ...mapGetters(['getItemIconUrl', 'getItemName', 'getZoneName', 'getFishingSpotsName', 'getFishingSpot']),
+    ...mapGetters([
+      'getItemIconUrl',
+      'getItemName',
+      'getZoneName',
+      'getFishingSpotsName',
+      'getFishingSpot',
+      'getFishCompleted',
+      'getFishPinned',
+    ]),
   },
   methods: {
     goToFishingSpotAngelPage(anglerLocationId) {
@@ -75,6 +94,14 @@ export default {
     copyToClipboard(text) {
       copy(text)
     },
+    setCompleted(completed) {
+      this.setFishCompleted({ fishId: this.fish.id, completed })
+    },
+
+    setPinned(pinned) {
+      this.setFishPinned({ fishId: this.fish.id, pinned })
+    },
+    ...mapMutations(['setFishCompleted', 'setFishPinned']),
   },
 }
 </script>

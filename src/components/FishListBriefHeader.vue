@@ -3,6 +3,13 @@
     <div class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col cols="2">
         <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
+          <toggle-button :value="fish.completed" @input="setCompleted($event)" />
+          <toggle-button
+            :value="fish.pinned"
+            checked-icon="mdi-pin"
+            unchecked-icon="mdi-pin-outline"
+            @input="setPinned($event)"
+          />
           <div v-if="fish.requiredCnt" class="text-subtitle-1 mr-1">{{ fish.requiredCnt }}</div>
           <div class="mr-1">
             <v-img :lazy-src="fisher" width="40" height="40" :src="fish.icon" />
@@ -28,7 +35,7 @@
               <v-icon>mdi-arrow-right</v-icon>
             </div>
             <div>
-              <v-img :lazy-src="fisher" :src="bait.baitIcon" width="36" height="36" :title="bait.baitName"/>
+              <v-img :lazy-src="fisher" :src="bait.baitIcon" width="36" height="36" :title="bait.baitName" />
             </div>
             <div>
               <code>{{ bait.tugIcon }}</code>
@@ -70,14 +77,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
-import FishPredators from '@/components/FishPredators'
+
+import ToggleButton from '@/components/basic/ToggleButton'
 
 export default {
   name: 'FishListBriefHeader',
-  components: { FishPredators },
+  // to deal with recursive components
+  components: { ToggleButton, FishPredators: () => import('@/components/FishPredators') },
   props: {
     value: {
       type: Object,
@@ -93,7 +102,7 @@ export default {
     },
     predators: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
   },
   data: () => ({
@@ -103,7 +112,9 @@ export default {
   computed: {
     fish() {
       return {
-        id: this.value.id,
+        id: this.value._id,
+        completed: this.getFishCompleted(this.value._id),
+        pinned: this.getFishPinned(this.value._id),
         icon: this.getItemIconUrl(this.value._id),
         name: this.getItemName(this.value._id),
         zone: this.getZoneName(this.value.location),
@@ -118,15 +129,23 @@ export default {
         predatorsIcon: DataUtil.iconIdToUrl(DataUtil.ICON_PREDATORS),
         hasSnagging: this.value.snagging,
         snaggingIcon: DataUtil.iconIdToUrl(DataUtil.ICON_SNAGGING),
-        countDownType: DataUtil.getCountDownTypeName(this.fishTimePart.countDown.type),
-        countDownTime: this.fishTimePart.countDown.time,
-        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time, this.$t),
+        countDownType: DataUtil.getCountDownTypeName(this.fishTimePart.countDown?.type),
+        countDownTime: this.fishTimePart.countDown?.time,
+        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown?.time),
         hasTimeConstraint: DataUtil.hasCountDown(this.fishTimePart.countDown),
         requiredCnt: this.value.requiredCnt ?? 0,
         predators: this.predators,
       }
     },
-    ...mapGetters(['getItemIconUrl', 'getItemName', 'getZoneName', 'getFishingSpotsName', 'getBaits']),
+    ...mapGetters([
+      'getItemIconUrl',
+      'getItemName',
+      'getZoneName',
+      'getFishingSpotsName',
+      'getBaits',
+      'getFishCompleted',
+      'getFishPinned',
+    ]),
   },
   methods: {
     printCountDownTime(time) {
@@ -136,6 +155,14 @@ export default {
       }, {})
       return DataUtil.printCountDownTime(time, dict)
     },
+    setCompleted(completed) {
+      this.setFishCompleted({ fishId: this.fish.id, completed })
+    },
+
+    setPinned(pinned) {
+      this.setFishPinned({ fishId: this.fish.id, pinned })
+    },
+    ...mapMutations(['setFishCompleted', 'setFishPinned']),
   },
 }
 </script>

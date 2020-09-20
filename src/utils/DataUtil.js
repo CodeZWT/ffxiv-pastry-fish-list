@@ -19,7 +19,7 @@ export default {
   },
 
   hasCountDown(countDown) {
-    return countDown.type !== this.ALL_AVAILABLE
+    return countDown != null && countDown.type !== this.ALL_AVAILABLE
   },
 
   printCountDownTime(time, dict) {

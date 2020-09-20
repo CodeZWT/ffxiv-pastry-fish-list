@@ -6,7 +6,8 @@ import merge from 'lodash/merge'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaWeather from '@/utils/Weather'
 import EorzeaTime from '@/utils/Time'
-import { groupBy } from 'lodash'
+import { cloneDeep, groupBy } from 'lodash'
+import store from 'store2'
 
 Vue.use(Vuex)
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     folklore: DATA.FOLKLORE,
     bigFish: DATA.BIG_FISH,
     fishingSpotFish: groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
+    userData: store.get('userData') ?? { completed: [], pinned: [] },
   },
   getters: {
     // TODO combine icon file together
@@ -111,8 +113,36 @@ export default new Vuex.Store({
         icon: getters.getItemIconUrl(it.fish),
       }))
     },
+    getFishCompleted: state => fishId => {
+      return state.userData.completed.includes(fishId)
+    },
+    getFishPinned: state => fishId => {
+      return state.userData.pinned.includes(fishId)
+    },
   },
-  mutations: {},
+  mutations: {
+    setUserData(state, data) {
+      state.userData = data
+      store.set('userData', data)
+    },
+    setFishCompleted(state, { fishId, completed }) {
+      state.userData = updateUserDataStateRecords(state.userData, 'completed', fishId, completed)
+    },
+    setFishPinned(state, { fishId, pinned }) {
+      state.userData = updateUserDataStateRecords(state.userData, 'pinned', fishId, pinned)
+    },
+  },
   actions: {},
   modules: {},
 })
+
+function updateUserDataStateRecords(userData, type, key, value) {
+  const temp = cloneDeep(userData)
+  if (value) {
+    temp[type].push(key)
+  } else {
+    temp[type] = userData[type].filter(it => it !== key)
+  }
+  store.set('userData', temp)
+  return temp
+}
