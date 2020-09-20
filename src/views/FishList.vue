@@ -2,9 +2,9 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-<!--        <code>-->
-<!--          ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}-->
-<!--        </code>-->
+        <!--        <code>-->
+        <!--          ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}-->
+        <!--        </code>-->
         <v-expansion-panels v-model="openPanelIndex">
           <!--              <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">-->
           <!--                <template v-slot="{ item: fish, index }">-->
@@ -68,10 +68,6 @@ const TUG_ICON = {
   heavy: '!!!',
 }
 
-const FISHING = 0
-const WAITING = 1
-const ALL_AVAILABLE = 2
-
 export default {
   name: 'fish-list',
   components: { FishListExpandedHeader, FishListItemContent, FishListBriefHeader },
@@ -117,7 +113,7 @@ export default {
             return fish
           })
           // .filter((it, index) => index < 10)
-          .filter((it, index) => index < 10 || [24994].includes(it._id))
+          .filter((it, index) => index < 10 || [24994, 17588].includes(it._id))
       )
     },
     getPredators() {
@@ -129,8 +125,8 @@ export default {
             ...self.allFish[predatorId],
             requiredCnt: count,
             fishTimePart:
-              refIndex === -1
-                ? { id: predatorId, countdown: { type: ALL_AVAILABLE } }
+              self.fishListTimePart[refIndex] == null
+                ? { id: predatorId, countDown: { type: DataUtil.ALL_AVAILABLE } }
                 : self.fishListTimePart[refIndex],
             fishWeatherChangePart: self.fishListWeatherChangePart[refIndex],
           }
@@ -184,7 +180,7 @@ export default {
         fish.startHour === 0 &&
         fish.endHour === 24
       ) {
-        return { type: ALL_AVAILABLE }
+        return { type: DataUtil.ALL_AVAILABLE }
       }
       const fishingSpot = this.fishingSpots[fish.location]
       if (fishingSpot) {
@@ -211,13 +207,13 @@ export default {
         }
         if (now <= nextFishWindow[0]) {
           return {
-            type: WAITING,
+            type: DataUtil.WAITING,
             time: nextFishWindow[0] - now,
             fishWindowTotal: nextFishWindow[1] - nextFishWindow[0],
           }
         } else if (now <= nextFishWindow[1]) {
           return {
-            type: FISHING,
+            type: DataUtil.FISHING,
             time: nextFishWindow[1] - now,
             fishWindowTotal: nextFishWindow[1] - nextFishWindow[0],
           }
