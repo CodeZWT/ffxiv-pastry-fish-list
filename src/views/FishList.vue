@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <fish-filter :fish-data="fishDataForSearch" @input="onFiltersUpdate" />
+        <fish-filter :fish-data="fishDataForSearch" @input="onFiltersUpdate" :filters="filters"/>
         <v-expansion-panels v-model="openPanelIndex">
           <!--              <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">-->
           <!--                <template v-slot="{ item: fish, index }">-->
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapMutations } from 'vuex'
 import EorzeaTime, { WEATHER_CHANGE_INTERVAL } from '@/utils/Time'
 import FishWindow from '@/utils/FishWindow'
 import sortBy from 'lodash/sortBy'
@@ -78,7 +78,7 @@ export default {
     fishListWeatherChangePart: [],
     fisher: fisher,
     openPanelIndex: undefined,
-    filters: { patches: [], fishId: undefined, completeType: 'UNCOMPLETED' },
+    // filters: { patches: [], fishId: undefined, completeType: 'UNCOMPLETED' },
   }),
   computed: {
     eorzeaTime() {
@@ -92,7 +92,7 @@ export default {
     },
     fishList() {
       return this.fishSourceList.filter(fish => {
-        console.debug(this.filters)
+        // console.debug(this.filters)
         return (
           (this.filters.fishId == null || this.filters.fishId === fish._id) &&
           this.filters.patches.includes(fish.patch) &&
@@ -158,7 +158,7 @@ export default {
       bigFish: 'bigFish',
       dataCN: 'dataCN',
     }),
-    ...mapGetters(['getFishCompleted']),
+    ...mapGetters(['getFishCompleted', 'filters']),
   },
   watch: {
     weatherChangeTrigger() {
@@ -263,8 +263,9 @@ export default {
       )
     },
     onFiltersUpdate(filters) {
-      this.filters = filters
+      this.setFilters(filters)
     },
+    ...mapMutations(['setFilters'])
   },
 }
 </script>

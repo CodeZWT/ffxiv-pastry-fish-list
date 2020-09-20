@@ -24,7 +24,21 @@ export default new Vuex.Store({
     folklore: DATA.FOLKLORE,
     bigFish: DATA.BIG_FISH,
     fishingSpotFish: groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
-    userData: store.get('userData') ?? { completed: [], pinned: [] },
+    userData: store.get('userData') ?? {
+      completed: [],
+      pinned: [],
+      filters: {
+        fishId: undefined,
+        patches: [
+          2.0, 2.1, 2.2, 2.3, 2.4, 2.5,
+          3.0, 3.1, 3.2, 3.3, 3.4, 3.5,
+          4.0, 4.1, 4.2, 4.3, 4.4, 4.5,
+          5.0, 5.1, 5.2
+        ],
+        completeType: 2,
+        bigFishType: 1,
+      },
+    },
   },
   getters: {
     // TODO combine icon file together
@@ -119,6 +133,9 @@ export default new Vuex.Store({
     getFishPinned: state => fishId => {
       return state.userData.pinned.includes(fishId)
     },
+    filters: state => {
+      return state.userData.filters
+    },
   },
   mutations: {
     setUserData(state, data) {
@@ -130,6 +147,10 @@ export default new Vuex.Store({
     },
     setFishPinned(state, { fishId, pinned }) {
       state.userData = updateUserDataStateRecords(state.userData, 'pinned', fishId, pinned)
+    },
+    setFilters(state, filters) {
+      state.userData = { ...state.userData, filters }
+      store.set('userData', state.userData)
     },
   },
   actions: {},

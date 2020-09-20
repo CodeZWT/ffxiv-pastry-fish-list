@@ -28,19 +28,18 @@
     </v-card-text>
 
     <!--    <v-card-subtitle>Mark</v-card-subtitle>-->
-<!--  TODO add store filter in local storage (user data)  -->
-<!--  sorter pin list  -->
+    <!--  TODO: sorter & pin list  -->
     <v-card-text>
       <v-row>
         <v-col cols="6">
           <div class="subtitle-2">Mark</div>
-          <v-chip-group v-model="completeType">
+          <v-chip-group v-model="completeType" mandatory>
             <v-chip v-for="type in completeFilterTypes" :key="type" outlined @input="onChange">{{ type }}</v-chip>
           </v-chip-group>
         </v-col>
         <v-col cols="6">
           <div class="subtitle-2">Big Fish</div>
-          <v-chip-group v-model="bigFishType">
+          <v-chip-group v-model="bigFishType" mandatory>
             <v-chip v-for="type in bigFishFilterTypes" :key="type" outlined @input="onChange">{{ type }}</v-chip>
           </v-chip-group>
         </v-col>
@@ -62,6 +61,13 @@
 </template>
 
 <script>
+const PATCHES = {
+  '2.x': [2.0, 2.1, 2.2, 2.3, 2.4, 2.5],
+  '3.x': [3.0, 3.1, 3.2, 3.3, 3.4, 3.5],
+  '4.x': [4.0, 4.1, 4.2, 4.3, 4.4, 4.5],
+  '5.x': [5.0, 5.1, 5.2],
+}
+
 export default {
   name: 'FishFilter',
   props: {
@@ -69,31 +75,30 @@ export default {
       type: Array,
       default: () => [],
     },
+    filters: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data() {
     return {
-      fishId: undefined,
+      fishId: this.filters?.fishId ?? undefined,
       exVersion: ['2.x', '3.x', '4.x', '5.x'],
-      patches: {
-        '2.x': [2.0, 2.1, 2.2, 2.3, 2.4, 2.5],
-        '3.x': [3.0, 3.1, 3.2, 3.3, 3.4, 3.5],
-        '4.x': [4.0, 4.1, 4.2, 4.3, 4.4, 4.5],
-        '5.x': [5.0, 5.1, 5.2],
-      },
+      patches: PATCHES,
       patchSelectedIndices: {
-        '2.x': [],
-        '3.x': [],
-        '4.x': [],
-        '5.x': [],
+        '2.x': this.getPatchesInVersion('2.x'),
+        '3.x': this.getPatchesInVersion('3.x'),
+        '4.x': this.getPatchesInVersion('4.x'),
+        '5.x': this.getPatchesInVersion('5.x'),
       },
       completeFilterTypes: ['ALL', 'COMPLETED', 'UNCOMPLETED'],
-      completeType: 2,
+      completeType: this.filters?.completeType ?? 2,
       bigFishFilterTypes: ['ALL', 'BIG_FISH', 'NOT_BIG_FISH'],
-      bigFishType: 1,
+      bigFishType: this.filters?.bigFishType ?? 1,
     }
   },
   computed: {
-    filters() {
+    filtersReturned() {
       return {
         fishId: this.fishId,
         patches: Object.entries(this.patchSelectedIndices).flatMap(([version, patches]) =>
@@ -116,15 +121,11 @@ export default {
       this.$set(this.patchSelectedIndices, version, [])
     },
     onChange() {
-      this.$emit('input', this.filters)
+      this.$emit('input', this.filtersReturned)
     },
-    // customFilter(item, queryText, itemText) {
-    //   const textOne = item.name.toLowerCase()
-    //   const textTwo = item.abbr.toLowerCase()
-    //   const searchText = queryText.toLowerCase()
-    //
-    //   return textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
-    // },
+    getPatchesInVersion(version) {
+      return this.filters?.patches?.map(it => PATCHES[version].indexOf(it)).filter(patch => patch !== -1) ?? []
+    },
   },
 }
 </script>
