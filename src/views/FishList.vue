@@ -2,9 +2,9 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <code>
-          ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}
-        </code>
+<!--        <code>-->
+<!--          ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}-->
+<!--        </code>-->
         <v-expansion-panels v-model="openPanelIndex">
           <!--              <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">-->
           <!--                <template v-slot="{ item: fish, index }">-->
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import EorzeaTime, { WEATHER_CHANGE_INTERVAL } from '@/utils/Time'
 import FishWindow from '@/utils/FishWindow'
 import sortBy from 'lodash/sortBy'
@@ -128,7 +128,10 @@ export default {
           return {
             ...self.allFish[predatorId],
             requiredCnt: count,
-            fishTimePart: self.fishListTimePart[refIndex],
+            fishTimePart:
+              refIndex === -1
+                ? { id: predatorId, countdown: { type: ALL_AVAILABLE } }
+                : self.fishListTimePart[refIndex],
             fishWeatherChangePart: self.fishListWeatherChangePart[refIndex],
           }
         })
@@ -146,6 +149,9 @@ export default {
     ...mapGetters([]),
   },
   watch: {
+    now(now) {
+      this.setNow(now)
+    },
     weatherChangeTrigger() {
       this.fishListWeatherChangePart = this.fishList.map(fish => {
         return {
@@ -239,6 +245,7 @@ export default {
         fish.weatherSet
       )
     },
+    ...mapMutations(['setNow']),
   },
 }
 </script>

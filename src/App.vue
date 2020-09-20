@@ -2,6 +2,9 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <div>Fish List</div>
+      <v-spacer />
+      <div><i class="xiv eorzea-time-chs"></i>{{ eorzeaTime }}</div>
+      <div class="ml-2"><i class="xiv local-time-chs"></i>{{ earthTime.getHours() }}:{{ earthTime.getMinutes() }}</div>
     </v-app-bar>
 
     <v-main>
@@ -11,6 +14,10 @@
 </template>
 
 <script>
+import EorzeaTime from '@/utils/Time'
+import { mapState } from 'vuex'
+import '@thewakingsands/axis-font-icons'
+
 export default {
   name: 'App',
 
@@ -19,5 +26,23 @@ export default {
   data: () => ({
     //
   }),
+  computed: {
+    eorzeaTime() {
+      return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
+    },
+    earthTime() {
+      return new Date(this.now)
+    },
+    ...mapState(['now']),
+  },
 }
 </script>
+
+<style>
+@font-face {
+  font-family: 'FFXIV';
+  src: url('./assets/font/FFXIV_Lodestone_SSF.ttf') format('truetype'),
+    url('./assets/font/FFXIV_Lodestone_SSF.woff') format('woff');
+  unicode-range: U+E020-E0DB;
+}
+</style>

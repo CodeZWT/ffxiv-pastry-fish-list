@@ -950,6 +950,11 @@
   resolved "https://registry.npm.taobao.org/@soda/get-current-script/download/@soda/get-current-script-1.0.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40soda%2Fget-current-script%2Fdownload%2F%40soda%2Fget-current-script-1.0.2.tgz#a53515db25d8038374381b73af20bb4f2e508d87"
   integrity sha1-pTUV2yXYA4N0OBtzryC7Ty5QjYc=
 
+"@thewakingsands/axis-font-icons@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@thewakingsands/axis-font-icons/-/axis-font-icons-0.2.1.tgz#e70b4cf3dbe552b30e6fec172f8766175080d49a"
+  integrity sha512-4YxWPOFu2LxBaBgJTgRQKmYs7qgCPEScWKDCTIrwd+1Zt09zM0IdYlpE8u7JthuOsKrBRJOac3VUgw509rC7WA==
+
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.npm.taobao.org/@types/anymatch/download/@types/anymatch-1.3.1.tgz?cache=0&sync_timestamp=1596837568556&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fanymatch%2Fdownload%2F%40types%2Fanymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
