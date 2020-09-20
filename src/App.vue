@@ -15,7 +15,6 @@
 
 <script>
 import EorzeaTime from '@/utils/Time'
-import { mapState } from 'vuex'
 import '@thewakingsands/axis-font-icons'
 
 export default {
@@ -24,16 +23,22 @@ export default {
   components: {},
 
   data: () => ({
-    //
+    now: Date.now(),
   }),
   computed: {
+    // TODO: CHECK different with real eorzea time of 1 minute
     eorzeaTime() {
       return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
     },
     earthTime() {
       return new Date(this.now)
     },
-    ...mapState(['now']),
+  },
+  created() {
+    setInterval(() => {
+      this.now = Date.now()
+    }, 1000)
+    // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
   },
 }
 </script>

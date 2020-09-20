@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import EorzeaTime, { WEATHER_CHANGE_INTERVAL } from '@/utils/Time'
 import FishWindow from '@/utils/FishWindow'
 import sortBy from 'lodash/sortBy'
@@ -158,11 +158,16 @@ export default {
     ...mapGetters(['getFishCompleted']),
   },
   watch: {
-    now(now) {
-      this.setNow(now)
-    },
     weatherChangeTrigger() {
       this.fishListWeatherChangePart = this.fishList.map(fish => {
+        return {
+          fishWindows: this.getFishWindow(fish, this.now),
+        }
+      })
+    },
+    // to deal with fish list changes caused by filters
+    fishList(fishList) {
+      this.fishListWeatherChangePart = fishList.map(fish => {
         return {
           fishWindows: this.getFishWindow(fish, this.now),
         }
@@ -257,7 +262,6 @@ export default {
     onFiltersUpdate(filters) {
       this.filters = filters
     },
-    ...mapMutations(['setNow']),
   },
 }
 </script>

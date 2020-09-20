@@ -25,7 +25,6 @@ export default new Vuex.Store({
     bigFish: DATA.BIG_FISH,
     fishingSpotFish: groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
     userData: store.get('userData') ?? { completed: [], pinned: [] },
-    now: new Date().getTime(),
   },
   getters: {
     // TODO combine icon file together
@@ -131,9 +130,6 @@ export default new Vuex.Store({
     },
     setFishPinned(state, { fishId, pinned }) {
       state.userData = updateUserDataStateRecords(state.userData, 'pinned', fishId, pinned)
-    },
-    setNow(state, time) {
-      state.now = time
     },
   },
   actions: {},
