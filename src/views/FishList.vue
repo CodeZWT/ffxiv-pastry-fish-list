@@ -2,9 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <!--        <code>-->
-        <!--          ET: {{ eorzeaTime }}, RT: {{ earthTime.toLocaleDateString() }} {{ earthTime.toLocaleTimeString() }}-->
-        <!--        </code>-->
+        <fish-filter :fish-data="fishDataForSearch" @input="onFiltersUpdate" />
         <v-expansion-panels v-model="openPanelIndex">
           <!--              <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">-->
           <!--                <template v-slot="{ item: fish, index }">-->
@@ -57,6 +55,7 @@ import FishListBriefHeader from '@/components/FishListBriefHeader'
 import FishListItemContent from '@/components/FishListItemContent'
 import DataUtil from '@/utils/DataUtil'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
+import FishFilter from '@/components/FishFilter'
 
 const HOOKSET_ICON = {
   Powerful: '001115',
@@ -70,7 +69,7 @@ const TUG_ICON = {
 
 export default {
   name: 'fish-list',
-  components: { FishListExpandedHeader, FishListItemContent, FishListBriefHeader },
+  components: { FishFilter, FishListExpandedHeader, FishListItemContent, FishListBriefHeader },
   data: () => ({
     now: Date.now(),
     hookset: HOOKSET_ICON,
@@ -79,6 +78,7 @@ export default {
     fishListWeatherChangePart: [],
     fisher: fisher,
     openPanelIndex: undefined,
+    filters: { patches: [], fishId: undefined, completeType: 'UNCOMPLETED' },
   }),
   computed: {
     eorzeaTime() {
@@ -87,8 +87,23 @@ export default {
     earthTime() {
       return new Date(this.now)
     },
-    fishList() {
+    fishSourceList() {
       return Object.values(this.allFish).filter(it => it.location != null)
+    },
+    fishList() {
+      return this.fishSourceList.filter(fish => {
+        console.debug(this.filters)
+        return (
+          (this.filters.fishId == null || this.filters.fishId === fish._id) &&
+          this.filters.patches.includes(fish.patch) &&
+          (this.filters.completeType === 'ALL' ||
+            (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish._id)) ||
+            (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish._id)))
+        )
+      })
+    },
+    fishDataForSearch() {
+      return this.fishList.map(it => ({ id: it._id, name: this.getItemName(it._id) }))
     },
     fishListTimePart() {
       return this.fishList.map((fish, index) => {
@@ -102,19 +117,17 @@ export default {
       return sortBy(this.fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
     },
     sortedFishList() {
-      return (
-        this.sortedFishIndices
-          .map(id => {
-            const fish = this.allFish[id]
-            fish.refIndex = this.fishList.findIndex(it => it._id === fish._id)
-            // if (this.fishListTimePart[fish.refIndex].countDown.type === 0) {
-            //   console.log('11111111111')
-            // }
-            return fish
-          })
-          // .filter((it, index) => index < 10)
-          .filter((it, index) => index < 10 || [24994, 17588].includes(it._id))
-      )
+      return this.sortedFishIndices
+        .map(id => {
+          const fish = this.allFish[id]
+          fish.refIndex = this.fishList.findIndex(it => it._id === fish._id)
+          // if (this.fishListTimePart[fish.refIndex].countDown.type === 0) {
+          //   console.log('11111111111')
+          // }
+          return fish
+        })
+        .filter((it, index) => index < 10)
+      // .filter((it, index) => index < 10 || [24994, 17588].includes(it._id))
     },
     getPredators() {
       const self = this
@@ -142,7 +155,7 @@ export default {
       bigFish: 'bigFish',
       dataCN: 'dataCN',
     }),
-    ...mapGetters([]),
+    ...mapGetters(['getFishCompleted']),
   },
   watch: {
     now(now) {
@@ -240,6 +253,9 @@ export default {
         fish.previousWeatherSet,
         fish.weatherSet
       )
+    },
+    onFiltersUpdate(filters) {
+      this.filters = filters
     },
     ...mapMutations(['setNow']),
   },
