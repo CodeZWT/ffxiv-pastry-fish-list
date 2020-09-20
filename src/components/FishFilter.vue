@@ -27,11 +27,24 @@
       </v-layout>
     </v-card-text>
 
-    <v-card-subtitle>Mark</v-card-subtitle>
+    <!--    <v-card-subtitle>Mark</v-card-subtitle>-->
+<!--  TODO add store filter in local storage (user data)  -->
+<!--  sorter pin list  -->
     <v-card-text>
-      <v-chip-group v-model="completeType" mandatory>
-        <v-chip v-for="type in completeFilterTypes" :key="type" outlined @input="onChange">{{ type }}</v-chip>
-      </v-chip-group>
+      <v-row>
+        <v-col cols="6">
+          <div class="subtitle-2">Mark</div>
+          <v-chip-group v-model="completeType">
+            <v-chip v-for="type in completeFilterTypes" :key="type" outlined @input="onChange">{{ type }}</v-chip>
+          </v-chip-group>
+        </v-col>
+        <v-col cols="6">
+          <div class="subtitle-2">Big Fish</div>
+          <v-chip-group v-model="bigFishType">
+            <v-chip v-for="type in bigFishFilterTypes" :key="type" outlined @input="onChange">{{ type }}</v-chip>
+          </v-chip-group>
+        </v-col>
+      </v-row>
     </v-card-text>
 
     <v-card-text>
@@ -75,6 +88,8 @@ export default {
       },
       completeFilterTypes: ['ALL', 'COMPLETED', 'UNCOMPLETED'],
       completeType: 2,
+      bigFishFilterTypes: ['ALL', 'BIG_FISH', 'NOT_BIG_FISH'],
+      bigFishType: 1,
     }
   },
   computed: {
@@ -85,6 +100,7 @@ export default {
           patches.map(patch => this.patches[version][patch])
         ),
         completeType: this.completeFilterTypes[this.completeType],
+        bigFishType: this.bigFishFilterTypes[this.bigFishType],
       }
     },
   },
