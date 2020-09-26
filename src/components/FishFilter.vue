@@ -1,10 +1,15 @@
 <template>
   <v-card class="my-2">
-    <v-card-subtitle>Patches</v-card-subtitle>
     <v-card-text>
-      <v-layout row wrap>
+      <!-- Patches -->
+      <v-row no-gutters>
+        <v-col>
+          <div class="subtitle-2">Patches</div>
+        </v-col>
+      </v-row>
+      <v-row wrap no-gutters>
         <v-col v-for="version in exVersion" :key="version" cols="6">
-          <div class="d-flex row">
+          <v-row style="align-items: center">
             <v-btn
               v-if="patchSelectedIndices[version].length === patches[version].length"
               text
@@ -17,35 +22,39 @@
               {{ version }}
               <v-icon>mdi-check-all</v-icon>
             </v-btn>
-            <v-chip-group v-model="patchSelectedIndices[version]" column multiple>
-              <v-chip v-for="patch in patches[version]" :key="patch" outlined @input="onChange">
+            <v-chip-group
+              v-model="patchSelectedIndices[version]"
+              column
+              multiple
+              active-class="primary--text"
+              @change="onChange"
+            >
+              <v-chip v-for="patch in patches[version]" :key="patch">
                 {{ patch.toFixed(1) }}
               </v-chip>
             </v-chip-group>
-          </div>
+          </v-row>
         </v-col>
-      </v-layout>
-    </v-card-text>
-
-    <!--    <v-card-subtitle>Mark</v-card-subtitle>-->
-    <!--  TODO: sorter & pin list  -->
-    <v-card-text>
-      <v-row>
+      </v-row>
+      <!-- Mark & BigFish -->
+      <v-row no-gutters>
         <v-col cols="6">
           <div class="subtitle-2">Mark</div>
-          <v-chip-group v-model="completeType" mandatory>
-            <v-chip v-for="type in completeFilterTypes" :key="type" outlined @input="onChange">{{ type }}</v-chip>
+          <v-chip-group v-model="completeType" mandatory active-class="primary--text" @change="onChange">
+            <v-chip v-for="type in completeFilterTypes" :key="type">{{ type }}</v-chip>
           </v-chip-group>
         </v-col>
         <v-col cols="6">
           <div class="subtitle-2">Big Fish</div>
-          <v-chip-group v-model="bigFishType" mandatory>
-            <v-chip v-for="type in bigFishFilterTypes" :key="type" outlined @input="onChange">{{ type }}</v-chip>
+          <v-chip-group v-model="bigFishType" mandatory active-class="primary--text" @change="onChange">
+            <v-chip v-for="type in bigFishFilterTypes" :key="type">{{ type }}</v-chip>
           </v-chip-group>
         </v-col>
       </v-row>
     </v-card-text>
+    <v-divider />
 
+    <!-- Search -->
     <v-card-text>
       <v-autocomplete
         v-model="fishId"
@@ -116,9 +125,11 @@ export default {
         version,
         this.patches[version].map((it, index) => index)
       )
+      this.$emit('input', this.filtersReturned)
     },
     uncheckAll(version) {
       this.$set(this.patchSelectedIndices, version, [])
+      this.$emit('input', this.filtersReturned)
     },
     onChange() {
       this.$emit('input', this.filtersReturned)
