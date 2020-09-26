@@ -32,7 +32,7 @@
                 :value="fish"
                 :fish-time-part="fishListTimePart[fish._id]"
                 :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
-                :predators="getPredators(fish, allFish, fishListTimePart, fishListWeatherChangePart)"
+                :predators="getPredators(fish)"
               ></fish-list-item-content>
             </v-expansion-panel-content>
           </v-expansion-panel>
@@ -73,13 +73,11 @@ export default {
     openPanelIndex: undefined,
   }),
   computed: {
-    ...mapState({
-      allFish: 'fish',
-    }),
+    getPredators() {
+      return value => DataUtil.getPredators(value, this.allFish, this.fishListTimePart, this.fishListWeatherChangePart)
+    },
+    ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'filters']),
-  },
-  methods: {
-    getPredators: DataUtil.getPredators,
   },
 }
 </script>

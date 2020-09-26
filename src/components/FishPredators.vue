@@ -1,8 +1,8 @@
 <template>
-  <v-layout column>
-    <v-row v-for="predator in value" :key="predator._id">
-      <fish-list-brief-header :value="predator" :fish-time-part="predator.fishTimePart" />
-    </v-row>
+  <v-layout column style="width: 100%" class="mt-2">
+    <div v-for="predator in value" :key="predator._id">
+      <fish-list-brief-header :value="predator" :fish-time-part="predator.fishTimePart" in-predator />
+    </div>
   </v-layout>
 </template>
 

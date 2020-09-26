@@ -32,7 +32,7 @@
               :value="fish"
               :fish-time-part="fishListTimePart[fish._id]"
               :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
-              :predators="getPredators(fish, fishData, fishListTimePart, fishListWeatherChangePart)"
+              :predators="getPredators(fish)"
             ></fish-list-item-content>
           </template>
         </v-card-text>
@@ -48,7 +48,7 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import FishListItemContent from '@/components/FishListItemContent'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
 
 export default {
@@ -79,15 +79,16 @@ export default {
     fishSearchData() {
       return this.fishData.map(it => ({ id: it._id, name: this.getItemName(it._id) }))
     },
+    getPredators() {
+      return value => DataUtil.getPredators(value, this.allFish, this.fishListTimePart, this.fishListWeatherChangePart)
+    },
+    ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getItemName']),
   },
   watch: {
     dialog() {
       this.fishId = undefined
     },
-  },
-  methods: {
-    getPredators: DataUtil.getPredators,
   },
 }
 </script>

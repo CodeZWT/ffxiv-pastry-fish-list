@@ -220,7 +220,7 @@ export default {
         countDownType: this.fishTimePart.countDown.type,
         countDownTypeName: DataUtil.getCountDownTypeName(this.fishTimePart.countDown.type),
         countDownTime: this.fishTimePart.countDown.time,
-        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time, this.$t),
+        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time),
         countDownTotal: this.fishTimePart.countDown.fishWindowTotal,
         countDownRemainPercentage:
           (this.fishTimePart.countDown.time / this.fishTimePart.countDown.fishWindowTotal) * 100,

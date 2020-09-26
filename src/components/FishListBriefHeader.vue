@@ -1,14 +1,16 @@
 <template>
-  <div>
-    <pin-button :value="fish.pinned" @input="setPinned($event)" />
+  <div style="width: 100%">
+    <pin-button v-if="!inPredator" :value="fish.pinned" @input="setPinned($event)" />
     <v-layout column>
-      <div class="d-flex justify-center align-content-center" style="width: 100%">
-        <div style="display: flex; align-items: center">
-          <toggle-button :value="fish.completed" @input="setCompleted($event)" />
-        </div>
+      <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
         <v-col cols="3">
           <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
-            <div v-if="fish.requiredCnt" class="text-subtitle-1 mr-1">{{ fish.requiredCnt }}</div>
+            <div v-if="!inPredator" style="display: flex; align-items: center">
+              <toggle-button :value="fish.completed" @input="setCompleted($event)" />
+            </div>
+            <div v-else style="display: flex; align-items: center; width: 36px; justify-content: center">
+              <div class="text-subtitle-1">{{ fish.requiredCnt }}</div>
+            </div>
             <div class="mr-1">
               <v-img :lazy-src="fisher" width="40" height="40" :src="fish.icon" />
             </div>
@@ -59,8 +61,9 @@
             {{ fish.countDownTimeText }}
           </div>
         </v-col>
-      </div>
-      <div>
+      </v-row>
+      <div v-if="fish.hasPredators" class="mt-2">
+        <v-divider />
         <fish-predators :value="fish.predators" />
       </div>
     </v-layout>
@@ -91,6 +94,10 @@ export default {
     predators: {
       type: Array,
       default: () => [],
+    },
+    inPredator: {
+      type: Boolean,
+      default: false,
     },
   },
   data: () => ({
@@ -154,5 +161,4 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
