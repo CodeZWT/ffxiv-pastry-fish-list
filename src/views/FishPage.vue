@@ -3,79 +3,32 @@
     <v-row>
       <v-col cols="12">
         <fish-filter :fish-data="fishDataForSearch" @input="onFiltersUpdate" :filters="filters" />
-        <v-expansion-panels v-model="openPanelIndex">
-          <!--              <v-virtual-scroll :items="sortedFilteredFishList" :item-height="100" height="1000">-->
-          <!--                <template v-slot="{ item: fish, index }">-->
-          <v-expansion-panel v-for="(fish, index) in sortedFilteredFishList" :key="index">
-            <v-expansion-panel-header>
-              <template v-slot:default="{ open }">
-                <div>
-                  <div>
-                    <v-fade-transition leave-absolute>
-                      <div v-if="open">
-                        <fish-list-expanded-header :value="fish" />
-                      </div>
-                      <div v-else>
-                        <fish-list-brief-header
-                          :value="fish"
-                          :fish-time-part="fishListTimePart[fish._id]"
-                          :predators="getPredators(fish)"
-                        />
-                      </div>
-                    </v-fade-transition>
-                  </div>
-                </div>
-              </template>
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <fish-list-item-content
-                :open="index === openPanelIndex"
-                :value="fish"
-                :fish-time-part="fishListTimePart[fish._id]"
-                :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
-                :predators="getPredators(fish)"
-              ></fish-list-item-content>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <!--              </v-virtual-scroll>-->
-        </v-expansion-panels>
+        <fish-list
+          :fish-list="sortedFilteredFishList"
+          :fish-list-time-part="fishListTimePart"
+          :fish-list-weather-change-part="fishListWeatherChangePart"
+        />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import EorzeaTime, { WEATHER_CHANGE_INTERVAL } from '@/utils/Time'
 import FishWindow from '@/utils/FishWindow'
 import sortBy from 'lodash/sortBy'
-import fisher from '@/assets/fisher.png'
-import FishListBriefHeader from '@/components/FishListBriefHeader'
-import FishListItemContent from '@/components/FishListItemContent'
 import DataUtil from '@/utils/DataUtil'
-import FishListExpandedHeader from '@/components/FishListExpandedHeader'
 import FishFilter from '@/components/FishFilter'
-
-const HOOKSET_ICON = {
-  Powerful: '001115',
-  Precision: '001116',
-}
-const TUG_ICON = {
-  light: '!',
-  medium: '!!',
-  heavy: '!!!',
-}
+import FishList from '@/components/FishList'
 
 export default {
-  name: 'fish-list',
-  components: { FishFilter, FishListExpandedHeader, FishListItemContent, FishListBriefHeader },
+  name: 'fish-page',
+  components: { FishList, FishFilter },
   data: () => ({
     now: Date.now(),
-    hookset: HOOKSET_ICON,
-    tug: TUG_ICON,
     weatherChangeTrigger: 0,
     fishListWeatherChangePart: {},
-    fisher: fisher,
     openPanelIndex: undefined,
   }),
   computed: {
@@ -144,11 +97,8 @@ export default {
       allFish: 'fish',
       items: 'items',
       fishingSpots: 'fishingSpots',
-      weatherTypes: 'weatherTypes',
       zones: 'zones',
-      weatherRates: 'weatherRates',
       bigFish: 'bigFish',
-      dataCN: 'dataCN',
     }),
     ...mapGetters(['getFishCompleted', 'filters']),
   },

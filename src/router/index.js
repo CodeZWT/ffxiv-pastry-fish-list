@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import FishList from '@/views/FishList'
+import FishPage from '@/views/FishPage'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'FishList',
-    component: FishList,
+    name: 'FishPage',
+    component: FishPage,
   },
   // {
   //   path: "/about",
