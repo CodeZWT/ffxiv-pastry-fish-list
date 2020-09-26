@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <fish-filter :fish-data="fishDataForSearch" @input="onFiltersUpdate" :filters="filters"/>
+        <fish-filter :fish-data="fishDataForSearch" @input="onFiltersUpdate" :filters="filters" />
         <v-expansion-panels v-model="openPanelIndex">
           <!--              <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">-->
           <!--                <template v-slot="{ item: fish, index }">-->
@@ -78,7 +78,6 @@ export default {
     fishListWeatherChangePart: [],
     fisher: fisher,
     openPanelIndex: undefined,
-    // filters: { patches: [], fishId: undefined, completeType: 'UNCOMPLETED' },
   }),
   computed: {
     eorzeaTime() {
@@ -121,16 +120,12 @@ export default {
     },
     sortedFishList() {
       return this.sortedFishIndices
+        .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
         .map(id => {
           const fish = this.allFish[id]
           fish.refIndex = this.fishList.findIndex(it => it._id === fish._id)
-          // if (this.fishListTimePart[fish.refIndex].countDown.type === 0) {
-          //   console.log('11111111111')
-          // }
           return fish
         })
-        .filter((it, index) => index < 10)
-      // .filter((it, index) => index < 10 || [24994, 17588].includes(it._id))
     },
     getPredators() {
       const self = this
@@ -265,7 +260,7 @@ export default {
     onFiltersUpdate(filters) {
       this.setFilters(filters)
     },
-    ...mapMutations(['setFilters'])
+    ...mapMutations(['setFilters']),
   },
 }
 </script>

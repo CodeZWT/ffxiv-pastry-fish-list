@@ -35,8 +35,9 @@ export default new Vuex.Store({
           4.0, 4.1, 4.2, 4.3, 4.4, 4.5,
           5.0, 5.1, 5.2
         ],
-        completeType: 2,
-        bigFishType: 1,
+        completeType: 'UNCOMPLETED',
+        bigFishType: 'BIG_FISH',
+        fishN: 10,
       },
     },
   },
