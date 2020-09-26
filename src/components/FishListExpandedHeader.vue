@@ -1,14 +1,9 @@
 <template>
-  <div class="d-flex justify-center align-content-center">
-    <v-col cols="6">
+  <div style="width: 100%">
+    <pin-button :value="fish.pinned" @input="setPinned($event)" />
+    <v-row no-gutters>
       <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
         <toggle-button :value="fish.completed" @input="setCompleted($event)" />
-        <toggle-button
-          :value="fish.pinned"
-          checked-icon="mdi-pin"
-          unchecked-icon="mdi-pin-outline"
-          @input="setPinned($event)"
-        />
         <div class="mr-1">
           <v-img :lazy-src="fisher" width="40" height="40" :src="fish.icon" />
         </div>
@@ -23,20 +18,20 @@
           </v-btn>
         </div>
       </div>
-    </v-col>
-    <v-col cols="6" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center">
-      <div class="text-subtitle-1">
-        {{ fish.zone }}
-      </div>
-      <div v-if="fish.zone !== fish.fishingSpot" class="text-subtitle-1" :title="fish.fishingSpotId">
-        {{ fish.fishingSpot }}
-      </div>
-      <div>
-        <v-btn class="ma-2" text icon x-small @click.stop="goToFishingSpotAngelPage(fish.anglerLocationId)">
-          <v-icon x-small>mdi-link-variant</v-icon>
-        </v-btn>
-      </div>
-    </v-col>
+<!--            <v-col cols="6" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center">-->
+<!--              <div class="text-subtitle-1">-->
+<!--                {{ fish.zone }}-->
+<!--              </div>-->
+<!--              <div v-if="fish.zone !== fish.fishingSpot" class="text-subtitle-1" :title="fish.fishingSpotId">-->
+<!--                {{ fish.fishingSpot }}-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                <v-btn class="ma-2" text icon x-small @click.stop="goToFishingSpotAngelPage(fish.anglerLocationId)">-->
+<!--                  <v-icon x-small>mdi-link-variant</v-icon>-->
+<!--                </v-btn>-->
+<!--              </div>-->
+<!--            </v-col>-->
+    </v-row>
   </div>
 </template>
 
@@ -45,10 +40,11 @@ import { mapGetters, mapMutations } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import copy from 'clipboard-copy'
 import ToggleButton from '@/components/basic/ToggleButton'
+import PinButton from '@/components/basic/PinButton'
 
 export default {
   name: 'FishListExpandedHeader',
-  components: { ToggleButton },
+  components: { PinButton, ToggleButton },
   props: {
     value: {
       type: Object,
@@ -85,9 +81,6 @@ export default {
     ]),
   },
   methods: {
-    goToFishingSpotAngelPage(anglerLocationId) {
-      window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
-    },
     goToFishAngelPage(anglerFishId) {
       window.open(`https://cn.ff14angler.com/fish/${anglerFishId}`)
     },

@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%; height: 100%">
+  <div style="width: 100%; height: 100%; border: 1px solid #757575; border-radius: 6px">
     <div v-if="!debug" class="target" style="width: 100%; height: 100%"></div>
     <div v-else style="display: flex; flex-direction: column">
       <code> Map: {{ id }} @ {{ x }}, {{ y }} </code>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import DataUtil from '@/utils/DataUtil'
+
 export default {
   name: 'eorzea-map',
   props: {
@@ -48,10 +50,10 @@ export default {
   },
   computed: {
     mapX() {
-      return +this.pixelToPos(this.sizeFactor, this.x).toFixed(2)
+      return +DataUtil.pixelToPos(this.sizeFactor, this.x).toFixed(2)
     },
     mapY() {
-      return +this.pixelToPos(this.sizeFactor, this.y).toFixed(2)
+      return +DataUtil.pixelToPos(this.sizeFactor, this.y).toFixed(2)
     },
     mapTestUrl() {
       return `https://map.wakingsands.com/#f=mark&id=${this.id}&x=${this.mapX}&y=${this.mapY}`
@@ -106,15 +108,6 @@ export default {
         map.setView(map.mapToLatLng2D(this.mapX, this.mapY), 0) // 移动到视角中心；setView 参考 leaflet 用法即可
       }, 1000)
     },
-
-    // convert pixel coordinate to game map coordinate
-    // e.g. 2048 to 42
-    // ref: https://github.com/xivapi/ffxiv-datamining/blob/master/docs/MapCoordinates.md
-    pixelToPos(sizeFactor, pixelIndex) {
-      const MAP_SIZE_FACTOR_MAGIC = 41
-      const MAP_FILE_PIXEL_MAX = 2048
-      return (MAP_SIZE_FACTOR_MAGIC / (sizeFactor / 100)) * (pixelIndex / MAP_FILE_PIXEL_MAX) + 1
-    },
   },
 }
 </script>
@@ -123,6 +116,7 @@ export default {
 .erozea-map-outer {
   padding: 0;
   margin: 0;
+  border-width: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
