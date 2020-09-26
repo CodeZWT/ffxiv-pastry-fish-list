@@ -137,6 +137,9 @@ export default new Vuex.Store({
     filters: state => {
       return state.userData.filters
     },
+    pinnedFishIds: state => {
+      return state.userData.pinned
+    },
   },
   mutations: {
     setUserData(state, data) {

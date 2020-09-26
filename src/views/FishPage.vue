@@ -4,6 +4,11 @@
       <v-col cols="12">
         <fish-filter :fish-data="fishDataForSearch" @input="onFiltersUpdate" :filters="filters" />
         <fish-list
+          :fish-list="pinnedFishList"
+          :fish-list-time-part="fishListTimePart"
+          :fish-list-weather-change-part="fishListWeatherChangePart"
+        />
+        <fish-list
           :fish-list="sortedFilteredFishList"
           :fish-list-time-part="fishListTimePart"
           :fish-list-weather-change-part="fishListWeatherChangePart"
@@ -45,19 +50,19 @@ export default {
       return this.fishSourceList.filter(fish => {
         // console.debug(this.filters)
         return (
-          (this.filters.fishId == null || this.filters.fishId === fish._id) &&
-          this.filters.patches.includes(fish.patch) &&
-          (this.filters.completeType === 'ALL' ||
-            (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish._id)) ||
-            (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish._id))) &&
-          (this.filters.bigFishType === 'ALL' ||
-            (this.filters.bigFishType === 'BIG_FISH' && this.bigFish.includes(fish._id)) ||
-            (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish._id)))
+          this.filters.fishId == null || this.filters.fishId === fish._id ||
+          (this.filters.patches.includes(fish.patch) &&
+            (this.filters.completeType === 'ALL' ||
+              (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish._id)) ||
+              (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish._id))) &&
+            (this.filters.bigFishType === 'ALL' ||
+              (this.filters.bigFishType === 'BIG_FISH' && this.bigFish.includes(fish._id)) ||
+              (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish._id))))
         )
       })
     },
     fishDataForSearch() {
-      return this.fishList.map(it => ({ id: it._id, name: this.getItemName(it._id) }))
+      return this.fishSourceList.map(it => ({ id: it._id, name: this.getItemName(it._id) }))
     },
     fishListTimePart() {
       return this.fishSourceList.reduce((fish2TimePart, fish) => {
@@ -68,14 +73,17 @@ export default {
         return fish2TimePart
       }, {})
     },
-    sortedFishIndices() {
+    sortedFishIds() {
       return sortBy(this.fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
     },
     sortedFilteredFishList() {
-      return this.sortedFishIndices
+      return this.sortedFishIds
         .map(id => this.fishList.find(it => it._id === id))
         .filter(it => it != null)
         .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
+    },
+    pinnedFishList() {
+      return this.fishSourceList.filter(it => this.pinnedFishIds.includes(it._id))
     },
     getPredators() {
       const self = this
@@ -100,7 +108,7 @@ export default {
       zones: 'zones',
       bigFish: 'bigFish',
     }),
-    ...mapGetters(['getFishCompleted', 'filters']),
+    ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds']),
   },
   watch: {
     weatherChangeTrigger() {
