@@ -28,7 +28,6 @@ export default new Vuex.Store({
       completed: [],
       pinned: [],
       filters: {
-        fishId: undefined,
         patches: [
           // eslint-disable-next-line
           2.0, 2.1, 2.2, 2.3, 2.4, 2.5,

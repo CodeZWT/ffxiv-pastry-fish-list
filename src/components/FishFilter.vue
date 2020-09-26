@@ -96,7 +96,6 @@ export default {
   },
   data() {
     return {
-      fishId: this.filters?.fishId ?? undefined,
       exVersion: ['2.x', '3.x', '4.x', '5.x'],
       patches: PATCHES,
       patchSelectedIndices: {
@@ -121,7 +120,6 @@ export default {
     filtersReturned() {
       const fishNTypeText = this.fishNFilterTypes[this.fishNType]
       return {
-        fishId: this.fishId,
         patches: Object.entries(this.patchSelectedIndices).flatMap(([version, patches]) =>
           patches.map(patch => this.patches[version][patch])
         ),

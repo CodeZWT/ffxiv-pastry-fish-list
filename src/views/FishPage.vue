@@ -56,15 +56,13 @@ export default {
       return this.fishSourceList.filter(fish => {
         // console.debug(this.filters)
         return (
-          this.filters.fishId == null ||
-          this.filters.fishId === fish._id ||
-          (this.filters.patches.includes(fish.patch) &&
-            (this.filters.completeType === 'ALL' ||
-              (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish._id)) ||
-              (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish._id))) &&
-            (this.filters.bigFishType === 'ALL' ||
-              (this.filters.bigFishType === 'BIG_FISH' && this.bigFish.includes(fish._id)) ||
-              (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish._id))))
+          this.filters.patches.includes(fish.patch) &&
+          (this.filters.completeType === 'ALL' ||
+            (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish._id)) ||
+            (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish._id))) &&
+          (this.filters.bigFishType === 'ALL' ||
+            (this.filters.bigFishType === 'BIG_FISH' && this.bigFish.includes(fish._id)) ||
+            (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish._id)))
         )
       })
     },
