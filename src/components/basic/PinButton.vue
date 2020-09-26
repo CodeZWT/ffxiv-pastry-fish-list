@@ -3,7 +3,7 @@
     <v-hover v-slot:default="{ hover }" open-delay="200">
       <div v-if="value">
         <div class="triangle-pinned" />
-        <v-icon class="icon-pinned" color="white">mdi-pin</v-icon>
+        <v-icon class="icon-pinned" color="white" small>mdi-pin</v-icon>
       </div>
       <div v-else>
         <div :class="{ 'triangle-unpinned': !hover, 'triangle-unpinned-hover': hover }" />
@@ -41,16 +41,16 @@ export default {
   width: 0;
   height: 0;
   position: absolute;
-  border-top: 40px solid white;
-  border-right: 40px solid transparent;
+  border-top: 35px solid white;
+  border-right: 35px solid transparent;
 }
 
 .triangle-unpinned-hover {
   width: 0;
   height: 0;
   position: absolute;
-  border-top: 40px solid rgb(220, 220, 220);
-  border-right: 40px solid transparent;
+  border-top: 35px solid rgb(220, 220, 220);
+  border-right: 35px solid transparent;
 }
 
 .icon-pinned {
@@ -63,7 +63,7 @@ export default {
   width: 0;
   height: 0;
   position: absolute;
-  border-top: 40px solid #1976d2;
-  border-right: 40px solid transparent;
+  border-top: 35px solid #1976d2;
+  border-right: 35px solid transparent;
 }
 </style>

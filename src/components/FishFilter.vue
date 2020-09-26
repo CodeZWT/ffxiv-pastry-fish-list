@@ -8,8 +8,8 @@
         </v-col>
       </v-row>
       <v-row wrap no-gutters>
-        <v-col v-for="version in exVersion" :key="version" cols="6">
-          <v-row style="align-items: center">
+        <v-col v-for="version in exVersion" :key="version" class="col-12 col-md-6 my-1">
+          <div style="align-items: center">
             <v-btn
               v-if="patchSelectedIndices[version].length === patches[version].length"
               text
@@ -35,12 +35,12 @@
                 {{ patch.toFixed(1) }}
               </v-btn>
             </v-btn-toggle>
-          </v-row>
+          </div>
         </v-col>
       </v-row>
       <!-- Mark & BigFish -->
       <v-row no-gutters>
-        <v-col cols="6">
+        <v-col class="col-12 col-md-6">
           <div class="subtitle-2">Mark</div>
           <v-btn-toggle v-model="completeType" mandatory active-class="primary--text" dense @change="onChange">
             <v-btn v-for="type in completeFilterTypes" :key="type" small>{{ type }}</v-btn>

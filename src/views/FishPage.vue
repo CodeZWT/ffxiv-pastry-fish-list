@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div style="width: 100%">
     <v-row>
       <v-col cols="12">
         <fish-filter :filters="filters" @input="onFiltersUpdate" />
@@ -20,7 +20,7 @@
         />
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>

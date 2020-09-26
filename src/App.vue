@@ -4,11 +4,26 @@
       <div>Fish List</div>
       <v-spacer />
       <div><i class="xiv eorzea-time-chs ml-1"></i>{{ eorzeaTime }}</div>
-      <div class="ml-2"><i class="xiv local-time-chs ml-1"></i>{{ earthTime.getHours().toString().padStart(2,' ') }}:{{ (earthTime.getMinutes().toString()).padStart(2, '0') }}</div>
+      <div class="ml-2">
+        <i class="xiv local-time-chs ml-1"></i
+        >{{
+          earthTime
+            .getHours()
+            .toString()
+            .padStart(2, ' ')
+        }}:{{
+          earthTime
+            .getMinutes()
+            .toString()
+            .padStart(2, '0')
+        }}
+      </div>
     </v-app-bar>
 
     <v-main>
-      <router-view />
+      <v-container fluid>
+        <router-view />
+      </v-container>
     </v-main>
   </v-app>
 </template>

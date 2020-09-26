@@ -1,6 +1,6 @@
 <template>
   <v-col style="flex-direction: column">
-    <v-row v-if="fish.hasCountDown">
+    <v-row>
       <v-expansion-panels hover flat :value="0">
         <v-expansion-panel>
           <v-expansion-panel-header>
