@@ -32,7 +32,7 @@
                 :value="fish"
                 :fish-time-part="fishListTimePart[fish._id]"
                 :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
-                :predators="getPredators(fish)"
+                :predators="getPredators(fish, allFish, fishListTimePart, fishListWeatherChangePart)"
               ></fish-list-item-content>
             </v-expansion-panel-content>
           </v-expansion-panel>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import FishListBriefHeader from '@/components/FishListBriefHeader'
 import FishListItemContent from '@/components/FishListItemContent'
@@ -73,23 +73,13 @@ export default {
     openPanelIndex: undefined,
   }),
   computed: {
-    getPredators() {
-      const self = this
-      return fish =>
-        Object.entries(fish.predators).map(([predatorId, count]) => {
-          // const refIndex = self.fishList.findIndex(it => it._id === +predatorId)
-          return {
-            ...self.allFish[predatorId],
-            requiredCnt: count,
-            fishTimePart:
-              self.fishListTimePart[predatorId] == null
-                ? { id: predatorId, countDown: { type: DataUtil.ALL_AVAILABLE } }
-                : self.fishListTimePart[predatorId],
-            fishWeatherChangePart: self.fishListWeatherChangePart[predatorId],
-          }
-        })
-    },
+    ...mapState({
+      allFish: 'fish',
+    }),
     ...mapGetters(['getFishCompleted', 'filters']),
+  },
+  methods: {
+    getPredators: DataUtil.getPredators,
   },
 }
 </script>

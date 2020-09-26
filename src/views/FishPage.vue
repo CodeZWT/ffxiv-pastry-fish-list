@@ -2,7 +2,12 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <fish-filter :fish-data="fishDataForSearch" @input="onFiltersUpdate" :filters="filters" />
+        <fish-filter :filters="filters" @input="onFiltersUpdate" />
+        <fish-search
+          :fish-data="fishSourceList"
+          :fish-list-time-part="fishListTimePart"
+          :fish-list-weather-change-part="fishListWeatherChangePart"
+        />
         <fish-list
           :fish-list="pinnedFishList"
           :fish-list-time-part="fishListTimePart"
@@ -26,10 +31,11 @@ import sortBy from 'lodash/sortBy'
 import DataUtil from '@/utils/DataUtil'
 import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
+import FishSearch from '@/components/FishSearch'
 
 export default {
   name: 'fish-page',
-  components: { FishList, FishFilter },
+  components: { FishSearch, FishList, FishFilter },
   data: () => ({
     now: Date.now(),
     weatherChangeTrigger: 0,
@@ -50,7 +56,8 @@ export default {
       return this.fishSourceList.filter(fish => {
         // console.debug(this.filters)
         return (
-          this.filters.fishId == null || this.filters.fishId === fish._id ||
+          this.filters.fishId == null ||
+          this.filters.fishId === fish._id ||
           (this.filters.patches.includes(fish.patch) &&
             (this.filters.completeType === 'ALL' ||
               (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish._id)) ||
@@ -60,9 +67,6 @@ export default {
               (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish._id))))
         )
       })
-    },
-    fishDataForSearch() {
-      return this.fishSourceList.map(it => ({ id: it._id, name: this.getItemName(it._id) }))
     },
     fishListTimePart() {
       return this.fishSourceList.reduce((fish2TimePart, fish) => {
@@ -84,22 +88,6 @@ export default {
     },
     pinnedFishList() {
       return this.fishSourceList.filter(it => this.pinnedFishIds.includes(it._id))
-    },
-    getPredators() {
-      const self = this
-      return fish =>
-        Object.entries(fish.predators).map(([predatorId, count]) => {
-          // const refIndex = self.fishList.findIndex(it => it._id === +predatorId)
-          return {
-            ...self.allFish[predatorId],
-            requiredCnt: count,
-            fishTimePart:
-              self.fishListTimePart[predatorId] == null
-                ? { id: predatorId, countDown: { type: DataUtil.ALL_AVAILABLE } }
-                : self.fishListTimePart[predatorId],
-            fishWeatherChangePart: self.fishListWeatherChangePart[predatorId],
-          }
-        })
     },
     ...mapState({
       allFish: 'fish',

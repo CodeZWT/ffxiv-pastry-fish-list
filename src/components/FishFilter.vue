@@ -72,19 +72,6 @@
       </v-row>
     </v-card-text>
     <v-divider />
-
-    <!-- Search -->
-    <v-card-text>
-      <v-autocomplete
-        v-model="fishId"
-        :items="fishData"
-        item-value="id"
-        item-text="name"
-        label="Search"
-        clearable
-        @input="onChange"
-      ></v-autocomplete>
-    </v-card-text>
   </v-card>
 </template>
 
@@ -102,10 +89,6 @@ const FISH_N_FILTER_TYPES = ['10', '20', '50', 'ALL']
 export default {
   name: 'FishFilter',
   props: {
-    fishData: {
-      type: Array,
-      default: () => [],
-    },
     filters: {
       type: Object,
       default: () => ({}),

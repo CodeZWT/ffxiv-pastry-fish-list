@@ -49,6 +49,21 @@ export default {
     return (minute === 0 ? '' : minute + '分') + (second === 0 ? '' : second + '秒')
   },
 
+  getPredators(fish, allFish, fishListTimePart, fishListWeatherChangePart) {
+    if (fish == null || allFish == null) return []
+    return Object.entries(fish.predators).map(([predatorId, count]) => {
+      return {
+        ...allFish[predatorId],
+        requiredCnt: count,
+        fishTimePart:
+          fishListTimePart[predatorId] == null
+            ? { id: predatorId, countDown: { type: this.ALL_AVAILABLE } }
+            : fishListTimePart[predatorId],
+        fishWeatherChangePart: fishListWeatherChangePart[predatorId],
+      }
+    })
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   TUG_ICON: {
