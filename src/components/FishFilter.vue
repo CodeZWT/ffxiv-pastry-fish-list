@@ -13,12 +13,13 @@
             <v-btn
               v-if="patchSelectedIndices[version].length === patches[version].length"
               text
+              small
               @click="uncheckAll(version)"
             >
               {{ version }}
               <v-icon>mdi-close</v-icon>
             </v-btn>
-            <v-btn v-else text @click="checkAll(version)" small>
+            <v-btn v-else text small @click="checkAll(version)">
               {{ version }}
               <v-icon>mdi-check-all</v-icon>
             </v-btn>
@@ -47,8 +48,7 @@
         </v-col>
         <v-col cols="6">
           <div class="subtitle-2">Big Fish</div>
-          <v-btn-toggle v-model="bigFishType" mandatory active-class="primary--text" dense
-                        @change="onChange">
+          <v-btn-toggle v-model="bigFishType" mandatory active-class="primary--text" dense @change="onChange">
             <v-btn v-for="type in bigFishFilterTypes" :key="type" small>{{ type }}</v-btn>
           </v-btn-toggle>
         </v-col>
