@@ -4,9 +4,9 @@
       <v-col cols="12">
         <fish-filter :fish-data="fishDataForSearch" @input="onFiltersUpdate" :filters="filters" />
         <v-expansion-panels v-model="openPanelIndex">
-          <!--              <v-virtual-scroll :items="sortedFishList" :item-height="100" height="1000">-->
+          <!--              <v-virtual-scroll :items="sortedFilteredFishList" :item-height="100" height="1000">-->
           <!--                <template v-slot="{ item: fish, index }">-->
-          <v-expansion-panel v-for="(fish, index) in sortedFishList" :key="index">
+          <v-expansion-panel v-for="(fish, index) in sortedFilteredFishList" :key="index">
             <v-expansion-panel-header>
               <template v-slot:default="{ open }">
                 <div>
@@ -18,8 +18,7 @@
                       <div v-else>
                         <fish-list-brief-header
                           :value="fish"
-                          :fish-time-part="fishListTimePart[fish.refIndex]"
-                          :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
+                          :fish-time-part="fishListTimePart[fish._id]"
                           :predators="getPredators(fish)"
                         />
                       </div>
@@ -32,8 +31,8 @@
               <fish-list-item-content
                 :open="index === openPanelIndex"
                 :value="fish"
-                :fish-time-part="fishListTimePart[fish.refIndex]"
-                :fish-weather-change-part="fishListWeatherChangePart[fish.refIndex]"
+                :fish-time-part="fishListTimePart[fish._id]"
+                :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
                 :predators="getPredators(fish)"
               ></fish-list-item-content>
             </v-expansion-panel-content>
@@ -75,7 +74,7 @@ export default {
     hookset: HOOKSET_ICON,
     tug: TUG_ICON,
     weatherChangeTrigger: 0,
-    fishListWeatherChangePart: [],
+    fishListWeatherChangePart: {},
     fisher: fisher,
     openPanelIndex: undefined,
   }),
@@ -108,38 +107,36 @@ export default {
       return this.fishList.map(it => ({ id: it._id, name: this.getItemName(it._id) }))
     },
     fishListTimePart() {
-      return this.fishList.map((fish, index) => {
-        return {
+      return this.fishSourceList.reduce((fish2TimePart, fish) => {
+        fish2TimePart[fish._id] = {
           id: fish._id,
-          countDown: this.getCountDown(fish, index, this.now),
+          countDown: this.getCountDown(fish, this.now),
         }
-      })
+        return fish2TimePart
+      }, {})
     },
     sortedFishIndices() {
       return sortBy(this.fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
     },
-    sortedFishList() {
+    sortedFilteredFishList() {
       return this.sortedFishIndices
+        .map(id => this.fishList.find(it => it._id === id))
+        .filter(it => it != null)
         .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
-        .map(id => {
-          const fish = this.allFish[id]
-          fish.refIndex = this.fishList.findIndex(it => it._id === fish._id)
-          return fish
-        })
     },
     getPredators() {
       const self = this
       return fish =>
         Object.entries(fish.predators).map(([predatorId, count]) => {
-          const refIndex = self.fishList.findIndex(it => it._id === +predatorId)
+          // const refIndex = self.fishList.findIndex(it => it._id === +predatorId)
           return {
             ...self.allFish[predatorId],
             requiredCnt: count,
             fishTimePart:
-              self.fishListTimePart[refIndex] == null
+              self.fishListTimePart[predatorId] == null
                 ? { id: predatorId, countDown: { type: DataUtil.ALL_AVAILABLE } }
-                : self.fishListTimePart[refIndex],
-            fishWeatherChangePart: self.fishListWeatherChangePart[refIndex],
+                : self.fishListTimePart[predatorId],
+            fishWeatherChangePart: self.fishListWeatherChangePart[predatorId],
           }
         })
     },
@@ -157,19 +154,12 @@ export default {
   },
   watch: {
     weatherChangeTrigger() {
-      this.fishListWeatherChangePart = this.fishList.map(fish => {
-        return {
+      this.fishListWeatherChangePart = this.fishSourceList.reduce((fish2WeatherPart, fish) => {
+        fish2WeatherPart[fish._id] = {
           fishWindows: this.getFishWindow(fish, this.now),
         }
-      })
-    },
-    // to deal with fish list changes caused by filters
-    fishList(fishList) {
-      this.fishListWeatherChangePart = fishList.map(fish => {
-        return {
-          fishWindows: this.getFishWindow(fish, this.now),
-        }
-      })
+        return fish2WeatherPart
+      }, {})
     },
   },
   created() {
@@ -187,7 +177,7 @@ export default {
     getItemName(id) {
       return DataUtil.getName(this.items[id])
     },
-    getCountDown(fish, fishIndex, now) {
+    getCountDown(fish, now) {
       // utilize 8 hours fish windows computed if exists
       // and not out of time(use 2 fish window cached if necessary)
       if (
@@ -200,7 +190,7 @@ export default {
       }
       const fishingSpot = this.fishingSpots[fish.location]
       if (fishingSpot) {
-        const fishWindowsComputed = this.fishListWeatherChangePart[fishIndex]
+        const fishWindowsComputed = this.fishListWeatherChangePart[fish._id]
         let nextTwoFishWindow
         if (fishWindowsComputed) {
           nextTwoFishWindow = fishWindowsComputed.fishWindows.slice(0, 2)

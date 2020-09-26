@@ -185,7 +185,7 @@ export default {
     },
     predators: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
   },
   data: () => ({

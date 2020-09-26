@@ -96,17 +96,12 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    fishWeatherChangePart: {
-      type: Object,
-      default: () => ({}),
-    },
     predators: {
       type: Array,
       default: () => [],
     },
   },
   data: () => ({
-    weatherChangeTrigger: 0,
     fisher: fisher,
   }),
   computed: {

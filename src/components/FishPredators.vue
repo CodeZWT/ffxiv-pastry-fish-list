@@ -1,11 +1,7 @@
 <template>
   <v-layout column>
     <v-row v-for="predator in value" :key="predator._id">
-      <fish-list-brief-header
-        :value="predator"
-        :fish-time-part="predator.fishTimePart"
-        :fish-weather-change-part="predator.fishWeatherChangePart"
-      />
+      <fish-list-brief-header :value="predator" :fish-time-part="predator.fishTimePart" />
     </v-row>
   </v-layout>
 </template>
