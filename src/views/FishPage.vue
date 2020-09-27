@@ -9,11 +9,13 @@
           :fish-list-weather-change-part="fishListWeatherChangePart"
         />
         <fish-list
+          label="Pin List"
           :fish-list="pinnedFishList"
           :fish-list-time-part="fishListTimePart"
           :fish-list-weather-change-part="fishListWeatherChangePart"
         />
         <fish-list
+          label="Normal List"
           :fish-list="sortedFilteredFishList"
           :fish-list-time-part="fishListTimePart"
           :fish-list-weather-change-part="fishListWeatherChangePart"

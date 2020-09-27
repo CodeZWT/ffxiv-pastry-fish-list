@@ -34,9 +34,7 @@ import '@thewakingsands/axis-font-icons'
 
 export default {
   name: 'App',
-
   components: {},
-
   data: () => ({
     now: Date.now(),
   }),
