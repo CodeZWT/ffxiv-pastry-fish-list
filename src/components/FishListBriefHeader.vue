@@ -24,7 +24,7 @@
           {{ fish.fishingSpot }}
         </div>
       </v-col>
-      <v-col style="display: flex; flex-direction: row; align-items: center" class="col-8 col-md-4">
+      <v-col class="col-12 col-md-4 d-flex flex-row align-center justify-center justify-md-start my-2 my-md-0">
         <div v-if="fish.hasFishEyes || fish.hasPredators || fish.hasSnagging" class="mr-1">
           <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
             <div :class="fish.fishEyesIcon" />
@@ -39,7 +39,7 @@
         </div>
         <fish-bait-list :baits="fish.baits" />
       </v-col>
-      <v-col style="display: flex; flex-direction: column; justify-content: center" class="col-2">
+      <v-col class="col-12 col-md-2 d-flex flex-row flex-md-column justify-center my-2 my-md-0">
         <div class="text-subtitle-2">
           {{ $t(fish.countDownType) }}
         </div>
