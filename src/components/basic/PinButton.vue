@@ -7,7 +7,7 @@
       </div>
       <div v-else>
         <div :class="{ 'triangle-unpinned': !hover, 'triangle-unpinned-hover': hover }" />
-        <v-icon class="icon-unpinned">mdi-pin-outline</v-icon>
+        <v-icon class="icon-unpinned" small>mdi-pin-outline</v-icon>
       </div>
     </v-hover>
   </div>

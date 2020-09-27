@@ -9,7 +9,6 @@
         </div>
         <div class="text-subtitle-1" :title="fish.id">
           {{ fish.name }}
-
           <v-btn text icon x-small @click.stop="copyToClipboard(fish.name)" title="拷贝名称">
             <v-icon x-small>mdi-content-copy</v-icon>
           </v-btn>
@@ -18,19 +17,6 @@
           </v-btn>
         </div>
       </div>
-<!--            <v-col cols="6" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center">-->
-<!--              <div class="text-subtitle-1">-->
-<!--                {{ fish.zone }}-->
-<!--              </div>-->
-<!--              <div v-if="fish.zone !== fish.fishingSpot" class="text-subtitle-1" :title="fish.fishingSpotId">-->
-<!--                {{ fish.fishingSpot }}-->
-<!--              </div>-->
-<!--              <div>-->
-<!--                <v-btn class="ma-2" text icon x-small @click.stop="goToFishingSpotAngelPage(fish.anglerLocationId)">-->
-<!--                  <v-icon x-small>mdi-link-variant</v-icon>-->
-<!--                </v-btn>-->
-<!--              </div>-->
-<!--            </v-col>-->
     </v-row>
   </div>
 </template>
