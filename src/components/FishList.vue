@@ -6,7 +6,7 @@
           <!--              <v-virtual-scroll :items="fishList" :item-height="100" height="1000">-->
           <!--                <template v-slot="{ item: fish, index }">-->
           <v-expansion-panel v-for="(fish, index) in fishList" :key="index">
-            <v-expansion-panel-header>
+            <v-expansion-panel-header :color="fishColors[index]">
               <template v-slot:default="{ open }">
                 <div>
                   <div>
@@ -55,17 +55,17 @@ export default {
   name: 'fish-list',
   components: { FishListExpandedHeader, FishListItemContent, FishListBriefHeader },
   props: {
-    fishListWeatherChangePart: {
-      type: Object,
-      default: () => ({}),
+    fishList: {
+      type: Array,
+      default: () => [],
     },
     fishListTimePart: {
       type: Object,
       default: () => ({}),
     },
-    fishList: {
-      type: Array,
-      default: () => [],
+    fishListWeatherChangePart: {
+      type: Object,
+      default: () => ({}),
     },
   },
   data: () => ({
@@ -73,11 +73,26 @@ export default {
     openPanelIndex: undefined,
   }),
   computed: {
+    fishColors() {
+      return this.fishList.map((fish, index) => {
+        const oddIndex = index % 2
+        const completed = this.getFishCompleted(fish._id)
+        const countDownType = this.fishListTimePart[fish._id].countDown?.type
+        return DataUtil.getColorByStatus(completed, countDownType, oddIndex)
+      })
+    },
     getPredators() {
-      return value => DataUtil.getPredators(value, this.allFish, this.fishListTimePart, this.fishListWeatherChangePart)
+      return value =>
+        DataUtil.getPredators(
+          value,
+          this.allFish,
+          this.fishListTimePart,
+          this.fishListWeatherChangePart,
+          this.getFishCompleted(value._id)
+        )
     },
     ...mapState({ allFish: 'fish' }),
-    ...mapGetters(['getFishCompleted', 'filters']),
+    ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
   },
 }
 </script>

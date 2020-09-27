@@ -49,7 +49,7 @@ export default {
     return (minute === 0 ? '' : minute + '分') + (second === 0 ? '' : second + '秒')
   },
 
-  getPredators(fish, allFish, fishListTimePart, fishListWeatherChangePart) {
+  getPredators(fish, allFish, fishListTimePart, fishListWeatherChangePart, completed) {
     if (fish == null || allFish == null) return []
     return Object.entries(fish.predators).map(([predatorId, count]) => {
       return {
@@ -60,6 +60,7 @@ export default {
             ? { id: predatorId, countDown: { type: this.ALL_AVAILABLE } }
             : fishListTimePart[predatorId],
         fishWeatherChangePart: fishListWeatherChangePart[predatorId],
+        finalTargetCompleted: completed,
       }
     })
   },
@@ -71,6 +72,19 @@ export default {
     const MAP_SIZE_FACTOR_MAGIC = 41
     const MAP_FILE_PIXEL_MAX = 2048
     return (MAP_SIZE_FACTOR_MAGIC / (sizeFactor / 100)) * (pixelIndex / MAP_FILE_PIXEL_MAX) + 1
+  },
+
+  getColorByStatus(completed, countDownType, oddIndex) {
+    if (completed) {
+      return this.ITEM_COLOR.COMPLETED[oddIndex]
+    } else {
+      switch (countDownType) {
+        case this.FISHING:
+          return this.ITEM_COLOR.FISHING[oddIndex]
+        default:
+          return this.ITEM_COLOR.WAITING[oddIndex]
+      }
+    }
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
@@ -95,4 +109,12 @@ export default {
   ICON_PREDATORS: '011101',
   ICON_SNAGGING: '011102',
   ICON_FISH_EYES: '011103',
+
+  ITEM_COLOR: {
+    FISHING: ['deep-orange lighten-2', 'deep-orange lighten-4'],
+    WAITING: ['grey lighten-2', 'grey lighten-3'],
+    COMPLETED: ['teal lighten-1', 'teal lighten-2'],
+  },
+
+  PATCH_MAX: 5.2,
 }

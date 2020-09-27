@@ -50,7 +50,9 @@ export default {
       return new Date(this.now)
     },
     fishSourceList() {
-      return Object.values(this.allFish).filter(it => it.location != null && it.gig == null)
+      return Object.values(this.allFish).filter(
+        it => it.location != null && it.gig == null && it.patch < DataUtil.PATCH_MAX
+      )
     },
     fishList() {
       return this.fishSourceList.filter(fish => {

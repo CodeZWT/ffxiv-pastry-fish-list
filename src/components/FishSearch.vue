@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" style="padding: 0 12px">
-    <v-dialog v-model="dialog" max-width="600px">
+    <v-dialog v-model="dialog" max-width="100%">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="primary" dark block v-bind="attrs" v-on="on">
           Search
@@ -82,10 +82,17 @@ export default {
       return this.fishData.map(it => ({ id: it._id, name: this.getItemName(it._id) }))
     },
     getPredators() {
-      return value => DataUtil.getPredators(value, this.allFish, this.fishListTimePart, this.fishListWeatherChangePart)
+      return value =>
+        DataUtil.getPredators(
+          value,
+          this.allFish,
+          this.fishListTimePart,
+          this.fishListWeatherChangePart,
+          this.getFishCompleted(value._id)
+        )
     },
     ...mapState({ allFish: 'fish' }),
-    ...mapGetters(['getItemName']),
+    ...mapGetters(['getItemName', 'getFishCompleted']),
   },
   watch: {
     dialog() {
