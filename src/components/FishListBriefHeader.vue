@@ -37,20 +37,7 @@
             <v-img :lazy-src="fisher" width="28" height="36" :src="fish.snaggingIcon" />
           </div>
         </div>
-        <div v-for="(bait, baitInx) in fish.baits" :key="baitInx">
-          <div style="display: flex">
-            <div v-if="baitInx !== 0" style="display: flex; align-items: center">
-              <v-icon>mdi-arrow-right</v-icon>
-            </div>
-            <div>
-              <v-img :lazy-src="fisher" :src="bait.baitIcon" width="36" height="36" :title="bait.baitName" />
-            </div>
-            <div>
-              <code>{{ bait.tugIcon }}</code>
-              <v-img :src="bait.hooksetIcon" width="16" height="16" />
-            </div>
-          </div>
-        </div>
+        <fish-bait-list :baits="fish.baits" />
       </v-col>
       <v-col style="display: flex; flex-direction: column; justify-content: center" class="col-2">
         <div class="text-subtitle-2">
@@ -75,11 +62,12 @@ import DataUtil from '@/utils/DataUtil'
 
 import ToggleButton from '@/components/basic/ToggleButton'
 import PinButton from '@/components/basic/PinButton'
+import FishBaitList from '@/components/FishBaitList'
 
 export default {
   name: 'FishListBriefHeader',
   // to deal with recursive components
-  components: { PinButton, ToggleButton, FishPredators: () => import('@/components/FishPredators') },
+  components: { FishBaitList, PinButton, ToggleButton, FishPredators: () => import('@/components/FishPredators') },
   props: {
     value: {
       type: Object,

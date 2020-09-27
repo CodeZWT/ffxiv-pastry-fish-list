@@ -144,21 +144,8 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col style="display: flex; flex-direction: row; align-items: center; justify-content: center">
-        <div v-for="(bait, baitInx) in fish.baits" :key="baitInx">
-          <div style="display: flex">
-            <div v-if="baitInx !== 0" style="display: flex; align-items: center">
-              <v-icon>mdi-arrow-right</v-icon>
-            </div>
-            <div>
-              <v-img :lazy-src="fisher" :src="bait.baitIcon" width="36" height="36" :title="bait.baitName" />
-            </div>
-            <div>
-              <code>{{ bait.tugIcon }}</code>
-              <v-img :src="bait.hooksetIcon" width="16" height="16" />
-            </div>
-          </div>
-        </div>
+      <v-col>
+        <fish-bait-list :baits="fish.baits" />
       </v-col>
     </v-row>
     <!--        <v-row>-->
@@ -180,10 +167,11 @@ import fisher from '@/assets/fisher.png'
 import EorzeaMap from '@/components/EorzeaMap'
 import DataUtil from '@/utils/DataUtil'
 import FishPredators from '@/components/FishPredators'
+import FishBaitList from '@/components/FishBaitList'
 
 export default {
   name: 'FishListItemContent',
-  components: { FishPredators, EorzeaMap },
+  components: { FishBaitList, FishPredators, EorzeaMap },
   props: {
     open: {
       type: Boolean,
