@@ -47,8 +47,8 @@ export default {
   width: 0;
   height: 0;
   position: absolute;
-  border-top: 35px solid #fafafa;
-  border-right: 35px solid transparent;
+  border-top: 32px solid #fafafa;
+  border-right: 32px solid transparent;
   opacity: 0.5;
 }
 
@@ -62,16 +62,16 @@ export default {
   width: 0;
   height: 0;
   position: absolute;
-  border-top: 35px solid #CE93D8;
-  border-right: 35px solid transparent;
+  border-top: 32px solid #CE93D8;
+  border-right: 32px solid transparent;
 }
 
 .triangle-pinned-hover {
   width: 0;
   height: 0;
   position: absolute;
-  border-top: 35px solid #CE93D8;
-  border-right: 35px solid transparent;
+  border-top: 32px solid #CE93D8;
+  border-right: 32px solid transparent;
   opacity: 0.5;
 }
 </style>

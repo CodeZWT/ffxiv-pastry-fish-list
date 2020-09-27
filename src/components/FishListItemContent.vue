@@ -77,16 +77,16 @@
               <template v-slot:default>
                 <thead>
                   <tr>
-                    <th class="text-left">开始时间</th>
-                    <th class="text-left">时长</th>
-                    <th class="text-left">距下个窗口期</th>
+                    <th class="text-center">开始时间</th>
+                    <th class="text-center">时长</th>
+                    <th class="text-center">距下个窗口期</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="(fishWindow, index) in fishWindows" :key="index">
-                    <td>{{ fishWindow.start }}</td>
-                    <td>{{ fishWindow.interval }}</td>
-                    <td>{{ fishWindow.nextInterval }}</td>
+                    <td class="text-center">{{ fishWindow.start }}</td>
+                    <td class="text-center">{{ fishWindow.interval }}</td>
+                    <td class="text-center">{{ fishWindow.nextInterval }}</td>
                   </tr>
                 </tbody>
               </template>
@@ -97,8 +97,8 @@
     </v-row>
     <v-row>
       <v-col cols="4">
-        <v-row>天气</v-row>
-        <v-row v-if="fish.hasWeatherConstraint">
+        <v-row class="justify-center">天气</v-row>
+        <v-row class="justify-center" v-if="fish.hasWeatherConstraint">
           <div style="display: flex">
             <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
               <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
@@ -111,13 +111,13 @@
             </div>
           </div>
         </v-row>
-        <v-row v-else>
+        <v-row class="justify-center" v-else>
           {{ $t('none') }}
         </v-row>
       </v-col>
       <v-col cols="4">
-        <v-row>时间</v-row>
-        <v-row>
+        <v-row class="justify-center">时间</v-row>
+        <v-row class="justify-center">
           <div v-if="fish.hasTimeConstraint">{{ fish.startHour }} - {{ fish.endHour }}</div>
           <div v-else>
             {{ $t('none') }}
@@ -125,8 +125,8 @@
         </v-row>
       </v-col>
       <v-col cols="4">
-        <v-row>鱼眼/鱼识/钓组</v-row>
-        <v-row>
+        <v-row class="justify-center">鱼眼/鱼识/钓组</v-row>
+        <v-row class="justify-center">
           <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
             <v-img :lazy-src="fisher" width="28" height="36" :src="fish.fishEyesIcon" />
             <div class="ml-3">{{ fish.fishEyesText }}</div>

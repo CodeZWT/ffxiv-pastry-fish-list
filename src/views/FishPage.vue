@@ -86,7 +86,10 @@ export default {
         .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
     },
     pinnedFishList() {
-      return this.fishSourceList.filter(it => this.pinnedFishIds.includes(it._id))
+      return sortBy(
+        this.fishSourceList.filter(it => this.pinnedFishIds.includes(it._id)),
+        [fish => this.pinnedFishIds.indexOf(fish._id)]
+      )
     },
     ...mapState({
       allFish: 'fish',

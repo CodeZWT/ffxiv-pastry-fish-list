@@ -26,6 +26,7 @@
             </v-row>
           </v-container>
           <template v-if="fish != null">
+            <v-divider class="mb-3" />
             <div style="position:relative;" class="py-4 px-6">
               <fish-list-expanded-header :value="fish" />
             </div>

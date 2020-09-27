@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%">
-    <pin-button v-if="!inPredator" :value="fish.pinned" @input="setPinned($event)" />
+    <pin-button :value="fish.pinned" @input="setPinned($event)" />
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col class="col-8 col-md-3">
         <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
