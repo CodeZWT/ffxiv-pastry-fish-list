@@ -265,14 +265,7 @@ export default {
     ]),
   },
   methods: {
-    // todo add mixin
-    printCountDownTime(time) {
-      const dict = DataUtil.TIME_UNITS.reduce((dict, unit) => {
-        dict[unit] = this.$t(`countDown.unit.${unit}`)
-        return dict
-      }, {})
-      return DataUtil.printCountDownTime(time, dict)
-    },
+    printCountDownTime: DataUtil.printCountDownTime,
     goToFishingSpotAngelPage(anglerLocationId) {
       window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
     },

@@ -15,5 +15,11 @@
     "allAvailable": "全天可钓",
     "fishWindowBtn": "查看窗口期详情"
   },
-  "none": "无"
+  "none": "无",
+  "time": {
+    "DAY": "天",
+    "HOUR": "小时",
+    "MINUTE": "分",
+    "SECOND": "秒"
+  }
 }

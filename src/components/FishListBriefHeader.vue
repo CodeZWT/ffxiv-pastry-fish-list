@@ -128,13 +128,7 @@ export default {
     ]),
   },
   methods: {
-    printCountDownTime(time) {
-      const dict = DataUtil.TIME_UNITS.reduce((dict, unit) => {
-        dict[unit] = this.$t(`countDown.unit.${unit}`)
-        return dict
-      }, {})
-      return DataUtil.printCountDownTime(time, dict)
-    },
+    printCountDownTime: DataUtil.printCountDownTime,
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
     },

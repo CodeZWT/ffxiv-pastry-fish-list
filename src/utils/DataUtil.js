@@ -1,4 +1,4 @@
-import prettyMilliseconds from 'pretty-ms'
+import TimeFormatter from '@/utils/TimeFormatter'
 
 const HOST = 'https://xivapi.com'
 
@@ -28,31 +28,13 @@ export default {
     return countDown != null && countDown.type !== this.ALL_AVAILABLE
   },
 
-  printCountDownTime(time, dict) {
-    if (time != null) {
-      return prettyMilliseconds(time - (time % 1000), {
-        verbose: true,
-        unitCount: 2,
-        secondsDecimalDigits: 0,
-        colonNotation: false,
-      })
-        .split(' ')
-        .map(it => {
-          if (isNaN(it)) {
-            return dict[it]
-          } else return it.padStart(2, '0')
-        })
-        .join('')
-    } else {
-      return ''
-    }
+  printCountDownTime(time) {
+    return TimeFormatter.millisecondsToText(time)
   },
 
   secondsToFishEyesString(seconds) {
     if (seconds === true) return ''
-    const second = seconds % 60
-    const minute = (seconds - second) / 60
-    return (minute === 0 ? '' : minute + '分') + (second === 0 ? '' : second + '秒')
+    return TimeFormatter.millisecondsToText(seconds * 1000, 2, false, false)
   },
 
   getPredators(fish, allFish, fishListTimePart, fishListWeatherChangePart, completed) {
