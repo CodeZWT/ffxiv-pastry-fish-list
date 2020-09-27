@@ -4,7 +4,7 @@
       <!-- Patches -->
       <v-row no-gutters>
         <v-col>
-          <div class="subtitle-2">Patches</div>
+          <div class="subtitle-2">{{ $t('filter.patch') }}</div>
         </v-col>
       </v-row>
       <v-row wrap no-gutters>
@@ -41,15 +41,15 @@
       <!-- Mark & BigFish -->
       <v-row no-gutters>
         <v-col class="col-12 col-md-6">
-          <div class="subtitle-2">Mark</div>
+          <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
           <v-btn-toggle v-model="completeType" mandatory active-class="primary--text" dense @change="onChange">
-            <v-btn v-for="type in completeFilterTypes" :key="type" small>{{ type }}</v-btn>
+            <v-btn v-for="type in completeFilterTypes" :key="type" small>{{ $t(`filter.mark.${type}`) }}</v-btn>
           </v-btn-toggle>
         </v-col>
         <v-col cols="6">
-          <div class="subtitle-2">Big Fish</div>
+          <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
           <v-btn-toggle v-model="bigFishType" mandatory active-class="primary--text" dense @change="onChange">
-            <v-btn v-for="type in bigFishFilterTypes" :key="type" small>{{ type }}</v-btn>
+            <v-btn v-for="type in bigFishFilterTypes" :key="type" small>{{ $t(`filter.bigFish.${type}`) }}</v-btn>
           </v-btn-toggle>
         </v-col>
       </v-row>
@@ -58,14 +58,14 @@
     <v-card-text>
       <v-row no-gutters>
         <v-col>
-          <div class="subtitle-2">Show first N fish</div>
+          <div class="subtitle-2">{{ $t('filter.showFirstNFish.title') }}</div>
         </v-col>
       </v-row>
       <v-row no-gutters>
         <v-col>
           <v-btn-toggle v-model="fishNType" dense @change="onChange">
             <v-btn v-for="type in fishNFilterTypes" :key="type" color="primary--text" small>
-              {{ type }}
+              {{ $t(`filter.showFirstNFish.${type}`) }}
             </v-btn>
           </v-btn-toggle>
         </v-col>

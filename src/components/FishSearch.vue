@@ -1,14 +1,14 @@
 <template>
   <v-row justify="center" style="padding: 0 12px">
-    <v-dialog v-model="dialog" max-width="100%">
+    <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.mobile" max-width="1264px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="primary" dark block v-bind="attrs" v-on="on">
-          Search
+          {{ $t('search.btn') }}
         </v-btn>
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Search Fish</span>
+          <span class="headline">{{ $t('search.dialog.title') }}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -19,7 +19,7 @@
                   :items="fishSearchData"
                   item-value="id"
                   item-text="name"
-                  label="Search"
+                  :label="$t('search.dialog.placeholder')"
                   clearable
                 ></v-autocomplete>
               </v-col>
@@ -41,7 +41,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="default" text @click="dialog = false">Close</v-btn>
+          <v-btn color="default" text @click="dialog = false">{{ $t('search.dialog.close') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

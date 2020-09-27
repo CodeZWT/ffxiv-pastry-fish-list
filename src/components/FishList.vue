@@ -7,10 +7,12 @@
       <v-expansion-panel-content class="list-wrapper">
         <v-row>
           <v-col cols="12">
-            <div v-if="fishList.length <= 0" class="d-flex justify-center align-content-center">
-              Pin list is empty. Please use pin button (
-              <v-icon small style="transform: rotate(-45deg)">mdi-pin-outline</v-icon>
-              ) in top-right corner of fish item row to pin it to pin list.
+            <div v-if="fishList.length <= 0" class="d-flex justify-center align-content-center pa-2">
+              <span>
+                {{ $t('list.empty.prefix') }}
+                <v-icon small style="transform: rotate(-45deg)" class="mx-1">mdi-pin-outline</v-icon>
+                {{ $t('list.empty.suffix') }}
+              </span>
             </div>
             <v-expansion-panels v-else v-model="openPanelIndex" hover>
               <!--              <v-virtual-scroll :items="fishList" :item-height="100" height="1000">-->

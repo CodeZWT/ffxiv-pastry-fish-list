@@ -1,15 +1,5 @@
 {
   "countDown": {
-    "unit": {
-      "days": "天",
-      "hours": "小时",
-      "minutes": "分",
-      "seconds": "秒",
-      "day": "天",
-      "hour": "小时",
-      "minute": "分",
-      "second": "秒"
-    },
     "waiting": "等待中：",
     "fishing": "窗口期剩余：",
     "allAvailable": "全天可钓",
@@ -21,5 +11,41 @@
     "HOUR": "小时",
     "MINUTE": "分",
     "SECOND": "秒"
+  },
+  "filter": {
+    "patch": "版本",
+    "mark": {
+      "title": "完成状态",
+      "ALL": "所有",
+      "COMPLETED": "已完成",
+      "UNCOMPLETED": "未完成"
+    },
+    "bigFish": {
+      "title": "鱼王/鱼皇",
+      "ALL": "所有",
+      "BIG_FISH": "鱼王/鱼皇",
+      "NOT_BIG_FISH": "普通鱼"
+    },
+    "showFirstNFish": {
+      "title": "最多显示条数",
+      "10": "10",
+      "20": "20",
+      "50": "50",
+      "ALL": "所有"
+    }
+  },
+  "search": {
+    "btn": "搜索鱼",
+    "dialog": {
+      "title": "搜索鱼",
+      "placeholder": "输入鱼名称搜索",
+      "close": "关闭"
+    }
+  },
+  "list": {
+    "empty": {
+      "prefix": "当前固定列表为空，清点击每行鱼左上角的",
+      "suffix": "将鱼添加至固定列表。"
+    }
   }
 }
