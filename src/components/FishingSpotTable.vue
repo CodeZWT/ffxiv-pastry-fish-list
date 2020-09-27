@@ -5,7 +5,7 @@
         <tr>
           <th class="text-left">Tug/Fish</th>
           <th v-for="spotFish in value" class="text-left" :key="spotFish.id">
-            <v-img :lazy-src="fisher" :src="spotFish.icon" width="36" height="36" />
+            <div :class="spotFish.icon" />
           </th>
         </tr>
       </thead>

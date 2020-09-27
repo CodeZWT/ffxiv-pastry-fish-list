@@ -10,6 +10,12 @@ export default {
     const path = icon.substring(0, 3) + '000'
     return `${HOST}/i/${path}/${icon}.png`
   },
+  iconIdToClass(iconId) {
+    if (iconId == null) return ''
+    const iconIdStr = iconId + ''
+    const icon = iconIdStr.padStart(6, '0')
+    return `bg-${icon}`
+  },
   getName(multiLanguageItem, locale = 'chs') {
     return multiLanguageItem['name_' + locale] ? multiLanguageItem['name_' + locale] : multiLanguageItem['name_en']
   },

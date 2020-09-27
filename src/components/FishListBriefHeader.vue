@@ -11,7 +11,7 @@
             <div class="text-subtitle-1">{{ fish.requiredCnt }}</div>
           </div>
           <div class="mr-1">
-            <v-img :lazy-src="fisher" width="40" height="40" :src="fish.icon" />
+            <div :class="fish.icon" />
           </div>
           <div class="text-subtitle-1 text-truncate" :title="fish.id">{{ fish.name }}</div>
         </div>
@@ -27,14 +27,14 @@
       <v-col style="display: flex; flex-direction: row; align-items: center" class="col-8 col-md-4">
         <div v-if="fish.hasFishEyes || fish.hasPredators || fish.hasSnagging" class="mr-1">
           <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
-            <v-img :lazy-src="fisher" width="28" height="36" :src="fish.fishEyesIcon" />
+            <div :class="fish.fishEyesIcon" />
             <div class="ml-1">{{ fish.fishEyesText }}</div>
           </div>
           <div v-if="fish.hasPredators">
-            <v-img :lazy-src="fisher" width="28" height="36" :src="fish.predatorsIcon" />
+            <div :class="fish.predatorsIcon" />
           </div>
           <div v-if="fish.hasSnagging">
-            <v-img :lazy-src="fisher" width="28" height="36" :src="fish.snaggingIcon" />
+            <div :class="fish.snaggingIcon" />
           </div>
         </div>
         <fish-bait-list :baits="fish.baits" />
@@ -95,20 +95,20 @@ export default {
         id: this.value._id,
         completed: this.getFishCompleted(this.value._id),
         pinned: this.getFishPinned(this.value._id),
-        icon: this.getItemIconUrl(this.value._id),
+        icon: this.getItemIconClass(this.value._id),
         name: this.getItemName(this.value._id),
         zone: this.getZoneName(this.value.location),
         fishingSpot: this.getFishingSpotsName(this.value.location),
         fishingSpotId: this.value.location,
         baits: this.getBaits(this.value),
         hasFishEyes: this.value.fishEyes !== false,
-        fishEyesIcon: DataUtil.iconIdToUrl(DataUtil.ICON_FISH_EYES),
+        fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
         fishEyesText: DataUtil.secondsToFishEyesString(this.value.fishEyes),
         fishEyesSeconds: this.value.fishEyes,
         hasPredators: Object.keys(this.value.predators).length > 0,
-        predatorsIcon: DataUtil.iconIdToUrl(DataUtil.ICON_PREDATORS),
+        predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
         hasSnagging: this.value.snagging,
-        snaggingIcon: DataUtil.iconIdToUrl(DataUtil.ICON_SNAGGING),
+        snaggingIcon: DataUtil.iconIdToClass(DataUtil.ICON_SNAGGING),
         countDownType: DataUtil.getCountDownTypeName(this.fishTimePart.countDown?.type),
         countDownTime: this.fishTimePart.countDown?.time,
         countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown?.time),
@@ -118,7 +118,7 @@ export default {
       }
     },
     ...mapGetters([
-      'getItemIconUrl',
+      'getItemIconClass',
       'getItemName',
       'getZoneName',
       'getFishingSpotsName',

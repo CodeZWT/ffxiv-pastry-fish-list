@@ -6,12 +6,12 @@
           <v-icon>mdi-arrow-right</v-icon>
         </div>
         <div>
-          <v-img :lazy-src="fisher" :src="bait.baitIcon" width="36" height="36" :title="bait.baitName" />
+          <div :class="bait.baitIcon" :title="bait.baitName" />
         </div>
-        <div class="d-flex flex-column" style="max-height: 36px">
+        <div class="d-flex flex-column" style="max-height: 40px">
           <code>{{ bait.tugIcon }}</code>
           <v-spacer />
-          <v-img :src="bait.hooksetIcon" max-width="22" max-height="22" />
+          <div :class="[bait.hooksetIcon, 'hookset-icon']" />
         </div>
       </div>
     </div>
@@ -35,4 +35,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.hookset-icon {
+  zoom: 0.5;
+  -moz-transform: scale(0.5);
+  -moz-transform-origin: 0 0;
+}
+</style>

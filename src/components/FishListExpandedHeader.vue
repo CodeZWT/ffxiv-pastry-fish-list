@@ -5,7 +5,7 @@
       <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
         <toggle-button :value="fish.completed" @input="setCompleted($event)" />
         <div class="mr-1">
-          <v-img :lazy-src="fisher" width="40" height="40" :src="fish.icon" />
+          <div :class="fish.icon" />
         </div>
         <div class="text-subtitle-1" :title="fish.id">
           {{ fish.name }}
@@ -47,7 +47,7 @@ export default {
         id: this.value._id,
         completed: this.getFishCompleted(this.value._id),
         pinned: this.getFishPinned(this.value._id),
-        icon: this.getItemIconUrl(this.value._id),
+        icon: this.getItemIconClass(this.value._id),
         name: this.getItemName(this.value._id),
         zone: this.getZoneName(this.value.location),
         fishingSpot: this.getFishingSpotsName(this.value.location),
@@ -57,7 +57,7 @@ export default {
       }
     },
     ...mapGetters([
-      'getItemIconUrl',
+      'getItemIconClass',
       'getItemName',
       'getZoneName',
       'getFishingSpotsName',

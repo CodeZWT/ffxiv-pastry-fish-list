@@ -45,8 +45,6 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    // TODO combine icon file together
-    // https://css-tricks.com/css-sprites/
     getItemIconUrl: state => id => {
       const iconId = state.items[id].icon
       // const localImg = require(`../assert/${iconId}.png`)
@@ -54,6 +52,18 @@ export default new Vuex.Store({
       //   return localImg
       // } else {
       return DataUtil.iconIdToUrl(iconId)
+      // }
+    },
+    // combine icon file together
+    // https://css-tricks.com/css-sprites/
+    // https://www.toptal.com/developers/css/sprite-generator
+    getItemIconClass: state => id => {
+      const iconId = state.items[id].icon
+      // const localImg = require(`../assert/${iconId}.png`)
+      // if (localImg) {
+      //   return localImg
+      // } else {
+      return DataUtil.iconIdToClass(iconId)
       // }
     },
     getItemName: state => id => {
@@ -75,10 +85,10 @@ export default new Vuex.Store({
         tug: fish.tug,
         tugIcon: DataUtil.TUG_ICON[fish.tug],
         hookset: fish.hookset,
-        hooksetIcon: DataUtil.iconIdToUrl(DataUtil.HOOKSET_ICON[fish.hookset]),
+        hooksetIcon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[fish.hookset]),
         baitId: baitId,
         baitName: getters.getItemName(baitId),
-        baitIcon: getters.getItemIconUrl(baitId),
+        baitIcon: getters.getItemIconClass(baitId),
       }
       if (fish.bestCatchPath.length === 1) {
         return [lastBait]
@@ -92,10 +102,10 @@ export default new Vuex.Store({
               tug: baitFish.tug,
               tugIcon: DataUtil.TUG_ICON[fish.tug],
               hookset: baitFish.hookset,
-              hooksetIcon: DataUtil.iconIdToUrl(DataUtil.HOOKSET_ICON[fish.hookset]),
+              hooksetIcon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[fish.hookset]),
               baitId: baitId,
               baitName: getters.getItemName(baitId),
-              baitIcon: getters.getItemIconUrl(baitId),
+              baitIcon: getters.getItemIconClass(baitId),
             }
           }
         })
@@ -117,7 +127,7 @@ export default new Vuex.Store({
       return weatherSet.map(id => {
         return {
           name: DataUtil.getName(state.weatherTypes[id]),
-          icon: DataUtil.iconIdToUrl(state.weatherTypes[id].icon),
+          icon: DataUtil.iconIdToClass(state.weatherTypes[id].icon),
         }
       })
     },
@@ -128,7 +138,7 @@ export default new Vuex.Store({
       return state.fishingSpotFish[fishingSpotId].map(it => ({
         id: it.fish,
         tug: it.tug,
-        icon: getters.getItemIconUrl(it.fish),
+        icon: getters.getItemIconClass(it.fish),
       }))
     },
     getFishCompleted: state => fishId => {

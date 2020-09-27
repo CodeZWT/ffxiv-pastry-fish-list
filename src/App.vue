@@ -59,6 +59,8 @@ export default {
 </script>
 
 <style>
+@import './assets/css/fish_icons.css';
+
 @font-face {
   font-family: 'FFXIV';
   src: url('./assets/font/FFXIV_Lodestone_SSF.ttf') format('truetype'),

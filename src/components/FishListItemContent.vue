@@ -101,13 +101,13 @@
         <v-row class="justify-center" v-if="fish.hasWeatherConstraint">
           <div style="display: flex">
             <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
-              <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
+              <div :class="weather.icon" :title="weather.name" />
             </div>
             <v-icon v-if="fish.previousWeatherSet.length > 0">
               mdi-arrow-right
             </v-icon>
             <div v-for="weather in fish.weatherSetDetail" :key="weather.name" :title="weather.name">
-              <v-img :src="weather.icon" :alt="weather.name" width="32" height="32"></v-img>
+              <div :class="weather.icon" :title="weather.name" />
             </div>
           </div>
         </v-row>
@@ -128,14 +128,14 @@
         <v-row class="justify-center">鱼眼/鱼识/钓组</v-row>
         <v-row class="justify-center">
           <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
-            <v-img :lazy-src="fisher" width="28" height="36" :src="fish.fishEyesIcon" />
+            <div :class="fish.fishEyesIcon" />
             <div class="ml-3">{{ fish.fishEyesText }}</div>
           </div>
           <div v-if="fish.hasPredators">
-            <v-img :lazy-src="fisher" width="28" height="36" :src="fish.predatorsIcon" />
+            <div :class="fish.predatorsIcon" />
           </div>
           <div v-if="fish.hasSnagging">
-            <v-img :lazy-src="fisher" width="28" height="36" :src="fish.snaggingIcon" />
+            <div :class="fish.snaggingIcon" />
           </div>
           <div v-if="!fish.hasFishEyes && !fish.hasPredators && !fish.hasSnagging">
             {{ $t('none') }}
@@ -209,14 +209,14 @@ export default {
         hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
         hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
         hasFishEyes: this.value.fishEyes !== false,
-        fishEyesIcon: DataUtil.iconIdToUrl(DataUtil.ICON_FISH_EYES),
+        fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
         fishEyesText: DataUtil.secondsToFishEyesString(this.value.fishEyes),
         fishEyesSeconds: this.value.fishEyes,
         hasPredators: this.predators.length > 0,
         predators: this.predators,
-        predatorsIcon: DataUtil.iconIdToUrl(DataUtil.ICON_PREDATORS),
+        predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
         hasSnagging: this.value.snagging,
-        snaggingIcon: DataUtil.iconIdToUrl(DataUtil.ICON_SNAGGING),
+        snaggingIcon: DataUtil.iconIdToClass(DataUtil.ICON_SNAGGING),
         zone: this.getZoneName(this.value.location),
         fishingSpot: fishingSpot,
         fishingSpotName: this.getFishingSpotsName(this.value.location),
