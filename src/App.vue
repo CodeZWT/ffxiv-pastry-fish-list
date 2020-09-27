@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <div>Fish List</div>
+      <div class="d-flex align-center">
+        <v-img :src="fisher" width="24px" height="24px" class="mr-1" />
+        Fish List
+      </div>
       <v-spacer />
       <div><i class="xiv eorzea-time-chs ml-1"></i>{{ eorzeaTime }}</div>
       <div class="ml-2">
@@ -31,12 +34,14 @@
 <script>
 import EorzeaTime from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
+import fisher from '@/assets/fisher.png'
 
 export default {
   name: 'App',
   components: {},
   data: () => ({
     now: Date.now(),
+    fisher,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
