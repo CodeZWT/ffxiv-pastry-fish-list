@@ -77,16 +77,16 @@
               <template v-slot:default>
                 <thead>
                   <tr>
-                    <th class="text-left">Start</th>
-                    <th class="text-left">End</th>
+                    <th class="text-left">开始时间</th>
                     <th class="text-left">时长</th>
+                    <th class="text-left">距下个窗口期</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="(fishWindow, index) in fishWindows" :key="index">
                     <td>{{ fishWindow.start }}</td>
-                    <td>{{ fishWindow.end }}</td>
                     <td>{{ fishWindow.interval }}</td>
+                    <td>{{ fishWindow.nextInterval }}</td>
                   </tr>
                 </tbody>
               </template>
@@ -252,13 +252,17 @@ export default {
       }
     },
     fishWindows() {
-      return this.fishWeatherChangePart.fishWindows.map(fishWindow => {
+      return this.fishWeatherChangePart.fishWindows.map((fishWindow, index) => {
         const start = new Date(fishWindow[0])
         const end = new Date(fishWindow[1])
         return {
           start: start.toLocaleDateString() + ' ' + start.toLocaleTimeString(),
           end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
           interval: this.printCountDownTime(end - start),
+          nextInterval:
+            index < this.fishWeatherChangePart.fishWindows.length - 1
+              ? this.printCountDownTime(this.fishWeatherChangePart.fishWindows[index + 1][0] - end)
+              : '',
         }
       })
     },
