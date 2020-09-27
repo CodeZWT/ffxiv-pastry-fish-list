@@ -50,11 +50,10 @@ export default {
       return new Date(this.now)
     },
     fishSourceList() {
-      return Object.values(this.allFish).filter(it => it.location != null)
+      return Object.values(this.allFish).filter(it => it.location != null && it.gig == null)
     },
     fishList() {
       return this.fishSourceList.filter(fish => {
-        // console.debug(this.filters)
         return (
           this.filters.patches.includes(fish.patch) &&
           (this.filters.completeType === 'ALL' ||
