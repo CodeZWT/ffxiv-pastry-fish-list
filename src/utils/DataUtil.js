@@ -47,6 +47,7 @@ export default {
             : fishListTimePart[predatorId],
         fishWeatherChangePart: fishListWeatherChangePart[predatorId],
         finalTargetCompleted: completed,
+        finalTargetCountDownType: fishListTimePart[fish._id]?.countDown?.type,
       }
     })
   },

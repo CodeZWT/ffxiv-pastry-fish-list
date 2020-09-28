@@ -26,7 +26,8 @@ export default {
         .map((fish, index) => {
           const oddIndex = index % 2
           const completed = fish.finalTargetCompleted
-          const countDownType = fish.fishTimePart?.countDown?.type
+          const countDownType =
+            fish.finalTargetCountDownType === DataUtil.FISHING ? DataUtil.FISHING : fish.fishTimePart?.countDown?.type
           return DataUtil.getColorByStatus(completed, countDownType, oddIndex)
         })
         .map(it => it.split(' '))
