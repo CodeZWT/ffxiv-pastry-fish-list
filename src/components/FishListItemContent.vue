@@ -20,16 +20,31 @@
             </div>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <div style="height: 400px; width: 100%; margin-top: 12px">
-              <eorzea-map
-                v-if="open"
-                :debug="false"
-                :id="fish.fishingSpot.map"
-                :x="fish.fishingSpot.x"
-                :y="fish.fishingSpot.y"
-                :size-factor="fish.fishingSpot.size_factor"
-              >
-              </eorzea-map>
+            <div>
+              <!--              <div style="height: 400px; width: 100%; margin-top: 12px">-->
+              <!--                <eorzea-map-->
+              <!--                  v-if="open"-->
+              <!--                  :debug="false"-->
+              <!--                  :id="fish.fishingSpot.map"-->
+              <!--                  :x="fish.fishingSpot.x"-->
+              <!--                  :y="fish.fishingSpot.y"-->
+              <!--                  :size-factor="fish.fishingSpot.size_factor"-->
+              <!--                >-->
+              <!--                </eorzea-map>-->
+              <!--              </div>-->
+
+              <div style="height: 1000px; width: 100%; margin-top: 12px">
+                <eorzea-simple-map
+                  v-if="open"
+                  :debug="false"
+                  :id="fish.fishingSpot.mapFileId"
+                  :x="fish.fishingSpot.x"
+                  :y="fish.fishingSpot.y"
+                  :size-factor="fish.fishingSpot.size_factor"
+                  :marker-radius="fish.fishingSpot.radius"
+                >
+                </eorzea-simple-map>
+              </div>
             </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -42,7 +57,7 @@
     <!--    <v-row v-if="fish.hasCountDown">-->
     <div class="py-3">
       <v-row v-if="fish.countDownType === WAITING">
-        <v-progress-linear height="25" rounded>
+        <v-progress-linear height="25">
           <template>
             <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }}</strong>
           </template>
@@ -164,14 +179,14 @@
 <script>
 import { mapGetters } from 'vuex'
 import fisher from '@/assets/fisher.png'
-import EorzeaMap from '@/components/EorzeaMap'
 import DataUtil from '@/utils/DataUtil'
 import FishPredators from '@/components/FishPredators'
 import FishBaitList from '@/components/FishBaitList'
+import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 
 export default {
   name: 'FishListItemContent',
-  components: { FishBaitList, FishPredators, EorzeaMap },
+  components: { EorzeaSimpleMap, FishBaitList, FishPredators },
   props: {
     open: {
       type: Boolean,

@@ -1,14 +1,12 @@
 import TimeFormatter from '@/utils/TimeFormatter'
 
-const HOST = 'https://xivapi.com'
-
 export default {
   iconIdToUrl(iconId) {
     if (iconId == null) return ''
     const iconIdStr = iconId + ''
     const icon = iconIdStr.padStart(6, '0')
     const path = icon.substring(0, 3) + '000'
-    return `${HOST}/i/${path}/${icon}.png`
+    return `${this.XIV_API_HOST}/i/${path}/${icon}.png`
   },
   iconIdToClass(iconId) {
     if (iconId == null) return ''
@@ -105,4 +103,5 @@ export default {
   },
 
   PATCH_MAX: 5.2,
+  XIV_API_HOST: 'https://xivapi.com',
 }

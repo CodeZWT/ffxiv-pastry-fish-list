@@ -4734,6 +4734,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '1': {
@@ -4743,6 +4745,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '2': {
@@ -4752,6 +4756,8 @@ export default {
       size_factor: 100,
       x: 1094,
       y: 1058,
+      mapFileId: 'f1f1/00',
+      radius: 400,
       anglerLocationId: 20301,
     },
     '3': {
@@ -4761,6 +4767,8 @@ export default {
       size_factor: 100,
       x: 1276,
       y: 1398,
+      mapFileId: 'f1f1/00',
+      radius: 400,
       anglerLocationId: 20302,
     },
     '4': {
@@ -4770,6 +4778,8 @@ export default {
       size_factor: 100,
       x: 730,
       y: 1156,
+      mapFileId: 'f1f1/00',
+      radius: 400,
       anglerLocationId: 20303,
     },
     '5': {
@@ -4779,6 +4789,8 @@ export default {
       size_factor: 100,
       x: 690,
       y: 1011,
+      mapFileId: 'f1f1/00',
+      radius: 400,
       anglerLocationId: 20304,
     },
     '6': {
@@ -4788,6 +4800,8 @@ export default {
       size_factor: 100,
       x: 401,
       y: 1094,
+      mapFileId: 'f1f2/00',
+      radius: 400,
       anglerLocationId: 20401,
     },
     '7': {
@@ -4797,6 +4811,8 @@ export default {
       size_factor: 100,
       x: 973,
       y: 1025,
+      mapFileId: 'f1f2/00',
+      radius: 400,
       anglerLocationId: 20402,
     },
     '8': {
@@ -4806,6 +4822,8 @@ export default {
       size_factor: 100,
       x: 1150,
       y: 1214,
+      mapFileId: 'f1f2/00',
+      radius: 400,
       anglerLocationId: 20403,
     },
     '9': {
@@ -4815,6 +4833,8 @@ export default {
       size_factor: 100,
       x: 1250,
       y: 986,
+      mapFileId: 'f1f2/00',
+      radius: 600,
       anglerLocationId: 20404,
     },
     '10': {
@@ -4824,6 +4844,8 @@ export default {
       size_factor: 100,
       x: 833,
       y: 798,
+      mapFileId: 'f1f2/00',
+      radius: 400,
       anglerLocationId: 20405,
     },
     '11': {
@@ -4833,6 +4855,8 @@ export default {
       size_factor: 100,
       x: 850,
       y: 900,
+      mapFileId: 'f1f3/00',
+      radius: 400,
       anglerLocationId: 20501,
     },
     '12': {
@@ -4842,6 +4866,8 @@ export default {
       size_factor: 100,
       x: 947,
       y: 1076,
+      mapFileId: 'f1f3/00',
+      radius: 200,
       anglerLocationId: 20502,
     },
     '13': {
@@ -4851,6 +4877,8 @@ export default {
       size_factor: 100,
       x: 867,
       y: 1190,
+      mapFileId: 'f1f3/00',
+      radius: 400,
       anglerLocationId: 20503,
     },
     '14': {
@@ -4860,6 +4888,8 @@ export default {
       size_factor: 100,
       x: 1142,
       y: 1067,
+      mapFileId: 'f1f3/00',
+      radius: 400,
       anglerLocationId: 20504,
     },
     '15': {
@@ -4869,6 +4899,8 @@ export default {
       size_factor: 100,
       x: 1324,
       y: 1023,
+      mapFileId: 'f1f3/00',
+      radius: 400,
       anglerLocationId: 20505,
     },
     '16': {
@@ -4878,6 +4910,8 @@ export default {
       size_factor: 100,
       x: 880,
       y: 1401,
+      mapFileId: 'f1f3/00',
+      radius: 400,
       anglerLocationId: 20506,
     },
     '17': {
@@ -4887,6 +4921,8 @@ export default {
       size_factor: 100,
       x: 1576,
       y: 1147,
+      mapFileId: 'f1f3/00',
+      radius: 400,
       anglerLocationId: 20507,
     },
     '18': {
@@ -4896,6 +4932,8 @@ export default {
       size_factor: 100,
       x: 1268,
       y: 1204,
+      mapFileId: 'f1f4/00',
+      radius: 400,
       anglerLocationId: 20601,
     },
     '19': {
@@ -4905,6 +4943,8 @@ export default {
       size_factor: 100,
       x: 1000,
       y: 1182,
+      mapFileId: 'f1f4/00',
+      radius: 400,
       anglerLocationId: 20602,
     },
     '20': {
@@ -4914,6 +4954,8 @@ export default {
       size_factor: 100,
       x: 990,
       y: 990,
+      mapFileId: 'f1f4/00',
+      radius: 400,
       anglerLocationId: 20603,
     },
     '21': {
@@ -4923,6 +4965,8 @@ export default {
       size_factor: 100,
       x: 840,
       y: 940,
+      mapFileId: 'f1f4/00',
+      radius: 400,
       anglerLocationId: 20604,
     },
     '22': {
@@ -4932,6 +4976,8 @@ export default {
       size_factor: 100,
       x: 1203,
       y: 602,
+      mapFileId: 'l1f1/01',
+      radius: 400,
       anglerLocationId: 50101,
     },
     '23': {
@@ -4941,6 +4987,8 @@ export default {
       size_factor: 100,
       x: 886,
       y: 833,
+      mapFileId: 'l1f1/01',
+      radius: 200,
       anglerLocationId: 50102,
     },
     '24': {
@@ -4950,6 +4998,8 @@ export default {
       size_factor: 100,
       x: 670,
       y: 615,
+      mapFileId: 'l1f1/01',
+      radius: 400,
       anglerLocationId: 50103,
     },
     '25': {
@@ -4959,6 +5009,8 @@ export default {
       size_factor: 100,
       x: 595,
       y: 528,
+      mapFileId: 'l1f1/01',
+      radius: 200,
       anglerLocationId: 50104,
     },
     '26': {
@@ -4968,6 +5020,8 @@ export default {
       size_factor: 100,
       x: 972,
       y: 1478,
+      mapFileId: 'r1f1/00',
+      radius: 400,
       anglerLocationId: 40101,
     },
     '27': {
@@ -4977,6 +5031,8 @@ export default {
       size_factor: 100,
       x: 1633,
       y: 888,
+      mapFileId: 'r1f1/00',
+      radius: 600,
       anglerLocationId: 40102,
     },
     '28': {
@@ -4986,6 +5042,8 @@ export default {
       size_factor: 100,
       x: 731,
       y: 1019,
+      mapFileId: 'r1f1/00',
+      radius: 400,
       anglerLocationId: 40103,
     },
     '29': {
@@ -4995,6 +5053,8 @@ export default {
       size_factor: 100,
       x: 1525,
       y: 325,
+      mapFileId: 'r1f1/00',
+      radius: 400,
       anglerLocationId: 40104,
     },
     '30': {
@@ -5004,6 +5064,8 @@ export default {
       size_factor: 100,
       x: 1344,
       y: 796,
+      mapFileId: 'r1f1/00',
+      radius: 400,
       anglerLocationId: 40105,
     },
     '31': {
@@ -5013,6 +5075,8 @@ export default {
       size_factor: 100,
       x: 612,
       y: 1089,
+      mapFileId: 'r1f1/00',
+      radius: 300,
       anglerLocationId: 40106,
     },
     '32': {
@@ -5022,6 +5086,8 @@ export default {
       size_factor: 100,
       x: 272,
       y: 1080,
+      mapFileId: 'r1f1/00',
+      radius: 200,
       anglerLocationId: 40107,
     },
     '33': {
@@ -5031,6 +5097,8 @@ export default {
       size_factor: 100,
       x: 108,
       y: 1014,
+      mapFileId: 'r1f1/00',
+      radius: 400,
       anglerLocationId: 40108,
     },
     '34': {
@@ -5040,6 +5108,8 @@ export default {
       size_factor: 100,
       x: 660,
       y: 620,
+      mapFileId: 'r1f1/00',
+      radius: 600,
       anglerLocationId: 40109,
     },
     '35': {
@@ -5049,6 +5119,8 @@ export default {
       size_factor: 200,
       x: 668,
       y: 1120,
+      mapFileId: 's1t2/01',
+      radius: 3000,
       anglerLocationId: 10201,
     },
     '36': {
@@ -5058,6 +5130,8 @@ export default {
       size_factor: 200,
       x: 930,
       y: 1032,
+      mapFileId: 's1t1/01',
+      radius: 3000,
       anglerLocationId: 10101,
     },
     '37': {
@@ -5067,6 +5141,8 @@ export default {
       size_factor: 100,
       x: 884,
       y: 1049,
+      mapFileId: 's1f1/00',
+      radius: 600,
       anglerLocationId: 10301,
     },
     '38': {
@@ -5076,6 +5152,8 @@ export default {
       size_factor: 100,
       x: 682,
       y: 734,
+      mapFileId: 's1f1/00',
+      radius: 600,
       anglerLocationId: 10302,
     },
     '39': {
@@ -5085,6 +5163,8 @@ export default {
       size_factor: 100,
       x: 1054,
       y: 1058,
+      mapFileId: 's1f1/00',
+      radius: 400,
       anglerLocationId: 10303,
     },
     '40': {
@@ -5094,6 +5174,8 @@ export default {
       size_factor: 100,
       x: 960,
       y: 850,
+      mapFileId: 's1f1/00',
+      radius: 400,
       anglerLocationId: 10304,
     },
     '41': {
@@ -5103,6 +5185,8 @@ export default {
       size_factor: 100,
       x: 861,
       y: 693,
+      mapFileId: 's1f1/00',
+      radius: 400,
       anglerLocationId: 10305,
     },
     '42': {
@@ -5112,6 +5196,8 @@ export default {
       size_factor: 100,
       x: 989,
       y: 558,
+      mapFileId: 's1f1/00',
+      radius: 200,
       anglerLocationId: 10306,
     },
     '43': {
@@ -5121,6 +5207,8 @@ export default {
       size_factor: 100,
       x: 1188,
       y: 1100,
+      mapFileId: 's1f2/00',
+      radius: 400,
       anglerLocationId: 10401,
     },
     '44': {
@@ -5130,6 +5218,8 @@ export default {
       size_factor: 100,
       x: 1294,
       y: 1248,
+      mapFileId: 's1f2/00',
+      radius: 600,
       anglerLocationId: 10402,
     },
     '45': {
@@ -5139,6 +5229,8 @@ export default {
       size_factor: 100,
       x: 1712,
       y: 850,
+      mapFileId: 's1f2/00',
+      radius: 600,
       anglerLocationId: 10403,
     },
     '46': {
@@ -5148,6 +5240,8 @@ export default {
       size_factor: 100,
       x: 1270,
       y: 1672,
+      mapFileId: 's1f2/00',
+      radius: 600,
       anglerLocationId: 10404,
     },
     '47': {
@@ -5157,6 +5251,8 @@ export default {
       size_factor: 100,
       x: 1174,
       y: 1934,
+      mapFileId: 's1f2/00',
+      radius: 600,
       anglerLocationId: 10405,
     },
     '48': {
@@ -5166,6 +5262,8 @@ export default {
       size_factor: 100,
       x: 818,
       y: 1752,
+      mapFileId: 's1f2/00',
+      radius: 600,
       anglerLocationId: 10406,
     },
     '49': {
@@ -5175,6 +5273,8 @@ export default {
       size_factor: 100,
       x: 980,
       y: 1900,
+      mapFileId: 's1f2/00',
+      radius: 400,
       anglerLocationId: 10407,
     },
     '50': {
@@ -5184,6 +5284,8 @@ export default {
       size_factor: 100,
       x: 1049,
       y: 1699,
+      mapFileId: 's1f2/00',
+      radius: 400,
       anglerLocationId: 10408,
     },
     '51': {
@@ -5193,6 +5295,8 @@ export default {
       size_factor: 100,
       x: 1595,
       y: 1672,
+      mapFileId: 's1f3/01',
+      radius: 600,
       anglerLocationId: 10501,
     },
     '52': {
@@ -5202,6 +5306,8 @@ export default {
       size_factor: 100,
       x: 1593,
       y: 1414,
+      mapFileId: 's1f3/01',
+      radius: 800,
       anglerLocationId: 10502,
     },
     '53': {
@@ -5211,6 +5317,8 @@ export default {
       size_factor: 100,
       x: 1600,
       y: 1160,
+      mapFileId: 's1f3/01',
+      radius: 400,
       anglerLocationId: 10503,
     },
     '54': {
@@ -5220,6 +5328,8 @@ export default {
       size_factor: 100,
       x: 1490,
       y: 1100,
+      mapFileId: 's1f3/01',
+      radius: 200,
       anglerLocationId: 10504,
     },
     '55': {
@@ -5229,6 +5339,8 @@ export default {
       size_factor: 100,
       x: 959,
       y: 1247,
+      mapFileId: 's1f3/01',
+      radius: 400,
       anglerLocationId: 10505,
     },
     '56': {
@@ -5238,6 +5350,8 @@ export default {
       size_factor: 100,
       x: 973,
       y: 1462,
+      mapFileId: 's1f3/01',
+      radius: 400,
       anglerLocationId: 10506,
     },
     '57': {
@@ -5247,6 +5361,8 @@ export default {
       size_factor: 100,
       x: 791,
       y: 1550,
+      mapFileId: 's1f3/01',
+      radius: 400,
       anglerLocationId: 10507,
     },
     '58': {
@@ -5256,6 +5372,8 @@ export default {
       size_factor: 100,
       x: 717,
       y: 1322,
+      mapFileId: 's1f3/01',
+      radius: 200,
       anglerLocationId: 10508,
     },
     '59': {
@@ -5265,6 +5383,8 @@ export default {
       size_factor: 100,
       x: 1641,
       y: 1542,
+      mapFileId: 's1f4/00',
+      radius: 600,
       anglerLocationId: 10601,
     },
     '60': {
@@ -5274,6 +5394,8 @@ export default {
       size_factor: 100,
       x: 1283,
       y: 1298,
+      mapFileId: 's1f4/00',
+      radius: 600,
       anglerLocationId: 10602,
     },
     '61': {
@@ -5283,6 +5405,8 @@ export default {
       size_factor: 100,
       x: 827,
       y: 998,
+      mapFileId: 's1f4/00',
+      radius: 600,
       anglerLocationId: 10603,
     },
     '62': {
@@ -5292,6 +5416,8 @@ export default {
       size_factor: 100,
       x: 673,
       y: 1444,
+      mapFileId: 's1f4/00',
+      radius: 600,
       anglerLocationId: 10604,
     },
     '63': {
@@ -5301,6 +5427,8 @@ export default {
       size_factor: 100,
       x: 590,
       y: 1760,
+      mapFileId: 's1f4/00',
+      radius: 200,
       anglerLocationId: 10605,
     },
     '64': {
@@ -5310,6 +5438,8 @@ export default {
       size_factor: 100,
       x: 1456,
       y: 1480,
+      mapFileId: 's1f4/00',
+      radius: 200,
       anglerLocationId: 10606,
     },
     '65': {
@@ -5319,6 +5449,8 @@ export default {
       size_factor: 100,
       x: 728,
       y: 1752,
+      mapFileId: 's1f4/00',
+      radius: 400,
       anglerLocationId: 10607,
     },
     '66': {
@@ -5328,6 +5460,8 @@ export default {
       size_factor: 100,
       x: 629,
       y: 1164,
+      mapFileId: 's1f5/00',
+      radius: 600,
       anglerLocationId: 10701,
     },
     '67': {
@@ -5337,6 +5471,8 @@ export default {
       size_factor: 100,
       x: 402,
       y: 1004,
+      mapFileId: 's1f5/00',
+      radius: 400,
       anglerLocationId: 10702,
     },
     '68': {
@@ -5346,6 +5482,8 @@ export default {
       size_factor: 100,
       x: 1356,
       y: 1091,
+      mapFileId: 's1f5/00',
+      radius: 600,
       anglerLocationId: 10703,
     },
     '69': {
@@ -5355,6 +5493,8 @@ export default {
       size_factor: 100,
       x: 678,
       y: 1426,
+      mapFileId: 'w1f1/00',
+      radius: 600,
       anglerLocationId: 30101,
     },
     '70': {
@@ -5364,6 +5504,8 @@ export default {
       size_factor: 100,
       x: 526,
       y: 578,
+      mapFileId: 'w1f1/00',
+      radius: 600,
       anglerLocationId: 30102,
     },
     '71': {
@@ -5373,6 +5515,8 @@ export default {
       size_factor: 100,
       x: 728,
       y: 910,
+      mapFileId: 'w1f1/00',
+      radius: 600,
       anglerLocationId: 30103,
     },
     '72': {
@@ -5382,6 +5526,8 @@ export default {
       size_factor: 100,
       x: 1174,
       y: 1028,
+      mapFileId: 'w1f1/00',
+      radius: 400,
       anglerLocationId: 30104,
     },
     '73': {
@@ -5391,6 +5537,8 @@ export default {
       size_factor: 100,
       x: 808,
       y: 734,
+      mapFileId: 'w1f1/00',
+      radius: 600,
       anglerLocationId: 30105,
     },
     '74': {
@@ -5400,6 +5548,8 @@ export default {
       size_factor: 100,
       x: 446,
       y: 318,
+      mapFileId: 'w1f1/00',
+      radius: 600,
       anglerLocationId: 30106,
     },
     '75': {
@@ -5409,6 +5559,8 @@ export default {
       size_factor: 100,
       x: 1120,
       y: 860,
+      mapFileId: 'w1f2/00',
+      radius: 400,
       anglerLocationId: 30201,
     },
     '76': {
@@ -5418,6 +5570,8 @@ export default {
       size_factor: 100,
       x: 806,
       y: 1138,
+      mapFileId: 'w1f2/00',
+      radius: 400,
       anglerLocationId: 30202,
     },
     '77': {
@@ -5427,6 +5581,8 @@ export default {
       size_factor: 100,
       x: 1340,
       y: 914,
+      mapFileId: 'w1f2/00',
+      radius: 400,
       anglerLocationId: 30203,
     },
     '78': {
@@ -5436,6 +5592,8 @@ export default {
       size_factor: 100,
       x: 632,
       y: 984,
+      mapFileId: 'w1f3/00',
+      radius: 400,
       anglerLocationId: 30301,
     },
     '79': {
@@ -5445,6 +5603,8 @@ export default {
       size_factor: 100,
       x: 810,
       y: 1190,
+      mapFileId: 'w1f3/00',
+      radius: 400,
       anglerLocationId: 30302,
     },
     '80': {
@@ -5454,6 +5614,8 @@ export default {
       size_factor: 100,
       x: 1232,
       y: 1082,
+      mapFileId: 'w1f3/00',
+      radius: 400,
       anglerLocationId: 30303,
     },
     '81': {
@@ -5463,6 +5625,8 @@ export default {
       size_factor: 200,
       x: 1553,
       y: 530,
+      mapFileId: 'f1t2/00',
+      radius: 600,
       anglerLocationId: 20201,
     },
     '82': {
@@ -5472,6 +5636,8 @@ export default {
       size_factor: 100,
       x: 1406,
       y: 1184,
+      mapFileId: 'w1f3/00',
+      radius: 600,
       anglerLocationId: 30304,
     },
     '83': {
@@ -5481,6 +5647,8 @@ export default {
       size_factor: 100,
       x: 1036,
       y: 704,
+      mapFileId: 'w1f4/01',
+      radius: 400,
       anglerLocationId: 30401,
     },
     '84': {
@@ -5490,6 +5658,8 @@ export default {
       size_factor: 100,
       x: 1218,
       y: 1000,
+      mapFileId: 'w1f4/01',
+      radius: 400,
       anglerLocationId: 30402,
     },
     '85': {
@@ -5499,6 +5669,8 @@ export default {
       size_factor: 100,
       x: 732,
       y: 1496,
+      mapFileId: 'w1f4/01',
+      radius: 400,
       anglerLocationId: 30403,
     },
     '86': {
@@ -5508,6 +5680,8 @@ export default {
       size_factor: 100,
       x: 568,
       y: 1750,
+      mapFileId: 'w1f4/01',
+      radius: 600,
       anglerLocationId: 30404,
     },
     '87': {
@@ -5517,6 +5691,8 @@ export default {
       size_factor: 100,
       x: 1314,
       y: 1796,
+      mapFileId: 'w1f4/01',
+      radius: 600,
       anglerLocationId: 30405,
     },
     '88': {
@@ -5526,6 +5702,8 @@ export default {
       size_factor: 100,
       x: 986,
       y: 1128,
+      mapFileId: 'w1f5/00',
+      radius: 600,
       anglerLocationId: 30501,
     },
     '89': {
@@ -5535,6 +5713,8 @@ export default {
       size_factor: 100,
       x: 1156,
       y: 1249,
+      mapFileId: 'w1f5/00',
+      radius: 400,
       anglerLocationId: 30502,
     },
     '90': {
@@ -5544,6 +5724,8 @@ export default {
       size_factor: 200,
       x: 1160,
       y: 1361,
+      mapFileId: 'f1t1/00',
+      radius: 600,
       anglerLocationId: 20101,
     },
     '91': {
@@ -5553,6 +5735,8 @@ export default {
       size_factor: 200,
       x: 972,
       y: 1065,
+      mapFileId: 'f1t1/00',
+      radius: 400,
       anglerLocationId: 20102,
     },
     '92': {
@@ -5562,6 +5746,8 @@ export default {
       size_factor: 100,
       x: 493,
       y: 1107,
+      mapFileId: 'f1f1/00',
+      radius: 400,
       anglerLocationId: 20305,
     },
     '93': {
@@ -5571,6 +5757,8 @@ export default {
       size_factor: 100,
       x: 1406,
       y: 466,
+      mapFileId: 'l1f1/01',
+      radius: 600,
       anglerLocationId: 50105,
     },
     '94': {
@@ -5580,6 +5768,8 @@ export default {
       size_factor: 100,
       x: 1498,
       y: 260,
+      mapFileId: 'l1f1/01',
+      radius: 200,
       anglerLocationId: 50106,
     },
     '95': {
@@ -5589,6 +5779,8 @@ export default {
       size_factor: 100,
       x: 702,
       y: 269,
+      mapFileId: 'w1f1/00',
+      radius: 200,
       anglerLocationId: 30107,
     },
     '96': {
@@ -5598,6 +5790,8 @@ export default {
       size_factor: 100,
       x: 1426,
       y: 1020,
+      mapFileId: 'w1f2/00',
+      radius: 400,
       anglerLocationId: 30204,
     },
     '97': {
@@ -5607,6 +5801,8 @@ export default {
       size_factor: 100,
       x: 1321,
       y: 734,
+      mapFileId: 's1f2/00',
+      radius: 200,
       anglerLocationId: 10409,
     },
     '98': {
@@ -5616,6 +5812,8 @@ export default {
       size_factor: 100,
       x: 1627,
       y: 1196,
+      mapFileId: 's1f5/00',
+      radius: 600,
       anglerLocationId: 10704,
     },
     '99': {
@@ -5625,6 +5823,8 @@ export default {
       size_factor: 100,
       x: 744,
       y: 516,
+      mapFileId: 's1f6/00',
+      radius: 400,
       anglerLocationId: 10801,
     },
     '100': {
@@ -5634,6 +5834,8 @@ export default {
       size_factor: 200,
       x: 790,
       y: 700,
+      mapFileId: 'f1t2/00',
+      radius: 600,
       anglerLocationId: 20202,
     },
     '101': {
@@ -5643,6 +5845,8 @@ export default {
       size_factor: 100,
       x: 806,
       y: 738,
+      mapFileId: 's1f4/00',
+      radius: 600,
       anglerLocationId: 10608,
     },
     '102': {
@@ -5652,6 +5856,8 @@ export default {
       size_factor: 100,
       x: 638,
       y: 608,
+      mapFileId: 's1f4/00',
+      radius: 400,
       anglerLocationId: 10609,
     },
     '103': {
@@ -5661,6 +5867,8 @@ export default {
       size_factor: 100,
       x: 850,
       y: 303,
+      mapFileId: 'w1f1/00',
+      radius: 400,
       anglerLocationId: 30108,
     },
     '104': {
@@ -5670,6 +5878,8 @@ export default {
       size_factor: 200,
       x: 1000,
       y: 1000,
+      mapFileId: 's1h1/01',
+      radius: 3000,
       anglerLocationId: 10901,
     },
     '105': {
@@ -5679,6 +5889,8 @@ export default {
       size_factor: 200,
       x: 1000,
       y: 1000,
+      mapFileId: 'f1h1/01',
+      radius: 3000,
       anglerLocationId: 20701,
     },
     '106': {
@@ -5688,6 +5900,8 @@ export default {
       size_factor: 200,
       x: 1000,
       y: 1000,
+      mapFileId: 'w1h1/01',
+      radius: 3000,
       anglerLocationId: 30601,
     },
     '107': {
@@ -5697,6 +5911,8 @@ export default {
       size_factor: 100,
       x: 1830,
       y: 1090,
+      mapFileId: 's1f3/01',
+      radius: 200,
       anglerLocationId: 10509,
     },
     '108': {
@@ -5706,6 +5922,8 @@ export default {
       size_factor: 100,
       x: 1810,
       y: 1150,
+      mapFileId: 's1f3/01',
+      radius: 200,
       anglerLocationId: 10510,
     },
     '109': {
@@ -5715,6 +5933,8 @@ export default {
       size_factor: 95,
       x: 1512,
       y: 1260,
+      mapFileId: 'r2f1/00',
+      radius: 200,
       anglerLocationId: 40201,
     },
     '110': {
@@ -5724,6 +5944,8 @@ export default {
       size_factor: 95,
       x: 1640,
       y: 1252,
+      mapFileId: 'r2f1/00',
+      radius: 300,
       anglerLocationId: 40202,
     },
     '111': {
@@ -5733,6 +5955,8 @@ export default {
       size_factor: 95,
       x: 1302,
       y: 802,
+      mapFileId: 'r2f1/00',
+      radius: 600,
       anglerLocationId: 40203,
     },
     '112': {
@@ -5742,6 +5966,8 @@ export default {
       size_factor: 95,
       x: 1698,
       y: 236,
+      mapFileId: 'r2f1/00',
+      radius: 300,
       anglerLocationId: 40204,
     },
     '113': {
@@ -5751,6 +5977,8 @@ export default {
       size_factor: 95,
       x: 366,
       y: 414,
+      mapFileId: 'r2f1/00',
+      radius: 300,
       anglerLocationId: 40205,
     },
     '114': {
@@ -5760,6 +5988,8 @@ export default {
       size_factor: 95,
       x: 986,
       y: 490,
+      mapFileId: 'r2f1/00',
+      radius: 300,
       anglerLocationId: 40206,
     },
     '115': {
@@ -5769,6 +5999,8 @@ export default {
       size_factor: 95,
       x: 620,
       y: 698,
+      mapFileId: 'r2f1/00',
+      radius: 300,
       anglerLocationId: 40207,
     },
     '116': {
@@ -5778,6 +6010,8 @@ export default {
       size_factor: 95,
       x: 582,
       y: 372,
+      mapFileId: 'r2f1/00',
+      radius: 600,
       anglerLocationId: 40208,
     },
     '117': {
@@ -5787,6 +6021,8 @@ export default {
       size_factor: 95,
       x: 1442,
       y: 432,
+      mapFileId: 'd2f1/00',
+      radius: 400,
       anglerLocationId: 70101,
     },
     '118': {
@@ -5796,6 +6032,8 @@ export default {
       size_factor: 95,
       x: 1406,
       y: 656,
+      mapFileId: 'd2f1/00',
+      radius: 600,
       anglerLocationId: 70102,
     },
     '119': {
@@ -5805,6 +6043,8 @@ export default {
       size_factor: 95,
       x: 1152,
       y: 1178,
+      mapFileId: 'd2f1/00',
+      radius: 600,
       anglerLocationId: 70103,
     },
     '120': {
@@ -5814,6 +6054,8 @@ export default {
       size_factor: 95,
       x: 1453,
       y: 240,
+      mapFileId: 'd2f1/00',
+      radius: 900,
       anglerLocationId: 70104,
     },
     '121': {
@@ -5823,6 +6065,8 @@ export default {
       size_factor: 95,
       x: 576,
       y: 588,
+      mapFileId: 'd2f1/00',
+      radius: 600,
       anglerLocationId: 70105,
     },
     '122': {
@@ -5832,6 +6076,8 @@ export default {
       size_factor: 95,
       x: 410,
       y: 310,
+      mapFileId: 'd2f1/00',
+      radius: 300,
       anglerLocationId: 70106,
     },
     '123': {
@@ -5841,6 +6087,8 @@ export default {
       size_factor: 95,
       x: 876,
       y: 466,
+      mapFileId: 'd2f1/00',
+      radius: 200,
       anglerLocationId: 70107,
     },
     '124': {
@@ -5850,6 +6098,8 @@ export default {
       size_factor: 95,
       x: 316,
       y: 210,
+      mapFileId: 'd2f1/00',
+      radius: 200,
       anglerLocationId: 70108,
     },
     '125': {
@@ -5859,6 +6109,8 @@ export default {
       size_factor: 95,
       x: 1052,
       y: 1070,
+      mapFileId: 'd2f2/00',
+      radius: 400,
       anglerLocationId: 70201,
     },
     '126': {
@@ -5868,6 +6120,8 @@ export default {
       size_factor: 95,
       x: 490,
       y: 1260,
+      mapFileId: 'd2f2/00',
+      radius: 1200,
       anglerLocationId: 70202,
     },
     '127': {
@@ -5877,6 +6131,8 @@ export default {
       size_factor: 95,
       x: 1042,
       y: 1678,
+      mapFileId: 'd2f2/00',
+      radius: 800,
       anglerLocationId: 70203,
     },
     '128': {
@@ -5886,6 +6142,8 @@ export default {
       size_factor: 95,
       x: 931,
       y: 1140,
+      mapFileId: 'd2f2/00',
+      radius: 500,
       anglerLocationId: 70204,
     },
     '129': {
@@ -5895,6 +6153,8 @@ export default {
       size_factor: 95,
       x: 1700,
       y: 1400,
+      mapFileId: 'd2f3/00',
+      radius: 300,
       anglerLocationId: 70301,
     },
     '130': {
@@ -5904,6 +6164,8 @@ export default {
       size_factor: 95,
       x: 368,
       y: 1584,
+      mapFileId: 'd2f3/00',
+      radius: 600,
       anglerLocationId: 70302,
     },
     '131': {
@@ -5913,6 +6175,8 @@ export default {
       size_factor: 95,
       x: 388,
       y: 336,
+      mapFileId: 'd2f3/00',
+      radius: 500,
       anglerLocationId: 70303,
     },
     '132': {
@@ -5922,6 +6186,8 @@ export default {
       size_factor: 95,
       x: 1362,
       y: 1156,
+      mapFileId: 'd2f3/00',
+      radius: 1200,
       anglerLocationId: 70304,
     },
     '133': {
@@ -5931,6 +6197,8 @@ export default {
       size_factor: 95,
       x: 828,
       y: 1868,
+      mapFileId: 'd2f3/00',
+      radius: 1000,
       anglerLocationId: 70305,
     },
     '134': {
@@ -5940,6 +6208,8 @@ export default {
       size_factor: 95,
       x: 914,
       y: 256,
+      mapFileId: 'd2f3/00',
+      radius: 400,
       anglerLocationId: 70306,
     },
     '135': {
@@ -5949,6 +6219,8 @@ export default {
       size_factor: 95,
       x: 1324,
       y: 1610,
+      mapFileId: 'a2f1/00',
+      radius: 1000,
       anglerLocationId: 60101,
     },
     '136': {
@@ -5958,6 +6230,8 @@ export default {
       size_factor: 95,
       x: 1450,
       y: 1832,
+      mapFileId: 'a2f1/00',
+      radius: 300,
       anglerLocationId: 60102,
     },
     '137': {
@@ -5967,6 +6241,8 @@ export default {
       size_factor: 95,
       x: 668,
       y: 1784,
+      mapFileId: 'a2f1/00',
+      radius: 300,
       anglerLocationId: 60103,
     },
     '138': {
@@ -5976,6 +6252,8 @@ export default {
       size_factor: 95,
       x: 316,
       y: 500,
+      mapFileId: 'a2f1/00',
+      radius: 1000,
       anglerLocationId: 60104,
     },
     '139': {
@@ -5985,6 +6263,8 @@ export default {
       size_factor: 95,
       x: 680,
       y: 220,
+      mapFileId: 'a2f1/00',
+      radius: 800,
       anglerLocationId: 60105,
     },
     '140': {
@@ -5994,6 +6274,8 @@ export default {
       size_factor: 95,
       x: 752,
       y: 524,
+      mapFileId: 'a2f2/00',
+      radius: 500,
       anglerLocationId: 60201,
     },
     '141': {
@@ -6003,6 +6285,8 @@ export default {
       size_factor: 95,
       x: 1430,
       y: 270,
+      mapFileId: 'a2f2/00',
+      radius: 300,
       anglerLocationId: 60202,
     },
     '142': {
@@ -6012,6 +6296,8 @@ export default {
       size_factor: 95,
       x: 280,
       y: 744,
+      mapFileId: 'a2f2/00',
+      radius: 200,
       anglerLocationId: 60203,
     },
     '143': {
@@ -6021,6 +6307,8 @@ export default {
       size_factor: 95,
       x: 526,
       y: 1462,
+      mapFileId: 'a2f2/00',
+      radius: 1000,
       anglerLocationId: 60204,
     },
     '144': {
@@ -6030,6 +6318,8 @@ export default {
       size_factor: 95,
       x: 274,
       y: 1630,
+      mapFileId: 'a2f2/00',
+      radius: 300,
       anglerLocationId: 60205,
     },
     '145': {
@@ -6039,6 +6329,8 @@ export default {
       size_factor: 95,
       x: 1860,
       y: 840,
+      mapFileId: 'a2f2/00',
+      radius: 300,
       anglerLocationId: 60206,
     },
     '146': {
@@ -6048,6 +6340,8 @@ export default {
       size_factor: 95,
       x: 1000,
       y: 1000,
+      mapFileId: 'a2f2/00',
+      radius: 300,
       anglerLocationId: 60207,
     },
     '147': {
@@ -6057,6 +6351,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '148': {
@@ -6066,6 +6362,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: 80102,
     },
     '149': {
@@ -6075,6 +6373,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: 80103,
     },
     '150': {
@@ -6084,6 +6384,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '151': {
@@ -6093,6 +6395,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: 80105,
     },
     '152': {
@@ -6102,6 +6406,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: 80106,
     },
     '153': {
@@ -6111,6 +6417,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: 80107,
     },
     '154': {
@@ -6120,6 +6428,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: 80108,
     },
     '155': {
@@ -6129,6 +6439,8 @@ export default {
       size_factor: 100,
       x: 920,
       y: 860,
+      mapFileId: 's1f6/00',
+      radius: 500,
       anglerLocationId: 10802,
     },
     '156': {
@@ -6138,6 +6450,8 @@ export default {
       size_factor: 100,
       x: 1750,
       y: 1280,
+      mapFileId: 's1f3/01',
+      radius: 400,
       anglerLocationId: 10511,
     },
     '157': {
@@ -6147,6 +6461,8 @@ export default {
       size_factor: 200,
       x: 950,
       y: 1000,
+      mapFileId: 'e3t1/00',
+      radius: 3000,
       anglerLocationId: 110101,
     },
     '158': {
@@ -6156,6 +6472,8 @@ export default {
       size_factor: 100,
       x: 1870,
       y: 1870,
+      mapFileId: 'e3f1/00',
+      radius: 400,
       anglerLocationId: 100101,
     },
     '159': {
@@ -6165,6 +6483,8 @@ export default {
       size_factor: 100,
       x: 1240,
       y: 1630,
+      mapFileId: 'e3f1/00',
+      radius: 2000,
       anglerLocationId: 100102,
     },
     '160': {
@@ -6174,6 +6494,8 @@ export default {
       size_factor: 100,
       x: 1680,
       y: 960,
+      mapFileId: 'e3f1/00',
+      radius: 2000,
       anglerLocationId: 100103,
     },
     '161': {
@@ -6183,6 +6505,8 @@ export default {
       size_factor: 100,
       x: 1580,
       y: 360,
+      mapFileId: 'e3f1/00',
+      radius: 1000,
       anglerLocationId: 100104,
     },
     '162': {
@@ -6192,6 +6516,8 @@ export default {
       size_factor: 100,
       x: 1050,
       y: 500,
+      mapFileId: 'e3f1/00',
+      radius: 1000,
       anglerLocationId: 100105,
     },
     '163': {
@@ -6201,6 +6527,8 @@ export default {
       size_factor: 100,
       x: 400,
       y: 546,
+      mapFileId: 'e3f1/00',
+      radius: 1000,
       anglerLocationId: 100106,
     },
     '164': {
@@ -6210,6 +6538,8 @@ export default {
       size_factor: 100,
       x: 365,
       y: 1280,
+      mapFileId: 'e3f1/00',
+      radius: 1000,
       anglerLocationId: 100107,
     },
     '165': {
@@ -6219,6 +6549,8 @@ export default {
       size_factor: 100,
       x: 1690,
       y: 650,
+      mapFileId: 'e3f2/00',
+      radius: 300,
       anglerLocationId: 100201,
     },
     '166': {
@@ -6228,6 +6560,8 @@ export default {
       size_factor: 100,
       x: 1740,
       y: 800,
+      mapFileId: 'e3f2/00',
+      radius: 200,
       anglerLocationId: 100202,
     },
     '167': {
@@ -6237,6 +6571,8 @@ export default {
       size_factor: 100,
       x: 1425,
       y: 730,
+      mapFileId: 'e3f2/00',
+      radius: 300,
       anglerLocationId: 100203,
     },
     '168': {
@@ -6246,6 +6582,8 @@ export default {
       size_factor: 100,
       x: 1380,
       y: 275,
+      mapFileId: 'e3f2/00',
+      radius: 800,
       anglerLocationId: 100204,
     },
     '169': {
@@ -6255,6 +6593,8 @@ export default {
       size_factor: 100,
       x: 1535,
       y: 310,
+      mapFileId: 'e3f2/00',
+      radius: 200,
       anglerLocationId: 100205,
     },
     '170': {
@@ -6264,6 +6604,8 @@ export default {
       size_factor: 100,
       x: 670,
       y: 320,
+      mapFileId: 'e3f2/00',
+      radius: 500,
       anglerLocationId: 100206,
     },
     '171': {
@@ -6273,6 +6615,8 @@ export default {
       size_factor: 100,
       x: 520,
       y: 650,
+      mapFileId: 'e3f2/00',
+      radius: 1000,
       anglerLocationId: 100207,
     },
     '172': {
@@ -6282,6 +6626,8 @@ export default {
       size_factor: 100,
       x: 950,
       y: 1160,
+      mapFileId: 'e3f2/00',
+      radius: 1000,
       anglerLocationId: 100208,
     },
     '173': {
@@ -6291,6 +6637,8 @@ export default {
       size_factor: 100,
       x: 500,
       y: 1595,
+      mapFileId: 'e3f2/00',
+      radius: 600,
       anglerLocationId: 100209,
     },
     '174': {
@@ -6300,6 +6648,8 @@ export default {
       size_factor: 100,
       x: 1750,
       y: 1140,
+      mapFileId: 'e3f2/00',
+      radius: 400,
       anglerLocationId: 100210,
     },
     '175': {
@@ -6309,6 +6659,8 @@ export default {
       size_factor: 100,
       x: 1570,
       y: 1470,
+      mapFileId: 'e3f3/00',
+      radius: 200,
       anglerLocationId: 100301,
     },
     '176': {
@@ -6318,6 +6670,8 @@ export default {
       size_factor: 100,
       x: 1400,
       y: 970,
+      mapFileId: 'e3f3/00',
+      radius: 300,
       anglerLocationId: 100302,
     },
     '177': {
@@ -6327,6 +6681,8 @@ export default {
       size_factor: 100,
       x: 846,
       y: 890,
+      mapFileId: 'e3f3/00',
+      radius: 300,
       anglerLocationId: 100303,
     },
     '178': {
@@ -6336,6 +6692,8 @@ export default {
       size_factor: 100,
       x: 1030,
       y: 1070,
+      mapFileId: 'e3f3/00',
+      radius: 1000,
       anglerLocationId: 100304,
     },
     '179': {
@@ -6345,6 +6703,8 @@ export default {
       size_factor: 100,
       x: 780,
       y: 670,
+      mapFileId: 'e3f3/00',
+      radius: 300,
       anglerLocationId: 100305,
     },
     '180': {
@@ -6354,6 +6714,8 @@ export default {
       size_factor: 100,
       x: 1080,
       y: 1370,
+      mapFileId: 'e3f3/00',
+      radius: 300,
       anglerLocationId: 100306,
     },
     '181': {
@@ -6363,6 +6725,8 @@ export default {
       size_factor: 100,
       x: 575,
       y: 1610,
+      mapFileId: 'e3f3/00',
+      radius: 200,
       anglerLocationId: 100307,
     },
     '182': {
@@ -6372,6 +6736,8 @@ export default {
       size_factor: 200,
       x: 1000,
       y: 1300,
+      mapFileId: 'g3t1/00',
+      radius: 400,
       anglerLocationId: 90101,
     },
     '183': {
@@ -6381,6 +6747,8 @@ export default {
       size_factor: 200,
       x: 1025,
       y: 935,
+      mapFileId: 'g3t1/00',
+      radius: 1000,
       anglerLocationId: 90102,
     },
     '184': {
@@ -6390,6 +6758,8 @@ export default {
       size_factor: 200,
       x: 1115,
       y: 490,
+      mapFileId: 'g3t1/00',
+      radius: 300,
       anglerLocationId: 90103,
     },
     '185': {
@@ -6399,6 +6769,8 @@ export default {
       size_factor: 100,
       x: 525,
       y: 860,
+      mapFileId: 'g3f1/00',
+      radius: 400,
       anglerLocationId: 90201,
     },
     '186': {
@@ -6408,6 +6780,8 @@ export default {
       size_factor: 100,
       x: 430,
       y: 1400,
+      mapFileId: 'g3f1/00',
+      radius: 1100,
       anglerLocationId: 90202,
     },
     '187': {
@@ -6417,6 +6791,8 @@ export default {
       size_factor: 100,
       x: 645,
       y: 1500,
+      mapFileId: 'g3f1/00',
+      radius: 300,
       anglerLocationId: 90203,
     },
     '188': {
@@ -6426,6 +6802,8 @@ export default {
       size_factor: 100,
       x: 845,
       y: 425,
+      mapFileId: 'g3f1/00',
+      radius: 600,
       anglerLocationId: 90204,
     },
     '189': {
@@ -6435,6 +6813,8 @@ export default {
       size_factor: 100,
       x: 1325,
       y: 770,
+      mapFileId: 'g3f1/00',
+      radius: 400,
       anglerLocationId: 90205,
     },
     '190': {
@@ -6444,6 +6824,8 @@ export default {
       size_factor: 100,
       x: 260,
       y: 700,
+      mapFileId: 'g3f2/00',
+      radius: 300,
       anglerLocationId: 90301,
     },
     '191': {
@@ -6453,6 +6835,8 @@ export default {
       size_factor: 100,
       x: 1130,
       y: 410,
+      mapFileId: 'g3f2/00',
+      radius: 400,
       anglerLocationId: 90302,
     },
     '192': {
@@ -6462,6 +6846,8 @@ export default {
       size_factor: 100,
       x: 1580,
       y: 280,
+      mapFileId: 'g3f2/00',
+      radius: 400,
       anglerLocationId: 90303,
     },
     '193': {
@@ -6471,6 +6857,8 @@ export default {
       size_factor: 100,
       x: 1550,
       y: 800,
+      mapFileId: 'g3f2/00',
+      radius: 400,
       anglerLocationId: 90304,
     },
     '194': {
@@ -6480,6 +6868,8 @@ export default {
       size_factor: 100,
       x: 978,
       y: 1582,
+      mapFileId: 'g3f2/00',
+      radius: 1200,
       anglerLocationId: 90305,
     },
     '195': {
@@ -6489,6 +6879,8 @@ export default {
       size_factor: 100,
       x: 410,
       y: 1820,
+      mapFileId: 'g3f2/00',
+      radius: 500,
       anglerLocationId: 90306,
     },
     '196': {
@@ -6498,6 +6890,8 @@ export default {
       size_factor: 100,
       x: 1025,
       y: 1025,
+      mapFileId: 'g3f3/00',
+      radius: 3000,
       anglerLocationId: 90401,
     },
     '197': {
@@ -6507,6 +6901,8 @@ export default {
       size_factor: 200,
       x: 750,
       y: 1350,
+      mapFileId: 'e1h1/01',
+      radius: 1000,
       anglerLocationId: 110201,
     },
     '198': {
@@ -6516,6 +6912,8 @@ export default {
       size_factor: 200,
       x: 970,
       y: 1030,
+      mapFileId: 'e1h1/01',
+      radius: 500,
       anglerLocationId: 110202,
     },
     '199': {
@@ -6525,6 +6923,8 @@ export default {
       size_factor: 200,
       x: 770,
       y: 645,
+      mapFileId: 'n4t1/00',
+      radius: 600,
       anglerLocationId: 120101,
     },
     '200': {
@@ -6534,6 +6934,8 @@ export default {
       size_factor: 200,
       x: 940,
       y: 1460,
+      mapFileId: 'n4t1/00',
+      radius: 600,
       anglerLocationId: 120102,
     },
     '201': {
@@ -6543,6 +6945,8 @@ export default {
       size_factor: 200,
       x: 1175,
       y: 1530,
+      mapFileId: 'n4t1/00',
+      radius: 600,
       anglerLocationId: 120103,
     },
     '202': {
@@ -6552,6 +6956,8 @@ export default {
       size_factor: 100,
       x: 1500,
       y: 545,
+      mapFileId: 'n4f1/00',
+      radius: 1200,
       anglerLocationId: 120301,
     },
     '203': {
@@ -6561,6 +6967,8 @@ export default {
       size_factor: 100,
       x: 545,
       y: 1025,
+      mapFileId: 'n4f1/00',
+      radius: 300,
       anglerLocationId: 120302,
     },
     '204': {
@@ -6570,6 +6978,8 @@ export default {
       size_factor: 100,
       x: 585,
       y: 1430,
+      mapFileId: 'n4f1/00',
+      radius: 1500,
       anglerLocationId: 120303,
     },
     '205': {
@@ -6579,6 +6989,8 @@ export default {
       size_factor: 100,
       x: 920,
       y: 1740,
+      mapFileId: 'n4f1/00',
+      radius: 900,
       anglerLocationId: 120304,
     },
     '206': {
@@ -6588,6 +7000,8 @@ export default {
       size_factor: 100,
       x: 410,
       y: 1830,
+      mapFileId: 'n4f1/00',
+      radius: 900,
       anglerLocationId: 120352,
     },
     '207': {
@@ -6597,6 +7011,8 @@ export default {
       size_factor: 100,
       x: 1300,
       y: 670,
+      mapFileId: 'n4f2/00',
+      radius: 1200,
       anglerLocationId: 120401,
     },
     '208': {
@@ -6606,6 +7022,8 @@ export default {
       size_factor: 100,
       x: 1420,
       y: 1020,
+      mapFileId: 'n4f2/00',
+      radius: 300,
       anglerLocationId: 120402,
     },
     '209': {
@@ -6615,6 +7033,8 @@ export default {
       size_factor: 100,
       x: 1460,
       y: 1300,
+      mapFileId: 'n4f2/00',
+      radius: 1200,
       anglerLocationId: 120403,
     },
     '210': {
@@ -6624,6 +7044,8 @@ export default {
       size_factor: 100,
       x: 980,
       y: 1160,
+      mapFileId: 'n4f2/00',
+      radius: 1200,
       anglerLocationId: 120404,
     },
     '211': {
@@ -6633,6 +7055,8 @@ export default {
       size_factor: 100,
       x: 370,
       y: 1710,
+      mapFileId: 'n4f2/00',
+      radius: 1800,
       anglerLocationId: 120405,
     },
     '212': {
@@ -6642,6 +7066,8 @@ export default {
       size_factor: 100,
       x: 790,
       y: 1740,
+      mapFileId: 'n4f2/00',
+      radius: 600,
       anglerLocationId: 120406,
     },
     '213': {
@@ -6651,6 +7077,8 @@ export default {
       size_factor: 100,
       x: 1710,
       y: 1740,
+      mapFileId: 'n4f2/00',
+      radius: 1800,
       anglerLocationId: 120407,
     },
     '214': {
@@ -6660,6 +7088,8 @@ export default {
       size_factor: 200,
       x: 1025,
       y: 1025,
+      mapFileId: 'n4t2/01',
+      radius: 2400,
       anglerLocationId: 120201,
     },
     '215': {
@@ -6669,6 +7099,8 @@ export default {
       size_factor: 100,
       x: 1540,
       y: 585,
+      mapFileId: 'n4f3/00',
+      radius: 900,
       anglerLocationId: 120501,
     },
     '216': {
@@ -6678,6 +7110,8 @@ export default {
       size_factor: 100,
       x: 725,
       y: 690,
+      mapFileId: 'n4f3/00',
+      radius: 1200,
       anglerLocationId: 120503,
     },
     '217': {
@@ -6687,6 +7121,8 @@ export default {
       size_factor: 100,
       x: 1500,
       y: 1530,
+      mapFileId: 'n4f3/00',
+      radius: 1500,
       anglerLocationId: 120502,
     },
     '218': {
@@ -6696,6 +7132,8 @@ export default {
       size_factor: 100,
       x: 165,
       y: 1065,
+      mapFileId: 'n4f4/00',
+      radius: 900,
       anglerLocationId: 120601,
     },
     '219': {
@@ -6705,6 +7143,8 @@ export default {
       size_factor: 100,
       x: 1000,
       y: 1090,
+      mapFileId: 'n4f4/00',
+      radius: 2400,
       anglerLocationId: 120602,
     },
     '220': {
@@ -6714,6 +7154,8 @@ export default {
       size_factor: 100,
       x: 1050,
       y: 405,
+      mapFileId: 'n4f4/00',
+      radius: 600,
       anglerLocationId: 120603,
     },
     '221': {
@@ -6723,6 +7165,8 @@ export default {
       size_factor: 100,
       x: 1240,
       y: 400,
+      mapFileId: 'n4f4/00',
+      radius: 600,
       anglerLocationId: 120604,
     },
     '222': {
@@ -6732,6 +7176,8 @@ export default {
       size_factor: 100,
       x: 1545,
       y: 1065,
+      mapFileId: 'n4f4/00',
+      radius: 300,
       anglerLocationId: 120607,
     },
     '223': {
@@ -6741,6 +7187,8 @@ export default {
       size_factor: 100,
       x: 1395,
       y: 625,
+      mapFileId: 'n4f4/00',
+      radius: 1200,
       anglerLocationId: 120605,
     },
     '224': {
@@ -6750,6 +7198,8 @@ export default {
       size_factor: 100,
       x: 1695,
       y: 1265,
+      mapFileId: 'n4f4/00',
+      radius: 900,
       anglerLocationId: 120606,
     },
     '225': {
@@ -6759,6 +7209,8 @@ export default {
       size_factor: 100,
       x: 320,
       y: 1385,
+      mapFileId: 'n4f5/00',
+      radius: 1800,
       anglerLocationId: 120701,
     },
     '226': {
@@ -6768,6 +7220,8 @@ export default {
       size_factor: 100,
       x: 435,
       y: 990,
+      mapFileId: 'n4f5/00',
+      radius: 600,
       anglerLocationId: 120702,
     },
     '227': {
@@ -6777,6 +7231,8 @@ export default {
       size_factor: 100,
       x: 750,
       y: 1025,
+      mapFileId: 'n4f5/00',
+      radius: 900,
       anglerLocationId: 120703,
     },
     '228': {
@@ -6786,6 +7242,8 @@ export default {
       size_factor: 100,
       x: 1150,
       y: 1530,
+      mapFileId: 'n4f5/00',
+      radius: 1200,
       anglerLocationId: 120704,
     },
     '229': {
@@ -6795,6 +7253,8 @@ export default {
       size_factor: 100,
       x: 340,
       y: 760,
+      mapFileId: 'n4f5/00',
+      radius: 300,
       anglerLocationId: 120705,
     },
     '230': {
@@ -6804,6 +7264,8 @@ export default {
       size_factor: 100,
       x: 510,
       y: 280,
+      mapFileId: 'n4f6/00',
+      radius: 900,
       anglerLocationId: 120801,
     },
     '231': {
@@ -6813,6 +7275,8 @@ export default {
       size_factor: 100,
       x: 1835,
       y: 300,
+      mapFileId: 'n4f6/00',
+      radius: 300,
       anglerLocationId: 120802,
     },
     '232': {
@@ -6822,6 +7286,8 @@ export default {
       size_factor: 100,
       x: 545,
       y: 495,
+      mapFileId: 'n4f6/00',
+      radius: 300,
       anglerLocationId: 120803,
     },
     '233': {
@@ -6831,6 +7297,8 @@ export default {
       size_factor: 100,
       x: 260,
       y: 625,
+      mapFileId: 'n4f6/00',
+      radius: 600,
       anglerLocationId: 120804,
     },
     '234': {
@@ -6840,6 +7308,8 @@ export default {
       size_factor: 100,
       x: 375,
       y: 730,
+      mapFileId: 'n4f6/00',
+      radius: 300,
       anglerLocationId: 120805,
     },
     '235': {
@@ -6849,6 +7319,8 @@ export default {
       size_factor: 100,
       x: 1630,
       y: 1480,
+      mapFileId: 'n4f6/00',
+      radius: 600,
       anglerLocationId: 120806,
     },
     '236': {
@@ -6858,6 +7330,8 @@ export default {
       size_factor: 100,
       x: 1400,
       y: 695,
+      mapFileId: 'n4f6/00',
+      radius: 900,
       anglerLocationId: 120807,
     },
     '237': {
@@ -6867,6 +7341,8 @@ export default {
       size_factor: 400,
       x: 1025,
       y: 1025,
+      mapFileId: 'o1a1/00',
+      radius: 300,
       anglerLocationId: null,
     },
     '238': {
@@ -6876,6 +7352,8 @@ export default {
       size_factor: 400,
       x: 1025,
       y: 1025,
+      mapFileId: 'o1a1/00',
+      radius: 300,
       anglerLocationId: null,
     },
     '239': {
@@ -6885,6 +7363,8 @@ export default {
       size_factor: 400,
       x: 1025,
       y: 1025,
+      mapFileId: 'o1a1/00',
+      radius: 300,
       anglerLocationId: null,
     },
     '240': {
@@ -6894,6 +7374,8 @@ export default {
       size_factor: 400,
       x: 1025,
       y: 1025,
+      mapFileId: 'o1a1/00',
+      radius: 300,
       anglerLocationId: null,
     },
     '241': {
@@ -6903,6 +7385,8 @@ export default {
       size_factor: 400,
       x: 1025,
       y: 1025,
+      mapFileId: 'o1a1/00',
+      radius: 300,
       anglerLocationId: null,
     },
     '242': {
@@ -6912,6 +7396,8 @@ export default {
       size_factor: 400,
       x: 1025,
       y: 1025,
+      mapFileId: 'o1a1/00',
+      radius: 300,
       anglerLocationId: null,
     },
     '243': {
@@ -6921,6 +7407,8 @@ export default {
       size_factor: 400,
       x: 1025,
       y: 1025,
+      mapFileId: 'o1a1/00',
+      radius: 300,
       anglerLocationId: null,
     },
     '244': {
@@ -6930,6 +7418,8 @@ export default {
       size_factor: 400,
       x: 1025,
       y: 1025,
+      mapFileId: 'o1a1/00',
+      radius: 300,
       anglerLocationId: null,
     },
     '245': {
@@ -6939,6 +7429,8 @@ export default {
       size_factor: 100,
       x: 1250,
       y: 1785,
+      mapFileId: 'n4f5/00',
+      radius: 600,
       anglerLocationId: 120706,
     },
     '246': {
@@ -6948,6 +7440,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '247': {
@@ -6957,6 +7451,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '248': {
@@ -6966,6 +7462,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '10000': {
@@ -6975,6 +7473,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '10001': {
@@ -6984,6 +7484,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '10002': {
@@ -6993,6 +7495,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '10003': {
@@ -7002,6 +7506,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '10004': {
@@ -7011,6 +7517,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '10005': {
@@ -7020,6 +7528,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '10006': {
@@ -7029,6 +7539,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
     '10007': {
@@ -7038,6 +7550,8 @@ export default {
       size_factor: 100,
       x: 0,
       y: 0,
+      mapFileId: null,
+      radius: 0,
       anglerLocationId: null,
     },
   },
