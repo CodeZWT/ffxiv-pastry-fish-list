@@ -48,6 +48,13 @@
       "suffix": "将鱼添加至固定列表。"
     },
     "normalTitle": "默认列表",
-    "pinTitle": "固定列表"
+    "pinTitle": "固定列表",
+    "item": {
+      "fishWindowTable": {
+        "startTime": "开始时间",
+        "interval": "持续时间",
+        "nextInterval": "休眠期"
+      }
+    }
   }
 }

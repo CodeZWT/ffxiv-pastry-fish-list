@@ -91,9 +91,9 @@
               <template v-slot:default>
                 <thead>
                   <tr>
-                    <th class="text-center">开始时间</th>
-                    <th class="text-center">时长</th>
-                    <th class="text-center">距下个窗口期</th>
+                    <th class="text-center">{{ $t('list.item.fishWindowTable.startTime') }}</th>
+                    <th class="text-center">{{ $t('list.item.fishWindowTable.interval') }}</th>
+                    <th class="text-center">{{ $t('list.item.fishWindowTable.nextInterval') }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -284,13 +284,13 @@ export default {
       window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
     },
     toPositionText(fishingSpot) {
-      return `${this.toPosStr(fishingSpot.size_factor, fishingSpot.x)} ,${this.toPosStr(
+      return `X: ${this.toPosStr(fishingSpot.size_factor, fishingSpot.x)}, Y:${this.toPosStr(
         fishingSpot.size_factor,
         fishingSpot.y
       )}`
     },
     toPosStr(sizeFactor, pos) {
-      return DataUtil.pixelToPos(sizeFactor, pos).toFixed(2)
+      return DataUtil.pixelToPos(sizeFactor, pos).toFixed(0)
     },
   },
 }
