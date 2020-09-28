@@ -8,18 +8,32 @@
           :fish-list-time-part="fishListTimePart"
           :fish-list-weather-change-part="fishListWeatherChangePart"
         />
-        <fish-list
-          label="Pin List"
-          :fish-list="pinnedFishList"
-          :fish-list-time-part="fishListTimePart"
-          :fish-list-weather-change-part="fishListWeatherChangePart"
-        />
-        <fish-list
-          label="Normal List"
-          :fish-list="sortedFilteredFishList"
-          :fish-list-time-part="fishListTimePart"
-          :fish-list-weather-change-part="fishListWeatherChangePart"
-        />
+        <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              {{ $t('list.pinTitle') }}
+            </v-expansion-panel-header>
+            <v-expansion-panel-content class="list-wrapper">
+              <fish-list
+                :fish-list="pinnedFishList"
+                :fish-list-time-part="fishListTimePart"
+                :fish-list-weather-change-part="fishListWeatherChangePart"
+              />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              {{ $t('list.normalTitle') }}
+            </v-expansion-panel-header>
+            <v-expansion-panel-content class="list-wrapper">
+              <fish-list
+                :fish-list="sortedFilteredFishList"
+                :fish-list-time-part="fishListTimePart"
+                :fish-list-weather-change-part="fishListWeatherChangePart"
+              />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-col>
     </v-row>
   </div>
@@ -43,6 +57,7 @@ export default {
     weatherChangeTrigger: 0,
     fishListWeatherChangePart: {},
     openPanelIndex: undefined,
+    fishListOpenStatus: [0,1],
   }),
   computed: {
     eorzeaTime() {
