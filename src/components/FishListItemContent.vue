@@ -33,9 +33,8 @@
               <!--                </eorzea-map>-->
               <!--              </div>-->
 
-              <div style="width: 100%; margin-top: 12px">
+              <div style="height: 1000px; width: 100%; margin-top: 12px">
                 <eorzea-simple-map
-                  v-if="open"
                   :debug="false"
                   :id="fish.fishingSpot.mapFileId"
                   :x="fish.fishingSpot.x"
