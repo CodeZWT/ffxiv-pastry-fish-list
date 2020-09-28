@@ -1,6 +1,10 @@
+const webpack = require('webpack')
+
+const ASSET_PATH = process.env.NODE_ENV === 'production' ? '/ff14-list/' : '/'
+
 module.exports = {
   transpileDependencies: ['vuetify'],
-  publicPath: process.env.NODE_ENV === 'production' ? '/ff14-list/' : '/',
+  publicPath: ASSET_PATH,
 
   pluginOptions: {
     i18n: {
@@ -9,5 +13,13 @@ module.exports = {
       localeDir: 'locales',
       enableInSFC: false,
     },
+  },
+
+  configureWebpack: {
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
+      }),
+    ],
   },
 }

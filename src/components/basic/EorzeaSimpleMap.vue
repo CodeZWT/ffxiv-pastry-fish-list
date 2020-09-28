@@ -4,7 +4,7 @@
       <v-layer>
         <v-image :config="defaultMapConfig"></v-image>
         <v-image :config="mapConfig"></v-image>
-        <v-image :config="markerRangeConfig"></v-image>
+        <v-image ref="markerRangeNode" :config="markerRangeConfig"></v-image>
         <v-image :config="fishingSpotMarkerConfig"></v-image>
       </v-layer>
     </v-stage>
@@ -16,6 +16,7 @@ import DataUtil from '@/utils/DataUtil'
 import fishMarker from '@/assets/fishingSpot.png'
 import markerRange from '@/assets/markerRange.png'
 import defaultMap from '@/assets/default.00.jpg'
+import Konva from 'konva'
 
 export default {
   name: 'EorzeaSimpleMap',
@@ -69,7 +70,7 @@ export default {
       if (this.mode === 'remote') {
         return `${DataUtil.XIV_API_HOST}/m/${paths[0]}/${paths[0]}.${paths[1]}.jpg`
       } else {
-        return `/map/${paths[0]}/${paths[0]}.${paths[1]}.jpg`
+        return `${process.env.ASSET_PATH}map/${paths[0]}/${paths[0]}.${paths[1]}.jpg`
       }
     },
     stageConfig() {
@@ -116,6 +117,10 @@ export default {
         height: 96,
         scaleX: this.markerRangeFactor,
         scaleY: this.markerRangeFactor,
+        filters: [Konva.Filters.RGB],
+        red: 3,
+        green: 168,
+        blue: 244,
       }
     },
     allImageLoaded() {
@@ -138,6 +143,9 @@ export default {
     this.loadImageToProp(fishMarker, 'fishingSpotImage')
     this.loadImageToProp(markerRange, 'markerRangeImage')
   },
+  mounted() {
+
+  },
   methods: {
     loadMapImage(url) {
       this.mapImageLoaded = false
@@ -157,6 +165,10 @@ export default {
       const rect = this.$refs.container.getBoundingClientRect()
       this.containerWidth = rect.width
       this.containerHeight = Math.min(rect.width, rect.height)
+
+      const markerRangeNode = this.$refs.markerRangeNode.getNode()
+      markerRangeNode.cache()
+      markerRangeNode.getLayer().batchDraw()
     },
   },
 }
