@@ -16,7 +16,7 @@ import DataUtil from '@/utils/DataUtil'
 import fishMarker from '@/assets/fishingSpot.png'
 import markerRange from '@/assets/markerRange.png'
 import defaultMap from '@/assets/default.00.jpg'
-import Konva from 'konva'
+// import Konva from 'konva'
 
 export default {
   name: 'EorzeaSimpleMap',
@@ -117,10 +117,10 @@ export default {
         height: 96,
         scaleX: this.markerRangeFactor,
         scaleY: this.markerRangeFactor,
-        filters: [Konva.Filters.RGB],
-        red: 3,
-        green: 168,
-        blue: 244,
+        // filters: [Konva.Filters.RGB],
+        // red: 3,
+        // green: 168,
+        // blue: 244,
       }
     },
     allImageLoaded() {
@@ -163,12 +163,10 @@ export default {
     },
     resize() {
       const rect = this.$refs.container.getBoundingClientRect()
-      this.containerWidth = rect.width
-      this.containerHeight = Math.min(rect.width, rect.height)
-
-      const markerRangeNode = this.$refs.markerRangeNode.getNode()
-      markerRangeNode.cache()
-      markerRangeNode.getLayer().batchDraw()
+      this.containerHeight = this.containerWidth = rect.width
+      // const markerRangeNode = this.$refs.markerRangeNode.getNode()
+      // markerRangeNode.cache()
+      // markerRangeNode.getLayer().batchDraw()
     },
   },
 }

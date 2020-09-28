@@ -32,13 +32,14 @@
               </div>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content :color="fishColors[index]">
             <fish-list-item-content
               :open="index === openPanelIndex"
               :value="fish"
               :fish-time-part="fishListTimePart[fish._id]"
               :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
               :predators="getPredators(fish)"
+              :color="fishColors[index]"
             ></fish-list-item-content>
           </v-expansion-panel-content>
         </v-expansion-panel>

@@ -1,9 +1,9 @@
 <template>
   <v-col style="flex-direction: column">
     <v-row>
-      <v-expansion-panels hover flat :value="0">
+      <v-expansion-panels hover flat tile :value="0">
         <v-expansion-panel>
-          <v-expansion-panel-header>
+          <v-expansion-panel-header :color="color">
             <div style="display: flex; align-items: center; justify-content: center">
               <div class="text-subtitle-1">
                 {{ fish.zone }}
@@ -19,7 +19,7 @@
               </div>
             </div>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content :color="color">
             <div>
               <!--              <div style="height: 400px; width: 100%; margin-top: 12px">-->
               <!--                <eorzea-map-->
@@ -33,7 +33,7 @@
               <!--                </eorzea-map>-->
               <!--              </div>-->
 
-              <div style="height: 1000px; width: 100%; margin-top: 12px">
+              <div style="width: 100%; margin-top: 12px">
                 <eorzea-simple-map
                   :debug="false"
                   :id="fish.fishingSpot.mapFileId"
@@ -79,15 +79,15 @@
     </div>
     <!--    </v-row>-->
     <v-row v-if="fish.hasCountDown">
-      <v-expansion-panels hover flat>
+      <v-expansion-panels hover flat tile>
         <v-expansion-panel>
-          <v-expansion-panel-header>
+          <v-expansion-panel-header :color="color">
             <div style="display: flex; justify-content: center">
               <div><v-icon>mdi-calendar</v-icon> {{ $t('countDown.fishWindowBtn') }}</div>
             </div>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <v-simple-table>
+          <v-expansion-panel-content :color="color">
+            <v-simple-table :class="color" dense dark>
               <template v-slot:default>
                 <thead>
                   <tr>
@@ -207,6 +207,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    color: {
+      type: String,
+      default: '',
+    }
   },
   data: () => ({
     fisher: fisher,
