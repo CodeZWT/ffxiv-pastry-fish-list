@@ -33,7 +33,7 @@
               <!--                </eorzea-map>-->
               <!--              </div>-->
 
-              <div style="height: 1000px; width: 100%; margin-top: 12px">
+              <div style="width: 100%; margin-top: 12px">
                 <eorzea-simple-map
                   v-if="open"
                   :debug="false"
