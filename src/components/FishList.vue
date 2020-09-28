@@ -8,7 +8,7 @@
           {{ $t('list.empty.suffix') }}
         </span>
       </div>
-      <v-expansion-panels v-else v-model="openPanelIndex" hover>
+      <v-expansion-panels v-else v-model="openPanelIndex" hover tile>
         <!--              <v-virtual-scroll :items="fishList" :item-height="100" height="1000">-->
         <!--                <template v-slot="{ item: fish, index }">-->
         <v-expansion-panel v-for="(fish, index) in fishList" :key="index">

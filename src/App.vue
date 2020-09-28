@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="opacity: 0.8">
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img :src="fisher" width="24px" height="24px" class="mr-1" />

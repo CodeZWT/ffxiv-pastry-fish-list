@@ -98,9 +98,9 @@ export default {
   ICON_FISH_EYES: '011103',
 
   ITEM_COLOR: {
-    FISHING: ['deep-orange lighten-2', 'deep-orange lighten-4'],
-    WAITING: ['grey lighten-2', 'grey lighten-3'],
-    COMPLETED: ['teal lighten-1', 'teal lighten-2'],
+    FISHING: ['info base', 'info darken-2'],
+    WAITING: ['secondary base', 'secondary darken-2'],
+    COMPLETED: ['success base', 'success darken-2'],
   },
 
   PATCH_MAX: 5.2,

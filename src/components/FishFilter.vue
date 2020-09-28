@@ -28,7 +28,7 @@
               column
               dense
               multiple
-              active-class="primary--text"
+              active-class="primary"
               @change="onChange"
             >
               <v-btn v-for="patch in patches[version]" :key="patch" small>
@@ -42,13 +42,13 @@
       <v-row no-gutters>
         <v-col class="col-12 col-md-6">
           <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
-          <v-btn-toggle v-model="completeType" mandatory active-class="primary--text" dense @change="onChange">
+          <v-btn-toggle v-model="completeType" mandatory active-class="primary" dense @change="onChange">
             <v-btn v-for="type in completeFilterTypes" :key="type" small>{{ $t(`filter.mark.${type}`) }}</v-btn>
           </v-btn-toggle>
         </v-col>
         <v-col cols="6">
           <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
-          <v-btn-toggle v-model="bigFishType" mandatory active-class="primary--text" dense @change="onChange">
+          <v-btn-toggle v-model="bigFishType" mandatory active-class="primary" dense @change="onChange">
             <v-btn v-for="type in bigFishFilterTypes" :key="type" small>{{ $t(`filter.bigFish.${type}`) }}</v-btn>
           </v-btn-toggle>
         </v-col>
@@ -63,8 +63,8 @@
       </v-row>
       <v-row no-gutters>
         <v-col>
-          <v-btn-toggle v-model="fishNType" dense @change="onChange">
-            <v-btn v-for="type in fishNFilterTypes" :key="type" color="primary--text" small>
+          <v-btn-toggle v-model="fishNType" dense active-class="primary" @change="onChange">
+            <v-btn v-for="type in fishNFilterTypes" :key="type" small>
               {{ $t(`filter.showFirstNFish.${type}`) }}
             </v-btn>
           </v-btn-toggle>
