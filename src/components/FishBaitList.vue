@@ -5,7 +5,7 @@
         <div v-if="baitInx !== 0" style="display: flex; align-items: center">
           <v-icon>mdi-arrow-right</v-icon>
         </div>
-        <div>
+        <div :data-ck-item-id="bait.baitId">
           <div :class="bait.baitIcon" :title="bait.baitName" />
         </div>
         <div class="d-flex flex-column" style="max-height: 40px">

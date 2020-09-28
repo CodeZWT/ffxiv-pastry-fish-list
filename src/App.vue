@@ -70,4 +70,8 @@ export default {
     url('./assets/font/FFXIV_Lodestone_SSF.woff') format('woff');
   unicode-range: U+E020-E0DB;
 }
+
+.cafekit.ck-popup {
+  z-index: 100 !important;
+}
 </style>

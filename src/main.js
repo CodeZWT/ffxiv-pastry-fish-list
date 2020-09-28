@@ -5,6 +5,9 @@ import store from './store'
 import i18n from './i18n'
 import VueKonva from 'vue-konva'
 import vuetify from './plugins/vuetify'
+import { initTooltip } from '@thewakingsands/kit-tooltip'
+
+initTooltip()
 
 Vue.config.productionTip = false
 Vue.use(VueKonva)
