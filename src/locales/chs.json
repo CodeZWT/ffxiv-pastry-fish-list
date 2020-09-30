@@ -1,4 +1,8 @@
 {
+  "top": {
+    "systemBarTitle": "鱼糕",
+    "toolBarTitle": "钓鱼时钟"
+  },
   "countDown": {
     "waiting": "等待中：",
     "fishing": "窗口期剩余：",

@@ -128,6 +128,7 @@ export default {
     },
   },
   created() {
+    document.title = `${this.$t('top.systemBarTitle')} - ${this.$t('top.toolBarTitle')}`
     setInterval(() => {
       this.now = Date.now()
       if (this.weatherChangeTrigger === 0) {

@@ -1,14 +1,14 @@
 <template>
   <v-app style="opacity: 0.8">
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img :src="fisher" width="24px" height="24px" class="mr-1" />
-        Fish List
+    <v-system-bar app>
+      <div>
+        <v-icon>mdi-fish</v-icon>
+        {{ $t('top.systemBarTitle') }}
       </div>
       <v-spacer />
-      <div><i class="xiv eorzea-time-chs ml-1"></i>{{ eorzeaTime }}</div>
+      <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <div class="ml-2">
-        <i class="xiv local-time-chs ml-1"></i
+        <i class="xiv local-time-chs mr-1"></i
         >{{
           earthTime
             .getHours()
@@ -20,6 +20,12 @@
             .toString()
             .padStart(2, '0')
         }}
+      </div>
+    </v-system-bar>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <!--        <v-img :src="fisher" width="24px" height="24px" class="mr-1" />-->
+        {{ $t('top.toolBarTitle') }}
       </div>
     </v-app-bar>
 
