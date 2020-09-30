@@ -34,6 +34,11 @@
         <router-view />
       </v-container>
     </v-main>
+    <v-footer app style="font-size: small">
+      <div>Animated icon by <a href="http://icons8.com">Icons8</a></div>
+      <v-spacer />
+      <div>ALL FINAL FANTASY XIV CONTENT IS PROPERTY OF SQUARE ENIX CO., LTD</div>
+    </v-footer>
   </v-app>
 </template>
 
