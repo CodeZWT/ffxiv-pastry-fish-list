@@ -62,7 +62,7 @@ export default {
   width: 0;
   height: 0;
   position: absolute;
-  border-top: 32px solid #CE93D8;
+  border-top: 32px solid #ce93d8;
   border-right: 32px solid transparent;
 }
 
@@ -70,7 +70,7 @@ export default {
   width: 0;
   height: 0;
   position: absolute;
-  border-top: 32px solid #CE93D8;
+  border-top: 32px solid #ce93d8;
   border-right: 32px solid transparent;
   opacity: 0.5;
 }

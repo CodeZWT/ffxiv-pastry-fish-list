@@ -143,9 +143,7 @@ export default {
     this.loadImageToProp(fishMarker, 'fishingSpotImage')
     this.loadImageToProp(markerRange, 'markerRangeImage')
   },
-  mounted() {
-
-  },
+  mounted() {},
   methods: {
     loadMapImage(url) {
       this.mapImageLoaded = false

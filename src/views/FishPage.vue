@@ -57,7 +57,7 @@ export default {
     weatherChangeTrigger: 0,
     fishListWeatherChangePart: {},
     openPanelIndex: undefined,
-    fishListOpenStatus: [0,1],
+    fishListOpenStatus: [0, 1],
   }),
   computed: {
     eorzeaTime() {

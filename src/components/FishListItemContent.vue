@@ -210,7 +210,7 @@ export default {
     color: {
       type: String,
       default: '',
-    }
+    },
   },
   data: () => ({
     fisher: fisher,

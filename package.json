@@ -5,9 +5,9 @@
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "deploy": "rm -rf ../ff14-list/dist && cp -r ./dist ../ff14-list",
     "dev": "vue-cli-service serve",
-    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
-    "deploy": "rm -rf ../ff14-list/dist && cp -r ./dist ../ff14-list"
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
     "@thewakingsands/axis-font-icons": "^0.2.1",
