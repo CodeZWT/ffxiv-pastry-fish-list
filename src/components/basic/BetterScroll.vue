@@ -1,5 +1,5 @@
 <template>
-  <div ref="wrapper" class="better-scroll">
+  <div ref="wrapper" class="better-scroll" style="padding-right: 8px">
     <slot></slot>
   </div>
 </template>

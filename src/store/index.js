@@ -24,6 +24,7 @@ export default new Vuex.Store({
     folklore: DATA.FOLKLORE,
     bigFish: DATA.BIG_FISH,
     fishingSpotFish: groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
+    showSearchDialog: false,
     userData: store.get('userData') ?? {
       completed: [],
       pinned: [],
@@ -178,6 +179,9 @@ export default new Vuex.Store({
     toggleFilterPanel(state) {
       state.userData = { ...state.userData, showFilter: !state.userData.showFilter }
       store.set('userData', state.userData)
+    },
+    setShowSearchDialog(state, show) {
+      state.showSearchDialog = show
     },
   },
   actions: {},

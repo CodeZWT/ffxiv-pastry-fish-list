@@ -3,14 +3,15 @@
     <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
       <fish-filter :filters="filters" @input="onFiltersUpdate" />
     </div>
+    <fish-search
+      v-model="showSearchDialog"
+      :fish-data="fishSourceList"
+      :fish-list-time-part="fishListTimePart"
+      :fish-list-weather-change-part="fishListWeatherChangePart"
+    />
     <div :class="{ 'main-area': true, 'show-filter': showFilter }">
       <better-scroll :data="listSizeChangeTrigger">
         <div style="width: 100%">
-          <fish-search
-            :fish-data="fishSourceList"
-            :fish-list-time-part="fishListTimePart"
-            :fish-list-weather-change-part="fishListWeatherChangePart"
-          />
           <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
             <v-expansion-panel>
               <v-expansion-panel-header>
@@ -122,12 +123,21 @@ export default {
         [fish => this.pinnedFishIds.indexOf(fish._id)]
       )
     },
+    showSearchDialog: {
+      get() {
+        return this.showSearch
+      },
+      set(showSearch) {
+        this.setShowSearchDialog(showSearch)
+      },
+    },
     ...mapState({
       allFish: 'fish',
       items: 'items',
       fishingSpots: 'fishingSpots',
       zones: 'zones',
       bigFish: 'bigFish',
+      showSearch: 'showSearchDialog',
     }),
     ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds', 'showFilter']),
   },
@@ -230,7 +240,7 @@ export default {
     onFiltersUpdate(filters) {
       this.setFilters(filters)
     },
-    ...mapMutations(['setFilters']),
+    ...mapMutations(['setFilters', 'setShowSearchDialog']),
   },
 }
 </script>

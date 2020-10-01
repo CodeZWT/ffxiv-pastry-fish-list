@@ -1,51 +1,44 @@
 <template>
-  <v-row justify="center" style="padding: 0 12px">
-    <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.mobile" max-width="1264px">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark block v-bind="attrs" v-on="on">
-          {{ $t('search.btn') }}
-        </v-btn>
-      </template>
-      <v-card>
-        <v-card-title>
-          <span class="headline">{{ $t('search.dialog.title') }}</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col>
-                <v-autocomplete
-                  v-model="fishId"
-                  :items="fishSearchData"
-                  item-value="id"
-                  item-text="name"
-                  :label="$t('search.dialog.placeholder')"
-                  clearable
-                ></v-autocomplete>
-              </v-col>
-            </v-row>
-          </v-container>
-          <template v-if="fish != null">
-            <v-divider class="mb-3" />
-            <div style="position:relative;" class="py-4 px-6">
-              <fish-list-expanded-header :value="fish" />
-            </div>
-            <fish-list-item-content
-              :open="dialog"
-              :value="fish"
-              :fish-time-part="fishListTimePart[fish._id]"
-              :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
-              :predators="getPredators(fish)"
-            ></fish-list-item-content>
-          </template>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="default" text @click="dialog = false">{{ $t('search.dialog.close') }}</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
+  <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.mobile" max-width="1264px" style="z-index: 9999">
+    <v-card>
+      <v-card-title>
+        <span class="headline">{{ $t('search.dialog.title') }}</span>
+      </v-card-title>
+      <v-card-text>
+        <v-container>
+          <v-row>
+            <v-col>
+              <v-autocomplete
+                v-model="fishId"
+                :items="fishSearchData"
+                item-value="id"
+                item-text="name"
+                :label="$t('search.dialog.placeholder')"
+                clearable
+              ></v-autocomplete>
+            </v-col>
+          </v-row>
+        </v-container>
+        <template v-if="fish != null">
+          <v-divider class="mb-3" />
+          <div style="position:relative;" class="py-4 px-6">
+            <fish-list-expanded-header :value="fish" />
+          </div>
+          <fish-list-item-content
+            :open="dialog"
+            :value="fish"
+            :fish-time-part="fishListTimePart[fish._id]"
+            :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
+            :predators="getPredators(fish)"
+          ></fish-list-item-content>
+        </template>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="default" text @click="dialog = false">{{ $t('search.dialog.close') }}</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
@@ -58,6 +51,10 @@ export default {
   name: 'FishSearch',
   components: { FishListExpandedHeader, FishListItemContent },
   props: {
+    value: {
+      type: Boolean,
+      default: false,
+    },
     fishData: {
       type: Array,
       default: () => [],
@@ -72,10 +69,17 @@ export default {
     },
   },
   data: () => ({
-    dialog: false,
     fishId: undefined,
   }),
   computed: {
+    dialog: {
+      get() {
+        return this.value
+      },
+      set(showDialog){
+        return this.$emit('input', showDialog)
+      },
+    },
     fish() {
       return this.fishData.filter(it => it._id === this.fishId)[0]
     },

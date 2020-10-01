@@ -29,6 +29,9 @@
       </div>
       <v-spacer />
       <div>
+        <v-btn icon @click="setShowSearchDialog(true)">
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
         <v-btn icon @click="toggleFilterPanel">
           <v-icon>mdi-filter</v-icon>
         </v-btn>
@@ -77,7 +80,7 @@ export default {
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
   },
   methods: {
-    ...mapMutations(['toggleFilterPanel']),
+    ...mapMutations(['toggleFilterPanel', 'setShowSearchDialog']),
   },
 }
 </script>
@@ -100,5 +103,9 @@ html,
 body {
   overflow-y: hidden !important;
   /*height: 100%;*/
+}
+
+.bscroll-vertical-scrollbar {
+  z-index: 9998
 }
 </style>
