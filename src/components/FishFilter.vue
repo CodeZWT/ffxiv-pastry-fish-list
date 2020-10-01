@@ -1,5 +1,5 @@
 <template>
-  <v-card class="my-3" v-if="!loading">
+  <v-card v-if="!loading" color="grey darken-3">
     <v-card-text>
       <!-- Patches -->
       <v-row no-gutters>

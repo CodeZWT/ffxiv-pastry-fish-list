@@ -27,6 +27,12 @@
         <!--        <v-img :src="fisher" width="24px" height="24px" class="mr-1" />-->
         {{ $t('top.toolBarTitle') }}
       </div>
+      <v-spacer />
+      <div>
+        <v-btn icon @click="toggleFilterPanel">
+          <v-icon>mdi-filter</v-icon>
+        </v-btn>
+      </div>
     </v-app-bar>
 
     <v-main>
@@ -46,6 +52,7 @@
 import EorzeaTime from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
 import fisher from '@/assets/fisher.png'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'App',
@@ -68,6 +75,9 @@ export default {
       this.now = Date.now()
     }, 1000)
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
+  },
+  methods: {
+    ...mapMutations(['toggleFilterPanel']),
   },
 }
 </script>

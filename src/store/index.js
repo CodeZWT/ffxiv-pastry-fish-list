@@ -42,6 +42,9 @@ export default new Vuex.Store({
         bigFishType: 'BIG_FISH',
         fishN: 10,
       },
+
+      // page settings
+      showFilter: true,
     },
   },
   getters: {
@@ -153,6 +156,9 @@ export default new Vuex.Store({
     pinnedFishIds: state => {
       return state.userData.pinned
     },
+    showFilter: state => {
+      return state.userData.showFilter
+    },
   },
   mutations: {
     setUserData(state, data) {
@@ -167,6 +173,10 @@ export default new Vuex.Store({
     },
     setFilters(state, filters) {
       state.userData = { ...state.userData, filters }
+      store.set('userData', state.userData)
+    },
+    toggleFilterPanel(state) {
+      state.userData = { ...state.userData, showFilter: !state.userData.showFilter }
       store.set('userData', state.userData)
     },
   },

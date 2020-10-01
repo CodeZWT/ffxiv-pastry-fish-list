@@ -1,41 +1,45 @@
 <template>
-  <div style="width: 100%;">
-    <better-scroll :data="listSizeChangeTrigger" style="height: calc(100vh - 88px - 31px)">
-      <div style="width: 100%">
-        <fish-filter :filters="filters" @input="onFiltersUpdate" />
-        <fish-search
-          :fish-data="fishSourceList"
-          :fish-list-time-part="fishListTimePart"
-          :fish-list-weather-change-part="fishListWeatherChangePart"
-        />
-        <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              {{ $t('list.pinTitle') }}
-            </v-expansion-panel-header>
-            <v-expansion-panel-content class="list-wrapper">
-              <fish-list
-                :fish-list="pinnedFishList"
-                :fish-list-time-part="fishListTimePart"
-                :fish-list-weather-change-part="fishListWeatherChangePart"
-              />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              {{ $t('list.normalTitle') }}
-            </v-expansion-panel-header>
-            <v-expansion-panel-content class="list-wrapper">
-              <fish-list
-                :fish-list="sortedFilteredFishList"
-                :fish-list-time-part="fishListTimePart"
-                :fish-list-weather-change-part="fishListWeatherChangePart"
-              />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </div>
-    </better-scroll>
+  <div>
+    <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
+      <fish-filter :filters="filters" @input="onFiltersUpdate" />
+    </div>
+    <div :class="{ 'main-area': true, 'show-filter': showFilter }">
+      <better-scroll :data="listSizeChangeTrigger">
+        <div style="width: 100%">
+          <fish-search
+            :fish-data="fishSourceList"
+            :fish-list-time-part="fishListTimePart"
+            :fish-list-weather-change-part="fishListWeatherChangePart"
+          />
+          <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                {{ $t('list.pinTitle') }}
+              </v-expansion-panel-header>
+              <v-expansion-panel-content class="list-wrapper">
+                <fish-list
+                  :fish-list="pinnedFishList"
+                  :fish-list-time-part="fishListTimePart"
+                  :fish-list-weather-change-part="fishListWeatherChangePart"
+                />
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                {{ $t('list.normalTitle') }}
+              </v-expansion-panel-header>
+              <v-expansion-panel-content class="list-wrapper">
+                <fish-list
+                  :fish-list="sortedFilteredFishList"
+                  :fish-list-time-part="fishListTimePart"
+                  :fish-list-weather-change-part="fishListWeatherChangePart"
+                />
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </div>
+      </better-scroll>
+    </div>
   </div>
 </template>
 
@@ -49,6 +53,7 @@ import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
 import FishSearch from '@/components/FishSearch'
 import BetterScroll from '@/components/basic/BetterScroll'
+// import BetterScroll from '@/components/basic/BetterScroll'
 
 export default {
   name: 'fish-page',
@@ -124,7 +129,7 @@ export default {
       zones: 'zones',
       bigFish: 'bigFish',
     }),
-    ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds']),
+    ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds', 'showFilter']),
   },
   watch: {
     weatherChangeTrigger() {
@@ -230,9 +235,36 @@ export default {
 }
 </script>
 
-<style scoped>
->>> .list-wrapper .v-expansion-panel-content__wrap {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
+<style lang="sass" scoped>
+$top-bars-padding: 88px + 31px
+$filter-panel-height: 261px
+
+.list-wrapper::v-deep
+  .v-expansion-panel-content__wrap
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+.filter-wrapper
+  position: fixed
+  margin-top: 0
+  left: 0
+  z-index: 99
+
+  &:not(.show-filter)
+    display: none
+
+.main-area::v-deep
+  position: relative
+
+  &.show-filter
+    top: $filter-panel-height
+
+  &.show-filter .better-scroll
+    height: calc(100vh - #{$top-bars-padding + $filter-panel-height})
+
+  &:not(.show-filter)
+    top: 0
+
+  &:not(.show-filter) .better-scroll
+    height: calc(100vh - #{$top-bars-padding})
 </style>
