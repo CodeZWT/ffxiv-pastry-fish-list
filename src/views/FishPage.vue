@@ -34,6 +34,7 @@
                   :fish-list="sortedFilteredFishList"
                   :fish-list-time-part="fishListTimePart"
                   :fish-list-weather-change-part="fishListWeatherChangePart"
+                  show-fish-divider
                 />
               </v-expansion-panel-content>
             </v-expansion-panel>

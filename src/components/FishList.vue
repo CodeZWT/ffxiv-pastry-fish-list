@@ -26,7 +26,7 @@
                         :fish-time-part="fishListTimePart[fish._id]"
                         :predators="getPredators(fish)"
                         :color="fishColors[index]"
-                        :show-divider="firstFishWaitingIndex === index"
+                        :show-divider="showFishDivider && firstFishWaitingIndex === index"
                       />
                     </div>
                   </v-fade-transition>
@@ -74,6 +74,10 @@ export default {
     fishListWeatherChangePart: {
       type: Object,
       default: () => ({}),
+    },
+    showFishDivider: {
+      type: Boolean,
+      default: false,
     },
   },
   data: () => ({

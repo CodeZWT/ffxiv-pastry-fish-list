@@ -10,7 +10,7 @@
     <!--    <pin-button :value="fish.pinned" @input="setPinned($event)" />-->
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col :class="!inPredator ? 'col-8 col-md-3' : 'col-12 col-md-6'">
-        <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
+        <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row; min-height: 48px">
           <div class="d-flex; align-center">
             <toggle-button
               :value="fish.pinned"
