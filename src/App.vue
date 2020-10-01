@@ -44,7 +44,7 @@
       </v-container>
     </v-main>
     <v-footer app style="font-size: small">
-      <div>Animated icon by <a href="http://icons8.com">Icons8</a></div>
+      <div>动画图标来自<a href="http://icons8.com">Icons8</a></div>
       <v-spacer />
       <div>ALL FINAL FANTASY XIV CONTENT IS PROPERTY OF SQUARE ENIX CO., LTD</div>
     </v-footer>
@@ -106,6 +106,6 @@ body {
 }
 
 .bscroll-vertical-scrollbar {
-  z-index: 9998
+  z-index: 9998;
 }
 </style>

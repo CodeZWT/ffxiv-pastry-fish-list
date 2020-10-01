@@ -76,7 +76,7 @@ export default {
       get() {
         return this.value
       },
-      set(showDialog){
+      set(showDialog) {
         return this.$emit('input', showDialog)
       },
     },

@@ -12,7 +12,7 @@
         <!--              <v-virtual-scroll :items="fishList" :item-height="100" height="1000">-->
         <!--                <template v-slot="{ item: fish, index }">-->
         <v-expansion-panel v-for="(fish, index) in fishList" :key="index">
-          <v-expansion-panel-header :color="fishColors[index]">
+          <v-expansion-panel-header class="fish-header" :color="listItemColor(index)">
             <template v-slot:default="{ open }">
               <div>
                 <div>
@@ -25,6 +25,8 @@
                         :value="fish"
                         :fish-time-part="fishListTimePart[fish._id]"
                         :predators="getPredators(fish)"
+                        :color="fishColors[index]"
+                        :show-divider="firstFishWaitingIndex === index"
                       />
                     </div>
                   </v-fade-transition>
@@ -87,6 +89,9 @@ export default {
         return DataUtil.getColorByStatus(completed, countDownType, oddIndex)
       })
     },
+    firstFishWaitingIndex() {
+      return this.fishList.findIndex(fish => this.fishListTimePart[fish._id].countDown?.type === DataUtil.WAITING)
+    },
     getPredators() {
       return value =>
         DataUtil.getPredators(
@@ -100,7 +105,16 @@ export default {
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
   },
+  methods: {
+    listItemColor(index) {
+      return DataUtil.ITEM_COLOR.NORMAL[index % 2]
+    },
+  },
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+.fish-header
+  padding-left: 0 !important
+  padding-right: 0 !important
+</style>

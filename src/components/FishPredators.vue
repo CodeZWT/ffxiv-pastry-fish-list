@@ -1,6 +1,11 @@
 <template>
   <v-layout column style="width: 100%" class="mt-2">
-    <div v-for="(predator, index) in value" :key="predator._id" :class="fishColors[index]" style="position: relative">
+    <div
+      v-for="(predator, index) in value"
+      :key="predator._id"
+      style="position: relative"
+      :class="listItemColor(index)"
+    >
       <fish-list-brief-header :value="predator" :fish-time-part="predator.fishTimePart" in-predator />
     </div>
   </v-layout>
@@ -33,6 +38,11 @@ export default {
         .map(it => it.split(' '))
     },
     ...mapGetters(['getFishCompleted']),
+  },
+  methods: {
+    listItemColor(index) {
+      return DataUtil.ITEM_COLOR.NORMAL[index % 2]
+    },
   },
 }
 </script>

@@ -1,13 +1,26 @@
 <template>
   <div style="width: 100%">
-    <pin-button :value="fish.pinned" @input="setPinned($event)" />
+    <div
+      v-if="!inPredator"
+      style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 2px; z-index: 1"
+      :class="color"
+    />
+    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />
+
+    <!--    <pin-button :value="fish.pinned" @input="setPinned($event)" />-->
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
-      <v-col class="col-8 col-md-3">
+      <v-col :class="!inPredator ? 'col-8 col-md-3' : 'col-12 col-md-6'">
         <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
-          <div v-if="!inPredator" style="display: flex; align-items: center">
+          <div class="d-flex; align-center">
+            <toggle-button
+              :value="fish.pinned"
+              @input="setPinned($event)"
+              checked-icon="mdi-pin"
+              unchecked-icon="mdi-pin-outline"
+            />
             <toggle-button :value="fish.completed" @input="setCompleted($event)" />
           </div>
-          <div v-else style="display: flex; align-items: center; width: 36px; justify-content: center">
+          <div v-if="inPredator" style="display: flex; align-items: center; width: 36px; justify-content: center">
             <div class="text-subtitle-1">{{ fish.requiredCnt }}</div>
           </div>
           <div class="mr-1">
@@ -16,7 +29,11 @@
           <div class="text-subtitle-1 text-truncate" :title="fish.id">{{ fish.name }}</div>
         </div>
       </v-col>
-      <v-col style="display: flex; flex-direction: column; justify-content: center" class="col-4 col-md-3">
+      <v-col
+        v-if="!inPredator"
+        style="display: flex; flex-direction: column; justify-content: center"
+        class="col-4 col-md-3"
+      >
         <div class="text-subtitle-2 text-truncate">
           {{ fish.zone }}
         </div>
@@ -43,8 +60,9 @@
         <div class="text-subtitle-2">
           {{ $t(fish.countDownType) }}
         </div>
-        <div v-if="fish.hasTimeConstraint" class="text-subtitle-2">
-          {{ fish.countDownTimeText }}
+        <div v-if="fish.hasTimeConstraint" class="d-flex align-center">
+          <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
+          <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
         </div>
       </v-col>
     </v-row>
@@ -59,15 +77,15 @@
 import { mapGetters, mapMutations } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
-
 import ToggleButton from '@/components/basic/ToggleButton'
-import PinButton from '@/components/basic/PinButton'
 import FishBaitList from '@/components/FishBaitList'
+import bellIcon from '@/assets/icon/bell.json'
+import LottieIcon from '@/components/basic/LottieIcon'
 
 export default {
   name: 'FishListBriefHeader',
   // to deal with recursive components
-  components: { FishBaitList, PinButton, ToggleButton, FishPredators: () => import('@/components/FishPredators') },
+  components: { LottieIcon, FishBaitList, ToggleButton, FishPredators: () => import('@/components/FishPredators') },
   props: {
     value: {
       type: Object,
@@ -85,9 +103,19 @@ export default {
       type: Boolean,
       default: false,
     },
+    color: {
+      type: String,
+      default: '',
+    },
+    showDivider: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     fisher: fisher,
+    rootPath: process.env.ASSET_PATH,
+    bellIcon: bellIcon,
   }),
   computed: {
     fish() {
@@ -113,6 +141,7 @@ export default {
         countDownTime: this.fishTimePart.countDown?.time,
         countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown?.time),
         hasTimeConstraint: DataUtil.hasCountDown(this.fishTimePart.countDown),
+        isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
         requiredCnt: this.value.requiredCnt ?? 0,
         predators: this.predators,
       }
