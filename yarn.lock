@@ -882,6 +882,32 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@better-scroll/core@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@better-scroll/core/-/core-2.0.4.tgz#7d3ccdc1b443553297ef3596d26e0d49e4655d98"
+  integrity sha512-DKmQKnb537vxQ9T9EyhP1DkChvsgA5+LwVnEVnYDR4w/2/gmQVsAN2m0DRja6vLx6o40Uex3bODqxeJqhCkYhA==
+  dependencies:
+    "@better-scroll/shared-utils" "^2.0.4"
+
+"@better-scroll/mouse-wheel@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@better-scroll/mouse-wheel/-/mouse-wheel-2.0.4.tgz#5713e51aeeb361e7b88380123c64a2fdc42ea0ac"
+  integrity sha512-rtu1CK7YjrtnPrC4qRYXAU+7OsV8T/OVQ1mHoS4pHgGNavioZksKPSgZbyp4zt+AibEWPeA4y4EvZRWw6VwBTQ==
+  dependencies:
+    "@better-scroll/core" "^2.0.4"
+
+"@better-scroll/scroll-bar@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@better-scroll/scroll-bar/-/scroll-bar-2.0.4.tgz#39798b461d4cfd5c8096933c88742a821566ca89"
+  integrity sha512-XMRJI3S2h+PdJ0URpAcKUcYFEjBT8JtMbZlsceElKCZQE8FzLE5p6fOItPQsb7tTeOrC4U32QzvuB42h/prxsg==
+  dependencies:
+    "@better-scroll/core" "^2.0.4"
+
+"@better-scroll/shared-utils@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@better-scroll/shared-utils/-/shared-utils-2.0.4.tgz#4fc10e16fde42abfc8501ce1a521b05a862bc2e9"
+  integrity sha512-soMtzk6GIUMy4zOlOCEt2hE+PiYNctmjPXQkb3UgTTlcXH6vJJejr3QnxXxa2w2mDa/hz9YSaZGXZ7z67WGEMg==
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.npm.taobao.org/@hapi/address/download/@hapi/address-2.1.4.tgz?cache=0&sync_timestamp=1593993832157&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40hapi%2Faddress%2Fdownload%2F%40hapi%2Faddress-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"

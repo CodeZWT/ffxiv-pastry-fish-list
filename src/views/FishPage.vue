@@ -1,7 +1,7 @@
 <template>
-  <div style="width: 100%">
-    <v-row>
-      <v-col cols="12">
+  <div style="width: 100%;">
+    <better-scroll :data="listSizeChangeTrigger" style="height: calc(100vh - 88px - 31px)">
+      <div style="width: 100%">
         <fish-filter :filters="filters" @input="onFiltersUpdate" />
         <fish-search
           :fish-data="fishSourceList"
@@ -34,8 +34,8 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
-      </v-col>
-    </v-row>
+      </div>
+    </better-scroll>
   </div>
 </template>
 
@@ -48,10 +48,11 @@ import DataUtil from '@/utils/DataUtil'
 import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
 import FishSearch from '@/components/FishSearch'
+import BetterScroll from '@/components/basic/BetterScroll'
 
 export default {
   name: 'fish-page',
-  components: { FishSearch, FishList, FishFilter },
+  components: { BetterScroll, FishSearch, FishList, FishFilter },
   data: () => ({
     now: Date.now(),
     weatherChangeTrigger: 0,
@@ -60,6 +61,14 @@ export default {
     fishListOpenStatus: [0, 1],
   }),
   computed: {
+    listSizeChangeTrigger() {
+      // TODO: fix trigger actually triggered every second...
+      return {
+        fishListOpenStatus: this.fishListOpenStatus,
+        pinnedFishList: this.pinnedFishList.length,
+        sortedFilteredFishList: this.sortedFilteredFishList.length,
+      }
+    },
     eorzeaTime() {
       return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
     },

@@ -30,7 +30,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
+      <v-container class="py-0">
         <router-view />
       </v-container>
     </v-main>
@@ -84,5 +84,11 @@ export default {
 
 .cafekit.ck-popup {
   z-index: 100 !important;
+}
+
+html,
+body {
+  overflow-y: hidden !important;
+  /*height: 100%;*/
 }
 </style>
