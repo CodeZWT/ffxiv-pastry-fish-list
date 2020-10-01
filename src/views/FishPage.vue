@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
-      <fish-filter :filters="filters" @input="onFiltersUpdate" />
+        <fish-filter :filters="filters" @input="onFiltersUpdate" />
     </div>
     <fish-search
       v-model="showSearchDialog"
@@ -255,19 +255,18 @@ $filter-panel-height: 261px
     padding-right: 0 !important
 
 .filter-wrapper
-  position: fixed
-  margin-top: 0
-  left: 0
-  z-index: 99
+  margin-right: 8px
+  z-index: 4
 
   &:not(.show-filter)
     display: none
 
 .main-area::v-deep
   position: relative
+  overflow: hidden
 
   &.show-filter
-    top: $filter-panel-height
+    top: 0
 
   &.show-filter .better-scroll
     height: calc(100vh - #{$top-bars-padding + $filter-panel-height})
