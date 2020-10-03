@@ -7,9 +7,11 @@ Vue.use(Vuetify)
 
 export default new Vuetify({
   preset,
+  breakpoint: {
+    mobileBreakpoint: 'xs' // This is equivalent to a value of 600
+  },
   theme: {
     // dark: true,
-    mobileBreakpoint: 960,
     // themes: {
     //   dark: {
     //     primary: colors.deepPurple.base,
