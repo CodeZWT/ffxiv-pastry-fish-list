@@ -18,7 +18,11 @@
                 <div>
                   <v-fade-transition leave-absolute>
                     <div v-if="open">
-                      <fish-list-expanded-header :value="fish" />
+                      <fish-list-expanded-header
+                        :value="fish"
+                        :color="fishColors[index]"
+                        :show-divider="showFishDivider && firstFishWaitingIndex === index"
+                      />
                     </div>
                     <div v-else>
                       <fish-list-brief-header
@@ -34,14 +38,15 @@
               </div>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content :color="fishColors[index]">
+          <v-expansion-panel-content :color="listItemColor(index)">
             <fish-list-item-content
               :open="index === openPanelIndex"
               :value="fish"
               :fish-time-part="fishListTimePart[fish._id]"
               :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
               :predators="getPredators(fish)"
-              :color="fishColors[index]"
+              :fishing-type-color="fishColors[index]"
+              :list-item-color="listItemColor(index)"
             ></fish-list-item-content>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -86,11 +91,10 @@ export default {
   }),
   computed: {
     fishColors() {
-      return this.fishList.map((fish, index) => {
-        const oddIndex = index % 2
+      return this.fishList.map(fish => {
         const completed = this.getFishCompleted(fish._id)
         const countDownType = this.fishListTimePart[fish._id].countDown?.type
-        return DataUtil.getColorByStatus(completed, countDownType, oddIndex)
+        return DataUtil.getColorByStatus(completed, countDownType)
       })
     },
     firstFishWaitingIndex() {

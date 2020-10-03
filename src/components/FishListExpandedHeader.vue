@@ -1,13 +1,26 @@
 <template>
   <div style="width: 100%">
-    <pin-button :value="fish.pinned" @input="setPinned($event)" />
+    <!--    <pin-button :value="fish.pinned" @input="setPinned($event)" />-->
+    <div
+      style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 4px; z-index: 1;border-radius: 2px"
+      :class="color"
+    />
+    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />
     <v-row no-gutters>
       <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
-        <toggle-button :value="fish.completed" @input="setCompleted($event)" />
-        <div class="mr-1">
+        <div class="d-flex align-center flex-column flex-sm-row">
+          <toggle-button
+            :value="fish.pinned"
+            @input="setPinned($event)"
+            checked-icon="mdi-pin"
+            unchecked-icon="mdi-pin-outline"
+          />
+          <toggle-button :value="fish.completed" @input="setCompleted($event)" />
+        </div>
+        <div>
           <div :class="fish.icon" />
         </div>
-        <div class="text-subtitle-1" :title="fish.id">
+        <div class="text-subtitle-1 ml-1" :title="fish.id">
           {{ fish.name }}
           <v-btn text icon x-small @click.stop="copyToClipboard(fish.name)" title="拷贝名称">
             <v-icon x-small>mdi-content-copy</v-icon>
@@ -26,15 +39,22 @@ import { mapGetters, mapMutations } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import copy from 'clipboard-copy'
 import ToggleButton from '@/components/basic/ToggleButton'
-import PinButton from '@/components/basic/PinButton'
 
 export default {
   name: 'FishListExpandedHeader',
-  components: { PinButton, ToggleButton },
+  components: { ToggleButton },
   props: {
     value: {
       type: Object,
       default: () => ({}),
+    },
+    color: {
+      type: String,
+      default: '',
+    },
+    showDivider: {
+      type: Boolean,
+      default: false,
     },
   },
   data: () => ({

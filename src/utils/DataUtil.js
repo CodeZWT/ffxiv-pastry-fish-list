@@ -61,15 +61,15 @@ export default {
     return (MAP_SIZE_FACTOR_MAGIC / (sizeFactor / 100)) * (pixelIndex / MAP_FILE_PIXEL_MAX) + 1
   },
 
-  getColorByStatus(completed, countDownType, oddIndex) {
+  getColorByStatus(completed, countDownType) {
     if (completed) {
-      return this.ITEM_COLOR.COMPLETED[oddIndex]
+      return this.ITEM_COLOR.COMPLETED[0]
     } else {
       switch (countDownType) {
         case this.FISHING:
-          return this.ITEM_COLOR.FISHING[oddIndex]
+          return this.ITEM_COLOR.FISHING[0]
         default:
-          return this.ITEM_COLOR.WAITING[oddIndex]
+          return this.ITEM_COLOR.WAITING[0]
       }
     }
   },

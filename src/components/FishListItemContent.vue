@@ -3,12 +3,12 @@
     <v-row>
       <v-expansion-panels hover flat tile :value="0">
         <v-expansion-panel>
-          <v-expansion-panel-header :color="color">
+          <v-expansion-panel-header :color="listItemColor">
             <div style="display: flex; align-items: center; justify-content: center">
               <div class="text-subtitle-1">
                 {{ fish.zone }}
               </div>
-              <div v-if="fish.zone !== fish.fishingSpot" class="text-subtitle-1 ml-2" :title="fish.fishingSpotId">
+              <div v-if="fish.zone !== fish.fishingSpotName" class="text-subtitle-1 ml-2" :title="fish.fishingSpotId">
                 {{ fish.fishingSpotName }}
               </div>
               <div class="text-subtitle-1 ml-2">({{ fish.fishSpotPositionText }})</div>
@@ -19,7 +19,7 @@
               </div>
             </div>
           </v-expansion-panel-header>
-          <v-expansion-panel-content :color="color">
+          <v-expansion-panel-content :color="listItemColor">
             <div>
               <!--              <div style="height: 400px; width: 100%; margin-top: 12px">-->
               <!--                <eorzea-map-->
@@ -56,21 +56,24 @@
     <!--    <v-row v-if="fish.hasCountDown">-->
     <div class="py-3">
       <v-row v-if="fish.countDownType === WAITING">
-        <v-progress-linear height="25">
+        <v-progress-linear height="25" :color="fishingColor">
           <template>
             <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }}</strong>
           </template>
         </v-progress-linear>
       </v-row>
       <v-row v-else-if="fish.countDownType === FISHING" style="height: 100%">
-        <v-progress-linear :value="fish.countDownRemainPercentage" height="25" rounded>
+        <v-progress-linear :value="fish.countDownRemainPercentage" height="25" rounded :color="fishingColor">
           <template v-slot="{ value }">
-            <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }} ({{ Math.ceil(value) }}%)</strong>
+            <div class="d-flex align-center">
+              <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="25" width="25" />
+              <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }} ({{ Math.ceil(value) }}%)</strong>
+            </div>
           </template>
         </v-progress-linear>
       </v-row>
       <v-row v-else style="height: 100%">
-        <v-progress-linear :value="100" height="25" rounded dark color="success">
+        <v-progress-linear :value="100" height="25" rounded dark :color="fishingColor">
           <template>
             <strong>{{ $t(fish.countDownTypeName) }}</strong>
           </template>
@@ -78,16 +81,72 @@
       </v-row>
     </div>
     <!--    </v-row>-->
+    <v-row>
+      <v-col cols="6">
+        <div class="d-flex justify-center">天气</div>
+        <div class="d-flex justify-center" v-if="fish.hasWeatherConstraint">
+          <div style="display: flex">
+            <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
+              <div :class="weather.icon" :title="weather.name" />
+            </div>
+            <v-icon v-if="fish.previousWeatherSet.length > 0">
+              mdi-arrow-right
+            </v-icon>
+            <div v-for="weather in fish.weatherSetDetail" :key="weather.name" :title="weather.name">
+              <div :class="weather.icon" :title="weather.name" />
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-center" v-else>
+          {{ $t('none') }}
+        </div>
+      </v-col>
+      <v-col cols="6">
+        <div class="d-flex justify-center">时间</div>
+        <div class="d-flex justify-center">
+          <div v-if="fish.hasTimeConstraint">{{ fish.startHour }} - {{ fish.endHour }}</div>
+          <div v-else>
+            {{ $t('none') }}
+          </div>
+        </div>
+      </v-col>
+      <v-col cols="12">
+        <div class="d-flex justify-center">需要状态 | 鱼饵/以小钓大</div>
+        <div class="d-flex justify-center align-center">
+          <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
+            <div :class="fish.fishEyesIcon" />
+            <div class="ml-3">{{ fish.fishEyesText }}</div>
+          </div>
+          <div v-if="fish.hasPredators">
+            <div :class="fish.predatorsIcon" />
+          </div>
+          <div v-if="fish.hasSnagging">
+            <div :class="fish.snaggingIcon" />
+          </div>
+          <div v-if="!fish.hasFishEyes && !fish.hasPredators && !fish.hasSnagging">
+            {{ $t('none') }}
+          </div>
+          <fish-bait-list :baits="fish.baits" class="ml-3" />
+        </div>
+      </v-col>
+    </v-row>
+    <!--        <v-row>-->
+    <!--          <fishing-spot-table :value="fish.fishingSpotFish" />-->
+    <!--        </v-row>-->
+
     <v-row v-if="fish.hasCountDown">
       <v-expansion-panels hover flat tile>
         <v-expansion-panel>
-          <v-expansion-panel-header :color="color">
+          <v-expansion-panel-header :color="listItemColor">
             <div style="display: flex; justify-content: center">
-              <div><v-icon>mdi-calendar</v-icon> {{ $t('countDown.fishWindowBtn') }}</div>
+              <div>
+                <v-icon>mdi-calendar</v-icon>
+                {{ $t('countDown.fishWindowBtn') }}
+              </div>
             </div>
           </v-expansion-panel-header>
-          <v-expansion-panel-content :color="color">
-            <v-simple-table :class="color" dense dark>
+          <v-expansion-panel-content :color="listItemColor">
+            <v-simple-table :class="listItemColor" dense dark>
               <template v-slot:default>
                 <thead>
                   <tr>
@@ -109,67 +168,11 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </v-row>
-    <v-row>
-      <v-col cols="4">
-        <v-row class="justify-center">天气</v-row>
-        <v-row class="justify-center" v-if="fish.hasWeatherConstraint">
-          <div style="display: flex">
-            <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
-              <div :class="weather.icon" :title="weather.name" />
-            </div>
-            <v-icon v-if="fish.previousWeatherSet.length > 0">
-              mdi-arrow-right
-            </v-icon>
-            <div v-for="weather in fish.weatherSetDetail" :key="weather.name" :title="weather.name">
-              <div :class="weather.icon" :title="weather.name" />
-            </div>
-          </div>
-        </v-row>
-        <v-row class="justify-center" v-else>
-          {{ $t('none') }}
-        </v-row>
-      </v-col>
-      <v-col cols="4">
-        <v-row class="justify-center">时间</v-row>
-        <v-row class="justify-center">
-          <div v-if="fish.hasTimeConstraint">{{ fish.startHour }} - {{ fish.endHour }}</div>
-          <div v-else>
-            {{ $t('none') }}
-          </div>
-        </v-row>
-      </v-col>
-      <v-col cols="4">
-        <v-row class="justify-center">鱼眼/鱼识/钓组</v-row>
-        <v-row class="justify-center">
-          <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
-            <div :class="fish.fishEyesIcon" />
-            <div class="ml-3">{{ fish.fishEyesText }}</div>
-          </div>
-          <div v-if="fish.hasPredators">
-            <div :class="fish.predatorsIcon" />
-          </div>
-          <div v-if="fish.hasSnagging">
-            <div :class="fish.snaggingIcon" />
-          </div>
-          <div v-if="!fish.hasFishEyes && !fish.hasPredators && !fish.hasSnagging">
-            {{ $t('none') }}
-          </div>
-        </v-row>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <fish-bait-list :baits="fish.baits" />
-      </v-col>
-    </v-row>
-    <!--        <v-row>-->
-    <!--          <fishing-spot-table :value="fish.fishingSpotFish" />-->
-    <!--        </v-row>-->
 
     <v-row v-if="fish.hasPredators">
-      前置鱼
+      <v-col>前置鱼</v-col>
     </v-row>
-    <v-row v-if="fish.hasPredators" class="mt-2">
+    <v-row v-if="fish.hasPredators">
       <fish-predators :value="fish.predators" />
     </v-row>
   </v-col>
@@ -182,10 +185,12 @@ import DataUtil from '@/utils/DataUtil'
 import FishPredators from '@/components/FishPredators'
 import FishBaitList from '@/components/FishBaitList'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
+import LottieIcon from '@/components/basic/LottieIcon'
+import bellIcon from '@/assets/icon/bell.json'
 
 export default {
   name: 'FishListItemContent',
-  components: { EorzeaSimpleMap, FishBaitList, FishPredators },
+  components: { LottieIcon, EorzeaSimpleMap, FishBaitList, FishPredators },
   props: {
     open: {
       type: Boolean,
@@ -203,11 +208,16 @@ export default {
       type: Object,
       default: () => ({}),
     },
+
     predators: {
       type: Array,
       default: () => [],
     },
-    color: {
+    fishingTypeColor: {
+      type: String,
+      default: '',
+    },
+    listItemColor: {
       type: String,
       default: '',
     },
@@ -217,6 +227,7 @@ export default {
     FISHING: DataUtil.FISHING,
     WAITING: DataUtil.WAITING,
     TUGS: Object.keys(DataUtil.TUG_ICON),
+    bellIcon: bellIcon,
   }),
   computed: {
     fish() {
@@ -254,7 +265,9 @@ export default {
         countDownTotal: this.fishTimePart.countDown.fishWindowTotal,
         countDownRemainPercentage:
           (this.fishTimePart.countDown.time / this.fishTimePart.countDown.fishWindowTotal) * 100,
+        isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
         baits: this.getBaits(this.value),
+        isCompleted: this.getFishCompleted(this.value._id),
       }
     },
     fishWindows() {
@@ -272,6 +285,9 @@ export default {
         }
       })
     },
+    fishingColor() {
+      return DataUtil.getColorByStatus(this.fish.isCompleted, this.fish.countDownType)
+    },
     ...mapGetters([
       'getWeather',
       'getFishingSpot',
@@ -280,6 +296,7 @@ export default {
       'getItemName',
       'getZoneName',
       'getFishingSpotsName',
+      'getFishCompleted',
     ]),
   },
   methods: {
