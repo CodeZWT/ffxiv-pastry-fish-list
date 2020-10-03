@@ -25,6 +25,7 @@ export default new Vuex.Store({
     bigFish: DATA.BIG_FISH,
     fishingSpotFish: groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
     showSearchDialog: false,
+    scrollRefreshRequestCnt: 0,
     userData: store.get('userData') ?? {
       completed: [],
       pinned: [],
@@ -182,6 +183,12 @@ export default new Vuex.Store({
     },
     setShowSearchDialog(state, show) {
       state.showSearchDialog = show
+    },
+    fetchScrollRefreshCntAndReset(state) {
+      state.scrollRefreshRequestCnt = 0
+    },
+    addScrollRefreshCnt(state) {
+      state.scrollRefreshRequestCnt++
     },
   },
   actions: {},

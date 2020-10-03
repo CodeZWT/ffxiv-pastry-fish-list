@@ -10,10 +10,10 @@
       :fish-list-weather-change-part="fishListWeatherChangePart"
     />
     <div :class="{ 'main-area': true, 'show-filter': showFilter }">
-      <better-scroll :data="listSizeChangeTrigger">
+      <better-scroll :data="listSizeChangeTrigger" v-resize="onResize">
         <div style="width: 100%">
           <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
-            <v-expansion-panel>
+            <v-expansion-panel @change="addScrollRefreshCnt">
               <v-expansion-panel-header>
                 {{ $t('list.pinTitle') }}
               </v-expansion-panel-header>
@@ -25,7 +25,7 @@
                 />
               </v-expansion-panel-content>
             </v-expansion-panel>
-            <v-expansion-panel>
+            <v-expansion-panel @change="addScrollRefreshCnt">
               <v-expansion-panel-header>
                 {{ $t('list.normalTitle') }}
               </v-expansion-panel-header>
@@ -66,16 +66,17 @@ export default {
     fishListWeatherChangePart: {},
     openPanelIndex: undefined,
     fishListOpenStatus: [0, 1],
+    listSizeChangeTrigger: 1,
   }),
   computed: {
-    listSizeChangeTrigger() {
-      // TODO: fix trigger actually triggered every second...
-      return {
-        fishListOpenStatus: this.fishListOpenStatus,
-        pinnedFishList: this.pinnedFishList.length,
-        sortedFilteredFishList: this.sortedFilteredFishList.length,
-      }
-    },
+    // listSizeChangeTrigger() {
+    //   TODO: fix trigger actually triggered every second...
+    // return {
+    //   fishListOpenStatus: this.fishListOpenStatus,
+    //   pinnedFishList: this.pinnedFishList.length,
+    //   sortedFilteredFishList: this.sortedFilteredFishList.length,
+    // }
+    // },
     eorzeaTime() {
       return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
     },
@@ -139,6 +140,7 @@ export default {
       zones: 'zones',
       bigFish: 'bigFish',
       showSearch: 'showSearchDialog',
+      scrollRefreshRequestCnt: 'scrollRefreshRequestCnt',
     }),
     ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds', 'showFilter']),
   },
@@ -150,6 +152,12 @@ export default {
         }
         return fish2WeatherPart
       }, {})
+    },
+    scrollRefreshRequestCnt(cnt) {
+      if (cnt > 0) {
+        this.listSizeChangeTrigger *= -1
+        this.fetchScrollRefreshCntAndReset()
+      }
     },
   },
   created() {
@@ -241,7 +249,10 @@ export default {
     onFiltersUpdate(filters) {
       this.setFilters(filters)
     },
-    ...mapMutations(['setFilters', 'setShowSearchDialog']),
+    onResize() {
+      this.addScrollRefreshCnt()
+    },
+    ...mapMutations(['setFilters', 'setShowSearchDialog', 'addScrollRefreshCnt', 'fetchScrollRefreshCntAndReset']),
   },
 }
 </script>

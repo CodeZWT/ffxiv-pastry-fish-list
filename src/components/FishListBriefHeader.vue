@@ -25,7 +25,7 @@
               v-if="inPredator"
               style="position: absolute; width: 40px; height: 40px; justify-content: center; display: flex; align-items: center"
             >
-              <div class="text-h6">{{ fish.requiredCnt }}</div>
+              <div class="text-h6" style="text-shadow: 1px 1px #000000">{{ fish.requiredCnt }}</div>
             </div>
             <div :class="fish.icon" />
           </div>

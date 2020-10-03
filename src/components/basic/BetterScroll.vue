@@ -77,7 +77,7 @@ export default {
      */
     refreshDelay: {
       type: Number,
-      default: 20,
+      default: 400,
     },
   },
   mounted() {
@@ -97,16 +97,16 @@ export default {
         click: this.click,
         scrollX: this.scrollX,
         scrollY: true,
-        // wheel: true,
         scrollbar: {
           interactive: true,
-          fade: false,
+          fade: true,
         },
         mouseWheel: {
           speed: 20,
           invert: false,
           easeTime: 300,
         },
+        bounce: false,
       })
       // 是否派发滚动事件
       if (this.listenScroll) {
@@ -165,9 +165,7 @@ export default {
   },
   watch: {
     // 监听数据的变化，延时refreshDelay时间后调用refresh方法重新计算，保证滚动效果正常
-
     data() {
-      console.log('refresh')
       setTimeout(() => {
         this.refresh()
       }, this.refreshDelay)
