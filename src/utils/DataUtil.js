@@ -73,6 +73,14 @@ export default {
       }
     }
   },
+  isAllAvailableFish(fish) {
+    return (
+      fish.previousWeatherSet.length === 0 &&
+      fish.weatherSet.length === 0 &&
+      fish.startHour === 0 &&
+      fish.endHour === 24
+    )
+  },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 

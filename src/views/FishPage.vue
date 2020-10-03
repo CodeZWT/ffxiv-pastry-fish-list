@@ -55,6 +55,7 @@ import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
 import FishSearch from '@/components/FishSearch'
 import BetterScroll from '@/components/basic/BetterScroll'
+import { intersection, isEqual } from 'lodash'
 // import BetterScroll from '@/components/basic/BetterScroll'
 
 export default {
@@ -179,14 +180,14 @@ export default {
     getCountDown(fish, now) {
       // utilize 8 hours fish windows computed if exists
       // and not out of time(use 2 fish window cached if necessary)
-      if (
-        fish.previousWeatherSet.length === 0 &&
-        fish.weatherSet.length === 0 &&
-        fish.startHour === 0 &&
-        fish.endHour === 24
-      ) {
-        return { type: DataUtil.ALL_AVAILABLE }
-      }
+      // if (
+      //   fish.previousWeatherSet.length === 0 &&
+      //   fish.weatherSet.length === 0 &&
+      //   fish.startHour === 0 &&
+      //   fish.endHour === 24
+      // ) {
+      //   return { type: DataUtil.ALL_AVAILABLE }
+      // }
       const fishingSpot = this.fishingSpots[fish.location]
       if (fishingSpot) {
         const fishWindowsComputed = this.fishListWeatherChangePart[fish._id]
@@ -203,6 +204,9 @@ export default {
             fish.weatherSet,
             2
           )
+        }
+        if (nextTwoFishWindow.length === 0) {
+          return { type: DataUtil.ALL_AVAILABLE }
         }
         let nextFishWindow
         if (now > nextTwoFishWindow[0][1]) {
@@ -227,23 +231,58 @@ export default {
     },
     getFishWindow(fish, now) {
       // console.debug(fish)
-      const fishingSpot = this.fishingSpots[fish.location]
-      if (
-        fishingSpot == null ||
-        (fish.previousWeatherSet.length === 0 &&
-          fish.weatherSet.length === 0 &&
-          fish.startHour === 0 &&
-          fish.endHour === 24)
-      ) {
-        return []
+      if (Object.keys(fish.predators).length === 0) {
+        return this.getFishWindowOfSingleFish(fish, now)
+      } else {
+        // TODO change to a more efficient way
+        const predators = Object.keys(fish.predators).map(predatorId => {
+          return this.allFish[predatorId]
+        })
+        if (predators.every(it => DataUtil.isAllAvailableFish(it) || this.isConstrainsEqual(fish, it))) {
+          return this.getFishWindowOfSingleFish(fish, now)
+        } else if (predators.length === 1) {
+          return this.getFishWindowOfSingleFish(this.mergeConstraints(fish, predators[0]), now)
+        } else {
+          // So in real life, only 'Warden of the Seven Hues' i.e. "七彩天主" goes here,
+          // let do some dirty work
+          if (fish._id === 24994) {
+            // just return the 'Green Prismfish' i.e. "绿彩鱼" fish windows...
+            return this.getFishWindowOfSingleFish(this.allFish[24204], now)
+          } else {
+            console.error('Unsupported fish!', fish._id)
+            return this.getFishWindowOfSingleFish(fish, now)
+          }
+        }
       }
+    },
+    mergeConstraints(fish1, fish2) {
+      return {
+        ...fish1,
+        previousWeatherSet: intersection(fish1.previousWeatherSet, fish2.previousWeatherSet),
+        weatherSet: intersection(fish1.weatherSet, fish2.weatherSet),
+        // TODO: actually some ranges are [20-8] but since we checked all fish with predators.
+        // So just ignore those impossible cases here...
+        startHour: Math.max(fish1.startHour, fish2.startHour),
+        endHour: Math.min(fish1.endHour, fish2.endHour),
+      }
+    },
+    getFishWindowOfSingleFish(fish, now, n = FishWindow.FISH_WINDOW_FORECAST_N) {
       return FishWindow.getNextNFishWindows(
-        fishingSpot.territory_id,
+        this.fishingSpots[fish.location]?.territory_id,
         new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
         fish.startHour,
         fish.endHour,
         fish.previousWeatherSet,
-        fish.weatherSet
+        fish.weatherSet,
+        n
+      )
+    },
+    isConstrainsEqual(fish1, fish2) {
+      return (
+        isEqual(fish1.previousWeatherSet, fish2.previousWeatherSet) &&
+        isEqual(fish1.weatherSet, fish2.weatherSet) &&
+        fish1.startHour === fish2.startHour &&
+        fish1.endHour === fish2.endHour
       )
     },
     onFiltersUpdate(filters) {

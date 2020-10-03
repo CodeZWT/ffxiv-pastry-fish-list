@@ -1,8 +1,8 @@
 import EorzeaWeather from '@/utils/Weather'
 
-const FISH_WINDOW_FORECAST_N = 10
-
 export default {
+  FISH_WINDOW_FORECAST_N: 10,
+
   computeFishWindowIfExist(territoryId, periodStart, hourStart, hourEnd, previousWeatherSet, weatherSet) {
     const periodEnd = periodStart.toNextWeatherInterval()
     const prevPeriodStart = periodStart.toPreviousWeatherInterval()
@@ -49,9 +49,12 @@ export default {
     hourEnd,
     previousWeatherSet,
     weatherSet,
-    n = FISH_WINDOW_FORECAST_N
+    n = this.FISH_WINDOW_FORECAST_N
   ) {
-    if (previousWeatherSet.length === 0 && weatherSet.length === 0 && hourStart === 0 && hourEnd === 24) {
+    if (
+      territoryId == null ||
+      (previousWeatherSet.length === 0 && weatherSet.length === 0 && hourStart === 0 && hourEnd === 24)
+    ) {
       console.warn('not time and weather restraint fish!')
       return []
     }

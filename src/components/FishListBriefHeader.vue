@@ -39,6 +39,12 @@
         <div v-if="fish.hasTimeConstraint" class="d-flex align-center">
           <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
           <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
+          <div
+            v-if="fish.addBuffSuffix"
+            :title="$t('list.item.countDown.fishShadowHit')"
+            :class="fish.predatorsIcon"
+            style="margin-left: 2px"
+          />
         </div>
       </v-col>
       <v-col class="d-flex flex-column justify-center col-4 col-sm-3">
@@ -59,6 +65,12 @@
         <div v-else-if="isMobile" class="d-flex align-center">
           <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
           <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
+          <div
+            v-if="fish.addBuffSuffix"
+            :title="$t('list.item.countDown.fishShadowHit')"
+            :class="fish.predatorsIcon"
+            style="margin-left: 2px"
+          />
         </div>
       </v-col>
       <v-col class="col-12 col-sm-4 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0">
@@ -130,6 +142,7 @@ export default {
   }),
   computed: {
     fish() {
+      const hasPredators = Object.keys(this.value.predators).length > 0
       return {
         id: this.value._id,
         completed: this.getFishCompleted(this.value._id),
@@ -144,7 +157,7 @@ export default {
         fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
         fishEyesText: DataUtil.secondsToFishEyesString(this.value.fishEyes),
         fishEyesSeconds: this.value.fishEyes,
-        hasPredators: Object.keys(this.value.predators).length > 0,
+        hasPredators: hasPredators,
         predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
         hasSnagging: this.value.snagging,
         snaggingIcon: DataUtil.iconIdToClass(DataUtil.ICON_SNAGGING),
@@ -155,6 +168,7 @@ export default {
         isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
         requiredCnt: this.value.requiredCnt ?? 0,
         predators: this.predators,
+        addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
       }
     },
     isMobile() {

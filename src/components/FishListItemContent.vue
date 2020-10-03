@@ -59,7 +59,15 @@
       <v-row v-if="fish.countDownType === WAITING">
         <v-progress-linear height="25" :color="fishingColor">
           <template>
-            <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }}</strong>
+            <div class="d-flex align-center">
+              <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }}</strong>
+              <div
+                v-if="fish.addBuffSuffix"
+                :title="$t('list.item.countDown.fishShadowHit')"
+                :class="fish.predatorsIcon"
+                style="margin-left: 2px"
+              />
+            </div>
           </template>
         </v-progress-linear>
       </v-row>
@@ -69,6 +77,12 @@
             <div class="d-flex align-center">
               <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="25" width="25" />
               <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }} ({{ Math.ceil(value) }}%)</strong>
+              <div
+                v-if="fish.addBuffSuffix"
+                :title="$t('list.item.countDown.fishShadowHit')"
+                :class="fish.predatorsIcon"
+                style="margin-left: 2px"
+              />
             </div>
           </template>
         </v-progress-linear>
@@ -220,6 +234,7 @@ export default {
     },
     listItemColor: {
       type: String,
+
       default: '',
     },
   },
@@ -233,6 +248,7 @@ export default {
   computed: {
     fish() {
       const fishingSpot = this.getFishingSpot(this.value.location)
+      const hasPredators = Object.keys(this.value.predators).length > 0
       return {
         startHour: this.value.startHour,
         endHour: this.value.endHour,
@@ -242,7 +258,7 @@ export default {
         fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
         fishEyesText: DataUtil.secondsToFishEyesString(this.value.fishEyes),
         fishEyesSeconds: this.value.fishEyes,
-        hasPredators: this.predators.length > 0,
+        hasPredators: hasPredators,
         predators: this.predators,
         predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
         hasSnagging: this.value.snagging,
@@ -269,6 +285,7 @@ export default {
         isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
         baits: this.getBaits(this.value),
         isCompleted: this.getFishCompleted(this.value._id),
+        addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
       }
     },
     fishWindows() {

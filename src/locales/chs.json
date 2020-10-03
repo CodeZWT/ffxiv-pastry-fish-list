@@ -58,6 +58,9 @@
         "startTime": "开始时间",
         "interval": "持续时间",
         "nextInterval": "休眠期"
+      },
+      "countDown": {
+        "fishShadowHit": "可持续至最后此鱼影状态消失"
       }
     }
   }
