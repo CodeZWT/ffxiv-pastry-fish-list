@@ -161,7 +161,6 @@ export default {
     },
     resize() {
       const rect = this.$refs.container.getBoundingClientRect()
-      console.log(rect.width, rect.height)
       this.containerHeight = this.containerWidth = rect?.width
       // const markerRangeNode = this.$refs.markerRangeNode.getNode()
       // markerRangeNode.cache()

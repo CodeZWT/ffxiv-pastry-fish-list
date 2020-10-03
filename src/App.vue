@@ -44,9 +44,9 @@
       </v-container>
     </v-main>
     <v-footer app style="font-size: small">
-      <div>动画图标来自<a href="http://icons8.com">Icons8</a></div>
+      <div>Animated icon by <a href="http://icons8.com">Icons8</a></div>
       <v-spacer />
-      <div>ALL FINAL FANTASY XIV CONTENT IS PROPERTY OF SQUARE ENIX CO., LTD</div>
+      <div>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</div>
     </v-footer>
   </v-app>
 </template>

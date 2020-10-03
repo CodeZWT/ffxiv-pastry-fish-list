@@ -114,7 +114,6 @@ export default {
   },
   computed: {
     loading() {
-      console.log(this.filters)
       return this.filters === {}
     },
     filtersReturned() {
