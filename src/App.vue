@@ -73,6 +73,7 @@
       <div>Animated icon by <a href="http://icons8.com">Icons8</a></div>
       <v-spacer />
       <div>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</div>
+      <div class="resize-indicator" />
     </v-footer>
     <v-dialog v-model="showHelpDialog" :fullscreen="isMobile">
       <v-card>
@@ -159,5 +160,15 @@ body {
 
 .bscroll-vertical-scrollbar {
   z-index: 9998;
+}
+
+.resize-indicator {
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-bottom: 8px solid #ffffff;
+  border-left: 8px solid transparent;
 }
 </style>
