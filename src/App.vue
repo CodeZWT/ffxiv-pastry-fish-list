@@ -84,6 +84,10 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <input type="text" value="" id="clipboard" />
+    <v-snackbar :timeout="2000" v-model="snackbar.show" :color="snackbar.color" centered absolute>
+      <div class="text-center">{{ snackbar.text }}</div>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -91,7 +95,7 @@
 import EorzeaTime from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
 import fisher from '@/assets/fisher.png'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import helpMd from '@/assets/doc/help.md'
 
 export default {
@@ -114,6 +118,7 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
+    ...mapState(['snackbar']),
   },
   created() {
     setInterval(() => {

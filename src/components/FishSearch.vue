@@ -108,7 +108,7 @@ export default {
   methods: {
     filterOptions(item, queryText, itemText) {
       if (this.$i18n.locale === 'chs') {
-        console.log(PinyinMatch.match(itemText, queryText))
+        // console.log(PinyinMatch.match(itemText, queryText))
         return PinyinMatch.match(itemText, queryText) !== false
       } else {
         return itemText.toLowerCase().indexOf(queryText.toLowerCase()) > -1

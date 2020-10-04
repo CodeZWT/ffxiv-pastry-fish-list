@@ -55,7 +55,7 @@ export default {
       territoryId == null ||
       (previousWeatherSet.length === 0 && weatherSet.length === 0 && hourStart === 0 && hourEnd === 24)
     ) {
-      console.warn('not time and weather restraint fish!')
+      // console.warn('not time and weather restraint fish!')
       return []
     }
     // combine fish windows if connected

@@ -22,11 +22,11 @@
         </div>
         <div class="text-subtitle-1 ml-1" :title="fish.id">
           {{ fish.name }}
-          <v-btn text icon x-small @click.stop="copyToClipboard(fish.name)" title="拷贝名称">
-            <v-icon x-small>mdi-content-copy</v-icon>
+          <v-btn text icon small @click.stop="copyToClipboard(fish.name)" title="拷贝名称">
+            <v-icon small>mdi-content-copy</v-icon>
           </v-btn>
-          <v-btn text icon x-small @click.stop="goToFishAngelPage(fish.anglerFishId)">
-            <v-icon x-small>mdi-link-variant</v-icon>
+          <v-btn text icon small @click.stop="goToFishAngelPage(fish.anglerFishId)">
+            <v-icon small>mdi-link-variant</v-icon>
           </v-btn>
         </div>
       </div>
@@ -37,7 +37,6 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import fisher from '@/assets/fisher.png'
-import copy from 'clipboard-copy'
 import ToggleButton from '@/components/basic/ToggleButton'
 
 export default {
@@ -91,7 +90,12 @@ export default {
       window.open(`https://cn.ff14angler.com/fish/${anglerFishId}`)
     },
     copyToClipboard(text) {
-      copy(text)
+      const clipboard = document.getElementById('clipboard')
+      clipboard.value = text
+      clipboard.select()
+      clipboard.setSelectionRange(0, 99999) // For mobile devices
+      document.execCommand('copy')
+      this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
     },
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
@@ -100,7 +104,7 @@ export default {
     setPinned(pinned) {
       this.setFishPinned({ fishId: this.fish.id, pinned })
     },
-    ...mapMutations(['setFishCompleted', 'setFishPinned']),
+    ...mapMutations(['setFishCompleted', 'setFishPinned', 'showSnackbar']),
   },
 }
 </script>

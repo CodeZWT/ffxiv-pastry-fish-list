@@ -106,7 +106,7 @@
         </div>
       </v-card-actions>
     </v-card>
-    <v-snackbar :timeout="2000" v-model="info.show" :color="info.color" centered>
+    <v-snackbar :timeout="2000" v-model="info.show" :color="info.color" centered absolute>
       <div class="text-center">{{ info.text }}</div>
     </v-snackbar>
   </v-dialog>
@@ -193,12 +193,16 @@ export default {
       window.open(href)
     },
     exportData() {
-      this.$refs.selfExportTextArea.$refs.input.select()
+      const clipboard = this.$refs.selfExportTextArea.$refs.input
+      clipboard.select()
+      clipboard.setSelectionRange(0, 99999) // For mobile devices
       document.execCommand('copy')
       this.showInfo(this.$t('importExport.dialog.message.copySuccess'), 'success')
     },
     exportDataToFishTracker() {
-      this.$refs.fishTrackerExportTextArea.$refs.input.select()
+      const clipboard = this.$refs.fishTrackerExportTextArea.$refs.input
+      clipboard.select()
+      clipboard.setSelectionRange(0, 99999) // For mobile devices
       document.execCommand('copy')
       this.showInfo(this.$t('importExport.dialog.message.copySuccess'), 'success')
     },

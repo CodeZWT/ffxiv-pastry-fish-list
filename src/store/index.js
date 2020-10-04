@@ -27,6 +27,11 @@ export default new Vuex.Store({
     showSearchDialog: false,
     showImportExportDialog: false,
     scrollRefreshRequestCnt: 0,
+    snackbar: {
+      show: false,
+      text: '',
+      color: '',
+    },
     userData: store.get('userData') ?? DataUtil.USER_DEFAULT_DATA,
   },
   getters: {
@@ -176,6 +181,13 @@ export default new Vuex.Store({
     },
     setShowImportExportDialog(state, show) {
       state.showImportExportDialog = show
+    },
+    showSnackbar(state, { text, color }) {
+      state.snackbar = {
+        show: true,
+        text,
+        color,
+      }
     },
   },
   actions: {},
