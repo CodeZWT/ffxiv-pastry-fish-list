@@ -79,6 +79,11 @@
       }
     }
   },
+  "general": {
+    "dialog": {
+      "close": "关闭"
+    }
+  },
   "list": {
     "pin": {
       "empty": {
