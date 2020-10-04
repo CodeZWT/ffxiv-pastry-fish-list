@@ -103,7 +103,7 @@ export default {
     },
     fishSourceList() {
       return Object.values(this.allFish).filter(
-        it => it.location != null && it.gig == null && it.patch < DataUtil.PATCH_MAX
+        it => it.location != null && it.gig == null && it.patch <= DataUtil.PATCH_MAX
       )
     },
     fishList() {
