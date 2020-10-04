@@ -2,11 +2,7 @@
   <v-row>
     <v-col cols="12">
       <div v-if="fishList.length <= 0" class="d-flex justify-center align-content-center pa-2">
-        <span>
-          {{ $t('list.empty.prefix') }}
-          <v-icon small style="transform: rotate(-45deg)" class="mx-1">mdi-pin-outline</v-icon>
-          {{ $t('list.empty.suffix') }}
-        </span>
+        <slot name="empty"/>
       </div>
       <v-expansion-panels v-else v-model="openPanelIndex" hover tile>
         <!--              <v-virtual-scroll :items="fishList" :item-height="100" height="1000">-->

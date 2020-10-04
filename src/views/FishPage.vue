@@ -22,7 +22,15 @@
                   :fish-list="pinnedFishList"
                   :fish-list-time-part="fishListTimePart"
                   :fish-list-weather-change-part="fishListWeatherChangePart"
-                />
+                >
+                  <template v-slot:empty>
+                    <span>
+                      {{ $t('list.pin.empty.prefix') }}
+                      <v-icon small style="transform: rotate(-45deg)" class="mx-1">mdi-pin-outline</v-icon>
+                      {{ $t('list.pin.empty.suffix') }}
+                    </span>
+                  </template>
+                </fish-list>
               </v-expansion-panel-content>
             </v-expansion-panel>
             <v-expansion-panel @change="addScrollRefreshCnt">
@@ -35,7 +43,13 @@
                   :fish-list-time-part="fishListTimePart"
                   :fish-list-weather-change-part="fishListWeatherChangePart"
                   show-fish-divider
-                />
+                >
+                  <template v-slot:empty>
+                    <span>
+                      {{ $t('list.normal.empty') }}
+                    </span>
+                  </template>
+                </fish-list>
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
