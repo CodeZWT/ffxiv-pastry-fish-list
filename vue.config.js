@@ -21,5 +21,20 @@ module.exports = {
         'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
       }),
     ],
+    module: {
+      rules: [
+        {
+          test: /\.md$/,
+          use: [
+            {
+              loader: 'html-loader',
+            },
+            {
+              loader: 'markdown-loader',
+            },
+          ],
+        },
+      ],
+    },
   },
 }

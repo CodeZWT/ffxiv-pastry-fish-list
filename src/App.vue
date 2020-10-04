@@ -76,7 +76,12 @@
     </v-footer>
     <v-dialog v-model="showHelpDialog" :fullscreen="isMobile">
       <v-card>
-
+        <v-card-text v-html="helpMd" />
+        <v-card-actions>
+          <div class="d-flex flex-column flex-fill">
+            <v-btn color="default" block text @click="dialog = false">{{ $t('importExport.dialog.close') }}</v-btn>
+          </div>
+        </v-card-actions>
       </v-card>
     </v-dialog>
   </v-app>
@@ -87,6 +92,7 @@ import EorzeaTime from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
 import fisher from '@/assets/fisher.png'
 import { mapMutations } from 'vuex'
+import helpMd from '@/assets/doc/help.md'
 
 export default {
   name: 'App',
@@ -95,6 +101,7 @@ export default {
     now: Date.now(),
     fisher,
     showHelpDialog: false,
+    helpMd,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -113,6 +120,11 @@ export default {
       this.now = Date.now()
     }, 1000)
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
+    // const helpMd = import('@/assets/doc/help.md')
+    // helpMd.then(it => {
+    //   console.log(it.default)
+    //   this.$refs.helpArea.innerHTML = it.default
+    // })
   },
   methods: {
     ...mapMutations(['toggleFilterPanel', 'setShowSearchDialog', 'setShowImportExportDialog']),
