@@ -30,7 +30,7 @@
             </div>
 
             <template v-slot:actions>
-              <v-btn text color="primary" @click="setNotShowBanner">
+              <v-btn text color="primary" @click="onDismiss">
                 不再显示
               </v-btn>
             </template>
@@ -339,6 +339,10 @@ export default {
       this.addScrollRefreshCnt()
     },
     onResize() {
+      this.addScrollRefreshCnt()
+    },
+    onDismiss() {
+      this.setNotShowBanner()
       this.addScrollRefreshCnt()
     },
     ...mapMutations([
