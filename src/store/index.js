@@ -32,7 +32,7 @@ export default new Vuex.Store({
       text: '',
       color: '',
     },
-    userData: store.get('userData') ?? DataUtil.USER_DEFAULT_DATA,
+    userData: { ...DataUtil.USER_DEFAULT_DATA, ...store.get('userData') },
   },
   getters: {
     getItemIconUrl: state => id => {
@@ -146,6 +146,9 @@ export default new Vuex.Store({
     showFilter: state => {
       return state.userData.showFilter
     },
+    showBanner: state => {
+      return state.userData.showBanner
+    },
   },
   mutations: {
     setUserData(state, data) {
@@ -188,6 +191,10 @@ export default new Vuex.Store({
         text,
         color,
       }
+    },
+    setNotShowBanner(state) {
+      state.userData = { ...state.userData, showBanner: false }
+      store.set('userData', state.userData)
     },
   },
   actions: {},

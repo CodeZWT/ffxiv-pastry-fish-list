@@ -135,6 +135,7 @@ export default {
     },
     // page settings
     showFilter: true,
+    showBanner: true,
   },
 
   FISH_TRACKER_STRUCTURE: {

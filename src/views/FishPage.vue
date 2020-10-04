@@ -12,6 +12,29 @@
     <div :class="{ 'main-area': true, 'show-filter': showFilter }">
       <better-scroll :data="listSizeChangeTrigger" v-resize="onResize">
         <div style="width: 100%">
+          <v-banner v-if="showBanner" two-line>
+            <v-avatar slot="icon" color="primary" size="40">
+              <v-icon icon="mdi-lock" color="white">
+                mdi-information
+              </v-icon>
+            </v-avatar>
+
+            <div>
+              欢迎使用鱼糕钓鱼时钟，如有任何问题，首先尝试刷新(F5)或强制刷新页面(Ctrl+F5)，或进群(1153646847)报告错误。
+            </div>
+            <div>左上角会显示当前版本，请与公告比较以检查是否是最新版，否则请刷新一下页面。</div>
+            <div>
+              本站与其他钓鱼时钟的导入导出功能在右上角
+              <v-icon>mdi-dots-vertical</v-icon>
+              中。
+            </div>
+
+            <template v-slot:actions>
+              <v-btn text color="primary" @click="setNotShowBanner">
+                不再显示
+              </v-btn>
+            </template>
+          </v-banner>
           <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
             <v-expansion-panel @change="addScrollRefreshCnt">
               <v-expansion-panel-header>
@@ -169,7 +192,7 @@ export default {
       scrollRefreshRequestCnt: 'scrollRefreshRequestCnt',
       showImportExport: 'showImportExportDialog',
     }),
-    ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds', 'showFilter']),
+    ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds', 'showFilter', 'showBanner']),
   },
   watch: {
     weatherChangeTrigger() {
@@ -324,6 +347,7 @@ export default {
       'addScrollRefreshCnt',
       'fetchScrollRefreshCntAndReset',
       'setShowImportExportDialog',
+      'setNotShowBanner',
     ]),
   },
 }

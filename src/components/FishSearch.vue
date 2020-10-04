@@ -1,11 +1,17 @@
 <template>
-  <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.mobile" max-width="1264px" style="z-index: 9999">
+  <v-dialog v-model="dialog" :fullscreen="isMobile" max-width="1264px" style="z-index: 9999">
     <v-card>
       <v-card-title>
         <span class="headline">{{ $t('search.dialog.title') }}</span>
       </v-card-title>
       <v-card-text>
         <v-container>
+          <v-row v-if="isMobile">
+            <v-col>
+              <v-icon class="mr-1">mdi-information</v-icon>
+              请注意，目前在ACT下无法正常输入o(╥﹏╥)o
+            </v-col>
+          </v-row>
           <v-row>
             <v-col>
               <v-autocomplete
@@ -96,6 +102,9 @@ export default {
           this.fishListWeatherChangePart,
           this.getFishCompleted(value._id)
         )
+    },
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getItemName', 'getFishCompleted']),
