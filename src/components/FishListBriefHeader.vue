@@ -188,12 +188,14 @@ export default {
     printCountDownTime: DataUtil.printCountDownTime,
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
+      this.addScrollRefreshCnt()
     },
 
     setPinned(pinned) {
       this.setFishPinned({ fishId: this.fish.id, pinned })
+      this.addScrollRefreshCnt()
     },
-    ...mapMutations(['setFishCompleted', 'setFishPinned']),
+    ...mapMutations(['setFishCompleted', 'setFishPinned', 'addScrollRefreshCnt']),
   },
 }
 </script>
