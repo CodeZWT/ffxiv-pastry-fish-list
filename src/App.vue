@@ -3,7 +3,7 @@
     <v-system-bar app>
       <div>
         <v-icon>mdi-fish</v-icon>
-        {{ $t('top.systemBarTitle') }}
+        {{ $t('top.systemBarTitle') }} Ver. {{version}}
       </div>
       <v-spacer />
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
@@ -98,6 +98,7 @@ import '@thewakingsands/axis-font-icons'
 import fisher from '@/assets/fisher.png'
 import { mapMutations, mapState } from 'vuex'
 import helpMd from '@/assets/doc/help.md'
+import { version } from '../package.json'
 
 export default {
   name: 'App',
@@ -107,6 +108,7 @@ export default {
     fisher,
     showHelpDialog: false,
     helpMd,
+    version,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
