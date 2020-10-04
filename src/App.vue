@@ -77,10 +77,10 @@
     </v-footer>
     <v-dialog v-model="showHelpDialog" :fullscreen="isMobile">
       <v-card>
-        <v-card-text v-html="helpMd" />
+        <v-card-text class="help-area" v-html="helpMd" />
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
-            <v-btn color="default" block text @click="dialog = false">{{ $t('importExport.dialog.close') }}</v-btn>
+            <v-btn color="default" block text @click="showHelpDialog = false">{{ $t('importExport.dialog.close') }}</v-btn>
           </div>
         </v-card-actions>
       </v-card>
@@ -172,5 +172,22 @@ body {
   bottom: 0;
   border-bottom: 8px solid #ffffff;
   border-left: 8px solid transparent;
+}
+
+.help-area img {
+  width: 100%;
+}
+
+.help-area h1 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.help-area h2 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.help-area h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 </style>
