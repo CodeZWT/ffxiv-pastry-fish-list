@@ -34,7 +34,6 @@
         </template>
       </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
         <v-btn color="default" block text @click="dialog = false">{{ $t('search.dialog.close') }}</v-btn>
       </v-card-actions>
     </v-card>

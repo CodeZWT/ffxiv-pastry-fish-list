@@ -99,17 +99,17 @@ export default {
       exVersion: ['2.x', '3.x', '4.x', '5.x'],
       patches: PATCHES,
       patchSelectedIndices: {
-        '2.x': this.getPatchesInVersion('2.x'),
-        '3.x': this.getPatchesInVersion('3.x'),
-        '4.x': this.getPatchesInVersion('4.x'),
-        '5.x': this.getPatchesInVersion('5.x'),
+        '2.x': [],
+        '3.x': [],
+        '4.x': [],
+        '5.x': [],
       },
       completeFilterTypes: COMPLETE_FILTER_TYPES,
-      completeType: COMPLETE_FILTER_TYPES.indexOf(this.filters?.completeType ?? 'UNCOMPLETED'),
+      completeType: COMPLETE_FILTER_TYPES.indexOf('UNCOMPLETED'),
       bigFishFilterTypes: BIG_FISH_FILTER_TYPES,
-      bigFishType: BIG_FISH_FILTER_TYPES.indexOf(this.filters?.bigFishType ?? 'BIG_FISH'),
+      bigFishType: BIG_FISH_FILTER_TYPES.indexOf('BIG_FISH'),
       fishNFilterTypes: FISH_N_FILTER_TYPES,
-      fishNType: FISH_N_FILTER_TYPES.indexOf(this.fishN2Type(this.filters?.fishN)),
+      fishNType: FISH_N_FILTER_TYPES.length - 1,
     }
   },
   computed: {
@@ -119,16 +119,35 @@ export default {
     filtersReturned() {
       const fishNTypeText = this.fishNFilterTypes[this.fishNType]
       return {
-        patches: Object.entries(this.patchSelectedIndices).flatMap(([version, patches]) =>
-          patches.map(patch => this.patches[version][patch])
-        ),
+        patches: Object.entries(this.patchSelectedIndices)
+          .flatMap(([version, patches]) => patches.map(patch => this.patches[version][patch]))
+          .sort(),
         completeType: this.completeFilterTypes[this.completeType],
         bigFishType: this.bigFishFilterTypes[this.bigFishType],
         fishN: fishNTypeText === 'ALL' ? -1 : +fishNTypeText,
       }
     },
   },
+  watch: {
+    filters: {
+      handler(filters) {
+        this.init(filters)
+      },
+      immediate: true,
+    },
+  },
   methods: {
+    init(filters) {
+      this.patchSelectedIndices = {
+        '2.x': this.getPatchesInVersion(filters?.patches, '2.x'),
+        '3.x': this.getPatchesInVersion(filters?.patches, '3.x'),
+        '4.x': this.getPatchesInVersion(filters?.patches, '4.x'),
+        '5.x': this.getPatchesInVersion(filters?.patches, '5.x'),
+      }
+      this.completeType = COMPLETE_FILTER_TYPES.indexOf(filters?.completeType ?? 'UNCOMPLETED')
+      this.bigFishType = BIG_FISH_FILTER_TYPES.indexOf(filters?.bigFishType ?? 'BIG_FISH')
+      this.fishNType = FISH_N_FILTER_TYPES.indexOf(this.fishN2Type(filters?.fishN))
+    },
     checkAll(version) {
       this.$set(
         this.patchSelectedIndices,
@@ -144,8 +163,8 @@ export default {
     onChange() {
       this.$emit('input', this.filtersReturned)
     },
-    getPatchesInVersion(version) {
-      return this.filters?.patches?.map(it => PATCHES[version].indexOf(it)).filter(patch => patch !== -1) ?? []
+    getPatchesInVersion(patches, version) {
+      return patches?.map(it => PATCHES[version].indexOf(it)).filter(patch => patch !== -1) ?? []
     },
     fishN2Type(fishN) {
       const n = fishN ?? -1

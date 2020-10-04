@@ -114,4 +114,38 @@ export default {
 
   PATCH_MAX: 5.2,
   XIV_API_HOST: 'https://xivapi.com',
+
+  USER_DEFAULT_DATA: {
+    completed: [],
+    pinned: [],
+    filters: {
+      patches: [
+        // eslint-disable-next-line
+        2.0, 2.1, 2.2, 2.3, 2.4, 2.5,
+        // eslint-disable-next-line
+        3.0, 3.1, 3.2, 3.3, 3.4, 3.5,
+        // eslint-disable-next-line
+        4.0, 4.1, 4.2, 4.3, 4.4, 4.5,
+        // eslint-disable-next-line
+        5.0, 5.1, 5.2,
+      ],
+      completeType: 'UNCOMPLETED',
+      bigFishType: 'BIG_FISH',
+      fishN: 10,
+    },
+    // page settings
+    showFilter: true,
+  },
+
+  FISH_TRACKER_STRUCTURE: {
+    filters: {
+      completion: 'all',
+      patch: [],
+    },
+    completed: [],
+    pinned: [],
+    upcomingWindowFormat: 'fromPrevClose',
+    sortingType: 'windowPeriods',
+    theme: 'dark',
+  },
 }

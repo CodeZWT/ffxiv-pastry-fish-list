@@ -1,7 +1,10 @@
 {
   "top": {
     "systemBarTitle": "鱼糕",
-    "toolBarTitle": "钓鱼时钟"
+    "toolBarTitle": "钓鱼时钟",
+    "menu": "导入/导出",
+    "help": "指南",
+    "about": "关于"
   },
   "countDown": {
     "waiting": "等待中：",
@@ -46,6 +49,36 @@
       "close": "关闭"
     }
   },
+  "importExport": {
+    "dialog": {
+      "copy": "复制到剪贴板",
+      "title": "导入/导出",
+      "close": "关闭",
+      "reset": "重置初始配置",
+      "message": {
+        "copySuccess": "复制成功",
+        "importSuccess": "导入成功",
+        "importError": "导入失败，请检查导入文件格式"
+      },
+      "self": {
+        "title": "鱼糕本站导入导出",
+        "selectImportFile": "请先选择要导入的文件点击右侧按钮导入",
+        "import": "导入",
+        "export": "导出",
+        "importHint": "导入鱼糕备份文件",
+        "exportHint": "导出鱼糕备份文件"
+      },
+      "other": {
+        "fishTracker": {
+          "title": "FFX|V Fish Tracker App钓鱼时钟支持",
+          "importFromFishTracker": "导入",
+          "exportToFishTracker": "导出",
+          "importFromFishTrackerHint": "导入《FFX|V Fish Tracker App》的备份文件",
+          "exportToFishTrackerHint": "将本站数据导出成《FFX|V Fish Tracker App》的备份格式"
+        }
+      }
+    }
+  },
   "list": {
     "empty": {
       "prefix": "当前固定列表为空，清点击每行鱼左上角的",
@@ -60,7 +93,7 @@
         "nextInterval": "休眠期"
       },
       "countDown": {
-        "fishShadowHit": "可持续至最后此鱼影状态消失"
+        "fishShadowHit": "可持续至鱼影状态消失"
       }
     }
   }

@@ -25,29 +25,9 @@ export default new Vuex.Store({
     bigFish: DATA.BIG_FISH,
     fishingSpotFish: groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
     showSearchDialog: false,
+    showImportExportDialog: false,
     scrollRefreshRequestCnt: 0,
-    userData: store.get('userData') ?? {
-      completed: [],
-      pinned: [],
-      filters: {
-        patches: [
-          // eslint-disable-next-line
-          2.0, 2.1, 2.2, 2.3, 2.4, 2.5,
-          // eslint-disable-next-line
-          3.0, 3.1, 3.2, 3.3, 3.4, 3.5,
-          // eslint-disable-next-line
-          4.0, 4.1, 4.2, 4.3, 4.4, 4.5,
-          // eslint-disable-next-line
-          5.0, 5.1, 5.2
-        ],
-        completeType: 'UNCOMPLETED',
-        bigFishType: 'BIG_FISH',
-        fishN: 10,
-      },
-
-      // page settings
-      showFilter: true,
-    },
+    userData: store.get('userData') ?? DataUtil.USER_DEFAULT_DATA,
   },
   getters: {
     getItemIconUrl: state => id => {
@@ -164,7 +144,11 @@ export default new Vuex.Store({
   },
   mutations: {
     setUserData(state, data) {
-      state.userData = data
+      state.userData = { ...DataUtil.USER_DEFAULT_DATA, ...data }
+      store.set('userData', data)
+    },
+    setUserDataToDefault(state, data) {
+      state.userData = DataUtil.USER_DEFAULT_DATA
       store.set('userData', data)
     },
     setFishCompleted(state, { fishId, completed }) {
@@ -189,6 +173,9 @@ export default new Vuex.Store({
     },
     addScrollRefreshCnt(state) {
       state.scrollRefreshRequestCnt++
+    },
+    setShowImportExportDialog(state, show) {
+      state.showImportExportDialog = show
     },
   },
   actions: {},

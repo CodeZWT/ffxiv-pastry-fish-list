@@ -24,17 +24,43 @@
     </v-system-bar>
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
-        <!--        <v-img :src="fisher" width="24px" height="24px" class="mr-1" />-->
         {{ $t('top.toolBarTitle') }}
       </div>
       <v-spacer />
-      <div>
-        <v-btn icon @click="setShowSearchDialog(true)">
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-        <v-btn icon @click="toggleFilterPanel">
-          <v-icon>mdi-filter</v-icon>
-        </v-btn>
+      <v-btn icon @click="setShowSearchDialog(true)">
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+      <v-btn icon @click="toggleFilterPanel">
+        <v-icon>mdi-filter</v-icon>
+      </v-btn>
+      <div class="text-center">
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon v-bind="attrs" v-on="on">
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item @click="setShowImportExportDialog(true)">
+              <v-list-item-icon>
+                <v-icon>mdi-database</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>{{ $t('top.menu') }}</v-list-item-content>
+            </v-list-item>
+            <v-list-item @click="showHelpDialog = true">
+              <v-list-item-icon>
+                <v-icon dark>mdi-help-circle</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>{{ $t('top.help') }}</v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon dark>mdi-information</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>{{ $t('top.about') }}</v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </div>
     </v-app-bar>
 
@@ -48,6 +74,11 @@
       <v-spacer />
       <div>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</div>
     </v-footer>
+    <v-dialog v-model="showHelpDialog" :fullscreen="isMobile">
+      <v-card>
+
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -63,6 +94,7 @@ export default {
   data: () => ({
     now: Date.now(),
     fisher,
+    showHelpDialog: false,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -72,6 +104,9 @@ export default {
     earthTime() {
       return new Date(this.now)
     },
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
+    },
   },
   created() {
     setInterval(() => {
@@ -80,7 +115,7 @@ export default {
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
   },
   methods: {
-    ...mapMutations(['toggleFilterPanel', 'setShowSearchDialog']),
+    ...mapMutations(['toggleFilterPanel', 'setShowSearchDialog', 'setShowImportExportDialog']),
   },
 }
 </script>

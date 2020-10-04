@@ -42,6 +42,7 @@
         </div>
       </better-scroll>
     </div>
+    <import-export-dialog v-model="showImportExportDialog" />
   </div>
 </template>
 
@@ -56,11 +57,13 @@ import FishList from '@/components/FishList'
 import FishSearch from '@/components/FishSearch'
 import BetterScroll from '@/components/basic/BetterScroll'
 import { intersection, isEqual } from 'lodash'
-// import BetterScroll from '@/components/basic/BetterScroll'
+import ImportExportDialog from '@/components/ImportExportDialog'
+// import { saveAs } from 'file-saver'
+// import { DateTime } from 'luxon'
 
 export default {
   name: 'fish-page',
-  components: { BetterScroll, FishSearch, FishList, FishFilter },
+  components: { ImportExportDialog, BetterScroll, FishSearch, FishList, FishFilter },
   data: () => ({
     now: Date.now(),
     weatherChangeTrigger: 0,
@@ -134,6 +137,14 @@ export default {
         this.setShowSearchDialog(showSearch)
       },
     },
+    showImportExportDialog: {
+      get() {
+        return this.showImportExport
+      },
+      set(show) {
+        this.setShowImportExportDialog(show)
+      },
+    },
     ...mapState({
       allFish: 'fish',
       items: 'items',
@@ -142,6 +153,7 @@ export default {
       bigFish: 'bigFish',
       showSearch: 'showSearchDialog',
       scrollRefreshRequestCnt: 'scrollRefreshRequestCnt',
+      showImportExport: 'showImportExportDialog',
     }),
     ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds', 'showFilter']),
   },
@@ -287,11 +299,18 @@ export default {
     },
     onFiltersUpdate(filters) {
       this.setFilters(filters)
+      this.addScrollRefreshCnt()
     },
     onResize() {
       this.addScrollRefreshCnt()
     },
-    ...mapMutations(['setFilters', 'setShowSearchDialog', 'addScrollRefreshCnt', 'fetchScrollRefreshCntAndReset']),
+    ...mapMutations([
+      'setFilters',
+      'setShowSearchDialog',
+      'addScrollRefreshCnt',
+      'fetchScrollRefreshCntAndReset',
+      'setShowImportExportDialog',
+    ]),
   },
 }
 </script>
