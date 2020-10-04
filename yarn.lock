@@ -6406,6 +6406,11 @@ pinkie@^2.0.0:
   resolved "https://registry.npm.taobao.org/pinkie/download/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
 
+pinyin-match@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/pinyin-match/-/pinyin-match-1.1.1.tgz#b13000800e4c0c2f22904ecf4a07423ddf9c1023"
+  integrity sha512-stJVNJGHOEl3B3qXgeXJhWk3xfYQ3X7VaHBIIQHI2/9E1hNK9cmkigei0F+1l+uBM2XPVgxtmzg08AuY7n5Rnw==
+
 pkg-dir@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/pkg-dir/download/pkg-dir-1.0.0.tgz#7a4b508a8d5bb2d629d447056ff4e9c9314cf3d4"

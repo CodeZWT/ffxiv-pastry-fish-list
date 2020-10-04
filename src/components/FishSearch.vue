@@ -15,6 +15,7 @@
                 item-text="name"
                 :label="$t('search.dialog.placeholder')"
                 clearable
+                :filter="filterOptions"
               ></v-autocomplete>
             </v-col>
           </v-row>
@@ -45,6 +46,7 @@ import DataUtil from '@/utils/DataUtil'
 import FishListItemContent from '@/components/FishListItemContent'
 import { mapGetters, mapState } from 'vuex'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
+import * as PinyinMatch from 'pinyin-match'
 
 export default {
   name: 'FishSearch',
@@ -101,6 +103,16 @@ export default {
   watch: {
     dialog() {
       this.fishId = undefined
+    },
+  },
+  methods: {
+    filterOptions(item, queryText, itemText) {
+      if (this.$i18n.locale === 'chs') {
+        console.log(PinyinMatch.match(itemText, queryText))
+        return PinyinMatch.match(itemText, queryText) !== false
+      } else {
+        return itemText.toLowerCase().indexOf(queryText.toLowerCase()) > -1
+      }
     },
   },
 }
