@@ -21,13 +21,17 @@
             <toggle-button :value="fish.completed" @input="setCompleted($event)" />
           </div>
           <div style="width: 40px; height: 40px">
-            <div
+            <v-badge
               v-if="inPredator"
-              style="position: absolute; width: 40px; height: 40px; justify-content: center; display: flex; align-items: center"
+              :content="fish.requiredCnt"
+              color="quaternary black--text"
+              overlap
+              bottom
+              bordered
             >
-              <div class="text-h6" style="text-shadow: 1px 1px #000000">{{ fish.requiredCnt }}</div>
-            </div>
-            <div :class="fish.icon" />
+              <div :class="fish.icon" />
+            </v-badge>
+            <div v-else :class="fish.icon" />
           </div>
           <div class="text-subtitle-1 text-truncate ml-1" :title="fish.id">{{ fish.name }}</div>
         </div>
