@@ -152,6 +152,9 @@ export default new Vuex.Store({
     opacity: state => {
       return state.userData.opacity
     },
+    websiteVersion: state => {
+      return state.userData.websiteVersion
+    },
   },
   mutations: {
     setUserData(state, data) {
@@ -200,7 +203,11 @@ export default new Vuex.Store({
       store.set('userData', state.userData)
     },
     setOpacity(state, opacity) {
-      state.userData = { ...state.userData, opacity: opacity }
+      state.userData = { ...state.userData, opacity }
+      store.set('userData', state.userData)
+    },
+    setWebsiteVersion(state, websiteVersion) {
+      state.userData = { ...state.userData, websiteVersion }
       store.set('userData', state.userData)
     },
   },

@@ -195,9 +195,10 @@ export default {
   },
   watch: {
     weatherChangeTrigger() {
+      const now = this.now
       this.fishListWeatherChangePart = this.fishSourceList.reduce((fish2WeatherPart, fish) => {
         fish2WeatherPart[fish._id] = {
-          fishWindows: this.getFishWindow(fish, this.now),
+          fishWindows: this.getFishWindow(fish, now),
         }
         return fish2WeatherPart
       }, {})

@@ -169,6 +169,8 @@ export default {
     showFilter: true,
     showBanner: true,
     opacity: 1,
+    // website version info
+    websiteVersion: '0.1.0',
   },
 
   FISH_TRACKER_STRUCTURE: {

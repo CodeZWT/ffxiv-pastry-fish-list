@@ -59,6 +59,12 @@
               </v-list-item-icon>
               <v-list-item-content>{{ $t('top.setting') }}</v-list-item-content>
             </v-list-item>
+            <v-list-item @click="showPatchNoteDialog = true">
+              <v-list-item-icon>
+                <v-icon dark>mdi-tag</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>{{ $t('top.patchNote') }}</v-list-item-content>
+            </v-list-item>
             <v-list-item @click="showContactDialog = true">
               <v-list-item-icon>
                 <v-icon dark>mdi-information</v-icon>
@@ -113,7 +119,36 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="showHelpDialog" :fullscreen="isMobile" max-width="1264px">
+    <v-dialog v-model="showPatchNoteDialog" max-width="600px" scrollable>
+      <v-card>
+        <v-card-title>
+          {{ $t('top.setting') }}
+        </v-card-title>
+        <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.1.1</div>
+          <ul>
+            <li>调整行间距更紧凑。</li>
+            <li>调整整体配色更暗。</li>
+            <li>将鱼饵，前置鱼，天气图标的大小调整的更小。</li>
+            <li>更新了通知栏的文本。</li>
+            <li>增加“配置”功能，目前支持调整透明度。原先默认0.8，现在默认1.0（即不透明）。透明度功能主要为ACT悬浮窗提供支持。</li>
+            <li>增加时间提示，当鼠标悬停在倒计时文字上时，显示具体的时刻。</li>
+            <li>增加“更新笔记”功能，当版本更新时显示。</li>
+          </ul>
+          <v-divider />
+          <div class="text-h6">Version 0.1.0</div>
+          <p>初始版本</p>
+        </v-card-text>
+        <v-card-actions>
+          <div class="d-flex flex-column flex-fill">
+            <v-btn color="primary" block @click="showPatchNoteDialog = false">
+              {{ $t('general.dialog.confirm') }}
+            </v-btn>
+          </div>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="showHelpDialog" :fullscreen="isMobile" max-width="1264px" scrollable>
       <v-card>
         <v-card-text class="help-area" v-html="helpMd" />
         <v-card-actions>
@@ -182,6 +217,7 @@ export default {
     showHelpDialog: false,
     showContactDialog: false,
     showSettingDialog: false,
+    showPatchNoteDialog: false,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -203,7 +239,7 @@ export default {
       },
     },
     ...mapState(['snackbar']),
-    ...mapGetters(['opacity']),
+    ...mapGetters(['opacity', 'websiteVersion']),
   },
   created() {
     setInterval(() => {
@@ -215,12 +251,24 @@ export default {
     //   console.log(it.default)
     //   this.$refs.helpArea.innerHTML = it.default
     // })
+    if (this.toComparableVersion(this.version) > this.toComparableVersion(this.websiteVersion)) {
+      this.showPatchNoteDialog = true
+    }
   },
   methods: {
+    toComparableVersion(version) {
+      return version.split('.').map(it => it.padStart('0', 5)).join('')
+    },
     goTo(href) {
       window.open(href)
     },
-    ...mapMutations(['toggleFilterPanel', 'setShowSearchDialog', 'setShowImportExportDialog', 'setOpacity']),
+    ...mapMutations([
+      'toggleFilterPanel',
+      'setShowSearchDialog',
+      'setShowImportExportDialog',
+      'setOpacity',
+      'setWebsiteVersion',
+    ]),
   },
 }
 </script>
