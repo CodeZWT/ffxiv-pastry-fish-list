@@ -153,11 +153,11 @@ export default new Vuex.Store({
   mutations: {
     setUserData(state, data) {
       state.userData = { ...DataUtil.USER_DEFAULT_DATA, ...data }
-      store.set('userData', data)
+      store.set('userData', state.userData)
     },
-    setUserDataToDefault(state, data) {
+    setUserDataToDefault(state) {
       state.userData = DataUtil.USER_DEFAULT_DATA
-      store.set('userData', data)
+      store.set('userData', state.userData)
     },
     setFishCompleted(state, { fishId, completed }) {
       state.userData = updateUserDataStateRecords(state.userData, 'completed', fishId, completed)
