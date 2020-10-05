@@ -1,11 +1,7 @@
 <template>
   <v-layout column style="width: 100%" class="mt-2">
-    <div
-      v-for="(predator) in value"
-      :key="predator._id"
-      style="position: relative"
-    >
-      <fish-list-brief-header :value="predator" :fish-time-part="predator.fishTimePart" in-predator />
+    <div v-for="predator in value" :key="predator._id" style="position: relative">
+      <fish-list-brief-header :value="predator" :fish-time-part="predator.fishTimePart" in-predator :mode="mode" />
     </div>
   </v-layout>
 </template>
@@ -22,6 +18,10 @@ export default {
     value: {
       type: Array,
       default: () => [],
+    },
+    mode: {
+      type: String,
+      default: 'CONTENT',
     },
   },
   computed: {

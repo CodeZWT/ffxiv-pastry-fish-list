@@ -36,7 +36,7 @@
         <div class="text-subtitle-2">
           {{ $t(fish.countDownType) }}
         </div>
-        <div v-if="fish.hasTimeConstraint" class="d-flex align-center">
+        <div v-if="fish.hasCountDown" class="d-flex align-center">
           <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
           <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
           <div
@@ -48,6 +48,23 @@
         </div>
       </v-col>
       <v-col class="d-flex flex-column justify-center col-4 col-sm-3">
+        <div v-if="mode === 'CONTENT' && inPredator && fish.hasTimeConstraint">
+          {{ fish.startHour }} - {{ fish.endHour }}
+        </div>
+        <div class="d-flex" v-if="mode === 'CONTENT' && inPredator && fish.hasWeatherConstraint">
+          <div style="display: flex">
+            <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
+              <div :class="weather.icon" :title="weather.name" />
+            </div>
+            <v-icon v-if="fish.previousWeatherSet.length > 0">
+              mdi-arrow-right
+            </v-icon>
+            <div v-for="weather in fish.weatherSetDetail" :key="weather.name" :title="weather.name">
+              <div :class="weather.icon" :title="weather.name" />
+            </div>
+          </div>
+        </div>
+
         <div class="text-subtitle-2 text-truncate" v-show="!inPredator">
           {{ fish.zone }}
         </div>
@@ -59,7 +76,7 @@
         >
           {{ fish.fishingSpot }}
         </div>
-        <div v-if="isMobile && !fish.hasTimeConstraint" class="text-subtitle-2">
+        <div v-if="isMobile && !fish.hasCountDown" class="text-subtitle-2">
           {{ $t(fish.countDownType) }}
         </div>
         <div v-else-if="isMobile" class="d-flex align-center">
@@ -91,7 +108,7 @@
     </v-row>
     <div v-if="fish.hasPredators" class="mt-2">
       <v-divider />
-      <fish-predators :value="fish.predators" />
+      <fish-predators :value="fish.predators" mode="HEADER" />
     </div>
   </div>
 </template>
@@ -134,6 +151,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    mode: {
+      type: String,
+      default: 'CONTENT',
+    },
   },
   data: () => ({
     fisher: fisher,
@@ -164,17 +185,26 @@ export default {
         countDownType: DataUtil.getCountDownTypeName(this.fishTimePart.countDown?.type),
         countDownTime: this.fishTimePart.countDown?.time,
         countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown?.time),
-        hasTimeConstraint: DataUtil.hasCountDown(this.fishTimePart.countDown),
+        hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
+        startHour: this.value.startHour,
+        endHour: this.value.endHour,
+        hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
         isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
         requiredCnt: this.value.requiredCnt ?? 0,
         predators: this.predators,
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
+        weatherSetDetail: this.getWeather(this.value.weatherSet),
+        hasWeatherConstraint: this.value.previousWeatherSet.length > 0 || this.value.weatherSet.length > 0,
+        previousWeatherSet: this.value.previousWeatherSet,
+        weatherSet: this.value.weatherSet,
+        previousWeatherSetDetail: this.getWeather(this.value.previousWeatherSet),
       }
     },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
     ...mapGetters([
+      'getWeather',
       'getItemIconClass',
       'getItemName',
       'getZoneName',

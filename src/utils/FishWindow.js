@@ -3,12 +3,27 @@ import EorzeaWeather from '@/utils/Weather'
 export default {
   FISH_WINDOW_FORECAST_N: 10,
 
+  divide(num1, num2) {
+    return (num1 - (num1 % num2)) / num2
+  },
+
   computeFishWindowIfExist(territoryId, periodStart, hourStart, hourEnd, previousWeatherSet, weatherSet) {
     const periodEnd = periodStart.toNextWeatherInterval()
     const prevPeriodStart = periodStart.toPreviousWeatherInterval()
-    const restraintStartTime = periodStart.timeOfHours(hourStart)
-    const restraintEndTime = periodStart.timeOfHours(hourStart < hourEnd ? hourEnd : 24 + hourEnd)
-
+    let restraintStartTime
+    let restraintEndTime
+    if (hourStart < hourEnd) {
+      restraintStartTime = periodStart.timeOfHours(hourStart)
+      restraintEndTime = periodStart.timeOfHours(hourEnd)
+    } else {
+      if (this.divide(periodStart.getHours(), 8) === this.divide(hourStart, 8)) {
+        restraintStartTime = periodStart.timeOfHours(hourStart)
+        restraintEndTime = periodStart.timeOfHours(hourStart < hourEnd ? hourEnd : 24 + hourEnd)
+      } else {
+        restraintStartTime = periodStart.timeOfHours(0)
+        restraintEndTime = periodStart.timeOfHours(hourEnd)
+      }
+    }
     if (periodStart.time >= restraintEndTime.time || periodEnd.time <= restraintStartTime.time) {
       // NOTE: if current checking period has no overlap with hour restraint of fish
       // just return

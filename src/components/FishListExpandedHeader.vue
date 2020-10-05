@@ -106,7 +106,7 @@ export default {
       this.setFishPinned({ fishId: this.fish.id, pinned })
       this.addScrollRefreshCnt()
     },
-    ...mapMutations(['setFishCompleted', 'setFishPinned', 'showSnackbar']),
+    ...mapMutations(['setFishCompleted', 'setFishPinned', 'showSnackbar', 'addScrollRefreshCnt']),
   },
 }
 </script>

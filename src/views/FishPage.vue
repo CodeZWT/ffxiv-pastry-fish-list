@@ -92,10 +92,8 @@ import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
 import FishSearch from '@/components/FishSearch'
 import BetterScroll from '@/components/basic/BetterScroll'
-import { intersection, isEqual } from 'lodash'
+import { union, isEqual } from 'lodash'
 import ImportExportDialog from '@/components/ImportExportDialog'
-// import { saveAs } from 'file-saver'
-// import { DateTime } from 'luxon'
 
 export default {
   name: 'fish-page',
@@ -281,7 +279,23 @@ export default {
         if (predators.every(it => DataUtil.isAllAvailableFish(it) || this.isConstrainsEqual(fish, it))) {
           return this.getFishWindowOfSingleFish(fish, now)
         } else if (predators.length === 1) {
-          return this.getFishWindowOfSingleFish(this.mergeConstraints(fish, predators[0]), now)
+          if (DataUtil.isAllAvailableFish(fish)) {
+            return this.getFishWindowOfSingleFish(predators[0], now)
+          } else if (fish.weatherSet.length === 0 && fish.previousWeatherSet.length === 0) {
+            return this.getFishWindowOfSingleFish(predators[0], now).map(fishWindow => {
+              // if start of fish window > 0, i.e. its window is shrunk by the weather
+              // change it back to 0, since other 2 predators are always available in [0,8]
+              const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
+              if (startEorzeaTime.getHours() > 0) {
+                return [
+                  startEorzeaTime.timeOfHours(fish.startHour).toEarthTime(),
+                  startEorzeaTime.timeOfHours(fish.endHour).toEarthTime(),
+                ]
+              } else {
+                return fishWindow
+              }
+            })
+          }
         } else {
           // So in real life, only 'Warden of the Seven Hues' i.e. "七彩天主" goes here,
           // let do some dirty work
@@ -306,15 +320,17 @@ export default {
       }
     },
     mergeConstraints(fish1, fish2) {
-      return {
+      const mergedFish = {
         ...fish1,
-        previousWeatherSet: intersection(fish1.previousWeatherSet, fish2.previousWeatherSet),
-        weatherSet: intersection(fish1.weatherSet, fish2.weatherSet),
+        previousWeatherSet: union(fish1.previousWeatherSet, fish2.previousWeatherSet),
+        weatherSet: union(fish1.weatherSet, fish2.weatherSet),
         // TODO: actually some ranges are [20-8] but since we checked all fish with predators.
         // So just ignore those impossible cases here...
         startHour: Math.max(fish1.startHour, fish2.startHour),
         endHour: Math.min(fish1.endHour, fish2.endHour),
       }
+      console.log(mergedFish)
+      return mergedFish
     },
     getFishWindowOfSingleFish(fish, now, n = FishWindow.FISH_WINDOW_FORECAST_N) {
       return FishWindow.getNextNFishWindows(

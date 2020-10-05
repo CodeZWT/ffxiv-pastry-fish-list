@@ -202,6 +202,7 @@ import FishBaitList from '@/components/FishBaitList'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import LottieIcon from '@/components/basic/LottieIcon'
 import bellIcon from '@/assets/icon/bell.json'
+import { DateTime } from 'luxon'
 
 export default {
   name: 'FishListItemContent',
@@ -293,7 +294,7 @@ export default {
         const start = new Date(fishWindow[0])
         const end = new Date(fishWindow[1])
         return {
-          start: start.toLocaleDateString() + ' ' + start.toLocaleTimeString(),
+          start: DateTime.fromMillis(fishWindow[0]).toFormat('[MM-dd] HH:mm:ss'),
           end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
           interval: this.printCountDownTime(end - start),
           nextInterval:
