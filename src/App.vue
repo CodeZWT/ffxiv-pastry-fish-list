@@ -73,7 +73,7 @@
       <div class="d-flex flex-column" style="width: 100%">
         <div class="d-flex justify-space-between">
           <span>Animated icon by <a href="http://icons8.com">Icons8</a></span>
-          <span>红豆年糕@海猫茶屋</span><span>群：1153646847</span>
+          <span>红豆年糕@海猫茶屋</span>
         </div>
         <div class="d-flex">
           <span>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</span>
