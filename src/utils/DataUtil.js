@@ -115,7 +115,7 @@ export default {
     FISHING: ['tertiary base', 'tertiary darken-2'],
     WAITING: ['transparent', 'transparent'],
     COMPLETED: ['success base', 'success darken-2'],
-    NORMAL: ['grey darken-2', 'grey darken-4'],
+    NORMAL: ['grey darken-3', 'grey darken-4'],
   },
 
   PATCH_MAX: 5.2,
@@ -142,6 +142,7 @@ export default {
     // page settings
     showFilter: true,
     showBanner: true,
+    opacity: 1,
   },
 
   FISH_TRACKER_STRUCTURE: {

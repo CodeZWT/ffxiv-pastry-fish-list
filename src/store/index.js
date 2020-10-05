@@ -149,6 +149,9 @@ export default new Vuex.Store({
     showBanner: state => {
       return state.userData.showBanner
     },
+    opacity: state => {
+      return state.userData.opacity
+    },
   },
   mutations: {
     setUserData(state, data) {
@@ -194,6 +197,10 @@ export default new Vuex.Store({
     },
     setNotShowBanner(state) {
       state.userData = { ...state.userData, showBanner: false }
+      store.set('userData', state.userData)
+    },
+    setOpacity(state, opacity) {
+      state.userData = { ...state.userData, opacity: opacity }
       store.set('userData', state.userData)
     },
   },

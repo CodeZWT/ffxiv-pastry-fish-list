@@ -1,5 +1,5 @@
 <template>
-  <v-app style="opacity: 0.8">
+  <v-app :style="`opacity: ${opacity}`">
     <v-system-bar app>
       <div>
         <v-icon>mdi-fish</v-icon>
@@ -53,6 +53,12 @@
               </v-list-item-icon>
               <v-list-item-content>{{ $t('top.help') }}</v-list-item-content>
             </v-list-item>
+            <v-list-item @click="showSettingDialog = true">
+              <v-list-item-icon>
+                <v-icon dark>mdi-cog</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>{{ $t('top.setting') }}</v-list-item-content>
+            </v-list-item>
             <v-list-item @click="showContactDialog = true">
               <v-list-item-icon>
                 <v-icon dark>mdi-information</v-icon>
@@ -82,6 +88,31 @@
 
       <div class="resize-indicator" />
     </v-footer>
+    <v-dialog v-model="showSettingDialog" :fullscreen="isMobile" max-width="600px">
+      <v-card>
+        <v-card-title>
+          {{ $t('top.setting') }}
+        </v-card-title>
+        <v-card-text>
+          <v-slider
+            v-model="pageOpacity"
+            max="1"
+            min="0"
+            step="0.1"
+            :label="$t('setting.dialog.opacity')"
+            :hint="$t('setting.dialog.opacityHint')"
+            thumb-label
+          ></v-slider>
+        </v-card-text>
+        <v-card-actions>
+          <div class="d-flex flex-column flex-fill">
+            <v-btn color="default" block text @click="showSettingDialog = false">
+              {{ $t('general.dialog.close') }}
+            </v-btn>
+          </div>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-dialog v-model="showHelpDialog" :fullscreen="isMobile" max-width="1264px">
       <v-card>
         <v-card-text class="help-area" v-html="helpMd" />
@@ -136,7 +167,7 @@
 import EorzeaTime from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
 import fisher from '@/assets/fisher.png'
-import { mapMutations, mapState } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import helpMd from '@/assets/doc/help.md'
 import { version } from '../package.json'
 
@@ -150,6 +181,7 @@ export default {
     version,
     showHelpDialog: false,
     showContactDialog: false,
+    showSettingDialog: false,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -162,7 +194,16 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
+    pageOpacity: {
+      get() {
+        return this.opacity
+      },
+      set(opacity) {
+        this.setOpacity(opacity)
+      },
+    },
     ...mapState(['snackbar']),
+    ...mapGetters(['opacity']),
   },
   created() {
     setInterval(() => {
@@ -179,7 +220,7 @@ export default {
     goTo(href) {
       window.open(href)
     },
-    ...mapMutations(['toggleFilterPanel', 'setShowSearchDialog', 'setShowImportExportDialog']),
+    ...mapMutations(['toggleFilterPanel', 'setShowSearchDialog', 'setShowImportExportDialog', 'setOpacity']),
   },
 }
 </script>
