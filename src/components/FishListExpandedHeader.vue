@@ -22,13 +22,14 @@
         </div>
         <div class="text-subtitle-1 ml-1" :title="fish.id">
           {{ fish.name }}
-          <v-btn text icon small @click.stop="copyToClipboard(fish.name)" title="拷贝名称">
-            <v-icon small>mdi-content-copy</v-icon>
-          </v-btn>
-          <v-btn text icon small @click.stop="goToFishAngelPage(fish.anglerFishId)">
-            <v-icon small>mdi-link-variant</v-icon>
-          </v-btn>
         </div>
+        <v-badge inline color="primary" :content="fish.patch"></v-badge>
+        <v-btn text icon small @click.stop="copyToClipboard(fish.name)" title="拷贝名称">
+          <v-icon small>mdi-content-copy</v-icon>
+        </v-btn>
+        <v-btn text icon small @click.stop="goToFishAngelPage(fish.anglerFishId)">
+          <v-icon small>mdi-link-variant</v-icon>
+        </v-btn>
       </div>
     </v-row>
   </div>
@@ -68,6 +69,7 @@ export default {
         pinned: this.getFishPinned(this.value._id),
         icon: this.getItemIconClass(this.value._id),
         name: this.getItemName(this.value._id),
+        patch: this.value.patch.toFixed(1),
         zone: this.getZoneName(this.value.location),
         fishingSpot: this.getFishingSpotsName(this.value.location),
         fishingSpotId: this.value.location,

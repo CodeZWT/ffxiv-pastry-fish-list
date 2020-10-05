@@ -11,7 +11,7 @@
           <div :class="bait.baitIcon" :title="bait.baitName" />
         </div>
         <div class="d-flex flex-column" style="max-height: 40px">
-          <code>{{ bait.tugIcon }}</code>
+          <v-badge :color="TUG_ICON_COLOR[bait.tugIcon]" :content="bait.tugIcon" inline />
           <v-spacer />
           <div :class="[bait.hooksetIcon, 'hookset-icon']" />
         </div>
@@ -22,6 +22,7 @@
 
 <script>
 import fisher from '@/assets/fisher.png'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'FishBaitList',
@@ -33,6 +34,7 @@ export default {
   },
   data: () => ({
     fisher,
+    TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
   }),
 }
 </script>
@@ -42,5 +44,8 @@ export default {
   zoom: 0.5;
   -moz-transform: scale(0.5);
   -moz-transform-origin: 0 0;
+}
+.v-badge >>> .v-badge__wrapper {
+  margin: 0 !important;
 }
 </style>

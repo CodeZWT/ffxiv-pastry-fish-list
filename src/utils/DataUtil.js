@@ -86,8 +86,14 @@ export default {
 
   TUG_ICON: {
     light: '!',
-    medium: '!!',
-    heavy: '!!!',
+    medium: '! !',
+    heavy: '! ! !',
+  },
+
+  TUG_ICON_COLOR: {
+    '!': 'success',
+    '! !': 'tertiary',
+    '! ! !': 'quinary',
   },
 
   HOOKSET_ICON: {

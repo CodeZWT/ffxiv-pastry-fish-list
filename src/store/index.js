@@ -90,9 +90,9 @@ export default new Vuex.Store({
             const baitFish = state.fish[arr[index + 1]]
             return {
               tug: baitFish.tug,
-              tugIcon: DataUtil.TUG_ICON[fish.tug],
+              tugIcon: DataUtil.TUG_ICON[baitFish.tug],
               hookset: baitFish.hookset,
-              hooksetIcon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[fish.hookset]),
+              hooksetIcon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[baitFish.hookset]),
               baitId: baitId,
               baitName: getters.getItemName(baitId),
               baitIcon: getters.getItemIconClass(baitId),
