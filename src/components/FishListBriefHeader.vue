@@ -39,7 +39,12 @@
         </div>
         <div v-if="fish.hasCountDown" class="d-flex align-center">
           <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
-          <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
+          <v-tooltip top color="secondary">
+            <template v-slot:activator="{ on, attrs }">
+              <div v-bind="attrs" v-on="on" class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
+            </template>
+            <span>{{ fish.countDownTimePointText }}</span>
+          </v-tooltip>
           <div
             v-if="fish.addBuffSuffix"
             :title="$t('list.item.countDown.fishShadowHit')"
@@ -92,7 +97,12 @@
         </div>
         <div v-else-if="isMobile" class="d-flex align-center">
           <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
-          <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
+          <v-tooltip top color="secondary">
+            <template v-slot:activator="{ on, attrs }">
+              <div v-bind="attrs" v-on="on" class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
+            </template>
+            <span>{{ fish.countDownTimePointText }}</span>
+          </v-tooltip>
           <div
             v-if="fish.addBuffSuffix"
             :title="$t('list.item.countDown.fishShadowHit')"
@@ -196,6 +206,8 @@ export default {
         countDownType: DataUtil.getCountDownTypeName(this.fishTimePart.countDown?.type),
         countDownTime: this.fishTimePart.countDown?.time,
         countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown?.time),
+        countDownTimePoint: this.fishTimePart.countDown?.timePoint,
+        countDownTimePointText: DataUtil.formatDateTime(this.fishTimePart.countDown?.timePoint),
         hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
         startHour: this.value.startHour,
         endHour: this.value.endHour,

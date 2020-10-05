@@ -59,31 +59,43 @@
       <v-row v-if="fish.countDownType === WAITING">
         <v-progress-linear height="25" :color="fishingColor">
           <template>
-            <div class="d-flex align-center">
-              <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }}</strong>
-              <div
-                v-if="fish.addBuffSuffix"
-                :title="$t('list.item.countDown.fishShadowHit')"
-                :class="fish.predatorsIcon"
-                style="margin-left: 2px"
-              />
-            </div>
+            <v-tooltip top color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on" class="d-flex align-center">
+                  <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }}</strong>
+                  <div
+                    v-if="fish.addBuffSuffix"
+                    :title="$t('list.item.countDown.fishShadowHit')"
+                    :class="fish.predatorsIcon"
+                    style="margin-left: 2px"
+                  />
+                </div>
+              </template>
+              <span>{{ fish.countDownTimePointText }}</span>
+            </v-tooltip>
           </template>
         </v-progress-linear>
       </v-row>
       <v-row v-else-if="fish.countDownType === FISHING" style="height: 100%">
         <v-progress-linear :value="fish.countDownRemainPercentage" height="25" rounded :color="fishingColor">
           <template v-slot="{ value }">
-            <div class="d-flex align-center">
-              <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="25" width="25" />
-              <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }} ({{ Math.ceil(value) }}%)</strong>
-              <div
-                v-if="fish.addBuffSuffix"
-                :title="$t('list.item.countDown.fishShadowHit')"
-                :class="fish.predatorsIcon"
-                style="margin-left: 2px"
-              />
-            </div>
+            <v-tooltip top color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on" class="d-flex align-center">
+                  <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="25" width="25" />
+                  <strong
+                    >{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }} ({{ Math.ceil(value) }}%)</strong
+                  >
+                  <div
+                    v-if="fish.addBuffSuffix"
+                    :title="$t('list.item.countDown.fishShadowHit')"
+                    :class="fish.predatorsIcon"
+                    style="margin-left: 2px"
+                  />
+                </div>
+              </template>
+              <span>{{ fish.countDownTimePointText }}</span>
+            </v-tooltip>
           </template>
         </v-progress-linear>
       </v-row>
@@ -202,7 +214,6 @@ import FishBaitList from '@/components/FishBaitList'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import LottieIcon from '@/components/basic/LottieIcon'
 import bellIcon from '@/assets/icon/bell.json'
-import { DateTime } from 'luxon'
 
 export default {
   name: 'FishListItemContent',
@@ -280,6 +291,8 @@ export default {
         countDownTypeName: DataUtil.getCountDownTypeName(this.fishTimePart.countDown.type),
         countDownTime: this.fishTimePart.countDown.time,
         countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time),
+        countDownTimePoint: this.fishTimePart.countDown?.timePoint,
+        countDownTimePointText: DataUtil.formatDateTime(this.fishTimePart.countDown?.timePoint),
         countDownTotal: this.fishTimePart.countDown.fishWindowTotal,
         countDownRemainPercentage:
           (this.fishTimePart.countDown.time / this.fishTimePart.countDown.fishWindowTotal) * 100,
@@ -294,7 +307,7 @@ export default {
         const start = new Date(fishWindow[0])
         const end = new Date(fishWindow[1])
         return {
-          start: DateTime.fromMillis(fishWindow[0]).toFormat('[MM-dd] HH:mm:ss'),
+          start: DataUtil.formatDateTime(fishWindow[0]),
           end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
           interval: this.printCountDownTime(end - start),
           nextInterval:

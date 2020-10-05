@@ -1,4 +1,5 @@
 import TimeFormatter from '@/utils/TimeFormatter'
+import { DateTime } from 'luxon'
 
 export default {
   iconIdToUrl(iconId) {
@@ -82,6 +83,14 @@ export default {
     )
   },
 
+  formatDateTime(millis) {
+    if (millis) {
+      return DateTime.fromMillis(millis).toFormat('[MM-dd] HH:mm:ss')
+    } else {
+      return ''
+    }
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   TUG_ICON: {
@@ -127,13 +136,30 @@ export default {
     filters: {
       patches: [
         // eslint-disable-next-line
-        2.0, 2.1, 2.2, 2.3, 2.4, 2.5,
+        2.0,
+        2.1,
+        2.2,
+        2.3,
+        2.4,
+        2.5,
         // eslint-disable-next-line
-        3.0, 3.1, 3.2, 3.3, 3.4, 3.5,
+        3.0,
+        3.1,
+        3.2,
+        3.3,
+        3.4,
+        3.5,
         // eslint-disable-next-line
-        4.0, 4.1, 4.2, 4.3, 4.4, 4.5,
+        4.0,
+        4.1,
+        4.2,
+        4.3,
+        4.4,
+        4.5,
         // eslint-disable-next-line
-        5.0, 5.1, 5.2,
+        5.0,
+        5.1,
+        5.2,
       ],
       completeType: 'UNCOMPLETED',
       bigFishType: 'BIG_FISH',

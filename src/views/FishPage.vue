@@ -258,12 +258,14 @@ export default {
           return {
             type: DataUtil.WAITING,
             time: nextFishWindow[0] - now,
+            timePoint: nextFishWindow[0],
             fishWindowTotal: nextFishWindow[1] - nextFishWindow[0],
           }
         } else if (now <= nextFishWindow[1]) {
           return {
             type: DataUtil.FISHING,
             time: nextFishWindow[1] - now,
+            timePoint: nextFishWindow[1],
             fishWindowTotal: nextFishWindow[1] - nextFishWindow[0],
           }
         }
