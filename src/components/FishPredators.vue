@@ -1,5 +1,5 @@
 <template>
-  <v-layout column style="width: 100%" class="mt-2">
+  <v-layout column style="width: 100%">
     <div v-for="predator in value" :key="predator._id" style="position: relative">
       <fish-list-brief-header :value="predator" :fish-time-part="predator.fishTimePart" in-predator :mode="mode" />
     </div>

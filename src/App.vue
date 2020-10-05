@@ -284,4 +284,9 @@ body {
   margin-top: 8px;
   margin-bottom: 8px;
 }
+
+.v-expansion-panel-header {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
 </style>
