@@ -54,11 +54,11 @@
       "copy": "复制到剪贴板",
       "title": "导入/导出",
       "close": "关闭",
-      "reset": "重置初始配置",
       "message": {
         "copySuccess": "复制成功",
         "importSuccess": "导入成功",
-        "importError": "导入失败，请检查导入文件格式"
+        "resetSuccess": "配置重置成功",
+        "importError": "导入失败，请检查导入文件格式！"
       },
       "self": {
         "title": "鱼糕本站导入导出",
@@ -76,6 +76,12 @@
           "importFromFishTrackerHint": "导入《FFX|V Fish Tracker App》的备份文件",
           "exportToFishTrackerHint": "将本站数据导出成《FFX|V Fish Tracker App》的备份格式"
         }
+      },
+      "reset": {
+        "btn": "重置初始配置",
+        "title": "确认重置所有配置吗？",
+        "confirm": "重置",
+        "cancel": "取消"
       }
     }
   },

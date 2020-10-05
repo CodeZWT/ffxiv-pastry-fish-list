@@ -82,7 +82,7 @@
 
       <div class="resize-indicator" />
     </v-footer>
-    <v-dialog v-model="showHelpDialog" :fullscreen="isMobile">
+    <v-dialog v-model="showHelpDialog" :fullscreen="isMobile" max-width="1264px">
       <v-card>
         <v-card-text class="help-area" v-html="helpMd" />
         <v-card-actions>
@@ -92,7 +92,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="showContactDialog" :fullscreen="isMobile">
+    <v-dialog v-model="showContactDialog" :fullscreen="isMobile" max-width="600px">
       <v-card>
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
