@@ -20,19 +20,16 @@
             />
             <toggle-button :value="fish.completed" @input="setCompleted($event)" />
           </div>
-          <div style="width: 40px; height: 40px">
-            <v-badge
-              v-if="inPredator"
-              :content="fish.requiredCnt"
-              color="quaternary black--text"
-              overlap
-              bottom
-              bordered
-            >
+          <v-badge v-if="inPredator" :content="fish.requiredCnt" color="quaternary black--text" overlap bottom bordered>
+            <div style="width: 40px; height: 40px" :class="{ 'zoom-in-predator': inPredator }">
               <div :class="fish.icon" />
-            </v-badge>
-            <div v-else :class="fish.icon" />
+            </div>
+          </v-badge>
+
+          <div v-else style="width: 40px; height: 40px" :class="{ 'zoom-in-predator': inPredator }">
+            <div :class="fish.icon" />
           </div>
+
           <div class="text-subtitle-1 text-truncate ml-1" :title="fish.id">{{ fish.name }}</div>
         </div>
       </v-col>
@@ -57,13 +54,23 @@
         </div>
         <div class="d-flex" v-if="mode === 'CONTENT' && inPredator && fish.hasWeatherConstraint">
           <div style="display: flex">
-            <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
+            <div
+              v-for="(weather, index) in fish.previousWeatherSetDetail"
+              :key="index"
+              :title="weather.name"
+              class="zoom-in-predator"
+            >
               <div :class="weather.icon" :title="weather.name" />
             </div>
-            <v-icon v-if="fish.previousWeatherSet.length > 0">
+            <v-icon v-if="fish.previousWeatherSet.length > 0" small>
               mdi-arrow-right
             </v-icon>
-            <div v-for="weather in fish.weatherSetDetail" :key="weather.name" :title="weather.name">
+            <div
+              v-for="(weather, index) in fish.weatherSetDetail"
+              :key="weather.name"
+              :title="index"
+              class="zoom-in-predator"
+            >
               <div :class="weather.icon" :title="weather.name" />
             </div>
           </div>
@@ -234,4 +241,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.zoom-in-predator {
+  zoom: 0.75;
+  -moz-transform: scale(0.75);
+  -moz-transform-origin: 0 0;
+}
+</style>

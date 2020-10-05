@@ -3,11 +3,11 @@
     style="display: flex; flex-direction: row; align-items: center; justify-content: start; line-height: 1; flex-wrap: wrap"
   >
     <div v-for="(bait, baitInx) in baits" :key="baitInx">
-      <div style="display: flex">
+      <div class="d-flex align-center">
         <div v-if="baitInx !== 0" style="display: flex; align-items: center">
-          <v-icon>mdi-arrow-right</v-icon>
+          <v-icon small>mdi-arrow-right</v-icon>
         </div>
-        <div :data-ck-item-id="bait.baitId">
+        <div :data-ck-item-id="bait.baitId" class="bait-icon">
           <div :class="bait.baitIcon" :title="bait.baitName" />
         </div>
         <div class="d-flex flex-column" style="max-height: 40px">
@@ -41,10 +41,17 @@ export default {
 
 <style scoped>
 .hookset-icon {
-  zoom: 0.5;
-  -moz-transform: scale(0.5);
+  zoom: 0.4;
+  -moz-transform: scale(0.4);
   -moz-transform-origin: 0 0;
 }
+
+.bait-icon {
+  zoom: 0.75;
+  -moz-transform: scale(0.75);
+  -moz-transform-origin: 0 0;
+}
+
 .v-badge >>> .v-badge__wrapper {
   margin: 0 !important;
 }
