@@ -228,14 +228,6 @@ export default {
     getCountDown(fish, now) {
       // utilize 8 hours fish windows computed if exists
       // and not out of time(use 2 fish window cached if necessary)
-      // if (
-      //   fish.previousWeatherSet.length === 0 &&
-      //   fish.weatherSet.length === 0 &&
-      //   fish.startHour === 0 &&
-      //   fish.endHour === 24
-      // ) {
-      //   return { type: DataUtil.ALL_AVAILABLE }
-      // }
       const fishingSpot = this.fishingSpots[fish.location]
       if (fishingSpot) {
         const fishWindowsComputed = this.fishListWeatherChangePart[fish._id]
@@ -293,9 +285,19 @@ export default {
         } else {
           // So in real life, only 'Warden of the Seven Hues' i.e. "七彩天主" goes here,
           // let do some dirty work
+
           if (fish._id === 24994) {
-            // just return the 'Green Prismfish' i.e. "绿彩鱼" fish windows...
-            return this.getFishWindowOfSingleFish(this.allFish[24204], now)
+            // just return the 'Green Prismfish' i.e. "绿彩鱼" fish windows
+            return this.getFishWindowOfSingleFish(this.allFish[24204], now).map(fishWindow => {
+              // if start of fish window > 0, i.e. its window is shrunk by the weather
+              // change it back to 0, since other 2 predators are always available in [0,8]
+              const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
+              if (startEorzeaTime.getHours() > 0) {
+                return [startEorzeaTime.timeOfHours(0).toEarthTime(), fishWindow[1]]
+              } else {
+                return fishWindow
+              }
+            })
           } else {
             console.error('Unsupported fish!', fish._id)
             return this.getFishWindowOfSingleFish(fish, now)
