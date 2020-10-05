@@ -1,5 +1,5 @@
 <template>
-  <v-col style="flex-direction: column">
+  <v-col style="flex-direction: column; padding-bottom: 0">
     <v-row>
       <v-expansion-panels hover flat tile :value="0">
         <v-expansion-panel @change="addScrollRefreshCnt">
