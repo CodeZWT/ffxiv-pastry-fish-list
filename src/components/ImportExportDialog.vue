@@ -133,7 +133,7 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
-import { isEqual, merge } from 'lodash'
+import { merge } from 'lodash'
 import flatten from 'flat'
 
 export default {
@@ -260,10 +260,9 @@ export default {
     validateImportData(data, sample) {
       console.log(Object.keys(flatten(data, { safe: true })))
       console.log(Object.keys(flatten(sample, { safe: true })))
-      return isEqual(
-        Object.keys(flatten(data, { safe: true })).sort(),
-        Object.keys(flatten(sample, { safe: true })).sort()
-      )
+      const importKeys = Object.keys(flatten(data, { safe: true })).sort()
+      const sampleKeys = Object.keys(flatten(data, { safe: true })).sort()
+      return importKeys.every(it => sampleKeys.includes(it))
     },
     showInfo(text, color) {
       this.info = {
