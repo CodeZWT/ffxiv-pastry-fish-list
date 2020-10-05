@@ -198,10 +198,17 @@ export default {
   z-index: 100 !important;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
 html,
 body {
-  overflow-y: hidden !important;
-  /*height: 100%;*/
+  /*overflow-y: hidden !important;*/
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .bscroll-vertical-scrollbar {

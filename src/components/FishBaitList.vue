@@ -1,5 +1,7 @@
 <template>
-  <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; line-height: 1;">
+  <div
+    style="display: flex; flex-direction: row; align-items: center; justify-content: start; line-height: 1; flex-wrap: wrap"
+  >
     <div v-for="(bait, baitInx) in baits" :key="baitInx">
       <div style="display: flex">
         <div v-if="baitInx !== 0" style="display: flex; align-items: center">

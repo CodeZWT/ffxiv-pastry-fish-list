@@ -10,73 +10,73 @@
       :fish-list-weather-change-part="fishListWeatherChangePart"
     />
     <div :class="{ 'main-area': true, 'show-filter': showFilter }">
-      <better-scroll :data="listSizeChangeTrigger" v-resize="onResize">
-        <div style="width: 100%">
-          <v-banner v-if="showBanner" two-line>
-            <v-avatar slot="icon" color="primary" size="40">
-              <v-icon icon="mdi-lock" color="white">
-                mdi-information
-              </v-icon>
-            </v-avatar>
+      <!--      <better-scroll :data="listSizeChangeTrigger" v-resize="onResize">-->
+      <div style="width: 100%">
+        <v-banner v-if="showBanner" two-line>
+          <v-avatar slot="icon" color="primary" size="40">
+            <v-icon icon="mdi-lock" color="white">
+              mdi-information
+            </v-icon>
+          </v-avatar>
 
-            <div>
-              欢迎使用鱼糕钓鱼时钟，如有任何问题，首先尝试刷新(F5)或强制刷新页面(Ctrl+F5)。
-            </div>
-            <div>
-              本站与其他钓鱼时钟的导入导出功能在右上角
-              <v-icon>mdi-dots-vertical</v-icon>
-              中。
-            </div>
+          <div>
+            欢迎使用鱼糕钓鱼时钟，如有任何问题，首先尝试刷新(F5)或强制刷新页面(Ctrl+F5)。
+          </div>
+          <div>
+            本站与其他钓鱼时钟的导入导出功能在右上角
+            <v-icon>mdi-dots-vertical</v-icon>
+            中。
+          </div>
 
-            <template v-slot:actions>
-              <v-btn text color="primary" @click="onDismiss">
-                不再显示
-              </v-btn>
-            </template>
-          </v-banner>
-          <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
-            <v-expansion-panel @change="addScrollRefreshCnt">
-              <v-expansion-panel-header>
-                {{ $t('list.pinTitle') }}
-              </v-expansion-panel-header>
-              <v-expansion-panel-content class="list-wrapper">
-                <fish-list
-                  :fish-list="pinnedFishList"
-                  :fish-list-time-part="fishListTimePart"
-                  :fish-list-weather-change-part="fishListWeatherChangePart"
-                >
-                  <template v-slot:empty>
-                    <span>
-                      {{ $t('list.pin.empty.prefix') }}
-                      <v-icon small style="transform: rotate(-45deg)" class="mx-1">mdi-pin-outline</v-icon>
-                      {{ $t('list.pin.empty.suffix') }}
-                    </span>
-                  </template>
-                </fish-list>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-            <v-expansion-panel @change="addScrollRefreshCnt">
-              <v-expansion-panel-header>
-                {{ $t('list.normalTitle') }}
-              </v-expansion-panel-header>
-              <v-expansion-panel-content class="list-wrapper">
-                <fish-list
-                  :fish-list="sortedFilteredFishList"
-                  :fish-list-time-part="fishListTimePart"
-                  :fish-list-weather-change-part="fishListWeatherChangePart"
-                  show-fish-divider
-                >
-                  <template v-slot:empty>
-                    <span>
-                      {{ $t('list.normal.empty') }}
-                    </span>
-                  </template>
-                </fish-list>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
-        </div>
-      </better-scroll>
+          <template v-slot:actions>
+            <v-btn text color="primary" @click="onDismiss">
+              不再显示
+            </v-btn>
+          </template>
+        </v-banner>
+        <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
+          <v-expansion-panel @change="addScrollRefreshCnt">
+            <v-expansion-panel-header>
+              {{ $t('list.pinTitle') }}
+            </v-expansion-panel-header>
+            <v-expansion-panel-content class="list-wrapper">
+              <fish-list
+                :fish-list="pinnedFishList"
+                :fish-list-time-part="fishListTimePart"
+                :fish-list-weather-change-part="fishListWeatherChangePart"
+              >
+                <template v-slot:empty>
+                  <span>
+                    {{ $t('list.pin.empty.prefix') }}
+                    <v-icon small style="transform: rotate(-45deg)" class="mx-1">mdi-pin-outline</v-icon>
+                    {{ $t('list.pin.empty.suffix') }}
+                  </span>
+                </template>
+              </fish-list>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel @change="addScrollRefreshCnt">
+            <v-expansion-panel-header>
+              {{ $t('list.normalTitle') }}
+            </v-expansion-panel-header>
+            <v-expansion-panel-content class="list-wrapper">
+              <fish-list
+                :fish-list="sortedFilteredFishList"
+                :fish-list-time-part="fishListTimePart"
+                :fish-list-weather-change-part="fishListWeatherChangePart"
+                show-fish-divider
+              >
+                <template v-slot:empty>
+                  <span>
+                    {{ $t('list.normal.empty') }}
+                  </span>
+                </template>
+              </fish-list>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </div>
+      <!--      </better-scroll>-->
     </div>
     <import-export-dialog v-model="showImportExportDialog" />
   </div>
@@ -91,13 +91,12 @@ import DataUtil from '@/utils/DataUtil'
 import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
 import FishSearch from '@/components/FishSearch'
-import BetterScroll from '@/components/basic/BetterScroll'
 import { union, isEqual } from 'lodash'
 import ImportExportDialog from '@/components/ImportExportDialog'
 
 export default {
   name: 'fish-page',
-  components: { ImportExportDialog, BetterScroll, FishSearch, FishList, FishFilter },
+  components: { ImportExportDialog, FishSearch, FishList, FishFilter },
   data: () => ({
     now: Date.now(),
     weatherChangeTrigger: 0,
@@ -391,18 +390,18 @@ $filter-panel-height: 261px
 
 .main-area::v-deep
   position: relative
-  overflow: hidden
-  margin-right: -8px
+  //overflow-y: scroll
+  //margin-right: -8px
 
   &.show-filter
     top: 0
 
-  &.show-filter .better-scroll
-    height: calc(100vh - #{$top-bars-padding + $filter-panel-height})
+  //&.show-filter .better-scroll
+  //  height: calc(100vh - #{$top-bars-padding + $filter-panel-height})
 
   &:not(.show-filter)
     top: 0
 
-  &:not(.show-filter) .better-scroll
-    height: calc(100vh - #{$top-bars-padding})
+  //&:not(.show-filter) .better-scroll
+  //  height: calc(100vh - #{$top-bars-padding})
 </style>
