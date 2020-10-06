@@ -64,7 +64,7 @@ export default {
     hourEnd,
     previousWeatherSet,
     weatherSet,
-    n = this.FISH_WINDOW_FORECAST_N
+    n = this.FISH_WINDOW_FORECAST_N + 1
   ) {
     if (
       territoryId == null ||

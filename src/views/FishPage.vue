@@ -87,7 +87,7 @@
 
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import EorzeaTime, { WEATHER_CHANGE_INTERVAL } from '@/utils/Time'
+import EorzeaTime, { WEATHER_CHANGE_INTERVAL_EARTH } from '@/utils/Time'
 import FishWindow from '@/utils/FishWindow'
 import sortBy from 'lodash/sortBy'
 import DataUtil from '@/utils/DataUtil'
@@ -102,7 +102,7 @@ export default {
   components: { ImportExportDialog, FishSearch, FishList, FishFilter },
   data: () => ({
     now: Date.now(),
-    weatherChangeTrigger: 0,
+    weatherChangeTrigger: 1,
     fishListWeatherChangePart: {},
     openPanelIndex: undefined,
     fishListOpenStatus: [0, 1],
@@ -211,14 +211,15 @@ export default {
   },
   created() {
     document.title = `${this.$t('top.systemBarTitle')} - ${this.$t('top.toolBarTitle')}`
+    this.now = Date.now()
     setInterval(() => {
       this.now = Date.now()
-      if (this.weatherChangeTrigger === 0) {
-        this.weatherChangeTrigger = 1
-      } else if (EorzeaTime.toEorzeaTime(this.now) % WEATHER_CHANGE_INTERVAL <= 1000) {
-        this.weatherChangeTrigger *= -1
-      }
     }, 1000)
+
+    this.weatherChangeTrigger *= -1
+    setInterval(() => {
+      this.weatherChangeTrigger *= -1
+    }, WEATHER_CHANGE_INTERVAL_EARTH)
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
   },
   methods: {
@@ -230,29 +231,24 @@ export default {
       // and not out of time(use 2 fish window cached if necessary)
       const fishingSpot = this.fishingSpots[fish.location]
       if (fishingSpot) {
-        const fishWindowsComputed = this.fishListWeatherChangePart[fish._id]
-        let nextTwoFishWindow
-        if (fishWindowsComputed) {
-          nextTwoFishWindow = fishWindowsComputed.fishWindows.slice(0, 2)
-        } else {
-          nextTwoFishWindow = FishWindow.getNextNFishWindows(
+        const fishWindowsComputed =
+          this.fishListWeatherChangePart[fish._id]?.fishWindows ??
+          FishWindow.getNextNFishWindows(
             fishingSpot.territory_id,
-            new EorzeaTime(),
+            new EorzeaTime(now),
             fish.startHour,
             fish.endHour,
             fish.previousWeatherSet,
             fish.weatherSet,
             2
           )
-        }
-        if (nextTwoFishWindow.length === 0) {
+        let nextFishWindow = fishWindowsComputed.find(fishWindow => {
+          if (fishWindow[1] >= now) {
+            return fishWindow
+          }
+        })
+        if (nextFishWindow == null) {
           return { type: DataUtil.ALL_AVAILABLE }
-        }
-        let nextFishWindow
-        if (now > nextTwoFishWindow[0][1]) {
-          nextFishWindow = nextTwoFishWindow[1]
-        } else {
-          nextFishWindow = nextTwoFishWindow[0]
         }
         if (now <= nextFishWindow[0]) {
           return {
@@ -338,15 +334,14 @@ export default {
       console.log(mergedFish)
       return mergedFish
     },
-    getFishWindowOfSingleFish(fish, now, n = FishWindow.FISH_WINDOW_FORECAST_N) {
+    getFishWindowOfSingleFish(fish, now) {
       return FishWindow.getNextNFishWindows(
         this.fishingSpots[fish.location]?.territory_id,
         new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
         fish.startHour,
         fish.endHour,
         fish.previousWeatherSet,
-        fish.weatherSet,
-        n
+        fish.weatherSet
       )
     },
     isConstrainsEqual(fish1, fish2) {

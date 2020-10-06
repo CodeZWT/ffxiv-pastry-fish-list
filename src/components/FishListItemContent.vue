@@ -214,6 +214,7 @@ import FishBaitList from '@/components/FishBaitList'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import LottieIcon from '@/components/basic/LottieIcon'
 import bellIcon from '@/assets/icon/bell.json'
+import FishWindow from '@/utils/FishWindow'
 
 export default {
   name: 'FishListItemContent',
@@ -263,7 +264,7 @@ export default {
       const hasPredators = Object.keys(this.value.predators).length > 0
       return {
         startHourText: DataUtil.formatET(this.value.startHour),
-        endHourText:  DataUtil.formatET(this.value.endHour),
+        endHourText: DataUtil.formatET(this.value.endHour),
         hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
         hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
         hasFishEyes: this.value.fishEyes !== false,
@@ -306,17 +307,21 @@ export default {
       }
     },
     fishWindows() {
-      return this.fishWeatherChangePart.fishWindows.map((fishWindow, index) => {
+      let fishWindows = this.fishWeatherChangePart.fishWindows.filter(it => it[1] >= Date.now())
+      if (FishWindow.FISH_WINDOW_FORECAST_N > fishWindows.length) {
+        console.warn('fish window cnt:', fishWindows.length)
+      }
+      fishWindows = fishWindows.slice(0, Math.min(FishWindow.FISH_WINDOW_FORECAST_N, fishWindows.length))
+
+      return fishWindows.map((fishWindow, index) => {
         const start = new Date(fishWindow[0])
         const end = new Date(fishWindow[1])
         return {
+          startTime: fishWindow[0],
           start: DataUtil.formatDateTime(fishWindow[0]),
           end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
           interval: this.printCountDownTime(end - start),
-          nextInterval:
-            index < this.fishWeatherChangePart.fishWindows.length - 1
-              ? this.printCountDownTime(this.fishWeatherChangePart.fishWindows[index + 1][0] - end)
-              : '',
+          nextInterval: index < fishWindows.length - 1 ? this.printCountDownTime(fishWindows[index + 1][0] - end) : '',
         }
       })
     },
