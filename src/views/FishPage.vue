@@ -161,7 +161,7 @@ export default {
     pinnedFishList() {
       return sortBy(
         this.fishSourceList.filter(it => this.pinnedFishIds.includes(it._id)),
-        [fish => this.pinnedFishIds.indexOf(fish._id)]
+        [fish => this.sortedFishIds.indexOf(fish._id)]
       )
     },
     showSearchDialog: {
