@@ -29,8 +29,7 @@
           <div v-else style="width: 40px; height: 40px" :class="{ 'zoom-in-predator': inPredator }">
             <div :class="fish.icon" />
           </div>
-
-          <div class="text-subtitle-1 text-truncate ml-1" :title="fish.name">{{ fish.name }}</div>
+          <div class="text-subtitle-1 text-truncate ml-1" :title="fish.name + '#' + fish.id">{{ fish.name }}</div>
         </div>
       </v-col>
       <v-col v-if="!isMobile" class="col-2 d-flex flex-column justify-center my-2 my-sm-0">
@@ -69,36 +68,25 @@
         </div>
         <div class="d-flex" v-if="mode === 'CONTENT' && inPredator && fish.hasWeatherConstraint">
           <div style="display: flex">
-            <div
-              v-for="(weather, index) in fish.previousWeatherSetDetail"
-              :key="index"
-              :title="weather.name"
-              class="zoom-in-predator"
-            >
+            <div v-for="(weather, index) in fish.previousWeatherSetDetail" :key="index" class="zoom-in-predator">
               <div :class="weather.icon" :title="weather.name" />
             </div>
             <v-icon v-if="fish.previousWeatherSet.length > 0" small>
               mdi-arrow-right
             </v-icon>
-            <div
-              v-for="(weather, index) in fish.weatherSetDetail"
-              :key="weather.name"
-              :title="index"
-              class="zoom-in-predator"
-            >
+            <div v-for="weather in fish.weatherSetDetail" :key="weather.name" class="zoom-in-predator">
               <div :class="weather.icon" :title="weather.name" />
             </div>
           </div>
         </div>
 
-        <div class="text-subtitle-2 text-truncate" v-show="!inPredator">
+        <div class="text-subtitle-2 text-truncate" v-if="!inPredator">
           {{ fish.zone }}
         </div>
         <div
-          v-if="fish.zone !== fish.fishingSpot"
+          v-if="fish.zone !== fish.fishingSpot && !inPredator"
           class="text-subtitle-2 text-truncate"
-          :title="fish.fishingSpotId"
-          v-show="!inPredator"
+          :title="fish.fishingSpot + '#' + fish.fishingSpotId"
         >
           {{ fish.fishingSpot }}
         </div>
@@ -272,6 +260,7 @@ export default {
 
     setPinned(pinned) {
       this.setFishPinned({ fishId: this.fish.id, pinned })
+
       this.addScrollRefreshCnt()
     },
     ...mapMutations(['setFishCompleted', 'setFishPinned', 'addScrollRefreshCnt']),
