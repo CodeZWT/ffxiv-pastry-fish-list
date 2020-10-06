@@ -131,7 +131,7 @@
       <v-col cols="6">
         <div class="d-flex justify-center">时间</div>
         <div class="d-flex justify-center">
-          <div v-if="fish.hasTimeConstraint">{{ fish.startHour }} - {{ fish.endHour }}</div>
+          <div v-if="fish.hasTimeConstraint">{{ fish.startHourText }} - {{ fish.endHourText }}</div>
           <div v-else>
             {{ $t('none') }}
           </div>
@@ -262,8 +262,8 @@ export default {
       const fishingSpot = this.getFishingSpot(this.value.location)
       const hasPredators = Object.keys(this.value.predators).length > 0
       return {
-        startHour: this.value.startHour,
-        endHour: this.value.endHour,
+        startHourText: DataUtil.formatET(this.value.startHour),
+        endHourText:  DataUtil.formatET(this.value.endHour),
         hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
         hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
         hasFishEyes: this.value.fishEyes !== false,

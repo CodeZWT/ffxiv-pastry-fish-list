@@ -64,7 +64,7 @@
       </v-col>
       <v-col class="d-flex flex-column justify-center col-4 col-sm-3">
         <div v-if="mode === 'CONTENT' && inPredator && fish.hasTimeConstraint">
-          {{ fish.startHour }} - {{ fish.endHour }}
+          {{ fish.startHourText }} - {{ fish.endHourText }}
         </div>
         <div class="d-flex" v-if="mode === 'CONTENT' && inPredator && fish.hasWeatherConstraint">
           <div style="display: flex">
@@ -222,8 +222,8 @@ export default {
           interval: this.printCountDownTime(this.fishTimePart.countDown?.fishWindowTotal, 2),
         }),
         hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
-        startHour: this.value.startHour,
-        endHour: this.value.endHour,
+        startHourText: DataUtil.formatET(this.value.startHour),
+        endHourText: DataUtil.formatET(this.value.endHour),
         hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
         isWaiting: this.fishTimePart.countDown?.type === DataUtil.WAITING,
         isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,

@@ -122,9 +122,11 @@
     <v-dialog v-model="showPatchNoteDialog" max-width="600px" scrollable>
       <v-card>
         <v-card-title>
-          {{ $t('top.setting') }}
+          {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.1.2</div>
+          <p>更新了众神之爱的ET时间：5-7 修正为 5:30-6:30</p>
           <div class="text-h6">Version 0.1.1</div>
           <ul>
             <li>修正了FishTracker导入的问题。</li>

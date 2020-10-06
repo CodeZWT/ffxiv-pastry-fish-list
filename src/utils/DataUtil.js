@@ -97,6 +97,12 @@ export default {
     }
   },
 
+  formatET(etHours) {
+    const integer = etHours - ((etHours * 10) % 10) / 10
+    const decimal = etHours - integer
+    return integer + (decimal === 0 ? '' : ':' + decimal * 60)
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   TUG_ICON: {

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { DATA } from '@/store/data'
 import DATA_CN from '@/store/translation'
+import FIX from '@/store/fix'
 import merge from 'lodash/merge'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaWeather from '@/utils/Weather'
@@ -13,7 +14,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    fish: merge(DATA.FISH, DATA_CN.FISH_ANGLER_ID),
+    fish: merge(DATA.FISH, FIX.FISH, DATA_CN.FISH_ANGLER_ID),
     fishingSpots: merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
     items: merge(DATA.ITEMS, DATA_CN.ITEMS),
