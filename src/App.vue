@@ -1,6 +1,6 @@
 <template>
-  <v-app :style="`opacity: ${opacity}`">
-    <v-system-bar app>
+  <v-app :style="`opacity: ${opacity}`" :class="{ 'min-page': collapse }">
+    <v-system-bar app v-show="!collapse">
       <div>
         <v-icon>mdi-fish</v-icon>
         {{ $t('top.systemBarTitle') }} Ver. {{ version }}
@@ -22,10 +22,30 @@
         }}
       </div>
     </v-system-bar>
+    <!--    <v-btn v-if="collapse" @click="toggleCollapse"-->
+    <!--           elevation="5"-->
+    <!--           fab-->
+    <!--           color="primary"-->
+    <!--           class="mt-9 ml-2"-->
+    <!--           small-->
+    <!--    >-->
+    <!--      <v-avatar size="28">-->
+    <!--        <img :src="fisher" />-->
+    <!--      </v-avatar>-->
+    <!--    </v-btn>-->
     <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        {{ $t('top.toolBarTitle') }}
-      </div>
+      <v-app-bar-nav-icon @click="collapse = !collapse">
+        <v-tooltip right>
+          <template v-slot:activator="{ on }">
+            <v-avatar size="28" v-on="on">
+              <img :src="fisher" />
+            </v-avatar>
+          </template>
+          <span>{{ $t('top.collapseHint') }}</span>
+        </v-tooltip>
+      </v-app-bar-nav-icon>
+
+      <v-toolbar-title>{{ $t('top.toolBarTitle') }}</v-toolbar-title>
       <v-spacer />
       <v-btn icon @click="setShowSearchDialog(true)">
         <v-icon>mdi-magnify</v-icon>
@@ -77,11 +97,11 @@
     </v-app-bar>
 
     <v-main>
-      <v-container class="py-0">
+      <v-container class="py-0" v-if="!collapse">
         <router-view />
       </v-container>
     </v-main>
-    <v-footer app style="font-size: small">
+    <v-footer app style="font-size: small" v-if="!collapse">
       <div class="d-flex flex-column" style="width: 100%">
         <div class="d-flex justify-space-between">
           <span>Animated icon by <a href="http://icons8.com">Icons8</a></span>
@@ -125,8 +145,16 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
-          <div class="text-h6">Version 0.1.3</div>
+          <div class="text-h6">Version 0.1.4</div>
+          <ul>
+            <li>更新后台算法，解决长时间后，倒计时出错的问题。</li>
+            <li>增加ACT下使用的缩小功能，点击左上角，钓鱼时钟旁的鱼图标切换。</li>
+            <li>更新帮助文档（ACT相关）。</li>
+          </ul>
+          <p />
+          <v-divider />
 
+          <div class="text-h6">Version 0.1.3</div>
           <ul>
             <li>向关于页面增加了重置按钮。</li>
             <li>修复了对导入数据的检测。</li>
@@ -243,6 +271,7 @@ export default {
     showContactDialog: false,
     showSettingDialog: false,
     showPatchNoteDialog: false,
+    collapse: false,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -293,6 +322,10 @@ export default {
     onConfirmPatchNote() {
       this.setWebsiteVersion(version)
       this.showPatchNoteDialog = false
+    },
+    toggleCollapse() {
+      this.collapse = !this.collapse
+      console.log('click!!!!!!!')
     },
     ...mapMutations([
       'toggleFilterPanel',
@@ -368,5 +401,10 @@ body {
 .v-expansion-panel-header {
   padding-top: 4px !important;
   padding-bottom: 4px !important;
+}
+
+.min-page {
+  background: rgba(255, 255, 255, 0) !important;
+  /*height: 64px;*/
 }
 </style>

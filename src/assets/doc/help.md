@@ -25,6 +25,12 @@
 
       ![act-config-ngld-item](act-config-ngld-item.jpg)
 
+### ACT可用的一些配置
+- 设置中可以调节透明度
+![opacity-setting](opacity-setting.jpg)
+- 点击钓鱼时钟旁的鱼的图标可以缩小界面
+![collapse](collapse.jpg)
+
 ### 通过ACT使用时的一些限制
 
 - 由于输入会被游戏捕捉，因此在ACT下无法正常使用输入功能。
