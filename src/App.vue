@@ -126,10 +126,19 @@
         </v-card-title>
         <v-card-text style="max-height: 600px;">
           <div class="text-h6">Version 0.1.3</div>
-          <p>向关于页面增加了重置按钮</p>
-          <p>修复了导入的检测</p>
+
+          <ul>
+            <li>向关于页面增加了重置按钮</li>
+            <li>修复了对导入数据的检测</li>
+            <li>更新了冥河灯的ET时间：0-4 修正为 23-4</li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.1.2</div>
           <p>更新了众神之爱的ET时间：5-7 修正为 5:30-6:30</p>
+          <v-divider />
+
           <div class="text-h6">Version 0.1.1</div>
           <ul>
             <li>修正了FishTracker导入的问题。</li>
@@ -147,6 +156,7 @@
             <li>增加“更新笔记”功能，当版本更新时显示。</li>
             <li>给等待中的鱼加上下次窗口期的持续时间（简易显示一个时间单位，鼠标悬停显示全部）。</li>
           </ul>
+          <p />
           <v-divider />
           <div class="text-h6">Version 0.1.0</div>
           <p>初始版本</p>
