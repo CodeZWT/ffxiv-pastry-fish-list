@@ -20,7 +20,7 @@
         <div>
           <div :class="fish.icon" />
         </div>
-        <div class="text-subtitle-1 ml-1" :title="fish.id">
+        <div class="text-subtitle-1 ml-1" :title="fish.name + '#' + fish.id">
           {{ fish.name }}
         </div>
         <v-badge inline color="primary" :content="fish.patch"></v-badge>
