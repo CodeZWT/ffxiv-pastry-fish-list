@@ -185,6 +185,7 @@ export default {
     websiteVersion: '0.1.0',
   },
 
+  // fish tracker [js/app/viewmodel.js]
   FISH_TRACKER_STRUCTURE: {
     filters: {
       completion: 'all',
