@@ -131,7 +131,9 @@
             <li>调整整体配色更暗。</li>
             <li>将鱼饵，前置鱼，天气图标的大小调整的更小。</li>
             <li>更新了通知栏的文本。</li>
-            <li>增加“配置”功能，目前支持调整透明度。原先默认0.8，现在默认1.0（即不透明）。透明度功能主要为ACT悬浮窗提供支持。</li>
+            <li>
+              增加“配置”功能，目前支持调整透明度。原先默认0.8，现在默认1.0（即不透明）。透明度功能主要为ACT悬浮窗提供支持。
+            </li>
             <li>增加时间提示，当鼠标悬停在倒计时文字上时，显示具体的时刻。</li>
             <li>增加“更新笔记”功能，当版本更新时显示。</li>
             <li>给等待中的鱼加上下次窗口期的持续时间（简易显示一个时间单位，鼠标悬停显示全部）。</li>
@@ -142,7 +144,7 @@
         </v-card-text>
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
-            <v-btn color="primary" block @click="showPatchNoteDialog = false">
+            <v-btn color="primary" block @click="onConfirmPatchNote">
               {{ $t('general.dialog.confirm') }}
             </v-btn>
           </div>
@@ -258,10 +260,17 @@ export default {
   },
   methods: {
     toComparableVersion(version) {
-      return version.split('.').map(it => it.padStart('0', 5)).join('')
+      return version
+        .split('.')
+        .map(it => it.padStart('0', 5))
+        .join('')
     },
     goTo(href) {
       window.open(href)
+    },
+    onConfirmPatchNote() {
+      this.setWebsiteVersion(version)
+      this.showPatchNoteDialog = false
     },
     ...mapMutations([
       'toggleFilterPanel',
