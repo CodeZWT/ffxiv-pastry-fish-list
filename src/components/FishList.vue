@@ -2,13 +2,13 @@
   <v-row>
     <v-col cols="12">
       <div v-if="fishList.length <= 0" class="d-flex justify-center align-content-center pa-2">
-        <slot name="empty"/>
+        <slot name="empty" />
       </div>
       <v-expansion-panels v-else v-model="openPanelIndex" hover tile>
         <!--              <v-virtual-scroll :items="fishList" :item-height="100" height="1000">-->
         <!--                <template v-slot="{ item: fish, index }">-->
         <v-expansion-panel v-for="(fish, index) in fishList" :key="index" @change="addScrollRefreshCnt">
-          <v-expansion-panel-header class="fish-header" :color="listItemColor(index)">
+          <v-expansion-panel-header class="fish-header" :color="listItemColors[index]">
             <template v-slot:default="{ open }">
               <div>
                 <div>
@@ -34,7 +34,7 @@
               </div>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content :color="listItemColor(index)">
+          <v-expansion-panel-content>
             <fish-list-item-content
               :open="index === openPanelIndex"
               :value="fish"
@@ -42,7 +42,7 @@
               :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
               :predators="getPredators(fish)"
               :fishing-type-color="fishColors[index]"
-              :list-item-color="listItemColor(index)"
+              list-item-color="default"
             ></fish-list-item-content>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -93,6 +93,14 @@ export default {
         return DataUtil.getColorByStatus(completed, countDownType)
       })
     },
+    listItemColors() {
+      // return DataUtil.ITEM_COLOR.NORMAL[index % 2]
+      return this.fishList.map((fish, index) => {
+        const completed = this.getFishCompleted(fish._id)
+        const countDownType = this.fishListTimePart[fish._id].countDown?.type
+        return DataUtil.getColorByStatus(completed, countDownType, index % 2, 'BACKGROUND')
+      })
+    },
     firstFishWaitingIndex() {
       return this.fishList.findIndex(fish => this.fishListTimePart[fish._id].countDown?.type === DataUtil.WAITING)
     },
@@ -110,9 +118,6 @@ export default {
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
   },
   methods: {
-    listItemColor(index) {
-      return DataUtil.ITEM_COLOR.NORMAL[index % 2]
-    },
     ...mapMutations(['addScrollRefreshCnt']),
   },
 }

@@ -8,7 +8,6 @@
 
 <script>
 import FishListBriefHeader from '@/components/FishListBriefHeader'
-import DataUtil from '@/utils/DataUtil'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -25,23 +24,7 @@ export default {
     },
   },
   computed: {
-    fishColors() {
-      return this.value
-        .map((fish, index) => {
-          const oddIndex = index % 2
-          const completed = fish.finalTargetCompleted
-          const countDownType =
-            fish.finalTargetCountDownType === DataUtil.FISHING ? DataUtil.FISHING : fish.fishTimePart?.countDown?.type
-          return DataUtil.getColorByStatus(completed, countDownType, oddIndex)
-        })
-        .map(it => it.split(' '))
-    },
     ...mapGetters(['getFishCompleted']),
-  },
-  methods: {
-    listItemColor(index) {
-      return DataUtil.ITEM_COLOR.NORMAL[index % 2]
-    },
   },
 }
 </script>

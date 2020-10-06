@@ -62,15 +62,21 @@ export default {
     return (MAP_SIZE_FACTOR_MAGIC / (sizeFactor / 100)) * (pixelIndex / MAP_FILE_PIXEL_MAX) + 1
   },
 
-  getColorByStatus(completed, countDownType) {
+  getColorByStatus(completed, countDownType, colorIndex = 0, colorTarget = 'FISH') {
+    let colorRef
+    if (colorTarget === 'FISH') {
+      colorRef = this.ITEM_COLOR
+    } else {
+      colorRef = this.ITEM_BACKGROUND_COLOR
+    }
     if (completed) {
-      return this.ITEM_COLOR.COMPLETED[0]
+      return colorRef.COMPLETED[colorIndex]
     } else {
       switch (countDownType) {
         case this.FISHING:
-          return this.ITEM_COLOR.FISHING[0]
+          return colorRef.FISHING[colorIndex]
         default:
-          return this.ITEM_COLOR.WAITING[0]
+          return colorRef.WAITING[colorIndex]
       }
     }
   },
@@ -125,6 +131,12 @@ export default {
     WAITING: ['transparent', 'transparent'],
     COMPLETED: ['success base', 'success darken-2'],
     NORMAL: ['grey darken-3', 'grey darken-4'],
+  },
+
+  ITEM_BACKGROUND_COLOR: {
+    FISHING: ['#ad145766', '#880e4f66'],
+    COMPLETED: ['#00695c66', '#004d4066'],
+    WAITING: ['grey darken-3', 'grey darken-4'],
   },
 
   PATCH_MAX: 5.2,
