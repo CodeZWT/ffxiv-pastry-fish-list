@@ -125,6 +125,9 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.1.3</div>
+          <p>向关于页面增加了重置按钮</p>
+          <p>修复了导入的检测</p>
           <div class="text-h6">Version 0.1.2</div>
           <p>更新了众神之爱的ET时间：5-7 修正为 5:30-6:30</p>
           <div class="text-h6">Version 0.1.1</div>

@@ -241,10 +241,10 @@ export default {
       }
     },
     validateImportData(data, sample) {
-      console.log(Object.keys(flatten(data, { safe: true })))
-      console.log(Object.keys(flatten(sample, { safe: true })))
+      console.debug(Object.keys(flatten(data, { safe: true })))
+      console.debug(Object.keys(flatten(sample, { safe: true })))
       const importKeys = Object.keys(flatten(data, { safe: true })).sort()
-      const sampleKeys = Object.keys(flatten(data, { safe: true })).sort()
+      const sampleKeys = Object.keys(flatten(sample, { safe: true })).sort()
       return importKeys.every(it => sampleKeys.includes(it))
     },
     showInfo(text, color) {
