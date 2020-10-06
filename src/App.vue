@@ -193,6 +193,7 @@
         </v-card-text>
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
+            <reset-button />
             <v-btn color="default" block text @click="showContactDialog = false"
               >{{ $t('general.dialog.close') }}
             </v-btn>
@@ -214,10 +215,11 @@ import fisher from '@/assets/fisher.png'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import helpMd from '@/assets/doc/help.md'
 import { version } from '../package.json'
+import ResetButton from '@/components/ResetButton'
 
 export default {
   name: 'App',
-  components: {},
+  components: { ResetButton },
   data: () => ({
     now: Date.now(),
     fisher,

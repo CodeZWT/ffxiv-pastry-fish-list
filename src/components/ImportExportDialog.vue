@@ -101,25 +101,7 @@
       </v-card-text>
       <v-card-actions>
         <div class="d-flex flex-column flex-fill">
-          <v-dialog v-model="showConfirmDialog" persistent max-width="290">
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn color="tertiary" block v-bind="attrs" v-on="on">{{ $t('importExport.dialog.reset.btn') }} </v-btn>
-            </template>
-            <v-card>
-              <v-card-title class="headline">
-                {{ $t('importExport.dialog.reset.title') }}
-              </v-card-title>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="default" text @click="showConfirmDialog = false">
-                  {{ $t('importExport.dialog.reset.cancel') }}
-                </v-btn>
-                <v-btn color="tertiary" text @click="onReset">
-                  {{ $t('importExport.dialog.reset.confirm') }}
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+          <reset-button />
           <v-btn color="default" block text @click="dialog = false">{{ $t('importExport.dialog.close') }}</v-btn>
         </div>
       </v-card-actions>
@@ -135,9 +117,11 @@ import { mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import { merge } from 'lodash'
 import flatten from 'flat'
+import ResetButton from '@/components/ResetButton'
 
 export default {
   name: 'ImportExportDialog',
+  components: { ResetButton },
   props: {
     value: {
       type: Boolean,
@@ -156,7 +140,6 @@ export default {
       text: '',
       color: '',
     },
-    showConfirmDialog: false,
   }),
   computed: {
     dialog: {
@@ -270,11 +253,6 @@ export default {
         text,
         color,
       }
-    },
-    onReset() {
-      this.setUserDataToDefault()
-      this.showConfirmDialog = false
-      this.showInfo(this.$t('importExport.dialog.message.resetSuccess'), 'success')
     },
     ...mapMutations(['setUserData', 'setShowImportExportDialog', 'setUserDataToDefault']),
   },
