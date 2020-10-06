@@ -124,9 +124,7 @@ export default {
       return new Date(this.now)
     },
     fishSourceList() {
-      return Object.values(this.allFish).filter(
-        it => it.gig == null && it.patch <= DataUtil.PATCH_MAX
-      )
+      return Object.values(this.allFish).filter(it => it.gig == null && it.patch <= DataUtil.PATCH_MAX)
     },
     fishList() {
       return this.fishSourceList.filter(fish => {
@@ -157,6 +155,7 @@ export default {
       return this.sortedFishIds
         .map(id => this.fishList.find(it => it._id === id))
         .filter(it => it != null)
+        .filter(it => !this.getFishPinned(it._id))
         .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
     },
     pinnedFishList() {
@@ -191,7 +190,7 @@ export default {
       scrollRefreshRequestCnt: 'scrollRefreshRequestCnt',
       showImportExport: 'showImportExportDialog',
     }),
-    ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds', 'showFilter', 'showBanner']),
+    ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds', 'showFilter', 'showBanner', 'getFishPinned']),
   },
   watch: {
     weatherChangeTrigger() {
@@ -410,6 +409,6 @@ $filter-panel-height: 261px
   &:not(.show-filter)
     top: 0
 
-  //&:not(.show-filter) .better-scroll
-  //  height: calc(100vh - #{$top-bars-padding})
+//&:not(.show-filter) .better-scroll
+//  height: calc(100vh - #{$top-bars-padding})
 </style>

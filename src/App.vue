@@ -128,15 +128,16 @@
           <div class="text-h6">Version 0.1.3</div>
 
           <ul>
-            <li>向关于页面增加了重置按钮</li>
-            <li>修复了对导入数据的检测</li>
-            <li>更新了冥河灯的ET时间：0-4 修正为 23-4</li>
+            <li>向关于页面增加了重置按钮。</li>
+            <li>修复了对导入数据的检测。</li>
+            <li>更新了冥河灯的ET时间：0-4 修正为 23-4。</li>
+            <li>在默认列表中不再显示固定的鱼。</li>
           </ul>
           <p />
           <v-divider />
 
           <div class="text-h6">Version 0.1.2</div>
-          <p>更新了众神之爱的ET时间：5-7 修正为 5:30-6:30</p>
+          <p>更新了众神之爱的ET时间：5-7 修正为 5:30-6:30。</p>
           <v-divider />
 
           <div class="text-h6">Version 0.1.1</div>
