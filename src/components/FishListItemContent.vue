@@ -65,7 +65,7 @@
                   <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }}</strong>
                   <div
                     v-if="fish.addBuffSuffix"
-                    :title="$t('list.item.countDown.fishShadowHit')"
+                    :title="$t('list.item.countDown.fishShadowHint')"
                     :class="fish.predatorsIcon"
                     style="margin-left: 2px"
                   />
@@ -88,7 +88,7 @@
                   >
                   <div
                     v-if="fish.addBuffSuffix"
-                    :title="$t('list.item.countDown.fishShadowHit')"
+                    :title="$t('list.item.countDown.fishShadowHint')"
                     :class="fish.predatorsIcon"
                     style="margin-left: 2px"
                   />

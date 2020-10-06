@@ -56,7 +56,7 @@
           </v-tooltip>
           <div
             v-if="fish.addBuffSuffix"
-            :title="$t('list.item.countDown.fishShadowHit')"
+            :title="$t('list.item.countDown.fishShadowHint')"
             :class="fish.predatorsIcon"
             style="margin-left: 2px"
           />
@@ -101,7 +101,7 @@
                 <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
                 <div
                   v-if="fish.addBuffSuffix"
-                  :title="$t('list.item.countDown.fishShadowHit')"
+                  :title="$t('list.item.countDown.fishShadowHint')"
                   :class="fish.predatorsIcon"
                   style="margin-left: 2px"
                 />

@@ -120,7 +120,7 @@
         "nextInterval": "休眠期"
       },
       "countDown": {
-        "fishShadowHit": "可持续至鱼影状态消失"
+        "fishShadowHint": "可持续至鱼影状态消失"
       }
     }
   }
