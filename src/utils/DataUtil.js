@@ -27,8 +27,8 @@ export default {
     return countDown != null && countDown.type !== this.ALL_AVAILABLE
   },
 
-  printCountDownTime(time) {
-    return TimeFormatter.millisecondsToText(time)
+  printCountDownTime(time, showCnt = 2, paddingZero = true) {
+    return TimeFormatter.millisecondsToText(time, showCnt, true, paddingZero)
   },
 
   secondsToFishEyesString(seconds) {

@@ -292,7 +292,9 @@ export default {
         countDownTime: this.fishTimePart.countDown.time,
         countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time),
         countDownTimePoint: this.fishTimePart.countDown?.timePoint,
-        countDownTimePointText: DataUtil.formatDateTime(this.fishTimePart.countDown?.timePoint),
+        countDownTimePointText: this.$t('countDown.timePointHint', {
+          timePoint: DataUtil.formatDateTime(this.fishTimePart.countDown?.timePoint),
+        }),
         countDownTotal: this.fishTimePart.countDown.fishWindowTotal,
         countDownRemainPercentage:
           (this.fishTimePart.countDown.time / this.fishTimePart.countDown.fishWindowTotal) * 100,
