@@ -1,7 +1,7 @@
 <template>
   <v-col style="flex-direction: column; padding-bottom: 0">
     <v-row>
-      <v-expansion-panels hover flat tile :value="0">
+      <v-expansion-panels v-if="fish.hasFishingSpot" hover flat tile :value="0">
         <v-expansion-panel @change="addScrollRefreshCnt">
           <v-expansion-panel-header :color="listItemColor">
             <div style="display: flex; align-items: center; justify-content: center">
@@ -276,12 +276,13 @@ export default {
         hasSnagging: this.value.snagging,
         snaggingIcon: DataUtil.iconIdToClass(DataUtil.ICON_SNAGGING),
         zone: this.getZoneName(this.value.location),
+        hasFishingSpot: this.value.location != null,
         fishingSpot: fishingSpot,
         fishingSpotName: this.getFishingSpotsName(this.value.location),
         fishSpotPositionText: this.toPositionText(fishingSpot),
-        fishingSpotFish: this.getFishingSpotFish(this.value.location),
+        // fishingSpotFish: this.getFishingSpotFish(this.value.location),
         anglerFishId: this.value.anglerFishId,
-        anglerLocationId: this.getFishingSpot(this.value.location).anglerLocationId,
+        anglerLocationId: fishingSpot?.anglerLocationId,
         weatherSet: this.value.weatherSet,
         weatherSetDetail: this.getWeather(this.value.weatherSet),
         hasWeatherConstraint: this.value.previousWeatherSet.length > 0 || this.value.weatherSet.length > 0,
@@ -339,6 +340,7 @@ export default {
       window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
     },
     toPositionText(fishingSpot) {
+      if (fishingSpot == null) return ''
       return `X: ${this.toPosStr(fishingSpot.size_factor, fishingSpot.x)}, Y:${this.toPosStr(
         fishingSpot.size_factor,
         fishingSpot.y

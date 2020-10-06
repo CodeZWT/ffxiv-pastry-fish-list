@@ -125,7 +125,7 @@ export default {
     },
     fishSourceList() {
       return Object.values(this.allFish).filter(
-        it => it.location != null && it.gig == null && it.patch <= DataUtil.PATCH_MAX
+        it => it.gig == null && it.patch <= DataUtil.PATCH_MAX
       )
     },
     fishList() {
@@ -270,6 +270,8 @@ export default {
             fishWindowTotal: nextFishWindow[1] - nextFishWindow[0],
           }
         }
+      } else {
+        return { type: DataUtil.ALL_AVAILABLE }
       }
     },
     getFishWindow(fish, now) {

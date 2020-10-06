@@ -128,6 +128,7 @@
           <div class="text-h6">Version 0.1.1</div>
           <ul>
             <li>修正了FishTracker导入的问题。</li>
+            <li>显示没有钓点的鱼。</li>
             <li>调整行间距更紧凑。</li>
             <li>调整整体配色更暗。</li>
             <li>将鱼的背景色也根据状态进行了调整</li>

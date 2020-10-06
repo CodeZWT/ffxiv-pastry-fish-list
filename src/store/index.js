@@ -63,10 +63,16 @@ export default new Vuex.Store({
       const fishingSpot = state.fishingSpots[id]
       if (fishingSpot) {
         return DataUtil.getName(state.zones[state.weatherRates[fishingSpot.territory_id].zone_id])
+      } else {
+        return ''
       }
     },
     getFishingSpotsName: state => id => {
-      return state.fishingSpots[id] && DataUtil.getName(state.fishingSpots[id])
+      if (id != null) {
+        return state.fishingSpots[id] && DataUtil.getName(state.fishingSpots[id])
+      } else {
+        return ''
+      }
     },
     getBaits: (state, getters) => fish => {
       if (fish.bestCatchPath.length < 1) return []
@@ -125,6 +131,7 @@ export default new Vuex.Store({
       return state.fishingSpots[fishingSpotId]
     },
     getFishingSpotFish: (state, getters) => fishingSpotId => {
+      if (fishingSpotId == null) return []
       return state.fishingSpotFish[fishingSpotId].map(it => ({
         id: it.fish,
         tug: it.tug,

@@ -10,7 +10,7 @@
     <!--    <pin-button :value="fish.pinned" @input="setPinned($event)" />-->
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col class="col-6 col-sm-3">
-        <div class="d-flex fill-height align-center flex-row" style="min-height: 48px">
+        <div class="d-flex fill-height align-center flex-row pr-1" style="min-height: 48px">
           <div class="d-flex align-center flex-column flex-sm-row">
             <toggle-button
               :value="fish.pinned"
@@ -30,7 +30,7 @@
             <div :class="fish.icon" />
           </div>
 
-          <div class="text-subtitle-1 text-truncate ml-1" :title="fish.id">{{ fish.name }}</div>
+          <div class="text-subtitle-1 text-truncate ml-1" :title="fish.name">{{ fish.name }}</div>
         </div>
       </v-col>
       <v-col v-if="!isMobile" class="col-2 d-flex flex-column justify-center my-2 my-sm-0">
@@ -209,6 +209,7 @@ export default {
         pinned: this.getFishPinned(this.value._id),
         icon: this.getItemIconClass(this.value._id),
         name: this.getItemName(this.value._id),
+        hasFishingSpot: this.value.location != null,
         zone: this.getZoneName(this.value.location),
         fishingSpot: this.getFishingSpotsName(this.value.location),
         fishingSpotId: this.value.location,
@@ -228,9 +229,9 @@ export default {
         countDownTimePointText: this.$t('countDown.timePointHint', {
           timePoint: DataUtil.formatDateTime(this.fishTimePart.countDown?.timePoint),
         }),
-        countDownTotal: this.printCountDownTime(this.fishTimePart.countDown.fishWindowTotal, 1, false),
+        countDownTotal: this.printCountDownTime(this.fishTimePart.countDown?.fishWindowTotal, 1, false),
         countDownTotalHint: this.$t('countDown.intervalHint', {
-          interval: this.printCountDownTime(this.fishTimePart.countDown.fishWindowTotal, 2),
+          interval: this.printCountDownTime(this.fishTimePart.countDown?.fishWindowTotal, 2),
         }),
         hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
         startHour: this.value.startHour,

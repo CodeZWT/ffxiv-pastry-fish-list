@@ -74,7 +74,7 @@ export default {
         fishingSpot: this.getFishingSpotsName(this.value.location),
         fishingSpotId: this.value.location,
         anglerFishId: this.value.anglerFishId,
-        anglerLocationId: this.getFishingSpot(this.value.location).anglerLocationId,
+        anglerLocationId: this.getFishingSpot(this.value.location)?.anglerLocationId,
       }
     },
     ...mapGetters([
