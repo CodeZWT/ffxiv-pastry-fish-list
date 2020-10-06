@@ -7,7 +7,7 @@
       <v-expansion-panels v-else v-model="openPanelIndex" hover tile>
         <!--              <v-virtual-scroll :items="fishList" :item-height="100" height="1000">-->
         <!--                <template v-slot="{ item: fish, index }">-->
-        <v-expansion-panel v-for="(fish, index) in fishList" :key="index" @change="addScrollRefreshCnt">
+        <v-expansion-panel v-for="(fish, index) in fishList" :key="fish._id" @change="addScrollRefreshCnt">
           <v-expansion-panel-header class="fish-header" :color="listItemColors[index]">
             <template v-slot:default="{ open }">
               <div>
