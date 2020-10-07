@@ -64,7 +64,10 @@ export default {
     hourEnd,
     previousWeatherSet,
     weatherSet,
-    n = this.FISH_WINDOW_FORECAST_N + 1
+    n = this.FISH_WINDOW_FORECAST_N + 2
+    // add 1 to make sure nextInterval process can also get enough fish windows
+    // add another 1 to make sure previous fish windows take continuous fish windows
+    // (which should be merged) into account
   ) {
     if (
       territoryId == null ||
