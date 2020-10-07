@@ -14,7 +14,7 @@
     "fishing": "窗口期剩余：",
     "allAvailable": "全天可钓",
     "fishWindowBtn": "查看窗口期详情",
-    "intervalHint": "窗口期将持续{interval}",
+    "intervalHint": "窗口期时长：{interval}",
     "timePointHint": "时间点：{timePoint}"
   },
   "none": "无",
@@ -121,7 +121,7 @@
         "nextInterval": "休眠期"
       },
       "countDown": {
-        "fishShadowHint": "可持续至鱼影状态消失"
+        "fishShadowHint": "可持续至捕鱼人之识状态消失"
       },
       "linkHint": "跳转至饥饿的猫",
       "copyHint": "复制名称"
