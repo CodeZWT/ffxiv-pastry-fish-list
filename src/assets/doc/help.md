@@ -19,7 +19,7 @@
     
       ![act-create-ngld-item](act-create-ngld-item.jpg)
     
-3. 在左侧栏位中选择上一步新建的悬浮窗，在 `悬浮窗路径`处填入 `https://ricecake404.gitee.io/ff14-list`，点击重新加载。界面默认会显示在屏幕左上角。将鼠标移动至右下角白色三角处可以调整界面大小。
+3. 在左侧栏位中选择上一步新建的悬浮窗，在 `悬浮窗路径`处填入 `https://ricecake404.gitee.io/ff14-list`，点击重新加载。界面默认会显示在屏幕左上角。将鼠标移动至右下角白色三角处可以调整界面大小。(此处勾选`锁定悬浮窗`可以正常使用设置中的拖动条)
 
       <img src="act-config-ngld-item.jpg" alt="act-config-ngld-item" style="zoom:80%;" />
 
@@ -29,7 +29,7 @@
 
 ### ACT可用的一些配置
 
-- 设置中可以调节透明度
+- 设置中可以调节透明度(ACT悬浮窗设置中勾选锁定悬浮窗可以正常使用拖动条，也可以直接点击绿线或输入值来设置)
   
   ![opacity-setting](opacity-setting.jpg)
 

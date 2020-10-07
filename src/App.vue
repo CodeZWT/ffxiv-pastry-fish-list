@@ -119,16 +119,26 @@
         <v-card-title>
           {{ $t('top.setting') }}
         </v-card-title>
-        <v-card-text>
+        <v-card-text class="pt-10">
           <v-slider
             v-model="pageOpacity"
             max="1"
-            min="0"
-            step="0.1"
+            min="0.1"
+            step="0.01"
             :label="$t('setting.dialog.opacity')"
             :hint="$t('setting.dialog.opacityHint')"
             thumb-label
-          ></v-slider>
+          >
+            <template v-slot:append>
+              <v-text-field
+                :value="pageOpacityShowing"
+                @input="pageOpacity = $event"
+                class="mt-0 pt-0"
+                type="number"
+                style="width: 60px"
+              />
+            </template>
+          </v-slider>
         </v-card-text>
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
@@ -149,6 +159,7 @@
           <ul>
             <li>更新帮助文档，ACT相关。现在通过配置ACT可以正常输入了。</li>
             <li>更新所有对话框的滚动条，以及一些样式更新。</li>
+            <li>更新滚动条，调整粒度变为0.01，可直接输入。</li>
           </ul>
           <p />
           <v-divider />
@@ -272,6 +283,7 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import helpHTML from '@/assets/doc/help.html'
 import { version } from '../package.json'
 import ResetButton from '@/components/ResetButton'
+import { debounce } from 'lodash'
 
 export default {
   name: 'App',
@@ -286,6 +298,8 @@ export default {
     showSettingDialog: false,
     showPatchNoteDialog: false,
     collapse: false,
+    debounceSetPageOpacity: undefined,
+    pageOpacityShowing: 0,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -303,7 +317,8 @@ export default {
         return this.opacity
       },
       set(opacity) {
-        this.setOpacity(opacity)
+        this.pageOpacityShowing = opacity
+        this.debounceSetPageOpacity(opacity)
       },
     },
     ...mapState(['snackbar']),
@@ -313,12 +328,14 @@ export default {
     setInterval(() => {
       this.now = Date.now()
     }, 1000)
+    this.debounceSetPageOpacity = debounce(this.setOpacity, 500)
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
     // const helpMd = import('@/assets/doc/help.md')
     // helpMd.then(it => {
     //   console.log(it.default)
     //   this.$refs.helpArea.innerHTML = it.default
     // })
+    this.pageOpacityShowing = this.opacity
     if (this.toComparableVersion(this.version) > this.toComparableVersion(this.websiteVersion)) {
       this.showPatchNoteDialog = true
     }

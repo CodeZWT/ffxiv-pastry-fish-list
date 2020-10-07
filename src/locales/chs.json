@@ -93,7 +93,7 @@
   "setting": {
     "dialog": {
       "opacity": "透明度",
-      "opacityHint": "ACT用配置"
+      "opacityHint": "无法拖动请在ACT中锁定悬浮窗，也可直接点击或输入"
     }
   },
   "general": {
