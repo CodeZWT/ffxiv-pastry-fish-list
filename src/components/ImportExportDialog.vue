@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.mobile" max-width="1264px" style="z-index: 9999">
+  <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.mobile" max-width="1264px" style="z-index: 9999" scrollable>
     <v-card>
       <v-card-title>
         <span class="headline">{{ $t('importExport.dialog.title') }}</span>
@@ -102,7 +102,7 @@
       <v-card-actions>
         <div class="d-flex flex-column flex-fill">
           <reset-button />
-          <v-btn color="default" block text @click="dialog = false">{{ $t('importExport.dialog.close') }}</v-btn>
+          <v-btn class="mt-2" color="default" block text @click="dialog = false">{{ $t('importExport.dialog.close') }}</v-btn>
         </div>
       </v-card-actions>
     </v-card>

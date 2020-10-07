@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="value" persistent max-width="290">
+  <v-dialog v-model="value" persistent max-width="290" scrollable>
     <template v-slot:activator="{ on, attrs }">
       <v-btn color="tertiary" block v-bind="attrs" v-on="on">{{ $t('importExport.dialog.reset.btn') }}</v-btn>
     </template>

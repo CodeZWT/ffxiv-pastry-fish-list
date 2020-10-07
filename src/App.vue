@@ -85,7 +85,7 @@
               </v-list-item-icon>
               <v-list-item-content>{{ $t('top.patchNote') }}</v-list-item-content>
             </v-list-item>
-            <v-list-item @click="showContactDialog = true">
+            <v-list-item @click="showAboutDialog = true">
               <v-list-item-icon>
                 <v-icon dark>mdi-information</v-icon>
               </v-list-item-icon>
@@ -145,6 +145,14 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.1.5</div>
+          <ul>
+            <li>更新帮助文档，ACT相关。现在通过配置ACT可以正常输入了。</li>
+            <li>更新所有对话框的滚动条，以及一些样式更新。</li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.1.4</div>
           <ul>
             <li>更新后台算法，解决长时间后，倒计时出错的问题。</li>
@@ -215,7 +223,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="showContactDialog" :fullscreen="isMobile" max-width="600px" scrollable>
+    <v-dialog v-model="showAboutDialog" :fullscreen="isMobile" max-width="600px" scrollable>
       <v-card>
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
@@ -242,7 +250,7 @@
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
             <reset-button />
-            <v-btn color="default" block text @click="showContactDialog = false"
+            <v-btn class="mt-2" color="default" block text @click="showAboutDialog = false"
               >{{ $t('general.dialog.close') }}
             </v-btn>
           </div>
@@ -274,7 +282,7 @@ export default {
     version,
     helpHTML,
     showHelpDialog: false,
-    showContactDialog: false,
+    showAboutDialog: false,
     showSettingDialog: false,
     showPatchNoteDialog: false,
     collapse: false,

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" :fullscreen="isMobile" max-width="1264px" style="z-index: 9999">
+  <v-dialog v-model="dialog" :fullscreen="isMobile" max-width="1264px" style="z-index: 9999" scrollable>
     <v-card>
       <v-card-title>
         <span class="headline">{{ $t('search.dialog.title') }}</span>
