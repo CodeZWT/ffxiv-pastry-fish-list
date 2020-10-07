@@ -114,7 +114,7 @@
 
       <div class="resize-indicator" />
     </v-footer>
-    <v-dialog v-model="showSettingDialog" :fullscreen="isMobile" max-width="600px">
+    <v-dialog v-model="showSettingDialog" :fullscreen="isMobile" max-width="600px" scrollable>
       <v-card>
         <v-card-title>
           {{ $t('top.setting') }}
@@ -204,7 +204,10 @@
     </v-dialog>
     <v-dialog v-model="showHelpDialog" :fullscreen="isMobile" max-width="1264px" scrollable>
       <v-card>
-        <v-card-text class="help-area" v-html="helpMd" />
+        <v-card-title>
+          {{ $t('top.help') }}
+        </v-card-title>
+        <v-card-text v-html="helpHTML" />
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
             <v-btn color="default" block text @click="showHelpDialog = false">{{ $t('general.dialog.close') }}</v-btn>
@@ -212,7 +215,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="showContactDialog" :fullscreen="isMobile" max-width="600px">
+    <v-dialog v-model="showContactDialog" :fullscreen="isMobile" max-width="600px" scrollable>
       <v-card>
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
@@ -258,7 +261,7 @@ import EorzeaTime from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
 import fisher from '@/assets/fisher.png'
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import helpMd from '@/assets/doc/help.md'
+import helpHTML from '@/assets/doc/help.html'
 import { version } from '../package.json'
 import ResetButton from '@/components/ResetButton'
 
@@ -268,8 +271,8 @@ export default {
   data: () => ({
     now: Date.now(),
     fisher,
-    helpMd,
     version,
+    helpHTML,
     showHelpDialog: false,
     showContactDialog: false,
     showSettingDialog: false,
@@ -382,25 +385,6 @@ body {
   border-left: 8px solid transparent;
 }
 
-.help-area img {
-  width: 100%;
-}
-
-.help-area h1 {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.help-area h2 {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.help-area h3 {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
 .v-expansion-panel-header {
   padding-top: 4px !important;
   padding-bottom: 4px !important;
@@ -409,5 +393,10 @@ body {
 .min-page {
   background: rgba(255, 255, 255, 0) !important;
   /*height: 64px;*/
+}
+
+#write {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 </style>

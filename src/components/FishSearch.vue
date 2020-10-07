@@ -9,7 +9,7 @@
           <v-row v-if="isMobile">
             <v-col>
               <v-icon class="mr-1">mdi-information</v-icon>
-              请注意，目前在ACT下无法正常输入o(╥﹏╥)o
+              在ACT模式下如果无法输入，请参照帮助中的步骤设置ACTWS
             </v-col>
           </v-row>
           <v-row>
