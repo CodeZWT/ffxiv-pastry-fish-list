@@ -78,6 +78,7 @@ export default {
     const fishWindows = []
     let counter = 0
     let time = eorzeaTime.toWeatherCheckPoint()
+    const firstTime = time
     let loopCounter = 0
     // console.debug(new Date(time.time))
     while (counter < n && loopCounter < 10000) {
@@ -107,6 +108,44 @@ export default {
         }
       }
       time = time.toNextWeatherInterval()
+    }
+    // try to find previous available fish window which can be combined with the current first one
+    if (fishWindows.length > 0 && firstTime.toEarthTime() === fishWindows[0][0]) {
+      loopCounter = 0
+      let firstEorzeaWeatherStart = firstTime
+      // console.log(fishId, EorzeaWeather.weatherAt(territoryId, firstEorzeaWeatherStart))
+      let firstFishWindow = fishWindows[0]
+      do {
+        firstEorzeaWeatherStart = firstEorzeaWeatherStart.toPreviousWeatherInterval()
+        firstFishWindow = this.computeFishWindowIfExist(
+          territoryId,
+          firstEorzeaWeatherStart,
+          hourStart,
+          hourEnd,
+          previousWeatherSet,
+          weatherSet
+        )
+        loopCounter++
+        // console.log(
+        //   'seek for fish',
+        //   fishId,
+        //   EorzeaWeather.weatherAt(territoryId, firstEorzeaWeatherStart),
+        //   firstFishWindow && new Date(firstFishWindow[0]),
+        //   firstFishWindow && new Date(firstFishWindow[1]),
+        //   new Date(firstEorzeaWeatherStart.toNextWeatherInterval().toEarthTime())
+        // )
+      } while (
+        firstFishWindow &&
+        firstEorzeaWeatherStart.toEarthTime() === firstFishWindow[0] &&
+        firstEorzeaWeatherStart.toNextWeatherInterval().toEarthTime() === firstFishWindow[1] &&
+        loopCounter < 1000
+      )
+      // console.log('loop cnt for fish front seeker', loopCounter)
+      if (firstFishWindow && firstEorzeaWeatherStart.toNextWeatherInterval().toEarthTime() === firstFishWindow[1]) {
+        fishWindows[0][0] = firstFishWindow[0]
+      } else {
+        fishWindows[0][0] = firstEorzeaWeatherStart.toNextWeatherInterval().toEarthTime()
+      }
     }
     // console.debug('loop count', loopCounter)
     return fishWindows
