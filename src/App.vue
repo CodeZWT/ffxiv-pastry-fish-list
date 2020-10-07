@@ -100,18 +100,20 @@
       <v-container class="py-0" v-if="!collapse">
         <router-view />
       </v-container>
+      <v-container class="py-0" v-if="!collapse">
+        <v-row>
+          <v-col class="d-flex flex-row justify-end">
+            <span>Animated icon by <a @click="goTo('http://icons8.com')">Icons8</a></span>
+            <v-spacer />
+            <span>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</span>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-main>
     <v-footer app style="font-size: small" v-if="!collapse">
-      <div class="d-flex flex-column" style="width: 100%">
-        <div class="d-flex justify-space-between">
-          <span>Animated icon by <a href="http://icons8.com">Icons8</a></span>
-          <span>红豆年糕@海猫茶屋</span>
-        </div>
-        <div class="d-flex">
-          <span>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</span>
-        </div>
-      </div>
-
+      <span>红豆年糕@海猫茶屋</span>
+      <v-spacer />
+      <span>群：1153646847</span>
       <div class="resize-indicator" />
     </v-footer>
     <v-dialog v-model="showSettingDialog" :fullscreen="isMobile" max-width="600px" scrollable>
@@ -161,6 +163,7 @@
             <li>更新所有对话框的滚动条，以及一些样式更新。</li>
             <li>更新滚动条，调整粒度变为0.01，可直接输入。</li>
             <li>复制、链接按钮大小。</li>
+            <li>更新页脚。</li>
           </ul>
           <p />
           <v-divider />
