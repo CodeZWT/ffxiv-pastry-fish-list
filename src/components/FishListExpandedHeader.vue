@@ -24,11 +24,11 @@
           {{ fish.name }}
         </div>
         <v-badge inline color="primary" :content="fish.patch"></v-badge>
-        <v-btn text icon small @click.stop="copyToClipboard(fish.name)" title="拷贝名称">
-          <v-icon small>mdi-content-copy</v-icon>
+        <v-btn text icon @click.stop="copyToClipboard(fish.name)" :title="$t('list.item.copyHint')">
+          <v-icon>mdi-content-copy</v-icon>
         </v-btn>
-        <v-btn text icon small @click.stop="goToFishAngelPage(fish.anglerFishId)">
-          <v-icon small>mdi-link-variant</v-icon>
+        <v-btn text icon @click.stop="goToFishAngelPage(fish.anglerFishId)" :title="$t('list.item.linkHint')">
+          <v-icon>mdi-link-variant</v-icon>
         </v-btn>
       </div>
     </v-row>

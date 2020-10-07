@@ -122,7 +122,9 @@
       },
       "countDown": {
         "fishShadowHint": "可持续至鱼影状态消失"
-      }
+      },
+      "linkHint": "跳转至饥饿的猫",
+      "copyHint": "复制名称"
     }
   }
 }

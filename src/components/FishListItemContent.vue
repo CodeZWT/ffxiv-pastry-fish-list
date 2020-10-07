@@ -13,8 +13,14 @@
               </div>
               <div class="text-subtitle-1 ml-2">({{ fish.fishSpotPositionText }})</div>
               <div>
-                <v-btn class="ma-2" text icon small @click.stop="goToFishingSpotAngelPage(fish.anglerLocationId)">
-                  <v-icon small>mdi-link-variant</v-icon>
+                <v-btn
+                  class="ma-2"
+                  text
+                  icon
+                  @click.stop="goToFishingSpotAngelPage(fish.anglerLocationId)"
+                  :title="$t('list.item.linkHint')"
+                >
+                  <v-icon>mdi-link-variant</v-icon>
                 </v-btn>
               </div>
             </div>

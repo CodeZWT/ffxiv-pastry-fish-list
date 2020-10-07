@@ -160,6 +160,7 @@
             <li>更新帮助文档，ACT相关。现在通过配置ACT可以正常输入了。</li>
             <li>更新所有对话框的滚动条，以及一些样式更新。</li>
             <li>更新滚动条，调整粒度变为0.01，可直接输入。</li>
+            <li>复制、链接按钮大小。</li>
           </ul>
           <p />
           <v-divider />
@@ -261,15 +262,15 @@
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
             <reset-button />
-            <v-btn class="mt-2" color="default" block text @click="showAboutDialog = false"
-              >{{ $t('general.dialog.close') }}
+            <v-btn class="mt-2" color="default" block text @click="showAboutDialog = false">
+              {{ $t('general.dialog.close') }}
             </v-btn>
           </div>
         </v-card-actions>
       </v-card>
     </v-dialog>
     <input type="text" value="" id="clipboard" />
-    <v-snackbar :timeout="2000" v-model="snackbar.show" :color="snackbar.color" centered absolute>
+    <v-snackbar :timeout="2000" v-model="snackbar.show" :color="snackbar.color" centered elevation="24">
       <div class="text-center">{{ snackbar.text }}</div>
     </v-snackbar>
   </v-app>
