@@ -22,7 +22,20 @@
                 :label="$t('search.dialog.placeholder')"
                 clearable
                 :filter="filterOptions"
-              ></v-autocomplete>
+              >
+                <template v-slot:item="data">
+                  <click-helper>
+                    <div class="d-flex">
+                      <v-list-item-avatar>
+                        <div :class="data.item.icon" />
+                      </v-list-item-avatar>
+                      <v-list-item-content>
+                        <v-list-item-title v-html="data.item.name"></v-list-item-title>
+                      </v-list-item-content>
+                    </div>
+                  </click-helper>
+                </template>
+              </v-autocomplete>
             </v-col>
           </v-row>
         </v-container>
@@ -94,7 +107,11 @@ export default {
       return this.fishData.filter(it => it._id === this.fishId)[0]
     },
     fishSearchData() {
-      return this.fishData.map(it => ({ id: it._id, name: this.getItemName(it._id) }))
+      return this.fishData.map(it => ({
+        id: it._id,
+        name: this.getItemName(it._id),
+        icon: this.getItemIconClass(it._id),
+      }))
     },
     getPredators() {
       return value =>
@@ -110,7 +127,7 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
     ...mapState({ allFish: 'fish' }),
-    ...mapGetters(['getItemName', 'getFishCompleted']),
+    ...mapGetters(['getItemName', 'getFishCompleted', 'getItemIconClass']),
   },
   watch: {
     dialog() {
