@@ -36,8 +36,8 @@
     <v-app-bar app color="primary" dark>
       <v-app-bar-nav-icon @click="collapse = !collapse">
         <v-tooltip right>
-          <template v-slot:activator="{ on }">
-            <v-avatar size="28" v-on="on">
+          <template v-slot:activator="{ on, attrs }">
+            <v-avatar size="28" v-bind="attrs" v-on="on">
               <img :src="fisher" />
             </v-avatar>
           </template>
@@ -157,6 +157,13 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.1.6</div>
+          <ul>
+            <li>修复等待状态，倒计时与持续时长乱序的问题。</li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.1.5</div>
           <ul>
             <li>更新帮助文档，ACT相关。现在通过配置ACT可以正常输入了。</li>

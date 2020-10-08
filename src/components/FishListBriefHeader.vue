@@ -40,24 +40,28 @@
         </div>
         <div v-if="fish.hasCountDown" class="d-flex align-center">
           <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
-          <v-tooltip right color="secondary">
-            <template v-slot:activator="{ on, attrs }">
-              <div v-bind="attrs" v-on="on" class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
-            </template>
-            <span>{{ fish.countDownTimePointText }}</span>
-          </v-tooltip>
+          <div>
+            <v-tooltip right color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on" class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
+              </template>
+              <span>{{ fish.countDownTimePointText }}</span>
+            </v-tooltip>
+          </div>
           <div
             v-if="fish.addBuffSuffix && fish.isFishing"
             :title="$t('list.item.countDown.fishShadowHint')"
             :class="fish.predatorsIcon"
             style="margin-left: 2px"
           />
-          <v-tooltip v-if="fish.isWaiting" right color="secondary">
-            <template v-slot:activator="{ on }">
-              <div v-on="on" class="text-subtitle-2">({{ fish.countDownTotal }})</div>
-            </template>
-            <span>{{ fish.countDownTotalHint }}</span>
-          </v-tooltip>
+          <div>
+            <v-tooltip v-if="fish.isWaiting" right color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on" class="text-subtitle-2">({{ fish.countDownTotal }})</div>
+              </template>
+              <span>{{ fish.countDownTotalHint }}</span>
+            </v-tooltip>
+          </div>
         </div>
       </v-col>
       <v-col class="d-flex flex-column justify-center col-4 col-sm-3">
@@ -92,27 +96,31 @@
           {{ $t(fish.countDownType) }}
         </div>
         <div v-else-if="isMobile" class="d-flex align-center">
-          <v-tooltip top color="secondary">
-            <template v-slot:activator="{ on }">
-              <div v-on="on" class="d-flex align-center">
-                <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
-                <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
-                <div
-                  v-if="fish.addBuffSuffix && fish.isFishing"
-                  :title="$t('list.item.countDown.fishShadowHint')"
-                  :class="fish.predatorsIcon"
-                  style="margin-left: 2px"
-                />
-              </div>
-            </template>
-            <span>{{ fish.countDownTimePointText }}</span>
-          </v-tooltip>
-          <v-tooltip v-if="fish.isWaiting" top color="secondary">
-            <template v-slot:activator="{ on }">
-              <div v-on="on" class="text-subtitle-2">({{ fish.countDownTotal }})</div>
-            </template>
-            <span>{{ fish.countDownTotalHint }}</span>
-          </v-tooltip>
+          <div>
+            <v-tooltip top color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on" class="d-flex align-center">
+                  <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
+                  <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
+                  <div
+                    v-if="fish.addBuffSuffix && fish.isFishing"
+                    :title="$t('list.item.countDown.fishShadowHint')"
+                    :class="fish.predatorsIcon"
+                    style="margin-left: 2px"
+                  />
+                </div>
+              </template>
+              <span>{{ fish.countDownTimePointText }}</span>
+            </v-tooltip>
+          </div>
+          <div>
+            <v-tooltip v-if="fish.isWaiting" top color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on" class="text-subtitle-2">({{ fish.countDownTotal }})</div>
+              </template>
+              <span>{{ fish.countDownTotalHint }}</span>
+            </v-tooltip>
+          </div>
         </div>
       </v-col>
       <v-col class="col-12 col-sm-4 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0">
