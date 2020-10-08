@@ -23,15 +23,17 @@
       </div>
     </v-system-bar>
     <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon @click="collapse = !collapse">
-        <v-tooltip right>
-          <template v-slot:activator="{ on, attrs }">
-            <v-avatar size="28" v-bind="attrs" v-on="on">
-              <img :src="fisher" />
-            </v-avatar>
-          </template>
-          <span>{{ $t('top.collapseHint') }}</span>
-        </v-tooltip>
+      <v-app-bar-nav-icon>
+        <click-helper @click="collapse = !collapse">
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <v-avatar size="28" v-bind="attrs" v-on="on">
+                <img :src="fisher" />
+              </v-avatar>
+            </template>
+            <span>{{ $t('top.collapseHint') }}</span>
+          </v-tooltip>
+        </click-helper>
       </v-app-bar-nav-icon>
 
       <v-toolbar-title>{{ $t('top.toolBarTitle') }}</v-toolbar-title>
