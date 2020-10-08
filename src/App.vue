@@ -170,6 +170,7 @@
           <ul>
             <li>修复等待状态，倒计时与持续时长乱序的问题。</li>
             <li>修复ACT下按钮有时没有相应的问题。</li>
+            <li>修复道具提示框错位，被对话框遮挡的问题</li>
             <li>增加 猎手鱼 信息，咬钩：中杆，提钩：强力提钩。</li>
             <li>更新缩小模式，现在只显示鱼图标。</li>
           </ul>
@@ -415,7 +416,7 @@ export default {
 }
 
 .cafekit.ck-popup {
-  z-index: 100 !important;
+  z-index: 9999 !important;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

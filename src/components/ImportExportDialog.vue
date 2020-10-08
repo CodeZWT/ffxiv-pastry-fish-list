@@ -3,7 +3,7 @@
     v-model="dialog"
     :fullscreen="$vuetify.breakpoint.mobile"
     max-width="1264px"
-    style="z-index: 9999"
+    style="z-index: 9998"
     scrollable
   >
     <v-card>
