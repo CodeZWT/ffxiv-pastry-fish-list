@@ -78,7 +78,7 @@
             <v-tooltip top color="secondary">
               <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on" class="d-flex align-center">
-                  <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="25" width="25" />
+                  <v-icon size="20">mdi-alarm</v-icon>
                   <strong
                     >{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }} ({{ Math.ceil(value) }}%)</strong
                   >
@@ -208,14 +208,12 @@ import DataUtil from '@/utils/DataUtil'
 import FishPredators from '@/components/FishPredators'
 import FishBaitList from '@/components/FishBaitList'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
-import LottieIcon from '@/components/basic/LottieIcon'
-import bellIcon from '@/assets/icon/bell.json'
 import FishWindow from '@/utils/FishWindow'
 import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'FishListItemContent',
-  components: { ClickHelper, LottieIcon, EorzeaSimpleMap, FishBaitList, FishPredators },
+  components: { ClickHelper, EorzeaSimpleMap, FishBaitList, FishPredators },
   props: {
     open: {
       type: Boolean,
@@ -253,7 +251,6 @@ export default {
     FISHING: DataUtil.FISHING,
     WAITING: DataUtil.WAITING,
     TUGS: Object.keys(DataUtil.TUG_ICON),
-    bellIcon: bellIcon,
   }),
   computed: {
     fish() {

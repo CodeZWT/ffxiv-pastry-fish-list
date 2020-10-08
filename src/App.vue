@@ -110,8 +110,6 @@
       <v-container class="py-0" v-if="!collapse">
         <v-row>
           <v-col class="d-flex flex-row justify-end">
-            <span>Animated icon by <a @click="goTo('http://icons8.com')">Icons8</a></span>
-            <v-spacer />
             <span>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</span>
           </v-col>
         </v-row>
@@ -166,6 +164,13 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.1.7</div>
+          <ul>
+            <li>将动态铃铛变成静态图标。</li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.1.6</div>
           <ul>
             <li>修复等待状态，倒计时与持续时长乱序的问题。</li>
@@ -173,6 +178,7 @@
             <li>修复道具提示框错位，被对话框遮挡的问题</li>
             <li>增加 猎手鱼 信息，咬钩：中杆，提钩：强力提钩。</li>
             <li>更新缩小模式，现在只显示鱼图标。</li>
+            <li>搜索选项增加了鱼的图标。</li>
           </ul>
           <p />
           <v-divider />

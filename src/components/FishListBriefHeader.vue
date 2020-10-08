@@ -39,7 +39,8 @@
           </div>
         </div>
         <div v-if="fish.hasCountDown" class="d-flex align-center">
-          <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
+          <v-icon size="20">mdi-alarm</v-icon>
+
           <div>
             <v-tooltip right color="secondary">
               <template v-slot:activator="{ on, attrs }">
@@ -99,8 +100,10 @@
           <div>
             <v-tooltip top color="secondary">
               <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" class="d-flex align-center">
-                  <lottie-icon v-if="fish.isFishing" :value="bellIcon" height="16" width="16" />
+                <div v-bind="attrs" v-on="on" class="d-flex align-center align-content-center">
+
+                  <v-icon size="20">mdi-alarm</v-icon>
+
                   <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
                   <div
                     v-if="fish.addBuffSuffix && fish.isFishing"
@@ -152,13 +155,11 @@ import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
 import ToggleButton from '@/components/basic/ToggleButton'
 import FishBaitList from '@/components/FishBaitList'
-import bellIcon from '@/assets/icon/bell.json'
-import LottieIcon from '@/components/basic/LottieIcon'
 
 export default {
   name: 'FishListBriefHeader',
   // to deal with recursive components
-  components: { LottieIcon, FishBaitList, ToggleButton, FishPredators: () => import('@/components/FishPredators') },
+  components: { FishBaitList, ToggleButton, FishPredators: () => import('@/components/FishPredators') },
   props: {
     value: {
       type: Object,
@@ -192,7 +193,6 @@ export default {
   data: () => ({
     fisher: fisher,
     rootPath: process.env.ASSET_PATH,
-    bellIcon: bellIcon,
   }),
   computed: {
     fish() {
