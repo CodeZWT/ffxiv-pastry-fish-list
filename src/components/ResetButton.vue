@@ -1,8 +1,8 @@
 <template>
   <v-dialog v-model="value" persistent max-width="290" scrollable>
     <template v-slot:activator="{ on, attrs }">
-      <click-helper v-on="on">
-        <v-btn color="tertiary" block v-bind="attrs">{{ $t('importExport.dialog.reset.btn') }}</v-btn>
+      <click-helper v-on="on" v-bind="attrs">
+        <v-btn color="tertiary" block>{{ $t('importExport.dialog.reset.btn') }}</v-btn>
       </click-helper>
     </template>
     <v-card>
