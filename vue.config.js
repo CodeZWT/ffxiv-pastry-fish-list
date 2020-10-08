@@ -14,7 +14,12 @@ module.exports = {
       enableInSFC: false,
     },
   },
-
+  chainWebpack: config => {
+    config.plugin('html').tap(args => {
+      args[0].title = '鱼糕 - 钓鱼时钟'
+      return args
+    })
+  },
   configureWebpack: {
     plugins: [
       new webpack.DefinePlugin({
