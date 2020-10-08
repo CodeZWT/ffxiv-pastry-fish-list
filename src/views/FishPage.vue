@@ -138,6 +138,9 @@ export default {
             (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish._id))) &&
           (this.filters.bigFishType === 'ALL' ||
             (this.filters.bigFishType === 'BIG_FISH' && this.bigFish.includes(fish._id)) ||
+            (this.filters.bigFishType === 'ALL_AVAILABLE_BIG_FISH' &&
+              this.bigFish.includes(fish._id) &&
+              this.fishListTimePart[fish._id]?.countDown?.type === DataUtil.ALL_AVAILABLE) ||
             (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish._id)))
         )
       })

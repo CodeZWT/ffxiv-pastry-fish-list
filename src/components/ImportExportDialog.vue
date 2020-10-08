@@ -103,7 +103,7 @@
               </v-tab-item>
               <v-tab-item>
                 <v-textarea v-model="fishTrackerTextToImport" />
-                <click-helper @click="importDataToFishTracker">
+                <click-helper @click="importDataFromFishTracker">
                   <v-btn class="mr-4" color="primary">
                     {{ $t('importExport.dialog.other.fishTracker.importFromFishTracker') }}
                   </v-btn>
@@ -241,7 +241,7 @@ export default {
         this.showInfo(this.$t('importExport.dialog.message.importError'), 'tertiary')
       }
     },
-    importDataToFishTracker() {
+    importDataFromFishTracker() {
       try {
         const fishTrackerData = JSON.parse(this.fishTrackerTextToImport)
         const data = this.fromFishTrackerVersion(fishTrackerData, this.userData)

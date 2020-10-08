@@ -167,6 +167,7 @@
           <div class="text-h6">Version 0.1.7</div>
           <ul>
             <li>将动态铃铛变成静态图标。</li>
+            <li>增加常驻鱼王（没有时间要求的鱼王）的筛选项。</li>
           </ul>
           <p />
           <v-divider />

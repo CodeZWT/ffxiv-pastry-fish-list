@@ -95,7 +95,8 @@ const PATCHES = {
   '5.x': [5.0, 5.1, 5.2],
 }
 const COMPLETE_FILTER_TYPES = ['ALL', 'COMPLETED', 'UNCOMPLETED']
-const BIG_FISH_FILTER_TYPES = ['ALL', 'BIG_FISH', 'NOT_BIG_FISH']
+// ALL_AVAILABLE_BIG_FISH is refer to fish without any time constraints in real life
+const BIG_FISH_FILTER_TYPES = ['ALL', 'BIG_FISH', 'ALL_AVAILABLE_BIG_FISH', 'NOT_BIG_FISH']
 const FISH_N_FILTER_TYPES = ['10', '20', '50', 'ALL']
 
 export default {
