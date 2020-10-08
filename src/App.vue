@@ -169,6 +169,7 @@
           <div class="text-h6">Version 0.1.6</div>
           <ul>
             <li>修复等待状态，倒计时与持续时长乱序的问题。</li>
+            <li>修复ACT下按钮有时没有相应的问题。</li>
           </ul>
           <p />
           <v-divider />

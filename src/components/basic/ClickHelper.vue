@@ -21,7 +21,6 @@ export default {
   },
   mounted() {
     this.$el.addEventListener('click', e => {
-      console.debug('button click detected')
       this.$emit('click', e)
     })
   },
