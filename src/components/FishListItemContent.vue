@@ -13,15 +13,11 @@
               </div>
               <div class="text-subtitle-1 ml-2">({{ fish.fishSpotPositionText }})</div>
               <div>
-                <v-btn
-                  class="ma-2"
-                  text
-                  icon
-                  @click.stop="goToFishingSpotAngelPage(fish.anglerLocationId)"
-                  :title="$t('list.item.linkHint')"
-                >
-                  <v-icon>mdi-link-variant</v-icon>
-                </v-btn>
+                <click-helper @click.stop="goToFishingSpotAngelPage(fish.anglerLocationId)">
+                  <v-btn class="ma-2" text icon :title="$t('list.item.linkHint')">
+                    <v-icon>mdi-link-variant</v-icon>
+                  </v-btn>
+                </click-helper>
               </div>
             </div>
           </v-expansion-panel-header>
@@ -215,10 +211,11 @@ import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import LottieIcon from '@/components/basic/LottieIcon'
 import bellIcon from '@/assets/icon/bell.json'
 import FishWindow from '@/utils/FishWindow'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'FishListItemContent',
-  components: { LottieIcon, EorzeaSimpleMap, FishBaitList, FishPredators },
+  components: { ClickHelper, LottieIcon, EorzeaSimpleMap, FishBaitList, FishPredators },
   props: {
     open: {
       type: Boolean,

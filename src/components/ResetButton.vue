@@ -1,7 +1,9 @@
 <template>
   <v-dialog v-model="value" persistent max-width="290" scrollable>
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="tertiary" block v-bind="attrs" v-on="on">{{ $t('importExport.dialog.reset.btn') }}</v-btn>
+      <click-helper v-on="on">
+        <v-btn color="tertiary" block v-bind="attrs">{{ $t('importExport.dialog.reset.btn') }}</v-btn>
+      </click-helper>
     </template>
     <v-card>
       <v-card-title class="headline">
@@ -9,12 +11,16 @@
       </v-card-title>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="default" text @click="value = false">
-          {{ $t('importExport.dialog.reset.cancel') }}
-        </v-btn>
-        <v-btn color="tertiary" text @click="onReset">
-          {{ $t('importExport.dialog.reset.confirm') }}
-        </v-btn>
+        <click-helper @click="value = false">
+          <v-btn color="default" text>
+            {{ $t('importExport.dialog.reset.cancel') }}
+          </v-btn>
+        </click-helper>
+        <click-helper @click="onReset">
+          <v-btn color="tertiary" text>
+            {{ $t('importExport.dialog.reset.confirm') }}
+          </v-btn>
+        </click-helper>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -22,9 +28,11 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'ResetButton',
+  components: { ClickHelper },
   // props: {
   //   value: {
   //     type: Boolean,

@@ -10,19 +10,21 @@
       <v-row wrap no-gutters>
         <v-col v-for="version in exVersion" :key="version" class="col-12 col-md-6 my-1">
           <div style="align-items: center">
-            <v-btn
+            <click-helper
               v-if="patchSelectedIndices[version].length === patches[version].length"
-              text
-              small
               @click="uncheckAll(version)"
             >
-              {{ version }}
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-            <v-btn v-else text small @click="checkAll(version)">
-              {{ version }}
-              <v-icon>mdi-check-all</v-icon>
-            </v-btn>
+              <v-btn text small>
+                {{ version }}
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </click-helper>
+            <click-helper v-else @click="checkAll(version)">
+              <v-btn text small>
+                {{ version }}
+                <v-icon>mdi-check-all</v-icon>
+              </v-btn>
+            </click-helper>
             <v-btn-toggle
               v-model="patchSelectedIndices[version]"
               column
@@ -31,9 +33,11 @@
               active-class="primary"
               @change="onChange"
             >
-              <v-btn v-for="patch in patches[version]" :key="patch" small>
-                {{ patch.toFixed(1) }}
-              </v-btn>
+              <click-helper v-for="patch in patches[version]" :key="patch">
+                <v-btn small>
+                  {{ patch.toFixed(1) }}
+                </v-btn>
+              </click-helper>
             </v-btn-toggle>
           </div>
         </v-col>
@@ -43,13 +47,17 @@
         <v-col class="col-12 col-md-6">
           <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
           <v-btn-toggle v-model="completeType" mandatory active-class="primary" dense @change="onChange">
-            <v-btn v-for="type in completeFilterTypes" :key="type" small>{{ $t(`filter.mark.${type}`) }}</v-btn>
+            <click-helper v-for="type in completeFilterTypes" :key="type">
+              <v-btn small>{{ $t(`filter.mark.${type}`) }}</v-btn>
+            </click-helper>
           </v-btn-toggle>
         </v-col>
         <v-col cols="6">
           <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
           <v-btn-toggle v-model="bigFishType" mandatory active-class="primary" dense @change="onChange">
-            <v-btn v-for="type in bigFishFilterTypes" :key="type" small>{{ $t(`filter.bigFish.${type}`) }}</v-btn>
+            <click-helper v-for="type in bigFishFilterTypes" :key="type">
+              <v-btn small>{{ $t(`filter.bigFish.${type}`) }}</v-btn>
+            </click-helper>
           </v-btn-toggle>
         </v-col>
       </v-row>
@@ -64,9 +72,11 @@
       <v-row no-gutters>
         <v-col>
           <v-btn-toggle v-model="fishNType" dense active-class="primary" @change="onChange">
-            <v-btn v-for="type in fishNFilterTypes" :key="type" small>
-              {{ $t(`filter.showFirstNFish.${type}`) }}
-            </v-btn>
+            <click-helper v-for="type in fishNFilterTypes" :key="type">
+              <v-btn small>
+                {{ $t(`filter.showFirstNFish.${type}`) }}
+              </v-btn>
+            </click-helper>
           </v-btn-toggle>
         </v-col>
       </v-row>
@@ -76,6 +86,8 @@
 </template>
 
 <script>
+import ClickHelper from '@/components/basic/ClickHelper'
+
 const PATCHES = {
   '2.x': [2.0, 2.1, 2.2, 2.3, 2.4, 2.5],
   '3.x': [3.0, 3.1, 3.2, 3.3, 3.4, 3.5],
@@ -88,6 +100,7 @@ const FISH_N_FILTER_TYPES = ['10', '20', '50', 'ALL']
 
 export default {
   name: 'FishFilter',
+  components: { ClickHelper },
   props: {
     filters: {
       type: Object,

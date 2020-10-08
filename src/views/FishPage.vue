@@ -32,9 +32,11 @@
           </div>
 
           <template v-slot:actions>
-            <v-btn text color="primary" @click="onDismiss">
-              不再显示
-            </v-btn>
+            <click-helper @click="onDismiss">
+              <v-btn text color="primary">
+                不再显示
+              </v-btn>
+            </click-helper>
           </template>
         </v-banner>
         <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
@@ -96,10 +98,11 @@ import FishList from '@/components/FishList'
 import FishSearch from '@/components/FishSearch'
 import { union, isEqual } from 'lodash'
 import ImportExportDialog from '@/components/ImportExportDialog'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'fish-page',
-  components: { ImportExportDialog, FishSearch, FishList, FishFilter },
+  components: { ClickHelper, ImportExportDialog, FishSearch, FishList, FishFilter },
   data: () => ({
     now: Date.now(),
     weatherChangeTrigger: 1,

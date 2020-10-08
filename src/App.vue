@@ -22,17 +22,6 @@
         }}
       </div>
     </v-system-bar>
-    <!--    <v-btn v-if="collapse" @click="toggleCollapse"-->
-    <!--           elevation="5"-->
-    <!--           fab-->
-    <!--           color="primary"-->
-    <!--           class="mt-9 ml-2"-->
-    <!--           small-->
-    <!--    >-->
-    <!--      <v-avatar size="28">-->
-    <!--        <img :src="fisher" />-->
-    <!--      </v-avatar>-->
-    <!--    </v-btn>-->
     <v-app-bar app color="primary" dark>
       <v-app-bar-nav-icon @click="collapse = !collapse">
         <v-tooltip right>
@@ -47,50 +36,66 @@
 
       <v-toolbar-title>{{ $t('top.toolBarTitle') }}</v-toolbar-title>
       <v-spacer />
-      <v-btn icon @click="setShowSearchDialog(true)">
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn icon @click="toggleFilterPanel">
-        <v-icon>mdi-filter</v-icon>
-      </v-btn>
+      <click-helper @click="setShowSearchDialog(true)">
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+      </click-helper>
+      <click-helper @click="toggleFilterPanel">
+        <v-btn icon>
+          <v-icon>mdi-filter</v-icon>
+        </v-btn>
+      </click-helper>
       <div class="text-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn icon v-bind="attrs" v-on="on">
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
+            <click-helper v-on="on">
+              <v-btn icon v-bind="attrs">
+                <v-icon>mdi-dots-vertical</v-icon>
+              </v-btn>
+            </click-helper>
           </template>
           <v-list>
-            <v-list-item @click="setShowImportExportDialog(true)">
-              <v-list-item-icon>
-                <v-icon>mdi-database</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.menu') }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="showHelpDialog = true">
-              <v-list-item-icon>
-                <v-icon dark>mdi-help-circle</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.help') }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="showSettingDialog = true">
-              <v-list-item-icon>
-                <v-icon dark>mdi-cog</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.setting') }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="showPatchNoteDialog = true">
-              <v-list-item-icon>
-                <v-icon dark>mdi-tag</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.patchNote') }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="showAboutDialog = true">
-              <v-list-item-icon>
-                <v-icon dark>mdi-information</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.about') }}</v-list-item-content>
-            </v-list-item>
+            <click-helper @click="setShowImportExportDialog(true)">
+              <v-list-item @click="noOp">
+                <v-list-item-icon>
+                  <v-icon>mdi-database</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.menu') }}</v-list-item-content>
+              </v-list-item>
+            </click-helper>
+            <click-helper @click="showHelpDialog = true">
+              <v-list-item @click="noOp">
+                <v-list-item-icon>
+                  <v-icon dark>mdi-help-circle</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.help') }}</v-list-item-content>
+              </v-list-item>
+            </click-helper>
+            <click-helper @click="showSettingDialog = true">
+              <v-list-item @click="noOp">
+                <v-list-item-icon>
+                  <v-icon dark>mdi-cog</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.setting') }}</v-list-item-content>
+              </v-list-item>
+            </click-helper>
+            <click-helper @click="showPatchNoteDialog = true">
+              <v-list-item @click="noOp">
+                <v-list-item-icon>
+                  <v-icon dark>mdi-tag</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.patchNote') }}</v-list-item-content>
+              </v-list-item>
+            </click-helper>
+            <click-helper @click="showAboutDialog = true">
+              <v-list-item @click="noOp">
+                <v-list-item-icon>
+                  <v-icon dark>mdi-information</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.about') }}</v-list-item-content>
+              </v-list-item>
+            </click-helper>
           </v-list>
         </v-menu>
       </div>
@@ -144,9 +149,11 @@
         </v-card-text>
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
-            <v-btn color="default" block text @click="showSettingDialog = false">
-              {{ $t('general.dialog.close') }}
-            </v-btn>
+            <click-helper @click="showSettingDialog = false">
+              <v-btn color="default" block text>
+                {{ $t('general.dialog.close') }}
+              </v-btn>
+            </click-helper>
           </div>
         </v-card-actions>
       </v-card>
@@ -229,9 +236,11 @@
         </v-card-text>
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
-            <v-btn color="primary" block @click="onConfirmPatchNote">
-              {{ $t('general.dialog.confirm') }}
-            </v-btn>
+            <click-helper @click="onConfirmPatchNote">
+              <v-btn color="primary" block>
+                {{ $t('general.dialog.confirm') }}
+              </v-btn>
+            </click-helper>
           </div>
         </v-card-actions>
       </v-card>
@@ -244,7 +253,9 @@
         <v-card-text v-html="helpHTML" />
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
-            <v-btn color="default" block text @click="showHelpDialog = false">{{ $t('general.dialog.close') }}</v-btn>
+            <click-helper @click="showHelpDialog = false">
+              <v-btn color="default" block text>{{ $t('general.dialog.close') }}</v-btn>
+            </click-helper>
           </div>
         </v-card-actions>
       </v-card>
@@ -276,9 +287,11 @@
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
             <reset-button />
-            <v-btn class="mt-2" color="default" block text @click="showAboutDialog = false">
-              {{ $t('general.dialog.close') }}
-            </v-btn>
+            <click-helper @click="showAboutDialog = false">
+              <v-btn class="mt-2" color="default" block text>
+                {{ $t('general.dialog.close') }}
+              </v-btn>
+            </click-helper>
           </div>
         </v-card-actions>
       </v-card>
@@ -299,15 +312,18 @@ import helpHTML from '@/assets/doc/help.html'
 import { version } from '../package.json'
 import ResetButton from '@/components/ResetButton'
 import { debounce } from 'lodash'
+import ClickHelper from '@/components/basic/ClickHelper'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'App',
-  components: { ResetButton },
+  components: { ClickHelper, ResetButton },
   data: () => ({
     now: Date.now(),
     fisher,
     version,
     helpHTML,
+    noOp: DataUtil.noOp,
     showHelpDialog: false,
     showAboutDialog: false,
     showSettingDialog: false,
@@ -371,7 +387,6 @@ export default {
     },
     toggleCollapse() {
       this.collapse = !this.collapse
-      console.log('click!!!!!!!')
     },
     ...mapMutations([
       'toggleFilterPanel',

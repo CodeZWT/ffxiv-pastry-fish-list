@@ -24,12 +24,16 @@
           {{ fish.name }}
         </div>
         <v-badge inline color="primary" :content="fish.patch"></v-badge>
-        <v-btn text icon @click.stop="copyToClipboard(fish.name)" :title="$t('list.item.copyHint')">
-          <v-icon>mdi-content-copy</v-icon>
-        </v-btn>
-        <v-btn text icon @click.stop="goToFishAngelPage(fish.anglerFishId)" :title="$t('list.item.linkHint')">
-          <v-icon>mdi-link-variant</v-icon>
-        </v-btn>
+        <click-helper @click.native.stop="copyToClipboard(fish.name)">
+          <v-btn text icon :title="$t('list.item.copyHint')">
+            <v-icon>mdi-content-copy</v-icon>
+          </v-btn>
+        </click-helper>
+        <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">
+          <v-btn text icon :title="$t('list.item.linkHint')">
+            <v-icon>mdi-link-variant</v-icon>
+          </v-btn>
+        </click-helper>
       </div>
     </v-row>
   </div>
@@ -39,10 +43,11 @@
 import { mapGetters, mapMutations } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import ToggleButton from '@/components/basic/ToggleButton'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'FishListExpandedHeader',
-  components: { ToggleButton },
+  components: { ClickHelper, ToggleButton },
   props: {
     value: {
       type: Object,

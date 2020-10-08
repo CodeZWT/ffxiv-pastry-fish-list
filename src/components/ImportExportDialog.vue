@@ -1,5 +1,11 @@
 <template>
-  <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.mobile" max-width="1264px" style="z-index: 9999" scrollable>
+  <v-dialog
+    v-model="dialog"
+    :fullscreen="$vuetify.breakpoint.mobile"
+    max-width="1264px"
+    style="z-index: 9999"
+    scrollable
+  >
     <v-card>
       <v-card-title>
         <span class="headline">{{ $t('importExport.dialog.title') }}</span>
@@ -34,16 +40,20 @@
             <v-tabs-items v-model="selfTab">
               <v-tab-item>
                 <v-textarea v-model="selfTextToExport" ref="selfExportTextArea" />
-                <v-btn @click="exportData" class="mr-4" color="primary">
-                  <v-icon>mdi-content-copy</v-icon>
-                  {{ $t('importExport.dialog.copy') }}
-                </v-btn>
+                <click-helper @click="exportData">
+                  <v-btn class="mr-4" color="primary">
+                    <v-icon>mdi-content-copy</v-icon>
+                    {{ $t('importExport.dialog.copy') }}
+                  </v-btn>
+                </click-helper>
               </v-tab-item>
               <v-tab-item>
                 <v-textarea v-model="selfDataToImport" />
-                <v-btn @click="importData" class="mr-4" color="primary">
-                  {{ $t('importExport.dialog.self.import') }}
-                </v-btn>
+                <click-helper @click="importData">
+                  <v-btn class="mr-4" color="primary">
+                    {{ $t('importExport.dialog.self.import') }}
+                  </v-btn>
+                </click-helper>
               </v-tab-item>
             </v-tabs-items>
           </v-col>
@@ -84,16 +94,20 @@
             <v-tabs-items v-model="fishTrackerTab">
               <v-tab-item>
                 <v-textarea v-model="fishTrackerTextToExport" ref="fishTrackerExportTextArea" />
-                <v-btn @click="exportDataToFishTracker" class="mr-4" color="primary">
-                  <v-icon>mdi-content-copy</v-icon>
-                  {{ $t('importExport.dialog.copy') }}
-                </v-btn>
+                <click-helper @click="exportDataToFishTracker">
+                  <v-btn class="mr-4" color="primary">
+                    <v-icon>mdi-content-copy</v-icon>
+                    {{ $t('importExport.dialog.copy') }}
+                  </v-btn>
+                </click-helper>
               </v-tab-item>
               <v-tab-item>
                 <v-textarea v-model="fishTrackerTextToImport" />
-                <v-btn @click="importDataToFishTracker" class="mr-4" color="primary">
-                  {{ $t('importExport.dialog.other.fishTracker.importFromFishTracker') }}
-                </v-btn>
+                <click-helper @click="importDataToFishTracker">
+                  <v-btn class="mr-4" color="primary">
+                    {{ $t('importExport.dialog.other.fishTracker.importFromFishTracker') }}
+                  </v-btn>
+                </click-helper>
               </v-tab-item>
             </v-tabs-items>
           </v-col>
@@ -102,7 +116,11 @@
       <v-card-actions>
         <div class="d-flex flex-column flex-fill">
           <reset-button />
-          <v-btn class="mt-2" color="default" block text @click="dialog = false">{{ $t('importExport.dialog.close') }}</v-btn>
+          <click-helper @click="dialog = false">
+            <v-btn class="mt-2" color="default" block text>
+              {{ $t('importExport.dialog.close') }}
+            </v-btn>
+          </click-helper>
         </div>
       </v-card-actions>
     </v-card>
@@ -118,10 +136,11 @@ import DataUtil from '@/utils/DataUtil'
 import { merge } from 'lodash'
 import flatten from 'flat'
 import ResetButton from '@/components/ResetButton'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'ImportExportDialog',
-  components: { ResetButton },
+  components: { ClickHelper, ResetButton },
   props: {
     value: {
       type: Boolean,

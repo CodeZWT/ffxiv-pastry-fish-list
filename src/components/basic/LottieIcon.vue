@@ -14,11 +14,13 @@ export default {
       required: true,
     },
     width: {
-      type: String, Number,
+      type: String,
+      Number,
       default: '100%',
     },
     height: {
-      type: String, Number,
+      type: String,
+      Number,
       default: '100%',
     },
     playOnLoaded: {

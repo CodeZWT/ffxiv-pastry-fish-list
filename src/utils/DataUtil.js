@@ -103,6 +103,9 @@ export default {
     return integer + (decimal === 0 ? '' : ':' + decimal * 60)
   },
 
+  // no operation placeholder for list item to show as clickable style
+  noOp() {},
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   TUG_ICON: {

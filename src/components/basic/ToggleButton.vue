@@ -1,12 +1,17 @@
 <template>
-  <v-btn icon @click.stop="toggleValue">
-    <v-icon>{{ value ? checkedIcon : uncheckedIcon }}</v-icon>
-  </v-btn>
+  <click-helper @click.stop="toggleValue">
+    <v-btn icon>
+      <v-icon>{{ value ? checkedIcon : uncheckedIcon }}</v-icon>
+    </v-btn>
+  </click-helper>
 </template>
 
 <script>
+import ClickHelper from '@/components/basic/ClickHelper'
+
 export default {
   name: 'ToggleButton',
+  components: { ClickHelper },
   props: {
     value: {
       type: Boolean,

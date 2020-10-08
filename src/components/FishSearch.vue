@@ -41,7 +41,9 @@
         </template>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="default" block text @click="dialog = false">{{ $t('search.dialog.close') }}</v-btn>
+        <click-helper @click="dialog = false" block>
+          <v-btn color="default" block text>{{ $t('search.dialog.close') }}</v-btn>
+        </click-helper>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -53,10 +55,11 @@ import FishListItemContent from '@/components/FishListItemContent'
 import { mapGetters, mapState } from 'vuex'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
 import * as PinyinMatch from 'pinyin-match'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'FishSearch',
-  components: { FishListExpandedHeader, FishListItemContent },
+  components: { ClickHelper, FishListExpandedHeader, FishListItemContent },
   props: {
     value: {
       type: Boolean,
