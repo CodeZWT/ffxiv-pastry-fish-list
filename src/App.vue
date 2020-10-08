@@ -51,8 +51,8 @@
       <div class="text-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <click-helper v-on="on">
-              <v-btn icon v-bind="attrs">
+            <click-helper v-on="on" v-bind="attrs">
+              <v-btn icon>
                 <v-icon>mdi-dots-vertical</v-icon>
               </v-btn>
             </click-helper>
@@ -170,6 +170,7 @@
           <ul>
             <li>修复等待状态，倒计时与持续时长乱序的问题。</li>
             <li>修复ACT下按钮有时没有相应的问题。</li>
+            <li>增加 猎手鱼 信息，咬钩：中杆，提钩：强力提钩。</li>
           </ul>
           <p />
           <v-divider />
