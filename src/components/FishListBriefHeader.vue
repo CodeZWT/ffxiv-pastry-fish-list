@@ -278,6 +278,6 @@ export default {
 .zoom-in-predator {
   zoom: 0.75;
   -moz-transform: scale(0.75);
-  -moz-transform-origin: 0 0;
+  -moz-transform-origin: 50% 50%;
 }
 </style>

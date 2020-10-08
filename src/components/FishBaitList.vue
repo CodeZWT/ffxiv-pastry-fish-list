@@ -7,16 +7,19 @@
         <div v-if="baitInx !== 0" style="display: flex; align-items: center">
           <v-icon small>mdi-arrow-right</v-icon>
         </div>
-        <div :data-ck-item-id="bait.baitId">
+        <div :data-ck-item-id="bait.baitId" style="height: 30px; width: 30px">
           <div class="bait-icon">
             <div :class="bait.baitIcon" :title="bait.baitName" />
           </div>
         </div>
-        <div class="d-flex flex-column" style="max-height: 40px">
-          <v-badge :color="TUG_ICON_COLOR[bait.tugIcon]" :content="bait.tugIcon" inline />
-          <v-spacer />
-          <div :class="[bait.hooksetIcon, 'hookset-icon']" />
-        </div>
+        <v-row no-gutters class="d-flex" style="max-width: 27px">
+          <v-col cols="12">
+            <v-badge :color="TUG_ICON_COLOR[bait.tugIcon]" :content="bait.tugIcon" inline />
+          </v-col>
+          <v-col cols="12" style="height: 16px">
+            <div :class="[bait.hooksetIcon, 'hookset-icon']" />
+          </v-col>
+        </v-row>
       </div>
     </div>
   </div>
