@@ -22,7 +22,7 @@
         }}
       </div>
     </v-system-bar>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app color="primary" dark :collapse="collapse" scroll-off-screen class="fish-app-bar">
       <v-app-bar-nav-icon>
         <click-helper @click="collapse = !collapse">
           <v-tooltip right>
@@ -171,6 +171,7 @@
             <li>修复等待状态，倒计时与持续时长乱序的问题。</li>
             <li>修复ACT下按钮有时没有相应的问题。</li>
             <li>增加 猎手鱼 信息，咬钩：中杆，提钩：强力提钩。</li>
+            <li>更新缩小模式，现在只显示鱼图标。</li>
           </ul>
           <p />
           <v-divider />
@@ -457,5 +458,9 @@ body {
 #write {
   margin: 0 !important;
   padding: 0 !important;
+}
+
+.fish-app-bar.v-toolbar.v-toolbar--collapsed {
+  max-width: 64px !important;
 }
 </style>
