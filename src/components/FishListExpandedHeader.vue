@@ -24,7 +24,7 @@
           {{ fish.name }}
         </div>
         <v-badge inline color="primary" :content="fish.patch"></v-badge>
-        <click-helper @click.native.stop="copyToClipboard(fish.name)">
+        <click-helper @click.stop="copyToClipboard(fish.name)">
           <v-btn text icon :title="$t('list.item.copyHint')">
             <v-icon>mdi-content-copy</v-icon>
           </v-btn>
