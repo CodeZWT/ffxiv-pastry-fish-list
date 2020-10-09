@@ -36,19 +36,21 @@ export default {
     return TimeFormatter.millisecondsToText(seconds * 1000, 2, false, false)
   },
 
-  getPredators(fish, allFish, fishListTimePart, fishListWeatherChangePart, completed) {
+  //, fishListTimePart, fishListWeatherChangePart, completed
+  getPredators(fish, allFish) {
     if (fish == null || allFish == null) return []
     return Object.entries(fish.predators).map(([predatorId, count]) => {
       return {
         ...allFish[predatorId],
         requiredCnt: count,
-        fishTimePart:
-          fishListTimePart[predatorId] == null
-            ? { id: predatorId, countDown: { type: this.ALL_AVAILABLE } }
-            : fishListTimePart[predatorId],
-        fishWeatherChangePart: fishListWeatherChangePart[predatorId],
-        finalTargetCompleted: completed,
-        finalTargetCountDownType: fishListTimePart[fish._id]?.countDown?.type,
+        isPredator: true,
+        // fishTimePart:
+        //   fishListTimePart[predatorId] == null
+        //     ? { id: predatorId, countDown: { type: this.ALL_AVAILABLE } }
+        //     : fishListTimePart[predatorId],
+        // fishWeatherChangePart: fishListWeatherChangePart[predatorId],
+        // finalTargetCompleted: completed,
+        // finalTargetCountDownType: fishListTimePart[fish._id]?.countDown?.type,
       }
     })
   },

@@ -5,7 +5,7 @@
       style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 4px; z-index: 1;border-radius: 2px"
       :class="color"
     />
-    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />
+<!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />-->
 
     <!--    <pin-button :value="fish.pinned" @input="setPinned($event)" />-->
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
@@ -141,10 +141,10 @@
         <fish-bait-list :baits="fish.baits" />
       </v-col>
     </v-row>
-    <div v-if="fish.hasPredators" class="mt-1">
-      <v-divider inset />
-      <fish-predators :value="fish.predators" mode="HEADER" />
-    </div>
+<!--    <div v-if="fish.hasPredators" class="mt-1">-->
+<!--      <v-divider inset />-->
+<!--      <fish-predators :value="fish.predators" mode="HEADER" />-->
+<!--    </div>-->
   </div>
 </template>
 
@@ -158,7 +158,7 @@ import FishBaitList from '@/components/FishBaitList'
 export default {
   name: 'FishListBriefHeader',
   // to deal with recursive components
-  components: { FishBaitList, ToggleButton, FishPredators: () => import('@/components/FishPredators') },
+  components: { FishBaitList, ToggleButton },
   props: {
     value: {
       type: Object,
@@ -196,6 +196,7 @@ export default {
   computed: {
     fish() {
       const hasPredators = Object.keys(this.value.predators).length > 0
+      const fishTimePart = this.fishTimePart ?? { id: this.value._id, countDown: { type: this.ALL_AVAILABLE } }
       return {
         id: this.value._id,
         completed: this.getFishCompleted(this.value._id),
@@ -215,23 +216,23 @@ export default {
         predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
         hasSnagging: this.value.snagging,
         snaggingIcon: DataUtil.iconIdToClass(DataUtil.ICON_SNAGGING),
-        countDownType: DataUtil.getCountDownTypeName(this.fishTimePart.countDown?.type),
-        countDownTime: this.fishTimePart.countDown?.time,
-        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown?.time),
-        countDownTimePoint: this.fishTimePart.countDown?.timePoint,
+        countDownType: DataUtil.getCountDownTypeName(fishTimePart.countDown?.type),
+        countDownTime: fishTimePart.countDown?.time,
+        countDownTimeText: this.printCountDownTime(fishTimePart.countDown?.time),
+        countDownTimePoint: fishTimePart.countDown?.timePoint,
         countDownTimePointText: this.$t('countDown.timePointHint', {
-          timePoint: DataUtil.formatDateTime(this.fishTimePart.countDown?.timePoint),
+          timePoint: DataUtil.formatDateTime(fishTimePart.countDown?.timePoint),
         }),
-        countDownTotal: this.printCountDownTime(this.fishTimePart.countDown?.fishWindowTotal, 1, false),
+        countDownTotal: this.printCountDownTime(fishTimePart.countDown?.fishWindowTotal, 1, false),
         countDownTotalHint: this.$t('countDown.intervalHint', {
-          interval: this.printCountDownTime(this.fishTimePart.countDown?.fishWindowTotal, 2),
+          interval: this.printCountDownTime(fishTimePart.countDown?.fishWindowTotal, 2),
         }),
-        hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
+        hasCountDown: DataUtil.hasCountDown(fishTimePart.countDown),
         startHourText: DataUtil.formatET(this.value.startHour),
         endHourText: DataUtil.formatET(this.value.endHour),
         hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
-        isWaiting: this.fishTimePart.countDown?.type === DataUtil.WAITING,
-        isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
+        isWaiting: fishTimePart.countDown?.type === DataUtil.WAITING,
+        isFishing: fishTimePart.countDown?.type === DataUtil.FISHING,
         requiredCnt: this.value.requiredCnt ?? 0,
         predators: this.predators,
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
