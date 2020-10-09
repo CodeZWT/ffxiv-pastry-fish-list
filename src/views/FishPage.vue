@@ -10,7 +10,6 @@
       :fish-list-weather-change-part="fishListWeatherChangePart"
     />
     <div :class="{ 'main-area': true, 'show-filter': showFilter }">
-      <!--      <better-scroll :data="listSizeChangeTrigger" v-resize="onResize">-->
       <div style="width: 100%">
         <v-banner v-if="showBanner" two-line>
           <v-avatar slot="icon" color="primary" size="40">
@@ -40,7 +39,7 @@
           </template>
         </v-banner>
         <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
-          <v-expansion-panel @change="addScrollRefreshCnt">
+          <v-expansion-panel>
             <v-expansion-panel-header>
               {{ $t('list.pinTitle') }}
             </v-expansion-panel-header>
@@ -60,7 +59,7 @@
               </fish-list>
             </v-expansion-panel-content>
           </v-expansion-panel>
-          <v-expansion-panel @change="addScrollRefreshCnt">
+          <v-expansion-panel>
             <v-expansion-panel-header>
               {{ $t('list.normalTitle') }}
             </v-expansion-panel-header>
@@ -81,7 +80,6 @@
           </v-expansion-panel>
         </v-expansion-panels>
       </div>
-      <!--      </better-scroll>-->
     </div>
     <import-export-dialog v-model="showImportExportDialog" />
   </div>
@@ -109,7 +107,7 @@ export default {
     fishListWeatherChangePart: {},
     openPanelIndex: undefined,
     fishListOpenStatus: [0, 1],
-    listSizeChangeTrigger: 1,
+    // listSizeChangeTrigger: 1,
   }),
   computed: {
     // listSizeChangeTrigger() {
@@ -193,7 +191,6 @@ export default {
       zones: 'zones',
       bigFish: 'bigFish',
       showSearch: 'showSearchDialog',
-      scrollRefreshRequestCnt: 'scrollRefreshRequestCnt',
       showImportExport: 'showImportExportDialog',
     }),
     ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds', 'showFilter', 'showBanner', 'getFishPinned']),
@@ -207,12 +204,6 @@ export default {
         }
         return fish2WeatherPart
       }, {})
-    },
-    scrollRefreshRequestCnt(cnt) {
-      if (cnt > 0) {
-        this.listSizeChangeTrigger *= -1
-        this.fetchScrollRefreshCntAndReset()
-      }
     },
   },
   created() {
@@ -360,23 +351,11 @@ export default {
     },
     onFiltersUpdate(filters) {
       this.setFilters(filters)
-      this.addScrollRefreshCnt()
-    },
-    onResize() {
-      this.addScrollRefreshCnt()
     },
     onDismiss() {
       this.setNotShowBanner()
-      this.addScrollRefreshCnt()
     },
-    ...mapMutations([
-      'setFilters',
-      'setShowSearchDialog',
-      'addScrollRefreshCnt',
-      'fetchScrollRefreshCntAndReset',
-      'setShowImportExportDialog',
-      'setNotShowBanner',
-    ]),
+    ...mapMutations(['setFilters', 'setShowSearchDialog', 'setShowImportExportDialog', 'setNotShowBanner']),
   },
 }
 </script>

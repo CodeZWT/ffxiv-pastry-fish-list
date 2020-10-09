@@ -101,7 +101,6 @@
             <v-tooltip top color="secondary">
               <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on" class="d-flex align-center align-content-center">
-
                   <v-icon size="20">mdi-alarm</v-icon>
 
                   <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
@@ -261,15 +260,12 @@ export default {
     printCountDownTime: DataUtil.printCountDownTime,
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
-      this.addScrollRefreshCnt()
     },
 
     setPinned(pinned) {
       this.setFishPinned({ fishId: this.fish.id, pinned })
-
-      this.addScrollRefreshCnt()
     },
-    ...mapMutations(['setFishCompleted', 'setFishPinned', 'addScrollRefreshCnt']),
+    ...mapMutations(['setFishCompleted', 'setFishPinned']),
   },
 }
 </script>

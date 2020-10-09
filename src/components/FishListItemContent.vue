@@ -2,7 +2,7 @@
   <v-col style="flex-direction: column; padding-bottom: 0">
     <v-row>
       <v-expansion-panels v-if="fish.hasFishingSpot" hover flat tile :value="0">
-        <v-expansion-panel @change="addScrollRefreshCnt">
+        <v-expansion-panel>
           <v-expansion-panel-header :color="listItemColor">
             <div style="display: flex; align-items: center; justify-content: center">
               <div class="text-subtitle-1">
@@ -159,7 +159,7 @@
 
     <v-row v-if="fish.hasCountDown">
       <v-expansion-panels hover flat tile>
-        <v-expansion-panel @change="addScrollRefreshCnt">
+        <v-expansion-panel>
           <v-expansion-panel-header :color="listItemColor">
             <div style="display: flex; justify-content: center">
               <div>
@@ -202,7 +202,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
 import FishPredators from '@/components/FishPredators'
@@ -348,7 +348,6 @@ export default {
     toPosStr(sizeFactor, pos) {
       return DataUtil.pixelToPos(sizeFactor, pos).toFixed(0)
     },
-    ...mapMutations(['addScrollRefreshCnt']),
   },
 }
 </script>

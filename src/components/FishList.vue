@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import FishListBriefHeader from '@/components/FishListBriefHeader'
 import FishListItemContent from '@/components/FishListItemContent'
@@ -116,9 +116,6 @@ export default {
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
-  },
-  methods: {
-    ...mapMutations(['addScrollRefreshCnt']),
   },
 }
 </script>

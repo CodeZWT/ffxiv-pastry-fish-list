@@ -27,7 +27,6 @@ export default new Vuex.Store({
     fishingSpotFish: groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
     showSearchDialog: false,
     showImportExportDialog: false,
-    scrollRefreshRequestCnt: 0,
     snackbar: {
       show: false,
       text: '',
@@ -189,12 +188,6 @@ export default new Vuex.Store({
     },
     setShowSearchDialog(state, show) {
       state.showSearchDialog = show
-    },
-    fetchScrollRefreshCntAndReset(state) {
-      state.scrollRefreshRequestCnt = 0
-    },
-    addScrollRefreshCnt(state) {
-      state.scrollRefreshRequestCnt++
     },
     setShowImportExportDialog(state, show) {
       state.showImportExportDialog = show
