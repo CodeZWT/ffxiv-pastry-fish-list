@@ -106,6 +106,13 @@ export default {
   // no operation placeholder for list item to show as clickable style
   noOp() {},
 
+  toMap(list, keyFn) {
+    return list.reduce((dict, item) => {
+      dict[keyFn(item)] = item
+      return dict
+    }, {})
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   TUG_ICON: {

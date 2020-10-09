@@ -159,7 +159,7 @@ export default {
     },
     sortedFilteredFishList() {
       return this.sortedFishIds
-        .map(id => this.fishList.find(it => it._id === id))
+        .map(id => this.allFish[id])
         .filter(it => it != null)
         .filter(it => !this.getFishPinned(it._id))
         .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
