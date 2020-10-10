@@ -228,7 +228,6 @@ export default {
       )
     },
     notifications() {
-      // return [{ cnt: 0 }, { cnt: 0 }]
       const fishListTimePart = this.fishListTimePart
       return [this.pinnedFishList, this.sortedFilteredFishList].map(list => {
         const firstNotFishingIndex = list.findIndex(it => fishListTimePart[it._id].countDown.type !== DataUtil.FISHING)
@@ -309,7 +308,7 @@ export default {
       }, {})
     },
     notifications(notifications) {
-      this.setListNotifications(notifications)
+      this.$emit('notification', notifications)
     },
   },
   created() {
@@ -491,7 +490,6 @@ export default {
       'setShowImportExportDialog',
       'setNotShowBanner',
       'setRightPanePercentage',
-      'setListNotifications',
     ]),
   },
 }

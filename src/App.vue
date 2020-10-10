@@ -117,7 +117,7 @@
 
     <v-main>
       <div class="py-0" v-if="!collapse">
-        <router-view />
+        <router-view @notification="listNotifications = $event" />
       </div>
       <!--      <v-container class="py-0" v-if="!collapse">-->
       <!--        <v-row>-->
@@ -360,6 +360,7 @@ export default {
     collapse: false,
     debounceSetPageOpacity: undefined,
     pageOpacityShowing: 0,
+    listNotifications: [{ cnt: 0 }, { cnt: 0 }],
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -381,7 +382,7 @@ export default {
         this.debounceSetPageOpacity(opacity)
       },
     },
-    ...mapState(['snackbar', 'activeTabIndex', 'listNotifications']),
+    ...mapState(['snackbar', 'activeTabIndex']),
     ...mapGetters(['opacity', 'websiteVersion']),
   },
   created() {

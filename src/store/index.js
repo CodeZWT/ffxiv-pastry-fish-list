@@ -33,7 +33,6 @@ export default new Vuex.Store({
       color: '',
     },
     activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
-    listNotifications: [{ cnt: 0 }, { cnt: 0 }],
     userData: { ...DataUtil.USER_DEFAULT_DATA, ...getUserDataFromLocalStorage() },
   },
   getters: {
@@ -225,9 +224,6 @@ export default new Vuex.Store({
     },
     setActiveTab(state, activeTabIndex) {
       state.activeTabIndex = activeTabIndex
-    },
-    setListNotifications(state, listNotifications) {
-      state.listNotifications = listNotifications
     },
   },
   actions: {},
