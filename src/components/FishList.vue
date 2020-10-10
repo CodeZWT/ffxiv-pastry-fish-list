@@ -7,8 +7,8 @@
       <v-expansion-panels v-else v-model="openPanelIndex" hover tile>
         <v-virtual-scroll
           :items="flattenFishList"
-          :item-height="isMobile ? 126 : 50"
-          :height="isMobile ? 1260 : 800"
+          :item-height="itemHeight"
+          :height="scrollerHeight"
           bench="20"
         >
           <template v-slot="{ item: fish, index }">
@@ -168,6 +168,12 @@ export default {
     // },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
+    },
+    itemHeight() {
+      return this.isMobile ? 126 : 50
+    },
+    scrollerHeight() {
+      return this.itemHeight * (this.filters.fishN === -1 ? 20 : this.filters.fishN)
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),

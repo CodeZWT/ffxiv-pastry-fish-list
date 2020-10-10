@@ -501,7 +501,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$top-bars-padding: 24px + 48px
+$top-bars-padding: 24px + 48px + 48px
 $footer-padding: 31px
 $filter-panel-height: 261px
 
