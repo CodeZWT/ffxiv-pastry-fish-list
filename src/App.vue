@@ -115,11 +115,12 @@
       <!--        </v-row>-->
       <!--      </v-container>-->
     </v-main>
-    <v-footer app style="font-size: small" v-if="!collapse">
-      <span>红豆年糕@海猫茶屋</span>
-      <span>群：1153646847</span>
-      <v-spacer />
-      <span>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</span>
+    <v-footer app style="font-size: small; max-height: 31px" v-if="!collapse">
+      <div class="d-flex" style="width: 100%">
+        <div class="text-truncate" :title="$t('footer.contact')">{{ $t('footer.contact') }}</div>
+        <v-spacer />
+        <div class="text-truncate" :title="$t('footer.ffRights')">{{ $t('footer.ffRights') }}</div>
+      </div>
       <div class="resize-indicator" />
     </v-footer>
     <v-dialog v-model="showSettingDialog" :fullscreen="isMobile" max-width="600px" scrollable>

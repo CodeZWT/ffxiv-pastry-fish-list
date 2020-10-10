@@ -1,8 +1,11 @@
 <template>
   <div>
     <template v-if="fish">
-      <div style="position:relative;" class="py-4 px-6">
+      <div class="py-4 px-6">
         <fish-list-expanded-header :value="fish" />
+        <v-btn icon elevation="50" style="position: absolute; right: 8px; top: 8px; z-index: 2" @click="$emit('close')">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
       </div>
       <fish-list-item-content
         ref="detailContent"

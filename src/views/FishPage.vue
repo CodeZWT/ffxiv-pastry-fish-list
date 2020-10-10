@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-resize="onWindowResize">
     <splitpanes
       ref="splitPanes"
       class="default-theme"
@@ -7,7 +7,7 @@
       @splitter-click="resizing = true"
       @resized="resizing = false"
     >
-      <pane :size="100 - rightPaneSize">
+      <pane :size="100 - rightPaneSizeOfCurrentWindowSize" v-if="!rightPaneFullScreen || !showRightPane">
         <div v-if="resizing" style="height: 100%">
           <v-sheet :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`" class="pa-3" style="height: 100%">
             <v-skeleton-loader class="mx-auto" type="list-item-avatar-three-line@9" boilerplate></v-skeleton-loader>
@@ -104,22 +104,14 @@
           </v-container>
         </div>
       </pane>
-      <pane v-if="showRightPane" :size="rightPaneSize">
+      <pane v-if="showRightPane" :size="rightPaneSizeOfCurrentWindowSize">
         <div v-if="resizing" style="height: 100%">
           <v-sheet :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`" class="pa-3" style="height: 100%">
             <v-skeleton-loader type="card-avatar, article, actions" boilerplate></v-skeleton-loader>
           </v-sheet>
         </div>
         <div v-else class="fish-detail-pane">
-          <v-btn
-            icon
-            elevation="50"
-            style="position: absolute; right: 8px; top: 8px; z-index: 1"
-            @click="showRightPane = false"
-          >
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <fish-detail :fish="selectedFish" ref="fishDetail" />
+          <fish-detail :fish="selectedFish" ref="fishDetail" @close="showRightPane = false"/>
         </div>
       </pane>
     </splitpanes>
@@ -169,6 +161,7 @@ export default {
     showRightPane: false,
     throttledResizeFn: undefined,
     resizing: false,
+    rightPaneFullScreen: window.innerWidth < 1264,
   }),
   computed: {
     eorzeaTime() {
@@ -260,6 +253,15 @@ export default {
         this.setRightPanePercentage(percentage)
       },
     },
+    rightPaneSizeOfCurrentWindowSize() {
+      if (this.rightPaneFullScreen) {
+        if (this.showRightPane) return 100
+        else return 0
+      } else {
+        if (this.showRightPane) return this.rightPaneSize
+        else return 0
+      }
+    },
     ...mapState({
       allFish: 'fish',
       items: 'items',
@@ -303,6 +305,9 @@ export default {
     }, WEATHER_CHANGE_INTERVAL_EARTH)
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
     this.throttledResizeFn = throttle(this.resizeInternal, 100)
+  },
+  mounted() {
+    this.onWindowResize()
   },
   methods: {
     getItemName(id) {
@@ -451,6 +456,14 @@ export default {
     onResize(resizePaneInfos) {
       this.resizing = true
       this.throttledResizeFn(resizePaneInfos)
+    },
+    onWindowResize() {
+      this.rightPaneFullScreen = window.innerWidth < 1264
+      // this.$refs.splitPanes.$el.style.height =
+      //   window.innerHeight - 24 - 48 - document.getElementById('fish-footer').offsetHeight
+      setTimeout(() => {
+        this.$refs.fishDetail?.resize()
+      }, 500)
     },
     ...mapMutations([
       'setFilters',
