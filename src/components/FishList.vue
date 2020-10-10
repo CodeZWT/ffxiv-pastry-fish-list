@@ -4,68 +4,26 @@
       <div v-if="fishList.length <= 0" class="d-flex justify-center align-content-center pa-2">
         <slot name="empty" />
       </div>
-      <v-expansion-panels v-else v-model="openPanelIndex" hover tile>
-        <v-virtual-scroll :items="flattenFishList" :item-height="itemHeight" :height="scrollerHeight" bench="20">
-          <template v-slot="{ item: fish, index }">
-            <click-helper @click="onFishClicked(fish._id)">
-              <v-sheet
-                v-ripple
-                :key="fish._id"
-                :color="listItemColors[index]"
-                :class="['v-list-item', 'v-list-item--link', fish.isPredator ? 'border-none' : 'border-normal']"
-              >
-                <fish-list-brief-header
-                  :value="fish"
-                  :fish-time-part="fishListTimePart[fish._id]"
-                  :predators="[]"
-                  :in-predator="fish.isPredator"
-                  mode="HEADER"
-                />
-              </v-sheet>
-            </click-helper>
-
-            <!--            <v-expansion-panel>-->
-            <!--              <v-expansion-panel-header class="fish-header" :color="listItemColors[index]">-->
-            <!--                <template v-slot:default="{ open }">-->
-            <!--                  <div>-->
-            <!--                    <div>-->
-            <!--                      <v-fade-transition leave-absolute>-->
-            <!--                        <div v-if="open">-->
-            <!--                          <fish-list-expanded-header-->
-            <!--                            :value="fish"-->
-            <!--                            :color="fishColors[index]"-->
-            <!--                            :show-divider="showFishDivider && firstFishWaitingIndex === index"-->
-            <!--                          />-->
-            <!--                        </div>-->
-            <!--                        <div v-else>-->
-            <!--                          <fish-list-brief-header-->
-            <!--                            :value="fish"-->
-            <!--                            :fish-time-part="fishListTimePart[fish._id]"-->
-            <!--                            :predators="getPredators(fish)"-->
-            <!--                            :color="fishColors[index]"-->
-            <!--                            :show-divider="showFishDivider && firstFishWaitingIndex === index"-->
-            <!--                          />-->
-            <!--                        </div>-->
-            <!--                      </v-fade-transition>-->
-            <!--                    </div>-->
-            <!--                  </div>-->
-            <!--                </template>-->
-            <!--              </v-expansion-panel-header>-->
-            <!--              <v-expansion-panel-content>-->
-            <!--                <fish-list-item-content-->
-            <!--                  :open="index === openPanelIndex"-->
-            <!--                  :value="fish"-->
-            <!--                  :fish-time-part="fishListTimePart[fish._id]"-->
-            <!--                  :fish-weather-change-part="fishListWeatherChangePart[fish._id]"-->
-            <!--                  :predators="getPredators(fish)"-->
-            <!--                  :fishing-type-color="fishColors[index]"-->
-            <!--                  list-item-color="default"-->
-            <!--                ></fish-list-item-content>-->
-            <!--              </v-expansion-panel-content>-->
-            <!--            </v-expansion-panel>-->
-          </template>
-        </v-virtual-scroll>
-      </v-expansion-panels>
+      <template v-if="filters.fishN !== -1">
+        <div v-for="(fish, index) in flattenFishList" :key="fish._id + (fish.isPredator ? '-' + index : '')">
+          <fish-list-item
+            :fish="fish"
+            :fish-time-part="fishListTimePart[fish._id]"
+            :color="listItemColors[index]"
+            @click="onFishClicked(fish._id)"
+          />
+        </div>
+      </template>
+      <v-virtual-scroll v-else :items="flattenFishList" :item-height="itemHeight" :height="scrollerHeight" bench="20">
+        <template v-slot="{ item: fish, index }">
+          <fish-list-item
+            :fish="fish"
+            :fish-time-part="fishListTimePart[fish._id]"
+            :color="listItemColors[index]"
+            @click="onFishClicked(fish._id)"
+          />
+        </template>
+      </v-virtual-scroll>
     </v-col>
   </v-row>
 </template>
@@ -73,13 +31,12 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import fisher from '@/assets/fisher.png'
-import FishListBriefHeader from '@/components/FishListBriefHeader'
 import DataUtil from '@/utils/DataUtil'
-import ClickHelper from '@/components/basic/ClickHelper'
+import FishListItem from '@/components/FishListItem'
 
 export default {
   name: 'fish-list',
-  components: { ClickHelper, FishListBriefHeader },
+  components: { FishListItem },
   props: {
     fishList: {
       type: Array,
@@ -168,7 +125,7 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
     itemHeight() {
-      return this.isMobile ? 126 : 50
+      return this.isMobile ? 126 : 56
     },
     scrollerHeight() {
       return this.itemHeight * (this.filters.fishN === -1 ? 20 : this.flattenFishList.length)
@@ -184,17 +141,4 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-//.fish-header
-  padding-left: 0 !important
-  padding-right: 0 !important
-
-.v-sheet.border-normal
-  border-top: 2px solid #757575 !important
-
-.v-sheet.border-fishing-divider
-  border-top: 2px solid red !important
-
-.v-sheet.border-none
-  padding-top: 2px
-</style>
+<style lang="sass" scoped></style>
