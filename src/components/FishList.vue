@@ -5,9 +5,15 @@
         <slot name="empty" />
       </div>
       <v-expansion-panels v-else v-model="openPanelIndex" hover tile>
-        <v-virtual-scroll :items="flattenFishList" :item-height="isMobile ? 126 : 50" :height="isMobile ? 1260 : 800">
+        <v-virtual-scroll :items="flattenFishList" :item-height="isMobile ? 126 : 50" :height="isMobile ? 1260 : 800" bench="20">
           <template v-slot="{ item: fish, index }">
-            <v-sheet v-ripple :key="fish._id" :color="listItemColors[index]" :class="listItemBorderColors[index]">
+            <v-sheet
+              v-ripple
+              :key="fish._id"
+              :color="listItemColors[index]"
+              :class="listItemBorderColors[index]"
+              @click="onFishClicked(fish._id)"
+            >
               <fish-list-brief-header
                 :value="fish"
                 :fish-time-part="fishListTimePart[fish._id]"
@@ -159,6 +165,11 @@ export default {
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
+  },
+  methods: {
+    onFishClicked(fishId) {
+      this.$emit('fish-selected', fishId)
+    },
   },
 }
 </script>

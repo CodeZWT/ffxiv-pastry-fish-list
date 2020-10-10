@@ -22,7 +22,7 @@
         }}
       </div>
     </v-system-bar>
-    <v-app-bar app color="primary" dark :collapse="collapse" scroll-off-screen class="fish-app-bar">
+    <v-app-bar app color="primary" :collapse="collapse" scroll-off-screen class="fish-app-bar" dense>
       <v-app-bar-nav-icon>
         <click-helper @click="collapse = !collapse">
           <v-tooltip right>
@@ -104,21 +104,22 @@
     </v-app-bar>
 
     <v-main>
-      <v-container class="py-0" v-if="!collapse">
+      <div class="py-0" v-if="!collapse">
         <router-view />
-      </v-container>
-      <v-container class="py-0" v-if="!collapse">
-        <v-row>
-          <v-col class="d-flex flex-row justify-end">
-            <span>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</span>
-          </v-col>
-        </v-row>
-      </v-container>
+      </div>
+      <!--      <v-container class="py-0" v-if="!collapse">-->
+      <!--        <v-row>-->
+      <!--          <v-col class="d-flex flex-row justify-end">-->
+      <!--            <span>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</span>-->
+      <!--          </v-col>-->
+      <!--        </v-row>-->
+      <!--      </v-container>-->
     </v-main>
     <v-footer app style="font-size: small" v-if="!collapse">
       <span>红豆年糕@海猫茶屋</span>
-      <v-spacer />
       <span>群：1153646847</span>
+      <v-spacer />
+      <span>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</span>
       <div class="resize-indicator" />
     </v-footer>
     <v-dialog v-model="showSettingDialog" :fullscreen="isMobile" max-width="600px" scrollable>
@@ -309,7 +310,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <input type="text" value="" id="clipboard" />
+    <input type="text" value="" id="clipboard" style="display: none" />
     <v-snackbar :timeout="2000" v-model="snackbar.show" :color="snackbar.color" centered elevation="24">
       <div class="text-center">{{ snackbar.text }}</div>
     </v-snackbar>
@@ -470,5 +471,27 @@ body {
 
 .fish-app-bar.v-toolbar.v-toolbar--collapsed {
   max-width: 64px !important;
+}
+
+/* The emerging W3C standard
+   that is currently Firefox-only */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0000001f #00000061;
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ffffff66;
+  border-radius: 10px;
+  border: 1px solid #ffffff1f;
 }
 </style>

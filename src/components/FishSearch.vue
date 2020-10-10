@@ -119,8 +119,8 @@ export default {
           value,
           this.allFish,
           this.fishListTimePart,
-          this.fishListWeatherChangePart,
-          this.getFishCompleted(value._id)
+          this.fishListWeatherChangePart
+          // this.getFishCompleted(value._id)
         )
     },
     isMobile() {

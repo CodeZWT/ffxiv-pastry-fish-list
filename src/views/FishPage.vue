@@ -1,87 +1,104 @@
 <template>
   <div>
-    <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
-      <fish-filter :filters="filters" @input="onFiltersUpdate" />
-    </div>
-    <fish-search
-      v-model="showSearchDialog"
-      :fish-data="fishSourceList"
-      :fish-list-time-part="fishListTimePart"
-      :fish-list-weather-change-part="fishListWeatherChangePart"
-    />
-    <div :class="{ 'main-area': true, 'show-filter': showFilter }">
-      <div style="width: 100%">
-        <v-banner v-if="showBanner" two-line>
-          <v-avatar slot="icon" color="primary" size="40">
-            <v-icon icon="mdi-lock" color="white">
-              mdi-information
-            </v-icon>
-          </v-avatar>
-
-          <div>
-            欢迎使用鱼糕钓鱼时钟，如有任何问题，首先尝试刷新(F5)或强制刷新页面(Ctrl+F5)。
-          </div>
-          <div>
-            点击每列鱼可以展开详细界面，最近10次窗口期的表格也在其中，请点击“查看窗口期详情”展开。
-          </div>
-          <div>
-            本站与其他钓鱼时钟的导入导出功能在右上角
-            <v-icon>mdi-dots-vertical</v-icon>
-            中。
-          </div>
-
-          <template v-slot:actions>
-            <click-helper @click="onDismiss">
-              <v-btn text color="primary">
-                不再显示
-              </v-btn>
-            </click-helper>
-          </template>
-        </v-banner>
-        <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              {{ $t('list.pinTitle') }}
-            </v-expansion-panel-header>
-            <v-expansion-panel-content class="list-wrapper">
-              <fish-list
-                :fish-list="pinnedFishList"
+    <splitpanes class="default-theme">
+      <pane>
+        <div class="main-pane">
+          <v-container class="py-0">
+            <div>
+              <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
+                <fish-filter :filters="filters" @input="onFiltersUpdate" />
+              </div>
+              <fish-search
+                v-model="showSearchDialog"
+                :fish-data="fishSourceList"
                 :fish-list-time-part="fishListTimePart"
                 :fish-list-weather-change-part="fishListWeatherChangePart"
-              >
-                <template v-slot:empty>
-                  <span>
-                    {{ $t('list.pin.empty.prefix') }}
-                    <v-icon small style="transform: rotate(-45deg)" class="mx-1">mdi-pin-outline</v-icon>
-                    {{ $t('list.pin.empty.suffix') }}
-                  </span>
-                </template>
-              </fish-list>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              {{ $t('list.normalTitle') }}
-            </v-expansion-panel-header>
-            <v-expansion-panel-content class="list-wrapper">
-              <fish-list
-                :fish-list="sortedFilteredFishList"
-                :fish-list-time-part="fishListTimePart"
-                :fish-list-weather-change-part="fishListWeatherChangePart"
-                show-fish-divider
-              >
-                <template v-slot:empty>
-                  <span>
-                    {{ $t('list.normal.empty') }}
-                  </span>
-                </template>
-              </fish-list>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </div>
-    </div>
-    <import-export-dialog v-model="showImportExportDialog" />
+              />
+              <div :class="{ 'main-area': true, 'show-filter': showFilter }">
+                <div style="width: 100%">
+                  <v-banner v-if="showBanner" two-line>
+                    <v-avatar slot="icon" color="primary" size="40">
+                      <v-icon icon="mdi-lock" color="white">
+                        mdi-information
+                      </v-icon>
+                    </v-avatar>
+
+                    <div>
+                      欢迎使用鱼糕钓鱼时钟，如有任何问题，首先尝试刷新(F5)或强制刷新页面(Ctrl+F5)。
+                    </div>
+                    <div>
+                      点击每列鱼可以展开详细界面，最近10次窗口期的表格也在其中，请点击“查看窗口期详情”展开。
+                    </div>
+                    <div>
+                      本站与其他钓鱼时钟的导入导出功能在右上角
+                      <v-icon>mdi-dots-vertical</v-icon>
+                      中。
+                    </div>
+
+                    <template v-slot:actions>
+                      <click-helper @click="onDismiss">
+                        <v-btn text color="primary">
+                          不再显示
+                        </v-btn>
+                      </click-helper>
+                    </template>
+                  </v-banner>
+                  <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
+                    <v-expansion-panel>
+                      <v-expansion-panel-header>
+                        {{ $t('list.pinTitle') }}
+                      </v-expansion-panel-header>
+                      <v-expansion-panel-content class="list-wrapper">
+                        <fish-list
+                          :fish-list="pinnedFishList"
+                          :fish-list-time-part="fishListTimePart"
+                          :fish-list-weather-change-part="fishListWeatherChangePart"
+                          @fish-selected="selectedFishId = $event"
+                        >
+                          <template v-slot:empty>
+                            <span>
+                              {{ $t('list.pin.empty.prefix') }}
+                              <v-icon small style="transform: rotate(-45deg)" class="mx-1">mdi-pin-outline</v-icon>
+                              {{ $t('list.pin.empty.suffix') }}
+                            </span>
+                          </template>
+                        </fish-list>
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                    <v-expansion-panel>
+                      <v-expansion-panel-header>
+                        {{ $t('list.normalTitle') }}
+                      </v-expansion-panel-header>
+                      <v-expansion-panel-content class="list-wrapper">
+                        <fish-list
+                          :fish-list="sortedFilteredFishList"
+                          :fish-list-time-part="fishListTimePart"
+                          :fish-list-weather-change-part="fishListWeatherChangePart"
+                          show-fish-divider
+                          @fish-selected="selectedFishId = $event"
+                        >
+                          <template v-slot:empty>
+                            <span>
+                              {{ $t('list.normal.empty') }}
+                            </span>
+                          </template>
+                        </fish-list>
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                  </v-expansion-panels>
+                </div>
+              </div>
+              <import-export-dialog v-model="showImportExportDialog" />
+            </div>
+          </v-container>
+        </div>
+      </pane>
+      <pane>
+        <div class="fish-detail-pane">
+          <fish-detail :fish="selectedFish" />
+        </div>
+      </pane>
+    </splitpanes>
   </div>
 </template>
 
@@ -97,27 +114,31 @@ import FishSearch from '@/components/FishSearch'
 import { union, isEqual } from 'lodash'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import ClickHelper from '@/components/basic/ClickHelper'
+import { Splitpanes, Pane } from 'splitpanes'
+import 'splitpanes/dist/splitpanes.css'
+import FishDetail from '@/components/FishDetail'
 
 export default {
   name: 'fish-page',
-  components: { ClickHelper, ImportExportDialog, FishSearch, FishList, FishFilter },
+  components: {
+    FishDetail,
+    ClickHelper,
+    ImportExportDialog,
+    FishSearch,
+    FishList,
+    FishFilter,
+    Splitpanes,
+    Pane,
+  },
   data: () => ({
     now: Date.now(),
     weatherChangeTrigger: 1,
     fishListWeatherChangePart: {},
     openPanelIndex: undefined,
     fishListOpenStatus: [0, 1],
-    // listSizeChangeTrigger: 1,
+    selectedFishId: undefined,
   }),
   computed: {
-    // listSizeChangeTrigger() {
-    //   TODO: fix trigger actually triggered every second...
-    // return {
-    //   fishListOpenStatus: this.fishListOpenStatus,
-    //   pinnedFishList: this.pinnedFishList.length,
-    //   sortedFilteredFishList: this.sortedFilteredFishList.length,
-    // }
-    // },
     eorzeaTime() {
       return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
     },
@@ -183,6 +204,21 @@ export default {
       set(show) {
         this.setShowImportExportDialog(show)
       },
+    },
+    selectedFish() {
+      const fish = this.allFish[this.selectedFishId]
+      if (fish) {
+        return {
+          ...fish,
+          parts: {
+            fishTimePart: this.fishListTimePart[this.selectedFishId],
+            fishWeatherChangePart: this.fishListWeatherChangePart[this.selectedFishId],
+            predators: DataUtil.getPredators(fish, this.allFish, this.fishListTimePart, this.fishListWeatherChangePart),
+          },
+        }
+      } else {
+        return undefined
+      }
     },
     ...mapState({
       allFish: 'fish',
@@ -361,7 +397,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$top-bars-padding: 88px + 31px
+$top-bars-padding: 24px + 48px
+$footer-padding: 31px
 $filter-panel-height: 261px
 
 .list-wrapper::v-deep
@@ -375,7 +412,7 @@ $filter-panel-height: 261px
   &:not(.show-filter)
     display: none
 
-.main-area::v-deep
+//.main-area::v-deep
   position: relative
   //overflow-y: scroll
   //margin-right: -8px
@@ -391,4 +428,22 @@ $filter-panel-height: 261px
 
 //&:not(.show-filter) .better-scroll
 //  height: calc(100vh - #{$top-bars-padding})
+
+.splitpanes__pane
+  background-color: unset !important
+  overflow-scrolling: auto
+  overflow-y: scroll
+
+.main-pane
+  //max-height: 834px
+  width: 100%
+
+.splitpanes
+  height: calc(100vh - #{ $top-bars-padding + $footer-padding })
+//overflow-scrolling: auto
+//overflow: scroll
+
+.fish-detail-pane
+  //max-height: calc(100vh - #{$top-bars-padding})
+  width: 100%
 </style>
