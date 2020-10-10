@@ -199,6 +199,7 @@ export default {
     showFilter: true,
     showBanner: true,
     opacity: 1,
+    rightPanePercentage: 30,
     // website version info
     websiteVersion: '0.1.0',
   },

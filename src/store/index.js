@@ -162,6 +162,9 @@ export default new Vuex.Store({
     websiteVersion: state => {
       return state.userData.websiteVersion
     },
+    rightPanePercentage: state => {
+      return state.userData.rightPanePercentage
+    },
   },
   mutations: {
     setUserData(state, data) {
@@ -209,6 +212,10 @@ export default new Vuex.Store({
     },
     setWebsiteVersion(state, websiteVersion) {
       state.userData = { ...state.userData, websiteVersion }
+      store.set('userData', state.userData)
+    },
+    setRightPanePercentage(state, rightPanePercentage) {
+      state.userData = { ...state.userData, rightPanePercentage }
       store.set('userData', state.userData)
     },
   },

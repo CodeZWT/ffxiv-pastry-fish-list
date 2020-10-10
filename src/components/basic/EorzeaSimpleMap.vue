@@ -16,6 +16,7 @@ import DataUtil from '@/utils/DataUtil'
 import fishMarker from '@/assets/fishingSpot.png'
 import markerRange from '@/assets/markerRange.png'
 import defaultMap from '@/assets/default.00.jpg'
+import { throttle } from 'lodash'
 // import Konva from 'konva'
 
 export default {
@@ -58,6 +59,7 @@ export default {
     containerWidth: 500,
     containerHeight: 500,
     mapImageLoaded: false,
+    throttledResizeFn: undefined,
   }),
   computed: {
     markerRangeFactor() {
@@ -142,6 +144,7 @@ export default {
     this.loadImageToProp(defaultMap, 'defaultMapImage')
     this.loadImageToProp(fishMarker, 'fishingSpotImage')
     this.loadImageToProp(markerRange, 'markerRangeImage')
+    this.throttledResizeFn = throttle(() => this.resizeInternal(), 300)
   },
   mounted() {},
   methods: {
@@ -160,6 +163,9 @@ export default {
       })
     },
     resize() {
+      this.throttledResizeFn()
+    },
+    resizeInternal() {
       const rect = this.$refs.container.getBoundingClientRect()
       this.containerHeight = this.containerWidth = rect?.width
       // const markerRangeNode = this.$refs.markerRangeNode.getNode()

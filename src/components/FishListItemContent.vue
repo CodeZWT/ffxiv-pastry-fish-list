@@ -38,6 +38,7 @@
               <div style="width: 100%" class="d-flex justify-center">
                 <div style="width: 100%; max-width: 512px">
                   <eorzea-simple-map
+                    ref="simpleMap"
                     :debug="false"
                     :id="fish.fishingSpot.mapFileId"
                     :x="fish.fishingSpot.x"
@@ -347,6 +348,9 @@ export default {
     },
     toPosStr(sizeFactor, pos) {
       return DataUtil.pixelToPos(sizeFactor, pos).toFixed(0)
+    },
+    resize() {
+      this.$refs.simpleMap.resize()
     },
   },
 }

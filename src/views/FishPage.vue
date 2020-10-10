@@ -1,8 +1,19 @@
 <template>
   <div>
-    <splitpanes class="default-theme">
-      <pane>
-        <div class="main-pane">
+    <splitpanes
+      ref="splitPanes"
+      class="default-theme"
+      @resize="onResize"
+      @splitter-click="resizing = true"
+      @resized="resizing = false"
+    >
+      <pane :size="100 - rightPaneSize">
+        <div v-if="resizing" style="height: 100%">
+          <v-sheet :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`" class="pa-3" style="height: 100%">
+            <v-skeleton-loader class="mx-auto" type="list-item-avatar-three-line@9" boilerplate></v-skeleton-loader>
+          </v-sheet>
+        </div>
+        <div v-else class="main-pane">
           <v-container class="py-0">
             <div>
               <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
@@ -53,7 +64,7 @@
                           :fish-list="pinnedFishList"
                           :fish-list-time-part="fishListTimePart"
                           :fish-list-weather-change-part="fishListWeatherChangePart"
-                          @fish-selected="selectedFishId = $event"
+                          @fish-selected="onFishSelected($event)"
                         >
                           <template v-slot:empty>
                             <span>
@@ -75,7 +86,7 @@
                           :fish-list-time-part="fishListTimePart"
                           :fish-list-weather-change-part="fishListWeatherChangePart"
                           show-fish-divider
-                          @fish-selected="selectedFishId = $event"
+                          @fish-selected="onFishSelected($event)"
                         >
                           <template v-slot:empty>
                             <span>
@@ -93,9 +104,22 @@
           </v-container>
         </div>
       </pane>
-      <pane>
-        <div class="fish-detail-pane">
-          <fish-detail :fish="selectedFish" />
+      <pane v-if="showRightPane" :size="rightPaneSize">
+        <div v-if="resizing" style="height: 100%">
+          <v-sheet :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`" class="pa-3" style="height: 100%">
+            <v-skeleton-loader type="card-avatar, article, actions" boilerplate></v-skeleton-loader>
+          </v-sheet>
+        </div>
+        <div v-else class="fish-detail-pane">
+          <v-btn
+            icon
+            elevation="50"
+            style="position: absolute; right: 8px; top: 8px; z-index: 1"
+            @click="showRightPane = false"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          <fish-detail :fish="selectedFish" ref="fishDetail" />
         </div>
       </pane>
     </splitpanes>
@@ -111,7 +135,7 @@ import DataUtil from '@/utils/DataUtil'
 import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
 import FishSearch from '@/components/FishSearch'
-import { union, isEqual } from 'lodash'
+import { union, isEqual, throttle } from 'lodash'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import ClickHelper from '@/components/basic/ClickHelper'
 import { Splitpanes, Pane } from 'splitpanes'
@@ -130,6 +154,11 @@ export default {
     Splitpanes,
     Pane,
   },
+  inject: {
+    theme: {
+      default: { isDark: false },
+    },
+  },
   data: () => ({
     now: Date.now(),
     weatherChangeTrigger: 1,
@@ -137,6 +166,9 @@ export default {
     openPanelIndex: undefined,
     fishListOpenStatus: [0, 1],
     selectedFishId: undefined,
+    showRightPane: false,
+    throttledResizeFn: undefined,
+    resizing: false,
   }),
   computed: {
     eorzeaTime() {
@@ -220,6 +252,14 @@ export default {
         return undefined
       }
     },
+    rightPaneSize: {
+      get() {
+        return this.rightPanePercentage
+      },
+      set(percentage) {
+        this.setRightPanePercentage(percentage)
+      },
+    },
     ...mapState({
       allFish: 'fish',
       items: 'items',
@@ -229,7 +269,15 @@ export default {
       showSearch: 'showSearchDialog',
       showImportExport: 'showImportExportDialog',
     }),
-    ...mapGetters(['getFishCompleted', 'filters', 'pinnedFishIds', 'showFilter', 'showBanner', 'getFishPinned']),
+    ...mapGetters([
+      'getFishCompleted',
+      'filters',
+      'pinnedFishIds',
+      'showFilter',
+      'showBanner',
+      'getFishPinned',
+      'rightPanePercentage',
+    ]),
   },
   watch: {
     weatherChangeTrigger() {
@@ -254,6 +302,7 @@ export default {
       this.weatherChangeTrigger *= -1
     }, WEATHER_CHANGE_INTERVAL_EARTH)
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
+    this.throttledResizeFn = throttle(this.resizeInternal, 100)
   },
   methods: {
     getItemName(id) {
@@ -391,7 +440,25 @@ export default {
     onDismiss() {
       this.setNotShowBanner()
     },
-    ...mapMutations(['setFilters', 'setShowSearchDialog', 'setShowImportExportDialog', 'setNotShowBanner']),
+    onFishSelected(fishId) {
+      this.selectedFishId = fishId
+      this.showRightPane = true
+    },
+    resizeInternal(resizePaneInfos) {
+      this.rightPaneSize = resizePaneInfos[1].size
+      this.$refs.fishDetail?.resize()
+    },
+    onResize(resizePaneInfos) {
+      this.resizing = true
+      this.throttledResizeFn(resizePaneInfos)
+    },
+    ...mapMutations([
+      'setFilters',
+      'setShowSearchDialog',
+      'setShowImportExportDialog',
+      'setNotShowBanner',
+      'setRightPanePercentage',
+    ]),
   },
 }
 </script>

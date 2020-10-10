@@ -5,6 +5,7 @@
         <fish-list-expanded-header :value="fish" />
       </div>
       <fish-list-item-content
+        ref="detailContent"
         :value="fish"
         :fish-time-part="fishTimePart"
         :fish-weather-change-part="fishWeatherChangePart"
@@ -39,6 +40,11 @@ export default {
     },
     predators() {
       return this.fish?.parts?.predators ?? []
+    },
+  },
+  methods: {
+    resize() {
+      this.$refs.detailContent.resize()
     },
   },
 }
