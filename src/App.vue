@@ -490,6 +490,7 @@ body {
   max-width: 64px !important;
 }
 
+/* scroller setting start */
 /* The emerging W3C standard
    that is currently Firefox-only */
 * {
@@ -510,5 +511,16 @@ body {
   background-color: #ffffff66;
   border-radius: 10px;
   border: 1px solid #ffffff1f;
+}
+
+/* scroller setting end */
+
+.splitpanes--vertical .splitpanes__pane {
+  -webkit-transition: unset !important;
+  transition: unset !important;
+  /*transition-property: width;*/
+  /*transition-duration: 0.2s;*/
+  /*transition-timing-function: ease-out;*/
+  /*transition-delay: 0s;*/
 }
 </style>
