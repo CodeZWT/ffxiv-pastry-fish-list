@@ -12,13 +12,14 @@
                 v-ripple
                 :key="fish._id"
                 :color="listItemColors[index]"
-                class="v-list-item v-list-item--link border-none"
+                :class="['v-list-item', 'v-list-item--link', fish.isPredator ? 'border-none' : 'border-normal']"
               >
                 <fish-list-brief-header
                   :value="fish"
                   :fish-time-part="fishListTimePart[fish._id]"
                   :predators="[]"
                   :in-predator="fish.isPredator"
+                  mode="HEADER"
                 />
               </v-sheet>
             </click-helper>
@@ -170,7 +171,7 @@ export default {
       return this.isMobile ? 126 : 50
     },
     scrollerHeight() {
-      return this.itemHeight * (this.filters.fishN === -1 ? 20 : this.filters.fishN+1)
+      return this.itemHeight * (this.filters.fishN === -1 ? 20 : this.flattenFishList.length)
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
