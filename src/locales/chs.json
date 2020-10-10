@@ -131,5 +131,11 @@
   "footer": {
     "contact": "群：1153646847 红豆年糕@海猫茶屋",
     "ffRights": "FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved."
+  },
+  "detail": {
+    "adjust": {
+      "actHint": "若使用ACT，请在悬浮窗配置页面勾选“锁定悬浮窗”后，调整侧边栏大小。",
+      "quit": "退出调整模式"
+    }
   }
 }

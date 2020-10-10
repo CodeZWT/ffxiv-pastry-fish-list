@@ -112,6 +112,23 @@
       </pane>
       <pane v-if="showRightPane" :size="rightPaneSizeOfCurrentWindowSize">
         <div v-if="resizing" style="height: 100%">
+          <v-banner>
+            <v-avatar slot="icon" color="quaternary" size="40">
+              <v-icon color="white">
+                mdi-alert
+              </v-icon>
+            </v-avatar>
+
+            <div>
+              {{ $t('detail.adjust.actHint') }}
+            </div>
+
+            <template v-slot:actions>
+              <click-helper @click="resizing = false">
+                <v-btn color="primary"> {{ $t('detail.adjust.quit') }}</v-btn>
+              </click-helper>
+            </template>
+          </v-banner>
           <v-sheet :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`" class="pa-3" style="height: 100%">
             <v-skeleton-loader type="card-avatar, article, actions" boilerplate></v-skeleton-loader>
           </v-sheet>
