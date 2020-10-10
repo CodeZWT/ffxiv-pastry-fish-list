@@ -16,7 +16,7 @@
         <div v-else class="main-pane">
           <v-container class="py-0">
             <div>
-              <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter && isNormalTab }">
+              <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
                 <fish-filter :filters="filters" @input="onFiltersUpdate" />
               </div>
               <fish-search
@@ -285,9 +285,6 @@ export default {
         if (this.showRightPane) return this.rightPaneSize
         else return 0
       }
-    },
-    isNormalTab() {
-      return this.activeTabIndex === 1
     },
     ...mapState({
       allFish: 'fish',

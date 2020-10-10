@@ -32,7 +32,7 @@ export default new Vuex.Store({
       text: '',
       color: '',
     },
-    activeTabIndex: undefined,
+    activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
     listNotifications: [{ cnt: 0 }, { cnt: 0 }],
     userData: { ...DataUtil.USER_DEFAULT_DATA, ...getUserDataFromLocalStorage() },
   },
@@ -166,6 +166,9 @@ export default new Vuex.Store({
     },
     rightPanePercentage: state => {
       return state.userData.rightPanePercentage
+    },
+    isNormalTabActive: state => {
+      return state.activeTabIndex === DataUtil.TAB_INDEX_NORMAL
     },
   },
   mutations: {

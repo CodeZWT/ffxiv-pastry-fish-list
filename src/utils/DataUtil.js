@@ -216,4 +216,7 @@ export default {
     sortingType: 'windowPeriods',
     theme: 'dark',
   },
+
+  TAB_INDEX_PINNED: 0,
+  TAB_INDEX_NORMAL: 1,
 }

@@ -1,68 +1,70 @@
 <template>
   <v-card v-if="!loading" color="grey darken-3">
-    <v-card-text>
-      <!-- Patches -->
-      <v-row no-gutters>
-        <v-col>
-          <div class="subtitle-2">{{ $t('filter.patch') }}</div>
-        </v-col>
-      </v-row>
-      <v-row wrap no-gutters>
-        <v-col v-for="version in exVersion" :key="version" class="col-12 col-md-6 my-1">
-          <div style="align-items: center">
-            <click-helper
-              v-if="patchSelectedIndices[version].length === patches[version].length"
-              @click="uncheckAll(version)"
-            >
-              <v-btn text small>
-                {{ version }}
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
-            </click-helper>
-            <click-helper v-else @click="checkAll(version)">
-              <v-btn text small>
-                {{ version }}
-                <v-icon>mdi-check-all</v-icon>
-              </v-btn>
-            </click-helper>
-            <v-btn-toggle
-              v-model="patchSelectedIndices[version]"
-              column
-              dense
-              multiple
-              active-class="primary"
-              @change="onChange"
-            >
-              <click-helper v-for="patch in patches[version]" :key="patch">
-                <v-btn small>
-                  {{ patch.toFixed(1) }}
+    <template v-if="isNormalTabActive">
+      <v-card-text>
+        <!-- Patches -->
+        <v-row no-gutters>
+          <v-col>
+            <div class="subtitle-2">{{ $t('filter.patch') }}</div>
+          </v-col>
+        </v-row>
+        <v-row wrap no-gutters>
+          <v-col v-for="version in exVersion" :key="version" class="col-12 col-md-6 my-1">
+            <div style="align-items: center">
+              <click-helper
+                v-if="patchSelectedIndices[version].length === patches[version].length"
+                @click="uncheckAll(version)"
+              >
+                <v-btn text small>
+                  {{ version }}
+                  <v-icon>mdi-close</v-icon>
                 </v-btn>
               </click-helper>
+              <click-helper v-else @click="checkAll(version)">
+                <v-btn text small>
+                  {{ version }}
+                  <v-icon>mdi-check-all</v-icon>
+                </v-btn>
+              </click-helper>
+              <v-btn-toggle
+                v-model="patchSelectedIndices[version]"
+                column
+                dense
+                multiple
+                active-class="primary"
+                @change="onChange"
+              >
+                <click-helper v-for="patch in patches[version]" :key="patch">
+                  <v-btn small>
+                    {{ patch.toFixed(1) }}
+                  </v-btn>
+                </click-helper>
+              </v-btn-toggle>
+            </div>
+          </v-col>
+        </v-row>
+        <!-- Mark & BigFish -->
+        <v-row no-gutters>
+          <v-col class="col-12 col-md-6">
+            <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
+            <v-btn-toggle v-model="completeType" mandatory active-class="primary" dense @change="onChange">
+              <click-helper v-for="type in completeFilterTypes" :key="type">
+                <v-btn small>{{ $t(`filter.mark.${type}`) }}</v-btn>
+              </click-helper>
             </v-btn-toggle>
-          </div>
-        </v-col>
-      </v-row>
-      <!-- Mark & BigFish -->
-      <v-row no-gutters>
-        <v-col class="col-12 col-md-6">
-          <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
-          <v-btn-toggle v-model="completeType" mandatory active-class="primary" dense @change="onChange">
-            <click-helper v-for="type in completeFilterTypes" :key="type">
-              <v-btn small>{{ $t(`filter.mark.${type}`) }}</v-btn>
-            </click-helper>
-          </v-btn-toggle>
-        </v-col>
-        <v-col cols="6">
-          <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
-          <v-btn-toggle v-model="bigFishType" mandatory active-class="primary" dense @change="onChange">
-            <click-helper v-for="type in bigFishFilterTypes" :key="type">
-              <v-btn small>{{ $t(`filter.bigFish.${type}`) }}</v-btn>
-            </click-helper>
-          </v-btn-toggle>
-        </v-col>
-      </v-row>
-    </v-card-text>
-    <v-divider />
+          </v-col>
+          <v-col cols="6">
+            <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
+            <v-btn-toggle v-model="bigFishType" mandatory active-class="primary" dense @change="onChange">
+              <click-helper v-for="type in bigFishFilterTypes" :key="type">
+                <v-btn small>{{ $t(`filter.bigFish.${type}`) }}</v-btn>
+              </click-helper>
+            </v-btn-toggle>
+          </v-col>
+        </v-row>
+      </v-card-text>
+      <v-divider />
+    </template>
     <v-card-text>
       <v-row no-gutters>
         <v-col>
@@ -87,6 +89,7 @@
 
 <script>
 import ClickHelper from '@/components/basic/ClickHelper'
+import { mapGetters } from 'vuex'
 
 const PATCHES = {
   '2.x': [2.0, 2.1, 2.2, 2.3, 2.4, 2.5],
@@ -141,6 +144,7 @@ export default {
         fishN: fishNTypeText === 'ALL' ? -1 : +fishNTypeText,
       }
     },
+    ...mapGetters(['isNormalTabActive']),
   },
   watch: {
     filters: {
