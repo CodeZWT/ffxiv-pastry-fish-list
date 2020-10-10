@@ -32,7 +32,9 @@ export default new Vuex.Store({
       text: '',
       color: '',
     },
-    userData: { ...DataUtil.USER_DEFAULT_DATA, ...store.get('userData') },
+    activeTabIndex: undefined,
+    listNotifications: [{ cnt: 0 }, { cnt: 0 }],
+    userData: { ...DataUtil.USER_DEFAULT_DATA, ...getUserDataFromLocalStorage() },
   },
   getters: {
     getItemIconUrl: state => id => {
@@ -139,10 +141,10 @@ export default new Vuex.Store({
       }))
     },
     getFishCompleted: state => fishId => {
-      return state.userData.completed.includes(fishId)
+      return state.userData.completed.has(fishId)
     },
     getFishPinned: state => fishId => {
-      return state.userData.pinned.includes(fishId)
+      return state.userData.pinned.has(fishId)
     },
     filters: state => {
       return state.userData.filters
@@ -169,11 +171,11 @@ export default new Vuex.Store({
   mutations: {
     setUserData(state, data) {
       state.userData = { ...DataUtil.USER_DEFAULT_DATA, ...data }
-      store.set('userData', state.userData)
+      saveToLocalStorage(state.userData)
     },
     setUserDataToDefault(state) {
       state.userData = DataUtil.USER_DEFAULT_DATA
-      store.set('userData', state.userData)
+      saveToLocalStorage(state.userData)
     },
     setFishCompleted(state, { fishId, completed }) {
       state.userData = updateUserDataStateRecords(state.userData, 'completed', fishId, completed)
@@ -183,11 +185,11 @@ export default new Vuex.Store({
     },
     setFilters(state, filters) {
       state.userData = { ...state.userData, filters }
-      store.set('userData', state.userData)
+      saveToLocalStorage(state.userData)
     },
     toggleFilterPanel(state) {
       state.userData = { ...state.userData, showFilter: !state.userData.showFilter }
-      store.set('userData', state.userData)
+      saveToLocalStorage(state.userData)
     },
     setShowSearchDialog(state, show) {
       state.showSearchDialog = show
@@ -204,19 +206,25 @@ export default new Vuex.Store({
     },
     setNotShowBanner(state) {
       state.userData = { ...state.userData, showBanner: false }
-      store.set('userData', state.userData)
+      saveToLocalStorage(state.userData)
     },
     setOpacity(state, opacity) {
       state.userData = { ...state.userData, opacity }
-      store.set('userData', state.userData)
+      saveToLocalStorage(state.userData)
     },
     setWebsiteVersion(state, websiteVersion) {
       state.userData = { ...state.userData, websiteVersion }
-      store.set('userData', state.userData)
+      saveToLocalStorage(state.userData)
     },
     setRightPanePercentage(state, rightPanePercentage) {
       state.userData = { ...state.userData, rightPanePercentage }
-      store.set('userData', state.userData)
+      saveToLocalStorage(state.userData)
+    },
+    setActiveTab(state, activeTabIndex) {
+      state.activeTabIndex = activeTabIndex
+    },
+    setListNotifications(state, listNotifications) {
+      state.listNotifications = listNotifications
     },
   },
   actions: {},
@@ -226,10 +234,30 @@ export default new Vuex.Store({
 function updateUserDataStateRecords(userData, type, key, value) {
   const temp = cloneDeep(userData)
   if (value) {
-    temp[type].push(key)
+    temp[type].add(key)
   } else {
-    temp[type] = userData[type].filter(it => it !== key)
+    temp[type].delete(key)
   }
-  store.set('userData', temp)
+  saveToLocalStorage(temp)
   return temp
+}
+
+function saveToLocalStorage(userData) {
+  store.set('userData', toLocalStorageFormat(userData))
+}
+
+function getUserDataFromLocalStorage() {
+  return fromLocalStorageFormat(store.get('userData'))
+}
+
+function toLocalStorageFormat(userData) {
+  return {
+    ...userData,
+    pinned: Array.from(userData.pinned.values()),
+    completed: Array.from(userData.completed.values()),
+  }
+}
+
+function fromLocalStorageFormat(userData) {
+  return { ...userData, pinned: new Set(userData.pinned), completed: new Set(userData.completed) }
 }

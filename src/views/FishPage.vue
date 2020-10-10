@@ -16,7 +16,7 @@
         <div v-else class="main-pane">
           <v-container class="py-0">
             <div>
-              <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
+              <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter && isNormalTab }">
                 <fish-filter :filters="filters" @input="onFiltersUpdate" />
               </div>
               <fish-search
@@ -54,49 +54,55 @@
                       </click-helper>
                     </template>
                   </v-banner>
-                  <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">
-                    <v-expansion-panel>
-                      <v-expansion-panel-header>
-                        {{ $t('list.pinTitle') }}
-                      </v-expansion-panel-header>
-                      <v-expansion-panel-content class="list-wrapper">
-                        <fish-list
-                          :fish-list="pinnedFishList"
-                          :fish-list-time-part="fishListTimePart"
-                          :fish-list-weather-change-part="fishListWeatherChangePart"
-                          @fish-selected="onFishSelected($event)"
-                        >
-                          <template v-slot:empty>
-                            <span>
-                              {{ $t('list.pin.empty.prefix') }}
-                              <v-icon small style="transform: rotate(-45deg)" class="mx-1">mdi-pin-outline</v-icon>
-                              {{ $t('list.pin.empty.suffix') }}
-                            </span>
-                          </template>
-                        </fish-list>
-                      </v-expansion-panel-content>
-                    </v-expansion-panel>
-                    <v-expansion-panel>
-                      <v-expansion-panel-header>
-                        {{ $t('list.normalTitle') }}
-                      </v-expansion-panel-header>
-                      <v-expansion-panel-content class="list-wrapper">
-                        <fish-list
-                          :fish-list="sortedFilteredFishList"
-                          :fish-list-time-part="fishListTimePart"
-                          :fish-list-weather-change-part="fishListWeatherChangePart"
-                          show-fish-divider
-                          @fish-selected="onFishSelected($event)"
-                        >
-                          <template v-slot:empty>
-                            <span>
-                              {{ $t('list.normal.empty') }}
-                            </span>
-                          </template>
-                        </fish-list>
-                      </v-expansion-panel-content>
-                    </v-expansion-panel>
-                  </v-expansion-panels>
+                  <v-tabs-items v-model="activeTabIndex">
+                    <v-tab-item key="pin" class="list-wrapper">
+                      <!--                  <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">-->
+                      <!--                    <v-expansion-panel>-->
+                      <!--                      <v-expansion-panel-header>-->
+                      <!--                        {{ $t('list.pinTitle') }}-->
+                      <!--                      </v-expansion-panel-header>-->
+                      <!--                      <v-expansion-panel-content class="list-wrapper">-->
+                      <fish-list
+                        :fish-list="pinnedFishList"
+                        :fish-list-time-part="fishListTimePart"
+                        :fish-list-weather-change-part="fishListWeatherChangePart"
+                        @fish-selected="onFishSelected($event)"
+                      >
+                        <template v-slot:empty>
+                          <span>
+                            {{ $t('list.pin.empty.prefix') }}
+                            <v-icon small style="transform: rotate(-45deg)" class="mx-1">mdi-pin-outline</v-icon>
+                            {{ $t('list.pin.empty.suffix') }}
+                          </span>
+                        </template>
+                      </fish-list>
+                    </v-tab-item>
+                    <!--                      </v-expansion-panel-content>-->
+                    <!--                    </v-expansion-panel>-->
+                    <!--                    <v-expansion-panel>-->
+                    <!--                      <v-expansion-panel-header>-->
+                    <!--                        {{ $t('list.normalTitle') }}-->
+                    <!--                      </v-expansion-panel-header>-->
+                    <!--                      <v-expansion-panel-content class="list-wrapper">-->
+                    <v-tab-item key="normal" class="list-wrapper">
+                      <fish-list
+                        :fish-list="sortedFilteredFishList"
+                        :fish-list-time-part="fishListTimePart"
+                        :fish-list-weather-change-part="fishListWeatherChangePart"
+                        show-fish-divider
+                        @fish-selected="onFishSelected($event)"
+                      >
+                        <template v-slot:empty>
+                          <span>
+                            {{ $t('list.normal.empty') }}
+                          </span>
+                        </template>
+                      </fish-list>
+                      <!--                      </v-expansion-panel-content>-->
+                      <!--                    </v-expansion-panel>-->
+                      <!--                  </v-expansion-panels>-->
+                    </v-tab-item>
+                  </v-tabs-items>
                 </div>
               </div>
               <import-export-dialog v-model="showImportExportDialog" />
@@ -111,7 +117,7 @@
           </v-sheet>
         </div>
         <div v-else class="fish-detail-pane">
-          <fish-detail :fish="selectedFish" ref="fishDetail" @close="showRightPane = false"/>
+          <fish-detail :fish="selectedFish" ref="fishDetail" @close="showRightPane = false" />
         </div>
       </pane>
     </splitpanes>
@@ -173,21 +179,25 @@ export default {
     fishSourceList() {
       return Object.values(this.allFish).filter(it => it.gig == null && it.patch <= DataUtil.PATCH_MAX)
     },
-    fishList() {
-      return this.fishSourceList.filter(fish => {
-        return (
-          this.filters.patches.includes(fish.patch) &&
-          (this.filters.completeType === 'ALL' ||
-            (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish._id)) ||
-            (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish._id))) &&
-          (this.filters.bigFishType === 'ALL' ||
-            (this.filters.bigFishType === 'BIG_FISH' && this.bigFish.includes(fish._id)) ||
-            (this.filters.bigFishType === 'ALL_AVAILABLE_BIG_FISH' &&
-              this.bigFish.includes(fish._id) &&
-              this.fishListTimePart[fish._id]?.countDown?.type === DataUtil.ALL_AVAILABLE) ||
-            (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish._id)))
-        )
-      })
+    filteredFishIdSet() {
+      const idSet = new Set()
+      this.fishSourceList
+        .filter(fish => {
+          return (
+            this.filters.patches.includes(fish.patch) &&
+            (this.filters.completeType === 'ALL' ||
+              (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish._id)) ||
+              (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish._id))) &&
+            (this.filters.bigFishType === 'ALL' ||
+              (this.filters.bigFishType === 'BIG_FISH' && this.bigFish.includes(fish._id)) ||
+              (this.filters.bigFishType === 'ALL_AVAILABLE_BIG_FISH' &&
+                this.bigFish.includes(fish._id) &&
+                this.fishListTimePart[fish._id]?.countDown?.type === DataUtil.ALL_AVAILABLE) ||
+              (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish._id)))
+          )
+        })
+        .forEach(it => idSet.add(it._id))
+      return idSet
     },
     fishListTimePart() {
       return this.fishSourceList.reduce((fish2TimePart, fish) => {
@@ -202,17 +212,31 @@ export default {
       return sortBy(this.fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
     },
     sortedFilteredFishList() {
+      const idSet = this.filteredFishIdSet
       return this.sortedFishIds
+        .filter(id => idSet.has(id))
         .map(id => this.allFish[id])
-        .filter(it => it != null)
         .filter(it => !this.getFishPinned(it._id))
         .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
     },
     pinnedFishList() {
+      const fishSourceList = this.fishSourceList
+      const sortedFishIds = this.sortedFishIds
       return sortBy(
-        this.fishSourceList.filter(it => this.pinnedFishIds.includes(it._id)),
-        [fish => this.sortedFishIds.indexOf(fish._id)]
+        fishSourceList.filter(it => this.getFishPinned(it._id)),
+        [fish => sortedFishIds.indexOf(fish._id)]
       )
+    },
+    notifications() {
+      // return [{ cnt: 0 }, { cnt: 0 }]
+      const fishListTimePart = this.fishListTimePart
+      return [this.pinnedFishList, this.sortedFilteredFishList].map(list => {
+        const firstNotFishingIndex = list.findIndex(it => fishListTimePart[it._id].countDown.type !== DataUtil.FISHING)
+        return {
+          type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
+          cnt: firstNotFishingIndex === -1 ? list.length : firstNotFishingIndex,
+        }
+      })
     },
     showSearchDialog: {
       get() {
@@ -262,6 +286,9 @@ export default {
         else return 0
       }
     },
+    isNormalTab() {
+      return this.activeTabIndex === 1
+    },
     ...mapState({
       allFish: 'fish',
       items: 'items',
@@ -270,16 +297,9 @@ export default {
       bigFish: 'bigFish',
       showSearch: 'showSearchDialog',
       showImportExport: 'showImportExportDialog',
+      activeTabIndex: 'activeTabIndex',
     }),
-    ...mapGetters([
-      'getFishCompleted',
-      'filters',
-      'pinnedFishIds',
-      'showFilter',
-      'showBanner',
-      'getFishPinned',
-      'rightPanePercentage',
-    ]),
+    ...mapGetters(['getFishCompleted', 'filters', 'showFilter', 'showBanner', 'getFishPinned', 'rightPanePercentage']),
   },
   watch: {
     weatherChangeTrigger() {
@@ -290,6 +310,9 @@ export default {
         }
         return fish2WeatherPart
       }, {})
+    },
+    notifications(notifications) {
+      this.setListNotifications(notifications)
     },
   },
   created() {
@@ -471,6 +494,7 @@ export default {
       'setShowImportExportDialog',
       'setNotShowBanner',
       'setRightPanePercentage',
+      'setListNotifications',
     ]),
   },
 }

@@ -5,13 +5,18 @@
         <slot name="empty" />
       </div>
       <v-expansion-panels v-else v-model="openPanelIndex" hover tile>
-        <v-virtual-scroll :items="flattenFishList" :item-height="isMobile ? 126 : 50" :height="isMobile ? 1260 : 800" bench="20">
+        <v-virtual-scroll
+          :items="flattenFishList"
+          :item-height="isMobile ? 126 : 50"
+          :height="isMobile ? 1260 : 800"
+          bench="20"
+        >
           <template v-slot="{ item: fish, index }">
             <v-sheet
               v-ripple
               :key="fish._id"
               :color="listItemColors[index]"
-              :class="listItemBorderColors[index]"
+              class="v-list-item v-list-item--link border-none"
               @click="onFishClicked(fish._id)"
             >
               <fish-list-brief-header
@@ -122,34 +127,35 @@ export default {
     listItemColors() {
       let parentFishColor = ''
       let colorCounter = 0
+      const fishListTimePart = this.fishListTimePart
       return this.flattenFishList.map(fish => {
         if (fish.isPredator) {
           return parentFishColor
         } else {
           const completed = this.getFishCompleted(fish._id)
-          const countDownType = this.fishListTimePart[fish._id].countDown?.type
+          const countDownType = fishListTimePart[fish._id].countDown?.type
           const color = DataUtil.getColorByStatus(completed, countDownType, colorCounter++ % 2, 'BACKGROUND')
           parentFishColor = color
           return color
         }
       })
     },
-    firstFishWaitingIndex() {
-      return this.flattenFishList.findIndex(
-        fish => fish.isPredator !== true && this.fishListTimePart[fish._id].countDown?.type === DataUtil.WAITING
-      )
-    },
-    listItemBorderColors() {
-      return this.flattenFishList.map((fish, index) => {
-        if (index === this.firstFishWaitingIndex) {
-          return ['v-list-item', 'v-list-item--link', 'border-fishing-divider']
-        } else if (fish.isPredator !== true) {
-          return ['v-list-item', 'v-list-item--link', 'border-normal']
-        } else {
-          return ['v-list-item', 'v-list-item--link', 'border-none']
-        }
-      })
-    },
+    // firstFishWaitingIndex() {
+    //   return this.flattenFishList.findIndex(
+    //     fish => fish.isPredator !== true && this.fishListTimePart[fish._id].countDown?.type === DataUtil.WAITING
+    //   )
+    // },
+    // listItemBorderColors() {
+    //   return this.flattenFishList.map((fish, index) => {
+    //     if (index === this.firstFishWaitingIndex) {
+    //       return ['v-list-item', 'v-list-item--link', 'border-fishing-divider']
+    //     } else if (fish.isPredator !== true) {
+    //       return ['v-list-item', 'v-list-item--link', 'border-normal']
+    //     } else {
+    //       return ['v-list-item', 'v-list-item--link', 'border-none']
+    //     }
+    //   })
+    // },
     // getPredators() {
     //   return value =>
     //     DataUtil.getPredators(

@@ -101,6 +101,18 @@
           </v-list>
         </v-menu>
       </div>
+
+      <template v-slot:extension>
+        <v-tabs center-active :value="activeTabIndex" @change="setActiveTab">
+          <v-tabs-slider color="white"></v-tabs-slider>
+
+          <v-tab v-for="(notification, index) in listNotifications" :key="index">
+            <v-badge color="tertiary" :value="notification.cnt" :content="notification.cnt">
+              <div style="font-size: 16px">{{ $t(index === 0 ? 'list.pinTitle' : 'list.normalTitle') }}</div>
+            </v-badge>
+          </v-tab>
+        </v-tabs>
+      </template>
     </v-app-bar>
 
     <v-main>
@@ -367,7 +379,7 @@ export default {
         this.debounceSetPageOpacity(opacity)
       },
     },
-    ...mapState(['snackbar']),
+    ...mapState(['snackbar', 'activeTabIndex', 'listNotifications']),
     ...mapGetters(['opacity', 'websiteVersion']),
   },
   created() {
@@ -409,6 +421,7 @@ export default {
       'setShowImportExportDialog',
       'setOpacity',
       'setWebsiteVersion',
+      'setActiveTab',
     ]),
   },
 }
