@@ -3,9 +3,11 @@
     <template v-if="fish">
       <div class="py-4 px-6">
         <fish-list-expanded-header :value="fish" />
-        <v-btn icon elevation="50" style="position: absolute; right: 8px; top: 8px; z-index: 2" @click="$emit('close')">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
+        <click-helper @click="$emit('close')">
+          <v-btn icon elevation="50" style="position: absolute; right: 8px; top: 8px; z-index: 2">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </click-helper>
       </div>
       <fish-list-item-content
         ref="detailContent"
@@ -24,10 +26,11 @@
 <script>
 import FishListItemContent from '@/components/FishListItemContent'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'FishDetail',
-  components: { FishListExpandedHeader, FishListItemContent },
+  components: { ClickHelper, FishListExpandedHeader, FishListItemContent },
   props: {
     fish: {
       type: Object,

@@ -141,10 +141,10 @@ export default new Vuex.Store({
       }))
     },
     getFishCompleted: state => fishId => {
-      return state.userData.completed.has(fishId)
+      return state.userData.completed.includes(fishId)
     },
     getFishPinned: state => fishId => {
-      return state.userData.pinned.has(fishId)
+      return state.userData.pinned.includes(fishId)
     },
     filters: state => {
       return state.userData.filters
@@ -237,30 +237,18 @@ export default new Vuex.Store({
 function updateUserDataStateRecords(userData, type, key, value) {
   const temp = cloneDeep(userData)
   if (value) {
-    temp[type].add(key)
+    temp[type].push(key)
   } else {
-    temp[type].delete(key)
+    temp[type] = userData[type].filter(it => it !== key)
   }
   saveToLocalStorage(temp)
   return temp
 }
 
 function saveToLocalStorage(userData) {
-  store.set('userData', toLocalStorageFormat(userData))
+  store.set('userData', userData)
 }
 
 function getUserDataFromLocalStorage() {
-  return fromLocalStorageFormat(store.get('userData'))
-}
-
-function toLocalStorageFormat(userData) {
-  return {
-    ...userData,
-    pinned: Array.from(userData.pinned.values()),
-    completed: Array.from(userData.completed.values()),
-  }
-}
-
-function fromLocalStorageFormat(userData) {
-  return { ...userData, pinned: new Set(userData.pinned), completed: new Set(userData.completed) }
+  return store.get('userData')
 }

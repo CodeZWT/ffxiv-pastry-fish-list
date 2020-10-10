@@ -5,27 +5,23 @@
         <slot name="empty" />
       </div>
       <v-expansion-panels v-else v-model="openPanelIndex" hover tile>
-        <v-virtual-scroll
-          :items="flattenFishList"
-          :item-height="itemHeight"
-          :height="scrollerHeight"
-          bench="20"
-        >
+        <v-virtual-scroll :items="flattenFishList" :item-height="itemHeight" :height="scrollerHeight" bench="20">
           <template v-slot="{ item: fish, index }">
-            <v-sheet
-              v-ripple
-              :key="fish._id"
-              :color="listItemColors[index]"
-              class="v-list-item v-list-item--link border-none"
-              @click="onFishClicked(fish._id)"
-            >
-              <fish-list-brief-header
-                :value="fish"
-                :fish-time-part="fishListTimePart[fish._id]"
-                :predators="[]"
-                :in-predator="fish.isPredator"
-              />
-            </v-sheet>
+            <click-helper @click="onFishClicked(fish._id)">
+              <v-sheet
+                v-ripple
+                :key="fish._id"
+                :color="listItemColors[index]"
+                class="v-list-item v-list-item--link border-none"
+              >
+                <fish-list-brief-header
+                  :value="fish"
+                  :fish-time-part="fishListTimePart[fish._id]"
+                  :predators="[]"
+                  :in-predator="fish.isPredator"
+                />
+              </v-sheet>
+            </click-helper>
 
             <!--            <v-expansion-panel>-->
             <!--              <v-expansion-panel-header class="fish-header" :color="listItemColors[index]">-->
@@ -78,10 +74,11 @@ import { mapGetters, mapState } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import FishListBriefHeader from '@/components/FishListBriefHeader'
 import DataUtil from '@/utils/DataUtil'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'fish-list',
-  components: { FishListBriefHeader },
+  components: { ClickHelper, FishListBriefHeader },
   props: {
     fishList: {
       type: Array,
@@ -173,7 +170,7 @@ export default {
       return this.isMobile ? 126 : 50
     },
     scrollerHeight() {
-      return this.itemHeight * (this.filters.fishN === -1 ? 20 : this.filters.fishN)
+      return this.itemHeight * (this.filters.fishN === -1 ? 20 : this.filters.fishN+1)
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
