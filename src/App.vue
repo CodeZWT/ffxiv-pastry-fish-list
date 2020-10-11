@@ -214,11 +214,12 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
-          <div class="text-h6">Version 0.2.0</div>
+          <div class="text-h6">Version 0.2.0 - 界面更新</div>
           <ul>
             <li>界面更新，原先扩展列表变为右侧详细界面。</li>
             <li>固定和默认列表变为选项卡的形式。</li>
             <li>ACT界面（即较小的界面下），详细列表将全屏显示。</li>
+            <li>ACT缩小模式更新。</li>
             <li>增加常驻（即全天可以钓）鱼王的筛选项。</li>
           </ul>
           <p />
