@@ -219,4 +219,9 @@ export default {
 
   TAB_INDEX_PINNED: 0,
   TAB_INDEX_NORMAL: 1,
+
+  TABS: [
+    { icon: 'mdi-pin', title: 'list.pinTitle' },
+    { icon: 'mdi-format-list-text', title: 'list.normalTitle' },
+  ],
 }

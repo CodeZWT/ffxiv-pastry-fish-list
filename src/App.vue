@@ -22,85 +22,116 @@
         }}
       </div>
     </v-system-bar>
-    <v-app-bar app color="primary" :collapse="collapse" scroll-off-screen class="fish-app-bar" dense>
-      <v-app-bar-nav-icon>
-        <click-helper @click="collapse = !collapse">
-          <v-tooltip right>
-            <template v-slot:activator="{ on, attrs }">
+    <v-app-bar
+      app
+      color="primary"
+      :collapse="collapse"
+      :class="{ 'fish-app-bar': true, 'rounded-pill': collapse, 'fish-app-bar--collapsed': collapse }"
+      dense
+    >
+      <click-helper @click="collapse = !collapse">
+        <v-tooltip right>
+          <template v-slot:activator="{ on, attrs }">
+            <div class="d-flex">
               <v-avatar size="28" v-bind="attrs" v-on="on">
                 <img :src="fisher" />
               </v-avatar>
-            </template>
-            <span>{{ $t('top.collapseHint') }}</span>
-          </v-tooltip>
-        </click-helper>
-      </v-app-bar-nav-icon>
+              <div class="d-flex flex-column" v-if="collapse">
+                <v-chip
+                  v-for="(notification, index) in listNotifications"
+                  :key="index"
+                  x-small
+                  color="transparent"
+                  @click="setActiveTabLater(index)"
+                >
+                  <v-tooltip right>
+                    <template v-slot:activator="{ on, attrs }">
+                      <click-helper v-on="on" v-bind="attrs">
+                        <div>
+                          <v-icon left small>
+                            {{ TABS[index].icon }}
+                          </v-icon>
+                          {{ notification.cnt }}
+                        </div>
+                      </click-helper>
+                    </template>
+                    <span>{{ $t(TABS[index].title) }}</span>
+                  </v-tooltip>
+                </v-chip>
+              </div>
+            </div>
+          </template>
+          <span>{{ $t('top.collapseHint') }}</span>
+        </v-tooltip>
+      </click-helper>
 
       <v-toolbar-title>{{ $t('top.toolBarTitle') }}</v-toolbar-title>
-      <v-spacer />
-      <click-helper @click="setShowSearchDialog(true)">
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-      </click-helper>
-      <click-helper @click="toggleFilterPanel">
-        <v-btn icon>
-          <v-icon>mdi-filter</v-icon>
-        </v-btn>
-      </click-helper>
-      <div class="text-center">
-        <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <click-helper v-on="on" v-bind="attrs">
-              <v-btn icon>
-                <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
-            </click-helper>
-          </template>
-          <v-list>
-            <click-helper @click="setShowImportExportDialog(true)">
-              <v-list-item @click="noOp">
-                <v-list-item-icon>
-                  <v-icon>mdi-database</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.menu') }}</v-list-item-content>
-              </v-list-item>
-            </click-helper>
-            <click-helper @click="showHelpDialog = true">
-              <v-list-item @click="noOp">
-                <v-list-item-icon>
-                  <v-icon dark>mdi-help-circle</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.help') }}</v-list-item-content>
-              </v-list-item>
-            </click-helper>
-            <click-helper @click="showSettingDialog = true">
-              <v-list-item @click="noOp">
-                <v-list-item-icon>
-                  <v-icon dark>mdi-cog</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.setting') }}</v-list-item-content>
-              </v-list-item>
-            </click-helper>
-            <click-helper @click="showPatchNoteDialog = true">
-              <v-list-item @click="noOp">
-                <v-list-item-icon>
-                  <v-icon dark>mdi-tag</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.patchNote') }}</v-list-item-content>
-              </v-list-item>
-            </click-helper>
-            <click-helper @click="showAboutDialog = true">
-              <v-list-item @click="noOp">
-                <v-list-item-icon>
-                  <v-icon dark>mdi-information</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.about') }}</v-list-item-content>
-              </v-list-item>
-            </click-helper>
-          </v-list>
-        </v-menu>
-      </div>
+      <template v-if="!collapse">
+        <v-spacer />
+        <click-helper @click="setShowSearchDialog(true)">
+          <v-btn icon>
+            <v-icon>mdi-magnify</v-icon>
+          </v-btn>
+        </click-helper>
+        <click-helper @click="toggleFilterPanel">
+          <v-btn icon>
+            <v-icon>mdi-filter</v-icon>
+          </v-btn>
+        </click-helper>
+        <div class="text-center">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <click-helper v-on="on" v-bind="attrs">
+                <v-btn icon>
+                  <v-icon>mdi-dots-vertical</v-icon>
+                </v-btn>
+              </click-helper>
+            </template>
+            <v-list>
+              <click-helper @click="setShowImportExportDialog(true)">
+                <v-list-item @click="noOp">
+                  <v-list-item-icon>
+                    <v-icon>mdi-database</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.menu') }}</v-list-item-content>
+                </v-list-item>
+              </click-helper>
+              <click-helper @click="showHelpDialog = true">
+                <v-list-item @click="noOp">
+                  <v-list-item-icon>
+                    <v-icon dark>mdi-help-circle</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.help') }}</v-list-item-content>
+                </v-list-item>
+              </click-helper>
+              <click-helper @click="showSettingDialog = true">
+                <v-list-item @click="noOp">
+                  <v-list-item-icon>
+                    <v-icon dark>mdi-cog</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.setting') }}</v-list-item-content>
+                </v-list-item>
+              </click-helper>
+              <click-helper @click="showPatchNoteDialog = true">
+                <v-list-item @click="noOp">
+                  <v-list-item-icon>
+                    <v-icon dark>mdi-tag</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.patchNote') }}</v-list-item-content>
+                </v-list-item>
+              </click-helper>
+              <click-helper @click="showAboutDialog = true">
+                <v-list-item @click="noOp">
+                  <v-list-item-icon>
+                    <v-icon dark>mdi-information</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.about') }}</v-list-item-content>
+                </v-list-item>
+              </click-helper>
+            </v-list>
+          </v-menu>
+        </div>
+      </template>
 
       <template v-slot:extension>
         <v-tabs center-active :value="activeTabIndex" @change="setActiveTab">
@@ -108,7 +139,12 @@
 
           <v-tab v-for="(notification, index) in listNotifications" :key="index">
             <v-badge color="tertiary" :value="notification.cnt" :content="notification.cnt">
-              <div style="font-size: 16px">{{ $t(index === 0 ? 'list.pinTitle' : 'list.normalTitle') }}</div>
+              <div class="d-flex">
+                <v-icon left small>
+                  {{ TABS[index].icon }}
+                </v-icon>
+                <div style="font-size: 16px">{{ $t(TABS[index].title) }}</div>
+              </div>
             </v-badge>
           </v-tab>
         </v-tabs>
@@ -116,7 +152,7 @@
     </v-app-bar>
 
     <v-main>
-      <div class="py-0" v-if="!collapse">
+      <div class="py-0" v-show="!collapse">
         <router-view @notification="listNotifications = $event" />
       </div>
       <!--      <v-container class="py-0" v-if="!collapse">-->
@@ -335,7 +371,7 @@
 <script>
 import EorzeaTime from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
-import fisher from '@/assets/fisher.png'
+import fisher from '@/assets/icon/FSH-white.svg'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import helpHTML from '@/assets/doc/help.html'
 import { version } from '../package.json'
@@ -361,6 +397,7 @@ export default {
     debounceSetPageOpacity: undefined,
     pageOpacityShowing: 0,
     listNotifications: [{ cnt: 0 }, { cnt: 0 }],
+    TABS: DataUtil.TABS,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -417,6 +454,9 @@ export default {
     },
     toggleCollapse() {
       this.collapse = !this.collapse
+    },
+    setActiveTabLater(index) {
+      setTimeout(() => this.setActiveTab(index), 500)
     },
     ...mapMutations([
       'toggleFilterPanel',
@@ -486,8 +526,13 @@ body {
   padding: 0 !important;
 }
 
-.fish-app-bar.v-toolbar.v-toolbar--collapsed {
-  max-width: 64px !important;
+/*.fish-app-bar.v-toolbar.v-toolbar--collapsed {*/
+/*  max-width: 64px !important;*/
+/*}*/
+
+.v-application .fish-app-bar.fish-app-bar--collapsed {
+  background-color: #004d4066 !important;
+  border: 2px solid;
 }
 
 /* scroller setting start */
@@ -499,6 +544,7 @@ body {
 }
 
 /* Works on Chrome/Edge/Safari */
+
 *::-webkit-scrollbar {
   width: 6px;
 }
