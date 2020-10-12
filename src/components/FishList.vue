@@ -62,14 +62,14 @@ export default {
   computed: {
     flattenFishList() {
       return this.fishList.flatMap(fish => {
-        const predators = DataUtil.getPredators(
-          fish,
-          this.allFish
-          // this.fishListTimePart,
-          // this.fishListWeatherChangePart,
-          // this.getFishCompleted(fish._id)
-        )
-        return [fish, ...predators]
+        // const predators = DataUtil.getPredators(
+        //   fish,
+        //   this.allFish
+        //   // this.fishListTimePart,
+        //   // this.fishListWeatherChangePart,
+        //   // this.getFishCompleted(fish._id)
+        // )
+        return [fish, ...fish.predators]
       })
     },
     // fishColors() {

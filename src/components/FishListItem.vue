@@ -7,7 +7,7 @@
       :class="['v-list-item', 'v-list-item--link', fish.isPredator ? 'border-none' : 'border-normal']"
     >
       <fish-list-brief-header
-        :value="fish"
+        :fish="fish"
         :fish-time-part="fishTimePart"
         :predators="[]"
         :in-predator="fish.isPredator"

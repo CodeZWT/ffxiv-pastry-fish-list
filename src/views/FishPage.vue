@@ -1,5 +1,6 @@
 <template>
   <div v-resize="onWindowResize">
+    <v-overlay :value="loading"></v-overlay>
     <splitpanes
       ref="splitPanes"
       class="default-theme"
@@ -21,7 +22,7 @@
               </div>
               <fish-search
                 v-model="showSearchDialog"
-                :fish-data="fishSourceList"
+                :fish-data="lazyTransformedFishList"
                 :fish-list-time-part="fishListTimePart"
                 :fish-list-weather-change-part="fishListWeatherChangePart"
               />
@@ -185,6 +186,11 @@ export default {
     throttledResizeFn: undefined,
     resizing: false,
     rightPaneFullScreen: window.innerWidth < 1264,
+    loading: true,
+    lazyFishSourceList: [],
+    lazyTransformedFishList: [],
+    lazyFishSourceDict: {},
+    sortedFishIds: [],
   }),
   computed: {
     eorzeaTime() {
@@ -193,31 +199,28 @@ export default {
     earthTime() {
       return new Date(this.now)
     },
-    fishSourceList() {
-      return Object.values(this.allFish).filter(it => it.gig == null && it.patch <= DataUtil.PATCH_MAX)
-    },
     filteredFishIdSet() {
       const idSet = new Set()
-      this.fishSourceList
+      this.lazyTransformedFishList
         .filter(fish => {
           return (
             this.filters.patches.includes(fish.patch) &&
             (this.filters.completeType === 'ALL' ||
-              (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish._id)) ||
-              (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish._id))) &&
+              (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish.id)) ||
+              (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish.id))) &&
             (this.filters.bigFishType === 'ALL' ||
-              (this.filters.bigFishType === 'BIG_FISH' && this.bigFish.includes(fish._id)) ||
+              (this.filters.bigFishType === 'BIG_FISH' && this.bigFish.includes(fish.id)) ||
               (this.filters.bigFishType === 'ALL_AVAILABLE_BIG_FISH' &&
-                this.bigFish.includes(fish._id) &&
-                this.fishListTimePart[fish._id]?.countDown?.type === DataUtil.ALL_AVAILABLE) ||
-              (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish._id)))
+                this.bigFish.includes(fish.id) &&
+                this.fishListTimePart[fish.id]?.countDown?.type === DataUtil.ALL_AVAILABLE) ||
+              (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish.id)))
           )
         })
         .forEach(it => idSet.add(it._id))
       return idSet
     },
     fishListTimePart() {
-      return this.fishSourceList.reduce((fish2TimePart, fish) => {
+      return this.lazyFishSourceList.reduce((fish2TimePart, fish) => {
         fish2TimePart[fish._id] = {
           id: fish._id,
           countDown: this.getCountDown(fish, this.now),
@@ -225,29 +228,33 @@ export default {
         return fish2TimePart
       }, {})
     },
-    sortedFishIds() {
-      return sortBy(this.fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
-    },
     sortedFilteredFishList() {
       const idSet = this.filteredFishIdSet
       return this.sortedFishIds
         .filter(id => idSet.has(id))
-        .map(id => this.allFish[id])
-        .filter(it => !this.getFishPinned(it._id))
+        .map(id => this.lazyFishSourceDict[id])
+        .filter(it => !this.getFishPinned(it.id))
         .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
     },
     pinnedFishList() {
-      const fishSourceList = this.fishSourceList
+      const fishSourceList = this.lazyTransformedFishList
       const sortedFishIds = this.sortedFishIds
       return sortBy(
-        fishSourceList.filter(it => this.getFishPinned(it._id)),
-        [fish => sortedFishIds.indexOf(fish._id)]
+        fishSourceList.filter(it => this.getFishPinned(it.id)),
+        [fish => sortedFishIds.indexOf(fish.id)]
       )
     },
     notifications() {
       const fishListTimePart = this.fishListTimePart
       return [this.pinnedFishList, this.sortedFilteredFishList].map(list => {
-        const firstNotFishingIndex = list.findIndex(it => fishListTimePart[it._id].countDown.type !== DataUtil.FISHING)
+        if (Object.keys(fishListTimePart).length === 0) {
+          return {
+            type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
+            cnt: 0,
+          }
+        }
+
+        const firstNotFishingIndex = list.findIndex(it => fishListTimePart[it.id].countDown.type !== DataUtil.FISHING)
         return {
           type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
           cnt: firstNotFishingIndex === -1 ? list.length : firstNotFishingIndex,
@@ -312,12 +319,31 @@ export default {
       showImportExport: 'showImportExportDialog',
       activeTabIndex: 'activeTabIndex',
     }),
-    ...mapGetters(['getFishCompleted', 'filters', 'showFilter', 'showBanner', 'getFishPinned', 'rightPanePercentage']),
+    ...mapGetters([
+      'getFishCompleted',
+      'filters',
+      'showFilter',
+      'showBanner',
+      'getFishPinned',
+      'rightPanePercentage',
+      'getItemName',
+      'getItemIconClass',
+      'getZoneName',
+      'getFishingSpotsName',
+      'getBaits',
+      'getWeather',
+    ]),
   },
   watch: {
+    fishListTimePart(fishListTimePart) {
+      const newSortedFishIds = sortBy(fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
+      if (!isEqual(this.sortedFishIds, newSortedFishIds)) {
+        this.sortedFishIds = newSortedFishIds
+      }
+    },
     weatherChangeTrigger() {
       const now = this.now
-      this.fishListWeatherChangePart = this.fishSourceList.reduce((fish2WeatherPart, fish) => {
+      this.fishListWeatherChangePart = this.lazyFishSourceList.reduce((fish2WeatherPart, fish) => {
         fish2WeatherPart[fish._id] = {
           fishWindows: this.getFishWindow(fish, now),
         }
@@ -329,6 +355,13 @@ export default {
     },
   },
   created() {
+    this.loading = true
+  },
+  mounted() {
+    this.lazyFishSourceList = Object.values(this.allFish).filter(it => it.gig == null && it.patch <= DataUtil.PATCH_MAX)
+    this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
+    this.lazyFishSourceDict = DataUtil.toMap(this.lazyTransformedFishList, fish => fish.id)
+
     document.title = `${this.$t('top.systemBarTitle')} - ${this.$t('top.toolBarTitle')}`
     this.now = Date.now()
     setInterval(() => {
@@ -341,13 +374,48 @@ export default {
     }, WEATHER_CHANGE_INTERVAL_EARTH)
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
     this.throttledResizeFn = throttle(this.resizeInternal, 100)
-  },
-  mounted() {
     this.onWindowResize()
+    this.loading = false
   },
   methods: {
-    getItemName(id) {
-      return DataUtil.getName(this.items[id])
+    assembleFish(fishSourceList) {
+      return fishSourceList.map(fish => {
+        const hasPredators = Object.keys(fish.predators).length > 0
+        return {
+          // TODO remove _id
+          _id: fish._id,
+          id: fish._id,
+          completed: this.getFishCompleted(fish._id),
+          pinned: this.getFishPinned(fish._id),
+          icon: this.getItemIconClass(fish._id),
+          name: this.getItemName(fish._id),
+          hasFishingSpot: fish.location != null,
+          zone: this.getZoneName(fish.location),
+          fishingSpot: this.getFishingSpotsName(fish.location),
+          fishingSpotId: fish.location,
+          baits: this.getBaits(fish),
+          hasFishEyes: fish.fishEyes !== false,
+          fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
+          fishEyesText: DataUtil.secondsToFishEyesString(fish.fishEyes),
+          fishEyesSeconds: fish.fishEyes,
+          hasPredators: hasPredators,
+          predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
+          hasSnagging: fish.snagging,
+          snaggingIcon: DataUtil.iconIdToClass(DataUtil.ICON_SNAGGING),
+          startHourText: DataUtil.formatET(fish.startHour),
+          endHourText: DataUtil.formatET(fish.endHour),
+          hasTimeConstraint: fish.startHour !== 0 || fish.endHour !== 24,
+          requiredCnt: fish.requiredCnt ?? 0,
+          predators: DataUtil.getPredators(fish, this.allFish),
+          addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(fish),
+          weatherSetDetail: this.getWeather(fish.weatherSet),
+          hasWeatherConstraint: fish.previousWeatherSet.length > 0 || fish.weatherSet.length > 0,
+          previousWeatherSet: fish.previousWeatherSet,
+          weatherSet: fish.weatherSet,
+          previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
+          patch: fish.patch,
+        }
+      })
     },
     getCountDown(fish, now) {
       // utilize 8 hours fish windows computed if exists
@@ -534,7 +602,11 @@ $filter-panel-height: 261px
   //margin-right: -8px
 
   &.show-filter
+
+
     top: 0
+
+
 
   //&.show-filter .better-scroll
   //  height: calc(100vh - #{$top-bars-padding + $filter-panel-height})

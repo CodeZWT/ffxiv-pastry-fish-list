@@ -5,7 +5,7 @@
       style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 4px; z-index: 1;border-radius: 2px"
       :class="color"
     />
-<!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />-->
+    <!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />-->
 
     <!--    <pin-button :value="fish.pinned" @input="setPinned($event)" />-->
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
@@ -35,32 +35,36 @@
       <v-col v-if="!isMobile" class="col-2 d-flex flex-column justify-center my-2 my-sm-0">
         <div class="text-subtitle-2 d-flex">
           <div>
-            {{ $t(fish.countDownType) }}
+            {{ $t(transformedFishTimePart.countDownType) }}
           </div>
         </div>
-        <div v-if="fish.hasCountDown" class="d-flex align-center">
+        <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
           <v-icon size="20">mdi-alarm</v-icon>
 
           <div>
             <v-tooltip right color="secondary">
               <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
+                <div v-bind="attrs" v-on="on" class="text-subtitle-2">
+                  {{ transformedFishTimePart.countDownTimeText }}
+                </div>
               </template>
-              <span>{{ fish.countDownTimePointText }}</span>
+              <span>{{ transformedFishTimePart.countDownTimePointText }}</span>
             </v-tooltip>
           </div>
           <div
-            v-if="fish.addBuffSuffix && fish.isFishing"
+            v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
             :title="$t('list.item.countDown.fishShadowHint')"
             :class="fish.predatorsIcon"
             style="margin-left: 2px"
           />
           <div>
-            <v-tooltip v-if="fish.isWaiting" right color="secondary">
+            <v-tooltip v-if="transformedFishTimePart.isWaiting" right color="secondary">
               <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" class="text-subtitle-2">({{ fish.countDownTotal }})</div>
+                <div v-bind="attrs" v-on="on" class="text-subtitle-2">
+                  ({{ transformedFishTimePart.countDownTotal }})
+                </div>
               </template>
-              <span>{{ fish.countDownTotalHint }}</span>
+              <span>{{ transformedFishTimePart.countDownTotalHint }}</span>
             </v-tooltip>
           </div>
         </div>
@@ -93,8 +97,8 @@
         >
           {{ fish.fishingSpot }}
         </div>
-        <div v-if="isMobile && !fish.hasCountDown" class="text-subtitle-2">
-          {{ $t(fish.countDownType) }}
+        <div v-if="isMobile && !transformedFishTimePart.hasCountDown" class="text-subtitle-2">
+          {{ $t(transformedFishTimePart.countDownType) }}
         </div>
         <div v-else-if="isMobile" class="d-flex align-center">
           <div>
@@ -103,24 +107,26 @@
                 <div v-bind="attrs" v-on="on" class="d-flex align-center align-content-center">
                   <v-icon size="20">mdi-alarm</v-icon>
 
-                  <div class="text-subtitle-2">{{ fish.countDownTimeText }}</div>
+                  <div class="text-subtitle-2">{{ transformedFishTimePart.countDownTimeText }}</div>
                   <div
-                    v-if="fish.addBuffSuffix && fish.isFishing"
+                    v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
                     :title="$t('list.item.countDown.fishShadowHint')"
                     :class="fish.predatorsIcon"
                     style="margin-left: 2px"
                   />
                 </div>
               </template>
-              <span>{{ fish.countDownTimePointText }}</span>
+              <span>{{ transformedFishTimePart.countDownTimePointText }}</span>
             </v-tooltip>
           </div>
           <div>
-            <v-tooltip v-if="fish.isWaiting" top color="secondary">
+            <v-tooltip v-if="transformedFishTimePart.isWaiting" top color="secondary">
               <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" class="text-subtitle-2">({{ fish.countDownTotal }})</div>
+                <div v-bind="attrs" v-on="on" class="text-subtitle-2">
+                  ({{ transformedFishTimePart.countDownTotal }})
+                </div>
               </template>
-              <span>{{ fish.countDownTotalHint }}</span>
+              <span>{{ transformedFishTimePart.countDownTotalHint }}</span>
             </v-tooltip>
           </div>
         </div>
@@ -141,10 +147,10 @@
         <fish-bait-list :baits="fish.baits" />
       </v-col>
     </v-row>
-<!--    <div v-if="fish.hasPredators" class="mt-1">-->
-<!--      <v-divider inset />-->
-<!--      <fish-predators :value="fish.predators" mode="HEADER" />-->
-<!--    </div>-->
+    <!--    <div v-if="fish.hasPredators" class="mt-1">-->
+    <!--      <v-divider inset />-->
+    <!--      <fish-predators :value="fish.predators" mode="HEADER" />-->
+    <!--    </div>-->
   </div>
 </template>
 
@@ -160,7 +166,7 @@ export default {
   // to deal with recursive components
   components: { FishBaitList, ToggleButton },
   props: {
-    value: {
+    fish: {
       type: Object,
       default: () => ({}),
     },
@@ -194,28 +200,9 @@ export default {
     rootPath: process.env.ASSET_PATH,
   }),
   computed: {
-    fish() {
-      const hasPredators = Object.keys(this.value.predators).length > 0
+    transformedFishTimePart() {
       const fishTimePart = this.fishTimePart ?? { id: this.value._id, countDown: { type: this.ALL_AVAILABLE } }
       return {
-        id: this.value._id,
-        completed: this.getFishCompleted(this.value._id),
-        pinned: this.getFishPinned(this.value._id),
-        icon: this.getItemIconClass(this.value._id),
-        name: this.getItemName(this.value._id),
-        hasFishingSpot: this.value.location != null,
-        zone: this.getZoneName(this.value.location),
-        fishingSpot: this.getFishingSpotsName(this.value.location),
-        fishingSpotId: this.value.location,
-        baits: this.getBaits(this.value),
-        hasFishEyes: this.value.fishEyes !== false,
-        fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
-        fishEyesText: DataUtil.secondsToFishEyesString(this.value.fishEyes),
-        fishEyesSeconds: this.value.fishEyes,
-        hasPredators: hasPredators,
-        predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
-        hasSnagging: this.value.snagging,
-        snaggingIcon: DataUtil.iconIdToClass(DataUtil.ICON_SNAGGING),
         countDownType: DataUtil.getCountDownTypeName(fishTimePart.countDown?.type),
         countDownTime: fishTimePart.countDown?.time,
         countDownTimeText: this.printCountDownTime(fishTimePart.countDown?.time),
@@ -228,19 +215,8 @@ export default {
           interval: this.printCountDownTime(fishTimePart.countDown?.fishWindowTotal, 2),
         }),
         hasCountDown: DataUtil.hasCountDown(fishTimePart.countDown),
-        startHourText: DataUtil.formatET(this.value.startHour),
-        endHourText: DataUtil.formatET(this.value.endHour),
-        hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
         isWaiting: fishTimePart.countDown?.type === DataUtil.WAITING,
         isFishing: fishTimePart.countDown?.type === DataUtil.FISHING,
-        requiredCnt: this.value.requiredCnt ?? 0,
-        predators: this.predators,
-        addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
-        weatherSetDetail: this.getWeather(this.value.weatherSet),
-        hasWeatherConstraint: this.value.previousWeatherSet.length > 0 || this.value.weatherSet.length > 0,
-        previousWeatherSet: this.value.previousWeatherSet,
-        weatherSet: this.value.weatherSet,
-        previousWeatherSetDetail: this.getWeather(this.value.previousWeatherSet),
       }
     },
     isMobile() {
