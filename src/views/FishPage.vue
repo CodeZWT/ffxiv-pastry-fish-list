@@ -378,7 +378,7 @@ export default {
     this.loading = false
   },
   methods: {
-    assembleFish(fishSourceList) {
+    assembleFish(fishSourceList, isPredator = false) {
       return fishSourceList.map(fish => {
         const hasPredators = Object.keys(fish.predators).length > 0
         return {
@@ -406,7 +406,6 @@ export default {
           endHourText: DataUtil.formatET(fish.endHour),
           hasTimeConstraint: fish.startHour !== 0 || fish.endHour !== 24,
           requiredCnt: fish.requiredCnt ?? 0,
-          predators: DataUtil.getPredators(fish, this.allFish),
           addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(fish),
           weatherSetDetail: this.getWeather(fish.weatherSet),
           hasWeatherConstraint: fish.previousWeatherSet.length > 0 || fish.weatherSet.length > 0,
@@ -414,6 +413,8 @@ export default {
           weatherSet: fish.weatherSet,
           previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
           patch: fish.patch,
+          isPredator: isPredator,
+          predators: this.assembleFish(DataUtil.getPredators(fish, this.allFish), true),
         }
       })
     },

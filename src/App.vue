@@ -214,7 +214,14 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
-          <div class="text-h6">Version 0.2.0 - 界面更新</div>
+          <div class="text-h6">Version 0.2.1</div>
+          <ul>
+            <li>提升页面流畅度。</li>
+          </ul>
+          <p />
+          <v-divider />
+
+          <div class="text-h6">Version 0.2.0</div>
           <ul>
             <li>界面更新，原先扩展列表变为右侧详细界面。</li>
             <li>固定和默认列表变为选项卡的形式。</li>
