@@ -22,6 +22,9 @@ export default {
         }
       }
     }
+    if (unitPairs.length > 1 && unitPairs[unitPairs.length - 1].unit === UNITS_TEXT[unitLen - 1]) {
+      unitPairs = unitPairs.slice(0, unitPairs.length - 1)
+    }
 
     return unitPairs
       .map(it => `${it.number.toString().padStart(2, paddingZero ? '0' : '')}${this.toUnitLabel(it.unit)}`)
