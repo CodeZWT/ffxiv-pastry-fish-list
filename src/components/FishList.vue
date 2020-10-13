@@ -4,26 +4,14 @@
       <div v-if="fishList.length <= 0" class="d-flex justify-center align-content-center pa-2">
         <slot name="empty" />
       </div>
-      <template v-if="filters.fishN !== -1">
-        <div v-for="(fish, index) in flattenFishList" :key="fish._id + (fish.isPredator ? '-' + index : '')">
-          <fish-list-item
-            :fish="fish"
-            :fish-time-part="fishListTimePart[fish._id]"
-            :color="listItemColors[index]"
-            @click="onFishClicked(fish._id)"
-          />
-        </div>
-      </template>
-      <v-virtual-scroll v-else :items="flattenFishList" :item-height="itemHeight" :height="scrollerHeight" bench="20">
-        <template v-slot="{ item: fish, index }">
-          <fish-list-item
-            :fish="fish"
-            :fish-time-part="fishListTimePart[fish._id]"
-            :color="listItemColors[index]"
-            @click="onFishClicked(fish._id)"
-          />
-        </template>
-      </v-virtual-scroll>
+      <div v-for="(fish, index) in flattenFishList" :key="fish._id + (fish.isPredator ? '-' + index : '')">
+        <fish-list-item
+          :fish="fish"
+          :fish-time-part="fishListTimePart[fish._id]"
+          :color="listItemColors[index]"
+          @click="onFishClicked(fish._id)"
+        />
+      </div>
     </v-col>
   </v-row>
 </template>
