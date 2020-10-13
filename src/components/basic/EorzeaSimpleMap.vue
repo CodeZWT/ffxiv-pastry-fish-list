@@ -6,6 +6,8 @@
         <v-image :config="mapConfig"></v-image>
         <v-image ref="markerRangeNode" :config="markerRangeConfig"></v-image>
         <v-image :config="fishingSpotMarkerConfig"></v-image>
+        <v-image v-for="config in aetheryteMakerConfigs" :config="config" :key="config.name_chs"></v-image>
+        <v-text v-for="config in aetheryteMakerTextConfigs" :config="config" :key="config.name_chs"></v-text>
       </v-layer>
     </v-stage>
   </div>
@@ -15,8 +17,10 @@
 import DataUtil from '@/utils/DataUtil'
 import fishMarker from '@/assets/fishingSpot.png'
 import markerRange from '@/assets/markerRange.png'
+import aetheryteMarker from '@/assets/icon/PlaceName.png'
 import defaultMap from '@/assets/default.00.jpg'
 import { throttle } from 'lodash'
+import { mapState } from 'vuex'
 // import Konva from 'konva'
 
 export default {
@@ -56,6 +60,7 @@ export default {
     mapImage: null,
     fishingSpotImage: null,
     markerRangeImage: null,
+    aetheryteImage: null,
     containerWidth: 500,
     containerHeight: 500,
     mapImageLoaded: false,
@@ -125,9 +130,33 @@ export default {
         // blue: 244,
       }
     },
+    aetheryteMakerConfigs() {
+      return this.aetheryte[this.id].map(it => {
+        return {
+          image: this.aetheryteImage,
+          x: it.x - 62,
+          y: it.y - 62,
+          width: 124,
+          height: 124,
+        }
+      })
+    },
+    aetheryteMakerTextConfigs() {
+      return this.aetheryte[this.id].map(it => {
+        return {
+          text: DataUtil.getName(it),
+          x: it.x,
+          y: it.y + 50,
+          align: 'center',
+          fontSize: 90,
+          fill: 'black',
+        }
+      })
+    },
     allImageLoaded() {
       return this.mapImageLoaded && this.fishingSpotImage != null && this.markerRangeImage != null
     },
+    ...mapState(['aetheryte']),
   },
   watch: {
     allImageLoaded(loaded) {
@@ -144,9 +173,9 @@ export default {
     this.loadImageToProp(defaultMap, 'defaultMapImage')
     this.loadImageToProp(fishMarker, 'fishingSpotImage')
     this.loadImageToProp(markerRange, 'markerRangeImage')
+    this.loadImageToProp(aetheryteMarker, 'aetheryteImage')
     this.throttledResizeFn = throttle(() => this.resizeInternal(), 300)
   },
-  mounted() {},
   methods: {
     loadMapImage(url) {
       this.mapImageLoaded = false

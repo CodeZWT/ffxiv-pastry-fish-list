@@ -33,6 +33,7 @@ export default new Vuex.Store({
       color: '',
     },
     activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
+    aetheryte: groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
     userData: { ...DataUtil.USER_DEFAULT_DATA, ...getUserDataFromLocalStorage() },
   },
   getters: {
