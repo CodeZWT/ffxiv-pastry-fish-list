@@ -1,6 +1,8 @@
 <template>
   <div v-resize="onWindowResize">
-    <v-overlay :value="loading"></v-overlay>
+    <v-overlay :value="loading">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
     <splitpanes
       ref="splitPanes"
       class="default-theme"
@@ -191,14 +193,9 @@ export default {
     lazyTransformedFishList: [],
     lazyFishSourceDict: {},
     sortedFishIds: [],
+    fishListTimePart: {},
   }),
   computed: {
-    eorzeaTime() {
-      return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
-    },
-    earthTime() {
-      return new Date(this.now)
-    },
     filteredFishIdSet() {
       const idSet = new Set()
       this.lazyTransformedFishList
@@ -218,15 +215,6 @@ export default {
         })
         .forEach(it => idSet.add(it._id))
       return idSet
-    },
-    fishListTimePart() {
-      return this.lazyFishSourceList.reduce((fish2TimePart, fish) => {
-        fish2TimePart[fish._id] = {
-          id: fish._id,
-          countDown: this.getCountDown(fish, this.now),
-        }
-        return fish2TimePart
-      }, {})
     },
     sortedFilteredFishList() {
       const idSet = this.filteredFishIdSet
@@ -335,11 +323,14 @@ export default {
     ]),
   },
   watch: {
-    fishListTimePart(fishListTimePart) {
-      const newSortedFishIds = sortBy(fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
-      if (!isEqual(this.sortedFishIds, newSortedFishIds)) {
-        this.sortedFishIds = newSortedFishIds
-      }
+    fishListTimePart: {
+      handler: function(fishListTimePart) {
+        const newSortedFishIds = sortBy(fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
+        if (!isEqual(this.sortedFishIds, newSortedFishIds)) {
+          this.sortedFishIds = newSortedFishIds
+        }
+      },
+      deep: true,
     },
     weatherChangeTrigger() {
       const now = this.now
@@ -366,6 +357,8 @@ export default {
     this.now = Date.now()
     setInterval(() => {
       this.now = Date.now()
+      this.updateFishListTimePart(this.now)
+      this.loading = false
     }, 1000)
 
     this.weatherChangeTrigger *= -1
@@ -375,9 +368,19 @@ export default {
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
     this.throttledResizeFn = throttle(this.resizeInternal, 100)
     this.onWindowResize()
-    this.loading = false
   },
   methods: {
+    updateFishListTimePart(now) {
+      this.lazyFishSourceList.forEach(fish => {
+        const lazyStartTime = this.fishListTimePart[fish._id]?.countDown?.timePoint
+        if (!lazyStartTime || lazyStartTime - now < 60000) {
+          this.$set(this.fishListTimePart, fish._id, {
+            id: fish._id,
+            countDown: this.getCountDown(fish, now),
+          })
+        }
+      })
+    },
     assembleFish(fishSourceList, isPredator = false) {
       return fishSourceList.map(fish => {
         const hasPredators = Object.keys(fish.predators).length > 0
