@@ -365,15 +365,30 @@ export default {
     setInterval(() => {
       this.weatherChangeTrigger *= -1
     }, WEATHER_CHANGE_INTERVAL_EARTH)
-    // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
     this.throttledResizeFn = throttle(this.resizeInternal, 100)
     this.onWindowResize()
   },
   methods: {
     updateFishListTimePart(now) {
       this.lazyFishSourceList.forEach(fish => {
-        const lazyStartTime = this.fishListTimePart[fish._id]?.countDown?.timePoint
-        if (!lazyStartTime || lazyStartTime - now < 60000) {
+        const countDown = this.fishListTimePart[fish._id]?.countDown
+        if (countDown?.type === DataUtil.ALL_AVAILABLE) return
+
+        const lazyStartTime = countDown?.timePoint
+        const interval = lazyStartTime - now
+        const intervalDate = new Date(interval)
+
+        const hours = intervalDate.getUTCHours()
+        const minutes = intervalDate.getUTCMinutes()
+        const seconds = intervalDate.getUTCSeconds()
+
+        if (
+          !lazyStartTime ||
+          interval < DataUtil.INTERVAL_MINUTE ||
+          (interval < DataUtil.INTERVAL_HOUR && seconds > 57) ||
+          (interval < DataUtil.INTERVAL_DAY && minutes > 58 && seconds > 57) ||
+          (hours > 22 && minutes > 58 && seconds > 57)
+        ) {
           this.$set(this.fishListTimePart, fish._id, {
             id: fish._id,
             countDown: this.getCountDown(fish, now),

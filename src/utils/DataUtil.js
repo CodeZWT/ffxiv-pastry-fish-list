@@ -27,7 +27,7 @@ export default {
     return countDown != null && countDown.type !== this.ALL_AVAILABLE
   },
 
-  printCountDownTime(time, showCnt = 2, paddingZero = true) {
+  printCountDownTime(time, showCnt = 1, paddingZero = true) {
     return TimeFormatter.millisecondsToText(time, showCnt, true, paddingZero)
   },
 
@@ -116,6 +116,11 @@ export default {
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
+
+  INTERVAL_SECOND: 1000,
+  INTERVAL_MINUTE: 60000,
+  INTERVAL_HOUR: 3600000,
+  INTERVAL_DAY: 86400000,
 
   TUG_ICON: {
     light: '!',

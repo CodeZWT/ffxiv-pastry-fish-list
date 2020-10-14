@@ -4,7 +4,7 @@ export default {
   toUnitLabel(unit) {
     return i18n.t(`time.${unit}`)
   },
-  millisecondsToText(milliseconds, showCnt = 2, forceShowEndingZeros = true, paddingZero = true) {
+  millisecondsToText(milliseconds, showCnt = 1, forceShowEndingZeros = true, paddingZero = true) {
     const units = this.millisecondsToUnits(milliseconds)
     const indexOfFirstNotZero = units.findIndex(it => it > 0)
     const unitLen = UNITS.length
