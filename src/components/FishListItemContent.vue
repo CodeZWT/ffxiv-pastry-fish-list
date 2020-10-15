@@ -12,13 +12,16 @@
                 {{ fish.fishingSpotName }}
               </div>
               <div class="text-subtitle-1 ml-2">({{ fish.fishSpotPositionText }})</div>
-              <div>
-                <click-helper @click.stop="goToFishingSpotAngelPage(fish.anglerLocationId)">
-                  <v-btn class="ma-2" text icon :title="$t('list.item.linkHint')">
-                    <v-icon>mdi-link-variant</v-icon>
-                  </v-btn>
-                </click-helper>
-              </div>
+              <click-helper @click.stop :copy-text="fish.fishingSpotName">
+                <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
+                  <v-icon>mdi-content-copy</v-icon>
+                </v-btn>
+              </click-helper>
+              <click-helper @click.stop="goToFishingSpotAngelPage(fish.anglerLocationId)">
+                <v-btn class="my-2" text icon :title="$t('list.item.linkHint')">
+                  <v-icon>mdi-link-variant</v-icon>
+                </v-btn>
+              </click-helper>
             </div>
           </v-expansion-panel-header>
           <v-expansion-panel-content :color="listItemColor">

@@ -7,8 +7,13 @@
         <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
         <v-image ref="markerRangeNode" :config="markerRangeConfig"></v-image>
         <v-image :config="fishingSpotMarkerConfig"></v-image>
-        <v-image v-for="config in aetheryteMakerConfigs" :config="config" :key="config.name_chs"></v-image>
-        <v-text v-for="config in aetheryteMakerTextConfigs" :config="config" :key="config.name_chs"></v-text>
+        <v-image v-for="config in aetheryteMakerConfigs" :config="config" :key="config.text"></v-image>
+        <v-text
+          v-for="config in aetheryteMakerTextConfigs"
+          :config="config"
+          :key="config.text"
+          @click="copyAetheryteName(config.text)"
+        ></v-text>
       </v-layer>
     </v-stage>
   </div>
@@ -21,7 +26,8 @@ import markerRange from '@/assets/markerRange.png'
 import aetheryteMarker from '@/assets/icon/PlaceName.png'
 import defaultMap from '@/assets/default.00.jpg'
 import { throttle } from 'lodash'
-import { mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
+import copy from 'copy-to-clipboard'
 // import Konva from 'konva'
 
 const TEXT_PADDING = 50
@@ -281,6 +287,11 @@ export default {
       // markerRangeNode.cache()
       // markerRangeNode.getLayer().batchDraw()
     },
+    copyAetheryteName(text) {
+      copy(text)
+      this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
+    },
+    ...mapMutations(['showSnackbar']),
   },
 }
 </script>

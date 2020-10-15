@@ -6,6 +6,7 @@
 
 <script>
 import copy from 'copy-to-clipboard'
+import { mapMutations } from 'vuex'
 
 export default {
   // click helper to trigger click event for vuetify components in ACT
@@ -29,9 +30,13 @@ export default {
     this.$el.addEventListener('click', e => {
       if (this.copyText != null) {
         copy(this.copyText)
+        this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
       }
       this.$emit('click', e)
     })
+  },
+  methods: {
+    ...mapMutations(['showSnackbar']),
   },
 }
 </script>

@@ -24,7 +24,7 @@
           {{ fish.name }}
         </div>
         <v-badge inline color="primary" :content="fish.patch"></v-badge>
-        <click-helper @click.stop="copyToClipboard" :copy-text="fish.name">
+        <click-helper @click.stop :copy-text="fish.name">
           <v-btn text icon :title="$t('list.item.copyHint')">
             <v-icon>mdi-content-copy</v-icon>
           </v-btn>
@@ -102,7 +102,7 @@ export default {
       // clipboard.select()
       // clipboard.setSelectionRange(0, 99999) // For mobile devices
       // document.execCommand('copy')
-      this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
+      // this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
     },
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
