@@ -24,7 +24,7 @@
           {{ fish.name }}
         </div>
         <v-badge inline color="primary" :content="fish.patch"></v-badge>
-        <click-helper @click.stop="copyToClipboard(fish.name)">
+        <click-helper @click.stop="copyToClipboard" :copy-text="fish.name">
           <v-btn text icon :title="$t('list.item.copyHint')">
             <v-icon>mdi-content-copy</v-icon>
           </v-btn>
@@ -96,12 +96,12 @@ export default {
     goToFishAngelPage(anglerFishId) {
       window.open(`https://cn.ff14angler.com/fish/${anglerFishId}`)
     },
-    copyToClipboard(text) {
-      const clipboard = document.getElementById('clipboard')
-      clipboard.value = text
-      clipboard.select()
-      clipboard.setSelectionRange(0, 99999) // For mobile devices
-      document.execCommand('copy')
+    copyToClipboard() {
+      // const clipboard = document.getElementById('clipboard')
+      // clipboard.value = text
+      // clipboard.select()
+      // clipboard.setSelectionRange(0, 99999) // For mobile devices
+      // document.execCommand('copy')
       this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
     },
     setCompleted(completed) {
