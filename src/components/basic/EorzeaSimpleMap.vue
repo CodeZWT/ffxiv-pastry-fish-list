@@ -24,6 +24,10 @@ import { throttle } from 'lodash'
 import { mapState } from 'vuex'
 // import Konva from 'konva'
 
+const TEXT_PADDING = 50
+const TEXT_FONT = 90
+const MAP_SIZE = 2048
+
 export default {
   name: 'EorzeaSimpleMap',
   props: {
@@ -90,8 +94,8 @@ export default {
       return {
         width: this.containerWidth,
         height: this.containerHeight,
-        scaleX: this.containerWidth / 2048,
-        scaleY: this.containerHeight / 2048,
+        scaleX: this.containerWidth / MAP_SIZE,
+        scaleY: this.containerHeight / MAP_SIZE,
       }
     },
     defaultMapConfig() {
@@ -99,8 +103,8 @@ export default {
         image: this.defaultMapImage,
         x: 0,
         y: 0,
-        width: 2048,
-        height: 2048,
+        width: MAP_SIZE,
+        height: MAP_SIZE,
       }
     },
     mapConfig() {
@@ -108,8 +112,8 @@ export default {
         image: this.mapImage,
         x: 0,
         y: 0,
-        width: 2048,
-        height: 2048,
+        width: MAP_SIZE,
+        height: MAP_SIZE,
       }
     },
     fishingSpotRangeHelperLayerConfig() {
@@ -117,8 +121,8 @@ export default {
         image: this.fishingSpotRangeHelperImage,
         x: 0,
         y: 0,
-        width: 2048,
-        height: 2048,
+        width: MAP_SIZE,
+        height: MAP_SIZE,
       }
     },
     fishingSpotMarkerConfig() {
@@ -161,13 +165,29 @@ export default {
     aetheryteMakerTextConfigs() {
       return (
         this.aetheryte[this.id]?.map(it => {
+          const text = DataUtil.getName(it)
+          const textLength = text.length
+          const fontSize = TEXT_FONT
+          console.log(textLength)
+          const width = fontSize * textLength
+          const height = fontSize
           return {
-            text: DataUtil.getName(it),
-            x: it.x,
-            y: it.y + 50,
+            text: text,
+            width: width,
+            offsetX: this.getOffset(width),
+            height: height,
+            offsetY: this.getOffset(height),
+            x: this.getSafePos(it.x, width),
+            y: this.getSafeY(it.y, height, height / 2 + 10),
             align: 'center',
-            fontSize: 90,
+            fontSize: fontSize,
             fill: 'black',
+            stroke: 'black',
+            strokeWidth: 1,
+            shadowColor: 'black',
+            shadowBlur: 10,
+            shadowOffset: { x: 8, y: 8 },
+            shadowOpacity: 0.5,
           }
         }) ?? []
       )
@@ -199,6 +219,31 @@ export default {
     this.throttledResizeFn = throttle(() => this.resizeInternal(), 300)
   },
   methods: {
+    getOffset(textSize) {
+      return textSize / 2
+    },
+    getSafePos(pos, size, offset = 0) {
+      const mapRight = MAP_SIZE - TEXT_PADDING
+      const mapLeft = TEXT_PADDING
+      const textRight = pos + size / 2 + offset
+      const textLeft = pos - size / 2 - offset
+      if (textLeft < mapLeft) {
+        return mapLeft + size / 2
+      } else if (textRight > mapRight) {
+        return mapRight - size / 2
+      } else {
+        return pos
+      }
+    },
+    getSafeY(pos, size, offset = 0) {
+      const mapBottom = MAP_SIZE - TEXT_PADDING
+      const textBottom = pos + size / 2 + offset
+      if (textBottom > mapBottom) {
+        return pos - size / 2 - offset
+      } else {
+        return pos + size / 2 + offset
+      }
+    },
     loadMapImage(url) {
       this.mapImageLoaded = false
       this.loadImageToProp(url, 'mapImage').then(() => (this.mapImageLoaded = true))
