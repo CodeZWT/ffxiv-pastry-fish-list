@@ -24,7 +24,7 @@
               </div>
               <fish-search
                 v-model="showSearchDialog"
-                :fish-data="lazyTransformedFishList"
+                :fish-data="lazyFishSourceList"
                 :fish-list-time-part="fishListTimePart"
                 :fish-list-weather-change-part="fishListWeatherChangePart"
               />
