@@ -131,27 +131,31 @@ export default {
       }
     },
     aetheryteMakerConfigs() {
-      return this.aetheryte[this.id].map(it => {
-        return {
-          image: this.aetheryteImage,
-          x: it.x - 62,
-          y: it.y - 62,
-          width: 124,
-          height: 124,
-        }
-      })
+      return (
+        this.aetheryte[this.id]?.map(it => {
+          return {
+            image: this.aetheryteImage,
+            x: it.x - 62,
+            y: it.y - 62,
+            width: 124,
+            height: 124,
+          }
+        }) ?? []
+      )
     },
     aetheryteMakerTextConfigs() {
-      return this.aetheryte[this.id].map(it => {
-        return {
-          text: DataUtil.getName(it),
-          x: it.x,
-          y: it.y + 50,
-          align: 'center',
-          fontSize: 90,
-          fill: 'black',
-        }
-      })
+      return (
+        this.aetheryte[this.id]?.map(it => {
+          return {
+            text: DataUtil.getName(it),
+            x: it.x,
+            y: it.y + 50,
+            align: 'center',
+            fontSize: 90,
+            fill: 'black',
+          }
+        }) ?? []
+      )
     },
     allImageLoaded() {
       return this.mapImageLoaded && this.fishingSpotImage != null && this.markerRangeImage != null
