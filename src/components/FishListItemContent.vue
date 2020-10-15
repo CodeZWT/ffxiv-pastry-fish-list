@@ -45,6 +45,7 @@
                     :y="fish.fishingSpot.y"
                     :size-factor="fish.fishingSpot.size_factor"
                     :marker-radius="fish.fishingSpot.radius"
+                    :fishing-spot-name="getName(fish.fishingSpot)"
                   />
                 </div>
               </div>
@@ -352,6 +353,7 @@ export default {
     resize() {
       this.$refs.simpleMap.resize()
     },
+    getName: DataUtil.getName,
   },
 }
 </script>

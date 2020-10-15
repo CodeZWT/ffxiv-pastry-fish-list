@@ -4,6 +4,7 @@
       <v-layer>
         <v-image :config="defaultMapConfig"></v-image>
         <v-image :config="mapConfig"></v-image>
+        <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
         <v-image ref="markerRangeNode" :config="markerRangeConfig"></v-image>
         <v-image :config="fishingSpotMarkerConfig"></v-image>
         <v-image v-for="config in aetheryteMakerConfigs" :config="config" :key="config.name_chs"></v-image>
@@ -46,6 +47,10 @@ export default {
       type: Number,
       default: 300,
     },
+    fishingSpotName: {
+      type: String,
+      default: undefined,
+    },
     mode: {
       type: String,
       default: 'local',
@@ -65,6 +70,7 @@ export default {
     containerHeight: 500,
     mapImageLoaded: false,
     throttledResizeFn: undefined,
+    fishingSpotRangeHelperImage: null,
   }),
   computed: {
     markerRangeFactor() {
@@ -100,6 +106,15 @@ export default {
     mapConfig() {
       return {
         image: this.mapImage,
+        x: 0,
+        y: 0,
+        width: 2048,
+        height: 2048,
+      }
+    },
+    fishingSpotRangeHelperLayerConfig() {
+      return {
+        image: this.fishingSpotRangeHelperImage,
         x: 0,
         y: 0,
         width: 2048,
@@ -171,6 +186,9 @@ export default {
     mapImageUrl(url) {
       this.loadMapImage(url)
     },
+    fishingSpotName(fishingSpotName) {
+      this.loadImageToProp(this.getFishingSpotRangeHelper(fishingSpotName), 'fishingSpotRangeHelperImage')
+    },
   },
   created() {
     this.loadMapImage(this.mapImageUrl)
@@ -185,15 +203,28 @@ export default {
       this.mapImageLoaded = false
       this.loadImageToProp(url, 'mapImage').then(() => (this.mapImageLoaded = true))
     },
-    loadImageToProp(url, imagePropName) {
-      const image = new window.Image()
-      image.src = url
-      return new Promise(resolve => {
-        image.onload = () => {
-          this[imagePropName] = image
-          resolve()
+    loadImageToProp(urlOrPromise, imagePropName) {
+      return Promise.resolve(urlOrPromise).then(url => {
+        console.log('in loading', url)
+        if (url == null) {
+          this[imagePropName] = null
         }
+        const image = new window.Image()
+        image.src = url
+        return new Promise(resolve => {
+          image.onload = () => {
+            this[imagePropName] = image
+            resolve()
+          }
+        })
       })
+    },
+    getFishingSpotRangeHelper(fishingSpotName) {
+      console.log(fishingSpotName)
+      return import(`@/assets/fishing-spot-range-detail/${fishingSpotName}.png`)
+        .then(it => it?.default)
+        .catch(() => console.warn(fishingSpotName + ' range helper is missing.'))
+        .finally(() => null)
     },
     resize() {
       this.throttledResizeFn()
