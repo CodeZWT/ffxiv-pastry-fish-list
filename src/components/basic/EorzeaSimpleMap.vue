@@ -174,7 +174,6 @@ export default {
           const text = DataUtil.getName(it)
           const textLength = text.length
           const fontSize = TEXT_FONT
-          console.log(textLength)
           const width = fontSize * textLength
           const height = fontSize
           return {
@@ -256,7 +255,6 @@ export default {
     },
     loadImageToProp(urlOrPromise, imagePropName) {
       return Promise.resolve(urlOrPromise).then(url => {
-        console.log('in loading', url)
         if (url == null) {
           this[imagePropName] = null
         }
@@ -271,11 +269,42 @@ export default {
       })
     },
     getFishingSpotRangeHelper(fishingSpotName) {
-      console.log(fishingSpotName)
-      return import(`@/assets/fishing-spot-range-detail/${fishingSpotName}.png`)
-        .then(it => it?.default)
-        .catch(() => console.warn(fishingSpotName + ' range helper is missing.'))
-        .finally(() => null)
+      if (
+        [
+          '三艺区',
+          '亚特卡勒河上游',
+          '亚特卡勒河下游',
+          '交汇河',
+          '刺舌滴',
+          '哈克卡勒河',
+          '四艺区',
+          '塔奥卡勒河',
+          '太阳湖',
+          '库尔札斯不冻池',
+          '朵塔儿水洲',
+          '水晶都起居室',
+          '沃茨河上游',
+          '沃茨河下游',
+          '涅木卡勒河',
+          '清澈池',
+          '灰尾瀑布',
+          '灰烬池',
+          '灾祸池南',
+          '灾祸池西',
+          '珂露西亚岛东海岸',
+          '珂露西亚岛西海岸',
+          '白油瀑布',
+          '观海湾',
+          '龙涎',
+        ].includes(fishingSpotName)
+      ) {
+        return import(`@/assets/fishing-spot-range-detail/${fishingSpotName}.png`)
+          .then(it => it?.default)
+          .catch(() => console.warn(fishingSpotName + ' range helper is missing.'))
+          .finally(() => null)
+      } else {
+        return null
+      }
     },
     resize() {
       this.throttledResizeFn()
