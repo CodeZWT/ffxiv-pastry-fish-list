@@ -214,6 +214,14 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.2.2</div>
+          <ul>
+            <li>修复列表固定鱼完成按钮的问题。</li>
+            <li>更新地图范围提示：延夏，高脚孤丘，魔大陆阿济兹拉。（持续更新中）</li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.2.1</div>
           <ul>
             <li>提升页面流畅度。</li>
