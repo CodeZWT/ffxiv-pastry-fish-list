@@ -267,6 +267,7 @@ export default {
     this.loadImageToProp(fishMarker, 'fishingSpotImage')
     this.loadImageToProp(markerRange, 'markerRangeImage')
     this.loadImageToProp(aetheryteMarker, 'aetheryteImage')
+    this.loadImageToProp(this.getFishingSpotRangeHelper(this.fishingSpotName), 'fishingSpotRangeHelperImage')
     this.throttledResizeFn = throttle(() => this.resizeInternal(), 300)
   },
   methods: {
