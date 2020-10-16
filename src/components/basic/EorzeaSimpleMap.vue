@@ -6,7 +6,7 @@
         <v-image :config="mapConfig"></v-image>
         <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
         <v-image ref="markerRangeNode" :config="markerRangeConfig"></v-image>
-        <v-image :config="fishingSpotMarkerConfig"></v-image>
+        <v-image v-if="fishingSpotMarkerConfig.image" :config="fishingSpotMarkerConfig"></v-image>
         <v-image v-for="config in aetheryteMakerConfigs" :config="config" :key="config.text"></v-image>
         <v-text
           v-for="config in aetheryteMakerTextConfigs"
@@ -33,6 +33,52 @@ import copy from 'copy-to-clipboard'
 const TEXT_PADDING = 50
 const TEXT_FONT = 90
 const MAP_SIZE = 2048
+
+const AVAILABLE_HELP = new Set([
+  '三艺区',
+  '亚特卡勒河上游',
+  '亚特卡勒河下游',
+  '交汇河',
+  '刺舌滴',
+  '哈克卡勒河',
+  '四艺区',
+  '塔奥卡勒河',
+  '太阳湖',
+  '库尔札斯不冻池',
+  '朵塔儿水洲',
+  '水晶都起居室',
+  '沃茨河上游',
+  '沃茨河下游',
+  '涅木卡勒河',
+  '清澈池',
+  '灰尾瀑布',
+  '灰烬池',
+  '灾祸池南',
+  '灾祸池西',
+  '珂露西亚岛东海岸',
+  '珂露西亚岛西海岸',
+  '白油瀑布',
+  '观海湾',
+  '龙涎',
+  '无二江东',
+  '无二江西',
+  '城下码头',
+  '梅泉乡',
+  '多玛城前',
+  '苍鹭池',
+  '七彩沟',
+  '苍鹭河',
+  '茨菰村水塘',
+  '七彩溪谷',
+  '冠毛大树',
+  '德尔塔管区',
+  '阿尔法管区',
+  '阿济兹拉旗舰岛',
+  '生态园',
+  '超星际通信塔',
+  '废液池',
+  '高脚孤丘',
+])
 
 export default {
   name: 'EorzeaSimpleMap',
@@ -257,6 +303,7 @@ export default {
       return Promise.resolve(urlOrPromise).then(url => {
         if (url == null) {
           this[imagePropName] = null
+          return
         }
         const image = new window.Image()
         image.src = url
@@ -269,35 +316,7 @@ export default {
       })
     },
     getFishingSpotRangeHelper(fishingSpotName) {
-      if (
-        [
-          '三艺区',
-          '亚特卡勒河上游',
-          '亚特卡勒河下游',
-          '交汇河',
-          '刺舌滴',
-          '哈克卡勒河',
-          '四艺区',
-          '塔奥卡勒河',
-          '太阳湖',
-          '库尔札斯不冻池',
-          '朵塔儿水洲',
-          '水晶都起居室',
-          '沃茨河上游',
-          '沃茨河下游',
-          '涅木卡勒河',
-          '清澈池',
-          '灰尾瀑布',
-          '灰烬池',
-          '灾祸池南',
-          '灾祸池西',
-          '珂露西亚岛东海岸',
-          '珂露西亚岛西海岸',
-          '白油瀑布',
-          '观海湾',
-          '龙涎',
-        ].includes(fishingSpotName)
-      ) {
+      if (AVAILABLE_HELP.has(fishingSpotName)) {
         return import(`@/assets/fishing-spot-range-detail/${fishingSpotName}.png`)
           .then(it => it?.default)
           .catch(() => console.warn(fishingSpotName + ' range helper is missing.'))
