@@ -39,7 +39,7 @@
               <!--              </div>-->
 
               <div style="width: 100%" class="d-flex justify-center">
-                <div style="width: 100%; max-width: 512px">
+                <div style="width: 100%;">
                   <eorzea-simple-map
                     ref="simpleMap"
                     :debug="false"
