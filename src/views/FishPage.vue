@@ -403,8 +403,6 @@ export default {
           // TODO remove _id
           _id: fish._id,
           id: fish._id,
-          completed: this.getFishCompleted(fish._id),
-          pinned: this.getFishPinned(fish._id),
           icon: this.getItemIconClass(fish._id),
           name: this.getItemName(fish._id),
           hasFishingSpot: fish.location != null,

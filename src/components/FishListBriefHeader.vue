@@ -7,18 +7,18 @@
     />
     <!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />-->
 
-    <!--    <pin-button :value="fish.pinned" @input="setPinned($event)" />-->
+    <!--    <pin-button :value="transformedFishPart.pinned" @input="setPinned($event)" />-->
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col class="col-6 col-sm-3">
         <div class="d-flex fill-height align-center flex-row pr-1" style="min-height: 48px">
           <div class="d-flex align-center flex-column flex-sm-row">
             <toggle-button
-              :value="fish.pinned"
+              :value="transformedFishPart.pinned"
               @input="setPinned($event)"
               checked-icon="mdi-pin"
               unchecked-icon="mdi-pin-outline"
             />
-            <toggle-button :value="fish.completed" @input="setCompleted($event)" />
+            <toggle-button :value="transformedFishPart.completed" @input="setCompleted($event)" />
           </div>
           <v-badge v-if="inPredator" :content="fish.requiredCnt" color="quaternary black--text" overlap bottom bordered>
             <div style="width: 40px; height: 40px" :class="{ 'zoom-in-predator': inPredator }">
@@ -200,8 +200,14 @@ export default {
     rootPath: process.env.ASSET_PATH,
   }),
   computed: {
+    transformedFishPart() {
+      return {
+        completed: this.getFishCompleted(this.fish.id),
+        pinned: this.getFishPinned(this.fish.id),
+      }
+    },
     transformedFishTimePart() {
-      const fishTimePart = this.fishTimePart ?? { id: this.value._id, countDown: { type: this.ALL_AVAILABLE } }
+      const fishTimePart = this.fishTimePart ?? { id: this.fish.id, countDown: { type: this.ALL_AVAILABLE } }
       return {
         countDownType: DataUtil.getCountDownTypeName(fishTimePart.countDown?.type),
         countDownTime: fishTimePart.countDown?.time,
