@@ -1,21 +1,29 @@
 <template>
-  <div ref="container" v-resize="resize" style="width: 100%; height: 100%">
-    <v-stage :config="stageConfig">
-      <v-layer>
-        <v-image :config="defaultMapConfig"></v-image>
-        <v-image :config="mapConfig"></v-image>
-        <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
-        <v-image ref="markerRangeNode" :config="markerRangeConfig"></v-image>
-        <v-image v-if="fishingSpotMarkerConfig.image" :config="fishingSpotMarkerConfig"></v-image>
-        <v-image v-for="config in aetheryteMakerConfigs" :config="config" :key="config.text"></v-image>
-        <v-text
-          v-for="config in aetheryteMakerTextConfigs"
-          :config="config"
-          :key="config.text"
-          @click="copyAetheryteName(config.text)"
-        ></v-text>
-      </v-layer>
-    </v-stage>
+  <div style="width: 100%; height: 100%">
+    <v-overlay style="top: 64px" :value="!allImageLoaded" absolute opacity="1">
+      <div class="d-flex flex-column align-center">
+        <v-progress-circular indeterminate size="64"></v-progress-circular>
+        <div class="mt-2">{{ $t('detail.map.loading') }}</div>
+      </div>
+    </v-overlay>
+    <div ref="container" v-resize="resize" style="width: 100%; height: 100%">
+      <v-stage :config="stageConfig">
+        <v-layer>
+          <v-image :config="defaultMapConfig"></v-image>
+          <v-image :config="mapConfig"></v-image>
+          <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
+          <v-image ref="markerRangeNode" :config="markerRangeConfig"></v-image>
+          <v-image v-if="fishingSpotMarkerConfig.image" :config="fishingSpotMarkerConfig"></v-image>
+          <v-image v-for="config in aetheryteMakerConfigs" :config="config" :key="config.text"></v-image>
+          <v-text
+            v-for="config in aetheryteMakerTextConfigs"
+            :config="config"
+            :key="config.text"
+            @click="copyAetheryteName(config.text)"
+          ></v-text>
+        </v-layer>
+      </v-stage>
+    </div>
   </div>
 </template>
 
@@ -125,6 +133,7 @@ export default {
     containerWidth: 500,
     containerHeight: 500,
     mapImageLoaded: false,
+    fishingSpotRangeHelperLoaded: false,
     throttledResizeFn: undefined,
     fishingSpotRangeHelperImage: null,
   }),
@@ -244,7 +253,12 @@ export default {
       )
     },
     allImageLoaded() {
-      return this.mapImageLoaded && this.fishingSpotImage != null && this.markerRangeImage != null
+      return (
+        this.mapImageLoaded &&
+        this.fishingSpotRangeHelperLoaded &&
+        this.fishingSpotImage != null &&
+        this.markerRangeImage != null
+      )
     },
     ...mapState(['aetheryte']),
   },
@@ -258,16 +272,16 @@ export default {
       this.loadMapImage(url)
     },
     fishingSpotName(fishingSpotName) {
-      this.loadImageToProp(this.getFishingSpotRangeHelper(fishingSpotName), 'fishingSpotRangeHelperImage')
+      this.loadFishingSpotRangeHelper(fishingSpotName)
     },
   },
   created() {
     this.loadMapImage(this.mapImageUrl)
+    this.loadFishingSpotRangeHelper(this.fishingSpotName)
     this.loadImageToProp(defaultMap, 'defaultMapImage')
     this.loadImageToProp(fishMarker, 'fishingSpotImage')
     this.loadImageToProp(markerRange, 'markerRangeImage')
     this.loadImageToProp(aetheryteMarker, 'aetheryteImage')
-    this.loadImageToProp(this.getFishingSpotRangeHelper(this.fishingSpotName), 'fishingSpotRangeHelperImage')
     this.throttledResizeFn = throttle(() => this.resizeInternal(), 300)
   },
   methods: {
@@ -299,6 +313,12 @@ export default {
     loadMapImage(url) {
       this.mapImageLoaded = false
       this.loadImageToProp(url, 'mapImage').then(() => (this.mapImageLoaded = true))
+    },
+    loadFishingSpotRangeHelper(fishingSpotName) {
+      this.fishingSpotRangeHelperLoaded = false
+      this.loadImageToProp(this.getFishingSpotRangeHelper(fishingSpotName), 'fishingSpotRangeHelperImage').then(
+        () => (this.fishingSpotRangeHelperLoaded = true)
+      )
     },
     loadImageToProp(urlOrPromise, imagePropName) {
       return Promise.resolve(urlOrPromise).then(url => {

@@ -25,32 +25,18 @@
             </div>
           </v-expansion-panel-header>
           <v-expansion-panel-content :color="listItemColor">
-            <div>
-              <!--              <div style="height: 400px; width: 100%; margin-top: 12px">-->
-              <!--                <eorzea-map-->
-              <!--                  v-if="open"-->
-              <!--                  :debug="false"-->
-              <!--                  :id="fish.fishingSpot.map"-->
-              <!--                  :x="fish.fishingSpot.x"-->
-              <!--                  :y="fish.fishingSpot.y"-->
-              <!--                  :size-factor="fish.fishingSpot.size_factor"-->
-              <!--                >-->
-              <!--                </eorzea-map>-->
-              <!--              </div>-->
-
-              <div style="width: 100%" class="d-flex justify-center">
-                <div style="width: 100%;">
-                  <eorzea-simple-map
-                    ref="simpleMap"
-                    :debug="false"
-                    :id="fish.fishingSpot.mapFileId"
-                    :x="fish.fishingSpot.x"
-                    :y="fish.fishingSpot.y"
-                    :size-factor="fish.fishingSpot.size_factor"
-                    :marker-radius="fish.fishingSpot.radius"
-                    :fishing-spot-name="getName(fish.fishingSpot)"
-                  />
-                </div>
+            <div style="width: 100%" class="d-flex justify-center mt-4">
+              <div style="width: 100%; max-width: 512px">
+                <eorzea-simple-map
+                  ref="simpleMap"
+                  :debug="false"
+                  :id="fish.fishingSpot.mapFileId"
+                  :x="fish.fishingSpot.x"
+                  :y="fish.fishingSpot.y"
+                  :size-factor="fish.fishingSpot.size_factor"
+                  :marker-radius="fish.fishingSpot.radius"
+                  :fishing-spot-name="getName(fish.fishingSpot)"
+                />
               </div>
             </div>
           </v-expansion-panel-content>
