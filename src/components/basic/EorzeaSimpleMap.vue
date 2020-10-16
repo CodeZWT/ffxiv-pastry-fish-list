@@ -7,7 +7,7 @@
       </div>
     </v-overlay>
     <div ref="container" v-resize="resize" style="width: 100%; height: 100%">
-      <v-stage :config="stageConfig">
+      <v-stage ref="stage" :config="stageConfig">
         <v-layer>
           <v-image :config="defaultMapConfig"></v-image>
           <v-image :config="mapConfig"></v-image>
@@ -20,6 +20,8 @@
             :config="config"
             :key="config.text"
             @click="copyAetheryteName(config.text)"
+            @mouseenter="switchMouseToPointer"
+            @mouseleave="switchMouseToDefault"
           ></v-text>
         </v-layer>
       </v-stage>
@@ -359,6 +361,12 @@ export default {
     copyAetheryteName(text) {
       copy(text)
       this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
+    },
+    switchMouseToPointer() {
+      this.$refs.stage.getNode().container().style.cursor = 'pointer'
+    },
+    switchMouseToDefault() {
+      this.$refs.stage.getNode().container().style.cursor = 'default'
     },
     ...mapMutations(['showSnackbar']),
   },
