@@ -218,7 +218,7 @@
           <ul>
             <li>提升页面流畅度。</li>
             <li>更新地图，增加水晶和部分地图的钓点范围提示，持续更新中。</li>
-            <li>范围都是 <span class="font-weight-bold">@轩辕十四</span> 大佬的标的，万分感谢！</li>
+            <li>范围都是 <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 大佬的标的，万分感谢！</li>
             <li>修复了一些复制的问题。</li>
           </ul>
           <p />
@@ -342,7 +342,7 @@
           <div>ID：红豆年糕 @ 海猫茶屋</div>
           <div>群：1153646847</div>
           <div>欢迎使用本站</div>
-          <div>钓场的范围提示由 <span class="font-weight-bold">轩辕十四</span> 提供</div>
+          <div>钓场的范围提示由 <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 提供</div>
           <div>感谢来自于各个开源作者的支持：</div>
           <ul>
             <li>钓鱼数据：<a @click="goTo('https://ff14fish.carbuncleplushy.com/')">FFX|V Fish Tracker App</a></li>
@@ -374,7 +374,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <input type="text" value="" id="clipboard" style="display: none" />
+    <!--    <input type="text" value="" id="clipboard" style="display: none" />-->
     <v-snackbar :timeout="2000" v-model="snackbar.show" :color="snackbar.color" centered elevation="24">
       <div class="text-center">{{ snackbar.text }}</div>
     </v-snackbar>

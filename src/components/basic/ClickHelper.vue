@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     clazz() {
-      return { block: this.block, 'clipboard-support': true }
+      return { block: this.block }
     },
   },
   mounted() {
