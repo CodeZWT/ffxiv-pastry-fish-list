@@ -39,29 +39,33 @@
           </div>
         </div>
         <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
-          <v-chip
-            small
-            :input-value="transformedFishPart.toBeNotified"
-            outlined
-            color="white"
-            @click.stop="setToBeNotified(!transformedFishPart.toBeNotified)"
-          >
-            <v-icon v-if="transformedFishPart.toBeNotified" left size="16">mdi-bell</v-icon>
-            <div>
-              <v-tooltip right color="secondary">
-                <template v-slot:activator="{ on, attrs }">
+          <div>
+            <v-tooltip right color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <v-chip
+                  v-bind="attrs"
+                  v-on="on"
+                  small
+                  :input-value="transformedFishPart.toBeNotified"
+                  outlined
+                  color="white"
+                  @click.stop="setToBeNotified(!transformedFishPart.toBeNotified)"
+                >
+                  <v-icon left size="16">
+                    {{ transformedFishPart.toBeNotified ? 'mdi-bell' : 'mdi-bell-outline' }}
+                  </v-icon>
                   <div v-bind="attrs" v-on="on" class="text-subtitle-2">
                     {{ transformedFishTimePart.countDownTimeText }}
                   </div>
-                </template>
-                <div class="d-flex flex-column">
-                  <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
-                  <div v-if="transformedFishPart.toBeNotified">{{ $t('list.item.notificationHintOff') }}</div>
-                  <div v-else>{{ $t('list.item.notificationHint') }}</div>
-                </div>
-              </v-tooltip>
-            </div>
-          </v-chip>
+                </v-chip>
+              </template>
+              <div class="d-flex flex-column">
+                <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
+                <div v-if="transformedFishPart.toBeNotified">{{ $t('list.item.notificationHintOff') }}</div>
+                <div v-else>{{ $t('list.item.notificationHint') }}</div>
+              </div>
+            </v-tooltip>
+          </div>
           <div
             v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
             :title="$t('list.item.countDown.fishShadowHint')"
@@ -112,29 +116,34 @@
           {{ $t(transformedFishTimePart.countDownType) }}
         </div>
         <div v-else-if="isMobile" class="d-flex align-center">
-          <v-chip
-            small
-            :input-value="transformedFishPart.toBeNotified"
-            outlined
-            color="white"
-            @click.stop="setToBeNotified(!transformedFishPart.toBeNotified)"
-          >
-            <v-icon v-if="transformedFishPart.toBeNotified" left size="16">mdi-bell</v-icon>
-            <div>
-              <v-tooltip top color="secondary">
-                <template v-slot:activator="{ on, attrs }">
+          <div>
+            <v-tooltip top color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <v-chip
+                  v-bind="attrs"
+                  v-on="on"
+                  small
+                  :input-value="transformedFishPart.toBeNotified"
+                  outlined
+                  color="white"
+                  @click.stop="setToBeNotified(!transformedFishPart.toBeNotified)"
+                >
+                  <v-icon left size="16">
+                    {{ transformedFishPart.toBeNotified ? 'mdi-bell' : 'mdi-bell-outline' }}
+                  </v-icon>
+
                   <div v-bind="attrs" v-on="on" class="text-subtitle-2">
                     {{ transformedFishTimePart.countDownTimeText }}
                   </div>
-                </template>
-                <div class="d-flex flex-column">
-                  <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
-                  <div v-if="transformedFishPart.toBeNotified">{{ $t('list.item.notificationHintOff') }}</div>
-                  <div v-else>{{ $t('list.item.notificationHint') }}</div>
-                </div>
-              </v-tooltip>
-            </div>
-          </v-chip>
+                </v-chip>
+              </template>
+              <div class="d-flex flex-column">
+                <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
+                <div v-if="transformedFishPart.toBeNotified">{{ $t('list.item.notificationHintOff') }}</div>
+                <div v-else>{{ $t('list.item.notificationHint') }}</div>
+              </div>
+            </v-tooltip>
+          </div>
           <div
             v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
             :title="$t('list.item.countDown.fishShadowHint')"
