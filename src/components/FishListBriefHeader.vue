@@ -1,10 +1,10 @@
 <template>
   <div style="width: 100%">
-    <div
-      v-if="!inPredator"
-      style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 4px; z-index: 1;border-radius: 2px"
-      :class="color"
-    />
+    <!--    <div-->
+    <!--      v-if="!inPredator"-->
+    <!--      style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 4px; z-index: 1;border-radius: 2px"-->
+    <!--      :class="color"-->
+    <!--    />-->
     <!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />-->
 
     <!--    <pin-button :value="transformedFishPart.pinned" @input="setPinned($event)" />-->
@@ -39,24 +39,39 @@
           </div>
         </div>
         <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
-          <v-icon size="20">mdi-alarm</v-icon>
-
-          <div>
-            <v-tooltip right color="secondary">
-              <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" class="text-subtitle-2">
-                  {{ transformedFishTimePart.countDownTimeText }}
-                </div>
-              </template>
-              <span>{{ transformedFishTimePart.countDownTimePointText }}</span>
-            </v-tooltip>
-          </div>
-          <div
-            v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
-            :title="$t('list.item.countDown.fishShadowHint')"
-            :class="fish.predatorsIcon"
-            style="margin-left: 2px"
-          />
+          <v-chip
+            small
+            filter
+            :input-value="transformedFishPart.toBeNotified"
+            filter-icon="mdi-alarm"
+            outlined
+            color="white"
+            @click.stop="setToBeNotified(!transformedFishPart.toBeNotified)"
+          >
+            <!--            <v-icon left size="20">mdi-alarm</v-icon>-->
+            <div>
+              <div>
+                <v-tooltip right color="secondary">
+                  <template v-slot:activator="{ on, attrs }">
+                    <div v-bind="attrs" v-on="on" class="text-subtitle-2">
+                      {{ transformedFishTimePart.countDownTimeText }}
+                    </div>
+                  </template>
+                  <div class="d-flex flex-column">
+                    <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
+                    <div v-if="transformedFishPart.toBeNotified">{{ $t('list.item.notificationHintOff') }}</div>
+                    <div v-else>{{ $t('list.item.notificationHint') }}</div>
+                  </div>
+                </v-tooltip>
+              </div>
+              <div
+                v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
+                :title="$t('list.item.countDown.fishShadowHint')"
+                :class="fish.predatorsIcon"
+                style="margin-left: 2px"
+              />
+            </div>
+          </v-chip>
           <div>
             <v-tooltip v-if="transformedFishTimePart.isWaiting" right color="secondary">
               <template v-slot:activator="{ on, attrs }">
@@ -204,6 +219,7 @@ export default {
       return {
         completed: this.getFishCompleted(this.fish.id),
         pinned: this.getFishPinned(this.fish.id),
+        toBeNotified: this.getFishToBeNotified(this.fish.id),
       }
     },
     transformedFishTimePart() {
@@ -237,6 +253,7 @@ export default {
       'getBaits',
       'getFishCompleted',
       'getFishPinned',
+      'getFishToBeNotified',
     ]),
   },
   methods: {
@@ -248,7 +265,11 @@ export default {
     setPinned(pinned) {
       this.setFishPinned({ fishId: this.fish.id, pinned })
     },
-    ...mapMutations(['setFishCompleted', 'setFishPinned']),
+
+    setToBeNotified(toBeNotified) {
+      this.setFishToBeNotified({ fishId: this.fish.id, toBeNotified })
+    },
+    ...mapMutations(['setFishCompleted', 'setFishPinned', 'setFishToBeNotified']),
   },
 }
 </script>

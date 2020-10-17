@@ -146,6 +146,9 @@ export default new Vuex.Store({
     getFishPinned: state => fishId => {
       return state.userData.pinned.includes(fishId)
     },
+    getFishToBeNotified: state => fishId => {
+      return state.userData.toBeNotified.includes(fishId)
+    },
     filters: state => {
       return state.userData.filters
     },
@@ -185,6 +188,9 @@ export default new Vuex.Store({
     },
     setFishPinned(state, { fishId, pinned }) {
       state.userData = updateUserDataStateRecords(state.userData, 'pinned', fishId, pinned)
+    },
+    setFishToBeNotified(state, { fishId, toBeNotified }) {
+      state.userData = updateUserDataStateRecords(state.userData, 'toBeNotified', fishId, toBeNotified)
     },
     setFilters(state, filters) {
       state.userData = { ...state.userData, filters }

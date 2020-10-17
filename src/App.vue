@@ -38,7 +38,7 @@
               </v-avatar>
               <div class="d-flex flex-column" v-if="collapse">
                 <v-chip
-                  v-for="(notification, index) in listNotifications"
+                  v-for="(notification, index) in listFishCnt"
                   :key="index"
                   x-small
                   color="transparent"
@@ -137,7 +137,7 @@
         <v-tabs center-active :value="activeTabIndex" @change="setActiveTab">
           <v-tabs-slider color="white"></v-tabs-slider>
 
-          <v-tab v-for="(notification, index) in listNotifications" :key="index">
+          <v-tab v-for="(notification, index) in listFishCnt" :key="index">
             <v-badge color="tertiary" :value="notification.cnt" :content="notification.cnt">
               <div class="d-flex">
                 <v-icon left small>
@@ -153,7 +153,7 @@
 
     <v-main>
       <div class="py-0" v-show="!collapse">
-        <router-view @notification="listNotifications = $event" />
+        <router-view @fishCntUpdated="listFishCnt = $event" />
       </div>
       <!--      <v-container class="py-0" v-if="!collapse">-->
       <!--        <v-row>-->
@@ -417,7 +417,7 @@ export default {
     collapse: false,
     debounceSetPageOpacity: undefined,
     pageOpacityShowing: 0,
-    listNotifications: [{ cnt: 0 }, { cnt: 0 }],
+    listFishCnt: [{ cnt: 0 }, { cnt: 0 }, { cnt: 0 }],
     TABS: DataUtil.TABS,
   }),
   computed: {

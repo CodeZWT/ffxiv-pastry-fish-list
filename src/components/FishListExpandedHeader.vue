@@ -1,11 +1,9 @@
 <template>
-  <div style="width: 100%">
-    <!--    <pin-button :value="fish.pinned" @input="setPinned($event)" />-->
+  <div style="width: 100%" class="py-4 px-2">
     <div
       style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 4px; z-index: 1;border-radius: 2px"
       :class="color"
     />
-    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />
     <v-row no-gutters>
       <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
         <div class="d-flex align-center flex-column flex-sm-row">
@@ -34,6 +32,19 @@
             <v-icon>mdi-link-variant</v-icon>
           </v-btn>
         </click-helper>
+        <v-spacer />
+        <toggle-button
+          :value="fish.toBeNotified"
+          :title="$t('list.item.notificationHint')"
+          @input="setToBeNotified($event)"
+          checked-icon="mdi-bell"
+          unchecked-icon="mdi-bell-outline"
+        />
+        <click-helper v-if="showClose" @click="$emit('close')">
+          <v-btn elevation="50" fab small>
+            <v-icon dark>mdi-close</v-icon>
+          </v-btn>
+        </click-helper>
       </div>
     </v-row>
   </div>
@@ -57,7 +68,7 @@ export default {
       type: String,
       default: '',
     },
-    showDivider: {
+    showClose: {
       type: Boolean,
       default: false,
     },
@@ -72,6 +83,7 @@ export default {
         id: this.value._id,
         completed: this.getFishCompleted(this.value._id),
         pinned: this.getFishPinned(this.value._id),
+        toBeNotified: this.getFishToBeNotified(this.value._id),
         icon: this.getItemIconClass(this.value._id),
         name: this.getItemName(this.value._id),
         patch: this.value.patch.toFixed(1),
@@ -90,6 +102,7 @@ export default {
       'getFishingSpot',
       'getFishCompleted',
       'getFishPinned',
+      'getFishToBeNotified',
     ]),
   },
   methods: {
@@ -111,7 +124,11 @@ export default {
     setPinned(pinned) {
       this.setFishPinned({ fishId: this.fish.id, pinned })
     },
-    ...mapMutations(['setFishCompleted', 'setFishPinned', 'showSnackbar']),
+
+    setToBeNotified(toBeNotified) {
+      this.setFishToBeNotified({ fishId: this.fish.id, toBeNotified })
+    },
+    ...mapMutations(['setFishCompleted', 'setFishPinned', 'showSnackbar', 'setFishToBeNotified']),
   },
 }
 </script>

@@ -1,21 +1,18 @@
 <template>
   <div>
     <template v-if="fish">
-      <div class="py-4 px-6">
-        <fish-list-expanded-header :value="fish" />
-        <click-helper @click="$emit('close')">
-          <v-btn icon elevation="50" style="position: absolute; right: 8px; top: 8px; z-index: 2">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </click-helper>
+      <div>
+        <fish-list-expanded-header :value="fish" show-close @close="$emit('close')"/>
       </div>
-      <fish-list-item-content
-        ref="detailContent"
-        :value="fish"
-        :fish-time-part="fishTimePart"
-        :fish-weather-change-part="fishWeatherChangePart"
-        :predators="predators"
-      ></fish-list-item-content>
+      <div class="detail-header">
+        <fish-list-item-content
+          ref="detailContent"
+          :value="fish"
+          :fish-time-part="fishTimePart"
+          :fish-weather-change-part="fishWeatherChangePart"
+          :predators="predators"
+        ></fish-list-item-content>
+      </div>
     </template>
     <template v-else>
       empty
@@ -26,11 +23,10 @@
 <script>
 import FishListItemContent from '@/components/FishListItemContent'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
-import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'FishDetail',
-  components: { ClickHelper, FishListExpandedHeader, FishListItemContent },
+  components: { FishListExpandedHeader, FishListItemContent },
   props: {
     fish: {
       type: Object,
@@ -56,4 +52,11 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+@import "../styles/RcVariables"
+
+.detail-header
+  height: calc(100vh - #{ $top-bars-padding + $footer-padding + $detail-header-height})
+  overflow-scrolling: auto
+  overflow-y: scroll
+</style>

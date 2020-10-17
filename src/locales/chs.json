@@ -104,10 +104,16 @@
     }
   },
   "list": {
-    "pin": {
+    "pinned": {
       "empty": {
         "prefix": "当前固定列表为空，请点击每行鱼的",
         "suffix": "按钮将鱼添加至固定列表。"
+      }
+    },
+    "toBeNotified": {
+      "empty": {
+        "prefix": "当前闹钟列表为空，请点击每行鱼的",
+        "suffix": "按钮将鱼添加至闹钟列表。"
       }
     },
     "normal": {
@@ -115,6 +121,7 @@
     },
     "normalTitle": "默认列表",
     "pinTitle": "固定列表",
+    "toBeNotifiedTitle": "闹钟列表",
     "item": {
       "fishWindowTable": {
         "startTime": "开始时间",
@@ -125,7 +132,9 @@
         "fishShadowHint": "可持续至捕鱼人之识状态消失"
       },
       "linkHint": "跳转至饥饿的猫",
-      "copyHint": "复制名称"
+      "copyHint": "复制名称",
+      "notificationHint": "点击添加闹钟",
+      "notificationHintOff": "点击取消闹钟"
     }
   },
   "footer": {

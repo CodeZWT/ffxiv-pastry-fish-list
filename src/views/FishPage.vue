@@ -59,12 +59,6 @@
                   </v-banner>
                   <v-tabs-items v-model="activeTabIndex">
                     <v-tab-item key="pin" class="list-wrapper">
-                      <!--                  <v-expansion-panels flat hover multiple v-model="fishListOpenStatus" class="mt-2">-->
-                      <!--                    <v-expansion-panel>-->
-                      <!--                      <v-expansion-panel-header>-->
-                      <!--                        {{ $t('list.pinTitle') }}-->
-                      <!--                      </v-expansion-panel-header>-->
-                      <!--                      <v-expansion-panel-content class="list-wrapper">-->
                       <fish-list
                         :fish-list="pinnedFishList"
                         :fish-list-time-part="fishListTimePart"
@@ -73,20 +67,13 @@
                       >
                         <template v-slot:empty>
                           <span>
-                            {{ $t('list.pin.empty.prefix') }}
-                            <v-icon small style="transform: rotate(-45deg)" class="mx-1">mdi-pin-outline</v-icon>
-                            {{ $t('list.pin.empty.suffix') }}
+                            {{ $t('list.pinned.empty.prefix') }}
+                            <v-icon small class="mx-1">mdi-pin-outline</v-icon>
+                            {{ $t('list.pinned.empty.suffix') }}
                           </span>
                         </template>
                       </fish-list>
                     </v-tab-item>
-                    <!--                      </v-expansion-panel-content>-->
-                    <!--                    </v-expansion-panel>-->
-                    <!--                    <v-expansion-panel>-->
-                    <!--                      <v-expansion-panel-header>-->
-                    <!--                        {{ $t('list.normalTitle') }}-->
-                    <!--                      </v-expansion-panel-header>-->
-                    <!--                      <v-expansion-panel-content class="list-wrapper">-->
                     <v-tab-item key="normal" class="list-wrapper">
                       <fish-list
                         :fish-list="sortedFilteredFishList"
@@ -101,9 +88,22 @@
                           </span>
                         </template>
                       </fish-list>
-                      <!--                      </v-expansion-panel-content>-->
-                      <!--                    </v-expansion-panel>-->
-                      <!--                  </v-expansion-panels>-->
+                    </v-tab-item>
+                    <v-tab-item key="notification" class="list-wrapper">
+                      <fish-list
+                        :fish-list="toBeNotifiedFishList"
+                        :fish-list-time-part="fishListTimePart"
+                        :fish-list-weather-change-part="fishListWeatherChangePart"
+                        @fish-selected="onFishSelected($event)"
+                      >
+                        <template v-slot:empty>
+                          <span>
+                            {{ $t('list.toBeNotified.empty.prefix') }}
+                            <v-icon small class="mx-1">mdi-bell-outline</v-icon>
+                            {{ $t('list.toBeNotified.empty.suffix') }}
+                          </span>
+                        </template>
+                      </fish-list>
                     </v-tab-item>
                   </v-tabs-items>
                 </div>
@@ -232,9 +232,17 @@ export default {
         [fish => sortedFishIds.indexOf(fish.id)]
       )
     },
-    notifications() {
+    toBeNotifiedFishList() {
+      const fishSourceList = this.lazyTransformedFishList
+      const sortedFishIds = this.sortedFishIds
+      return sortBy(
+        fishSourceList.filter(it => this.getFishToBeNotified(it.id)),
+        [fish => sortedFishIds.indexOf(fish.id)]
+      )
+    },
+    listFishCnt() {
       const fishListTimePart = this.fishListTimePart
-      return [this.pinnedFishList, this.sortedFilteredFishList].map(list => {
+      return [this.pinnedFishList, this.sortedFilteredFishList, this.toBeNotifiedFishList].map(list => {
         if (Object.keys(fishListTimePart).length === 0) {
           return {
             type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
@@ -320,6 +328,7 @@ export default {
       'getFishingSpotsName',
       'getBaits',
       'getWeather',
+      'getFishToBeNotified',
     ]),
   },
   watch: {
@@ -341,8 +350,8 @@ export default {
         return fish2WeatherPart
       }, {})
     },
-    notifications(notifications) {
-      this.$emit('notification', notifications)
+    listFishCnt(listFishCnt) {
+      this.$emit('fishCntUpdated', listFishCnt)
     },
   },
   created() {
@@ -598,9 +607,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$top-bars-padding: 24px + 48px + 48px
-$footer-padding: 31px
-$filter-panel-height: 261px
+@import "../styles/RcVariables"
 
 .list-wrapper::v-deep
   .v-expansion-panel-content__wrap

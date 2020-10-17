@@ -1,6 +1,6 @@
 <template>
-  <v-col style="flex-direction: column; padding-bottom: 0">
-    <v-row>
+  <v-row no-gutters style="width: 100%">
+    <v-col cols="12">
       <v-expansion-panels v-if="fish.hasFishingSpot" hover flat tile :value="0">
         <v-expansion-panel>
           <v-expansion-panel-header :color="listItemColor">
@@ -42,14 +42,14 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
-    </v-row>
+    </v-col>
 
-    <!--    <v-row style="display: flex; justify-items: center">-->
+    <!--    <v-col cols=12 style="display: flex; justify-items: center">-->
     <!--            {{ $t(fish.countDownTypeName) }}-->
-    <!--    </v-row>-->
-    <!--    <v-row v-if="fish.hasCountDown">-->
+    <!--    </v-col>-->
+    <!--    <v-col cols=12 v-if="fish.hasCountDown">-->
     <div class="py-3">
-      <v-row v-if="fish.countDownType === WAITING">
+      <v-col cols="12" v-if="fish.countDownType === WAITING">
         <v-progress-linear height="25" :color="fishingColor">
           <template>
             <v-tooltip top color="secondary">
@@ -62,8 +62,8 @@
             </v-tooltip>
           </template>
         </v-progress-linear>
-      </v-row>
-      <v-row v-else-if="fish.countDownType === FISHING" style="height: 100%">
+      </v-col>
+      <v-col cols="12" v-else-if="fish.countDownType === FISHING" style="height: 100%">
         <v-progress-linear :value="fish.countDownRemainPercentage" height="25" rounded :color="fishingColor">
           <template v-slot="{ value }">
             <v-tooltip top color="secondary">
@@ -85,70 +85,73 @@
             </v-tooltip>
           </template>
         </v-progress-linear>
-      </v-row>
-      <v-row v-else style="height: 100%">
+      </v-col>
+      <v-col cols="12" v-else style="height: 100%">
         <v-progress-linear :value="100" height="25" rounded dark :color="fishingColor">
           <template>
             <strong>{{ $t(fish.countDownTypeName) }}</strong>
           </template>
         </v-progress-linear>
-      </v-row>
+      </v-col>
     </div>
-    <!--    </v-row>-->
-    <v-row>
-      <v-col cols="6">
-        <div class="d-flex justify-center">天气</div>
-        <div class="d-flex justify-center" v-if="fish.hasWeatherConstraint">
-          <div style="display: flex">
-            <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
-              <div :class="weather.icon" :title="weather.name" />
-            </div>
-            <v-icon v-if="fish.previousWeatherSet.length > 0">
-              mdi-arrow-right
-            </v-icon>
-            <div v-for="weather in fish.weatherSetDetail" :key="weather.name" :title="weather.name">
-              <div :class="weather.icon" :title="weather.name" />
+    <!--    </v-col>-->
+    <v-col cols="12">
+      <v-row no-gutters>
+        <v-col cols="6">
+          <div class="d-flex justify-center">天气</div>
+          <div class="d-flex justify-center" v-if="fish.hasWeatherConstraint">
+            <div style="display: flex">
+              <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
+                <div :class="weather.icon" :title="weather.name" />
+              </div>
+              <v-icon v-if="fish.previousWeatherSet.length > 0">
+                mdi-arrow-right
+              </v-icon>
+              <div v-for="weather in fish.weatherSetDetail" :key="weather.name" :title="weather.name">
+                <div :class="weather.icon" :title="weather.name" />
+              </div>
             </div>
           </div>
+          <div class="d-flex justify-center" v-else>
+            {{ $t('none') }}
+          </div>
+        </v-col>
+        <v-col cols="6">
+          <div class="d-flex justify-center">时间</div>
+          <div class="d-flex justify-center">
+            <div v-if="fish.hasTimeConstraint">{{ fish.startHourText }} - {{ fish.endHourText }}</div>
+            <div v-else>
+              {{ $t('none') }}
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+    </v-col>
+
+    <v-col cols="12">
+      <div class="d-flex justify-center">需要状态 | 鱼饵/以小钓大</div>
+      <div class="d-flex justify-center align-center">
+        <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
+          <div :class="fish.fishEyesIcon" />
+          <div class="ml-3">{{ fish.fishEyesText }}</div>
         </div>
-        <div class="d-flex justify-center" v-else>
+        <div v-if="fish.hasPredators">
+          <div :class="fish.predatorsIcon" />
+        </div>
+        <div v-if="fish.hasSnagging">
+          <div :class="fish.snaggingIcon" />
+        </div>
+        <div v-if="!fish.hasFishEyes && !fish.hasPredators && !fish.hasSnagging">
           {{ $t('none') }}
         </div>
-      </v-col>
-      <v-col cols="6">
-        <div class="d-flex justify-center">时间</div>
-        <div class="d-flex justify-center">
-          <div v-if="fish.hasTimeConstraint">{{ fish.startHourText }} - {{ fish.endHourText }}</div>
-          <div v-else>
-            {{ $t('none') }}
-          </div>
-        </div>
-      </v-col>
-      <v-col cols="12">
-        <div class="d-flex justify-center">需要状态 | 鱼饵/以小钓大</div>
-        <div class="d-flex justify-center align-center">
-          <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
-            <div :class="fish.fishEyesIcon" />
-            <div class="ml-3">{{ fish.fishEyesText }}</div>
-          </div>
-          <div v-if="fish.hasPredators">
-            <div :class="fish.predatorsIcon" />
-          </div>
-          <div v-if="fish.hasSnagging">
-            <div :class="fish.snaggingIcon" />
-          </div>
-          <div v-if="!fish.hasFishEyes && !fish.hasPredators && !fish.hasSnagging">
-            {{ $t('none') }}
-          </div>
-          <fish-bait-list :baits="fish.baits" class="ml-3" />
-        </div>
-      </v-col>
-    </v-row>
-    <!--        <v-row>-->
+        <fish-bait-list :baits="fish.baits" class="ml-3" />
+      </div>
+    </v-col>
+    <!--        <v-col>-->
     <!--          <fishing-spot-table :value="fish.fishingSpotFish" />-->
-    <!--        </v-row>-->
+    <!--        </v-col>-->
 
-    <v-row v-if="fish.hasCountDown">
+    <v-col cols="12" v-if="fish.hasCountDown">
       <v-expansion-panels hover flat tile>
         <v-expansion-panel>
           <v-expansion-panel-header :color="listItemColor">
@@ -181,15 +184,15 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
-    </v-row>
+    </v-col>
 
-    <v-row v-if="fish.hasPredators">
-      <v-col>前置鱼</v-col>
-    </v-row>
-    <v-row v-if="fish.hasPredators">
+    <v-col cols="12" v-if="fish.hasPredators">
+      前置鱼
+    </v-col>
+    <v-col cols="12" v-if="fish.hasPredators">
       <fish-predators :value="fish.predators" />
-    </v-row>
-  </v-col>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
