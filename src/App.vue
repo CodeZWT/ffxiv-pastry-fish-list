@@ -38,7 +38,7 @@
               </v-avatar>
               <div class="d-flex flex-column" v-if="collapse">
                 <v-chip
-                  v-for="(notification, index) in listFishCnt"
+                  v-for="(notification, index) in listFishCntForMini"
                   :key="index"
                   x-small
                   color="transparent"
@@ -180,6 +180,15 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.2.3</div>
+          <ul>
+            <li>增加闹钟列表，点击列表中时间或详细列表中铃铛即可设置。</li>
+            <li>更新地图范围提示：翻云雾海，龙堡内陆低地。（持续更新中）</li>
+            <li>修复详细列表中的前置鱼列表。</li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.2.2</div>
           <ul>
             <li>修复列表固定鱼完成按钮的问题。</li>
@@ -394,6 +403,9 @@ export default {
     },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
+    },
+    listFishCntForMini() {
+      return this.listFishCnt.slice(0, 2)
     },
     ...mapState(['snackbar', 'activeTabIndex']),
     ...mapGetters(['opacity', 'websiteVersion']),
