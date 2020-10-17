@@ -186,8 +186,8 @@
       </v-expansion-panels>
     </v-col>
 
-    <v-col cols="12" v-if="fish.hasPredators">
-      前置鱼
+    <v-col cols="12" v-if="fish.hasPredators" class="px-2">
+      {{ $t('detail.predators.title') }}
     </v-col>
     <v-col cols="12" v-if="fish.hasPredators">
       <fish-predators :value="fish.predators" />
