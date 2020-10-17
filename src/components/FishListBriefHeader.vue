@@ -50,28 +50,26 @@
           >
             <!--            <v-icon left size="20">mdi-alarm</v-icon>-->
             <div>
-              <div>
-                <v-tooltip right color="secondary">
-                  <template v-slot:activator="{ on, attrs }">
-                    <div v-bind="attrs" v-on="on" class="text-subtitle-2">
-                      {{ transformedFishTimePart.countDownTimeText }}
-                    </div>
-                  </template>
-                  <div class="d-flex flex-column">
-                    <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
-                    <div v-if="transformedFishPart.toBeNotified">{{ $t('list.item.notificationHintOff') }}</div>
-                    <div v-else>{{ $t('list.item.notificationHint') }}</div>
+              <v-tooltip right color="secondary">
+                <template v-slot:activator="{ on, attrs }">
+                  <div v-bind="attrs" v-on="on" class="text-subtitle-2">
+                    {{ transformedFishTimePart.countDownTimeText }}
                   </div>
-                </v-tooltip>
-              </div>
-              <div
-                v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
-                :title="$t('list.item.countDown.fishShadowHint')"
-                :class="fish.predatorsIcon"
-                style="margin-left: 2px"
-              />
+                </template>
+                <div class="d-flex flex-column">
+                  <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
+                  <div v-if="transformedFishPart.toBeNotified">{{ $t('list.item.notificationHintOff') }}</div>
+                  <div v-else>{{ $t('list.item.notificationHint') }}</div>
+                </div>
+              </v-tooltip>
             </div>
           </v-chip>
+          <div
+            v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
+            :title="$t('list.item.countDown.fishShadowHint')"
+            :class="fish.predatorsIcon"
+            style="margin-left: 2px"
+          />
           <div>
             <v-tooltip v-if="transformedFishTimePart.isWaiting" right color="secondary">
               <template v-slot:activator="{ on, attrs }">

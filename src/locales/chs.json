@@ -94,7 +94,14 @@
   "setting": {
     "dialog": {
       "opacity": "透明度",
-      "opacityHint": "无法拖动请在ACT中锁定悬浮窗，也可直接点击或输入"
+      "opacityHint": "无法拖动请在ACT中锁定悬浮窗，也可直接点击或输入",
+      "notification": {
+        "volume": "音量",
+        "enabled": {
+          "waiting": "窗口期准备闹钟",
+          "fishing": "窗口期开始闹钟"
+        }
+      }
     }
   },
   "general": {

@@ -76,7 +76,7 @@ export default {
           return parentFishColor
         } else {
           const completed = this.getFishCompleted(fish._id)
-          const countDownType = fishListTimePart[fish._id].countDown?.type
+          const countDownType = fishListTimePart[fish._id]?.countDown?.type
           const color = DataUtil.getColorByStatus(completed, countDownType, colorCounter++ % 2, 'BACKGROUND')
           parentFishColor = color
           return color

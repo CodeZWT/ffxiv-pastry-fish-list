@@ -171,43 +171,9 @@
       </div>
       <div class="resize-indicator" />
     </v-footer>
-    <v-dialog v-model="showSettingDialog" :fullscreen="isMobile" max-width="600px" scrollable>
-      <v-card>
-        <v-card-title>
-          {{ $t('top.setting') }}
-        </v-card-title>
-        <v-card-text class="pt-10">
-          <v-slider
-            v-model="pageOpacity"
-            max="1"
-            min="0.1"
-            step="0.01"
-            :label="$t('setting.dialog.opacity')"
-            :hint="$t('setting.dialog.opacityHint')"
-            thumb-label
-          >
-            <template v-slot:append>
-              <v-text-field
-                :value="pageOpacityShowing"
-                @input="pageOpacity = $event"
-                class="mt-0 pt-0"
-                type="number"
-                style="width: 60px"
-              />
-            </template>
-          </v-slider>
-        </v-card-text>
-        <v-card-actions>
-          <div class="d-flex flex-column flex-fill">
-            <click-helper @click="showSettingDialog = false">
-              <v-btn color="default" block text>
-                {{ $t('general.dialog.close') }}
-              </v-btn>
-            </click-helper>
-          </div>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+
+    <fish-setting-dialog v-model="showSettingDialog" />
+
     <v-dialog v-model="showPatchNoteDialog" max-width="600px" scrollable>
       <v-card>
         <v-card-title>
@@ -397,13 +363,13 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import helpHTML from '@/assets/doc/help.html'
 import { version } from '../package.json'
 import ResetButton from '@/components/ResetButton'
-import { debounce } from 'lodash'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
+import FishSettingDialog from '@/components/FishSettingDialog'
 
 export default {
   name: 'App',
-  components: { ClickHelper, ResetButton },
+  components: { FishSettingDialog, ClickHelper, ResetButton },
   data: () => ({
     now: Date.now(),
     fisher,
@@ -415,8 +381,6 @@ export default {
     showSettingDialog: false,
     showPatchNoteDialog: false,
     collapse: false,
-    debounceSetPageOpacity: undefined,
-    pageOpacityShowing: 0,
     listFishCnt: [{ cnt: 0 }, { cnt: 0 }, { cnt: 0 }],
     TABS: DataUtil.TABS,
   }),
@@ -431,15 +395,6 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
-    pageOpacity: {
-      get() {
-        return this.opacity
-      },
-      set(opacity) {
-        this.pageOpacityShowing = opacity
-        this.debounceSetPageOpacity(opacity)
-      },
-    },
     ...mapState(['snackbar', 'activeTabIndex']),
     ...mapGetters(['opacity', 'websiteVersion']),
   },
@@ -447,17 +402,12 @@ export default {
     setInterval(() => {
       this.now = Date.now()
     }, 1000)
-    this.debounceSetPageOpacity = debounce(this.setOpacity, 500)
     // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
     // const helpMd = import('@/assets/doc/help.md')
     // helpMd.then(it => {
     //   console.log(it.default)
     //   this.$refs.helpArea.innerHTML = it.default
     // })
-    this.pageOpacityShowing = this.opacity
-    if (this.toComparableVersion(this.version) > this.toComparableVersion(this.websiteVersion)) {
-      this.showPatchNoteDialog = true
-    }
   },
   methods: {
     toComparableVersion(version) {
@@ -483,7 +433,6 @@ export default {
       'toggleFilterPanel',
       'setShowSearchDialog',
       'setShowImportExportDialog',
-      'setOpacity',
       'setWebsiteVersion',
       'setActiveTab',
     ]),

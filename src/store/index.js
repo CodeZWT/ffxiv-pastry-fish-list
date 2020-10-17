@@ -34,6 +34,7 @@ export default new Vuex.Store({
     },
     activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
     aetheryte: groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
+    sounds: {},
     userData: { ...DataUtil.USER_DEFAULT_DATA, ...getUserDataFromLocalStorage() },
   },
   getters: {
@@ -173,6 +174,9 @@ export default new Vuex.Store({
     isNormalTabActive: state => {
       return state.activeTabIndex === DataUtil.TAB_INDEX_NORMAL
     },
+    notification: state => {
+      return state.userData.notification
+    },
   },
   mutations: {
     setUserData(state, data) {
@@ -231,6 +235,13 @@ export default new Vuex.Store({
     },
     setActiveTab(state, activeTabIndex) {
       state.activeTabIndex = activeTabIndex
+    },
+    setNotification(state, notification) {
+      state.userData = { ...state.userData, notification }
+      saveToLocalStorage(state.userData)
+    },
+    setSounds(state, sounds) {
+      state.sounds = sounds
     },
   },
   actions: {},

@@ -1,6 +1,16 @@
 import TimeFormatter from '@/utils/TimeFormatter'
 import { DateTime } from 'luxon'
 
+const NOTIFICATION_SOUNDS = [
+  { key: 'incomingTell1', name_chs: '提示音1', filename: 'FFXIV_Incoming_Tell_1.mp3' },
+  { key: 'incomingTell2', name_chs: '提示音2', filename: 'FFXIV_Incoming_Tell_2.mp3' },
+  { key: 'incomingTell3', name_chs: '提示音3', filename: 'FFXIV_Incoming_Tell_3.mp3' },
+  { key: 'aggro', name_chs: '遇敌', filename: 'FFXIV_Aggro.mp3' },
+  { key: 'confirm', name_chs: '确认', filename: 'FFXIV_Confirm.mp3' },
+  { key: 'linkshellTransmission', name_chs: '通讯贝', filename: 'FFXIV_Linkshell_Transmission.mp3' },
+  { key: 'notification', name_chs: '通知', filename: 'FFXIV_Notification.mp3' },
+]
+
 export default {
   iconIdToUrl(iconId) {
     if (iconId == null) return ''
@@ -206,6 +216,25 @@ export default {
     showBanner: true,
     opacity: 1,
     rightPanePercentage: 30,
+    notification: {
+      volume: 0.5,
+      settings: [
+        {
+          key: 'waiting',
+          sound: NOTIFICATION_SOUNDS[0].key,
+          enabled: true,
+          hasBefore: true,
+          before: 2,
+        },
+        {
+          key: 'fishing',
+          sound: NOTIFICATION_SOUNDS[1].key,
+          enabled: false,
+          hasBefore: false,
+          before: 0,
+        },
+      ],
+    },
     // website version info
     websiteVersion: '0.1.0',
   },
@@ -232,4 +261,6 @@ export default {
     { icon: 'mdi-format-list-text', title: 'list.normalTitle' },
     { icon: 'mdi-bell', title: 'list.toBeNotifiedTitle' },
   ],
+
+  NOTIFICATION_SOUNDS: NOTIFICATION_SOUNDS,
 }

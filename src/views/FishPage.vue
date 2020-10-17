@@ -153,12 +153,13 @@ import DataUtil from '@/utils/DataUtil'
 import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
 import FishSearch from '@/components/FishSearch'
-import { union, isEqual, throttle } from 'lodash'
+import { isEqual, throttle, union } from 'lodash'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import ClickHelper from '@/components/basic/ClickHelper'
-import { Splitpanes, Pane } from 'splitpanes'
+import { Pane, Splitpanes } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
 import FishDetail from '@/components/FishDetail'
+import { Howl } from 'howler'
 
 export default {
   name: 'fish-page',
@@ -191,9 +192,10 @@ export default {
     loading: true,
     lazyFishSourceList: [],
     lazyTransformedFishList: [],
-    lazyFishSourceDict: {},
+    lazyTransformedFishDict: {},
     sortedFishIds: [],
     fishListTimePart: {},
+    notifiedBefore: 0,
   }),
   computed: {
     filteredFishIdSet() {
@@ -220,7 +222,7 @@ export default {
       const idSet = this.filteredFishIdSet
       return this.sortedFishIds
         .filter(id => idSet.has(id))
-        .map(id => this.lazyFishSourceDict[id])
+        .map(id => this.lazyTransformedFishDict[id])
         .filter(it => !this.getFishPinned(it.id))
         .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
     },
@@ -281,7 +283,12 @@ export default {
           parts: {
             fishTimePart: this.fishListTimePart[this.selectedFishId],
             fishWeatherChangePart: this.fishListWeatherChangePart[this.selectedFishId],
-            predators: DataUtil.getPredators(fish, this.allFish, this.fishListTimePart, this.fishListWeatherChangePart),
+            predators: DataUtil.getPredators(
+              fish,
+              this.lazyTransformedFishDict,
+              this.fishListTimePart,
+              this.fishListWeatherChangePart
+            ),
           },
         }
       } else {
@@ -314,6 +321,7 @@ export default {
       showSearch: 'showSearchDialog',
       showImportExport: 'showImportExportDialog',
       activeTabIndex: 'activeTabIndex',
+      sounds: 'sounds',
     }),
     ...mapGetters([
       'getFishCompleted',
@@ -329,6 +337,7 @@ export default {
       'getBaits',
       'getWeather',
       'getFishToBeNotified',
+      'notification',
     ]),
   },
   watch: {
@@ -342,13 +351,7 @@ export default {
       deep: true,
     },
     weatherChangeTrigger() {
-      const now = this.now
-      this.fishListWeatherChangePart = this.lazyFishSourceList.reduce((fish2WeatherPart, fish) => {
-        fish2WeatherPart[fish._id] = {
-          fishWindows: this.getFishWindow(fish, now),
-        }
-        return fish2WeatherPart
-      }, {})
+      this.updateWeatherChangePart(this.now)
     },
     listFishCnt(listFishCnt) {
       this.$emit('fishCntUpdated', listFishCnt)
@@ -357,20 +360,25 @@ export default {
   created() {
     this.loading = true
   },
-  mounted() {
-    this.lazyFishSourceList = Object.values(this.allFish).filter(it => it.gig == null && it.patch <= DataUtil.PATCH_MAX)
-    this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
-    this.lazyFishSourceDict = DataUtil.toMap(this.lazyTransformedFishList, fish => fish.id)
-
+  async mounted() {
     document.title = `${this.$t('top.systemBarTitle')} - ${this.$t('top.toolBarTitle')}`
     this.now = Date.now()
+    this.lazyFishSourceList = Object.values(this.allFish).filter(it => it.gig == null && it.patch <= DataUtil.PATCH_MAX)
+    this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
+    this.lazyTransformedFishDict = DataUtil.toMap(this.lazyTransformedFishList, fish => fish.id)
+    const sounds = await this.loadingSounds()
+    this.setSounds(DataUtil.toMap(sounds, it => it.key))
+    this.updateWeatherChangePart(this.now)
+
     setInterval(() => {
-      this.now = Date.now()
-      this.updateFishListTimePart(this.now)
+      const now = Date.now()
+      this.now = now
+      this.updateFishListTimePart(now)
+      this.checkNotification(now)
       this.loading = false
     }, 1000)
 
-    this.weatherChangeTrigger *= -1
+    // this.weatherChangeTrigger *= -1
     setInterval(() => {
       this.weatherChangeTrigger *= -1
     }, WEATHER_CHANGE_INTERVAL_EARTH)
@@ -378,6 +386,74 @@ export default {
     this.onWindowResize()
   },
   methods: {
+    updateWeatherChangePart(now) {
+      this.fishListWeatherChangePart = this.lazyFishSourceList.reduce((fish2WeatherPart, fish) => {
+        fish2WeatherPart[fish._id] = {
+          fishWindows: this.getFishWindow(fish, now),
+        }
+        return fish2WeatherPart
+      }, {})
+    },
+    loadingSounds() {
+      return Promise.all(
+        DataUtil.NOTIFICATION_SOUNDS.map(sound => {
+          return import(`@/assets/sound/${sound.filename}`).then(it => {
+            return { key: sound.key, player: new Howl({ src: it?.default, preload: true }) }
+          })
+        })
+      )
+    },
+    checkNotification(now) {
+      const maxBellCnt = this.notification.settings.filter(it => it.enabled).length
+      const rangeToEnsureAlarm = DataUtil.INTERVAL_SECOND * 2
+      const soundsToPlay = new Set()
+      const toRingBell =
+        this.toBeNotifiedFishList.some(fish => {
+          const countDown = this.fishListTimePart[fish.id]?.countDown
+          if (countDown?.type === DataUtil.ALL_AVAILABLE) return false
+
+          this.notification.settings.forEach(setting => {
+            if (setting.enabled) {
+              const fishWindows = this.fishListWeatherChangePart[fish.id]?.fishWindows ?? []
+              fishWindows
+                .map(fishWindow => fishWindow[0] - now)
+                .filter((it, index) => it > 0 && index < 2)
+                .some(interval => {
+                  // console.log(fish.id)
+                  const notifyMin = setting.before * DataUtil.INTERVAL_MINUTE
+                  const notifyMax = notifyMin + rangeToEnsureAlarm
+
+                  // let d = new Date(interval)
+                  // console.log(d.getUTCMinutes(), d.getUTCSeconds())
+                  // d = new Date(notifyMax)
+                  // console.log(d.getUTCMinutes(), d.getUTCSeconds())
+                  // console.log(interval < notifyMax && interval > notifyMin)
+                  if (interval < notifyMax && interval > notifyMin) {
+                    soundsToPlay.add(setting.sound)
+                    return true
+                  } else {
+                    return false
+                  }
+                })
+            }
+          })
+
+          return soundsToPlay.size === maxBellCnt
+        }) || soundsToPlay.size > 0
+
+      if (toRingBell && this.notifiedBefore === 0) {
+        this.ringBell(soundsToPlay)
+        this.notifiedBefore = 3
+      } else if (this.notifiedBefore > 0) {
+        this.notifiedBefore--
+      }
+    },
+    ringBell(soundsToPlay) {
+      console.log('ring bell!')
+      soundsToPlay.forEach(key => {
+        this.sounds[key]?.player.play()
+      })
+    },
     updateFishListTimePart(now) {
       this.lazyFishSourceList.forEach(fish => {
         const countDown = this.fishListTimePart[fish._id]?.countDown
@@ -601,6 +677,7 @@ export default {
       'setShowImportExportDialog',
       'setNotShowBanner',
       'setRightPanePercentage',
+      'setSounds',
     ]),
   },
 }
@@ -622,6 +699,7 @@ export default {
 
 //.main-area::v-deep
   position: relative
+
   //overflow-y: scroll
   //margin-right: -8px
 
