@@ -408,6 +408,9 @@ export default {
     //   console.log(it.default)
     //   this.$refs.helpArea.innerHTML = it.default
     // })
+    if (this.toComparableVersion(this.version) > this.toComparableVersion(this.websiteVersion)) {
+      this.showPatchNoteDialog = true
+    }
   },
   methods: {
     toComparableVersion(version) {
