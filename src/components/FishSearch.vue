@@ -42,7 +42,7 @@
         <template v-if="fish != null">
           <v-divider class="mb-3" />
           <div style="position:relative;" class="py-4 px-6">
-            <fish-list-expanded-header :value="fish" />
+            <fish-list-expanded-header :value="fish" :fish-time-part="fishListTimePart[fish._id]" />
           </div>
           <fish-list-item-content
             :open="dialog"

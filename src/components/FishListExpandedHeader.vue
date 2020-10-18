@@ -34,6 +34,7 @@
         </click-helper>
         <v-spacer />
         <toggle-button
+          v-if="fish.setNotificationAvailable"
           :value="fish.toBeNotified"
           :title="$t('list.item.notificationHint')"
           @input="setToBeNotified($event)"
@@ -55,12 +56,17 @@ import { mapGetters, mapMutations } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import ToggleButton from '@/components/basic/ToggleButton'
 import ClickHelper from '@/components/basic/ClickHelper'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'FishListExpandedHeader',
   components: { ClickHelper, ToggleButton },
   props: {
     value: {
+      type: Object,
+      default: () => ({}),
+    },
+    fishTimePart: {
       type: Object,
       default: () => ({}),
     },
@@ -92,6 +98,7 @@ export default {
         fishingSpotId: this.value.location,
         anglerFishId: this.value.anglerFishId,
         anglerLocationId: this.getFishingSpot(this.value.location)?.anglerLocationId,
+        setNotificationAvailable: DataUtil.hasCountDown(this.fishTimePart?.countDown),
       }
     },
     ...mapGetters([
