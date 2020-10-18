@@ -95,7 +95,7 @@
           </div>
         </div>
       </v-col>
-      <v-col class="d-flex flex-column justify-center col-4 col-sm-3">
+      <v-col class="col-4 col-sm-3 d-flex flex-column justify-center">
         <div v-if="mode === 'CONTENT' && inPredator && fish.hasTimeConstraint">
           {{ fish.startHourText }} - {{ fish.endHourText }}
         </div>

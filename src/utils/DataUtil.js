@@ -176,6 +176,8 @@ export default {
   XIV_API_HOST: 'https://xivapi.com',
 
   USER_DEFAULT_DATA: {
+    // website version info
+    websiteVersion: '0.1.0',
     completed: [],
     pinned: [],
     toBeNotified: [],
@@ -235,8 +237,16 @@ export default {
         },
       ],
     },
-    // website version info
-    websiteVersion: '0.1.0',
+    detailArrangement: {
+      components: [
+        { name: 'detail-item-map', expanded: true, enabled: true, order: 0, constraint: 'hasFishingSpot' },
+        { name: 'detail-item-countdown-bar', expanded: false, enabled: true, order: 1, constraint: false },
+        { name: 'detail-item-requirements', expanded: false, enabled: true, order: 2, constraint: false },
+        { name: 'detail-item-buff-and-baits', expanded: false, enabled: true, order: 3, constraint: false },
+        { name: 'detail-item-fish-window-table', expanded: false, enabled: true, order: 4, constraint: 'hasCountDown' },
+        { name: 'detail-item-predators', expanded: false, enabled: true, order: 5, constraint: 'hasPredators' },
+      ],
+    },
   },
 
   // fish tracker [js/app/viewmodel.js]

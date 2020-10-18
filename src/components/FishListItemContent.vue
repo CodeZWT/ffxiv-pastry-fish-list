@@ -1,29 +1,40 @@
 <template>
   <v-row no-gutters style="width: 100%">
-    <v-col v-if="fish.hasFishingSpot" cols="12" class="my-2">
-      <detail-item-map :fish="fish" />
-    </v-col>
-    <v-col cols="12" class="my-2">
-      <detail-item-countdown-bar :fish="fish" />
-    </v-col>
-    <v-col cols="12" class="my-2">
-      <detail-item-requirements :fish="fish" />
-    </v-col>
+    <template v-for="component in sortedDetailComponents">
+      <v-col v-if="!component.constraint || fish[component.constraint]" cols="12" class="my-2" :key="component.name">
+        <component
+          v-bind:is="component.name"
+          :fish="fish"
+          :fish-weather-change-part="fishWeatherChangePart"
+          :expanded="component.expanded"
+        />
+      </v-col>
+    </template>
+    <!--    <v-col v-if="fish.hasFishingSpot" cols="12" class="my-2">-->
+    <!--      <detail-item-map :fish="fish" :expanded="true" />-->
+    <!--    </v-col>-->
+    <!--    <v-col cols="12" class="my-2">-->
+    <!--      <detail-item-countdown-bar :fish="fish" />-->
+    <!--    </v-col>-->
+    <!--    <v-col cols="12" class="my-2">-->
+    <!--      <detail-item-requirements :fish="fish" />-->
+    <!--    </v-col>-->
 
-    <v-col cols="12" class="my-2">
-      <detail-item-buff-and-baits :fish="fish" />
-    </v-col>
+    <!--    <v-col cols="12" class="my-2">-->
+    <!--      <detail-item-buff-and-baits :fish="fish" />-->
+    <!--    </v-col>-->
+
+    <!--    <v-col v-if="fish.hasCountDown" cols="12" class="my-2">-->
+    <!--      <detail-item-fish-window-table :fish="fish" :fish-weather-change-part="fishWeatherChangePart" :expanded="false" />-->
+    <!--    </v-col>-->
+
+    <!--    <v-col cols="12" v-if="fish.hasPredators" class="my-2">-->
+    <!--      <detail-item-predators :value="fish.predators" />-->
+    <!--    </v-col>-->
+
     <!--        <v-col>-->
     <!--          <fishing-spot-table :value="fish.fishingSpotFish" />-->
     <!--        </v-col>-->
-
-    <v-col v-if="fish.hasCountDown" cols="12" class="my-2">
-      <detail-item-fish-window-table :fish="fish" :fish-weather-change-part="fishWeatherChangePart" />
-    </v-col>
-
-    <v-col cols="12" v-if="fish.hasPredators" class="my-2">
-      <detail-item-predators :value="fish.predators" />
-    </v-col>
   </v-row>
 </template>
 
@@ -36,6 +47,7 @@ import DetailItemCountdownBar from '@/components/fish-detail-items/DetailItemCou
 import DetailItemRequirements from '@/components/fish-detail-items/DetailItemRequirements'
 import DetailItemBuffAndBaits from '@/components/fish-detail-items/DetailItemBuffAndBaits'
 import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItemFishWindowTable'
+import { sortBy } from 'lodash'
 
 export default {
   name: 'FishListItemContent',
@@ -129,7 +141,9 @@ export default {
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
       }
     },
-
+    sortedDetailComponents() {
+      return sortBy(this.detailComponents, 'order')
+    },
     ...mapGetters([
       'getWeather',
       'getFishingSpot',
@@ -139,6 +153,7 @@ export default {
       'getZoneName',
       'getFishingSpotsName',
       'getFishCompleted',
+      'detailComponents',
     ]),
   },
   methods: {

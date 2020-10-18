@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panels hover flat tile>
+  <v-expansion-panels hover flat tile :value="expansionValue">
     <v-expansion-panel>
       <v-expansion-panel-header>
         <div style="display: flex; justify-content: center">
@@ -48,8 +48,15 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    expanded: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
+    expansionValue() {
+      return this.expanded ? 0 : undefined
+    },
     fishWindows() {
       let fishWindows = this.fishWeatherChangePart.fishWindows.filter(it => it[1] >= Date.now())
       if (FishWindow.FISH_WINDOW_FORECAST_N > fishWindows.length) {

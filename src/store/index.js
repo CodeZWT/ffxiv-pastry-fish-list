@@ -177,6 +177,9 @@ export default new Vuex.Store({
     notification: state => {
       return state.userData.notification
     },
+    detailComponents: state => {
+      return state.userData.detailArrangement.components
+    },
   },
   mutations: {
     setUserData(state, data) {

@@ -4,7 +4,7 @@
       {{ $t('detail.predators.title') }}
     </v-col>
     <v-col cols="12">
-      <div v-for="predator in value" :key="predator._id" style="position: relative">
+      <div v-for="predator in fish.predators" :key="predator._id" style="position: relative">
         <fish-list-brief-header :fish="predator" :fish-time-part="predator.fishTimePart" in-predator :mode="mode" />
       </div>
     </v-col>
@@ -19,9 +19,9 @@ export default {
   name: 'DetailItemPredators',
   components: { FishListBriefHeader },
   props: {
-    value: {
-      type: Array,
-      default: () => [],
+    fish: {
+      type: Object,
+      default: undefined,
     },
     mode: {
       type: String,

@@ -1,6 +1,6 @@
 <template>
-  <div style="width: 100%; height: 100%">
-    <v-overlay style="top: 64px" :value="!allImageLoaded" absolute opacity="1">
+  <div style="width: 100%; height: 100%; position: relative">
+    <v-overlay :value="!allImageLoaded" absolute opacity="1">
       <div class="d-flex flex-column align-center">
         <v-progress-circular indeterminate size="64"></v-progress-circular>
         <div class="mt-2">{{ $t('detail.map.loading') }}</div>
