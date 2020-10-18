@@ -109,7 +109,8 @@
     "dialog": {
       "confirm": "确认",
       "close": "关闭",
-      "cancel": "取消"
+      "cancel": "取消",
+      "apply": "应用"
     }
   },
   "list": {

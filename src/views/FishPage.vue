@@ -460,7 +460,7 @@ export default {
     ringBell(soundsToPlay) {
       console.log('ring bell!')
       soundsToPlay.forEach(key => {
-        this.sounds[key]?.player.play()
+        this.sounds[key]?.player.volume(this.notification.volume).play()
       })
     },
     updateFishListTimePart(now) {
