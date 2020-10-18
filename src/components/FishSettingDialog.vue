@@ -215,8 +215,8 @@ export default {
       this.$refs.observer?.reset()
       this.lazyOpacity = this.opacity
       this.lazyNotificationSetting = cloneDeep(this.notification)
-      this.lazyEnabledDetailComponents = this.detailComponents.filter(it => it.enabled)
-      this.lazyDisabledDetailComponents = this.detailComponents.filter(it => !it.enabled)
+      this.lazyEnabledDetailComponents = cloneDeep(this.detailComponents.filter(it => it.enabled))
+      this.lazyDisabledDetailComponents = cloneDeep(this.detailComponents.filter(it => !it.enabled))
     },
     playSound(key) {
       this.sounds[key]?.player.volume(this.lazyNotificationSetting.volume).play()
@@ -231,26 +231,28 @@ export default {
     },
     apply() {
       this.setOpacity(this.lazyOpacity)
-      this.setNotificationSetting(this.lazyNotificationSetting)
-      this.setDetailArrangement({
-        components: this.lazyEnabledDetailComponents
-          .map(it => ({
-            ...it,
-            enabled: true,
-          }))
-          .concat(
-            this.lazyDisabledDetailComponents.map(it => ({
+      this.setNotificationSetting(cloneDeep(this.lazyNotificationSetting))
+      this.setDetailArrangement(
+        cloneDeep({
+          components: this.lazyEnabledDetailComponents
+            .map(it => ({
               ...it,
-              enabled: false,
+              enabled: true,
             }))
-          )
-          .map((it, index) => {
-            return {
-              ...it,
-              order: index,
-            }
-          }),
-      })
+            .concat(
+              this.lazyDisabledDetailComponents.map(it => ({
+                ...it,
+                enabled: false,
+              }))
+            )
+            .map((it, index) => {
+              return {
+                ...it,
+                order: index,
+              }
+            }),
+        })
+      )
     },
     setNotificationSetting(setting) {
       this.setNotification(setting)
