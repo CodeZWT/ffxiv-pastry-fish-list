@@ -5,83 +5,94 @@
         {{ $t('top.setting') }}
       </v-card-title>
       <v-card-text class="py-0">
-        <v-form>
-          <v-row>
-            <v-col cols="12">
-              <div class="text-subtitle-1">页面透明度</div>
-              <v-slider
-                v-model="lazyOpacity"
-                max="1"
-                min="0.1"
-                step="0.01"
-                :label="$t('setting.dialog.opacity')"
-                :hint="$t('setting.dialog.opacityHint')"
-                thumb-label
-              >
-                <template v-slot:append>
-                  <v-text-field v-model="lazyOpacity" class="mt-0 pt-0" type="number" style="width: 60px" />
-                </template>
-              </v-slider>
-              <v-divider />
-            </v-col>
-            <v-col cols="12">
-              <div class="text-subtitle-1">闹钟</div>
-              <div>
+        <validation-observer ref="observer" v-slot="">
+          <form>
+            <v-row>
+              <v-col cols="12">
+                <div class="text-subtitle-1">{{ $t('setting.dialog.opacity.title') }}</div>
                 <v-slider
-                  v-model="lazyNotificationSetting.volume"
+                  v-model="lazyOpacity"
                   max="1"
-                  min="0"
+                  min="0.1"
                   step="0.01"
-                  :label="$t('setting.dialog.notification.volume')"
+                  :label="$t('setting.dialog.opacity.slider')"
+                  :hint="$t('setting.dialog.opacity.hint')"
                   thumb-label
                 >
                   <template v-slot:append>
-                    <v-text-field
-                      v-model="lazyNotificationSetting.volume"
-                      class="mt-0 pt-0"
-                      type="number"
-                      style="width: 60px"
-                    />
+                    <v-text-field v-model="lazyOpacity" class="mt-0 pt-0" type="number" style="width: 60px" />
                   </template>
                 </v-slider>
-              </div>
-              <div v-for="setting in lazyNotificationSetting.settings" :key="setting.key" class="d-flex align-center">
-                <v-row>
-                  <v-col class="col-sm-4 col-6">
-                    <v-checkbox
-                      v-model="setting.enabled"
-                      :label="$t(`setting.dialog.notification.enabled.${setting.key}`)"
-                    />
-                  </v-col>
-                  <v-col class="col-sm-3 col-6">
-                    <v-text-field
-                      v-if="setting.hasBefore"
-                      v-model="setting.before"
-                      label="提前"
-                      suffix="分"
-                      min="0"
-                      max="20"
-                      type="number"
-                      prepend-icon="mdi-alarm-note"
-                    />
-                  </v-col>
-                  <v-col class="col-sm-5 col-12 d-flex align-center">
-                    <v-select
-                      v-model="setting.sound"
-                      :items="NOTIFICATION_SOUNDS"
-                      item-text="name_chs"
-                      item-value="key"
-                      :label="'选择音效'"
-                    />
-                    <v-btn icon @click="playSound(setting.sound)">
-                      <v-icon>mdi-play</v-icon>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </div>
-            </v-col>
-          </v-row>
-        </v-form>
+                <v-divider />
+              </v-col>
+              <v-col cols="12">
+                <div class="text-subtitle-1">{{ $t('setting.dialog.notification.title') }}</div>
+                <div>
+                  <v-slider
+                    v-model="lazyNotificationSetting.volume"
+                    max="1"
+                    min="0"
+                    step="0.01"
+                    :label="$t('setting.dialog.notification.volume')"
+                    thumb-label
+                  >
+                    <template v-slot:append>
+                      <v-text-field
+                        v-model="lazyNotificationSetting.volume"
+                        class="mt-0 pt-0"
+                        type="number"
+                        style="width: 60px"
+                      />
+                    </template>
+                  </v-slider>
+                </div>
+                <div v-for="setting in lazyNotificationSetting.settings" :key="setting.key" class="d-flex align-center">
+                  <v-row>
+                    <v-col class="col-sm-4 col-6">
+                      <v-checkbox
+                        v-model="setting.enabled"
+                        :label="$t(`setting.dialog.notification.enabled.${setting.key}`)"
+                      />
+                    </v-col>
+                    <v-col class="col-sm-3 col-6">
+                      <validation-provider
+                        v-if="setting.hasBefore"
+                        v-slot="{ errors }"
+                        :name="`${setting.key}-before`"
+                        rules="required|max_value:20|min_value:0"
+                      >
+                        <v-text-field
+                          v-model="setting.before"
+                          :label="$t('setting.dialog.notification.before')"
+                          :suffix="$t('setting.dialog.notification.unit')"
+                          min="0"
+                          max="20"
+                          step="1"
+                          type="number"
+                          prepend-icon="mdi-alarm-note"
+                          :error-messages="errors"
+                          required
+                        />
+                      </validation-provider>
+                    </v-col>
+                    <v-col class="col-sm-5 col-12 d-flex align-center">
+                      <v-select
+                        v-model="setting.sound"
+                        :items="NOTIFICATION_SOUNDS"
+                        item-text="name_chs"
+                        item-value="key"
+                        :label="'选择音效'"
+                      />
+                      <v-btn icon @click="playSound(setting.sound)">
+                        <v-icon>mdi-play</v-icon>
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </div>
+              </v-col>
+            </v-row>
+          </form>
+        </validation-observer>
       </v-card-text>
       <v-card-actions>
         <div class="d-flex flex-row justify-end" style="width: 100%">
@@ -106,10 +117,29 @@ import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 import ClickHelper from '@/components/basic/ClickHelper'
+import { required, min_value, max_value } from 'vee-validate/dist/rules'
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import i18n from '@/i18n'
+
+setInteractionMode('eager')
+
+extend('required', {
+  ...required,
+  message: i18n.t('setting.error.required'),
+})
+extend('max_value', {
+  ...max_value,
+  message: i18n.t('setting.error.maxValue'),
+})
+
+extend('min_value', {
+  ...min_value,
+  message: i18n.t('setting.error.minValue'),
+})
 
 export default {
   name: 'FishSettingDialog',
-  components: { ClickHelper },
+  components: { ClickHelper, ValidationObserver, ValidationProvider },
   props: {
     value: {
       type: Boolean,
@@ -117,23 +147,11 @@ export default {
     },
   },
   data: () => ({
-    // debounceSetPageOpacity: undefined,
-    // debounceSetNotification: undefined,
-    // pageOpacityShowing: 0,
     NOTIFICATION_SOUNDS: DataUtil.NOTIFICATION_SOUNDS,
     lazyOpacity: undefined,
     lazyNotificationSetting: {},
   }),
   computed: {
-    // pageOpacity: {
-    //   get() {
-    //     return this.opacity
-    //   },
-    //   set(opacity) {
-    //     this.pageOpacityShowing = opacity
-    //     this.debounceSetPageOpacity(opacity)
-    //   },
-    // },
     showSettingDialog: {
       get() {
         return this.value
@@ -149,12 +167,6 @@ export default {
     ...mapGetters(['opacity', 'notification']),
   },
   watch: {
-    // lazyNotificationSetting: {
-    //   handler(setting) {
-    //     this.debounceSetNotification(setting)
-    //   },
-    //   deep: true,
-    // },
     showSettingDialog(showSettingDialog) {
       if (showSettingDialog) {
         this.init()
@@ -162,15 +174,11 @@ export default {
     },
   },
   created() {
-    // this.debounceSetPageOpacity = debounce(this.setOpacity, 500)
-    // this.debounceSetNotification = debounce(this.setNotificationSetting, 500)
-    //
-    // this.pageOpacityShowing = this.opacity
-    // this.lazyNotificationSetting = cloneDeep(this.notification)
     this.init()
   },
   methods: {
     init() {
+      this.$refs.observer?.reset()
       this.lazyOpacity = this.opacity
       this.lazyNotificationSetting = cloneDeep(this.notification)
     },
@@ -178,15 +186,18 @@ export default {
       this.sounds[key]?.player.volume(this.lazyNotificationSetting.volume).play()
     },
     onApply() {
-      this.apply()
-      this.showSettingDialog = false
+      this.$refs.observer.validate().then(valid => {
+        if (valid) {
+          this.apply()
+          this.showSettingDialog = false
+        }
+      })
     },
     apply() {
       this.setOpacity(this.lazyOpacity)
       this.setNotificationSetting(this.lazyNotificationSetting)
     },
     setNotificationSetting(setting) {
-      // Howler.volume(setting.volume)
       this.setNotification(setting)
     },
     ...mapMutations(['setOpacity', 'setNotification']),

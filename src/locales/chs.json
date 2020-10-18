@@ -94,15 +94,26 @@
   },
   "setting": {
     "dialog": {
-      "opacity": "透明度",
-      "opacityHint": "无法拖动请在ACT中锁定悬浮窗，也可直接点击或输入",
+      "opacity": {
+        "title": "页面透明度",
+        "slider": "透明度",
+        "hint": "无法拖动请在ACT中锁定悬浮窗，也可直接点击或输入"
+      },
       "notification": {
+        "title":"闹钟",
         "volume": "音量",
         "enabled": {
           "waiting": "窗口期准备闹钟",
           "fishing": "窗口期开始闹钟"
-        }
+        },
+        "before": "提前",
+        "unit": "分钟"
       }
+    },
+    "error": {
+      "required": "不能为空",
+      "maxValue": "不能大于{max}",
+      "minValue": "不能小于{min}"
     }
   },
   "general": {
