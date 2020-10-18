@@ -229,7 +229,7 @@ export default {
         {
           key: 'fishing',
           sound: NOTIFICATION_SOUNDS[1].key,
-          enabled: false,
+          enabled: true,
           hasBefore: false,
           before: 0,
         },

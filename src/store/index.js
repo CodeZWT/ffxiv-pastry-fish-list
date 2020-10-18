@@ -243,6 +243,10 @@ export default new Vuex.Store({
     setSounds(state, sounds) {
       state.sounds = sounds
     },
+    clearToBeNotified(state) {
+      state.userData = { ...state.userData, toBeNotified: [] }
+      saveToLocalStorage(state.userData)
+    },
   },
   actions: {},
   modules: {},

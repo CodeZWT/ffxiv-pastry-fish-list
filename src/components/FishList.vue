@@ -13,6 +13,37 @@
         />
       </div>
     </v-col>
+    <v-col cols="12" v-if="clearAllButton && flattenFishList.length > 0">
+      <v-dialog v-model="showClearConfirmDialog" max-width="330">
+        <template v-slot:activator="{ on, attrs }">
+          <click-helper v-bind="attrs" v-on="on">
+            <v-btn block color="tertiary">
+              <v-icon>mdi-playlist-remove</v-icon>
+              <span>{{ $t('list.toBeNotified.clearAll') }}</span>
+            </v-btn>
+          </click-helper>
+        </template>
+
+        <v-card>
+          <v-card-title class="headline">
+            {{ $t('list.toBeNotified.dialog.title') }}
+          </v-card-title>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <click-helper @click="showClearConfirmDialog = false">
+              <v-btn text>
+                {{ $t('general.dialog.cancel') }}
+              </v-btn>
+            </click-helper>
+            <click-helper @click="onConfirmClear">
+              <v-btn color="tertiary" text>
+                {{ $t('list.toBeNotified.dialog.confirm') }}
+              </v-btn>
+            </click-helper>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-col>
   </v-row>
 </template>
 
@@ -21,10 +52,11 @@ import { mapGetters, mapState } from 'vuex'
 import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
 import FishListItem from '@/components/FishListItem'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'fish-list',
-  components: { FishListItem },
+  components: { ClickHelper, FishListItem },
   props: {
     fishList: {
       type: Array,
@@ -42,10 +74,15 @@ export default {
       type: Boolean,
       default: false,
     },
+    clearAllButton: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     fisher: fisher,
     openPanelIndex: undefined,
+    showClearConfirmDialog: false,
   }),
   computed: {
     flattenFishList() {
@@ -124,6 +161,10 @@ export default {
   methods: {
     onFishClicked(fishId) {
       this.$emit('fish-selected', fishId)
+    },
+    onConfirmClear() {
+      this.$emit('clear-all')
+      this.showClearConfirmDialog = false
     },
   },
 }

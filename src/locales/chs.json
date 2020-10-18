@@ -107,7 +107,8 @@
   "general": {
     "dialog": {
       "confirm": "确认",
-      "close": "关闭"
+      "close": "关闭",
+      "cancel": "取消"
     }
   },
   "list": {
@@ -120,7 +121,14 @@
     "toBeNotified": {
       "empty": {
         "prefix": "当前闹钟列表为空，请点击每行鱼的",
-        "suffix": "按钮将鱼添加至闹钟列表。"
+        "suffix": "按钮将鱼添加至闹钟列表。",
+        "helpPrefix": "请点击右上角的",
+        "helpSuffix": "按钮，选择 \"设置\" 后，在设置页面对闹钟进行的详细配置。"
+      },
+      "clearAll": "清空闹钟列表",
+      "dialog": {
+        "title": "是否确认清空闹钟列表？",
+        "confirm": "清空"
       }
     },
     "normal": {

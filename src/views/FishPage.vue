@@ -94,14 +94,23 @@
                         :fish-list="toBeNotifiedFishList"
                         :fish-list-time-part="fishListTimePart"
                         :fish-list-weather-change-part="fishListWeatherChangePart"
+                        clear-all-button
                         @fish-selected="onFishSelected($event)"
+                        @clear-all="clearToBeNotified"
                       >
                         <template v-slot:empty>
-                          <span>
-                            {{ $t('list.toBeNotified.empty.prefix') }}
-                            <v-icon small class="mx-1">mdi-bell-outline</v-icon>
-                            {{ $t('list.toBeNotified.empty.suffix') }}
-                          </span>
+                          <div class="d-flex flex-column align-center">
+                            <span>
+                              {{ $t('list.toBeNotified.empty.prefix') }}
+                              <v-icon small class="mx-1">mdi-bell-outline</v-icon>
+                              {{ $t('list.toBeNotified.empty.suffix') }}
+                            </span>
+                            <span>
+                              {{ $t('list.toBeNotified.empty.helpPrefix') }}
+                              <v-icon small class="mx-1">mdi-dots-vertical</v-icon>
+                              {{ $t('list.toBeNotified.empty.helpSuffix') }}
+                            </span>
+                          </div>
                         </template>
                       </fish-list>
                     </v-tab-item>
@@ -678,6 +687,7 @@ export default {
       'setNotShowBanner',
       'setRightPanePercentage',
       'setSounds',
+      'clearToBeNotified',
     ]),
   },
 }
