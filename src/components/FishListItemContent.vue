@@ -21,10 +21,7 @@
       <detail-item-fish-window-table :fish="fish" :fish-weather-change-part="fishWeatherChangePart" />
     </v-col>
 
-    <v-col cols="12" v-if="fish.hasPredators" class="px-2">
-      {{ $t('detail.predators.title') }}
-    </v-col>
-    <v-col cols="12" v-if="fish.hasPredators">
+    <v-col cols="12" v-if="fish.hasPredators" class="my-2">
       <fish-predators :value="fish.predators" />
     </v-col>
   </v-row>

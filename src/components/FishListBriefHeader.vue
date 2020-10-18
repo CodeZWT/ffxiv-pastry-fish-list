@@ -32,7 +32,7 @@
           <div class="text-subtitle-1 text-truncate ml-1" :title="fish.name + '#' + fish.id">{{ fish.name }}</div>
         </div>
       </v-col>
-      <v-col v-if="!isMobile" class="col-2 d-flex flex-column justify-center my-2 my-sm-0">
+      <v-col v-if="!isMobile" class="col-3 d-flex flex-column justify-center my-2 my-sm-0">
         <div class="text-subtitle-2 d-flex">
           <div>
             {{ $t(transformedFishTimePart.countDownType) }}
@@ -184,7 +184,7 @@
           </div>
         </div>
       </v-col>
-      <v-col class="col-12 col-sm-4 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0">
+      <v-col class="col-12 col-sm-3 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0">
         <div v-if="fish.hasFishEyes || fish.hasPredators || fish.hasSnagging" class="mr-1">
           <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
             <div :class="fish.fishEyesIcon" />
