@@ -200,10 +200,6 @@
         <fish-bait-list :baits="fish.baits" />
       </v-col>
     </v-row>
-    <!--    <div v-if="fish.hasPredators" class="mt-1">-->
-    <!--      <v-divider inset />-->
-    <!--      <fish-predators :value="fish.predators" mode="HEADER" />-->
-    <!--    </div>-->
   </div>
 </template>
 
@@ -216,7 +212,6 @@ import FishBaitList from '@/components/FishBaitList'
 
 export default {
   name: 'FishListBriefHeader',
-  // to deal with recursive components
   components: { FishBaitList, ToggleButton },
   props: {
     fish: {

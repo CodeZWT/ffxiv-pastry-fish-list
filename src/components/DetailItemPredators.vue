@@ -16,7 +16,7 @@ import FishListBriefHeader from '@/components/FishListBriefHeader'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'FishPredators',
+  name: 'DetailItemPredators',
   components: { FishListBriefHeader },
   props: {
     value: {

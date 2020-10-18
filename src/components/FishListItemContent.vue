@@ -22,7 +22,7 @@
     </v-col>
 
     <v-col cols="12" v-if="fish.hasPredators" class="my-2">
-      <fish-predators :value="fish.predators" />
+      <detail-item-predators :value="fish.predators" />
     </v-col>
   </v-row>
 </template>
@@ -30,7 +30,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
-import FishPredators from '@/components/FishPredators'
+import DetailItemPredators from '@/components/DetailItemPredators'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import DetailItemCountdownBar from '@/components/fish-detail-items/DetailItemCountdownBar'
 import DetailItemRequirements from '@/components/fish-detail-items/DetailItemRequirements'
@@ -45,7 +45,7 @@ export default {
     DetailItemRequirements,
     DetailItemCountdownBar,
     DetailItemMap,
-    FishPredators,
+    DetailItemPredators,
   },
   props: {
     open: {
