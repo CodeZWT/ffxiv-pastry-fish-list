@@ -89,6 +89,11 @@
                     </v-col>
                   </v-row>
                 </div>
+                <v-divider />
+              </v-col>
+              <v-col cols="12">
+                <div class="text-subtitle-1">{{ $t('setting.dialog.detailArrangement.title') }}</div>
+                <div>TODO</div>
               </v-col>
             </v-row>
           </form>

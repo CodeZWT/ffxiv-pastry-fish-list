@@ -1,101 +1,12 @@
 <template>
   <v-row no-gutters style="width: 100%">
-    <v-col cols="12">
-      <v-expansion-panels v-if="fish.hasFishingSpot" hover flat tile :value="0">
-        <v-expansion-panel>
-          <v-expansion-panel-header :color="listItemColor">
-            <div style="display: flex; align-items: center; justify-content: center">
-              <div class="text-subtitle-1">
-                {{ fish.zone }}
-              </div>
-              <div v-if="fish.zone !== fish.fishingSpotName" class="text-subtitle-1 ml-2" :title="fish.fishingSpotId">
-                {{ fish.fishingSpotName }}
-              </div>
-              <div class="text-subtitle-1 ml-2">({{ fish.fishSpotPositionText }})</div>
-              <click-helper @click.stop :copy-text="fish.fishingSpotName">
-                <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
-                  <v-icon>mdi-content-copy</v-icon>
-                </v-btn>
-              </click-helper>
-              <click-helper @click.stop="goToFishingSpotAngelPage(fish.anglerLocationId)">
-                <v-btn class="my-2" text icon :title="$t('list.item.linkHint')">
-                  <v-icon>mdi-link-variant</v-icon>
-                </v-btn>
-              </click-helper>
-            </div>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content :color="listItemColor">
-            <div style="width: 100%" class="d-flex justify-center mt-4">
-              <div style="width: 100%; max-width: 512px">
-                <eorzea-simple-map
-                  ref="simpleMap"
-                  :debug="false"
-                  :id="fish.fishingSpot.mapFileId"
-                  :x="fish.fishingSpot.x"
-                  :y="fish.fishingSpot.y"
-                  :size-factor="fish.fishingSpot.size_factor"
-                  :marker-radius="fish.fishingSpot.radius"
-                  :fishing-spot-name="getName(fish.fishingSpot)"
-                />
-              </div>
-            </div>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
+    <v-col cols="12" class="my-2">
+      <detail-item-map :fish="fish" />
     </v-col>
-
-    <!--    <v-col cols=12 style="display: flex; justify-items: center">-->
-    <!--            {{ $t(fish.countDownTypeName) }}-->
-    <!--    </v-col>-->
-    <!--    <v-col cols=12 v-if="fish.hasCountDown">-->
-    <div class="py-3">
-      <v-col cols="12" v-if="fish.countDownType === WAITING">
-        <v-progress-linear height="25" :color="fishingColor">
-          <template>
-            <v-tooltip top color="secondary">
-              <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" class="d-flex align-center">
-                  <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }}</strong>
-                </div>
-              </template>
-              <span>{{ fish.countDownTimePointText }}</span>
-            </v-tooltip>
-          </template>
-        </v-progress-linear>
-      </v-col>
-      <v-col cols="12" v-else-if="fish.countDownType === FISHING" style="height: 100%">
-        <v-progress-linear :value="fish.countDownRemainPercentage" height="25" rounded :color="fishingColor">
-          <template v-slot="{ value }">
-            <v-tooltip top color="secondary">
-              <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" class="d-flex align-center">
-                  <v-icon size="20">mdi-alarm</v-icon>
-                  <strong
-                    >{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }} ({{ Math.ceil(value) }}%)</strong
-                  >
-                  <div
-                    v-if="fish.addBuffSuffix"
-                    :title="$t('list.item.countDown.fishShadowHint')"
-                    :class="fish.predatorsIcon"
-                    style="margin-left: 2px"
-                  />
-                </div>
-              </template>
-              <span>{{ fish.countDownTimePointText }}</span>
-            </v-tooltip>
-          </template>
-        </v-progress-linear>
-      </v-col>
-      <v-col cols="12" v-else style="height: 100%">
-        <v-progress-linear :value="100" height="25" rounded dark :color="fishingColor">
-          <template>
-            <strong>{{ $t(fish.countDownTypeName) }}</strong>
-          </template>
-        </v-progress-linear>
-      </v-col>
-    </div>
-    <!--    </v-col>-->
-    <v-col cols="12">
+    <v-col cols="12" class="my-2">
+      <detail-item-countdown-bar :fish="fish" />
+    </v-col>
+    <v-col cols="12" class="my-2">
       <v-row no-gutters>
         <v-col cols="6">
           <div class="d-flex justify-center">天气</div>
@@ -197,17 +108,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
 import FishPredators from '@/components/FishPredators'
 import FishBaitList from '@/components/FishBaitList'
-import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import FishWindow from '@/utils/FishWindow'
-import ClickHelper from '@/components/basic/ClickHelper'
+import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
+import DetailItemCountdownBar from '@/components/fish-detail-items/DetailItemCountdownBar'
 
 export default {
   name: 'FishListItemContent',
-  components: { ClickHelper, EorzeaSimpleMap, FishBaitList, FishPredators },
+  components: { DetailItemCountdownBar, DetailItemMap, FishBaitList, FishPredators },
   props: {
     open: {
       type: Boolean,
@@ -236,14 +146,10 @@ export default {
     },
     listItemColor: {
       type: String,
-
       default: '',
     },
   },
   data: () => ({
-    fisher: fisher,
-    FISHING: DataUtil.FISHING,
-    WAITING: DataUtil.WAITING,
     TUGS: Object.keys(DataUtil.TUG_ICON),
   }),
   computed: {
@@ -313,9 +219,6 @@ export default {
         }
       })
     },
-    fishingColor() {
-      return DataUtil.getColorByStatus(this.fish.isCompleted, this.fish.countDownType)
-    },
     ...mapGetters([
       'getWeather',
       'getFishingSpot',
@@ -329,9 +232,6 @@ export default {
   },
   methods: {
     printCountDownTime: DataUtil.printCountDownTime,
-    goToFishingSpotAngelPage(anglerLocationId) {
-      window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
-    },
     toPositionText(fishingSpot) {
       if (fishingSpot == null) return ''
       return `X: ${this.toPosStr(fishingSpot.size_factor, fishingSpot.x)}, Y:${this.toPosStr(
