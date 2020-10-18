@@ -17,39 +17,8 @@
     <!--          <fishing-spot-table :value="fish.fishingSpotFish" />-->
     <!--        </v-col>-->
 
-    <v-col cols="12" v-if="fish.hasCountDown">
-      <v-expansion-panels hover flat tile>
-        <v-expansion-panel>
-          <v-expansion-panel-header :color="listItemColor">
-            <div style="display: flex; justify-content: center">
-              <div>
-                <v-icon>mdi-calendar</v-icon>
-                {{ $t('countDown.fishWindowBtn') }}
-              </div>
-            </div>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content :color="listItemColor">
-            <v-simple-table :class="listItemColor" dense dark>
-              <template v-slot:default>
-                <thead>
-                  <tr>
-                    <th class="text-center">{{ $t('list.item.fishWindowTable.startTime') }}</th>
-                    <th class="text-center">{{ $t('list.item.fishWindowTable.interval') }}</th>
-                    <th class="text-center">{{ $t('list.item.fishWindowTable.nextInterval') }}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(fishWindow, index) in fishWindows" :key="index">
-                    <td class="text-center">{{ fishWindow.start }}</td>
-                    <td class="text-center">{{ fishWindow.interval }}</td>
-                    <td class="text-center">{{ fishWindow.nextInterval }}</td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
+    <v-col v-if="fish.hasCountDown" cols="12" class="my-2">
+      <detail-item-fish-window-table :fish="fish" :fish-weather-change-part="fishWeatherChangePart" />
     </v-col>
 
     <v-col cols="12" v-if="fish.hasPredators" class="px-2">
@@ -65,15 +34,22 @@
 import { mapGetters } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import FishPredators from '@/components/FishPredators'
-import FishWindow from '@/utils/FishWindow'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import DetailItemCountdownBar from '@/components/fish-detail-items/DetailItemCountdownBar'
 import DetailItemRequirements from '@/components/fish-detail-items/DetailItemRequirements'
 import DetailItemBuffAndBaits from '@/components/fish-detail-items/DetailItemBuffAndBaits'
+import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItemFishWindowTable'
 
 export default {
   name: 'FishListItemContent',
-  components: { DetailItemBuffAndBaits, DetailItemRequirements, DetailItemCountdownBar, DetailItemMap, FishPredators },
+  components: {
+    DetailItemFishWindowTable,
+    DetailItemBuffAndBaits,
+    DetailItemRequirements,
+    DetailItemCountdownBar,
+    DetailItemMap,
+    FishPredators,
+  },
   props: {
     open: {
       type: Boolean,
@@ -156,25 +132,7 @@ export default {
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
       }
     },
-    fishWindows() {
-      let fishWindows = this.fishWeatherChangePart.fishWindows.filter(it => it[1] >= Date.now())
-      if (FishWindow.FISH_WINDOW_FORECAST_N > fishWindows.length) {
-        console.warn('fish window cnt:', fishWindows.length)
-      }
-      fishWindows = fishWindows.slice(0, Math.min(FishWindow.FISH_WINDOW_FORECAST_N, fishWindows.length))
 
-      return fishWindows.map((fishWindow, index) => {
-        const start = new Date(fishWindow[0])
-        const end = new Date(fishWindow[1])
-        return {
-          startTime: fishWindow[0],
-          start: DataUtil.formatDateTime(fishWindow[0]),
-          end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
-          interval: this.printCountDownTime(end - start),
-          nextInterval: index < fishWindows.length - 1 ? this.printCountDownTime(fishWindows[index + 1][0] - end) : '',
-        }
-      })
-    },
     ...mapGetters([
       'getWeather',
       'getFishingSpot',
