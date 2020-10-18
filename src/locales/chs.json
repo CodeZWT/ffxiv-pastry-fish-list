@@ -15,7 +15,8 @@
     "allAvailable": "全天可钓",
     "fishWindowBtn": "查看窗口期详情",
     "intervalHint": "窗口期时长：{interval}",
-    "timePointHint": "时间点：{timePoint}"
+    "timePointHint": "时刻：{timePoint}",
+    "nextInterval": "距下次{nextInterval}"
   },
   "none": "无",
   "time": {

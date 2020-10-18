@@ -69,6 +69,9 @@ export default {
     // add another 1 to make sure previous fish windows take continuous fish windows
     // (which should be merged) into account
   ) {
+    if (n < this.FISH_WINDOW_FORECAST_N + 2) {
+      console.debug('fish window cache not found')
+    }
     if (
       territoryId == null ||
       (previousWeatherSet.length === 0 && weatherSet.length === 0 && hourStart === 0 && hourEnd === 24)

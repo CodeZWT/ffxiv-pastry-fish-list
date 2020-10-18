@@ -5,6 +5,7 @@ export default {
     return i18n.t(`time.${unit}`)
   },
   millisecondsToText(milliseconds, showCnt = 1, forceShowEndingZeros = true, paddingZero = true) {
+    if (milliseconds == null) return undefined
     const units = this.millisecondsToUnits(milliseconds)
     const indexOfFirstNotZero = units.findIndex(it => it > 0)
     const unitLen = UNITS.length

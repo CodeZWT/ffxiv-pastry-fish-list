@@ -45,10 +45,11 @@
                 <v-chip
                   v-bind="attrs"
                   v-on="on"
-                  small
                   :input-value="transformedFishPart.toBeNotified"
+                  small
                   outlined
                   color="white"
+                  class="mr-1"
                   @click.stop="setToBeNotified(!transformedFishPart.toBeNotified)"
                 >
                   <v-icon left size="16">
@@ -72,6 +73,16 @@
             :class="fish.predatorsIcon"
             style="margin-left: 2px"
           />
+          <div>
+            <v-tooltip v-if="transformedFishTimePart.isFishing" right color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on" class="text-subtitle-2">
+                  {{ transformedFishTimePart.countDownNextInterval }}
+                </div>
+              </template>
+              <span>{{ transformedFishTimePart.countDownNextTimePointText }}</span>
+            </v-tooltip>
+          </div>
           <div>
             <v-tooltip v-if="transformedFishTimePart.isWaiting" right color="secondary">
               <template v-slot:activator="{ on, attrs }">
@@ -122,10 +133,11 @@
                 <v-chip
                   v-bind="attrs"
                   v-on="on"
-                  small
                   :input-value="transformedFishPart.toBeNotified"
+                  small
                   outlined
                   color="white"
+                  class="mr-1"
                   @click.stop="setToBeNotified(!transformedFishPart.toBeNotified)"
                 >
                   <v-icon left size="16">
@@ -150,6 +162,16 @@
             :class="fish.predatorsIcon"
             style="margin-left: 2px"
           />
+          <div>
+            <v-tooltip v-if="transformedFishTimePart.isFishing" right color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on" class="text-subtitle-2">
+                  {{ transformedFishTimePart.countDownNextInterval }}
+                </div>
+              </template>
+              <span>{{ transformedFishTimePart.countDownNextTimePointText }}</span>
+            </v-tooltip>
+          </div>
           <div>
             <v-tooltip v-if="transformedFishTimePart.isWaiting" top color="secondary">
               <template v-slot:activator="{ on, attrs }">
@@ -251,6 +273,12 @@ export default {
         countDownTotal: this.printCountDownTime(fishTimePart.countDown?.fishWindowTotal, 1, false),
         countDownTotalHint: this.$t('countDown.intervalHint', {
           interval: this.printCountDownTime(fishTimePart.countDown?.fishWindowTotal, 2),
+        }),
+        countDownNextInterval: this.$t('countDown.nextInterval', {
+          nextInterval: this.printCountDownTime(fishTimePart.countDown?.nextInterval, 1, false),
+        }),
+        countDownNextTimePointText: this.$t('countDown.timePointHint', {
+          timePoint: DataUtil.formatDateTime(fishTimePart.countDown?.nextTimePoint),
         }),
         hasCountDown: DataUtil.hasCountDown(fishTimePart.countDown),
         isWaiting: fishTimePart.countDown?.type === DataUtil.WAITING,

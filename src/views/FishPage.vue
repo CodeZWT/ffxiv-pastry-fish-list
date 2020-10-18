@@ -544,11 +544,20 @@ export default {
             fish.weatherSet,
             2
           )
-        let nextFishWindow = fishWindowsComputed.find(fishWindow => {
-          if (fishWindow[1] >= now) {
-            return fishWindow
+
+        let nextFishWindow
+        let nextTargetFishWindow
+
+        for (let i = 0; i < fishWindowsComputed.length; i++) {
+          if (fishWindowsComputed[i][1] >= now) {
+            nextFishWindow = fishWindowsComputed[i]
+            if (i + 1 < fishWindowsComputed.length) {
+              nextTargetFishWindow = fishWindowsComputed[i + 1]
+            }
+            break
           }
-        })
+        }
+
         if (nextFishWindow == null) {
           return { type: DataUtil.ALL_AVAILABLE }
         }
@@ -565,6 +574,8 @@ export default {
             time: nextFishWindow[1] - now,
             timePoint: nextFishWindow[1],
             fishWindowTotal: nextFishWindow[1] - nextFishWindow[0],
+            nextInterval: nextTargetFishWindow ? nextTargetFishWindow[0] - now : undefined,
+            nextTimePoint: nextTargetFishWindow ? nextTargetFishWindow[0] : undefined,
           }
         }
       } else {
