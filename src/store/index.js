@@ -250,6 +250,10 @@ export default new Vuex.Store({
       state.userData = { ...state.userData, toBeNotified: [] }
       saveToLocalStorage(state.userData)
     },
+    setDetailArrangement(state, detailArrangement) {
+      state.userData = { ...state.userData, detailArrangement }
+      saveToLocalStorage(state.userData)
+    },
   },
   actions: {},
   modules: {},

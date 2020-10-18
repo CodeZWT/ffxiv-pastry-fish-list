@@ -93,7 +93,32 @@
               </v-col>
               <v-col cols="12">
                 <div class="text-subtitle-1">{{ $t('setting.dialog.detailArrangement.title') }}</div>
-                <div>TODO</div>
+                <v-row>
+                  <v-col cols="6">
+                    <v-card rounded color="#00695c66" class="pa-2">
+                      <v-card-title>{{ $t('setting.dialog.detailArrangement.enabled') }}</v-card-title>
+                      <draggable v-model="lazyEnabledDetailComponents" group="componentSettings">
+                        <div v-for="component in lazyEnabledDetailComponents" :key="component.name">
+                          <detail-item-setting-entry :setting="component" />
+                        </div>
+                      </draggable>
+                    </v-card>
+                  </v-col>
+                  <v-col cols="6">
+                    <v-card rounded color="#ad145766" class="pa-2">
+                      <v-card-title>{{ $t('setting.dialog.detailArrangement.disabled') }}</v-card-title>
+                      <draggable
+                        v-model="lazyDisabledDetailComponents"
+                        group="componentSettings"
+                        style="min-height: 160px"
+                      >
+                        <div v-for="component in lazyDisabledDetailComponents" :key="component.name">
+                          <detail-item-setting-entry :setting="component" />
+                        </div>
+                      </draggable>
+                    </v-card>
+                  </v-col>
+                </v-row>
               </v-col>
             </v-row>
           </form>
@@ -125,6 +150,8 @@ import ClickHelper from '@/components/basic/ClickHelper'
 import { required, min_value, max_value } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 import i18n from '@/i18n'
+import draggable from 'vuedraggable'
+import DetailItemSettingEntry from '@/components/DetailItemSettingEntry'
 
 setInteractionMode('eager')
 
@@ -144,7 +171,7 @@ extend('min_value', {
 
 export default {
   name: 'FishSettingDialog',
-  components: { ClickHelper, ValidationObserver, ValidationProvider },
+  components: { DetailItemSettingEntry, ClickHelper, ValidationObserver, ValidationProvider, draggable },
   props: {
     value: {
       type: Boolean,
@@ -155,6 +182,8 @@ export default {
     NOTIFICATION_SOUNDS: DataUtil.NOTIFICATION_SOUNDS,
     lazyOpacity: undefined,
     lazyNotificationSetting: {},
+    lazyEnabledDetailComponents: [],
+    lazyDisabledDetailComponents: [],
   }),
   computed: {
     showSettingDialog: {
@@ -169,7 +198,7 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
     ...mapState(['sounds']),
-    ...mapGetters(['opacity', 'notification']),
+    ...mapGetters(['opacity', 'notification', 'detailComponents']),
   },
   watch: {
     showSettingDialog(showSettingDialog) {
@@ -186,6 +215,8 @@ export default {
       this.$refs.observer?.reset()
       this.lazyOpacity = this.opacity
       this.lazyNotificationSetting = cloneDeep(this.notification)
+      this.lazyEnabledDetailComponents = this.detailComponents.filter(it => it.enabled)
+      this.lazyDisabledDetailComponents = this.detailComponents.filter(it => !it.enabled)
     },
     playSound(key) {
       this.sounds[key]?.player.volume(this.lazyNotificationSetting.volume).play()
@@ -201,11 +232,30 @@ export default {
     apply() {
       this.setOpacity(this.lazyOpacity)
       this.setNotificationSetting(this.lazyNotificationSetting)
+      this.setDetailArrangement({
+        components: this.lazyEnabledDetailComponents
+          .map(it => ({
+            ...it,
+            enabled: true,
+          }))
+          .concat(
+            this.lazyDisabledDetailComponents.map(it => ({
+              ...it,
+              enabled: false,
+            }))
+          )
+          .map((it, index) => {
+            return {
+              ...it,
+              order: index,
+            }
+          }),
+      })
     },
     setNotificationSetting(setting) {
       this.setNotification(setting)
     },
-    ...mapMutations(['setOpacity', 'setNotification']),
+    ...mapMutations(['setOpacity', 'setNotification', 'setDetailArrangement']),
   },
 }
 </script>

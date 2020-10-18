@@ -239,14 +239,35 @@ export default {
     },
     detailArrangement: {
       components: [
-        { name: 'detail-item-map', expanded: true, enabled: true, order: 0, constraint: 'hasFishingSpot' },
-        { name: 'detail-item-countdown-bar', expanded: false, enabled: true, order: 1, constraint: false },
-        { name: 'detail-item-requirements', expanded: false, enabled: true, order: 2, constraint: false },
-        { name: 'detail-item-buff-and-baits', expanded: false, enabled: true, order: 3, constraint: false },
-        { name: 'detail-item-fish-window-table', expanded: false, enabled: true, order: 4, constraint: 'hasCountDown' },
-        { name: 'detail-item-predators', expanded: false, enabled: true, order: 5, constraint: 'hasPredators' },
+        {
+          name: 'DetailItemMap',
+          expandedEnabled: true,
+          expanded: true,
+          enabled: true,
+          order: 0,
+        },
+        { name: 'DetailItemCountdownBar', expandedEnabled: false, enabled: true, order: 1 },
+        { name: 'DetailItemRequirements', expandedEnabled: false, enabled: true, order: 2 },
+        { name: 'DetailItemBuffAndBaits', expandedEnabled: false, enabled: true, order: 3 },
+        {
+          name: 'DetailItemFishWindowTable',
+          expandedEnabled: true,
+          expanded: false,
+          enabled: true,
+          order: 4,
+        },
+        { name: 'DetailItemPredators', expandedEnabled: false, enabled: true, order: 5 },
       ],
     },
+  },
+
+  DETAIL_ITEM_DISPLAY_CONSTRAINTS: {
+    DetailItemMap: 'hasFishingSpot',
+    DetailItemCountdownBar: false,
+    DetailItemRequirements: false,
+    DetailItemBuffAndBaits: false,
+    DetailItemFishWindowTable: 'hasCountDown',
+    DetailItemPredators: 'hasPredators',
   },
 
   // fish tracker [js/app/viewmodel.js]

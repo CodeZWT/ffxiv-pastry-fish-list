@@ -110,7 +110,18 @@
         "unit": "分钟"
       },
       "detailArrangement": {
-        "title": "详细视图布局"
+        "title": "详细视图布局设置（直接拖动）",
+        "expand": "展开界面",
+        "enabled": "显示",
+        "disabled": "不显示",
+        "itemNames": {
+          "DetailItemMap":  "地图",
+          "DetailItemCountdownBar": "倒计时条",
+          "DetailItemRequirements":  "天气时间要求",
+          "DetailItemBuffAndBaits": "需要状态及鱼饵",
+          "DetailItemFishWindowTable":  "窗口期详情表",
+          "DetailItemPredators": "前置鱼列表"
+        }
       }
     },
     "error": {

@@ -1,7 +1,12 @@
 <template>
   <v-row no-gutters style="width: 100%">
     <template v-for="component in sortedDetailComponents">
-      <v-col v-if="!component.constraint || fish[component.constraint]" cols="12" class="my-2" :key="component.name">
+      <v-col
+        v-if="component.enabled && (!component.constraint || fish[component.constraint])"
+        cols="12"
+        class="my-2"
+        :key="component.name"
+      >
         <component
           v-bind:is="component.name"
           :fish="fish"
@@ -90,9 +95,7 @@ export default {
       default: '',
     },
   },
-  data: () => ({
-    TUGS: Object.keys(DataUtil.TUG_ICON),
-  }),
+  data: () => ({}),
   computed: {
     fish() {
       const fishingSpot = this.getFishingSpot(this.value.location)
@@ -142,7 +145,10 @@ export default {
       }
     },
     sortedDetailComponents() {
-      return sortBy(this.detailComponents, 'order')
+      return sortBy(this.detailComponents, 'order').map(it => ({
+        ...it,
+        constraint: DataUtil.DETAIL_ITEM_DISPLAY_CONSTRAINTS[it.name],
+      }))
     },
     ...mapGetters([
       'getWeather',
