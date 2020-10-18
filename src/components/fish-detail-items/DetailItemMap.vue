@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panels v-if="fish.hasFishingSpot" hover flat tile :value="0">
+  <v-expansion-panels hover flat tile :value="0">
     <v-expansion-panel>
       <v-expansion-panel-header>
         <div style="display: flex; align-items: center; justify-content: center">

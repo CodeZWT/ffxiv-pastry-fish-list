@@ -1,6 +1,6 @@
 <template>
   <v-row no-gutters style="width: 100%">
-    <v-col cols="12" class="my-2">
+    <v-col v-if="fish.hasFishingSpot" cols="12" class="my-2">
       <detail-item-map :fish="fish" />
     </v-col>
     <v-col cols="12" class="my-2">
@@ -10,24 +10,8 @@
       <detail-item-requirements :fish="fish" />
     </v-col>
 
-    <v-col cols="12">
-      <div class="d-flex justify-center">需要状态 | 鱼饵/以小钓大</div>
-      <div class="d-flex justify-center align-center">
-        <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
-          <div :class="fish.fishEyesIcon" />
-          <div class="ml-3">{{ fish.fishEyesText }}</div>
-        </div>
-        <div v-if="fish.hasPredators">
-          <div :class="fish.predatorsIcon" />
-        </div>
-        <div v-if="fish.hasSnagging">
-          <div :class="fish.snaggingIcon" />
-        </div>
-        <div v-if="!fish.hasFishEyes && !fish.hasPredators && !fish.hasSnagging">
-          {{ $t('none') }}
-        </div>
-        <fish-bait-list :baits="fish.baits" class="ml-3" />
-      </div>
+    <v-col cols="12" class="my-2">
+      <detail-item-buff-and-baits :fish="fish" />
     </v-col>
     <!--        <v-col>-->
     <!--          <fishing-spot-table :value="fish.fishingSpotFish" />-->
@@ -81,15 +65,15 @@
 import { mapGetters } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import FishPredators from '@/components/FishPredators'
-import FishBaitList from '@/components/FishBaitList'
 import FishWindow from '@/utils/FishWindow'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import DetailItemCountdownBar from '@/components/fish-detail-items/DetailItemCountdownBar'
 import DetailItemRequirements from '@/components/fish-detail-items/DetailItemRequirements'
+import DetailItemBuffAndBaits from '@/components/fish-detail-items/DetailItemBuffAndBaits'
 
 export default {
   name: 'FishListItemContent',
-  components: { DetailItemRequirements, DetailItemCountdownBar, DetailItemMap, FishBaitList, FishPredators },
+  components: { DetailItemBuffAndBaits, DetailItemRequirements, DetailItemCountdownBar, DetailItemMap, FishPredators },
   props: {
     open: {
       type: Boolean,

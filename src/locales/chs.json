@@ -108,6 +108,9 @@
         },
         "before": "提前",
         "unit": "分钟"
+      },
+      "detailArrangement": {
+        "title": "详细视图布局"
       }
     },
     "error": {
@@ -183,6 +186,9 @@
     "requirements": {
       "weather": "天气",
       "time": "时间"
+    },
+    "buffAndBaits": {
+      "title": "需要状态 | 鱼饵/以小钓大"
     }
   }
 }
