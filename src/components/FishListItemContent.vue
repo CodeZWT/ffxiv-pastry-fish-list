@@ -7,36 +7,7 @@
       <detail-item-countdown-bar :fish="fish" />
     </v-col>
     <v-col cols="12" class="my-2">
-      <v-row no-gutters>
-        <v-col cols="6">
-          <div class="d-flex justify-center">天气</div>
-          <div class="d-flex justify-center" v-if="fish.hasWeatherConstraint">
-            <div style="display: flex">
-              <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
-                <div :class="weather.icon" :title="weather.name" />
-              </div>
-              <v-icon v-if="fish.previousWeatherSet.length > 0">
-                mdi-arrow-right
-              </v-icon>
-              <div v-for="weather in fish.weatherSetDetail" :key="weather.name" :title="weather.name">
-                <div :class="weather.icon" :title="weather.name" />
-              </div>
-            </div>
-          </div>
-          <div class="d-flex justify-center" v-else>
-            {{ $t('none') }}
-          </div>
-        </v-col>
-        <v-col cols="6">
-          <div class="d-flex justify-center">时间</div>
-          <div class="d-flex justify-center">
-            <div v-if="fish.hasTimeConstraint">{{ fish.startHourText }} - {{ fish.endHourText }}</div>
-            <div v-else>
-              {{ $t('none') }}
-            </div>
-          </div>
-        </v-col>
-      </v-row>
+      <detail-item-requirements :fish="fish" />
     </v-col>
 
     <v-col cols="12">
@@ -114,10 +85,11 @@ import FishBaitList from '@/components/FishBaitList'
 import FishWindow from '@/utils/FishWindow'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import DetailItemCountdownBar from '@/components/fish-detail-items/DetailItemCountdownBar'
+import DetailItemRequirements from '@/components/fish-detail-items/DetailItemRequirements'
 
 export default {
   name: 'FishListItemContent',
-  components: { DetailItemCountdownBar, DetailItemMap, FishBaitList, FishPredators },
+  components: { DetailItemRequirements, DetailItemCountdownBar, DetailItemMap, FishBaitList, FishPredators },
   props: {
     open: {
       type: Boolean,

@@ -100,7 +100,7 @@
         "hint": "无法拖动请在ACT中锁定悬浮窗，也可直接点击或输入"
       },
       "notification": {
-        "title":"闹钟",
+        "title": "闹钟",
         "volume": "音量",
         "enabled": {
           "waiting": "窗口期准备闹钟",
@@ -179,6 +179,10 @@
     },
     "predators": {
       "title": "前置鱼"
+    },
+    "requirements": {
+      "weather": "天气",
+      "time": "时间"
     }
   }
 }
