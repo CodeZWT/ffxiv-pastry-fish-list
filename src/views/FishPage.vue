@@ -545,12 +545,12 @@ export default {
             2
           )
 
-        let nextFishWindow
+        let targetFishWindow
         let nextTargetFishWindow
 
         for (let i = 0; i < fishWindowsComputed.length; i++) {
           if (fishWindowsComputed[i][1] >= now) {
-            nextFishWindow = fishWindowsComputed[i]
+            targetFishWindow = fishWindowsComputed[i]
             if (i + 1 < fishWindowsComputed.length) {
               nextTargetFishWindow = fishWindowsComputed[i + 1]
             }
@@ -558,22 +558,22 @@ export default {
           }
         }
 
-        if (nextFishWindow == null) {
+        if (targetFishWindow == null) {
           return { type: DataUtil.ALL_AVAILABLE }
         }
-        if (now <= nextFishWindow[0]) {
+        if (now <= targetFishWindow[0]) {
           return {
             type: DataUtil.WAITING,
-            time: nextFishWindow[0] - now,
-            timePoint: nextFishWindow[0],
-            fishWindowTotal: nextFishWindow[1] - nextFishWindow[0],
+            time: targetFishWindow[0] - now,
+            timePoint: targetFishWindow[0],
+            fishWindowTotal: targetFishWindow[1] - targetFishWindow[0],
           }
-        } else if (now <= nextFishWindow[1]) {
+        } else if (now <= targetFishWindow[1]) {
           return {
             type: DataUtil.FISHING,
-            time: nextFishWindow[1] - now,
-            timePoint: nextFishWindow[1],
-            fishWindowTotal: nextFishWindow[1] - nextFishWindow[0],
+            time: targetFishWindow[1] - now,
+            timePoint: targetFishWindow[1],
+            fishWindowTotal: targetFishWindow[1] - targetFishWindow[0],
             nextInterval: nextTargetFishWindow ? nextTargetFishWindow[0] - now : undefined,
             nextTimePoint: nextTargetFishWindow ? nextTargetFishWindow[0] : undefined,
           }
