@@ -70,6 +70,9 @@ export default {
     expanded(expanded) {
       this.lazyExpansionValue = expanded ? 0 : undefined
     },
+    'fish.id': function() {
+      this.lazyExpansionValue = this.expanded ? 0 : undefined
+    },
   },
   methods: {
     goToFishingSpotAngelPage(anglerLocationId) {

@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panels hover flat tile :value="expansionValue">
+  <v-expansion-panels hover flat tile v-model="lazyExpansionValue">
     <v-expansion-panel>
       <v-expansion-panel-header>
         <div style="display: flex; justify-content: center">
@@ -53,10 +53,21 @@ export default {
       default: false,
     },
   },
-  computed: {
-    expansionValue() {
-      return this.expanded ? 0 : undefined
+  data: vm => ({
+    lazyExpansionValue: vm.expanded ? 0 : undefined,
+  }),
+  created() {
+    this.lazyExpansionValue = this.expanded ? 0 : undefined
+  },
+  watch: {
+    expanded(expanded) {
+      this.lazyExpansionValue = expanded ? 0 : undefined
     },
+    'fish.id': function() {
+      this.lazyExpansionValue = this.expanded ? 0 : undefined
+    },
+  },
+  computed: {
     fishWindows() {
       let fishWindows = this.fishWeatherChangePart.fishWindows.filter(it => it[1] >= Date.now())
       if (FishWindow.FISH_WINDOW_FORECAST_N > fishWindows.length) {

@@ -101,6 +101,7 @@ export default {
       const fishingSpot = this.getFishingSpot(this.value.location)
       const hasPredators = Object.keys(this.value.predators).length > 0
       return {
+        id: this.value._id,
         startHourText: DataUtil.formatET(this.value.startHour),
         endHourText: DataUtil.formatET(this.value.endHour),
         hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
