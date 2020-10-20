@@ -180,6 +180,15 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.2.4</div>
+          <ul>
+            <li>
+              更新地图范围提示，增加地图：红玉海, 雷克兰德, 拉凯提卡大森林, 游末邦。（持续更新中）
+            </li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.2.3</div>
           <ul>
             <li>增加闹钟列表，点击列表中时间或详细列表中铃铛即可添加，详细设置在设置对话框中。</li>
