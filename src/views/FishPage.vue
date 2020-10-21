@@ -169,6 +169,7 @@ import { Pane, Splitpanes } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
 import FishDetail from '@/components/FishDetail'
 import { Howl } from 'howler'
+import NotificationUtil from '@/utils/NotificationUtil'
 
 export default {
   name: 'fish-page',
@@ -347,6 +348,8 @@ export default {
       'getWeather',
       'getFishToBeNotified',
       'notification',
+      'getItemIconUrl',
+      'isSystemNotificationEnabled',
     ]),
   },
   watch: {
@@ -406,6 +409,7 @@ export default {
     loadingSounds() {
       return Promise.all(
         DataUtil.NOTIFICATION_SOUNDS.map(sound => {
+          if (sound.filename == null) return Promise.resolve({ key: sound.key, player: null })
           return import(`@/assets/sound/${sound.filename}`).then(it => {
             return { key: sound.key, player: new Howl({ src: it?.default, preload: true }) }
           })
@@ -413,54 +417,54 @@ export default {
       )
     },
     checkNotification(now) {
-      const maxBellCnt = this.notification.settings.filter(it => it.enabled).length
       const rangeToEnsureAlarm = DataUtil.INTERVAL_SECOND * 2
-      const soundsToPlay = new Set()
-      const toRingBell =
-        this.toBeNotifiedFishList.some(fish => {
-          const countDown = this.fishListTimePart[fish.id]?.countDown
-          if (countDown?.type === DataUtil.ALL_AVAILABLE) return false
+      let notifications = []
+      this.toBeNotifiedFishList.forEach(fish => {
+        const countDown = this.fishListTimePart[fish.id]?.countDown
+        if (countDown?.type === DataUtil.ALL_AVAILABLE) return false
 
-          this.notification.settings.forEach(setting => {
-            if (setting.enabled) {
-              const fishWindows = this.fishListWeatherChangePart[fish.id]?.fishWindows ?? []
-              fishWindows
-                .map(fishWindow => fishWindow[0] - now)
-                .filter((it, index) => it > 0 && index < 2)
-                .some(interval => {
-                  // console.log(fish.id)
-                  const notifyMin = setting.before * DataUtil.INTERVAL_MINUTE
-                  const notifyMax = notifyMin + rangeToEnsureAlarm
+        this.notification.settings.forEach(setting => {
+          if (setting.enabled) {
+            const fishWindows = this.fishListWeatherChangePart[fish.id]?.fishWindows ?? []
+            fishWindows
+              .map(fishWindow => fishWindow[0] - now)
+              .filter((it, index) => it > 0 && index < 2)
+              .some(interval => {
+                // console.log(fish.id)
+                const notifyMin = setting.before * DataUtil.INTERVAL_MINUTE
+                const notifyMax = notifyMin + rangeToEnsureAlarm
 
-                  // let d = new Date(interval)
-                  // console.log(d.getUTCMinutes(), d.getUTCSeconds())
-                  // d = new Date(notifyMax)
-                  // console.log(d.getUTCMinutes(), d.getUTCSeconds())
-                  // console.log(interval < notifyMax && interval > notifyMin)
-                  if (interval < notifyMax && interval > notifyMin) {
-                    soundsToPlay.add(setting.sound)
-                    return true
-                  } else {
-                    return false
-                  }
-                })
-            }
-          })
-
-          return soundsToPlay.size === maxBellCnt
-        }) || soundsToPlay.size > 0
+                // let d = new Date(interval)
+                // console.log(d.getUTCMinutes(), d.getUTCSeconds())
+                // d = new Date(notifyMax)
+                // console.log(d.getUTCMinutes(), d.getUTCSeconds())
+                // console.log(interval < notifyMax && interval > notifyMin)
+                if (interval < notifyMax && interval > notifyMin) {
+                  // soundsToPlay.add(setting.sound)
+                  notifications.push({ fish, setting })
+                  return true
+                } else {
+                  return false
+                }
+              })
+          }
+        })
+      })
+      const toRingBell = notifications.length > 0
 
       if (toRingBell && this.notifiedBefore === 0) {
-        this.ringBell(soundsToPlay)
+        this.ringBell(notifications.map(it => it.setting.sound))
+        if (this.isSystemNotificationEnabled) {
+          NotificationUtil.showFishNotification(notifications)
+        }
         this.notifiedBefore = 3
       } else if (this.notifiedBefore > 0) {
         this.notifiedBefore--
       }
     },
     ringBell(soundsToPlay) {
-      console.log('ring bell!')
       soundsToPlay.forEach(key => {
-        this.sounds[key]?.player.volume(this.notification.volume).play()
+        this.sounds[key]?.player?.volume(this.notification.volume).play()
       })
     },
     updateFishListTimePart(now) {
@@ -498,6 +502,7 @@ export default {
           _id: fish._id,
           id: fish._id,
           icon: this.getItemIconClass(fish._id),
+          iconRemoteUrl: this.getItemIconUrl(fish._id),
           name: this.getItemName(fish._id),
           hasFishingSpot: fish.location != null,
           zone: this.getZoneName(fish.location),

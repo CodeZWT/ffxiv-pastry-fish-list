@@ -2,6 +2,7 @@ import TimeFormatter from '@/utils/TimeFormatter'
 import { DateTime } from 'luxon'
 
 const NOTIFICATION_SOUNDS = [
+  { key: 'mute', name_chs: '静音', filename: null },
   { key: 'incomingTell1', name_chs: '提示音1', filename: 'FFXIV_Incoming_Tell_1.mp3' },
   { key: 'incomingTell2', name_chs: '提示音2', filename: 'FFXIV_Incoming_Tell_2.mp3' },
   { key: 'incomingTell3', name_chs: '提示音3', filename: 'FFXIV_Incoming_Tell_3.mp3' },
@@ -173,7 +174,7 @@ export default {
   },
 
   PATCH_MAX: 5.2,
-  XIV_API_HOST: 'https://xivapi.com',
+  XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
   USER_DEFAULT_DATA: {
     // website version info
@@ -220,17 +221,18 @@ export default {
     rightPanePercentage: 30,
     notification: {
       volume: 0.5,
+      isSystemNotificationEnabled: true,
       settings: [
         {
           key: 'waiting',
-          sound: NOTIFICATION_SOUNDS[0].key,
+          sound: NOTIFICATION_SOUNDS[1].key,
           enabled: true,
           hasBefore: true,
           before: 2,
         },
         {
           key: 'fishing',
-          sound: NOTIFICATION_SOUNDS[1].key,
+          sound: NOTIFICATION_SOUNDS[2].key,
           enabled: true,
           hasBefore: false,
           before: 0,

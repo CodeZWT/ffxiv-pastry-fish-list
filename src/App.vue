@@ -185,6 +185,15 @@
             <li>
               更新地图范围提示，增加地图：红玉海, 雷克兰德, 拉凯提卡大森林, 游末邦。（持续更新中）
             </li>
+            <li>
+              增加系统提示支持
+            </li>
+            <ul>
+              <li>需要在浏览器授权，地址栏弹框时选择“允许”。</li>
+              <li>在Windows10系统中的“设置-通知和操作”中授权。</li>
+              <li>系统管理员会有一系列问题，请使用普通用户。</li>
+              <li>请关闭Windows的“专注助手”，以正常跳出通知。</li>
+            </ul>
           </ul>
           <p />
           <v-divider />
@@ -195,7 +204,7 @@
             <li>更新列表：在CD中的鱼显示下一次窗口期时间。</li>
             <li>更新设置</li>
             <ul>
-              <li>现在点击 "应用" 按钮才会生效。</li>
+              <li>现在点击“应用”按钮才会生效。</li>
               <li>添加闹钟相关选项。</li>
               <li>添加详情页面的自定义布局功能。</li>
             </ul>
@@ -393,6 +402,7 @@ import ResetButton from '@/components/ResetButton'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import FishSettingDialog from '@/components/FishSettingDialog'
+import NotificationUtil from '@/utils/NotificationUtil'
 
 export default {
   name: 'App',
@@ -442,6 +452,21 @@ export default {
       this.showPatchNoteDialog = true
     }
   },
+  mounted() {
+    NotificationUtil.requestNotificationPermission().then(status => {
+      if (status === 'default') {
+        this.showSnackbar({
+          text: this.$t('setting.dialog.notification.message.requestNotificationPermissionNotSelected'),
+          color: 'quaternary',
+        })
+      } else if (status === 'denied') {
+        this.showSnackbar({
+          text: this.$t('setting.dialog.notification.message.requestNotificationPermissionDenied'),
+          color: 'tertiary',
+        })
+      }
+    })
+  },
   methods: {
     toComparableVersion(version) {
       return version
@@ -468,6 +493,7 @@ export default {
       'setShowImportExportDialog',
       'setWebsiteVersion',
       'setActiveTab',
+      'showSnackbar',
     ]),
   },
 }

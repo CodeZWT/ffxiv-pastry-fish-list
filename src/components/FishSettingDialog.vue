@@ -46,6 +46,46 @@
                     </template>
                   </v-slider>
                 </div>
+                <div class="d-flex flex-row align-center pr-3">
+                  <v-label>{{ $t('setting.dialog.notification.systemNotification.title') }}</v-label>
+                  <v-switch
+                    :label="
+                      $t(
+                        `setting.dialog.notification.systemNotification.${
+                          lazyNotificationSetting.isSystemNotificationEnabled ? 'enabled' : 'disabled'
+                        }`
+                      )
+                    "
+                    class="pl-3"
+                    v-model="lazyNotificationSetting.isSystemNotificationEnabled"
+                  />
+                  <v-chip
+                    v-if="notificationStatus === 'default'"
+                    class="mx-2"
+                    color="quaternary"
+                    text-color="white"
+                    label
+                    @click="requestSystemNotification"
+                  >
+                    <v-avatar left>
+                      <v-icon>mdi-alert</v-icon>
+                    </v-avatar>
+                    {{ $t('setting.dialog.notification.message.notificationIsNotSelectedHint') }}
+                  </v-chip>
+                  <v-chip
+                    v-else-if="notificationStatus === 'denied'"
+                    label
+                    class="mx-2"
+                    color="tertiary"
+                    text-color="white"
+                  >
+                    <v-avatar left>
+                      <v-icon>mdi-alert</v-icon>
+                    </v-avatar>
+                    {{ $t('setting.dialog.notification.message.notificationIsDeniedHint') }}
+                  </v-chip>
+                </div>
+
                 <div v-for="setting in lazyNotificationSetting.settings" :key="setting.key" class="d-flex align-center">
                   <v-row>
                     <v-col class="col-sm-4 col-6">
@@ -83,7 +123,7 @@
                         item-value="key"
                         :label="'选择音效'"
                       />
-                      <v-btn icon @click="playSound(setting.sound)">
+                      <v-btn icon @click="playSound(setting.sound)" :disabled="!sounds[setting.sound].player">
                         <v-icon>mdi-play</v-icon>
                       </v-btn>
                     </v-col>
@@ -152,6 +192,7 @@ import { extend, ValidationObserver, ValidationProvider, setInteractionMode } fr
 import i18n from '@/i18n'
 import draggable from 'vuedraggable'
 import DetailItemSettingEntry from '@/components/DetailItemSettingEntry'
+import NotificationUtil from '@/utils/NotificationUtil'
 
 setInteractionMode('eager')
 
@@ -184,6 +225,8 @@ export default {
     lazyNotificationSetting: {},
     lazyEnabledDetailComponents: [],
     lazyDisabledDetailComponents: [],
+    lazyIsSystemNotificationEnabled: false,
+    notificationStatus: NotificationUtil.NOTIFICATION_PERMISSIONS.DEFAULT,
   }),
   computed: {
     showSettingDialog: {
@@ -198,7 +241,7 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
     ...mapState(['sounds']),
-    ...mapGetters(['opacity', 'notification', 'detailComponents']),
+    ...mapGetters(['opacity', 'notification', 'detailComponents', 'isSystemNotificationEnabled']),
   },
   watch: {
     showSettingDialog(showSettingDialog) {
@@ -217,9 +260,12 @@ export default {
       this.lazyNotificationSetting = cloneDeep(this.notification)
       this.lazyEnabledDetailComponents = cloneDeep(this.detailComponents.filter(it => it.enabled))
       this.lazyDisabledDetailComponents = cloneDeep(this.detailComponents.filter(it => !it.enabled))
+      this.lazyIsSystemNotificationEnabled = this.isSystemNotificationEnabled
+      this.isSystemNotificationGranted = NotificationUtil.isNotificationGranted()
+      this.notificationStatus = NotificationUtil.notificationStatus()
     },
     playSound(key) {
-      this.sounds[key]?.player.volume(this.lazyNotificationSetting.volume).play()
+      this.sounds[key]?.player?.volume(this.lazyNotificationSetting.volume).play()
     },
     onApply() {
       this.$refs.observer.validate().then(valid => {
@@ -257,7 +303,37 @@ export default {
     setNotificationSetting(setting) {
       this.setNotification(setting)
     },
-    ...mapMutations(['setOpacity', 'setNotification', 'setDetailArrangement']),
+    requestSystemNotification() {
+      if (!NotificationUtil.isNotificationGranted()) {
+        NotificationUtil.requestNotificationPermission().then(status => {
+          if (status === 'default') {
+            this.showSnackbar({
+              text: this.$t('setting.dialog.notification.message.requestNotificationPermissionNotSelected'),
+              color: 'quaternary',
+            })
+          } else if (status === 'denied') {
+            this.showSnackbar({
+              text: this.$t('setting.dialog.notification.message.requestNotificationPermissionDenied'),
+              color: 'tertiary',
+            })
+          } else {
+            this.showSnackbar({
+              text: this.$t('setting.dialog.notification.message.requestNotificationPermissionSuccessfully'),
+              color: 'success',
+            })
+          }
+          this.notificationStatus = status
+        })
+      }
+    },
+    ...mapMutations([
+      'setOpacity',
+      'setNotification',
+      'setDetailArrangement',
+      'enableSystemNotification',
+      'disableSystemNotification',
+      'showSnackbar',
+    ]),
   },
 }
 </script>

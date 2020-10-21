@@ -180,6 +180,9 @@ export default new Vuex.Store({
     detailComponents: state => {
       return state.userData.detailArrangement.components
     },
+    isSystemNotificationEnabled: state => {
+      return state.userData.notification.isSystemNotificationEnabled
+    },
   },
   mutations: {
     setUserData(state, data) {
@@ -252,6 +255,20 @@ export default new Vuex.Store({
     },
     setDetailArrangement(state, detailArrangement) {
       state.userData = { ...state.userData, detailArrangement }
+      saveToLocalStorage(state.userData)
+    },
+    enableSystemNotification(state) {
+      state.userData = {
+        ...state.userData,
+        notification: { ...state.userData.notification, isSystemNotificationEnabled: true },
+      }
+      saveToLocalStorage(state.userData)
+    },
+    disableSystemNotification(state) {
+      state.userData = {
+        ...state.userData,
+        notification: { ...state.userData.notification, isSystemNotificationEnabled: false },
+      }
       saveToLocalStorage(state.userData)
     },
   },

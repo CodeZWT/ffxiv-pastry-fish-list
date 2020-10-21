@@ -107,7 +107,19 @@
           "fishing": "窗口期开始闹钟"
         },
         "before": "提前",
-        "unit": "分钟"
+        "unit": "分钟",
+        "systemNotification": {
+          "title": "系统通知",
+          "enabled":"已启用",
+          "disabled": "未启用"
+        },
+        "message": {
+          "notificationIsNotSelectedHint": "未获取通知权限，点击此处重新设置通知权限。",
+          "notificationIsDeniedHint": "通知已被禁用，点击地址栏左侧图标重新授权。",
+          "requestNotificationPermissionNotSelected": "未授权通知败，点击地址栏左侧图标重新授权。",
+          "requestNotificationPermissionDenied": "禁用了通知，点击地址栏左侧图标重新授权。",
+          "requestNotificationPermissionSuccessfully": "获取权限成功。"
+        }
       },
       "detailArrangement": {
         "title": "详细视图布局设置（直接拖动）",
@@ -200,6 +212,14 @@
     },
     "buffAndBaits": {
       "title": "需要状态 | 鱼饵/以小钓大"
+    }
+  },
+  "notification": {
+    "fishAlarm": {
+      "title": "有鱼准备脱钩了！(共{count}条)",
+      "body": "{type}({count}): {fishList}",
+      "fishing": "进入CD",
+      "waiting": "距开始还有{minutes}分钟"
     }
   }
 }
