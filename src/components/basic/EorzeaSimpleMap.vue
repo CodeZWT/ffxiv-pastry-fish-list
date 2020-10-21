@@ -145,6 +145,9 @@ const AVAILABLE_HELP = new Set([
   '绝鬼岛近海',
   '红玉炮台近海',
   '渔村沿岸',
+  '白银水路',
+  '白银乡',
+  '防波堤',
 ])
 
 export default {
