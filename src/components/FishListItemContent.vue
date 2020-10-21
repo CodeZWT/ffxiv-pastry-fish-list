@@ -176,7 +176,7 @@ export default {
       return DataUtil.pixelToPos(sizeFactor, pos).toFixed(0)
     },
     resize() {
-      this.$refs.simpleMap.resize()
+      this.$refs.simpleMap?.resize()
     },
     getName: DataUtil.getName,
   },
