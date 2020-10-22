@@ -14,7 +14,8 @@
           <v-col cols="12">
             <v-badge :color="TUG_ICON_COLOR[bait.tugIcon]" :content="bait.tugIcon" inline />
           </v-col>
-          <v-col cols="12" style="height: 16px" :data-ck-action-name="bait.hooksetSkillName">
+          <!--  :data-ck-action-name="bait.hooksetSkillName"  -->
+          <v-col cols="12" style="height: 16px">
             <div :class="[bait.hooksetIcon, 'hookset-icon']" />
           </v-col>
         </v-row>
