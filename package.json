@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "build": "vue-cli-service build",
+    "build:test": "vue-cli-service build --mode test",
     "lint": "vue-cli-service lint",
     "deploy": "rm -rf ../ff14-list/dist && cp -r ./dist ../ff14-list",
     "deploy:test": "rm -rf ../ff14-list-test/dist && cp -r ./dist ../ff14-list-test",
     "dev": "vue-cli-service serve",
-    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
+    "totest": "cd ../ff14-list-test && git add . && git commit -m \"test\" && git push"
   },
   "dependencies": {
     "@better-scroll/core": "^2.0.4",

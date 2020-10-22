@@ -65,7 +65,7 @@
         </v-tooltip>
       </click-helper>
 
-      <v-toolbar-title>{{ $t('top.toolBarTitle') }}</v-toolbar-title>
+      <v-toolbar-title>{{ title }}</v-toolbar-title>
       <template v-if="!collapse">
         <v-spacer />
         <click-helper @click="setShowSearchDialog(true)">
@@ -403,11 +403,12 @@ import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import FishSettingDialog from '@/components/FishSettingDialog'
 import NotificationUtil from '@/utils/NotificationUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 export default {
   name: 'App',
   components: { FishSettingDialog, ClickHelper, ResetButton },
-  data: () => ({
+  data: vm => ({
     now: Date.now(),
     fisher,
     version,
@@ -420,6 +421,7 @@ export default {
     collapse: false,
     listFishCnt: [{ cnt: 0 }, { cnt: 0 }, { cnt: 0 }],
     TABS: DataUtil.TABS,
+    title: vm.$t('top.toolBarTitle') + (DevelopmentModeUtil.isTest() ? vm.$t('top.testSuffix') : ''),
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute

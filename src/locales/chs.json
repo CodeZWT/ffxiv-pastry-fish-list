@@ -2,6 +2,7 @@
   "top": {
     "systemBarTitle": "鱼糕",
     "toolBarTitle": "钓鱼时钟",
+    "testSuffix": "===测试版===",
     "menu": "导入/导出",
     "setting": "设置",
     "patchNote": "更新笔记",

@@ -1,6 +1,22 @@
 const webpack = require('webpack')
 
-const ASSET_PATH = process.env.NODE_ENV === 'production' ? '/ff14-list/' : '/'
+console.log('IN', process.env.NODE_ENV)
+
+let ASSET_PATH
+switch (process.env.NODE_ENV) {
+  case 'development':
+    ASSET_PATH = '/'
+    break
+  case 'production':
+    ASSET_PATH = '/ff14-list/'
+    break
+  case 'test':
+    ASSET_PATH = '/ff14-list-test'
+    break
+  default:
+    console.error('NODE_ENV not supported!')
+    ASSET_PATH = '/'
+}
 
 module.exports = {
   transpileDependencies: ['vuetify'],
