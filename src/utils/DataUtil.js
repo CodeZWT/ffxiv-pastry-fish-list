@@ -150,6 +150,11 @@ export default {
     Precision: '001116',
   },
 
+  HOOKSET_SKILL_NAME_DICT: {
+    Powerful: '强力提钩',
+    Precision: '精准提钩',
+  },
+
   COUNT_DOWN_TYPE: ['fishing', 'waiting', 'allAvailable'],
 
   FISHING: 0,

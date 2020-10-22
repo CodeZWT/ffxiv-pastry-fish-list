@@ -186,7 +186,7 @@
       </v-col>
       <v-col class="col-12 col-sm-3 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0">
         <div v-if="fish.hasFishEyes || fish.hasPredators || fish.hasSnagging" class="mr-1">
-          <div v-if="fish.hasFishEyes" style="display: flex; align-items: center">
+          <div v-if="fish.hasFishEyes" style="display: flex; align-items: center" data-ck-action-name="鱼眼">
             <div :class="fish.fishEyesIcon" />
             <div class="ml-1">{{ fish.fishEyesText }}</div>
           </div>
@@ -194,7 +194,7 @@
             <div :class="fish.predatorsIcon" />
           </div>
           <div v-if="fish.hasSnagging">
-            <div :class="fish.snaggingIcon" />
+            <div :class="fish.snaggingIcon" data-ck-action-name="钓组" />
           </div>
         </div>
         <fish-bait-list :baits="fish.baits" />

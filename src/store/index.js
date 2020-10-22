@@ -85,6 +85,7 @@ export default new Vuex.Store({
         tugIcon: DataUtil.TUG_ICON[fish.tug],
         hookset: fish.hookset,
         hooksetIcon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[fish.hookset]),
+        hooksetSkillName: DataUtil.HOOKSET_SKILL_NAME_DICT[fish.hookset],
         baitId: baitId,
         baitName: getters.getItemName(baitId),
         baitIcon: getters.getItemIconClass(baitId),
