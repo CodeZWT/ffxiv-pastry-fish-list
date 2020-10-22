@@ -8,7 +8,7 @@ import DataUtil from '@/utils/DataUtil'
 import EorzeaWeather from '@/utils/Weather'
 import EorzeaTime from '@/utils/Time'
 import { cloneDeep, groupBy } from 'lodash'
-import store from 'store2'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
 Vue.use(Vuex)
 
@@ -35,7 +35,7 @@ export default new Vuex.Store({
     activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
     aetheryte: groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
     sounds: {},
-    userData: merge(DataUtil.USER_DEFAULT_DATA, getUserDataFromLocalStorage()),
+    userData: merge(DataUtil.USER_DEFAULT_DATA, LocalStorageUtil.loadUserData()),
   },
   getters: {
     getItemIconUrl: state => id => {
@@ -187,11 +187,11 @@ export default new Vuex.Store({
   mutations: {
     setUserData(state, data) {
       state.userData = { ...DataUtil.USER_DEFAULT_DATA, ...data }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setUserDataToDefault(state) {
       state.userData = DataUtil.USER_DEFAULT_DATA
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setFishCompleted(state, { fishId, completed }) {
       state.userData = updateUserDataStateRecords(state.userData, 'completed', fishId, completed)
@@ -204,11 +204,11 @@ export default new Vuex.Store({
     },
     setFilters(state, filters) {
       state.userData = { ...state.userData, filters }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     toggleFilterPanel(state) {
       state.userData = { ...state.userData, showFilter: !state.userData.showFilter }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setShowSearchDialog(state, show) {
       state.showSearchDialog = show
@@ -225,51 +225,51 @@ export default new Vuex.Store({
     },
     setNotShowBanner(state) {
       state.userData = { ...state.userData, showBanner: false }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setOpacity(state, opacity) {
       state.userData = { ...state.userData, opacity }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setWebsiteVersion(state, websiteVersion) {
       state.userData = { ...state.userData, websiteVersion }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setRightPanePercentage(state, rightPanePercentage) {
       state.userData = { ...state.userData, rightPanePercentage }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setActiveTab(state, activeTabIndex) {
       state.activeTabIndex = activeTabIndex
     },
     setNotification(state, notification) {
       state.userData = { ...state.userData, notification }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setSounds(state, sounds) {
       state.sounds = sounds
     },
     clearToBeNotified(state) {
       state.userData = { ...state.userData, toBeNotified: [] }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setDetailArrangement(state, detailArrangement) {
       state.userData = { ...state.userData, detailArrangement }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     enableSystemNotification(state) {
       state.userData = {
         ...state.userData,
         notification: { ...state.userData.notification, isSystemNotificationEnabled: true },
       }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     disableSystemNotification(state) {
       state.userData = {
         ...state.userData,
         notification: { ...state.userData.notification, isSystemNotificationEnabled: false },
       }
-      saveToLocalStorage(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
   },
   actions: {},
@@ -283,14 +283,6 @@ function updateUserDataStateRecords(userData, type, key, value) {
   } else {
     temp[type] = userData[type].filter(it => it !== key)
   }
-  saveToLocalStorage(temp)
+  LocalStorageUtil.storeUserData(temp)
   return temp
-}
-
-function saveToLocalStorage(userData) {
-  store.set('userData', userData)
-}
-
-function getUserDataFromLocalStorage() {
-  return store.get('userData')
 }
