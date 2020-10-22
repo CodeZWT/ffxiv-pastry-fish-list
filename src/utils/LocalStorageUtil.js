@@ -19,8 +19,8 @@ export default {
     return userData
   },
 
-  storeAndBackupUserData() {
+  storeAndBackupUserData(userData) {
     store.set(USER_DATA_KEY_STORE_BACKUP, store.get(USER_DATA_KEY))
-    return store.get(USER_DATA_KEY)
+    store.set(USER_DATA_KEY, userData)
   },
 }

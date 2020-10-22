@@ -35,7 +35,7 @@ export default new Vuex.Store({
     activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
     aetheryte: groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
     sounds: {},
-    userData: merge(DataUtil.USER_DEFAULT_DATA, LocalStorageUtil.loadUserData()),
+    userData: merge(DataUtil.USER_DEFAULT_DATA, LocalStorageUtil.loadAndBackupUserData()),
   },
   getters: {
     getItemIconUrl: state => id => {
@@ -187,7 +187,7 @@ export default new Vuex.Store({
   mutations: {
     setUserData(state, data) {
       state.userData = { ...DataUtil.USER_DEFAULT_DATA, ...data }
-      LocalStorageUtil.storeUserData(state.userData)
+      LocalStorageUtil.storeAndBackupUserData(state.userData)
     },
     setUserDataToDefault(state) {
       state.userData = DataUtil.USER_DEFAULT_DATA
