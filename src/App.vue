@@ -404,6 +404,7 @@ import DataUtil from '@/utils/DataUtil'
 import FishSettingDialog from '@/components/FishSettingDialog'
 import NotificationUtil from '@/utils/NotificationUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import ClipboardJS from 'clipboard'
 
 export default {
   name: 'App',
@@ -455,6 +456,8 @@ export default {
     }
   },
   mounted() {
+    this.cafeKitTooltipCopyPatch()
+
     NotificationUtil.requestNotificationPermission().then(status => {
       if (status === 'default') {
         this.showSnackbar({
@@ -488,6 +491,16 @@ export default {
     },
     setActiveTabLater(index) {
       setTimeout(() => this.setActiveTab(index), 500)
+    },
+    cafeKitTooltipCopyPatch() {
+      new ClipboardJS('.cafekit.ck-popup .ck-container button', {
+        text: trigger => {
+          if (trigger.innerText === '已复制') {
+            this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
+            return window.document.getElementsByClassName('ck-item-name-name')[0].innerText.trim()
+          }
+        },
+      })
     },
     ...mapMutations([
       'toggleFilterPanel',
