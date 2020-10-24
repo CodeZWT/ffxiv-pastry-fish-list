@@ -481,6 +481,7 @@ export default {
         const seconds = intervalDate.getUTCSeconds()
 
         if (
+          fish._id === this.selectedFishId ||
           !lazyStartTime ||
           interval < DataUtil.INTERVAL_MINUTE ||
           (interval < DataUtil.INTERVAL_HOUR && seconds > 57) ||

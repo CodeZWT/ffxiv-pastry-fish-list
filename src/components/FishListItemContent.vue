@@ -131,7 +131,7 @@ export default {
         countDownType: this.fishTimePart.countDown.type,
         countDownTypeName: DataUtil.getCountDownTypeName(this.fishTimePart.countDown.type),
         countDownTime: this.fishTimePart.countDown.time,
-        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time),
+        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time, 2),
         countDownTimePoint: this.fishTimePart.countDown?.timePoint,
         countDownTimePointText: this.$t('countDown.timePointHint', {
           timePoint: DataUtil.formatDateTime(this.fishTimePart.countDown?.timePoint),

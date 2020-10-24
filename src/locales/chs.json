@@ -214,6 +214,9 @@
     },
     "buffAndBaits": {
       "title": "需要状态 | 鱼饵/以小钓大"
+    },
+    "countDown": {
+      "loading": "计算中..."
     }
   },
   "notification": {
