@@ -8,12 +8,12 @@
     <!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />-->
 
     <!--    <pin-button :value="transformedFishPart.pinned" @input="setPinned($event)" />-->
-    <v-divider v-if="inPredator"/>
+    <v-divider v-if="inPredator" />
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col class="col-6 col-sm-3">
         <div class="d-flex fill-height align-center flex-row pr-1" style="min-height: 48px">
           <div
-            class="d-flex align-center flex-column flex-sm-row"
+            class="d-flex align-center flex-row"
             :style="{ visibility: mode !== 'CONTENT' && inPredator ? 'hidden' : 'visible' }"
           >
             <toggle-button
@@ -22,7 +22,7 @@
               checked-icon="mdi-pin"
               unchecked-icon="mdi-pin-outline"
             />
-            <toggle-button :value="transformedFishPart.completed" @input="setCompleted($event)" />
+            <toggle-button v-if="!isMobile" :value="transformedFishPart.completed" @input="setCompleted($event)" />
           </div>
 
           <v-badge v-if="inPredator" :content="fish.requiredCnt" color="quaternary black--text" overlap bottom bordered>
@@ -188,7 +188,14 @@
           </div>
         </div>
       </v-col>
-      <v-col class="col-12 col-sm-3 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0">
+      <v-col v-if="isMobile" cols="1">
+        <toggle-button
+          :value="transformedFishPart.completed"
+          @input="setCompleted($event)"
+          :style="{ visibility: mode !== 'CONTENT' && inPredator ? 'hidden' : 'visible' }"
+        />
+      </v-col>
+      <v-col class="col-11 col-sm-3 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0">
         <div v-if="fish.hasFishEyes || fish.hasPredators || fish.hasSnagging" class="mr-1">
           <div v-if="fish.hasFishEyes" style="display: flex; align-items: center" data-ck-action-name="鱼眼">
             <div :class="fish.fishEyesIcon" />

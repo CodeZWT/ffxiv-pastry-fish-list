@@ -6,7 +6,7 @@
     />
     <v-row no-gutters>
       <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
-        <div class="d-flex align-center flex-column flex-sm-row">
+        <div class="d-flex align-center flex-column">
           <toggle-button
             :value="fish.pinned"
             @input="setPinned($event)"
