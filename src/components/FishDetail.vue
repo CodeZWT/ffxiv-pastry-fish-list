@@ -2,9 +2,14 @@
   <div>
     <template v-if="fish">
       <div>
-        <fish-list-expanded-header :value="fish" :fish-time-part="fishTimePart" show-close @close="$emit('close')" />
+        <fish-list-expanded-header
+          :value="fish"
+          :fish-time-part="fishTimePart"
+          :show-close="inPane"
+          @close="$emit('close')"
+        />
       </div>
-      <div class="detail-header">
+      <div :class="{ 'detail-header': inPane }">
         <fish-list-item-content
           ref="detailContent"
           :value="fish"
@@ -31,6 +36,10 @@ export default {
     fish: {
       type: Object,
       default: undefined,
+    },
+    inPane: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

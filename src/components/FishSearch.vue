@@ -9,7 +9,7 @@
           <v-row v-if="isMobile">
             <v-col>
               <v-icon class="mr-1">mdi-information</v-icon>
-              在ACT模式下如果无法输入，请参照帮助中的步骤设置ACTWS
+              在ACT模式下如果无法输入，请参照帮助中的步骤设置ACTWS。
             </v-col>
           </v-row>
           <v-row>
@@ -41,16 +41,7 @@
         </v-container>
         <template v-if="fish != null">
           <v-divider class="mb-3" />
-          <div style="position:relative;" class="py-4 px-6">
-            <fish-list-expanded-header :value="fish" :fish-time-part="fishListTimePart[fish._id]" />
-          </div>
-          <fish-list-item-content
-            :open="dialog"
-            :value="fish"
-            :fish-time-part="fishListTimePart[fish._id]"
-            :fish-weather-change-part="fishListWeatherChangePart[fish._id]"
-            :predators="getPredators(fish)"
-          ></fish-list-item-content>
+          <fish-detail :fish="fish" />
         </template>
       </v-card-text>
       <v-card-actions>
@@ -64,15 +55,14 @@
 
 <script>
 import DataUtil from '@/utils/DataUtil'
-import FishListItemContent from '@/components/FishListItemContent'
 import { mapGetters, mapState } from 'vuex'
-import FishListExpandedHeader from '@/components/FishListExpandedHeader'
 import * as PinyinMatch from 'pinyin-match'
 import ClickHelper from '@/components/basic/ClickHelper'
+import FishDetail from '@/components/FishDetail'
 
 export default {
   name: 'FishSearch',
-  components: { ClickHelper, FishListExpandedHeader, FishListItemContent },
+  components: { FishDetail, ClickHelper },
   props: {
     value: {
       type: Boolean,
@@ -81,6 +71,10 @@ export default {
     fishData: {
       type: Array,
       default: () => [],
+    },
+    fishDict: {
+      type: Object,
+      default: () => ({}),
     },
     fishListTimePart: {
       type: Object,
@@ -103,9 +97,9 @@ export default {
         return this.$emit('input', showDialog)
       },
     },
-    fish() {
-      return this.fishData.filter(it => it._id === this.fishId)[0]
-    },
+    // fish() {
+    //   return this.fishData.filter(it => it._id === this.fishId)[0]
+    // },
     fishSearchData() {
       return this.fishData.map(it => ({
         id: it._id,
@@ -113,18 +107,20 @@ export default {
         icon: this.getItemIconClass(it._id),
       }))
     },
-    getPredators() {
-      return value =>
-        DataUtil.getPredators(
-          value,
-          this.allFish,
-          this.fishListTimePart,
-          this.fishListWeatherChangePart
-          // this.getFishCompleted(value._id)
-        )
-    },
+    // getPredators() {
+    //   return value =>
+    //     DataUtil.getPredators(this.allFish[value], this.allFish, this.fishListTimePart, this.fishListWeatherChangePart)
+    // },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
+    },
+    fish() {
+      return this.assembleSelectedFish(
+        this.fishId,
+        this.fishDict,
+        this.fishListTimePart,
+        this.fishListWeatherChangePart
+      )
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getItemName', 'getFishCompleted', 'getItemIconClass']),
@@ -133,14 +129,34 @@ export default {
     dialog() {
       this.fishId = undefined
     },
+    fishId(fishId) {
+      if (fishId != null) {
+        this.$emit('change', fishId)
+      }
+    },
   },
   methods: {
     filterOptions(item, queryText, itemText) {
       if (this.$i18n.locale === 'chs') {
-        // console.log(PinyinMatch.match(itemText, queryText))
         return PinyinMatch.match(itemText, queryText) !== false
       } else {
         return itemText.toLowerCase().indexOf(queryText.toLowerCase()) > -1
+      }
+    },
+
+    assembleSelectedFish(selectedFishId, fishDict, fishListTimePart, fishListWeatherChangePart) {
+      const fish = this.allFish[selectedFishId]
+      if (fish) {
+        return {
+          ...fish,
+          parts: {
+            fishTimePart: fishListTimePart[selectedFishId],
+            fishWeatherChangePart: fishListWeatherChangePart[selectedFishId],
+            predators: DataUtil.getPredators(fish, fishDict, fishListTimePart, fishListWeatherChangePart),
+          },
+        }
+      } else {
+        return undefined
       }
     },
   },

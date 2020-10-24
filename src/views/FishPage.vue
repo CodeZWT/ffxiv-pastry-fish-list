@@ -25,8 +25,10 @@
               <fish-search
                 v-model="showSearchDialog"
                 :fish-data="lazyFishSourceList"
+                :fish-dict="lazyTransformedFishDict"
                 :fish-list-time-part="fishListTimePart"
                 :fish-list-weather-change-part="fishListWeatherChangePart"
+                @change="onSearchFishChanged"
               />
               <div :class="{ 'main-area': true, 'show-filter': showFilter }">
                 <div style="width: 100%">
@@ -146,7 +148,7 @@
           </v-sheet>
         </div>
         <div v-else class="fish-detail-pane">
-          <fish-detail :fish="selectedFish" ref="fishDetail" @close="showRightPane = false" />
+          <fish-detail :fish="selectedFish" ref="fishDetail" @close="showRightPane = false" in-pane />
         </div>
       </pane>
     </splitpanes>
@@ -206,6 +208,7 @@ export default {
     sortedFishIds: [],
     fishListTimePart: {},
     notifiedBefore: 0,
+    searchedFishId: undefined,
   }),
   computed: {
     filteredFishIdSet() {
@@ -481,7 +484,8 @@ export default {
         const seconds = intervalDate.getUTCSeconds()
 
         if (
-          fish._id === this.selectedFishId ||
+          (this.selectedFishId != null && fish._id === this.selectedFishId) ||
+          (this.searchedFishId != null && fish._id === this.searchedFishId) ||
           !lazyStartTime ||
           interval < DataUtil.INTERVAL_MINUTE ||
           (interval < DataUtil.INTERVAL_HOUR && seconds > 57) ||
@@ -697,6 +701,9 @@ export default {
         this.$refs.fishDetail?.resize()
       }, 500)
     },
+    onSearchFishChanged(fishId) {
+      this.searchedFishId = fishId
+    },
     ...mapMutations([
       'setFilters',
       'setShowSearchDialog',
@@ -722,6 +729,7 @@ export default {
   z-index: 4
 
   &:not(.show-filter)
+
     display: none
 
 //.main-area::v-deep

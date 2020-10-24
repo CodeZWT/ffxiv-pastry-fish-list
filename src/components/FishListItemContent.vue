@@ -65,10 +65,6 @@ export default {
     DetailItemPredators,
   },
   props: {
-    open: {
-      type: Boolean,
-      default: false,
-    },
     value: {
       type: Object,
       default: () => ({}),

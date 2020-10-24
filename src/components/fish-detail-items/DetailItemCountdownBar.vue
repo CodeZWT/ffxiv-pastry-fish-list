@@ -76,7 +76,6 @@ export default {
   watch: {
     'fish.id': {
       handler: function() {
-        console.log(this.fish.countDownType)
         this.loading =
           this.fish.countDownType !== DataUtil.ALL_AVAILABLE && this.fish.countDownTime > DataUtil.INTERVAL_MINUTE
         setTimeout(() => (this.loading = false), 500)
