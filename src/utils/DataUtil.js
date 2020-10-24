@@ -102,9 +102,23 @@ export default {
     )
   },
 
-  formatDateTime(millis, format = '[MM-dd] HH:mm:ss') {
+  formatDateTime(millis, format = '[MM-dd {dayDescription}] HH:mm:ss') {
     if (millis) {
-      return DateTime.fromMillis(millis).toFormat(format)
+      const date = DateTime.fromMillis(millis)
+      const now = DateTime.fromMillis(Date.now())
+      const days = date.day - now.day
+      let dayText
+      switch (days) {
+        case 0:
+          dayText = '今天'
+          break
+        case 1:
+          dayText = '明天'
+          break
+        default:
+          dayText = date.weekdayShort
+      }
+      return date.toFormat(format.replace('{dayDescription}', dayText))
     } else {
       return ''
     }
