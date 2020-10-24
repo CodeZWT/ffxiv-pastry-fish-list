@@ -55,7 +55,8 @@
     "dialog": {
       "title": "搜索鱼",
       "placeholder": "输入鱼名称搜索",
-      "close": "关闭"
+      "close": "关闭",
+      "hint": "在ACT模式下如果无法输入，请参照帮助中的步骤设置ACTWS。"
     }
   },
   "importExport": {

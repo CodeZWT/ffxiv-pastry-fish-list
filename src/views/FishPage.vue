@@ -17,7 +17,7 @@
           </v-sheet>
         </div>
         <div v-else class="main-pane">
-          <v-container class="py-0">
+          <v-container :class="{ 'py-0': true, 'px-0': isMobile }">
             <div>
               <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
                 <fish-filter :filters="filters" @input="onFiltersUpdate" />
@@ -211,6 +211,9 @@ export default {
     searchedFishId: undefined,
   }),
   computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
+    },
     filteredFishIdSet() {
       const idSet = new Set()
       this.lazyTransformedFishList

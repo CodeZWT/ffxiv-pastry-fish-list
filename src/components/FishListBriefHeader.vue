@@ -8,6 +8,7 @@
     <!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />-->
 
     <!--    <pin-button :value="transformedFishPart.pinned" @input="setPinned($event)" />-->
+    <v-divider v-if="inPredator"/>
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col class="col-6 col-sm-3">
         <div class="d-flex fill-height align-center flex-row pr-1" style="min-height: 48px">
@@ -98,7 +99,7 @@
           </div>
         </div>
       </v-col>
-      <v-col class="col-4 col-sm-3 d-flex flex-column justify-center">
+      <v-col class="col-6 col-sm-3 d-flex flex-column justify-center">
         <div v-if="mode === 'CONTENT' && inPredator && fish.hasTimeConstraint">
           {{ fish.startHourText }} - {{ fish.endHourText }}
         </div>

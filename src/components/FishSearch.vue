@@ -1,17 +1,17 @@
 <template>
   <v-dialog v-model="dialog" :fullscreen="isMobile" max-width="1264px" style="z-index: 9998" scrollable>
     <v-card>
-      <v-card-title>
-        <span class="headline">{{ $t('search.dialog.title') }}</span>
-      </v-card-title>
+<!--      <v-card-title>-->
+<!--        <span class="headline">{{ $t('search.dialog.title') }}</span>-->
+<!--      </v-card-title>-->
       <v-card-text>
-        <v-container>
-          <v-row v-if="isMobile">
-            <v-col>
-              <v-icon class="mr-1">mdi-information</v-icon>
-              在ACT模式下如果无法输入，请参照帮助中的步骤设置ACTWS。
-            </v-col>
-          </v-row>
+        <div>
+<!--          <v-row v-if="isMobile">-->
+<!--            <v-col>-->
+<!--              <v-icon class="mr-1">mdi-information</v-icon>-->
+<!--              -->
+<!--            </v-col>-->
+<!--          </v-row>-->
           <v-row>
             <v-col>
               <v-autocomplete
@@ -22,6 +22,7 @@
                 :label="$t('search.dialog.placeholder')"
                 clearable
                 :filter="filterOptions"
+                :hint="$t('search.dialog.hint')"
               >
                 <template v-slot:item="data">
                   <click-helper>
@@ -38,7 +39,7 @@
               </v-autocomplete>
             </v-col>
           </v-row>
-        </v-container>
+        </div>
         <template v-if="fish != null">
           <v-divider class="mb-3" />
           <fish-detail :fish="fish" />
