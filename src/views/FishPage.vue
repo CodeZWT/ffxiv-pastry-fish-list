@@ -373,7 +373,7 @@ export default {
     this.loading = true
   },
   async mounted() {
-    document.title = `${this.$t('top.systemBarTitle')} - ${this.$t('top.toolBarTitle')}`
+    document.title = `${this.$t('top.systemBarTitle')} - ${this.$t('top.fishList')}`
     this.now = Date.now()
     this.lazyFishSourceList = Object.values(this.allFish).filter(it => it.gig == null && it.patch <= DataUtil.PATCH_MAX)
     this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)

@@ -102,9 +102,9 @@ export default {
     )
   },
 
-  formatDateTime(millis) {
+  formatDateTime(millis, format = '[MM-dd] HH:mm:ss') {
     if (millis) {
-      return DateTime.fromMillis(millis).toFormat('[MM-dd] HH:mm:ss')
+      return DateTime.fromMillis(millis).toFormat(format)
     } else {
       return ''
     }

@@ -21,7 +21,10 @@ export default class EorzeaTime {
   toString() {
     const date = new Date(this.time)
     return (
-      date.getUTCHours() +
+      date
+        .getUTCHours()
+        .toString()
+        .padStart(2, '0') +
       ':' +
       date
         .getUTCMinutes()
