@@ -89,7 +89,7 @@
         <!--            -->
         <!--          </v-menu>-->
         <!--        </div>-->
-        <div class="d-flex flex-column ml-1">
+        <div v-if="!isMobile" class="d-flex flex-column ml-1">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
         </div>
@@ -142,20 +142,20 @@
                 <v-list-item-content>{{ $t('top.menu') }}</v-list-item-content>
               </v-list-item>
             </click-helper>
+            <click-helper @click="showSettingDialog = true">
+              <v-list-item @click="noOp">
+                <v-list-item-icon>
+                  <v-icon>mdi-tune</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.uiConfig') }}</v-list-item-content>
+              </v-list-item>
+            </click-helper>
             <click-helper @click="showHelpDialog = true">
               <v-list-item @click="noOp">
                 <v-list-item-icon>
                   <v-icon>mdi-help-circle</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>{{ $t('top.help') }}</v-list-item-content>
-              </v-list-item>
-            </click-helper>
-            <click-helper @click="showSettingDialog = true">
-              <v-list-item @click="noOp">
-                <v-list-item-icon>
-                  <v-icon>mdi-cog</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.setting') }}</v-list-item-content>
               </v-list-item>
             </click-helper>
             <click-helper @click="showPatchNoteDialog = true">
@@ -486,10 +486,13 @@ export default {
     ...mapGetters(['opacity', 'websiteVersion']),
   },
   watch: {
-    isMobile(isMobile) {
-      if (isMobile) {
-        this.mini = false
-      }
+    isMobile: {
+      handler(isMobile) {
+        if (isMobile) {
+          this.mini = false
+        }
+      },
+      immediate: true,
     },
   },
   created() {
