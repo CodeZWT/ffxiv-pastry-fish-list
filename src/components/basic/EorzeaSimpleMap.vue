@@ -14,7 +14,7 @@
           <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
           <v-image ref="markerRangeNode" :config="markerRangeConfig"></v-image>
           <v-image v-if="fishingSpotMarkerConfig.image" :config="fishingSpotMarkerConfig"></v-image>
-          <v-image v-for="config in aetheryteMakerConfigs" :config="config" :key="config.text"></v-image>
+          <v-image v-for="(config, index) in aetheryteMakerConfigs" :config="config" :key="index"></v-image>
           <v-text
             v-for="config in aetheryteMakerTextConfigs"
             :config="config"
