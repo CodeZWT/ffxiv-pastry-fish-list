@@ -1,7 +1,10 @@
 <template>
   <div v-resize="onWindowResize">
     <v-overlay :value="loading">
-      <v-progress-circular indeterminate size="64"></v-progress-circular>
+      <div class="d-flex flex-column align-center">
+        <v-progress-circular indeterminate size="64" />
+        <div>{{ $t('list.loading') }}</div>
+      </div>
     </v-overlay>
     <splitpanes
       ref="splitPanes"
