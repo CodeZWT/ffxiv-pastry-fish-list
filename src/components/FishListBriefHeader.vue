@@ -11,7 +11,10 @@
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col class="col-6 col-sm-3">
         <div class="d-flex fill-height align-center flex-row pr-1" style="min-height: 48px">
-          <div class="d-flex align-center flex-column flex-sm-row">
+          <div
+            class="d-flex align-center flex-column flex-sm-row"
+            :style="{ visibility: mode !== 'CONTENT' && inPredator ? 'hidden' : 'visible' }"
+          >
             <toggle-button
               :value="transformedFishPart.pinned"
               @input="setPinned($event)"
@@ -20,12 +23,12 @@
             />
             <toggle-button :value="transformedFishPart.completed" @input="setCompleted($event)" />
           </div>
+
           <v-badge v-if="inPredator" :content="fish.requiredCnt" color="quaternary black--text" overlap bottom bordered>
             <div style="width: 40px; height: 40px" :class="{ 'zoom-in-predator': inPredator }">
               <div :class="fish.icon" />
             </div>
           </v-badge>
-
           <div v-else style="width: 40px; height: 40px" :class="{ 'zoom-in-predator': inPredator }">
             <div :class="fish.icon" />
           </div>
