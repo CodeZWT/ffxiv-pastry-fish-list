@@ -156,6 +156,7 @@ const AVAILABLE_HELP = new Set([
   '星导寺入口',
   '幻河上游',
   '神拳痕',
+  '盐湖',
 ])
 
 export default {
