@@ -229,5 +229,9 @@
       "fishing": "进入CD",
       "waiting": "距开始还有{minutes}分钟"
     }
+  },
+  "date": {
+    "today": "今天",
+    "tomorrow": "明天"
   }
 }

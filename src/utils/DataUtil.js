@@ -1,5 +1,6 @@
 import TimeFormatter from '@/utils/TimeFormatter'
 import { DateTime } from 'luxon'
+import i18n from '@/i18n'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -110,10 +111,10 @@ export default {
       let dayText
       switch (days) {
         case 0:
-          dayText = '今天'
+          dayText = i18n.t('date.today')
           break
         case 1:
-          dayText = '明天'
+          dayText = i18n.t('date.tomorrow')
           break
         default:
           dayText = date.weekdayShort
