@@ -7,7 +7,7 @@
             <div class="text-subtitle-1">
               {{ fish.zone }}
             </div>
-            <div v-if="fish.zone !== fish.fishingSpotName" class="text-subtitle-1 ml-2" :title="fish.fishingSpotId">
+            <div class="text-subtitle-1 ml-2" :title="fish.fishingSpotId">
               {{ fish.fishingSpotName }}
             </div>
             <div class="text-subtitle-1 ml-2">({{ fish.fishSpotPositionText }})</div>

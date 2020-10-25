@@ -124,7 +124,7 @@
           {{ fish.zone }}
         </div>
         <div
-          v-if="fish.zone !== fish.fishingSpot && !inPredator"
+          v-if="!inPredator"
           class="text-subtitle-2 text-truncate"
           :title="fish.fishingSpot + '#' + fish.fishingSpotId"
         >
