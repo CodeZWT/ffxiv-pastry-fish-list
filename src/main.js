@@ -6,8 +6,10 @@ import i18n from './i18n'
 import VueKonva from 'vue-konva'
 import vuetify from './plugins/vuetify'
 import { initTooltip } from '@thewakingsands/kit-tooltip'
+import { Settings } from 'luxon'
 
 initTooltip()
+Settings.defaultLocale = 'zh-CN'
 
 Vue.config.productionTip = false
 Vue.use(VueKonva)

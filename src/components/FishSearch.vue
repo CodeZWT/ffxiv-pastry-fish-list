@@ -138,7 +138,7 @@ export default {
   },
   methods: {
     filterOptions(item, queryText, itemText) {
-      if (this.$i18n.locale === 'chs') {
+      if (this.$i18n.locale === 'zh-CN') {
         return PinyinMatch.match(itemText, queryText) !== false
       } else {
         return itemText.toLowerCase().indexOf(queryText.toLowerCase()) > -1
