@@ -102,7 +102,7 @@ export default {
     )
   },
 
-  formatDateTime(millis, format = '[MM-dd {dayDescription}] HH:mm:ss') {
+  formatDateTime(millis, format = "[MM-dd '{dayDescription}'] HH:mm:ss") {
     if (millis) {
       const date = DateTime.fromMillis(millis)
       const now = DateTime.fromMillis(Date.now())
