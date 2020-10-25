@@ -1,10 +1,11 @@
 <template>
-  <v-row column style="width: 100%">
-    <v-col cols="12" class="mx-2">
+  <v-row column style="width: 100%" no-gutters>
+    <v-col cols="12" class="px-2">
       {{ $t('detail.predators.title') }}
     </v-col>
     <v-col cols="12">
-      <div v-for="predator in fish.predators" :key="predator._id" style="position: relative">
+      <div v-for="(predator, index) in fish.predators" :key="predator._id" style="position: relative">
+        <v-divider v-if="index > 0" inset style="border-color: white"/>
         <fish-list-brief-header :fish="predator" :fish-time-part="predator.fishTimePart" in-predator :mode="mode" />
       </div>
     </v-col>
