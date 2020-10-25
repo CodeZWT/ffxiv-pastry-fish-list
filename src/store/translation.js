@@ -7377,7 +7377,7 @@ export default {
       y: 1830,
       mapFileId: 'n4f1/00',
       radius: 900,
-      anglerLocationId: 120352,
+      anglerLocationId: 120305,
     },
     '207': {
       _id: 207,
@@ -7861,7 +7861,7 @@ export default {
       y: 0,
       mapFileId: null,
       radius: 0,
-      anglerLocationId: null,
+      anglerLocationId: 80102,
     },
     '10002': {
       _id: 10002,
@@ -7872,7 +7872,7 @@ export default {
       y: 0,
       mapFileId: null,
       radius: 0,
-      anglerLocationId: null,
+      anglerLocationId: 80103,
     },
     '10003': {
       _id: 10003,
@@ -7883,7 +7883,7 @@ export default {
       y: 0,
       mapFileId: null,
       radius: 0,
-      anglerLocationId: null,
+      anglerLocationId: 80105,
     },
     '10004': {
       _id: 10004,
@@ -7894,7 +7894,7 @@ export default {
       y: 0,
       mapFileId: null,
       radius: 0,
-      anglerLocationId: null,
+      anglerLocationId: 80106,
     },
     '10005': {
       _id: 10005,
@@ -7905,7 +7905,7 @@ export default {
       y: 0,
       mapFileId: null,
       radius: 0,
-      anglerLocationId: null,
+      anglerLocationId: 80107,
     },
     '10006': {
       _id: 10006,
@@ -7916,7 +7916,7 @@ export default {
       y: 0,
       mapFileId: null,
       radius: 0,
-      anglerLocationId: null,
+      anglerLocationId: 80108,
     },
     '10007': {
       _id: 10007,
@@ -11811,6 +11811,22 @@ export default {
       _id: 17593,
       anglerFishId: 505,
     },
+    '17949': {
+      _id: 17949,
+      anglerFishId: 0,
+    },
+    '17950': {
+      _id: 17950,
+      anglerFishId: 0,
+    },
+    '17951': {
+      _id: 17951,
+      anglerFishId: 0,
+    },
+    '17952': {
+      _id: 17952,
+      anglerFishId: 0,
+    },
     '20018': {
       _id: 20018,
       anglerFishId: 618,
@@ -12311,9 +12327,397 @@ export default {
       _id: 20143,
       anglerFishId: 637,
     },
+    '20144': {
+      _id: 20144,
+      anglerFishId: 638,
+    },
+    '20145': {
+      _id: 20145,
+      anglerFishId: 639,
+    },
+    '20146': {
+      _id: 20146,
+      anglerFishId: 640,
+    },
+    '20147': {
+      _id: 20147,
+      anglerFishId: 641,
+    },
+    '20148': {
+      _id: 20148,
+      anglerFishId: 642,
+    },
+    '20149': {
+      _id: 20149,
+      anglerFishId: 643,
+    },
+    '20150': {
+      _id: 20150,
+      anglerFishId: 644,
+    },
+    '20151': {
+      _id: 20151,
+      anglerFishId: 645,
+    },
+    '20152': {
+      _id: 20152,
+      anglerFishId: 646,
+    },
+    '20153': {
+      _id: 20153,
+      anglerFishId: 647,
+    },
+    '20154': {
+      _id: 20154,
+      anglerFishId: 648,
+    },
+    '20155': {
+      _id: 20155,
+      anglerFishId: 649,
+    },
+    '20156': {
+      _id: 20156,
+      anglerFishId: 650,
+    },
+    '20157': {
+      _id: 20157,
+      anglerFishId: 651,
+    },
+    '20158': {
+      _id: 20158,
+      anglerFishId: 652,
+    },
+    '20159': {
+      _id: 20159,
+      anglerFishId: 653,
+    },
+    '20160': {
+      _id: 20160,
+      anglerFishId: 654,
+    },
+    '20161': {
+      _id: 20161,
+      anglerFishId: 655,
+    },
+    '20162': {
+      _id: 20162,
+      anglerFishId: 656,
+    },
+    '20163': {
+      _id: 20163,
+      anglerFishId: 657,
+    },
+    '20164': {
+      _id: 20164,
+      anglerFishId: 658,
+    },
+    '20165': {
+      _id: 20165,
+      anglerFishId: 659,
+    },
+    '20166': {
+      _id: 20166,
+      anglerFishId: 660,
+    },
+    '20167': {
+      _id: 20167,
+      anglerFishId: 661,
+    },
+    '20168': {
+      _id: 20168,
+      anglerFishId: 662,
+    },
+    '20169': {
+      _id: 20169,
+      anglerFishId: 663,
+    },
+    '20170': {
+      _id: 20170,
+      anglerFishId: 664,
+    },
+    '20171': {
+      _id: 20171,
+      anglerFishId: 665,
+    },
+    '20172': {
+      _id: 20172,
+      anglerFishId: 666,
+    },
+    '20173': {
+      _id: 20173,
+      anglerFishId: 667,
+    },
+    '20174': {
+      _id: 20174,
+      anglerFishId: 668,
+    },
+    '20175': {
+      _id: 20175,
+      anglerFishId: 669,
+    },
+    '20176': {
+      _id: 20176,
+      anglerFishId: 670,
+    },
+    '20177': {
+      _id: 20177,
+      anglerFishId: 671,
+    },
+    '20178': {
+      _id: 20178,
+      anglerFishId: 672,
+    },
+    '20179': {
+      _id: 20179,
+      anglerFishId: 673,
+    },
+    '20180': {
+      _id: 20180,
+      anglerFishId: 674,
+    },
+    '20181': {
+      _id: 20181,
+      anglerFishId: 675,
+    },
+    '20182': {
+      _id: 20182,
+      anglerFishId: 676,
+    },
+    '20183': {
+      _id: 20183,
+      anglerFishId: 677,
+    },
+    '20184': {
+      _id: 20184,
+      anglerFishId: 678,
+    },
+    '20185': {
+      _id: 20185,
+      anglerFishId: 679,
+    },
+    '20186': {
+      _id: 20186,
+      anglerFishId: 680,
+    },
+    '20187': {
+      _id: 20187,
+      anglerFishId: 681,
+    },
+    '20188': {
+      _id: 20188,
+      anglerFishId: 682,
+    },
+    '20189': {
+      _id: 20189,
+      anglerFishId: 683,
+    },
+    '20190': {
+      _id: 20190,
+      anglerFishId: 684,
+    },
+    '20191': {
+      _id: 20191,
+      anglerFishId: 685,
+    },
+    '20192': {
+      _id: 20192,
+      anglerFishId: 686,
+    },
+    '20193': {
+      _id: 20193,
+      anglerFishId: 687,
+    },
+    '20194': {
+      _id: 20194,
+      anglerFishId: 688,
+    },
+    '20195': {
+      _id: 20195,
+      anglerFishId: 689,
+    },
+    '20196': {
+      _id: 20196,
+      anglerFishId: 690,
+    },
+    '20197': {
+      _id: 20197,
+      anglerFishId: 691,
+    },
+    '20198': {
+      _id: 20198,
+      anglerFishId: 692,
+    },
+    '20199': {
+      _id: 20199,
+      anglerFishId: 693,
+    },
+    '20200': {
+      _id: 20200,
+      anglerFishId: 694,
+    },
+    '20201': {
+      _id: 20201,
+      anglerFishId: 695,
+    },
+    '20202': {
+      _id: 20202,
+      anglerFishId: 696,
+    },
+    '20203': {
+      _id: 20203,
+      anglerFishId: 697,
+    },
+    '20204': {
+      _id: 20204,
+      anglerFishId: 698,
+    },
+    '20205': {
+      _id: 20205,
+      anglerFishId: 699,
+    },
+    '20206': {
+      _id: 20206,
+      anglerFishId: 700,
+    },
+    '20207': {
+      _id: 20207,
+      anglerFishId: 701,
+    },
+    '20208': {
+      _id: 20208,
+      anglerFishId: 702,
+    },
+    '20209': {
+      _id: 20209,
+      anglerFishId: 703,
+    },
+    '20210': {
+      _id: 20210,
+      anglerFishId: 704,
+    },
+    '20211': {
+      _id: 20211,
+      anglerFishId: 705,
+    },
+    '20212': {
+      _id: 20212,
+      anglerFishId: 706,
+    },
+    '20213': {
+      _id: 20213,
+      anglerFishId: 707,
+    },
+    '20214': {
+      _id: 20214,
+      anglerFishId: 708,
+    },
+    '20215': {
+      _id: 20215,
+      anglerFishId: 709,
+    },
+    '20216': {
+      _id: 20216,
+      anglerFishId: 710,
+    },
+    '20217': {
+      _id: 20217,
+      anglerFishId: 711,
+    },
+    '20218': {
+      _id: 20218,
+      anglerFishId: 712,
+    },
+    '20219': {
+      _id: 20219,
+      anglerFishId: 713,
+    },
+    '20220': {
+      _id: 20220,
+      anglerFishId: 714,
+    },
+    '20221': {
+      _id: 20221,
+      anglerFishId: 715,
+    },
+    '20222': {
+      _id: 20222,
+      anglerFishId: 716,
+    },
+    '20223': {
+      _id: 20223,
+      anglerFishId: 717,
+    },
+    '20224': {
+      _id: 20224,
+      anglerFishId: 718,
+    },
+    '20225': {
+      _id: 20225,
+      anglerFishId: 719,
+    },
+    '20226': {
+      _id: 20226,
+      anglerFishId: 720,
+    },
+    '20227': {
+      _id: 20227,
+      anglerFishId: 721,
+    },
+    '20228': {
+      _id: 20228,
+      anglerFishId: 722,
+    },
+    '20229': {
+      _id: 20229,
+      anglerFishId: 723,
+    },
+    '20230': {
+      _id: 20230,
+      anglerFishId: 724,
+    },
+    '20231': {
+      _id: 20231,
+      anglerFishId: 725,
+    },
+    '20232': {
+      _id: 20232,
+      anglerFishId: 726,
+    },
+    '20233': {
+      _id: 20233,
+      anglerFishId: 727,
+    },
+    '20234': {
+      _id: 20234,
+      anglerFishId: 728,
+    },
+    '20235': {
+      _id: 20235,
+      anglerFishId: 729,
+    },
+    '20236': {
+      _id: 20236,
+      anglerFishId: 730,
+    },
+    '20237': {
+      _id: 20237,
+      anglerFishId: 731,
+    },
+    '20238': {
+      _id: 20238,
+      anglerFishId: 732,
+    },
+    '20239': {
+      _id: 20239,
+      anglerFishId: 733,
+    },
     '20524': {
       _id: 20524,
       anglerFishId: 636,
+    },
+    '20528': {
+      _id: 20528,
+      anglerFishId: 734,
     },
     '20785': {
       _id: 20785,
@@ -12354,6 +12758,14 @@ export default {
     '21178': {
       _id: 21178,
       anglerFishId: 739,
+    },
+    '21179': {
+      _id: 21179,
+      anglerFishId: 740,
+    },
+    '21180': {
+      _id: 21180,
+      anglerFishId: 741,
     },
     '22389': {
       _id: 22389,
@@ -13167,6 +13579,30 @@ export default {
       _id: 27516,
       anglerFishId: 3113,
     },
+    '27517': {
+      _id: 27517,
+      anglerFishId: 3114,
+    },
+    '27518': {
+      _id: 27518,
+      anglerFishId: 3115,
+    },
+    '27519': {
+      _id: 27519,
+      anglerFishId: 3116,
+    },
+    '27520': {
+      _id: 27520,
+      anglerFishId: 3117,
+    },
+    '27521': {
+      _id: 27521,
+      anglerFishId: 3118,
+    },
+    '27522': {
+      _id: 27522,
+      anglerFishId: 3119,
+    },
     '27523': {
       _id: 27523,
       anglerFishId: 3120,
@@ -13186,6 +13622,222 @@ export default {
     '27527': {
       _id: 27527,
       anglerFishId: 3124,
+    },
+    '27528': {
+      _id: 27528,
+      anglerFishId: 3125,
+    },
+    '27529': {
+      _id: 27529,
+      anglerFishId: 3126,
+    },
+    '27530': {
+      _id: 27530,
+      anglerFishId: 3127,
+    },
+    '27531': {
+      _id: 27531,
+      anglerFishId: 3128,
+    },
+    '27532': {
+      _id: 27532,
+      anglerFishId: 3129,
+    },
+    '27533': {
+      _id: 27533,
+      anglerFishId: 3130,
+    },
+    '27534': {
+      _id: 27534,
+      anglerFishId: 3131,
+    },
+    '27535': {
+      _id: 27535,
+      anglerFishId: 3132,
+    },
+    '27536': {
+      _id: 27536,
+      anglerFishId: 3133,
+    },
+    '27537': {
+      _id: 27537,
+      anglerFishId: 3134,
+    },
+    '27538': {
+      _id: 27538,
+      anglerFishId: 3135,
+    },
+    '27539': {
+      _id: 27539,
+      anglerFishId: 3136,
+    },
+    '27540': {
+      _id: 27540,
+      anglerFishId: 3137,
+    },
+    '27541': {
+      _id: 27541,
+      anglerFishId: 3138,
+    },
+    '27542': {
+      _id: 27542,
+      anglerFishId: 3139,
+    },
+    '27543': {
+      _id: 27543,
+      anglerFishId: 3140,
+    },
+    '27544': {
+      _id: 27544,
+      anglerFishId: 3141,
+    },
+    '27545': {
+      _id: 27545,
+      anglerFishId: 3142,
+    },
+    '27546': {
+      _id: 27546,
+      anglerFishId: 3143,
+    },
+    '27547': {
+      _id: 27547,
+      anglerFishId: 3144,
+    },
+    '27548': {
+      _id: 27548,
+      anglerFishId: 3145,
+    },
+    '27549': {
+      _id: 27549,
+      anglerFishId: 3146,
+    },
+    '27550': {
+      _id: 27550,
+      anglerFishId: 3147,
+    },
+    '27551': {
+      _id: 27551,
+      anglerFishId: 3148,
+    },
+    '27552': {
+      _id: 27552,
+      anglerFishId: 3149,
+    },
+    '27553': {
+      _id: 27553,
+      anglerFishId: 3150,
+    },
+    '27554': {
+      _id: 27554,
+      anglerFishId: 3151,
+    },
+    '27555': {
+      _id: 27555,
+      anglerFishId: 3152,
+    },
+    '27556': {
+      _id: 27556,
+      anglerFishId: 3153,
+    },
+    '27557': {
+      _id: 27557,
+      anglerFishId: 3154,
+    },
+    '27558': {
+      _id: 27558,
+      anglerFishId: 3155,
+    },
+    '27559': {
+      _id: 27559,
+      anglerFishId: 3156,
+    },
+    '27560': {
+      _id: 27560,
+      anglerFishId: 3157,
+    },
+    '27561': {
+      _id: 27561,
+      anglerFishId: 3158,
+    },
+    '27562': {
+      _id: 27562,
+      anglerFishId: 3159,
+    },
+    '27563': {
+      _id: 27563,
+      anglerFishId: 3160,
+    },
+    '27564': {
+      _id: 27564,
+      anglerFishId: 3161,
+    },
+    '27565': {
+      _id: 27565,
+      anglerFishId: 3162,
+    },
+    '27566': {
+      _id: 27566,
+      anglerFishId: 3163,
+    },
+    '27567': {
+      _id: 27567,
+      anglerFishId: 3164,
+    },
+    '27568': {
+      _id: 27568,
+      anglerFishId: 3165,
+    },
+    '27569': {
+      _id: 27569,
+      anglerFishId: 3166,
+    },
+    '27570': {
+      _id: 27570,
+      anglerFishId: 3167,
+    },
+    '27571': {
+      _id: 27571,
+      anglerFishId: 3168,
+    },
+    '27572': {
+      _id: 27572,
+      anglerFishId: 3169,
+    },
+    '27573': {
+      _id: 27573,
+      anglerFishId: 3170,
+    },
+    '27574': {
+      _id: 27574,
+      anglerFishId: 3171,
+    },
+    '27575': {
+      _id: 27575,
+      anglerFishId: 3172,
+    },
+    '27576': {
+      _id: 27576,
+      anglerFishId: 3173,
+    },
+    '27577': {
+      _id: 27577,
+      anglerFishId: 3174,
+    },
+    '27578': {
+      _id: 27578,
+      anglerFishId: 3175,
+    },
+    '27579': {
+      _id: 27579,
+      anglerFishId: 3176,
+    },
+    '27580': {
+      _id: 27580,
+      anglerFishId: 3177,
+    },
+    '27581': {
+      _id: 27581,
+      anglerFishId: 3178,
     },
     '28065': {
       _id: 28065,
@@ -13250,6 +13902,10 @@ export default {
     '28926': {
       _id: 28926,
       anglerFishId: 3194,
+    },
+    '28927': {
+      _id: 28927,
+      anglerFishId: 3195,
     },
     '28928': {
       _id: 28928,
