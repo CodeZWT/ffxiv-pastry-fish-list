@@ -67,11 +67,16 @@
             </v-badge>
           </v-tab>
         </v-tabs>
-        <click-helper @click="setShowSearchDialog(true)">
-          <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-          </v-btn>
-        </click-helper>
+        <v-tooltip left>
+          <template v-slot:activator="{ on, attrs }">
+            <click-helper @click="setShowSearchDialog(true)">
+              <v-btn icon v-bind="attrs" v-on="on">
+                <v-icon>mdi-magnify</v-icon>
+              </v-btn>
+            </click-helper>
+          </template>
+          <div>按 <code>/</code> 键可以直接搜索</div>
+        </v-tooltip>
         <click-helper @click="toggleFilterPanel">
           <v-btn icon>
             <v-icon>mdi-filter</v-icon>
