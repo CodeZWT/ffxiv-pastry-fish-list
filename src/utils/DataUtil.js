@@ -106,8 +106,9 @@ export default {
   formatDateTime(millis, format = "[MM-dd '{dayDescription}'] HH:mm:ss") {
     if (millis) {
       const date = DateTime.fromMillis(millis)
-      const now = DateTime.fromMillis(Date.now())
-      const days = date.day - now.day
+      const startOfDate = date.startOf('days')
+      const today = DateTime.fromMillis(Date.now()).startOf('days')
+      const days = startOfDate.diff(today, 'days').as('days')
       let dayText
       switch (days) {
         case 0:
