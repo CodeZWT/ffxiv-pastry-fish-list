@@ -1,6 +1,7 @@
 import TimeFormatter from '@/utils/TimeFormatter'
 import { DateTime } from 'luxon'
 import i18n from '@/i18n'
+import { isArray, mergeWith } from 'lodash'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -140,6 +141,23 @@ export default {
       dict[keyFn(item)] = item
       return dict
     }, {})
+  },
+
+  mergeUserData(defaultData, storedDate) {
+    // [NOTE]
+    // _.merge will deep merge array which will cause problem
+    // e.g. filter.patches: merge([2.0, 3.0], [4.0]) = [4.0, 3.0]
+    // use mergeWith to replace the whole array instead of merge elements
+    // =======================================================================
+    // if need add new element in default value for settings,
+    // another patch function is needed
+    return mergeWith(defaultData, storedDate, this.mergeArray)
+  },
+
+  mergeArray(objValue, srcValue) {
+    if (isArray(srcValue)) {
+      return srcValue
+    }
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],

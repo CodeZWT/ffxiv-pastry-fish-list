@@ -35,7 +35,7 @@ export default new Vuex.Store({
     activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
     aetheryte: groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
     sounds: {},
-    userData: merge(DataUtil.USER_DEFAULT_DATA, LocalStorageUtil.loadAndBackupUserData()),
+    userData: DataUtil.mergeUserData(DataUtil.USER_DEFAULT_DATA, LocalStorageUtil.loadAndBackupUserData()),
   },
   getters: {
     getItemIconUrl: state => id => {
