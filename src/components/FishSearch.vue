@@ -1,20 +1,21 @@
 <template>
   <v-dialog v-model="dialog" :fullscreen="isMobile" max-width="1264px" style="z-index: 9998" scrollable>
     <v-card>
-<!--      <v-card-title>-->
-<!--        <span class="headline">{{ $t('search.dialog.title') }}</span>-->
-<!--      </v-card-title>-->
+      <!--      <v-card-title>-->
+      <!--        <span class="headline">{{ $t('search.dialog.title') }}</span>-->
+      <!--      </v-card-title>-->
       <v-card-text>
         <div>
-<!--          <v-row v-if="isMobile">-->
-<!--            <v-col>-->
-<!--              <v-icon class="mr-1">mdi-information</v-icon>-->
-<!--              -->
-<!--            </v-col>-->
-<!--          </v-row>-->
+          <!--          <v-row v-if="isMobile">-->
+          <!--            <v-col>-->
+          <!--              <v-icon class="mr-1">mdi-information</v-icon>-->
+          <!--              -->
+          <!--            </v-col>-->
+          <!--          </v-row>-->
           <v-row>
             <v-col>
               <v-autocomplete
+                ref="search"
                 v-model="fishId"
                 :items="fishSearchData"
                 item-value="id"
@@ -127,8 +128,15 @@ export default {
     ...mapGetters(['getItemName', 'getFishCompleted', 'getItemIconClass']),
   },
   watch: {
-    dialog() {
+    dialog(dialog) {
       this.fishId = undefined
+      if (dialog) {
+        setTimeout(() => {
+          // this.$refs.search.focus()
+          // console.log(this.$refs.search.$el.getElementsByTagName('input')[0])
+          this.$refs.search.$el.getElementsByTagName('input')[0].click()
+        }, 300)
+      }
     },
     fishId(fishId) {
       if (fishId != null) {

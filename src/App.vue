@@ -238,6 +238,7 @@
               <li>请关闭Windows的“专注助手”，以正常跳出通知。</li>
             </ul>
             <li>增加部分钓鱼技能的悬浮提示。</li>
+            <li>增加按键 ' / ' 可以直接搜索，以及打开搜索界面自动开始搜索输入的功能。</li>
             <li>
               修复“复制道具名”按钮。
             </li>
@@ -452,6 +453,7 @@ import FishSettingDialog from '@/components/FishSettingDialog'
 import NotificationUtil from '@/utils/NotificationUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import ClipboardJS from 'clipboard'
+import hotkeys from 'hotkeys-js'
 
 export default {
   name: 'App',
@@ -487,7 +489,7 @@ export default {
     listFishCntForMini() {
       return this.listFishCnt.slice(0, 2)
     },
-    ...mapState(['snackbar', 'activeTabIndex']),
+    ...mapState(['snackbar', 'activeTabIndex', 'showSearchDialog']),
     ...mapGetters(['opacity', 'websiteVersion']),
   },
   watch: {
@@ -514,6 +516,13 @@ export default {
     if (this.toComparableVersion(this.version) > this.toComparableVersion(this.websiteVersion)) {
       this.showPatchNoteDialog = true
     }
+
+    hotkeys('/', event => {
+      if (!this.showSearchDialog) {
+        this.setShowSearchDialog(true)
+      }
+      event.preventDefault()
+    })
   },
   mounted() {
     this.cafeKitTooltipCopyPatch()
