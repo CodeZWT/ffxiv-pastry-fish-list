@@ -157,6 +157,11 @@ const AVAILABLE_HELP = new Set([
   '幻河上游',
   '神拳痕',
   '盐湖',
+  '魔窟离岛',
+  '沃仙曦染',
+  '蓝天窗',
+  '云水塘',
+  '云顶',
 ])
 
 export default {
