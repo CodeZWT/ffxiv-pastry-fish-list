@@ -1,11 +1,11 @@
 <template>
   <div class="d-flex flex-row align-center">
     <div class="d-flex flex-column">
+      <div class="text-subtitle-1 text-truncate" :title="firstLocation.fishingSpot + '#' + firstLocation.fishingSpotId">
+        {{ firstLocation.fishingSpot }}
+      </div>
       <div class="text-subtitle-2 text-truncate">
         {{ firstLocation.zone }}
-      </div>
-      <div class="text-subtitle-2 text-truncate" :title="firstLocation.fishingSpot + '#' + firstLocation.fishingSpotId">
-        {{ firstLocation.fishingSpot }}
       </div>
     </div>
     <div v-if="multiple">
@@ -17,16 +17,6 @@
         </template>
         <v-simple-table fixed-header color="secondary">
           <template v-slot:default>
-            <!--            <thead>-->
-            <!--            <tr>-->
-            <!--              <th class="text-left">-->
-            <!--                Name-->
-            <!--              </th>-->
-            <!--              <th class="text-left">-->
-            <!--                Calories-->
-            <!--              </th>-->
-            <!--            </tr>-->
-            <!--            </thead>-->
             <tbody>
               <tr v-for="(spot, index) in fishingSpots" :key="index">
                 <td>{{ spot.zone }}</td>

@@ -93,24 +93,11 @@ export default {
         icon: this.getItemIconClass(this.value._id),
         name: this.getItemName(this.value._id),
         patch: this.value.patch.toFixed(1),
-        zone: this.getZoneName(this.value.location),
-        fishingSpot: this.getFishingSpotsName(this.value.location),
-        fishingSpotId: this.value.location,
         anglerFishId: this.value.anglerFishId,
-        anglerLocationId: this.getFishingSpot(this.value.location)?.anglerLocationId,
         setNotificationAvailable: DataUtil.hasCountDown(this.fishTimePart?.countDown),
       }
     },
-    ...mapGetters([
-      'getItemIconClass',
-      'getItemName',
-      'getZoneName',
-      'getFishingSpotsName',
-      'getFishingSpot',
-      'getFishCompleted',
-      'getFishPinned',
-      'getFishToBeNotified',
-    ]),
+    ...mapGetters(['getItemIconClass', 'getItemName', 'getFishCompleted', 'getFishPinned', 'getFishToBeNotified']),
   },
   methods: {
     goToFishAngelPage(anglerFishId) {

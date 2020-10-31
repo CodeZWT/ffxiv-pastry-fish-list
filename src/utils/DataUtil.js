@@ -164,6 +164,17 @@ export default {
     }
   },
 
+  toPositionText(fishingSpot) {
+    if (fishingSpot == null) return ''
+    return `X: ${this.toPosStr(fishingSpot.size_factor, fishingSpot.x)}, Y:${this.toPosStr(
+      fishingSpot.size_factor,
+      fishingSpot.y
+    )}`
+  },
+  toPosStr(sizeFactor, pos) {
+    return this.pixelToPos(sizeFactor, pos).toFixed(0)
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: 1000,

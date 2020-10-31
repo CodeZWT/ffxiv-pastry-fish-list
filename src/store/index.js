@@ -78,6 +78,17 @@ export default new Vuex.Store({
         return ''
       }
     },
+    getFishingSpots: (_, getters) => locations =>
+      locations.map(location => {
+        const fishingSpot = getters.getFishingSpot(location)
+        return {
+          zone: getters.getZoneName(location),
+          fishingSpot: fishingSpot,
+          fishingSpotName: getters.getFishingSpotsName(location),
+          fishingSpotId: location,
+          fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
+        }
+      }),
     getBaits: (state, getters) => fish => {
       if (fish.bestCatchPath.length < 1) return []
       const baitId = fish.bestCatchPath[fish.bestCatchPath.length - 1]
