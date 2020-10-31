@@ -75,7 +75,7 @@
               </v-btn>
             </click-helper>
           </template>
-          <div>按 <code>/</code> 键可以直接搜索</div>
+          <div>按 <code>/</code> 键直接搜索</div>
         </v-tooltip>
         <click-helper @click="toggleFilterPanel">
           <v-btn icon>

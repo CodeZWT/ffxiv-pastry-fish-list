@@ -480,13 +480,15 @@ export default {
         if (countDown?.type === DataUtil.ALL_AVAILABLE) return
 
         const lazyStartTime = countDown?.timePoint
-        const interval = lazyStartTime - now
-        const intervalDate = new Date(interval)
+        let interval, intervalDate, hours, minutes, seconds
+        if (lazyStartTime != null) {
+          interval = lazyStartTime - now
+          intervalDate = new Date(interval)
 
-        const hours = intervalDate.getUTCHours()
-        const minutes = intervalDate.getUTCMinutes()
-        const seconds = intervalDate.getUTCSeconds()
-
+          hours = intervalDate.getUTCHours()
+          minutes = intervalDate.getUTCMinutes()
+          seconds = intervalDate.getUTCSeconds()
+        }
         if (
           (this.selectedFishId != null && fish._id === this.selectedFishId) ||
           (this.searchedFishId != null && fish._id === this.searchedFishId) ||
@@ -513,10 +515,16 @@ export default {
           icon: this.getItemIconClass(fish._id),
           iconRemoteUrl: this.getItemIconUrl(fish._id),
           name: this.getItemName(fish._id),
-          hasFishingSpot: fish.location != null,
-          zone: this.getZoneName(fish.location),
-          fishingSpot: this.getFishingSpotsName(fish.location),
-          fishingSpotId: fish.location,
+          hasFishingSpot: fish.locations.length !== 0,
+          // zone: this.getZoneName(fish.location),
+          // fishingSpot: this.getFishingSpotsName(fish.location),
+          fishingSpots: fish.locations.map(location => {
+            return {
+              zone: this.getZoneName(location),
+              fishingSpot: this.getFishingSpotsName(location),
+              fishingSpotId: location,
+            }
+          }),
           baits: this.getBaits(fish),
           hasFishEyes: fish.fishEyes !== false,
           fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
@@ -545,7 +553,7 @@ export default {
     getCountDown(fish, now) {
       // utilize 8 hours fish windows computed if exists
       // and not out of time(use 2 fish window cached if necessary)
-      const fishingSpot = this.fishingSpots[fish.location]
+      const fishingSpot = this.fishingSpots[fish.locations[0]]
       if (fishingSpot) {
         const fishWindowsComputed =
           this.fishListWeatherChangePart[fish._id]?.fishWindows ??
@@ -663,7 +671,7 @@ export default {
     },
     getFishWindowOfSingleFish(fish, now) {
       return FishWindow.getNextNFishWindows(
-        this.fishingSpots[fish.location]?.territory_id,
+        this.fishingSpots[fish.locations[0]]?.territory_id,
         new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
         fish.startHour,
         fish.endHour,

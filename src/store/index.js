@@ -9,12 +9,13 @@ import EorzeaWeather from '@/utils/Weather'
 import EorzeaTime from '@/utils/Time'
 import { cloneDeep, groupBy } from 'lodash'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import FishingData from '@/store/fishing.json'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    fish: merge(DATA.FISH, FIX.FISH, DATA_CN.FISH_ANGLER_ID),
+    fish: DataUtil.mergeByReplacingArray(FishingData, FIX.FISH, DATA_CN.FISH_ANGLER_ID),
     fishingSpots: merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
     items: merge(DATA.ITEMS, DATA_CN.ITEMS),

@@ -8,7 +8,7 @@
     <!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />-->
 
     <!--    <pin-button :value="transformedFishPart.pinned" @input="setPinned($event)" />-->
-    <v-divider v-if="inPredator && mode !== 'CONTENT'" inset style="border-color: white"/>
+    <v-divider v-if="inPredator && mode !== 'CONTENT'" inset style="border-color: white" />
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col class="col-6 col-sm-3">
         <div class="d-flex fill-height align-center flex-row pr-1" style="min-height: 48px">
@@ -120,15 +120,18 @@
           </div>
         </div>
 
-        <div class="text-subtitle-2 text-truncate" v-if="!inPredator">
-          {{ fish.zone }}
-        </div>
-        <div
-          v-if="!inPredator"
-          class="text-subtitle-2 text-truncate"
-          :title="fish.fishingSpot + '#' + fish.fishingSpotId"
-        >
-          {{ fish.fishingSpot }}
+        <!--        <div class="text-subtitle-2 text-truncate" v-if="!inPredator">-->
+        <!--          {{ fish.zone }}-->
+        <!--        </div>-->
+        <!--        <div-->
+        <!--          v-if="!inPredator"-->
+        <!--          class="text-subtitle-2 text-truncate"-->
+        <!--          :title="fish.fishingSpot + '#' + fish.fishingSpotId"-->
+        <!--        >-->
+        <!--          {{ fish.fishingSpot }}-->
+        <!--        </div>-->
+        <div v-if="!inPredator">
+          <fishing-spot-column :fishing-spots="fish.fishingSpots" />
         </div>
         <div v-if="isMobile && !transformedFishTimePart.hasCountDown" class="text-subtitle-2">
           {{ $t(transformedFishTimePart.countDownType) }}
@@ -223,10 +226,11 @@ import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
 import ToggleButton from '@/components/basic/ToggleButton'
 import FishBaitList from '@/components/FishBaitList'
+import FishingSpotColumn from '@/components/FishingSpotColumn'
 
 export default {
   name: 'FishListBriefHeader',
-  components: { FishBaitList, ToggleButton },
+  components: { FishingSpotColumn, FishBaitList, ToggleButton },
   props: {
     fish: {
       type: Object,

@@ -154,6 +154,10 @@ export default {
     return mergeWith(defaultData, storedDate, this.mergeArray)
   },
 
+  mergeByReplacingArray(object, ...otherArgs) {
+    return mergeWith(object, ...otherArgs, this.mergeArray)
+  },
+
   mergeArray(objValue, srcValue) {
     if (isArray(srcValue)) {
       return srcValue
