@@ -7,8 +7,17 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'FishPage',
+    name: 'ListPage',
     component: FishPage,
+  },
+  {
+    path: '/wiki',
+    name: 'WikiPage',
+    component: () =>
+      import(
+        /* webpackChunkName: "wiki" */
+        '@/views/WikiPage'
+      ),
   },
   // {
   //   path: "/about",
@@ -22,6 +31,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
 })
 

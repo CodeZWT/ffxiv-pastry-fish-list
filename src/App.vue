@@ -119,12 +119,20 @@
       </template>
 
       <v-list nav dense>
-        <click-helper @click="noOp">
+        <click-helper @click="toPage('ListPage')">
           <v-list-item @click="noOp">
             <v-list-item-icon>
-              <v-icon>mdi-format-list-text</v-icon>
+              <v-icon>mdi-alarm</v-icon>
             </v-list-item-icon>
             <v-list-item-content>{{ $t('top.fishList') }}</v-list-item-content>
+          </v-list-item>
+        </click-helper>
+        <click-helper @click="toPage('WikiPage')">
+          <v-list-item @click="noOp">
+            <v-list-item-icon>
+              <v-icon>mdi-notebook</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>{{ $t('top.fishWiki') }}</v-list-item-content>
           </v-list-item>
         </click-helper>
       </v-list>
@@ -575,6 +583,9 @@ export default {
           }
         },
       })
+    },
+    toPage(page) {
+      this.$router.push({ name: page })
     },
     ...mapMutations([
       'toggleFilterPanel',
