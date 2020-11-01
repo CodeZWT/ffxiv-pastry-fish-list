@@ -1,50 +1,52 @@
 <template>
-  <!--  <div>{{ regionTerritorySpots }}</div>-->
-  <v-card class="mx-auto" max-width="500">
-    <!--    <v-sheet class="pa-4 primary lighten-2">-->
-    <!--      <v-text-field-->
-    <!--          v-model="search"-->
-    <!--          label="Search Company Directory"-->
-    <!--          dark-->
-    <!--          flat-->
-    <!--          solo-inverted-->
-    <!--          hide-details-->
-    <!--          clearable-->
-    <!--          clear-icon="mdi-close-circle-outline"-->
-    <!--      ></v-text-field>-->
-    <!--      <v-checkbox-->
-    <!--          v-model="caseSensitive"-->
-    <!--          dark-->
-    <!--          hide-details-->
-    <!--          label="Case sensitive search"-->
-    <!--      ></v-checkbox>-->
-    <!--    </v-sheet>-->
+  <v-row no-gutters>
+    <v-col cols="2">
+      <v-card class="mx-auto" max-width="300">
+        <!--    <v-sheet class="pa-4 primary lighten-2">-->
+        <!--      <v-text-field-->
+        <!--          v-model="search"-->
+        <!--          label="Search Company Directory"-->
+        <!--          dark-->
+        <!--          flat-->
+        <!--          solo-inverted-->
+        <!--          hide-details-->
+        <!--          clearable-->
+        <!--          clear-icon="mdi-close-circle-outline"-->
+        <!--      ></v-text-field>-->
+        <!--      <v-checkbox-->
+        <!--          v-model="caseSensitive"-->
+        <!--          dark-->
+        <!--          hide-details-->
+        <!--          label="Case sensitive search"-->
+        <!--      ></v-checkbox>-->
+        <!--    </v-sheet>-->
 
-    <!--    :search="search"-->
-    <!--    :filter="filter"-->
-    <!--    :open.sync="open"-->
+        <!--    :search="search"-->
+        <!--    :filter="filter"-->
+        <!--    :open.sync="open"-->
 
-    <v-card-text>
-      <!--      <div>{{ tree }}</div>-->
-      <v-treeview
-        v-model="checkedSpots"
-        :items="regionTerritorySpots"
-        item-key="id"
-        hoverable
-        dense
-        activatable
-        open-on-click
-        selectable
-      >
-        <!--        <template v-slot:prepend="{ item }">-->
-        <!--          <v-icon-->
-        <!--              v-if="item.children"-->
-        <!--              v-text="`mdi-${item.id === 1 ? 'home-variant' : 'folder-network'}`"-->
-        <!--          ></v-icon>-->
-        <!--        </template>-->
-      </v-treeview>
-    </v-card-text>
-  </v-card>
+        <v-card-text>
+          <v-treeview
+            v-model="checkedSpots"
+            :items="regionTerritorySpots"
+            item-key="id"
+            hoverable
+            dense
+            activatable
+            open-on-click
+            selectable
+            @update:active="activeItems = $event"
+          >
+          </v-treeview>
+        </v-card-text>
+      </v-card>
+    </v-col>
+    <v-col cols="10">
+      <div>{{ activeItems }}</div>
+      <!--      <div>{{ spotDict }}</div>-->
+      <div>{{ currentSpot }}</div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -58,6 +60,8 @@ export default {
   data: () => ({
     checkedSpots: [],
     regionTerritorySpots: [],
+    activeItems: [],
+    spotDict: {},
   }),
   created() {
     this.regionTerritorySpots = _.chain(regionTerritorySpots)
@@ -67,11 +71,17 @@ export default {
           name: placeNames[regionId],
           children: _.map(territories, (spots, territoryId) => {
             return {
-              id: 'territory' + territoryId,
+              id: 'territory-' + territoryId,
               name: placeNames[territoryId],
               children: spots.map(spot => {
+                this.spotDict[spot.id] = {
+                  spotId: spot.id,
+                  territoryId,
+                  regionId,
+                  fishList: spot.fishList,
+                }
                 return {
-                  id: 'spot' + spot.id,
+                  id: 'spot-' + spot.id,
                   name: this.getFishingSpotsName(spot.id),
                 }
               }),
@@ -83,6 +93,9 @@ export default {
       .value()
   },
   computed: {
+    currentSpot() {
+      return this.spotDict[this.activeItems[0]?.split('-')?.[1]]
+    },
     ...mapGetters(['getFishingSpotsName']),
   },
 }
