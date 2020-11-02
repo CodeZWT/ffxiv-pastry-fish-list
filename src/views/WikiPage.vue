@@ -47,7 +47,7 @@
         <!--          <div>{{ activeItems }}</div>-->
         <!--          <div>{{ currentSpot }}</div>-->
         <!--        </v-col>-->
-        <v-col v-if="currentSpotId">
+        <v-col v-if="currentSpotId" cols="12">
           <div class="wiki-map">
             <eorzea-simple-map
               ref="simpleMap"
@@ -61,6 +61,12 @@
             />
           </div>
         </v-col>
+        <v-col cols="12">
+          <div v-for="(fish, index) in currentFishList" :key="fish._id" style="position: relative">
+            <v-divider v-if="index > 0" inset style="border-color: white" />
+            <fish-list-brief-header :fish="fish" :fish-time-part="fishListTimePart[fish._id]"/>
+          </div>
+        </v-col>
       </v-row>
     </v-col>
   </v-row>
@@ -71,10 +77,12 @@ import regionTerritorySpots from '@/store/fishingSpots.json'
 import placeNames from '@/store/placeNames.json'
 import { mapGetters } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
+import FishListBriefHeader from '@/components/FishListBriefHeader'
 
 export default {
   name: 'WikiPage',
-  components: { EorzeaSimpleMap },
+  components: { FishListBriefHeader, EorzeaSimpleMap },
+  props: ['lazyTransformedFishDict', 'fishListTimePart'],
   data: () => ({
     checkedSpots: [],
     regionTerritorySpots: [],
@@ -121,6 +129,9 @@ export default {
     },
     currentSpotName() {
       return this.getFishingSpotsName(this.currentSpotId)
+    },
+    currentFishList() {
+      return this.spotDict?.[this.currentSpotId]?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
     },
     ...mapGetters(['getFishingSpotsName', 'getFishingSpot']),
   },
