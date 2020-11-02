@@ -571,7 +571,17 @@ export default {
       const sortedFishIds = this.sortedFishIds
       return sortBy(
         fishSourceList.filter(it => this.getFishPinned(it.id)),
-        [fish => sortedFishIds.indexOf(fish.id)]
+        [
+          fish => {
+            const index = sortedFishIds.indexOf(fish.id)
+            if (index === -1) {
+              return sortedFishIds.length
+            } else {
+              return index
+            }
+          },
+          fish => fish.id,
+        ]
       )
     },
     listFishCnt() {
@@ -584,7 +594,7 @@ export default {
           }
         }
 
-        const firstNotFishingIndex = list.findIndex(it => fishListTimePart[it.id].countDown.type !== DataUtil.FISHING)
+        const firstNotFishingIndex = list.findIndex(it => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING)
         return {
           type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
           cnt: firstNotFishingIndex === -1 ? list.length : firstNotFishingIndex,
@@ -720,6 +730,9 @@ export default {
 
     this.now = Date.now()
     this.lazyFishSourceList = Object.values(this.allFish).filter(it => it.gig == null && it.patch <= DataUtil.PATCH_MAX)
+    this.lazyImportantFishSourceList = this.lazyFishSourceList.filter(
+      it => this.bigFish.includes(it._id) || !DataUtil.isAllAvailableFish(it)
+    )
     this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
     this.lazyTransformedFishDict = DataUtil.toMap(this.lazyTransformedFishList, fish => fish.id)
     const sounds = await this.loadingSounds()
@@ -741,7 +754,7 @@ export default {
   },
   methods: {
     updateWeatherChangePart(now) {
-      this.fishListWeatherChangePart = this.lazyFishSourceList.reduce((fish2WeatherPart, fish) => {
+      this.fishListWeatherChangePart = this.lazyImportantFishSourceList.reduce((fish2WeatherPart, fish) => {
         fish2WeatherPart[fish._id] = {
           fishWindows: this.getFishWindow(fish, now),
         }
@@ -759,7 +772,7 @@ export default {
       )
     },
     updateFishListTimePart(now) {
-      this.lazyFishSourceList.forEach(fish => {
+      this.lazyImportantFishSourceList.forEach(fish => {
         const countDown = this.fishListTimePart[fish._id]?.countDown
         if (countDown?.type === DataUtil.ALL_AVAILABLE) return
 

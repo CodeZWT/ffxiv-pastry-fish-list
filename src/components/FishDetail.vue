@@ -28,6 +28,7 @@
 <script>
 import FishListItemContent from '@/components/FishListItemContent'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'FishDetail',
@@ -44,7 +45,7 @@ export default {
   },
   computed: {
     fishTimePart() {
-      return this.fish?.parts?.fishTimePart ?? {}
+      return this.fish?.parts?.fishTimePart ?? { countDown: { type: DataUtil.ALL_AVAILABLE } }
     },
     fishWeatherChangePart() {
       return this.fish?.parts?.fishWeatherChangePart ?? {}

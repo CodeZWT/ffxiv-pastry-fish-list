@@ -238,7 +238,7 @@ export default {
     },
     fishTimePart: {
       type: Object,
-      default: () => ({}),
+      default: undefined,
     },
     predators: {
       type: Array,
@@ -274,7 +274,7 @@ export default {
       }
     },
     transformedFishTimePart() {
-      const fishTimePart = this.fishTimePart ?? { id: this.fish.id, countDown: { type: this.ALL_AVAILABLE } }
+      const fishTimePart = this.fishTimePart ?? { id: this.fish.id, countDown: { type: DataUtil.ALL_AVAILABLE } }
       return {
         countDownType: DataUtil.getCountDownTypeName(fishTimePart.countDown?.type),
         countDownTime: fishTimePart.countDown?.time,
