@@ -1,7 +1,7 @@
 <template>
   <v-row no-gutters>
     <v-col cols="2">
-      <v-card class="mx-auto" max-width="300">
+      <v-card class="mx-auto" max-width="500">
         <!--    <v-sheet class="pa-4 primary lighten-2">-->
         <!--      <v-text-field-->
         <!--          v-model="search"-->
@@ -52,7 +52,6 @@
 <script>
 import regionTerritorySpots from '@/store/fishingSpots.json'
 import placeNames from '@/store/placeNames.json'
-import _ from 'lodash'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -64,20 +63,21 @@ export default {
     spotDict: {},
   }),
   created() {
-    this.regionTerritorySpots = _.chain(regionTerritorySpots)
-      .map((territories, regionId) => {
+    this.regionTerritorySpots = regionTerritorySpots
+      .map(region => {
         return {
-          id: 'region-' + regionId,
-          name: placeNames[regionId],
-          children: _.map(territories, (spots, territoryId) => {
+          id: 'region-' + region.id,
+          name: placeNames[region.id],
+          // TODO: arrange region & territory according to order
+          children: region.territories.map(territory => {
             return {
-              id: 'territory-' + territoryId,
-              name: placeNames[territoryId],
-              children: spots.map(spot => {
+              id: 'territory-' + territory.id,
+              name: placeNames[territory.id],
+              children: territory.spots.map(spot => {
                 this.spotDict[spot.id] = {
                   spotId: spot.id,
-                  territoryId,
-                  regionId,
+                  territoryId: territory.id,
+                  regionId: region.id,
                   fishList: spot.fishList,
                 }
                 return {
@@ -89,8 +89,9 @@ export default {
           }),
         }
       })
-      .filter(it => it.id !== 'region-undefined' && it.id !== 'region-3443')
-      .value()
+      .filter(it => it.id !== 'region-null' && it.id !== 'region-3443')
+    console.log(regionTerritorySpots)
+    console.log(this.regionTerritorySpots)
   },
   computed: {
     currentSpot() {
