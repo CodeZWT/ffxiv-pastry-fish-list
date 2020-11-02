@@ -8,7 +8,7 @@
     </v-overlay>
     <div ref="container" v-resize="resize" style="width: 100%; height: 100%">
       <v-stage ref="stage" :config="stageConfig">
-        <v-layer>
+        <v-layer draggable>
           <v-image :config="defaultMapConfig"></v-image>
           <v-image :config="mapConfig"></v-image>
           <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
@@ -195,9 +195,9 @@ export default {
       type: String,
       default: 'local',
     },
-    debug: {
-      type: Boolean,
-      default: false,
+    ratio: {
+      type: Number,
+      default: 1,
     },
   },
   data: () => ({
@@ -229,10 +229,12 @@ export default {
     },
     stageConfig() {
       return {
+        x: this.containerWidth / 2 - this.containerHeight / 2,
         width: this.containerWidth,
         height: this.containerHeight,
-        scaleX: this.containerWidth / MAP_SIZE,
+        scaleX: this.containerHeight / MAP_SIZE,
         scaleY: this.containerHeight / MAP_SIZE,
+        draggable: true,
       }
     },
     defaultMapConfig() {
@@ -360,6 +362,34 @@ export default {
     this.loadImageToProp(aetheryteMarker, 'aetheryteImage')
     this.throttledResizeFn = throttle(() => this.resizeInternal(), 300)
   },
+  mounted() {
+    const stage = this.$refs.stage.getNode()
+    stage.on('wheel', e => {
+      e.evt.preventDefault()
+      const scaleBy = 1.5
+      const oldScale = stage.scaleX()
+
+      const pointer = stage.getPointerPosition()
+
+      const mousePointTo = {
+        x: (pointer.x - stage.x()) / oldScale,
+        y: (pointer.y - stage.y()) / oldScale,
+      }
+
+      const scaleByWheel = e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy
+
+      const newScale = scaleByWheel * MAP_SIZE > 100 ? scaleByWheel : oldScale
+
+      stage.scale({ x: newScale, y: newScale })
+
+      const newPos = {
+        x: pointer.x - mousePointTo.x * newScale,
+        y: pointer.y - mousePointTo.y * newScale,
+      }
+      stage.position(newPos)
+      stage.batchDraw()
+    })
+  },
   methods: {
     getOffset(textSize) {
       return textSize / 2
@@ -427,7 +457,12 @@ export default {
     },
     resizeInternal() {
       const rect = this.$refs.container.getBoundingClientRect()
-      this.containerHeight = this.containerWidth = rect?.width
+      this.containerWidth = rect?.width
+      this.containerHeight = this.ratio * this.containerWidth
+
+      const stage = this.$refs.stage?.getNode()
+      stage?.scale({ x: this.containerHeight / MAP_SIZE, y: this.containerHeight / MAP_SIZE })
+      stage?.position({ x: this.containerWidth / 2 - this.containerHeight / 2, y: 0 })
       // const markerRangeNode = this.$refs.markerRangeNode.getNode()
       // markerRangeNode.cache()
       // markerRangeNode.getLayer().batchDraw()

@@ -42,9 +42,26 @@
       </v-card>
     </v-col>
     <v-col cols="10">
-      <div>{{ activeItems }}</div>
-      <!--      <div>{{ spotDict }}</div>-->
-      <div>{{ currentSpot }}</div>
+      <v-row class="flex-wrap" no-gutters>
+        <!--        <v-col cols="12" style="position: absolute">-->
+        <!--          <div>{{ activeItems }}</div>-->
+        <!--          <div>{{ currentSpot }}</div>-->
+        <!--        </v-col>-->
+        <v-col v-if="currentSpotId">
+          <div class="wiki-map">
+            <eorzea-simple-map
+              ref="simpleMap"
+              :id="currentSpot.mapFileId"
+              :x="currentSpot.x"
+              :y="currentSpot.y"
+              :size-factor="currentSpot.size_factor"
+              :marker-radius="currentSpot.radius"
+              :fishing-spot-name="currentSpotName"
+              :ratio="0.4"
+            />
+          </div>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
@@ -53,9 +70,11 @@
 import regionTerritorySpots from '@/store/fishingSpots.json'
 import placeNames from '@/store/placeNames.json'
 import { mapGetters } from 'vuex'
+import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 
 export default {
   name: 'WikiPage',
+  components: { EorzeaSimpleMap },
   data: () => ({
     checkedSpots: [],
     regionTerritorySpots: [],
@@ -94,12 +113,29 @@ export default {
     console.log(this.regionTerritorySpots)
   },
   computed: {
-    currentSpot() {
-      return this.spotDict[this.activeItems[0]?.split('-')?.[1]]
+    currentSpotId() {
+      return +this.activeItems[0]?.split('-')?.[1]
     },
-    ...mapGetters(['getFishingSpotsName']),
+    currentSpot() {
+      return this.getFishingSpot(this.currentSpotId)
+    },
+    currentSpotName() {
+      return this.getFishingSpotsName(this.currentSpotId)
+    },
+    ...mapGetters(['getFishingSpotsName', 'getFishingSpot']),
+  },
+  watch: {
+    currentSpotId() {
+      this.$refs.simpleMap?.resize()
+    },
   },
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+@import "../styles/RcVariables"
+
+.wiki-map
+  width: 100%
+  height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+</style>

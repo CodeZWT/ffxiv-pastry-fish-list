@@ -51,7 +51,6 @@
       <div style="width: 100%; max-width: 512px">
         <eorzea-simple-map
           ref="simpleMap"
-          :debug="false"
           :id="currentSpot.fishingSpot.mapFileId"
           :x="currentSpot.fishingSpot.x"
           :y="currentSpot.fishingSpot.y"
