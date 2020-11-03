@@ -394,7 +394,7 @@ export default {
         y: (pointer.y - stage.y()) / oldScale,
       }
 
-      const scaleByWheel = e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy
+      const scaleByWheel = e.evt.deltaY < 0 ? oldScale * scaleBy : oldScale / scaleBy
 
       const newScale = scaleByWheel * MAP_SIZE > 100 ? scaleByWheel : oldScale
 
