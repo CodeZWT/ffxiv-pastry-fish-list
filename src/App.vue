@@ -729,7 +729,9 @@ export default {
     })
 
     this.now = Date.now()
-    this.lazyFishSourceList = Object.values(this.allFish).filter(it => it.gig == null && it.patch <= DataUtil.PATCH_MAX)
+    this.lazyFishSourceList = Object.values(this.allFish).filter(
+      it => it.gig == null && (it.patch == null || it.patch <= DataUtil.PATCH_MAX)
+    )
     this.lazyImportantFishSourceList = this.lazyFishSourceList.filter(
       it => this.bigFish.includes(it._id) || !DataUtil.isAllAvailableFish(it)
     )
