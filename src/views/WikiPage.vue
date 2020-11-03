@@ -64,7 +64,7 @@
         <v-col cols="12">
           <div v-for="(fish, index) in currentFishList" :key="fish._id" style="position: relative">
             <v-divider v-if="index > 0" inset style="border-color: white" />
-            <fish-list-brief-header :fish="fish" :fish-time-part="fishListTimePart[fish._id]"/>
+            <fish-list-brief-header :fish="fish" :fish-time-part="fishListTimePart[fish._id]" />
           </div>
         </v-col>
       </v-row>
@@ -105,7 +105,9 @@ export default {
                   spotId: spot.id,
                   territoryId: territory.id,
                   regionId: region.id,
-                  fishList: spot.fishList,
+                  // [NOTE][VERSION]
+                  // filter future version fish out
+                  fishList: spot.fishList.filter(fishId => this.lazyTransformedFishDict[fishId]),
                 }
                 return {
                   id: 'spot-' + spot.id,
