@@ -15,7 +15,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    fish: DataUtil.mergeByReplacingArray(FishingData, FIX.FISH, DATA_CN.FISH_ANGLER_ID),
+    fish: DataUtil.mergeByReplacingArray(FishingData, FIX.FISH),
     fishingSpots: merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
     items: merge(DATA.ITEMS, DATA_CN.ITEMS),
