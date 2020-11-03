@@ -7,19 +7,49 @@
       </div>
     </v-overlay>
     <div ref="container" v-resize="resize" style="width: 100%; height: 100%">
+      <div class="d-flex justify-center align-center" style="width: 100%">
+        <v-btn @click="resize" tile icon height="48" width="48">
+          <v-icon>mdi-arrow-collapse</v-icon>
+        </v-btn>
+        <v-btn-toggle v-model="mapOptions" multiple color="primary">
+          <v-btn @click="toggleLayer('rangeHelperLayer')" icon>
+            <v-icon>mdi-waves</v-icon>
+          </v-btn>
+          <v-btn @click="toggleLayer('markerRangeLayer')" icon>
+            <v-icon>mdi-map-marker-radius</v-icon>
+          </v-btn>
+          <v-btn @click="toggleLayer('textLayer')" icon>
+            <v-icon>mdi-format-text</v-icon>
+          </v-btn>
+        </v-btn-toggle>
+      </div>
       <v-stage ref="stage" :config="stageConfig">
-        <v-layer draggable>
+        <v-layer>
           <v-image :config="defaultMapConfig"></v-image>
           <v-image :config="mapConfig"></v-image>
-          <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
-          <v-image ref="markerRangeNode" :config="markerRangeConfig"></v-image>
-          <v-image v-if="fishingSpotMarkerConfig.image" :config="fishingSpotMarkerConfig"></v-image>
           <v-image v-for="(config, index) in aetheryteMakerConfigs" :config="config" :key="index"></v-image>
+        </v-layer>
+        <v-layer ref="rangeHelperLayer">
+          <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
+        </v-layer>
+        <v-layer ref="markerRangeLayer">
+          <v-image :config="markerRangeConfig"></v-image>
+          <v-image v-if="fishingSpotMarkerConfig.image" :config="fishingSpotMarkerConfig"></v-image>
+        </v-layer>
+        <v-layer ref="textLayer">
           <v-text
             v-for="config in aetheryteMakerTextConfigs"
             :config="config"
             :key="config.text"
-            @click="copyAetheryteName(config.text)"
+            @click="copyText(config.text)"
+            @mouseenter="switchMouseToPointer"
+            @mouseleave="switchMouseToDefault"
+          ></v-text>
+          <v-text
+            v-for="config in fishingSpotTextConfigs"
+            :config="config"
+            :key="config.text"
+            @click="copyText(config.text)"
             @mouseenter="switchMouseToPointer"
             @mouseleave="switchMouseToDefault"
           ></v-text>
@@ -41,7 +71,8 @@ import copy from 'copy-to-clipboard'
 // import Konva from 'konva'
 
 const TEXT_PADDING = 50
-const TEXT_FONT = 90
+const TEXT_AETHERYTE_FONT = 90
+const TEXT_SPOT_FONT = 70
 const MAP_SIZE = 2048
 
 const AVAILABLE_HELP = new Set([
@@ -201,6 +232,7 @@ export default {
     },
   },
   data: () => ({
+    mapOptions: [0, 1, 2],
     defaultMapImage: null,
     mapImage: null,
     fishingSpotImage: null,
@@ -305,28 +337,14 @@ export default {
       return (
         this.aetheryte[this.id]?.map(it => {
           const text = DataUtil.getName(it)
-          const textLength = text.length
-          const fontSize = TEXT_FONT
-          const width = fontSize * textLength
-          const height = fontSize
-          return {
-            text: text,
-            width: width,
-            offsetX: this.getOffset(width),
-            height: height,
-            offsetY: this.getOffset(height),
-            x: this.getSafePos(it.x, width),
-            y: this.getSafeY(it.y, height, height / 2 + 10),
-            align: 'center',
-            fontSize: fontSize,
-            fill: 'black',
-            stroke: 'black',
-            strokeWidth: 1,
-            shadowColor: 'black',
-            shadowBlur: 10,
-            shadowOffset: { x: 8, y: 8 },
-            shadowOpacity: 0.5,
-          }
+          return this.computeSafeTextConfig(text, it.x, it.y, { fontSize: TEXT_AETHERYTE_FONT })
+        }) ?? []
+      )
+    },
+    fishingSpotTextConfigs() {
+      return (
+        [this.fishingSpotName]?.map(text => {
+          return this.computeSafeTextConfig(text, this.x, this.y, { fontSize: TEXT_SPOT_FONT, color: 'white' })
         }) ?? []
       )
     },
@@ -455,6 +473,11 @@ export default {
     resize() {
       this.throttledResizeFn()
     },
+    toggleLayer(layerName) {
+      const layer = this.$refs[layerName].getNode()
+      layer.opacity(1 - layer.opacity())
+      layer.draw()
+    },
     resizeInternal() {
       const rect = this.$refs.container.getBoundingClientRect()
       this.containerWidth = rect?.width
@@ -466,8 +489,9 @@ export default {
       // const markerRangeNode = this.$refs.markerRangeNode.getNode()
       // markerRangeNode.cache()
       // markerRangeNode.getLayer().batchDraw()
+      stage.batchDraw()
     },
-    copyAetheryteName(text) {
+    copyText(text) {
       copy(text)
       this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
     },
@@ -476,6 +500,29 @@ export default {
     },
     switchMouseToDefault() {
       this.$refs.stage.getNode().container().style.cursor = 'default'
+    },
+    computeSafeTextConfig(text, x, y, option) {
+      const textLength = text.length
+      const width = option.fontSize * textLength
+      const height = option.fontSize
+      return {
+        text: text,
+        width: width,
+        offsetX: this.getOffset(width),
+        height: height,
+        offsetY: this.getOffset(height),
+        x: this.getSafePos(x, width),
+        y: this.getSafeY(y, height, height / 2 + 10),
+        align: 'center',
+        fontSize: option.fontSize,
+        fill: option.color ?? 'black',
+        stroke: option.color ?? 'black',
+        strokeWidth: 1,
+        shadowColor: 'black',
+        shadowBlur: 10,
+        shadowOffset: { x: 8, y: 8 },
+        shadowOpacity: 0.5,
+      }
     },
     ...mapMutations(['showSnackbar']),
   },
