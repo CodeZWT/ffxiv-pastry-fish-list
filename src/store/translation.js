@@ -26570,19 +26570,5 @@ export default {
       y: 1020,
       name_chs: '游末邦',
     },
-    {
-      mapId: 497,
-      mapFileId: 'n4t1/00',
-      x: 894,
-      y: 1024,
-      name_chs: '水晶都',
-    },
-    {
-      mapId: 555,
-      mapFileId: 'n4t2/03',
-      x: 1025,
-      y: 1020,
-      name_chs: '游末邦',
-    },
   ],
 }
