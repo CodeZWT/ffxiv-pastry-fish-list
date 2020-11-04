@@ -67,7 +67,11 @@
         <v-col cols="12">
           <div v-for="(fish, index) in currentFishList" :key="fish._id" style="position: relative">
             <v-divider v-if="index > 0" inset style="border-color: white" />
-            <fish-list-brief-header :fish="fish" :fish-time-part="fishListTimePart[fish._id]" />
+            <fish-list-brief-header
+              :fish="fish"
+              :fish-time-part="fishListTimePart[fish._id]"
+              show-constraints-instead
+            />
           </div>
         </v-col>
       </v-row>

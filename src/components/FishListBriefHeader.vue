@@ -103,10 +103,10 @@
         </div>
       </v-col>
       <v-col class="col-6 col-sm-3 d-flex flex-column justify-center">
-        <div v-if="mode === 'CONTENT' && inPredator && fish.hasTimeConstraint">
+        <div v-if="showConstraintsInstead && fish.hasTimeConstraint">
           {{ fish.startHourText }} - {{ fish.endHourText }}
         </div>
-        <div class="d-flex" v-if="mode === 'CONTENT' && inPredator && fish.hasWeatherConstraint">
+        <div class="d-flex" v-if="showConstraintsInstead && fish.hasWeatherConstraint">
           <div style="display: flex">
             <div v-for="(weather, index) in fish.previousWeatherSetDetail" :key="index" class="zoom-in-predator">
               <div :class="weather.icon" :title="weather.name" />
@@ -130,7 +130,7 @@
         <!--        >-->
         <!--          {{ fish.fishingSpot }}-->
         <!--        </div>-->
-        <div v-if="!inPredator">
+        <div v-if="!showConstraintsInstead">
           <fishing-spot-column :fishing-spots="fish.fishingSpots" />
         </div>
         <div v-if="isMobile && !transformedFishTimePart.hasCountDown" class="text-subtitle-2">
@@ -259,6 +259,10 @@ export default {
     mode: {
       type: String,
       default: 'CONTENT',
+    },
+    showConstraintsInstead: {
+      type: Boolean,
+      default: false,
     },
   },
   data: () => ({

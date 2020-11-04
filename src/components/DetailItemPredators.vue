@@ -6,7 +6,7 @@
     <v-col cols="12">
       <div v-for="(predator, index) in fish.predators" :key="predator._id" style="position: relative">
         <v-divider v-if="index > 0" inset style="border-color: white"/>
-        <fish-list-brief-header :fish="predator" :fish-time-part="predator.fishTimePart" in-predator :mode="mode" />
+        <fish-list-brief-header :fish="predator" :fish-time-part="predator.fishTimePart" in-predator :mode="mode" show-constraints-instead/>
       </div>
     </v-col>
   </v-row>
