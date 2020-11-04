@@ -1,13 +1,13 @@
 <template>
-  <div style="width: 100%; height: 100%; position: relative">
+  <div style="width: 100%; height: 100%; position: relative" class="eorzea-simple-map">
     <v-overlay :value="!allImageLoaded" absolute opacity="1">
       <div class="d-flex flex-column align-center">
         <v-progress-circular indeterminate size="64"></v-progress-circular>
         <div class="mt-2">{{ $t('detail.map.loading') }}</div>
       </div>
     </v-overlay>
-    <div ref="container" v-resize="resize" style="width: 100%; height: 100%">
-      <div class="d-flex justify-center align-center" style="width: 100%">
+    <div ref="container" v-resize="resize" style="width: 100%; height: 100%" class="map-container">
+      <div class="d-flex justify-center align-center" style="width: 100%; position: absolute; z-index: 10">
         <v-btn @click="resize" tile icon height="48" width="48">
           <v-icon>mdi-arrow-collapse</v-icon>
         </v-btn>
@@ -30,7 +30,7 @@
         <v-layer>
           <v-image :config="defaultMapConfig"></v-image>
           <v-image :config="mapConfig"></v-image>
-          <v-image v-for="(config, index) in aetheryteMakerConfigs" :config="config" :key="index"></v-image>
+          <v-image v-for="(config, index) in aetheryteMakerConfigs" :config="config" :key="`marker${index}`"></v-image>
         </v-layer>
         <v-layer ref="rangeHelperLayer">
           <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
@@ -43,7 +43,7 @@
           <v-text
             v-for="config in aetheryteMakerTextConfigs"
             :config="config"
-            :key="config.text"
+            :key="`aetheryte-${config.text}`"
             @click="copyText(config.text)"
             @mouseenter="switchMouseToPointer"
             @mouseleave="switchMouseToDefault"
@@ -51,7 +51,7 @@
           <v-text
             v-for="config in fishingSpotTextConfigs"
             :config="config"
-            :key="config.text"
+            :key="`spot-${config.text}`"
             @click="copyText(config.text)"
             @mouseenter="switchMouseToPointer"
             @mouseleave="switchMouseToDefault"
@@ -555,11 +555,14 @@ export default {
     resizeInternal() {
       const rect = this.$refs.container.getBoundingClientRect()
       this.containerWidth = rect?.width
-      this.containerHeight = this.ratio * this.containerWidth
+      this.containerHeight = rect?.height
+      const resizeRefer = Math.min(this.containerHeight, this.containerWidth)
 
       const stage = this.$refs.stage?.getNode()
-      stage?.scale({ x: this.containerHeight / MAP_SIZE, y: this.containerHeight / MAP_SIZE })
-      stage?.position({ x: this.containerWidth / 2 - this.containerHeight / 2, y: 0 })
+      stage?.scale({ x: resizeRefer / MAP_SIZE, y: resizeRefer / MAP_SIZE })
+      stage?.position({ x: 0, y: 0 })
+      // stage?.width()
+      // stage?.clip({ x: 0, y: 0, width: rect?.width, height: rect?.height })
       // const markerRangeNode = this.$refs.markerRangeNode.getNode()
       // markerRangeNode.cache()
       // markerRangeNode.getLayer().batchDraw()
