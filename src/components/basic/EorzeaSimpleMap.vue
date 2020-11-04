@@ -21,6 +21,9 @@
           <v-btn @click="toggleLayer('textLayer')" icon>
             <v-icon>mdi-format-text</v-icon>
           </v-btn>
+          <v-btn @click="toggleMapLock" icon>
+            <v-icon>mdi-lock</v-icon>
+          </v-btn>
         </v-btn-toggle>
       </div>
       <v-stage ref="stage" :config="stageConfig">
@@ -286,7 +289,8 @@ export default {
     },
   },
   data: () => ({
-    mapOptions: [0, 1, 2],
+    stage: undefined,
+    mapOptions: [0, 1, 2, 3],
     defaultMapImage: null,
     mapImage: null,
     fishingSpotImage: null,
@@ -298,6 +302,7 @@ export default {
     fishingSpotRangeHelperLoaded: false,
     throttledResizeFn: undefined,
     fishingSpotRangeHelperImage: null,
+    mapLocked: true,
   }),
   computed: {
     markerRangeFactor() {
@@ -320,7 +325,7 @@ export default {
         height: this.containerHeight,
         scaleX: this.containerHeight / MAP_SIZE,
         scaleY: this.containerHeight / MAP_SIZE,
-        draggable: true,
+        draggable: !this.mapLocked,
       }
     },
     defaultMapConfig() {
@@ -437,6 +442,8 @@ export default {
   mounted() {
     const stage = this.$refs.stage.getNode()
     stage.on('wheel', e => {
+      if (this.mapLocked) return
+
       e.evt.preventDefault()
       const scaleBy = 1.5
       const oldScale = stage.scaleX()
@@ -527,10 +534,23 @@ export default {
     resize() {
       this.throttledResizeFn()
     },
+    getStage() {
+      if (this.stage) {
+        return this.stage
+      } else {
+        return this.$refs.stage.getNode()
+      }
+    },
     toggleLayer(layerName) {
       const layer = this.$refs[layerName].getNode()
       layer.opacity(1 - layer.opacity())
       layer.draw()
+    },
+    toggleMapLock() {
+      const stage = this.getStage()
+      stage.draggable(!stage.draggable())
+      this.mapLocked = !this.mapLocked
+      stage.batchDraw()
     },
     resizeInternal() {
       const rect = this.$refs.container.getBoundingClientRect()
