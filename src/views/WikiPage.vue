@@ -65,11 +65,11 @@
           <fish-tug-table :value="currentFishList" />
         </v-col>
         <v-col cols="12">
-          <div v-for="(fish, index) in currentFishList" :key="fish._id" style="position: relative">
-            <v-divider v-if="index > 0" inset style="border-color: white" />
-            <fish-list-brief-header
+          <div v-for="fish in currentFlattenFishList" :key="fish._id" style="position: relative">
+            <fish-list-item
               :fish="fish"
               :fish-time-part="fishListTimePart[fish._id]"
+              @click="onFishClicked(fish._id)"
               show-constraints-instead
             />
           </div>
@@ -84,12 +84,12 @@ import regionTerritorySpots from '@/store/fishingSpots.json'
 import placeNames from '@/store/placeNames.json'
 import { mapGetters } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
-import FishListBriefHeader from '@/components/FishListBriefHeader'
 import FishTugTable from '@/components/FishingTugTable'
+import FishListItem from '@/components/FishListItem'
 
 export default {
   name: 'WikiPage',
-  components: { FishTugTable, FishListBriefHeader, EorzeaSimpleMap },
+  components: { FishListItem, FishTugTable, EorzeaSimpleMap },
   props: ['lazyTransformedFishDict', 'fishListTimePart'],
   data: () => ({
     checkedSpots: [],
@@ -144,11 +144,21 @@ export default {
     currentFishList() {
       return this.spotDict?.[this.currentSpotId]?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
     },
+    currentFlattenFishList() {
+      return this.currentFishList?.flatMap(fish => {
+        return [fish, ...fish.predators]
+      })
+    },
     ...mapGetters(['getFishingSpotsName', 'getFishingSpot']),
   },
   watch: {
     currentSpotId() {
       this.$refs.simpleMap?.resize()
+    },
+  },
+  methods: {
+    onFishClicked(fishId) {
+      this.$emit('fish-selected', fishId)
     },
   },
 }

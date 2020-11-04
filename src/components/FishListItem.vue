@@ -12,6 +12,7 @@
         :predators="[]"
         :in-predator="fish.isPredator"
         mode="HEADER"
+        :show-constraints-instead="showConstraintsInstead"
       />
     </v-sheet>
   </click-helper>
@@ -36,6 +37,10 @@ export default {
     color: {
       type: String,
       default: undefined,
+    },
+    showConstraintsInstead: {
+      type: Boolean,
+      default: false,
     },
   },
 }
