@@ -61,6 +61,9 @@
             />
           </div>
         </v-col>
+        <v-col cols="12" v-if="currentSpotId">
+          <fish-tug-table :value="currentFishList" />
+        </v-col>
         <v-col cols="12">
           <div v-for="(fish, index) in currentFishList" :key="fish._id" style="position: relative">
             <v-divider v-if="index > 0" inset style="border-color: white" />
@@ -78,10 +81,11 @@ import placeNames from '@/store/placeNames.json'
 import { mapGetters } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import FishListBriefHeader from '@/components/FishListBriefHeader'
+import FishTugTable from '@/components/FishingTugTable'
 
 export default {
   name: 'WikiPage',
-  components: { FishListBriefHeader, EorzeaSimpleMap },
+  components: { FishTugTable, FishListBriefHeader, EorzeaSimpleMap },
   props: ['lazyTransformedFishDict', 'fishListTimePart'],
   data: () => ({
     checkedSpots: [],
@@ -124,7 +128,8 @@ export default {
   },
   computed: {
     currentSpotId() {
-      return +this.activeItems[0]?.split('-')?.[1]
+      const id = this.activeItems[0]?.split('-')?.[1]
+      return id != null ? +id : undefined
     },
     currentSpot() {
       return this.getFishingSpot(this.currentSpotId)

@@ -115,7 +115,7 @@
         "unit": "分钟",
         "systemNotification": {
           "title": "系统通知",
-          "enabled":"已启用",
+          "enabled": "已启用",
           "disabled": "未启用"
         },
         "message": {
@@ -132,11 +132,11 @@
         "enabled": "显示",
         "disabled": "不显示",
         "itemNames": {
-          "DetailItemMap":  "地图",
+          "DetailItemMap": "地图",
           "DetailItemCountdownBar": "倒计时条",
-          "DetailItemRequirements":  "天气时间要求",
+          "DetailItemRequirements": "天气时间要求",
           "DetailItemBuffAndBaits": "需要状态及鱼饵",
-          "DetailItemFishWindowTable":  "窗口期详情表",
+          "DetailItemFishWindowTable": "窗口期详情表",
           "DetailItemPredators": "前置鱼列表"
         }
       }
@@ -234,5 +234,13 @@
   "date": {
     "today": "今天",
     "tomorrow": "明天"
+  },
+  "tug": {
+    "light": "轻杆",
+    "medium": "中杆",
+    "heavy": "重杆"
+  },
+  "tugTable": {
+    "tugFish": "杆型\\鱼"
   }
 }
