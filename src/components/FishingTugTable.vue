@@ -4,17 +4,27 @@
       <thead>
         <tr>
           <th class="text-left">{{ $t('tugTable.tugFish') }}</th>
-          <th v-for="fish in fishTugList" class="text-left" :key="fish.id">
-            <div :class="fish.icon" :title="`${fish.name}#${fish.id}`" />
+          <th
+            v-for="(fish, index) in fishTugList"
+            :key="fish.id"
+            :class="{ 'primary': currentCol === index }"
+          >
+            <div :class="fish.icon" :title="`${fish.name}#${fish.id}`" style="margin: auto"/>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="tug in TUGS" :key="tug">
           <td>{{ $t('tug.' + tug) }}</td>
-          <th class="text-left" v-for="spotFish in fishTugList" :key="spotFish.id">
+          <td
+            v-for="(spotFish, index) in fishTugList"
+            :key="spotFish.id"
+            @mouseover="onCellHover(index)"
+            @mouseout="onCellHoverEnd(index)"
+            class="text-center"
+          >
             <v-icon v-show="spotFish.tug === tug">mdi-fish</v-icon>
-          </th>
+          </td>
         </tr>
       </tbody>
     </template>
@@ -22,7 +32,6 @@
 </template>
 
 <script>
-import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'
 
@@ -33,8 +42,8 @@ export default {
   },
   data() {
     return {
-      fisher,
       TUGS: Object.keys(DataUtil.TUG_ICON),
+      currentCol: -1,
     }
   },
   computed: {
@@ -49,7 +58,20 @@ export default {
       })
     },
   },
+  methods: {
+    onCellHover(index) {
+      this.currentCol = index
+    },
+    onCellHoverEnd(index) {
+      if (this.currentCol === index) {
+        this.currentCol = -1
+      }
+    },
+  },
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+.highlight-cell
+  background-color: grey
+</style>

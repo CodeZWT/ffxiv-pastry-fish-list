@@ -169,7 +169,7 @@ export default {
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
   },
-  props: ['lazyTransformedFishDict', 'fishListTimePart'],
+  props: ['lazyTransformedFishDict', 'fishListTimePart', 'now'],
   data: () => ({
     checkedSpots: [],
     regionTerritorySpots: [],
