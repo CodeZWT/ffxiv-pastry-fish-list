@@ -25,7 +25,7 @@
         <!--    :filter="filter"-->
         <!--    :open.sync="open"-->
 
-        <v-card-text>
+        <v-card-text class="spot-list">
           <v-treeview
             v-model="checkedSpots"
             :items="regionTerritorySpots"
@@ -90,7 +90,11 @@
               :i="fishListLayout.i"
             >
               <div>
-                <div v-for="fish in currentFlattenFishList" :key="fish._id" style="position: relative">
+                <div
+                  v-for="fish in currentFlattenFishList"
+                  :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"
+                  style="position: relative"
+                >
                   <fish-list-item
                     :fish="fish"
                     :fish-time-part="fishListTimePart[fish._id]"
@@ -241,9 +245,11 @@ export default {
       return this.spotDict?.[this.currentSpotId]?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
     },
     currentFlattenFishList() {
-      return this.currentFishList?.flatMap(fish => {
-        return [fish, ...fish.predators]
-      })
+      return (
+        this.currentFishList?.flatMap(fish => {
+          return [fish, ...fish.predators]
+        }) ?? []
+      )
     },
     ...mapGetters(['getFishingSpotsName', 'getFishingSpot']),
   },
@@ -267,7 +273,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-//@import "../styles/RcVariables"
+@import "../styles/RcVariables"
 
 //.wiki-map
 //  width: 100%
@@ -295,4 +301,9 @@ export default {
   margin: auto
   height: 100%
   width: 100%
+
+.spot-list
+  height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+  overflow-scrolling: auto
+  overflow-y: scroll
 </style>
