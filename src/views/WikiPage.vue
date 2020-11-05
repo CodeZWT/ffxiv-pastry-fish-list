@@ -53,7 +53,7 @@
             v-if="currentSpotId"
             :layout.sync="layout"
             :col-num="12"
-            :row-height="30"
+            :row-height="32"
             :is-draggable="isSettingMode"
             :is-resizable="true"
             :is-mirrored="false"
@@ -89,7 +89,7 @@
               :h="fishListLayout.h"
               :i="fishListLayout.i"
             >
-              <div>
+              <div class="grid-content">
                 <div
                   v-for="fish in currentFlattenFishList"
                   :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"
@@ -113,7 +113,7 @@
               :h="baitTableLayout.h"
               :i="baitTableLayout.i"
             >
-              <fish-tug-table :value="currentFishList" />
+              <fish-tug-table :value="currentFishList" class="grid-content"/>
             </grid-item>
           </grid-layout>
         </v-col>
@@ -302,8 +302,8 @@ export default {
   height: 100%
   width: 100%
 
-.spot-list
-  height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+.grid-content
+  height: 100%
   overflow-scrolling: auto
   overflow-y: scroll
 </style>
