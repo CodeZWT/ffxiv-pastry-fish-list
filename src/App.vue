@@ -226,7 +226,7 @@
     </v-main>
     <v-footer app style="font-size: small; max-height: 31px" v-if="!collapse">
       <div class="d-flex" style="width: 100%">
-        <div class="text-truncate" :title="$t('footer.contact')">{{ $t('footer.contact') }}</div>
+        <div class="text-truncate mr-2" :title="$t('footer.contact')">{{ $t('footer.contact') }}</div>
         <v-spacer />
         <div class="text-truncate" :title="$t('footer.ffRights')">{{ $t('footer.ffRights') }}</div>
       </div>
@@ -520,6 +520,7 @@ export default {
     searchedFishId: undefined,
     selectedFishId: undefined,
     fishListWeatherChangePart: {},
+    loading: true,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
