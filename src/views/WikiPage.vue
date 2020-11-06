@@ -2,19 +2,28 @@
   <v-row no-gutters>
     <v-col cols="2">
       <v-card class="mx-auto" max-width="500">
-        <v-sheet class="pa-2 primary">
-          <v-text-field
-            v-model="searchText"
-            label="搜索鱼或地名"
-            flat
-            solo-inverted
-            hide-details
-            clearable
-          ></v-text-field>
+        <v-sheet class="pa-1 primary">
+          <div class="d-flex align-center">
+            <v-text-field
+              v-model="searchText"
+              label="搜索鱼或地名"
+              flat
+              solo-inverted
+              hide-details
+              clearable
+            ></v-text-field>
+            <v-btn icon class="ml-1" @click="collapseAll">
+              <v-icon>mdi-arrow-collapse-vertical</v-icon>
+            </v-btn>
+            <!--            <v-btn icon class="ml-1" @click="expandAll">-->
+            <!--              <v-icon>mdi-arrow-expand-vertical</v-icon>-->
+            <!--            </v-btn>-->
+          </div>
         </v-sheet>
 
         <v-card-text class="spot-list">
           <v-treeview
+            ref="spotMenu"
             v-model="completedSpotFishIds"
             :items="regionTerritorySpots"
             item-key="id"
@@ -388,6 +397,12 @@ export default {
         return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
       }
     },
+    expandAll() {
+      this.$refs.spotMenu.updateAll(true)
+    },
+    collapseAll() {
+      this.$refs.spotMenu.updateAll(false)
+    },
     ...mapMutations(['setFishCompleted']),
   },
 }
@@ -426,6 +441,11 @@ export default {
 
 .grid-content
   height: 100%
+  overflow-scrolling: auto
+  overflow-y: scroll
+
+.spot-list
+  height: calc(100vh - #{ $top-bars-padding + $footer-padding + 64})
   overflow-scrolling: auto
   overflow-y: scroll
 </style>
