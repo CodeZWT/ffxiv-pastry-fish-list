@@ -27,15 +27,16 @@
 
         <v-card-text class="spot-list">
           <v-treeview
-            v-model="checkedSpots"
+            v-model="completedSpotFishIds"
             :items="regionTerritorySpots"
             item-key="id"
             hoverable
             dense
             activatable
-            open-on-click
             selectable
-            @update:active="activeItems = $event"
+            selected-color="primary"
+            :open="openedItems"
+            @update:active="onMenuItemActive"
           >
           </v-treeview>
         </v-card-text>
@@ -49,73 +50,88 @@
           </v-btn>
         </v-col>
         <v-col cols="12">
-          <grid-layout
-            v-if="currentSpotId"
-            :layout.sync="layout"
-            :col-num="12"
-            :row-height="32"
-            :is-draggable="isSettingMode"
-            :is-resizable="true"
-            :is-mirrored="false"
-            :vertical-compact="true"
-            :margin="[10, 10]"
-            :use-css-transforms="true"
-          >
-            <grid-item
-              :static="mapLayout.static"
-              :x="mapLayout.x"
-              :y="mapLayout.y"
-              :w="mapLayout.w"
-              :h="mapLayout.h"
-              @resized="onMapCardResized"
-              :i="mapLayout.i"
+          <code>{{ currentTerritoryId }}</code>
+          <code>{{ currentSpotId }}</code>
+          <code>{{ currentFishId }}</code>
+          <div v-if="type === 'region'">
+            <!--  show region view  -->
+            region
+          </div>
+          <div v-else-if="type === 'territory'">
+            <!--  show territory view  -->
+            territory
+          </div>
+          <div v-else-if="type === 'spot' || type === 'fish'">
+            <!--  show spot/fish view  -->
+            {{ type }}
+            <grid-layout
+              v-if="currentSpotId"
+              :layout.sync="layout"
+              :col-num="12"
+              :row-height="32"
+              :is-draggable="isSettingMode"
+              :is-resizable="true"
+              :is-mirrored="false"
+              :vertical-compact="true"
+              :margin="[10, 10]"
+              :use-css-transforms="true"
             >
-              <eorzea-simple-map
-                ref="simpleMap"
-                :id="currentSpot.mapFileId"
-                :x="currentSpot.x"
-                :y="currentSpot.y"
-                :size-factor="currentSpot.size_factor"
-                :marker-radius="currentSpot.radius"
-                :fishing-spot-name="currentSpotName"
-              />
-            </grid-item>
+              <grid-item
+                :static="mapLayout.static"
+                :x="mapLayout.x"
+                :y="mapLayout.y"
+                :w="mapLayout.w"
+                :h="mapLayout.h"
+                @resized="onMapCardResized"
+                :i="mapLayout.i"
+              >
+                <eorzea-simple-map
+                  ref="simpleMap"
+                  :id="currentSpot.mapFileId"
+                  :x="currentSpot.x"
+                  :y="currentSpot.y"
+                  :size-factor="currentSpot.size_factor"
+                  :marker-radius="currentSpot.radius"
+                  :fishing-spot-name="currentSpotName"
+                />
+              </grid-item>
 
-            <grid-item
-              :static="fishListLayout.static"
-              :x="fishListLayout.x"
-              :y="fishListLayout.y"
-              :w="fishListLayout.w"
-              :h="fishListLayout.h"
-              :i="fishListLayout.i"
-            >
-              <div class="grid-content">
-                <div
-                  v-for="fish in currentFlattenFishList"
-                  :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"
-                  style="position: relative"
-                >
-                  <fish-list-item
-                    :fish="fish"
-                    :fish-time-part="fishListTimePart[fish._id]"
-                    @click="onFishClicked(fish._id)"
-                    show-constraints-instead
-                  />
+              <grid-item
+                :static="fishListLayout.static"
+                :x="fishListLayout.x"
+                :y="fishListLayout.y"
+                :w="fishListLayout.w"
+                :h="fishListLayout.h"
+                :i="fishListLayout.i"
+              >
+                <div class="grid-content">
+                  <div
+                    v-for="fish in currentFlattenFishList"
+                    :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"
+                    style="position: relative"
+                  >
+                    <fish-list-item
+                      :fish="fish"
+                      :fish-time-part="fishListTimePart[fish._id]"
+                      @click="onFishClicked(fish._id)"
+                      show-constraints-instead
+                    />
+                  </div>
                 </div>
-              </div>
-            </grid-item>
+              </grid-item>
 
-            <grid-item
-              :static="baitTableLayout.static"
-              :x="baitTableLayout.x"
-              :y="baitTableLayout.y"
-              :w="baitTableLayout.w"
-              :h="baitTableLayout.h"
-              :i="baitTableLayout.i"
-            >
-              <fish-tug-table :value="currentFishList" class="grid-content"/>
-            </grid-item>
-          </grid-layout>
+              <grid-item
+                :static="baitTableLayout.static"
+                :x="baitTableLayout.x"
+                :y="baitTableLayout.y"
+                :w="baitTableLayout.w"
+                :h="baitTableLayout.h"
+                :i="baitTableLayout.i"
+              >
+                <fish-tug-table :value="currentFishList" class="grid-content" />
+              </grid-item>
+            </grid-layout>
+          </div>
         </v-col>
       </v-row>
       <!--      <v-row class="flex-wrap" no-gutters>-->
@@ -154,11 +170,12 @@
 <script>
 import regionTerritorySpots from '@/store/fishingSpots.json'
 import placeNames from '@/store/placeNames.json'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import FishTugTable from '@/components/FishingTugTable'
 import FishListItem from '@/components/FishListItem'
 import VueGridLayout from 'vue-grid-layout'
+import _ from 'lodash'
 
 export default {
   name: 'WikiPage',
@@ -171,9 +188,14 @@ export default {
   },
   props: ['lazyTransformedFishDict', 'fishListTimePart', 'now'],
   data: () => ({
-    checkedSpots: [],
+    type: undefined,
+    currentTerritoryId: -1,
+    currentSpotId: -1,
+    currentFishId: -1,
+    completedSpots: [],
     regionTerritorySpots: [],
     activeItems: [],
+    openedItems: [],
     spotDict: {},
     layout: [
       { x: 7, y: 0, w: 5, h: 17, i: 'map' },
@@ -188,39 +210,6 @@ export default {
     ],
     isSettingMode: false,
   }),
-  created() {
-    this.regionTerritorySpots = regionTerritorySpots
-      .map(region => {
-        return {
-          id: 'region-' + region.id,
-          name: placeNames[region.id],
-          // TODO: arrange region & territory according to order
-          children: region.territories.map(territory => {
-            return {
-              id: 'territory-' + territory.id,
-              name: placeNames[territory.id],
-              children: territory.spots.map(spot => {
-                this.spotDict[spot.id] = {
-                  spotId: spot.id,
-                  territoryId: territory.id,
-                  regionId: region.id,
-                  // [NOTE][VERSION]
-                  // filter future version fish out
-                  fishList: spot.fishList.filter(fishId => this.lazyTransformedFishDict[fishId]),
-                }
-                return {
-                  id: 'spot-' + spot.id,
-                  name: this.getFishingSpotsName(spot.id),
-                }
-              }),
-            }
-          }),
-        }
-      })
-      .filter(it => it.id !== 'region-null' && it.id !== 'region-3443')
-    console.log(regionTerritorySpots)
-    console.log(this.regionTerritorySpots)
-  },
   computed: {
     mapLayout() {
       return this.layout[0]
@@ -230,10 +219,6 @@ export default {
     },
     baitTableLayout() {
       return this.layout[2]
-    },
-    currentSpotId() {
-      const id = this.activeItems[0]?.split('-')?.[1]
-      return id != null ? +id : undefined
     },
     currentSpot() {
       return this.getFishingSpot(this.currentSpotId)
@@ -251,12 +236,93 @@ export default {
         }) ?? []
       )
     },
-    ...mapGetters(['getFishingSpotsName', 'getFishingSpot']),
+    completedSpotFishIds: {
+      get() {
+        return this.allCompletedFish.flatMap(fishId =>
+          this.lazyTransformedFishDict[fishId].fishingSpots.map(spot => `spot-${spot.fishingSpotId}-fish-${fishId}`)
+        )
+      },
+      set(newSpotFishIds) {
+        const oldSpotFishIds = this.completedSpotFishIds
+
+        if (_.isEqual(_.sortBy(oldSpotFishIds), _.sortBy(newSpotFishIds))) {
+          return
+        }
+
+        const removed = _.difference(oldSpotFishIds, newSpotFishIds).map(it => this.extractFishId(it))
+        const added = _.difference(newSpotFishIds, oldSpotFishIds).map(it => this.extractFishId(it))
+        if (removed.length > 0) {
+          removed.forEach(id => this.setFishCompleted({ fishId: id, completed: false }))
+        } else if (added.length > 0) {
+          added.forEach(id => this.setFishCompleted({ fishId: id, completed: true }))
+        }
+      },
+    },
+    ...mapGetters(['getFishingSpotsName', 'getFishingSpot', 'getFishCompleted', 'allCompletedFish']),
   },
   watch: {
-    currentSpotId() {
-      this.$refs.simpleMap?.resize()
+    // TODO update
+    // currentSpotId() {
+    //   this.$refs.simpleMap?.resize()
+    // },
+    // allCompletedFish(allCompletedFish) {
+    //   this.updateCompletedSpot(allCompletedFish)
+    // },
+    completedSpots(newSpots, oldSpots) {
+      console.log(newSpots, oldSpots)
+      const removed = _.difference(oldSpots, newSpots).map(it => +it.substring('spot-'.length))
+      const added = _.difference(newSpots, oldSpots).map(it => +it.substring('spot-'.length))
+      if (removed.length > 0) {
+        _.uniq(removed.flatMap(it => this.spotDict[it].fishList)).forEach(it => {
+          this.setFishCompleted({ fishId: it, completed: false })
+        })
+      } else if (added.length > 0) {
+        _.uniq(added.flatMap(it => this.spotDict[it].fishList)).forEach(it => {
+          this.setFishCompleted({ fishId: it, completed: true })
+        })
+      }
     },
+  },
+  created() {
+    this.regionTerritorySpots = regionTerritorySpots
+      .map(region => {
+        return {
+          id: 'region-' + region.id,
+          name: placeNames[region.id],
+          // TODO: arrange region & territory according to order
+          children: region.territories.map(territory => {
+            return {
+              id: 'territory-' + territory.id,
+              name: placeNames[territory.id],
+              children: territory.spots.map(spot => {
+                const fishList = spot.fishList.filter(fishId => this.lazyTransformedFishDict[fishId])
+                this.spotDict[spot.id] = {
+                  spotId: spot.id,
+                  territoryId: territory.id,
+                  regionId: region.id,
+                  // [NOTE][VERSION]
+                  // filter future version fish out
+                  fishList,
+                }
+                return {
+                  id: 'spot-' + spot.id,
+                  name: this.getFishingSpotsName(spot.id),
+                  children: fishList.map(fishId => {
+                    return {
+                      id: 'spot-' + spot.id + '-fish-' + fishId,
+                      name: this.lazyTransformedFishDict[fishId].name,
+                    }
+                  }),
+                }
+              }),
+            }
+          }),
+        }
+      })
+      .filter(it => it.id !== 'region-null' && it.id !== 'region-3443')
+    this.updateCompletedSpot(this.allCompletedFish)
+    // console.log(regionTerritorySpots)
+    // console.log(this.regionTerritorySpots)
   },
   methods: {
     onFishClicked(fishId) {
@@ -268,6 +334,48 @@ export default {
     toggleSettingMode() {
       this.isSettingMode = !this.isSettingMode
     },
+    updateCompletedSpot(allCompletedFish) {
+      const completedSpots = []
+      Object.values(this.spotDict).forEach(spot => {
+        if (spot.fishList.length > 0 && spot.fishList.every(fishId => allCompletedFish.includes(fishId))) {
+          completedSpots.push('spot-' + spot.spotId)
+        }
+      })
+      console.log(_.isEqual(this.completedSpots, completedSpots))
+      if (!_.isEqual(_.sortBy(this.completedSpots), _.sortBy(completedSpots))) {
+        this.completedSpots = completedSpots
+      }
+    },
+    onMenuItemActive(items) {
+      this.activeItems = items
+      const activeItem = this.activeItems[0]
+      const parts = activeItem.split('-')
+      if (parts.length === 4) {
+        this.type = parts[2]
+      } else {
+        this.type = parts[0]
+      }
+      switch (this.type) {
+        case 'region':
+          break
+        case 'territory':
+          this.currentTerritoryId = +parts[1]
+          break
+        case 'spot':
+          this.currentSpotId = +parts[1]
+          break
+        case 'fish':
+          this.currentSpotId = +parts[1]
+          this.currentFishId = +parts[3]
+          break
+        default:
+          console.error('not supported')
+      }
+    },
+    extractFishId(spotFishId) {
+      return +spotFishId.split('-')[3]
+    },
+    ...mapMutations(['setFishCompleted']),
   },
 }
 </script>
@@ -286,6 +394,7 @@ export default {
 .vue-grid-item:not(.vue-grid-placeholder)
   background: #ccc
   border: 1px solid black
+
 
 .vue-grid-item .resizing
   opacity: 0.9

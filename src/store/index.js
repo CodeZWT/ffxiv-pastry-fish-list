@@ -157,6 +157,9 @@ export default new Vuex.Store({
     getFishCompleted: state => fishId => {
       return state.userData.completed.includes(fishId)
     },
+    allCompletedFish: state => {
+      return state.userData.completed
+    },
     getFishPinned: state => fishId => {
       return state.userData.pinned.includes(fishId)
     },
