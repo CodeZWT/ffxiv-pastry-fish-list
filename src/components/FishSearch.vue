@@ -145,11 +145,11 @@ export default {
     },
   },
   methods: {
-    filterOptions(item, queryText, itemText) {
+    filterOptions(item, searchText, itemText) {
       if (this.$i18n.locale === 'zh-CN') {
-        return PinyinMatch.match(itemText, queryText) !== false
+        return PinyinMatch.match(itemText, searchText) !== false
       } else {
-        return itemText.toLowerCase().indexOf(queryText.toLowerCase()) > -1
+        return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
       }
     },
 

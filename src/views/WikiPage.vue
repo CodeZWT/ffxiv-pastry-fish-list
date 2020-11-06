@@ -2,28 +2,16 @@
   <v-row no-gutters>
     <v-col cols="2">
       <v-card class="mx-auto" max-width="500">
-        <!--    <v-sheet class="pa-4 primary lighten-2">-->
-        <!--      <v-text-field-->
-        <!--          v-model="search"-->
-        <!--          label="Search Company Directory"-->
-        <!--          dark-->
-        <!--          flat-->
-        <!--          solo-inverted-->
-        <!--          hide-details-->
-        <!--          clearable-->
-        <!--          clear-icon="mdi-close-circle-outline"-->
-        <!--      ></v-text-field>-->
-        <!--      <v-checkbox-->
-        <!--          v-model="caseSensitive"-->
-        <!--          dark-->
-        <!--          hide-details-->
-        <!--          label="Case sensitive search"-->
-        <!--      ></v-checkbox>-->
-        <!--    </v-sheet>-->
-
-        <!--    :search="search"-->
-        <!--    :filter="filter"-->
-        <!--    :open.sync="open"-->
+        <v-sheet class="pa-2 primary">
+          <v-text-field
+            v-model="searchText"
+            label="搜索鱼或地名"
+            flat
+            solo-inverted
+            hide-details
+            clearable
+          ></v-text-field>
+        </v-sheet>
 
         <v-card-text class="spot-list">
           <v-treeview
@@ -35,7 +23,9 @@
             activatable
             selectable
             selected-color="primary"
-            :open="openedItems"
+            :search="searchText"
+            :filter="spotMenuSearchFn"
+            :open.sync="openedItems"
             @update:active="onMenuItemActive"
           >
           </v-treeview>
@@ -176,6 +166,7 @@ import FishTugTable from '@/components/FishingTugTable'
 import FishListItem from '@/components/FishListItem'
 import VueGridLayout from 'vue-grid-layout'
 import _ from 'lodash'
+import * as PinyinMatch from 'pinyin-match'
 
 export default {
   name: 'WikiPage',
@@ -209,8 +200,17 @@ export default {
       { x: 0, y: 0, w: 7, h: 4, i: 'fishTugList' },
     ],
     isSettingMode: false,
+    lazySearchText: '',
   }),
   computed: {
+    searchText: {
+      get() {
+        return this.lazySearchText
+      },
+      set(newSearchText) {
+        this.debouncedSearchTextUpdater(newSearchText)
+      },
+    },
     mapLayout() {
       return this.layout[0]
     },
@@ -284,6 +284,11 @@ export default {
     },
   },
   created() {
+    this.debouncedSearchTextUpdater = _.debounce(text => {
+      console.log('trigger')
+      this.lazySearchText = text
+    }, 500)
+
     this.regionTerritorySpots = regionTerritorySpots
       .map(region => {
         return {
@@ -374,6 +379,14 @@ export default {
     },
     extractFishId(spotFishId) {
       return +spotFishId.split('-')[3]
+    },
+    spotMenuSearchFn(item, searchText, textKey) {
+      const itemText = item[textKey]
+      if (this.$i18n.locale === 'zh-CN') {
+        return PinyinMatch.match(itemText, searchText) !== false
+      } else {
+        return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+      }
     },
     ...mapMutations(['setFishCompleted']),
   },
