@@ -49,6 +49,7 @@
           </v-btn>
         </v-col>
         <v-col cols="12">
+          <code>{{ openedItems }}</code>
           <code>{{ currentTerritoryId }}</code>
           <code>{{ currentSpotId }}</code>
           <code>{{ currentFishId }}</code>
@@ -194,7 +195,6 @@ export default {
     currentFishId: -1,
     completedSpots: [],
     regionTerritorySpots: [],
-    activeItems: [],
     openedItems: [],
     spotDict: {},
     layout: [
@@ -210,6 +210,7 @@ export default {
     ],
     isSettingMode: false,
     lazySearchText: '',
+    preActiveItem: undefined,
   }),
   computed: {
     searchText: {
@@ -361,8 +362,19 @@ export default {
       }
     },
     onMenuItemActive(items) {
-      this.activeItems = items
-      const activeItem = this.activeItems[0]
+      if (items.length === 0) {
+        if (this.preActiveItem != null) {
+          this.openedItems.splice(this.openedItems.indexOf(this.preActiveItem), 1)
+        }
+        return
+      }
+
+      const activeItem = items[0]
+      if (!this.openedItems.includes(activeItem)) {
+        this.openedItems.push(activeItem)
+      }
+      this.preActiveItem = activeItem
+
       const parts = activeItem.split('-')
       if (parts.length === 4) {
         this.type = parts[2]
