@@ -211,6 +211,9 @@ export default new Vuex.Store({
     },
     setFishCompleted(state, { fishId, completed }) {
       state.userData = updateUserDataStateRecords(state.userData, 'completed', fishId, completed)
+      if (completed) {
+        state.userData = updateUserDataStateRecords(state.userData, 'toBeNotified', fishId, false)
+      }
     },
     setFishPinned(state, { fishId, pinned }) {
       state.userData = updateUserDataStateRecords(state.userData, 'pinned', fishId, pinned)
