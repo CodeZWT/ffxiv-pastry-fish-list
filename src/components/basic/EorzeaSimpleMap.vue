@@ -34,21 +34,21 @@
         </v-layer>
         <v-layer ref="rangeHelperLayer">
           <v-image
-            v-for="fishingSpotRangeHelperLayerConfig in fishingSpotRangeHelperLayerConfigs"
+            v-for="(fishingSpotRangeHelperLayerConfig, index) in fishingSpotRangeHelperLayerConfigs"
             :config="fishingSpotRangeHelperLayerConfig"
-            :key="`helper-${fishingSpotRangeHelperLayerConfig.x}-${fishingSpotRangeHelperLayerConfig.y}`"
+            :key="`helper-${index}`"
           ></v-image>
         </v-layer>
         <v-layer ref="markerRangeLayer">
           <v-image
-            v-for="markerRangeConfig in markerRangeConfigs"
+            v-for="(markerRangeConfig, index) in markerRangeConfigs"
             :config="markerRangeConfig"
-            :key="`range-${markerRangeConfig.x}-${markerRangeConfig.y}`"
+            :key="`range-${index}`"
           ></v-image>
           <v-image
-            v-for="fishingSpotMarkerConfig in fishingSpotMarkerConfigs"
+            v-for="(fishingSpotMarkerConfig, index) in fishingSpotMarkerConfigs"
             :config="fishingSpotMarkerConfig"
-            :key="`marker-${fishingSpotMarkerConfig.x}-${fishingSpotMarkerConfig.y}`"
+            :key="`marker-${index}`"
           ></v-image>
         </v-layer>
         <v-layer ref="textLayer">
