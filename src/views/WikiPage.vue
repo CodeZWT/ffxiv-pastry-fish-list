@@ -53,9 +53,9 @@
           <!--          <code>{{ currentTerritoryId }}</code>-->
           <!--          <code>{{ currentSpotId }}</code>-->
           <!--          <code>{{ currentFishId }}</code>-->
-          <div v-if="type === 'region'">
-            <!--  show region view  -->
-            region
+          <div v-if="!type || type === 'region'" class="d-flex justify-center align-center fill-height">
+            <!--  show empty / region view  -->
+            <v-icon size="200">mdi-book-open-page-variant</v-icon>
           </div>
           <div v-else-if="type === 'territory'" style="width: 100%; height: 100%">
             <!--  show territory view  -->
