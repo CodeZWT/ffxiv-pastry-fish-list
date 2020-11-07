@@ -8,7 +8,7 @@
     </v-overlay>
     <div ref="container" v-resize="resize" style="width: 100%; height: 100%" class="map-container">
       <div class="d-flex justify-center align-center" style="width: 100%; position: absolute; z-index: 10">
-        <v-btn @click="resize" tile icon height="48" width="48">
+        <v-btn @click="resize" tile height="48" width="48" style="min-width: 48px">
           <v-icon>mdi-arrow-collapse</v-icon>
         </v-btn>
         <v-btn-toggle v-model="mapOptions" multiple color="primary">
