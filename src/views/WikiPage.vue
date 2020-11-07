@@ -358,10 +358,6 @@ export default {
       }
 
       const activeItem = items[0]
-      if (!this.openedItems.includes(activeItem)) {
-        this.openedItems.push(activeItem)
-      }
-      this.preActiveItem = activeItem
 
       const parts = activeItem.split('-')
       if (parts.length === 4) {
@@ -384,6 +380,15 @@ export default {
           break
         default:
           console.error('not supported')
+      }
+
+      if (this.type !== 'spot') {
+        if (!this.openedItems.includes(activeItem)) {
+          this.openedItems.push(activeItem)
+        }
+        this.preActiveItem = activeItem
+      } else {
+        this.preActiveItem = null
       }
     },
     extractFishId(spotFishId) {
