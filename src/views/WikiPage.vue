@@ -18,6 +18,11 @@
             <!--            <v-btn icon class="ml-1" @click="expandAll">-->
             <!--              <v-icon>mdi-arrow-expand-vertical</v-icon>-->
             <!--            </v-btn>-->
+            <!--            <v-col cols="12" class="d-flex justify-end">-->
+            <v-btn v-if="type === 'fish' || type === 'spot'" @click="toggleSettingMode" icon>
+              <v-icon>mdi-cog</v-icon>
+            </v-btn>
+            <!--            </v-col>-->
           </div>
         </v-sheet>
 
@@ -42,24 +47,24 @@
       </v-card>
     </v-col>
     <v-col cols="10">
-      <v-row>
-        <v-col cols="12" class="d-flex justify-end">
-          <v-btn @click="toggleSettingMode" icon>
-            <v-icon>mdi-cog</v-icon>
-          </v-btn>
-        </v-col>
+      <v-row class="fill-height">
         <v-col cols="12">
-          <code>{{ openedItems }}</code>
-          <code>{{ currentTerritoryId }}</code>
-          <code>{{ currentSpotId }}</code>
-          <code>{{ currentFishId }}</code>
+<!--          <code>{{ openedItems }}</code>-->
+<!--          <code>{{ currentTerritoryId }}</code>-->
+<!--          <code>{{ currentSpotId }}</code>-->
+<!--          <code>{{ currentFishId }}</code>-->
           <div v-if="type === 'region'">
             <!--  show region view  -->
             region
           </div>
-          <div v-else-if="type === 'territory'">
+          <div v-else-if="type === 'territory'" style="width: 100%; height: 100%">
             <!--  show territory view  -->
-            territory
+            <eorzea-simple-map
+              ref="simpleMap"
+              :id="currentMapInfo.mapFileId"
+              :size-factor="currentMapInfo.size_factor"
+              :fishing-spots="currentSpotList"
+            />
           </div>
           <div v-else-if="type === 'spot' || type === 'fish'">
             <!--  show spot/fish view  -->
@@ -87,8 +92,8 @@
               >
                 <eorzea-simple-map
                   ref="simpleMap"
-                  :id="currentSpot.mapFileId"
-                  :size-factor="currentSpot.size_factor"
+                  :id="currentMapInfo.mapFileId"
+                  :size-factor="currentMapInfo.size_factor"
                   :fishing-spots="currentSpotList"
                 />
               </grid-item>
@@ -131,35 +136,6 @@
           </div>
         </v-col>
       </v-row>
-      <!--      <v-row class="flex-wrap" no-gutters>-->
-      <!--        <v-col v-if="currentSpotId" cols="12">-->
-      <!--          <div class="wiki-map">-->
-      <!--            <eorzea-simple-map-->
-      <!--              ref="simpleMap"-->
-      <!--              :id="currentSpot.mapFileId"-->
-      <!--              :x="currentSpot.x"-->
-      <!--              :y="currentSpot.y"-->
-      <!--              :size-factor="currentSpot.size_factor"-->
-      <!--              :marker-radius="currentSpot.radius"-->
-      <!--              :fishing-spot-name="currentSpotName"-->
-      <!--              :ratio="0.4"-->
-      <!--            />-->
-      <!--          </div>-->
-      <!--        </v-col>-->
-      <!--        <v-col cols="12" v-if="currentSpotId">-->
-      <!--          <fish-tug-table :value="currentFishList" />-->
-      <!--        </v-col>-->
-      <!--        <v-col cols="12">-->
-      <!--          <div v-for="fish in currentFlattenFishList" :key="fish._id" style="position: relative">-->
-      <!--            <fish-list-item-->
-      <!--              :fish="fish"-->
-      <!--              :fish-time-part="fishListTimePart[fish._id]"-->
-      <!--              @click="onFishClicked(fish._id)"-->
-      <!--              show-constraints-instead-->
-      <!--            />-->
-      <!--          </div>-->
-      <!--        </v-col>-->
-      <!--      </v-row>-->
     </v-col>
   </v-row>
 </template>
@@ -174,6 +150,7 @@ import FishListItem from '@/components/FishListItem'
 import VueGridLayout from 'vue-grid-layout'
 import _ from 'lodash'
 import * as PinyinMatch from 'pinyin-match'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'WikiPage',
@@ -194,6 +171,7 @@ export default {
     regionTerritorySpots: [],
     openedItems: [],
     spotDict: {},
+    territoryDict: {},
     layout: [
       { x: 7, y: 0, w: 5, h: 17, i: 'map' },
       {
@@ -227,11 +205,23 @@ export default {
     baitTableLayout() {
       return this.layout[2]
     },
-    currentSpot() {
-      return { ...this.getFishingSpot(this.currentSpotId), name: this.getFishingSpotsName(this.currentSpotId) }
+    currentMapInfo() {
+      const currentSpot = _.first(this.currentSpotList)
+      return {
+        size_factor: currentSpot.size_factor,
+        mapFileId: currentSpot.mapFileId,
+      }
     },
     currentSpotList() {
-      return [this.currentSpot]
+      switch (this.type) {
+        case 'territory':
+          return this.territoryDict[this.currentTerritoryId].map(this.assembleSpot)
+        case 'fish':
+        case 'spot':
+          return [this.assembleSpot(this.currentSpotId)]
+        default:
+          return []
+      }
     },
     currentFishList() {
       return this.spotDict?.[this.currentSpotId]?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
@@ -303,6 +293,7 @@ export default {
           name: placeNames[region.id],
           // TODO: arrange region & territory according to order
           children: region.territories.map(territory => {
+            this.territoryDict[territory.id] = territory.spots.map(spot => spot.id)
             return {
               id: 'territory-' + territory.id,
               name: placeNames[territory.id],
@@ -411,6 +402,10 @@ export default {
     },
     collapseAll() {
       this.$refs.spotMenu.updateAll(false)
+    },
+    assembleSpot(spotId) {
+      const spot = this.getFishingSpot(spotId)
+      return { ...spot, name: DataUtil.getName(spot) }
     },
     ...mapMutations(['setFishCompleted']),
   },

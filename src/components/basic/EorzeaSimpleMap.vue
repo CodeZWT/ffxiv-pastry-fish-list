@@ -336,7 +336,7 @@ export default {
     },
     stageConfig() {
       return {
-        x: this.containerWidth / 2 - this.containerHeight / 2,
+        x: 0,
         width: this.containerWidth,
         height: this.containerHeight,
         scaleX: this.containerHeight / MAP_SIZE,
@@ -589,7 +589,7 @@ export default {
 
       const stage = this.$refs.stage?.getNode()
       stage?.scale({ x: resizeRefer / MAP_SIZE, y: resizeRefer / MAP_SIZE })
-      stage?.position({ x: 0, y: 0 })
+      stage?.position({ x: this.containerWidth / 2 - resizeRefer / 2, y: 0 })
       // stage?.width()
       // stage?.clip({ x: 0, y: 0, width: rect?.width, height: rect?.height })
       // const markerRangeNode = this.$refs.markerRangeNode.getNode()
