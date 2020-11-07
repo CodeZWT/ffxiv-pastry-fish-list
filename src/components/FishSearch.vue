@@ -117,8 +117,9 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
     fish() {
-      return this.assembleSelectedFish(
+      return DataUtil.assembleFishForDetail(
         this.fishId,
+        this.allFish,
         this.fishDict,
         this.fishListTimePart,
         this.fishListWeatherChangePart
@@ -150,22 +151,6 @@ export default {
         return PinyinMatch.match(itemText, searchText) !== false
       } else {
         return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
-      }
-    },
-
-    assembleSelectedFish(selectedFishId, fishDict, fishListTimePart, fishListWeatherChangePart) {
-      const fish = this.allFish[selectedFishId]
-      if (fish) {
-        return {
-          ...fish,
-          parts: {
-            fishTimePart: fishListTimePart[selectedFishId],
-            fishWeatherChangePart: fishListWeatherChangePart[selectedFishId],
-            predators: DataUtil.getPredators(fish, fishDict, fishListTimePart, fishListWeatherChangePart),
-          },
-        }
-      } else {
-        return undefined
       }
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #272727">
     <template v-if="fish">
       <div>
         <fish-list-expanded-header

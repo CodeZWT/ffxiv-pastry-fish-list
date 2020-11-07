@@ -174,6 +174,21 @@ export default {
   toPosStr(sizeFactor, pos) {
     return this.pixelToPos(sizeFactor, pos).toFixed(0)
   },
+  assembleFishForDetail(selectedFishId, allFish, fishDict, fishListTimePart, fishListWeatherChangePart) {
+    const fish = allFish[selectedFishId]
+    if (fish) {
+      return {
+        ...fish,
+        parts: {
+          fishTimePart: fishListTimePart[selectedFishId],
+          fishWeatherChangePart: fishListWeatherChangePart[selectedFishId],
+          predators: this.getPredators(fish, fishDict, fishListTimePart, fishListWeatherChangePart),
+        },
+      }
+    } else {
+      return undefined
+    }
+  },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 

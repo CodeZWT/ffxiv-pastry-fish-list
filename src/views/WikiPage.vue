@@ -15,14 +15,14 @@
             <v-btn icon class="ml-1" @click="collapseAll">
               <v-icon>mdi-arrow-collapse-vertical</v-icon>
             </v-btn>
+            <!-- expand all button -->
             <!--            <v-btn icon class="ml-1" @click="expandAll">-->
             <!--              <v-icon>mdi-arrow-expand-vertical</v-icon>-->
             <!--            </v-btn>-->
-            <!--            <v-col cols="12" class="d-flex justify-end">-->
-            <v-btn v-if="type === 'fish' || type === 'spot'" @click="toggleSettingMode" icon>
-              <v-icon>mdi-cog</v-icon>
-            </v-btn>
-            <!--            </v-col>-->
+            <!-- setting button -->
+            <!--            <v-btn v-if="type === 'fish' || type === 'spot'" @click="toggleSettingMode" icon>-->
+            <!--              <v-icon>mdi-cog</v-icon>-->
+            <!--            </v-btn>-->
           </div>
         </v-sheet>
 
@@ -49,10 +49,10 @@
     <v-col cols="10">
       <v-row class="fill-height">
         <v-col cols="12">
-<!--          <code>{{ openedItems }}</code>-->
-<!--          <code>{{ currentTerritoryId }}</code>-->
-<!--          <code>{{ currentSpotId }}</code>-->
-<!--          <code>{{ currentFishId }}</code>-->
+          <!--          <code>{{ openedItems }}</code>-->
+          <!--          <code>{{ currentTerritoryId }}</code>-->
+          <!--          <code>{{ currentSpotId }}</code>-->
+          <!--          <code>{{ currentFishId }}</code>-->
           <div v-if="type === 'region'">
             <!--  show region view  -->
             region
@@ -80,6 +80,7 @@
               :vertical-compact="true"
               :margin="[10, 10]"
               :use-css-transforms="true"
+              style="z-index: 0"
             >
               <grid-item
                 :static="mapLayout.static"
@@ -136,6 +137,9 @@
           </div>
         </v-col>
       </v-row>
+      <v-dialog v-model="isDetailFishWindowOpen" max-width="70vh">
+        <fish-detail :fish="currentFish" />
+      </v-dialog>
     </v-col>
   </v-row>
 </template>
@@ -143,7 +147,7 @@
 <script>
 import regionTerritorySpots from '@/store/fishingSpots.json'
 import placeNames from '@/store/placeNames.json'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import FishTugTable from '@/components/FishingTugTable'
 import FishListItem from '@/components/FishListItem'
@@ -151,17 +155,19 @@ import VueGridLayout from 'vue-grid-layout'
 import _ from 'lodash'
 import * as PinyinMatch from 'pinyin-match'
 import DataUtil from '@/utils/DataUtil'
+import FishDetail from '@/components/FishDetail'
 
 export default {
   name: 'WikiPage',
   components: {
+    FishDetail,
     FishListItem,
     FishTugTable,
     EorzeaSimpleMap,
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
   },
-  props: ['lazyTransformedFishDict', 'fishListTimePart', 'now'],
+  props: ['lazyTransformedFishDict', 'fishListTimePart', 'now', 'fishListWeatherChangePart'],
   data: () => ({
     type: undefined,
     currentTerritoryId: -1,
@@ -186,6 +192,7 @@ export default {
     isSettingMode: false,
     lazySearchText: '',
     preActiveItem: undefined,
+    isDetailFishWindowOpen: false,
   }),
   computed: {
     searchText: {
@@ -255,6 +262,16 @@ export default {
         }
       },
     },
+    currentFish() {
+      return DataUtil.assembleFishForDetail(
+        this.currentFishId,
+        this.allFish,
+        this.lazyTransformedFishDict,
+        this.fishListTimePart,
+        this.fishListWeatherChangePart
+      )
+    },
+    ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishingSpotsName', 'getFishingSpot', 'getFishCompleted', 'allCompletedFish']),
   },
   watch: {
@@ -279,8 +296,21 @@ export default {
         })
       }
     },
+    currentFishId(fishId) {
+      if (fishId) {
+        this.isDetailFishWindowOpen = true
+      }
+    },
+    isDetailFishWindowOpen(isOpen) {
+      if (!isOpen) {
+        this.currentFishId = -1
+      }
+    },
   },
   created() {
+    this.detailWindowLeft = window.innerWidth * 0.7 - 100
+    this.detailWindowHeight = window.innerHeight * 0.7
+    this.detailWindowWidth = window.innerWidth * 0.25
     this.debouncedSearchTextUpdater = _.debounce(text => {
       console.log('trigger')
       this.lazySearchText = text
@@ -329,6 +359,7 @@ export default {
   },
   methods: {
     onFishClicked(fishId) {
+      this.currentFishId = fishId
       this.$emit('fish-selected', fishId)
     },
     onMapCardResized() {
@@ -430,11 +461,12 @@ export default {
 
 .vue-grid-item:not(.vue-grid-placeholder)
   background: #ccc
-  border: 1px solid black
 
+  border: 1px solid black
 
 .vue-grid-item .resizing
   opacity: 0.9
+
 
 .vue-grid-item .text
   font-size: 24px
@@ -455,6 +487,11 @@ export default {
 
 .spot-list
   height: calc(100vh - #{ $top-bars-padding + $footer-padding + 64})
+  overflow-scrolling: auto
+  overflow-y: scroll
+
+.detail-wrapper
+  max-height: 70vh
   overflow-scrolling: auto
   overflow-y: scroll
 </style>
