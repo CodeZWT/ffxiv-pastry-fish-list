@@ -1,7 +1,9 @@
 import TimeFormatter from '@/utils/TimeFormatter'
 import { DateTime } from 'luxon'
 import i18n from '@/i18n'
-import { isArray, mergeWith } from 'lodash'
+import { isArray, isEqual, mergeWith } from 'lodash'
+import FishWindow from '@/utils/FishWindow'
+import EorzeaTime from '@/utils/Time'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -174,7 +176,14 @@ export default {
   toPosStr(sizeFactor, pos) {
     return this.pixelToPos(sizeFactor, pos).toFixed(0)
   },
-  assembleFishForDetail(selectedFishId, allFish, fishDict, fishListTimePart, extraFishListTimePart, fishListWeatherChangePart) {
+  assembleFishForDetail(
+    selectedFishId,
+    allFish,
+    fishDict,
+    fishListTimePart,
+    extraFishListTimePart,
+    fishListWeatherChangePart
+  ) {
     const fish = allFish[selectedFishId]
     if (fish) {
       return {
@@ -188,6 +197,79 @@ export default {
     } else {
       return undefined
     }
+  },
+
+  isConstrainsEqual(fish1, fish2) {
+    return (
+      isEqual(fish1.previousWeatherSet, fish2.previousWeatherSet) &&
+      isEqual(fish1.weatherSet, fish2.weatherSet) &&
+      fish1.startHour === fish2.startHour &&
+      fish1.endHour === fish2.endHour
+    )
+  },
+  getFishWindow(fish, now, allFish, fishingSpots, n = FishWindow.FISH_WINDOW_FORECAST_N) {
+    // console.debug(fish)
+    if (Object.keys(fish.predators).length === 0) {
+      return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
+    } else {
+      // TODO change to a more efficient way
+      const predators = Object.keys(fish.predators).map(predatorId => {
+        return allFish[predatorId]
+      })
+      if (predators.every(it => this.isAllAvailableFish(it) || this.isConstrainsEqual(fish, it))) {
+        return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
+      } else if (predators.length === 1) {
+        if (this.isAllAvailableFish(fish)) {
+          return this.getFishWindowOfSingleFish(predators[0], now, fishingSpots, n)
+        } else if (fish.weatherSet.length === 0 && fish.previousWeatherSet.length === 0) {
+          return this.getFishWindowOfSingleFish(predators[0], now, fishingSpots, n).map(fishWindow => {
+            // if start of fish window > 0, i.e. its window is shrunk by the weather
+            // change it back to 0, since other 2 predators are always available in [0,8]
+            const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
+            if (startEorzeaTime.getHours() > 0) {
+              return [
+                startEorzeaTime.timeOfHours(fish.startHour).toEarthTime(),
+                startEorzeaTime.timeOfHours(fish.endHour).toEarthTime(),
+              ]
+            } else {
+              return fishWindow
+            }
+          })
+        }
+      } else {
+        // So in real life, only 'Warden of the Seven Hues' i.e. "七彩天主" goes here,
+        // let do some dirty work
+
+        if (fish._id === 24994) {
+          // just return the 'Green Prismfish' i.e. "绿彩鱼" fish windows
+          return this.getFishWindowOfSingleFish(allFish[24204], now, fishingSpots, n).map(fishWindow => {
+            // if start of fish window > 0, i.e. its window is shrunk by the weather
+            // change it back to 0, since other 2 predators are always available in [0,8]
+            const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
+            if (startEorzeaTime.getHours() > 0) {
+              return [startEorzeaTime.timeOfHours(0).toEarthTime(), fishWindow[1]]
+            } else {
+              return fishWindow
+            }
+          })
+        } else {
+          console.error('Unsupported fish!', fish._id)
+          return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
+        }
+      }
+    }
+  },
+
+  getFishWindowOfSingleFish(fish, now, fishingSpots, n = FishWindow.FISH_WINDOW_FORECAST_N) {
+    return FishWindow.getNextNFishWindows(
+      fishingSpots[fish.locations[0]]?.territory_id,
+      new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
+      fish.startHour,
+      fish.endHour,
+      fish.previousWeatherSet,
+      fish.weatherSet,
+      n + 2
+    )
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],

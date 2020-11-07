@@ -26,6 +26,7 @@
                 :fish-list-time-part="fishListTimePart"
                 :extraFishListTimePart="extraFishListTimePart"
                 :fish-list-weather-change-part="fishListWeatherChangePart"
+                :now="now"
                 @change="onSearchFishChanged"
               />
               <div :class="{ 'main-area': true, 'show-filter': showFilter }">
@@ -144,7 +145,7 @@
           </v-sheet>
         </div>
         <div v-else class="fish-detail-pane">
-          <fish-detail :fish="selectedFish" ref="fishDetail" @close="showRightPane = false" in-pane />
+          <fish-detail :fish="selectedFish" ref="fishDetail" @close="showRightPane = false" in-pane :now="now" />
         </div>
       </pane>
     </splitpanes>

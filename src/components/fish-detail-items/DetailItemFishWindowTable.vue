@@ -20,7 +20,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(fishWindow, index) in fishWindows" :key="index">
+              <tr v-for="(fishWindow, index) in fishWindowsToShow" :key="index">
                 <td class="text-center">{{ fishWindow.start }}</td>
                 <td class="text-center">{{ fishWindow.interval }}</td>
                 <td class="text-center">{{ fishWindow.nextInterval }}</td>
@@ -28,6 +28,7 @@
             </tbody>
           </template>
         </v-simple-table>
+        <v-btn block @click="showMore">加载更多...</v-btn>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -36,6 +37,7 @@
 <script>
 import FishWindow from '@/utils/FishWindow'
 import DataUtil from '@/utils/DataUtil'
+import { mapState } from 'vuex'
 
 export default {
   name: 'DetailItemFishWindowTable',
@@ -52,9 +54,16 @@ export default {
       type: Boolean,
       default: false,
     },
+    now: {
+      type: Number,
+      default: Date.now(),
+    },
   },
   data: vm => ({
     lazyExpansionValue: vm.expanded ? 0 : undefined,
+    recordsCntToShow: FishWindow.FISH_WINDOW_FORECAST_N,
+    lazyFishWindows: [],
+    fishWindowsToShow: [],
   }),
   created() {
     this.lazyExpansionValue = this.expanded ? 0 : undefined
@@ -65,21 +74,63 @@ export default {
     },
     'fish.id': function() {
       this.lazyExpansionValue = this.expanded ? 0 : undefined
+      this.recordsCntToShow = FishWindow.FISH_WINDOW_FORECAST_N
+      this.lazyFishWindows = []
+      this.fishWindowsToShow = []
+    },
+    now(now) {
+      if (this.recordsCntToShow === this.fishWindowsProvided.length) {
+        this.fishWindowsToShow = this.fishWindowsProvided
+      } else {
+        const existedFishWindows = this.lazyFishWindows.filter(it => it.endTime >= now)
+        if (existedFishWindows.length >= this.recordsCntToShow) {
+          this.fishWindowsToShow = existedFishWindows.slice(0, this.recordsCntToShow)
+        } else {
+          this.fishWindowsToShow = this.lazyFishWindows = this.transformFishWindows(
+            DataUtil.getFishWindow(
+              this.allFish[this.fish.id],
+              now,
+              this.allFish,
+              this.fishingSpots,
+              this.recordsCntToShow
+            ),
+            this.recordsCntToShow
+          )
+        }
+      }
     },
   },
   computed: {
-    fishWindows() {
-      let fishWindows = this.fishWeatherChangePart.fishWindows.filter(it => it[1] >= Date.now())
-      if (FishWindow.FISH_WINDOW_FORECAST_N > fishWindows.length) {
+    // detailedFishWeatherChangePart() {
+    //   const existedCnt = this.fishWindows.length
+    //   if (existedCnt >= this.recordsCntToShow) {
+    //     return this.fishWindows
+    //   } else {
+    //     return DataUtil.getFishWindowOfSingleFish(this.allFish[this.fish.id], this.now, this.fishingSpots)
+    //   }
+    // },
+    fishWindowsProvided() {
+      return this.transformFishWindows(this.fishWeatherChangePart.fishWindows, FishWindow.FISH_WINDOW_FORECAST_N)
+    },
+    ...mapState({
+      allFish: 'fish',
+      fishingSpots: 'fishingSpots',
+    }),
+  },
+  methods: {
+    transformFishWindows(original, n) {
+      let fishWindows = original.filter(it => it[1] >= this.now)
+      if (n > fishWindows.length) {
         console.warn('fish window cnt:', fishWindows.length)
       }
-      fishWindows = fishWindows.slice(0, Math.min(FishWindow.FISH_WINDOW_FORECAST_N, fishWindows.length))
+      fishWindows = fishWindows.slice(0, Math.min(n, fishWindows.length))
 
       return fishWindows.map((fishWindow, index) => {
         const start = new Date(fishWindow[0])
         const end = new Date(fishWindow[1])
         return {
           startTime: fishWindow[0],
+          endTime: fishWindow[1],
           start: DataUtil.formatDateTime(fishWindow[0]),
           end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
           interval: this.printCountDownTime(end - start),
@@ -87,8 +138,9 @@ export default {
         }
       })
     },
-  },
-  methods: {
+    showMore() {
+      this.recordsCntToShow += 10
+    },
     printCountDownTime: DataUtil.printCountDownTime,
   },
 }

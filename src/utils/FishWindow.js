@@ -154,6 +154,6 @@ export default {
       }
     }
     // console.debug('loop count', loopCounter)
-    return fishWindows
+    return fishWindows.slice(0, n - 2)
   },
 }

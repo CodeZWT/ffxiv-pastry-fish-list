@@ -43,7 +43,7 @@
         </div>
         <template v-if="fish != null">
           <v-divider class="mb-3" />
-          <fish-detail :fish="fish" />
+          <fish-detail :fish="fish" :now="now"/>
         </template>
       </v-card-text>
       <v-card-actions>
@@ -89,6 +89,10 @@ export default {
     extraFishListTimePart: {
       type: Object,
       default: () => ({}),
+    },
+    now: {
+      type: Number,
+      default: Date.now(),
     },
   },
   data: () => ({

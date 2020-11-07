@@ -16,6 +16,7 @@
           :fish-time-part="fishTimePart"
           :fish-weather-change-part="fishWeatherChangePart"
           :predators="predators"
+          :now="now"
         ></fish-list-item-content>
       </div>
     </template>
@@ -41,6 +42,10 @@ export default {
     inPane: {
       type: Boolean,
       default: false,
+    },
+    now: {
+      type: Number,
+      default: Date.now(),
     },
   },
   computed: {

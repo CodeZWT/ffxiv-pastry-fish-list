@@ -12,6 +12,7 @@
           :fish="fish"
           :fish-weather-change-part="fishWeatherChangePart"
           :expanded="component.expanded"
+          :now="component.name === 'DetailItemFishWindowTable' ? now : undefined"
         />
       </v-col>
     </template>
@@ -77,7 +78,6 @@ export default {
       type: Object,
       default: () => ({}),
     },
-
     predators: {
       type: Array,
       default: () => [],
@@ -89,6 +89,10 @@ export default {
     listItemColor: {
       type: String,
       default: '',
+    },
+    now: {
+      type: Number,
+      default: Date.now(),
     },
   },
   data: () => ({}),

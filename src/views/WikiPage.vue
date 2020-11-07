@@ -138,7 +138,7 @@
         </v-col>
       </v-row>
       <v-dialog v-model="isDetailFishWindowOpen" max-width="70vh">
-        <fish-detail :fish="currentFish" />
+        <fish-detail :fish="currentFish" :now="now" />
       </v-dialog>
     </v-col>
   </v-row>

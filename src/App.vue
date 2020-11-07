@@ -523,9 +523,7 @@ export default {
     selectedFishId: undefined,
     fishListWeatherChangePart: {},
     loading: true,
-    extraFishListTimePart: {
-
-    },
+    extraFishListTimePart: {},
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -969,56 +967,7 @@ export default {
       }
     },
     getFishWindow(fish, now) {
-      // console.debug(fish)
-      if (Object.keys(fish.predators).length === 0) {
-        return this.getFishWindowOfSingleFish(fish, now)
-      } else {
-        // TODO change to a more efficient way
-        const predators = Object.keys(fish.predators).map(predatorId => {
-          return this.allFish[predatorId]
-        })
-        if (predators.every(it => DataUtil.isAllAvailableFish(it) || this.isConstrainsEqual(fish, it))) {
-          return this.getFishWindowOfSingleFish(fish, now)
-        } else if (predators.length === 1) {
-          if (DataUtil.isAllAvailableFish(fish)) {
-            return this.getFishWindowOfSingleFish(predators[0], now)
-          } else if (fish.weatherSet.length === 0 && fish.previousWeatherSet.length === 0) {
-            return this.getFishWindowOfSingleFish(predators[0], now).map(fishWindow => {
-              // if start of fish window > 0, i.e. its window is shrunk by the weather
-              // change it back to 0, since other 2 predators are always available in [0,8]
-              const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
-              if (startEorzeaTime.getHours() > 0) {
-                return [
-                  startEorzeaTime.timeOfHours(fish.startHour).toEarthTime(),
-                  startEorzeaTime.timeOfHours(fish.endHour).toEarthTime(),
-                ]
-              } else {
-                return fishWindow
-              }
-            })
-          }
-        } else {
-          // So in real life, only 'Warden of the Seven Hues' i.e. "七彩天主" goes here,
-          // let do some dirty work
-
-          if (fish._id === 24994) {
-            // just return the 'Green Prismfish' i.e. "绿彩鱼" fish windows
-            return this.getFishWindowOfSingleFish(this.allFish[24204], now).map(fishWindow => {
-              // if start of fish window > 0, i.e. its window is shrunk by the weather
-              // change it back to 0, since other 2 predators are always available in [0,8]
-              const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
-              if (startEorzeaTime.getHours() > 0) {
-                return [startEorzeaTime.timeOfHours(0).toEarthTime(), fishWindow[1]]
-              } else {
-                return fishWindow
-              }
-            })
-          } else {
-            console.error('Unsupported fish!', fish._id)
-            return this.getFishWindowOfSingleFish(fish, now)
-          }
-        }
-      }
+      return DataUtil.getFishWindow(fish, now, this.allFish, this.fishingSpots)
     },
     mergeConstraints(fish1, fish2) {
       const mergedFish = {
@@ -1032,24 +981,6 @@ export default {
       }
       console.log(mergedFish)
       return mergedFish
-    },
-    getFishWindowOfSingleFish(fish, now) {
-      return FishWindow.getNextNFishWindows(
-        this.fishingSpots[fish.locations[0]]?.territory_id,
-        new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
-        fish.startHour,
-        fish.endHour,
-        fish.previousWeatherSet,
-        fish.weatherSet
-      )
-    },
-    isConstrainsEqual(fish1, fish2) {
-      return (
-        isEqual(fish1.previousWeatherSet, fish2.previousWeatherSet) &&
-        isEqual(fish1.weatherSet, fish2.weatherSet) &&
-        fish1.startHour === fish2.startHour &&
-        fish1.endHour === fish2.endHour
-      )
     },
     toComparableVersion(version) {
       return version
