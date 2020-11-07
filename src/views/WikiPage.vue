@@ -167,7 +167,7 @@ export default {
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
   },
-  props: ['lazyTransformedFishDict', 'fishListTimePart', 'now', 'fishListWeatherChangePart'],
+  props: ['lazyTransformedFishDict', 'fishListTimePart', 'now', 'fishListWeatherChangePart', 'extraFishListTimePart'],
   data: () => ({
     type: undefined,
     currentTerritoryId: -1,
@@ -268,6 +268,7 @@ export default {
         this.allFish,
         this.lazyTransformedFishDict,
         this.fishListTimePart,
+        this.extraFishListTimePart,
         this.fishListWeatherChangePart
       )
     },

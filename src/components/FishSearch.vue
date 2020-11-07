@@ -86,6 +86,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    extraFishListTimePart: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data: () => ({
     fishId: undefined,
@@ -122,6 +126,7 @@ export default {
         this.allFish,
         this.fishDict,
         this.fishListTimePart,
+        this.extraFishListTimePart,
         this.fishListWeatherChangePart
       )
     },

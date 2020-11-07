@@ -24,6 +24,7 @@
                 :fish-data="lazyFishSourceList"
                 :fish-dict="lazyTransformedFishDict"
                 :fish-list-time-part="fishListTimePart"
+                :extraFishListTimePart="extraFishListTimePart"
                 :fish-list-weather-change-part="fishListWeatherChangePart"
                 @change="onSearchFishChanged"
               />
@@ -186,6 +187,7 @@ export default {
     'lazyTransformedFishDict',
     'pinnedFishList',
     'fishListTimePart',
+    'extraFishListTimePart',
     'fishListWeatherChangePart',
     'sortedFilteredFishList',
     'toBeNotifiedFishList',
@@ -303,7 +305,7 @@ export default {
       }, 500)
     },
     onSearchFishChanged(fishId) {
-      this.searchedFishId = fishId
+      this.$emit('search-fish', fishId)
     },
     ...mapMutations([
       'setFilters',

@@ -208,11 +208,13 @@
           :lazyTransformedFishDict="lazyTransformedFishDict"
           :pinnedFishList="pinnedFishList"
           :fishListTimePart="fishListTimePart"
+          :extraFishListTimePart="extraFishListTimePart"
           :fishListWeatherChangePart="fishListWeatherChangePart"
           :sortedFilteredFishList="sortedFilteredFishList"
           :toBeNotifiedFishList="toBeNotifiedFishList"
           :selectedFish="selectedFish"
           @select-fish="selectedFishId = $event"
+          @search-fish="searchedFishId = $event"
         />
         <!--                @fishCntUpdated="listFishCnt = $event"     -->
       </div>
@@ -521,6 +523,9 @@ export default {
     selectedFishId: undefined,
     fishListWeatherChangePart: {},
     loading: true,
+    extraFishListTimePart: {
+
+    },
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -616,7 +621,7 @@ export default {
         return {
           ...fish,
           parts: {
-            fishTimePart: this.fishListTimePart[this.selectedFishId],
+            fishTimePart: this.extraFishListTimePart[this.selectedFishId],
             fishWeatherChangePart: this.fishListWeatherChangePart[this.selectedFishId],
             predators: DataUtil.getPredators(
               fish,
@@ -791,7 +796,15 @@ export default {
         }
         if (
           (this.selectedFishId != null && fish._id === this.selectedFishId) ||
-          (this.searchedFishId != null && fish._id === this.searchedFishId) ||
+          (this.searchedFishId != null && fish._id === this.searchedFishId)
+        ) {
+          this.$set(this.extraFishListTimePart, fish._id, {
+            id: fish._id,
+            countDown: this.getCountDown(fish, now),
+          })
+        }
+
+        if (
           !lazyStartTime ||
           interval < DataUtil.INTERVAL_MINUTE ||
           (interval < DataUtil.INTERVAL_HOUR && seconds > 57) ||
