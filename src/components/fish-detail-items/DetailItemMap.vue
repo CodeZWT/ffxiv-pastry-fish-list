@@ -52,11 +52,8 @@
         <eorzea-simple-map
           ref="simpleMap"
           :id="currentSpot.fishingSpot.mapFileId"
-          :x="currentSpot.fishingSpot.x"
-          :y="currentSpot.fishingSpot.y"
           :size-factor="currentSpot.fishingSpot.size_factor"
-          :marker-radius="currentSpot.fishingSpot.radius"
-          :fishing-spot-name="getName(currentSpot.fishingSpot)"
+          :fishing-spots="fishingSpotsForMap"
         />
       </div>
     </div>
@@ -67,6 +64,7 @@
 import ClickHelper from '@/components/basic/ClickHelper'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import DataUtil from '@/utils/DataUtil'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'DetailItemMap',
@@ -80,12 +78,13 @@ export default {
       type: Boolean,
       default: false,
     },
-    currentSpotIndex: {
-      type: Number,
-      default: 0,
-    },
+    // currentSpotIndex: {
+    //   type: Number,
+    //   default: 0,
+    // },
   },
   data: vm => ({
+    currentSpotIndex: 0,
     lazyExpansionValue: vm.expanded ? 0 : undefined,
   }),
   computed: {
@@ -93,11 +92,16 @@ export default {
       return this.fish.fishingSpots
     },
     currentSpot() {
+      // { zone, fishingSpot, fishingSpotName, fishingSpotId, fishSpotPositionText }
       return this.fishingSpots[this.currentSpotIndex]
+    },
+    fishingSpotsForMap() {
+      return [{ ...this.currentSpot.fishingSpot, name: this.currentSpot.fishingSpotName }]
     },
     multiple() {
       return this.fishingSpots.length > 1
     },
+    ...mapGetters(['getFishingSpot']),
   },
   created() {
     this.lazyExpansionValue = this.expanded ? 0 : undefined

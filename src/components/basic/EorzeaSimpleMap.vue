@@ -33,26 +33,38 @@
           <v-image v-for="(config, index) in aetheryteMakerConfigs" :config="config" :key="`marker${index}`"></v-image>
         </v-layer>
         <v-layer ref="rangeHelperLayer">
-          <v-image :config="fishingSpotRangeHelperLayerConfig"></v-image>
+          <v-image
+            v-for="fishingSpotRangeHelperLayerConfig in fishingSpotRangeHelperLayerConfigs"
+            :config="fishingSpotRangeHelperLayerConfig"
+            :key="`helper-${fishingSpotRangeHelperLayerConfig.x}-${fishingSpotRangeHelperLayerConfig.y}`"
+          ></v-image>
         </v-layer>
         <v-layer ref="markerRangeLayer">
-          <v-image :config="markerRangeConfig"></v-image>
-          <v-image v-if="fishingSpotMarkerConfig.image" :config="fishingSpotMarkerConfig"></v-image>
+          <v-image
+            v-for="markerRangeConfig in markerRangeConfigs"
+            :config="markerRangeConfig"
+            :key="`range-${markerRangeConfig.x}-${markerRangeConfig.y}`"
+          ></v-image>
+          <v-image
+            v-for="fishingSpotMarkerConfig in fishingSpotMarkerConfigs"
+            :config="fishingSpotMarkerConfig"
+            :key="`marker-${fishingSpotMarkerConfig.x}-${fishingSpotMarkerConfig.y}`"
+          ></v-image>
         </v-layer>
         <v-layer ref="textLayer">
           <v-text
-            v-for="config in aetheryteMakerTextConfigs"
-            :config="config"
-            :key="`aetheryte-${config.text}`"
-            @click="copyText(config.text)"
+            v-for="aetheryteMakerTextConfig in aetheryteMakerTextConfigs"
+            :config="aetheryteMakerTextConfig"
+            :key="`aetheryte-${aetheryteMakerTextConfig.text}`"
+            @click="copyText(aetheryteMakerTextConfig.text)"
             @mouseenter="switchMouseToPointer"
             @mouseleave="switchMouseToDefault"
           ></v-text>
           <v-text
-            v-for="config in fishingSpotTextConfigs"
-            :config="config"
-            :key="`spot-${config.text}`"
-            @click="copyText(config.text)"
+            v-for="fishingSpotTextConfig in fishingSpotTextConfigs"
+            :config="fishingSpotTextConfig"
+            :key="`spot-${fishingSpotTextConfig.text}`"
+            @click="copyText(fishingSpotTextConfig.text)"
             @mouseenter="switchMouseToPointer"
             @mouseleave="switchMouseToDefault"
           ></v-text>
@@ -68,7 +80,7 @@ import fishMarker from '@/assets/fishingSpot.png'
 import markerRange from '@/assets/markerRange.png'
 import aetheryteMarker from '@/assets/icon/PlaceName.png'
 import defaultMap from '@/assets/default.00.jpg'
-import { throttle } from 'lodash'
+import { throttle, set } from 'lodash'
 import { mapMutations, mapState } from 'vuex'
 import copy from 'copy-to-clipboard'
 // import Konva from 'konva'
@@ -255,28 +267,32 @@ const AVAILABLE_HELP = new Set([
 export default {
   name: 'EorzeaSimpleMap',
   props: {
+    // x: {
+    //   type: Number,
+    //   default: undefined,
+    // },
+    // y: {
+    //   type: Number,
+    //   default: undefined,
+    // },
+    // markerRadius: {
+    //   type: Number,
+    //   default: 300,
+    // },
+    // fishingSpotName: {
+    //   type: String,
+    //   default: undefined,
+    // },
+    fishingSpots: {
+      type: Array,
+      default: () => [],
+    },
     id: {
       type: String,
       default: undefined,
     },
-    x: {
-      type: Number,
-      default: undefined,
-    },
-    y: {
-      type: Number,
-      default: undefined,
-    },
     sizeFactor: {
       type: Number,
-      default: undefined,
-    },
-    markerRadius: {
-      type: Number,
-      default: 300,
-    },
-    fishingSpotName: {
-      type: String,
       default: undefined,
     },
     mode: {
@@ -301,13 +317,13 @@ export default {
     mapImageLoaded: false,
     fishingSpotRangeHelperLoaded: false,
     throttledResizeFn: undefined,
-    fishingSpotRangeHelperImage: null,
+    fishingSpotRangeHelperImages: [],
     mapLocked: true,
   }),
   computed: {
-    markerRangeFactor() {
-      return this.markerRadius / 300
-    },
+    // markerRangeFactor() {
+    //   return this.markerRadius / 300
+    // },
     mapImageUrl() {
       // "MapFilename": "/m/s1f4/s1f4.00.jpg",
       // "MapFilenameId": "s1f4/00",
@@ -346,38 +362,43 @@ export default {
         height: MAP_SIZE,
       }
     },
-    fishingSpotRangeHelperLayerConfig() {
-      return {
-        image: this.fishingSpotRangeHelperImage,
-        x: 0,
-        y: 0,
-        width: MAP_SIZE,
-        height: MAP_SIZE,
-      }
+    fishingSpotRangeHelperLayerConfigs() {
+      return this.fishingSpotRangeHelperLoaded
+        ? this.fishingSpots.map((_, index) => ({
+            image: this.fishingSpotRangeHelperImages[index],
+            x: 0,
+            y: 0,
+            width: MAP_SIZE,
+            height: MAP_SIZE,
+          }))
+        : []
     },
-    fishingSpotMarkerConfig() {
-      return {
+    fishingSpotMarkerConfigs() {
+      return this.fishingSpots.map(spot => ({
         image: this.fishingSpotImage,
-        x: this.x - 48,
-        y: this.y - 48,
+        x: spot.x - 48,
+        y: spot.y - 48,
         width: 96,
         height: 96,
-      }
+      }))
     },
-    markerRangeConfig() {
-      return {
-        image: this.markerRangeImage,
-        x: this.x - (96 * this.markerRangeFactor) / 2,
-        y: this.y - (96 * this.markerRangeFactor) / 2,
-        width: 96,
-        height: 96,
-        scaleX: this.markerRangeFactor,
-        scaleY: this.markerRangeFactor,
-        // filters: [Konva.Filters.RGB],
-        // red: 3,
-        // green: 168,
-        // blue: 244,
-      }
+    markerRangeConfigs() {
+      return this.fishingSpots.map(spot => {
+        const markerRangeFactor = spot.radius / 300
+        return {
+          image: this.markerRangeImage,
+          x: spot.x - (96 * markerRangeFactor) / 2,
+          y: spot.y - (96 * markerRangeFactor) / 2,
+          width: 96,
+          height: 96,
+          scaleX: markerRangeFactor,
+          scaleY: markerRangeFactor,
+          // filters: [Konva.Filters.RGB],
+          // red: 3,
+          // green: 168,
+          // blue: 244,
+        }
+      })
     },
     aetheryteMakerConfigs() {
       return (
@@ -401,11 +422,9 @@ export default {
       )
     },
     fishingSpotTextConfigs() {
-      return (
-        [this.fishingSpotName]?.map(text => {
-          return this.computeSafeTextConfig(text, this.x, this.y, { fontSize: TEXT_SPOT_FONT, color: 'white' })
-        }) ?? []
-      )
+      return this.fishingSpots.map(spot => {
+        return this.computeSafeTextConfig(spot.name, spot.x, spot.y, { fontSize: TEXT_SPOT_FONT, color: 'white' })
+      })
     },
     allImageLoaded() {
       return (
@@ -414,6 +433,9 @@ export default {
         this.fishingSpotImage != null &&
         this.markerRangeImage != null
       )
+    },
+    fishingSpotNames() {
+      return this.fishingSpots.map(it => it.name)
     },
     ...mapState(['aetheryte']),
   },
@@ -426,13 +448,13 @@ export default {
     mapImageUrl(url) {
       this.loadMapImage(url)
     },
-    fishingSpotName(fishingSpotName) {
-      this.loadFishingSpotRangeHelper(fishingSpotName)
+    fishingSpotNames(fishingSpotNames) {
+      this.loadFishingSpotRangeHelper(fishingSpotNames)
     },
   },
   created() {
     this.loadMapImage(this.mapImageUrl)
-    this.loadFishingSpotRangeHelper(this.fishingSpotName)
+    this.loadFishingSpotRangeHelper(this.fishingSpots.map(it => it.name))
     this.loadImageToProp(defaultMap, 'defaultMapImage')
     this.loadImageToProp(fishMarker, 'fishingSpotImage')
     this.loadImageToProp(markerRange, 'markerRangeImage')
@@ -499,23 +521,30 @@ export default {
       this.mapImageLoaded = false
       this.loadImageToProp(url, 'mapImage').then(() => (this.mapImageLoaded = true))
     },
-    loadFishingSpotRangeHelper(fishingSpotName) {
+    loadFishingSpotRangeHelper(fishingSpotNames) {
       this.fishingSpotRangeHelperLoaded = false
-      this.loadImageToProp(this.getFishingSpotRangeHelper(fishingSpotName), 'fishingSpotRangeHelperImage').then(
-        () => (this.fishingSpotRangeHelperLoaded = true)
-      )
+      Promise.all(
+        fishingSpotNames.map((fishingSpotName, index) =>
+          this.loadImageToProp(
+            this.getFishingSpotRangeHelper(fishingSpotName),
+            `fishingSpotRangeHelperImages[${index}]`
+          )
+        )
+      ).then(() => (this.fishingSpotRangeHelperLoaded = true))
     },
     loadImageToProp(urlOrPromise, imagePropName) {
       return Promise.resolve(urlOrPromise).then(url => {
         if (url == null) {
-          this[imagePropName] = null
+          set(this, imagePropName, null)
+          // this[imagePropName] = null
           return
         }
         const image = new window.Image()
         image.src = url
         return new Promise(resolve => {
           image.onload = () => {
-            this[imagePropName] = image
+            set(this, imagePropName, image)
+            // this[imagePropName] = image
             resolve()
           }
         })
@@ -543,7 +572,7 @@ export default {
     },
     toggleLayer(layerName) {
       const layer = this.$refs[layerName].getNode()
-      layer.opacity(1 - layer.opacity())
+      layer.visible(!layer.visible())
       layer.draw()
     },
     toggleMapLock() {
@@ -584,6 +613,7 @@ export default {
       const height = option.fontSize
       return {
         text: text,
+
         width: width,
         offsetX: this.getOffset(width),
         height: height,

@@ -88,11 +88,8 @@
                 <eorzea-simple-map
                   ref="simpleMap"
                   :id="currentSpot.mapFileId"
-                  :x="currentSpot.x"
-                  :y="currentSpot.y"
                   :size-factor="currentSpot.size_factor"
-                  :marker-radius="currentSpot.radius"
-                  :fishing-spot-name="currentSpotName"
+                  :fishing-spots="currentSpotList"
                 />
               </grid-item>
 
@@ -231,10 +228,10 @@ export default {
       return this.layout[2]
     },
     currentSpot() {
-      return this.getFishingSpot(this.currentSpotId)
+      return { ...this.getFishingSpot(this.currentSpotId), name: this.getFishingSpotsName(this.currentSpotId) }
     },
-    currentSpotName() {
-      return this.getFishingSpotsName(this.currentSpotId)
+    currentSpotList() {
+      return [this.currentSpot]
     },
     currentFishList() {
       return this.spotDict?.[this.currentSpotId]?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
