@@ -12,11 +12,11 @@
         </div>
         <v-row no-gutters class="d-flex" style="max-width: 27px">
           <v-col cols="12">
-            <v-badge :color="TUG_ICON_COLOR[bait.tugIcon]" :content="bait.tugIcon" inline />
+            <v-badge v-show="bait.tug != null" :color="TUG_ICON_COLOR[bait.tugIcon]" :content="bait.tugIcon" inline />
           </v-col>
           <!--  :data-ck-action-name="bait.hooksetSkillName"  -->
           <v-col cols="12" style="height: 16px">
-            <div :class="[bait.hooksetIcon, 'hookset-icon']" />
+            <div v-show="bait.hookset != null" :class="[bait.hooksetIcon, 'hookset-icon']" />
           </v-col>
         </v-row>
       </div>
