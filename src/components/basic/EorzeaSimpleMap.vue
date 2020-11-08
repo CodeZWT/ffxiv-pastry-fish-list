@@ -80,7 +80,7 @@ import fishMarker from '@/assets/fishingSpot.png'
 import markerRange from '@/assets/markerRange.png'
 import aetheryteMarker from '@/assets/icon/PlaceName.png'
 import defaultMap from '@/assets/default.00.jpg'
-import { throttle, set } from 'lodash'
+import { throttle, set, isEqual } from 'lodash'
 import { mapMutations, mapState } from 'vuex'
 import copy from 'copy-to-clipboard'
 // import Konva from 'konva'
@@ -504,8 +504,10 @@ export default {
     mapImageUrl(url) {
       this.loadMapImage(url)
     },
-    fishingSpotNames(fishingSpotNames) {
-      this.loadFishingSpotRangeHelper(fishingSpotNames)
+    fishingSpotNames(fishingSpotNames, oldFishingSpotNames) {
+      if (!isEqual(oldFishingSpotNames, fishingSpotNames)) {
+        this.loadFishingSpotRangeHelper(fishingSpotNames)
+      }
     },
   },
   created() {
