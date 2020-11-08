@@ -882,9 +882,6 @@ export default {
       if (Object.keys(this.lazyFishWindowRates).length === 0) {
         this.lazyImportantFishSourceList.forEach(fish => {
           const fishWindows = this.fishListWeatherChangePart[fish._id]?.fishWindows
-          if (fishWindows.length === 0) {
-            console.log(this.allFish[fish._id])
-          }
           this.lazyFishWindowRates[fish._id] = DataUtil.computeRate(fishWindows)
         })
       }

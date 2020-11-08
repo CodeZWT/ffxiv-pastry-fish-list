@@ -133,7 +133,6 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
-import { merge } from 'lodash'
 import flatten from 'flat'
 import ResetButton from '@/components/ResetButton'
 import ClickHelper from '@/components/basic/ClickHelper'
@@ -194,12 +193,12 @@ export default {
         pinned: userData.pinned,
         // fixed value since these options are not available in RC Fish
         upcomingWindowFormat: 'fromPrevClose',
-        sortingType: 'windowPeriods',
+        sortingType: FISH_TRACKER_MAPPER.TO.SORTER_TYPE[userData.filters.sorterType] ?? 'windowPeriods',
         theme: 'dark',
       })
     },
     fromFishTrackerVersion(fishTrackerData, currentUserData) {
-      return merge(currentUserData, {
+      return DataUtil.mergeByReplacingArray(currentUserData, {
         completed: fishTrackerData.completed ?? currentUserData.completed,
         pinned: fishTrackerData.pinned ?? currentUserData.pinned,
         filters: {
@@ -207,6 +206,9 @@ export default {
           completeType:
             FISH_TRACKER_MAPPER.FROM.COMPLETE_TYPE[fishTrackerData.filters?.completion] ??
             currentUserData.filters.completeType,
+          sorterType:
+            FISH_TRACKER_MAPPER.FROM.SORTER_TYPE[fishTrackerData.filters?.sortingType] ??
+            currentUserData.filters.sorterType,
         },
       })
     },
@@ -260,8 +262,8 @@ export default {
       }
     },
     validateImportData(data, sample) {
-      console.debug(Object.keys(flatten(data, { safe: true })))
-      console.debug(Object.keys(flatten(sample, { safe: true })))
+      // console.debug(Object.keys(flatten(data, { safe: true })))
+      // console.debug(Object.keys(flatten(sample, { safe: true })))
       const importKeys = Object.keys(flatten(data, { safe: true })).sort()
       const sampleKeys = Object.keys(flatten(sample, { safe: true })).sort()
       return importKeys.every(it => sampleKeys.includes(it))
@@ -284,12 +286,20 @@ const FISH_TRACKER_MAPPER = {
       COMPLETED: 'caught',
       UNCOMPLETED: 'uncaught',
     },
+    SORTER_TYPE: {
+      COUNTDOWN: 'windowPeriods',
+      RATE: 'overallRarity',
+    },
   },
   FROM: {
     COMPLETE_TYPE: {
       all: 'ALL',
       caught: 'COMPLETED',
       uncaught: 'UNCOMPLETED',
+    },
+    SORTER_TYPE: {
+      windowPeriods: 'COUNTDOWN',
+      overallRarity: 'RATE',
     },
   },
 }
