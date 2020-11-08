@@ -136,8 +136,21 @@
           </div>
         </v-col>
       </v-row>
-      <v-dialog v-model="isDetailFishWindowOpen" max-width="70vh">
-        <fish-detail :fish="currentFish" :now="now" />
+      <v-dialog v-model="isDetailFishWindowOpen" max-width="70vh" :fullscreen="isMobile" scrollable>
+        <v-card>
+          <v-card-text>
+            <fish-detail :fish="currentFish" :now="now" />
+          </v-card-text>
+          <v-card-actions>
+            <div class="d-flex flex-column flex-fill">
+              <click-helper @click="isDetailFishWindowOpen = false">
+                <v-btn class="mt-2" color="default" block text>
+                  {{ $t('general.dialog.close') }}
+                </v-btn>
+              </click-helper>
+            </div>
+          </v-card-actions>
+        </v-card>
       </v-dialog>
     </v-col>
   </v-row>
@@ -274,6 +287,9 @@ export default {
         this.fishListWeatherChangePart
       )
     },
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
+    },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishingSpotsName', 'getFishingSpot', 'getFishCompleted', 'allCompletedFish']),
   },
@@ -302,7 +318,7 @@ export default {
       }
     },
     currentFishId(fishId) {
-      if (fishId) {
+      if (fishId > 0) {
         this.isDetailFishWindowOpen = true
       }
     },
