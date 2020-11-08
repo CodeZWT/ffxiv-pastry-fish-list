@@ -295,7 +295,7 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
-          <div class="text-h6">Version 0.2.4</div>
+          <div class="text-h6">Version 0.3.0</div>
           <ul>
             <li>
               更新地图范围提示：（4.x, 5.x 完成，剩余地图持续更新中）
@@ -680,7 +680,8 @@ export default {
     },
     listFishCnt() {
       const fishListTimePart = this.fishListTimePart
-      return [this.pinnedFishList, this.sortedFilteredFishList, this.toBeNotifiedFishList].map(list => {
+      const doFullCountSearch = [true, false, true]
+      return [this.pinnedFishList, this.sortedFilteredFishList, this.toBeNotifiedFishList].map((list, index) => {
         if (Object.keys(fishListTimePart).length === 0) {
           return {
             type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
@@ -688,6 +689,14 @@ export default {
           }
         }
 
+        if (doFullCountSearch[index]) {
+          return {
+            type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
+            cnt: list.reduce((cnt, fish) => {
+              return cnt + (fishListTimePart[fish.id]?.countDown?.type === DataUtil.FISHING ? 1 : 0)
+            }, 0),
+          }
+        }
         const firstNotFishingIndex = list.findIndex(it => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING)
         return {
           type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
