@@ -320,6 +320,7 @@ export default {
     currentFishId(fishId) {
       if (fishId > 0) {
         this.isDetailFishWindowOpen = true
+        this.$emit('select-fish', fishId)
       }
     },
     isDetailFishWindowOpen(isOpen) {
@@ -380,7 +381,6 @@ export default {
   methods: {
     onFishClicked(fishId) {
       this.currentFishId = fishId
-      this.$emit('fish-selected', fishId)
     },
     onMapCardResized() {
       setTimeout(() => this.$refs.simpleMap?.resize(), 300)
