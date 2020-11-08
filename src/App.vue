@@ -118,21 +118,26 @@
         </v-list-item>
       </template>
 
-      <v-list nav dense>
+      <v-divider></v-divider>
+      <v-list dense>
         <click-helper @click="toPage('ListPage')">
-          <v-list-item @click="noOp">
+          <v-list-item @click="noOp" link>
             <v-list-item-icon>
               <v-icon>mdi-alarm</v-icon>
             </v-list-item-icon>
-            <v-list-item-content>{{ $t('top.fishList') }}</v-list-item-content>
+            <v-list-item-content v-if="!mini">
+              <v-list-item-title>{{ $t('top.fishList') }}</v-list-item-title>
+            </v-list-item-content>
           </v-list-item>
         </click-helper>
         <click-helper @click="toPage('WikiPage')">
-          <v-list-item @click="noOp">
+          <v-list-item @click="noOp" link>
             <v-list-item-icon>
               <v-icon>mdi-notebook</v-icon>
             </v-list-item-icon>
-            <v-list-item-content>{{ $t('top.fishWiki') }}</v-list-item-content>
+            <v-list-item-content v-if="!mini">
+              <v-list-item-title>{{ $t('top.fishWiki') }}</v-list-item-title>
+            </v-list-item-content>
           </v-list-item>
         </click-helper>
       </v-list>
@@ -143,16 +148,20 @@
           <v-divider />
           <v-list-group prepend-icon="mdi-cog">
             <template v-slot:activator>
-              <v-list-item-content>{{ $t('top.setting') }}</v-list-item-content>
+              <v-list-item-content>
+                <v-list-item-title>{{ $t('top.setting') }}</v-list-item-title>
+              </v-list-item-content>
             </template>
-            <!--        <v-list-item-group active-class="primary&#45;&#45;text">-->
+            <!--        <v-list-item-group active-class="primary--text">-->
 
             <click-helper @click="setShowImportExportDialog(true)">
               <v-list-item @click="noOp">
                 <v-list-item-icon>
                   <v-icon>mdi-database</v-icon>
                 </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.menu') }}</v-list-item-content>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.menu') }}</v-list-item-title>
+                </v-list-item-content>
               </v-list-item>
             </click-helper>
             <click-helper @click="showSettingDialog = true">
@@ -160,7 +169,9 @@
                 <v-list-item-icon>
                   <v-icon>mdi-tune</v-icon>
                 </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.uiConfig') }}</v-list-item-content>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.uiConfig') }}</v-list-item-title>
+                </v-list-item-content>
               </v-list-item>
             </click-helper>
             <click-helper @click="showHelpDialog = true">
@@ -168,7 +179,9 @@
                 <v-list-item-icon>
                   <v-icon>mdi-help-circle</v-icon>
                 </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.help') }}</v-list-item-content>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.help') }}</v-list-item-title>
+                </v-list-item-content>
               </v-list-item>
             </click-helper>
             <click-helper @click="showPatchNoteDialog = true">
@@ -176,7 +189,9 @@
                 <v-list-item-icon>
                   <v-icon>mdi-tag</v-icon>
                 </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.patchNote') }}</v-list-item-content>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.patchNote') }}</v-list-item-title>
+                </v-list-item-content>
               </v-list-item>
             </click-helper>
             <click-helper @click="showAboutDialog = true">
@@ -184,7 +199,9 @@
                 <v-list-item-icon>
                   <v-icon>mdi-information</v-icon>
                 </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.about') }}</v-list-item-content>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.about') }}</v-list-item-title>
+                </v-list-item-content>
               </v-list-item>
             </click-helper>
             <!--        </v-list-item-group>-->
