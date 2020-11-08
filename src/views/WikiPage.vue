@@ -74,7 +74,7 @@
               :col-num="12"
               :row-height="32"
               :is-draggable="isSettingMode"
-              :is-resizable="true"
+              :is-resizable="isSettingMode"
               :is-mirrored="false"
               :vertical-compact="true"
               :margin="[10, 10]"
@@ -457,14 +457,13 @@ export default {
 //  width: 100%
 //  height: calc(100vh - #{ $top-bars-padding + $footer-padding})
 
-.vue-grid-layout
-  background: #eee
+//.vue-grid-layout
+  //background: #eee
 
 
 .vue-grid-item:not(.vue-grid-placeholder)
-  background: #ccc
-
-  border: 1px solid black
+  //background: #ccc
+  //border: 1px solid black
 
 .vue-grid-item .resizing
   opacity: 0.9
