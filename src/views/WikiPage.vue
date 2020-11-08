@@ -278,10 +278,12 @@ export default {
     ...mapGetters(['getFishingSpotsName', 'getFishingSpot', 'getFishCompleted', 'allCompletedFish']),
   },
   watch: {
-    // TODO update
-    // currentSpotId() {
-    //   this.$refs.simpleMap?.resize()
-    // },
+    // TODO resize map in simple map correctly
+    currentSpotId(currentSpotId) {
+      if (currentSpotId !== -1) {
+        setTimeout(() => this.$refs.simpleMap?.resize(), 500)
+      }
+    },
     // allCompletedFish(allCompletedFish) {
     //   this.updateCompletedSpot(allCompletedFish)
     // },
