@@ -44,6 +44,16 @@
           <div>
             {{ $t(transformedFishTimePart.countDownType) }}
           </div>
+          <div v-if="fish.rate < 1">
+            <v-tooltip right color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on">({{ fish.rateText }})</div>
+              </template>
+              <div class="d-flex flex-column">
+                <div>{{ $t('list.item.rateHint') }}</div>
+              </div>
+            </v-tooltip>
+          </div>
         </div>
         <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
           <div>

@@ -50,6 +50,11 @@
       "20": "20",
       "50": "50",
       "ALL": "所有"
+    },
+    "sorter": {
+      "title": "排序",
+      "COUNTDOWN": "窗口期",
+      "RATE": "稀有度"
     }
   },
   "search": {
@@ -194,7 +199,8 @@
       "linkHint": "跳转至饥饿的猫",
       "copyHint": "复制名称",
       "notificationHint": "点击添加闹钟",
-      "notificationHintOff": "点击取消闹钟"
+      "notificationHintOff": "点击取消闹钟",
+      "rateHint": "窗口期时间占比"
     }
   },
   "footer": {

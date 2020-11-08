@@ -242,8 +242,11 @@ export default {
     },
     completedSpotFishIds: {
       get() {
-        return this.allCompletedFish.flatMap(fishId =>
-          this.lazyTransformedFishDict[fishId].fishingSpots.map(spot => `spot-${spot.fishingSpotId}-fish-${fishId}`)
+        return this.allCompletedFish.flatMap(
+          fishId =>
+            this.lazyTransformedFishDict[fishId]?.fishingSpots.map(
+              spot => `spot-${spot.fishingSpotId}-fish-${fishId}`
+            ) ?? []
         )
       },
       set(newSpotFishIds) {
@@ -284,7 +287,7 @@ export default {
     //   this.updateCompletedSpot(allCompletedFish)
     // },
     completedSpots(newSpots, oldSpots) {
-      console.log(newSpots, oldSpots)
+      // console.log(newSpots, oldSpots)
       const removed = _.difference(oldSpots, newSpots).map(it => +it.substring('spot-'.length))
       const added = _.difference(newSpots, oldSpots).map(it => +it.substring('spot-'.length))
       if (removed.length > 0) {
@@ -313,7 +316,6 @@ export default {
     this.detailWindowHeight = window.innerHeight * 0.7
     this.detailWindowWidth = window.innerWidth * 0.25
     this.debouncedSearchTextUpdater = _.debounce(text => {
-      console.log('trigger')
       this.lazySearchText = text
     }, 500)
 
@@ -376,7 +378,7 @@ export default {
           completedSpots.push('spot-' + spot.spotId)
         }
       })
-      console.log(_.isEqual(this.completedSpots, completedSpots))
+      // console.log(_.isEqual(this.completedSpots, completedSpots))
       if (!_.isEqual(_.sortBy(this.completedSpots), _.sortBy(completedSpots))) {
         this.completedSpots = completedSpots
       }

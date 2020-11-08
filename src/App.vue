@@ -247,10 +247,10 @@
           :lazyFishSourceList="lazyFishSourceList"
           :lazyTransformedFishList="lazyTransformedFishList"
           :lazyTransformedFishDict="lazyTransformedFishDict"
-          :pinnedFishList="pinnedFishList"
           :fishListTimePart="fishListTimePart"
           :extraFishListTimePart="extraFishListTimePart"
           :fishListWeatherChangePart="fishListWeatherChangePart"
+          :pinnedFishList="pinnedFishList"
           :sortedFilteredFishList="sortedFilteredFishList"
           :toBeNotifiedFishList="toBeNotifiedFishList"
           :selectedFish="selectedFish"
@@ -566,6 +566,7 @@ export default {
     drawer: true,
     mini: true,
     lazyFishSourceList: [],
+    lazyImportantFishSourceList: [],
     lazyTransformedFishList: [],
     lazyTransformedFishDict: {},
     weatherChangeTrigger: 1,
@@ -577,6 +578,7 @@ export default {
     fishListWeatherChangePart: {},
     loading: true,
     extraFishListTimePart: {},
+    lazyFishWindowRates: {},
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -617,11 +619,39 @@ export default {
     },
     sortedFilteredFishList() {
       const idSet = this.filteredFishIdSet
-      return this.sortedFishIds
+      let countdownSortedFishList = this.sortedFishIds
         .filter(id => idSet.has(id))
         .map(id => this.lazyTransformedFishDict[id])
         .filter(it => !this.getFishPinned(it.id))
         .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
+
+      if (this.filters.sorterType === 'RATE') {
+        const firstWaitingFishLongerThanTwoHoursIndex = countdownSortedFishList.findIndex(fish => {
+          const countDownType = this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE
+          if (countDownType === DataUtil.FISHING) {
+            return false
+          }
+          const countDownTime = this.fishListTimePart[fish._id]?.countDown?.time ?? DataUtil.INTERVAL_HOUR * 2
+          if (countDownTime >= DataUtil.INTERVAL_HOUR * 2) {
+            return true
+          }
+        })
+
+        const rateSortExcludedFish =
+          firstWaitingFishLongerThanTwoHoursIndex === -1
+            ? []
+            : countdownSortedFishList.splice(
+                firstWaitingFishLongerThanTwoHoursIndex,
+                countdownSortedFishList.length - firstWaitingFishLongerThanTwoHoursIndex
+              )
+
+        countdownSortedFishList = sortBy(countdownSortedFishList, [
+          fish => this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE,
+          fish => this.lazyFishWindowRates[fish._id],
+        ]).concat(rateSortExcludedFish)
+      }
+
+      return countdownSortedFishList
     },
     pinnedFishList() {
       const fishSourceList = this.lazyTransformedFishList
@@ -629,6 +659,13 @@ export default {
       return sortBy(
         fishSourceList.filter(it => this.getFishPinned(it.id)),
         [
+          fish => {
+            if (this.filters.sorterType === 'COUNTDOWN') {
+              return 1
+            } else {
+              return this.lazyFishWindowRates[fish.id]
+            }
+          },
           fish => {
             const index = sortedFishIds.indexOf(fish.id)
             if (index === -1) {
@@ -663,7 +700,16 @@ export default {
       const sortedFishIds = this.sortedFishIds
       return sortBy(
         fishSourceList.filter(it => this.getFishToBeNotified(it.id)),
-        [fish => sortedFishIds.indexOf(fish.id)]
+        [
+          fish => {
+            if (this.filters.sorterType === 'COUNTDOWN') {
+              return 1
+            } else {
+              return this.lazyFishWindowRates[fish.id]
+            }
+          },
+          fish => sortedFishIds.indexOf(fish.id),
+        ]
       )
     },
     selectedFish() {
@@ -804,11 +850,12 @@ export default {
     this.lazyImportantFishSourceList = this.lazyFishSourceList.filter(
       it => this.bigFish.includes(it._id) || !DataUtil.isAllAvailableFish(it)
     )
+    this.updateWeatherChangePart(this.now)
+
     this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
     this.lazyTransformedFishDict = DataUtil.toMap(this.lazyTransformedFishList, fish => fish.id)
     const sounds = await this.loadingSounds()
     this.setSounds(DataUtil.toMap(sounds, it => it.key))
-    this.updateWeatherChangePart(this.now)
 
     setInterval(() => {
       const now = Date.now()
@@ -831,6 +878,16 @@ export default {
         }
         return fish2WeatherPart
       }, {})
+
+      if (Object.keys(this.lazyFishWindowRates).length === 0) {
+        this.lazyImportantFishSourceList.forEach(fish => {
+          const fishWindows = this.fishListWeatherChangePart[fish._id]?.fishWindows
+          if (fishWindows.length === 0) {
+            console.log(this.allFish[fish._id])
+          }
+          this.lazyFishWindowRates[fish._id] = DataUtil.computeRate(fishWindows)
+        })
+      }
     },
     loadingSounds() {
       return Promise.all(
@@ -935,6 +992,7 @@ export default {
     assembleFish(fishSourceList, isPredator = false) {
       return fishSourceList.map(fish => {
         const hasPredators = Object.keys(fish.predators).length > 0
+        const rate = this.lazyFishWindowRates[fish._id]
         return {
           // TODO remove _id
           _id: fish._id,
@@ -972,6 +1030,8 @@ export default {
           weatherSet: fish.weatherSet,
           previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
           patch: fish.patch,
+          rate: rate,
+          rateText: ((rate ?? 1) * 100).toPrecision(2) + '%',
           isPredator: isPredator,
           predators: this.assembleFish(DataUtil.getPredators(fish, this.allFish), true),
         }

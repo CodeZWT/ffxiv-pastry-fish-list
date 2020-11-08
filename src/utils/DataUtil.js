@@ -272,6 +272,14 @@ export default {
     )
   },
 
+  computeRate(fishWindows) {
+    const len = fishWindows.length
+    if (len === 0) return 1
+    const total = fishWindows[len - 1][0] - fishWindows[0][0]
+    const active = fishWindows.slice(0, len - 1).reduce((sum, fishWindow) => (sum += fishWindow[1] - fishWindow[0]), 0)
+    return active / total
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: 1000,
@@ -364,6 +372,7 @@ export default {
       completeType: 'UNCOMPLETED',
       bigFishType: 'BIG_FISH',
       fishN: 10,
+      sorterType: 'COUNTDOWN',
     },
     // page settings
     showFilter: true,
