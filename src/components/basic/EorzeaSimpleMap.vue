@@ -317,6 +317,7 @@ const AVAILABLE_HELP = new Set([
   '污流上游',
   '污流下游',
   '执掌峡谷',
+  '静语庄园',
 ])
 
 export default {
@@ -606,14 +607,14 @@ export default {
       })
     },
     getFishingSpotRangeHelper(fishingSpotName) {
-      if (AVAILABLE_HELP.has(fishingSpotName)) {
-        return import(`@/assets/fishing-spot-range-detail/${fishingSpotName}.png`)
-          .then(it => it?.default)
-          .catch(() => console.warn(fishingSpotName + ' range helper is missing.'))
-          .finally(() => null)
-      } else {
-        return null
+      const imageName = AVAILABLE_HELP.has(fishingSpotName) ? fishingSpotName : 'default'
+      if (imageName === 'default') {
+        console.warn(fishingSpotName + ' range helper is missing.')
       }
+      return import(`@/assets/fishing-spot-range-detail/${imageName}.png`)
+        .then(it => it?.default)
+        .catch(() => console.error(fishingSpotName + ' loading error'))
+        .finally(() => null)
     },
     resize() {
       this.throttledResizeFn()
