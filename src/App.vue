@@ -1056,10 +1056,12 @@ export default {
       })
     },
     toPage(page) {
-      this.$router.push({ name: page })
+      if (this.$route.name !== page) {
+        this.$router.push({ name: page })
+      }
     },
     toPageSubList(tabIndex) {
-      this.$router.push({ name: 'ListPage' })
+      this.toPage('ListPage')
       this.setActiveTab(tabIndex)
     },
     ...mapMutations([
