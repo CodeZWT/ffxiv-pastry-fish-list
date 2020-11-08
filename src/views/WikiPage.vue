@@ -68,7 +68,6 @@
           </div>
           <div v-else-if="type === 'spot' || type === 'fish'">
             <!--  show spot/fish view  -->
-            {{ type }}
             <grid-layout
               v-if="currentSpotId"
               :layout.sync="layout"
