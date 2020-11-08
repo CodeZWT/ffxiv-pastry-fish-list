@@ -19,16 +19,6 @@
               <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
                 <fish-filter :filters="filters" @input="onFiltersUpdate" />
               </div>
-              <fish-search
-                v-model="showSearchDialog"
-                :fish-data="lazyFishSourceList"
-                :fish-dict="lazyTransformedFishDict"
-                :fish-list-time-part="fishListTimePart"
-                :extraFishListTimePart="extraFishListTimePart"
-                :fish-list-weather-change-part="fishListWeatherChangePart"
-                :now="now"
-                @change="onSearchFishChanged"
-              />
               <div :class="{ 'main-area': true, 'show-filter': showFilter }">
                 <div style="width: 100%">
                   <v-banner v-if="showBanner" two-line>
@@ -156,7 +146,6 @@
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
-import FishSearch from '@/components/FishSearch'
 import { throttle } from 'lodash'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import ClickHelper from '@/components/basic/ClickHelper'
@@ -170,7 +159,6 @@ export default {
     FishDetail,
     ClickHelper,
     ImportExportDialog,
-    FishSearch,
     FishList,
     FishFilter,
     Splitpanes,
@@ -208,14 +196,6 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
-    showSearchDialog: {
-      get() {
-        return this.showSearch
-      },
-      set(showSearch) {
-        this.setShowSearchDialog(showSearch)
-      },
-    },
     showImportExportDialog: {
       get() {
         return this.showImportExport
@@ -246,7 +226,6 @@ export default {
       fishingSpots: 'fishingSpots',
       zones: 'zones',
       bigFish: 'bigFish',
-      showSearch: 'showSearchDialog',
       showImportExport: 'showImportExportDialog',
       activeTabIndex: 'activeTabIndex',
       sounds: 'sounds',
@@ -304,9 +283,6 @@ export default {
       setTimeout(() => {
         this.$refs.fishDetail?.resize()
       }, 500)
-    },
-    onSearchFishChanged(fishId) {
-      this.$emit('search-fish', fishId)
     },
     ...mapMutations([
       'setFilters',

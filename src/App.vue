@@ -255,7 +255,6 @@
           :toBeNotifiedFishList="toBeNotifiedFishList"
           :selectedFish="selectedFish"
           @select-fish="selectedFishId = $event"
-          @search-fish="searchedFishId = $event"
         />
         <!--                @fishCntUpdated="listFishCnt = $event"     -->
       </div>
@@ -267,6 +266,18 @@
       <!--        </v-row>-->
       <!--      </v-container>-->
     </v-main>
+
+    <fish-search
+      v-model="showSearch"
+      :fish-data="lazyFishSourceList"
+      :fish-dict="lazyTransformedFishDict"
+      :fish-list-time-part="fishListTimePart"
+      :extraFishListTimePart="extraFishListTimePart"
+      :fish-list-weather-change-part="fishListWeatherChangePart"
+      :now="now"
+      @change="searchedFishId = $event"
+    />
+
     <v-footer app style="font-size: small; max-height: 31px" v-if="!collapse">
       <div class="d-flex" style="width: 100%">
         <div class="text-truncate mr-2" :title="$t('footer.contact')">{{ $t('footer.contact') }}</div>
@@ -533,10 +544,11 @@ import { Howl } from 'howler'
 import sortBy from 'lodash/sortBy'
 import { isEqual, union } from 'lodash'
 import FishWindow from '@/utils/FishWindow'
+import FishSearch from '@/components/FishSearch'
 
 export default {
   name: 'App',
-  components: { FishSettingDialog, ClickHelper, ResetButton },
+  components: { FishSearch, FishSettingDialog, ClickHelper, ResetButton },
   data: vm => ({
     now: Date.now(),
     fisher,
@@ -677,6 +689,14 @@ export default {
     isListPage() {
       return this.$route.name === 'ListPage'
     },
+    showSearch: {
+      get() {
+        return this.showSearchDialog
+      },
+      set(showSearch) {
+        this.setShowSearchDialog(showSearch)
+      },
+    },
     ...mapState([
       'snackbar',
       'activeTabIndex',
@@ -688,6 +708,7 @@ export default {
       'bigFish',
       'showImportExportDialog',
       'sounds',
+      'showSearchDialog',
     ]),
     ...mapGetters([
       'opacity',
