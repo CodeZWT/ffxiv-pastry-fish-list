@@ -12,7 +12,7 @@
         :predators="[]"
         :in-predator="fish.isPredator"
         mode="HEADER"
-        :show-constraints-instead="showConstraintsInstead"
+        :show-constraints-instead="fish.isPredator || showConstraintsInstead"
       />
     </v-sheet>
   </click-helper>
