@@ -136,6 +136,7 @@ import DataUtil from '@/utils/DataUtil'
 import flatten from 'flat'
 import ResetButton from '@/components/ResetButton'
 import ClickHelper from '@/components/basic/ClickHelper'
+import { cloneDeep } from 'lodash'
 
 export default {
   name: 'ImportExportDialog',
@@ -198,19 +199,21 @@ export default {
       })
     },
     fromFishTrackerVersion(fishTrackerData, currentUserData) {
-      return DataUtil.mergeByReplacingArray(currentUserData, {
-        completed: fishTrackerData.completed ?? currentUserData.completed,
-        pinned: fishTrackerData.pinned ?? currentUserData.pinned,
-        filters: {
-          patches: fishTrackerData.filters?.patch ?? currentUserData.filters.patches,
-          completeType:
-            FISH_TRACKER_MAPPER.FROM.COMPLETE_TYPE[fishTrackerData.filters?.completion] ??
-            currentUserData.filters.completeType,
-          sorterType:
-            FISH_TRACKER_MAPPER.FROM.SORTER_TYPE[fishTrackerData.filters?.sortingType] ??
-            currentUserData.filters.sorterType,
-        },
-      })
+      return cloneDeep(
+        DataUtil.mergeByReplacingArray(currentUserData, {
+          completed: fishTrackerData.completed ?? currentUserData.completed,
+          pinned: fishTrackerData.pinned ?? currentUserData.pinned,
+          filters: {
+            patches: fishTrackerData.filters?.patch ?? currentUserData.filters.patches,
+            completeType:
+              FISH_TRACKER_MAPPER.FROM.COMPLETE_TYPE[fishTrackerData.filters?.completion] ??
+              currentUserData.filters.completeType,
+            sorterType:
+              FISH_TRACKER_MAPPER.FROM.SORTER_TYPE[fishTrackerData.filters?.sortingType] ??
+              currentUserData.filters.sorterType,
+          },
+        })
+      )
     },
     goTo(href) {
       window.open(href)
