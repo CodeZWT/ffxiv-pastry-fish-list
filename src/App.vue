@@ -49,7 +49,7 @@
 
       <template v-if="!collapse">
         <v-spacer />
-        <v-tabs :value="activeTabIndex" @change="setActiveTab" center-active show-arrows centered>
+        <v-tabs v-if="isListPage" :value="activeTabIndex" @change="setActiveTab" center-active show-arrows centered>
           <!--          <v-tabs-slider color="white"></v-tabs-slider>-->
 
           <v-tab
@@ -77,7 +77,7 @@
           </template>
           <div>按 <code>/</code> 键直接搜索</div>
         </v-tooltip>
-        <click-helper @click="toggleFilterPanel">
+        <click-helper v-if="isListPage" @click="toggleFilterPanel">
           <v-btn icon>
             <v-icon>mdi-filter</v-icon>
           </v-btn>
@@ -101,7 +101,14 @@
       </template>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" bottom app color="#272727">
+    <v-navigation-drawer
+      v-model="drawer"
+      :mini-variant.sync="mini"
+      bottom
+      app
+      color="#272727"
+      :expand-on-hover="!isMobile"
+    >
       <template v-slot:prepend>
         <v-list-item class="px-2">
           <v-list-item-avatar>
@@ -121,14 +128,31 @@
       <v-divider></v-divider>
       <v-list dense>
         <click-helper @click="toPage('ListPage')">
-          <v-list-item @click="noOp" link>
-            <v-list-item-icon>
-              <v-icon>mdi-alarm</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content v-if="!mini">
-              <v-list-item-title>{{ $t('top.fishList') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <v-list-group prepend-icon="mdi-alarm">
+            <template v-slot:activator>
+              <v-list-item-content v-if="!mini">
+                <v-list-item-title>{{ $t('top.fishList') }}</v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <v-list-item v-for="(notification, index) in listFishCnt" :key="index" @click="toPageSubList(index)">
+              <v-list-item-icon>
+                <v-badge
+                  color="tertiary"
+                  :value="notification.cnt"
+                  :content="notification.cnt"
+                  style="z-index: 10"
+                  overlap
+                >
+                  <v-icon>
+                    {{ TABS[index].icon }}
+                  </v-icon>
+                </v-badge>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ $t(TABS[index].title) }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-group>
         </click-helper>
         <click-helper @click="toPage('WikiPage')">
           <v-list-item @click="noOp" link>
@@ -650,6 +674,9 @@ export default {
         return undefined
       }
     },
+    isListPage() {
+      return this.$route.name === 'ListPage'
+    },
     ...mapState([
       'snackbar',
       'activeTabIndex',
@@ -1030,6 +1057,10 @@ export default {
     },
     toPage(page) {
       this.$router.push({ name: page })
+    },
+    toPageSubList(tabIndex) {
+      this.$router.push({ name: 'ListPage' })
+      this.setActiveTab(tabIndex)
     },
     ...mapMutations([
       'toggleFilterPanel',
