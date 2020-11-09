@@ -28,7 +28,7 @@
             </tbody>
           </template>
         </v-simple-table>
-        <v-btn block @click="showMore">加载更多...</v-btn>
+        <v-btn block @click="showMore" :loading="loadingShowMore">加载更多...</v-btn>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -64,6 +64,7 @@ export default {
     recordsCntToShow: FishWindow.FISH_WINDOW_FORECAST_N,
     lazyFishWindows: [],
     fishWindowsToShow: [],
+    loadingShowMore: false,
   }),
   created() {
     this.lazyExpansionValue = this.expanded ? 0 : undefined
@@ -83,8 +84,11 @@ export default {
         this.fishWindowsToShow = this.fishWindowsProvided
       } else {
         const existedFishWindows = this.lazyFishWindows.filter(it => it.endTime >= now)
-        if (existedFishWindows.length >= this.recordsCntToShow) {
+        if (existedFishWindows.length > this.recordsCntToShow) {
           this.fishWindowsToShow = existedFishWindows.slice(0, this.recordsCntToShow)
+        } else if (existedFishWindows.length === this.recordsCntToShow) {
+          console.log('just return cached')
+          this.fishWindowsToShow = existedFishWindows
         } else {
           this.fishWindowsToShow = this.lazyFishWindows = this.transformFishWindows(
             DataUtil.getFishWindow(
@@ -96,6 +100,7 @@ export default {
             ),
             this.recordsCntToShow
           )
+          this.loadingShowMore = false
         }
       }
     },
@@ -139,7 +144,10 @@ export default {
       })
     },
     showMore() {
-      this.recordsCntToShow += 10
+      if (!this.loadingShowMore) {
+        this.recordsCntToShow += 10
+        this.loadingShowMore = true
+      }
     },
     printCountDownTime: DataUtil.printCountDownTime,
   },
