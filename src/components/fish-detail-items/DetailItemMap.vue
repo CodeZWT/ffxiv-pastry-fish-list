@@ -112,6 +112,7 @@ export default {
     },
     'fish.id': function() {
       this.lazyExpansionValue = this.expanded ? 0 : undefined
+      this.currentSpotIndex = 0
     },
   },
   methods: {
