@@ -337,18 +337,23 @@ export default {
       this.lazySearchText = text
     }, 500)
 
+    // let output = ''
     this.regionTerritorySpots = regionTerritorySpots
+      .filter(region => region.id != null && region.id !== '3443')
       .map(region => {
+        // output += `region,${region.id},${placeNames[region.id]}\n`
         return {
           id: 'region-' + region.id,
           name: placeNames[region.id],
           // TODO: arrange region & territory according to order
           children: region.territories.map(territory => {
+            // output += `territory,${territory.id},${placeNames[territory.id]}\n`
             this.territoryDict[territory.id] = territory.spots.map(spot => spot.id)
             return {
               id: 'territory-' + territory.id,
               name: placeNames[territory.id],
               children: territory.spots.map(spot => {
+                // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
                 const fishList = spot.fishList.filter(fishId => this.lazyTransformedFishDict[fishId])
                 this.spotDict[spot.id] = {
                   spotId: spot.id,
@@ -362,6 +367,7 @@ export default {
                   id: 'spot-' + spot.id,
                   name: this.getFishingSpotsName(spot.id),
                   children: fishList.map(fishId => {
+                    // output += `fish,${fishId},${this.lazyTransformedFishDict[fishId].name}\n`
                     return {
                       id: 'spot-' + spot.id + '-fish-' + fishId,
                       name: this.lazyTransformedFishDict[fishId].name,
@@ -373,7 +379,7 @@ export default {
           }),
         }
       })
-      .filter(it => it.id !== 'region-null' && it.id !== 'region-3443')
+    // console.log(output)
     this.updateCompletedSpot(this.allCompletedFish)
     // console.log(regionTerritorySpots)
     // console.log(this.regionTerritorySpots)
@@ -479,9 +485,9 @@ export default {
   //background: #eee
 
 
-.vue-grid-item:not(.vue-grid-placeholder)
-  //background: #ccc
-  //border: 1px solid black
+//.vue-grid-item:not(.vue-grid-placeholder)
+//background: #ccc
+//border: 1px solid black
 
 .vue-grid-item .resizing
   opacity: 0.9
