@@ -46,7 +46,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col cols="10">
+    <v-col cols="10" class="detail-wrapper">
       <v-row class="fill-height">
         <v-col cols="12">
           <!--          <code>{{ openedItems }}</code>-->
@@ -136,23 +136,23 @@
           </div>
         </v-col>
       </v-row>
-      <v-dialog v-model="isDetailFishWindowOpen" max-width="70vh" :fullscreen="isMobile" scrollable>
-        <v-card>
-          <v-card-text>
-            <fish-detail :fish="currentFish" :now="now" />
-          </v-card-text>
-          <v-card-actions>
-            <div class="d-flex flex-column flex-fill">
-              <click-helper @click="isDetailFishWindowOpen = false">
-                <v-btn class="mt-2" color="default" block text>
-                  {{ $t('general.dialog.close') }}
-                </v-btn>
-              </click-helper>
-            </div>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
     </v-col>
+    <v-dialog v-model="isDetailFishWindowOpen" max-width="70vh" :fullscreen="isMobile" scrollable>
+      <v-card>
+        <v-card-text>
+          <fish-detail :fish="currentFish" :now="now" />
+        </v-card-text>
+        <v-card-actions>
+          <div class="d-flex flex-column flex-fill">
+            <click-helper @click="isDetailFishWindowOpen = false">
+              <v-btn class="mt-2" color="default" block text>
+                {{ $t('general.dialog.close') }}
+              </v-btn>
+            </click-helper>
+          </div>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-row>
 </template>
 
@@ -196,7 +196,7 @@ export default {
         x: 0,
         y: 4,
         w: 7,
-        h: 13,
+        h: 15,
         i: 'fishList',
       },
       { x: 0, y: 0, w: 7, h: 4, i: 'fishTugList' },
@@ -511,12 +511,13 @@ export default {
   overflow-y: scroll
 
 .spot-list
-  height: calc(100vh - #{ $top-bars-padding + $footer-padding + 64})
+  height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56})
   overflow-scrolling: auto
   overflow-y: scroll
 
 .detail-wrapper
-  max-height: 70vh
+  max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
   overflow-scrolling: auto
   overflow-y: scroll
+  overflow-x: hidden
 </style>
