@@ -10,7 +10,7 @@
       <v-app-bar-nav-icon v-if="!collapse" @click.stop="onWebIconClicked">
         <v-img v-if="!isMobile" :src="fisher" height="48" width="48" />
       </v-app-bar-nav-icon>
-      <v-toolbar-title>
+      <v-toolbar-title style="min-width: 145px !important">
         {{ $t('top.navBarTitle', { title, version }) }}
       </v-toolbar-title>
       <template v-if="!collapse">
@@ -242,7 +242,9 @@
             <li>增加按窗口期稀有度排序的功能。</li>
             <li>增加按键 ' / ' 可以直接搜索，以及打开搜索界面自动开始搜索输入的功能。</li>
             <li>增加部分钓鱼技能的悬浮提示。</li>
+            <li>更新界面，由于增加了新的图鉴界面，所以原先右上角设置类的功能与新的页面切换一起整合至左侧侧边栏中。</li>
             <li>更新地图范围提示完成。感谢 <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 的大力支持。</li>
+            <li>更新地图控件，现在可以点击“锁”图标自由拖动放大地图，以及切换显示文本以及钓场提示。</li>
             <li>
               更新时间文本，增加“今天”，“明天”，“周一”等的文本。
             </li>
