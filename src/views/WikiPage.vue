@@ -339,7 +339,7 @@ export default {
 
     // let output = ''
     this.regionTerritorySpots = regionTerritorySpots
-      .filter(region => region.id != null && region.id !== '3443')
+      .filter(region => region.id != null && region.id !== 3443)
       .map(region => {
         // output += `region,${region.id},${placeNames[region.id]}\n`
         return {
