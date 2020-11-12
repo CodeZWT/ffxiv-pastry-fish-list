@@ -1,7 +1,7 @@
 <template>
-  <v-row no-gutters>
-    <v-col cols="2">
-      <v-card class="mx-auto" max-width="500">
+  <div style="height: 100%" class="d-flex">
+    <v-navigation-drawer v-model="showMapMenu" bottom :fixed="isMobile" width="20vw">
+      <v-card>
         <v-sheet class="pa-1 primary">
           <div class="d-flex align-center">
             <v-text-field
@@ -25,7 +25,6 @@
             <!--            </v-btn>-->
           </div>
         </v-sheet>
-
         <v-card-text class="spot-list">
           <v-treeview
             ref="spotMenu"
@@ -45,98 +44,99 @@
           </v-treeview>
         </v-card-text>
       </v-card>
-    </v-col>
-    <v-col cols="10" class="detail-wrapper">
-      <v-row class="fill-height">
-        <v-col cols="12">
-          <!--          <code>{{ openedItems }}</code>-->
-          <!--          <code>{{ currentTerritoryId }}</code>-->
-          <!--          <code>{{ currentSpotId }}</code>-->
-          <!--          <code>{{ currentFishId }}</code>-->
-          <div v-if="!type || type === 'region'" class="d-flex justify-center align-center fill-height">
-            <!--  show empty / region view  -->
-            <v-icon size="200">mdi-book-open-page-variant</v-icon>
-          </div>
-          <div v-else-if="type === 'territory'" style="width: 100%; height: 100%">
-            <!--  show territory view  -->
-            <eorzea-simple-map
-              ref="simpleMap"
-              :id="currentMapInfo.mapFileId"
-              :size-factor="currentMapInfo.size_factor"
-              :fishing-spots="currentSpotList"
-            />
-          </div>
-          <div v-else-if="type === 'spot' || type === 'fish'">
-            <!--  show spot/fish view  -->
-            <grid-layout
-              v-if="currentSpotId"
-              :layout.sync="layout"
-              :col-num="12"
-              :row-height="32"
-              :is-draggable="isSettingMode"
-              :is-resizable="isSettingMode"
-              :is-mirrored="false"
-              :vertical-compact="true"
-              :margin="[10, 10]"
-              :use-css-transforms="true"
-              style="z-index: 0"
+    </v-navigation-drawer>
+    <div style="height: 100%; width: 100%">
+      <div class="detail-wrapper">
+        <!--          <code>{{ openedItems }}</code>-->
+        <!--          <code>{{ currentTerritoryId }}</code>-->
+        <!--          <code>{{ currentSpotId }}</code>-->
+        <!--          <code>{{ currentFishId }}</code>-->
+        <div v-if="!type || type === 'region'" class="d-flex justify-center align-center fill-height">
+          <!--  show empty / region view  -->
+          <v-icon size="200">mdi-book-open-page-variant</v-icon>
+        </div>
+        <div v-else-if="type === 'territory'" style="width: 100%; height: 100%">
+          <!--  show territory view  -->
+          <eorzea-simple-map
+            ref="simpleMap"
+            :id="currentMapInfo.mapFileId"
+            :size-factor="currentMapInfo.size_factor"
+            :fishing-spots="currentSpotList"
+          />
+        </div>
+        <div v-else-if="type === 'spot' || type === 'fish'">
+          <!--  show spot/fish view  -->
+          <grid-layout
+            v-if="currentSpotId"
+            :layout.sync="layout"
+            :col-num="12"
+            :row-height="32"
+            :is-draggable="isSettingMode"
+            :is-resizable="isSettingMode"
+            :is-mirrored="false"
+            :vertical-compact="true"
+            :margin="[10, 10]"
+            :use-css-transforms="true"
+            style="z-index: 0"
+          >
+            <grid-item
+              :static="mapLayout.static"
+              :x="mapLayout.x"
+              :y="mapLayout.y"
+              :w="mapLayout.w"
+              :h="mapLayout.h"
+              @resized="onMapCardResized"
+              :i="mapLayout.i"
             >
-              <grid-item
-                :static="mapLayout.static"
-                :x="mapLayout.x"
-                :y="mapLayout.y"
-                :w="mapLayout.w"
-                :h="mapLayout.h"
-                @resized="onMapCardResized"
-                :i="mapLayout.i"
-              >
-                <eorzea-simple-map
-                  ref="simpleMap"
-                  :id="currentMapInfo.mapFileId"
-                  :size-factor="currentMapInfo.size_factor"
-                  :fishing-spots="currentSpotList"
-                />
-              </grid-item>
+              <eorzea-simple-map
+                ref="simpleMap"
+                :id="currentMapInfo.mapFileId"
+                :size-factor="currentMapInfo.size_factor"
+                :fishing-spots="currentSpotList"
+              />
+            </grid-item>
 
-              <grid-item
-                :static="fishListLayout.static"
-                :x="fishListLayout.x"
-                :y="fishListLayout.y"
-                :w="fishListLayout.w"
-                :h="fishListLayout.h"
-                :i="fishListLayout.i"
-              >
-                <div class="grid-content">
-                  <div
-                    v-for="fish in currentFlattenFishList"
-                    :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"
-                    style="position: relative"
-                  >
-                    <fish-list-item
-                      :fish="fish"
-                      :fish-time-part="fishListTimePart[fish._id]"
-                      @click="onFishClicked(fish._id)"
-                      show-constraints-instead
-                    />
-                  </div>
+            <grid-item
+              :static="fishListLayout.static"
+              :x="fishListLayout.x"
+              :y="fishListLayout.y"
+              :w="fishListLayout.w"
+              :h="fishListLayout.h"
+              :i="fishListLayout.i"
+            >
+              <div class="grid-content">
+                <div
+                  v-for="fish in currentFlattenFishList"
+                  :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"
+                  style="position: relative"
+                >
+                  <fish-list-item
+                    :fish="fish"
+                    :fish-time-part="fishListTimePart[fish._id]"
+                    @click="onFishClicked(fish._id)"
+                    show-constraints-instead
+                  />
                 </div>
-              </grid-item>
+              </div>
+            </grid-item>
 
-              <grid-item
-                :static="baitTableLayout.static"
-                :x="baitTableLayout.x"
-                :y="baitTableLayout.y"
-                :w="baitTableLayout.w"
-                :h="baitTableLayout.h"
-                :i="baitTableLayout.i"
-              >
-                <fish-tug-table :value="currentFishList" class="grid-content" />
-              </grid-item>
-            </grid-layout>
-          </div>
-        </v-col>
-      </v-row>
-    </v-col>
+            <grid-item
+              :static="baitTableLayout.static"
+              :x="baitTableLayout.x"
+              :y="baitTableLayout.y"
+              :w="baitTableLayout.w"
+              :h="baitTableLayout.h"
+              :i="baitTableLayout.i"
+            >
+              <fish-tug-table :value="currentFishList" class="grid-content" />
+            </grid-item>
+          </grid-layout>
+        </div>
+      </div>
+      <div v-if="isMobile" style="position: absolute; bottom: 0; left: 0; right: 0">
+        <v-btn @click="showMapMenu = !showMapMenu" block color="primary">show map tree</v-btn>
+      </div>
+    </div>
     <v-dialog v-model="isDetailFishWindowOpen" max-width="70vh" :fullscreen="isMobile" scrollable>
       <v-card>
         <v-card-text>
@@ -153,7 +153,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
+  </div>
 </template>
 
 <script>
@@ -179,7 +179,16 @@ export default {
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
   },
-  props: ['lazyTransformedFishDict', 'fishListTimePart', 'now', 'fishListWeatherChangePart', 'extraFishListTimePart'],
+  props: [
+    'lazyTransformedFishDict',
+    'fishListTimePart',
+    'now',
+    'fishListWeatherChangePart',
+    'extraFishListTimePart',
+
+    'lazyFishSourceList',
+    'lazyTransformedFishList',
+  ],
   data: () => ({
     type: undefined,
     currentTerritoryId: -1,
@@ -190,23 +199,40 @@ export default {
     openedItems: [],
     spotDict: {},
     territoryDict: {},
-    layout: [
-      { x: 7, y: 0, w: 5, h: 17, i: 'map' },
-      {
-        x: 0,
-        y: 4,
-        w: 7,
-        h: 15,
-        i: 'fishList',
-      },
-      { x: 0, y: 0, w: 7, h: 4, i: 'fishTugList' },
-    ],
     isSettingMode: false,
     lazySearchText: '',
     preActiveItem: undefined,
     isDetailFishWindowOpen: false,
+    showMapMenu: true,
   }),
   computed: {
+    layout() {
+      if (this.isMobile) {
+        return [
+          { x: 0, y: 0, w: 12, h: 10, i: 'map' },
+          {
+            x: 0,
+            y: 20,
+            w: 12,
+            h: 30,
+            i: 'fishList',
+          },
+          { x: 0, y: 10, w: 12, h: 6, i: 'fishTugList' },
+        ]
+      } else {
+        return [
+          { x: 7, y: 0, w: 5, h: 17, i: 'map' },
+          {
+            x: 0,
+            y: 4,
+            w: 7,
+            h: 15,
+            i: 'fishList',
+          },
+          { x: 0, y: 0, w: 7, h: 4, i: 'fishTugList' },
+        ]
+      }
+    },
     searchText: {
       get() {
         return this.lazySearchText
@@ -497,6 +523,7 @@ export default {
   font-size: 24px
   text-align: center
   position: absolute
+
   top: 0
   bottom: 0
   left: 0
@@ -516,7 +543,9 @@ export default {
   overflow-y: scroll
 
 .detail-wrapper
-  max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+  width: 100%
+  height: 100%
+  max-height: calc(100vh - #{ $top-bars-padding + $footer-padding + 36})
   overflow-scrolling: auto
   overflow-y: scroll
   overflow-x: hidden

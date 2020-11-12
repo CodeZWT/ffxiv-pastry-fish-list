@@ -15,7 +15,14 @@
       </v-toolbar-title>
       <template v-if="!collapse">
         <v-spacer />
-        <v-tabs v-if="isListPage && !isMobile" :value="activeTabIndex" @change="setActiveTab" center-active show-arrows centered>
+        <v-tabs
+          v-if="isListPage && !isMobile"
+          :value="activeTabIndex"
+          @change="setActiveTab"
+          center-active
+          show-arrows
+          centered
+        >
           <!--          <v-tabs-slider color="white"></v-tabs-slider>-->
 
           <v-tab
@@ -56,7 +63,15 @@
     </v-app-bar>
 
     <v-main>
-      <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" bottom absolute color="#272727" :expand-on-hover="!isMobile">
+      <v-navigation-drawer
+        v-model="drawer"
+        :mini-variant.sync="mini"
+        bottom
+        :absolute="!isMobile"
+        :fixed="isMobile"
+        color="#272727"
+        :expand-on-hover="!isMobile"
+      >
         <v-list dense>
           <v-list-item v-for="(notification, index) in listFishCnt" :key="index" @click="toPageSubList(index)">
             <v-list-item-icon>
@@ -153,7 +168,7 @@
           </v-list>
         </template>
       </v-navigation-drawer>
-      <div :class="{ 'py-0': true, 'ml-14': !isMobile }" v-show="!collapse">
+      <div :class="{ 'py-0': true, 'ml-14': !isMobile }" style="height: 100%" v-show="!collapse">
         <v-overlay :value="loading">
           <div class="d-flex flex-column align-center">
             <v-progress-circular indeterminate size="64" />
