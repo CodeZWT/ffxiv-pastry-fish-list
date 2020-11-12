@@ -2,7 +2,7 @@
   "top": {
     "systemBarTitle": "鱼糕",
     "navBarTitle": "{title} Ver. {version}",
-    "testSuffix": "===测试版===",
+    "testSuffix": " 测试版",
     "fishList": "钓鱼时钟",
     "fishWiki": "钓鱼笔记",
     "menu": "导入/导出",
