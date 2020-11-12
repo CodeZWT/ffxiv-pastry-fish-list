@@ -47,7 +47,11 @@
     </v-navigation-drawer>
     <div style="height: 100%; width: 100%">
       <div class="detail-wrapper">
-        <!--          <code>{{ openedItems }}</code>-->
+        <!--        <code>{{ expandAllInSearching }}</code>-->
+        <!--        <code>{{ searchResults }}</code>-->
+        <!--        <code>{{ openedItems }}</code>-->
+        <!--        <code>{{ normalOpenedItems }}</code>-->
+        <!--        <code>{{ searchOpenedItems }}</code>-->
         <!--          <code>{{ currentTerritoryId }}</code>-->
         <!--          <code>{{ currentSpotId }}</code>-->
         <!--          <code>{{ currentFishId }}</code>-->
@@ -168,6 +172,7 @@ import _ from 'lodash'
 import * as PinyinMatch from 'pinyin-match'
 import DataUtil from '@/utils/DataUtil'
 import FishDetail from '@/components/FishDetail'
+import TreeModel from 'tree-model'
 
 export default {
   name: 'WikiPage',
@@ -196,16 +201,26 @@ export default {
     currentFishId: -1,
     completedSpots: [],
     regionTerritorySpots: [],
-    openedItems: [],
+    openedItems: undefined,
+    normalOpenedItems: [],
+    searchOpenedItems: [],
     spotDict: {},
     territoryDict: {},
     isSettingMode: false,
+    searching: false,
     lazySearchText: '',
+    activeItem: undefined,
     preActiveItem: undefined,
     isDetailFishWindowOpen: false,
     showMapMenu: true,
+    root: undefined,
+    searchResults: { text: '', nodeIds: [] },
   }),
   computed: {
+    // [TODO-TREE-PATH-AUTO-OPEN]
+    // expandAllInSearching() {
+    //   return this.searching && this.searchResults.nodeIds.length > 0 && this.searchResults.nodeIds.length < 10
+    // },
     layout() {
       if (this.isMobile) {
         return [
@@ -320,6 +335,19 @@ export default {
     ...mapGetters(['getFishingSpotsName', 'getFishingSpot', 'getFishCompleted', 'allCompletedFish']),
   },
   watch: {
+    // [TODO-TREE-PATH-AUTO-OPEN]
+    // expandAllInSearching(expand) {
+    //   if (expand) {
+    //     this.$nextTick(() => {
+    //       this.openedItems = _.uniq(
+    //         this.searchResults.nodeIds.flatMap(id => {
+    //           // console.log(id, this.getPathNodesOf(id))
+    //           return this.getPathNodesOf(id)
+    //         })
+    //       )
+    //     })
+    //   }
+    // },
     // TODO resize map in simple map correctly
     currentSpotId(currentSpotId) {
       if (currentSpotId !== -1) {
@@ -356,11 +384,14 @@ export default {
     },
   },
   created() {
+    this.openedItems = this.normalOpenedItems
     this.detailWindowLeft = window.innerWidth * 0.7 - 100
     this.detailWindowHeight = window.innerHeight * 0.7
     this.detailWindowWidth = window.innerWidth * 0.25
     this.debouncedSearchTextUpdater = _.debounce(text => {
-      this.lazySearchText = text
+      const t = text == null ? '' : text
+      this.updateOpenItems(t, this.lazySearchText)
+      this.lazySearchText = t
     }, 500)
 
     // let output = ''
@@ -405,12 +436,35 @@ export default {
           }),
         }
       })
-    // console.log(output)
+
+    this.root = new TreeModel().parse({ name: 'root', children: this.regionTerritorySpots })
     this.updateCompletedSpot(this.allCompletedFish)
-    // console.log(regionTerritorySpots)
-    // console.log(this.regionTerritorySpots)
   },
   methods: {
+    getPathNodesOf(id) {
+      return (
+        this.root
+          ?.first(node => {
+            return id != null && node.model.id === id
+          })
+          ?.getPath()
+          ?.map(it => it.model.id)
+          ?.filter(it => it != null) ?? []
+      )
+    },
+    updateOpenItems(search, oldSearch) {
+      if (search === '' && oldSearch !== '') {
+        const activeNodes = this.getPathNodesOf(this.activeItem)
+
+        this.openedItems = _.uniq([...this.normalOpenedItems, ...activeNodes])
+        this.searchOpenedItems = []
+        this.searching = false
+      } else if (search !== '' && oldSearch === '') {
+        this.normalOpenedItems = this.openedItems
+        this.openedItems = this.searchOpenedItems
+        this.searching = true
+      }
+    },
     onFishClicked(fishId) {
       this.currentFishId = fishId
     },
@@ -440,9 +494,9 @@ export default {
         return
       }
 
-      const activeItem = items[0]
+      this.activeItem = items[0]
 
-      const parts = activeItem.split('-')
+      const parts = this.activeItem.split('-')
       if (parts.length === 4) {
         this.type = parts[2]
       } else {
@@ -466,10 +520,10 @@ export default {
       }
 
       if (this.type !== 'spot') {
-        if (!this.openedItems.includes(activeItem)) {
-          this.openedItems.push(activeItem)
+        if (!this.openedItems.includes(this.activeItem)) {
+          this.openedItems.push(this.activeItem)
         }
-        this.preActiveItem = activeItem
+        this.preActiveItem = this.activeItem
       } else {
         this.preActiveItem = null
       }
@@ -479,11 +533,21 @@ export default {
     },
     spotMenuSearchFn(item, searchText, textKey) {
       const itemText = item[textKey]
+      let result
       if (this.$i18n.locale === 'zh-CN') {
-        return PinyinMatch.match(itemText, searchText) !== false
+        result = PinyinMatch.match(itemText, searchText) !== false
       } else {
-        return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+        result = itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
       }
+
+      // [TODO-TREE-PATH-AUTO-OPEN]
+      // const nodeIds = result ? [item.id] : []
+      // if (this.searchResults.text === searchText) {
+      //   this.searchResults = { text: searchText, nodeIds: [...this.searchResults.nodeIds, ...nodeIds] }
+      // } else {
+      //   this.searchResults = { text: searchText, nodeIds: nodeIds }
+      // }
+      return result
     },
     expandAll() {
       this.$refs.spotMenu.updateAll(true)
@@ -520,6 +584,7 @@ export default {
 
 
 .vue-grid-item .text
+
   font-size: 24px
   text-align: center
   position: absolute

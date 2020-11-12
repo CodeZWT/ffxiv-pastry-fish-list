@@ -4200,6 +4200,11 @@ find-cache-dir@^3.0.0, find-cache-dir@^3.3.1:
     make-dir "^3.0.2"
     pkg-dir "^4.1.0"
 
+find-insert-index@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npm.taobao.org/find-insert-index/download/find-insert-index-0.0.1.tgz#16cd34664c2ac233905ab2b39745bcec721362de"
+  integrity sha1-Fs00ZkwqwjOQWrKzl0W87HITYt4=
+
 find-up@^1.0.0:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/find-up/download/find-up-1.1.2.tgz?cache=0&sync_timestamp=1597169795121&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffind-up%2Fdownload%2Ffind-up-1.1.2.tgz#6b2e9822b1a2ce0a60ab64d610eccad53cb24d0f"
@@ -5745,6 +5750,11 @@ merge2@^1.2.3:
   version "1.4.1"
   resolved "https://registry.npm.taobao.org/merge2/download/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha1-Q2iJL4hekHRVpv19xVwMnUBJkK4=
+
+mergesort@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npm.taobao.org/mergesort/download/mergesort-0.0.1.tgz#364ecc31b297dc7f44e511d365176f1c39d08fc2"
+  integrity sha1-Nk7MMbKX3H9E5RHTZRdvHDnQj8I=
 
 methods@~1.1.2:
   version "1.1.2"
@@ -8370,6 +8380,14 @@ tough-cookie@~2.5.0:
   dependencies:
     psl "^1.1.28"
     punycode "^2.1.1"
+
+tree-model@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.npm.taobao.org/tree-model/download/tree-model-1.0.7.tgz#45b2307aa2dfc2da8ceb6a631c1e2b15550dce88"
+  integrity sha1-RbIweqLfwtqM62pjHB4rFVUNzog=
+  dependencies:
+    find-insert-index "0.0.1"
+    mergesort "0.0.1"
 
 tryer@^1.0.1:
   version "1.0.1"
