@@ -7,9 +7,44 @@
       :class="{ 'fish-app-bar': true, 'rounded-pill': collapse, 'fish-app-bar--collapsed': collapse }"
       dense
     >
-      <v-app-bar-nav-icon v-if="!collapse" @click.stop="onWebIconClicked">
-        <v-img v-if="!isMobile" :src="fisher" height="48" width="48" />
+      <v-app-bar-nav-icon v-if="isMobile && !collapse" @click.stop="showNavi">
+        <v-img v-if="!isMobile" :src="fisher" height="42" width="42" />
       </v-app-bar-nav-icon>
+      <click-helper @click="onFishIconClicked" :style="`margin-left: ${collapse || isMobile ? 0 : -12}px`">
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <div class="d-flex">
+              <v-avatar :size="collapse ? 36 : 48" v-bind="attrs" v-on="on">
+                <img :src="fisher" />
+              </v-avatar>
+              <div class="d-flex flex-column" v-if="collapse">
+                <v-chip
+                  v-for="(notification, index) in listFishCntForMini"
+                  :key="index"
+                  x-small
+                  color="transparent"
+                  @click="setActiveTabLater(index)"
+                >
+                  <v-tooltip right>
+                    <template v-slot:activator="{ on, attrs }">
+                      <click-helper v-on="on" v-bind="attrs">
+                        <div>
+                          <v-icon left small disabled>
+                            {{ TABS[index].icon }}
+                          </v-icon>
+                          {{ notification.cnt }}
+                        </div>
+                      </click-helper>
+                    </template>
+                    <span>{{ $t(TABS[index].title) }}</span>
+                  </v-tooltip>
+                </v-chip>
+              </div>
+            </div>
+          </template>
+          <span>{{ $t('top.collapseHint') }}</span>
+        </v-tooltip>
+      </click-helper>
       <v-toolbar-title style="min-width: 145px !important">
         {{ $t('top.navBarTitle', { title, version }) }}
       </v-toolbar-title>
@@ -23,8 +58,6 @@
           show-arrows
           centered
         >
-          <!--          <v-tabs-slider color="white"></v-tabs-slider>-->
-
           <v-tab
             v-for="(notification, index) in listFishCnt"
             :key="index"
@@ -64,6 +97,7 @@
 
     <v-main>
       <v-navigation-drawer
+        v-if="!collapse"
         v-model="drawer"
         :mini-variant.sync="mini"
         bottom
@@ -1123,10 +1157,13 @@ export default {
     toggleNavMini() {
       this.mini = !this.mini
     },
-    onWebIconClicked() {
+    showNavi() {
       if (this.isMobile) {
         this.drawer = !this.drawer
       }
+    },
+    onFishIconClicked() {
+      this.toggleCollapse()
     },
     ...mapMutations([
       'toggleFilterPanel',
