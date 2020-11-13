@@ -46,7 +46,7 @@
                     </template>
                   </v-slider>
                 </div>
-                <div class="d-flex flex-row align-center pr-3">
+                <div v-if="isNotificationSupported" class="d-flex flex-row align-center pr-3">
                   <v-label>{{ $t('setting.dialog.notification.systemNotification.title') }}</v-label>
                   <v-switch
                     :label="
@@ -227,6 +227,7 @@ export default {
     lazyDisabledDetailComponents: [],
     lazyIsSystemNotificationEnabled: false,
     notificationStatus: NotificationUtil.NOTIFICATION_PERMISSIONS.DEFAULT,
+    isNotificationSupported: NotificationUtil.isNotificationSupported(),
   }),
   computed: {
     showSettingDialog: {

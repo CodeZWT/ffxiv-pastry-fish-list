@@ -9,7 +9,11 @@ export default {
   },
 
   notificationStatus() {
-    return Notification.permission
+    if (this.isNotificationSupported()) {
+      return Notification.permission
+    } else {
+      return this.NOTIFICATION_PERMISSIONS.DENIED
+    }
   },
 
   isNotificationDefault() {
@@ -17,9 +21,12 @@ export default {
   },
 
   isNotificationGranted() {
-    return Notification.permission === this.NOTIFICATION_PERMISSIONS.GRANTED
+    return this.isNotificationSupported() && Notification.permission === this.NOTIFICATION_PERMISSIONS.GRANTED
   },
 
+  isNotificationSupported() {
+    return typeof Notification !== 'undefined'
+  },
   requestNotificationPermission() {
     return Notification.requestPermission()
   },

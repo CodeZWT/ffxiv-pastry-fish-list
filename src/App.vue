@@ -767,19 +767,21 @@ export default {
   async mounted() {
     this.cafeKitTooltipCopyPatch()
 
-    NotificationUtil.requestNotificationPermission().then(status => {
-      if (status === 'default') {
-        this.showSnackbar({
-          text: this.$t('setting.dialog.notification.message.requestNotificationPermissionNotSelected'),
-          color: 'quaternary',
-        })
-      } else if (status === 'denied') {
-        this.showSnackbar({
-          text: this.$t('setting.dialog.notification.message.requestNotificationPermissionDenied'),
-          color: 'tertiary',
-        })
-      }
-    })
+    if (NotificationUtil.isNotificationSupported()) {
+      NotificationUtil.requestNotificationPermission().then(status => {
+        if (status === 'default') {
+          this.showSnackbar({
+            text: this.$t('setting.dialog.notification.message.requestNotificationPermissionNotSelected'),
+            color: 'quaternary',
+          })
+        } else if (status === 'denied') {
+          this.showSnackbar({
+            text: this.$t('setting.dialog.notification.message.requestNotificationPermissionDenied'),
+            color: 'tertiary',
+          })
+        }
+      })
+    }
 
     this.now = Date.now()
     this.lazyFishSourceList = Object.values(this.allFish).filter(
