@@ -418,7 +418,12 @@
           <div>钓场的范围提示由 <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 提供</div>
           <div>感谢来自于各个开源作者的支持：</div>
           <ul>
-            <li>钓鱼数据：<a @click="goTo('https://ff14fish.carbuncleplushy.com/')">FFX|V Fish Tracker App</a></li>
+            <li>钓鱼数据：</li>
+            <ul>
+              <li><a @click="goTo('https://ff14fish.carbuncleplushy.com/')">FFX|V Fish Tracker App</a></li>
+              <li><a @click="goTo('http://garlandtools.org/db/')">Garland Data</a></li>
+              <li><a @click="goTo('https://cn.ff14angler.com/')">饥饿的猫</a></li>
+            </ul>
             <li>
               游戏内相关数据(英文)：<a @click="goTo('https://xivapi.com/')">A FINAL FANTASY XIV: Online REST API</a>
             </li>
