@@ -14,7 +14,7 @@
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <div class="d-flex">
-              <v-avatar :size="collapse ? 36 : 48" v-bind="attrs" v-on="on">
+              <v-avatar size="36" v-bind="attrs" v-on="on">
                 <img :src="fisher" />
               </v-avatar>
               <div class="d-flex flex-column" v-if="collapse">
@@ -45,7 +45,7 @@
           <span>{{ $t('top.collapseHint') }}</span>
         </v-tooltip>
       </click-helper>
-      <v-toolbar-title style="min-width: 145px !important">
+      <v-toolbar-title style="min-width: 145px !important" class="ml-1">
         {{ $t('top.navBarTitle', { title, version }) }}
       </v-toolbar-title>
       <template v-if="!collapse">
@@ -529,7 +529,7 @@
 <script>
 import EorzeaTime, { WEATHER_CHANGE_INTERVAL_EARTH } from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
-import fisher from '@/assets/icon/FSH-white.svg'
+import fisher from '@/assets/icon/pastry-fish.png'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import helpHTML from '@/assets/doc/help.html'
 import { version } from '../package.json'
