@@ -38,7 +38,7 @@
                 <v-icon>mdi-content-copy</v-icon>
               </v-btn>
             </click-helper>
-            <click-helper @click.stop="goToFishingSpotAngelPage(currentSpot.anglerLocationId)">
+            <click-helper @click.stop="goToFishingSpotAngelPage(currentSpot.fishingSpot.anglerLocationId)">
               <v-btn class="my-2" text icon :title="$t('list.item.linkHint')">
                 <v-icon>mdi-link-variant</v-icon>
               </v-btn>
