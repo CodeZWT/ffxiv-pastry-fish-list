@@ -137,8 +137,8 @@
           </grid-layout>
         </div>
       </div>
-      <div v-if="isMobile" style="position: absolute; bottom: 0; left: 0; right: 0">
-        <v-btn @click="showMapMenu = !showMapMenu" block color="primary">show map tree</v-btn>
+      <div v-if="isMobile" style="position: absolute; top: 0; left: 0; right: 0">
+        <v-btn @click="showMapMenu = !showMapMenu" block color="primary">点击选择地图</v-btn>
       </div>
     </div>
     <v-dialog v-model="isDetailFishWindowOpen" max-width="70vh" :fullscreen="isMobile" scrollable>
