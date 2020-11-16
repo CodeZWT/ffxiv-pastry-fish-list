@@ -262,6 +262,13 @@ export default {
 
   getFishWindowOfSingleFish(fish, now, fishingSpots, n = FishWindow.FISH_WINDOW_FORECAST_N) {
     return FishWindow.getNextNFishWindows(
+      // [NOTE]
+      // Only check the 1st location
+      // If fish with multi spot has weather constraints
+      // will miss other location fish window
+      // but there is no such case currently...
+      // so just take the 1st one
+      // e.g. 温泉王
       fishingSpots[fish.locations[0]]?.territory_id,
       new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
       fish.startHour,
