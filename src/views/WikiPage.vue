@@ -173,10 +173,12 @@ import * as PinyinMatch from 'pinyin-match'
 import DataUtil from '@/utils/DataUtil'
 import FishDetail from '@/components/FishDetail'
 import TreeModel from 'tree-model'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'WikiPage',
   components: {
+    ClickHelper,
     FishDetail,
     FishListItem,
     FishTugTable,
