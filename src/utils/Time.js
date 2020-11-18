@@ -41,10 +41,10 @@ export default class EorzeaTime {
     return new EorzeaTime(this.time - (this.time % ONE_DAY_INTERVAL) + hours * ONE_HOUR_INTERVAL)
   }
 
-  getWeatherCheckPeriod() {
-    const startTime = this.time - 2 * (this.time % WEATHER_CHANGE_INTERVAL)
-    return [new EorzeaTime(startTime - WEATHER_CHANGE_INTERVAL), new EorzeaTime(startTime)]
-  }
+  // getWeatherCheckPeriod() {
+  //   const startTime = this.time - 2 * (this.time % WEATHER_CHANGE_INTERVAL)
+  //   return [new EorzeaTime(startTime - WEATHER_CHANGE_INTERVAL), new EorzeaTime(startTime)]
+  // }
 
   toWeatherCheckPoint() {
     return new EorzeaTime(this.time - (this.time % WEATHER_CHANGE_INTERVAL))

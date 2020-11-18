@@ -1061,7 +1061,7 @@ export default {
           this.fishListWeatherChangePart[fish._id]?.fishWindows ??
           FishWindow.getNextNFishWindows(
             fishingSpot.territory_id,
-            new EorzeaTime(now),
+            new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
             fish.startHour,
             fish.endHour,
             fish.previousWeatherSet,

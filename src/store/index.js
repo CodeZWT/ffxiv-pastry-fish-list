@@ -5,8 +5,6 @@ import DATA_CN from '@/store/translation'
 import FIX from '@/store/fix'
 import merge from 'lodash/merge'
 import DataUtil from '@/utils/DataUtil'
-import EorzeaWeather from '@/utils/Weather'
-import EorzeaTime from '@/utils/Time'
 import { cloneDeep, groupBy } from 'lodash'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import FishingData from '@/store/fishing.json'
@@ -123,12 +121,12 @@ export default new Vuex.Store({
         })
       }
     },
-    getWeatherAt: state => id => {
-      const fishingSpot = this.fishingSpots[id]
-      if (fishingSpot) {
-        return DataUtil.getName(state.weatherTypes[EorzeaWeather.weatherAt(fishingSpot.territory_id, new EorzeaTime())])
-      }
-    },
+    // getWeatherAt: state => id => {
+    //   const fishingSpot = this.fishingSpots[id]
+    //   if (fishingSpot) {
+    //     return DataUtil.getName(state.weatherTypes[EorzeaWeather.weatherAt(fishingSpot.territory_id, new EorzeaTime())])
+    //   }
+    // },
     getZoneId: state => id => {
       const fishingSpot = state.fishingSpots[id]
       if (fishingSpot) {
