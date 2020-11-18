@@ -525,6 +525,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <import-export-dialog v-model="showImportExport" />
     <!--    <input type="text" value="" id="clipboard" style="display: none" />-->
     <v-snackbar :timeout="2000" v-model="snackbar.show" :color="snackbar.color" centered elevation="24">
       <div class="text-center">{{ snackbar.text }}</div>
@@ -552,10 +553,11 @@ import sortBy from 'lodash/sortBy'
 import { isEqual, union } from 'lodash'
 import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
+import ImportExportDialog from '@/components/ImportExportDialog'
 
 export default {
   name: 'App',
-  components: { FishSearch, FishSettingDialog, ClickHelper, ResetButton },
+  components: { ImportExportDialog, FishSearch, FishSettingDialog, ClickHelper, ResetButton },
   data: vm => ({
     now: Date.now(),
     fisher,
@@ -759,6 +761,14 @@ export default {
         this.setShowSearchDialog(showSearch)
       },
     },
+    showImportExport: {
+      get() {
+        return this.showImportExportDialog
+      },
+      set(show) {
+        this.setShowImportExportDialog(show)
+      },
+    },
     ...mapState([
       'snackbar',
       'activeTabIndex',
@@ -768,9 +778,9 @@ export default {
       'fishingSpots',
       'zones',
       'bigFish',
-      'showImportExportDialog',
       'sounds',
       'showSearchDialog',
+      'showImportExportDialog',
     ]),
     ...mapGetters([
       'opacity',

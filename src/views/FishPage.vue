@@ -106,7 +106,6 @@
                   </v-tabs-items>
                 </div>
               </div>
-              <import-export-dialog v-model="showImportExportDialog" />
             </div>
           </v-container>
         </div>
@@ -147,7 +146,6 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
 import { throttle } from 'lodash'
-import ImportExportDialog from '@/components/ImportExportDialog'
 import ClickHelper from '@/components/basic/ClickHelper'
 import { Pane, Splitpanes } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
@@ -158,7 +156,6 @@ export default {
   components: {
     FishDetail,
     ClickHelper,
-    ImportExportDialog,
     FishList,
     FishFilter,
     Splitpanes,
@@ -196,14 +193,6 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
-    showImportExportDialog: {
-      get() {
-        return this.showImportExport
-      },
-      set(show) {
-        this.setShowImportExportDialog(show)
-      },
-    },
     rightPaneSize: {
       get() {
         return this.rightPanePercentage
@@ -226,7 +215,6 @@ export default {
       fishingSpots: 'fishingSpots',
       zones: 'zones',
       bigFish: 'bigFish',
-      showImportExport: 'showImportExportDialog',
       activeTabIndex: 'activeTabIndex',
       sounds: 'sounds',
     }),
@@ -287,7 +275,6 @@ export default {
     ...mapMutations([
       'setFilters',
       'setShowSearchDialog',
-      'setShowImportExportDialog',
       'setNotShowBanner',
       'setRightPanePercentage',
       'clearToBeNotified',
