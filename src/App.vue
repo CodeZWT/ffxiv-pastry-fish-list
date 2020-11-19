@@ -479,39 +479,6 @@
               >
             </li>
           </ul>
-          <!-- Badge Code - Do Not Change The Code -->
-          <div class="col-xs-12 mt20" id="bg" v-show="false">
-            <div
-              style="margin:0px auto;width:133px;background:rgb(0, 0, 0);text-align:left;display:flex;border-radius:5px"
-            >
-              <span style="padding:7px;display:inline-block;border-right:1px solid #746dba">
-                <a
-                  href="http://visitorshitcounter.com"
-                  rel="nofollow noopener"
-                  target="_blank"
-                  title="https://visitorshitcounter.com/"
-                >
-                  <img
-                    src="https://visitorshitcounter.com/img/s-logo.svg"
-                    alt="https://visitorshitcounter.com/"
-                    style="width:100%;border:none;float:left"
-                  />
-                </a>
-              </span>
-              <span
-                class="text"
-                id="dupli_hit_counter"
-                style="padding:10px 0 0 0;display:inline-block;color:rgb(255, 255, 255);width:100%;text-align:center;"
-              >
-              </span>
-              <input
-                type="hidden"
-                id="site_val"
-                value="https://visitorshitcounter.com/counterDisplay?code=2c68bf7f4309b4b15eb2c8833610e602&style=0017&pad=5&type=ip&initCount=1"
-              />
-            </div>
-          </div>
-          <!-- Badge Code End Here -->
         </v-card-text>
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
