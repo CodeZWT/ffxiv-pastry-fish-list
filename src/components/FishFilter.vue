@@ -114,7 +114,7 @@ const PATCHES = {
   '2.x': [2.0, 2.1, 2.2, 2.3, 2.4, 2.5],
   '3.x': [3.0, 3.1, 3.2, 3.3, 3.4, 3.5],
   '4.x': [4.0, 4.1, 4.2, 4.3, 4.4, 4.5],
-  '5.x': [5.0, 5.1, 5.2],
+  '5.x': [5.0, 5.1, 5.2, 5.3],
 }
 const COMPLETE_FILTER_TYPES = ['ALL', 'COMPLETED', 'UNCOMPLETED']
 // ALL_AVAILABLE_BIG_FISH is refer to fish without any time constraints in real life

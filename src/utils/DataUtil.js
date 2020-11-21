@@ -339,7 +339,7 @@ export default {
     WAITING: ['grey darken-3', 'grey darken-4'],
   },
 
-  PATCH_MAX: 5.2,
+  PATCH_MAX: 5.3,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
   USER_DEFAULT_DATA: {
