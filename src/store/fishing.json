@@ -22441,7 +22441,9 @@
     "locations": [
       123
     ],
-    "bestCatchPath": [],
+    "bestCatchPath": [
+      28634
+    ],
     "patch": 5.3,
     "folklore": null,
     "collectable": true,
@@ -22468,7 +22470,9 @@
     "locations": [
       162
     ],
-    "bestCatchPath": [],
+    "bestCatchPath": [
+      28634
+    ],
     "patch": 5.3,
     "folklore": null,
     "collectable": true,
@@ -22495,7 +22499,9 @@
     "locations": [
       138
     ],
-    "bestCatchPath": [],
+    "bestCatchPath": [
+      28634
+    ],
     "patch": 5.3,
     "folklore": null,
     "collectable": true,
@@ -22522,7 +22528,9 @@
     "locations": [
       160
     ],
-    "bestCatchPath": [],
+    "bestCatchPath": [
+      28634
+    ],
     "patch": 5.3,
     "folklore": null,
     "collectable": true,
@@ -22549,7 +22557,9 @@
     "locations": [
       128
     ],
-    "bestCatchPath": [],
+    "bestCatchPath": [
+      28634
+    ],
     "patch": 5.3,
     "folklore": null,
     "collectable": true,
@@ -22602,7 +22612,9 @@
     "locations": [
       174
     ],
-    "bestCatchPath": [],
+    "bestCatchPath": [
+      30136
+    ],
     "patch": 5.35,
     "folklore": null,
     "collectable": false,
@@ -22629,7 +22641,9 @@
     "locations": [
       140
     ],
-    "bestCatchPath": [],
+    "bestCatchPath": [
+      30136
+    ],
     "patch": 5.35,
     "folklore": null,
     "collectable": false,

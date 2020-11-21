@@ -53,7 +53,7 @@ export default {
           id: it.id,
           name: it.name,
           icon: it.icon,
-          tug: _.last(it.baits).tug,
+          tug: _.last(it.baits)?.tug,
         }
       })
     },
