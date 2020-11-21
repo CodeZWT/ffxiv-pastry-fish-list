@@ -269,8 +269,9 @@
           <div class="text-h6">Version 0.3.1</div>
           <ul>
             <li>
-              更新5.3数据，文本在有国服翻译前使用英文版本。
-              <div class="tertiary--text text-h6">5.3的普通鱼请在图鉴页面中确认</div>
+              更新 <v-chip color="secondary" small>5.3</v-chip>和<v-chip color="secondary" small>5.35</v-chip>数据，文本暂时使用英文版本。
+              <div class="tertiary--text text-h6">为了便于查看，5.3以及5.35的普通鱼仍会显示在默认列表中。</div>
+              <div class="tertiary--text text-h6">之前版本没有任何时间天气限制的普通鱼请在图鉴中查找或直接搜索。</div>
             </li>
             <li>
               更新官方攻略本数据(涵盖4.2前数据)。

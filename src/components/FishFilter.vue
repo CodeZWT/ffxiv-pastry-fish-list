@@ -66,10 +66,12 @@
                   mdi-help-circle-outline
                 </v-icon>
               </template>
-              <span>
-                默认列表中不包括没有时间与天气限制的普通鱼。
+              <div>
+                默认列表中不包括没有时间与天气限制的普通鱼。（当前版本的鱼除外，仍会显示）
+              </div>
+              <div>
                 请直接搜索，或进入图鉴页面查看。也可以使用固定功能可以将鱼显示在固定列表中。
-              </span>
+              </div>
             </v-tooltip>
           </v-col>
         </v-row>
