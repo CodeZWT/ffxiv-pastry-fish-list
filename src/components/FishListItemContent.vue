@@ -102,8 +102,8 @@ export default {
       const hasPredators = Object.keys(this.value.predators).length > 0
       return {
         id: this.value._id,
-        startHourText: DataUtil.formatET(this.value.startHour),
-        endHourText: DataUtil.formatET(this.value.endHour),
+        startHourText: this.value.startHourText ?? DataUtil.formatET(this.value.startHour),
+        endHourText: this.value.endHourText ?? DataUtil.formatET(this.value.endHour),
         hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
         hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
         hasFishEyes: this.value.fishEyes !== false,
