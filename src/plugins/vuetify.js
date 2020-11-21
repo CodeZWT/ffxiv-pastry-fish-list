@@ -14,12 +14,12 @@ export default new Vuetify({
     // dark: true,
     themes: {
       dark: {
-        primary: '#009d67',
-        secondary: '#00453f',
-        tertiary: '#df4c41',
-        quaternary: '#e0b425',
-        quinary: '#9442e2',
-        senary: '#52c2e2',
+        primary: '#2a9d8f',
+        secondary: '#264653',
+        tertiary: '#e76f51',
+        quaternary: '#f4a261',
+        quinary: '#3e1f47',
+        senary: '#e9c46a',
       },
     },
   },

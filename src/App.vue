@@ -92,6 +92,7 @@
             <v-icon>mdi-filter</v-icon>
           </v-btn>
         </click-helper>
+        <v-switch v-model="$vuetify.theme.dark" class="theme-switch" />
         <div v-if="!isMobile" class="d-flex flex-column ml-1">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
@@ -522,7 +523,6 @@
       </v-card>
     </v-dialog>
     <import-export-dialog v-model="showImportExport" />
-    <!--    <input type="text" value="" id="clipboard" style="display: none" />-->
     <v-snackbar :timeout="2000" v-model="snackbar.show" :color="snackbar.color" centered elevation="24">
       <div class="text-center">{{ snackbar.text }}</div>
     </v-snackbar>
@@ -1291,5 +1291,13 @@ body {
   /*transition-duration: 0.2s;*/
   /*transition-timing-function: ease-out;*/
   /*transition-delay: 0s;*/
+}
+
+.theme-switch .v-messages {
+  display: none !important;
+}
+
+.theme-switch .v-input__slot {
+  margin-bottom: 0;
 }
 </style>
