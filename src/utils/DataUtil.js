@@ -287,6 +287,11 @@ export default {
     return active / total
   },
 
+  toFishFilterPatch(fishPatch) {
+    if (!fishPatch) return fishPatch
+    return +fishPatch.toString().match('^(\\d(\\.\\d)?)\\d?$')[1]
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: 1000,
@@ -339,7 +344,7 @@ export default {
     WAITING: ['grey darken-3', 'grey darken-4'],
   },
 
-  PATCH_MAX: 5.3,
+  PATCH_MAX: 5.35,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
   USER_DEFAULT_DATA: {

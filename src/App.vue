@@ -606,7 +606,7 @@ export default {
       this.lazyTransformedFishList
         .filter(fish => {
           return (
-            this.filters.patches.includes(fish.patch) &&
+            this.filters.patches.includes(DataUtil.toFishFilterPatch(fish.patch)) &&
             (this.filters.completeType === 'ALL' ||
               (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish.id)) ||
               (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish.id))) &&
@@ -776,6 +776,7 @@ export default {
       'sounds',
       'showSearchDialog',
       'showImportExportDialog',
+      'newPatchFish',
     ]),
     ...mapGetters([
       'opacity',
@@ -871,7 +872,7 @@ export default {
       it => it.gig == null && (it.patch == null || it.patch <= DataUtil.PATCH_MAX)
     )
     this.lazyImportantFishSourceList = this.lazyFishSourceList.filter(
-      it => this.bigFish.includes(it._id) || !DataUtil.isAllAvailableFish(it)
+      it => this.bigFish.includes(it._id) || this.newPatchFish.includes(it._id) || !DataUtil.isAllAvailableFish(it)
     )
     this.updateWeatherChangePart(this.now)
 

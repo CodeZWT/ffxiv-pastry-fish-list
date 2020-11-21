@@ -23,6 +23,7 @@ export default new Vuex.Store({
     zones: merge(DATA.ZONES, DATA_CN.ZONES),
     folklore: DATA.FOLKLORE,
     bigFish: DATA_CN.BIG_FISH,
+    newPatchFish: DATA_CN.NEW_PATCH_FISH,
     fishingSpotFish: groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
     showSearchDialog: false,
     showImportExportDialog: false,
