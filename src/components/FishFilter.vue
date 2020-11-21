@@ -60,6 +60,17 @@
                 <v-btn small>{{ $t(`filter.bigFish.${type}`) }}</v-btn>
               </click-helper>
             </v-btn-toggle>
+            <v-tooltip bottom color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon dark v-bind="attrs" v-on="on">
+                  mdi-help-circle-outline
+                </v-icon>
+              </template>
+              <span>
+                默认列表中不包括没有时间与天气限制的普通鱼。
+                请直接搜索，或进入图鉴页面查看。也可以使用固定功能可以将鱼显示在固定列表中。
+              </span>
+            </v-tooltip>
           </v-col>
         </v-row>
       </v-card-text>

@@ -45,7 +45,11 @@
           <span>{{ $t('top.collapseHint') }}</span>
         </v-tooltip>
       </click-helper>
-      <v-toolbar-title style="min-width: 145px !important" class="ml-1">
+      <v-toolbar-title
+        style="min-width: 145px !important"
+        class="ml-1"
+        :title="$t('top.navBarTitle', { title, version })"
+      >
         {{ $t('top.navBarTitle', { title, version }) }}
       </v-toolbar-title>
       <template v-if="!collapse">
@@ -262,16 +266,38 @@
           {{ $t('top.patchNote') }}
         </v-card-title>
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.3.1</div>
+          <ul>
+            <li>
+              更新5.3数据，文本在有国服翻译前使用英文版本。
+              <div class="tertiary--text text-h6">5.3的普通鱼请在图鉴页面中确认</div>
+            </li>
+            <li>
+              更新官方攻略本数据(涵盖4.2前数据)。
+              <ul>
+                <li>
+                  <a href="https://store.jp.square-enix.com/item/9784757556898.html" target="_blank">
+                    FINAL FANTASY XIV Crafter and Gatherer Official Guide
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.3.0</div>
           <ul>
             <li>增加图鉴功能。</li>
-            <li>增加系统提示支持。</li>
-            <ul>
-              <li>需要在浏览器授权，地址栏弹框时选择“允许”。</li>
-              <li>在Windows10系统中的“设置-通知和操作”中授权。</li>
-              <li>系统管理员会有一系列问题，请使用普通用户。</li>
-              <li>请关闭Windows的“专注助手”，以正常跳出通知。</li>
-            </ul>
+            <li>
+              增加系统提示支持。
+              <ul>
+                <li>需要在浏览器授权，地址栏弹框时选择“允许”。</li>
+                <li>在Windows10系统中的“设置-通知和操作”中授权。</li>
+                <li>系统管理员会有一系列问题，请使用普通用户。</li>
+                <li>请关闭Windows的“专注助手”，以正常跳出通知。</li>
+              </ul>
+            </li>
             <li>增加窗口期列表的加载更多功能。</li>
             <li>增加按窗口期稀有度排序的功能。</li>
             <li>增加按键 ' / ' 可以直接搜索，以及打开搜索界面自动开始搜索输入的功能。</li>
@@ -305,12 +331,14 @@
           <ul>
             <li>增加闹钟列表，点击列表中时间或详细列表中铃铛即可添加，详细设置在设置对话框中。</li>
             <li>更新列表：在CD中的鱼显示下一次窗口期时间。</li>
-            <li>更新设置</li>
-            <ul>
-              <li>现在点击“应用”按钮才会生效。</li>
-              <li>添加闹钟相关选项。</li>
-              <li>添加详情页面的自定义布局功能。</li>
-            </ul>
+            <li>
+              更新设置
+              <ul>
+                <li>现在点击“应用”按钮才会生效。</li>
+                <li>添加闹钟相关选项。</li>
+                <li>添加详情页面的自定义布局功能。</li>
+              </ul>
+            </li>
             <li>
               更新地图范围提示，增加地图：翻云雾海，龙堡内陆低地，基拉巴尼亚山区，安慕·艾兰，伊尔美格，黑风海。（持续更新中）
             </li>
