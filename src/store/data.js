@@ -4285,7 +4285,7 @@ export const DATA = {
       previousWeatherSet: [],
       weatherSet: [1, 2],
       startHour: 0,
-      endHour: 5,
+      endHour: 6,
       location: 139,
       bestCatchPath: [12712],
       predators: {},
@@ -11994,7 +11994,7 @@ export const DATA = {
       collectable: false,
       fishEyes: false,
       snagging: null,
-      hookset: 'Powerful',
+      hookset: 'Precision',
       tug: 'heavy',
       gig: null,
       aquarium: null,
@@ -12014,7 +12014,7 @@ export const DATA = {
       collectable: false,
       fishEyes: false,
       snagging: null,
-      hookset: 'Powerful',
+      hookset: 'Precision',
       tug: 'heavy',
       gig: null,
       aquarium: null,
@@ -12054,34 +12054,54 @@ export const DATA = {
       collectable: false,
       fishEyes: false,
       snagging: null,
-      hookset: 'Powerful',
+      hookset: 'Precision',
       tug: 'heavy',
       gig: null,
       aquarium: null,
       dataMissing: null,
     },
+    '31134': {
+      _id: 31134,
+      previousWeatherSet: [],
+      weatherSet: [],
+      startHour: 0,
+      endHour: 24,
+      location: 140,
+      bestCatchPath: [],
+      predators: {},
+      patch: 5.35,
+      folklore: null,
+      collectable: false,
+      fishEyes: false,
+      snagging: null,
+      hookset: null,
+      tug: null,
+      gig: null,
+      aquarium: null,
+      dataMissing: { weatherRestricted: false, timeRestricted: false },
+    },
+    '31129': {
+      _id: 31129,
+      previousWeatherSet: [],
+      weatherSet: [],
+      startHour: 0,
+      endHour: 24,
+      location: 174,
+      bestCatchPath: [],
+      predators: {},
+      patch: 5.35,
+      folklore: null,
+      collectable: false,
+      fishEyes: false,
+      snagging: null,
+      hookset: null,
+      tug: null,
+      gig: null,
+      aquarium: null,
+      dataMissing: { weatherRestricted: false, timeRestricted: false },
+    },
   },
   FISHING_SPOTS: {
-    '0': {
-      _id: 0,
-      name_en: 'Undiscovered Fishing Hole',
-      name_ja: '\u672a\u77e5\u306e\u91e3\u308a\u5834',
-      name_de: 'Unerforschter Angelplatz',
-      name_fr: 'Zone de p\u00eache inconnue',
-      name_ko: '\ubbf8\uc9c0\uc758 \ub09a\uc2dc\ud130',
-      territory_id: 0,
-      placename_id: 0,
-    },
-    '1': {
-      _id: 1,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 1,
-    },
     '2': {
       _id: 2,
       name_en: 'The Vein',
@@ -12091,6 +12111,7 @@ export const DATA = {
       name_ko: '\uc78e\ub9e5 \ubb3c\uc904\uae30',
       territory_id: 148,
       placename_id: 2,
+      map_coords: [22.9013671875, 22.1806640625, 400],
     },
     '3': {
       _id: 3,
@@ -12101,6 +12122,7 @@ export const DATA = {
       name_ko: '\uac70\uc6b8\ubabb',
       territory_id: 148,
       placename_id: 3,
+      map_coords: [26.544921875, 28.9873046875, 400],
     },
     '4': {
       _id: 4,
@@ -12111,6 +12133,7 @@ export const DATA = {
       name_ko: '\uc601\uc6d0\uadf8\ub298',
       territory_id: 148,
       placename_id: 4,
+      map_coords: [15.6142578125, 24.142578125, 400],
     },
     '5': {
       _id: 5,
@@ -12121,6 +12144,7 @@ export const DATA = {
       name_ko: '\uc6c0\ud2b8\ub294 \uc5f0\ubabb',
       territory_id: 148,
       placename_id: 5,
+      map_coords: [14.8134765625, 21.23974609375, 400],
     },
     '6': {
       _id: 6,
@@ -12131,6 +12155,7 @@ export const DATA = {
       name_ko: '\uaf43\uafc0 \ub098\ub8e8',
       territory_id: 152,
       placename_id: 6,
+      map_coords: [9.02783203125, 22.9013671875, 400],
     },
     '7': {
       _id: 7,
@@ -12141,6 +12166,7 @@ export const DATA = {
       name_ko: '\uccad\ub85d\uc758 \ub098\ub77d',
       territory_id: 152,
       placename_id: 7,
+      map_coords: [20.47900390625, 21.52001953125, 400],
     },
     '8': {
       _id: 8,
@@ -12151,6 +12177,7 @@ export const DATA = {
       name_ko: '\uc794\ubb3c\uacb0 \uc2dc\ub0b4',
       territory_id: 152,
       placename_id: 8,
+      map_coords: [24.0224609375, 25.3037109375, 400],
     },
     '9': {
       _id: 9,
@@ -12161,6 +12188,7 @@ export const DATA = {
       name_ko: '\uc2e4\ud504\uc758 \uacc4\uace1',
       territory_id: 152,
       placename_id: 9,
+      map_coords: [26.0244140625, 20.7392578125, 600],
     },
     '10': {
       _id: 10,
@@ -12171,6 +12199,7 @@ export const DATA = {
       name_ko: '\uc5f4\ub450 \uc2e0 \ub300\uc131\ub2f9',
       territory_id: 152,
       placename_id: 10,
+      map_coords: [17.67626953125, 16.9755859375, 400],
     },
     '11': {
       _id: 11,
@@ -12181,6 +12210,7 @@ export const DATA = {
       name_ko: '\ud558\ub450\ubc14 \uac15 \uc0c1\ub958',
       territory_id: 153,
       placename_id: 11,
+      map_coords: [18.0166015625, 19.017578125, 400],
     },
     '12': {
       _id: 12,
@@ -12191,6 +12221,7 @@ export const DATA = {
       name_ko: '\ud558\ub450\ubc14 \uac15 \uc911\ub958',
       territory_id: 153,
       placename_id: 12,
+      map_coords: [19.95849609375, 22.541015625, 200],
     },
     '13': {
       _id: 13,
@@ -12201,6 +12232,7 @@ export const DATA = {
       name_ko: '\ud558\ub450\ubc14 \uac15 \ud558\ub958',
       territory_id: 153,
       placename_id: 13,
+      map_coords: [18.35693359375, 24.8232421875, 400],
     },
     '14': {
       _id: 14,
@@ -12211,6 +12243,7 @@ export const DATA = {
       name_ko: '\ud558\ub450\ubc14 \uac15 \ub3d9\ucabd',
       territory_id: 153,
       placename_id: 14,
+      map_coords: [23.8623046875, 22.36083984375, 400],
     },
     '15': {
       _id: 15,
@@ -12221,6 +12254,7 @@ export const DATA = {
       name_ko: '\uace0\ube14\ub9b0\uc871 \uc591\uc2dd\uc7a5',
       territory_id: 153,
       placename_id: 15,
+      map_coords: [27.505859375, 21.47998046875, 400],
     },
     '16': {
       _id: 16,
@@ -12231,6 +12265,7 @@ export const DATA = {
       name_ko: '\uc9d5\uac80\ubfcc\ub9ac \ub2aa\uc9c0\ub300',
       territory_id: 153,
       placename_id: 16,
+      map_coords: [18.6171875, 29.04736328125, 400],
     },
     '17': {
       _id: 17,
@@ -12241,6 +12276,7 @@ export const DATA = {
       name_ko: '\uc6b0\ub974\ub4dc\uc758 \uc120\ubb3c',
       territory_id: 153,
       placename_id: 17,
+      map_coords: [32.55078125, 23.96240234375, 400],
     },
     '18': {
       _id: 18,
@@ -12251,6 +12287,7 @@ export const DATA = {
       name_ko: '\uc220\ub801\uc774\ub294 \uac15',
       territory_id: 154,
       placename_id: 18,
+      map_coords: [26.384765625, 25.103515625, 400],
     },
     '19': {
       _id: 19,
@@ -12261,6 +12298,7 @@ export const DATA = {
       name_ko: '\uac00\uc744\ubc15 \ud638\uc218',
       territory_id: 154,
       placename_id: 19,
+      map_coords: [21.01953125, 24.6630859375, 400],
     },
     '20': {
       _id: 20,
@@ -12271,6 +12309,7 @@ export const DATA = {
       name_ko: '\uc601\uad11\uc758 \uac1c\uc6b8',
       territory_id: 154,
       placename_id: 20,
+      map_coords: [20.8193359375, 20.8193359375, 400],
     },
     '21': {
       _id: 21,
@@ -12281,6 +12320,7 @@ export const DATA = {
       name_ko: '\ud0c0\ud638\ud1a0\ud2c0 \ud638\uc218',
       territory_id: 154,
       placename_id: 21,
+      map_coords: [17.81640625, 19.818359375, 400],
     },
     '22': {
       _id: 22,
@@ -12291,6 +12331,7 @@ export const DATA = {
       name_ko: '\uc740\ube5b\ub208\ubb3c \ud638\uc218 \ubd81\ubd80',
       territory_id: 156,
       placename_id: 22,
+      map_coords: [25.08349609375, 13.0517578125, 400],
     },
     '23': {
       _id: 23,
@@ -12301,6 +12342,7 @@ export const DATA = {
       name_ko: '\uc774\ub978\uc11c\ub9ac \uace0\uac1c',
       territory_id: 156,
       placename_id: 23,
+      map_coords: [18.7373046875, 17.67626953125, 200],
     },
     '24': {
       _id: 24,
@@ -12311,6 +12353,7 @@ export const DATA = {
       name_ko: '\uc5c9\ud0a8\ub369\uad74 \uc2b5\uc9c0\ub300',
       territory_id: 156,
       placename_id: 24,
+      map_coords: [14.4130859375, 13.31201171875, 400],
     },
     '25': {
       _id: 25,
@@ -12321,6 +12364,7 @@ export const DATA = {
       name_ko: '\uc5c9\ud0a8\ub369\uad74 \uc2b5\uc9c0\ub300 \uc6d0\ub958',
       territory_id: 156,
       placename_id: 25,
+      map_coords: [12.91162109375, 11.5703125, 200],
     },
     '26': {
       _id: 26,
@@ -12331,6 +12375,7 @@ export const DATA = {
       name_ko: '\ucee4\ub974\ub2e4\uc2a4 \uac15',
       territory_id: 155,
       placename_id: 26,
+      map_coords: [20.458984375, 30.5888671875, 400],
     },
     '27': {
       _id: 27,
@@ -12341,6 +12386,7 @@ export const DATA = {
       name_ko: '\ub9c8\ub140\uc758 \ube44\ud0c8',
       territory_id: 155,
       placename_id: 27,
+      map_coords: [33.69189453125, 18.77734375, 600],
     },
     '28': {
       _id: 28,
@@ -12351,6 +12397,7 @@ export const DATA = {
       name_ko: '\uce7c\ub0a0 \ubd09\uc6b0\ub9ac \uae30\uc2ad',
       territory_id: 155,
       placename_id: 28,
+      map_coords: [15.63427734375, 21.39990234375, 400],
     },
     '29': {
       _id: 29,
@@ -12361,6 +12408,7 @@ export const DATA = {
       name_ko: '\uc131 \ub2e4\ub2c8\ud39c\uc758 \ub208\ubb3c',
       territory_id: 155,
       placename_id: 29,
+      map_coords: [31.52978515625, 7.50634765625, 400],
     },
     '30': {
       _id: 30,
@@ -12371,6 +12419,7 @@ export const DATA = {
       name_ko: '\uc6a9\uba38\ub9ac \uc804\uc9c4\uae30\uc9c0 \uc800\uc218\uc9c0',
       territory_id: 155,
       placename_id: 30,
+      map_coords: [27.90625, 16.935546875, 400],
     },
     '31': {
       _id: 31,
@@ -12381,6 +12430,7 @@ export const DATA = {
       name_ko: '\uc131 \ub2e4\ub2c8\ud39c\uc758 \uc5ec\uc815',
       territory_id: 155,
       placename_id: 31,
+      map_coords: [13.251953125, 22.80126953125, 300],
     },
     '32': {
       _id: 32,
@@ -12391,6 +12441,7 @@ export const DATA = {
       name_ko: '\uc870\uc0ac\ub300 \uc5bc\uc74c \uad6c\uba4d',
       territory_id: 155,
       placename_id: 32,
+      map_coords: [6.4453125, 22.62109375, 200],
     },
     '33': {
       _id: 33,
@@ -12401,6 +12452,7 @@ export const DATA = {
       name_ko: '\uc5bc\uc74c\uc678\ud22c \ub300\ube59\ubcbd',
       territory_id: 155,
       placename_id: 33,
+      map_coords: [3.162109375, 21.2998046875, 400],
     },
     '34': {
       _id: 34,
@@ -12411,6 +12463,7 @@ export const DATA = {
       name_ko: '\uc774\uc288\uac00\ub974\ub4dc \uad6c\ub984\ubc14\ub2e4',
       territory_id: 155,
       placename_id: 34,
+      map_coords: [14.212890625, 13.412109375, 600],
     },
     '35': {
       _id: 35,
@@ -12421,6 +12474,7 @@ export const DATA = {
       name_ko: '\ub9bc\uc0ac \ub85c\ubbfc\uc0ac \ud558\uce35 \uac11\ud310',
       territory_id: 129,
       placename_id: 35,
+      map_coords: [7.6865234375, 12.2109375, 3000],
     },
     '36': {
       _id: 36,
@@ -12431,6 +12485,7 @@ export const DATA = {
       name_ko: '\ub9bc\uc0ac \ub85c\ubbfc\uc0ac \uc0c1\uce35 \uac11\ud310',
       territory_id: 128,
       placename_id: 36,
+      map_coords: [10.30908203125, 11.330078125, 3000],
     },
     '37': {
       _id: 37,
@@ -12441,6 +12496,7 @@ export const DATA = {
       name_ko: '\uc0b0\ub4e4\ubc14\ub78c \uc904\uae30 \uc5f0\uc548',
       territory_id: 134,
       placename_id: 37,
+      map_coords: [18.697265625, 22.00048828125, 600],
     },
     '38': {
       _id: 38,
@@ -12451,6 +12507,7 @@ export const DATA = {
       name_ko: '\uc5ec\ub984\uc5ec\uc6b8 \uc5f0\uc548',
       territory_id: 134,
       placename_id: 38,
+      map_coords: [14.6533203125, 15.6943359375, 600],
     },
     '39': {
       _id: 39,
@@ -12461,6 +12518,7 @@ export const DATA = {
       name_ko: '\ubd88\ub7c9\ubc30 \uac15',
       territory_id: 134,
       placename_id: 39,
+      map_coords: [22.1005859375, 22.1806640625, 400],
     },
     '40': {
       _id: 40,
@@ -12471,6 +12529,7 @@ export const DATA = {
       name_ko: '\uc11c\ucabd \uc544\uc824\ub9ac\uc2a4 \uac15',
       territory_id: 134,
       placename_id: 40,
+      map_coords: [20.21875, 18.0166015625, 400],
     },
     '41': {
       _id: 41,
@@ -12481,6 +12540,7 @@ export const DATA = {
       name_ko: '\ub2c8\ubbc0 \uac15',
       territory_id: 134,
       placename_id: 41,
+      map_coords: [18.23681640625, 14.87353515625, 400],
     },
     '42': {
       _id: 42,
@@ -12491,6 +12551,7 @@ export const DATA = {
       name_ko: '\uc18d\uc0ad\uc784 \uace8\uc9dc\uae30',
       territory_id: 134,
       placename_id: 42,
+      map_coords: [20.79931640625, 12.1708984375, 200],
     },
     '43': {
       _id: 43,
@@ -12501,6 +12562,7 @@ export const DATA = {
       name_ko: '\uacfc\ubd80\uc758 \ub208\ubb3c',
       territory_id: 135,
       placename_id: 43,
+      map_coords: [24.783203125, 23.021484375, 400],
     },
     '44': {
       _id: 44,
@@ -12511,6 +12573,7 @@ export const DATA = {
       name_ko: '\ubaa8\ub77c\ube44 \ub9cc \uc11c\ucabd \uc808\ubcbd',
       territory_id: 135,
       placename_id: 44,
+      map_coords: [26.9052734375, 25.984375, 600],
     },
     '45': {
       _id: 45,
@@ -12521,6 +12584,7 @@ export const DATA = {
       name_ko: '\uc0bc\ub098\ubb34 \uc232 \uc5f0\uc548',
       territory_id: 135,
       placename_id: 45,
+      map_coords: [35.2734375, 18.0166015625, 600],
     },
     '46': {
       _id: 46,
@@ -12531,6 +12595,7 @@ export const DATA = {
       name_ko: '\ubaa8\ub77c\ube44 \uc870\uc120\uc18c',
       territory_id: 135,
       placename_id: 46,
+      map_coords: [26.4248046875, 34.47265625, 600],
     },
     '47': {
       _id: 47,
@@ -12541,6 +12606,7 @@ export const DATA = {
       name_ko: '\uc624\uc26c\uc628 \ub4f1\ub300',
       territory_id: 135,
       placename_id: 47,
+      map_coords: [24.5029296875, 39.7177734375, 600],
     },
     '48': {
       _id: 48,
@@ -12551,6 +12617,7 @@ export const DATA = {
       name_ko: '\uc18c\uae08\uae30\ub465 \ud574\ubcc0',
       territory_id: 135,
       placename_id: 48,
+      map_coords: [17.3759765625, 36.07421875, 600],
     },
     '49': {
       _id: 49,
@@ -12561,6 +12628,7 @@ export const DATA = {
       name_ko: '\ucd1b\ubd88\uc9c0\uae30 \ubd80\ub450',
       territory_id: 135,
       placename_id: 49,
+      map_coords: [20.619140625, 39.037109375, 400],
     },
     '50': {
       _id: 50,
@@ -12571,6 +12639,7 @@ export const DATA = {
       name_ko: '\ud145 \ube48 \uc2ec\uc7a5',
       territory_id: 135,
       placename_id: 50,
+      map_coords: [22.00048828125, 35.01318359375, 400],
     },
     '51': {
       _id: 51,
@@ -12581,6 +12650,7 @@ export const DATA = {
       name_ko: '\ub0a8\ubd80 \ud54f\ube5b\ud574\uc548',
       territory_id: 137,
       placename_id: 51,
+      map_coords: [32.93115234375, 34.47265625, 600],
     },
     '52': {
       _id: 52,
@@ -12591,6 +12661,7 @@ export const DATA = {
       name_ko: '\ucf54\uc2a4\ud0c0 \ub378 \uc194',
       territory_id: 137,
       placename_id: 52,
+      map_coords: [32.89111328125, 29.3076171875, 800],
     },
     '53': {
       _id: 53,
@@ -12601,6 +12672,7 @@ export const DATA = {
       name_ko: '\ubd81\ubd80 \ud54f\ube5b\ud574\uc548',
       territory_id: 137,
       placename_id: 53,
+      map_coords: [33.03125, 24.22265625, 400],
     },
     '54': {
       _id: 54,
@@ -12611,6 +12683,7 @@ export const DATA = {
       name_ko: '\uc228\uaca8\uc9c4 \ud3ed\ud3ec',
       territory_id: 137,
       placename_id: 54,
+      map_coords: [30.8291015625, 23.021484375, 200],
     },
     '55': {
       _id: 55,
@@ -12621,6 +12694,7 @@ export const DATA = {
       name_ko: '\ub3d9\ucabd \uc544\uc824\ub9ac\uc2a4 \uac15',
       territory_id: 137,
       placename_id: 55,
+      map_coords: [20.19873046875, 25.96435546875, 400],
     },
     '56': {
       _id: 56,
@@ -12631,6 +12705,7 @@ export const DATA = {
       name_ko: '\ube57\ubb3c\ubc1b\uc774 \uc232',
       territory_id: 137,
       placename_id: 56,
+      map_coords: [20.47900390625, 30.2685546875, 400],
     },
     '57': {
       _id: 57,
@@ -12641,6 +12716,7 @@ export const DATA = {
       name_ko: '\ube57\ubb3c\ubc1b\uc774 \uc18c\ud0dd\uc9c0',
       territory_id: 137,
       placename_id: 57,
+      map_coords: [16.83544921875, 32.0302734375, 400],
     },
     '58': {
       _id: 58,
@@ -12651,6 +12727,7 @@ export const DATA = {
       name_ko: '\ubd89\uc740\uc0ac\ub9c8\uadc0 \ud3ed\ud3ec',
       territory_id: 137,
       placename_id: 58,
+      map_coords: [15.35400390625, 27.4658203125, 200],
     },
     '59': {
       _id: 59,
@@ -12661,6 +12738,7 @@ export const DATA = {
       name_ko: '\uce7c\uc0c8\ud683\ub300 \uac1c\ucc99\uc9c0',
       territory_id: 138,
       placename_id: 59,
+      map_coords: [33.85205078125, 31.8701171875, 600],
     },
     '60': {
       _id: 60,
@@ -12671,6 +12749,7 @@ export const DATA = {
       name_ko: '\ud574\uace8 \uace8\uc9dc\uae30 \uc5f0\uc548',
       territory_id: 138,
       placename_id: 60,
+      map_coords: [26.68505859375, 26.9853515625, 600],
     },
     '61': {
       _id: 61,
@@ -12681,6 +12760,7 @@ export const DATA = {
       name_ko: '\ud558\ud504\uc2a4\ud1a4 \uc5f0\uc548',
       territory_id: 138,
       placename_id: 61,
+      map_coords: [17.55615234375, 20.9794921875, 600],
     },
     '62': {
       _id: 62,
@@ -12691,6 +12771,7 @@ export const DATA = {
       name_ko: '\ud658\uc601 \uc81c\ub3c4 \ubd81\ubd80',
       territory_id: 138,
       placename_id: 62,
+      map_coords: [14.47314453125, 29.908203125, 600],
     },
     '63': {
       _id: 63,
@@ -12701,6 +12782,7 @@ export const DATA = {
       name_ko: '\ud658\uc601 \uc81c\ub3c4 \ub0a8\ubd80',
       territory_id: 138,
       placename_id: 63,
+      map_coords: [12.8115234375, 36.234375, 200],
     },
     '64': {
       _id: 64,
@@ -12711,6 +12793,7 @@ export const DATA = {
       name_ko: '\uc591\uc870\uc7a5\uc774 \ub4f1\ub300',
       territory_id: 138,
       placename_id: 64,
+      map_coords: [30.1484375, 30.62890625, 200],
     },
     '65': {
       _id: 65,
@@ -12721,6 +12804,7 @@ export const DATA = {
       name_ko: '\ubc30\uc758 \ubb34\ub364',
       territory_id: 138,
       placename_id: 65,
+      map_coords: [15.57421875, 36.07421875, 400],
     },
     '66': {
       _id: 66,
@@ -12731,6 +12815,7 @@ export const DATA = {
       name_ko: '\ucc38\ub098\ubb34 \uc232',
       territory_id: 139,
       placename_id: 66,
+      map_coords: [13.59228515625, 24.302734375, 600],
     },
     '67': {
       _id: 67,
@@ -12741,6 +12826,7 @@ export const DATA = {
       name_ko: '\uc5bc\uac04\uc774 \ud3ed\ud3ec',
       territory_id: 139,
       placename_id: 67,
+      map_coords: [9.0478515625, 21.099609375, 400],
     },
     '68': {
       _id: 68,
@@ -12751,6 +12837,7 @@ export const DATA = {
       name_ko: '\uccad\ub3d9\ud638\uc218 \ubd81\ub3d9\ubd80',
       territory_id: 139,
       placename_id: 68,
+      map_coords: [28.146484375, 22.84130859375, 600],
     },
     '69': {
       _id: 69,
@@ -12761,6 +12848,7 @@ export const DATA = {
       name_ko: '\uc740 \uc7a5\ud130',
       territory_id: 140,
       placename_id: 69,
+      map_coords: [14.5732421875, 29.5478515625, 600],
     },
     '70': {
       _id: 70,
@@ -12771,6 +12859,7 @@ export const DATA = {
       name_ko: '\uc800\ub141\ubcc4 \ub9cc',
       territory_id: 140,
       placename_id: 70,
+      map_coords: [11.5302734375, 12.5712890625, 600],
     },
     '71': {
       _id: 71,
@@ -12781,6 +12870,7 @@ export const DATA = {
       name_ko: '\ucd08\uc2b9\ub2ec \ub9cc',
       territory_id: 140,
       placename_id: 71,
+      map_coords: [15.57421875, 19.2177734375, 600],
     },
     '72': {
       _id: 72,
@@ -12791,6 +12881,7 @@ export const DATA = {
       name_ko: '\ub178\ud53c\uce74\uc758 \uc6b0\ubb3c',
       territory_id: 140,
       placename_id: 72,
+      map_coords: [24.5029296875, 21.580078125, 400],
     },
     '73': {
       _id: 73,
@@ -12801,6 +12892,7 @@ export const DATA = {
       name_ko: '\ubc1c\uc790\uad6d \uacc4\uace1',
       territory_id: 140,
       placename_id: 73,
+      map_coords: [17.17578125, 15.6943359375, 600],
     },
     '74': {
       _id: 74,
@@ -12811,6 +12903,7 @@ export const DATA = {
       name_ko: '\ud558\ub2ac\ubc14\ub78c \uacf6',
       territory_id: 140,
       placename_id: 74,
+      map_coords: [9.9287109375, 7.3662109375, 600],
     },
     '75': {
       _id: 75,
@@ -12821,6 +12914,7 @@ export const DATA = {
       name_ko: '\uac80\ub315\uac1c\uc6b8 \uc0c1\ub958',
       territory_id: 141,
       placename_id: 75,
+      map_coords: [23.421875, 18.216796875, 400],
     },
     '76': {
       _id: 76,
@@ -12831,6 +12925,7 @@ export const DATA = {
       name_ko: '\uac80\ub315\uac1c\uc6b8 \ud558\ub958',
       territory_id: 141,
       placename_id: 76,
+      map_coords: [17.1357421875, 23.7822265625, 400],
     },
     '77': {
       _id: 77,
@@ -12841,6 +12936,7 @@ export const DATA = {
       name_ko: '\ubd80\uc815\ud55c \uacc4\uc2b9\uc790',
       territory_id: 141,
       placename_id: 77,
+      map_coords: [27.826171875, 19.2978515625, 400],
     },
     '78': {
       _id: 78,
@@ -12851,6 +12947,7 @@ export const DATA = {
       name_ko: '\ub9c8\ub978\ubf08 \ud669\uc57c \ubd81\ucabd \uc0d8\ud130',
       territory_id: 145,
       placename_id: 78,
+      map_coords: [13.65234375, 20.69921875, 400],
     },
     '79': {
       _id: 79,
@@ -12861,6 +12958,7 @@ export const DATA = {
       name_ko: '\ub9c8\ub978\ubf08 \ud669\uc57c \ub0a8\ucabd \uc0d8\ud130',
       territory_id: 145,
       placename_id: 79,
+      map_coords: [17.2158203125, 24.8232421875, 400],
     },
     '80': {
       _id: 80,
@@ -12871,6 +12969,7 @@ export const DATA = {
       name_ko: '\uc720\uadf8\ub78c \uac15',
       territory_id: 145,
       placename_id: 80,
+      map_coords: [25.6640625, 22.6611328125, 400],
     },
     '81': {
       _id: 81,
@@ -12881,6 +12980,7 @@ export const DATA = {
       name_ko: '\uadf8\ub9ac\ub2e4\ub2c8\uc544: \uc18d\uc0ad\uc784 \uacc4\uace1',
       territory_id: 133,
       placename_id: 81,
+      map_coords: [16.545166015625, 6.30517578125, 600],
     },
     '82': {
       _id: 82,
@@ -12891,6 +12991,7 @@ export const DATA = {
       name_ko: '\ubd88\ud0c0\ub294 \uc7a5\ubcbd',
       territory_id: 145,
       placename_id: 82,
+      map_coords: [29.1474609375, 24.703125, 600],
     },
     '83': {
       _id: 83,
@@ -12901,6 +13002,7 @@ export const DATA = {
       name_ko: '\ub3c4\ub9c8\ubc40 \uac1c\uc6b8',
       territory_id: 146,
       placename_id: 83,
+      map_coords: [21.740234375, 15.09375, 400],
     },
     '84': {
       _id: 84,
@@ -12911,6 +13013,7 @@ export const DATA = {
       name_ko: '\uc790\ud558\ub77c\ud06c \uc0d8',
       territory_id: 146,
       placename_id: 84,
+      map_coords: [25.3837890625, 21.01953125, 400],
     },
     '85': {
       _id: 85,
@@ -12921,6 +13024,7 @@ export const DATA = {
       name_ko: '\uc78a\ud78c \uc624\uc544\uc2dc\uc2a4',
       territory_id: 146,
       placename_id: 85,
+      map_coords: [15.654296875, 30.94921875, 400],
     },
     '86': {
       _id: 86,
@@ -12931,6 +13035,7 @@ export const DATA = {
       name_ko: '\uc0ac\uace8\ub9ac \ubaa8\ub798\ubc14\ub2e4',
       territory_id: 146,
       placename_id: 86,
+      map_coords: [12.37109375, 36.0341796875, 600],
     },
     '87': {
       _id: 87,
@@ -12941,6 +13046,7 @@ export const DATA = {
       name_ko: '\uc0ac\uace8\ub9ac \ubaa8\ub798\uc5b8\ub355',
       territory_id: 146,
       placename_id: 87,
+      map_coords: [27.3056640625, 36.955078125, 600],
     },
     '88': {
       _id: 88,
@@ -12951,6 +13057,7 @@ export const DATA = {
       name_ko: '\uccad\ub9b0 \uc6d0\ucc9c\uc9c0',
       territory_id: 147,
       placename_id: 88,
+      map_coords: [20.7392578125, 23.58203125, 600],
     },
     '89': {
       _id: 89,
@@ -12961,6 +13068,7 @@ export const DATA = {
       name_ko: '\ud478\ub978\uc548\uac1c \uc0d8\ud130',
       territory_id: 147,
       placename_id: 89,
+      map_coords: [24.142578125, 26.00439453125, 400],
     },
     '90': {
       _id: 90,
@@ -12971,6 +13079,7 @@ export const DATA = {
       name_ko: '\uadf8\ub9ac\ub2e4\ub2c8\uc544: \ube44\ucde8 \ud638\uc218',
       territory_id: 132,
       placename_id: 90,
+      map_coords: [12.611328125, 14.623291015625, 600],
     },
     '91': {
       _id: 91,
@@ -12981,6 +13090,7 @@ export const DATA = {
       name_ko: '\uadf8\ub9ac\ub2e4\ub2c8\uc544: \ud64d\ucc28\uac15 \ud558\ub958',
       territory_id: 132,
       placename_id: 91,
+      map_coords: [10.7294921875, 11.660400390625, 400],
     },
     '92': {
       _id: 92,
@@ -12991,6 +13101,7 @@ export const DATA = {
       name_ko: '\ud558\uc6b0\ucf00\ud0c0 \ubcc4\uad81',
       territory_id: 148,
       placename_id: 92,
+      map_coords: [10.86962890625, 23.16162109375, 400],
     },
     '93': {
       _id: 93,
@@ -13001,6 +13112,7 @@ export const DATA = {
       name_ko: '\ub178\ub798\ud558\ub294 \uc5f4\uace1',
       territory_id: 156,
       placename_id: 93,
+      map_coords: [29.1474609375, 10.3291015625, 600],
     },
     '94': {
       _id: 94,
@@ -13011,6 +13123,7 @@ export const DATA = {
       name_ko: '\ub178\ub798\ud558\ub294 \uc5f4\uace1 \ubd81\ubd80',
       territory_id: 156,
       placename_id: 94,
+      map_coords: [30.9892578125, 6.205078125, 200],
     },
     '95': {
       _id: 95,
@@ -13021,6 +13134,7 @@ export const DATA = {
       name_ko: '\ud30c\ub77c\ud0c0\uc758 \ubb18\uc18c',
       territory_id: 140,
       placename_id: 95,
+      map_coords: [15.0537109375, 6.38525390625, 200],
     },
     '96': {
       _id: 96,
@@ -13031,6 +13145,7 @@ export const DATA = {
       name_ko: '\uc545\ub9c8\uc758 \uc190\uc544\uadc0',
       territory_id: 141,
       placename_id: 96,
+      map_coords: [29.5478515625, 21.419921875, 400],
     },
     '97': {
       _id: 97,
@@ -13041,6 +13156,7 @@ export const DATA = {
       name_ko: '\ub208\uba3c \ubb34\uc1e0 \uac31\ub3c4',
       territory_id: 135,
       placename_id: 97,
+      map_coords: [27.44580078125, 15.6943359375, 200],
     },
     '98': {
       _id: 98,
@@ -13051,6 +13167,7 @@ export const DATA = {
       name_ko: '\uccad\ub3d9\ud638\uc218 \uc595\uc740 \ubb3c',
       territory_id: 139,
       placename_id: 98,
+      map_coords: [33.57177734375, 24.943359375, 600],
     },
     '99': {
       _id: 99,
@@ -13061,6 +13178,7 @@ export const DATA = {
       name_ko: '\uae30\ub098\uae34 \uc624\ub974\ub9c9 \uacc4\uace1',
       territory_id: 180,
       placename_id: 99,
+      map_coords: [15.89453125, 11.330078125, 400],
     },
     '100': {
       _id: 100,
@@ -13071,6 +13189,7 @@ export const DATA = {
       name_ko: '\uadf8\ub9ac\ub2e4\ub2c8\uc544: \ud64d\ucc28\uac15 \uc0c1\ub958',
       territory_id: 133,
       placename_id: 100,
+      map_coords: [8.90771484375, 8.0068359375, 600],
     },
     '101': {
       _id: 101,
@@ -13081,6 +13200,7 @@ export const DATA = {
       name_ko: '\uc0ac\ud504\uc0ac \uc0b0\ub780\uc9c0',
       territory_id: 138,
       placename_id: 101,
+      map_coords: [17.1357421875, 15.7744140625, 600],
     },
     '102': {
       _id: 102,
@@ -13091,6 +13211,7 @@ export const DATA = {
       name_ko: '\uc740\ub2c9 \ud56d\uad6c',
       territory_id: 138,
       placename_id: 102,
+      map_coords: [13.7724609375, 13.171875, 400],
     },
     '103': {
       _id: 103,
@@ -13101,6 +13222,7 @@ export const DATA = {
       name_ko: '\ub2ec\uc0d8 \ub3d9\uad74',
       territory_id: 140,
       placename_id: 103,
+      map_coords: [18.0166015625, 7.06591796875, 400],
     },
     '104': {
       _id: 104,
@@ -13111,6 +13233,7 @@ export const DATA = {
       name_ko: '\uc548\uac2f\ube5b \ub9c8\uc744',
       territory_id: 339,
       placename_id: 104,
+      map_coords: [11.009765625, 11.009765625, 3000],
     },
     '105': {
       _id: 105,
@@ -13121,6 +13244,7 @@ export const DATA = {
       name_ko: '\ub77c\ubca4\ub354 \uc548\uc2dd\ucc98',
       territory_id: 340,
       placename_id: 105,
+      map_coords: [11.009765625, 11.009765625, 3000],
     },
     '106': {
       _id: 106,
@@ -13131,6 +13255,7 @@ export const DATA = {
       name_ko: '\ud558\ub298\uc794 \ub9c8\ub8e8',
       territory_id: 341,
       placename_id: 106,
+      map_coords: [11.009765625, 11.009765625, 3000],
     },
     '107': {
       _id: 107,
@@ -13141,6 +13266,7 @@ export const DATA = {
       name_ko: '\ub85c\ud0c0\ub178 \ud574 \uba3c\ubc14\ub2e4: \ubc43\uba38\ub9ac',
       territory_id: 137,
       placename_id: 107,
+      map_coords: [37.6357421875, 22.8212890625, 200],
     },
     '108': {
       _id: 108,
@@ -13151,6 +13277,7 @@ export const DATA = {
       name_ko: '\ub85c\ud0c0\ub178 \ud574 \uba3c\ubc14\ub2e4: \ubc43\uace0\ubb3c',
       territory_id: 137,
       placename_id: 108,
+      map_coords: [37.2353515625, 24.0224609375, 200],
     },
     '109': {
       _id: 109,
@@ -13161,6 +13288,7 @@ export const DATA = {
       name_ko: '\ub9de\uac00\ub78c \uace8\uc9dc\uae30',
       territory_id: 397,
       placename_id: 109,
+      map_coords: [32.86266447368421, 27.552220394736846, 200],
     },
     '110': {
       _id: 110,
@@ -13171,6 +13299,7 @@ export const DATA = {
       name_ko: '\ud68c\uc0c9\uaf2c\ub9ac \ud3ed\ud3ec',
       territory_id: 397,
       placename_id: 110,
+      map_coords: [35.56003289473684, 27.383634868421055, 300],
     },
     '111': {
       _id: 111,
@@ -13181,6 +13310,7 @@ export const DATA = {
       name_ko: '\uc5bc\uc9c0 \uc54a\ub294 \uc5f0\ubabb',
       territory_id: 397,
       placename_id: 111,
+      map_coords: [28.43729440789474, 17.900699013157897, 600],
     },
     '112': {
       _id: 112,
@@ -13191,6 +13321,7 @@ export const DATA = {
       name_ko: '\ud22c\uba85\ud55c \uc5f0\ubabb',
       territory_id: 397,
       placename_id: 112,
+      map_coords: [36.78227796052632, 5.97327302631579, 300],
     },
     '113': {
       _id: 113,
@@ -13201,6 +13332,7 @@ export const DATA = {
       name_ko: '\uc6a9\uc228\uacb0 \uc628\ucc9c',
       territory_id: 397,
       placename_id: 113,
+      map_coords: [8.71278782894737, 9.724300986842106, 300],
     },
     '114': {
       _id: 114,
@@ -13211,6 +13343,7 @@ export const DATA = {
       name_ko: '\uc8fd\uc74c\uc758 \ud638\uc218 \ub0a8\ucabd',
       territory_id: 397,
       placename_id: 114,
+      map_coords: [21.778166118421055, 11.325863486842106, 300],
     },
     '115': {
       _id: 115,
@@ -13221,6 +13354,7 @@ export const DATA = {
       name_ko: '\uc7bf\ube5b \ud638\uc218',
       territory_id: 397,
       placename_id: 115,
+      map_coords: [14.065378289473685, 15.709087171052634, 300],
     },
     '116': {
       _id: 116,
@@ -13231,6 +13365,7 @@ export const DATA = {
       name_ko: '\uc8fd\uc74c\uc758 \ud638\uc218 \uc11c\ucabd',
       territory_id: 397,
       placename_id: 116,
+      map_coords: [13.264597039473685, 8.839226973684212, 600],
     },
     '117': {
       _id: 117,
@@ -13241,6 +13376,7 @@ export const DATA = {
       name_ko: '\ube44\ud0c4\uc758 \ud3ed\ud3ec',
       territory_id: 398,
       placename_id: 117,
+      map_coords: [31.387541118421055, 10.103618421052632, 400],
     },
     '118': {
       _id: 118,
@@ -13251,6 +13387,7 @@ export const DATA = {
       name_ko: '\uc9c0\ub09c\ub0a0 \uac15',
       territory_id: 398,
       placename_id: 118,
+      map_coords: [30.628906250000004, 14.824013157894738, 600],
     },
     '119': {
       _id: 119,
@@ -13261,6 +13398,7 @@ export const DATA = {
       name_ko: '\uc5f0\uae30 \ud669\uc57c',
       territory_id: 398,
       placename_id: 119,
+      map_coords: [25.276315789473685, 25.824218750000004, 600],
     },
     '120': {
       _id: 120,
@@ -13271,6 +13409,7 @@ export const DATA = {
       name_ko: '\uc6a9\uc758 \uc2dd\ud0c1',
       territory_id: 398,
       placename_id: 120,
+      map_coords: [31.619346217105267, 6.057565789473685, 900],
     },
     '121': {
       _id: 121,
@@ -13281,6 +13420,7 @@ export const DATA = {
       name_ko: '\uc560\ub3c4\uc758 \ubc14\uc704\uad74',
       territory_id: 398,
       placename_id: 121,
+      map_coords: [13.138157894736842, 13.391036184210527, 600],
     },
     '122': {
       _id: 122,
@@ -13291,6 +13431,7 @@ export const DATA = {
       name_ko: '\uc560\ub3c4\uc758 \ubc14\uc704\uad74 \uc11c\ucabd',
       territory_id: 398,
       placename_id: 122,
+      map_coords: [9.64000822368421, 7.5326891447368425, 300],
     },
     '123': {
       _id: 123,
@@ -13301,6 +13442,7 @@ export const DATA = {
       name_ko: '\uc544\ub124\uc2a4 \uc18c',
       territory_id: 398,
       placename_id: 123,
+      map_coords: [19.46011513157895, 10.820106907894738, 200],
     },
     '124': {
       _id: 124,
@@ -13311,6 +13453,7 @@ export const DATA = {
       name_ko: '\ube5b\ubb34\ub9ac \uc81c\ub2e8',
       territory_id: 398,
       placename_id: 124,
+      map_coords: [7.659128289473685, 5.425370065789474, 200],
     },
     '125': {
       _id: 125,
@@ -13321,6 +13464,7 @@ export const DATA = {
       name_ko: '\uc0b4\ub9ac\uc544\ud06c \uac15',
       territory_id: 399,
       placename_id: 125,
+      map_coords: [23.16899671052632, 23.548314144736846, 400],
     },
     '126': {
       _id: 126,
@@ -13331,6 +13475,7 @@ export const DATA = {
       name_ko: '\uae09\ub958 \uc0bc\uac01\uc8fc',
       territory_id: 399,
       placename_id: 126,
+      map_coords: [11.325863486842106, 27.552220394736846, 1200],
     },
     '127': {
       _id: 127,
@@ -13341,6 +13486,7 @@ export const DATA = {
       name_ko: '\uc0b4\ub9ac\uc544\ud06c \uac15 \uc0c1\ub958',
       territory_id: 399,
       placename_id: 127,
+      map_coords: [22.958264802631582, 36.36081414473684, 800],
     },
     '128': {
       _id: 128,
@@ -13351,6 +13497,7 @@ export const DATA = {
       name_ko: '\uc0b4\ub9ac\uc544\ud06c \uac15 \uc911\ub958',
       territory_id: 399,
       placename_id: 128,
+      map_coords: [20.619140625000004, 25.023437500000004, 500],
     },
     '129': {
       _id: 129,
@@ -13361,6 +13508,7 @@ export const DATA = {
       name_ko: '\uc5d0\uc77c \ud1b0',
       territory_id: 400,
       placename_id: 129,
+      map_coords: [36.82442434210527, 30.50246710526316, 300],
     },
     '130': {
       _id: 130,
@@ -13371,6 +13519,7 @@ export const DATA = {
       name_ko: '\uc794\ub514\uc12c',
       territory_id: 400,
       placename_id: 130,
+      map_coords: [8.754934210526317, 34.37993421052632, 600],
     },
     '131': {
       _id: 131,
@@ -13381,6 +13530,7 @@ export const DATA = {
       name_ko: '\uc11c\ucabd \uc0d8',
       territory_id: 400,
       placename_id: 131,
+      map_coords: [9.176398026315791, 8.080592105263158, 500],
     },
     '132': {
       _id: 132,
@@ -13391,6 +13541,7 @@ export const DATA = {
       name_ko: '\uc9c0\uc0c1\uc655\uc758 \uc601\uc9c0',
       territory_id: 400,
       placename_id: 132,
+      map_coords: [29.70168585526316, 25.360608552631582, 1200],
     },
     '133': {
       _id: 133,
@@ -13401,6 +13552,7 @@ export const DATA = {
       name_ko: '\uc19c \uc54c \uc0b0\uba38\ub9ac',
       territory_id: 400,
       placename_id: 133,
+      map_coords: [18.448601973684212, 40.36472039473685, 1000],
     },
     '134': {
       _id: 134,
@@ -13411,6 +13563,7 @@ export const DATA = {
       name_ko: '\uc0b4 \uc6c0 \uce74\uc26c',
       territory_id: 400,
       placename_id: 134,
+      map_coords: [20.26089638157895, 6.394736842105264, 400],
     },
     '135': {
       _id: 135,
@@ -13421,6 +13574,7 @@ export const DATA = {
       name_ko: '\ubd80\ub974 \uc2dc\uc548\uc2dc\ub780',
       territory_id: 401,
       placename_id: 135,
+      map_coords: [28.90090460526316, 34.92783717105264, 1000],
     },
     '136': {
       _id: 136,
@@ -13431,6 +13585,7 @@ export const DATA = {
       name_ko: '\uad6c\ub984\uc6c5\ub369\uc774',
       territory_id: 401,
       placename_id: 136,
+      map_coords: [31.556126644736846, 39.606085526315795, 300],
     },
     '137': {
       _id: 137,
@@ -13441,6 +13596,7 @@ export const DATA = {
       name_ko: '\uad6c\ub984\ub9c8\ub8e8',
       territory_id: 401,
       placename_id: 137,
+      map_coords: [15.076891447368423, 38.594572368421055, 300],
     },
     '138': {
       _id: 138,
@@ -13451,6 +13607,7 @@ export const DATA = {
       name_ko: '\ud478\ub978\ud558\ub298 \ucc3d',
       territory_id: 401,
       placename_id: 138,
+      map_coords: [7.659128289473685, 11.536595394736842, 1000],
     },
     '139': {
       _id: 139,
@@ -13461,6 +13618,7 @@ export const DATA = {
       name_ko: '\ubaa8\ud06c \uc6b0\uae00 \uc12c',
       territory_id: 401,
       placename_id: 139,
+      map_coords: [15.329769736842106, 5.636101973684211, 800],
     },
     '140': {
       _id: 140,
@@ -13471,6 +13629,7 @@ export const DATA = {
       name_ko: '\uc54c\ud30c \uad6c\uc5ed',
       territory_id: 402,
       placename_id: 140,
+      map_coords: [16.847039473684212, 12.042351973684212, 500],
     },
     '141': {
       _id: 141,
@@ -13481,6 +13640,7 @@ export const DATA = {
       name_ko: '\ud3d0\uc218 \uc6c5\ub369\uc774',
       territory_id: 402,
       placename_id: 141,
+      map_coords: [31.13466282894737, 6.689761513157896, 300],
     },
     '142': {
       _id: 142,
@@ -13491,6 +13651,7 @@ export const DATA = {
       name_ko: '\ucd08\uc131\uac04\uad50\uc2e0\ud0d1',
       territory_id: 402,
       placename_id: 142,
+      map_coords: [6.900493421052632, 16.678453947368425, 200],
     },
     '143': {
       _id: 143,
@@ -13501,6 +13662,7 @@ export const DATA = {
       name_ko: '\ub378\ud0c0 \uad6c\uc5ed',
       territory_id: 402,
       placename_id: 143,
+      map_coords: [12.08449835526316, 31.80900493421053, 1000],
     },
     '144': {
       _id: 144,
@@ -13511,6 +13673,7 @@ export const DATA = {
       name_ko: '\ud070\uac13\ud138\ub098\ubb34',
       territory_id: 402,
       placename_id: 144,
+      map_coords: [6.77405427631579, 35.34930098684211, 300],
     },
     '145': {
       _id: 145,
@@ -13521,6 +13684,7 @@ export const DATA = {
       name_ko: '\uc0dd\ud0dc\uacf5\uc6d0',
       territory_id: 402,
       placename_id: 145,
+      map_coords: [40.196134868421055, 18.701480263157897, 300],
     },
     '146': {
       _id: 146,
@@ -13531,86 +13695,7 @@ export const DATA = {
       name_ko: '\uc544\uc9c0\uc2a4 \ub77c \uae30\ud568\uc12c',
       territory_id: 402,
       placename_id: 146,
-    },
-    '147': {
-      _id: 147,
-      name_en: 'Diadem Skysprings',
-      name_ja: '\u30c7\u30a3\u30a2\u30c7\u30e0\u8af8\u5cf6\u306e\u6e67\u6c34\u5730',
-      name_de: 'Diadem-Himmelsquellen',
-      name_fr: 'Sources du Diad\u00e8me',
-      name_ko: '\ub514\uc544\ub380 \uc81c\ub3c4 \uc218\uc6d0\uc9c0',
-      territory_id: 0,
-      placename_id: 147,
-    },
-    '148': {
-      _id: 148,
-      name_en: 'Diadem Grotto',
-      name_ja: '\u30c7\u30a3\u30a2\u30c7\u30e0\u8af8\u5cf6\u306e\u6d1e\u7a74',
-      name_de: 'Diadem-Grotte',
-      name_fr: 'Grotte du Diad\u00e8me',
-      name_ko: '\ub514\uc544\ub380 \uc81c\ub3c4 \ub3d9\uad74',
-      territory_id: 0,
-      placename_id: 148,
-    },
-    '149': {
-      _id: 149,
-      name_en: 'Southern Diadem Lake',
-      name_ja: '\u30c7\u30a3\u30a2\u30c7\u30e0\u8af8\u5cf6\u306e\u5357\u897f\u6c60',
-      name_de: 'S\u00fcdlicher Diademteich',
-      name_fr: 'Mares du quadrant sud-ouest',
-      name_ko: '\ub514\uc544\ub380 \uc81c\ub3c4 \ub0a8\uc11c\ucabd \uc5f0\ubabb',
-      territory_id: 0,
-      placename_id: 149,
-    },
-    '150': {
-      _id: 150,
-      name_en: 'Secluded Diadem Pond',
-      name_ja: '\u30c7\u30a3\u30a2\u30c7\u30e0\u8af8\u5cf6\u306e\u7a74\u5834',
-      name_de: 'Abgeschiedener Diademteich',
-      name_fr: 'Banc du Diad\u00e8me',
-      name_ko: '\ub514\uc544\ub380 \uc81c\ub3c4 \uc228\uc740 \uba85\ub2f9',
-      territory_id: 0,
-      placename_id: 150,
-    },
-    '151': {
-      _id: 151,
-      name_en: 'Northern Diadem Lake',
-      name_ja: '\u30c7\u30a3\u30a2\u30c7\u30e0\u8af8\u5cf6\u306e\u5317\u897f\u6c60',
-      name_de: 'N\u00f6rdlicher Diademteich',
-      name_fr: '\u00c9tang du quadrant nord-ouest',
-      name_ko: '\ub514\uc544\ub380 \uc81c\ub3c4 \ubd81\uc11c\ucabd \uc5f0\ubabb',
-      territory_id: 0,
-      placename_id: 151,
-    },
-    '152': {
-      _id: 152,
-      name_en: 'Blustery Cloudtop',
-      name_ja: '\u98a8\u5439\u304d\u629c\u3051\u308b\u96f2\u6d77',
-      name_de: 'Tosende Wolken',
-      name_fr: 'Cimes venteuses',
-      name_ko: '\ubc14\ub78c\uc774 \uc9c0\ub098\ub294 \uad6c\ub984\ubc14\ub2e4',
-      territory_id: 0,
-      placename_id: 152,
-    },
-    '153': {
-      _id: 153,
-      name_en: 'Calm Cloudtop',
-      name_ja: '\u98a8\u7a4f\u3084\u304b\u306a\u96f2\u6d77',
-      name_de: 'Sanfte Wolken',
-      name_fr: 'Cimes calmes',
-      name_ko: '\ubc14\ub78c\uc774 \uc628\ud654\ud55c \uad6c\ub984\ubc14\ub2e4',
-      territory_id: 0,
-      placename_id: 153,
-    },
-    '154': {
-      _id: 154,
-      name_en: 'Swirling Cloudtop',
-      name_ja: '\u98a8\u6e26\u5dfb\u304f\u96f2\u6d77',
-      name_de: 'Wirbelnde Wolken',
-      name_fr: 'Cimes tumultueuses',
-      name_ko: '\ubc14\ub78c\uc774 \ud718\ub3c4\ub294 \uad6c\ub984\ubc14\ub2e4',
-      territory_id: 0,
-      placename_id: 154,
+      map_coords: [22.073190789473685, 22.073190789473685, 300],
     },
     '155': {
       _id: 155,
@@ -13621,6 +13706,7 @@ export const DATA = {
       name_ko: '\uccad\ub3d9\ud638\uc218 \ubd81\uc11c\ubd80',
       territory_id: 180,
       placename_id: 155,
+      map_coords: [19.41796875, 18.216796875, 500],
     },
     '156': {
       _id: 156,
@@ -13631,6 +13717,7 @@ export const DATA = {
       name_ko: '\ub298\uc5ec\ub984 \uc12c \ubd81\ubd80',
       territory_id: 137,
       placename_id: 156,
+      map_coords: [36.0341796875, 26.625, 400],
     },
     '157': {
       _id: 157,
@@ -13641,6 +13728,7 @@ export const DATA = {
       name_ko: '\ubd80\ub450 \uc804\uccb4',
       territory_id: 628,
       placename_id: 157,
+      map_coords: [10.50927734375, 11.009765625, 3000],
     },
     '158': {
       _id: 158,
@@ -13651,6 +13739,7 @@ export const DATA = {
       name_ko: '\ud64d\uc625 \ud3ec\ub300 \uadfc\ud574',
       territory_id: 613,
       placename_id: 158,
+      map_coords: [38.4365234375, 38.4365234375, 400],
     },
     '159': {
       _id: 159,
@@ -13661,6 +13750,7 @@ export const DATA = {
       name_ko: '\uc9c0\uc625\ub69c\uaed1 \uadfc\ud574',
       territory_id: 613,
       placename_id: 159,
+      map_coords: [25.82421875, 33.6318359375, 2000],
     },
     '160': {
       _id: 160,
@@ -13671,6 +13761,7 @@ export const DATA = {
       name_ko: '\ubca0\ucf54\uc6b0 \uc12c \uadfc\ud574',
       territory_id: 613,
       placename_id: 160,
+      map_coords: [34.6328125, 20.21875, 2000],
     },
     '161': {
       _id: 161,
@@ -13681,6 +13772,7 @@ export const DATA = {
       name_ko: '\ub09c\ubc14\uc704 \uadfc\ud574',
       territory_id: 613,
       placename_id: 161,
+      map_coords: [32.630859375, 8.20703125, 1000],
     },
     '162': {
       _id: 162,
@@ -13691,6 +13783,7 @@ export const DATA = {
       name_ko: '\uc624\ub178\ucf54\ub85c \uc12c \uadfc\ud574',
       territory_id: 613,
       placename_id: 162,
+      map_coords: [22.0205078125, 11.009765625, 1000],
     },
     '163': {
       _id: 163,
@@ -13701,6 +13794,7 @@ export const DATA = {
       name_ko: '\uc774\uc0ac\ub9ac \ub9c8\uc744 \uc5f0\uc548',
       territory_id: 613,
       placename_id: 163,
+      map_coords: [9.0078125, 11.9306640625, 1000],
     },
     '164': {
       _id: 164,
@@ -13711,6 +13805,7 @@ export const DATA = {
       name_ko: '\uc0b4\uadc0\ub3c4 \uadfc\ud574',
       territory_id: 613,
       placename_id: 164,
+      map_coords: [8.30712890625, 26.625, 1000],
     },
     '165': {
       _id: 165,
@@ -13721,6 +13816,7 @@ export const DATA = {
       name_ko: '\uc65c\uac00\ub9ac \uc5f0\ubabb',
       territory_id: 614,
       placename_id: 165,
+      map_coords: [34.8330078125, 14.0126953125, 300],
     },
     '166': {
       _id: 166,
@@ -13731,6 +13827,7 @@ export const DATA = {
       name_ko: '\uc65c\uac00\ub9ac \uac15',
       territory_id: 614,
       placename_id: 166,
+      map_coords: [35.833984375, 17.015625, 200],
     },
     '167': {
       _id: 167,
@@ -13741,6 +13838,7 @@ export const DATA = {
       name_ko: '\ub098\ub9c8\uc774 \ub9c8\uc744 \uc800\uc218\uc9c0',
       territory_id: 614,
       placename_id: 167,
+      map_coords: [29.52783203125, 15.6142578125, 300],
     },
     '168': {
       _id: 168,
@@ -13751,6 +13849,7 @@ export const DATA = {
       name_ko: '\ubb34\uc9c0\uac1c \ub3c4\ub791',
       territory_id: 614,
       placename_id: 168,
+      map_coords: [28.626953125, 6.50537109375, 800],
     },
     '169': {
       _id: 169,
@@ -13761,6 +13860,7 @@ export const DATA = {
       name_ko: '\ubb34\uc9c0\uac1c \uacc4\uace1',
       territory_id: 614,
       placename_id: 169,
+      map_coords: [31.72998046875, 7.2060546875, 200],
     },
     '170': {
       _id: 170,
@@ -13771,6 +13871,7 @@ export const DATA = {
       name_ko: '\ub3c4\ub9c8 \uc131',
       territory_id: 614,
       placename_id: 170,
+      map_coords: [14.4130859375, 7.40625, 500],
     },
     '171': {
       _id: 171,
@@ -13781,6 +13882,7 @@ export const DATA = {
       name_ko: '\uc120\ucc29\uc7a5',
       territory_id: 614,
       placename_id: 171,
+      map_coords: [11.41015625, 14.0126953125, 1000],
     },
     '172': {
       _id: 172,
@@ -13791,6 +13893,7 @@ export const DATA = {
       name_ko: '\ubb34\uc774\uac15 \ub3d9\ucabd',
       territory_id: 614,
       placename_id: 172,
+      map_coords: [20.0185546875, 24.22265625, 1000],
     },
     '173': {
       _id: 173,
@@ -13801,6 +13904,7 @@ export const DATA = {
       name_ko: '\ubb34\uc774\uac15 \uc11c\ucabd',
       territory_id: 614,
       placename_id: 173,
+      map_coords: [11.009765625, 32.93115234375, 600],
     },
     '174': {
       _id: 174,
@@ -13811,6 +13915,7 @@ export const DATA = {
       name_ko: '\ub9e4\ucc9c\ud5a5',
       territory_id: 614,
       placename_id: 174,
+      map_coords: [36.0341796875, 23.822265625, 400],
     },
     '175': {
       _id: 175,
@@ -13821,6 +13926,7 @@ export const DATA = {
       name_ko: '\ub134 \uce7c',
       territory_id: 622,
       placename_id: 175,
+      map_coords: [32.4306640625, 30.4287109375, 200],
     },
     '176': {
       _id: 176,
@@ -13831,6 +13937,7 @@ export const DATA = {
       name_ko: '\ud558\ud06c \uce7c',
       territory_id: 622,
       placename_id: 176,
+      map_coords: [29.02734375, 20.4189453125, 300],
     },
     '177': {
       _id: 177,
@@ -13841,6 +13948,7 @@ export const DATA = {
       name_ko: '\uc57c\ud2b8 \uce7c \uc0c1\ub958',
       territory_id: 622,
       placename_id: 177,
+      map_coords: [17.9365234375, 18.8173828125, 300],
     },
     '178': {
       _id: 178,
@@ -13851,6 +13959,7 @@ export const DATA = {
       name_ko: '\uc544\uc9d0 \uce74\ud2b8',
       territory_id: 622,
       placename_id: 178,
+      map_coords: [21.6201171875, 22.4208984375, 1000],
     },
     '179': {
       _id: 179,
@@ -13861,6 +13970,7 @@ export const DATA = {
       name_ko: '\ud0c0\uc624 \uce7c',
       territory_id: 622,
       placename_id: 179,
+      map_coords: [16.615234375, 14.4130859375, 300],
     },
     '180': {
       _id: 180,
@@ -13871,6 +13981,7 @@ export const DATA = {
       name_ko: '\uc57c\ud2b8 \uce7c \ud558\ub958',
       territory_id: 622,
       placename_id: 180,
+      map_coords: [22.62109375, 28.4267578125, 300],
     },
     '181': {
       _id: 181,
@@ -13881,6 +13992,7 @@ export const DATA = {
       name_ko: '\ub3c4\ud0c8 \uce74',
       territory_id: 622,
       placename_id: 181,
+      map_coords: [12.51123046875, 33.2314453125, 200],
     },
     '182': {
       _id: 182,
@@ -13891,6 +14003,7 @@ export const DATA = {
       name_ko: '\uc2e0\uae30\ub8e8 \uac1c\uc6b8 \uc0c1\ub958',
       territory_id: 635,
       placename_id: 182,
+      map_coords: [11.009765625, 14.0126953125, 400],
     },
     '183': {
       _id: 183,
@@ -13901,6 +14014,7 @@ export const DATA = {
       name_ko: '\ub784\uac70\uc758 \uc190\uae38',
       territory_id: 635,
       placename_id: 183,
+      map_coords: [11.260009765625, 10.359130859375, 1000],
     },
     '184': {
       _id: 184,
@@ -13911,6 +14025,7 @@ export const DATA = {
       name_ko: '\uc131\ub3c4\uc0b0 \uc0ac\uc6d0 \uc785\uad6c',
       territory_id: 635,
       placename_id: 184,
+      map_coords: [12.160888671875, 5.90478515625, 300],
     },
     '185': {
       _id: 185,
@@ -13921,6 +14036,7 @@ export const DATA = {
       name_ko: '\ud2f0\ubaac \uac15',
       territory_id: 612,
       placename_id: 185,
+      map_coords: [11.51025390625, 18.216796875, 400],
     },
     '186': {
       _id: 186,
@@ -13931,6 +14047,7 @@ export const DATA = {
       name_ko: '\ubc24\uc758 \uc232',
       territory_id: 612,
       placename_id: 186,
+      map_coords: [9.6083984375, 29.02734375, 1100],
     },
     '187': {
       _id: 187,
@@ -13941,6 +14058,7 @@ export const DATA = {
       name_ko: '\ubcc4\ub625\ubcc4 \uaf2c\ub9ac',
       territory_id: 612,
       placename_id: 187,
+      map_coords: [13.91259765625, 31.029296875, 300],
     },
     '188': {
       _id: 188,
@@ -13951,6 +14069,7 @@ export const DATA = {
       name_ko: '\ubca8\ub85c\ub514\ub098 \uac15',
       territory_id: 612,
       placename_id: 188,
+      map_coords: [17.91650390625, 9.50830078125, 600],
     },
     '189': {
       _id: 189,
@@ -13961,6 +14080,7 @@ export const DATA = {
       name_ko: '\uc2e0\uae30\ub8e8 \uac1c\uc6b8',
       territory_id: 612,
       placename_id: 189,
+      map_coords: [27.52587890625, 16.4150390625, 400],
     },
     '190': {
       _id: 190,
@@ -13971,6 +14091,7 @@ export const DATA = {
       name_ko: '\ubd80\ubd80 \uc5f0\ubabb',
       territory_id: 620,
       placename_id: 190,
+      map_coords: [6.205078125, 15.013671875, 300],
     },
     '191': {
       _id: 191,
@@ -13981,6 +14102,7 @@ export const DATA = {
       name_ko: '\ub290\ub9b0\ub108\uc6b8 \uac15',
       territory_id: 620,
       placename_id: 191,
+      map_coords: [23.6220703125, 9.2080078125, 400],
     },
     '192': {
       _id: 192,
@@ -13991,6 +14113,7 @@ export const DATA = {
       name_ko: '\ud788\uc2a4 \ud3ed\ud3ec',
       territory_id: 620,
       placename_id: 192,
+      map_coords: [32.630859375, 6.60546875, 400],
     },
     '193': {
       _id: 193,
@@ -14001,6 +14124,7 @@ export const DATA = {
       name_ko: '\uc7ac\ud310\uc790\uc758 \uc0c1',
       territory_id: 620,
       placename_id: 193,
+      map_coords: [32.0302734375, 17.015625, 400],
     },
     '194': {
       _id: 194,
@@ -14011,6 +14135,7 @@ export const DATA = {
       name_ko: '\ud669\uc18c\ud0d5',
       territory_id: 620,
       placename_id: 194,
+      map_coords: [20.5791015625, 32.6708984375, 1200],
     },
     '195': {
       _id: 195,
@@ -14021,6 +14146,7 @@ export const DATA = {
       name_ko: '\uc18d\uc8c4\uc758 \uac00\uc9c0',
       territory_id: 620,
       placename_id: 195,
+      map_coords: [9.2080078125, 37.435546875, 500],
     },
     '196': {
       _id: 196,
@@ -14031,6 +14157,7 @@ export const DATA = {
       name_ko: '\ub85c\ud750 \uc140 \ud638\uc218',
       territory_id: 621,
       placename_id: 196,
+      map_coords: [21.52001953125, 21.52001953125, 3000],
     },
     '197': {
       _id: 197,
@@ -14041,6 +14168,7 @@ export const DATA = {
       name_ko: '\uc2dc\ub85c\uac00\ub124',
       territory_id: 641,
       placename_id: 197,
+      map_coords: [8.50732421875, 14.51318359375, 1000],
     },
     '198': {
       _id: 198,
@@ -14051,6 +14179,7 @@ export const DATA = {
       name_ko: '\uc2dc\ub85c\uac00\ub124 \uc218\ub85c',
       territory_id: 641,
       placename_id: 198,
+      map_coords: [10.70947265625, 11.31005859375, 500],
     },
     '199': {
       _id: 199,
@@ -14061,6 +14190,7 @@ export const DATA = {
       name_ko: '\uc0bc\ud559\uc88c',
       territory_id: 819,
       placename_id: 199,
+      map_coords: [8.70751953125, 7.456298828125, 600],
     },
     '200': {
       _id: 200,
@@ -14071,6 +14201,7 @@ export const DATA = {
       name_ko: '\uc0ac\ud559\uc88c',
       territory_id: 819,
       placename_id: 200,
+      map_coords: [10.4091796875, 15.6142578125, 600],
     },
     '201': {
       _id: 201,
@@ -14081,6 +14212,7 @@ export const DATA = {
       name_ko: '\ud06c\ub9ac\uc2a4\ud0c0\ub9ac\uc6c0 \uac70\uc8fc\uc2e4',
       territory_id: 819,
       placename_id: 201,
+      map_coords: [12.761474609375, 16.31494140625, 600],
     },
     '202': {
       _id: 202,
@@ -14091,6 +14223,7 @@ export const DATA = {
       name_ko: '\ud48d\ud654\ud55c \uade0\uc5f4',
       territory_id: 813,
       placename_id: 202,
+      map_coords: [31.029296875, 11.91064453125, 1200],
     },
     '203': {
       _id: 203,
@@ -14101,6 +14234,7 @@ export const DATA = {
       name_ko: '\ub179\uc2a8 \uc800\uc218\uc9c0',
       territory_id: 813,
       placename_id: 203,
+      map_coords: [11.91064453125, 21.52001953125, 300],
     },
     '204': {
       _id: 204,
@@ -14111,6 +14245,7 @@ export const DATA = {
       name_ko: '\ud0dc\ucd08\uc758 \ud638\uc218',
       territory_id: 813,
       placename_id: 204,
+      map_coords: [12.71142578125, 29.6279296875, 1500],
     },
     '205': {
       _id: 205,
@@ -14121,6 +14256,7 @@ export const DATA = {
       name_ko: '\ucc0c\ud478\ub9b0 \ub9c8\uc744',
       territory_id: 813,
       placename_id: 205,
+      map_coords: [19.41796875, 35.833984375, 900],
     },
     '206': {
       _id: 206,
@@ -14131,6 +14267,7 @@ export const DATA = {
       name_ko: '\ucf04\uc758 \uc12c',
       territory_id: 813,
       placename_id: 206,
+      map_coords: [9.2080078125, 37.6357421875, 900],
     },
     '207': {
       _id: 207,
@@ -14141,6 +14278,7 @@ export const DATA = {
       name_ko: '\uc640\uce20 \uac15 \uc0c1\ub958',
       territory_id: 814,
       placename_id: 207,
+      map_coords: [27.025390625, 14.4130859375, 1200],
     },
     '208': {
       _id: 208,
@@ -14151,6 +14289,7 @@ export const DATA = {
       name_ko: '\ubc31\uc720\ud3ed\ud3ec',
       territory_id: 814,
       placename_id: 208,
+      map_coords: [29.427734375, 21.419921875, 300],
     },
     '209': {
       _id: 209,
@@ -14161,6 +14300,7 @@ export const DATA = {
       name_ko: '\uc640\uce20 \uac15 \ud558\ub958',
       territory_id: 814,
       placename_id: 209,
+      map_coords: [30.228515625, 27.025390625, 1200],
     },
     '210': {
       _id: 210,
@@ -14171,6 +14311,7 @@ export const DATA = {
       name_ko: '\uc544\ub9b0\ub9db \uc0d8',
       territory_id: 814,
       placename_id: 210,
+      map_coords: [20.619140625, 24.22265625, 1200],
     },
     '211': {
       _id: 211,
@@ -14181,6 +14322,7 @@ export const DATA = {
       name_ko: '\ucf5c\ub8e8\uc2dc\uc544 \uc12c \uc11c\ucabd \uc5f0\uc548',
       territory_id: 814,
       placename_id: 211,
+      map_coords: [8.4072265625, 35.2333984375, 1800],
     },
     '212': {
       _id: 212,
@@ -14191,6 +14333,7 @@ export const DATA = {
       name_ko: '\ubc14\ub2e4 \uac10\uc2dc\ud0d1 \ud574\uad6c',
       territory_id: 814,
       placename_id: 212,
+      map_coords: [16.8154296875, 35.833984375, 600],
     },
     '213': {
       _id: 213,
@@ -14201,6 +14344,7 @@ export const DATA = {
       name_ko: '\ucf5c\ub8e8\uc2dc\uc544 \uc12c \ub3d9\ucabd \uc5f0\uc548',
       territory_id: 814,
       placename_id: 213,
+      map_coords: [35.2333984375, 35.833984375, 1800],
     },
     '214': {
       _id: 214,
@@ -14211,6 +14355,7 @@ export const DATA = {
       name_ko: '\ud3d0\uc120 \uac70\ub9ac',
       territory_id: 820,
       placename_id: 214,
+      map_coords: [11.260009765625, 11.260009765625, 2400],
     },
     '215': {
       _id: 215,
@@ -14221,6 +14366,7 @@ export const DATA = {
       name_ko: '\ubaa8\ub798\uac15',
       territory_id: 815,
       placename_id: 215,
+      map_coords: [31.830078125, 12.71142578125, 900],
     },
     '216': {
       _id: 216,
@@ -14231,6 +14377,7 @@ export const DATA = {
       name_ko: '\ud638\ubc15\uc11d \uc0b0\ub9e5',
       territory_id: 815,
       placename_id: 216,
+      map_coords: [15.51416015625, 14.8134765625, 1200],
     },
     '217': {
       _id: 217,
@@ -14241,6 +14388,7 @@ export const DATA = {
       name_ko: '\ub098\ubc14\uc2a4\uc758 \ub2e8\uc808',
       territory_id: 815,
       placename_id: 217,
+      map_coords: [31.029296875, 31.6298828125, 1500],
     },
     '218': {
       _id: 218,
@@ -14251,6 +14399,7 @@ export const DATA = {
       name_ko: '\uc190\uac70\uc6b8 \ud638\uc218',
       territory_id: 816,
       placename_id: 218,
+      map_coords: [4.30322265625, 22.32080078125, 900],
     },
     '219': {
       _id: 219,
@@ -14261,6 +14410,7 @@ export const DATA = {
       name_ko: '\uac70\uc6b8 \ud638\uc218',
       territory_id: 816,
       placename_id: 219,
+      map_coords: [21.01953125, 22.8212890625, 2400],
     },
     '220': {
       _id: 220,
@@ -14271,6 +14421,7 @@ export const DATA = {
       name_ko: '\ub9cf\uc774\ub4e4\uc758 \ubb3c\uc904\uae30',
       territory_id: 816,
       placename_id: 220,
+      map_coords: [22.0205078125, 9.10791015625, 600],
     },
     '221': {
       _id: 221,
@@ -14281,6 +14432,7 @@ export const DATA = {
       name_ko: '\ub458\uc9f8\ub4e4\uc758 \ubb3c\uc904\uae30',
       territory_id: 816,
       placename_id: 221,
+      map_coords: [25.82421875, 9.0078125, 600],
     },
     '222': {
       _id: 222,
@@ -14291,6 +14443,7 @@ export const DATA = {
       name_ko: '\ucf5c\ub77c\ub4dc\uc758 \ubc30\uc218\uad6c',
       territory_id: 816,
       placename_id: 222,
+      map_coords: [31.93017578125, 22.32080078125, 300],
     },
     '223': {
       _id: 223,
@@ -14301,6 +14454,7 @@ export const DATA = {
       name_ko: '\ub9c9\ub0b4\ub4e4\uc758 \ubb3c\uc904\uae30',
       territory_id: 816,
       placename_id: 223,
+      map_coords: [28.92724609375, 13.51220703125, 1200],
     },
     '224': {
       _id: 224,
@@ -14311,6 +14465,7 @@ export const DATA = {
       name_ko: '\uc131 \ud30c\uc2a4\ub9ad\uc758 \uc774\ub9c8',
       territory_id: 816,
       placename_id: 224,
+      map_coords: [34.93310546875, 26.32470703125, 900],
     },
     '225': {
       _id: 225,
@@ -14321,6 +14476,7 @@ export const DATA = {
       name_ko: '\ud22c\uc2dc \uba54\ud0a4\ud0c0 \ud638\uc218',
       territory_id: 817,
       placename_id: 225,
+      map_coords: [7.40625, 28.72705078125, 1800],
     },
     '226': {
       _id: 226,
@@ -14331,6 +14487,7 @@ export const DATA = {
       name_ko: '\ud53c\uc758 \uc220\uc794',
       territory_id: 817,
       placename_id: 226,
+      map_coords: [9.70849609375, 20.8193359375, 600],
     },
     '227': {
       _id: 227,
@@ -14341,6 +14498,7 @@ export const DATA = {
       name_ko: '\ub85c\ucc28\ud2c0 \uac15',
       territory_id: 817,
       placename_id: 227,
+      map_coords: [16.0146484375, 21.52001953125, 900],
     },
     '228': {
       _id: 228,
@@ -14351,6 +14509,7 @@ export const DATA = {
       name_ko: '\ubba4\ub9b4\uc758 \ud5a5\uc218 \ub0a8\ucabd',
       territory_id: 817,
       placename_id: 228,
+      map_coords: [24.0224609375, 31.6298828125, 1200],
     },
     '229': {
       _id: 229,
@@ -14361,6 +14520,7 @@ export const DATA = {
       name_ko: '\ub9fa\uc5b4\uc9c4 \uc11c\uc57d',
       territory_id: 817,
       placename_id: 229,
+      map_coords: [7.806640625, 16.21484375, 300],
     },
     '230': {
       _id: 230,
@@ -14371,6 +14531,7 @@ export const DATA = {
       name_ko: '\uac00\uc790\ubbf8\uad74',
       territory_id: 818,
       placename_id: 230,
+      map_coords: [11.2099609375, 6.60546875, 900],
     },
     '231': {
       _id: 231,
@@ -14381,6 +14542,7 @@ export const DATA = {
       name_ko: '\uc721\uc9c0\uc778\uc758 \ubb18\ube44',
       territory_id: 818,
       placename_id: 231,
+      map_coords: [37.73583984375, 7.005859375, 300],
     },
     '232': {
       _id: 232,
@@ -14391,6 +14553,7 @@ export const DATA = {
       name_ko: '\uce98\ub9ac\ubc18 \ud574\uc800\uace1 \ubd81\uc11c\ubd80',
       territory_id: 818,
       placename_id: 232,
+      map_coords: [11.91064453125, 10.90966796875, 300],
     },
     '233': {
       _id: 233,
@@ -14401,6 +14564,7 @@ export const DATA = {
       name_ko: '\uce98\ub9ac\ubc18\uc758 \uc61b\uc9d1 \uc11c\ucabd',
       territory_id: 818,
       placename_id: 233,
+      map_coords: [6.205078125, 13.51220703125, 600],
     },
     '234': {
       _id: 234,
@@ -14411,6 +14575,7 @@ export const DATA = {
       name_ko: '\uce98\ub9ac\ubc18\uc758 \uc61b\uc9d1 \ub3d9\ucabd',
       territory_id: 818,
       placename_id: 234,
+      map_coords: [8.50732421875, 15.6142578125, 300],
     },
     '235': {
       _id: 235,
@@ -14421,6 +14586,7 @@ export const DATA = {
       name_ko: '\uc790\uc0c9 \ub3d9\uad74',
       territory_id: 818,
       placename_id: 235,
+      map_coords: [33.6318359375, 30.62890625, 600],
     },
     '236': {
       _id: 236,
@@ -14431,6 +14597,7 @@ export const DATA = {
       name_ko: '\ub178\ub974\ube0c\ub780\ud2b8 \ub300\ub959 \uc0ac\uba74',
       territory_id: 818,
       placename_id: 236,
+      map_coords: [29.02734375, 14.91357421875, 900],
     },
     '245': {
       _id: 245,
@@ -14441,206 +14608,7 @@ export const DATA = {
       name_ko: '\ubba4\ub9b4\uc758 \ub208\ubb3c',
       territory_id: 817,
       placename_id: 245,
-    },
-    '246': {
-      _id: 246,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 246,
-    },
-    '247': {
-      _id: 247,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 247,
-    },
-    '248': {
-      _id: 248,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 248,
-    },
-    '10000': {
-      _id: 10000,
-      name_en: 'The Doman Enclave',
-      name_ja: '\u30c9\u30de\u753a\u4eba\u5730',
-      name_de: 'Domanische Enklave',
-      name_fr: 'Quartier enclav\u00e9 de Doma',
-      name_ko: '\ub3c4\ub9c8 \ub3c4\uc74d\uc9c0',
-      territory_id: 0,
-      placename_id: 10000,
-    },
-    '10001': {
-      _id: 10001,
-      name_en: 'Diadem Grotto',
-      name_ja: '\u30c7\u30a3\u30a2\u30c7\u30e0\u8af8\u5cf6\u306e\u6d1e\u7a74',
-      name_de: 'Diadem-Grotte',
-      name_fr: 'Grotte du Diad\u00e8me',
-      name_ko: '\ub514\uc544\ub380 \uc81c\ub3c4 \ub3d9\uad74',
-      territory_id: 0,
-      placename_id: 10001,
-    },
-    '10002': {
-      _id: 10002,
-      name_en: 'Southern Diadem Lake',
-      name_ja: '\u30c7\u30a3\u30a2\u30c7\u30e0\u8af8\u5cf6\u306e\u5357\u897f\u6c60',
-      name_de: 'S\u00fcdlicher Diademteich',
-      name_fr: 'Mares du quadrant sud-ouest',
-      name_ko: '\ub514\uc544\ub380 \uc81c\ub3c4 \ub0a8\uc11c\ucabd \uc5f0\ubabb',
-      territory_id: 0,
-      placename_id: 10002,
-    },
-    '10003': {
-      _id: 10003,
-      name_en: 'Northern Diadem Lake',
-      name_ja: '\u30c7\u30a3\u30a2\u30c7\u30e0\u8af8\u5cf6\u306e\u5317\u897f\u6c60',
-      name_de: 'N\u00f6rdlicher Diademteich',
-      name_fr: '\u00c9tang du quadrant nord-ouest',
-      name_ko: '\ub514\uc544\ub380 \uc81c\ub3c4 \ubd81\uc11c\ucabd \uc5f0\ubabb',
-      territory_id: 0,
-      placename_id: 10003,
-    },
-    '10004': {
-      _id: 10004,
-      name_en: 'Blustery Cloudtop',
-      name_ja: '\u98a8\u5439\u304d\u629c\u3051\u308b\u96f2\u6d77',
-      name_de: 'Tosende Wolken',
-      name_fr: 'Cimes venteuses',
-      name_ko: '\ubc14\ub78c\uc774 \uc9c0\ub098\ub294 \uad6c\ub984\ubc14\ub2e4',
-      territory_id: 0,
-      placename_id: 10004,
-    },
-    '10005': {
-      _id: 10005,
-      name_en: 'Calm Cloudtop',
-      name_ja: '\u98a8\u7a4f\u3084\u304b\u306a\u96f2\u6d77',
-      name_de: 'Sanfte Wolken',
-      name_fr: 'Cimes calmes',
-      name_ko: '\ubc14\ub78c\uc774 \uc628\ud654\ud55c \uad6c\ub984\ubc14\ub2e4',
-      territory_id: 0,
-      placename_id: 10005,
-    },
-    '10006': {
-      _id: 10006,
-      name_en: 'Swirling Cloudtop',
-      name_ja: '\u98a8\u6e26\u5dfb\u304f\u96f2\u6d77',
-      name_de: 'Wirbelnde Wolken',
-      name_fr: 'Cimes tumultueuses',
-      name_ko: '\ubc14\ub78c\uc774 \ud718\ub3c4\ub294 \uad6c\ub984\ubc14\ub2e4',
-      territory_id: 0,
-      placename_id: 10006,
-    },
-    '10007': {
-      _id: 10007,
-      name_en: 'Windswept Cloudtop',
-      name_ja: '\u98a8\u5439\u304d\u4e0a\u304c\u308b\u96f2\u6d77',
-      name_de: 'Sturmumtostes Wolkenmeer',
-      name_fr: 'Cimes \u00e9vent\u00e9es',
-      name_ko: 'Windswept Cloudtop',
-      territory_id: 0,
-      placename_id: 10007,
-    },
-    '10008': {
-      _id: 10008,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 10008,
-    },
-    '10009': {
-      _id: 10009,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 10009,
-    },
-    '10010': {
-      _id: 10010,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 10010,
-    },
-    '10011': {
-      _id: 10011,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 10011,
-    },
-    '10012': {
-      _id: 10012,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 10012,
-    },
-    '10013': {
-      _id: 10013,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 10013,
-    },
-    '10014': {
-      _id: 10014,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 10014,
-    },
-    '10015': {
-      _id: 10015,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 10015,
-    },
-    '10016': {
-      _id: 10016,
-      name_en: '',
-      name_ja: '',
-      name_de: '',
-      name_fr: '',
-      name_ko: '',
-      territory_id: 0,
-      placename_id: 10016,
+      map_coords: [26.0244140625, 36.73486328125, 600],
     },
   },
   SPEARFISHING_SPOTS: {
@@ -20982,11 +20950,29 @@ export const DATA = {
       name_ko: 'Fuchsia Bloom',
       icon: '028479',
     },
+    '31129': {
+      _id: 31129,
+      name_en: 'Petal Shell',
+      name_ja: '\u6885\u82b1\u8c9d',
+      name_de: 'Pflaumenbl\u00fcte',
+      name_fr: 'Fleur-de-prunier',
+      name_ko: 'Petal Shell',
+      icon: '029419',
+    },
+    '31134': {
+      _id: 31134,
+      name_en: 'Allagan Hunter',
+      name_ja: '\u30a2\u30e9\u30ac\u30f3\u30cf\u30f3\u30bf\u30fc',
+      name_de: 'Allagischer J\u00e4ger',
+      name_fr: 'Chasseur allagois',
+      name_ko: 'Allagan Hunter',
+      icon: '029462',
+    },
   },
-  // 天气预报数据
   WEATHER_RATES: {
     '128': {
       map_id: 11,
+      map_scale: 200,
       zone_id: 28,
       region_id: 22,
       weather_rates: [
@@ -20999,6 +20985,7 @@ export const DATA = {
     },
     '129': {
       map_id: 12,
+      map_scale: 200,
       zone_id: 29,
       region_id: 22,
       weather_rates: [
@@ -21011,6 +20998,7 @@ export const DATA = {
     },
     '130': {
       map_id: 13,
+      map_scale: 200,
       zone_id: 40,
       region_id: 24,
       weather_rates: [
@@ -21023,6 +21011,7 @@ export const DATA = {
     },
     '131': {
       map_id: 14,
+      map_scale: 200,
       zone_id: 41,
       region_id: 24,
       weather_rates: [
@@ -21035,6 +21024,7 @@ export const DATA = {
     },
     '132': {
       map_id: 2,
+      map_scale: 200,
       zone_id: 52,
       region_id: 23,
       weather_rates: [
@@ -21049,6 +21039,7 @@ export const DATA = {
     },
     '133': {
       map_id: 3,
+      map_scale: 200,
       zone_id: 53,
       region_id: 23,
       weather_rates: [
@@ -21063,6 +21054,7 @@ export const DATA = {
     },
     '134': {
       map_id: 15,
+      map_scale: 100,
       zone_id: 30,
       region_id: 22,
       weather_rates: [
@@ -21076,6 +21068,7 @@ export const DATA = {
     },
     '135': {
       map_id: 16,
+      map_scale: 100,
       zone_id: 31,
       region_id: 22,
       weather_rates: [
@@ -21089,6 +21082,7 @@ export const DATA = {
     },
     '137': {
       map_id: 17,
+      map_scale: 100,
       zone_id: 32,
       region_id: 22,
       weather_rates: [
@@ -21102,6 +21096,7 @@ export const DATA = {
     },
     '138': {
       map_id: 18,
+      map_scale: 100,
       zone_id: 33,
       region_id: 22,
       weather_rates: [
@@ -21115,6 +21110,7 @@ export const DATA = {
     },
     '139': {
       map_id: 19,
+      map_scale: 100,
       zone_id: 34,
       region_id: 22,
       weather_rates: [
@@ -21128,6 +21124,7 @@ export const DATA = {
     },
     '140': {
       map_id: 20,
+      map_scale: 100,
       zone_id: 42,
       region_id: 24,
       weather_rates: [
@@ -21140,6 +21137,7 @@ export const DATA = {
     },
     '141': {
       map_id: 21,
+      map_scale: 100,
       zone_id: 43,
       region_id: 24,
       weather_rates: [
@@ -21153,6 +21151,7 @@ export const DATA = {
     },
     '145': {
       map_id: 22,
+      map_scale: 100,
       zone_id: 44,
       region_id: 24,
       weather_rates: [
@@ -21166,6 +21165,7 @@ export const DATA = {
     },
     '146': {
       map_id: 23,
+      map_scale: 100,
       zone_id: 45,
       region_id: 24,
       weather_rates: [
@@ -21178,6 +21178,7 @@ export const DATA = {
     },
     '147': {
       map_id: 24,
+      map_scale: 100,
       zone_id: 46,
       region_id: 24,
       weather_rates: [
@@ -21189,6 +21190,7 @@ export const DATA = {
     },
     '148': {
       map_id: 4,
+      map_scale: 100,
       zone_id: 54,
       region_id: 23,
       weather_rates: [
@@ -21203,6 +21205,7 @@ export const DATA = {
     },
     '152': {
       map_id: 5,
+      map_scale: 100,
       zone_id: 55,
       region_id: 23,
       weather_rates: [
@@ -21217,6 +21220,7 @@ export const DATA = {
     },
     '153': {
       map_id: 6,
+      map_scale: 100,
       zone_id: 56,
       region_id: 23,
       weather_rates: [
@@ -21231,6 +21235,7 @@ export const DATA = {
     },
     '154': {
       map_id: 7,
+      map_scale: 100,
       zone_id: 57,
       region_id: 23,
       weather_rates: [
@@ -21245,6 +21250,7 @@ export const DATA = {
     },
     '155': {
       map_id: 53,
+      map_scale: 100,
       zone_id: 63,
       region_id: 25,
       weather_rates: [
@@ -21258,6 +21264,7 @@ export const DATA = {
     },
     '156': {
       map_id: 25,
+      map_scale: 100,
       zone_id: 67,
       region_id: 26,
       weather_rates: [
@@ -21270,6 +21277,7 @@ export const DATA = {
     },
     '180': {
       map_id: 30,
+      map_scale: 100,
       zone_id: 350,
       region_id: 22,
       weather_rates: [
@@ -21282,6 +21290,7 @@ export const DATA = {
     },
     '339': {
       map_id: 72,
+      map_scale: 200,
       zone_id: 425,
       region_id: 22,
       weather_rates: [
@@ -21295,6 +21304,7 @@ export const DATA = {
     },
     '340': {
       map_id: 82,
+      map_scale: 200,
       zone_id: 426,
       region_id: 23,
       weather_rates: [
@@ -21309,6 +21319,7 @@ export const DATA = {
     },
     '341': {
       map_id: 83,
+      map_scale: 200,
       zone_id: 427,
       region_id: 24,
       weather_rates: [
@@ -21321,6 +21332,7 @@ export const DATA = {
     },
     '397': {
       map_id: 211,
+      map_scale: 95,
       zone_id: 2200,
       region_id: 25,
       weather_rates: [
@@ -21334,6 +21346,7 @@ export const DATA = {
     },
     '398': {
       map_id: 212,
+      map_scale: 95,
       zone_id: 2000,
       region_id: 498,
       weather_rates: [
@@ -21347,6 +21360,7 @@ export const DATA = {
     },
     '399': {
       map_id: 213,
+      map_scale: 95,
       zone_id: 2001,
       region_id: 498,
       weather_rates: [
@@ -21360,6 +21374,7 @@ export const DATA = {
     },
     '400': {
       map_id: 214,
+      map_scale: 95,
       zone_id: 2002,
       region_id: 498,
       weather_rates: [
@@ -21372,6 +21387,7 @@ export const DATA = {
     },
     '401': {
       map_id: 215,
+      map_scale: 95,
       zone_id: 2100,
       region_id: 497,
       weather_rates: [
@@ -21385,6 +21401,7 @@ export const DATA = {
     },
     '402': {
       map_id: 216,
+      map_scale: 95,
       zone_id: 2101,
       region_id: 497,
       weather_rates: [
@@ -21395,6 +21412,7 @@ export const DATA = {
     },
     '418': {
       map_id: 218,
+      map_scale: 200,
       zone_id: 2300,
       region_id: 25,
       weather_rates: [
@@ -21407,6 +21425,7 @@ export const DATA = {
     },
     '419': {
       map_id: 219,
+      map_scale: 200,
       zone_id: 2301,
       region_id: 25,
       weather_rates: [
@@ -21419,6 +21438,7 @@ export const DATA = {
     },
     '478': {
       map_id: 257,
+      map_scale: 400,
       zone_id: 2082,
       region_id: 498,
       weather_rates: [
@@ -21432,6 +21452,7 @@ export const DATA = {
     },
     '612': {
       map_id: 367,
+      map_scale: 100,
       zone_id: 2406,
       region_id: 2400,
       weather_rates: [
@@ -21444,6 +21465,7 @@ export const DATA = {
     },
     '613': {
       map_id: 371,
+      map_scale: 100,
       zone_id: 2409,
       region_id: 2401,
       weather_rates: [
@@ -21456,6 +21478,7 @@ export const DATA = {
     },
     '614': {
       map_id: 354,
+      map_scale: 100,
       zone_id: 2410,
       region_id: 2401,
       weather_rates: [
@@ -21469,6 +21492,7 @@ export const DATA = {
     },
     '620': {
       map_id: 368,
+      map_scale: 100,
       zone_id: 2407,
       region_id: 2400,
       weather_rates: [
@@ -21482,6 +21506,7 @@ export const DATA = {
     },
     '621': {
       map_id: 369,
+      map_scale: 100,
       zone_id: 2408,
       region_id: 2400,
       weather_rates: [
@@ -21494,6 +21519,7 @@ export const DATA = {
     },
     '622': {
       map_id: 372,
+      map_scale: 100,
       zone_id: 2411,
       region_id: 2401,
       weather_rates: [
@@ -21508,6 +21534,7 @@ export const DATA = {
     },
     '628': {
       map_id: 370,
+      map_scale: 200,
       zone_id: 2404,
       region_id: 2402,
       weather_rates: [
@@ -21520,6 +21547,7 @@ export const DATA = {
     },
     '635': {
       map_id: 366,
+      map_scale: 200,
       zone_id: 2403,
       region_id: 2400,
       weather_rates: [
@@ -21532,6 +21560,7 @@ export const DATA = {
     },
     '641': {
       map_id: 364,
+      map_scale: 200,
       zone_id: 2412,
       region_id: 2402,
       weather_rates: [
@@ -21544,6 +21573,7 @@ export const DATA = {
     },
     '813': {
       map_id: 491,
+      map_scale: 100,
       zone_id: 2953,
       region_id: 2950,
       weather_rates: [
@@ -21557,6 +21587,7 @@ export const DATA = {
     },
     '814': {
       map_id: 492,
+      map_scale: 100,
       zone_id: 2954,
       region_id: 2950,
       weather_rates: [
@@ -21570,6 +21601,7 @@ export const DATA = {
     },
     '815': {
       map_id: 493,
+      map_scale: 100,
       zone_id: 2955,
       region_id: 2950,
       weather_rates: [
@@ -21582,6 +21614,7 @@ export const DATA = {
     },
     '816': {
       map_id: 494,
+      map_scale: 100,
       zone_id: 2956,
       region_id: 2950,
       weather_rates: [
@@ -21595,6 +21628,7 @@ export const DATA = {
     },
     '817': {
       map_id: 495,
+      map_scale: 100,
       zone_id: 2957,
       region_id: 2950,
       weather_rates: [
@@ -21608,6 +21642,7 @@ export const DATA = {
     },
     '818': {
       map_id: 496,
+      map_scale: 100,
       zone_id: 2958,
       region_id: 2950,
       weather_rates: [
@@ -21618,6 +21653,7 @@ export const DATA = {
     },
     '819': {
       map_id: 497,
+      map_scale: 200,
       zone_id: 2951,
       region_id: 2950,
       weather_rates: [
@@ -21631,6 +21667,7 @@ export const DATA = {
     },
     '820': {
       map_id: 498,
+      map_scale: 200,
       zone_id: 2952,
       region_id: 2950,
       weather_rates: [
@@ -21643,7 +21680,6 @@ export const DATA = {
       ],
     },
   },
-  // 天气
   WEATHER_TYPES: {
     '1': {
       name_en: 'Clear Skies',
@@ -21782,7 +21818,6 @@ export const DATA = {
       icon: '060220',
     },
   },
-  // 地图上大区域
   REGIONS: {
     '22': {
       name_en: 'La Noscea',
@@ -21862,7 +21897,6 @@ export const DATA = {
       name_ko: '\ub178\ub974\ube0c\ub780\ud2b8',
     },
   },
-  // 地图区域
   ZONES: {
     '28': {
       name_en: 'Limsa Lominsa Upper Decks',
@@ -22229,7 +22263,6 @@ export const DATA = {
       name_ko: '\ud15c\ud398\uc2a4\ud2b8',
     },
   },
-  // 传承录
   FOLKLORE: {
     '2000': {
       book_en: 'Coerthan Mining Folklore',
@@ -22572,7 +22605,7 @@ export const DATA = {
       book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
       book_de: 'Bergbau-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources g\u00e9ologiques',
-      book_ko: 'Geological Resources',
+      book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \uad11\ubb3c \uc790\uc6d0',
       name_en: '',
       name_ja: '',
       name_de: '',
@@ -22584,7 +22617,7 @@ export const DATA = {
       book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
       book_de: 'Bergbau-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources g\u00e9ologiques',
-      book_ko: 'Geological Resources',
+      book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \uad11\ubb3c \uc790\uc6d0',
       name_en: '',
       name_ja: '',
       name_de: '',
@@ -22596,7 +22629,7 @@ export const DATA = {
       book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
       book_de: 'Botanik-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources botaniques',
-      book_ko: 'Botanical Resources',
+      book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \ucd08\ubaa9 \uc790\uc6d0',
       name_en: '',
       name_ja: '',
       name_de: '',
@@ -22608,7 +22641,7 @@ export const DATA = {
       book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
       book_de: 'Botanik-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources botaniques',
-      book_ko: 'Botanical Resources',
+      book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \ucd08\ubaa9 \uc790\uc6d0',
       name_en: '',
       name_ja: '',
       name_de: '',
@@ -22668,11 +22701,11 @@ export const DATA = {
       name_ko: '',
     },
     '2212': {
-      book_en: '',
-      book_ja: '',
-      book_de: '',
-      book_fr: '',
-      book_ko: '',
+      book_en: 'Geological Resources',
+      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
+      book_de: 'Bergbau-Almanach der Himmelsstadt',
+      book_fr: 'Azur\u00e9e : ressources g\u00e9ologiques',
+      book_ko: 'Geological Resources',
       name_en: '',
       name_ja: '',
       name_de: '',
@@ -22680,11 +22713,11 @@ export const DATA = {
       name_ko: '',
     },
     '2213': {
-      book_en: '',
-      book_ja: '',
-      book_de: '',
-      book_fr: '',
-      book_ko: '',
+      book_en: 'Geological Resources',
+      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
+      book_de: 'Bergbau-Almanach der Himmelsstadt',
+      book_fr: 'Azur\u00e9e : ressources g\u00e9ologiques',
+      book_ko: 'Geological Resources',
       name_en: '',
       name_ja: '',
       name_de: '',
@@ -22692,11 +22725,11 @@ export const DATA = {
       name_ko: '',
     },
     '2214': {
-      book_en: '',
-      book_ja: '',
-      book_de: '',
-      book_fr: '',
-      book_ko: '',
+      book_en: 'Botanical Resources',
+      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
+      book_de: 'Botanik-Almanach der Himmelsstadt',
+      book_fr: 'Azur\u00e9e : ressources botaniques',
+      book_ko: 'Botanical Resources',
       name_en: '',
       name_ja: '',
       name_de: '',
@@ -22704,11 +22737,11 @@ export const DATA = {
       name_ko: '',
     },
     '2215': {
-      book_en: '',
-      book_ja: '',
-      book_de: '',
-      book_fr: '',
-      book_ko: '',
+      book_en: 'Botanical Resources',
+      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
+      book_de: 'Botanik-Almanach der Himmelsstadt',
+      book_fr: 'Azur\u00e9e : ressources botaniques',
+      book_ko: 'Botanical Resources',
       name_en: '',
       name_ja: '',
       name_de: '',
@@ -22716,11 +22749,12 @@ export const DATA = {
       name_ko: '',
     },
     '2216': {
-      book_en: '',
-      book_ja: '',
-      book_de: '',
-      book_fr: '',
-      book_ko: '',
+      book_en: 'Geological Skysteel Resources II',
+      book_ja:
+        '\u30b9\u30ab\u30a4\u30b9\u30c1\u30fc\u30eb\u30c4\u30fc\u30eb\uff1a\u9271\u7269\u8cc7\u6e90\uff08\u305d\u306e2\uff09',
+      book_de: 'Bergbau-Almanach der Werkst\u00e4tte (2)',
+      book_fr: 'Outils de Cielacier : ressources g\u00e9ologiques (2)',
+      book_ko: 'Geological Skysteel Resources II',
       name_en: '',
       name_ja: '',
       name_de: '',
@@ -22740,11 +22774,12 @@ export const DATA = {
       name_ko: '',
     },
     '2218': {
-      book_en: '',
-      book_ja: '',
-      book_de: '',
-      book_fr: '',
-      book_ko: '',
+      book_en: 'Botanical Skysteel Resources II',
+      book_ja:
+        '\u30b9\u30ab\u30a4\u30b9\u30c1\u30fc\u30eb\u30c4\u30fc\u30eb\uff1a\u8349\u6728\u8cc7\u6e90\uff08\u305d\u306e2\uff09',
+      book_de: 'Botanik-Almanach der Werkst\u00e4tte (2)',
+      book_fr: 'Outils de Cielacier : ressources botaniques (2)',
+      book_ko: 'Botanical Skysteel Resources II',
       name_en: '',
       name_ja: '',
       name_de: '',
@@ -23016,225 +23051,4 @@ export const DATA = {
       name_ko: '\uc5b4\ub958 \uc804\uc2b9\ub85d: \ub178\ub974\ube0c\ub780\ud2b8',
     },
   },
-  // 鱼王、鱼皇
-  BIG_FISH: [
-    7678,
-    7679,
-    7680,
-    7681,
-    7682,
-    7683,
-    7684,
-    7685,
-    7686,
-    7687,
-    7688,
-    7689,
-    7690,
-    7691,
-    7692,
-    7693,
-    7694,
-    7695,
-    7696,
-    7697,
-    7698,
-    7699,
-    7700,
-    7701,
-    7702,
-    7703,
-    7704,
-    7705,
-    7706,
-    7707,
-    7708,
-    7709,
-    7710,
-    7711,
-    7712,
-    7713,
-    7714,
-    7902,
-    7903,
-    7904,
-    7905,
-    7906,
-    7907,
-    7908,
-    7909,
-    7910,
-    7911,
-    7912,
-    7913,
-    7914,
-    7915,
-    7916,
-    7917,
-    7918,
-    7919,
-    7920,
-    7921,
-    7922,
-    7923,
-    7924,
-    7925,
-    7926,
-    7927,
-    7928,
-    7929,
-    7930,
-    7931,
-    7932,
-    7933,
-    7934,
-    7935,
-    7936,
-    7937,
-    7938,
-    7939,
-    7940,
-    7941,
-    7942,
-    7943,
-    7944,
-    7945,
-    7946,
-    7947,
-    7948,
-    7949,
-    7950,
-    7951,
-    8752,
-    8753,
-    8754,
-    8755,
-    8756,
-    8757,
-    8758,
-    8759,
-    8760,
-    8761,
-    8762,
-    8763,
-    8764,
-    8765,
-    8766,
-    8767,
-    8768,
-    8769,
-    8770,
-    8771,
-    8772,
-    8773,
-    8774,
-    8775,
-    8776,
-    15626,
-    15627,
-    15628,
-    15629,
-    15630,
-    15631,
-    15632,
-    15633,
-    15634,
-    15635,
-    15636,
-    15637,
-    15638,
-    16742,
-    16743,
-    16744,
-    16745,
-    16746,
-    16747,
-    16748,
-    16749,
-    16750,
-    16751,
-    16752,
-    16753,
-    16754,
-    16756,
-    17577,
-    17578,
-    17579,
-    17580,
-    17581,
-    17582,
-    17583,
-    17584,
-    17585,
-    17586,
-    17587,
-    17588,
-    17589,
-    17590,
-    17591,
-    17592,
-    17593,
-    20143,
-    23057,
-    23058,
-    23059,
-    23060,
-    23061,
-    23062,
-    23063,
-    23064,
-    23065,
-    23066,
-    23067,
-    23068,
-    23069,
-    23070,
-    24205,
-    24206,
-    24207,
-    24208,
-    24209,
-    24210,
-    24211,
-    24212,
-    24213,
-    24214,
-    24215,
-    24216,
-    24217,
-    24218,
-    24881,
-    24882,
-    24883,
-    24884,
-    24885,
-    24886,
-    24887,
-    24888,
-    24889,
-    24890,
-    24891,
-    24892,
-    24893,
-    24990,
-    24991,
-    24992,
-    24993,
-    24994,
-    24995,
-    28065,
-    28066,
-    28067,
-    28068,
-    28069,
-    28070,
-    28071,
-    28072,
-    28925,
-    28926,
-    28927,
-    28928,
-    28929,
-    28930,
-  ],
 }
