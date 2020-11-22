@@ -318,6 +318,7 @@ const AVAILABLE_HELP = new Set([
   '污流下游',
   '执掌峡谷',
   '静语庄园',
+  '缪栎之泪',
 ])
 
 export default {
