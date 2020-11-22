@@ -266,6 +266,21 @@
           <div class="text-h6">Version 0.3.1</div>
           <ul>
             <li>
+              界面颜色调整：
+              <ul>
+                <li>
+                  窗口期中的颜色从
+                  <v-chip small color="#572746"></v-chip>
+                  调整为<v-chip small color="#183027"></v-chip>
+                </li>
+                <li>
+                  已完成的颜色从
+                  <v-chip small color="#214040"></v-chip>
+                  调整为<v-chip small color="#0c2242"></v-chip>
+                </li>
+              </ul>
+            </li>
+            <li>
               更新
               <v-chip x-small>5.3</v-chip>
               和
