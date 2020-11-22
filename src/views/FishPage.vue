@@ -47,7 +47,7 @@
                     </template>
                   </v-banner>
                   <v-tabs-items v-model="activeTabIndex">
-                    <v-tab-item key="pin" class="list-wrapper">
+                    <v-tab-item key="pin" class="list-wrapper" :transition="false" :reverse-transition="false">
                       <fish-list
                         :fish-list="pinnedFishList"
                         :fish-list-time-part="fishListTimePart"
@@ -63,7 +63,7 @@
                         </template>
                       </fish-list>
                     </v-tab-item>
-                    <v-tab-item key="normal" class="list-wrapper">
+                    <v-tab-item key="normal" class="list-wrapper" :transition="false" :reverse-transition="false">
                       <fish-list
                         :fish-list="sortedFilteredFishList"
                         :fish-list-time-part="fishListTimePart"
@@ -78,7 +78,7 @@
                         </template>
                       </fish-list>
                     </v-tab-item>
-                    <v-tab-item key="notification" class="list-wrapper">
+                    <v-tab-item key="notification" class="list-wrapper" :transition="false" :reverse-transition="false">
                       <fish-list
                         :fish-list="toBeNotifiedFishList"
                         :fish-list-time-part="fishListTimePart"
