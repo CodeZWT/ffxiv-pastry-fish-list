@@ -16,8 +16,8 @@
         <div v-else class="main-pane">
           <v-container :class="{ 'py-0': true, 'px-0': isMobile }">
             <div>
-              <div :class="{ 'filter-wrapper': true, 'show-filter': showFilter }">
-                <fish-filter :filters="filters" @input="onFiltersUpdate" />
+              <div class="filter-wrapper">
+                <fish-filter :show="showFilter" :filters="filters" @input="onFiltersUpdate" />
               </div>
               <div :class="{ 'main-area': true, 'show-filter': showFilter }">
                 <div style="width: 100%">
@@ -294,9 +294,8 @@ export default {
 .filter-wrapper
   z-index: 4
 
-  &:not(.show-filter)
-
-    display: none
+  //&:not(.show-filter)
+  //  display: none
 
 //.main-area::v-deep
   position: relative

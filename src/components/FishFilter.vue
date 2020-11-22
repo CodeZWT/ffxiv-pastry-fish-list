@@ -1,116 +1,128 @@
 <template>
-  <v-card v-if="!loading" color="inner" class="mb-2">
-    <template v-if="isNormalTabActive">
+  <v-expand-transition>
+    <v-card v-if="show && !loading" color="inner" class="mb-2">
+      <v-expand-transition>
+        <template>
+          <div v-if="isNormalTabActive">
+            <v-card-text>
+              <!-- Patches -->
+              <v-row no-gutters>
+                <v-col>
+                  <div class="subtitle-2">{{ $t('filter.patch') }}</div>
+                </v-col>
+              </v-row>
+              <v-row wrap no-gutters>
+                <v-col v-for="version in exVersion" :key="version" class="col-12 col-md-6 my-1">
+                  <div style="align-items: center">
+                    <click-helper
+                      v-if="patchSelectedIndices[version].length === patches[version].length"
+                      @click="uncheckAll(version)"
+                    >
+                      <v-btn text small rounded>
+                        {{ version }}
+                        <v-icon>mdi-close</v-icon>
+                      </v-btn>
+                    </click-helper>
+                    <click-helper v-else @click="checkAll(version)">
+                      <v-btn text small rounded>
+                        {{ version }}
+                        <v-icon>mdi-check-all</v-icon>
+                      </v-btn>
+                    </click-helper>
+                    <v-btn-toggle
+                      v-model="patchSelectedIndices[version]"
+                      rounded
+                      dense
+                      multiple
+                      active-class="primary"
+                      @change="onChange"
+                    >
+                      <v-btn small v-for="patch in patches[version]" :key="patch">
+                        {{ patch.toFixed(1) }}
+                      </v-btn>
+                    </v-btn-toggle>
+                  </div>
+                </v-col>
+              </v-row>
+              <!-- Mark & BigFish -->
+              <v-row no-gutters>
+                <v-col class="col-12 col-md-6">
+                  <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
+                  <v-btn-toggle
+                    v-model="completeType"
+                    mandatory
+                    rounded
+                    active-class="primary"
+                    dense
+                    @change="onChange"
+                  >
+                    <v-btn small v-for="type in completeFilterTypes" :key="type">
+                      {{ $t(`filter.mark.${type}`) }}
+                    </v-btn>
+                  </v-btn-toggle>
+                </v-col>
+                <v-col cols="6">
+                  <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
+                  <v-btn-toggle v-model="bigFishType" mandatory rounded active-class="primary" dense @change="onChange">
+                    <v-btn small v-for="type in bigFishFilterTypes" :key="type">
+                      {{ $t(`filter.bigFish.${type}`) }}
+                    </v-btn>
+                  </v-btn-toggle>
+                  <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-icon dark v-bind="attrs" v-on="on">
+                        mdi-help-circle-outline
+                      </v-icon>
+                    </template>
+                    <div>
+                      默认列表中不包括没有时间与天气限制的普通鱼。（当前版本的鱼除外，仍会显示）
+                    </div>
+                    <div>
+                      请直接搜索，或进入图鉴页面查看。也可以使用固定功能可以将鱼显示在固定列表中。
+                    </div>
+                  </v-tooltip>
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-divider />
+            <v-card-text>
+              <v-row no-gutters>
+                <v-col>
+                  <div class="subtitle-2">{{ $t('filter.showFirstNFish.title') }}</div>
+                </v-col>
+              </v-row>
+              <v-row no-gutters>
+                <v-col>
+                  <v-btn-toggle v-model="fishNType" dense rounded active-class="primary" @change="onChange">
+                    <v-btn small v-for="type in fishNFilterTypes" :key="type">
+                      {{ $t(`filter.showFirstNFish.${type}`) }}
+                    </v-btn>
+                  </v-btn-toggle>
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-divider />
+          </div>
+        </template>
+      </v-expand-transition>
       <v-card-text>
-        <!-- Patches -->
         <v-row no-gutters>
           <v-col>
-            <div class="subtitle-2">{{ $t('filter.patch') }}</div>
+            <div class="subtitle-2">{{ $t('filter.sorter.title') }}</div>
           </v-col>
         </v-row>
-        <v-row wrap no-gutters>
-          <v-col v-for="version in exVersion" :key="version" class="col-12 col-md-6 my-1">
-            <div style="align-items: center">
-              <click-helper
-                v-if="patchSelectedIndices[version].length === patches[version].length"
-                @click="uncheckAll(version)"
-              >
-                <v-btn text small rounded>
-                  {{ version }}
-                  <v-icon>mdi-close</v-icon>
-                </v-btn>
-              </click-helper>
-              <click-helper v-else @click="checkAll(version)">
-                <v-btn text small rounded>
-                  {{ version }}
-                  <v-icon>mdi-check-all</v-icon>
-                </v-btn>
-              </click-helper>
-              <v-btn-toggle
-                v-model="patchSelectedIndices[version]"
-                rounded
-                dense
-                multiple
-                active-class="primary"
-                @change="onChange"
-              >
-                <v-btn small v-for="patch in patches[version]" :key="patch">
-                  {{ patch.toFixed(1) }}
-                </v-btn>
-              </v-btn-toggle>
-            </div>
-          </v-col>
-        </v-row>
-        <!-- Mark & BigFish -->
         <v-row no-gutters>
-          <v-col class="col-12 col-md-6">
-            <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
-            <v-btn-toggle v-model="completeType" mandatory rounded active-class="primary" dense @change="onChange">
-              <v-btn small v-for="type in completeFilterTypes" :key="type">
-                {{ $t(`filter.mark.${type}`) }}
+          <v-col>
+            <v-btn-toggle v-model="sorterType" dense rounded mandatory active-class="primary" @change="onChange">
+              <v-btn small v-for="type in fishSorterTypes" :key="type">
+                {{ $t(`filter.sorter.${type}`) }}
               </v-btn>
             </v-btn-toggle>
-          </v-col>
-          <v-col cols="6">
-            <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
-            <v-btn-toggle v-model="bigFishType" mandatory rounded active-class="primary" dense @change="onChange">
-              <v-btn small v-for="type in bigFishFilterTypes" :key="type">
-                {{ $t(`filter.bigFish.${type}`) }}
-              </v-btn>
-            </v-btn-toggle>
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on, attrs }">
-                <v-icon dark v-bind="attrs" v-on="on">
-                  mdi-help-circle-outline
-                </v-icon>
-              </template>
-              <div>
-                默认列表中不包括没有时间与天气限制的普通鱼。（当前版本的鱼除外，仍会显示）
-              </div>
-              <div>
-                请直接搜索，或进入图鉴页面查看。也可以使用固定功能可以将鱼显示在固定列表中。
-              </div>
-            </v-tooltip>
           </v-col>
         </v-row>
       </v-card-text>
-      <v-divider />
-      <v-card-text>
-        <v-row no-gutters>
-          <v-col>
-            <div class="subtitle-2">{{ $t('filter.showFirstNFish.title') }}</div>
-          </v-col>
-        </v-row>
-        <v-row no-gutters>
-          <v-col>
-            <v-btn-toggle v-model="fishNType" dense rounded active-class="primary" @change="onChange">
-              <v-btn small v-for="type in fishNFilterTypes" :key="type">
-                {{ $t(`filter.showFirstNFish.${type}`) }}
-              </v-btn>
-            </v-btn-toggle>
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </template>
-    <v-divider />
-
-    <v-card-text>
-      <v-row no-gutters>
-        <v-col>
-          <div class="subtitle-2">{{ $t('filter.sorter.title') }}</div>
-        </v-col>
-      </v-row>
-      <v-row no-gutters>
-        <v-col>
-          <v-btn-toggle v-model="sorterType" dense rounded mandatory active-class="primary" @change="onChange">
-            <v-btn small v-for="type in fishSorterTypes" :key="type">
-              {{ $t(`filter.sorter.${type}`) }}
-            </v-btn>
-          </v-btn-toggle>
-        </v-col>
-      </v-row>
-    </v-card-text>
-  </v-card>
+    </v-card>
+  </v-expand-transition>
 </template>
 
 <script>
@@ -133,6 +145,10 @@ export default {
   name: 'FishFilter',
   components: { ClickHelper },
   props: {
+    show: {
+      type: Boolean,
+      default: true,
+    },
     filters: {
       type: Object,
       default: () => ({}),
