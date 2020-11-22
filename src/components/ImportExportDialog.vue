@@ -239,11 +239,11 @@ export default {
           this.setUserData(data)
           this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
         } else {
-          this.showInfo(this.$t('importExport.dialog.message.importError'), 'tertiary')
+          this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
         }
       } catch (e) {
         console.error('import error', e)
-        this.showInfo(this.$t('importExport.dialog.message.importError'), 'tertiary')
+        this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
       }
     },
     importDataFromFishTracker() {
@@ -257,11 +257,11 @@ export default {
           this.setUserData(data)
           this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
         } else {
-          this.showInfo(this.$t('importExport.dialog.message.importError'), 'tertiary')
+          this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
         }
       } catch (e) {
         console.error('import error', e)
-        this.showInfo(this.$t('importExport.dialog.message.importError'), 'tertiary')
+        this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
       }
     },
     validateImportData(data, sample) {

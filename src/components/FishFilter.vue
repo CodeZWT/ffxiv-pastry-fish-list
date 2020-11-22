@@ -1,5 +1,5 @@
 <template>
-  <v-card v-if="!loading" color="grey darken-3">
+  <v-card v-if="!loading" color="inner">
     <template v-if="isNormalTabActive">
       <v-card-text>
         <!-- Patches -->
@@ -28,17 +28,15 @@
               </click-helper>
               <v-btn-toggle
                 v-model="patchSelectedIndices[version]"
-                column
+                rounded
                 dense
                 multiple
                 active-class="primary"
                 @change="onChange"
               >
-                <click-helper v-for="patch in patches[version]" :key="patch">
-                  <v-btn small>
-                    {{ patch.toFixed(1) }}
-                  </v-btn>
-                </click-helper>
+                <v-btn small v-for="patch in patches[version]" :key="patch">
+                  {{ patch.toFixed(1) }}
+                </v-btn>
               </v-btn-toggle>
             </div>
           </v-col>
@@ -47,18 +45,18 @@
         <v-row no-gutters>
           <v-col class="col-12 col-md-6">
             <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
-            <v-btn-toggle v-model="completeType" mandatory active-class="primary" dense @change="onChange">
-              <click-helper v-for="type in completeFilterTypes" :key="type">
-                <v-btn small>{{ $t(`filter.mark.${type}`) }}</v-btn>
-              </click-helper>
+            <v-btn-toggle v-model="completeType" mandatory rounded active-class="primary" dense @change="onChange">
+              <v-btn small v-for="type in completeFilterTypes" :key="type">
+                {{ $t(`filter.mark.${type}`) }}
+              </v-btn>
             </v-btn-toggle>
           </v-col>
           <v-col cols="6">
             <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
-            <v-btn-toggle v-model="bigFishType" mandatory active-class="primary" dense @change="onChange">
-              <click-helper v-for="type in bigFishFilterTypes" :key="type">
-                <v-btn small>{{ $t(`filter.bigFish.${type}`) }}</v-btn>
-              </click-helper>
+            <v-btn-toggle v-model="bigFishType" mandatory rounded active-class="primary" dense @change="onChange">
+              <v-btn small v-for="type in bigFishFilterTypes" :key="type">
+                {{ $t(`filter.bigFish.${type}`) }}
+              </v-btn>
             </v-btn-toggle>
             <v-tooltip bottom color="secondary">
               <template v-slot:activator="{ on, attrs }">
@@ -85,12 +83,10 @@
         </v-row>
         <v-row no-gutters>
           <v-col>
-            <v-btn-toggle v-model="fishNType" dense active-class="primary" @change="onChange">
-              <click-helper v-for="type in fishNFilterTypes" :key="type">
-                <v-btn small>
-                  {{ $t(`filter.showFirstNFish.${type}`) }}
-                </v-btn>
-              </click-helper>
+            <v-btn-toggle v-model="fishNType" dense rounded active-class="primary" @change="onChange">
+              <v-btn small v-for="type in fishNFilterTypes" :key="type">
+                {{ $t(`filter.showFirstNFish.${type}`) }}
+              </v-btn>
             </v-btn-toggle>
           </v-col>
         </v-row>
@@ -106,12 +102,10 @@
       </v-row>
       <v-row no-gutters>
         <v-col>
-          <v-btn-toggle v-model="sorterType" dense active-class="primary" @change="onChange">
-            <click-helper v-for="type in fishSorterTypes" :key="type">
-              <v-btn small>
-                {{ $t(`filter.sorter.${type}`) }}
-              </v-btn>
-            </click-helper>
+          <v-btn-toggle v-model="sorterType" dense rounded mandatory active-class="primary" @change="onChange">
+            <v-btn small v-for="type in fishSorterTypes" :key="type">
+              {{ $t(`filter.sorter.${type}`) }}
+            </v-btn>
           </v-btn-toggle>
         </v-col>
       </v-row>

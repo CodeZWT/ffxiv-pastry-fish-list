@@ -17,7 +17,7 @@
       <v-dialog v-model="showClearConfirmDialog" max-width="330">
         <template v-slot:activator="{ on, attrs }">
           <click-helper v-bind="attrs" v-on="on">
-            <v-btn block color="tertiary">
+            <v-btn block color="error">
               <v-icon>mdi-playlist-remove</v-icon>
               <span>{{ $t('list.toBeNotified.clearAll') }}</span>
             </v-btn>
@@ -36,7 +36,7 @@
               </v-btn>
             </click-helper>
             <click-helper @click="onConfirmClear">
-              <v-btn color="tertiary" text>
+              <v-btn color="error" text>
                 {{ $t('list.toBeNotified.dialog.confirm') }}
               </v-btn>
             </click-helper>

@@ -4,6 +4,9 @@
       <v-card-title>
         {{ $t('top.setting') }}
       </v-card-title>
+      <v-card-subtitle>
+        {{ $t('top.setting') }}
+      </v-card-subtitle>
       <v-card-text class="py-0">
         <validation-observer ref="observer" v-slot="">
           <form>
@@ -76,7 +79,7 @@
                     v-else-if="notificationStatus === 'denied'"
                     label
                     class="mx-2"
-                    color="tertiary"
+                    color="error"
                     text-color="white"
                   >
                     <v-avatar left>
@@ -315,7 +318,7 @@ export default {
           } else if (status === 'denied') {
             this.showSnackbar({
               text: this.$t('setting.dialog.notification.message.requestNotificationPermissionDenied'),
-              color: 'tertiary',
+              color: 'error',
             })
           } else {
             this.showSnackbar({

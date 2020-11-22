@@ -5,7 +5,7 @@
     <!--      style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 4px; z-index: 1;border-radius: 2px"-->
     <!--      :class="color"-->
     <!--    />-->
-    <!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="tertiary" />-->
+    <!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="error" />-->
 
     <!--    <pin-button :value="transformedFishPart.pinned" @input="setPinned($event)" />-->
     <v-divider v-if="inPredator && mode !== 'CONTENT'" inset style="border-color: white" />

@@ -6,6 +6,7 @@
       :collapse="collapse"
       :class="{ 'fish-app-bar': true, 'rounded-pill': collapse, 'fish-app-bar--collapsed': collapse }"
       dense
+      color=""
     >
       <v-app-bar-nav-icon v-if="isMobile && !collapse" @click.stop="showNavi">
         <v-img v-if="!isMobile" :src="fisher" height="42" width="42" />
@@ -67,7 +68,7 @@
             :key="index"
             :class="{ 'primary--text': activeTabIndex === index }"
           >
-            <v-badge color="tertiary" :value="notification.cnt" :content="notification.cnt" style="z-index: 10">
+            <v-badge color="error" :value="notification.cnt" :content="notification.cnt" style="z-index: 10">
               <div class="d-flex">
                 <v-icon left small :color="activeTabIndex === index ? 'primary-text' : '#ffffff99'">
                   {{ TABS[index].icon }}
@@ -92,7 +93,7 @@
             <v-icon>mdi-filter</v-icon>
           </v-btn>
         </click-helper>
-        <v-switch v-model="$vuetify.theme.dark" class="theme-switch" />
+        <v-switch v-model="$vuetify.theme.dark" inset class="theme-switch" />
         <div v-if="!isMobile" class="d-flex flex-column ml-1">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
@@ -114,13 +115,7 @@
         <v-list dense>
           <v-list-item v-for="(notification, index) in listFishCnt" :key="index" @click="toPageSubList(index)">
             <v-list-item-icon>
-              <v-badge
-                color="tertiary"
-                :value="notification.cnt"
-                :content="notification.cnt"
-                style="z-index: 10"
-                overlap
-              >
+              <v-badge color="error" :value="notification.cnt" :content="notification.cnt" style="z-index: 10" overlap>
                 <v-icon>
                   {{ TABS[index].icon }}
                 </v-icon>
@@ -266,13 +261,18 @@
         <v-card-title>
           {{ $t('top.patchNote') }}
         </v-card-title>
+        <v-divider />
         <v-card-text style="max-height: 600px;">
           <div class="text-h6">Version 0.3.1</div>
           <ul>
             <li>
-              更新 <v-chip color="secondary" small>5.3</v-chip>和<v-chip color="secondary" small>5.35</v-chip>数据，文本暂时使用英文版本。
-              <div class="tertiary--text text-h6">为了便于查看，5.3以及5.35的普通鱼仍会显示在默认列表中。</div>
-              <div class="tertiary--text text-h6">之前版本没有任何时间天气限制的普通鱼请在图鉴中查找或直接搜索。</div>
+              更新
+              <v-chip x-small>5.3</v-chip>
+              和
+              <v-chip x-small>5.35</v-chip>
+              数据，文本暂时使用英文版本。
+              <div class="error--text text-h6">为了便于查看，5.3以及5.35的普通鱼仍会显示在默认列表中。</div>
+              <div class="error--text text-h6">之前版本没有任何时间天气限制的普通鱼请在图鉴中查找或直接搜索。</div>
             </li>
             <li>
               更新官方攻略本数据(涵盖4.2前数据)。
@@ -862,7 +862,7 @@ export default {
         } else if (status === 'denied') {
           this.showSnackbar({
             text: this.$t('setting.dialog.notification.message.requestNotificationPermissionDenied'),
-            color: 'tertiary',
+            color: 'error',
           })
         }
       })

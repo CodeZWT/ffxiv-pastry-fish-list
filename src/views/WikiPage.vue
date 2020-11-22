@@ -35,10 +35,11 @@
             dense
             activatable
             selectable
-            selected-color="primary"
             :search="searchText"
             :filter="spotMenuSearchFn"
             :open.sync="openedItems"
+            selected-color="primary"
+            color="selected"
             @update:active="onMenuItemActive"
           >
           </v-treeview>
