@@ -857,7 +857,7 @@ export default {
         if (status === 'default') {
           this.showSnackbar({
             text: this.$t('setting.dialog.notification.message.requestNotificationPermissionNotSelected'),
-            color: 'quaternary',
+            color: 'warn',
           })
         } else if (status === 'denied') {
           this.showSnackbar({

@@ -28,7 +28,7 @@
             <toggle-button v-if="!isMobile" :value="transformedFishPart.completed" @input="setCompleted($event)" />
           </div>
 
-          <v-badge v-if="inPredator" :content="fish.requiredCnt" color="quaternary black--text" overlap bottom bordered>
+          <v-badge v-if="inPredator" :content="fish.requiredCnt" color="predatorCnt black--text" overlap bottom bordered>
             <div style="width: 40px; height: 40px" :class="{ 'zoom-in-predator': inPredator }">
               <div :class="fish.icon" />
             </div>

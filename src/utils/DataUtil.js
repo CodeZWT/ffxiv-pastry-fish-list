@@ -306,9 +306,9 @@ export default {
   },
 
   TUG_ICON_COLOR: {
-    '!': 'success',
-    '! !': 'tertiary',
-    '! ! !': 'quinary',
+    '!': 'primary',
+    '! !': 'error',
+    '! ! !': 'warning',
   },
 
   HOOKSET_ICON: {
@@ -332,16 +332,16 @@ export default {
   ICON_FISH_EYES: '011103',
 
   ITEM_COLOR: {
-    FISHING: ['tertiary base', 'tertiary darken-2'],
+    FISHING: ['#22362b', 'primary darken-2'],
     WAITING: ['transparent', 'transparent'],
-    COMPLETED: ['success base', 'success darken-2'],
+    COMPLETED: ['#173251', 'success darken-2'],
     NORMAL: ['grey darken-3', 'grey darken-4'],
   },
 
   ITEM_BACKGROUND_COLOR: {
-    FISHING: ['#ad145766', '#880e4f66'],
-    COMPLETED: ['#00695c66', '#004d4066'],
-    WAITING: ['grey darken-3', 'grey darken-4'],
+    FISHING: ['#22362b', '#183027'],
+    COMPLETED: ['#173251', '#0c2242'],
+    WAITING: ['#2d2d32', '#272727'],
   },
 
   PATCH_MAX: 5.35,
