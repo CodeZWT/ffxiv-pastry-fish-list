@@ -5,15 +5,21 @@
     </v-col>
     <v-col cols="12">
       <div v-for="(predator, index) in fish.predators" :key="predator._id" style="position: relative">
-        <v-divider v-if="index > 0" inset style="border-color: white"/>
-        <fish-info-row :fish="predator" :fish-time-part="predator.fishTimePart" in-predator :mode="mode" show-constraints-instead/>
+        <v-divider v-if="index > 0" inset style="border-color: white" />
+        <fish-info-row
+          :fish="predator"
+          :fish-time-part="predator.fishTimePart"
+          in-predator
+          :mode="mode"
+          show-constraints-instead
+        />
       </div>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import FishInfoRow from '@/components/FishInfoRow'
+import FishInfoRow from '@/components/FishInfoRow/FishInfoRow'
 import { mapGetters } from 'vuex'
 
 export default {

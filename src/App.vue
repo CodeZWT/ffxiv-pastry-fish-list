@@ -1056,6 +1056,7 @@ export default {
           rate: rate,
           rateText: ((rate ?? 1) * 100).toPrecision(2) + '%',
           isPredator: isPredator,
+          anglerFishId: fish.anglerFishId,
           predators: this.assembleFish(DataUtil.getPredators(fish, this.allFish), true),
         }
       })

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import FishInfoRow from '@/components/FishInfoRow'
+import FishInfoRow from '@/components/FishInfoRow/FishInfoRow'
 import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {

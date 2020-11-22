@@ -1,7 +1,7 @@
 <template>
   <click-helper @click.stop="toggleValue">
-    <v-btn icon>
-      <v-icon>{{ value ? checkedIcon : uncheckedIcon }}</v-icon>
+    <v-btn icon :small="small">
+      <v-icon :small="small">{{ value ? checkedIcon : uncheckedIcon }}</v-icon>
     </v-btn>
   </click-helper>
 </template>
@@ -24,6 +24,10 @@ export default {
     uncheckedIcon: {
       type: String,
       default: 'mdi-checkbox-blank-outline',
+    },
+    small: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {
