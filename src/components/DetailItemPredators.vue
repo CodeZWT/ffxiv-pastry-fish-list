@@ -6,19 +6,19 @@
     <v-col cols="12">
       <div v-for="(predator, index) in fish.predators" :key="predator._id" style="position: relative">
         <v-divider v-if="index > 0" inset style="border-color: white"/>
-        <fish-list-brief-header :fish="predator" :fish-time-part="predator.fishTimePart" in-predator :mode="mode" show-constraints-instead/>
+        <fish-info-row :fish="predator" :fish-time-part="predator.fishTimePart" in-predator :mode="mode" show-constraints-instead/>
       </div>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import FishListBriefHeader from '@/components/FishListBriefHeader'
+import FishInfoRow from '@/components/FishInfoRow'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'DetailItemPredators',
-  components: { FishListBriefHeader },
+  components: { FishInfoRow },
   props: {
     fish: {
       type: Object,

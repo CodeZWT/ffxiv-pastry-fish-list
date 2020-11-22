@@ -7,7 +7,7 @@
       :color="color"
       :class="['v-list-item', 'v-list-item--link', borderClass, roundedClass]"
     >
-      <fish-list-brief-header
+      <fish-info-row
         :fish="fish"
         :fish-time-part="fishTimePart"
         :predators="[]"
@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import FishListBriefHeader from '@/components/FishListBriefHeader'
+import FishInfoRow from '@/components/FishInfoRow'
 import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'FishListItem',
-  components: { ClickHelper, FishListBriefHeader },
+  components: { ClickHelper, FishInfoRow },
   props: {
     fish: {
       type: Object,

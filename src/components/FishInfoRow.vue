@@ -225,7 +225,7 @@ import FishingSpotColumn from '@/components/FishingSpotColumn'
 import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
-  name: 'FishListBriefHeader',
+  name: 'FishInfoRow',
   components: { ItemIcon, FishingSpotColumn, FishBaitList, ToggleButton },
   props: {
     fish: {
