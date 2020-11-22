@@ -1,5 +1,5 @@
 <template>
-  <v-card v-if="!loading" color="inner">
+  <v-card v-if="!loading" color="inner" class="mb-2">
     <template v-if="isNormalTabActive">
       <v-card-text>
         <!-- Patches -->
@@ -15,13 +15,13 @@
                 v-if="patchSelectedIndices[version].length === patches[version].length"
                 @click="uncheckAll(version)"
               >
-                <v-btn text small>
+                <v-btn text small rounded>
                   {{ version }}
                   <v-icon>mdi-close</v-icon>
                 </v-btn>
               </click-helper>
               <click-helper v-else @click="checkAll(version)">
-                <v-btn text small>
+                <v-btn text small rounded>
                   {{ version }}
                   <v-icon>mdi-check-all</v-icon>
                 </v-btn>
@@ -58,7 +58,7 @@
                 {{ $t(`filter.bigFish.${type}`) }}
               </v-btn>
             </v-btn-toggle>
-            <v-tooltip bottom color="secondary">
+            <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
                 <v-icon dark v-bind="attrs" v-on="on">
                   mdi-help-circle-outline
