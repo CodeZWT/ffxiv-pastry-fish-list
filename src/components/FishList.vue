@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row no-gutters class="my-2">
     <v-col cols="12">
       <div v-if="fishList.length <= 0" class="d-flex justify-center align-content-center pa-2">
         <slot name="empty" />
@@ -9,6 +9,7 @@
           :fish="fish"
           :fish-time-part="fishListTimePart[fish._id]"
           :color="listItemColors[index]"
+          :position="toPos(index)"
           @click="onFishClicked(fish._id)"
         />
       </div>
@@ -159,6 +160,9 @@ export default {
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
   },
   methods: {
+    toPos(index) {
+      return index === 0 ? 'first' : index === this.flattenFishList.length - 1 ? 'last' : 'inside'
+    },
     onFishClicked(fishId) {
       this.$emit('fish-selected', fishId)
     },

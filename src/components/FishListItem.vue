@@ -2,9 +2,10 @@
   <click-helper @click="$emit('click')">
     <v-sheet
       v-ripple
+      :elevation="4"
       :key="fish._id"
       :color="color"
-      :class="['v-list-item', 'v-list-item--link', fish.isPredator ? 'border-none' : 'border-normal']"
+      :class="['v-list-item', 'v-list-item--link', borderClass, roundedClass]"
     >
       <fish-list-brief-header
         :fish="fish"
@@ -41,6 +42,29 @@ export default {
     showConstraintsInstead: {
       type: Boolean,
       default: false,
+    },
+    position: {
+      type: String,
+      default: 'inside',
+    },
+  },
+  computed: {
+    roundedClass() {
+      switch (this.position) {
+        case 'first':
+          return 'rounded-t-lg'
+        case 'last':
+          return 'rounded-b-lg'
+        default:
+          return ''
+      }
+    },
+    borderClass() {
+      if (this.fish.isPredator || this.position === 'first') {
+        return 'border-none'
+      } else {
+        return 'border-normal'
+      }
     },
   },
 }

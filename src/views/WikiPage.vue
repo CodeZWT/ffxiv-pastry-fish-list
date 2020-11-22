@@ -111,15 +111,16 @@
             >
               <div class="grid-content">
                 <div
-                  v-for="fish in currentFlattenFishList"
+                  v-for="(fish, index) in currentFlattenFishList"
                   :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"
                   style="position: relative"
                 >
                   <fish-list-item
                     :fish="fish"
                     :fish-time-part="fishListTimePart[fish._id]"
-                    @click="onFishClicked(fish._id)"
+                    :position="toPos(index)"
                     show-constraints-instead
+                    @click="onFishClicked(fish._id)"
                   />
                 </div>
               </div>
@@ -133,7 +134,9 @@
               :h="baitTableLayout.h"
               :i="baitTableLayout.i"
             >
-              <fish-tug-table :value="currentFishList" class="grid-content" />
+              <div class="grid-content">
+                <fish-tug-table :value="currentFishList"/>
+              </div>
             </grid-item>
           </grid-layout>
         </div>
@@ -242,12 +245,12 @@ export default {
           { x: 7, y: 0, w: 5, h: 17, i: 'map' },
           {
             x: 0,
-            y: 4,
+            y: 4.2,
             w: 7,
             h: 15,
             i: 'fishList',
           },
-          { x: 0, y: 0, w: 7, h: 4, i: 'fishTugList' },
+          { x: 0, y: 0, w: 7, h: 4.2, i: 'fishTugList' },
         ]
       }
     },
@@ -444,6 +447,9 @@ export default {
     this.updateCompletedSpot(this.allCompletedFish)
   },
   methods: {
+    toPos(index) {
+      return index === 0 ? 'first' : index === this.currentFlattenFishList.length - 1 ? 'last' : 'inside'
+    },
     getPathNodesOf(id) {
       return (
         this.root
@@ -604,6 +610,8 @@ export default {
   height: 100%
   overflow-scrolling: auto
   overflow-y: scroll
+  padding: 0 4px
+  margin: 0 0 4px 0
 
 .spot-list
   height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56})

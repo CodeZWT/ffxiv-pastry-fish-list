@@ -1,13 +1,5 @@
 <template>
   <div style="width: 100%">
-    <!--    <div-->
-    <!--      v-if="!inPredator"-->
-    <!--      style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 4px; z-index: 1;border-radius: 2px"-->
-    <!--      :class="color"-->
-    <!--    />-->
-    <!--    <div v-if="showDivider" style="position: absolute; top: 0; width: 100%; height: 2px; z-index: 1" class="error" />-->
-
-    <!--    <pin-button :value="transformedFishPart.pinned" @input="setPinned($event)" />-->
     <v-divider v-if="inPredator && mode !== 'CONTENT'" inset style="border-color: white" />
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col class="col-6 col-sm-3">
@@ -28,14 +20,17 @@
             <toggle-button v-if="!isMobile" :value="transformedFishPart.completed" @input="setCompleted($event)" />
           </div>
 
-          <v-badge v-if="inPredator" :content="fish.requiredCnt" color="predatorCnt black--text" overlap bottom bordered>
-            <div style="width: 40px; height: 40px" :class="{ 'zoom-in-predator': inPredator }">
-              <div :class="fish.icon" />
-            </div>
+          <v-badge
+            v-if="inPredator"
+            :content="fish.requiredCnt"
+            color="predatorCnt black--text"
+            overlap
+            bottom
+            bordered
+          >
+            <item-icon :icon-class="fish.icon" small />
           </v-badge>
-          <div v-else style="width: 40px; height: 40px" :class="{ 'zoom-in-predator': inPredator }">
-            <div :class="fish.icon" />
-          </div>
+          <item-icon v-else :icon-class="fish.icon" />
           <div class="text-subtitle-1 text-truncate ml-1" :title="fish.name + '#' + fish.id">{{ fish.name }}</div>
         </div>
       </v-col>
@@ -130,16 +125,6 @@
           </div>
         </div>
 
-        <!--        <div class="text-subtitle-2 text-truncate" v-if="!inPredator">-->
-        <!--          {{ fish.zone }}-->
-        <!--        </div>-->
-        <!--        <div-->
-        <!--          v-if="!inPredator"-->
-        <!--          class="text-subtitle-2 text-truncate"-->
-        <!--          :title="fish.fishingSpot + '#' + fish.fishingSpotId"-->
-        <!--        >-->
-        <!--          {{ fish.fishingSpot }}-->
-        <!--        </div>-->
         <div v-if="!showConstraintsInstead">
           <fishing-spot-column :fishing-spots="fish.fishingSpots" />
         </div>
@@ -237,10 +222,11 @@ import DataUtil from '@/utils/DataUtil'
 import ToggleButton from '@/components/basic/ToggleButton'
 import FishBaitList from '@/components/FishBaitList'
 import FishingSpotColumn from '@/components/FishingSpotColumn'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'FishListBriefHeader',
-  components: { FishingSpotColumn, FishBaitList, ToggleButton },
+  components: { ItemIcon, FishingSpotColumn, FishBaitList, ToggleButton },
   props: {
     fish: {
       type: Object,

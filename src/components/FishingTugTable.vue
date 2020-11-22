@@ -1,15 +1,11 @@
 <template>
-  <v-simple-table dense>
+  <v-simple-table dense class="rounded-lg pt-2 elevation-4">
     <template v-slot:default>
       <thead>
         <tr>
           <th class="text-left">{{ $t('tugTable.tugFish') }}</th>
-          <th
-            v-for="(fish, index) in fishTugList"
-            :key="fish.id"
-            :class="{ 'primary': currentCol === index }"
-          >
-            <div :class="fish.icon" :title="`${fish.name}#${fish.id}`" style="margin: auto"/>
+          <th v-for="(fish, index) in fishTugList" :key="fish.id" :class="{ primary: currentCol === index }">
+            <item-icon :icon-class="fish.icon" :title="`${fish.name}#${fish.id}`" style="margin: auto" />
           </th>
         </tr>
       </thead>
@@ -34,9 +30,11 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'FishTugTable',
+  components: { ItemIcon },
   props: {
     value: { type: Array, default: () => [] },
   },

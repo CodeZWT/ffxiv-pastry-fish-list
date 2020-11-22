@@ -15,9 +15,7 @@
           />
           <toggle-button :value="fish.completed" @input="setCompleted($event)" />
         </div>
-        <div>
-          <div :class="fish.icon" />
-        </div>
+        <item-icon :icon-class="fish.icon" />
         <div class="text-subtitle-1 ml-1" :title="fish.name + '#' + fish.id">
           {{ fish.name }}
         </div>
@@ -57,10 +55,11 @@ import fisher from '@/assets/fisher.png'
 import ToggleButton from '@/components/basic/ToggleButton'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'FishListExpandedHeader',
-  components: { ClickHelper, ToggleButton },
+  components: { ItemIcon, ClickHelper, ToggleButton },
   props: {
     value: {
       type: Object,

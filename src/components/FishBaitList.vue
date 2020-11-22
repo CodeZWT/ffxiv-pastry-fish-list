@@ -5,10 +5,8 @@
         <div v-if="baitInx !== 0" style="display: flex; align-items: center">
           <v-icon small>mdi-arrow-right</v-icon>
         </div>
-        <div :data-ck-item-id="bait.baitId" style="height: 30px; width: 30px">
-          <div class="bait-icon">
-            <div :class="bait.baitIcon" :title="bait.baitName" />
-          </div>
+        <div :data-ck-item-id="bait.baitId" style="height: 36px; width: 36px">
+          <item-icon :icon-class="bait.baitIcon" :title="bait.baitName" small />
         </div>
         <v-row no-gutters class="d-flex" style="max-width: 27px">
           <v-col cols="12">
@@ -27,9 +25,11 @@
 <script>
 import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'FishBaitList',
+  components: { ItemIcon },
   props: {
     baits: {
       type: Array,

@@ -1,6 +1,6 @@
 <template>
   <v-expand-transition>
-    <v-card v-if="show && !loading" color="inner" class="mb-2">
+    <v-card v-if="show && !loading" color="inner" class="mb-2 rounded-b-lg">
       <v-expand-transition>
         <template>
           <div v-if="isNormalTabActive">
