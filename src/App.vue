@@ -927,15 +927,7 @@ export default {
         if (countDown?.type === DataUtil.ALL_AVAILABLE) return
 
         const lazyStartTime = countDown?.timePoint
-        let interval, intervalDate, hours, minutes, seconds
-        if (lazyStartTime != null) {
-          interval = lazyStartTime - now
-          intervalDate = new Date(interval)
-
-          hours = intervalDate.getUTCHours()
-          minutes = intervalDate.getUTCMinutes()
-          seconds = intervalDate.getUTCSeconds()
-        }
+        const currentInterval = countDown?.time
         if (
           (this.selectedFishId != null && fish._id === this.selectedFishId) ||
           (this.searchedFishId != null && fish._id === this.searchedFishId)
@@ -946,13 +938,7 @@ export default {
           })
         }
 
-        if (
-          !lazyStartTime ||
-          interval < DataUtil.INTERVAL_MINUTE ||
-          (interval < DataUtil.INTERVAL_HOUR && seconds > 57) ||
-          (interval < DataUtil.INTERVAL_DAY && minutes > 58 && seconds > 57) ||
-          (hours > 22 && minutes > 58 && seconds > 57)
-        ) {
+        if (!lazyStartTime || !currentInterval || DataUtil.shouldUpdate(lazyStartTime - now, currentInterval)) {
           this.$set(this.fishListTimePart, fish._id, {
             id: fish._id,
             countDown: this.getCountDown(fish, now),

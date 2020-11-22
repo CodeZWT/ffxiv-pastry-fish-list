@@ -16,6 +16,13 @@ const NOTIFICATION_SOUNDS = [
   { key: 'notification', name_chs: '通知', filename: 'FFXIV_Notification.mp3' },
 ]
 
+const INTERVAL_SECOND = 1000
+const INTERVAL_MINUTE = 60000
+const INTERVAL_HOUR = 3600000
+const INTERVAL_DAY = 86400000
+
+const INTERVALS = [INTERVAL_DAY, INTERVAL_HOUR, INTERVAL_MINUTE, INTERVAL_SECOND]
+
 export default {
   iconIdToUrl(iconId) {
     if (iconId == null) return ''
@@ -292,12 +299,35 @@ export default {
     return +fishPatch.toString().match('^(\\d(\\.\\d)?)\\d?$')[1]
   },
 
+  getMaxIntervalPartUnit(interval) {
+    const index = INTERVALS.findIndex(it => it <= interval)
+    let unit
+    if (index === -1) unit = INTERVAL_SECOND
+    else unit = INTERVALS[index]
+    // console.log(unit)
+    return unit
+  },
+
+  getMaxIntervalPart(interval, unit) {
+    // console.log(Math.trunc(interval / unit))
+    return Math.trunc(interval / unit)
+  },
+
+  shouldUpdate(realInterval, lazyInterval) {
+    const realUnit = this.getMaxIntervalPartUnit(realInterval)
+    const lazyUnit = this.getMaxIntervalPartUnit(lazyInterval)
+    return (
+      realUnit !== lazyUnit ||
+      this.getMaxIntervalPart(realInterval, realUnit) !== this.getMaxIntervalPart(lazyInterval, lazyUnit)
+    )
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
-  INTERVAL_SECOND: 1000,
-  INTERVAL_MINUTE: 60000,
-  INTERVAL_HOUR: 3600000,
-  INTERVAL_DAY: 86400000,
+  INTERVAL_SECOND: INTERVAL_SECOND,
+  INTERVAL_MINUTE: INTERVAL_MINUTE,
+  INTERVAL_HOUR: INTERVAL_HOUR,
+  INTERVAL_DAY: INTERVAL_DAY,
 
   TUG_ICON: {
     light: '!',
