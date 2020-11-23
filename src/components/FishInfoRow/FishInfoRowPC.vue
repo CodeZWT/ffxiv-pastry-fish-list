@@ -34,7 +34,7 @@
           </v-badge>
           <!-- or show normal icon for fish -->
           <item-icon v-else :icon-class="fish.icon" />
-          <div>
+          <div class="pl-1">
             <div class="text-subtitle-1 text-truncate ml-1" :title="fish.name + '#' + fish.id">{{ fish.name }}</div>
             <!-- bottom actions line -->
             <div class="d-flex">
@@ -59,7 +59,7 @@
         </div>
       </v-col>
       <!--  1st: end / start count down  -->
-      <v-col class="col-4 d-flex flex-column justify-center my-2 my-sm-0">
+      <v-col class="col-3 d-flex flex-column justify-center">
         <div class="text-subtitle-2 d-flex">
           <div>
             <v-tooltip right color="secondary">
@@ -76,7 +76,7 @@
             </v-tooltip>
           </div>
         </div>
-        <!--  2nd: next count down / interval  -->
+        <!--  2nd: next count down / interval & fishing window rate -->
         <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
           <div
             v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
@@ -99,7 +99,7 @@
               {{ transformedFishTimePart.countDownTotalHint }}
             </div>
           </div>
-          <v-btn small v-if="fish.rate < 1" text>
+          <v-btn small v-if="fish.rate < 1" text class="pl-2 pr-1">
             <v-icon small left>
               mdi-calendar
             </v-icon>
@@ -107,11 +107,12 @@
           </v-btn>
         </div>
       </v-col>
-      <v-col class="col-6 col-sm-3 d-flex flex-column justify-center">
-        <div v-if="showConstraintsInstead && fish.hasTimeConstraint">
-          {{ fish.startHourText }} - {{ fish.endHourText }}
-        </div>
-        <div class="d-flex" v-if="showConstraintsInstead && fish.hasWeatherConstraint">
+      <v-col class="col-2 d-flex flex-column justify-center">
+        <fishing-spot-column :fishing-spots="fish.fishingSpots" />
+      </v-col>
+      <v-col class="col-2 d-flex flex-column justify-center align-center">
+        <div v-if="fish.hasTimeConstraint">{{ fish.startHourText }} - {{ fish.endHourText }}</div>
+        <div class="d-flex" v-if="fish.hasWeatherConstraint">
           <div style="display: flex">
             <div v-for="(weather, index) in fish.previousWeatherSetDetail" :key="index" class="zoom-in-predator">
               <div :class="weather.icon" :title="weather.name" />
@@ -124,12 +125,8 @@
             </div>
           </div>
         </div>
-
-        <div v-if="!showConstraintsInstead">
-          <fishing-spot-column :fishing-spots="fish.fishingSpots" />
-        </div>
       </v-col>
-      <v-col class="col-11 col-sm-3 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0">
+      <v-col class="col-3 d-flex flex-row align-center justify-center">
         <div v-if="fish.hasFishEyes || fish.hasPredators || fish.hasSnagging" class="mr-1">
           <div v-if="fish.hasFishEyes" style="display: flex; align-items: center" data-ck-action-name="鱼眼">
             <div :class="fish.fishEyesIcon" />
