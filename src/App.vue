@@ -271,12 +271,14 @@
                 <li>
                   窗口期中的颜色从
                   <v-chip small color="#572746"></v-chip>
-                  调整为<v-chip small color="#183027"></v-chip>
+                  调整为
+                  <v-chip small color="#183027"></v-chip>
                 </li>
                 <li>
                   已完成的颜色从
                   <v-chip small color="#214040"></v-chip>
-                  调整为<v-chip small color="#0c2242"></v-chip>
+                  调整为
+                  <v-chip small color="#0c2242"></v-chip>
                 </li>
               </ul>
             </li>
@@ -1054,7 +1056,7 @@ export default {
           previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
           patch: fish.patch,
           rate: rate,
-          rateText: ((rate ?? 1) * 100).toPrecision(2) + '%',
+          rateText: this.$t('countDown.rate', { rate: ((rate ?? 1) * 100).toPrecision(2) }),
           isPredator: isPredator,
           anglerFishId: fish.anglerFishId,
           predators: this.assembleFish(DataUtil.getPredators(fish, this.allFish), true),

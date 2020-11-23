@@ -6,7 +6,7 @@
           <v-tooltip top color="secondary">
             <template v-slot:activator="{ on, attrs }">
               <div v-bind="attrs" v-on="on" class="d-flex align-center">
-                <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }}</strong>
+                <strong>{{ $t(fish.countDownTypeName, { interval: fish.countDownTimeText }) }}</strong>
               </div>
             </template>
             <span>{{ fish.countDownTimePointText }}</span>
@@ -21,7 +21,7 @@
             <template v-slot:activator="{ on, attrs }">
               <div v-bind="attrs" v-on="on" class="d-flex align-center">
                 <v-icon size="20">mdi-alarm</v-icon>
-                <strong>{{ $t(fish.countDownTypeName) }} {{ fish.countDownTimeText }} ({{ Math.ceil(value) }}%)</strong>
+                <strong>{{ $t(fish.countDownTypeName, { interval: fish.countDownTimeText }) }} ({{ Math.ceil(value) }}%)</strong>
                 <div
                   v-if="fish.addBuffSuffix"
                   :title="$t('list.item.countDown.fishShadowHint')"

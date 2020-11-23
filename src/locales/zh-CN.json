@@ -14,13 +14,14 @@
     "collapseHint": "点击切换网页大小(ACT用)"
   },
   "countDown": {
-    "waiting": "等待中：",
-    "fishing": "窗口期剩余：",
+    "waiting": "{interval}后开始",
+    "fishing": "{interval}后结束",
     "allAvailable": "全天可钓",
     "fishWindowBtn": "查看窗口期详情",
-    "intervalHint": "窗口期时长：{interval}",
-    "timePointHint": "时刻：{timePoint}",
-    "nextInterval": "距下次{nextInterval}"
+    "intervalHint": "持续 {interval}",
+    "timePointHint": "{timePoint}",
+    "nextInterval": "下次{nextInterval}后",
+    "rate": "窗口期{rate}%"
   },
   "none": "无",
   "time": {

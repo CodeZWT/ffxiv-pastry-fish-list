@@ -38,11 +38,13 @@
             <div class="text-subtitle-1 text-truncate ml-1" :title="fish.name + '#' + fish.id">{{ fish.name }}</div>
             <!-- bottom actions line -->
             <div class="d-flex">
+              <!-- fish angel link -->
               <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">
                 <v-btn text icon small :title="$t('list.item.linkHint')">
                   <v-icon small>mdi-link-variant</v-icon>
                 </v-btn>
               </click-helper>
+              <!-- alarm -->
               <toggle-button
                 v-if="transformedFishTimePart.hasCountDown"
                 :value="transformedFishPart.toBeNotified"
@@ -56,51 +58,26 @@
           </div>
         </div>
       </v-col>
+      <!--  1st: end / start count down  -->
       <v-col class="col-4 d-flex flex-column justify-center my-2 my-sm-0">
         <div class="text-subtitle-2 d-flex">
           <div>
-            {{ $t(transformedFishTimePart.countDownType) }}
-          </div>
-          <div v-if="fish.rate < 1">
             <v-tooltip right color="secondary">
               <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on">({{ fish.rateText }})</div>
+                <div v-bind="attrs" v-on="on">
+                  {{
+                    $t(transformedFishTimePart.countDownType, { interval: transformedFishTimePart.countDownTimeText })
+                  }}
+                </div>
               </template>
               <div class="d-flex flex-column">
-                <div>{{ $t('list.item.rateHint') }}</div>
+                <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
               </div>
             </v-tooltip>
           </div>
         </div>
+        <!--  2nd: next count down / interval  -->
         <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
-          <div>
-            <v-tooltip right color="secondary">
-              <template v-slot:activator="{ on, attrs }">
-                <v-chip
-                  v-bind="attrs"
-                  v-on="on"
-                  :input-value="transformedFishPart.toBeNotified"
-                  small
-                  outlined
-                  color="white"
-                  class="mr-1"
-                  @click.stop="setToBeNotified(!transformedFishPart.toBeNotified)"
-                >
-                  <v-icon left size="16">
-                    {{ transformedFishPart.toBeNotified ? 'mdi-bell' : 'mdi-bell-outline' }}
-                  </v-icon>
-                  <div v-bind="attrs" v-on="on" class="text-subtitle-2">
-                    {{ transformedFishTimePart.countDownTimeText }}
-                  </div>
-                </v-chip>
-              </template>
-              <div class="d-flex flex-column">
-                <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
-                <div v-if="transformedFishPart.toBeNotified">{{ $t('list.item.notificationHintOff') }}</div>
-                <div v-else>{{ $t('list.item.notificationHint') }}</div>
-              </div>
-            </v-tooltip>
-          </div>
           <div
             v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
             :title="$t('list.item.countDown.fishShadowHint')"
@@ -117,16 +94,17 @@
               <span>{{ transformedFishTimePart.countDownNextTimePointText }}</span>
             </v-tooltip>
           </div>
-          <div>
-            <v-tooltip v-if="transformedFishTimePart.isWaiting" right color="secondary">
-              <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" class="text-subtitle-2">
-                  ({{ transformedFishTimePart.countDownTotal }})
-                </div>
-              </template>
-              <span>{{ transformedFishTimePart.countDownTotalHint }}</span>
-            </v-tooltip>
+          <div v-if="transformedFishTimePart.isWaiting">
+            <div class="text-subtitle-2">
+              {{ transformedFishTimePart.countDownTotalHint }}
+            </div>
           </div>
+          <v-btn small v-if="fish.rate < 1" text>
+            <v-icon small left>
+              mdi-calendar
+            </v-icon>
+            {{ fish.rateText }}
+          </v-btn>
         </div>
       </v-col>
       <v-col class="col-6 col-sm-3 d-flex flex-column justify-center">
