@@ -30,12 +30,12 @@
             bottom
             bordered
           >
-            <item-icon :icon-class="fish.icon" small />
+            <item-icon :icon-class="fish.icon" small style="min-width: 36px" />
           </v-badge>
           <!-- or show normal icon for fish -->
-          <item-icon v-else :icon-class="fish.icon" />
-          <div class="pl-1">
-            <div class="text-subtitle-1 text-truncate ml-1" :title="fish.name + '#' + fish.id">{{ fish.name }}</div>
+          <item-icon v-else :icon-class="fish.icon" style="min-width: 48px" />
+          <div :class="inPredator ? 'ml-4' : 'ml-1'">
+            <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">{{ fish.name }}</div>
             <!-- bottom actions line -->
             <div class="d-flex">
               <!-- fish angel link -->
