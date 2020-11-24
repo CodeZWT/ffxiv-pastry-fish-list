@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%">
-    <v-divider v-if="inPredator" inset style="border-color: white" />
+    <v-divider v-if="inPredator && mode !== 'CONTENT'" inset style="border-color: white" />
     <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
       <v-col cols="2">
         <div class="d-flex fill-height align-center flex-row pr-1" style="min-height: 48px">
@@ -8,7 +8,7 @@
           <div
             class="d-flex align-center"
             :style="{
-              visibility: inPredator ? 'hidden' : 'visible',
+              visibility: mode !== 'CONTENT' && inPredator ? 'hidden' : 'visible',
               'flex-direction': 'column',
             }"
           >
@@ -154,7 +154,7 @@ import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
-  name: 'FishInfoRowPC',
+  name: 'FishInfoRowMedium',
   components: { ClickHelper, ItemIcon, FishingSpotColumn, FishBaitList, ToggleButton },
   mixins: [fishInfoRowMixin],
 }
