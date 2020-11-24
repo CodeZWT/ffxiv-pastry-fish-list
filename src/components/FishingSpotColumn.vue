@@ -2,14 +2,14 @@
   <div class="d-flex flex-row align-center">
     <div class="d-flex flex-column">
       <div class="d-flex align-center">
-        <v-btn small text class="pl-1 pr-2" @click.stop="$emit('click')">
-          <div
-            class="text-subtitle-1 text-truncate"
-            :title="firstLocation.fishingSpot + '#' + firstLocation.fishingSpotId"
-          >
-            {{ firstLocation.fishingSpot }}
-          </div>
-          <v-icon small right>
+        <div
+          class="text-subtitle-1 text-truncate"
+          :title="firstLocation.fishingSpot + '#' + firstLocation.fishingSpotId"
+        >
+          {{ firstLocation.fishingSpot }}
+        </div>
+        <v-btn small icon @click.stop="$emit('click')">
+          <v-icon small>
             mdi-map
           </v-icon>
         </v-btn>
