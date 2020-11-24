@@ -35,7 +35,10 @@ export default new Vuex.Store({
     activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
     aetheryte: groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
     sounds: {},
-    userData: DataUtil.mergeUserData(DataUtil.USER_DEFAULT_DATA, LocalStorageUtil.loadAndBackupUserData()),
+    userData: DataUtil.mergeUserData(
+      cloneDeep(DataUtil.USER_DEFAULT_DATA),
+      LocalStorageUtil.loadAndBackupUserData()
+    ),
   },
   getters: {
     getItemIconUrl: state => id => {
@@ -65,7 +68,9 @@ export default new Vuex.Store({
     getZoneName: state => id => {
       const fishingSpot = state.fishingSpots[id]
       if (fishingSpot) {
-        return DataUtil.getName(state.zones[state.weatherRates[fishingSpot.territory_id].zone_id])
+        return DataUtil.getName(
+          state.zones[state.weatherRates[fishingSpot.territory_id].zone_id]
+        )
       } else {
         return ''
       }
@@ -113,7 +118,9 @@ export default new Vuex.Store({
               tug: baitFish.tug,
               tugIcon: DataUtil.TUG_ICON[baitFish.tug],
               hookset: baitFish.hookset,
-              hooksetIcon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[baitFish.hookset]),
+              hooksetIcon: DataUtil.iconIdToClass(
+                DataUtil.HOOKSET_ICON[baitFish.hookset]
+              ),
               baitId: baitId,
               baitName: getters.getItemName(baitId),
               baitIcon: getters.getItemIconClass(baitId),
@@ -201,24 +208,44 @@ export default new Vuex.Store({
   },
   mutations: {
     setUserData(state, data) {
-      state.userData = { ...DataUtil.USER_DEFAULT_DATA, ...data }
+      state.userData = { ...cloneDeep(DataUtil.USER_DEFAULT_DATA), ...data }
       LocalStorageUtil.storeAndBackupUserData(state.userData)
     },
     setUserDataToDefault(state) {
-      state.userData = DataUtil.USER_DEFAULT_DATA
+      state.userData = cloneDeep(DataUtil.USER_DEFAULT_DATA)
       LocalStorageUtil.storeUserData(state.userData)
     },
     setFishCompleted(state, { fishId, completed }) {
-      state.userData = updateUserDataStateRecords(state.userData, 'completed', fishId, completed)
+      state.userData = updateUserDataStateRecords(
+        state.userData,
+        'completed',
+        fishId,
+        completed
+      )
       if (completed) {
-        state.userData = updateUserDataStateRecords(state.userData, 'toBeNotified', fishId, false)
+        state.userData = updateUserDataStateRecords(
+          state.userData,
+          'toBeNotified',
+          fishId,
+          false
+        )
       }
     },
     setFishPinned(state, { fishId, pinned }) {
-      state.userData = updateUserDataStateRecords(state.userData, 'pinned', fishId, pinned)
+      state.userData = updateUserDataStateRecords(
+        state.userData,
+        'pinned',
+        fishId,
+        pinned
+      )
     },
     setFishToBeNotified(state, { fishId, toBeNotified }) {
-      state.userData = updateUserDataStateRecords(state.userData, 'toBeNotified', fishId, toBeNotified)
+      state.userData = updateUserDataStateRecords(
+        state.userData,
+        'toBeNotified',
+        fishId,
+        toBeNotified
+      )
     },
     setFilters(state, filters) {
       state.userData = { ...state.userData, filters }
@@ -278,14 +305,20 @@ export default new Vuex.Store({
     enableSystemNotification(state) {
       state.userData = {
         ...state.userData,
-        notification: { ...state.userData.notification, isSystemNotificationEnabled: true },
+        notification: {
+          ...state.userData.notification,
+          isSystemNotificationEnabled: true,
+        },
       }
       LocalStorageUtil.storeUserData(state.userData)
     },
     disableSystemNotification(state) {
       state.userData = {
         ...state.userData,
-        notification: { ...state.userData.notification, isSystemNotificationEnabled: false },
+        notification: {
+          ...state.userData.notification,
+          isSystemNotificationEnabled: false,
+        },
       }
       LocalStorageUtil.storeUserData(state.userData)
     },

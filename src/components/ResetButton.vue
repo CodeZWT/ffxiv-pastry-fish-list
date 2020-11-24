@@ -46,7 +46,10 @@ export default {
     onReset() {
       this.setUserDataToDefault()
       this.value = false
-      this.showSnackbar({ text: this.$t('importExport.dialog.message.resetSuccess'), color: 'success' })
+      this.showSnackbar({
+        text: this.$t('importExport.dialog.message.resetSuccess'),
+        color: 'success',
+      })
     },
     ...mapMutations(['showSnackbar', 'setUserDataToDefault']),
   },
