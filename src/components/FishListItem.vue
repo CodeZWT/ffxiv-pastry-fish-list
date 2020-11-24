@@ -1,5 +1,5 @@
 <template>
-  <click-helper @click="$emit('click')">
+  <click-helper>
     <v-sheet
       v-ripple
       :elevation="4"
@@ -14,6 +14,7 @@
         :in-predator="fish.isPredator"
         mode="large"
         :show-constraints-instead="fish.isPredator || showConstraintsInstead"
+        @click="$emit('click', $event)"
       />
     </v-sheet>
   </click-helper>

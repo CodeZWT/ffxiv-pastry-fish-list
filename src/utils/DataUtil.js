@@ -7,12 +7,28 @@ import EorzeaTime from '@/utils/Time'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
-  { key: 'incomingTell1', name_chs: '提示音1', filename: 'FFXIV_Incoming_Tell_1.mp3' },
-  { key: 'incomingTell2', name_chs: '提示音2', filename: 'FFXIV_Incoming_Tell_2.mp3' },
-  { key: 'incomingTell3', name_chs: '提示音3', filename: 'FFXIV_Incoming_Tell_3.mp3' },
+  {
+    key: 'incomingTell1',
+    name_chs: '提示音1',
+    filename: 'FFXIV_Incoming_Tell_1.mp3',
+  },
+  {
+    key: 'incomingTell2',
+    name_chs: '提示音2',
+    filename: 'FFXIV_Incoming_Tell_2.mp3',
+  },
+  {
+    key: 'incomingTell3',
+    name_chs: '提示音3',
+    filename: 'FFXIV_Incoming_Tell_3.mp3',
+  },
   { key: 'aggro', name_chs: '遇敌', filename: 'FFXIV_Aggro.mp3' },
   { key: 'confirm', name_chs: '确认', filename: 'FFXIV_Confirm.mp3' },
-  { key: 'linkshellTransmission', name_chs: '通讯贝', filename: 'FFXIV_Linkshell_Transmission.mp3' },
+  {
+    key: 'linkshellTransmission',
+    name_chs: '通讯贝',
+    filename: 'FFXIV_Linkshell_Transmission.mp3',
+  },
   { key: 'notification', name_chs: '通知', filename: 'FFXIV_Notification.mp3' },
 ]
 
@@ -21,7 +37,12 @@ const INTERVAL_MINUTE = 60000
 const INTERVAL_HOUR = 3600000
 const INTERVAL_DAY = 86400000
 
-const INTERVALS = [INTERVAL_DAY, INTERVAL_HOUR, INTERVAL_MINUTE, INTERVAL_SECOND]
+const INTERVALS = [
+  INTERVAL_DAY,
+  INTERVAL_HOUR,
+  INTERVAL_MINUTE,
+  INTERVAL_SECOND,
+]
 
 export default {
   iconIdToUrl(iconId) {
@@ -38,7 +59,9 @@ export default {
     return `bg-${icon}`
   },
   getName(multiLanguageItem, locale = 'chs') {
-    return multiLanguageItem['name_' + locale] ? multiLanguageItem['name_' + locale] : multiLanguageItem['name_en']
+    return multiLanguageItem['name_' + locale]
+      ? multiLanguageItem['name_' + locale]
+      : multiLanguageItem['name_en']
   },
 
   getCountDownTypeName(countDown) {
@@ -59,7 +82,12 @@ export default {
   },
 
   // completed
-  getPredators(fish, allFish, fishListTimePart = {}, fishListWeatherChangePart = {}) {
+  getPredators(
+    fish,
+    allFish,
+    fishListTimePart = {},
+    fishListWeatherChangePart = {}
+  ) {
     if (fish == null || allFish == null) return []
     return Object.entries(fish.predators).map(([predatorId, count]) => {
       return {
@@ -83,10 +111,19 @@ export default {
   pixelToPos(sizeFactor, pixelIndex) {
     const MAP_SIZE_FACTOR_MAGIC = 41
     const MAP_FILE_PIXEL_MAX = 2048
-    return (MAP_SIZE_FACTOR_MAGIC / (sizeFactor / 100)) * (pixelIndex / MAP_FILE_PIXEL_MAX) + 1
+    return (
+      (MAP_SIZE_FACTOR_MAGIC / (sizeFactor / 100)) *
+        (pixelIndex / MAP_FILE_PIXEL_MAX) +
+      1
+    )
   },
 
-  getColorByStatus(completed, countDownType, colorIndex = 0, colorTarget = 'FISH') {
+  getColorByStatus(
+    completed,
+    countDownType,
+    colorIndex = 0,
+    colorTarget = 'FISH'
+  ) {
     let colorRef
     if (colorTarget === 'FISH') {
       colorRef = this.ITEM_COLOR
@@ -175,10 +212,10 @@ export default {
 
   toPositionText(fishingSpot) {
     if (fishingSpot == null) return ''
-    return `X: ${this.toPosStr(fishingSpot.size_factor, fishingSpot.x)}, Y:${this.toPosStr(
+    return `X: ${this.toPosStr(
       fishingSpot.size_factor,
-      fishingSpot.y
-    )}`
+      fishingSpot.x
+    )}, Y:${this.toPosStr(fishingSpot.size_factor, fishingSpot.y)}`
   },
   toPosStr(sizeFactor, pos) {
     return this.pixelToPos(sizeFactor, pos).toFixed(0)
@@ -198,7 +235,12 @@ export default {
         parts: {
           fishTimePart: extraFishListTimePart[selectedFishId],
           fishWeatherChangePart: fishListWeatherChangePart[selectedFishId],
-          predators: this.getPredators(fish, fishDict, fishListTimePart, fishListWeatherChangePart),
+          predators: this.getPredators(
+            fish,
+            fishDict,
+            fishListTimePart,
+            fishListWeatherChangePart
+          ),
         },
       }
     } else {
@@ -214,7 +256,13 @@ export default {
       fish1.endHour === fish2.endHour
     )
   },
-  getFishWindow(fish, now, allFish, fishingSpots, n = FishWindow.FISH_WINDOW_FORECAST_N) {
+  getFishWindow(
+    fish,
+    now,
+    allFish,
+    fishingSpots,
+    n = FishWindow.FISH_WINDOW_FORECAST_N
+  ) {
     // console.debug(fish)
     if (Object.keys(fish.predators).length === 0) {
       return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
@@ -223,16 +271,35 @@ export default {
       const predators = Object.keys(fish.predators).map(predatorId => {
         return allFish[predatorId]
       })
-      if (predators.every(it => this.isAllAvailableFish(it) || this.isConstrainsEqual(fish, it))) {
+      if (
+        predators.every(
+          it => this.isAllAvailableFish(it) || this.isConstrainsEqual(fish, it)
+        )
+      ) {
         return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
       } else if (predators.length === 1) {
         if (this.isAllAvailableFish(fish)) {
-          return this.getFishWindowOfSingleFish(predators[0], now, fishingSpots, n)
-        } else if (fish.weatherSet.length === 0 && fish.previousWeatherSet.length === 0) {
-          return this.getFishWindowOfSingleFish(predators[0], now, fishingSpots, n).map(fishWindow => {
+          return this.getFishWindowOfSingleFish(
+            predators[0],
+            now,
+            fishingSpots,
+            n
+          )
+        } else if (
+          fish.weatherSet.length === 0 &&
+          fish.previousWeatherSet.length === 0
+        ) {
+          return this.getFishWindowOfSingleFish(
+            predators[0],
+            now,
+            fishingSpots,
+            n
+          ).map(fishWindow => {
             // if start of fish window > 0, i.e. its window is shrunk by the weather
             // change it back to 0, since other 2 predators are always available in [0,8]
-            const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
+            const startEorzeaTime = new EorzeaTime(
+              EorzeaTime.toEorzeaTime(fishWindow[0])
+            )
             if (startEorzeaTime.getHours() > 0) {
               return [
                 startEorzeaTime.timeOfHours(fish.startHour).toEarthTime(),
@@ -249,12 +316,22 @@ export default {
 
         if (fish._id === 24994) {
           // just return the 'Green Prismfish' i.e. "绿彩鱼" fish windows
-          return this.getFishWindowOfSingleFish(allFish[24204], now, fishingSpots, n).map(fishWindow => {
+          return this.getFishWindowOfSingleFish(
+            allFish[24204],
+            now,
+            fishingSpots,
+            n
+          ).map(fishWindow => {
             // if start of fish window > 0, i.e. its window is shrunk by the weather
             // change it back to 0, since other 2 predators are always available in [0,8]
-            const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
+            const startEorzeaTime = new EorzeaTime(
+              EorzeaTime.toEorzeaTime(fishWindow[0])
+            )
             if (startEorzeaTime.getHours() > 0) {
-              return [startEorzeaTime.timeOfHours(0).toEarthTime(), fishWindow[1]]
+              return [
+                startEorzeaTime.timeOfHours(0).toEarthTime(),
+                fishWindow[1],
+              ]
             } else {
               return fishWindow
             }
@@ -267,7 +344,12 @@ export default {
     }
   },
 
-  getFishWindowOfSingleFish(fish, now, fishingSpots, n = FishWindow.FISH_WINDOW_FORECAST_N) {
+  getFishWindowOfSingleFish(
+    fish,
+    now,
+    fishingSpots,
+    n = FishWindow.FISH_WINDOW_FORECAST_N
+  ) {
     return FishWindow.getNextNFishWindows(
       // [NOTE]
       // Only check the 1st location
@@ -290,7 +372,9 @@ export default {
     const len = fishWindows.length
     if (len === 0) return 1
     const total = fishWindows[len - 1][0] - fishWindows[0][0]
-    const active = fishWindows.slice(0, len - 1).reduce((sum, fishWindow) => (sum += fishWindow[1] - fishWindow[0]), 0)
+    const active = fishWindows
+      .slice(0, len - 1)
+      .reduce((sum, fishWindow) => (sum += fishWindow[1] - fishWindow[0]), 0)
     return active / total
   },
 
@@ -318,11 +402,29 @@ export default {
     const lazyUnit = this.getMaxIntervalPartUnit(lazyInterval)
     return (
       realUnit !== lazyUnit ||
-      this.getMaxIntervalPart(realInterval, realUnit) !== this.getMaxIntervalPart(lazyInterval, lazyUnit)
+      this.getMaxIntervalPart(realInterval, realUnit) !==
+        this.getMaxIntervalPart(lazyInterval, lazyUnit)
     )
   },
 
-  TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
+  getDetailComponentSettingTemplate(componentNames) {
+    return componentNames.map(it =>
+      this.USER_DEFAULT_DATA.detailArrangement.components.find(
+        component => component.name === it
+      )
+    )
+  },
+
+  TIME_UNITS: [
+    'day',
+    'hour',
+    'minute',
+    'second',
+    'days',
+    'hours',
+    'minutes',
+    'seconds',
+  ],
 
   INTERVAL_SECOND: INTERVAL_SECOND,
   INTERVAL_MINUTE: INTERVAL_MINUTE,
@@ -450,9 +552,24 @@ export default {
           enabled: true,
           order: 0,
         },
-        { name: 'DetailItemCountdownBar', expandedEnabled: false, enabled: true, order: 1 },
-        { name: 'DetailItemRequirements', expandedEnabled: false, enabled: true, order: 2 },
-        { name: 'DetailItemBuffAndBaits', expandedEnabled: false, enabled: true, order: 3 },
+        {
+          name: 'DetailItemCountdownBar',
+          expandedEnabled: false,
+          enabled: true,
+          order: 1,
+        },
+        {
+          name: 'DetailItemRequirements',
+          expandedEnabled: false,
+          enabled: true,
+          order: 2,
+        },
+        {
+          name: 'DetailItemBuffAndBaits',
+          expandedEnabled: false,
+          enabled: true,
+          order: 3,
+        },
         {
           name: 'DetailItemFishWindowTable',
           expandedEnabled: true,
@@ -460,7 +577,12 @@ export default {
           enabled: true,
           order: 4,
         },
-        { name: 'DetailItemPredators', expandedEnabled: false, enabled: true, order: 5 },
+        {
+          name: 'DetailItemPredators',
+          expandedEnabled: false,
+          enabled: true,
+          order: 5,
+        },
       ],
     },
   },

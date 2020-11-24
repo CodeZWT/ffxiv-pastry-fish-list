@@ -9,6 +9,7 @@
     :showDivider="showDivider"
     :mode="mode"
     :showConstraintsInstead="showConstraintsInstead"
+    @click="$emit('click', $event)"
   />
 </template>
 

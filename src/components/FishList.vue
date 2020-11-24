@@ -1,16 +1,22 @@
 <template>
   <v-row no-gutters class="my-2">
     <v-col cols="12">
-      <div v-if="fishList.length <= 0" class="d-flex justify-center align-content-center pa-2">
+      <div
+        v-if="fishList.length <= 0"
+        class="d-flex justify-center align-content-center pa-2"
+      >
         <slot name="empty" />
       </div>
-      <div v-for="(fish, index) in flattenFishList" :key="fish._id + (fish.isPredator ? '-' + index : '')">
+      <div
+        v-for="(fish, index) in flattenFishList"
+        :key="fish._id + (fish.isPredator ? '-' + index : '')"
+      >
         <fish-list-item
           :fish="fish"
           :fish-time-part="fishListTimePart[fish._id]"
           :color="listItemColors[index]"
           :position="toPos(index)"
-          @click="onFishClicked(fish._id)"
+          @click="onFishClicked($event)"
         />
       </div>
     </v-col>
@@ -115,7 +121,12 @@ export default {
         } else {
           const completed = this.getFishCompleted(fish._id)
           const countDownType = fishListTimePart[fish._id]?.countDown?.type
-          const color = DataUtil.getColorByStatus(completed, countDownType, colorCounter++ % 2, 'BACKGROUND')
+          const color = DataUtil.getColorByStatus(
+            completed,
+            countDownType,
+            colorCounter++ % 2,
+            'BACKGROUND'
+          )
           parentFishColor = color
           return color
         }
@@ -154,17 +165,23 @@ export default {
       return this.isMobile ? 126 : 56
     },
     scrollerHeight() {
-      return this.itemHeight * (this.filters.fishN === -1 ? 20 : this.flattenFishList.length)
+      return (
+        this.itemHeight * (this.filters.fishN === -1 ? 20 : this.flattenFishList.length)
+      )
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
   },
   methods: {
     toPos(index) {
-      return index === 0 ? 'first' : index === this.flattenFishList.length - 1 ? 'last' : 'inside'
+      return index === 0
+        ? 'first'
+        : index === this.flattenFishList.length - 1
+        ? 'last'
+        : 'inside'
     },
-    onFishClicked(fishId) {
-      this.$emit('fish-selected', fishId)
+    onFishClicked(fishAndComponents) {
+      this.$emit('fish-selected', fishAndComponents)
     },
     onConfirmClear() {
       this.$emit('clear-all')

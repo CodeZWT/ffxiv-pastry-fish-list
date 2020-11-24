@@ -7,10 +7,21 @@
       @splitter-click="resizing = true"
       @resized="resizing = false"
     >
-      <pane :size="100 - rightPaneSizeOfCurrentWindowSize" v-if="!rightPaneFullScreen || !showRightPane">
+      <pane
+        :size="100 - rightPaneSizeOfCurrentWindowSize"
+        v-if="!rightPaneFullScreen || !showRightPane"
+      >
         <div v-if="resizing" style="height: 100%">
-          <v-sheet :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`" class="pa-3" style="height: 100%">
-            <v-skeleton-loader class="mx-auto" type="list-item-avatar-three-line@9" boilerplate></v-skeleton-loader>
+          <v-sheet
+            :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`"
+            class="pa-3"
+            style="height: 100%"
+          >
+            <v-skeleton-loader
+              class="mx-auto"
+              type="list-item-avatar-three-line@9"
+              boilerplate
+            ></v-skeleton-loader>
           </v-sheet>
         </div>
         <div v-else class="main-pane">
@@ -47,7 +58,12 @@
                     </template>
                   </v-banner>
                   <v-tabs-items v-model="activeTabIndex">
-                    <v-tab-item key="pin" class="list-wrapper" :transition="false" :reverse-transition="false">
+                    <v-tab-item
+                      key="pin"
+                      class="list-wrapper"
+                      :transition="false"
+                      :reverse-transition="false"
+                    >
                       <fish-list
                         :fish-list="pinnedFishList"
                         :fish-list-time-part="fishListTimePart"
@@ -63,7 +79,12 @@
                         </template>
                       </fish-list>
                     </v-tab-item>
-                    <v-tab-item key="normal" class="list-wrapper" :transition="false" :reverse-transition="false">
+                    <v-tab-item
+                      key="normal"
+                      class="list-wrapper"
+                      :transition="false"
+                      :reverse-transition="false"
+                    >
                       <fish-list
                         :fish-list="sortedFilteredFishList"
                         :fish-list-time-part="fishListTimePart"
@@ -78,7 +99,12 @@
                         </template>
                       </fish-list>
                     </v-tab-item>
-                    <v-tab-item key="notification" class="list-wrapper" :transition="false" :reverse-transition="false">
+                    <v-tab-item
+                      key="notification"
+                      class="list-wrapper"
+                      :transition="false"
+                      :reverse-transition="false"
+                    >
                       <fish-list
                         :fish-list="toBeNotifiedFishList"
                         :fish-list-time-part="fishListTimePart"
@@ -129,12 +155,23 @@
               </click-helper>
             </template>
           </v-banner>
-          <v-sheet :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`" class="pa-3" style="height: 100%">
+          <v-sheet
+            :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`"
+            class="pa-3"
+            style="height: 100%"
+          >
             <v-skeleton-loader type="card-avatar, article, actions" boilerplate></v-skeleton-loader>
           </v-sheet>
         </div>
         <div v-else class="fish-detail-pane">
-          <fish-detail :fish="selectedFish" ref="fishDetail" @close="showRightPane = false" in-pane :now="now" />
+          <fish-detail
+            :fish="selectedFish"
+            ref="fishDetail"
+            @close="showRightPane = false"
+            in-pane
+            :now="now"
+            :forceShowComponents="forceShowComponents"
+          />
         </div>
       </pane>
     </splitpanes>
@@ -188,6 +225,7 @@ export default {
     resizing: false,
     rightPaneFullScreen: window.innerWidth < 1264,
     loading: true,
+    forceShowComponents: undefined,
   }),
   computed: {
     isMobile() {
@@ -252,8 +290,9 @@ export default {
     onDismiss() {
       this.setNotShowBanner()
     },
-    onFishSelected(fishId) {
+    onFishSelected({ fishId, components }) {
       this.$emit('select-fish', fishId)
+      this.forceShowComponents = components
       this.showRightPane = true
     },
     resizeInternal(resizePaneInfos) {
@@ -294,8 +333,8 @@ export default {
 .filter-wrapper
   z-index: 4
 
-  //&:not(.show-filter)
-  //  display: none
+//&:not(.show-filter)
+//  display: none
 
 //.main-area::v-deep
   position: relative

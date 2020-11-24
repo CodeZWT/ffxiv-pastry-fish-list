@@ -17,6 +17,7 @@
           :fish-weather-change-part="fishWeatherChangePart"
           :predators="predators"
           :now="now"
+          :forceShowComponents="forceShowComponents"
         ></fish-detail-content>
       </div>
     </template>
@@ -46,6 +47,10 @@ export default {
     now: {
       type: Number,
       default: Date.now(),
+    },
+    forceShowComponents: {
+      type: Array,
+      default: undefined,
     },
   },
   computed: {

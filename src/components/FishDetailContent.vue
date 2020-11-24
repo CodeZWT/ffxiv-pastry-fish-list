@@ -16,31 +16,6 @@
         />
       </v-col>
     </template>
-    <!--    <v-col v-if="fish.hasFishingSpot" cols="12" class="my-2">-->
-    <!--      <detail-item-map :fish="fish" :expanded="true" />-->
-    <!--    </v-col>-->
-    <!--    <v-col cols="12" class="my-2">-->
-    <!--      <detail-item-countdown-bar :fish="fish" />-->
-    <!--    </v-col>-->
-    <!--    <v-col cols="12" class="my-2">-->
-    <!--      <detail-item-requirements :fish="fish" />-->
-    <!--    </v-col>-->
-
-    <!--    <v-col cols="12" class="my-2">-->
-    <!--      <detail-item-buff-and-baits :fish="fish" />-->
-    <!--    </v-col>-->
-
-    <!--    <v-col v-if="fish.hasCountDown" cols="12" class="my-2">-->
-    <!--      <detail-item-fish-window-table :fish="fish" :fish-weather-change-part="fishWeatherChangePart" :expanded="false" />-->
-    <!--    </v-col>-->
-
-    <!--    <v-col cols="12" v-if="fish.hasPredators" class="my-2">-->
-    <!--      <detail-item-predators :value="fish.predators" />-->
-    <!--    </v-col>-->
-
-    <!--        <v-col>-->
-    <!--          <fishing-spot-table :value="fish.fishingSpotFish" />-->
-    <!--        </v-col>-->
   </v-row>
 </template>
 
@@ -94,6 +69,10 @@ export default {
       type: Number,
       default: Date.now(),
     },
+    forceShowComponents: {
+      type: Array,
+      default: undefined,
+    },
   },
   data: () => ({}),
   computed: {
@@ -102,7 +81,8 @@ export default {
       const hasPredators = Object.keys(this.value.predators).length > 0
       return {
         id: this.value._id,
-        startHourText: this.value.startHourText ?? DataUtil.formatET(this.value.startHour),
+        startHourText:
+          this.value.startHourText ?? DataUtil.formatET(this.value.startHour),
         endHourText: this.value.endHourText ?? DataUtil.formatET(this.value.endHour),
         hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
         hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
@@ -127,11 +107,14 @@ export default {
         // anglerLocationId: fishingSpot?.anglerLocationId,
         weatherSet: this.value.weatherSet,
         weatherSetDetail: this.getWeather(this.value.weatherSet),
-        hasWeatherConstraint: this.value.previousWeatherSet.length > 0 || this.value.weatherSet.length > 0,
+        hasWeatherConstraint:
+          this.value.previousWeatherSet.length > 0 || this.value.weatherSet.length > 0,
         previousWeatherSet: this.value.previousWeatherSet,
         previousWeatherSetDetail: this.getWeather(this.value.previousWeatherSet),
         countDownType: this.fishTimePart.countDown.type,
-        countDownTypeName: DataUtil.getCountDownTypeName(this.fishTimePart.countDown.type),
+        countDownTypeName: DataUtil.getCountDownTypeName(
+          this.fishTimePart.countDown.type
+        ),
         countDownTime: this.fishTimePart.countDown.time,
         countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time, 2),
         countDownTimePoint: this.fishTimePart.countDown?.timePoint,
@@ -140,7 +123,9 @@ export default {
         }),
         countDownTotal: this.fishTimePart.countDown.fishWindowTotal,
         countDownRemainPercentage:
-          (this.fishTimePart.countDown.time / this.fishTimePart.countDown.fishWindowTotal) * 100,
+          (this.fishTimePart.countDown.time /
+            this.fishTimePart.countDown.fishWindowTotal) *
+          100,
         isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
         baits: this.getBaits(this.value),
         isCompleted: this.getFishCompleted(this.value._id),
@@ -148,10 +133,21 @@ export default {
       }
     },
     sortedDetailComponents() {
-      return sortBy(this.detailComponents, 'order').map(it => ({
-        ...it,
-        constraint: DataUtil.DETAIL_ITEM_DISPLAY_CONSTRAINTS[it.name],
-      }))
+      if (this.forceShowComponents) {
+        return DataUtil.getDetailComponentSettingTemplate(this.forceShowComponents).map(
+          (component, index) => ({
+            ...component,
+            expanded: true,
+            enabled: true,
+            order: index,
+          })
+        )
+      } else {
+        return sortBy(this.detailComponents, 'order').map(it => ({
+          ...it,
+          constraint: DataUtil.DETAIL_ITEM_DISPLAY_CONSTRAINTS[it.name],
+        }))
+      }
     },
     ...mapGetters([
       'getWeather',
