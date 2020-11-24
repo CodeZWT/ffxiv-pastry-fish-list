@@ -106,8 +106,8 @@ export default {
     setToBeNotified(toBeNotified) {
       this.setFishToBeNotified({ fishId: this.fish.id, toBeNotified })
     },
-    onFishClicked(fishId, components) {
-      this.$emit('click', { fishId, components })
+    onFishClicked(components) {
+      this.$emit('click', { fishId: this.fish.id, components })
     },
     ...mapMutations(['setFishCompleted', 'setFishPinned', 'setFishToBeNotified']),
   },

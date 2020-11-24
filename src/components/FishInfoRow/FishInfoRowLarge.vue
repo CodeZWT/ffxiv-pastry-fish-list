@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%" @click="onFishClicked(fish.id)">
+  <div style="width: 100%" @click="onFishClicked()">
     <v-divider v-if="inPredator" inset style="border-color: white" />
     <v-row
       no-gutters
@@ -118,7 +118,7 @@
             v-if="fish.rate < 1"
             text
             class="pl-2 pr-1"
-            @click.stop="onFishClicked(fish.id, ['DetailItemFishWindowTable'])"
+            @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
           >
             <v-icon small left>
               mdi-calendar
@@ -128,7 +128,10 @@
         </div>
       </v-col>
       <v-col class="col-2 d-flex flex-column justify-center">
-        <fishing-spot-column :fishing-spots="fish.fishingSpots" />
+        <fishing-spot-column
+          :fishing-spots="fish.fishingSpots"
+          @click="onFishClicked(['DetailItemMap'])"
+        />
       </v-col>
       <v-col class="col-2 d-flex flex-column justify-center align-center">
         <div v-if="fish.hasTimeConstraint">

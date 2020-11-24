@@ -2,7 +2,7 @@
   <div class="d-flex flex-row align-center">
     <div class="d-flex flex-column">
       <div class="d-flex align-center">
-        <v-btn small text class="pl-1 pr-2">
+        <v-btn small text class="pl-1 pr-2" @click.stop="$emit('click')">
           <div
             class="text-subtitle-1 text-truncate"
             :title="firstLocation.fishingSpot + '#' + firstLocation.fishingSpotId"
