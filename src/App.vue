@@ -221,7 +221,7 @@
           :sortedFilteredFishList="sortedFilteredFishList"
           :toBeNotifiedFishList="toBeNotifiedFishList"
           :selectedFish="selectedFish"
-          @select-fish="selectedFishId = $event"
+          @fish-selected="selectedFishId = $event"
         />
         <!--                @fishCntUpdated="listFishCnt = $event"     -->
       </div>

@@ -380,7 +380,7 @@ export default {
     currentFishId(fishId) {
       if (fishId > 0) {
         this.isDetailFishWindowOpen = true
-        this.$emit('select-fish', fishId)
+        this.$emit('fish-selected', fishId)
       }
     },
     isDetailFishWindowOpen(isOpen) {

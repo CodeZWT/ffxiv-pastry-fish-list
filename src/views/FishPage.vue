@@ -291,7 +291,7 @@ export default {
       this.setNotShowBanner()
     },
     onFishSelected({ fishId, components }) {
-      this.$emit('select-fish', fishId)
+      this.$emit('fish-selected', fishId)
       this.forceShowComponents = components
       this.showRightPane = true
     },
