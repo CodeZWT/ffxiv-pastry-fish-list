@@ -12,26 +12,31 @@
                 </v-col>
               </v-row>
               <v-row wrap no-gutters>
-                <v-col v-for="version in exVersion" :key="version" class="col-12 col-md-6 my-1">
+                <v-col
+                  v-for="version in exVersion"
+                  :key="version"
+                  class="col-12 col-md-6 my-1"
+                >
                   <div style="align-items: center">
                     <click-helper
-                      v-if="patchSelectedIndices[version].length === patches[version].length"
+                      v-if="
+                        patchSelectedIndices[version].length === patches[version].length
+                      "
                       @click="uncheckAll(version)"
                     >
-                      <v-btn text small rounded>
+                      <v-btn text small>
                         {{ version }}
                         <v-icon>mdi-close</v-icon>
                       </v-btn>
                     </click-helper>
                     <click-helper v-else @click="checkAll(version)">
-                      <v-btn text small rounded>
+                      <v-btn text small>
                         {{ version }}
                         <v-icon>mdi-check-all</v-icon>
                       </v-btn>
                     </click-helper>
                     <v-btn-toggle
                       v-model="patchSelectedIndices[version]"
-                      rounded
                       dense
                       multiple
                       active-class="primary"
@@ -51,7 +56,6 @@
                   <v-btn-toggle
                     v-model="completeType"
                     mandatory
-                    rounded
                     active-class="primary"
                     dense
                     @change="onChange"
@@ -63,7 +67,13 @@
                 </v-col>
                 <v-col cols="6">
                   <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
-                  <v-btn-toggle v-model="bigFishType" mandatory rounded active-class="primary" dense @change="onChange">
+                  <v-btn-toggle
+                    v-model="bigFishType"
+                    mandatory
+                    active-class="primary"
+                    dense
+                    @change="onChange"
+                  >
                     <v-btn small v-for="type in bigFishFilterTypes" :key="type">
                       {{ $t(`filter.bigFish.${type}`) }}
                     </v-btn>
@@ -93,7 +103,12 @@
               </v-row>
               <v-row no-gutters>
                 <v-col>
-                  <v-btn-toggle v-model="fishNType" dense rounded active-class="primary" @change="onChange">
+                  <v-btn-toggle
+                    v-model="fishNType"
+                    dense
+                    active-class="primary"
+                    @change="onChange"
+                  >
                     <v-btn small v-for="type in fishNFilterTypes" :key="type">
                       {{ $t(`filter.showFirstNFish.${type}`) }}
                     </v-btn>
@@ -113,7 +128,13 @@
         </v-row>
         <v-row no-gutters>
           <v-col>
-            <v-btn-toggle v-model="sorterType" dense rounded mandatory active-class="primary" @change="onChange">
+            <v-btn-toggle
+              v-model="sorterType"
+              dense
+              mandatory
+              active-class="primary"
+              @change="onChange"
+            >
               <v-btn small v-for="type in fishSorterTypes" :key="type">
                 {{ $t(`filter.sorter.${type}`) }}
               </v-btn>
@@ -137,7 +158,12 @@ const PATCHES = {
 }
 const COMPLETE_FILTER_TYPES = ['ALL', 'COMPLETED', 'UNCOMPLETED']
 // ALL_AVAILABLE_BIG_FISH is refer to fish without any time constraints in real life
-const BIG_FISH_FILTER_TYPES = ['ALL', 'BIG_FISH', 'ALL_AVAILABLE_BIG_FISH', 'NOT_BIG_FISH']
+const BIG_FISH_FILTER_TYPES = [
+  'ALL',
+  'BIG_FISH',
+  'ALL_AVAILABLE_BIG_FISH',
+  'NOT_BIG_FISH',
+]
 const FISH_N_FILTER_TYPES = ['10', '20', '50', 'ALL']
 const FISH_SORTER_TYPES = ['COUNTDOWN', 'RATE']
 
@@ -182,7 +208,9 @@ export default {
       const fishNTypeText = this.fishNFilterTypes[this.fishNType]
       return {
         patches: Object.entries(this.patchSelectedIndices)
-          .flatMap(([version, patches]) => patches.map(patch => this.patches[version][patch]))
+          .flatMap(([version, patches]) =>
+            patches.map(patch => this.patches[version][patch])
+          )
           .sort(),
         completeType: this.completeFilterTypes[this.completeType],
         bigFishType: this.bigFishFilterTypes[this.bigFishType],
@@ -208,7 +236,9 @@ export default {
         '4.x': this.getPatchesInVersion(filters?.patches, '4.x'),
         '5.x': this.getPatchesInVersion(filters?.patches, '5.x'),
       }
-      this.completeType = COMPLETE_FILTER_TYPES.indexOf(filters?.completeType ?? 'UNCOMPLETED')
+      this.completeType = COMPLETE_FILTER_TYPES.indexOf(
+        filters?.completeType ?? 'UNCOMPLETED'
+      )
       this.bigFishType = BIG_FISH_FILTER_TYPES.indexOf(filters?.bigFishType ?? 'BIG_FISH')
       this.fishNType = FISH_N_FILTER_TYPES.indexOf(this.fishN2Type(filters?.fishN))
       this.sorterType = FISH_SORTER_TYPES.indexOf(filters?.sorterType ?? 'COUNTDOWN')
@@ -229,7 +259,10 @@ export default {
       this.$emit('input', this.filtersReturned)
     },
     getPatchesInVersion(patches, version) {
-      return patches?.map(it => PATCHES[version].indexOf(it)).filter(patch => patch !== -1) ?? []
+      return (
+        patches?.map(it => PATCHES[version].indexOf(it)).filter(patch => patch !== -1) ??
+        []
+      )
     },
     fishN2Type(fishN) {
       const n = fishN ?? -1
