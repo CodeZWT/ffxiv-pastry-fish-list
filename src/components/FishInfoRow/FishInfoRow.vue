@@ -18,7 +18,16 @@ import FishInfoRowMedium from '@/components/FishInfoRow/FishInfoRowMedium'
 import FishInfoRowSmall from '@/components/FishInfoRow/FishInfoRowSmall'
 
 export default {
-  props: ['fish', 'fishTimePart', 'predators', 'inPredator', 'color', 'showDivider', 'mode', 'showConstraintsInstead'],
+  props: [
+    'fish',
+    'fishTimePart',
+    'predators',
+    'inPredator',
+    'color',
+    'showDivider',
+    'mode',
+    'showConstraintsInstead',
+  ],
   name: 'FishInfoRow',
   components: { FishInfoRowSmall, FishInfoRowMedium, FishInfoRowLarge },
   computed: {
