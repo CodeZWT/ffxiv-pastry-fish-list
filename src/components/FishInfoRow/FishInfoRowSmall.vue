@@ -223,7 +223,7 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 
 export default {
-  name: 'FishInfoRowMobile',
+  name: 'FishInfoRowSmall',
   components: { ItemIcon, FishingSpotColumn, FishBaitList, ToggleButton },
   mixins: [fishInfoRowMixin],
 }

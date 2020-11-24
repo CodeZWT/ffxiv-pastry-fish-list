@@ -10,7 +10,7 @@
           :fish="predator"
           :fish-time-part="predator.fishTimePart"
           in-predator
-          :mode="mode"
+          mode="medium"
           show-constraints-instead
         />
       </div>

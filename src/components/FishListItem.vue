@@ -12,7 +12,7 @@
         :fish-time-part="fishTimePart"
         :predators="[]"
         :in-predator="fish.isPredator"
-        mode="HEADER"
+        mode="large"
         :show-constraints-instead="fish.isPredator || showConstraintsInstead"
       />
     </v-sheet>

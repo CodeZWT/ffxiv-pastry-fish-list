@@ -154,7 +154,7 @@ import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
-  name: 'FishInfoRowPC',
+  name: 'FishInfoRowLarge',
   components: { ClickHelper, ItemIcon, FishingSpotColumn, FishBaitList, ToggleButton },
   mixins: [fishInfoRowMixin],
 }

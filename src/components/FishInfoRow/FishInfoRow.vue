@@ -13,29 +13,29 @@
 </template>
 
 <script>
-import FishInfoRowPC from '@/components/FishInfoRow/FishInfoRowPC'
-import FishInfoRowMobile from '@/components/FishInfoRow/FishInfoRowMobile'
+import FishInfoRowLarge from '@/components/FishInfoRow/FishInfoRowLarge'
 import FishInfoRowMedium from '@/components/FishInfoRow/FishInfoRowMedium'
+import FishInfoRowSmall from '@/components/FishInfoRow/FishInfoRowSmall'
 
 export default {
   props: ['fish', 'fishTimePart', 'predators', 'inPredator', 'color', 'showDivider', 'mode', 'showConstraintsInstead'],
   name: 'FishInfoRow',
-  components: { FishInfoRowMobile, FishInfoRowPC, FishInfoRowMedium },
+  components: { FishInfoRowSmall, FishInfoRowMedium, FishInfoRowLarge },
   computed: {
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
     component() {
-      const mode = this.mode ?? this.isMobile() ? 'small' : 'large'
+      const mode = this.mode ?? (this.isMobile() ? 'small' : 'large')
       switch (mode) {
         case 'large':
-          return 'FishInfoRowPC'
+          return 'FishInfoRowLarge'
         case 'medium':
           return 'FishInfoRowMedium'
         case 'small':
-          return 'FishInfoRowMobile'
+          return 'FishInfoRowSmall'
         default:
-          return 'FishInfoRowPC'
+          return 'FishInfoRowLarge'
       }
     },
   },
