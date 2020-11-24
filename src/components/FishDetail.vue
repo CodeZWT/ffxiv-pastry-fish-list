@@ -10,14 +10,14 @@
         />
       </div>
       <div :class="{ 'detail-header': inPane }">
-        <fish-list-item-content
+        <fish-detail-content
           ref="detailContent"
           :value="fish"
           :fish-time-part="fishTimePart"
           :fish-weather-change-part="fishWeatherChangePart"
           :predators="predators"
           :now="now"
-        ></fish-list-item-content>
+        ></fish-detail-content>
       </div>
     </template>
     <template v-else>
@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import FishListItemContent from '@/components/FishListItemContent'
+import FishDetailContent from '@/components/FishDetailContent'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
 import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'FishDetail',
-  components: { FishListExpandedHeader, FishListItemContent },
+  components: { FishListExpandedHeader, FishDetailContent },
   props: {
     fish: {
       type: Object,

@@ -56,7 +56,7 @@ import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItem
 import { sortBy } from 'lodash'
 
 export default {
-  name: 'FishListItemContent',
+  name: 'FishDetailContent',
   components: {
     DetailItemFishWindowTable,
     DetailItemBuffAndBaits,
