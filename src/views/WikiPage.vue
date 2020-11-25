@@ -119,7 +119,7 @@
                     :fish="fish"
                     :fish-time-part="fishListTimePart[fish._id]"
                     :position="toPos(index)"
-                    show-constraints-instead
+                    hide-spot-column
                     @click="onFishClicked(fish._id)"
                   />
                 </div>
@@ -247,7 +247,7 @@ export default {
             x: 0,
             y: 4.2,
             w: 7,
-            h: 15,
+            h: 18,
             i: 'fishList',
           },
           { x: 0, y: 0, w: 7, h: 4.2, i: 'fishTugList' },

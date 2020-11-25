@@ -33,7 +33,7 @@ export default {
       type: String,
       default: 'CONTENT',
     },
-    showConstraintsInstead: {
+    hideSpotColumn: {
       type: Boolean,
       default: false,
     },

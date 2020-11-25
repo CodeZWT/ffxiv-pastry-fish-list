@@ -8,7 +8,7 @@
     :color="color"
     :showDivider="showDivider"
     :mode="mode"
-    :showConstraintsInstead="showConstraintsInstead"
+    :hide-spot-column="hideSpotColumn"
     @click="$emit('click', $event)"
   />
 </template>
@@ -27,7 +27,7 @@ export default {
     'color',
     'showDivider',
     'mode',
-    'showConstraintsInstead',
+    'hideSpotColumn'
   ],
   name: 'FishInfoRow',
   components: { FishInfoRowSmall, FishInfoRowMedium, FishInfoRowLarge },

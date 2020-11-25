@@ -12,7 +12,7 @@
         :fish-time-part="fishTimePart"
         :predators="[]"
         :in-predator="fish.isPredator"
-        :show-constraints-instead="fish.isPredator || showConstraintsInstead"
+        :hide-spot-column="hideSpotColumn"
         @click="$emit('click', $event)"
       />
     </v-sheet>
@@ -39,13 +39,13 @@ export default {
       type: String,
       default: undefined,
     },
-    showConstraintsInstead: {
-      type: Boolean,
-      default: false,
-    },
     position: {
       type: String,
       default: 'inside',
+    },
+    hideSpotColumn: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

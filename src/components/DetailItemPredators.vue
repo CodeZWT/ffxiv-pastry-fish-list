@@ -9,9 +9,9 @@
         <fish-info-row
           :fish="predator"
           :fish-time-part="predator.fishTimePart"
-          in-predator
+          :in-predator="true"
           mode="medium"
-          show-constraints-instead
+          :hide-spot-column="true"
         />
       </div>
     </v-col>

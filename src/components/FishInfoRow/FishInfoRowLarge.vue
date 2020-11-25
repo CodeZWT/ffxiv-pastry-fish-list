@@ -6,7 +6,7 @@
       class="d-flex justify-center align-content-center"
       style="width: 100%"
     >
-      <v-col cols="2">
+      <v-col :class="fishColClass">
         <div
           class="d-flex fill-height align-center flex-row pr-1"
           style="min-height: 48px"
@@ -71,7 +71,7 @@
         </div>
       </v-col>
       <!--  1st: end / start count down  -->
-      <v-col class="col-3 d-flex flex-column justify-center">
+      <v-col :class="`${countDownColClass} d-flex flex-column justify-center`">
         <div class="text-subtitle-2 d-flex">
           <div>
             <v-tooltip right color="secondary">
@@ -127,13 +127,18 @@
           </v-btn>
         </div>
       </v-col>
-      <v-col class="col-2 d-flex flex-column justify-center">
+      <v-col :class="`${locationColClass} d-flex flex-column justify-center`">
         <fishing-spot-column
+          v-if="!inPredator && !hideSpotColumn"
           :fishing-spots="fish.fishingSpots"
           @click="onFishClicked(['DetailItemMap'])"
         />
       </v-col>
-      <v-col class="col-2 d-flex flex-column justify-center align-center">
+      <v-col
+        :class="
+          `${timeAndWeatherColClass} d-flex flex-column justify-center align-center`
+        "
+      >
         <div v-if="fish.hasTimeConstraint">
           {{ fish.startHourText }} - {{ fish.endHourText }}
         </div>
@@ -159,7 +164,9 @@
           </div>
         </div>
       </v-col>
-      <v-col class="col-3 d-flex flex-row align-center justify-center">
+      <v-col
+        :class="`${buffAndBaitColClass} d-flex flex-row align-center justify-center`"
+      >
         <div
           v-if="fish.hasFishEyes || fish.hasPredators || fish.hasSnagging"
           class="mr-1"
@@ -197,6 +204,23 @@ export default {
   name: 'FishInfoRowLarge',
   components: { ClickHelper, ItemIcon, FishingSpotColumn, FishBaitList, ToggleButton },
   mixins: [fishInfoRowMixin],
+  computed: {
+    fishColClass() {
+      return this.hideSpotColumn ? 'col-3' : 'col-2'
+    },
+    countDownColClass() {
+      return this.hideSpotColumn ? 'col-3' : 'col-3'
+    },
+    locationColClass() {
+      return this.hideSpotColumn ? 'col-0' : 'col-2'
+    },
+    timeAndWeatherColClass() {
+      return this.hideSpotColumn ? 'col-2' : 'col-2'
+    },
+    buffAndBaitColClass() {
+      return this.hideSpotColumn ? 'col-4' : 'col-3'
+    },
+  },
 }
 </script>
 
