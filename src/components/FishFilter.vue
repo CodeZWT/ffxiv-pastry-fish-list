@@ -24,19 +24,20 @@
                       "
                       @click="uncheckAll(version)"
                     >
-                      <v-btn text small>
+                      <v-btn text small rounded>
                         {{ version }}
                         <v-icon>mdi-close</v-icon>
                       </v-btn>
                     </click-helper>
                     <click-helper v-else @click="checkAll(version)">
-                      <v-btn text small>
+                      <v-btn text small rounded>
                         {{ version }}
                         <v-icon>mdi-check-all</v-icon>
                       </v-btn>
                     </click-helper>
                     <v-btn-toggle
                       v-model="patchSelectedIndices[version]"
+                      rounded
                       dense
                       multiple
                       active-class="primary"
@@ -56,6 +57,7 @@
                   <v-btn-toggle
                     v-model="completeType"
                     mandatory
+                    rounded
                     active-class="primary"
                     dense
                     @change="onChange"
@@ -70,6 +72,7 @@
                   <v-btn-toggle
                     v-model="bigFishType"
                     mandatory
+                    rounded
                     active-class="primary"
                     dense
                     @change="onChange"
@@ -106,6 +109,7 @@
                   <v-btn-toggle
                     v-model="fishNType"
                     dense
+                    rounded
                     active-class="primary"
                     @change="onChange"
                   >
@@ -131,6 +135,7 @@
             <v-btn-toggle
               v-model="sorterType"
               dense
+              rounded
               mandatory
               active-class="primary"
               @change="onChange"
