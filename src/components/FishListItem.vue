@@ -12,7 +12,6 @@
         :fish-time-part="fishTimePart"
         :predators="[]"
         :in-predator="fish.isPredator"
-        mode="large"
         :show-constraints-instead="fish.isPredator || showConstraintsInstead"
         @click="$emit('click', $event)"
       />

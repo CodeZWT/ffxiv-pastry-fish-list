@@ -36,7 +36,7 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
     component() {
-      const mode = this.mode ?? (this.isMobile() ? 'small' : 'large')
+      const mode = this.mode ?? (this.isMobile ? 'small' : 'large')
       switch (mode) {
         case 'large':
           return 'FishInfoRowLarge'
