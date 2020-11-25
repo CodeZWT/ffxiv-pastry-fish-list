@@ -14,7 +14,7 @@
           </v-icon>
         </v-btn>
       </div>
-      <div class="d-flex align-center px-1">
+      <div class="d-flex align-center">
         <div class="text-subtitle-2 text-truncate">
           {{ firstLocation.zone }}
         </div>
