@@ -7,54 +7,39 @@ export default {
     return (num1 - (num1 % num2)) / num2
   },
 
-  computeFishWindowIfExist(territoryId, periodStart, hourStart, hourEnd, previousWeatherSet, weatherSet) {
-    const periodEnd = periodStart.toNextWeatherInterval()
+  computeFishWindowIfExist(
+    territoryId,
+    periodStart,
+    hourStart,
+    hourEnd,
+    previousWeatherSet,
+    weatherSet
+  ) {
     const prevPeriodStart = periodStart.toPreviousWeatherInterval()
-    let restraintStartTime
-    let restraintEndTime
-    if (hourStart < hourEnd) {
-      restraintStartTime = periodStart.timeOfHours(hourStart)
-      restraintEndTime = periodStart.timeOfHours(hourEnd)
-    } else {
-      if (this.divide(periodStart.getHours(), 8) === this.divide(hourStart, 8)) {
-        restraintStartTime = periodStart.timeOfHours(hourStart)
-        restraintEndTime = periodStart.timeOfHours(hourStart < hourEnd ? hourEnd : 24 + hourEnd)
-      } else {
-        restraintStartTime = periodStart.timeOfHours(0)
-        restraintEndTime = periodStart.timeOfHours(hourEnd)
-      }
+
+    const periodStartHour = periodStart.getHours()
+    const periodEndHour = periodStartHour + 8
+
+    const intersections = intersectionOf(
+      [periodStartHour, periodEndHour],
+      [hourStart, hourEnd]
+    )
+    if (intersections.length === 0) {
+      return []
     }
-    if (periodStart.time >= restraintEndTime.time || periodEnd.time <= restraintStartTime.time) {
-      // NOTE: if current checking period has no overlap with hour restraint of fish
-      // just return
-      return
-    }
-    // const periodHourStart = periodStart.getHours()
-    // const periodHourEnd = periodEnd.getHours() === 0 ? 24 : periodEnd.getHours()
-    // console.debug('------', hourStart, hourEnd, previousWeatherSet, weatherSet)
     if (
       (previousWeatherSet.length === 0 ||
-        previousWeatherSet.indexOf(EorzeaWeather.weatherAt(territoryId, prevPeriodStart)) !== -1) &&
-      (weatherSet.length === 0 || weatherSet.indexOf(EorzeaWeather.weatherAt(territoryId, periodStart)) !== -1)
+        previousWeatherSet.indexOf(
+          EorzeaWeather.weatherAt(territoryId, prevPeriodStart)
+        ) !== -1) &&
+      (weatherSet.length === 0 ||
+        weatherSet.indexOf(EorzeaWeather.weatherAt(territoryId, periodStart)) !== -1)
     ) {
-      // console.debug(prevPeriodStart.toString(), periodStart.toString())
-      // console.debug(
-      //   EorzeaWeather.weatherAt(territoryId, prevPeriodStart),
-      //   EorzeaWeather.weatherAt(territoryId, periodStart)
-      // )
-      return [
-        periodStart.time > restraintStartTime.time ? periodStart : restraintStartTime,
-        periodEnd.time <= restraintEndTime.time ? periodEnd : restraintEndTime,
-        // NOTE:
-        // be careful set day to 24 makes it become next day
-        // so if 24 === 24, just return current time
-        // periodHourEnd <= hourEnd ? periodEnd : periodEnd.timeOfHours(hourEnd),
-      ].map(et => {
-        // console.debug('et', et.toString())
-        return et.toEarthTime()
-      })
+      return intersections.map(range =>
+        range.map(hour => periodStart.timeOfHours(hour).toEarthTime())
+      )
     }
-    return undefined
+    return []
   },
 
   getNextNFishWindows(
@@ -74,7 +59,10 @@ export default {
     }
     if (
       territoryId == null ||
-      (previousWeatherSet.length === 0 && weatherSet.length === 0 && hourStart === 0 && hourEnd === 24)
+      (previousWeatherSet.length === 0 &&
+        weatherSet.length === 0 &&
+        hourStart === 0 &&
+        hourEnd === 24)
     ) {
       // console.warn('not time and weather restraint fish!')
       return []
@@ -86,10 +74,9 @@ export default {
     let time = eorzeaTime.toWeatherCheckPoint()
     const firstTime = time
     let loopCounter = 0
-    // console.debug(new Date(time.time))
     while (counter < n && loopCounter < 10000) {
       loopCounter++
-      const fishWindow = this.computeFishWindowIfExist(
+      const periodFishWindows = this.computeFishWindowIfExist(
         territoryId,
         time,
         hourStart,
@@ -97,7 +84,7 @@ export default {
         previousWeatherSet,
         weatherSet
       )
-      if (fishWindow) {
+      periodFishWindows.forEach(fishWindow => {
         if (fishWindows.length > 0) {
           const lastIndex = fishWindows.length - 1
 
@@ -112,7 +99,7 @@ export default {
           fishWindows.push(fishWindow)
           counter++
         }
-      }
+      })
       time = time.toNextWeatherInterval()
     }
     // try to find previous available fish window which can be combined with the current first one
@@ -120,10 +107,11 @@ export default {
       loopCounter = 0
       let firstEorzeaWeatherStart = firstTime
       // console.log(fishId, EorzeaWeather.weatherAt(territoryId, firstEorzeaWeatherStart))
-      let firstFishWindow = fishWindows[0]
+      let firstFishWindow //= fishWindows[0]
+      let fishWindowsOfPeriod
       do {
         firstEorzeaWeatherStart = firstEorzeaWeatherStart.toPreviousWeatherInterval()
-        firstFishWindow = this.computeFishWindowIfExist(
+        fishWindowsOfPeriod = this.computeFishWindowIfExist(
           territoryId,
           firstEorzeaWeatherStart,
           hourStart,
@@ -132,6 +120,13 @@ export default {
           weatherSet
         )
         loopCounter++
+        if (fishWindowsOfPeriod.length === 0) {
+          firstFishWindow = undefined
+        } else if (fishWindowsOfPeriod.length === 1) {
+          firstFishWindow = fishWindowsOfPeriod[0]
+        } else {
+          firstFishWindow = fishWindowsOfPeriod[1]
+        }
         // console.log(
         //   'seek for fish',
         //   fishId,
@@ -141,13 +136,19 @@ export default {
         //   new Date(firstEorzeaWeatherStart.toNextWeatherInterval().toEarthTime())
         // )
       } while (
+        // check fishWindow contains the whole weather time range
         firstFishWindow &&
         firstEorzeaWeatherStart.toEarthTime() === firstFishWindow[0] &&
-        firstEorzeaWeatherStart.toNextWeatherInterval().toEarthTime() === firstFishWindow[1] &&
+        firstEorzeaWeatherStart.toNextWeatherInterval().toEarthTime() ===
+          firstFishWindow[1] &&
         loopCounter < 1000
       )
       // console.log('loop cnt for fish front seeker', loopCounter)
-      if (firstFishWindow && firstEorzeaWeatherStart.toNextWeatherInterval().toEarthTime() === firstFishWindow[1]) {
+      if (
+        firstFishWindow &&
+        firstEorzeaWeatherStart.toNextWeatherInterval().toEarthTime() ===
+          firstFishWindow[1]
+      ) {
         fishWindows[0][0] = firstFishWindow[0]
       } else {
         fishWindows[0][0] = firstEorzeaWeatherStart.toNextWeatherInterval().toEarthTime()
@@ -156,4 +157,23 @@ export default {
     // console.debug('loop count', loopCounter)
     return fishWindows.slice(0, n - 2)
   },
+}
+
+function intersectionOf(range1, range2) {
+  let targetRanges = [range2]
+  if (range2[0] > range2[1]) {
+    targetRanges = [
+      [0, range2[1]],
+      [range2[0], 24],
+    ]
+  }
+  return targetRanges
+    .map(it => intersectionOfSimpleRange(range1, it))
+    .filter(it => it.length !== 0)
+}
+
+function intersectionOfSimpleRange(range1, range2) {
+  const range = [Math.max(range1[0], range2[0]), Math.min(range1[1], range2[1])]
+  if (range[0] >= range[1]) return []
+  return range
 }
