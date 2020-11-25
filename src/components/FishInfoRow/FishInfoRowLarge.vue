@@ -1,6 +1,10 @@
 <template>
   <div style="width: 100%" @click="onFishClicked()">
-    <v-divider v-if="inPredator" inset style="border-color: white" />
+    <v-divider
+      v-if="inPredator"
+      class="ml-9"
+      style="margin-top: -2px; margin-bottom: 2px; border-color: grey"
+    />
     <v-row
       no-gutters
       class="d-flex justify-center align-content-center"

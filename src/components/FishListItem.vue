@@ -2,10 +2,9 @@
   <click-helper>
     <v-sheet
       v-ripple
-      :elevation="4"
       :key="fish._id"
       :color="color"
-      :class="['v-list-item', 'v-list-item--link', borderClass, roundedClass]"
+      :class="['v-list-item', 'v-list-item--link', borderClass]"
     >
       <fish-info-row
         :fish="fish"
