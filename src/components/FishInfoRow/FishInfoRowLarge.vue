@@ -167,6 +167,9 @@
             </div>
           </div>
         </div>
+        <div v-if="!fish.hasTimeConstraint && !fish.hasWeatherConstraint">
+          {{ $t('list.item.noConstraint') }}
+        </div>
       </v-col>
       <v-col
         :class="`${buffAndBaitColClass} d-flex flex-row align-center justify-center`"
