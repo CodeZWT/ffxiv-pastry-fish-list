@@ -38,7 +38,9 @@ export default class EorzeaTime {
   }
 
   timeOfHours(hours) {
-    return new EorzeaTime(this.time - (this.time % ONE_DAY_INTERVAL) + hours * ONE_HOUR_INTERVAL)
+    return new EorzeaTime(
+      this.time - (this.time % ONE_DAY_INTERVAL) + hours * ONE_HOUR_INTERVAL
+    )
   }
 
   // getWeatherCheckPeriod() {

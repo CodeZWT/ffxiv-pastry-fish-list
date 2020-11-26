@@ -12,7 +12,10 @@
       <div v-if="fish.hasSnagging">
         <div :class="fish.snaggingIcon" data-ck-action-name="钓组" />
       </div>
-      <div v-if="!fish.hasFishEyes && !fish.hasPredators && !fish.hasSnagging" data-ck-action-name="鱼眼">
+      <div
+        v-if="!fish.hasFishEyes && !fish.hasPredators && !fish.hasSnagging"
+        data-ck-action-name="鱼眼"
+      >
         {{ $t('none') }}
       </div>
       <fish-bait-list :baits="fish.baits" class="ml-3" />

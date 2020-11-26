@@ -55,7 +55,9 @@ export default {
   },
   computed: {
     fishTimePart() {
-      return this.fish?.parts?.fishTimePart ?? { countDown: { type: DataUtil.ALL_AVAILABLE } }
+      return (
+        this.fish?.parts?.fishTimePart ?? { countDown: { type: DataUtil.ALL_AVAILABLE } }
+      )
     },
     fishWeatherChangePart() {
       return this.fish?.parts?.fishWeatherChangePart ?? {}

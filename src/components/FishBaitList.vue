@@ -1,5 +1,8 @@
 <template>
-  <div class="d-flex align-center justify-start flex-wrap" style="line-height: 1; min-height: 44px">
+  <div
+    class="d-flex align-center justify-start flex-wrap"
+    style="line-height: 1; min-height: 44px"
+  >
     <div v-for="(bait, baitInx) in baits" :key="baitInx">
       <div class="d-flex align-center">
         <div v-if="baitInx !== 0" style="display: flex; align-items: center">
@@ -10,11 +13,19 @@
         </div>
         <v-row no-gutters class="d-flex" style="max-width: 27px">
           <v-col cols="12">
-            <v-badge v-show="bait.tug != null" :color="TUG_ICON_COLOR[bait.tugIcon]" :content="bait.tugIcon" inline />
+            <v-badge
+              v-show="bait.tug != null"
+              :color="TUG_ICON_COLOR[bait.tugIcon]"
+              :content="bait.tugIcon"
+              inline
+            />
           </v-col>
           <!--  :data-ck-action-name="bait.hooksetSkillName"  -->
           <v-col cols="12" style="height: 16px">
-            <div v-show="bait.hookset != null" :class="[bait.hooksetIcon, 'hookset-icon']" />
+            <div
+              v-show="bait.hookset != null"
+              :class="[bait.hooksetIcon, 'hookset-icon']"
+            />
           </v-col>
         </v-row>
       </div>

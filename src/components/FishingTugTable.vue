@@ -4,8 +4,16 @@
       <thead>
         <tr>
           <th class="text-left">{{ $t('tugTable.tugFish') }}</th>
-          <th v-for="(fish, index) in fishTugList" :key="fish.id" :class="{ primary: currentCol === index }">
-            <item-icon :icon-class="fish.icon" :title="`${fish.name}#${fish.id}`" style="margin: auto" />
+          <th
+            v-for="(fish, index) in fishTugList"
+            :key="fish.id"
+            :class="{ primary: currentCol === index }"
+          >
+            <item-icon
+              :icon-class="fish.icon"
+              :title="`${fish.name}#${fish.id}`"
+              style="margin: auto"
+            />
           </th>
         </tr>
       </thead>

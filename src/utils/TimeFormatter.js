@@ -4,7 +4,12 @@ export default {
   toUnitLabel(unit) {
     return i18n.t(`time.${unit}`)
   },
-  millisecondsToText(milliseconds, showCnt = 1, forceShowEndingZeros = true, paddingZero = true) {
+  millisecondsToText(
+    milliseconds,
+    showCnt = 1,
+    forceShowEndingZeros = true,
+    paddingZero = true
+  ) {
     if (milliseconds == null) return undefined
     const units = this.millisecondsToUnits(milliseconds)
     const indexOfFirstNotZero = units.findIndex(it => it > 0)
@@ -25,7 +30,12 @@ export default {
     }
 
     return unitPairs
-      .map(it => `${it.number.toString().padStart(2, paddingZero ? '0' : '')}${this.toUnitLabel(it.unit)}`)
+      .map(
+        it =>
+          `${it.number.toString().padStart(2, paddingZero ? '0' : '')}${this.toUnitLabel(
+            it.unit
+          )}`
+      )
       .join('')
   },
   millisecondsToUnits(milliseconds) {

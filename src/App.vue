@@ -4,14 +4,21 @@
       height="56px"
       app
       :collapse="collapse"
-      :class="{ 'fish-app-bar': true, 'rounded-pill': collapse, 'fish-app-bar--collapsed': collapse }"
+      :class="{
+        'fish-app-bar': true,
+        'rounded-pill': collapse,
+        'fish-app-bar--collapsed': collapse,
+      }"
       dense
       color=""
     >
       <v-app-bar-nav-icon v-if="isMobile && !collapse" @click.stop="showNavi">
         <v-img v-if="!isMobile" :src="fisher" height="42" width="42" />
       </v-app-bar-nav-icon>
-      <click-helper @click="onFishIconClicked" :style="`margin-left: ${collapse || isMobile ? 0 : -12}px`">
+      <click-helper
+        @click="onFishIconClicked"
+        :style="`margin-left: ${collapse || isMobile ? 0 : -12}px`"
+      >
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <div class="d-flex">
@@ -68,12 +75,23 @@
             :key="index"
             :class="{ 'primary--text': activeTabIndex === index }"
           >
-            <v-badge color="error" :value="notification.cnt" :content="notification.cnt" style="z-index: 10">
+            <v-badge
+              color="error"
+              :value="notification.cnt"
+              :content="notification.cnt"
+              style="z-index: 10"
+            >
               <div class="d-flex">
-                <v-icon left small :color="activeTabIndex === index ? 'primary-text' : '#ffffff99'">
+                <v-icon
+                  left
+                  small
+                  :color="activeTabIndex === index ? 'primary-text' : '#ffffff99'"
+                >
                   {{ TABS[index].icon }}
                 </v-icon>
-                <div v-if="!isMobile" style="font-size: 16px">{{ $t(TABS[index].title) }}</div>
+                <div v-if="!isMobile" style="font-size: 16px">
+                  {{ $t(TABS[index].title) }}
+                </div>
               </div>
             </v-badge>
           </v-tab>
@@ -113,9 +131,19 @@
         :expand-on-hover="!isMobile"
       >
         <v-list dense>
-          <v-list-item v-for="(notification, index) in listFishCnt" :key="index" @click="toPageSubList(index)">
+          <v-list-item
+            v-for="(notification, index) in listFishCnt"
+            :key="index"
+            @click="toPageSubList(index)"
+          >
             <v-list-item-icon>
-              <v-badge color="error" :value="notification.cnt" :content="notification.cnt" style="z-index: 10" overlap>
+              <v-badge
+                color="error"
+                :value="notification.cnt"
+                :content="notification.cnt"
+                style="z-index: 10"
+                overlap
+              >
                 <v-icon>
                   {{ TABS[index].icon }}
                 </v-icon>
@@ -202,7 +230,11 @@
           </v-list>
         </template>
       </v-navigation-drawer>
-      <div :class="{ 'py-0': true, 'ml-14': !isMobile }" style="height: 100%" v-show="!collapse">
+      <div
+        :class="{ 'py-0': true, 'ml-14': !isMobile }"
+        style="height: 100%"
+        v-show="!collapse"
+      >
         <v-overlay :value="loading">
           <div class="d-flex flex-column align-center">
             <v-progress-circular indeterminate size="64" />
@@ -247,9 +279,13 @@
 
     <v-footer app style="font-size: small; max-height: 31px" v-if="!collapse">
       <div class="d-flex" style="width: 100%">
-        <div class="text-truncate mr-2" :title="$t('footer.contact')">{{ $t('footer.contact') }}</div>
+        <div class="text-truncate mr-2" :title="$t('footer.contact')">
+          {{ $t('footer.contact') }}
+        </div>
         <v-spacer />
-        <div class="text-truncate" :title="$t('footer.ffRights')">{{ $t('footer.ffRights') }}</div>
+        <div class="text-truncate" :title="$t('footer.ffRights')">
+          {{ $t('footer.ffRights') }}
+        </div>
       </div>
       <div class="resize-indicator" />
     </v-footer>
@@ -288,14 +324,21 @@
               和
               <v-chip x-small>5.35</v-chip>
               数据，文本暂时使用英文版本。
-              <div class="error--text text-h6">为了便于查看，5.3以及5.35的普通鱼仍会显示在默认列表中。</div>
-              <div class="error--text text-h6">之前版本没有任何时间天气限制的普通鱼请在图鉴中查找或直接搜索。</div>
+              <div class="error--text text-h6">
+                为了便于查看，5.3以及5.35的普通鱼仍会显示在默认列表中。
+              </div>
+              <div class="error--text text-h6">
+                之前版本没有任何时间天气限制的普通鱼请在图鉴中查找或直接搜索。
+              </div>
             </li>
             <li>
               更新官方攻略本数据(涵盖4.2前数据)。
               <ul>
                 <li>
-                  <a href="https://store.jp.square-enix.com/item/9784757556898.html" target="_blank">
+                  <a
+                    href="https://store.jp.square-enix.com/item/9784757556898.html"
+                    target="_blank"
+                  >
                     FINAL FANTASY XIV Crafter and Gatherer Official Guide
                   </a>
                 </li>
@@ -321,9 +364,16 @@
             <li>增加按窗口期稀有度排序的功能。</li>
             <li>增加按键 ' / ' 可以直接搜索，以及打开搜索界面自动开始搜索输入的功能。</li>
             <li>增加部分钓鱼技能的悬浮提示。</li>
-            <li>更新界面，由于增加了新的图鉴界面，所以原先右上角设置类的功能与新的页面切换一起整合至左侧侧边栏中。</li>
-            <li>更新地图范围提示完成。感谢 <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 的大力支持。</li>
-            <li>更新地图控件，现在可以点击“锁”图标自由拖动放大地图，以及切换显示文本以及钓场提示。</li>
+            <li>
+              更新界面，由于增加了新的图鉴界面，所以原先右上角设置类的功能与新的页面切换一起整合至左侧侧边栏中。
+            </li>
+            <li>
+              更新地图范围提示完成。感谢
+              <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 的大力支持。
+            </li>
+            <li>
+              更新地图控件，现在可以点击“锁”图标自由拖动放大地图，以及切换显示文本以及钓场提示。
+            </li>
             <li>
               更新时间文本，增加“今天”，“明天”，“周一”等的文本。
             </li>
@@ -348,7 +398,9 @@
 
           <div class="text-h6">Version 0.2.3</div>
           <ul>
-            <li>增加闹钟列表，点击列表中时间或详细列表中铃铛即可添加，详细设置在设置对话框中。</li>
+            <li>
+              增加闹钟列表，点击列表中时间或详细列表中铃铛即可添加，详细设置在设置对话框中。
+            </li>
             <li>更新列表：在CD中的鱼显示下一次窗口期时间。</li>
             <li>
               更新设置
@@ -378,7 +430,11 @@
           <ul>
             <li>提升页面流畅度。</li>
             <li>更新地图，增加水晶和部分地图的钓点范围提示，持续更新中。</li>
-            <li>范围都是 <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 大佬的标的，万分感谢！</li>
+            <li>
+              范围都是
+              <span class="font-weight-bold">轩辕十四@沃仙曦染</span>
+              大佬的标的，万分感谢！
+            </li>
             <li>修复了一些复制的问题。</li>
           </ul>
           <p />
@@ -428,8 +484,13 @@
             <li>增加ACT下使用的缩小功能，点击左上角，钓鱼时钟旁的鱼图标切换。</li>
             <li>更新帮助文档（ACT相关）。</li>
             <li>固定列表也按时间排序（和默认列表相同）。</li>
-            <li>当一条鱼的界面处于展开模式时，以任意的形式从当前列表移除后，下一条鱼不会继承打开的状态。</li>
-            <li>更新了 不朽巨鱼 的天气和咬钩 天气：从 阴云 修正为 晴朗/碧空 转 阴云/薄雾，补充了 咬钩 为 鱼王竿。</li>
+            <li>
+              当一条鱼的界面处于展开模式时，以任意的形式从当前列表移除后，下一条鱼不会继承打开的状态。
+            </li>
+            <li>
+              更新了 不朽巨鱼 的天气和咬钩 天气：从 阴云 修正为 晴朗/碧空 转
+              阴云/薄雾，补充了 咬钩 为 鱼王竿。
+            </li>
           </ul>
           <p />
           <v-divider />
@@ -463,7 +524,9 @@
             </li>
             <li>增加时间提示，当鼠标悬停在倒计时文字上时，显示具体的时刻。</li>
             <li>增加“更新笔记”功能，当版本更新时显示。</li>
-            <li>给等待中的鱼加上下次窗口期的持续时间（简易显示一个时间单位，鼠标悬停显示全部）。</li>
+            <li>
+              给等待中的鱼加上下次窗口期的持续时间（简易显示一个时间单位，鼠标悬停显示全部）。
+            </li>
           </ul>
           <p />
           <v-divider />
@@ -481,7 +544,12 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="showHelpDialog" :fullscreen="isMobile" max-width="1264px" scrollable>
+    <v-dialog
+      v-model="showHelpDialog"
+      :fullscreen="isMobile"
+      max-width="1264px"
+      scrollable
+    >
       <v-card>
         <v-card-title>
           {{ $t('top.help') }}
@@ -496,32 +564,52 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="showAboutDialog" :fullscreen="isMobile" max-width="600px" scrollable>
+    <v-dialog
+      v-model="showAboutDialog"
+      :fullscreen="isMobile"
+      max-width="600px"
+      scrollable
+    >
       <v-card>
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
           <div>群：1153646847</div>
           <div>欢迎使用本站</div>
-          <div>钓场的范围提示由 <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 提供</div>
+          <div>
+            钓场的范围提示由 <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 提供
+          </div>
           <div>感谢来自于各个开源作者的支持：</div>
           <ul>
             <li>钓鱼数据：</li>
             <ul>
-              <li><a @click="goTo('https://ff14fish.carbuncleplushy.com/')">FFX|V Fish Tracker App</a></li>
+              <li>
+                <a @click="goTo('https://ff14fish.carbuncleplushy.com/')"
+                  >FFX|V Fish Tracker App</a
+                >
+              </li>
               <li><a @click="goTo('http://garlandtools.org/db/')">Garland Data</a></li>
               <li><a @click="goTo('https://cn.ff14angler.com/')">饥饿的猫</a></li>
             </ul>
             <li>
-              游戏内相关数据(英文)：<a @click="goTo('https://xivapi.com/')">A FINAL FANTASY XIV: Online REST API</a>
+              游戏内相关数据(英文)：<a @click="goTo('https://xivapi.com/')"
+                >A FINAL FANTASY XIV: Online REST API</a
+              >
             </li>
             <li>
-              游戏内相关数据(中文)：<a @click="goTo('https://github.com/thewakingsands/ffxiv-datamining-cn')"
+              游戏内相关数据(中文)：<a
+                @click="goTo('https://github.com/thewakingsands/ffxiv-datamining-cn')"
                 >ffxiv-datamining-cn</a
               >
             </li>
-            <li>道具悬浮提示框：<a @click="goTo('https://github.com/thewakingsands/cafe-kit')">cafe-kit</a></li>
             <li>
-              FF XIV 字体：<a @click="goTo('https://github.com/thewakingsands/ffxiv-axis-font-icons')"
+              道具悬浮提示框：<a
+                @click="goTo('https://github.com/thewakingsands/cafe-kit')"
+                >cafe-kit</a
+              >
+            </li>
+            <li>
+              FF XIV 字体：<a
+                @click="goTo('https://github.com/thewakingsands/ffxiv-axis-font-icons')"
                 >ffxiv-axis-font-icons</a
               >
             </li>
@@ -540,7 +628,13 @@
       </v-card>
     </v-dialog>
     <import-export-dialog v-model="showImportExport" />
-    <v-snackbar :timeout="2000" v-model="snackbar.show" :color="snackbar.color" centered elevation="24">
+    <v-snackbar
+      :timeout="2000"
+      v-model="snackbar.show"
+      :color="snackbar.color"
+      centered
+      elevation="24"
+    >
       <div class="text-center">{{ snackbar.text }}</div>
     </v-snackbar>
   </v-app>
@@ -570,7 +664,13 @@ import ImportExportDialog from '@/components/ImportExportDialog'
 
 export default {
   name: 'App',
-  components: { ImportExportDialog, FishSearch, FishSettingDialog, ClickHelper, ResetButton },
+  components: {
+    ImportExportDialog,
+    FishSearch,
+    FishSettingDialog,
+    ClickHelper,
+    ResetButton,
+  },
   data: vm => ({
     now: Date.now(),
     fisher,
@@ -584,7 +684,9 @@ export default {
     collapse: false,
     // listFishCnt: [{ cnt: 0 }, { cnt: 0 }, { cnt: 0 }],
     TABS: DataUtil.TABS,
-    title: vm.$t('top.systemBarTitle') + (DevelopmentModeUtil.isTest() ? vm.$t('top.testSuffix') : ''),
+    title:
+      vm.$t('top.systemBarTitle') +
+      (DevelopmentModeUtil.isTest() ? vm.$t('top.testSuffix') : ''),
     drawer: true,
     mini: true,
     lazyFishSourceList: [],
@@ -626,14 +728,19 @@ export default {
           return (
             this.filters.patches.includes(DataUtil.toFishFilterPatch(fish.patch)) &&
             (this.filters.completeType === 'ALL' ||
-              (this.filters.completeType === 'COMPLETED' && this.getFishCompleted(fish.id)) ||
-              (this.filters.completeType === 'UNCOMPLETED' && !this.getFishCompleted(fish.id))) &&
+              (this.filters.completeType === 'COMPLETED' &&
+                this.getFishCompleted(fish.id)) ||
+              (this.filters.completeType === 'UNCOMPLETED' &&
+                !this.getFishCompleted(fish.id))) &&
             (this.filters.bigFishType === 'ALL' ||
-              (this.filters.bigFishType === 'BIG_FISH' && this.bigFish.includes(fish.id)) ||
+              (this.filters.bigFishType === 'BIG_FISH' &&
+                this.bigFish.includes(fish.id)) ||
               (this.filters.bigFishType === 'ALL_AVAILABLE_BIG_FISH' &&
                 this.bigFish.includes(fish.id) &&
-                this.fishListTimePart[fish.id]?.countDown?.type === DataUtil.ALL_AVAILABLE) ||
-              (this.filters.bigFishType === 'NOT_BIG_FISH' && !this.bigFish.includes(fish.id)))
+                this.fishListTimePart[fish.id]?.countDown?.type ===
+                  DataUtil.ALL_AVAILABLE) ||
+              (this.filters.bigFishType === 'NOT_BIG_FISH' &&
+                !this.bigFish.includes(fish.id)))
           )
         })
         .forEach(it => idSet.add(it._id))
@@ -648,16 +755,21 @@ export default {
         .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
 
       if (this.filters.sorterType === 'RATE') {
-        const firstWaitingFishLongerThanTwoHoursIndex = countdownSortedFishList.findIndex(fish => {
-          const countDownType = this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE
-          if (countDownType === DataUtil.FISHING) {
-            return false
+        const firstWaitingFishLongerThanTwoHoursIndex = countdownSortedFishList.findIndex(
+          fish => {
+            const countDownType =
+              this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE
+            if (countDownType === DataUtil.FISHING) {
+              return false
+            }
+            const countDownTime =
+              this.fishListTimePart[fish._id]?.countDown?.time ??
+              DataUtil.INTERVAL_HOUR * 2
+            if (countDownTime >= DataUtil.INTERVAL_HOUR * 2) {
+              return true
+            }
           }
-          const countDownTime = this.fishListTimePart[fish._id]?.countDown?.time ?? DataUtil.INTERVAL_HOUR * 2
-          if (countDownTime >= DataUtil.INTERVAL_HOUR * 2) {
-            return true
-          }
-        })
+        )
 
         const rateSortExcludedFish =
           firstWaitingFishLongerThanTwoHoursIndex === -1
@@ -668,7 +780,8 @@ export default {
               )
 
         countdownSortedFishList = sortBy(countdownSortedFishList, [
-          fish => this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE,
+          fish =>
+            this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE,
           fish => this.lazyFishWindowRates[fish._id],
         ]).concat(rateSortExcludedFish)
       }
@@ -703,7 +816,11 @@ export default {
     listFishCnt() {
       const fishListTimePart = this.fishListTimePart
       const doFullCountSearch = [true, false, true]
-      return [this.pinnedFishList, this.sortedFilteredFishList, this.toBeNotifiedFishList].map((list, index) => {
+      return [
+        this.pinnedFishList,
+        this.sortedFilteredFishList,
+        this.toBeNotifiedFishList,
+      ].map((list, index) => {
         if (Object.keys(fishListTimePart).length === 0) {
           return {
             type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
@@ -715,11 +832,16 @@ export default {
           return {
             type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
             cnt: list.reduce((cnt, fish) => {
-              return cnt + (fishListTimePart[fish.id]?.countDown?.type === DataUtil.FISHING ? 1 : 0)
+              return (
+                cnt +
+                (fishListTimePart[fish.id]?.countDown?.type === DataUtil.FISHING ? 1 : 0)
+              )
             }, 0),
           }
         }
-        const firstNotFishingIndex = list.findIndex(it => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING)
+        const firstNotFishingIndex = list.findIndex(
+          it => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING
+        )
         return {
           type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
           cnt: firstNotFishingIndex === -1 ? list.length : firstNotFishingIndex,
@@ -829,7 +951,10 @@ export default {
     },
     fishListTimePart: {
       handler: function(fishListTimePart) {
-        const newSortedFishIds = sortBy(fishListTimePart, ['countDown.type', 'countDown.time']).map(it => it.id)
+        const newSortedFishIds = sortBy(fishListTimePart, [
+          'countDown.type',
+          'countDown.time',
+        ]).map(it => it.id)
         if (!isEqual(this.sortedFishIds, newSortedFishIds)) {
           this.sortedFishIds = newSortedFishIds
         }
@@ -855,7 +980,10 @@ export default {
     //   console.log(it.default)
     //   this.$refs.helpArea.innerHTML = it.default
     // })
-    if (this.toComparableVersion(this.version) > this.toComparableVersion(this.websiteVersion)) {
+    if (
+      this.toComparableVersion(this.version) >
+      this.toComparableVersion(this.websiteVersion)
+    ) {
       this.showPatchNoteDialog = true
     }
 
@@ -873,12 +1001,16 @@ export default {
       NotificationUtil.requestNotificationPermission().then(status => {
         if (status === 'default') {
           this.showSnackbar({
-            text: this.$t('setting.dialog.notification.message.requestNotificationPermissionNotSelected'),
+            text: this.$t(
+              'setting.dialog.notification.message.requestNotificationPermissionNotSelected'
+            ),
             color: 'warn',
           })
         } else if (status === 'denied') {
           this.showSnackbar({
-            text: this.$t('setting.dialog.notification.message.requestNotificationPermissionDenied'),
+            text: this.$t(
+              'setting.dialog.notification.message.requestNotificationPermissionDenied'
+            ),
             color: 'error',
           })
         }
@@ -890,12 +1022,18 @@ export default {
       it => it.gig == null && (it.patch == null || it.patch <= DataUtil.PATCH_MAX)
     )
     this.lazyImportantFishSourceList = this.lazyFishSourceList.filter(
-      it => this.bigFish.includes(it._id) || this.newPatchFish.includes(it._id) || !DataUtil.isAllAvailableFish(it)
+      it =>
+        this.bigFish.includes(it._id) ||
+        this.newPatchFish.includes(it._id) ||
+        !DataUtil.isAllAvailableFish(it)
     )
     this.updateWeatherChangePart(this.now)
 
     this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
-    this.lazyTransformedFishDict = DataUtil.toMap(this.lazyTransformedFishList, fish => fish.id)
+    this.lazyTransformedFishDict = DataUtil.toMap(
+      this.lazyTransformedFishList,
+      fish => fish.id
+    )
     const sounds = await this.loadingSounds()
     this.setSounds(DataUtil.toMap(sounds, it => it.key))
 
@@ -914,12 +1052,15 @@ export default {
   },
   methods: {
     updateWeatherChangePart(now) {
-      this.fishListWeatherChangePart = this.lazyImportantFishSourceList.reduce((fish2WeatherPart, fish) => {
-        fish2WeatherPart[fish._id] = {
-          fishWindows: this.getFishWindow(fish, now),
-        }
-        return fish2WeatherPart
-      }, {})
+      this.fishListWeatherChangePart = this.lazyImportantFishSourceList.reduce(
+        (fish2WeatherPart, fish) => {
+          fish2WeatherPart[fish._id] = {
+            fishWindows: this.getFishWindow(fish, now),
+          }
+          return fish2WeatherPart
+        },
+        {}
+      )
 
       if (Object.keys(this.lazyFishWindowRates).length === 0) {
         this.lazyImportantFishSourceList.forEach(fish => {
@@ -931,9 +1072,13 @@ export default {
     loadingSounds() {
       return Promise.all(
         DataUtil.NOTIFICATION_SOUNDS.map(sound => {
-          if (sound.filename == null) return Promise.resolve({ key: sound.key, player: null })
+          if (sound.filename == null)
+            return Promise.resolve({ key: sound.key, player: null })
           return import(`@/assets/sound/${sound.filename}`).then(it => {
-            return { key: sound.key, player: new Howl({ src: it?.default, preload: true }) }
+            return {
+              key: sound.key,
+              player: new Howl({ src: it?.default, preload: true }),
+            }
           })
         })
       )
@@ -955,7 +1100,11 @@ export default {
           })
         }
 
-        if (!lazyStartTime || !currentInterval || DataUtil.shouldUpdate(lazyStartTime - now, currentInterval)) {
+        if (
+          !lazyStartTime ||
+          !currentInterval ||
+          DataUtil.shouldUpdate(lazyStartTime - now, currentInterval)
+        ) {
           this.$set(this.fishListTimePart, fish._id, {
             id: fish._id,
             countDown: this.getCountDown(fish, now),
@@ -1050,13 +1199,16 @@ export default {
           requiredCnt: fish.requiredCnt ?? 0,
           addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(fish),
           weatherSetDetail: this.getWeather(fish.weatherSet),
-          hasWeatherConstraint: fish.previousWeatherSet.length > 0 || fish.weatherSet.length > 0,
+          hasWeatherConstraint:
+            fish.previousWeatherSet.length > 0 || fish.weatherSet.length > 0,
           previousWeatherSet: fish.previousWeatherSet,
           weatherSet: fish.weatherSet,
           previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
           patch: fish.patch,
           rate: rate,
-          rateText: this.$t('countDown.rate', { rate: ((rate ?? 1) * 100).toPrecision(2) }),
+          rateText: this.$t('countDown.rate', {
+            rate: ((rate ?? 1) * 100).toPrecision(2),
+          }),
           isPredator: isPredator,
           anglerFishId: fish.anglerFishId,
           predators: this.assembleFish(DataUtil.getPredators(fish, this.allFish), true),
@@ -1109,7 +1261,9 @@ export default {
             time: targetFishWindow[1] - now,
             timePoint: targetFishWindow[1],
             fishWindowTotal: targetFishWindow[1] - targetFishWindow[0],
-            nextInterval: nextTargetFishWindow ? nextTargetFishWindow[0] - now : undefined,
+            nextInterval: nextTargetFishWindow
+              ? nextTargetFishWindow[0] - now
+              : undefined,
             nextTimePoint: nextTargetFishWindow ? nextTargetFishWindow[0] : undefined,
           }
         }
@@ -1156,8 +1310,13 @@ export default {
       new ClipboardJS('.cafekit.ck-popup .ck-container button', {
         text: trigger => {
           if (trigger.innerText === '已复制') {
-            this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
-            return window.document.getElementsByClassName('ck-item-name-name')[0].innerText.trim()
+            this.showSnackbar({
+              text: this.$t('importExport.dialog.message.copySuccess'),
+              color: 'success',
+            })
+            return window.document
+              .getElementsByClassName('ck-item-name-name')[0]
+              .innerText.trim()
           }
         },
       })

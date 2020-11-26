@@ -5,7 +5,10 @@
       :class="color"
     />
     <v-row no-gutters>
-      <div class="d-flex" style="height: 100%; width: 100%; align-items: center; flex-direction: row">
+      <div
+        class="d-flex"
+        style="height: 100%; width: 100%; align-items: center; flex-direction: row"
+      >
         <div class="d-flex align-center flex-column">
           <toggle-button
             :value="fish.pinned"
@@ -96,7 +99,13 @@ export default {
         setNotificationAvailable: DataUtil.hasCountDown(this.fishTimePart?.countDown),
       }
     },
-    ...mapGetters(['getItemIconClass', 'getItemName', 'getFishCompleted', 'getFishPinned', 'getFishToBeNotified']),
+    ...mapGetters([
+      'getItemIconClass',
+      'getItemName',
+      'getFishCompleted',
+      'getFishPinned',
+      'getFishToBeNotified',
+    ]),
   },
   methods: {
     goToFishAngelPage(anglerFishId) {
@@ -121,7 +130,12 @@ export default {
     setToBeNotified(toBeNotified) {
       this.setFishToBeNotified({ fishId: this.fish.id, toBeNotified })
     },
-    ...mapMutations(['setFishCompleted', 'setFishPinned', 'showSnackbar', 'setFishToBeNotified']),
+    ...mapMutations([
+      'setFishCompleted',
+      'setFishPinned',
+      'showSnackbar',
+      'setFishToBeNotified',
+    ]),
   },
 }
 </script>

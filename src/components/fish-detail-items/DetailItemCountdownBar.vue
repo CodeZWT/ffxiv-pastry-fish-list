@@ -6,7 +6,9 @@
           <v-tooltip top color="secondary">
             <template v-slot:activator="{ on, attrs }">
               <div v-bind="attrs" v-on="on" class="d-flex align-center">
-                <strong>{{ $t(fish.countDownTypeName, { interval: fish.countDownTimeText }) }}</strong>
+                <strong>{{
+                  $t(fish.countDownTypeName, { interval: fish.countDownTimeText })
+                }}</strong>
               </div>
             </template>
             <span>{{ fish.countDownTimePointText }}</span>
@@ -15,14 +17,20 @@
       </v-progress-linear>
     </div>
     <div v-else-if="fish.countDownType === FISHING" style="height: 100%">
-      <v-progress-linear :value="fish.countDownRemainPercentage" height="25" rounded :color="fishingColor">
+      <v-progress-linear
+        :value="fish.countDownRemainPercentage"
+        height="25"
+        rounded
+        :color="fishingColor"
+      >
         <template v-slot="{ value }">
           <v-tooltip top color="secondary">
             <template v-slot:activator="{ on, attrs }">
               <div v-bind="attrs" v-on="on" class="d-flex align-center">
                 <v-icon size="20">mdi-alarm</v-icon>
                 <strong>
-                  {{ $t(fish.countDownTypeName, { interval: fish.countDownTimeText }) }} ({{ Math.ceil(value) }}%)
+                  {{ $t(fish.countDownTypeName, { interval: fish.countDownTimeText }) }}
+                  ({{ Math.ceil(value) }}%)
                 </strong>
                 <div
                   v-if="fish.addBuffSuffix"
@@ -79,7 +87,8 @@ export default {
     'fish.id': {
       handler: function() {
         this.loading =
-          this.fish.countDownType !== DataUtil.ALL_AVAILABLE && this.fish.countDownTime > DataUtil.INTERVAL_MINUTE
+          this.fish.countDownType !== DataUtil.ALL_AVAILABLE &&
+          this.fish.countDownTime > DataUtil.INTERVAL_MINUTE
         setTimeout(() => (this.loading = false), 500)
       },
       immediate: true,

@@ -1,9 +1,20 @@
 <template>
   <div style="width: 100%">
-    <v-divider v-if="inPredator && mode !== 'CONTENT'" inset style="border-color: white" />
-    <v-row no-gutters class="d-flex justify-center align-content-center" style="width: 100%">
+    <v-divider
+      v-if="inPredator && mode !== 'CONTENT'"
+      inset
+      style="border-color: white"
+    />
+    <v-row
+      no-gutters
+      class="d-flex justify-center align-content-center"
+      style="width: 100%"
+    >
       <v-col class="col-6 col-sm-3">
-        <div class="d-flex fill-height align-center flex-row pr-1" style="min-height: 48px">
+        <div
+          class="d-flex fill-height align-center flex-row pr-1"
+          style="min-height: 48px"
+        >
           <div
             class="d-flex align-center"
             :style="{
@@ -17,7 +28,11 @@
               checked-icon="mdi-pin"
               unchecked-icon="mdi-pin-outline"
             />
-            <toggle-button v-if="!isMobile" :value="transformedFishPart.completed" @input="setCompleted($event)" />
+            <toggle-button
+              v-if="!isMobile"
+              :value="transformedFishPart.completed"
+              @input="setCompleted($event)"
+            />
           </div>
 
           <v-badge
@@ -31,10 +46,18 @@
             <item-icon :icon-class="fish.icon" small />
           </v-badge>
           <item-icon v-else :icon-class="fish.icon" />
-          <div class="text-subtitle-1 text-truncate ml-1" :title="fish.name + '#' + fish.id">{{ fish.name }}</div>
+          <div
+            class="text-subtitle-1 text-truncate ml-1"
+            :title="fish.name + '#' + fish.id"
+          >
+            {{ fish.name }}
+          </div>
         </div>
       </v-col>
-      <v-col v-if="!isMobile" class="col-3 d-flex flex-column justify-center my-2 my-sm-0">
+      <v-col
+        v-if="!isMobile"
+        class="col-3 d-flex flex-column justify-center my-2 my-sm-0"
+      >
         <div class="text-subtitle-2 d-flex">
           <div>
             {{ $t(transformedFishTimePart.countDownType) }}
@@ -65,7 +88,9 @@
                   @click.stop="setToBeNotified(!transformedFishPart.toBeNotified)"
                 >
                   <v-icon left size="16">
-                    {{ transformedFishPart.toBeNotified ? 'mdi-bell' : 'mdi-bell-outline' }}
+                    {{
+                      transformedFishPart.toBeNotified ? 'mdi-bell' : 'mdi-bell-outline'
+                    }}
                   </v-icon>
                   <div v-bind="attrs" v-on="on" class="text-subtitle-2">
                     {{ transformedFishTimePart.countDownTimeText }}
@@ -74,7 +99,9 @@
               </template>
               <div class="d-flex flex-column">
                 <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
-                <div v-if="transformedFishPart.toBeNotified">{{ $t('list.item.notificationHintOff') }}</div>
+                <div v-if="transformedFishPart.toBeNotified">
+                  {{ $t('list.item.notificationHintOff') }}
+                </div>
                 <div v-else>{{ $t('list.item.notificationHint') }}</div>
               </div>
             </v-tooltip>
@@ -113,13 +140,21 @@
         </div>
         <div class="d-flex" v-if="hideSpotColumn && fish.hasWeatherConstraint">
           <div style="display: flex">
-            <div v-for="(weather, index) in fish.previousWeatherSetDetail" :key="index" class="zoom-in-predator">
+            <div
+              v-for="(weather, index) in fish.previousWeatherSetDetail"
+              :key="index"
+              class="zoom-in-predator"
+            >
               <div :class="weather.icon" :title="weather.name" />
             </div>
             <v-icon v-if="fish.previousWeatherSet.length > 0" small>
               mdi-arrow-right
             </v-icon>
-            <div v-for="weather in fish.weatherSetDetail" :key="weather.name" class="zoom-in-predator">
+            <div
+              v-for="weather in fish.weatherSetDetail"
+              :key="weather.name"
+              class="zoom-in-predator"
+            >
               <div :class="weather.icon" :title="weather.name" />
             </div>
           </div>
@@ -128,7 +163,10 @@
         <div v-if="!hideSpotColumn">
           <fishing-spot-column :fishing-spots="fish.fishingSpots" />
         </div>
-        <div v-if="isMobile && !transformedFishTimePart.hasCountDown" class="text-subtitle-2">
+        <div
+          v-if="isMobile && !transformedFishTimePart.hasCountDown"
+          class="text-subtitle-2"
+        >
           {{ $t(transformedFishTimePart.countDownType) }}
         </div>
         <div v-else-if="isMobile" class="d-flex align-center">
@@ -146,7 +184,9 @@
                   @click.stop="setToBeNotified(!transformedFishPart.toBeNotified)"
                 >
                   <v-icon left size="16">
-                    {{ transformedFishPart.toBeNotified ? 'mdi-bell' : 'mdi-bell-outline' }}
+                    {{
+                      transformedFishPart.toBeNotified ? 'mdi-bell' : 'mdi-bell-outline'
+                    }}
                   </v-icon>
 
                   <div v-bind="attrs" v-on="on" class="text-subtitle-2">
@@ -156,7 +196,9 @@
               </template>
               <div class="d-flex flex-column">
                 <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
-                <div v-if="transformedFishPart.toBeNotified">{{ $t('list.item.notificationHintOff') }}</div>
+                <div v-if="transformedFishPart.toBeNotified">
+                  {{ $t('list.item.notificationHintOff') }}
+                </div>
                 <div v-else>{{ $t('list.item.notificationHint') }}</div>
               </div>
             </v-tooltip>
@@ -196,9 +238,18 @@
           :style="{ visibility: mode !== 'CONTENT' && inPredator ? 'hidden' : 'visible' }"
         />
       </v-col>
-      <v-col class="col-11 col-sm-3 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0">
-        <div v-if="fish.hasFishEyes || fish.hasPredators || fish.hasSnagging" class="mr-1">
-          <div v-if="fish.hasFishEyes" style="display: flex; align-items: center" data-ck-action-name="鱼眼">
+      <v-col
+        class="col-11 col-sm-3 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0"
+      >
+        <div
+          v-if="fish.hasFishEyes || fish.hasPredators || fish.hasSnagging"
+          class="mr-1"
+        >
+          <div
+            v-if="fish.hasFishEyes"
+            style="display: flex; align-items: center"
+            data-ck-action-name="鱼眼"
+          >
             <div :class="fish.fishEyesIcon" />
             <div class="ml-1">{{ fish.fishEyesText }}</div>
           </div>

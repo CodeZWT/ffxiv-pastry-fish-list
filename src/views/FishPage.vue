@@ -28,7 +28,11 @@
           <v-container :class="{ 'py-0': true, 'px-0': isMobile }">
             <div>
               <div class="filter-wrapper">
-                <fish-filter :show="showFilter" :filters="filters" @input="onFiltersUpdate" />
+                <fish-filter
+                  :show="showFilter"
+                  :filters="filters"
+                  @input="onFiltersUpdate"
+                />
               </div>
               <div :class="{ 'main-area': true, 'show-filter': showFilter }">
                 <div style="width: 100%">
@@ -160,7 +164,10 @@
             class="pa-3"
             style="height: 100%"
           >
-            <v-skeleton-loader type="card-avatar, article, actions" boilerplate></v-skeleton-loader>
+            <v-skeleton-loader
+              type="card-avatar, article, actions"
+              boilerplate
+            ></v-skeleton-loader>
           </v-sheet>
         </div>
         <div v-else class="fish-detail-pane">

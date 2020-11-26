@@ -32,13 +32,19 @@
             <div class="text-subtitle-2 ml-2">
               {{ currentSpot.zone }}
             </div>
-            <div class="text-subtitle-1 ml-2">({{ currentSpot.fishSpotPositionText }})</div>
+            <div class="text-subtitle-1 ml-2">
+              ({{ currentSpot.fishSpotPositionText }})
+            </div>
             <click-helper @click.stop :copy-text="currentSpot.fishingSpotName">
               <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
                 <v-icon>mdi-content-copy</v-icon>
               </v-btn>
             </click-helper>
-            <click-helper @click.stop="goToFishingSpotAngelPage(currentSpot.fishingSpot.anglerLocationId)">
+            <click-helper
+              @click.stop="
+                goToFishingSpotAngelPage(currentSpot.fishingSpot.anglerLocationId)
+              "
+            >
               <v-btn class="my-2" text icon :title="$t('list.item.linkHint')">
                 <v-icon>mdi-link-variant</v-icon>
               </v-btn>
@@ -47,7 +53,11 @@
         </v-expansion-panel-header>
       </v-expansion-panel>
     </v-expansion-panels>
-    <div v-if="lazyExpansionValue === 0" style="width: 100%; height: 512px" class="d-flex justify-center mt-4">
+    <div
+      v-if="lazyExpansionValue === 0"
+      style="width: 100%; height: 512px"
+      class="d-flex justify-center mt-4"
+    >
       <div style="width: 100%; max-width: 512px">
         <eorzea-simple-map
           ref="simpleMap"

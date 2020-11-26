@@ -30,7 +30,10 @@ export default {
     this.$el.addEventListener('click', e => {
       if (this.copyText != null) {
         copy(this.copyText)
-        this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
+        this.showSnackbar({
+          text: this.$t('importExport.dialog.message.copySuccess'),
+          color: 'success',
+        })
       }
       this.$emit('click', e)
     })

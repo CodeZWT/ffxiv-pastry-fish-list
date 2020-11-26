@@ -51,7 +51,10 @@ export default {
       }
     },
     transformedFishTimePart() {
-      const fishTimePart = this.fishTimePart ?? { id: this.fish.id, countDown: { type: DataUtil.ALL_AVAILABLE } }
+      const fishTimePart = this.fishTimePart ?? {
+        id: this.fish.id,
+        countDown: { type: DataUtil.ALL_AVAILABLE },
+      }
       return {
         countDownType: DataUtil.getCountDownTypeName(fishTimePart.countDown?.type),
         countDownTime: fishTimePart.countDown?.time,
@@ -60,12 +63,20 @@ export default {
         countDownTimePointText: this.$t('countDown.timePointHint', {
           timePoint: DataUtil.formatDateTime(fishTimePart.countDown?.timePoint),
         }),
-        countDownTotal: this.printCountDownTime(fishTimePart.countDown?.fishWindowTotal, 1, false),
+        countDownTotal: this.printCountDownTime(
+          fishTimePart.countDown?.fishWindowTotal,
+          1,
+          false
+        ),
         countDownTotalHint: this.$t('countDown.intervalHint', {
           interval: this.printCountDownTime(fishTimePart.countDown?.fishWindowTotal, 2),
         }),
         countDownNextInterval: this.$t('countDown.nextInterval', {
-          nextInterval: this.printCountDownTime(fishTimePart.countDown?.nextInterval, 1, false),
+          nextInterval: this.printCountDownTime(
+            fishTimePart.countDown?.nextInterval,
+            1,
+            false
+          ),
         }),
         countDownNextTimePointText: this.$t('countDown.timePointHint', {
           timePoint: DataUtil.formatDateTime(fishTimePart.countDown?.nextTimePoint),

@@ -37,12 +37,7 @@ const INTERVAL_MINUTE = 60000
 const INTERVAL_HOUR = 3600000
 const INTERVAL_DAY = 86400000
 
-const INTERVALS = [
-  INTERVAL_DAY,
-  INTERVAL_HOUR,
-  INTERVAL_MINUTE,
-  INTERVAL_SECOND,
-]
+const INTERVALS = [INTERVAL_DAY, INTERVAL_HOUR, INTERVAL_MINUTE, INTERVAL_SECOND]
 
 export default {
   iconIdToUrl(iconId) {
@@ -82,12 +77,7 @@ export default {
   },
 
   // completed
-  getPredators(
-    fish,
-    allFish,
-    fishListTimePart = {},
-    fishListWeatherChangePart = {}
-  ) {
+  getPredators(fish, allFish, fishListTimePart = {}, fishListWeatherChangePart = {}) {
     if (fish == null || allFish == null) return []
     return Object.entries(fish.predators).map(([predatorId, count]) => {
       return {
@@ -112,18 +102,11 @@ export default {
     const MAP_SIZE_FACTOR_MAGIC = 41
     const MAP_FILE_PIXEL_MAX = 2048
     return (
-      (MAP_SIZE_FACTOR_MAGIC / (sizeFactor / 100)) *
-        (pixelIndex / MAP_FILE_PIXEL_MAX) +
-      1
+      (MAP_SIZE_FACTOR_MAGIC / (sizeFactor / 100)) * (pixelIndex / MAP_FILE_PIXEL_MAX) + 1
     )
   },
 
-  getColorByStatus(
-    completed,
-    countDownType,
-    colorIndex = 0,
-    colorTarget = 'FISH'
-  ) {
+  getColorByStatus(completed, countDownType, colorIndex = 0, colorTarget = 'FISH') {
     let colorRef
     if (colorTarget === 'FISH') {
       colorRef = this.ITEM_COLOR
@@ -256,13 +239,7 @@ export default {
       fish1.endHour === fish2.endHour
     )
   },
-  getFishWindow(
-    fish,
-    now,
-    allFish,
-    fishingSpots,
-    n = FishWindow.FISH_WINDOW_FORECAST_N
-  ) {
+  getFishWindow(fish, now, allFish, fishingSpots, n = FishWindow.FISH_WINDOW_FORECAST_N) {
     // console.debug(fish)
     if (Object.keys(fish.predators).length === 0) {
       return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
@@ -279,36 +256,25 @@ export default {
         return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
       } else if (predators.length === 1) {
         if (this.isAllAvailableFish(fish)) {
-          return this.getFishWindowOfSingleFish(
-            predators[0],
-            now,
-            fishingSpots,
-            n
-          )
-        } else if (
-          fish.weatherSet.length === 0 &&
-          fish.previousWeatherSet.length === 0
-        ) {
-          return this.getFishWindowOfSingleFish(
-            predators[0],
-            now,
-            fishingSpots,
-            n
-          ).map(fishWindow => {
-            // if start of fish window > 0, i.e. its window is shrunk by the weather
-            // change it back to 0, since other 2 predators are always available in [0,8]
-            const startEorzeaTime = new EorzeaTime(
-              EorzeaTime.toEorzeaTime(fishWindow[0])
-            )
-            if (startEorzeaTime.getHours() > 0) {
-              return [
-                startEorzeaTime.timeOfHours(fish.startHour).toEarthTime(),
-                startEorzeaTime.timeOfHours(fish.endHour).toEarthTime(),
-              ]
-            } else {
-              return fishWindow
+          return this.getFishWindowOfSingleFish(predators[0], now, fishingSpots, n)
+        } else if (fish.weatherSet.length === 0 && fish.previousWeatherSet.length === 0) {
+          return this.getFishWindowOfSingleFish(predators[0], now, fishingSpots, n).map(
+            fishWindow => {
+              // if start of fish window > 0, i.e. its window is shrunk by the weather
+              // change it back to 0, since other 2 predators are always available in [0,8]
+              const startEorzeaTime = new EorzeaTime(
+                EorzeaTime.toEorzeaTime(fishWindow[0])
+              )
+              if (startEorzeaTime.getHours() > 0) {
+                return [
+                  startEorzeaTime.timeOfHours(fish.startHour).toEarthTime(),
+                  startEorzeaTime.timeOfHours(fish.endHour).toEarthTime(),
+                ]
+              } else {
+                return fishWindow
+              }
             }
-          })
+          )
         }
       } else {
         // So in real life, only 'Warden of the Seven Hues' i.e. "七彩天主" goes here,
@@ -316,26 +282,20 @@ export default {
 
         if (fish._id === 24994) {
           // just return the 'Green Prismfish' i.e. "绿彩鱼" fish windows
-          return this.getFishWindowOfSingleFish(
-            allFish[24204],
-            now,
-            fishingSpots,
-            n
-          ).map(fishWindow => {
-            // if start of fish window > 0, i.e. its window is shrunk by the weather
-            // change it back to 0, since other 2 predators are always available in [0,8]
-            const startEorzeaTime = new EorzeaTime(
-              EorzeaTime.toEorzeaTime(fishWindow[0])
-            )
-            if (startEorzeaTime.getHours() > 0) {
-              return [
-                startEorzeaTime.timeOfHours(0).toEarthTime(),
-                fishWindow[1],
-              ]
-            } else {
-              return fishWindow
+          return this.getFishWindowOfSingleFish(allFish[24204], now, fishingSpots, n).map(
+            fishWindow => {
+              // if start of fish window > 0, i.e. its window is shrunk by the weather
+              // change it back to 0, since other 2 predators are always available in [0,8]
+              const startEorzeaTime = new EorzeaTime(
+                EorzeaTime.toEorzeaTime(fishWindow[0])
+              )
+              if (startEorzeaTime.getHours() > 0) {
+                return [startEorzeaTime.timeOfHours(0).toEarthTime(), fishWindow[1]]
+              } else {
+                return fishWindow
+              }
             }
-          })
+          )
         } else {
           console.error('Unsupported fish!', fish._id)
           return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
@@ -415,16 +375,7 @@ export default {
     )
   },
 
-  TIME_UNITS: [
-    'day',
-    'hour',
-    'minute',
-    'second',
-    'days',
-    'hours',
-    'minutes',
-    'seconds',
-  ],
+  TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: INTERVAL_SECOND,
   INTERVAL_MINUTE: INTERVAL_MINUTE,

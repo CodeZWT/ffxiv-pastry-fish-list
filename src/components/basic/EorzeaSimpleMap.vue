@@ -6,8 +6,16 @@
         <div class="mt-2">{{ $t('detail.map.loading') }}</div>
       </div>
     </v-overlay>
-    <div ref="container" v-resize="resize" style="width: 100%; height: 100%" class="map-container">
-      <div class="d-flex justify-center align-center" style="width: 100%; position: absolute; z-index: 10">
+    <div
+      ref="container"
+      v-resize="resize"
+      style="width: 100%; height: 100%"
+      class="map-container"
+    >
+      <div
+        class="d-flex justify-center align-center"
+        style="width: 100%; position: absolute; z-index: 10"
+      >
         <v-btn @click="resize" tile height="48" width="48" style="min-width: 48px">
           <v-icon>mdi-arrow-collapse</v-icon>
         </v-btn>
@@ -30,11 +38,16 @@
         <v-layer>
           <v-image :config="defaultMapConfig"></v-image>
           <v-image :config="mapConfig"></v-image>
-          <v-image v-for="(config, index) in aetheryteMakerConfigs" :config="config" :key="`marker${index}`"></v-image>
+          <v-image
+            v-for="(config, index) in aetheryteMakerConfigs"
+            :config="config"
+            :key="`marker${index}`"
+          ></v-image>
         </v-layer>
         <v-layer ref="rangeHelperLayer">
           <v-image
-            v-for="(fishingSpotRangeHelperLayerConfig, index) in fishingSpotRangeHelperLayerConfigs"
+            v-for="(fishingSpotRangeHelperLayerConfig,
+            index) in fishingSpotRangeHelperLayerConfigs"
             :config="fishingSpotRangeHelperLayerConfig"
             :key="`helper-${index}`"
           ></v-image>
@@ -474,13 +487,18 @@ export default {
       return (
         this.aetheryte[this.id]?.map(it => {
           const text = DataUtil.getName(it)
-          return this.computeSafeTextConfig(text, it.x, it.y, { fontSize: TEXT_AETHERYTE_FONT })
+          return this.computeSafeTextConfig(text, it.x, it.y, {
+            fontSize: TEXT_AETHERYTE_FONT,
+          })
         }) ?? []
       )
     },
     fishingSpotTextConfigs() {
       return this.fishingSpots.map(spot => {
-        return this.computeSafeTextConfig(spot.name, spot.x, spot.y, { fontSize: TEXT_SPOT_FONT, color: 'white' })
+        return this.computeSafeTextConfig(spot.name, spot.x, spot.y, {
+          fontSize: TEXT_SPOT_FONT,
+          color: 'white',
+        })
       })
     },
     allImageLoaded() {
@@ -658,7 +676,10 @@ export default {
     },
     copyText(text) {
       copy(text)
-      this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
+      this.showSnackbar({
+        text: this.$t('importExport.dialog.message.copySuccess'),
+        color: 'success',
+      })
     },
     switchMouseToPointer() {
       this.$refs.stage.getNode().container().style.cursor = 'pointer'

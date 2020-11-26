@@ -77,7 +77,9 @@
                   <template v-slot:activator="{ on, attrs }">
                     <v-icon small dark v-bind="attrs" v-on="on">mdi-information</v-icon>
                   </template>
-                  <span>{{ $t('importExport.dialog.other.fishTracker.exportToFishTrackerHint') }}</span>
+                  <span>{{
+                    $t('importExport.dialog.other.fishTracker.exportToFishTrackerHint')
+                  }}</span>
                 </v-tooltip>
               </v-tab>
               <v-tab>
@@ -86,14 +88,19 @@
                   <template v-slot:activator="{ on, attrs }">
                     <v-icon small dark v-bind="attrs" v-on="on">mdi-information</v-icon>
                   </template>
-                  <span>{{ $t('importExport.dialog.other.fishTracker.importFromFishTrackerHint') }}</span>
+                  <span>{{
+                    $t('importExport.dialog.other.fishTracker.importFromFishTrackerHint')
+                  }}</span>
                 </v-tooltip>
               </v-tab>
             </v-tabs>
 
             <v-tabs-items v-model="fishTrackerTab">
               <v-tab-item>
-                <v-textarea v-model="fishTrackerTextToExport" ref="fishTrackerExportTextArea" />
+                <v-textarea
+                  v-model="fishTrackerTextToExport"
+                  ref="fishTrackerExportTextArea"
+                />
                 <click-helper @click="exportDataToFishTracker">
                   <v-btn class="mr-4" color="primary">
                     <v-icon>mdi-content-copy</v-icon>
@@ -105,7 +112,9 @@
                 <v-textarea v-model="fishTrackerTextToImport" />
                 <click-helper @click="importDataFromFishTracker">
                   <v-btn class="mr-4" color="primary">
-                    {{ $t('importExport.dialog.other.fishTracker.importFromFishTracker') }}
+                    {{
+                      $t('importExport.dialog.other.fishTracker.importFromFishTracker')
+                    }}
                   </v-btn>
                 </click-helper>
               </v-tab-item>
@@ -194,7 +203,9 @@ export default {
         pinned: userData.pinned,
         // fixed value since these options are not available in RC Fish
         upcomingWindowFormat: 'fromPrevClose',
-        sortingType: FISH_TRACKER_MAPPER.TO.SORTER_TYPE[userData.filters.sorterType] ?? 'windowPeriods',
+        sortingType:
+          FISH_TRACKER_MAPPER.TO.SORTER_TYPE[userData.filters.sorterType] ??
+          'windowPeriods',
         theme: 'dark',
       })
     },
@@ -206,11 +217,13 @@ export default {
           filters: {
             patches: fishTrackerData.filters?.patch ?? currentUserData.filters.patches,
             completeType:
-              FISH_TRACKER_MAPPER.FROM.COMPLETE_TYPE[fishTrackerData.filters?.completion] ??
-              currentUserData.filters.completeType,
+              FISH_TRACKER_MAPPER.FROM.COMPLETE_TYPE[
+                fishTrackerData.filters?.completion
+              ] ?? currentUserData.filters.completeType,
             sorterType:
-              FISH_TRACKER_MAPPER.FROM.SORTER_TYPE[fishTrackerData.filters?.sortingType] ??
-              currentUserData.filters.sorterType,
+              FISH_TRACKER_MAPPER.FROM.SORTER_TYPE[
+                fishTrackerData.filters?.sortingType
+              ] ?? currentUserData.filters.sorterType,
           },
         })
       )

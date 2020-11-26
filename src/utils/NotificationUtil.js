@@ -21,7 +21,10 @@ export default {
   },
 
   isNotificationGranted() {
-    return this.isNotificationSupported() && Notification.permission === this.NOTIFICATION_PERMISSIONS.GRANTED
+    return (
+      this.isNotificationSupported() &&
+      Notification.permission === this.NOTIFICATION_PERMISSIONS.GRANTED
+    )
   },
 
   isNotificationSupported() {
@@ -32,12 +35,17 @@ export default {
   },
   showFishNotification(fishNotifications) {
     const fishNotificationByKey = groupBy(fishNotifications, 'setting.key')
-    const firstFish = (fishNotificationByKey['fishing'] ?? fishNotificationByKey['waiting'])?.[0]?.fish
-    const title = i18n.t('notification.fishAlarm.title', { count: fishNotifications.length })
+    const firstFish = (fishNotificationByKey['fishing'] ??
+      fishNotificationByKey['waiting'])?.[0]?.fish
+    const title = i18n.t('notification.fishAlarm.title', {
+      count: fishNotifications.length,
+    })
     const body = Object.entries(fishNotificationByKey)
       .map(([settingKey, notifications]) => {
         return i18n.t('notification.fishAlarm.body', {
-          type: i18n.t('notification.fishAlarm.' + settingKey, { minutes: notifications[0]?.setting.before }),
+          type: i18n.t('notification.fishAlarm.' + settingKey, {
+            minutes: notifications[0]?.setting.before,
+          }),
           count: notifications.length,
           fishList: notifications.map(it => it.fish.name).join(', '),
         })

@@ -74,7 +74,9 @@ export default {
   },
   methods: {
     rerenderMap() {
-      const template = this.$el.getElementsByClassName('template')[0].firstElementChild.cloneNode(true)
+      const template = this.$el
+        .getElementsByClassName('template')[0]
+        .firstElementChild.cloneNode(true)
       const target = this.$el.getElementsByClassName('target')[0]
       target.innerHTML = ''
       target.appendChild(template)

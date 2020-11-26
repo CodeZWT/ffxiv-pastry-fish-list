@@ -1,5 +1,10 @@
 <template>
-  <v-dialog v-model="showSettingDialog" :fullscreen="isMobile" max-width="600px" scrollable>
+  <v-dialog
+    v-model="showSettingDialog"
+    :fullscreen="isMobile"
+    max-width="600px"
+    scrollable
+  >
     <v-card>
       <v-card-title>
         {{ $t('top.setting') }}
@@ -12,7 +17,9 @@
           <form>
             <v-row>
               <v-col cols="12">
-                <div class="text-subtitle-1">{{ $t('setting.dialog.opacity.title') }}</div>
+                <div class="text-subtitle-1">
+                  {{ $t('setting.dialog.opacity.title') }}
+                </div>
                 <v-slider
                   v-model="lazyOpacity"
                   max="1"
@@ -23,13 +30,20 @@
                   thumb-label
                 >
                   <template v-slot:append>
-                    <v-text-field v-model="lazyOpacity" class="mt-0 pt-0" type="number" style="width: 60px" />
+                    <v-text-field
+                      v-model="lazyOpacity"
+                      class="mt-0 pt-0"
+                      type="number"
+                      style="width: 60px"
+                    />
                   </template>
                 </v-slider>
                 <v-divider />
               </v-col>
               <v-col cols="12">
-                <div class="text-subtitle-1">{{ $t('setting.dialog.notification.title') }}</div>
+                <div class="text-subtitle-1">
+                  {{ $t('setting.dialog.notification.title') }}
+                </div>
                 <div>
                   <v-slider
                     v-model="lazyNotificationSetting.volume"
@@ -49,13 +63,20 @@
                     </template>
                   </v-slider>
                 </div>
-                <div v-if="isNotificationSupported" class="d-flex flex-row align-center pr-3">
-                  <v-label>{{ $t('setting.dialog.notification.systemNotification.title') }}</v-label>
+                <div
+                  v-if="isNotificationSupported"
+                  class="d-flex flex-row align-center pr-3"
+                >
+                  <v-label>{{
+                    $t('setting.dialog.notification.systemNotification.title')
+                  }}</v-label>
                   <v-switch
                     :label="
                       $t(
                         `setting.dialog.notification.systemNotification.${
-                          lazyNotificationSetting.isSystemNotificationEnabled ? 'enabled' : 'disabled'
+                          lazyNotificationSetting.isSystemNotificationEnabled
+                            ? 'enabled'
+                            : 'disabled'
                         }`
                       )
                     "
@@ -73,7 +94,11 @@
                     <v-avatar left>
                       <v-icon>mdi-alert</v-icon>
                     </v-avatar>
-                    {{ $t('setting.dialog.notification.message.notificationIsNotSelectedHint') }}
+                    {{
+                      $t(
+                        'setting.dialog.notification.message.notificationIsNotSelectedHint'
+                      )
+                    }}
                   </v-chip>
                   <v-chip
                     v-else-if="notificationStatus === 'denied'"
@@ -85,11 +110,17 @@
                     <v-avatar left>
                       <v-icon>mdi-alert</v-icon>
                     </v-avatar>
-                    {{ $t('setting.dialog.notification.message.notificationIsDeniedHint') }}
+                    {{
+                      $t('setting.dialog.notification.message.notificationIsDeniedHint')
+                    }}
                   </v-chip>
                 </div>
 
-                <div v-for="setting in lazyNotificationSetting.settings" :key="setting.key" class="d-flex align-center">
+                <div
+                  v-for="setting in lazyNotificationSetting.settings"
+                  :key="setting.key"
+                  class="d-flex align-center"
+                >
                   <v-row>
                     <v-col class="col-sm-4 col-6">
                       <v-checkbox
@@ -126,7 +157,11 @@
                         item-value="key"
                         :label="'选择音效'"
                       />
-                      <v-btn icon @click="playSound(setting.sound)" :disabled="!sounds[setting.sound].player">
+                      <v-btn
+                        icon
+                        @click="playSound(setting.sound)"
+                        :disabled="!sounds[setting.sound].player"
+                      >
                         <v-icon>mdi-play</v-icon>
                       </v-btn>
                     </v-col>
@@ -135,13 +170,23 @@
                 <v-divider />
               </v-col>
               <v-col cols="12">
-                <div class="text-subtitle-1">{{ $t('setting.dialog.detailArrangement.title') }}</div>
+                <div class="text-subtitle-1">
+                  {{ $t('setting.dialog.detailArrangement.title') }}
+                </div>
                 <v-row>
                   <v-col cols="6">
                     <v-card rounded color="#00695c66" class="pa-2">
-                      <v-card-title>{{ $t('setting.dialog.detailArrangement.enabled') }}</v-card-title>
-                      <draggable v-model="lazyEnabledDetailComponents" group="componentSettings">
-                        <div v-for="component in lazyEnabledDetailComponents" :key="component.name">
+                      <v-card-title>{{
+                        $t('setting.dialog.detailArrangement.enabled')
+                      }}</v-card-title>
+                      <draggable
+                        v-model="lazyEnabledDetailComponents"
+                        group="componentSettings"
+                      >
+                        <div
+                          v-for="component in lazyEnabledDetailComponents"
+                          :key="component.name"
+                        >
                           <detail-item-setting-entry :setting="component" />
                         </div>
                       </draggable>
@@ -149,13 +194,18 @@
                   </v-col>
                   <v-col cols="6">
                     <v-card rounded color="#ad145766" class="pa-2">
-                      <v-card-title>{{ $t('setting.dialog.detailArrangement.disabled') }}</v-card-title>
+                      <v-card-title>{{
+                        $t('setting.dialog.detailArrangement.disabled')
+                      }}</v-card-title>
                       <draggable
                         v-model="lazyDisabledDetailComponents"
                         group="componentSettings"
                         style="min-height: 160px"
                       >
-                        <div v-for="component in lazyDisabledDetailComponents" :key="component.name">
+                        <div
+                          v-for="component in lazyDisabledDetailComponents"
+                          :key="component.name"
+                        >
                           <detail-item-setting-entry :setting="component" />
                         </div>
                       </draggable>
@@ -191,7 +241,12 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 import ClickHelper from '@/components/basic/ClickHelper'
 import { required, min_value, max_value } from 'vee-validate/dist/rules'
-import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import {
+  extend,
+  ValidationObserver,
+  ValidationProvider,
+  setInteractionMode,
+} from 'vee-validate'
 import i18n from '@/i18n'
 import draggable from 'vuedraggable'
 import DetailItemSettingEntry from '@/components/DetailItemSettingEntry'
@@ -215,7 +270,13 @@ extend('min_value', {
 
 export default {
   name: 'FishSettingDialog',
-  components: { DetailItemSettingEntry, ClickHelper, ValidationObserver, ValidationProvider, draggable },
+  components: {
+    DetailItemSettingEntry,
+    ClickHelper,
+    ValidationObserver,
+    ValidationProvider,
+    draggable,
+  },
   props: {
     value: {
       type: Boolean,
@@ -245,7 +306,12 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
     ...mapState(['sounds']),
-    ...mapGetters(['opacity', 'notification', 'detailComponents', 'isSystemNotificationEnabled']),
+    ...mapGetters([
+      'opacity',
+      'notification',
+      'detailComponents',
+      'isSystemNotificationEnabled',
+    ]),
   },
   watch: {
     showSettingDialog(showSettingDialog) {
@@ -262,8 +328,12 @@ export default {
       this.$refs.observer?.reset()
       this.lazyOpacity = this.opacity
       this.lazyNotificationSetting = cloneDeep(this.notification)
-      this.lazyEnabledDetailComponents = cloneDeep(this.detailComponents.filter(it => it.enabled))
-      this.lazyDisabledDetailComponents = cloneDeep(this.detailComponents.filter(it => !it.enabled))
+      this.lazyEnabledDetailComponents = cloneDeep(
+        this.detailComponents.filter(it => it.enabled)
+      )
+      this.lazyDisabledDetailComponents = cloneDeep(
+        this.detailComponents.filter(it => !it.enabled)
+      )
       this.lazyIsSystemNotificationEnabled = this.isSystemNotificationEnabled
       this.isSystemNotificationGranted = NotificationUtil.isNotificationGranted()
       this.notificationStatus = NotificationUtil.notificationStatus()
@@ -312,17 +382,23 @@ export default {
         NotificationUtil.requestNotificationPermission().then(status => {
           if (status === 'default') {
             this.showSnackbar({
-              text: this.$t('setting.dialog.notification.message.requestNotificationPermissionNotSelected'),
+              text: this.$t(
+                'setting.dialog.notification.message.requestNotificationPermissionNotSelected'
+              ),
               color: 'quaternary',
             })
           } else if (status === 'denied') {
             this.showSnackbar({
-              text: this.$t('setting.dialog.notification.message.requestNotificationPermissionDenied'),
+              text: this.$t(
+                'setting.dialog.notification.message.requestNotificationPermissionDenied'
+              ),
               color: 'error',
             })
           } else {
             this.showSnackbar({
-              text: this.$t('setting.dialog.notification.message.requestNotificationPermissionSuccessfully'),
+              text: this.$t(
+                'setting.dialog.notification.message.requestNotificationPermissionSuccessfully'
+              ),
               color: 'success',
             })
           }

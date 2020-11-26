@@ -27,7 +27,7 @@ export default {
     'color',
     'showDivider',
     'mode',
-    'hideSpotColumn'
+    'hideSpotColumn',
   ],
   name: 'FishInfoRow',
   components: { FishInfoRowSmall, FishInfoRowMedium, FishInfoRowLarge },

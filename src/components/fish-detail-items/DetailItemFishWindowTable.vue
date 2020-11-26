@@ -14,9 +14,15 @@
           <template v-slot:default>
             <thead>
               <tr>
-                <th class="text-center">{{ $t('list.item.fishWindowTable.startTime') }}</th>
-                <th class="text-center">{{ $t('list.item.fishWindowTable.interval') }}</th>
-                <th class="text-center">{{ $t('list.item.fishWindowTable.nextInterval') }}</th>
+                <th class="text-center">
+                  {{ $t('list.item.fishWindowTable.startTime') }}
+                </th>
+                <th class="text-center">
+                  {{ $t('list.item.fishWindowTable.interval') }}
+                </th>
+                <th class="text-center">
+                  {{ $t('list.item.fishWindowTable.nextInterval') }}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -115,7 +121,10 @@ export default {
     //   }
     // },
     fishWindowsProvided() {
-      return this.transformFishWindows(this.fishWeatherChangePart.fishWindows, FishWindow.FISH_WINDOW_FORECAST_N)
+      return this.transformFishWindows(
+        this.fishWeatherChangePart.fishWindows,
+        FishWindow.FISH_WINDOW_FORECAST_N
+      )
     },
     ...mapState({
       allFish: 'fish',
@@ -139,7 +148,10 @@ export default {
           start: DataUtil.formatDateTime(fishWindow[0]),
           end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
           interval: this.printCountDownTime(end - start),
-          nextInterval: index < fishWindows.length - 1 ? this.printCountDownTime(fishWindows[index + 1][0] - end) : '',
+          nextInterval:
+            index < fishWindows.length - 1
+              ? this.printCountDownTime(fishWindows[index + 1][0] - end)
+              : '',
         }
       })
     },

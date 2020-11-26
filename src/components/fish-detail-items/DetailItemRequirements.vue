@@ -4,13 +4,21 @@
       <div class="d-flex justify-center">{{ $t('detail.requirements.weather') }}</div>
       <div class="d-flex justify-center" v-if="fish.hasWeatherConstraint">
         <div style="display: flex">
-          <div v-for="weather in fish.previousWeatherSetDetail" :key="weather.name" :title="weather.name">
+          <div
+            v-for="weather in fish.previousWeatherSetDetail"
+            :key="weather.name"
+            :title="weather.name"
+          >
             <div :class="weather.icon" :title="weather.name" />
           </div>
           <v-icon v-if="fish.previousWeatherSet.length > 0">
             mdi-arrow-right
           </v-icon>
-          <div v-for="weather in fish.weatherSetDetail" :key="weather.name" :title="weather.name">
+          <div
+            v-for="weather in fish.weatherSetDetail"
+            :key="weather.name"
+            :title="weather.name"
+          >
             <div :class="weather.icon" :title="weather.name" />
           </div>
         </div>
@@ -22,7 +30,9 @@
     <v-col cols="6">
       <div class="d-flex justify-center">{{ $t('detail.requirements.time') }}</div>
       <div class="d-flex justify-center">
-        <div v-if="fish.hasTimeConstraint">{{ fish.startHourText }} - {{ fish.endHourText }}</div>
+        <div v-if="fish.hasTimeConstraint">
+          {{ fish.startHourText }} - {{ fish.endHourText }}
+        </div>
         <div v-else>
           {{ $t('none') }}
         </div>

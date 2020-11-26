@@ -12413,7 +12413,8 @@ export const DATA = {
     '30': {
       _id: 30,
       name_en: 'Dragonhead Latrines',
-      name_ja: '\u30ad\u30e3\u30f3\u30d7\u30fb\u30c9\u30e9\u30b4\u30f3\u30d8\u30c3\u30c9\u6e9c\u6c60',
+      name_ja:
+        '\u30ad\u30e3\u30f3\u30d7\u30fb\u30c9\u30e9\u30b4\u30f3\u30d8\u30c3\u30c9\u6e9c\u6c60',
       name_de: 'Drachenkopf-Teich',
       name_fr: 'Camp de la T\u00eate du dragon',
       name_ko: '\uc6a9\uba38\ub9ac \uc804\uc9c4\uae30\uc9c0 \uc800\uc218\uc9c0',
@@ -12468,7 +12469,8 @@ export const DATA = {
     '35': {
       _id: 35,
       name_en: 'Limsa Lominsa Lower Decks',
-      name_ja: '\u30ea\u30e0\u30b5\u30fb\u30ed\u30df\u30f3\u30b5\uff1a\u4e0b\u7532\u677f\u5c64',
+      name_ja:
+        '\u30ea\u30e0\u30b5\u30fb\u30ed\u30df\u30f3\u30b5\uff1a\u4e0b\u7532\u677f\u5c64',
       name_de: 'Untere Decks',
       name_fr: "Limsa Lominsa - L'Entrepont",
       name_ko: '\ub9bc\uc0ac \ub85c\ubbfc\uc0ac \ud558\uce35 \uac11\ud310',
@@ -12479,7 +12481,8 @@ export const DATA = {
     '36': {
       _id: 36,
       name_en: 'Limsa Lominsa Upper Decks',
-      name_ja: '\u30ea\u30e0\u30b5\u30fb\u30ed\u30df\u30f3\u30b5\uff1a\u4e0a\u7532\u677f\u5c64',
+      name_ja:
+        '\u30ea\u30e0\u30b5\u30fb\u30ed\u30df\u30f3\u30b5\uff1a\u4e0a\u7532\u677f\u5c64',
       name_de: 'Obere Decks',
       name_fr: 'Limsa Lominsa - Le Tillac',
       name_ko: '\ub9bc\uc0ac \ub85c\ubbfc\uc0ac \uc0c1\uce35 \uac11\ud310',
@@ -13084,7 +13087,8 @@ export const DATA = {
     '91': {
       _id: 91,
       name_en: 'Lower Black Tea Brook',
-      name_ja: '\u30b0\u30ea\u30c0\u30cb\u30a2\uff1a\u7d05\u8336\u5ddd\u6c34\u7cfb\u4e0b\u6d41',
+      name_ja:
+        '\u30b0\u30ea\u30c0\u30cb\u30a2\uff1a\u7d05\u8336\u5ddd\u6c34\u7cfb\u4e0b\u6d41',
       name_de: 'Unterer Schwarztee-Bach',
       name_fr: 'Aval du ruisseau du Th\u00e9 noir',
       name_ko: '\uadf8\ub9ac\ub2e4\ub2c8\uc544: \ud64d\ucc28\uac15 \ud558\ub958',
@@ -13183,7 +13187,8 @@ export const DATA = {
     '100': {
       _id: 100,
       name_en: 'Upper Black Tea Brook',
-      name_ja: '\u30b0\u30ea\u30c0\u30cb\u30a2\uff1a\u7d05\u8336\u5ddd\u6c34\u7cfb\u4e0a\u6d41',
+      name_ja:
+        '\u30b0\u30ea\u30c0\u30cb\u30a2\uff1a\u7d05\u8336\u5ddd\u6c34\u7cfb\u4e0a\u6d41',
       name_de: 'Oberer Schwarztee-Bach',
       name_fr: 'Amont du ruisseau du Th\u00e9 noir',
       name_ko: '\uadf8\ub9ac\ub2e4\ub2c8\uc544: \ud64d\ucc28\uac15 \uc0c1\ub958',
@@ -16570,7 +16575,8 @@ export const DATA = {
     '8773': {
       _id: 8773,
       name_en: 'Magicked Mushroom',
-      name_ja: '\u30de\u30b8\u30c3\u30af\u30fb\u30de\u30c3\u30b7\u30e5\u30eb\u30fc\u30e0\u30af\u30e9\u30d6',
+      name_ja:
+        '\u30de\u30b8\u30c3\u30af\u30fb\u30de\u30c3\u30b7\u30e5\u30eb\u30fc\u30e0\u30af\u30e9\u30d6',
       name_de: 'Zauberpilzkrabbe',
       name_fr: 'Crabe hallucinog\u00e8ne',
       name_ko: '\ub9c8\ubc95\ubc84\uc12f\uac8c',
@@ -17542,7 +17548,8 @@ export const DATA = {
     '16744': {
       _id: 16744,
       name_en: 'Allagan Bladeshark',
-      name_ja: '\u30a2\u30e9\u30ac\u30f3\u30d6\u30ec\u30fc\u30c9\u30fb\u30b7\u30e3\u30fc\u30af',
+      name_ja:
+        '\u30a2\u30e9\u30ac\u30f3\u30d6\u30ec\u30fc\u30c9\u30fb\u30b7\u30e3\u30fc\u30af',
       name_de: 'Allagischer Klingenhai',
       name_fr: 'Requin-lame allagois',
       name_ko: '\uc54c\ub77c\uadf8 \uac80\uc0c1\uc5b4',
@@ -18541,7 +18548,8 @@ export const DATA = {
     '23059': {
       _id: 23059,
       name_en: 'The Archbishop',
-      name_ja: '\u30a2\u30fc\u30af\u30d3\u30b7\u30e7\u30c3\u30d7\u30d5\u30a3\u30c3\u30b7\u30e5',
+      name_ja:
+        '\u30a2\u30fc\u30af\u30d3\u30b7\u30e7\u30c3\u30d7\u30d5\u30a3\u30c3\u30b7\u30e5',
       name_de: 'Erzbischof',
       name_fr: 'Archev\u00eaque',
       name_ko: '\ub300\uc8fc\uad50 \ubb3c\uace0\uae30',
@@ -19054,7 +19062,8 @@ export const DATA = {
     '27416': {
       _id: 27416,
       name_en: 'Wandering Catfish',
-      name_ja: '\u30ef\u30f3\u30c0\u30ea\u30f3\u30b0\u30ad\u30e3\u30c3\u30c8\u30d5\u30a3\u30c3\u30b7\u30e5',
+      name_ja:
+        '\u30ef\u30f3\u30c0\u30ea\u30f3\u30b0\u30ad\u30e3\u30c3\u30c8\u30d5\u30a3\u30c3\u30b7\u30e5',
       name_de: 'Sternenhagel-Nimmersatt',
       name_fr: 'Silure-ogre',
       name_ko: '\ud5e4\ub9e4\ub294 \uba54\uae30',
@@ -20062,7 +20071,8 @@ export const DATA = {
     '27528': {
       _id: 27528,
       name_en: 'Skykisser',
-      name_ja: '\u30a8\u30a2\u30fc\u30ad\u30c3\u30b7\u30f3\u30b0\u30fb\u30b0\u30e9\u30df\u30fc',
+      name_ja:
+        '\u30a8\u30a2\u30fc\u30ad\u30c3\u30b7\u30f3\u30b0\u30fb\u30b0\u30e9\u30df\u30fc',
       name_de: 'Anstandsgurami',
       name_fr: 'Gourami embrasseur \u00e9olien',
       name_ko: '\ud558\ub298 \ud0a4\uc2f1\uad6c\ub77c\ubbf8',
@@ -20800,7 +20810,8 @@ export const DATA = {
     '28929': {
       _id: 28929,
       name_en: 'Black Jet',
-      name_ja: '\u30d6\u30e9\u30c3\u30af\u30b8\u30a7\u30c3\u30c8\u30b9\u30c8\u30ea\u30fc\u30e0',
+      name_ja:
+        '\u30d6\u30e9\u30c3\u30af\u30b8\u30a7\u30c3\u30c8\u30b9\u30c8\u30ea\u30fc\u30e0',
       name_de: 'Schwarzer Strahlstrom',
       name_fr: '\u00c9toile noir de jais',
       name_ko: '\uac80\uc740 \uc81c\ud2b8\uae30\ub958',
@@ -21900,14 +21911,16 @@ export const DATA = {
   ZONES: {
     '28': {
       name_en: 'Limsa Lominsa Upper Decks',
-      name_ja: '\u30ea\u30e0\u30b5\u30fb\u30ed\u30df\u30f3\u30b5\uff1a\u4e0a\u7532\u677f\u5c64',
+      name_ja:
+        '\u30ea\u30e0\u30b5\u30fb\u30ed\u30df\u30f3\u30b5\uff1a\u4e0a\u7532\u677f\u5c64',
       name_de: 'Obere Decks',
       name_fr: 'Limsa Lominsa - Le Tillac',
       name_ko: '\ub9bc\uc0ac \ub85c\ubbfc\uc0ac \uc0c1\uce35 \uac11\ud310',
     },
     '29': {
       name_en: 'Limsa Lominsa Lower Decks',
-      name_ja: '\u30ea\u30e0\u30b5\u30fb\u30ed\u30df\u30f3\u30b5\uff1a\u4e0b\u7532\u677f\u5c64',
+      name_ja:
+        '\u30ea\u30e0\u30b5\u30fb\u30ed\u30df\u30f3\u30b5\uff1a\u4e0b\u7532\u677f\u5c64',
       name_de: 'Untere Decks',
       name_fr: "Limsa Lominsa - L'Entrepont",
       name_ko: '\ub9bc\uc0ac \ub85c\ubbfc\uc0ac \ud558\uce35 \uac11\ud310',
@@ -22554,7 +22567,8 @@ export const DATA = {
     },
     '2200': {
       book_en: 'Geological Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
       book_de: 'Bergbau-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources g\u00e9ologiques',
       book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \uad11\ubb3c \uc790\uc6d0',
@@ -22566,7 +22580,8 @@ export const DATA = {
     },
     '2201': {
       book_en: 'Geological Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
       book_de: 'Bergbau-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources g\u00e9ologiques',
       book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \uad11\ubb3c \uc790\uc6d0',
@@ -22578,7 +22593,8 @@ export const DATA = {
     },
     '2202': {
       book_en: 'Botanical Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
       book_de: 'Botanik-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources botaniques',
       book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \ucd08\ubaa9 \uc790\uc6d0',
@@ -22590,7 +22606,8 @@ export const DATA = {
     },
     '2203': {
       book_en: 'Botanical Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
       book_de: 'Botanik-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources botaniques',
       book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \ucd08\ubaa9 \uc790\uc6d0',
@@ -22602,7 +22619,8 @@ export const DATA = {
     },
     '2204': {
       book_en: 'Geological Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
       book_de: 'Bergbau-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources g\u00e9ologiques',
       book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \uad11\ubb3c \uc790\uc6d0',
@@ -22614,7 +22632,8 @@ export const DATA = {
     },
     '2205': {
       book_en: 'Geological Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
       book_de: 'Bergbau-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources g\u00e9ologiques',
       book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \uad11\ubb3c \uc790\uc6d0',
@@ -22626,7 +22645,8 @@ export const DATA = {
     },
     '2206': {
       book_en: 'Botanical Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
       book_de: 'Botanik-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources botaniques',
       book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \ucd08\ubaa9 \uc790\uc6d0',
@@ -22638,7 +22658,8 @@ export const DATA = {
     },
     '2207': {
       book_en: 'Botanical Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
       book_de: 'Botanik-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources botaniques',
       book_ko: '\uc774\uc288\uac00\ub974\ub4dc \ubd80\ud765: \ucd08\ubaa9 \uc790\uc6d0',
@@ -22702,7 +22723,8 @@ export const DATA = {
     },
     '2212': {
       book_en: 'Geological Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
       book_de: 'Bergbau-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources g\u00e9ologiques',
       book_ko: 'Geological Resources',
@@ -22714,7 +22736,8 @@ export const DATA = {
     },
     '2213': {
       book_en: 'Geological Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u9271\u7269\u8cc7\u6e90',
       book_de: 'Bergbau-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources g\u00e9ologiques',
       book_ko: 'Geological Resources',
@@ -22726,7 +22749,8 @@ export const DATA = {
     },
     '2214': {
       book_en: 'Botanical Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
       book_de: 'Botanik-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources botaniques',
       book_ko: 'Botanical Resources',
@@ -22738,7 +22762,8 @@ export const DATA = {
     },
     '2215': {
       book_en: 'Botanical Resources',
-      book_ja: '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
+      book_ja:
+        '\u30a4\u30b7\u30e5\u30ac\u30eb\u30c9\u5fa9\u8208\uff1a\u8349\u6728\u8cc7\u6e90',
       book_de: 'Botanik-Almanach der Himmelsstadt',
       book_fr: 'Azur\u00e9e : ressources botaniques',
       book_ko: 'Botanical Resources',

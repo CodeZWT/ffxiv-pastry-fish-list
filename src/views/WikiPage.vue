@@ -56,7 +56,10 @@
         <!--          <code>{{ currentTerritoryId }}</code>-->
         <!--          <code>{{ currentSpotId }}</code>-->
         <!--          <code>{{ currentFishId }}</code>-->
-        <div v-if="!type || type === 'region'" class="d-flex justify-center align-center fill-height">
+        <div
+          v-if="!type || type === 'region'"
+          class="d-flex justify-center align-center fill-height"
+        >
           <!--  show empty / region view  -->
           <v-icon size="200">mdi-book-open-page-variant</v-icon>
         </div>
@@ -135,17 +138,24 @@
               :i="baitTableLayout.i"
             >
               <div class="grid-content">
-                <fish-tug-table :value="currentFishList"/>
+                <fish-tug-table :value="currentFishList" />
               </div>
             </grid-item>
           </grid-layout>
         </div>
       </div>
       <div v-if="isMobile" style="position: absolute; top: 0; left: 0; right: 0">
-        <v-btn @click="showMapMenu = !showMapMenu" block color="primary">点击选择地图</v-btn>
+        <v-btn @click="showMapMenu = !showMapMenu" block color="primary"
+          >点击选择地图
+        </v-btn>
       </div>
     </div>
-    <v-dialog v-model="isDetailFishWindowOpen" max-width="70vh" :fullscreen="isMobile" scrollable>
+    <v-dialog
+      v-model="isDetailFishWindowOpen"
+      max-width="70vh"
+      :fullscreen="isMobile"
+      scrollable
+    >
       <v-card>
         <v-card-text>
           <fish-detail :fish="currentFish" :now="now" />
@@ -290,7 +300,9 @@ export default {
       }
     },
     currentFishList() {
-      return this.spotDict?.[this.currentSpotId]?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
+      return this.spotDict?.[this.currentSpotId]?.fishList?.map(
+        fishId => this.lazyTransformedFishDict[fishId]
+      )
     },
     currentFlattenFishList() {
       return (
@@ -315,8 +327,12 @@ export default {
           return
         }
 
-        const removed = _.difference(oldSpotFishIds, newSpotFishIds).map(it => this.extractFishId(it))
-        const added = _.difference(newSpotFishIds, oldSpotFishIds).map(it => this.extractFishId(it))
+        const removed = _.difference(oldSpotFishIds, newSpotFishIds).map(it =>
+          this.extractFishId(it)
+        )
+        const added = _.difference(newSpotFishIds, oldSpotFishIds).map(it =>
+          this.extractFishId(it)
+        )
         if (removed.length > 0) {
           removed.forEach(id => this.setFishCompleted({ fishId: id, completed: false }))
         } else if (added.length > 0) {
@@ -338,7 +354,12 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
     ...mapState({ allFish: 'fish' }),
-    ...mapGetters(['getFishingSpotsName', 'getFishingSpot', 'getFishCompleted', 'allCompletedFish']),
+    ...mapGetters([
+      'getFishingSpotsName',
+      'getFishingSpot',
+      'getFishCompleted',
+      'allCompletedFish',
+    ]),
   },
   watch: {
     // [TODO-TREE-PATH-AUTO-OPEN]
@@ -365,8 +386,12 @@ export default {
     // },
     completedSpots(newSpots, oldSpots) {
       // console.log(newSpots, oldSpots)
-      const removed = _.difference(oldSpots, newSpots).map(it => +it.substring('spot-'.length))
-      const added = _.difference(newSpots, oldSpots).map(it => +it.substring('spot-'.length))
+      const removed = _.difference(oldSpots, newSpots).map(
+        it => +it.substring('spot-'.length)
+      )
+      const added = _.difference(newSpots, oldSpots).map(
+        it => +it.substring('spot-'.length)
+      )
       if (removed.length > 0) {
         _.uniq(removed.flatMap(it => this.spotDict[it].fishList)).forEach(it => {
           this.setFishCompleted({ fishId: it, completed: false })
@@ -417,7 +442,9 @@ export default {
               name: placeNames[territory.id],
               children: territory.spots.map(spot => {
                 // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
-                const fishList = spot.fishList.filter(fishId => this.lazyTransformedFishDict[fishId])
+                const fishList = spot.fishList.filter(
+                  fishId => this.lazyTransformedFishDict[fishId]
+                )
                 this.spotDict[spot.id] = {
                   spotId: spot.id,
                   territoryId: territory.id,
@@ -443,12 +470,19 @@ export default {
         }
       })
 
-    this.root = new TreeModel().parse({ name: 'root', children: this.regionTerritorySpots })
+    this.root = new TreeModel().parse({
+      name: 'root',
+      children: this.regionTerritorySpots,
+    })
     this.updateCompletedSpot(this.allCompletedFish)
   },
   methods: {
     toPos(index) {
-      return index === 0 ? 'first' : index === this.currentFlattenFishList.length - 1 ? 'last' : 'inside'
+      return index === 0
+        ? 'first'
+        : index === this.currentFlattenFishList.length - 1
+        ? 'last'
+        : 'inside'
     },
     getPathNodesOf(id) {
       return (
@@ -486,7 +520,10 @@ export default {
     updateCompletedSpot(allCompletedFish) {
       const completedSpots = []
       Object.values(this.spotDict).forEach(spot => {
-        if (spot.fishList.length > 0 && spot.fishList.every(fishId => allCompletedFish.includes(fishId))) {
+        if (
+          spot.fishList.length > 0 &&
+          spot.fishList.every(fishId => allCompletedFish.includes(fishId))
+        ) {
           completedSpots.push('spot-' + spot.spotId)
         }
       })

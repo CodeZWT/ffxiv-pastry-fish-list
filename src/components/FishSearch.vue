@@ -1,5 +1,11 @@
 <template>
-  <v-dialog v-model="dialog" :fullscreen="isMobile" max-width="1264px" style="z-index: 100" scrollable>
+  <v-dialog
+    v-model="dialog"
+    :fullscreen="isMobile"
+    max-width="1264px"
+    style="z-index: 100"
+    scrollable
+  >
     <v-card>
       <!--      <v-card-title>-->
       <!--        <span class="headline">{{ $t('search.dialog.title') }}</span>-->
@@ -43,7 +49,7 @@
         </div>
         <template v-if="fish != null">
           <v-divider class="mb-3" />
-          <fish-detail :fish="fish" :now="now"/>
+          <fish-detail :fish="fish" :now="now" />
         </template>
       </v-card-text>
       <v-card-actions>
