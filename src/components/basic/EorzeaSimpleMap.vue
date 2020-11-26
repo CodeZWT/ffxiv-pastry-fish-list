@@ -1,89 +1,99 @@
 <template>
   <div style="width: 100%; height: 100%; position: relative" class="eorzea-simple-map">
-    <v-overlay :value="!allImageLoaded" absolute opacity="1">
+    <v-overlay :value="!allImageLoaded" absolute opacity="1" color="systemSecondary">
       <div class="d-flex flex-column align-center">
         <v-progress-circular indeterminate size="64"></v-progress-circular>
         <div class="mt-2">{{ $t('detail.map.loading') }}</div>
       </div>
     </v-overlay>
-    <div
-      ref="container"
-      v-resize="resize"
-      style="width: 100%; height: 100%"
-      class="map-container"
-    >
+    <v-hover v-slot:default="{ hover }" open-delay="200">
       <div
-        class="d-flex justify-center align-center"
-        style="width: 100%; position: absolute; z-index: 10"
+        ref="container"
+        v-resize="resize"
+        style="width: 100%; height: 100%"
+        class="map-container"
       >
-        <v-btn @click="resize" tile height="48" width="48" style="min-width: 48px">
-          <v-icon>mdi-arrow-collapse</v-icon>
-        </v-btn>
-        <v-btn-toggle v-model="mapOptions" multiple color="primary">
-          <v-btn @click="toggleLayer('rangeHelperLayer')" icon>
-            <v-icon>mdi-waves</v-icon>
-          </v-btn>
-          <v-btn @click="toggleLayer('markerRangeLayer')" icon>
-            <v-icon>mdi-map-marker-radius</v-icon>
-          </v-btn>
-          <v-btn @click="toggleLayer('textLayer')" icon>
-            <v-icon>mdi-format-text</v-icon>
-          </v-btn>
-          <v-btn @click="toggleMapLock" icon>
-            <v-icon>mdi-lock</v-icon>
-          </v-btn>
-        </v-btn-toggle>
+        <v-scale-transition origin="center center">
+          <div
+            v-if="!isMobile && hover"
+            class="d-flex justify-center align-center elevation-4 rounded-xl overflow-hidden"
+            style="left: 50%; top: 4px; position: absolute; z-index: 10; margin-left: -120px;"
+          >
+            <v-btn @click="resize" tile height="48" width="48" style="min-width: 48px">
+              <v-icon>mdi-arrow-collapse</v-icon>
+            </v-btn>
+            <v-btn-toggle
+              v-model="mapOptions"
+              multiple
+              color="primary"
+              class="rounded-l-0"
+            >
+              <v-btn @click="toggleLayer('rangeHelperLayer')" icon>
+                <v-icon>mdi-waves</v-icon>
+              </v-btn>
+              <v-btn @click="toggleLayer('markerRangeLayer')" icon>
+                <v-icon>mdi-map-marker-radius</v-icon>
+              </v-btn>
+              <v-btn @click="toggleLayer('textLayer')" icon>
+                <v-icon>mdi-format-text</v-icon>
+              </v-btn>
+              <v-btn @click="toggleMapLock" icon>
+                <v-icon>mdi-lock</v-icon>
+              </v-btn>
+            </v-btn-toggle>
+          </div>
+        </v-scale-transition>
+        <v-stage ref="stage" :config="stageConfig">
+          <v-layer>
+            <v-image :config="defaultMapConfig"></v-image>
+            <v-image :config="mapConfig"></v-image>
+            <v-image
+              v-for="(config, index) in aetheryteMakerConfigs"
+              :config="config"
+              :key="`marker${index}`"
+            ></v-image>
+          </v-layer>
+          <v-layer ref="rangeHelperLayer">
+            <v-image
+              v-for="(fishingSpotRangeHelperLayerConfig,
+              index) in fishingSpotRangeHelperLayerConfigs"
+              :config="fishingSpotRangeHelperLayerConfig"
+              :key="`helper-${index}`"
+            ></v-image>
+          </v-layer>
+          <v-layer ref="markerRangeLayer">
+            <v-image
+              v-for="(markerRangeConfig, index) in markerRangeConfigs"
+              :config="markerRangeConfig"
+              :key="`range-${index}`"
+            ></v-image>
+            <v-image
+              v-for="(fishingSpotMarkerConfig, index) in fishingSpotMarkerConfigs"
+              :config="fishingSpotMarkerConfig"
+              :key="`marker-${index}`"
+            ></v-image>
+          </v-layer>
+          <v-layer ref="textLayer">
+            <v-text
+              v-for="aetheryteMakerTextConfig in aetheryteMakerTextConfigs"
+              :config="aetheryteMakerTextConfig"
+              :key="`aetheryte-${aetheryteMakerTextConfig.text}`"
+              @click="copyText(aetheryteMakerTextConfig.text)"
+              @mouseenter="switchMouseToPointer"
+              @mouseleave="switchMouseToDefault"
+            ></v-text>
+            <v-text
+              v-for="fishingSpotTextConfig in fishingSpotTextConfigs"
+              :config="fishingSpotTextConfig"
+              :key="`spot-${fishingSpotTextConfig.text}`"
+              @click="copyText(fishingSpotTextConfig.text)"
+              @mouseenter="switchMouseToPointer"
+              @mouseleave="switchMouseToDefault"
+            ></v-text>
+          </v-layer>
+        </v-stage>
       </div>
-      <v-stage ref="stage" :config="stageConfig">
-        <v-layer>
-          <v-image :config="defaultMapConfig"></v-image>
-          <v-image :config="mapConfig"></v-image>
-          <v-image
-            v-for="(config, index) in aetheryteMakerConfigs"
-            :config="config"
-            :key="`marker${index}`"
-          ></v-image>
-        </v-layer>
-        <v-layer ref="rangeHelperLayer">
-          <v-image
-            v-for="(fishingSpotRangeHelperLayerConfig,
-            index) in fishingSpotRangeHelperLayerConfigs"
-            :config="fishingSpotRangeHelperLayerConfig"
-            :key="`helper-${index}`"
-          ></v-image>
-        </v-layer>
-        <v-layer ref="markerRangeLayer">
-          <v-image
-            v-for="(markerRangeConfig, index) in markerRangeConfigs"
-            :config="markerRangeConfig"
-            :key="`range-${index}`"
-          ></v-image>
-          <v-image
-            v-for="(fishingSpotMarkerConfig, index) in fishingSpotMarkerConfigs"
-            :config="fishingSpotMarkerConfig"
-            :key="`marker-${index}`"
-          ></v-image>
-        </v-layer>
-        <v-layer ref="textLayer">
-          <v-text
-            v-for="aetheryteMakerTextConfig in aetheryteMakerTextConfigs"
-            :config="aetheryteMakerTextConfig"
-            :key="`aetheryte-${aetheryteMakerTextConfig.text}`"
-            @click="copyText(aetheryteMakerTextConfig.text)"
-            @mouseenter="switchMouseToPointer"
-            @mouseleave="switchMouseToDefault"
-          ></v-text>
-          <v-text
-            v-for="fishingSpotTextConfig in fishingSpotTextConfigs"
-            :config="fishingSpotTextConfig"
-            :key="`spot-${fishingSpotTextConfig.text}`"
-            @click="copyText(fishingSpotTextConfig.text)"
-            @mouseenter="switchMouseToPointer"
-            @mouseleave="switchMouseToDefault"
-          ></v-text>
-        </v-layer>
-      </v-stage>
-    </div>
+    </v-hover>
   </div>
 </template>
 
@@ -394,6 +404,9 @@ export default {
     // markerRangeFactor() {
     //   return this.markerRadius / 300
     // },
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
+    },
     mapImageUrl() {
       // "MapFilename": "/m/s1f4/s1f4.00.jpg",
       // "MapFilenameId": "s1f4/00",
@@ -412,6 +425,7 @@ export default {
         scaleX: this.containerHeight / MAP_SIZE,
         scaleY: this.containerHeight / MAP_SIZE,
         draggable: !this.mapLocked,
+        preventDefault: false,
       }
     },
     defaultMapConfig() {
@@ -421,6 +435,7 @@ export default {
         y: 0,
         width: MAP_SIZE,
         height: MAP_SIZE,
+        preventDefault: false,
       }
     },
     mapConfig() {
@@ -430,6 +445,7 @@ export default {
         y: 0,
         width: MAP_SIZE,
         height: MAP_SIZE,
+        preventDefault: false,
       }
     },
     fishingSpotRangeHelperLayerConfigs() {
@@ -440,6 +456,7 @@ export default {
             y: 0,
             width: MAP_SIZE,
             height: MAP_SIZE,
+            preventDefault: false,
           }))
         : []
     },
@@ -450,6 +467,7 @@ export default {
         y: spot.y - 48,
         width: 96,
         height: 96,
+        preventDefault: false,
       }))
     },
     markerRangeConfigs() {
@@ -463,6 +481,7 @@ export default {
           height: 96,
           scaleX: markerRangeFactor,
           scaleY: markerRangeFactor,
+          preventDefault: false,
           // filters: [Konva.Filters.RGB],
           // red: 3,
           // green: 168,
@@ -479,6 +498,7 @@ export default {
             y: it.y - 62,
             width: 124,
             height: 124,
+            preventDefault: false,
           }
         }) ?? []
       )
@@ -489,6 +509,7 @@ export default {
           const text = DataUtil.getName(it)
           return this.computeSafeTextConfig(text, it.x, it.y, {
             fontSize: TEXT_AETHERYTE_FONT,
+            preventDefault: false,
           })
         }) ?? []
       )
@@ -498,6 +519,7 @@ export default {
         return this.computeSafeTextConfig(spot.name, spot.x, spot.y, {
           fontSize: TEXT_SPOT_FONT,
           color: 'white',
+          preventDefault: false,
         })
       })
     },
@@ -644,7 +666,7 @@ export default {
       if (this.stage) {
         return this.stage
       } else {
-        return this.$refs.stage.getNode()
+        return this.$refs.stage?.getNode()
       }
     },
     toggleLayer(layerName) {
@@ -660,6 +682,7 @@ export default {
     },
     resizeInternal() {
       const rect = this.$refs.container.getBoundingClientRect()
+      if (!rect || !rect?.width || !rect?.height) return
       this.containerWidth = rect?.width
       this.containerHeight = rect?.height
       const resizeRefer = Math.min(this.containerHeight, this.containerWidth)
