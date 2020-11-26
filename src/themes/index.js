@@ -2,7 +2,7 @@ import '@/themes/overrides.sass'
 
 export default {
   theme: {
-    dark: false,
+    dark: true,
     themes: {
       dark: {
         primary: '#1c7c54',
