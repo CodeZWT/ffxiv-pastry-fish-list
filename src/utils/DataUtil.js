@@ -388,7 +388,7 @@ export default {
   },
 
   TUG_ICON_COLOR: {
-    '!': 'primary',
+    '!': 'success',
     '! !': 'error',
     '! ! !': 'warning',
   },
