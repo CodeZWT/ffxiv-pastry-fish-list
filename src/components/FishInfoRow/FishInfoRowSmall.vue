@@ -67,32 +67,7 @@
         </div>
       </v-col>
       <v-col class="col-6 col-sm-3 d-flex flex-column justify-center">
-        <div v-if="hideSpotColumn && fish.hasTimeConstraint">
-          {{ fish.startHourText }} - {{ fish.endHourText }}
-        </div>
-        <div class="d-flex" v-if="hideSpotColumn && fish.hasWeatherConstraint">
-          <div style="display: flex">
-            <div
-              v-for="(weather, index) in fish.previousWeatherSetDetail"
-              :key="index"
-              class="zoom-in-predator"
-            >
-              <div :class="weather.icon" :title="weather.name" />
-            </div>
-            <v-icon v-if="fish.previousWeatherSet.length > 0" small>
-              mdi-arrow-right
-            </v-icon>
-            <div
-              v-for="weather in fish.weatherSetDetail"
-              :key="weather.name"
-              class="zoom-in-predator"
-            >
-              <div :class="weather.icon" :title="weather.name" />
-            </div>
-          </div>
-        </div>
-
-        <div v-if="!hideSpotColumn">
+        <div v-if="!inPredator && !hideSpotColumn">
           <fishing-spot-column :fishing-spots="fish.fishingSpots" small />
         </div>
         <div v-if="!transformedFishTimePart.hasCountDown" class="text-subtitle-2">
@@ -140,6 +115,7 @@
       </v-col>
       <v-col cols="1">
         <toggle-button
+          v-if="!inPredator"
           :value="transformedFishPart.completed"
           @input="setCompleted($event)"
           :style="{ visibility: mode !== 'CONTENT' && inPredator ? 'hidden' : 'visible' }"
