@@ -144,7 +144,7 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="d-flex align-center">
           <div
             v-if="fish.hasFishEyes || fish.hasPredators || fish.hasSnagging"
             class="mr-1"
