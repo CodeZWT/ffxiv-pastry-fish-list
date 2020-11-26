@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-row align-center">
-    <div class="d-flex flex-column">
+    <div :class="`d-flex ${direction}`">
       <div class="d-flex align-center">
         <div
           class="text-subtitle-1 text-truncate"
@@ -8,27 +8,29 @@
         >
           {{ firstLocation.fishingSpotName }}
         </div>
-        <v-btn small icon @click.stop="$emit('click')">
-          <v-icon small>
-            mdi-map
-          </v-icon>
-        </v-btn>
-        <v-btn
-          small
-          icon
-          :title="$t('list.item.linkHint')"
-          @click.stop="
-            goToFishingSpotAngelPage(firstLocation.fishingSpot.anglerLocationId)
-          "
-        >
-          <v-icon small>mdi-link-variant</v-icon>
-        </v-btn>
+        <template v-if="!small">
+          <v-btn small icon @click.stop="$emit('click')">
+            <v-icon small>
+              mdi-map
+            </v-icon>
+          </v-btn>
+          <v-btn
+            small
+            icon
+            :title="$t('list.item.linkHint')"
+            @click.stop="
+              goToFishingSpotAngelPage(firstLocation.fishingSpot.anglerLocationId)
+            "
+          >
+            <v-icon small>mdi-link-variant</v-icon>
+          </v-btn>
+        </template>
       </div>
-      <div class="d-flex align-center">
+      <div v-if="showZone" :class="`d-flex align-center ${small ? 'ml-1' : ''}`">
         <div class="text-subtitle-2 text-truncate">
           {{ firstLocation.zone }}
         </div>
-        <div v-if="multiple">
+        <div v-if="multiple && !small">
           <v-menu open-on-hover offset-x>
             <template v-slot:activator="{ on, attrs }">
               <v-btn small icon v-bind="attrs" v-on="on">
@@ -60,6 +62,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    small: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     firstLocation() {
@@ -67,6 +73,12 @@ export default {
     },
     multiple() {
       return this.fishingSpots.length > 1
+    },
+    direction() {
+      return this.small ? 'flex-row' : 'flex-column'
+    },
+    showZone() {
+      return this.firstLocation.zone !== this.firstLocation.fishingSpotName || !this.small
     },
   },
   methods: {
