@@ -9,7 +9,7 @@
         :key="predator._id"
         style="position: relative"
       >
-        <v-divider v-if="index > 0" />
+        <v-divider v-if="index > 0" style="border-color: grey" />
         <fish-info-row
           :fish="predator"
           :fish-time-part="predator.fishTimePart"
