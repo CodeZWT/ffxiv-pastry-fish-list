@@ -122,6 +122,7 @@ export default {
           const completed = this.getFishCompleted(fish._id)
           const countDownType = fishListTimePart[fish._id]?.countDown?.type
           const color = DataUtil.getColorByStatus(
+            this.$vuetify.theme.currentTheme,
             completed,
             countDownType,
             colorCounter++ % 2,

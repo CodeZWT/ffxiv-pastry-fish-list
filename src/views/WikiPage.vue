@@ -39,7 +39,7 @@
             :filter="spotMenuSearchFn"
             :open.sync="openedItems"
             selected-color="primary"
-            color="selected"
+            color="select"
             @update:active="onMenuItemActive"
           >
           </v-treeview>
@@ -113,18 +113,21 @@
               :i="fishListLayout.i"
             >
               <div class="grid-content">
-                <div
-                  v-for="(fish, index) in currentFlattenFishList"
-                  :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"
-                  style="position: relative"
-                >
-                  <fish-list-item
-                    :fish="fish"
-                    :fish-time-part="fishListTimePart[fish._id]"
-                    :position="toPos(index)"
-                    hide-spot-column
-                    @click="onFishClicked(fish._id)"
-                  />
+                <div style="overflow: hidden" class="rounded-lg inner elevation-4">
+                  <div
+                    v-for="(fish, index) in currentFlattenFishList"
+                    :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"
+                    style="position: relative"
+                  >
+                    <fish-list-item
+                      :fish="fish"
+                      :fish-time-part="fishListTimePart[fish._id]"
+                      :position="toPos(index)"
+                      hide-spot-column
+                      @click="onFishClicked(fish._id)"
+                      color="inner"
+                    />
+                  </div>
                 </div>
               </div>
             </grid-item>

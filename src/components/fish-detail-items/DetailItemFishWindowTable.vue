@@ -1,7 +1,7 @@
 <template>
   <v-expansion-panels hover flat tile v-model="lazyExpansionValue">
-    <v-expansion-panel>
-      <v-expansion-panel-header>
+    <v-expansion-panel class="system">
+      <v-expansion-panel-header class="system">
         <div style="display: flex; justify-content: center">
           <div>
             <v-icon>mdi-calendar</v-icon>
@@ -10,7 +10,7 @@
         </div>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
-        <v-simple-table dense>
+        <v-simple-table dense class="system">
           <template v-slot:default>
             <thead>
               <tr>
@@ -34,7 +34,9 @@
             </tbody>
           </template>
         </v-simple-table>
-        <v-btn block @click="showMore" :loading="loadingShowMore">加载更多...</v-btn>
+        <v-btn block @click="showMore" :loading="loadingShowMore" color="primary"
+          >加载更多...</v-btn
+        >
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>

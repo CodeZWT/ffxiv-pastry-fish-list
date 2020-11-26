@@ -1,8 +1,7 @@
 <template>
-  <div style="width: 100%" class="py-4 px-2">
+  <div style="width: 100%" class="py-4 px-2 system">
     <div
       style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 4px; z-index: 1;border-radius: 2px"
-      :class="color"
     />
     <v-row no-gutters>
       <div

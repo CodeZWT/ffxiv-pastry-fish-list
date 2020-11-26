@@ -106,12 +106,11 @@ export default {
     )
   },
 
-  getColorByStatus(completed, countDownType, colorIndex = 0, colorTarget = 'FISH') {
-    let colorRef
-    if (colorTarget === 'FISH') {
-      colorRef = this.ITEM_COLOR
-    } else {
-      colorRef = this.ITEM_BACKGROUND_COLOR
+  getColorByStatus(theme, completed, countDownType, colorIndex = 0) {
+    const colorRef = {
+      FISHING: [theme.fishing, theme.fishingSecondary],
+      COMPLETED: [theme.completed, theme.completedSecondary],
+      WAITING: [theme.waiting, theme.waitingSecondary],
     }
     if (completed) {
       return colorRef.COMPLETED[colorIndex]

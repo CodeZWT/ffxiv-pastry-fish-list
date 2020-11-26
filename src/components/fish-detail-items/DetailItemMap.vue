@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-expansion-panels hover flat tile v-model="lazyExpansionValue">
-      <v-expansion-panel>
-        <v-expansion-panel-header>
+      <v-expansion-panel class="systemSecondary">
+        <v-expansion-panel-header class="systemSecondary">
           <div style="display: flex; align-items: center; justify-content: center">
             <div v-if="multiple">
               <v-menu open-on-hover offset-x top>

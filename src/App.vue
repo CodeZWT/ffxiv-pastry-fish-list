@@ -10,7 +10,7 @@
         'fish-app-bar--collapsed': collapse,
       }"
       dense
-      color=""
+      color="system"
     >
       <v-app-bar-nav-icon v-if="isMobile && !collapse" @click.stop="showNavi">
         <v-img v-if="!isMobile" :src="fisher" height="42" width="42" />
@@ -127,8 +127,9 @@
         bottom
         :absolute="!isMobile"
         :fixed="isMobile"
-        color="#272727"
+        color="system"
         :expand-on-hover="!isMobile"
+        style="z-index: 10"
       >
         <v-list dense>
           <v-list-item

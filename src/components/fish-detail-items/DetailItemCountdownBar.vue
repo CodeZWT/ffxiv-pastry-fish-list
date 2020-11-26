@@ -80,7 +80,11 @@ export default {
   }),
   computed: {
     fishingColor() {
-      return DataUtil.getColorByStatus(this.fish.isCompleted, this.fish.countDownType)
+      return DataUtil.getColorByStatus(
+        this.$vuetify.theme.currentTheme,
+        this.fish.isCompleted,
+        this.fish.countDownType
+      )
     },
   },
   watch: {
