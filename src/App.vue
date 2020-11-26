@@ -85,7 +85,7 @@
                 <v-icon
                   left
                   small
-                  :color="activeTabIndex === index ? 'primary-text' : '#ffffff99'"
+                  :color="activeTabIndex === index ? 'primary-text' : ''"
                 >
                   {{ TABS[index].icon }}
                 </v-icon>
