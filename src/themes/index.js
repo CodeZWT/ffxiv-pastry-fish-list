@@ -25,7 +25,7 @@ export default {
         predatorCnt: '#b68738',
       },
       light: {
-        primary: '#1c7c54',
+        primary: '#82C79D',
         secondary: '#2a9d8f',
         accent: '#2a9d8f',
         info: '#38669b',
@@ -38,7 +38,7 @@ export default {
         background: '#F5F5F4',
         selected: '#1c7c54',
         fishing: '#cbdfbd',
-        fishingSecondary: '#52b788',
+        fishingSecondary: '#82C79D',
         completed: '#98c1d9',
         completedSecondary: '#aed9e0',
         waiting: '#F1E6D3',

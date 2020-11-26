@@ -83,7 +83,7 @@
                   </v-btn-toggle>
                   <v-tooltip bottom>
                     <template v-slot:activator="{ on, attrs }">
-                      <v-icon dark v-bind="attrs" v-on="on">
+                      <v-icon v-bind="attrs" v-on="on">
                         mdi-help-circle-outline
                       </v-icon>
                     </template>
