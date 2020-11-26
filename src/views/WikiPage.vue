@@ -168,7 +168,11 @@
     >
       <v-card>
         <v-card-text>
-          <fish-detail :fish="currentFish" :now="now" />
+          <fish-detail
+            :fish="currentFish"
+            :now="now"
+            :forceShowComponents="forceShowComponents"
+          />
         </v-card-text>
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
@@ -240,6 +244,7 @@ export default {
     showMapMenu: true,
     root: undefined,
     searchResults: { text: '', nodeIds: [] },
+    forceShowComponents: undefined,
   }),
   computed: {
     // [TODO-TREE-PATH-AUTO-OPEN]
@@ -517,8 +522,9 @@ export default {
         this.searching = true
       }
     },
-    onFishClicked(fishId) {
+    onFishClicked({ fishId, components }) {
       this.currentFishId = fishId
+      this.forceShowComponents = components
     },
     onMapCardResized() {
       setTimeout(() => this.$refs.simpleMap?.resize(), 300)
