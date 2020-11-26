@@ -1,7 +1,7 @@
 <template>
   <div
     :title="title"
-    style="width: 48px; height: 44px; position: relative; overflow: hidden"
+    style="width: 48px; height: 48px; position: relative; overflow: hidden"
     :class="{ 'zoom-in': small }"
   >
     <div style="width: 40px; height: 40px; position: absolute; top: 2px; left: 4px">

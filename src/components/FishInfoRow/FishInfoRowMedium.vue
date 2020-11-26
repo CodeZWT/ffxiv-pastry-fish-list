@@ -24,25 +24,34 @@
             />
           </div>
 
-          <!-- show small icon with required count for predators -->
-          <v-badge
-            v-if="inPredator"
-            :content="fish.requiredCnt"
-            color="predatorCnt black--text"
-            overlap
-            bottom
-            bordered
-          >
-            <item-icon :icon-class="fish.icon" small style="min-width: 36px" />
-          </v-badge>
-          <!-- or show normal icon for fish -->
-          <item-icon v-else :icon-class="fish.icon" style="min-width: 48px" />
-          <div :class="inPredator ? 'ml-4' : 'ml-1'">
-            <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">
-              {{ fish.name }}
+          <div class="d-flex flex-column">
+            <div class="d-flex">
+              <!-- show small icon with required count for predators -->
+              <v-badge
+                :content="fish.requiredCnt"
+                color="predatorCnt black--text"
+                overlap
+                bottom
+                bordered
+              >
+                <item-icon :icon-class="fish.icon" small style="min-width: 48px" />
+              </v-badge>
+
+              <div class="ml-1">
+                <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">
+                  {{ fish.name }}
+                </div>
+              </div>
             </div>
+
             <!-- bottom actions line -->
             <div class="d-flex">
+              <!-- copy name -->
+              <click-helper @click.stop :copy-text="fish.name">
+                <v-btn text icon small :title="$t('list.item.copyHint')">
+                  <v-icon small>mdi-content-copy</v-icon>
+                </v-btn>
+              </click-helper>
               <!-- alarm -->
               <toggle-button
                 v-if="transformedFishTimePart.hasCountDown"
@@ -65,7 +74,7 @@
       </v-col>
       <!--  1st: end / start count down  -->
       <v-col :class="`${countDownColClass} d-flex flex-column justify-center`">
-        <div class="text-subtitle-2 d-flex">
+        <div class="text-subtitle-1 d-flex">
           <div>
             <v-tooltip right color="secondary">
               <template v-slot:activator="{ on, attrs }">

@@ -54,6 +54,12 @@
             </div>
             <!-- bottom actions line -->
             <div class="d-flex">
+              <!-- copy name -->
+              <click-helper @click.stop :copy-text="fish.name">
+                <v-btn text icon small :title="$t('list.item.copyHint')">
+                  <v-icon small>mdi-content-copy</v-icon>
+                </v-btn>
+              </click-helper>
               <!-- alarm -->
               <toggle-button
                 v-if="transformedFishTimePart.hasCountDown"
@@ -76,7 +82,7 @@
       </v-col>
       <!--  1st: end / start count down  -->
       <v-col :class="`${countDownColClass} d-flex flex-column justify-center`">
-        <div class="text-subtitle-2 d-flex">
+        <div class="text-subtitle-1 d-flex">
           <div>
             <v-tooltip right color="secondary">
               <template v-slot:activator="{ on, attrs }">

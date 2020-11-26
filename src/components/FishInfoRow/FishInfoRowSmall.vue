@@ -74,7 +74,7 @@
           {{ $t(transformedFishTimePart.countDownType) }}
         </div>
         <div v-else class="d-flex align-center">
-          <div class="text-subtitle-2 d-flex">
+          <div class="text-subtitle-1 d-flex">
             <div>
               <v-tooltip right color="secondary">
                 <template v-slot:activator="{ on, attrs }">
