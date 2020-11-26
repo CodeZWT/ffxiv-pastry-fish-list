@@ -4,7 +4,7 @@
       v-ripple
       :key="fish._id"
       :color="color"
-      :class="['v-list-item', 'v-list-item--link', borderClass]"
+      :class="['v-list-item', 'v-list-item--link', 'px-0', borderClass]"
     >
       <fish-info-row
         :fish="fish"

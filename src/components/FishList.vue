@@ -16,6 +16,7 @@
           :fish-time-part="fishListTimePart[fish._id]"
           :color="listItemColors[index]"
           :position="toPos(index)"
+          :hide-spot-column="hideSpotColumn"
           @click="onFishClicked($event)"
         />
       </div>
@@ -82,6 +83,10 @@ export default {
       default: false,
     },
     clearAllButton: {
+      type: Boolean,
+      default: false,
+    },
+    hideSpotColumn: {
       type: Boolean,
       default: false,
     },

@@ -113,22 +113,29 @@
               :i="fishListLayout.i"
             >
               <div class="grid-content">
-                <div style="overflow: hidden" class="rounded-lg inner elevation-4">
-                  <div
-                    v-for="(fish, index) in currentFlattenFishList"
-                    :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"
-                    style="position: relative"
-                  >
-                    <fish-list-item
-                      :fish="fish"
-                      :fish-time-part="fishListTimePart[fish._id]"
-                      :position="toPos(index)"
-                      hide-spot-column
-                      @click="onFishClicked(fish._id)"
-                      color="inner"
-                    />
-                  </div>
-                </div>
+                <fish-list
+                  :fish-list="currentFishList"
+                  :fish-list-time-part="fishListTimePart"
+                  :fish-list-weather-change-part="fishListWeatherChangePart"
+                  hide-spot-column
+                  @fish-selected="onFishClicked($event)"
+                />
+                <!--                <div style="overflow: hidden" class="rounded-lg inner elevation-4">-->
+                <!--                  <div-->
+                <!--                    v-for="(fish, index) in currentFlattenFishList"-->
+                <!--                    :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"-->
+                <!--                    style="position: relative"-->
+                <!--                  >-->
+                <!--                    <fish-list-item-->
+                <!--                      :fish="fish"-->
+                <!--                      :fish-time-part="fishListTimePart[fish._id]"-->
+                <!--                      :position="toPos(index)"-->
+                <!--                      hide-spot-column-->
+                <!--                      @click="onFishClicked(fish._id)"-->
+                <!--                      :color="['waiting', 'waitingSecondary'][index % 2]"-->
+                <!--                    />-->
+                <!--                  </div>-->
+                <!--                </div>-->
               </div>
             </grid-item>
 
@@ -183,7 +190,6 @@ import placeNames from '@/store/placeNames.json'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import FishTugTable from '@/components/FishingTugTable'
-import FishListItem from '@/components/FishListItem'
 import VueGridLayout from 'vue-grid-layout'
 import _ from 'lodash'
 import * as PinyinMatch from 'pinyin-match'
@@ -191,13 +197,14 @@ import DataUtil from '@/utils/DataUtil'
 import FishDetail from '@/components/FishDetail'
 import TreeModel from 'tree-model'
 import ClickHelper from '@/components/basic/ClickHelper'
+import FishList from '@/components/FishList'
 
 export default {
   name: 'WikiPage',
   components: {
+    FishList,
     ClickHelper,
     FishDetail,
-    FishListItem,
     FishTugTable,
     EorzeaSimpleMap,
     GridLayout: VueGridLayout.GridLayout,
@@ -209,7 +216,6 @@ export default {
     'now',
     'fishListWeatherChangePart',
     'extraFishListTimePart',
-
     'lazyFishSourceList',
     'lazyTransformedFishList',
   ],

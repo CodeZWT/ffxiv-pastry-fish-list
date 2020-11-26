@@ -45,7 +45,7 @@
             </div>
 
             <!-- bottom actions line -->
-            <div class="d-flex">
+            <div class="d-flex flex-wrap">
               <!-- copy name -->
               <click-helper @click.stop :copy-text="fish.name">
                 <v-btn text icon small :title="$t('list.item.copyHint')">
@@ -203,7 +203,7 @@ export default {
       return 'col-0'
     },
     timeAndWeatherColClass() {
-      return 'col-2'
+      return 'col-0'
     },
     buffAndBaitColClass() {
       return 'col-5'
