@@ -4,14 +4,24 @@
       <div class="d-flex align-center">
         <div
           class="text-subtitle-1 text-truncate"
-          :title="firstLocation.fishingSpot + '#' + firstLocation.fishingSpotId"
+          :title="firstLocation.fishingSpotName + '#' + firstLocation.fishingSpotId"
         >
-          {{ firstLocation.fishingSpot }}
+          {{ firstLocation.fishingSpotName }}
         </div>
         <v-btn small icon @click.stop="$emit('click')">
           <v-icon small>
             mdi-map
           </v-icon>
+        </v-btn>
+        <v-btn
+          small
+          icon
+          :title="$t('list.item.linkHint')"
+          @click.stop="
+            goToFishingSpotAngelPage(firstLocation.fishingSpot.anglerLocationId)
+          "
+        >
+          <v-icon small>mdi-link-variant</v-icon>
         </v-btn>
       </div>
       <div class="d-flex align-center">
@@ -30,7 +40,7 @@
                 <tbody>
                   <tr v-for="(spot, index) in fishingSpots" :key="index">
                     <td>{{ spot.zone }}</td>
-                    <td>{{ spot.fishingSpot }}</td>
+                    <td>{{ spot.fishingSpotName }}</td>
                   </tr>
                 </tbody>
               </template>
@@ -57,6 +67,11 @@ export default {
     },
     multiple() {
       return this.fishingSpots.length > 1
+    },
+  },
+  methods: {
+    goToFishingSpotAngelPage(anglerLocationId) {
+      window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
     },
   },
 }

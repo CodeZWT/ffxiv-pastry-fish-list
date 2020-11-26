@@ -938,6 +938,7 @@ export default {
       'notification',
       'getItemIconUrl',
       'isSystemNotificationEnabled',
+      'getFishingSpots',
     ]),
   },
   watch: {
@@ -1177,13 +1178,14 @@ export default {
           hasFishingSpot: fish.locations.length !== 0,
           // zone: this.getZoneName(fish.location),
           // fishingSpot: this.getFishingSpotsName(fish.location),
-          fishingSpots: fish.locations.map(location => {
-            return {
-              zone: this.getZoneName(location),
-              fishingSpot: this.getFishingSpotsName(location),
-              fishingSpotId: location,
-            }
-          }),
+          fishingSpots: this.getFishingSpots(fish.locations),
+          // .map(location => {
+          // return {
+          //   zone: this.getZoneName(location),
+          //   fishingSpotName: this.getFishingSpotsName(location),
+          //   fishingSpotId: location,
+          // }
+          // }),
           baits: this.getBaits(fish),
           hasFishEyes: fish.fishEyes !== false,
           fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),

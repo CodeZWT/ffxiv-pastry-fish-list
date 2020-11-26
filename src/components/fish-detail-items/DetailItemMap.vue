@@ -129,7 +129,6 @@ export default {
     goToFishingSpotAngelPage(anglerLocationId) {
       window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
     },
-
     getName: DataUtil.getName,
   },
 }
