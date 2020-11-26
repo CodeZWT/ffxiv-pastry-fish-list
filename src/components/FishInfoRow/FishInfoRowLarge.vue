@@ -99,15 +99,15 @@
               </div>
             </v-tooltip>
           </div>
-        </div>
-        <!--  2nd: next count down / interval & fishing window rate -->
-        <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
           <div
             v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
             :title="$t('list.item.countDown.fishShadowHint')"
             :class="fish.predatorsIcon"
             style="margin-left: 2px"
           />
+        </div>
+        <!--  2nd: next count down / interval & fishing window rate -->
+        <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
           <div>
             <v-tooltip v-if="transformedFishTimePart.isFishing" right color="secondary">
               <template v-slot:activator="{ on, attrs }">
