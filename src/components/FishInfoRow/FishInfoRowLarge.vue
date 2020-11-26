@@ -54,12 +54,6 @@
             </div>
             <!-- bottom actions line -->
             <div class="d-flex">
-              <!-- fish angel link -->
-              <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">
-                <v-btn text icon small :title="$t('list.item.linkHint')">
-                  <v-icon small>mdi-link-variant</v-icon>
-                </v-btn>
-              </click-helper>
               <!-- alarm -->
               <toggle-button
                 v-if="transformedFishTimePart.hasCountDown"
@@ -70,6 +64,12 @@
                 unchecked-icon="mdi-bell-outline"
                 small
               />
+              <!-- fish angel link -->
+              <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">
+                <v-btn text icon small :title="$t('list.item.linkHint')">
+                  <v-icon small>mdi-link-variant</v-icon>
+                </v-btn>
+              </click-helper>
             </div>
           </div>
         </div>
