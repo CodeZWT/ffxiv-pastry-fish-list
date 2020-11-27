@@ -1002,9 +1002,8 @@ export default {
       event.preventDefault()
     })
 
-    countapi.visits().then(result => {
-      console.log(result)
-    })
+    const path = window.location.pathname.replaceAll('/', '')
+    countapi.hit(window.location.host.replace(':', ''), path === '' ? 'root' : path)
   },
   async mounted() {
     this.cafeKitTooltipCopyPatch()
