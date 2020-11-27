@@ -118,7 +118,6 @@
           v-if="!inPredator"
           :value="transformedFishPart.completed"
           @input="setCompleted($event)"
-          :style="{ visibility: mode !== 'CONTENT' && inPredator ? 'hidden' : 'visible' }"
         />
       </v-col>
       <v-col
