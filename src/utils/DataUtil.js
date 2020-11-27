@@ -535,6 +535,9 @@ export default {
         },
       ],
     },
+    theme: {
+      dark: true,
+    },
   },
 
   DETAIL_ITEM_DISPLAY_CONSTRAINTS: {

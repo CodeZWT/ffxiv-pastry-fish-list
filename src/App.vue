@@ -111,7 +111,7 @@
             <v-icon>mdi-filter</v-icon>
           </v-btn>
         </click-helper>
-        <v-switch v-model="$vuetify.theme.dark" inset class="theme-switch" />
+        <v-switch v-model="dark" inset class="theme-switch" />
         <div v-if="!isMobile" class="d-flex flex-column ml-1">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
@@ -908,6 +908,15 @@ export default {
         this.setShowImportExportDialog(show)
       },
     },
+    dark: {
+      get() {
+        return this.darkMode
+      },
+      set(dark) {
+        this.$vuetify.theme.dark = dark
+        this.setDarkMode(dark)
+      },
+    },
     ...mapState([
       'snackbar',
       'activeTabIndex',
@@ -943,6 +952,7 @@ export default {
       'getItemIconUrl',
       'isSystemNotificationEnabled',
       'getFishingSpots',
+      'darkMode',
     ]),
   },
   watch: {
@@ -976,15 +986,7 @@ export default {
   created() {
     this.loading = true
     this.drawer = !this.isMobile
-    // setInterval(() => {
-    //   this.now = Date.now()
-    // }, 1000)
-    // console.log(Object.entries(this.zones).map(([key, zone]) => '{ key:' + key + ', zoneName: \'' + zone.name_en + '\'}').join('\n'))
-    // const helpMd = import('@/assets/doc/help.md')
-    // helpMd.then(it => {
-    //   console.log(it.default)
-    //   this.$refs.helpArea.innerHTML = it.default
-    // })
+    this.$vuetify.theme.dark = this.dark
     if (
       this.toComparableVersion(this.version) >
       this.toComparableVersion(this.websiteVersion)
@@ -1355,6 +1357,7 @@ export default {
       'setActiveTab',
       'showSnackbar',
       'setSounds',
+      'setDarkMode',
     ]),
   },
 }
