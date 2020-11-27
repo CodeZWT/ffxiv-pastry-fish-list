@@ -35,6 +35,7 @@ export default new Vuex.Store({
     activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
     aetheryte: groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
     sounds: {},
+    showFishPageRightPane: false,
     userData: DataUtil.mergeUserData(
       cloneDeep(DataUtil.USER_DEFAULT_DATA),
       LocalStorageUtil.loadAndBackupUserData()
@@ -321,6 +322,9 @@ export default new Vuex.Store({
         },
       }
       LocalStorageUtil.storeUserData(state.userData)
+    },
+    setShowFishPageRightPane(state, show) {
+      state.showFishPageRightPane = show
     },
   },
   actions: {},

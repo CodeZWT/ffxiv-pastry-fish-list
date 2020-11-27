@@ -125,7 +125,20 @@
           </div>
           <v-btn
             small
-            v-if="fish.rate < 1"
+            v-if="fish.rate < 1 && !showFishPageRightPane"
+            text
+            class="pl-2 pr-1"
+            @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
+          >
+            <v-icon small left>
+              mdi-calendar
+            </v-icon>
+            {{ fish.rateText }}
+          </v-btn>
+        </div>
+        <div v-if="fish.rate < 1 && showFishPageRightPane">
+          <v-btn
+            small
             text
             class="pl-2 pr-1"
             @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
@@ -219,10 +232,18 @@ export default {
   mixins: [fishInfoRowMixin],
   computed: {
     fishColClass() {
-      return this.hideSpotColumn ? 'col-3' : 'col-2'
+      return this.hideSpotColumn
+        ? 'col-3'
+        : this.showFishPageRightPane
+        ? 'col-3'
+        : 'col-2'
     },
     countDownColClass() {
-      return this.hideSpotColumn ? 'col-3' : 'col-3'
+      return this.hideSpotColumn
+        ? 'col-3'
+        : this.showFishPageRightPane
+        ? 'col-2'
+        : 'col-3'
     },
     locationColClass() {
       return this.hideSpotColumn ? 'col-0' : 'col-2'

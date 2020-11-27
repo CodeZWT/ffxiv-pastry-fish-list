@@ -1,6 +1,6 @@
 import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 
 export default {
   props: {
@@ -27,11 +27,6 @@ export default {
     showDivider: {
       type: Boolean,
       default: false,
-    },
-    // HEADER or CONTENT
-    mode: {
-      type: String,
-      default: 'CONTENT',
     },
     hideSpotColumn: {
       type: Boolean,
@@ -89,6 +84,7 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
+    ...mapState(['showFishPageRightPane']),
     ...mapGetters([
       'getWeather',
       'getItemIconClass',

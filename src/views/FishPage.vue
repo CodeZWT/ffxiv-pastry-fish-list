@@ -226,8 +226,6 @@ export default {
   data: () => ({
     openPanelIndex: undefined,
     fishListOpenStatus: [0, 1],
-
-    showRightPane: false,
     throttledResizeFn: undefined,
     resizing: false,
     rightPaneFullScreen: window.innerWidth < 1264,
@@ -255,6 +253,14 @@ export default {
         else return 0
       }
     },
+    showRightPane: {
+      get() {
+        return this.showFishPageRightPane
+      },
+      set(show) {
+        this.setShowFishPageRightPane(show)
+      },
+    },
     ...mapState({
       items: 'items',
       fishingSpots: 'fishingSpots',
@@ -262,6 +268,7 @@ export default {
       bigFish: 'bigFish',
       activeTabIndex: 'activeTabIndex',
       sounds: 'sounds',
+      showFishPageRightPane: 'showFishPageRightPane',
     }),
     ...mapGetters([
       'getFishCompleted',
@@ -324,6 +331,7 @@ export default {
       'setNotShowBanner',
       'setRightPanePercentage',
       'clearToBeNotified',
+      'setShowFishPageRightPane',
     ]),
   },
 }
