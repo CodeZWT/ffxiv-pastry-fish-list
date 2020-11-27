@@ -665,6 +665,7 @@ import { isEqual, union } from 'lodash'
 import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
 import ImportExportDialog from '@/components/ImportExportDialog'
+import countapi from 'countapi-js'
 
 export default {
   name: 'App',
@@ -999,6 +1000,10 @@ export default {
         this.setShowSearchDialog(true)
       }
       event.preventDefault()
+    })
+
+    countapi.visits().then(result => {
+      console.log(result)
     })
   },
   async mounted() {
