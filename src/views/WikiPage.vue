@@ -47,7 +47,11 @@
       </v-card>
     </v-navigation-drawer>
     <div style="height: 100%; width: 100%">
-      <div class="detail-wrapper">
+      <div
+        :class="
+          `detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`
+        "
+      >
         <!--        <code>{{ expandAllInSearching }}</code>-->
         <!--        <code>{{ searchResults }}</code>-->
         <!--        <code>{{ openedItems }}</code>-->
@@ -154,9 +158,9 @@
           </grid-layout>
         </div>
       </div>
-      <div v-if="isMobile" style="position: absolute; top: 0; left: 0; right: 0">
-        <v-btn @click="showMapMenu = !showMapMenu" block color="primary"
-          >点击选择地图
+      <div v-if="isMobile" style="position: absolute; top: 4px; left: 0; right: 0">
+        <v-btn @click="showMapMenu = !showMapMenu" block color="primary" tile>
+          点击选择地图
         </v-btn>
       </div>
     </div>
@@ -645,7 +649,6 @@ export default {
 
 
 .vue-grid-item .text
-
   font-size: 24px
   text-align: center
   position: absolute
@@ -673,8 +676,14 @@ export default {
 .detail-wrapper
   width: 100%
   height: 100%
-  max-height: calc(100vh - #{ $top-bars-padding + $footer-padding + 36})
   overflow-scrolling: auto
   overflow-y: scroll
   overflow-x: hidden
+
+  &-mobile
+    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding + 40})
+    margin-top: 40px
+
+  &-pc
+    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
 </style>
