@@ -1,21 +1,10 @@
 <template>
-  <div
-    :title="title"
-    style="width: 48px; height: 48px; position: relative; overflow: hidden"
-    :class="{ 'zoom-in': small }"
-  >
-    <div style="width: 40px; height: 40px; position: absolute; top: 2px; left: 4px">
-      <div :class="iconClass" />
-    </div>
-    <div style="position: absolute; width: 48px; height: 48px">
-      <v-img :src="cover" />
-    </div>
+  <div :title="title" style="width: 40px; height: 40px" :class="{ 'zoom-in': small }">
+    <div :class="iconClass" />
   </div>
 </template>
 
 <script>
-import cover from '@/assets/icon/item-icon-cover.png'
-
 export default {
   name: 'ItemIcon',
   props: {
@@ -30,9 +19,6 @@ export default {
       default: false,
     },
   },
-  data: () => ({
-    cover: cover,
-  }),
 }
 </script>
 
