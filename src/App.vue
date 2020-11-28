@@ -96,7 +96,7 @@
             </v-badge>
           </v-tab>
         </v-tabs>
-        <v-tooltip left>
+        <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <click-helper @click="setShowSearchDialog(true)">
               <v-btn icon v-bind="attrs" v-on="on">
@@ -111,7 +111,16 @@
             <v-icon>mdi-filter</v-icon>
           </v-btn>
         </click-helper>
-        <v-switch v-model="dark" inset class="theme-switch" />
+        <div>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <div v-bind="attrs" v-on="on">
+                <v-switch v-model="dark" inset class="theme-switch" />
+              </div>
+            </template>
+            <div>点击切换浅色/深色模式</div>
+          </v-tooltip>
+        </div>
         <div v-if="!isMobile" class="d-flex flex-column ml-1">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
