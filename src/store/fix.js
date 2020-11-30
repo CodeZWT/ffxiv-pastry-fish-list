@@ -272,5 +272,13 @@ export default {
       startHour: 8,
       endHour: 16,
     },
+    // fix 黄昏珊瑚
+    '12795': {
+      tug: 'light',
+    },
+    // fix 云水母
+    '5038': {
+      tug: 'light',
+    },
   },
 }
