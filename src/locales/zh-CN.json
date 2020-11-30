@@ -143,7 +143,8 @@
           "DetailItemRequirements": "天气时间要求",
           "DetailItemBuffAndBaits": "需要状态及鱼饵",
           "DetailItemFishWindowTable": "窗口期详情表",
-          "DetailItemPredators": "前置鱼列表"
+          "DetailItemPredators": "前置鱼列表",
+          "DetailItemTips": "攻略"
         }
       }
     },

@@ -1,5 +1,5 @@
 <template>
-  <div style="inner">
+  <div class="inner">
     <template v-if="fish">
       <div>
         <fish-list-expanded-header

@@ -28,6 +28,7 @@ import DetailItemCountdownBar from '@/components/fish-detail-items/DetailItemCou
 import DetailItemRequirements from '@/components/fish-detail-items/DetailItemRequirements'
 import DetailItemBuffAndBaits from '@/components/fish-detail-items/DetailItemBuffAndBaits'
 import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItemFishWindowTable'
+import DetailItemTips from '@/components/fish-detail-items/DetailItemTips/DetailItemTips'
 import { sortBy } from 'lodash'
 
 export default {
@@ -39,6 +40,7 @@ export default {
     DetailItemCountdownBar,
     DetailItemMap,
     DetailItemPredators,
+    DetailItemTips,
   },
   props: {
     value: {

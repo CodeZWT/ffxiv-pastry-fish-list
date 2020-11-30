@@ -179,7 +179,19 @@ export default {
     // =======================================================================
     // if need add new element in default value for settings,
     // another patch function is needed
-    return mergeWith(defaultData, storedDate, this.mergeArray)
+    let newUserData = mergeWith(defaultData, storedDate, this.mergeArray)
+    const defaultComponents = this.USER_DEFAULT_DATA.detailArrangement.components
+    const currentArrangement = newUserData.detailArrangement
+    const componentsDiff = defaultComponents.length - currentArrangement.components.length
+    if (componentsDiff > 0) {
+      currentArrangement.components = currentArrangement.components.concat(
+        defaultComponents.slice(
+          defaultComponents.length - componentsDiff,
+          defaultComponents.length
+        )
+      )
+    }
+    return newUserData
   },
 
   mergeByReplacingArray(object, ...otherArgs) {
@@ -533,6 +545,12 @@ export default {
           enabled: true,
           order: 5,
         },
+        {
+          name: 'DetailItemTips',
+          expandedEnabled: false,
+          enabled: true,
+          order: 6,
+        },
       ],
     },
     theme: {
@@ -547,6 +565,7 @@ export default {
     DetailItemBuffAndBaits: false,
     DetailItemFishWindowTable: 'hasCountDown',
     DetailItemPredators: 'hasPredators',
+    DetailItemTips: false,
   },
 
   // fish tracker [js/app/viewmodel.js]
