@@ -93,7 +93,7 @@ export default {
         toBeNotified: this.getFishToBeNotified(this.value._id),
         icon: this.getItemIconClass(this.value._id),
         name: this.getItemName(this.value._id),
-        patch: this.value.patch.toFixed(1),
+        patch: this.value.patch,
         anglerFishId: this.value.anglerFishId,
         setNotificationAvailable: DataUtil.hasCountDown(this.fishTimePart?.countDown),
       }
