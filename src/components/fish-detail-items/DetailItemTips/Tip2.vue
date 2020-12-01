@@ -2,9 +2,11 @@
   <div>
     <v-card v-if="tip" outlined>
       <v-card-subtitle>
-        <a href="https://ngabbs.com/read.php?tid=23672580" target="_blank">
-          [烟波钓徒][我本烟波一钓徒][5.x]烟波204鱼王心得攻略
-        </a>
+        <div class="text-subtitle-1">
+          <a href="https://ngabbs.com/read.php?tid=23672580" target="_blank">
+            [烟波钓徒][我本烟波一钓徒][5.x]烟波204鱼王心得攻略
+          </a>
+        </div>
         <div class="d-flex">
           <div>
             <div>谈清若风柔@神拳痕</div>
