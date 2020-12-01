@@ -95,7 +95,7 @@ export default {
         if (existedFishWindows.length > this.recordsCntToShow) {
           this.fishWindowsToShow = existedFishWindows.slice(0, this.recordsCntToShow)
         } else if (existedFishWindows.length === this.recordsCntToShow) {
-          console.log('just return cached')
+          // console.log('just return cached')
           this.fishWindowsToShow = existedFishWindows
         } else {
           this.fishWindowsToShow = this.lazyFishWindows = this.transformFishWindows(
@@ -137,7 +137,7 @@ export default {
     transformFishWindows(original, n) {
       let fishWindows = original.filter(it => it[1] >= this.now)
       if (n > fishWindows.length) {
-        console.warn('fish window cnt:', fishWindows.length)
+        // console.warn('fish window cnt:', fishWindows.length)
       }
       fishWindows = fishWindows.slice(0, Math.min(n, fishWindows.length))
 
