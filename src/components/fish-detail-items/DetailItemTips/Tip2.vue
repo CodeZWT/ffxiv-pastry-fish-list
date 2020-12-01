@@ -164,6 +164,10 @@ export default {
 </script>
 
 <style lang="sass">
-.fishing-tip2 .orangered
-  color: orangered !important
+.fishing-tip2
+  margin-top: 4px
+  margin-bottom: 4px
+
+  .orangered
+    color: orangered !important
 </style>
