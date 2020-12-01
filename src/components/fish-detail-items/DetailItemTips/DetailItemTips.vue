@@ -5,10 +5,10 @@
         <div class="subtitle-1 mx-4">攻略</div>
       </v-col>
       <v-col cols="12">
-        <tip1 :id="fish.id" />
+        <tip2 :id="fish.id" />
       </v-col>
       <v-col cols="12">
-        <tip2 :id="fish.id" />
+        <tip1 :id="fish.id" />
       </v-col>
     </v-row>
   </div>
