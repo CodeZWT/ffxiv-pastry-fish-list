@@ -68,9 +68,9 @@
                   <v-icon small v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
                 </template>
                 <div>
-                  鱼糕注：
+                  {{ $t('pastryFishTip.title') }}
                   <div>
-                    数据与鱼糕可能会有所出入，请自行判断，并尊重作者的工作，谢谢！
+                    {{ $t('pastryFishTip.content') }}
                   </div>
                 </div>
               </v-tooltip>
@@ -78,20 +78,7 @@
             <div class="text--primary">
               {{ tip.weatherTime }}
             </div>
-          </v-col>
-          <v-col cols="6">
-            <div class="text-subtitle-2" style="font-weight: bold">
-              参考钓法
-              <span v-if="tip.trickWithStar" class="orangered">(*)</span>
-            </div>
-
-            <div class="text--primary">
-              {{ tip.trick }}
-            </div>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="6">
+            <v-divider class="my-1" />
             <div class="text-subtitle-2" style="font-weight: bold">
               数据可视化
               <v-tooltip top color="secondary">
@@ -115,6 +102,18 @@
             <div class="text--primary" v-html="tip.data"></div>
           </v-col>
           <v-col cols="6">
+            <div class="text-subtitle-2" style="font-weight: bold">
+              参考钓法
+              <span v-if="tip.trickWithStar" class="orangered">(*)</span>
+            </div>
+
+            <div class="text--primary">
+              {{ tip.trick }}
+            </div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
             <div class="text-subtitle-2" style="font-weight: bold">其他</div>
             <div class="text--primary" v-html="tip.comment"></div>
           </v-col>

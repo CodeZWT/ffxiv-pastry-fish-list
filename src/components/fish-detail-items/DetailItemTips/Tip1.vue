@@ -38,9 +38,22 @@
         <div v-if="tip.type === 'simple'">
           <div v-html="tip.trick" />
         </div>
-        <div v-else>
+        <div v-else style="position: relative">
           <v-row no-gutters>
             <v-col cols="12">
+              <div style="position: absolute; right: 0; top:0">
+                <v-tooltip top color="secondary">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-icon v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
+                  </template>
+                  <div>
+                    {{ $t('pastryFishTip.title') }}
+                    <div>
+                      {{ $t('pastryFishTip.content') }}
+                    </div>
+                  </div>
+                </v-tooltip>
+              </div>
               <div v-html="tip.requirements" />
             </v-col>
             <v-col cols="12">
