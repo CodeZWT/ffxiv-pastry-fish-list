@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fishing-tip2">
     <v-card v-if="tip" outlined>
       <v-card-subtitle>
         <div class="text-subtitle-1">
@@ -164,6 +164,6 @@ export default {
 </script>
 
 <style lang="sass">
-.orangered
-  color: orangered
+.fishing-tip2 .orangered
+  color: orangered !important
 </style>
