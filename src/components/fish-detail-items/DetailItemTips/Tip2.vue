@@ -61,15 +61,14 @@
           <v-col cols="6">
             <div class="text-subtitle-2" style="font-weight: bold">
               时间与天气
-              <v-tooltip left>
+              <v-tooltip top color="secondary">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon small v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
                 </template>
                 <div>
                   鱼糕注：
-                  <div>攻略引用时，鱼糕不会更改任何文字。</div>
                   <div>
-                    因此数据与鱼糕可能会有所出入，请自行判断，并尊重作者的工作，谢谢！
+                    数据与鱼糕可能会有所出入，请自行判断，并尊重作者的工作，谢谢！
                   </div>
                 </div>
               </v-tooltip>
@@ -91,7 +90,26 @@
         </v-row>
         <v-row>
           <v-col cols="6">
-            <div class="text-subtitle-2" style="font-weight: bold">数据可视化</div>
+            <div class="text-subtitle-2" style="font-weight: bold">
+              数据可视化
+              <v-tooltip top color="secondary">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon small v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
+                </template>
+                <div>
+                  <div>
+                    黑色数据来自作者：真实但存在样本单一
+                  </div>
+                  <div>
+                    <span class="orangered">红色数据</span
+                    >来自饿猫以及钓友：可能存在记录错误但样本多样
+                  </div>
+                  <div>
+                    （详细说明请点击“作者说明”查看）
+                  </div>
+                </div>
+              </v-tooltip>
+            </div>
             <div class="text--primary" v-html="tip.data"></div>
           </v-col>
           <v-col cols="6">
