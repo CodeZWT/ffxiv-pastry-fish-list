@@ -145,7 +145,14 @@ export default {
           })
         )
       } else {
-        return sortBy(this.detailComponents, 'order').map(it => ({
+        return sortBy(
+          this.detailComponents.filter(component =>
+            DataUtil.USER_DEFAULT_DATA.detailArrangement.components.some(
+              defaultComp => defaultComp.name === component.name
+            )
+          ),
+          'order'
+        ).map(it => ({
           ...it,
           constraint: DataUtil.DETAIL_ITEM_DISPLAY_CONSTRAINTS[it.name],
         }))
