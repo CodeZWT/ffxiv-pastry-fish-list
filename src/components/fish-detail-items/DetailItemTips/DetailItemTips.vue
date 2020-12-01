@@ -17,8 +17,7 @@
 <script>
 import Tip1 from '@/components/fish-detail-items/DetailItemTips/Tip1'
 import Tip2 from '@/components/fish-detail-items/DetailItemTips/Tip2'
-import tip1Data from '@/store/tip1.json'
-import tip2Data from '@/store/tip2.json'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'DetailItemTips',
@@ -26,7 +25,7 @@ export default {
   props: ['fish'],
   computed: {
     hasTips() {
-      return tip1Data[this.fish.id] || tip2Data[this.fish.id]
+      return DataUtil.hasTips(this.fish.id)
     },
   },
 }

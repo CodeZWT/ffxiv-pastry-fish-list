@@ -203,7 +203,8 @@
       "notificationHint": "点击添加闹钟",
       "notificationHintOff": "点击取消闹钟",
       "rateHint": "窗口期时间占比",
-      "noConstraint": "无"
+      "noConstraint": "无",
+      "tipHint": "显示攻略"
     }
   },
   "footer": {

@@ -1233,6 +1233,7 @@ export default {
           }),
           isPredator: isPredator,
           anglerFishId: fish.anglerFishId,
+          hasTips: DataUtil.hasTips(fish._id),
           predators: this.assembleFish(DataUtil.getPredators(fish, this.allFish), true),
         }
       })

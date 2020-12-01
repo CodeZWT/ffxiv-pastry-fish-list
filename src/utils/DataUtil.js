@@ -4,6 +4,8 @@ import i18n from '@/i18n'
 import { isArray, isEqual, mergeWith } from 'lodash'
 import FishWindow from '@/utils/FishWindow'
 import EorzeaTime from '@/utils/Time'
+import tip1Data from '@/store/tip1.json'
+import tip2Data from '@/store/tip2.json'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -384,6 +386,10 @@ export default {
         component => component.name === it
       )
     )
+  },
+
+  hasTips(fishId) {
+    return tip1Data[fishId] || tip2Data[fishId]
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
