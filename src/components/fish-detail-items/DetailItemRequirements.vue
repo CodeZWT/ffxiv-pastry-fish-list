@@ -5,8 +5,8 @@
       <div class="d-flex justify-center" v-if="fish.hasWeatherConstraint">
         <div style="display: flex">
           <div
-            v-for="weather in fish.previousWeatherSetDetail"
-            :key="weather.name"
+            v-for="(weather, index) in fish.previousWeatherSetDetail"
+            :key="`prev-${index}`"
             :title="weather.name"
           >
             <div :class="weather.icon" :title="weather.name" />
@@ -15,8 +15,8 @@
             mdi-arrow-right
           </v-icon>
           <div
-            v-for="weather in fish.weatherSetDetail"
-            :key="weather.name"
+            v-for="(weather, index) in fish.weatherSetDetail"
+            :key="`curr-${index}`"
             :title="weather.name"
           >
             <div :class="weather.icon" :title="weather.name" />
