@@ -107,9 +107,7 @@
               <span v-if="tip.trickWithStar" class="orangered">(*)</span>
             </div>
 
-            <div class="text--primary">
-              {{ tip.trick }}
-            </div>
+            <div class="text--primary" v-html="tip.trick" />
           </v-col>
         </v-row>
         <v-row>
