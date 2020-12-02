@@ -1,33 +1,48 @@
 <template>
-  <div>
-    <v-row no-gutters v-if="hasTips">
-      <v-col cols="12">
-        <div class="subtitle-1 mx-4">攻略</div>
-      </v-col>
-      <v-col cols="12">
-        <tip2 :id="fish.id" />
-      </v-col>
-      <v-col cols="12">
-        <tip1 :id="fish.id" />
-      </v-col>
-    </v-row>
-  </div>
+  <v-expansion-panels hover flat tile v-model="lazyExpansionValue">
+    <v-expansion-panel class="system">
+      <v-expansion-panel-header class="system">
+        <div style="display: flex; justify-content: center">
+          <div>
+            <v-icon>mdi-book</v-icon>
+            查看攻略
+          </div>
+        </div>
+      </v-expansion-panel-header>
+      <v-expansion-panel-content>
+        <v-row no-gutters>
+          <v-col cols="12">
+            <tip2 :id="fish.id" />
+          </v-col>
+          <v-col cols="12">
+            <tip1 :id="fish.id" />
+          </v-col>
+        </v-row>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+  </v-expansion-panels>
 </template>
 
 <script>
 import Tip1 from '@/components/fish-detail-items/DetailItemTips/Tip1'
 import Tip2 from '@/components/fish-detail-items/DetailItemTips/Tip2'
-import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'DetailItemTips',
   components: { Tip1, Tip2 },
-  props: ['fish'],
-  computed: {
-    hasTips() {
-      return DataUtil.hasTips(this.fish.id)
+  props: {
+    fish: {
+      type: Object,
+      default: undefined,
+    },
+    expanded: {
+      type: Boolean,
+      default: false,
     },
   },
+  data: vm => ({
+    lazyExpansionValue: vm.expanded ? 0 : undefined,
+  }),
 }
 </script>
 

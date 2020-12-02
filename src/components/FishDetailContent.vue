@@ -132,6 +132,7 @@ export default {
         baits: this.getBaits(this.value),
         isCompleted: this.getFishCompleted(this.value._id),
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
+        hasTips: DataUtil.hasTips(this.value._id),
       }
     },
     sortedDetailComponents() {

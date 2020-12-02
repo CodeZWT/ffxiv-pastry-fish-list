@@ -553,7 +553,8 @@ export default {
         },
         {
           name: 'DetailItemTips',
-          expandedEnabled: false,
+          expandedEnabled: true,
+          expanded: true,
           enabled: true,
           order: 6,
         },
@@ -571,7 +572,7 @@ export default {
     DetailItemBuffAndBaits: false,
     DetailItemFishWindowTable: 'hasCountDown',
     DetailItemPredators: 'hasPredators',
-    DetailItemTips: false,
+    DetailItemTips: 'hasTips',
   },
 
   // fish tracker [js/app/viewmodel.js]
