@@ -43,6 +43,14 @@ export default {
   data: vm => ({
     lazyExpansionValue: vm.expanded ? 0 : undefined,
   }),
+  watch: {
+    expanded(expanded) {
+      this.lazyExpansionValue = expanded ? 0 : undefined
+    },
+    'fish.id': function() {
+      this.lazyExpansionValue = this.expanded ? 0 : undefined
+    },
+  },
 }
 </script>
 
