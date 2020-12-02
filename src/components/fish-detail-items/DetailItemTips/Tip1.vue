@@ -28,6 +28,9 @@
               </v-card-title>
               <v-card-text>
                 大部分内容是4.5写的，在新技能下可能不是最优解。
+                本系列的攻略中的技巧偏向于钓
+                <span style="font-weight: bold; color: orangered">HQ鱼</span>
+                ，如果不追求HQ，请酌情参考攻略中的技巧。
               </v-card-text>
             </v-card>
           </v-dialog>
@@ -85,13 +88,9 @@
             <v-col cols="12">
               <v-divider class="my-2" />
             </v-col>
-            <v-col cols="8">
+            <v-col cols="12">
               <div class="text-subtitle-2" style="font-weight: bold">笔者评价：</div>
               <div v-html="tip.remark" />
-            </v-col>
-            <v-col cols="4">
-              <div class="text-subtitle-2" style="font-weight: bold">笔者记录：</div>
-              <div v-html="tip.record" />
             </v-col>
             <v-divider />
           </v-row>
