@@ -72,6 +72,9 @@
                   <div>
                     {{ $t('pastryFishTip.content') }}
                   </div>
+                  <div>
+                    部分数据已在作者授权下更新，原贴将会在之后更新。
+                  </div>
                 </div>
               </v-tooltip>
             </div>
