@@ -790,7 +790,7 @@
     "name": "皇金鱼",
     "data": "平钓(35s；33s；29s；35s)<br><span class=\"orangered\">平钓(36.1s；29.1s；24.3s)</span>",
     "weatherTime": "常驻",
-    "trick": "(常驻)密虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(中杆，强力)-丛林鲶鱼(钓起3条触发鱼识)",
+    "trick": "(常驻)密虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(中杆，强力)-丛林鲶鱼(钓起3条触发鱼识)<br>(鱼识)密虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-皇金鱼",
     "comment": "看起来很复杂的鱼王，不过由于常驻加上<span style=\"font-weight:bold\">银鱼</span>、<span style=\"font-weight:bold\">金鱼</span>起钩特性，其实很简单。",
     "wholeHtml": "<span style=\"font-weight:bold\">皇金鱼</span><br>时间与天气：常驻<br>参考钓法：<br>(常驻)密虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(中杆，强力)-丛林鲶鱼(钓起3条触发鱼识)<br>(鱼识)密虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-皇金鱼<br>数据可视化：<br>平钓(35s；33s；29s；35s)<br><span class=\"orangered\">平钓(36.1s；29.1s；24.3s)</span><br>其他：看起来很复杂的鱼王，不过由于常驻加上<span style=\"font-weight:bold\">银鱼</span>、<span style=\"font-weight:bold\">金鱼</span>起钩特性，其实很简单。"
   },
@@ -808,7 +808,7 @@
     "name": "涅普特龙",
     "data": "撒饵(16s)<br>平钓(31s；32s；27s)<br><span class=\"orangered\">撒饵(15.4s)<br>平钓(24.4s；30s)</span>",
     "weatherTime": "全天；小雨，暴雨 ",
-    "trick": "(全天；小雨，暴雨)极地鳞虾-(中杆，强力)-小撒拉奥斯(钓起3只触发鱼识)",
+    "trick": "(全天；小雨，暴雨)极地鳞虾-(中杆，强力)-小撒拉奥斯(钓起3只触发鱼识)<br>(鱼识)极地鳞虾-(鱼王杆，强力)-涅普特龙 拍愿贝(中杆)",
     "comment": "钓场从(33.6 29.3)处的船头传送前往“海上的大型船”，<span style=\"font-weight:bold\">小撒拉奥斯</span>可以双提4条直接进入鱼识，不过最好提前拍掉<span style=\"font-weight:bold\">愿贝</span>后提20s内的中杆，不拍的话极大可能恭喜你获得4个<span style=\"font-weight:bold\">愿贝</span>。体感鱼王的舔钩率和脱钩率都很高。此外，还有一种钓法是获得鱼识后，钓饵换<span style=\"font-weight:bold\">潮虫</span>或者<span style=\"font-weight:bold\">沟鼠尾巴</span>，通过<span style=\"font-weight:bold\">梅尔托尔虾虎</span>以小钓大钓此鱼王(这种方法无法使用撒饵且会额外消耗gp，但咬钩率会提高一些，理性择优选择)。鱼识不是特别长。",
     "wholeHtml": "<span style=\"font-weight:bold\">涅普特龙</span><br>时间与天气：全天；小雨，暴雨 <br>参考钓法：<br>(全天；小雨，暴雨)极地鳞虾-(中杆，强力)-小撒拉奥斯(钓起3只触发鱼识)<br>(鱼识)极地鳞虾-(鱼王杆，强力)-涅普特龙 拍愿贝(中杆)<br>数据可视化：<br>撒饵(16s)<br>平钓(31s；32s；27s)<br><span class=\"orangered\">撒饵(15.4s)<br>平钓(24.4s；30s)</span><br>其他：钓场从(33.6 29.3)处的船头传送前往“海上的大型船”，<span style=\"font-weight:bold\">小撒拉奥斯</span>可以双提4条直接进入鱼识，不过最好提前拍掉<span style=\"font-weight:bold\">愿贝</span>后提20s内的中杆，不拍的话极大可能恭喜你获得4个<span style=\"font-weight:bold\">愿贝</span>。体感鱼王的舔钩率和脱钩率都很高。此外，还有一种钓法是获得鱼识后，钓饵换<span style=\"font-weight:bold\">潮虫</span>或者<span style=\"font-weight:bold\">沟鼠尾巴</span>，通过<span style=\"font-weight:bold\">梅尔托尔虾虎</span>以小钓大钓此鱼王(这种方法无法使用撒饵且会额外消耗gp，但咬钩率会提高一些，理性择优选择)。鱼识不是特别长。"
   },
@@ -862,7 +862,7 @@
     "name": "科内利亚",
     "data": "撒饵(14s；16s；16s)<br>平钓(31s；33s；29s)<br><span class=\"orangered\">撒饵(15s；15s)<br>平钓(35s；34s)</span>",
     "weatherTime": "常驻",
-    "trick": "(常驻)火萤-(中杆，强力)-争斗琵琶鱼(钓起5条触发鱼识)",
+    "trick": "(常驻)火萤-(中杆，强力)-争斗琵琶鱼(钓起5条触发鱼识)<br>(鱼识)彩虹勺形鱼饵-(鱼王杆，强力)-科内利亚 拍骨舌鱼(中杆)",
     "comment": "<span style=\"font-weight:bold\">争斗琵琶鱼</span>可以双提提起4条，给出一个可行的钓法，首先<span style=\"font-weight:bold\">火萤</span>钓起一条<span style=\"font-weight:bold\">争斗琵琶鱼</span>，专一+强心剂+双提进鱼识，换鱼饵中杆<span style=\"font-weight:bold\">骨舌鱼</span>后拍掉祈祷鱼王杆且不脱；当然，由于是常驻鱼王，也可以一条一条钓门票。鱼识很长，<span style=\"font-weight:bold\">争斗琵琶鱼</span>大概是15s-21s中杆。",
     "wholeHtml": "<span style=\"font-weight:bold\">科内利亚</span><br>时间与天气：常驻<br>参考钓法：<br>(常驻)火萤-(中杆，强力)-争斗琵琶鱼(钓起5条触发鱼识)<br>(鱼识)彩虹勺形鱼饵-(鱼王杆，强力)-科内利亚 拍骨舌鱼(中杆)<br>数据可视化：<br>撒饵(14s；16s；16s)<br>平钓(31s；33s；29s)<br><span class=\"orangered\">撒饵(15s；15s)<br>平钓(35s；34s)</span><br>其他：<span style=\"font-weight:bold\">争斗琵琶鱼</span>可以双提提起4条，给出一个可行的钓法，首先<span style=\"font-weight:bold\">火萤</span>钓起一条<span style=\"font-weight:bold\">争斗琵琶鱼</span>，专一+强心剂+双提进鱼识，换鱼饵中杆<span style=\"font-weight:bold\">骨舌鱼</span>后拍掉祈祷鱼王杆且不脱；当然，由于是常驻鱼王，也可以一条一条钓门票。鱼识很长，<span style=\"font-weight:bold\">争斗琵琶鱼</span>大概是15s-21s中杆。"
   },
@@ -889,7 +889,7 @@
     "name": "杀手库诺",
     "data": "平钓(27s)<br><span class=\"orangered\">平钓(26.2s；26.4s)</span>",
     "weatherTime": "常驻",
-    "trick": "(8-18；妖雾)密虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(鱼王杆，强力)-加诺(钓起1只触发鱼识)",
+    "trick": "(8-18；妖雾)密虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(鱼王杆，强力)-加诺(钓起1只触发鱼识)<br>(鱼识)密虫-(轻杆，精准)-银鱼-(中杆，强力)-暗斗鱼-(鱼王杆，强力)-杀手库诺",
     "comment": "<span style=\"font-weight:bold\">金鱼</span>同样可以继续以小钓大起<span style=\"font-weight:bold\">暗斗鱼</span>，暗斗鱼依然可以套娃起<span style=\"font-weight:bold\">暗斗鱼</span>。鱼识很长，可以慢慢钓。",
     "wholeHtml": "<span style=\"font-weight:bold\">杀手库诺</span><br>时间与天气：常驻<br>参考钓法：<br>(8-18；妖雾)密虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(鱼王杆，强力)-加诺(钓起1只触发鱼识)<br>(鱼识)密虫-(轻杆，精准)-银鱼-(中杆，强力)-暗斗鱼-(鱼王杆，强力)-杀手库诺<br>数据可视化：<br>平钓(27s)<br><span class=\"orangered\">平钓(26.2s；26.4s)</span><br>其他：<span style=\"font-weight:bold\">金鱼</span>同样可以继续以小钓大起<span style=\"font-weight:bold\">暗斗鱼</span>，暗斗鱼依然可以套娃起<span style=\"font-weight:bold\">暗斗鱼</span>。鱼识很长，可以慢慢钓。"
   },
@@ -898,7 +898,7 @@
     "name": "海盗猎人",
     "data": "平钓(21s；26s；22s；24s)<br><span class=\"orangered\">平钓(25s；25.8s；17s；18s)</span>",
     "weatherTime": "常驻",
-    "trick": "(常驻)沙蚕-(轻杆，精准)-梅尔托尔虾虎-(中杆，强力)-梭子椿(钓起6只触发鱼识)",
+    "trick": "(常驻)沙蚕-(轻杆，精准)-梅尔托尔虾虎-(中杆，强力)-梭子椿(钓起6只触发鱼识)<br>(鱼识)沙蚕-(轻杆，精准)-梅尔托尔虾虎-(中杆，强力)-梭子椿-(鱼王杆，强力)海盗猎人",
     "comment": "<span style=\"font-weight:bold\">梅尔托尔虾虎</span>也有几率直接鱼王杆提起鱼王。<span style=\"font-weight:bold\">梅尔托尔虾虎</span>提<span style=\"font-weight:bold\">梭子椿</span>中超过17s的中杆大概率是<span style=\"font-weight:bold\">银鲨</span>；鱼王杆也有可能是<span style=\"font-weight:bold\">锯鲛</span>。",
     "wholeHtml": "<span style=\"font-weight:bold\">海盗猎人</span><br>时间与天气：常驻<br>参考钓法：<br>(常驻)沙蚕-(轻杆，精准)-梅尔托尔虾虎-(中杆，强力)-梭子椿(钓起6只触发鱼识)<br>(鱼识)沙蚕-(轻杆，精准)-梅尔托尔虾虎-(中杆，强力)-梭子椿-(鱼王杆，强力)海盗猎人<br>数据可视化：<br>平钓(21s；26s；22s；24s)<br><span class=\"orangered\">平钓(25s；25.8s；17s；18s)</span><br>其他：<span style=\"font-weight:bold\">梅尔托尔虾虎</span>也有几率直接鱼王杆提起鱼王。<span style=\"font-weight:bold\">梅尔托尔虾虎</span>提<span style=\"font-weight:bold\">梭子椿</span>中超过17s的中杆大概率是<span style=\"font-weight:bold\">银鲨</span>；鱼王杆也有可能是<span style=\"font-weight:bold\">锯鲛</span>。"
   },
@@ -943,7 +943,7 @@
     "name": "暗星",
     "data": "平钓(21s；24s；19s；21s)<br><span class=\"orangered\">平钓(25.3s；18s；26.8s；23s；17.8s；21.5s)</span>",
     "weatherTime": "19-4；暴雪，小雪",
-    "trick": "(常驻)陆行鸟拟饵-(轻杆，精准)-绿灯球藻(钓起5只触发鱼识)",
+    "trick": "(常驻)陆行鸟拟饵-(轻杆，精准)-绿灯球藻(钓起5只触发鱼识)<br>(鱼识)密虫-(轻杆，精准)-阿巴拉提亚公鱼-(鱼王杆，强力)-暗星",
     "trickWithStar": true,
     "comment": "<span style=\"font-weight:bold\">绿灯球藻</span>可以双提起4只；<span style=\"font-weight:bold\">残暴水蛭</span>由于只起<span style=\"font-weight:bold\">阿巴拉提亚公鱼</span>，是<span style=\"font-weight:bold\">密虫</span>的上位替代，推荐触发鱼识后用<span style=\"font-weight:bold\">残暴水蛭</span>钓公鱼。",
     "wholeHtml": "<span style=\"font-weight:bold\">暗星</span><br>时间与天气：19-4；暴雪，小雪<br>参考钓法<span class=\"orangered\">(*)</span>：<br>(常驻)陆行鸟拟饵-(轻杆，精准)-绿灯球藻(钓起5只触发鱼识)<br>(鱼识)密虫-(轻杆，精准)-阿巴拉提亚公鱼-(鱼王杆，强力)-暗星<br>数据可视化：<br>平钓(21s；24s；19s；21s)<br><span class=\"orangered\">平钓(25.3s；18s；26.8s；23s；17.8s；21.5s)</span><br>其他：<span style=\"font-weight:bold\">绿灯球藻</span>可以双提起4只；<span style=\"font-weight:bold\">残暴水蛭</span>由于只起<span style=\"font-weight:bold\">阿巴拉提亚公鱼</span>，是<span style=\"font-weight:bold\">密虫</span>的上位替代，推荐触发鱼识后用<span style=\"font-weight:bold\">残暴水蛭</span>钓公鱼。"
@@ -998,7 +998,7 @@
     "name": "波太郎",
     "data": "撒饵(14s；14s；13s；12s)<br>平钓(26s)<br><span class=\"orangered\">撒饵(13.7s)<br>平钓(24.9s)</span>",
     "weatherTime": "常驻",
-    "trick": "(全天；打雷，雷雨)火萤-(鱼王杆，强力)-太泷太郎(钓起1只触发鱼识)",
+    "trick": "(全天；打雷，雷雨)火萤-(鱼王杆，强力)-太泷太郎(钓起1只触发鱼识)<br>(鱼识)漂浮诱饵蛙-(鱼王杆，强力)-波太郎 拍南方狗鱼(中杆)",
     "comment": "钓起<span style=\"font-weight:bold\">太泷太郎</span>以后先换鱼饵！！！舔钩率比<span style=\"font-weight:bold\">太泷太郎</span>高很多，但脱钩率同样也很高，鱼识很短，推荐全程保持撒饵。(数据包括脱钩的)",
     "wholeHtml": "<span style=\"font-weight:bold\">波太郎</span><br>时间与天气：常驻<br>参考钓法：<br>(全天；打雷，雷雨)火萤-(鱼王杆，强力)-太泷太郎(钓起1只触发鱼识)<br>(鱼识)漂浮诱饵蛙-(鱼王杆，强力)-波太郎 拍南方狗鱼(中杆)<br>数据可视化：<br>撒饵(14s；14s；13s；12s)<br>平钓(26s)<br><span class=\"orangered\">撒饵(13.7s)<br>平钓(24.9s)</span><br>其他：钓起<span style=\"font-weight:bold\">太泷太郎</span>以后先换鱼饵！！！舔钩率比<span style=\"font-weight:bold\">太泷太郎</span>高很多，但脱钩率同样也很高，鱼识很短，推荐全程保持撒饵。(数据包括脱钩的)"
   },
@@ -1359,7 +1359,7 @@
     "name": "莫名熔岩鱼",
     "data": "平钓(31s；32s；31s)<br><span class=\"orangered\">平钓(25.2s；31.1s；30s)</span>",
     "weatherTime": "10-15；晴朗，碧空",
-    "trick": "(常驻)熔岩蠕虫-(轻杆，精准)-花岗蟹(钓起5只)",
+    "trick": "(常驻)熔岩蠕虫-(轻杆，精准)-花岗蟹(钓起5只)<br>(常驻)(3分钟鱼眼)熔岩蠕虫-(轻杆，精准)-花岗蟹-(中杆，强力)-化石骨舌鱼(钓起3只)<br>(鱼识)熔岩蠕虫-(轻杆，精准)-花岗蟹-(鱼王杆，强力)-莫名熔岩鱼",
     "comment": "三鱼眼钓场，懂得都懂。<span style=\"font-weight:bold\">化石骨舌鱼</span>可以双提4只(<span style=\"font-weight:bold\">陨龟</span>警告)参考钓法：提前10分钟到场，先双提找<span style=\"font-weight:bold\">化石骨舌鱼</span>，<span style=\"font-weight:bold\">化石骨舌鱼</span>钓齐以后留一条<span style=\"font-weight:bold\">花岗蟹</span>等窗口期到来。如果<span style=\"font-weight:bold\">化石骨舌鱼</span>一直没来，请去附近的钓场抛一杆重置门票。(数据包括脱钩的)",
     "wholeHtml": "<span style=\"font-weight:bold\">莫名熔岩鱼</span><br>时间与天气：10-15；晴朗，碧空<br>参考钓法：<br>(常驻)熔岩蠕虫-(轻杆，精准)-花岗蟹(钓起5只)<br>(常驻)(3分钟鱼眼)熔岩蠕虫-(轻杆，精准)-花岗蟹-(中杆，强力)-化石骨舌鱼(钓起3只)<br>(鱼识)熔岩蠕虫-(轻杆，精准)-花岗蟹-(鱼王杆，强力)-莫名熔岩鱼<br>数据可视化：<br>平钓(31s；32s；31s)<br><span class=\"orangered\">平钓(25.2s；31.1s；30s)</span><br>其他：三鱼眼钓场，懂得都懂。<span style=\"font-weight:bold\">化石骨舌鱼</span>可以双提4只(<span style=\"font-weight:bold\">陨龟</span>警告)参考钓法：提前10分钟到场，先双提找<span style=\"font-weight:bold\">化石骨舌鱼</span>，<span style=\"font-weight:bold\">化石骨舌鱼</span>钓齐以后留一条<span style=\"font-weight:bold\">花岗蟹</span>等窗口期到来。如果<span style=\"font-weight:bold\">化石骨舌鱼</span>一直没来，请去附近的钓场抛一杆重置门票。(数据包括脱钩的)"
   },
@@ -1368,7 +1368,7 @@
     "name": "欧巴宾海蝎",
     "data": "平钓(27s；27s)<br><span class=\"orangered\">平钓(26.2s；27.9s)</span>",
     "weatherTime": "全天；打雷",
-    "trick": "(全天；打雷)(2分钟鱼眼)恶魔蠕虫-(中杆，强力)-欧洛浦肯 (钓起3只触发鱼识)",
+    "trick": "(全天；打雷)(2分钟鱼眼)恶魔蠕虫-(中杆，强力)-欧洛浦肯 (钓起3只触发鱼识)<br>(鱼识)恶魔蠕虫-(轻杆，精准)-白金鱼-(鱼王杆，精准)-欧巴宾海蝎",
     "comment": "钓场高度很高，记得往上飞。双鱼眼钓场，请注意2分钟的鱼眼才是！(2分30秒鱼眼是杂鱼)如果错开<span style=\"font-weight:bold\">宝石水母</span>(20-3)，<span style=\"font-weight:bold\">欧洛浦肯</span>的舔钩几率会得到一个幅度的提高(虽然还是很低)，大胆双提4只进鱼识。这条鱼曾经把我打自闭过(全是杂鱼鱼眼，鱼识外不上<span style=\"font-weight:bold\">欧洛浦肯</span>，鱼识内不上<span style=\"font-weight:bold\">白金鱼</span>)，鱼识很短(1分30秒)，做好长期作战准备。",
     "wholeHtml": "<span style=\"font-weight:bold\">欧巴宾海蝎</span><br>时间与天气：全天；打雷<br>参考钓法：<br>(全天；打雷)(2分钟鱼眼)恶魔蠕虫-(中杆，强力)-欧洛浦肯 (钓起3只触发鱼识)<br>(鱼识)恶魔蠕虫-(轻杆，精准)-白金鱼-(鱼王杆，精准)-欧巴宾海蝎<br>数据可视化：<br>平钓(27s；27s)<br><span class=\"orangered\">平钓(26.2s；27.9s)</span><br>其他：钓场高度很高，记得往上飞。双鱼眼钓场，请注意2分钟的鱼眼才是！(2分30秒鱼眼是杂鱼)如果错开<span style=\"font-weight:bold\">宝石水母</span>(20-3)，<span style=\"font-weight:bold\">欧洛浦肯</span>的舔钩几率会得到一个幅度的提高(虽然还是很低)，大胆双提4只进鱼识。这条鱼曾经把我打自闭过(全是杂鱼鱼眼，鱼识外不上<span style=\"font-weight:bold\">欧洛浦肯</span>，鱼识内不上<span style=\"font-weight:bold\">白金鱼</span>)，鱼识很短(1分30秒)，做好长期作战准备。"
   },
@@ -1377,7 +1377,7 @@
     "name": "铠鱼",
     "data": "平钓(23s；24s)<br><span class=\"orangered\">平钓(24.5s；23s；26s；24.1s)</span>",
     "weatherTime": "1-4；碧空",
-    "trick": "(常驻)石蝇幼虫-(轻杆，精准)-蝼蛄(钓起6只触发鱼识)",
+    "trick": "(常驻)石蝇幼虫-(轻杆，精准)-蝼蛄(钓起6只触发鱼识)<br>(鱼识)土蜘蛛-(轻杆，精准)-蝼蛄-(鱼王杆，精准)-铠鱼",
     "comment": "<span style=\"font-weight:bold\">土蜘蛛</span>也是钓<span style=\"font-weight:bold\">蝼蛄</span>的不错选择，11s内的轻杆才有较大可能是<span style=\"font-weight:bold\">蝼蛄</span>，超过11s杂鱼超多。鱼王杆有杂鱼干扰。做好长期作战准备。",
     "wholeHtml": "<span style=\"font-weight:bold\">铠鱼</span><br>时间与天气：1-4；碧空<br>参考钓法：<br>(常驻)石蝇幼虫-(轻杆，精准)-蝼蛄(钓起6只触发鱼识)<br>(鱼识)土蜘蛛-(轻杆，精准)-蝼蛄-(鱼王杆，精准)-铠鱼<br>数据可视化：<br>平钓(23s；24s)<br><span class=\"orangered\">平钓(24.5s；23s；26s；24.1s)</span><br>其他：<span style=\"font-weight:bold\">土蜘蛛</span>也是钓<span style=\"font-weight:bold\">蝼蛄</span>的不错选择，11s内的轻杆才有较大可能是<span style=\"font-weight:bold\">蝼蛄</span>，超过11s杂鱼超多。鱼王杆有杂鱼干扰。做好长期作战准备。"
   },
@@ -1386,7 +1386,7 @@
     "name": "云海蝴蝶螺",
     "data": "撒饵(16s；16s；18s；16s)<br>平钓(不撒饵的都是大佬，我不是)<br><span class=\"orangered\">撒饵(16s；18s；17.5s)<br>平钓(33s)</span>",
     "weatherTime": "5-7；碧空",
-    "trick": "(常驻)红气球虫-(轻杆，精准)-夕月天女(钓起3只)",
+    "trick": "(常驻)红气球虫-(轻杆，精准)-夕月天女(钓起3只)<br>(常驻)巨型大蚊-(轻杆，精准)-蛉蝎(钓起3只)<br>(鱼识)巨型大蚊-(鱼王杆，精准)-云海蝴蝶螺 拍蛉蝎(轻杆)",
     "comment": "四幻神之螺，不舔，脱钩率高的令人震惊。下面给出一个参考钓法：提前至少5分钟到位，首先使用<span style=\"font-weight:bold\">红气球虫</span>提11s内轻杆钓起3只<span style=\"font-weight:bold\">夕月天女</span>，其中hq的天女可以以小钓大12s内轻杆提<span style=\"font-weight:bold\">蛉蝎</span>，钓齐<span style=\"font-weight:bold\">夕月天女</span>后换<span style=\"font-weight:bold\">巨型大蚊</span>找<span style=\"font-weight:bold\">蛉蝎</span>，钓起第2只<span style=\"font-weight:bold\">蛉蝎</span>后专一等ET4：55抛竿出鱼识同时拍掉<span style=\"font-weight:bold\">蛉蝎</span>，然后看螺宝爱不爱你了。鱼识很短只有1分钟，请不吝啬强心剂全程撒饵。运气好的话1个cd提前施工能够钓2次(运气好不应该是一杆起吗？)(数据包括脱钩的)",
     "wholeHtml": "<span style=\"font-weight:bold\">云海蝴蝶螺</span><br>时间与天气：5-7；碧空<br>参考钓法：<br>(常驻)红气球虫-(轻杆，精准)-夕月天女(钓起3只)<br>(常驻)巨型大蚊-(轻杆，精准)-蛉蝎(钓起3只)<br>(鱼识)巨型大蚊-(鱼王杆，精准)-云海蝴蝶螺 拍蛉蝎(轻杆)<br>数据可视化：<br>撒饵(16s；16s；18s；16s)<br>平钓(不撒饵的都是大佬，我不是)<br><span class=\"orangered\">撒饵(16s；18s；17.5s)<br>平钓(33s)</span><br>其他：四幻神之螺，不舔，脱钩率高的令人震惊。下面给出一个参考钓法：提前至少5分钟到位，首先使用<span style=\"font-weight:bold\">红气球虫</span>提11s内轻杆钓起3只<span style=\"font-weight:bold\">夕月天女</span>，其中hq的天女可以以小钓大12s内轻杆提<span style=\"font-weight:bold\">蛉蝎</span>，钓齐<span style=\"font-weight:bold\">夕月天女</span>后换<span style=\"font-weight:bold\">巨型大蚊</span>找<span style=\"font-weight:bold\">蛉蝎</span>，钓起第2只<span style=\"font-weight:bold\">蛉蝎</span>后专一等ET4：55抛竿出鱼识同时拍掉<span style=\"font-weight:bold\">蛉蝎</span>，然后看螺宝爱不爱你了。鱼识很短只有1分钟，请不吝啬强心剂全程撒饵。运气好的话1个cd提前施工能够钓2次(运气好不应该是一杆起吗？)(数据包括脱钩的)"
   },
@@ -1395,7 +1395,7 @@
     "name": "沙里贝涅",
     "data": "平钓(27s；24s；26s；23s)<br><span class=\"orangered\">平钓(27.8s；29.2s；25s；28s)</span>",
     "weatherTime": "0-3；暴雪",
-    "trick": "(常驻)土蜘蛛-(轻杆，精准)-冰战神(钓起5只触发鱼识)",
+    "trick": "(常驻)土蜘蛛-(轻杆，精准)-冰战神(钓起5只触发鱼识)<br>(鱼识)土蜘蛛-(轻杆，精准)-冰战神-(鱼王杆，精准)-沙里贝涅",
     "comment": "四幻神之鼠，别名沙皇、臭老鼠，不舔，爱脱。冰战神可以双提4只，推荐提前5分钟到场，12s-18s的轻杆大概率是<span style=\"font-weight:bold\">冰战神</span>大胆双提，提到4只<span style=\"font-weight:bold\">冰战神</span>马上开启专一等待0点到来，提前10s左右抛竿钓起第5只<span style=\"font-weight:bold\">冰战神</span>触发鱼识并且以小钓大开始追梦。(海豹：你说那么多有什么用，我一杆起了)(数据包括脱钩的)",
     "wholeHtml": "<span style=\"font-weight:bold\">沙里贝涅</span><br>时间与天气：0-3；暴雪<br>参考钓法：<br>(常驻)土蜘蛛-(轻杆，精准)-冰战神(钓起5只触发鱼识)<br>(鱼识)土蜘蛛-(轻杆，精准)-冰战神-(鱼王杆，精准)-沙里贝涅<br>数据可视化：<br>平钓(27s；24s；26s；23s)<br><span class=\"orangered\">平钓(27.8s；29.2s；25s；28s)</span><br>其他：四幻神之鼠，别名沙皇、臭老鼠，不舔，爱脱。冰战神可以双提4只，推荐提前5分钟到场，12s-18s的轻杆大概率是<span style=\"font-weight:bold\">冰战神</span>大胆双提，提到4只<span style=\"font-weight:bold\">冰战神</span>马上开启专一等待0点到来，提前10s左右抛竿钓起第5只<span style=\"font-weight:bold\">冰战神</span>触发鱼识并且以小钓大开始追梦。(海豹：你说那么多有什么用，我一杆起了)(数据包括脱钩的)"
   },
@@ -1404,7 +1404,7 @@
     "name": "兰代勒翼龙",
     "data": "平钓(24s；26s)<br><span class=\"orangered\">平钓(23s；21s；30.9s)</span>",
     "weatherTime": "5-8；强风",
-    "trick": "(常驻)巨型大蚊-(中杆，强力)-高天鱼(钓起5只触发鱼识)",
+    "trick": "(常驻)巨型大蚊-(中杆，强力)-高天鱼(钓起5只触发鱼识)<br>(鱼识)巨型大蚊-(中杆，强力)-高天鱼-(鱼王杆，强力)-兰代勒翼龙",
     "comment": "<span style=\"font-weight:bold\">风暴骑士</span>是很快的鱼王杆.jpg。以小钓大的时候有<span style=\"font-weight:bold\">风暴骑士</span>干扰，高于20s的鱼王杆大概率是该鱼皇。<span style=\"font-weight:bold\">高天鱼</span>可以双提4只，约为10-18s的中杆。",
     "wholeHtml": "<span style=\"font-weight:bold\">兰代勒翼龙</span><br>时间与天气：5-8；强风<br>参考钓法：<br>(常驻)巨型大蚊-(中杆，强力)-高天鱼(钓起5只触发鱼识)<br>(鱼识)巨型大蚊-(中杆，强力)-高天鱼-(鱼王杆，强力)-兰代勒翼龙<br>数据可视化：<br>平钓(24s；26s)<br><span class=\"orangered\">平钓(23s；21s；30.9s)</span><br>其他：<span style=\"font-weight:bold\">风暴骑士</span>是很快的鱼王杆.jpg。以小钓大的时候有<span style=\"font-weight:bold\">风暴骑士</span>干扰，高于20s的鱼王杆大概率是该鱼皇。<span style=\"font-weight:bold\">高天鱼</span>可以双提4只，约为10-18s的中杆。"
   },
@@ -1799,7 +1799,7 @@
     "name": "镰甲鱼",
     "data": "撒饵(9s；10s；13s)<br>平钓(26s；24s)<br><span class=\"orangered\">撒饵(10s；12.5s)<br>平钓(30s；22.5s；22.7s)</span>",
     "weatherTime": "全天；扬沙",
-    "trick": "(全天；扬沙)悬浮诱饵鱼-(鱼王杆，强力)-怨妇虾(钓起2只触发鱼识)",
+    "trick": "(全天；扬沙)悬浮诱饵鱼-(鱼王杆，强力)-怨妇虾(钓起2只触发鱼识)<br>(鱼识)悬浮诱饵鱼-(鱼王杆，强力)-镰甲鱼 拍怨妇虾(鱼王杆)",
     "comment": "钓起第二只<span style=\"font-weight:bold\">怨妇虾</span>时请记得拍掉<span style=\"font-weight:bold\">怨妇虾</span>，如果鱼识内没钓起<span style=\"font-weight:bold\">镰甲鱼</span>请记得吧拍水buff点掉。双提对<span style=\"font-weight:bold\">怨妇虾</span>无效，请一条一条钓。此外，请带够鱼饵。<span style=\"text-decoration:line-through\" class=\"gray\"> 钓鱼王，钓鱼王，钓完鱼王钓鱼皇，撒饵耐心强力提，怎么还是怨妇虾。 </span>(数据包括脱钩的)",
     "wholeHtml": "<span style=\"font-weight:bold\">镰甲鱼</span><br>时间与天气：全天；扬沙<br>参考钓法：<br>(全天；扬沙)悬浮诱饵鱼-(鱼王杆，强力)-怨妇虾(钓起2只触发鱼识)<br>(鱼识)悬浮诱饵鱼-(鱼王杆，强力)-镰甲鱼 拍怨妇虾(鱼王杆)<br>数据可视化：<br>撒饵(9s；10s；13s)<br>平钓(26s；24s)<br><span class=\"orangered\">撒饵(10s；12.5s)<br>平钓(30s；22.5s；22.7s)</span><br>其他：钓起第二只<span style=\"font-weight:bold\">怨妇虾</span>时请记得拍掉<span style=\"font-weight:bold\">怨妇虾</span>，如果鱼识内没钓起<span style=\"font-weight:bold\">镰甲鱼</span>请记得吧拍水buff点掉。双提对<span style=\"font-weight:bold\">怨妇虾</span>无效，请一条一条钓。此外，请带够鱼饵。<span style=\"text-decoration:line-through\" class=\"gray\"> 钓鱼王，钓鱼王，钓完鱼王钓鱼皇，撒饵耐心强力提，怎么还是怨妇虾。 </span>(数据包括脱钩的)"
   },
@@ -1808,7 +1808,7 @@
     "name": "胸脊鲨",
     "data": "平钓(19s；20s)<br><span class=\"orangered\">平钓(26.6s；16s；16s；14.9s；22s；19s)</span>",
     "weatherTime": "16-18；所有天气",
-    "trick": "(12-18；雷雨)(4分钟鱼眼)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-雕塑家(钓起2只触发鱼识)",
+    "trick": "(12-18；雷雨)(4分钟鱼眼)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-雕塑家(钓起2只触发鱼识)<br>(鱼识)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-胸脊鲨",
     "comment": "四幻神之鲨。难点不在本身，而在于根本没有<span style=\"font-weight:bold\">雕塑家</span>。参考钓法：提前在ET10到场，提前打开收藏品，钓起一只<span style=\"font-weight:bold\">岩盐咸鱼</span>后专一等待ET12后开启鱼眼，并双提鱼王杆，如果非常幸运地提到了<span style=\"font-weight:bold\">雕塑家</span>，在ET16时候在点击“否”直接触发鱼识开始追梦。鱼识很长，慢慢钓。(<span style=\"font-weight:bold\">珍珠眼</span>：妹妹没gp了吧，我来辣！)",
     "wholeHtml": "<span style=\"font-weight:bold\">胸脊鲨</span><br>时间与天气：16-18；所有天气<br>参考钓法：<br>(12-18；雷雨)(4分钟鱼眼)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-雕塑家(钓起2只触发鱼识)<br>(鱼识)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-胸脊鲨<br>数据可视化：<br>平钓(19s；20s)<br><span class=\"orangered\">平钓(26.6s；16s；16s；14.9s；22s；19s)</span><br>其他：四幻神之鲨。难点不在本身，而在于根本没有<span style=\"font-weight:bold\">雕塑家</span>。参考钓法：提前在ET10到场，提前打开收藏品，钓起一只<span style=\"font-weight:bold\">岩盐咸鱼</span>后专一等待ET12后开启鱼眼，并双提鱼王杆，如果非常幸运地提到了<span style=\"font-weight:bold\">雕塑家</span>，在ET16时候在点击“否”直接触发鱼识开始追梦。鱼识很长，慢慢钓。(<span style=\"font-weight:bold\">珍珠眼</span>：妹妹没gp了吧，我来辣！)"
   },
@@ -1826,7 +1826,7 @@
     "name": "七彩天主",
     "data": "撒饵(12s；12s；11s)<br>平钓(22s)<br><span class=\"orangered\">撒饵(13.4s；10.6s)<br>平钓(21s)</span>",
     "weatherTime": "常驻",
-    "trick": "(0-4；所有天气)嗡嗡石蝇-(中杆)-紫彩鱼-(轻杆，精准)-蓝彩鱼(钓起3只)",
+    "trick": "(0-4；所有天气)嗡嗡石蝇-(中杆)-紫彩鱼-(轻杆，精准)-蓝彩鱼(钓起3只)<br>(4-8；所有天气)嗡嗡石蝇-(中杆)-红彩鱼-(轻杆，精准)-橙彩鱼(钓起3只)<br>(0-16；晴朗转晴朗或碧空)嗡嗡石蝇-(轻杆，精准)-绿彩鱼(钓起5只)<br>(鱼识)嗡嗡石蝇-(鱼王杆，强力)-七彩天主",
     "comment": "不得不说，摆在鱼缸里面真丑(个人看法，勿喷)。<span style=\"font-weight:bold\">七彩天主</span>也是很多捕鱼人心里一痛(度假舒服吗？<span style=\"text-decoration:line-through\" class=\"gray\"> 掉线快乐吗？ </span>)双提对此钓场的所有白鱼只能提2只；难点在于<span style=\"font-weight:bold\">蓝彩鱼</span>和<span style=\"font-weight:bold\">橙彩鱼</span>(拍了青就是黄，拍了黄就是青.jpg)，请保持有机会就双提，最后进入鱼识以后请保持撒饵。至于拍水可以根据自身感觉最多舔钩的鱼拍掉。(数据包括脱钩的)",
     "wholeHtml": "<span style=\"font-weight:bold\">七彩天主</span><br>时间与天气：常驻<br>参考钓法：<br>(0-4；所有天气)嗡嗡石蝇-(中杆)-紫彩鱼-(轻杆，精准)-蓝彩鱼(钓起3只)<br>(4-8；所有天气)嗡嗡石蝇-(中杆)-红彩鱼-(轻杆，精准)-橙彩鱼(钓起3只)<br>(0-16；晴朗转晴朗或碧空)嗡嗡石蝇-(轻杆，精准)-绿彩鱼(钓起5只)<br>(鱼识)嗡嗡石蝇-(鱼王杆，强力)-七彩天主<br>数据可视化：<br>撒饵(12s；12s；11s)<br>平钓(22s)<br><span class=\"orangered\">撒饵(13.4s；10.6s)<br>平钓(21s)</span><br>其他：不得不说，摆在鱼缸里面真丑(个人看法，勿喷)。<span style=\"font-weight:bold\">七彩天主</span>也是很多捕鱼人心里一痛(度假舒服吗？<span style=\"text-decoration:line-through\" class=\"gray\"> 掉线快乐吗？ </span>)双提对此钓场的所有白鱼只能提2只；难点在于<span style=\"font-weight:bold\">蓝彩鱼</span>和<span style=\"font-weight:bold\">橙彩鱼</span>(拍了青就是黄，拍了黄就是青.jpg)，请保持有机会就双提，最后进入鱼识以后请保持撒饵。至于拍水可以根据自身感觉最多舔钩的鱼拍掉。(数据包括脱钩的)"
   },
