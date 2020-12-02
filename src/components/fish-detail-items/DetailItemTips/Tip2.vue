@@ -22,7 +22,7 @@
                 作者说明
               </v-btn>
             </template>
-            <v-card>
+            <v-card class="fishing-tip2">
               <v-card-title>
                 关于本篇攻略的一些补充说明
               </v-card-title>
