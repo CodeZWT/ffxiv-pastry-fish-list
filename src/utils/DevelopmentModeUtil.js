@@ -1,4 +1,4 @@
-const LOCAL_TEST_MODE = false
+const LOCAL_TEST_MODE = true
 
 export default {
   isTest() {
