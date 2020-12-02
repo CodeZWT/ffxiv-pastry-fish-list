@@ -152,11 +152,6 @@ export default {
       startHourText: '19:30',
       endHourText: '2:45',
     },
-    '7945': {
-      weatherSet: [2, 1],
-      startHour: 20,
-      endHour: 4,
-    },
     '7947': {
       weatherSet: [4],
       startHour: 4.5,
@@ -278,6 +273,30 @@ export default {
     },
     // fix 云水母
     '5038': {
+      tug: 'light',
+    },
+    '8769': {
+      bestCatchPath: [12711, 4937],
+    },
+    '7945': {
+      weatherSet: [2, 1],
+      startHour: 20,
+      endHour: 4,
+      bestCatchPath: [12704, 4937],
+    },
+    '7911': {
+      bestCatchPath: [2594, 4948],
+    },
+    '7946': {
+      bestCatchPath: [12711, 4937],
+    },
+    '16745': {
+      bestCatchPath: [12712, 12716, 12724],
+    },
+    '4893': {
+      tug: 'medium',
+    },
+    '30492': {
       tug: 'light',
     },
   },
