@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-row align-center">
     <div :class="`d-flex ${direction}`">
-      <div class="d-flex align-center">
+      <div class="d-flex align-center flex-wrap">
         <div
           class="text-subtitle-1 text-truncate"
           :title="firstLocation.fishingSpotName + '#' + firstLocation.fishingSpotId"

@@ -53,7 +53,7 @@
               {{ fish.name }}
             </div>
             <!-- bottom actions line -->
-            <div class="d-flex">
+            <div class="d-flex flex-wrap">
               <!-- copy name -->
               <click-helper @click.stop :copy-text="fish.name">
                 <v-btn text icon small :title="$t('list.item.copyHint')">
@@ -149,7 +149,7 @@
           <v-btn
             small
             text
-            class="pl-2 pr-1"
+            style="padding: 0 1px;"
             @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
           >
             <v-icon small left>
