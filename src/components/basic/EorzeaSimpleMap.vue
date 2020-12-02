@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%; height: 100%; position: relative" class="eorzea-simple-map">
-    <v-overlay :value="true" absolute opacity="1" color="background">
+    <v-overlay :value="!allImageLoaded" absolute opacity="1" color="background">
       <div class="d-flex flex-column align-center">
         <v-progress-circular
           indeterminate
