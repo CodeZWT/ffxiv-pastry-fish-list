@@ -8,10 +8,7 @@ switch (process.env.NODE_ENV) {
     ASSET_PATH = '/'
     break
   case 'production':
-    ASSET_PATH = '/ff14-list/'
-    break
-  case 'test':
-    ASSET_PATH = '/ff14-list-test'
+    ASSET_PATH = '/'
     break
   default:
     console.error('NODE_ENV not supported!')
