@@ -143,7 +143,8 @@
           "DetailItemRequirements": "天气时间要求",
           "DetailItemBuffAndBaits": "需要状态及鱼饵",
           "DetailItemFishWindowTable": "窗口期详情表",
-          "DetailItemPredators": "前置鱼列表"
+          "DetailItemPredators": "前置鱼列表",
+          "DetailItemTips": "攻略"
         }
       }
     },
@@ -202,7 +203,8 @@
       "notificationHint": "点击添加闹钟",
       "notificationHintOff": "点击取消闹钟",
       "rateHint": "窗口期时间占比",
-      "noConstraint": "无"
+      "noConstraint": "无",
+      "tipHint": "显示攻略"
     }
   },
   "footer": {
@@ -250,5 +252,9 @@
   },
   "tugTable": {
     "tugFish": "杆型\\鱼"
+  },
+  "pastryFishTip": {
+    "title": "鱼糕注：",
+    "content": "数据与鱼糕可能会有所出入，请自行判断，并尊重作者的工作，谢谢！"
   }
 }

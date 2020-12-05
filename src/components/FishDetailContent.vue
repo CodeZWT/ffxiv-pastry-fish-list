@@ -28,6 +28,7 @@ import DetailItemCountdownBar from '@/components/fish-detail-items/DetailItemCou
 import DetailItemRequirements from '@/components/fish-detail-items/DetailItemRequirements'
 import DetailItemBuffAndBaits from '@/components/fish-detail-items/DetailItemBuffAndBaits'
 import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItemFishWindowTable'
+import DetailItemTips from '@/components/fish-detail-items/DetailItemTips/DetailItemTips'
 import { sortBy } from 'lodash'
 
 export default {
@@ -39,6 +40,7 @@ export default {
     DetailItemCountdownBar,
     DetailItemMap,
     DetailItemPredators,
+    DetailItemTips,
   },
   props: {
     value: {
@@ -130,6 +132,7 @@ export default {
         baits: this.getBaits(this.value),
         isCompleted: this.getFishCompleted(this.value._id),
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
+        hasTips: DataUtil.hasTips(this.value._id),
       }
     },
     sortedDetailComponents() {
@@ -143,7 +146,14 @@ export default {
           })
         )
       } else {
-        return sortBy(this.detailComponents, 'order').map(it => ({
+        return sortBy(
+          this.detailComponents.filter(component =>
+            DataUtil.USER_DEFAULT_DATA.detailArrangement.components.some(
+              defaultComp => defaultComp.name === component.name
+            )
+          ),
+          'order'
+        ).map(it => ({
           ...it,
           constraint: DataUtil.DETAIL_ITEM_DISPLAY_CONSTRAINTS[it.name],
         }))

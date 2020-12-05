@@ -309,6 +309,44 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.3.2</div>
+          <ul>
+            <li>
+              增加攻略支持：（感谢攻略作者的授权与支持！）
+              <div>在详情界面或直接点击<v-icon small>mdi-book</v-icon>按钮即可查看。</div>
+              <ul>
+                <li>
+                  <a
+                    class="text-subtitle-1"
+                    href="https://bbs.nga.cn/read.php?tid=18484723"
+                    target="_blank"
+                  >
+                    [烟波钓徒]红莲之狂潮&苍穹之禁城 钓场之皇捕获指南
+                  </a>
+                  <div>月咏泠音@摩杜纳</div>
+                </li>
+                <li>
+                  <a
+                    class="text-subtitle-1"
+                    href="https://ngabbs.com/read.php?tid=23672580"
+                    target="_blank"
+                  >
+                    [烟波钓徒][我本烟波一钓徒][5.x]烟波204鱼王心得攻略
+                  </a>
+                  <div>谈清若风柔@神拳痕</div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              修正多条鱼数据。
+            </li>
+            <li>
+              修正界面问题。
+            </li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.3.1</div>
           <ul>
             <li>
@@ -334,7 +372,7 @@
               <v-chip x-small>5.3</v-chip>
               和
               <v-chip x-small>5.35</v-chip>
-              数据，文本暂时使用英文版本。
+              数据。
               <div class="error--text text-h6">
                 为了便于查看，5.3以及5.35的普通鱼仍会显示在默认列表中。
                 之前版本没有任何时间天气限制的普通鱼请在图鉴中查找或直接搜索。
@@ -1233,6 +1271,7 @@ export default {
           }),
           isPredator: isPredator,
           anglerFishId: fish.anglerFishId,
+          hasTips: DataUtil.hasTips(fish._id),
           predators: this.assembleFish(DataUtil.getPredators(fish, this.allFish), true),
         }
       })

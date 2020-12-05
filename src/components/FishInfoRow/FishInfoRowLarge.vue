@@ -44,16 +44,16 @@
             bottom
             bordered
           >
-            <item-icon :icon-class="fish.icon" small style="min-width: 36px" />
+            <item-icon :icon-class="fish.icon" small style="min-width: 30px" />
           </v-badge>
           <!-- or show normal icon for fish -->
-          <item-icon v-else :icon-class="fish.icon" style="min-width: 48px" />
+          <item-icon v-else :icon-class="fish.icon" style="min-width: 40px" />
           <div :class="inPredator ? 'ml-4' : 'ml-1'">
             <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">
               {{ fish.name }}
             </div>
             <!-- bottom actions line -->
-            <div class="d-flex">
+            <div class="d-flex flex-wrap">
               <!-- copy name -->
               <click-helper @click.stop :copy-text="fish.name">
                 <v-btn text icon small :title="$t('list.item.copyHint')">
@@ -70,6 +70,15 @@
                 unchecked-icon="mdi-bell-outline"
                 small
               />
+              <!-- fish tips link -->
+              <click-helper
+                v-if="fish.hasTips"
+                @click.stop="onFishClicked(['DetailItemTips'])"
+              >
+                <v-btn text icon small :title="$t('list.item.tipHint')">
+                  <v-icon small>mdi-book</v-icon>
+                </v-btn>
+              </click-helper>
               <!-- fish angel link -->
               <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">
                 <v-btn text icon small :title="$t('list.item.linkHint')">
@@ -140,7 +149,7 @@
           <v-btn
             small
             text
-            class="pl-2 pr-1"
+            style="padding: 0 1px;"
             @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
           >
             <v-icon small left>

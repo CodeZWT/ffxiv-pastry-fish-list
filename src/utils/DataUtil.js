@@ -4,6 +4,8 @@ import i18n from '@/i18n'
 import { isArray, isEqual, mergeWith } from 'lodash'
 import FishWindow from '@/utils/FishWindow'
 import EorzeaTime from '@/utils/Time'
+import tip1Data from '@/store/tip1.json'
+import tip2Data from '@/store/tip2.json'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -179,7 +181,19 @@ export default {
     // =======================================================================
     // if need add new element in default value for settings,
     // another patch function is needed
-    return mergeWith(defaultData, storedDate, this.mergeArray)
+    let newUserData = mergeWith(defaultData, storedDate, this.mergeArray)
+    const defaultComponents = this.USER_DEFAULT_DATA.detailArrangement.components
+    const currentArrangement = newUserData.detailArrangement
+    const componentsDiff = defaultComponents.length - currentArrangement.components.length
+    if (componentsDiff > 0) {
+      currentArrangement.components = currentArrangement.components.concat(
+        defaultComponents.slice(
+          defaultComponents.length - componentsDiff,
+          defaultComponents.length
+        )
+      )
+    }
+    return newUserData
   },
 
   mergeByReplacingArray(object, ...otherArgs) {
@@ -374,6 +388,10 @@ export default {
     )
   },
 
+  hasTips(fishId) {
+    return tip1Data[fishId] || tip2Data[fishId]
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: INTERVAL_SECOND,
@@ -533,6 +551,13 @@ export default {
           enabled: true,
           order: 5,
         },
+        {
+          name: 'DetailItemTips',
+          expandedEnabled: true,
+          expanded: true,
+          enabled: true,
+          order: 6,
+        },
       ],
     },
     theme: {
@@ -547,6 +572,7 @@ export default {
     DetailItemBuffAndBaits: false,
     DetailItemFishWindowTable: 'hasCountDown',
     DetailItemPredators: 'hasPredators',
+    DetailItemTips: 'hasTips',
   },
 
   // fish tracker [js/app/viewmodel.js]

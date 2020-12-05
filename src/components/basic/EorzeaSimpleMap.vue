@@ -1,9 +1,13 @@
 <template>
   <div style="width: 100%; height: 100%; position: relative" class="eorzea-simple-map">
-    <v-overlay :value="!allImageLoaded" absolute opacity="1" color="systemSecondary">
+    <v-overlay :value="!allImageLoaded" absolute opacity="1" color="background">
       <div class="d-flex flex-column align-center">
-        <v-progress-circular indeterminate size="64"></v-progress-circular>
-        <div class="mt-2">{{ $t('detail.map.loading') }}</div>
+        <v-progress-circular
+          indeterminate
+          size="64"
+          color="primary"
+        ></v-progress-circular>
+        <div class="mt-2 primary--text">{{ $t('detail.map.loading') }}</div>
       </div>
     </v-overlay>
     <v-hover v-slot:default="{ hover }" open-delay="200">

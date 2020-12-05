@@ -56,6 +56,15 @@
                 unchecked-icon="mdi-bell-outline"
                 small
               />
+              <!-- fish tips link -->
+              <click-helper
+                v-if="fish.hasTips"
+                @click.stop="onFishClicked(['DetailItemTips'])"
+              >
+                <v-btn text icon small :title="$t('list.item.tipHint')">
+                  <v-icon small>mdi-book</v-icon>
+                </v-btn>
+              </click-helper>
               <!-- fish angel link -->
               <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">
                 <v-btn text icon small :title="$t('list.item.linkHint')">
