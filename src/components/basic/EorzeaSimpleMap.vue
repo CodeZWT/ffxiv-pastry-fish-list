@@ -659,10 +659,7 @@ export default {
       if (imageName === 'default') {
         console.warn(fishingSpotName + ' range helper is missing.')
       }
-      return import(`@/assets/fishing-spot-range-detail/${imageName}.png`)
-        .then(it => it?.default)
-        .catch(() => console.error(fishingSpotName + ' loading error'))
-        .finally(() => null)
+      return ImgUtil.getImgUrl(imageName + '.png')
     },
     resize() {
       this.throttledResizeFn()
