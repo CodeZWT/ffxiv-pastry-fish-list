@@ -640,7 +640,6 @@ export default {
       return Promise.resolve(urlOrPromise).then(url => {
         if (url == null) {
           set(this, imagePropName, null)
-          // this[imagePropName] = null
           return
         }
         const image = new window.Image()
@@ -648,7 +647,6 @@ export default {
         return new Promise(resolve => {
           image.onload = () => {
             set(this, imagePropName, image)
-            // this[imagePropName] = image
             resolve()
           }
         })
