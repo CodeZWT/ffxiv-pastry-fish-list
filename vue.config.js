@@ -18,6 +18,7 @@ switch (process.env.NODE_ENV) {
 module.exports = {
   transpileDependencies: ['vuetify'],
   publicPath: ASSET_PATH,
+  productionSourceMap: false,
 
   pluginOptions: {
     i18n: {
