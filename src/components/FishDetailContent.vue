@@ -29,7 +29,7 @@ import DetailItemRequirements from '@/components/fish-detail-items/DetailItemReq
 import DetailItemBuffAndBaits from '@/components/fish-detail-items/DetailItemBuffAndBaits'
 import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItemFishWindowTable'
 import DetailItemTips from '@/components/fish-detail-items/DetailItemTips/DetailItemTips'
-import { sortBy } from 'lodash'
+import _ from 'lodash'
 
 export default {
   name: 'FishDetailContent',
@@ -146,7 +146,7 @@ export default {
           })
         )
       } else {
-        return sortBy(
+        return _.sortBy(
           this.detailComponents.filter(component =>
             DataUtil.USER_DEFAULT_DATA.detailArrangement.components.some(
               defaultComp => defaultComp.name === component.name

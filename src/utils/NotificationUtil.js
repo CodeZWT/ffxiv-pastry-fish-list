@@ -1,4 +1,4 @@
-import { groupBy } from 'lodash'
+import _ from 'lodash'
 import i18n from '@/i18n'
 
 export default {
@@ -34,7 +34,7 @@ export default {
     return Notification.requestPermission()
   },
   showFishNotification(fishNotifications) {
-    const fishNotificationByKey = groupBy(fishNotifications, 'setting.key')
+    const fishNotificationByKey = _.groupBy(fishNotifications, 'setting.key')
     const firstFish = (fishNotificationByKey['fishing'] ??
       fishNotificationByKey['waiting'])?.[0]?.fish
     const title = i18n.t('notification.fishAlarm.title', {

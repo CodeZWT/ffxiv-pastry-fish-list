@@ -189,7 +189,7 @@
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
-import { throttle } from 'lodash'
+import _ from 'lodash'
 import ClickHelper from '@/components/basic/ClickHelper'
 import { Pane, Splitpanes } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
@@ -294,7 +294,7 @@ export default {
   mounted() {
     document.title = `${this.$t('top.systemBarTitle')} - ${this.$t('top.fishList')}`
 
-    this.throttledResizeFn = throttle(this.resizeInternal, 100)
+    this.throttledResizeFn = _.throttle(this.resizeInternal, 100)
     this.onWindowResize()
   },
   methods: {

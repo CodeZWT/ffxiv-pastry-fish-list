@@ -33,6 +33,9 @@ module.exports = {
       args[0].title = '鱼糕 - 钓鱼时钟'
       return args
     })
+    config.externals({
+      _: 'lodash',
+    })
   },
   configureWebpack: {
     plugins: [

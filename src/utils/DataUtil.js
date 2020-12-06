@@ -1,7 +1,7 @@
 import TimeFormatter from '@/utils/TimeFormatter'
 import { DateTime } from 'luxon'
 import i18n from '@/i18n'
-import { isArray, isEqual, mergeWith } from 'lodash'
+import _ from 'lodash'
 import FishWindow from '@/utils/FishWindow'
 import EorzeaTime from '@/utils/Time'
 import tip1Data from '@/store/tip1.json'
@@ -181,7 +181,7 @@ export default {
     // =======================================================================
     // if need add new element in default value for settings,
     // another patch function is needed
-    let newUserData = mergeWith(defaultData, storedDate, this.mergeArray)
+    let newUserData = _.mergeWith(defaultData, storedDate, this.mergeArray)
     const defaultComponents = this.USER_DEFAULT_DATA.detailArrangement.components
     const currentArrangement = newUserData.detailArrangement
     const componentsDiff = defaultComponents.length - currentArrangement.components.length
@@ -197,11 +197,11 @@ export default {
   },
 
   mergeByReplacingArray(object, ...otherArgs) {
-    return mergeWith(object, ...otherArgs, this.mergeArray)
+    return _.mergeWith(object, ...otherArgs, this.mergeArray)
   },
 
   mergeArray(objValue, srcValue) {
-    if (isArray(srcValue)) {
+    if (_.isArray(srcValue)) {
       return srcValue
     }
   },
@@ -246,8 +246,8 @@ export default {
 
   isConstrainsEqual(fish1, fish2) {
     return (
-      isEqual(fish1.previousWeatherSet, fish2.previousWeatherSet) &&
-      isEqual(fish1.weatherSet, fish2.weatherSet) &&
+      _.isEqual(fish1.previousWeatherSet, fish2.previousWeatherSet) &&
+      _.isEqual(fish1.weatherSet, fish2.weatherSet) &&
       fish1.startHour === fish2.startHour &&
       fish1.endHour === fish2.endHour
     )

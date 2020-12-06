@@ -238,7 +238,7 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import { cloneDeep } from 'lodash'
+import _ from 'lodash'
 import ClickHelper from '@/components/basic/ClickHelper'
 import { required, min_value, max_value } from 'vee-validate/dist/rules'
 import {
@@ -327,11 +327,11 @@ export default {
     init() {
       this.$refs.observer?.reset()
       this.lazyOpacity = this.opacity
-      this.lazyNotificationSetting = cloneDeep(this.notification)
-      this.lazyEnabledDetailComponents = cloneDeep(
+      this.lazyNotificationSetting = _.cloneDeep(this.notification)
+      this.lazyEnabledDetailComponents = _.cloneDeep(
         this.detailComponents.filter(it => it.enabled)
       )
-      this.lazyDisabledDetailComponents = cloneDeep(
+      this.lazyDisabledDetailComponents = _.cloneDeep(
         this.detailComponents.filter(it => !it.enabled)
       )
       this.lazyIsSystemNotificationEnabled = this.isSystemNotificationEnabled
@@ -351,9 +351,9 @@ export default {
     },
     apply() {
       this.setOpacity(this.lazyOpacity)
-      this.setNotificationSetting(cloneDeep(this.lazyNotificationSetting))
+      this.setNotificationSetting(_.cloneDeep(this.lazyNotificationSetting))
       this.setDetailArrangement(
-        cloneDeep({
+        _.cloneDeep({
           components: this.lazyEnabledDetailComponents
             .map(it => ({
               ...it,

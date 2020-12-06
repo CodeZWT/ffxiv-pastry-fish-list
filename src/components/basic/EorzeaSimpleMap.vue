@@ -104,7 +104,7 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
-import { throttle, set, isEqual } from 'lodash'
+import _ from 'lodash'
 import { mapMutations, mapState } from 'vuex'
 import copy from 'copy-to-clipboard'
 // import Konva from 'konva'
@@ -551,7 +551,7 @@ export default {
       this.loadMapImage(url)
     },
     fishingSpotNames(fishingSpotNames, oldFishingSpotNames) {
-      if (!isEqual(oldFishingSpotNames, fishingSpotNames)) {
+      if (!_.isEqual(oldFishingSpotNames, fishingSpotNames)) {
         this.loadFishingSpotRangeHelper(fishingSpotNames)
       }
     },
@@ -563,7 +563,7 @@ export default {
     this.loadImageToProp(this.fishMarker, 'fishingSpotImage')
     this.loadImageToProp(this.markerRange, 'markerRangeImage')
     this.loadImageToProp(this.aetheryteMarker, 'aetheryteImage')
-    this.throttledResizeFn = throttle(() => this.resizeInternal(), 300)
+    this.throttledResizeFn = _.throttle(() => this.resizeInternal(), 300)
   },
   mounted() {
     const stage = this.$refs.stage.getNode()
@@ -639,14 +639,14 @@ export default {
     loadImageToProp(urlOrPromise, imagePropName) {
       return Promise.resolve(urlOrPromise).then(url => {
         if (url == null) {
-          set(this, imagePropName, null)
+          _.set(this, imagePropName, null)
           return
         }
         const image = new window.Image()
         image.src = url
         return new Promise(resolve => {
           image.onload = () => {
-            set(this, imagePropName, image)
+            _.set(this, imagePropName, image)
             resolve()
           }
         })

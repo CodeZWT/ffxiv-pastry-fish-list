@@ -708,7 +708,7 @@ import ClipboardJS from 'clipboard'
 import hotkeys from 'hotkeys-js'
 import { Howl } from 'howler'
 import sortBy from 'lodash/sortBy'
-import { isEqual, union } from 'lodash'
+import _ from 'lodash'
 import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
 import ImportExportDialog from '@/components/ImportExportDialog'
@@ -1019,7 +1019,7 @@ export default {
           'countDown.type',
           'countDown.time',
         ]).map(it => it.id)
-        if (!isEqual(this.sortedFishIds, newSortedFishIds)) {
+        if (!_.isEqual(this.sortedFishIds, newSortedFishIds)) {
           this.sortedFishIds = newSortedFishIds
         }
       },
@@ -1338,8 +1338,8 @@ export default {
     mergeConstraints(fish1, fish2) {
       const mergedFish = {
         ...fish1,
-        previousWeatherSet: union(fish1.previousWeatherSet, fish2.previousWeatherSet),
-        weatherSet: union(fish1.weatherSet, fish2.weatherSet),
+        previousWeatherSet: _.union(fish1.previousWeatherSet, fish2.previousWeatherSet),
+        weatherSet: _.union(fish1.weatherSet, fish2.weatherSet),
         // TODO: actually some ranges are [20-8] but since we checked all fish with predators.
         // So just ignore those impossible cases here...
         startHour: Math.max(fish1.startHour, fish2.startHour),

@@ -5,7 +5,7 @@ import DATA_CN from '@/store/translation'
 import FIX from '@/store/fix'
 import merge from 'lodash/merge'
 import DataUtil from '@/utils/DataUtil'
-import { cloneDeep, groupBy } from 'lodash'
+import _ from 'lodash'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import FishingData from '@/store/fishingData'
 
@@ -22,7 +22,7 @@ export default new Vuex.Store({
     zones: DATA_CN.ZONES,
     bigFish: DATA_CN.BIG_FISH,
     newPatchFish: DATA_CN.NEW_PATCH_FISH,
-    fishingSpotFish: groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
+    fishingSpotFish: _.groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
     showSearchDialog: false,
     showImportExportDialog: false,
     snackbar: {
@@ -31,11 +31,11 @@ export default new Vuex.Store({
       color: '',
     },
     activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
-    aetheryte: groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
+    aetheryte: _.groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
     sounds: {},
     showFishPageRightPane: false,
     userData: DataUtil.mergeUserData(
-      cloneDeep(DataUtil.USER_DEFAULT_DATA),
+      _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
       LocalStorageUtil.loadAndBackupUserData()
     ),
   },
@@ -210,11 +210,11 @@ export default new Vuex.Store({
   },
   mutations: {
     setUserData(state, data) {
-      state.userData = { ...cloneDeep(DataUtil.USER_DEFAULT_DATA), ...data }
+      state.userData = { ..._.cloneDeep(DataUtil.USER_DEFAULT_DATA), ...data }
       LocalStorageUtil.storeAndBackupUserData(state.userData)
     },
     setUserDataToDefault(state) {
-      state.userData = cloneDeep(DataUtil.USER_DEFAULT_DATA)
+      state.userData = _.cloneDeep(DataUtil.USER_DEFAULT_DATA)
       LocalStorageUtil.storeUserData(state.userData)
     },
     setFishCompleted(state, { fishId, completed }) {
@@ -343,7 +343,7 @@ export default new Vuex.Store({
 })
 
 function updateUserDataStateRecords(userData, type, key, value) {
-  const temp = cloneDeep(userData)
+  const temp = _.cloneDeep(userData)
   if (value) {
     temp[type].push(key)
   } else {

@@ -145,7 +145,7 @@ import DataUtil from '@/utils/DataUtil'
 import flatten from 'flat'
 import ResetButton from '@/components/ResetButton'
 import ClickHelper from '@/components/basic/ClickHelper'
-import { cloneDeep } from 'lodash'
+import _ from 'lodash'
 
 export default {
   name: 'ImportExportDialog',
@@ -210,7 +210,7 @@ export default {
       })
     },
     fromFishTrackerVersion(fishTrackerData, currentUserData) {
-      return cloneDeep(
+      return _.cloneDeep(
         DataUtil.mergeByReplacingArray(currentUserData, {
           completed: fishTrackerData.completed ?? currentUserData.completed,
           pinned: fishTrackerData.pinned ?? currentUserData.pinned,
