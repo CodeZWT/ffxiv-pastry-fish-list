@@ -5100,6 +5100,16 @@ export default {
       name_chs: '倒挂金钟的花蕾',
       icon: 28479,
     },
+    '31129': {
+      _id: 31129,
+      name_en: 'Petal Shell',
+      icon: 29419,
+    },
+    '31134': {
+      _id: 31134,
+      name_en: 'Allagan Hunter',
+      icon: 29462,
+    },
   },
   FISHING_SPOTS: {
     '0': {
