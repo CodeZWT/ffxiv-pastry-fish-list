@@ -57,7 +57,6 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
 import FishListItem from '@/components/FishListItem'
 import ClickHelper from '@/components/basic/ClickHelper'
@@ -92,7 +91,6 @@ export default {
     },
   },
   data: () => ({
-    fisher: fisher,
     openPanelIndex: undefined,
     showClearConfirmDialog: false,
   }),

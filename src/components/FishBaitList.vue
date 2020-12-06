@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 
@@ -48,7 +47,6 @@ export default {
     },
   },
   data: () => ({
-    fisher,
     TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
   }),
 }

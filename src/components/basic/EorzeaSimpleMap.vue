@@ -103,10 +103,7 @@
 
 <script>
 import DataUtil from '@/utils/DataUtil'
-import fishMarker from '@/assets/fishingSpot.png'
-import markerRange from '@/assets/markerRange.png'
-import aetheryteMarker from '@/assets/icon/PlaceName.png'
-import defaultMap from '@/assets/default.00.jpg'
+import ImgUtil from '@/utils/ImgUtil'
 import { throttle, set, isEqual } from 'lodash'
 import { mapMutations, mapState } from 'vuex'
 import copy from 'copy-to-clipboard'
@@ -389,6 +386,10 @@ export default {
     },
   },
   data: () => ({
+    fishMarker: ImgUtil.getImgUrl('fishingSpot.png'),
+    markerRange: ImgUtil.getImgUrl('markerRange.png'),
+    defaultMap: ImgUtil.getImgUrl('default.00.jpg'),
+    aetheryteMarker: ImgUtil.getImgUrl('PlaceName.png'),
     stage: undefined,
     mapOptions: [0, 1, 2, 3],
     defaultMapImage: null,
@@ -558,10 +559,10 @@ export default {
   created() {
     this.loadMapImage(this.mapImageUrl)
     this.loadFishingSpotRangeHelper(this.fishingSpots.map(it => it.name))
-    this.loadImageToProp(defaultMap, 'defaultMapImage')
-    this.loadImageToProp(fishMarker, 'fishingSpotImage')
-    this.loadImageToProp(markerRange, 'markerRangeImage')
-    this.loadImageToProp(aetheryteMarker, 'aetheryteImage')
+    this.loadImageToProp(this.defaultMap, 'defaultMapImage')
+    this.loadImageToProp(this.fishMarker, 'fishingSpotImage')
+    this.loadImageToProp(this.markerRange, 'markerRangeImage')
+    this.loadImageToProp(this.aetheryteMarker, 'aetheryteImage')
     this.throttledResizeFn = throttle(() => this.resizeInternal(), 300)
   },
   mounted() {

@@ -695,7 +695,6 @@
 <script>
 import EorzeaTime, { WEATHER_CHANGE_INTERVAL_EARTH } from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
-import fisher from '@/assets/icon/pastry-fish.png'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import helpHTML from '@/assets/doc/help.html'
 import { version } from '../package.json'
@@ -714,6 +713,7 @@ import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import countapi from 'countapi-js'
+import ImgUtil from '@/utils/ImgUtil'
 
 export default {
   name: 'App',
@@ -726,7 +726,7 @@ export default {
   },
   data: vm => ({
     now: Date.now(),
-    fisher,
+    fisher: ImgUtil.getImgUrl('pastry-fish.png'),
     version,
     helpHTML,
     noOp: DataUtil.noOp,

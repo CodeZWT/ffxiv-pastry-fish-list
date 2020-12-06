@@ -53,7 +53,6 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import fisher from '@/assets/fisher.png'
 import ToggleButton from '@/components/basic/ToggleButton'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
@@ -82,7 +81,6 @@ export default {
   },
   data: () => ({
     weatherChangeTrigger: 0,
-    fisher: fisher,
   }),
   computed: {
     fish() {

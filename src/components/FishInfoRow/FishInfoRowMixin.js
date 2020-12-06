@@ -1,4 +1,3 @@
-import fisher from '@/assets/fisher.png'
 import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 
@@ -34,7 +33,6 @@ export default {
     },
   },
   data: () => ({
-    fisher: fisher,
     rootPath: process.env.ASSET_PATH,
   }),
   computed: {
