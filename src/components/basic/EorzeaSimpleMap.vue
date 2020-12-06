@@ -419,7 +419,7 @@ export default {
       if (this.mode === 'remote') {
         return `${DataUtil.XIV_API_HOST}/m/${paths[0]}/${paths[0]}.${paths[1]}.jpg`
       } else {
-        return `${process.env.ASSET_PATH}map/${paths[0]}/${paths[0]}.${paths[1]}.jpg`
+        return ImgUtil.getImgUrl(`${paths[0]}.${paths[1]}.jpg`)
       }
     },
     stageConfig() {
