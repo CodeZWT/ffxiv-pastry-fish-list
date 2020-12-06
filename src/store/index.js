@@ -7,7 +7,7 @@ import merge from 'lodash/merge'
 import DataUtil from '@/utils/DataUtil'
 import { cloneDeep, groupBy } from 'lodash'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import FishingData from '@/store/fishing.json'
+import FishingData from '@/store/fishingData'
 
 Vue.use(Vuex)
 
