@@ -194,6 +194,7 @@ import ClickHelper from '@/components/basic/ClickHelper'
 import { Pane, Splitpanes } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
 import FishDetail from '@/components/FishDetail'
+import NotificationUtil from '@/utils/NotificationUtil'
 
 export default {
   name: 'fish-page',
@@ -290,7 +291,27 @@ export default {
     ]),
   },
   watch: {},
-  created() {},
+  created() {
+    if (NotificationUtil.isNotificationSupported()) {
+      NotificationUtil.requestNotificationPermission().then(status => {
+        if (status === 'default') {
+          this.showSnackbar({
+            text: this.$t(
+              'setting.dialog.notification.message.requestNotificationPermissionNotSelected'
+            ),
+            color: 'warn',
+          })
+        } else if (status === 'denied') {
+          this.showSnackbar({
+            text: this.$t(
+              'setting.dialog.notification.message.requestNotificationPermissionDenied'
+            ),
+            color: 'error',
+          })
+        }
+      })
+    }
+  },
   mounted() {
     document.title = `${this.$t('top.systemBarTitle')} - ${this.$t('top.fishList')}`
 
@@ -332,6 +353,7 @@ export default {
       'setRightPanePercentage',
       'clearToBeNotified',
       'setShowFishPageRightPane',
+      'showSnackbar',
     ]),
   },
 }

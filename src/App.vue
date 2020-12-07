@@ -1056,26 +1056,6 @@ export default {
   async mounted() {
     this.cafeKitTooltipCopyPatch()
 
-    if (NotificationUtil.isNotificationSupported()) {
-      NotificationUtil.requestNotificationPermission().then(status => {
-        if (status === 'default') {
-          this.showSnackbar({
-            text: this.$t(
-              'setting.dialog.notification.message.requestNotificationPermissionNotSelected'
-            ),
-            color: 'warn',
-          })
-        } else if (status === 'denied') {
-          this.showSnackbar({
-            text: this.$t(
-              'setting.dialog.notification.message.requestNotificationPermissionDenied'
-            ),
-            color: 'error',
-          })
-        }
-      })
-    }
-
     this.now = Date.now()
     this.lazyFishSourceList = Object.values(this.allFish).filter(
       it => it.gig == null && (it.patch == null || it.patch <= DataUtil.PATCH_MAX)
