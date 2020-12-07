@@ -34,14 +34,24 @@ module.exports = {
       return args
     })
     config.externals({
-      _: 'lodash',
+      lodash: {
+        commonjs: 'lodash',
+        commonjs2: 'lodash',
+        amd: 'lodash',
+        root: '_' // indicates global variable
+      },
+      vue: 'Vue',
     })
   },
   configureWebpack: {
+    output: {
+      libraryTarget: 'umd',
+      globalObject: 'this',
+    },
     plugins: [
       new webpack.DefinePlugin({
         'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
-      }),
+      })
     ],
     module: {
       rules: [
