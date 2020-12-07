@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import FishPage from '@/views/FishPage'
+import MigrationPage from '@/views/MigrationPage'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,11 @@ const routes = [
         /* webpackChunkName: "wiki" */
         '@/views/WikiPage'
       ),
+  },
+  {
+    path: '/migration',
+    name: 'MigrationPage',
+    component: MigrationPage,
   },
   // {
   //   path: "/about",

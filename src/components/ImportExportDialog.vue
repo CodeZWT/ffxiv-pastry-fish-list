@@ -142,7 +142,6 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
-import flatten from 'flat'
 import ResetButton from '@/components/ResetButton'
 import ClickHelper from '@/components/basic/ClickHelper'
 import _ from 'lodash'
@@ -248,7 +247,7 @@ export default {
     importData() {
       try {
         const data = JSON.parse(this.selfDataToImport)
-        if (this.validateImportData(data, DataUtil.USER_DEFAULT_DATA)) {
+        if (DataUtil.validateImportData(data, DataUtil.USER_DEFAULT_DATA)) {
           this.setUserData(data)
           this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
         } else {
@@ -264,8 +263,8 @@ export default {
         const fishTrackerData = JSON.parse(this.fishTrackerTextToImport)
         const data = this.fromFishTrackerVersion(fishTrackerData, this.userData)
         if (
-          this.validateImportData(fishTrackerData, DataUtil.FISH_TRACKER_STRUCTURE) &&
-          this.validateImportData(data, DataUtil.USER_DEFAULT_DATA)
+          DataUtil.validateImportData(fishTrackerData, DataUtil.FISH_TRACKER_STRUCTURE) &&
+          DataUtil.validateImportData(data, DataUtil.USER_DEFAULT_DATA)
         ) {
           this.setUserData(data)
           this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
@@ -276,13 +275,6 @@ export default {
         console.error('import error', e)
         this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
       }
-    },
-    validateImportData(data, sample) {
-      // console.debug(Object.keys(flatten(data, { safe: true })))
-      // console.debug(Object.keys(flatten(sample, { safe: true })))
-      const importKeys = Object.keys(flatten(data, { safe: true })).sort()
-      const sampleKeys = Object.keys(flatten(sample, { safe: true })).sort()
-      return importKeys.every(it => sampleKeys.includes(it))
     },
     showInfo(text, color) {
       this.info = {

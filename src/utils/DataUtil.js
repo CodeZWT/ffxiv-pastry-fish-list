@@ -6,6 +6,7 @@ import FishWindow from '@/utils/FishWindow'
 import EorzeaTime from '@/utils/Time'
 import tip1Data from '@/store/tip1.json'
 import tip2Data from '@/store/tip2.json'
+import flatten from 'flat'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -390,6 +391,12 @@ export default {
 
   hasTips(fishId) {
     return tip1Data[fishId] || tip2Data[fishId]
+  },
+
+  validateImportData(data, sample) {
+    const importKeys = Object.keys(flatten(data, { safe: true })).sort()
+    const sampleKeys = Object.keys(flatten(sample, { safe: true })).sort()
+    return importKeys.every(it => sampleKeys.includes(it))
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
