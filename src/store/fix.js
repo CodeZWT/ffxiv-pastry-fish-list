@@ -222,6 +222,7 @@ export default {
       weatherSet: [16],
       startHour: 0,
       endHour: 4,
+      bestCatchPath: [2599, 4937],
     },
     '13731': {
       weatherSet: [2, 1],
@@ -298,6 +299,19 @@ export default {
     },
     '30492': {
       tug: 'light',
+    },
+    '24888': {
+      previousWeatherSet: [],
+    },
+    '12750': {
+      tug: 'medium',
+    },
+    '12808': {
+      hookset: 'Precision',
+      tug: 'light',
+    },
+    '12772': {
+      snagging: true,
     },
   },
 }
