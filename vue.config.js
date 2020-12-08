@@ -41,6 +41,7 @@ module.exports = {
         root: '_' // indicates global variable
       },
       vue: 'Vue',
+      'vuetify': 'Vuetify',
     })
   },
   configureWebpack: {
