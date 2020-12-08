@@ -25,3 +25,10 @@ jobs:
           local_path: dist
           remote_path: /
           clean: true
+      - name: Post Deploy Event For Static Web Apps Workflows
+        uses: peter-evans/repository-dispatch@v1
+          with:
+            token: ${{ secrets.STATIC_WEB_APPS_WORKFLOW_TRIGGER_TOKEN }}
+            repository: ricecake404/ffxiv-pastry-fish-list
+            event-type: start-deploy-static-web-apps
+
