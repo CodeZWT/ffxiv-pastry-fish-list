@@ -8,7 +8,7 @@ switch (process.env.NODE_ENV) {
     ASSET_PATH = '/'
     break
   case 'production':
-    ASSET_PATH = '/'
+    ASSET_PATH = 'https://pastry-fish-1304006624.cos-website.ap-shanghai.myqcloud.com/'
     break
   default:
     console.error('NODE_ENV not supported!')
@@ -38,10 +38,10 @@ module.exports = {
         commonjs: 'lodash',
         commonjs2: 'lodash',
         amd: 'lodash',
-        root: '_' // indicates global variable
+        root: '_', // indicates global variable
       },
       vue: 'Vue',
-      'vuetify': 'Vuetify',
+      vuetify: 'Vuetify',
     })
   },
   configureWebpack: {
@@ -52,7 +52,7 @@ module.exports = {
     plugins: [
       new webpack.DefinePlugin({
         'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
-      })
+      }),
     ],
     module: {
       rules: [
