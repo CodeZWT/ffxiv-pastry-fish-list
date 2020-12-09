@@ -1,15 +1,13 @@
 const webpack = require('webpack')
 
-console.log('IN', process.env.NODE_ENV)
-
 let ASSET_PATH
+const bucketSubPath = process.env.VUE_APP_MODE === 'develop' ? 'fishdev' : 'fish'
 switch (process.env.NODE_ENV) {
   case 'development':
     ASSET_PATH = '/'
     break
   case 'production':
-    ASSET_PATH =
-      'https://pastry-fish-1304006624.cos-website.ap-shanghai.myqcloud.com/fish/'
+    ASSET_PATH = `https://pastry-fish-1304006624.cos-website.ap-shanghai.myqcloud.com/${bucketSubPath}/`
     break
   default:
     console.error('NODE_ENV not supported!')
