@@ -8,7 +8,8 @@ switch (process.env.NODE_ENV) {
     ASSET_PATH = '/'
     break
   case 'production':
-    ASSET_PATH = 'https://pastry-fish-1304006624.cos-website.ap-shanghai.myqcloud.com/'
+    ASSET_PATH =
+      'https://pastry-fish-1304006624.cos-website.ap-shanghai.myqcloud.com/fish/'
     break
   default:
     console.error('NODE_ENV not supported!')
