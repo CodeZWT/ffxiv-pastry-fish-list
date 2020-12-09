@@ -1,9 +1,10 @@
 name: Github Pages CI
 
 on:
-  repository_dispatch:
-    types: [start-deploy-static-web-apps]
-
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
   deploy:
     runs-on: ubuntu-18.04
@@ -28,9 +29,20 @@ jobs:
           npm install
           npm run build
 
+      - name: Tencent Update COS
+        uses: TencentCloud/cos-action@v1
+        with:
+          secret_id: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
+          secret_key: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
+          cos_bucket: ${{ secrets.COS_BUCKET }}
+          cos_region: ${{ secrets.COS_REGION }}
+          local_path: dist
+          remote_path: fish
+          clean: true
+
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          cname: test.ricecake302.com
+          cname: fish.ricecake302.com
