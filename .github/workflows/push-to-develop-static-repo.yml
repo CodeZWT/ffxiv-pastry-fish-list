@@ -49,4 +49,4 @@ jobs:
           destination-github-username: 'ricecake404'
           destination-repository-name: 'ffxiv-pastry-fish-list-develop'
           user-email: etenaelta@outlook.com
-          target-branch: main
+          target-branch: ffxiv-pastry-fish-list-develop
