@@ -64,7 +64,7 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapState } from 'vuex'
-import * as PinyinMatch from 'pinyin-match'
+import PinyinMatch from 'pinyin-match'
 import ClickHelper from '@/components/basic/ClickHelper'
 import FishDetail from '@/components/FishDetail'
 
