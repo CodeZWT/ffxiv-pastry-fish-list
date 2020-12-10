@@ -10,7 +10,11 @@
   <script>
     function startMigration(event) {
       console.log("startMigration", event);
-      parent.postMessage({ data: localStorage.userData, type: 'migration-data' }, "*");
+      parent.postMessage({
+        data: localStorage.userData,
+        testData: localStorage.testUserData,
+        type: "migration-data"
+      }, "*");
     }
     window.addEventListener("message", startMigration, false);
   </script>
