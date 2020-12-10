@@ -41,6 +41,7 @@ module.exports = {
       },
       vue: 'Vue',
       vuetify: 'Vuetify',
+      PinyinMatch: 'PinyinMatch',
     })
   },
   configureWebpack: {
