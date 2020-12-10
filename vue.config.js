@@ -41,6 +41,8 @@ module.exports = {
       },
       vue: 'Vue',
       vuetify: 'Vuetify',
+      konva: 'konva',
+      'konva-vue': 'VueKonva',
     })
   },
   configureWebpack: {
