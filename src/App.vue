@@ -313,7 +313,11 @@
           <ul>
             <li>
               增加攻略支持：（感谢攻略作者的授权与支持！）
-              <div>在详情界面或直接点击<v-icon small>mdi-book</v-icon>按钮即可查看。</div>
+              <div>
+                在详情界面或直接点击
+                <v-icon small>mdi-book</v-icon>
+                按钮即可查看。
+              </div>
               <ul>
                 <li>
                   <a
@@ -753,7 +757,6 @@ export default {
     searchedFishId: undefined,
     selectedFishId: undefined,
     fishListWeatherChangePart: {},
-    loading: true,
     extraFishListTimePart: {},
     lazyFishWindowRates: {},
   }),
@@ -967,6 +970,7 @@ export default {
       },
     },
     ...mapState([
+      'loading',
       'snackbar',
       'activeTabIndex',
       'showSearchDialog',
@@ -1033,7 +1037,7 @@ export default {
     },
   },
   created() {
-    this.loading = true
+    this.startLoading()
     this.drawer = !this.isMobile
     this.$vuetify.theme.dark = this.dark
     if (
@@ -1081,7 +1085,7 @@ export default {
       this.now = now
       this.updateFishListTimePart(now)
       this.checkNotification(now)
-      this.loading = false
+      this.finishLoading()
     }, 1000)
 
     // this.weatherChangeTrigger *= -1
@@ -1391,6 +1395,8 @@ export default {
       'showSnackbar',
       'setSounds',
       'setDarkMode',
+      'startLoading',
+      'finishLoading',
     ]),
   },
 }

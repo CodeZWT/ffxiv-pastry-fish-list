@@ -34,6 +34,7 @@ export default new Vuex.Store({
     aetheryte: _.groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
     sounds: {},
     showFishPageRightPane: false,
+    loading: false,
     userData: DataUtil.mergeUserData(
       _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
       LocalStorageUtil.loadAndBackupUserData()
@@ -336,6 +337,12 @@ export default new Vuex.Store({
         },
       }
       LocalStorageUtil.storeUserData(state.userData)
+    },
+    startLoading(state) {
+      state.loading = true
+    },
+    finishLoading(state) {
+      state.loading = false
     },
   },
   actions: {},
