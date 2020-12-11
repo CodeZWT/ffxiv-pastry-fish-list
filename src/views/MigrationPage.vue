@@ -42,19 +42,32 @@
           <span style="font-weight: bold">测试版</span>
           的数据，请选择导入的数据来源。
         </v-card-text>
-        <v-card-actions class="d-flex justify-center justify-space-between">
-          <template v-if="hasBothData">
-            <v-btn color="primary" @click="migrateFromProd" large>
-              从正式版导入
-            </v-btn>
-            <v-btn color="info" @click="migrateFromTest" large>
-              从测试版导入
-            </v-btn>
-          </template>
-          <v-btn v-if="!hasBothData" color="error" @click="migrate" large block>
-            导入数据
-          </v-btn>
-        </v-card-actions>
+        <v-card-text>
+          <div class="d-flex flex-column">
+            <div v-if="hasLocalData" class="my-2" style="width: 100%">
+              <v-btn @click="toIndexPage" large block>
+                跳过数据迁移 直接前往首页
+              </v-btn>
+            </div>
+            <template v-if="hasBothData">
+              <div class="my-2" style="width: 100%">
+                <v-btn color="primary" @click="migrateFromProd" large block>
+                  从正式版导入
+                </v-btn>
+              </div>
+              <div class="my-2" style="width: 100%">
+                <v-btn color="info" @click="migrateFromTest" large block>
+                  从测试版导入
+                </v-btn>
+              </div>
+            </template>
+            <div v-if="!hasBothData" class="my-2" style="width: 100%">
+              <v-btn color="error" @click="migrate" large block>
+                导入数据
+              </v-btn>
+            </div>
+          </div>
+        </v-card-text>
       </v-card>
     </v-dialog>
     <iframe
@@ -118,8 +131,11 @@ export default {
       this.migrationStep = 'finished'
       this.migrateSuccess = true
       setTimeout(() => {
-        window.location.href = window.location.origin
+        this.toIndexPage()
       }, 3000)
+    },
+    toIndexPage() {
+      window.location.href = window.location.origin
     },
     receiveUserData(event) {
       console.log(event)
