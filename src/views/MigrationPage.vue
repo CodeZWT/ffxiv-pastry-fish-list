@@ -7,10 +7,14 @@
     <v-card v-if="migrationStep === 'finished'" class="fill-height">
       <v-card-text class="fill-height d-flex align-center text-h6 justify-center">
         <div v-if="migrateSuccess" class="d-flex align-center">
-          <v-icon color="primary" x-large class="mr-1">mdi-database-check</v-icon>
           <div>
+            <v-icon color="primary" x-large class="mr-1">mdi-database-check</v-icon>
             数据迁移成功！<br />
-            即将跳转至鱼糕首页。
+            桌面及手机网页版用户请更新收藏夹中的站点地址： <br />
+            <div>https://fish.ricecake302.com</div>
+            <br />
+            使用ACT ngld悬浮窗的用户无需更新地址（自动更新）。<br />
+            即将跳转至鱼糕首页，请稍后...
           </div>
         </div>
         <div v-else class="d-flex align-center">
@@ -30,14 +34,24 @@
       max-width="290"
     >
       <v-card>
-        <v-card-title class="headline">
-          检测到同时存在正式版和测试版数据，请选择导入的数据来源。
+        <v-card-title>
+          请选择数据来源
         </v-card-title>
-        <v-card-actions class="d-flex justify-center">
-          <v-btn color="primary" @click="migrateFromProd">
+        <v-card-text v-if="hasLocalData" class="subtitle-1 error--text">
+          已进行过数据迁移，再次迁移新站数据将被旧站覆盖！请谨慎选择！
+        </v-card-text>
+        <v-card-text class="subtitle-1">
+          同时检测到
+          <span style="font-weight: bold">正式版</span>
+          和
+          <span style="font-weight: bold">测试版</span>
+          的数据，请选择导入的数据来源。
+        </v-card-text>
+        <v-card-actions class="d-flex justify-center justify-space-between">
+          <v-btn color="primary" @click="migrateFromProd" large>
             从正式版导入
           </v-btn>
-          <v-btn color="info" @click="migrateFromTest">
+          <v-btn color="info" @click="migrateFromTest" large>
             从测试版导入
           </v-btn>
         </v-card-actions>
@@ -66,6 +80,9 @@ export default {
     testData: undefined,
   }),
   computed: {
+    hasLocalData() {
+      return window.localStorage.userData != null
+    },
     ...mapState(['loading']),
   },
   mounted() {
