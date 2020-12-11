@@ -32,9 +32,6 @@ export default {
       default: false,
     },
   },
-  data: () => ({
-    rootPath: process.env.ASSET_PATH,
-  }),
   computed: {
     transformedFishPart() {
       return {

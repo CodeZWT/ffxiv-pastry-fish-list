@@ -51,11 +51,7 @@ module.exports = {
       libraryTarget: 'umd',
       globalObject: 'this',
     },
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
-      }),
-    ],
+    plugins: [],
     module: {
       rules: [
         {
