@@ -477,8 +477,8 @@
     </v-dialog>
     <v-dialog v-model="showCheckStartSetupDialog" max-width="600" persistent>
       <v-card>
-        <v-card-title> 更新程序下载完成 </v-card-title>
-        <v-card-subtitle> 双击 PastryFishSetup.exe 直接更新 </v-card-subtitle>
+        <v-card-title> 更新程序下载完成</v-card-title>
+        <v-card-subtitle> 双击 PastryFishSetup.exe 直接更新</v-card-subtitle>
         <v-card-actions>
           <v-btn @click="startUpdate" color="primary" block>
             打开更新程序所在文件夹
@@ -492,7 +492,10 @@
       :show-setting.camel.sync="showBaitNotificationSetting"
     />
     <chrome-time-zone-bug-dialog v-model="showChromeTimeZoneBugDialog" />
-    <fish302-migration-dialog v-model="showMigrationDialog" />
+    <migrate-to-travel-eorzea-dialog
+      v-model="showMigrationDialog"
+      :source="migrationSource"
+    />
     <desktop-version-dialog v-model="showDownloadDialog" />
     <v-snackbar
       :timeout="2000"
@@ -576,14 +579,14 @@ import PatchNoteDialog from '@/components/Dialog/PatchNoteDialog'
 import BaitDialog from '@/components/Dialog/BaitDialog'
 import ItemIcon from '@/components/basic/ItemIcon'
 import ChromeTimeZoneBugDialog from '@/components/Dialog/ChromeTimeZoneBugDialog'
-import Fish302MigrationDialog from '@/components/Dialog/Fish302MigrationDialog'
 import DesktopVersionDialog from '@/components/Dialog/DesktopVersionDialog'
+import MigrateToTravelEorzeaDialog from '@/components/Dialog/MigrateToTravelEorzeaDialog'
 
 export default {
   name: 'App',
   components: {
+    MigrateToTravelEorzeaDialog,
     DesktopVersionDialog,
-    Fish302MigrationDialog,
     ChromeTimeZoneBugDialog,
     ItemIcon,
     BaitDialog,
@@ -609,6 +612,7 @@ export default {
     showAboutDialog: false,
     showSettingDialog: false,
     showPatchNoteDialog: false,
+    showMigrationDialog: false,
     collapse: false,
     // listFishCnt: [{ cnt: 0 }, { cnt: 0 }, { cnt: 0 }],
     TABS: DataUtil.TABS,
@@ -638,9 +642,9 @@ export default {
     showBaitNotificationSetting: false,
     showBaitNotification: false,
     showChromeTimeZoneBugDialog: false,
-    showMigrationDialog: false,
     showCheckStartSetupDialog: false,
     showDownloadDialog: false,
+    migrationSource: '',
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -1000,9 +1004,24 @@ export default {
   },
   created() {
     console.debug('github-version')
-    // if (window.location.href.indexOf('fish.ricecake302.com') === -1) {
-    //   this.showMigrationDialog = true
-    // }
+    switch (window.location.host) {
+      case 'fish.ricecake302.com':
+        this.migrationSource = 'main'
+        this.showDownloadDialog = true
+        break
+      case 'ricecake500.gitee.io':
+        this.migrationSource = 'sub'
+        this.showDownloadDialog = true
+        break
+      case 'ricecake404.gitee.io':
+        this.migrationSource = 'old'
+        this.showDownloadDialog = true
+        break
+      default:
+        this.showDownloadDialog = false
+    }
+
+    this.showMigrationDialog = true
 
     if (DataUtil.isBugChromeTimeZone()) {
       this.showChromeTimeZoneBugDialog = this.showChromeBugDialog

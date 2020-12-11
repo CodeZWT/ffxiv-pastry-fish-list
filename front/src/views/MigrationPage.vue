@@ -11,8 +11,7 @@
             <v-icon color="primary" x-large class="mr-1">mdi-database-check</v-icon>
             数据迁移成功！<br />
             桌面及手机网页版用户请更新收藏夹中的站点地址： <br />
-            <div>主站 https://fish.ricecake302.com</div>
-            <div>备用站 https://ricecake500.gitee.io/ffxiv-pastry-fish-list</div>
+            <div>https://ricecake.traveleorzea.com</div>
             <br />
             使用ACT ngld悬浮窗的用户无需更新地址（自动更新）。<br />
             即将跳转至鱼糕首页，请稍后...
@@ -30,9 +29,7 @@
     </v-card>
     <v-dialog :value="showDialog && !loading" persistent max-width="290">
       <v-card>
-        <v-card-title>
-          请选择数据来源
-        </v-card-title>
+        <v-card-title> 请选择数据来源 </v-card-title>
         <v-card-text v-if="hasLocalData" class="subtitle-1 error--text">
           已进行过数据迁移，若再次迁移，新站数据将被旧站覆盖！请谨慎选择！
         </v-card-text>
@@ -46,9 +43,7 @@
         <v-card-text>
           <div class="d-flex flex-column">
             <div v-if="hasLocalData" class="my-2" style="width: 100%">
-              <v-btn @click="toIndexPage" large block>
-                跳过数据迁移 直接前往首页
-              </v-btn>
+              <v-btn @click="toIndexPage" large block> 跳过数据迁移 直接前往首页 </v-btn>
             </div>
             <template v-if="hasBothData">
               <div class="my-2" style="width: 100%">
@@ -63,19 +58,13 @@
               </div>
             </template>
             <div v-if="!hasBothData" class="my-2" style="width: 100%">
-              <v-btn color="error" @click="migrate" large block>
-                导入数据
-              </v-btn>
+              <v-btn color="error" @click="migrate" large block> 导入数据 </v-btn>
             </div>
           </div>
         </v-card-text>
       </v-card>
     </v-dialog>
-    <iframe
-      v-show="false"
-      src="https://ricecake404.gitee.io/ff14-list-test/migration.html"
-      id="migration-src"
-    ></iframe>
+    <iframe v-show="false" :src="migrationSrcUrl" id="migration-src"></iframe>
   </div>
 </template>
 
@@ -93,6 +82,7 @@ export default {
     dataToBeMigrated: undefined,
     data: undefined,
     testData: undefined,
+    migrationSrcUrl: undefined,
   }),
   computed: {
     hasLocalData() {
@@ -100,11 +90,26 @@ export default {
     },
     ...mapState(['loading']),
   },
+  created() {
+    const migrationPage = 'migration.html'
+    switch (this.$route.query.source) {
+      case 'old':
+        this.migrationSrcUrl = `https://ricecake404.gitee.io/ff14-list/${migrationPage}`
+        break
+      case 'main':
+        this.migrationSrcUrl = `https://fish.ricecake302.com/${migrationPage}`
+        break
+      case 'sub':
+        this.migrationSrcUrl = `https://ricecake500.gitee.io/ffxiv-pastry-fish-list/${migrationPage}`
+        break
+      default:
+    }
+  },
   mounted() {
     window.addEventListener('message', this.receiveUserData, false)
     const iFrame = document.getElementById('migration-src')
     iFrame.onload = function() {
-      iFrame.contentWindow.postMessage('startMigration', 'https://ricecake404.gitee.io')
+      iFrame.contentWindow.postMessage('startMigration', '*')
     }
   },
   methods: {
