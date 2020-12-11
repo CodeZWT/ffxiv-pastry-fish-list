@@ -27,20 +27,15 @@
         </div>
       </v-card-text>
     </v-card>
-    <v-dialog
-      :value="showDataSelection && !loading"
-      @input="showDataSelection = false"
-      persistent
-      max-width="290"
-    >
+    <v-dialog :value="showDialog && !loading" persistent max-width="290">
       <v-card>
         <v-card-title>
           请选择数据来源
         </v-card-title>
         <v-card-text v-if="hasLocalData" class="subtitle-1 error--text">
-          已进行过数据迁移，再次迁移新站数据将被旧站覆盖！请谨慎选择！
+          已进行过数据迁移，若再次迁移，新站数据将被旧站覆盖！请谨慎选择！
         </v-card-text>
-        <v-card-text class="subtitle-1">
+        <v-card-text v-if="hasBothData" class="subtitle-1">
           同时检测到
           <span style="font-weight: bold">正式版</span>
           和
@@ -48,11 +43,16 @@
           的数据，请选择导入的数据来源。
         </v-card-text>
         <v-card-actions class="d-flex justify-center justify-space-between">
-          <v-btn color="primary" @click="migrateFromProd" large>
-            从正式版导入
-          </v-btn>
-          <v-btn color="info" @click="migrateFromTest" large>
-            从测试版导入
+          <template v-if="hasBothData">
+            <v-btn color="primary" @click="migrateFromProd" large>
+              从正式版导入
+            </v-btn>
+            <v-btn color="info" @click="migrateFromTest" large>
+              从测试版导入
+            </v-btn>
+          </template>
+          <v-btn v-if="!hasBothData" color="error" @click="migrate" large block>
+            导入数据
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -74,7 +74,8 @@ export default {
   data: () => ({
     migrationStep: 'waiting',
     migrateSuccess: undefined,
-    showDataSelection: false,
+    hasBothData: false,
+    showDialog: false,
     dataToBeMigrated: undefined,
     data: undefined,
     testData: undefined,
@@ -126,16 +127,15 @@ export default {
         console.log('receiveUserData', event?.data)
         this.data = event?.data?.data
         this.testData = event?.data?.testData
-        if (this.data && this.testData) {
-          this.showDataSelection = true
-        } else if (this.data && !this.testData) {
-          this.migrateFromProd()
-          // this.importData(data)
+        this.hasBothData = this.data && this.testData
+        const hasNoData = !this.data && !this.testData
+        if (this.data && !this.testData) {
+          this.dataToBeMigrated = this.data
         } else if (!this.data && this.testData) {
-          this.migrateFromTest()
-          // this.importData(testData)
-        } else {
-          // actually do nothing
+          this.dataToBeMigrated = this.testData
+        }
+        this.showDialog = (this.hasLocalData && !hasNoData) || this.hasBothData
+        if (!this.showDialog) {
           this.migrate()
         }
       }
@@ -149,7 +149,7 @@ export default {
       this.migrate()
     },
     migrate() {
-      this.showDataSelection = false
+      this.showDialog = false
       this.importData(this.dataToBeMigrated)
     },
     showInfo(text, color) {
