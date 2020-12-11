@@ -747,7 +747,6 @@ import { isEqual, union } from 'lodash'
 import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
 import ImportExportDialog from '@/components/ImportExportDialog'
-import countapi from 'countapi-js'
 
 export default {
   name: 'App',
@@ -1085,9 +1084,6 @@ export default {
       }
       event.preventDefault()
     })
-
-    const path = window.location.pathname.replaceAll('/', '')
-    countapi.hit(window.location.host.replace(':', ''), path === '' ? 'root' : path)
 
     const timerId = setInterval(() => {
       this.migrationCancelCountdown--
