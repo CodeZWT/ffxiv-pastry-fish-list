@@ -302,7 +302,11 @@
 
     <fish-setting-dialog v-model="showSettingDialog" />
 
-    <v-dialog v-model="showPatchNoteDialog" max-width="600px" scrollable>
+    <v-dialog
+      :value="showPatchNoteDialog && !inMigrationPage"
+      max-width="600px"
+      scrollable
+    >
       <v-card>
         <v-card-title>
           {{ $t('top.patchNote') }}
@@ -968,6 +972,9 @@ export default {
         this.$vuetify.theme.dark = dark
         this.setDarkMode(dark)
       },
+    },
+    inMigrationPage() {
+      return this.$route.name === 'MigrationPage'
     },
     ...mapState([
       'loading',
