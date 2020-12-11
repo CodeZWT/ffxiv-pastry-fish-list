@@ -1,5 +1,3 @@
-const webpack = require('webpack')
-
 let ASSET_PATH
 const bucketSubPath = process.env.VUE_APP_MODE === 'develop' ? 'fishdev' : 'fish'
 switch (process.env.NODE_ENV) {
@@ -28,37 +26,40 @@ module.exports = {
     },
   },
   chainWebpack: config => {
-    config.plugin('html').tap(args => {
-      args[0].title = '鱼糕 - 钓鱼时钟'
-      return args
-    })
-    config.externals({
-      lodash: {
-        commonjs: 'lodash',
-        commonjs2: 'lodash',
-        amd: 'lodash',
-        root: '_', // indicates global variable
-      },
-      vue: 'Vue',
-      vuetify: 'Vuetify',
-      konva: 'konva',
-      'konva-vue': 'VueKonva',
-      'vue-grid-layout': 'VueGridLayout',
-    })
-  },
-  configureWebpack: {
-    output: {
-      libraryTarget: 'umd',
-      globalObject: 'this',
-    },
-    plugins: [],
-    module: {
-      rules: [
-        {
-          test: /help\.html$/i,
-          loader: 'html-loader',
+    config
+      .externals({
+        lodash: {
+          commonjs: 'lodash',
+          commonjs2: 'lodash',
+          amd: 'lodash',
+          root: '_', // indicates global variable
         },
-      ],
-    },
-  },
+        vue: 'Vue',
+        vuetify: 'Vuetify',
+        konva: 'konva',
+        'konva-vue': 'VueKonva',
+        'vue-grid-layout': 'VueGridLayout',
+      })
+
+    config
+      .plugin('html')
+        .tap(args => {
+          args[0].title = '鱼糕 - 钓鱼时钟'
+          return args
+        })
+        .end()
+
+      .output
+        .libraryTarget('umd')
+        .globalObject('this')
+        .end()
+
+      .module
+        .rule('help')
+        .test(/help\.html$/i)
+          .use('html-loader')
+            .loader('html-loader')
+        .end()
+      
+  }
 }
