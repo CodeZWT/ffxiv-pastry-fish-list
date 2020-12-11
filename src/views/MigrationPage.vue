@@ -118,6 +118,7 @@ export default {
       this.migrateSuccess = true
       setTimeout(() => {
         this.$router.push({ name: 'ListPage' })
+        window.location.href = window.location.origin
       }, 3000)
     },
     receiveUserData(event) {
