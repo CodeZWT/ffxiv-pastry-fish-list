@@ -11,7 +11,8 @@
             <v-icon color="primary" x-large class="mr-1">mdi-database-check</v-icon>
             数据迁移成功！<br />
             桌面及手机网页版用户请更新收藏夹中的站点地址： <br />
-            <div>https://fish.ricecake302.com</div>
+            <div>主站 https://fish.ricecake302.com</div>
+            <div>备用站 https://ricecake500.gitee.io/ffxiv-pastry-fish-list</div>
             <br />
             使用ACT ngld悬浮窗的用户无需更新地址（自动更新）。<br />
             即将跳转至鱼糕首页，请稍后...
