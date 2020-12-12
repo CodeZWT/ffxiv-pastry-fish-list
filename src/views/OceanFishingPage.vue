@@ -3,58 +3,13 @@
     :class="`detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`"
   >
     <v-card>
-      <v-card-title> 海钓航班时间表 {{ new Date(now) }} </v-card-title>
-      <v-card-text>
-        <div>
-          {{ routes }}
-        </div>
-        <v-simple-table>
-          <template v-slot:default>
-            <thead>
-              <tr>
-                <th class="text-left">
-                  登船登记时间（本地）
-                </th>
-                <th class="text-left">
-                  航线
-                </th>
-                <th class="text-left">
-                  目标
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(route, index) in routes" :key="index">
-                <td>
-                  <div class="d-flex">
-                    <div :style="route.showDay ? '' : 'visibility: hidden'">
-                      {{ route.day }}
-                    </div>
-                    <div class="ml-1">{{ route.time }}</div>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-center">
-                    <div>
-                      {{ route.name }}
-                    </div>
-                    <v-icon>
-                      {{ route.shiftIcon }}
-                    </v-icon>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-center">
-                    <div v-for="item in route.targets" :key="item.id" class="mx-1">
-                      <item-icon :title="item.name" :icon-class="item.icon" />
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
-      </v-card-text>
+      <v-card-title> 海钓航班时间表</v-card-title>
+      <div>
+        <!--        <div>-->
+        <!--          {{ routes }}-->
+        <!--        </div>-->
+        <ocean-fishing-time-table :routes="routes" />
+      </div>
     </v-card>
   </v-container>
 </template>
@@ -64,11 +19,11 @@ import OceanFishingUtil from '@/utils/OceanFishingUtil'
 import DataUtil from '@/utils/DataUtil'
 import { DateTime, FixedOffsetZone } from 'luxon'
 import { mapGetters } from 'vuex'
-import ItemIcon from '@/components/basic/ItemIcon'
+import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
 
 export default {
   name: 'OceanFishingPage',
-  components: { ItemIcon },
+  components: { OceanFishingTimeTable },
   props: ['now'],
   data() {
     return {}
