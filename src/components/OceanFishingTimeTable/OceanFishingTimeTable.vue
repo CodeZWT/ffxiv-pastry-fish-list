@@ -1,6 +1,6 @@
 <template>
   <div>
-    <component :is="componentType" :routes="routes" />
+    <component :is="componentType" :voyages="voyages" />
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: 'OceanFishingTimeTable',
   components: { OceanFishingTimeTableSmall, OceanFishingTimeTableLarge },
   props: {
-    routes: {
+    voyages: {
       type: Array,
       default: () => [],
     },

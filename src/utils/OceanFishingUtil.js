@@ -1,6 +1,6 @@
 const HOUR = 60 * 60 * 1000
 
-// code to generate routeSeq
+// code to generate voyageSeq
 // -------------------------
 // const placeSeq = [
 //   0,1,0,1,0,1,0,1,0,1,0,1,
@@ -14,8 +14,8 @@ const HOUR = 60 * 60 * 1000
 //   2,2,0,0,1,1,2,2,0,0,1,1,
 //   2,2,0,0,1,1,2,2,0,0,1,1,
 // ]
-// const routeSeq = shiftSeq.map((it, i) => (it << 1) + placeSeq[i%placeSeq.length])
-// console.log(JSON.stringify(routeSeq))
+// const voyageSeq = shiftSeq.map((it, i) => (it << 1) + placeSeq[i%placeSeq.length])
+// console.log(JSON.stringify(voyageSeq))
 // -------------------------
 
 // const placeNames = ['m', 'l']
@@ -25,10 +25,10 @@ const HOUR = 60 * 60 * 1000
 //   index2Name.push(placeNames[i & 1]+'-'+shiftNames[i >> 1])
 // }
 // console.log(index2Name)
-const ROUTE_TYPES = [0, 1, 2, 3, 4, 5]
+const VOYAGE_TYPES = [0, 1, 2, 3, 4, 5]
 // 梅早, 罗早, 梅午, 罗午, 梅晚, 罗晚
 // const index2Name = ['m-morning', 'l-morning', 'm-noon', 'l-noon', 'm-night', 'l-night']
-const routeSeq = [
+const voyageSeq = [
   0,
   1,
   2,
@@ -103,30 +103,30 @@ const routeSeq = [
   2,
 ]
 
-function getRoutes(time, routeN, targets = ROUTE_TYPES) {
+function getVoyages(time, voyageN, targets = VOYAGE_TYPES) {
   const MAGIC_OFFSET = 64
-  const routeOffset = Math.floor(Math.floor(time / HOUR) / 2)
+  const voyageOffset = Math.floor(Math.floor(time / HOUR) / 2)
   const startCheckPoint = time - (time % (2 * HOUR))
-  const routes = []
-  for (let i = 0; routes.length < routeN; i++) {
-    const routeType = routeSeq[(routeOffset + MAGIC_OFFSET + i) % routeSeq.length]
-    if (targets.includes(routeType)) {
-      routes.push({
+  const voyages = []
+  for (let i = 0; voyages.length < voyageN; i++) {
+    const voyageType = voyageSeq[(voyageOffset + MAGIC_OFFSET + i) % voyageSeq.length]
+    if (targets.includes(voyageType)) {
+      voyages.push({
         time: startCheckPoint + i * 2 * HOUR,
-        routeType: routeType,
+        voyageType: voyageType,
       })
     }
   }
-  return routes
+  return voyages
 }
 
-// console.log(getRoutes(new Date('2020-12-03 00:00:00').getTime(), 25, [0, 1])) // .map((route) => index2Name[route.routeType])
+// console.log(getVoyages(new Date('2020-12-03 00:00:00').getTime(), 25, [0, 1])) // .map((voyage) => index2Name[voyage.voyageType])
 // .join("\n"))
 
 // 加拉迪翁湾外海(夜) - 梅尔托尔海峡南(日) - 罗塔诺海海面(夕)
 // 梅尔托尔海峡南(夜) - 加拉迪翁湾外海(日) - 梅尔托尔海峡北(夕)
 // 梅早, 罗早, 梅午, 罗午, 梅晚, 罗晚
-// const ROUTE_NAMES = [
+// const VOYAGE_NAMES = [
 //   '梅尔托尔海峡北航线（早班）',
 //   '罗塔诺海航线（早班）',
 //   '梅尔托尔海峡北航线（午班）',
@@ -139,51 +139,51 @@ const PLACES = ['梅尔托尔海峡北', '罗塔诺海海面', '加拉迪翁湾�
 
 const SHIFTS = ['早', '午', '晚']
 
-const ROUTE_LOCATIONS = [
+const VOYAGE_LOCATIONS = [
   [3, 2, 0],
   [2, 3, 1],
 ]
 
 const tips = {
   '4': {
-    routeSimpleName: '梅晚',
+    voyageSimpleName: '梅晚',
     target: '海龙成就 + ※珊瑚蝠鲼',
     comment: '蝠鲼可以1区跳跳乐',
-    routeDetail: '梅尔托尔海峡南(夜) - 加拉迪翁湾外海(日) - 梅尔托尔海峡北(夕)',
+    voyageDetail: '梅尔托尔海峡南(夜) - 加拉迪翁湾外海(日) - 梅尔托尔海峡北(夕)',
   },
   '5': {
-    routeSimpleName: '罗晚',
+    voyageSimpleName: '罗晚',
     target: '※索蒂斯 + ※石骨鱼',
     comment: '索蒂斯可以1区跳跳乐，2区可以冲海龙成就',
-    routeDetail: '加拉迪翁湾外海(夜) - 梅尔托尔海峡南(日) - 罗塔诺海海面(夕)',
+    voyageDetail: '加拉迪翁湾外海(夜) - 梅尔托尔海峡南(日) - 罗塔诺海海面(夕)',
   },
   '0': {
-    routeSimpleName: '梅早',
+    voyageSimpleName: '梅早',
     target: '章鱼成就',
     comment: '也比较适合冲分',
-    routeDetail: '梅尔托尔海峡南(日) - 加拉迪翁湾外海(夕) - 梅尔托尔海峡北(夜)',
+    voyageDetail: '梅尔托尔海峡南(日) - 加拉迪翁湾外海(夕) - 梅尔托尔海峡北(夜)',
   },
   '1': {
-    routeSimpleName: '罗早',
+    voyageSimpleName: '罗早',
     target: '水母成就 + 冲分推荐',
     comment: '由于水母成就相对简单，更建议梅午1区跳跳乐',
-    routeDetail: '加拉迪翁湾外海(日) - 梅尔托尔海峡南(夕) - 罗塔诺海海面(夜)',
+    voyageDetail: '加拉迪翁湾外海(日) - 梅尔托尔海峡南(夕) - 罗塔诺海海面(夜)',
   },
   '2': {
-    routeSimpleName: '梅午',
+    voyageSimpleName: '梅午',
     target: '※索蒂斯 + ※依拉丝莫龙',
     comment: '1区可以水母成就跳跳乐',
-    routeDetail: '梅尔托尔海峡南(夕) - 加拉迪翁湾外海(夜) - 梅尔托尔海峡北(日)',
+    voyageDetail: '梅尔托尔海峡南(夕) - 加拉迪翁湾外海(夜) - 梅尔托尔海峡北(日)',
   },
   '3': {
-    routeSimpleName: '罗午',
+    voyageSimpleName: '罗午',
     target: '鲨鱼成就 + ※珊瑚蝠鲼',
     comment: '可以和鲨鱼队一起冲分',
-    routeDetail: '加拉迪翁湾外海(夕) - 梅尔托尔海峡南(夜) - 罗塔诺海海面(日)',
+    voyageDetail: '加拉迪翁湾外海(夕) - 梅尔托尔海峡南(夜) - 罗塔诺海海面(日)',
   },
 }
 
-const ROUTE_TIPS = [
+const VOYAGE_TIPS = [
   // 梅早
   {
     achievements: [2562, 2563],
@@ -296,23 +296,23 @@ const PLACE_TIPS = [
 ]
 
 // shift * 2 + place
-function routeToShift(route) {
-  return route >> 1
+function voyageToShift(voyage) {
+  return voyage >> 1
 }
 
-function routeToPlace(route) {
-  return route % 2
+function voyageToPlace(voyage) {
+  return voyage % 2
 }
 
 function placeTipIndexOf(place, time) {
   return (time << 2) + place
 }
 
-function routesWithTipOf(time = Date.now(), routeN = 13, targets = ROUTE_TYPES) {
-  return getRoutes(time, routeN, targets).map(route => {
-    const routeType = route.routeType
-    const locations = ROUTE_LOCATIONS[routeToPlace(routeType)]
-    let shiftStart = routeToShift(routeType)
+function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
+  return getVoyages(time, voyageN, targets).map(voyage => {
+    const voyageType = voyage.voyageType
+    const locations = VOYAGE_LOCATIONS[voyageToPlace(voyageType)]
+    let shiftStart = voyageToShift(voyageType)
     const locationTips = locations.map((placeIndex, i) => {
       const shiftIndex = (shiftStart + i) % 3
       return {
@@ -321,9 +321,9 @@ function routesWithTipOf(time = Date.now(), routeN = 13, targets = ROUTE_TYPES) 
       }
     })
     return {
-      ...route,
-      ...tips[route.routeType],
-      routeTip: ROUTE_TIPS[routeType],
+      ...voyage,
+      ...tips[voyage.voyageType],
+      voyageTip: VOYAGE_TIPS[voyageType],
       locationTips,
       shift: {
         type: shiftStart,
@@ -340,13 +340,13 @@ function routesWithTipOf(time = Date.now(), routeN = 13, targets = ROUTE_TYPES) 
 //https://ngabbs.com/read.php?tid=20553241
 
 // export default {
-//   routesWithTipOf,
+//   voyagesWithTipOf,
 // }
 
-// module.exports = routesWithTipOf
+// module.exports = voyagesWithTipOf
 
-function simpleTipsOf(time = Date.now(), routeN = 13, targets = ROUTE_TYPES) {
-  return routesWithTipOf(time, routeN, targets).map(tip => {
+function simpleTipsOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
+  return voyagesWithTipOf(time, voyageN, targets).map(tip => {
     return {
       time: new Intl.DateTimeFormat('zh-Hans-CN', {
         formatMatcher: 'basic',
@@ -358,20 +358,20 @@ function simpleTipsOf(time = Date.now(), routeN = 13, targets = ROUTE_TYPES) {
         minute: '2-digit',
         hour12: false,
       }).format(new Date(tip.time)),
-      name: tip.routeSimpleName,
+      name: tip.voyageSimpleName,
       blueFish: tip.locationTips
         .map(it => ITEMS[it.blueFish])
         .filter(it => it)
         .map(it => it.name_chs)
         .join('，'),
-      achievements: tip.routeTip.comment,
+      achievements: tip.voyageTip.comment,
     }
   })
 }
 
-// console.log(simpleOutput())
+// console.log(simpleTipsOf())
 
 export default {
-  routesWithTipOf,
+  voyagesWithTipOf,
   simpleTipsOf,
 }
