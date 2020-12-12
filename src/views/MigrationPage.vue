@@ -135,7 +135,8 @@ export default {
       }, 3000)
     },
     toIndexPage() {
-      window.location.href = window.location.origin
+      const url = window.location.href
+      window.location.href = url.substring(0, url.indexOf('/#/'))
     },
     receiveUserData(event) {
       console.log(event)
