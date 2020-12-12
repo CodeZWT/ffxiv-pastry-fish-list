@@ -311,12 +311,20 @@
           <div class="text-h6">
             为了提供更稳定的服务，鱼糕已迁移至新站点。点击下方按钮，将跳转并同时将数据迁移至新站。
           </div>
+          <div class="text-h6 error--text">
+            据反映，少部分区域可能出现无法访问新站点的情况，请尝试备用镜像站点。
+          </div>
           <p />
           <div>数据迁移后，旧站点的数据还会保留。</div>
           <div>旧站点页面也会保留一段时间，但是不会有新的功能更新。</div>
           <div class="mt-2">
             <v-btn color="primary" @click="goMigration" block x-large>
               迁移数据并前往新站点
+            </v-btn>
+          </div>
+          <div class="mt-2">
+            <v-btn @click="goMigrationMirror" block color="info">
+              迁移数据并前往备用镜像站点
             </v-btn>
           </div>
         </v-card-text>
@@ -1443,6 +1451,10 @@ export default {
     },
     goMigration() {
       window.location.href = 'https://fish.ricecake302.com/#/migration'
+    },
+    goMigrationMirror() {
+      window.location.href =
+        'https://ricecake500.gitee.io/ffxiv-pastry-fish-list/#/migration'
     },
     ...mapMutations([
       'toggleFilterPanel',
