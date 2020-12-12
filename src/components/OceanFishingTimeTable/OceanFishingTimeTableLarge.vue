@@ -7,7 +7,13 @@
             登船登记时间（本地）
           </th>
           <th class="text-left">
+            航线简称
+          </th>
+          <th class="text-left">
             航线
+          </th>
+          <th class="text-left">
+            航线线路
           </th>
           <th class="text-left">
             目标
@@ -27,11 +33,29 @@
           <td>
             <div class="d-flex align-center">
               <div>
+                {{ route.simpleName }}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-center">
+              <div>
                 {{ route.name }}
               </div>
               <v-icon>
                 {{ route.shiftIcon }}
               </v-icon>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-center">
+              <div
+                v-for="(name, index) in route.routeLocations"
+                :key="index"
+                class="mx-1"
+              >
+                {{ name }}
+              </div>
             </div>
           </td>
           <td>
