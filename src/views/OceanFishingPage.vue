@@ -11,10 +11,10 @@
             <thead>
               <tr>
                 <th class="text-left">
-                  时间
+                  登船登记时间（本地）
                 </th>
                 <th class="text-left">
-                  航班
+                  航线
                 </th>
                 <th class="text-left">
                   目标
@@ -75,18 +75,20 @@ export default {
     routes() {
       return OceanFishingUtil.routesWithTipOf(this.now).map((routeWithTip, index) => {
         const showDay = index === 0 || getCNTime(routeWithTip.time).hour === 0
-        const targets = routeWithTip.locationTips
-          .map(locationTip => {
-            // icon: this.getItemIconClass(fish._id),
-            //   iconRemoteUrl: this.getItemIconUrl(fish._id),
-            //   name: this.getItemName(fish._id),
-            return {
-              blueFish: this.assembleItem(locationTip.blueFish),
-            }
-          })
-          .flatMap(it => {
-            return [it.blueFish].filter(it => it)
-          })
+        const targets = routeWithTip.routeTip.achievements
+          .map(it => this.assembleAchievement(it))
+          .concat(
+            routeWithTip.locationTips
+              .map(locationTip => {
+                return {
+                  blueFish: this.assembleItem(locationTip.blueFish),
+                }
+              })
+              .flatMap(it => {
+                return [it.blueFish]
+              })
+          )
+          .filter(it => it)
         return {
           showDay,
           simpleName: routeWithTip.routeSimpleName,
@@ -98,7 +100,12 @@ export default {
         }
       })
     },
-    ...mapGetters(['getItemName', 'getItemIconClass']),
+    ...mapGetters([
+      'getItemName',
+      'getItemIconClass',
+      'getAchievementName',
+      'getAchievementIconClass',
+    ]),
   },
   methods: {
     assembleItem(itemId) {
@@ -107,6 +114,15 @@ export default {
           id: itemId,
           name: this.getItemName(itemId),
           icon: this.getItemIconClass(itemId),
+        }
+      )
+    },
+    assembleAchievement(achievementId) {
+      return (
+        achievementId && {
+          id: achievementId,
+          name: this.getAchievementName(achievementId),
+          icon: this.getAchievementIconClass(achievementId),
         }
       )
     },

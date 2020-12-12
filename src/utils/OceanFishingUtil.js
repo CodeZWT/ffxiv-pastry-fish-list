@@ -183,32 +183,38 @@ const tips = {
   },
 }
 
-// const TIPS = [
-//   // 梅早
-//   {
-//     comment: '最佳冲分航线，同时适合钓章鱼成就',
-//   },
-//   // 罗早
-//   {
-//     comment: '次佳冲分路线',
-//   },
-//   // 梅午
-//   {
-//     comment: '航线上有两条蓝鱼，没起蓝鱼的话冲分有些困难',
-//   },
-//   // 罗午
-//   {
-//     comment: '还不错的冲分航线，同时适合钓鲨鱼成就',
-//   },
-//   // 梅晚
-//   {
-//     comment: '比较一般的航线，同时适合钓海马成就',
-//   },
-//   // 罗晚
-//   {
-//     comment: '航线上有两条蓝鱼，除非欧皇小队起3条蓝鱼否则冲分会很困难',
-//   },
-// ]
+const ROUTE_TIPS = [
+  // 梅早
+  {
+    achievements: [2562, 2563],
+    comment: '最佳冲分航线，同时适合钓章鱼成就',
+  },
+  // 罗早
+  {
+    achievements: [2562, 2565],
+    comment: '次佳冲分路线',
+  },
+  // 梅午
+  {
+    achievements: [],
+    comment: '航线上有两条蓝鱼，没起蓝鱼的话冲分有些困难',
+  },
+  // 罗午
+  {
+    achievements: [2562, 2564],
+    comment: '还不错的冲分航线，同时适合钓鲨鱼成就',
+  },
+  // 梅晚
+  {
+    achievements: [2566],
+    comment: '比较一般的航线，同时适合钓海马成就',
+  },
+  // 罗晚
+  {
+    achievements: [],
+    comment: '航线上有两条蓝鱼，除非欧皇小队起3条蓝鱼否则冲分会很困难',
+  },
+]
 
 // // place 4, shift 3
 // for (let i = 0; i < 12; i++) {
@@ -304,9 +310,9 @@ function placeTipIndexOf(place, time) {
 
 function routesWithTipOf(time = Date.now(), routeN = 13, targets = ROUTE_TYPES) {
   return getRoutes(time, routeN, targets).map(route => {
-    const type = route.routeType
-    const locations = ROUTE_LOCATIONS[routeToPlace(type)]
-    let shiftStart = routeToShift(type)
+    const routeType = route.routeType
+    const locations = ROUTE_LOCATIONS[routeToPlace(routeType)]
+    let shiftStart = routeToShift(routeType)
     const locationTips = locations.map((placeIndex, i) => {
       const shiftIndex = (shiftStart + i) % 3
       return {
@@ -314,14 +320,14 @@ function routesWithTipOf(time = Date.now(), routeN = 13, targets = ROUTE_TYPES) 
         blueFish: PLACE_TIPS[placeTipIndexOf(placeIndex, shiftIndex)].blueFish,
       }
     })
-
     return {
       ...route,
       ...tips[route.routeType],
+      routeTip: ROUTE_TIPS[routeType],
       locationTips,
       shift: {
         type: shiftStart,
-        name: PLACES[locations[0]],
+        name: PLACES[locations[2]],
       },
     }
   })
