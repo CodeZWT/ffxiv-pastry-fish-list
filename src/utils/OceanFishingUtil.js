@@ -1,12 +1,13 @@
-const HOUR = 60 * 60 * 1000
+const MINUTE = 60 * 1000
+const HOUR = 60 * MINUTE
 
-// code to generate voyageSeq
+// code to generate VOYAGE_SEQ
 // -------------------------
-// const placeSeq = [
+// const LOCATION_SEQ = [
 //   0,1,0,1,0,1,0,1,0,1,0,1,
 //   1,0,1,0,1,0,1,0,1,0,1,0
 // ]
-// const shiftSeq = [
+// const SHIFT_SEQ = [
 //   0,0,1,1,2,2,0,0,1,1,2,2,
 //   0,0,1,1,2,2,0,0,1,1,2,2,
 //   1,1,2,2,0,0,1,1,2,2,0,0,
@@ -14,94 +15,41 @@ const HOUR = 60 * 60 * 1000
 //   2,2,0,0,1,1,2,2,0,0,1,1,
 //   2,2,0,0,1,1,2,2,0,0,1,1,
 // ]
-// const voyageSeq = shiftSeq.map((it, i) => (it << 1) + placeSeq[i%placeSeq.length])
-// console.log(JSON.stringify(voyageSeq))
+// const VOYAGE_SEQ = SHIFT_SEQ.map((it, i) => (it << 1) + LOCATION_SEQ[i%LOCATION_SEQ.length])
+// console.log(JSON.stringify(VOYAGE_SEQ))
 // -------------------------
 
-// const placeNames = ['m', 'l']
+// code to map index to real voyage name
+// -------------------------
+// const locationNames = ['m', 'l']
 // const shiftNames = ['morning', 'noon', 'night']
 // const index2Name = []
 // for (let i = 0; i < 6; i++) {
-//   index2Name.push(placeNames[i & 1]+'-'+shiftNames[i >> 1])
+//   index2Name.push(locationNames[i & 1]+'-'+shiftNames[i >> 1])
 // }
 // console.log(index2Name)
-const VOYAGE_TYPES = [0, 1, 2, 3, 4, 5]
+// -------------------------
+
 // 梅早, 罗早, 梅午, 罗午, 梅晚, 罗晚
-// const index2Name = ['m-morning', 'l-morning', 'm-noon', 'l-noon', 'm-night', 'l-night']
-const voyageSeq = [
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  1,
-  0,
-  3,
-  2,
-  5,
-  4,
-  1,
-  0,
-  3,
-  2,
-  5,
-  4,
-  2,
-  3,
-  4,
-  5,
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  0,
-  1,
-  3,
-  2,
-  5,
-  4,
-  1,
-  0,
-  3,
-  2,
-  5,
-  4,
-  1,
-  0,
-  4,
-  5,
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  0,
-  1,
-  2,
-  3,
-  5,
-  4,
-  1,
-  0,
-  3,
-  2,
-  5,
-  4,
-  1,
-  0,
-  3,
-  2,
+const VOYAGE_TYPES = [0, 1, 2, 3, 4, 5]
+// prettier-ignore
+const VOYAGE_SEQ = [
+  0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5,
+  1, 0, 3, 2, 5, 4, 1, 0, 3, 2, 5, 4,
+  2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1,
+  3, 2, 5, 4, 1, 0, 3, 2, 5, 4, 1, 0,
+  4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3,
+  5, 4, 1, 0, 3, 2, 5, 4, 1, 0, 3, 2,
 ]
+
+function shiftTimeForCheckInLimit(time) {
+  const startCheckPoint = time - (time % (2 * HOUR))
+  if (time % (2 * HOUR) > 15 * MINUTE) {
+    return startCheckPoint
+  } else {
+    return startCheckPoint + 2 * HOUR
+  }
+}
 
 function getVoyages(time, voyageN, targets = VOYAGE_TYPES) {
   const MAGIC_OFFSET = 64
@@ -109,7 +57,7 @@ function getVoyages(time, voyageN, targets = VOYAGE_TYPES) {
   const startCheckPoint = time - (time % (2 * HOUR))
   const voyages = []
   for (let i = 0; voyages.length < voyageN; i++) {
-    const voyageType = voyageSeq[(voyageOffset + MAGIC_OFFSET + i) % voyageSeq.length]
+    const voyageType = VOYAGE_SEQ[(voyageOffset + MAGIC_OFFSET + i) % VOYAGE_SEQ.length]
     if (targets.includes(voyageType)) {
       voyages.push({
         time: startCheckPoint + i * 2 * HOUR,
@@ -120,11 +68,6 @@ function getVoyages(time, voyageN, targets = VOYAGE_TYPES) {
   return voyages
 }
 
-// console.log(getVoyages(new Date('2020-12-03 00:00:00').getTime(), 25, [0, 1])) // .map((voyage) => index2Name[voyage.voyageType])
-// .join("\n"))
-
-// 加拉迪翁湾外海(夜) - 梅尔托尔海峡南(日) - 罗塔诺海海面(夕)
-// 梅尔托尔海峡南(夜) - 加拉迪翁湾外海(日) - 梅尔托尔海峡北(夕)
 // 梅早, 罗早, 梅午, 罗午, 梅晚, 罗晚
 // const VOYAGE_NAMES = [
 //   '梅尔托尔海峡北航线（早班）',
@@ -135,16 +78,18 @@ function getVoyages(time, voyageN, targets = VOYAGE_TYPES) {
 //   '罗塔诺海航线（晚班）',
 // ]
 
-const PLACES = ['梅尔托尔海峡北', '罗塔诺海海面', '加拉迪翁湾外海', '梅尔托尔海峡南']
+const LOCATIONS = ['梅尔托尔海峡北', '罗塔诺海海面', '加拉迪翁湾外海', '梅尔托尔海峡南']
 
 const SHIFTS = ['早', '午', '晚']
 
 const VOYAGE_LOCATIONS = [
+  // 梅尔托尔海峡南 - 加拉迪翁湾外海 - 梅尔托尔海峡北
   [3, 2, 0],
+  // 加拉迪翁湾外海 - 梅尔托尔海峡南 - 罗塔诺海海面
   [2, 3, 1],
 ]
 
-const tips = {
+const Fish_Tracker_CN_TIPS = {
   '4': {
     voyageSimpleName: '梅晚',
     target: '海龙成就 + ※珊瑚蝠鲼',
@@ -216,9 +161,9 @@ const VOYAGE_TIPS = [
   },
 ]
 
-// // place 4, shift 3
+// // location 4, shift 3
 // for (let i = 0; i < 12; i++) {
-//     console.log(i, PLACES[i % 4], SHIFTS[i >> 2])
+//     console.log(i, LOCATIONS[i % 4], SHIFTS[i >> 2])
 // }
 
 const ITEMS = {
@@ -244,106 +189,70 @@ const ITEMS = {
   },
 }
 
-const PLACE_TIPS = [
+const LOCATION_TIPS = [
   // 0 梅尔托尔海峡北(早)
-  {
-    blueFish: 29791,
-  },
+  { blueFish: 29791 },
   // 1 罗塔诺海海面(早)
-  {
-    blueFish: null,
-  },
+  { blueFish: null },
   // 2 加拉迪翁湾外海(早)
-  {
-    blueFish: null,
-  },
+  { blueFish: null },
   // 3 梅尔托尔海峡南(早)
-  {
-    blueFish: null,
-  },
+  { blueFish: null },
   // 4 梅尔托尔海峡北(午)
-  {
-    blueFish: null,
-  },
+  { blueFish: null },
   // 5 罗塔诺海海面(午)
-  {
-    blueFish: 29790,
-  },
+  { blueFish: 29790 },
   // 6 加拉迪翁湾外海(午)
-  {
-    blueFish: null,
-  },
+  { blueFish: null },
   // 7 梅尔托尔海峡南(午)
-  {
-    blueFish: null,
-  },
+  { blueFish: null },
   // 8 梅尔托尔海峡北(晚)
-  {
-    blueFish: null,
-  },
+  { blueFish: null },
   // 9 罗塔诺海海面(晚)
-  {
-    blueFish: null,
-  },
+  { blueFish: null },
   // 10 加拉迪翁湾外海(晚)
-  {
-    blueFish: 29788,
-  },
+  { blueFish: 29788 },
   // 11 梅尔托尔海峡南(晚)
-  {
-    blueFish: 29789,
-  },
+  { blueFish: 29789 },
 ]
 
-// shift * 2 + place
+// shift * 2 + location
 function voyageToShift(voyage) {
   return voyage >> 1
 }
 
-function voyageToPlace(voyage) {
+function voyageToLocation(voyage) {
   return voyage % 2
 }
 
-function placeTipIndexOf(place, time) {
-  return (time << 2) + place
+function locationTipIndexOf(location, time) {
+  return (time << 2) + location
 }
 
 function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
   return getVoyages(time, voyageN, targets).map(voyage => {
     const voyageType = voyage.voyageType
-    const locations = VOYAGE_LOCATIONS[voyageToPlace(voyageType)]
+    const locations = VOYAGE_LOCATIONS[voyageToLocation(voyageType)]
     let shiftStart = voyageToShift(voyageType)
-    const locationTips = locations.map((placeIndex, i) => {
+    const locationTips = locations.map((locationIndex, i) => {
       const shiftIndex = (shiftStart + i) % 3
       return {
-        locationName: PLACES[placeIndex] + '(' + SHIFTS[shiftIndex] + ')',
-        blueFish: PLACE_TIPS[placeTipIndexOf(placeIndex, shiftIndex)].blueFish,
+        locationName: LOCATIONS[locationIndex] + '(' + SHIFTS[shiftIndex] + ')',
+        blueFish: LOCATION_TIPS[locationTipIndexOf(locationIndex, shiftIndex)].blueFish,
       }
     })
     return {
       ...voyage,
-      ...tips[voyage.voyageType],
+      ...Fish_Tracker_CN_TIPS[voyage.voyageType],
       voyageTip: VOYAGE_TIPS[voyageType],
       locationTips,
       shift: {
         type: shiftStart,
-        name: PLACES[locations[2]],
+        name: LOCATIONS[locations[2]],
       },
     }
   })
 }
-
-// console.log(
-//   JSON.stringify(toTips(new Date('2020-12-03 00:00:00').getTime(), 13), null, 2)
-// )
-
-//https://ngabbs.com/read.php?tid=20553241
-
-// export default {
-//   voyagesWithTipOf,
-// }
-
-// module.exports = voyagesWithTipOf
 
 function simpleTipsOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
   return voyagesWithTipOf(time, voyageN, targets).map(tip => {
@@ -369,9 +278,11 @@ function simpleTipsOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
   })
 }
 
-// console.log(simpleTipsOf())
+// console.log(simpleTipsOf(shiftTimeForCheckInLimit(Date.now())))
+// console.log(new Date(shiftTimeForCheckInLimit(Date.now())))
 
 export default {
   voyagesWithTipOf,
   simpleTipsOf,
+  shiftTimeForCheckInLimit,
 }
