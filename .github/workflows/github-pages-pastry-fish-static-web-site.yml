@@ -47,37 +47,36 @@ jobs:
           publish_dir: ./dist
           cname: fish.ricecake302.com
 
+      - name: Push to ffxiv-pastry-fish-list-develop
+        uses: cpina/github-action-push-to-another-repository@master
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PUSH_TO_PASTRY_FISH_STATIC_REPO }}
+        with:
+          source-directory: 'dist'
+          destination-github-username: 'ricecake404'
+          destination-repository-name: 'ffxiv-pastry-fish-list-develop'
+          user-email: etenaelta@outlook.com
+          target-branch: ffxiv-pastry-fish-list-main
 
-    - name: Push to ffxiv-pastry-fish-list-develop
-      uses: cpina/github-action-push-to-another-repository@master
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.PUSH_TO_PASTRY_FISH_STATIC_REPO }}
-      with:
-        source-directory: 'dist'
-        destination-github-username: 'ricecake404'
-        destination-repository-name: 'ffxiv-pastry-fish-list-develop'
-        user-email: etenaelta@outlook.com
-        target-branch: ffxiv-pastry-fish-list-main
+      - name: Sync to Gitee
+        uses: wearerequired/git-mirror-action@master
+        env:
+          # 注意在 Settings->Secrets 配置 GITEE_RSA_PRIVATE_KEY
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
+        with:
+          # 注意替换为你的 GitHub 源仓库地址
+          source-repo: https://github.com/ricecake404/ffxiv-pastry-fish-list-develop.git
+          # 注意替换为你的 Gitee 目标仓库地址
+          destination-repo: git@gitee.com:ricecake500/ffxiv-pastry-fish-list.git
 
-    - name: Sync to Gitee
-      uses: wearerequired/git-mirror-action@master
-      env:
-        # 注意在 Settings->Secrets 配置 GITEE_RSA_PRIVATE_KEY
-        SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
-      with:
-        # 注意替换为你的 GitHub 源仓库地址
-        source-repo: https://github.com/ricecake404/ffxiv-pastry-fish-list-develop.git
-        # 注意替换为你的 Gitee 目标仓库地址
-        destination-repo: git@gitee.com:ricecake500/ffxiv-pastry-fish-list.git
-
-    - name: Build Gitee Pages
-      uses: yanglbme/gitee-pages-action@main
-      with:
-        # 注意替换为你的 Gitee 用户名
-        gitee-username: ricecake500
-        # 注意在 Settings->Secrets 配置 GITEE_PASSWORD
-        gitee-password: ${{ secrets.GITEE_PASSWORD }}
-        # 注意替换为你的 Gitee 仓库，仓库名严格区分大小写，请准确填写，否则会出错
-        gitee-repo: ricecake500/ffxiv-pastry-fish-list
-        # 要部署的分支，默认是 master，若是其他分支，则需要指定（指定的分支必须存在）
-        branch: ffxiv-pastry-fish-list-main
+      - name: Build Gitee Pages
+        uses: yanglbme/gitee-pages-action@main
+        with:
+          # 注意替换为你的 Gitee 用户名
+          gitee-username: ricecake500
+          # 注意在 Settings->Secrets 配置 GITEE_PASSWORD
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          # 注意替换为你的 Gitee 仓库，仓库名严格区分大小写，请准确填写，否则会出错
+          gitee-repo: ricecake500/ffxiv-pastry-fish-list
+          # 要部署的分支，默认是 master，若是其他分支，则需要指定（指定的分支必须存在）
+          branch: ffxiv-pastry-fish-list-main
