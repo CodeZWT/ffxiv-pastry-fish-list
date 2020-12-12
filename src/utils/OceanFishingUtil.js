@@ -192,7 +192,7 @@ const ROUTE_TIPS = [
   // 罗早
   {
     achievements: [2562, 2565],
-    comment: '次佳冲分路线',
+    comment: '次佳冲分路线，同时适合钓水母成就',
   },
   // 梅午
   {
@@ -221,28 +221,28 @@ const ROUTE_TIPS = [
 //     console.log(i, PLACES[i % 4], SHIFTS[i >> 2])
 // }
 
-// const ITEMS = {
-//   '29791': {
-//     _id: 29791,
-//     name_chs: '依拉丝莫龙',
-//     icon: 28012,
-//   },
-//   '29790': {
-//     _id: 29790,
-//     name_chs: '石骨鱼',
-//     icon: 28011,
-//   },
-//   '29788': {
-//     _id: 29788,
-//     name_chs: '索蒂斯',
-//     icon: 28009,
-//   },
-//   '29789': {
-//     _id: 29789,
-//     name_chs: '珊瑚蝠鲼',
-//     icon: 28010,
-//   },
-// }
+const ITEMS = {
+  '29791': {
+    _id: 29791,
+    name_chs: '依拉丝莫龙',
+    icon: 28012,
+  },
+  '29790': {
+    _id: 29790,
+    name_chs: '石骨鱼',
+    icon: 28011,
+  },
+  '29788': {
+    _id: 29788,
+    name_chs: '索蒂斯',
+    icon: 28009,
+  },
+  '29789': {
+    _id: 29789,
+    name_chs: '珊瑚蝠鲼',
+    icon: 28010,
+  },
+}
 
 const PLACE_TIPS = [
   // 0 梅尔托尔海峡北(早)
@@ -339,6 +339,39 @@ function routesWithTipOf(time = Date.now(), routeN = 13, targets = ROUTE_TYPES) 
 
 //https://ngabbs.com/read.php?tid=20553241
 
+// export default {
+//   routesWithTipOf,
+// }
+
+// module.exports = routesWithTipOf
+
+function simpleTipsOf(time = Date.now(), routeN = 13, targets = ROUTE_TYPES) {
+  return routesWithTipOf(time, routeN, targets).map(tip => {
+    return {
+      time: new Intl.DateTimeFormat('zh-Hans-CN', {
+        formatMatcher: 'basic',
+        timeZone: 'Asia/Shanghai',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      }).format(new Date(tip.time)),
+      name: tip.routeSimpleName,
+      blueFish: tip.locationTips
+        .map(it => ITEMS[it.blueFish])
+        .filter(it => it)
+        .map(it => it.name_chs)
+        .join('，'),
+      achievements: tip.routeTip.comment,
+    }
+  })
+}
+
+// console.log(simpleOutput())
+
 export default {
   routesWithTipOf,
+  simpleTipsOf,
 }
