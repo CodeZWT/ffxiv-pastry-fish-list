@@ -6,12 +6,15 @@ import i18n from './i18n'
 import vuetify from './plugins/vuetify'
 import { initTooltip } from '@thewakingsands/kit-tooltip'
 import { Settings } from 'luxon'
+import VueKonva from 'vue-konva'
 
 initTooltip()
 Settings.defaultLocale = 'zh-CN'
 
 Vue.config.productionTip = false
-// Vue.use(VueKonva) // no need to set plugin if import by CND
+if (process.env.NODE_ENV === 'development') {
+  Vue.use(VueKonva) // no need to set plugin if import by CND
+}
 
 new Vue({
   router,
