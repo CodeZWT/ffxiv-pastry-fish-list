@@ -171,6 +171,14 @@
               <v-list-item-title>{{ $t('top.fishWiki') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item @click="toPage('OceanFishingPage')" link>
+            <v-list-item-icon>
+              <v-icon>mdi-ferry</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.oceanFishing') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
 
         <template v-slot:append>
