@@ -1,5 +1,7 @@
 <template>
-  <v-container>
+  <v-container
+    :class="`detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`"
+  >
     <v-card>
       <v-card-title> 海钓航班时间表 {{ new Date(now) }} </v-card-title>
       <v-card-text>
@@ -72,6 +74,9 @@ export default {
     return {}
   },
   computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
+    },
     routes() {
       return OceanFishingUtil.routesWithTipOf(this.now).map((routeWithTip, index) => {
         const showDay = index === 0 || getCNTime(routeWithTip.time).hour === 0
@@ -139,4 +144,19 @@ function shift2Icon(shift) {
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+@import "../styles/RcVariables"
+
+.detail-wrapper
+  width: 100%
+  height: 100%
+  overflow-scrolling: auto
+  overflow-y: scroll
+  overflow-x: hidden
+
+  &-mobile
+    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+
+  &-pc
+    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+</style>
