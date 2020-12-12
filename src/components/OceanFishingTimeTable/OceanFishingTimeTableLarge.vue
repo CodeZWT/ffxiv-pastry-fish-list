@@ -21,36 +21,36 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(route, index) in routes" :key="index">
+        <tr v-for="(voyage, index) in voyages" :key="index">
           <td>
             <div class="d-flex">
-              <div :style="route.showDay ? '' : 'visibility: hidden'">
-                {{ route.day }}
+              <div :style="voyage.showDay ? '' : 'visibility: hidden'">
+                {{ voyage.day }}
               </div>
-              <div class="ml-1">{{ route.time }}</div>
+              <div class="ml-1">{{ voyage.time }}</div>
             </div>
           </td>
           <td>
             <div class="d-flex align-center">
               <div>
-                {{ route.simpleName }}
+                {{ voyage.simpleName }}
               </div>
             </div>
           </td>
           <td>
             <div class="d-flex align-center">
               <div>
-                {{ route.name }}
+                {{ voyage.name }}
               </div>
               <v-icon>
-                {{ route.shiftIcon }}
+                {{ voyage.shiftIcon }}
               </v-icon>
             </div>
           </td>
           <td>
             <div class="d-flex align-center">
               <div
-                v-for="(name, index) in route.routeLocations"
+                v-for="(name, index) in voyage.voyageLocations"
                 :key="index"
                 class="mx-1"
               >
@@ -60,7 +60,7 @@
           </td>
           <td>
             <div class="d-flex align-center">
-              <div v-for="item in route.targets" :key="item.id" class="mx-1">
+              <div v-for="item in voyage.targets" :key="item.id" class="mx-1">
                 <item-icon :title="item.name" :icon-class="item.icon" />
               </div>
             </div>
@@ -77,7 +77,7 @@ export default {
   name: 'OceanFishingTimeTableLarge',
   components: { ItemIcon },
   props: {
-    routes: {
+    voyages: {
       type: Array,
       default: () => [],
     },

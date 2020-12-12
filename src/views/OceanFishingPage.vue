@@ -6,9 +6,9 @@
       <v-card-title> 海钓航班时间表</v-card-title>
       <div>
         <!--        <div>-->
-        <!--          {{ routes }}-->
+        <!--          {{ voyages }}-->
         <!--        </div>-->
-        <ocean-fishing-time-table :routes="routes" />
+        <ocean-fishing-time-table :voyages="voyages" />
       </div>
     </v-card>
   </v-container>
@@ -32,13 +32,13 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
-    routes() {
-      return OceanFishingUtil.routesWithTipOf(this.now).map((routeWithTip, index) => {
-        const showDay = index === 0 || getCNTime(routeWithTip.time).hour === 0
-        const targets = routeWithTip.routeTip.achievements
+    voyages() {
+      return OceanFishingUtil.voyagesWithTipOf(this.now).map((voyageWithTip, index) => {
+        const showDay = index === 0 || getCNTime(voyageWithTip.time).hour === 0
+        const targets = voyageWithTip.voyageTip.achievements
           .map(it => this.assembleAchievement(it))
           .concat(
-            routeWithTip.locationTips
+            voyageWithTip.locationTips
               .map(locationTip => {
                 return {
                   blueFish: this.assembleItem(locationTip.blueFish),
@@ -51,13 +51,13 @@ export default {
           .filter(it => it)
         return {
           showDay,
-          simpleName: routeWithTip.routeSimpleName,
-          day: DataUtil.formatDateTime(routeWithTip.time, 'MM-dd'),
-          time: DataUtil.formatDateTime(routeWithTip.time, 'HH:mm'),
-          shiftIcon: shift2Icon(routeWithTip.shift.type),
-          name: routeWithTip.shift.name,
+          simpleName: voyageWithTip.voyageSimpleName,
+          day: DataUtil.formatDateTime(voyageWithTip.time, 'MM-dd'),
+          time: DataUtil.formatDateTime(voyageWithTip.time, 'HH:mm'),
+          shiftIcon: shift2Icon(voyageWithTip.shift.type),
+          name: voyageWithTip.shift.name,
           targets: targets,
-          routeLocations: routeWithTip.locationTips.map(it => it.locationName),
+          voyageLocations: voyageWithTip.locationTips.map(it => it.locationName),
         }
       })
     },
