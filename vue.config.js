@@ -26,8 +26,8 @@ module.exports = {
     },
   },
   chainWebpack: config => {
-    config
-      .externals({
+    if (process.env.NODE_ENV === 'production') {
+      config.externals({
         lodash: {
           commonjs: 'lodash',
           commonjs2: 'lodash',
@@ -40,26 +40,27 @@ module.exports = {
         'konva-vue': 'VueKonva',
         'vue-grid-layout': 'VueGridLayout',
       })
+    }
 
     config
       .plugin('html')
-        .tap(args => {
-          args[0].title = '鱼糕 - 钓鱼时钟'
-          return args
-        })
-        .end()
+      .tap(args => {
+        args[0].title = '鱼糕 - 钓鱼时钟'
+        if (process.env.NODE_ENV === 'development') {
+          args[0].template = './public/index.dev.html'
+        }
+        return args
+      })
+      .end()
 
-      .output
-        .libraryTarget('umd')
-        .globalObject('this')
-        .end()
+      .output.libraryTarget('umd')
+      .globalObject('this')
+      .end()
 
-      .module
-        .rule('help')
-        .test(/help\.html$/i)
-          .use('html-loader')
-            .loader('html-loader')
-        .end()
-      
-  }
+      .module.rule('help')
+      .test(/help\.html$/i)
+      .use('html-loader')
+      .loader('html-loader')
+      .end()
+  },
 }
