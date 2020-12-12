@@ -57,6 +57,7 @@ export default {
           shiftIcon: shift2Icon(routeWithTip.shift.type),
           name: routeWithTip.shift.name,
           targets: targets,
+          routeLocations: routeWithTip.locationTips.map(it => it.locationName),
         }
       })
     },
