@@ -44,7 +44,7 @@ const VOYAGE_SEQ = [
 
 function shiftTimeForCheckInLimit(time) {
   const startCheckPoint = time - (time % (2 * HOUR))
-  if (time % (2 * HOUR) > 15 * MINUTE) {
+  if (time % (2 * HOUR) < 15 * MINUTE) {
     return startCheckPoint
   } else {
     return startCheckPoint + 2 * HOUR
