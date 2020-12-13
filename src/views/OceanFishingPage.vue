@@ -20,13 +20,16 @@ import DataUtil from '@/utils/DataUtil'
 import { DateTime, FixedOffsetZone } from 'luxon'
 import { mapGetters } from 'vuex'
 import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
+import ImgUtil from '@/utils/ImgUtil'
 
 export default {
   name: 'OceanFishingPage',
   components: { OceanFishingTimeTable },
   props: ['now'],
   data() {
-    return {}
+    return {
+      achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
+    }
   },
   computed: {
     isMobile() {
@@ -75,6 +78,7 @@ export default {
           id: itemId,
           name: this.getItemName(itemId),
           icon: this.getItemIconClass(itemId),
+          type: 'item',
         }
       )
     },
@@ -84,6 +88,9 @@ export default {
           id: achievementId,
           name: this.getAchievementName(achievementId),
           icon: this.getAchievementIconClass(achievementId),
+          // 2562 游钓大海
+          iconUrl: achievementId === 2562 ? this.achievementScore40 : null,
+          type: 'achievement',
         }
       )
     },
