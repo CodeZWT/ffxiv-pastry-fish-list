@@ -9,14 +9,14 @@
           <th class="text-left">
             航线简称
           </th>
+          <th class="text-left pl-5">
+            目标
+          </th>
           <th class="text-left">
             航线
           </th>
           <th class="text-left">
             航线线路
-          </th>
-          <th class="text-left">
-            目标
           </th>
         </tr>
       </thead>
@@ -39,9 +39,24 @@
           </td>
           <td>
             <div class="d-flex align-center">
-              <div>
-                {{ voyage.name }}
+              <div
+                v-for="item in voyage.targets"
+                :key="item.id"
+                :style="item.type === 'item' ? 'padding-top: 4px' : ''"
+              >
+                <item-icon
+                  :title="item.name"
+                  :icon-url="item.iconUrl"
+                  :icon-class="item.icon"
+                  :cover="item.cover"
+                  :type="item.type"
+                />
               </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-center">
+              <div>{{ voyage.name }}航线</div>
               <v-icon>
                 {{ voyage.shiftIcon }}
               </v-icon>
@@ -55,13 +70,6 @@
                 class="mx-1"
               >
                 {{ name }}
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="d-flex align-center">
-              <div v-for="item in voyage.targets" :key="item.id" class="mx-1">
-                <item-icon :title="item.name" :icon-class="item.icon" />
               </div>
             </div>
           </td>
