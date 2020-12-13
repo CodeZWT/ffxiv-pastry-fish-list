@@ -36,7 +36,9 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
     voyages() {
-      return OceanFishingUtil.voyagesWithTipOf(this.now).map((voyageWithTip, index) => {
+      return OceanFishingUtil.voyagesWithTipOf(
+        OceanFishingUtil.shiftTimeForCheckInLimit(this.now)
+      ).map((voyageWithTip, index) => {
         const showDay = index === 0 || getCNTime(voyageWithTip.time).hour === 0
         const targets = voyageWithTip.voyageTip.achievements
           .map(it => this.assembleAchievement(it))
