@@ -1096,7 +1096,9 @@ export default {
       this.now = now
       this.updateFishListTimePart(now)
       this.checkNotification(now)
-      this.finishLoading()
+      if (this.loading) {
+        this.finishLoading()
+      }
     }, 1000)
 
     // this.weatherChangeTrigger *= -1
