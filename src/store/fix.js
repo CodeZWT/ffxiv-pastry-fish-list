@@ -7,6 +7,7 @@ export default {
       startHour: 5.5,
       endHour: 6.5,
       locations: [181],
+      bait: 20675,
       bestCatchPath: [20675],
       predators: {},
       patch: 4.5,
@@ -27,6 +28,7 @@ export default {
       startHour: 16,
       endHour: 24,
       locations: [206],
+      bait: 27589,
       bestCatchPath: [27589],
       predators: {},
       patch: 5.2,
@@ -47,6 +49,7 @@ export default {
       startHour: 0,
       endHour: 24,
       locations: [236],
+      bait: 27588,
       bestCatchPath: [27588],
       predators: {},
       patch: 5.0,
@@ -222,6 +225,7 @@ export default {
       weatherSet: [16],
       startHour: 0,
       endHour: 4,
+      bait: 4937,
       bestCatchPath: [2599, 4937],
     },
     '13731': {
@@ -277,21 +281,26 @@ export default {
       tug: 'light',
     },
     '8769': {
+      bait: 4937,
       bestCatchPath: [12711, 4937],
     },
     '7945': {
       weatherSet: [2, 1],
       startHour: 20,
       endHour: 4,
+      bait: 4937,
       bestCatchPath: [12704, 4937],
     },
     '7911': {
+      bait: 4948,
       bestCatchPath: [2594, 4948],
     },
     '7946': {
+      bait: 4937,
       bestCatchPath: [12711, 4937],
     },
     '16745': {
+      bait: 12724,
       bestCatchPath: [12712, 12716, 12724],
     },
     '4893': {
@@ -312,6 +321,26 @@ export default {
     },
     '12772': {
       snagging: true,
+    },
+    '20073': {
+      weatherSet: [3, 4, 5, 11],
+    },
+    '20021': {
+      bait: 20675,
+      bestCatchPath: [20675],
+    },
+    '20060': {
+      bait: 20614,
+      bestCatchPath: [20614],
+    },
+    '27412': {
+      snagging: false,
+    },
+    '12745': {
+      tug: 'medium',
+    },
+    '4912': {
+      tug: 'medium',
     },
   },
 }
