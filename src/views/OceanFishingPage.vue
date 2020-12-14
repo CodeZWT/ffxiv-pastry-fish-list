@@ -43,7 +43,7 @@ export default {
       return OceanFishingUtil.voyagesWithTipOf(
         OceanFishingUtil.shiftTimeForCheckInLimit(this.lazyNow),
         this.filter.voyageN,
-        this.targetVoyageTypes
+        this.filter.voyageTypes
       ).map((voyageWithTip, index) => {
         const showDay = index === 0 || getCNTime(voyageWithTip.time).hour === 0
         const targets = voyageWithTip.voyageTip.achievements
@@ -75,9 +75,12 @@ export default {
     targetOptions() {
       return OceanFishingUtil.allTargets().map(target => {
         if (target.type === 'item') {
-          return this.assembleItem(target.id)
+          return { ...this.assembleItem(target.id), voyageTypes: target.voyageTypes }
         } else {
-          return this.assembleAchievement(target.id)
+          return {
+            ...this.assembleAchievement(target.id),
+            voyageTypes: target.voyageTypes,
+          }
         }
       })
     },

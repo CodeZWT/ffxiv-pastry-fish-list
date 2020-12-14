@@ -12,12 +12,12 @@
       <v-col cols="6">
         <div>{{ targetOptions }}</div>
         <v-select
-          v-model="target"
+          v-model="voyageTypes"
           label="按条件筛选"
           :items="targetOptions"
-          item-value="id"
+          item-value="voyageTypes"
           item-text="name"
-          @input="filterChanged({ target: $event })"
+          @input="filterChanged({ voyageTypes: $event })"
         />
       </v-col>
     </v-row>
@@ -112,8 +112,8 @@ export default {
   name: 'OceanFishingTimeTableLarge',
   components: { ItemIcon },
   props: {
-    target: {
-      type: Number,
+    voyageTypes: {
+      type: Array,
       default: undefined,
     },
     voyages: {
@@ -131,7 +131,7 @@ export default {
   methods: {
     filterChanged(update) {
       this.$emit('filterChanged', {
-        target: this.target,
+        voyageTypes: this.voyageTypes,
         voyageN: this.voyageN,
         ...update,
       })
