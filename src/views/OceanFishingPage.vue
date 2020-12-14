@@ -4,11 +4,13 @@
   >
     <v-card>
       <v-card-title> 海钓航班时间表</v-card-title>
+      <div>{{ filter }}</div>
       <div>
-        <!--        <div>-->
-        <!--          {{ voyages }}-->
-        <!--        </div>-->
-        <ocean-fishing-time-table :voyages="voyages" />
+        <ocean-fishing-time-table
+          :voyages="voyages"
+          :targetOptions="targetOptions"
+          @filterChanged="filterChanged"
+        />
       </div>
     </v-card>
   </v-container>
@@ -29,6 +31,8 @@ export default {
   data() {
     return {
       achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
+      filter: { voyageN: 13 },
+      lazyNow: this.now,
     }
   },
   computed: {
@@ -37,7 +41,9 @@ export default {
     },
     voyages() {
       return OceanFishingUtil.voyagesWithTipOf(
-        OceanFishingUtil.shiftTimeForCheckInLimit(this.now)
+        OceanFishingUtil.shiftTimeForCheckInLimit(this.lazyNow),
+        this.filter.voyageN,
+        this.targetVoyageTypes
       ).map((voyageWithTip, index) => {
         const showDay = index === 0 || getCNTime(voyageWithTip.time).hour === 0
         const targets = voyageWithTip.voyageTip.achievements
@@ -66,12 +72,32 @@ export default {
         }
       })
     },
+    targetOptions() {
+      return OceanFishingUtil.allTargets().map(target => {
+        if (target.type === 'item') {
+          return this.assembleItem(target.id)
+        } else {
+          return this.assembleAchievement(target.id)
+        }
+      })
+    },
+    targetVoyageTypes() {
+      // todo map targets to voyage types
+      return [0, 1, 2, 3, 4, 5]
+    },
     ...mapGetters([
       'getItemName',
       'getItemIconClass',
       'getAchievementName',
       'getAchievementIconClass',
     ]),
+  },
+  watch: {
+    now(now) {
+      if (now % 900000 < 2000) {
+        this.lazyNow = now
+      }
+    },
   },
   methods: {
     assembleItem(itemId) {
@@ -95,6 +121,9 @@ export default {
           type: 'achievement',
         }
       )
+    },
+    filterChanged(filter) {
+      this.filter = filter
     },
   },
 }

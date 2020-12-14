@@ -216,6 +216,24 @@ const LOCATION_TIPS = [
   { blueFish: 29789 },
 ]
 
+function allTargets() {
+  const blueFishSet = new Set(
+    LOCATION_TIPS.filter(it => it.blueFish !== null).map(it => it.blueFish)
+  )
+  const achievementSet = new Set(VOYAGE_TIPS.flatMap(it => it.achievements))
+  return Array.from(blueFishSet)
+    .map(it => ({
+      type: 'item',
+      id: it,
+    }))
+    .concat(
+      Array.from(achievementSet).map(it => ({
+        type: 'achievement',
+        id: it,
+      }))
+    )
+}
+
 // shift * 2 + location
 function voyageToShift(voyage) {
   return voyage >> 1
@@ -285,4 +303,5 @@ export default {
   voyagesWithTipOf,
   simpleTipsOf,
   shiftTimeForCheckInLimit,
+  allTargets,
 }
