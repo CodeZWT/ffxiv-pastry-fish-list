@@ -36,7 +36,7 @@ jobs:
           cos_region: ${{ secrets.COS_REGION }}
           local_path: dist
           remote_path: fishdev
-          clean: true
+          clean: false
 
       - name: Push to ffxiv-pastry-fish-list-develop
         uses: cpina/github-action-push-to-another-repository@master
