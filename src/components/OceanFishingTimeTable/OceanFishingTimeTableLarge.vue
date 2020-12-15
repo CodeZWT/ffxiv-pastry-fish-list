@@ -70,9 +70,15 @@
       <v-col cols="12">
         <v-simple-table>
           <template v-slot:default>
+            <colgroup>
+              <col span="1" style="width: 15%;" />
+              <col span="1" style="width: 20%;" />
+              <col span="1" style="width: 25%;" />
+              <col span="1" style="width: 40%;" />
+            </colgroup>
             <thead>
               <tr>
-                <th class="text-left">
+                <th class="text-right">
                   登船登记时间（本地）
                 </th>
                 <th class="text-left pl-5">
@@ -89,7 +95,7 @@
             <tbody>
               <tr v-for="(voyage, index) in voyages" :key="index">
                 <td>
-                  <div class="d-flex">
+                  <div class="d-flex justify-end">
                     <div :style="voyage.showDay ? '' : 'visibility: hidden'">
                       {{ voyage.day }}
                     </div>
