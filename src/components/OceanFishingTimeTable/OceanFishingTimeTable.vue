@@ -4,6 +4,8 @@
       :is="componentType"
       :voyages="voyages"
       :targetOptions="targetOptions"
+      :voyageN="voyageN"
+      :targets="targets"
       @filterChanged="filterChanged"
     />
   </div>
@@ -17,6 +19,13 @@ export default {
   name: 'OceanFishingTimeTable',
   components: { OceanFishingTimeTableSmall, OceanFishingTimeTableLarge },
   props: {
+    targets: {
+      type: Array,
+      default: undefined,
+    },
+    voyageN: {
+      type: Number,
+    },
     voyages: {
       type: Array,
       default: () => [],

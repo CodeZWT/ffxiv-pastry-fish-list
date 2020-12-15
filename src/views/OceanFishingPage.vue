@@ -3,8 +3,7 @@
     :class="`detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`"
   >
     <v-card>
-      <v-card-title> 海钓航班时间表</v-card-title>
-      <div>{{ filter }}</div>
+      <v-card-title>海钓航班时间表</v-card-title>
       <div>
         <ocean-fishing-time-table
           :voyages="voyages"
@@ -73,21 +72,33 @@ export default {
       })
     },
     targetOptions() {
-      return OceanFishingUtil.allTargets().map(target => {
-        if (target.type === 'item') {
-          return { ...this.assembleItem(target.id), voyageTypes: target.voyageTypes }
-        } else {
-          return {
-            ...this.assembleAchievement(target.id),
-            voyageTypes: target.voyageTypes,
-          }
+      return OceanFishingUtil.allTargets().map(group => {
+        return {
+          type: group.type,
+          options: group.options.map(target => {
+            if (target.type === 'item') {
+              return { ...this.assembleItem(target.id), voyageTypes: target.voyageTypes }
+            } else if (target.type === 'achievement') {
+              return {
+                ...this.assembleAchievement(target.id),
+                voyageTypes: target.voyageTypes,
+              }
+            } else {
+              return target
+            }
+          }),
         }
       })
     },
-    targetVoyageTypes() {
-      // todo map targets to voyage types
-      return [0, 1, 2, 3, 4, 5]
-    },
+    // selectionChanged(selectedOptions) {
+    //   return this.filterChanged({
+    //     voyageTypes: ,
+    //   })
+    // },
+    // targetVoyageTypes() {
+    //   // todo map targets to voyage types
+    //   return _.uniq(this.targets.flatMap(it => it.voyageTypes))
+    // },
     ...mapGetters([
       'getItemName',
       'getItemIconClass',
@@ -140,7 +151,6 @@ function shift2Icon(shift) {
   return shiftIconDict[shift]
 }
 </script>
-
 <style lang="sass" scoped>
 @import "../styles/RcVariables"
 
