@@ -23,7 +23,6 @@ function getLS2Voyage() {
 }
 
 const LOCATION_SHIFT_VOYAGE = getLS2Voyage()
-console.log(LOCATION_SHIFT_VOYAGE)
 
 function allTargets() {
   const locationShiftTips = CORE.LOCATION_SHIFT_TIPS.map((tip, index) => {
