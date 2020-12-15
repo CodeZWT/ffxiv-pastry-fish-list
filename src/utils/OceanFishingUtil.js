@@ -42,19 +42,39 @@ function allTargets() {
     .value()
 
   const achievementSet = new Set(CORE.VOYAGE_TIPS.flatMap(it => it.achievements))
-  return locationShiftTips
-    .map(it => ({
-      type: 'item',
-      id: it.blueFish,
-      voyageTypes: LOCATION_SHIFT_VOYAGE[it.locationShift],
-    }))
-    .concat(
-      Array.from(achievementSet).map(it => ({
+  // TODO add location all & 3 shift options
+  return [
+    {
+      type: '蓝鱼',
+      options: locationShiftTips.map(it => ({
+        type: 'item',
+        id: it.blueFish,
+        voyageTypes: LOCATION_SHIFT_VOYAGE[it.locationShift],
+      })),
+    },
+    {
+      type: '成就',
+      options: Array.from(achievementSet).map(it => ({
         type: 'achievement',
         id: it,
         voyageTypes: achievementId2Voyages[it],
-      }))
-    )
+      })),
+    },
+    ...CORE.LOCATIONS.map((location, locationIdx) => {
+      return {
+        type: location,
+        options: CORE.SHIFTS.map((shift, shiftIdx) => {
+          const locationShift = CORE.locationShiftIndexOf(locationIdx, shiftIdx)
+          return {
+            type: 'locationShift',
+            id: CORE.locationShiftIndexOf(locationIdx, shiftIdx),
+            name: `${location}(${shift})`,
+            voyageTypes: LOCATION_SHIFT_VOYAGE[locationShift],
+          }
+        }),
+      }
+    }),
+  ]
 }
 
 import CORE from './OceanFishingCore'

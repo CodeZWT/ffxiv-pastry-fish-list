@@ -52,6 +52,9 @@ function shiftTimeForCheckInLimit(time) {
 }
 
 function getVoyages(time, voyageN, targets = VOYAGE_TYPES) {
+  if (targets == null || targets.length === 0) {
+    targets = VOYAGE_TYPES
+  }
   const MAGIC_OFFSET = 64
   const voyageOffset = Math.floor(Math.floor(time / HOUR) / 2)
   const startCheckPoint = time - (time % (2 * HOUR))
@@ -299,6 +302,8 @@ export default {
   locationShiftIndexOf,
   locationShiftToLocation,
   locationShiftToShift,
+  LOCATIONS,
+  SHIFTS,
   LOCATION_SHIFT_TIPS,
   VOYAGE_TIPS,
   VOYAGE_TYPES,
