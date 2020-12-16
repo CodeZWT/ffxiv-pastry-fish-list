@@ -4,6 +4,7 @@
   >
     <v-card>
       <v-card-title>海钓航班时间表</v-card-title>
+      <v-card-subtitle>努力号航运表</v-card-subtitle>
       <div>
         <ocean-fishing-time-table
           :voyages="voyages"
@@ -67,7 +68,11 @@ export default {
           shiftIcon: shift2Icon(voyageWithTip.shift.type),
           name: voyageWithTip.shift.name,
           targets: targets,
-          voyageLocations: voyageWithTip.locationTips.map(it => it.locationName),
+          voyageLocations: voyageWithTip.locationTips.map(it => ({
+            name: it.locationName,
+            icon: shift2Icon(it.locationShift),
+            hint: it.locationHint,
+          })),
         }
       })
     },
@@ -84,7 +89,10 @@ export default {
                 voyageTypes: target.voyageTypes,
               }
             } else {
-              return target
+              return {
+                ...target,
+                icon: shift2Icon(target.shift),
+              }
             }
           }),
         }

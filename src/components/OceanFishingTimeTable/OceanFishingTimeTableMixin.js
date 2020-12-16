@@ -56,7 +56,6 @@ export default {
       }
     },
     filterChanged(voyageN, targets) {
-      console.log(targets)
       this.$emit('filterChanged', {
         voyageN: voyageN,
         voyageTypes: _.uniq(targets.flatMap(it => it.voyageTypes)),

@@ -68,6 +68,7 @@ function allTargets() {
             type: 'locationShift',
             id: CORE.locationShiftIndexOf(locationIdx, shiftIdx),
             name: `${location}(${shift})`,
+            shift: shiftIdx,
             voyageTypes: LOCATION_SHIFT_VOYAGE[locationShift],
           }
         }),

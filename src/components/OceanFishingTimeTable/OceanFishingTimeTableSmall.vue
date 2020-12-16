@@ -48,8 +48,8 @@
                   </v-list-item-content>
                 </template>
                 <div v-else class="d-flex align-center">
-                  <v-icon large>
-                    mdi-map
+                  <v-icon class="mr-1">
+                    {{ data.item.icon }}
                   </v-icon>
                   <div>
                     {{ data.item.name }}
@@ -66,15 +66,13 @@
         <v-simple-table>
           <template v-slot:default>
             <colgroup>
-              <col span="1" style="width: 30%;" />
-              <col span="1" style="width: 45%;" />
-              <col span="1" style="width: 15%;" />
+              <col span="1" style="width: 40%;" />
+              <col span="1" style="width: 40%;" />
+              <col span="1" style="width: 20%;" />
             </colgroup>
             <thead>
               <tr>
-                <th class="text-right">
-                  登船登记时间（本地）
-                </th>
+                <th class="text-right">登船登记时间<br />（本地）</th>
                 <th class="text-left pl-5">
                   目标
                 </th>

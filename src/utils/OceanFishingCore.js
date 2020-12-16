@@ -82,7 +82,7 @@ function getVoyages(time, voyageN, targets = VOYAGE_TYPES) {
 // ]
 
 const LOCATIONS = ['梅尔托尔海峡北', '罗塔诺海海面', '加拉迪翁湾外海', '梅尔托尔海峡南']
-
+const VOYAGE_NAMES = ['梅尔托尔海峡北航线', '罗塔诺海航线']
 const SHIFTS = ['早', '午', '晚']
 
 const VOYAGE_LOCATIONS = [
@@ -248,7 +248,9 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPE
     const locationTips = locations.map((locationIndex, i) => {
       const shiftIndex = (shiftStart + i) % 3
       return {
-        locationName: LOCATIONS[locationIndex] + '(' + SHIFTS[shiftIndex] + ')',
+        locationName: LOCATIONS[locationIndex],
+        locationShift: shiftIndex,
+        locationHint: SHIFTS[shiftIndex],
         blueFish:
           LOCATION_SHIFT_TIPS[locationShiftIndexOf(locationIndex, shiftIndex)].blueFish,
       }
@@ -260,7 +262,7 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPE
       locationTips,
       shift: {
         type: shiftStart,
-        name: LOCATIONS[locations[2]],
+        name: VOYAGE_NAMES[locations[2]],
       },
     }
   })

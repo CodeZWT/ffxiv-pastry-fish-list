@@ -7,7 +7,7 @@
             <v-subheader>显示航班数</v-subheader>
             <v-text-field v-model="voyageN" type="number" solo />
           </v-col>
-          <v-col cols="12" md="6" class="d-flex">
+          <v-col cols="12" md="7" class="d-flex">
             <v-subheader>筛选条件</v-subheader>
             <v-autocomplete
               class="targetSelector"
@@ -54,8 +54,8 @@
                   </v-list-item-content>
                 </template>
                 <div v-else class="d-flex align-center">
-                  <v-icon large>
-                    mdi-map
+                  <v-icon class="mr-1">
+                    {{ data.item.icon }}
                   </v-icon>
                   <div>
                     {{ data.item.name }}
@@ -122,7 +122,7 @@
                 </td>
                 <td>
                   <div class="d-flex align-center">
-                    <div>{{ voyage.name }}航线</div>
+                    <div>{{ voyage.name }}</div>
                     <v-icon>
                       {{ voyage.shiftIcon }}
                     </v-icon>
@@ -131,11 +131,15 @@
                 <td>
                   <div class="d-flex align-center">
                     <div
-                      v-for="(name, index) in voyage.voyageLocations"
+                      v-for="(location, index) in voyage.voyageLocations"
                       :key="index"
-                      class="mx-1"
+                      class="d-flex align-center"
                     >
-                      {{ name }}
+                      <v-icon v-if="index !== 0" color="grey">mdi-arrow-right</v-icon>
+                      <div class="mx-1 d-flex align-center">
+                        <span>{{ location.name }}</span>
+                        <v-icon :title="location.hint">{{ location.icon }}</v-icon>
+                      </div>
                     </div>
                   </div>
                 </td>
