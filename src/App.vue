@@ -321,6 +321,18 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.4.0</div>
+          <ul>
+            <li>
+              增加海钓时间表。点击左侧图标 <v-icon small>mdi-ferry</v-icon> 即可查看。
+              <div>之后会增加更多海钓相关功能，敬请期待~</div>
+            </li>
+            <li>
+              修正多条鱼数据。
+            </li>
+          </ul>
+          <p />
+
           <div class="text-h6">Version 0.3.2</div>
           <ul>
             <li>
