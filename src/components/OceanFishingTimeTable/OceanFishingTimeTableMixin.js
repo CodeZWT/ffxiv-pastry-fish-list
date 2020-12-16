@@ -1,8 +1,8 @@
 import ItemIcon from '@/components/basic/ItemIcon'
 import _ from 'lodash'
+import PinyinMatch from 'pinyin-match'
 
 export default {
-  name: 'OceanFishingTimeTableLarge',
   components: { ItemIcon },
   props: {
     voyages: {
@@ -48,13 +48,13 @@ export default {
     targetsChanged(targets) {
       this.filterChanged(this.voyageN, targets)
     },
-    // voyageNChanged(voyageN) {
-    //   let int = +(+voyageN).toFixed(0)
-    //   if (int < 1) int = 1
-    //   else if (int > 100) int = 100
-    //   this.voyageN = int
-    //   this.filterChanged(this.voyageN, this.targets)
-    // },
+    filterOptions(item, searchText, itemText) {
+      if (this.$i18n.locale === 'zh-CN') {
+        return PinyinMatch.match(itemText, searchText) !== false
+      } else {
+        return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+      }
+    },
     filterChanged(voyageN, targets) {
       console.log(targets)
       this.$emit('filterChanged', {

@@ -17,6 +17,7 @@
               placeholder="选择或搜索筛选条件"
               item-text="name"
               item-value="id"
+              :filter="filterOptions"
               multiple
               clearable
               chips
