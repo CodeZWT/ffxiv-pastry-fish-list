@@ -104,7 +104,7 @@
               </v-btn>
             </click-helper>
           </template>
-          <div>按 <code>/</code> 键直接搜索</div>
+          <span>按<kbd>/</kbd>键直接搜索</span>
         </v-tooltip>
         <click-helper v-if="isListPage" @click="toggleFilterPanel">
           <v-btn icon>

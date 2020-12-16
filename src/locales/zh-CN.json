@@ -63,7 +63,7 @@
     "btn": "搜索鱼",
     "dialog": {
       "title": "搜索鱼",
-      "placeholder": "输入鱼名称搜索",
+      "placeholder": "输入鱼名称搜索：七彩天主 或 qctz",
       "close": "关闭",
       "hint": "在ACT模式下如果无法输入，请参照帮助中的步骤设置ACTWS。"
     }
@@ -257,5 +257,11 @@
   "pastryFishTip": {
     "title": "鱼糕注：",
     "content": "数据与鱼糕可能会有所出入，请自行判断，并尊重作者的工作，谢谢！"
+  },
+  "wiki": {
+    "searchTitle": "例：红龙/hl，红玉海/hyh"
+  },
+  "oceanFishing": {
+    "targetFilterPlaceholder": "例：石骨鱼 或 sgy"
   }
 }

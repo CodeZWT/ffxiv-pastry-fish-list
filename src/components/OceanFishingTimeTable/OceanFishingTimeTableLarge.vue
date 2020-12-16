@@ -14,7 +14,7 @@
               v-model="targets"
               :items="selectionOptions"
               color="blue-grey lighten-2"
-              placeholder="选择或搜索筛选条件"
+              :placeholder="$t('oceanFishing.targetFilterPlaceholder')"
               item-text="name"
               item-value="id"
               :filter="filterOptions"
