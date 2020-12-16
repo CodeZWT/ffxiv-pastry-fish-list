@@ -1180,6 +1180,16 @@ export default {
       name_chs: '绿灯球藻',
       icon: 29316,
     },
+    '6185': {
+      _id: 6185,
+      name_chs: '精金幼龟',
+      icon: 29064,
+    },
+    '6191': {
+      _id: 6191,
+      name_chs: '巨蝌蚪',
+      icon: 29317,
+    },
     '7678': {
       _id: 7678,
       name_chs: '扎尔艾拉',
@@ -2529,6 +2539,11 @@ export default {
       _id: 14220,
       name_chs: '鳞鲶',
       icon: 29422,
+    },
+    '15439': {
+      _id: 15439,
+      name_chs: '魔法水桶',
+      icon: 29431,
     },
     '15626': {
       _id: 15626,
@@ -3904,6 +3919,11 @@ export default {
       _id: 20239,
       name_chs: '沧龙',
       icon: 29904,
+    },
+    '20524': {
+      _id: 20524,
+      name_chs: '巧儿海陆行鸟',
+      icon: 29148,
     },
     '20613': {
       _id: 20613,
@@ -6424,6 +6444,16 @@ export default {
       _id: 30593,
       name_chs: '倒挂金钟的花蕾',
       icon: 28479,
+    },
+    '31129': {
+      _id: 31129,
+      name_en: 'Petal Shell',
+      icon: 29419,
+    },
+    '31134': {
+      _id: 31134,
+      name_en: 'Allagan Hunter',
+      icon: 29462,
     },
   },
   FISHING_SPOTS: {
