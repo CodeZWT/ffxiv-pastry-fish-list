@@ -57,9 +57,12 @@ export default {
     return `bg-${icon}`
   },
   getName(multiLanguageItem, locale = 'chs') {
-    return multiLanguageItem['name_' + locale]
-      ? multiLanguageItem['name_' + locale]
-      : multiLanguageItem['name_en']
+    return (
+      multiLanguageItem &&
+      (multiLanguageItem['name_' + locale]
+        ? multiLanguageItem['name_' + locale]
+        : multiLanguageItem['name_en'])
+    )
   },
 
   getCountDownTypeName(countDown) {

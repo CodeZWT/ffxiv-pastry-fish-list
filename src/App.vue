@@ -104,7 +104,7 @@
               </v-btn>
             </click-helper>
           </template>
-          <div>按 <code>/</code> 键直接搜索</div>
+          <span>按<kbd>/</kbd>键直接搜索</span>
         </v-tooltip>
         <click-helper v-if="isListPage" @click="toggleFilterPanel">
           <v-btn icon>
@@ -169,6 +169,14 @@
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.fishWiki') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="toPage('OceanFishingPage')" link>
+            <v-list-item-icon>
+              <v-icon>mdi-ferry</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.oceanFishing') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -313,6 +321,18 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.4.0</div>
+          <ul>
+            <li>
+              增加海钓时间表。点击左侧图标 <v-icon small>mdi-ferry</v-icon> 即可查看。
+              <div>之后会增加更多海钓相关功能，敬请期待~</div>
+            </li>
+            <li>
+              修正多条鱼数据。
+            </li>
+          </ul>
+          <p />
+
           <div class="text-h6">Version 0.3.2</div>
           <ul>
             <li>
@@ -1088,7 +1108,9 @@ export default {
       this.now = now
       this.updateFishListTimePart(now)
       this.checkNotification(now)
-      this.finishLoading()
+      if (this.loading) {
+        this.finishLoading()
+      }
     }, 1000)
 
     // this.weatherChangeTrigger *= -1

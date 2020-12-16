@@ -17,6 +17,7 @@ export default new Vuex.Store({
     fishingSpots: merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
     items: DATA_CN.ITEMS,
+    achievements: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS,
     weatherRates: DATA.WEATHER_RATES,
     weatherTypes: merge(DATA.WEATHER_TYPES, DATA_CN.WEATHER_TYPES),
     zones: DATA_CN.ZONES,
@@ -42,7 +43,7 @@ export default new Vuex.Store({
   },
   getters: {
     getItemIconUrl: state => id => {
-      const iconId = state.items[id].icon
+      const iconId = state.items[id]?.icon ?? 1100
       // const localImg = require(`../assert/${iconId}.png`)
       // if (localImg) {
       //   return localImg
@@ -54,13 +55,20 @@ export default new Vuex.Store({
     // https://css-tricks.com/css-sprites/
     // https://www.toptal.com/developers/css/sprite-generator
     getItemIconClass: state => id => {
-      const iconId = state.items[id].icon
+      const iconId = state.items[id]?.icon ?? 1100
       // const localImg = require(`../assert/${iconId}.png`)
       // if (localImg) {
       //   return localImg
       // } else {
       return DataUtil.iconIdToClass(iconId)
       // }
+    },
+    getAchievementIconClass: state => id => {
+      const iconId = state.achievements[id]?.icon ?? 1100
+      return DataUtil.iconIdToClass(iconId)
+    },
+    getAchievementName: state => id => {
+      return DataUtil.getName(state.achievements[id])
     },
     getItemName: state => id => {
       return DataUtil.getName(state.items[id])

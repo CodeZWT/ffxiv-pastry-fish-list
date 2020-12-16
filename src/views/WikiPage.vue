@@ -6,7 +6,7 @@
           <div class="d-flex align-center">
             <v-text-field
               v-model="searchText"
-              label="搜索鱼或地名"
+              :label="$t('wiki.searchTitle')"
               flat
               solo-inverted
               hide-details
@@ -600,7 +600,10 @@ export default {
       const itemText = item[textKey]
       let result
       if (this.$i18n.locale === 'zh-CN') {
-        result = PinyinMatch.match(itemText, searchText) !== false
+        if (itemText == null) {
+          console.log(item.id)
+        }
+        result = PinyinMatch.match(itemText ?? '', searchText) !== false
       } else {
         result = itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
       }

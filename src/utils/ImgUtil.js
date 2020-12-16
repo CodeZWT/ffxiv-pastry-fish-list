@@ -734,6 +734,21 @@ const CDN_DICT = {
     id: '5fccbf15394ac523786e35f3',
     ext: 'png',
   },
+  'ocean-fishing-score-achievement-40x40.png': {
+    name: 'ocean-fishing-score-achievement-40x40.png',
+    id: '5fd5fd093ffa7d37b37fe098',
+    ext: 'png',
+  },
+  'item-icon-cover-48x48.png': {
+    name: 'item-icon-cover-48x48.png',
+    id: '5fd5fb603ffa7d37b37e17ed',
+    ext: 'png',
+  },
+  'achievement-icon-frame-48x48.png': {
+    name: 'achievement-icon-frame-48x48.png',
+    id: '5fd5fc623ffa7d37b37f3614',
+    ext: 'png',
+  },
 }
 
 export default {

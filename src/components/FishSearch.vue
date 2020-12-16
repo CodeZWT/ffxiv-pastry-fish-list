@@ -28,6 +28,7 @@
                 item-text="name"
                 :label="$t('search.dialog.placeholder')"
                 clearable
+                solo
                 :filter="filterOptions"
                 :hint="$t('search.dialog.hint')"
               >
