@@ -128,9 +128,12 @@ export default {
       return (
         achievementId && {
           id: achievementId,
-          name: this.getAchievementName(achievementId),
+          name:
+            achievementId === 2562
+              ? '游钓大洋1-3(冲分)'
+              : this.getAchievementName(achievementId),
           icon: this.getAchievementIconClass(achievementId),
-          // 2562 游钓大海
+          // 2562 游钓大洋3
           iconUrl: achievementId === 2562 ? this.achievementScore40 : null,
           type: 'achievement',
         }
