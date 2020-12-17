@@ -19,7 +19,7 @@
         @click="onFishIconClicked"
         :style="`margin-left: ${collapse || isMobile ? 0 : -12}px`"
       >
-        <v-tooltip bottom>
+        <v-tooltip bottom z-index="10">
           <template v-slot:activator="{ on, attrs }">
             <div class="d-flex">
               <v-avatar size="36" v-bind="attrs" v-on="on">

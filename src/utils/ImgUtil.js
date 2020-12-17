@@ -125,7 +125,7 @@ const CDN_DICT = {
   },
   'pastry-fish.png': {
     name: 'pastry-fish.png',
-    id: '5fd22e313ffa7d37b3add962',
+    id: '5fdb51b33ffa7d37b3a8cd57',
     ext: 'png',
   },
   'PlaceName.png': { name: 'PlaceName.png', id: '5fd22e313ffa7d37b3add9a4', ext: 'png' },
