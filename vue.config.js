@@ -1,20 +1,20 @@
-let ASSET_PATH
-const bucketSubPath = process.env.VUE_APP_MODE === 'develop' ? 'fishdev' : 'fish'
-switch (process.env.NODE_ENV) {
-  case 'development':
-    ASSET_PATH = '/'
-    break
-  case 'production':
-    ASSET_PATH = `https://pastry-fish-1304006624.cos-website.ap-shanghai.myqcloud.com/${bucketSubPath}/`
-    break
-  default:
-    console.error('NODE_ENV not supported!')
-    ASSET_PATH = '/'
-}
+// let ASSET_PATH
+// const bucketSubPath = process.env.VUE_APP_MODE === 'develop' ? 'fishdev' : 'fish'
+// switch (process.env.NODE_ENV) {
+//   case 'development':
+//     ASSET_PATH = '/'
+//     break
+//   case 'production':
+//     ASSET_PATH = `https://pastry-fish-1304006624.cos-website.ap-shanghai.myqcloud.com/${bucketSubPath}/`
+//     break
+//   default:
+//     console.error('NODE_ENV not supported!')
+//     ASSET_PATH = '/'
+// }
 
 module.exports = {
   transpileDependencies: ['vuetify'],
-  publicPath: ASSET_PATH,
+  publicPath: process.env.VUE_APP_STATIC_FILES_URL,
   productionSourceMap: false,
 
   pluginOptions: {
