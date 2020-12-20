@@ -250,19 +250,27 @@
                 </div>
               </v-col>
               <v-col :class="locationColClass">
-                <v-btn small icon @click.stop="onFishClicked(['DetailItemMap'])">
-                  <v-icon small>
-                    mdi-map
-                  </v-icon>
-                </v-btn>
-                <v-btn
-                  small
-                  icon
-                  :title="$t('list.item.linkHint')"
-                  @click.stop="goToFishingSpotAngelPage"
-                >
-                  <v-icon small>mdi-link-variant</v-icon>
-                </v-btn>
+                <div class="d-flex">
+                  <v-btn text small icon @click.stop="onFishClicked(['DetailItemMap'])">
+                    <v-icon small>
+                      mdi-map
+                    </v-icon>
+                  </v-btn>
+                  <click-helper @click.stop :copy-text="fishingSpotName">
+                    <v-btn text icon small :title="$t('list.item.copyHint')">
+                      <v-icon small>mdi-content-copy</v-icon>
+                    </v-btn>
+                  </click-helper>
+                  <v-btn
+                    text
+                    small
+                    icon
+                    :title="$t('list.item.linkHint')"
+                    @click.stop="goToFishingSpotAngelPage"
+                  >
+                    <v-icon small>mdi-link-variant</v-icon>
+                  </v-btn>
+                </div>
               </v-col>
             </v-row>
           </div>
@@ -307,6 +315,9 @@ export default {
     },
     buffAndBaitColClass() {
       return this.hideSpotColumn ? 'col-4' : 'col-3'
+    },
+    fishingSpotName() {
+      return this.fish.fishingSpots[0].fishingSpotName
     },
   },
 }
