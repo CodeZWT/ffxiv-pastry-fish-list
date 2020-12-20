@@ -490,6 +490,7 @@ export default {
         5.0,
         5.1,
         5.2,
+        5.3,
       ],
       completeType: 'UNCOMPLETED',
       bigFishType: 'BIG_FISH',
