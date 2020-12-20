@@ -17,6 +17,27 @@
               class="d-flex fill-height align-center flex-row px-1"
               style="min-height: 48px"
             >
+              <!-- hide pin & complete button for predators in list view -->
+              <div
+                class="d-flex align-center"
+                :style="{
+                  visibility: inPredator ? 'hidden' : 'visible',
+                  'flex-direction': 'column',
+                }"
+              >
+                <toggle-button
+                  :value="transformedFishPart.pinned"
+                  @input="setPinned($event)"
+                  checked-icon="mdi-pin"
+                  unchecked-icon="mdi-pin-outline"
+                />
+                <toggle-button
+                  :value="transformedFishPart.completed"
+                  @input="setCompleted($event)"
+                />
+              </div>
+
+              <!-- show small icon with required count for predators -->
               <v-badge
                 v-if="inPredator"
                 :content="fish.requiredCnt"
@@ -30,7 +51,6 @@
                   small
                   style="min-width: 30px"
                   :checked="transformedFishPart.completed"
-                  @checked-updated="setCompleted($event)"
                 />
               </v-badge>
               <!-- or show normal icon for fish -->
@@ -177,21 +197,21 @@
             <v-row no-gutters>
               <v-col :class="fishColClass">
                 <!-- bottom actions line -->
-                <div class="d-flex flex-wrap">
-                  <!-- completed -->
-                  <toggle-button
-                    :value="transformedFishPart.completed"
-                    @input="setCompleted($event)"
-                    small
-                  />
-                  <!-- pin -->
-                  <toggle-button
-                    :value="transformedFishPart.pinned"
-                    @input="setPinned($event)"
-                    checked-icon="mdi-pin"
-                    unchecked-icon="mdi-pin-outline"
-                    small
-                  />
+                <div class="d-flex flex-wrap pl-10">
+                  <!--                  &lt;!&ndash; completed &ndash;&gt;-->
+                  <!--                  <toggle-button-->
+                  <!--                    :value="transformedFishPart.completed"-->
+                  <!--                    @input="setCompleted($event)"-->
+                  <!--                    small-->
+                  <!--                  />-->
+                  <!--                  &lt;!&ndash; pin &ndash;&gt;-->
+                  <!--                  <toggle-button-->
+                  <!--                    :value="transformedFishPart.pinned"-->
+                  <!--                    @input="setPinned($event)"-->
+                  <!--                    checked-icon="mdi-pin"-->
+                  <!--                    unchecked-icon="mdi-pin-outline"-->
+                  <!--                    small-->
+                  <!--                  />-->
                   <!-- copy name -->
                   <click-helper @click.stop :copy-text="fish.name">
                     <v-btn text icon small :title="$t('list.item.copyHint')">
