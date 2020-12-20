@@ -283,6 +283,10 @@ export default new Vuex.Store({
       state.userData = { ...state.userData, showBanner: false }
       LocalStorageUtil.storeUserData(state.userData)
     },
+    setShowFilter(state, showFilter) {
+      state.userData = { ...state.userData, showFilter }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
     setOpacity(state, opacity) {
       state.userData = { ...state.userData, opacity }
       LocalStorageUtil.storeUserData(state.userData)
