@@ -460,9 +460,13 @@ export default {
               name: placeNames[territory.id],
               children: territory.spots.map(spot => {
                 // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
-                const fishList = spot.fishList.filter(
-                  fishId => this.lazyTransformedFishDict[fishId]
-                )
+                const fishList = spot.fishList.filter(fishId => {
+                  const fish = this.lazyTransformedFishDict[fishId]
+                  if (!fish) {
+                    console.warn('fish data missing for', fishId)
+                  }
+                  return fish
+                })
                 this.spotDict[spot.id] = {
                   spotId: spot.id,
                   territoryId: territory.id,
