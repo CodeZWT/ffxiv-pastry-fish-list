@@ -1,30 +1,27 @@
 <template>
-  <click-helper>
-    <v-sheet
-      v-ripple
-      :key="fish._id"
-      :color="color"
-      :class="['v-list-item', 'v-list-item--link', 'px-0', borderClass]"
-    >
-      <fish-info-row
-        :fish="fish"
-        :fish-time-part="fishTimePart"
-        :predators="[]"
-        :in-predator="fish.isPredator"
-        :hide-spot-column="hideSpotColumn"
-        @click="$emit('click', $event)"
-      />
-    </v-sheet>
-  </click-helper>
+  <v-sheet
+    v-ripple
+    :key="fish._id"
+    :color="color"
+    :class="['v-list-item', 'v-list-item--link', 'px-0', borderClass]"
+  >
+    <fish-info-row
+      :fish="fish"
+      :fish-time-part="fishTimePart"
+      :predators="[]"
+      :in-predator="fish.isPredator"
+      :hide-spot-column="hideSpotColumn"
+      @click="$emit('click', $event)"
+    />
+  </v-sheet>
 </template>
 
 <script>
 import FishInfoRow from '@/components/FishInfoRow/FishInfoRow'
-import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'FishListItem',
-  components: { ClickHelper, FishInfoRow },
+  components: { FishInfoRow },
   props: {
     fish: {
       type: Object,
