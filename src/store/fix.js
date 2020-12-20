@@ -398,5 +398,13 @@ export default {
       hookset: 'Precision',
       bestCatchPath: [28634],
     },
+    '12817': {
+      hookset: 'Powerful',
+      tug: 'heavy',
+    },
+    '4997': {
+      _id: 4997,
+      hookset: 'Powerful',
+    },
   },
 }
