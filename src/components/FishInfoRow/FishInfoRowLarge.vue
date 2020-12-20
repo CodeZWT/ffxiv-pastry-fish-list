@@ -95,31 +95,15 @@
                   {{ transformedFishTimePart.countDownTotalHint }}
                 </div>
               </div>
-              <v-btn
-                small
+              <div
+                class="text-subtitle-2 ml-1"
                 v-if="fish.rate < 1 && !showFishPageRightPane"
-                text
-                class="pl-2 pr-1"
-                @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
               >
-                <v-icon small left>
-                  mdi-calendar
-                </v-icon>
                 {{ fish.rateText }}
-              </v-btn>
+              </div>
             </div>
-            <div v-if="fish.rate < 1 && showFishPageRightPane">
-              <v-btn
-                small
-                text
-                style="padding: 0 1px;"
-                @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
-              >
-                <v-icon small left>
-                  mdi-calendar
-                </v-icon>
-                {{ fish.rateText }}
-              </v-btn>
+            <div class="text-subtitle-2" v-if="fish.rate < 1 && showFishPageRightPane">
+              {{ fish.rateText }}
             </div>
           </v-col>
           <v-col :class="`${locationColClass} d-flex flex-column justify-center`">
@@ -190,7 +174,7 @@
         <v-expand-transition>
           <div v-if="hover" style="height: 28px" class="d-flex; align-center; primary">
             <v-row no-gutters>
-              <v-col>
+              <v-col :class="fishColClass">
                 <!-- bottom actions line -->
                 <div class="d-flex flex-wrap">
                   <!-- completed -->
@@ -239,6 +223,36 @@
                     </v-btn>
                   </click-helper>
                 </div>
+              </v-col>
+              <v-col :class="countDownColClass">
+                <div v-if="fish.rate < 1">
+                  <v-btn
+                    text
+                    icon
+                    small
+                    style="padding: 0 1px;"
+                    @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
+                  >
+                    <v-icon small>
+                      mdi-calendar
+                    </v-icon>
+                  </v-btn>
+                </div>
+              </v-col>
+              <v-col :class="locationColClass">
+                <v-btn small icon @click.stop="onFishClicked(['DetailItemMap'])">
+                  <v-icon small>
+                    mdi-map
+                  </v-icon>
+                </v-btn>
+                <v-btn
+                  small
+                  icon
+                  :title="$t('list.item.linkHint')"
+                  @click.stop="goToFishingSpotAngelPage"
+                >
+                  <v-icon small>mdi-link-variant</v-icon>
+                </v-btn>
               </v-col>
             </v-row>
           </div>

@@ -402,6 +402,10 @@ export default {
     return importKeys.every(it => sampleKeys.includes(it))
   },
 
+  goToFishingSpotAngelPage(anglerLocationId) {
+    window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: INTERVAL_SECOND,
