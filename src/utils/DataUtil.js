@@ -406,6 +406,16 @@ export default {
     window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
   },
 
+  tugToHookset(tug, hookset) {
+    if (tug === 'light') {
+      return 'Precision'
+    } else if (tug === 'medium') {
+      return 'Powerful'
+    } else {
+      return hookset
+    }
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: INTERVAL_SECOND,

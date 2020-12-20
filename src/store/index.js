@@ -104,11 +104,12 @@ export default new Vuex.Store({
     getBaits: (state, getters) => fish => {
       if (fish.bestCatchPath.length < 1) return []
       const baitId = fish.bestCatchPath[fish.bestCatchPath.length - 1]
+      const hookset = DataUtil.tugToHookset(fish.tug, fish.hookset)
       const lastBait = {
         tug: fish.tug,
         tugIcon: DataUtil.TUG_ICON[fish.tug],
-        hookset: fish.hookset,
-        hooksetIcon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[fish.hookset]),
+        hookset: hookset,
+        hooksetIcon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[hookset]),
         hooksetSkillName: DataUtil.HOOKSET_SKILL_NAME_DICT[fish.hookset],
         baitId: baitId,
         baitName: getters.getItemName(baitId),
@@ -122,13 +123,12 @@ export default new Vuex.Store({
             return lastBait
           } else {
             const baitFish = state.fish[arr[index + 1]]
+            const hookset = DataUtil.tugToHookset(baitFish.tug, baitFish.hookset)
             return {
               tug: baitFish.tug,
               tugIcon: DataUtil.TUG_ICON[baitFish.tug],
-              hookset: baitFish.hookset,
-              hooksetIcon: DataUtil.iconIdToClass(
-                DataUtil.HOOKSET_ICON[baitFish.hookset]
-              ),
+              hookset: hookset,
+              hooksetIcon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[hookset]),
               baitId: baitId,
               baitName: getters.getItemName(baitId),
               baitIcon: getters.getItemIconClass(baitId),
