@@ -21,7 +21,12 @@
         <div class="text-subtitle-1 ml-1" :title="fish.name + '#' + fish.id">
           {{ fish.name }}
         </div>
-        <v-badge inline color="primary" :content="fish.patch"></v-badge>
+        <v-badge
+          inline
+          :color="fish.isFuturePatch ? 'grey' : 'primary'"
+          :content="fish.patch"
+          :title="fish.isFuturePatch ? '未实装' : ''"
+        ></v-badge>
         <click-helper @click.stop :copy-text="fish.name">
           <v-btn text icon :title="$t('list.item.copyHint')">
             <v-icon>mdi-content-copy</v-icon>
@@ -92,6 +97,7 @@ export default {
         icon: this.getItemIconClass(this.value._id),
         name: this.getItemName(this.value._id),
         patch: this.value.patch,
+        isFuturePatch: this.value.patch > DataUtil.PATCH_AVAILABLE_MAX,
         anglerFishId: this.value.anglerFishId,
         setNotificationAvailable: DataUtil.hasCountDown(this.fishTimePart?.countDown),
       }

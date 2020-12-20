@@ -459,6 +459,7 @@ export default {
   },
 
   PATCH_MAX: 5.35,
+  PATCH_AVAILABLE_MAX: 5.3,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
   USER_DEFAULT_DATA: {

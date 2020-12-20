@@ -1274,6 +1274,7 @@ export default {
           weatherSet: fish.weatherSet,
           previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
           patch: fish.patch,
+          isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
           rate: rate,
           rateText: this.$t('countDown.rate', {
             rate: ((rate ?? 1) * 100).toPrecision(2),

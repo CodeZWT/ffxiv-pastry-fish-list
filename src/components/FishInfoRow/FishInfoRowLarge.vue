@@ -54,7 +54,12 @@
                 <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">
                   {{ fish.name }}
                 </div>
-                <v-badge inline color="primary" :content="fish.patch"></v-badge>
+                <v-badge
+                  inline
+                  :color="fish.isFuturePatch ? 'grey' : 'primary'"
+                  :content="fish.patch"
+                  :title="fish.isFuturePatch ? '未实装' : ''"
+                ></v-badge>
               </div>
             </div>
           </v-col>
