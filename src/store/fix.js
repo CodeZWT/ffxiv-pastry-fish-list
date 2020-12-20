@@ -174,6 +174,7 @@ export default {
       endHour: 4,
     },
     '8757': {
+      previousWeatherSet: [],
       weatherSet: [2, 1],
       startHour: 19,
       endHour: 2,
@@ -341,6 +342,19 @@ export default {
     },
     '4912': {
       tug: 'medium',
+    },
+    '12734': {
+      tug: 'light',
+    },
+    '20048': {
+      tug: 'medium',
+    },
+    '4977': {
+      bait: 2600,
+      bestCatchPath: [2600],
+    },
+    '5043': {
+      bestCatchPath: [2600, 4977],
     },
   },
 }
