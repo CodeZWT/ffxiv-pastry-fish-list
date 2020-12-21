@@ -321,6 +321,20 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.4.1</div>
+          <ul>
+            <li>
+              更新列表中所有按钮的位置，增加操作栏，所有按钮移动至操作栏中。
+            </li>
+            <li>
+              列表中增加版本号，未实装的鱼的版本底色为灰色。
+            </li>
+            <li>
+              修正多条鱼数据。
+            </li>
+          </ul>
+          <p />
+
           <div class="text-h6">Version 0.4.0</div>
           <ul>
             <li>
@@ -1274,6 +1288,7 @@ export default {
           weatherSet: fish.weatherSet,
           previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
           patch: fish.patch,
+          isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
           rate: rate,
           rateText: this.$t('countDown.rate', {
             rate: ((rate ?? 1) * 100).toPrecision(2),

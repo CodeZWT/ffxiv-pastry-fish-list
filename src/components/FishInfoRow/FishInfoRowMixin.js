@@ -111,6 +111,11 @@ export default {
     onFishClicked(components) {
       this.$emit('click', { fishId: this.fish.id, components })
     },
+    goToFishingSpotAngelPage() {
+      DataUtil.goToFishingSpotAngelPage(
+        this.fish.fishingSpots[0].fishingSpot.anglerLocationId
+      )
+    },
     ...mapMutations(['setFishCompleted', 'setFishPinned', 'setFishToBeNotified']),
   },
 }

@@ -8,23 +8,6 @@
         >
           {{ firstLocation.fishingSpotName }}
         </div>
-        <template v-if="!small">
-          <v-btn small icon @click.stop="$emit('click')">
-            <v-icon small>
-              mdi-map
-            </v-icon>
-          </v-btn>
-          <v-btn
-            small
-            icon
-            :title="$t('list.item.linkHint')"
-            @click.stop="
-              goToFishingSpotAngelPage(firstLocation.fishingSpot.anglerLocationId)
-            "
-          >
-            <v-icon small>mdi-link-variant</v-icon>
-          </v-btn>
-        </template>
       </div>
       <div v-if="showZone" :class="`d-flex align-center ${small ? 'ml-1' : ''}`">
         <div class="text-subtitle-2 text-truncate">
@@ -55,6 +38,8 @@
 </template>
 
 <script>
+import DataUtil from '@/utils/DataUtil'
+
 export default {
   name: 'FishingSpotColumn',
   props: {
@@ -82,9 +67,7 @@ export default {
     },
   },
   methods: {
-    goToFishingSpotAngelPage(anglerLocationId) {
-      window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
-    },
+    goToFishingSpotAngelPage: DataUtil.goToFishingSpotAngelPage,
   },
 }
 </script>

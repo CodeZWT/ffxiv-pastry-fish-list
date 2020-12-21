@@ -18,6 +18,21 @@
             <v-row>
               <v-col cols="12">
                 <div class="text-subtitle-1">
+                  {{ $t('setting.dialog.showFilter.title') }}
+                </div>
+                <div>
+                  <v-switch
+                    v-model="lazyShowFilter"
+                    :label="
+                      lazyShowFilter
+                        ? $t('setting.dialog.showFilter.show')
+                        : $t('setting.dialog.showFilter.hide')
+                    "
+                  ></v-switch>
+                </div>
+              </v-col>
+              <v-col cols="12">
+                <div class="text-subtitle-1">
                   {{ $t('setting.dialog.opacity.title') }}
                 </div>
                 <v-slider
@@ -292,6 +307,7 @@ export default {
     lazyIsSystemNotificationEnabled: false,
     notificationStatus: NotificationUtil.NOTIFICATION_PERMISSIONS.DEFAULT,
     isNotificationSupported: NotificationUtil.isNotificationSupported(),
+    lazyShowFilter: true,
   }),
   computed: {
     showSettingDialog: {
@@ -311,6 +327,7 @@ export default {
       'notification',
       'detailComponents',
       'isSystemNotificationEnabled',
+      'showFilter',
     ]),
   },
   watch: {
@@ -337,6 +354,7 @@ export default {
       this.lazyIsSystemNotificationEnabled = this.isSystemNotificationEnabled
       this.isSystemNotificationGranted = NotificationUtil.isNotificationGranted()
       this.notificationStatus = NotificationUtil.notificationStatus()
+      this.lazyShowFilter = this.showFilter
     },
     playSound(key) {
       this.sounds[key]?.player?.volume(this.lazyNotificationSetting.volume).play()
@@ -350,6 +368,7 @@ export default {
       })
     },
     apply() {
+      this.setShowFilter(this.lazyShowFilter)
       this.setOpacity(this.lazyOpacity)
       this.setNotificationSetting(_.cloneDeep(this.lazyNotificationSetting))
       this.setDetailArrangement(
@@ -413,6 +432,7 @@ export default {
       'enableSystemNotification',
       'disableSystemNotification',
       'showSnackbar',
+      'setShowFilter',
     ]),
   },
 }

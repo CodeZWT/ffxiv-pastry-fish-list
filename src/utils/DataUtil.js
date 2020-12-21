@@ -402,6 +402,20 @@ export default {
     return importKeys.every(it => sampleKeys.includes(it))
   },
 
+  goToFishingSpotAngelPage(anglerLocationId) {
+    window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
+  },
+
+  tugToHookset(tug, hookset) {
+    if (tug === 'light') {
+      return 'Precision'
+    } else if (tug === 'medium') {
+      return 'Powerful'
+    } else {
+      return hookset
+    }
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: INTERVAL_SECOND,
@@ -455,6 +469,7 @@ export default {
   },
 
   PATCH_MAX: 5.35,
+  PATCH_AVAILABLE_MAX: 5.3,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
   USER_DEFAULT_DATA: {
@@ -490,6 +505,7 @@ export default {
         5.0,
         5.1,
         5.2,
+        5.3,
       ],
       completeType: 'UNCOMPLETED',
       bigFishType: 'BIG_FISH',

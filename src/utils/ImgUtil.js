@@ -632,7 +632,7 @@ const CDN_DICT = {
   '萌芽池.png': { name: '萌芽池.png', id: '5fccbf0e394ac523786e2aba', ext: 'png' },
   '萨普沙产卵地.png': {
     name: '萨普沙产卵地.png',
-    id: '5fccbf0e394ac523786e2aff',
+    id: '5fe0b2543ffa7d37b3adba3d',
     ext: 'png',
   },
   '落翠底.png': { name: '落翠底.png', id: '5fccbf0e394ac523786e2b34', ext: 'png' },
@@ -747,6 +747,11 @@ const CDN_DICT = {
   'achievement-icon-frame-48x48.png': {
     name: 'achievement-icon-frame-48x48.png',
     id: '5fd5fc623ffa7d37b37f3614',
+    ext: 'png',
+  },
+  'item-icon-checked-48x48.png': {
+    name: 'item-icon-checked-48x48.png',
+    id: '5fdf09a03ffa7d37b36ceff6',
     ext: 'png',
   },
 }

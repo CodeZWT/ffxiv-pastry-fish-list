@@ -3,6 +3,7 @@
     :title="title"
     style="width: 48px; height: 48px; position: relative"
     :class="{ 'zoom-in': small }"
+    @click.stop="onClicked"
   >
     <div v-if="!iconUrl" :class="`${iconClass} ${iconPositionClass}`" />
     <div
@@ -11,9 +12,14 @@
       :style="`background: url('${iconUrl}') no-repeat;`"
     />
     <div
-      v-if="cover"
+      v-if="cover && !checked"
       :class="coverClass"
       :style="`background: url('${cover}') no-repeat;`"
+    />
+    <div
+      v-if="checked"
+      class="item-checked-icon-48"
+      :style="`background: url('${checkedCover48}') no-repeat;`"
     />
   </div>
 </template>
@@ -41,11 +47,16 @@ export default {
       type: String,
       default: 'item',
     },
+    checked: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
       itemCover48: ImgUtil.getImgUrl('item-icon-cover-48x48.png'),
       achievementFrame48: ImgUtil.getImgUrl('achievement-icon-frame-48x48.png'),
+      checkedCover48: ImgUtil.getImgUrl('item-icon-checked-48x48.png'),
     }
   },
   computed: {
@@ -57,6 +68,11 @@ export default {
     },
     cover() {
       return this.type === 'item' ? this.itemCover48 : this.achievementFrame48
+    },
+  },
+  methods: {
+    onClicked() {
+      this.$emit('checked-updated', !this.checked)
     },
   },
 }
@@ -126,5 +142,13 @@ export default {
   top: 0;
   left: 0;
   margin: 2px 0 0 4px;
+}
+
+.item-checked-icon-48 {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: -2px;
+  left: 0;
 }
 </style>
