@@ -632,7 +632,7 @@ const CDN_DICT = {
   '萌芽池.png': { name: '萌芽池.png', id: '5fccbf0e394ac523786e2aba', ext: 'png' },
   '萨普沙产卵地.png': {
     name: '萨普沙产卵地.png',
-    id: '5fccbf0e394ac523786e2aff',
+    id: '5fe0b2543ffa7d37b3adba3d',
     ext: 'png',
   },
   '落翠底.png': { name: '落翠底.png', id: '5fccbf0e394ac523786e2b34', ext: 'png' },
