@@ -54,6 +54,7 @@
         </v-tooltip>
       </click-helper>
       <v-toolbar-title
+        v-if="!isMobile"
         style="min-width: 145px !important"
         class="ml-1"
         :title="$t('top.navBarTitle', { title, version })"
@@ -96,6 +97,31 @@
             </v-badge>
           </v-tab>
         </v-tabs>
+        <div v-if="inStartLight">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <div v-bind="attrs" v-on="on">
+                <v-switch
+                  v-model="showHatCover"
+                  inset
+                  class="theme-switch"
+                  color="pink darken-3"
+                />
+              </div>
+            </template>
+            <div>
+              点击切换星芒节天气模式<br />
+              在星芒节期间，三大主城以及四个住宅区的天气固定为小雪。<br />
+              此开关开启时，将会以星芒节的小雪作为窗口期天气计算的条件。<br />
+              关闭时，以地图区域的默认天气转换进行计算。
+            </div>
+          </v-tooltip>
+        </div>
+
+        <v-btn icon v-if="isListPage" @click="toggleFilterPanel">
+          <v-icon>mdi-filter</v-icon>
+        </v-btn>
+
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <click-helper @click="setShowSearchDialog(true)">
@@ -106,11 +132,7 @@
           </template>
           <span>按<kbd>/</kbd>键直接搜索</span>
         </v-tooltip>
-        <click-helper v-if="isListPage" @click="toggleFilterPanel">
-          <v-btn icon>
-            <v-icon>mdi-filter</v-icon>
-          </v-btn>
-        </click-helper>
+
         <div>
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
@@ -121,6 +143,7 @@
             <div>点击切换浅色/深色模式</div>
           </v-tooltip>
         </div>
+
         <div v-if="!isMobile" class="d-flex flex-column ml-1">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
@@ -179,6 +202,14 @@
               <v-list-item-title>{{ $t('top.oceanFishing') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <!--          <v-list-item @click="toPage('DiademPage')" link>-->
+          <!--            <v-list-item-icon>-->
+          <!--              <v-icon>mdi-cloud</v-icon>-->
+          <!--            </v-list-item-icon>-->
+          <!--            <v-list-item-content>-->
+          <!--              <v-list-item-title>{{ $t('top.diadem') }}</v-list-item-title>-->
+          <!--            </v-list-item-content>-->
+          <!--          </v-list-item>-->
         </v-list>
 
         <template v-slot:append>
@@ -253,7 +284,7 @@
         style="height: 100%"
         v-show="!collapse"
       >
-        <v-overlay :value="loading" z-index="9999">
+        <v-overlay :value="loading || showJumpingOverlay" z-index="9999">
           <div class="d-flex flex-column align-center">
             <v-progress-circular indeterminate size="64" />
             <div>{{ $t('list.loading') }}</div>
@@ -321,6 +352,31 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.4.2</div>
+          <div>
+            <div class="text-h5 text-center">
+              星芒节快乐！
+            </div>
+            <div>
+              在星芒节期间，三大主城以及四个住宅区的天气变为了
+              <span style="font-weight: bold">小雪</span>。<br />
+              根据饿猫的招雨王的小雪上钩记录，<br />
+              以及游戏内天气预报员处天气也显示为小雪为前提，<br />
+              有理由相信，实际游戏判断的天气为小雪。因此对相应天气鱼的时间进行了修正。<br />
+              <em>*星芒节时段外的窗口期计算没有改变</em><br />
+              当然，也可以通过右上角的红色切换按钮切换成普通模式。<br />
+              <em>*此模式将依旧按照原先的天气算法计算窗口期</em><br />
+              <p />
+              受影响鱼：<br />
+              星芒节期间全勤奖普通鱼：求雨鱼<br />
+              星芒节期间窗口期变长：招雨王<br />
+              星芒节期间无窗口期：倔强鲫鱼、抽须王、枪鼻头、芳香蝾螈
+              (<s>我们放寒假了~</s>）
+            </div>
+          </div>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.4.1</div>
           <ul>
             <li>
@@ -334,11 +390,14 @@
             </li>
           </ul>
           <p />
+          <v-divider />
 
           <div class="text-h6">Version 0.4.0</div>
           <ul>
             <li>
-              增加海钓时间表。点击左侧图标 <v-icon small>mdi-ferry</v-icon> 即可查看。
+              增加海钓时间表。点击左侧图标
+              <v-icon small>mdi-ferry</v-icon>
+              即可查看。
               <div>之后会增加更多海钓相关功能，敬请期待~</div>
             </li>
             <li>
@@ -346,6 +405,7 @@
             </li>
           </ul>
           <p />
+          <v-divider />
 
           <div class="text-h6">Version 0.3.2</div>
           <ul>
@@ -755,6 +815,7 @@ import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import ImgUtil from '@/utils/ImgUtil'
+import FIX from '@/store/fix'
 
 export default {
   name: 'App',
@@ -766,6 +827,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    showJumpingOverlay: false,
     now: Date.now(),
     fisher: ImgUtil.getImgUrl('pastry-fish.png'),
     version,
@@ -1006,8 +1068,24 @@ export default {
         this.setDarkMode(dark)
       },
     },
+    showHatCover: {
+      get() {
+        return this.startLight
+      },
+      set(startLight) {
+        this.setStartLight(startLight)
+        this.showJumpingOverlay = true
+        this.$nextTick(() => window.location.reload())
+      },
+    },
     inMigrationPage() {
       return this.$route.name === 'MigrationPage'
+    },
+    inStartLight() {
+      return (
+        this.now >= FIX.STARLIGHT_CELEBRATION.startTime &&
+        this.now <= FIX.STARLIGHT_CELEBRATION.endTime
+      )
     },
     ...mapState([
       'loading',
@@ -1046,6 +1124,7 @@ export default {
       'isSystemNotificationEnabled',
       'getFishingSpots',
       'darkMode',
+      'startLight',
     ]),
   },
   watch: {
@@ -1255,6 +1334,10 @@ export default {
           id: fish._id,
           icon: this.getItemIconClass(fish._id),
           iconRemoteUrl: this.getItemIconUrl(fish._id),
+          showHatCover:
+            this.inStartLight &&
+            this.showHatCover &&
+            FIX.STARLIGHT_CELEBRATION.fish.includes(fish._id),
           name: this.getItemName(fish._id),
           hasFishingSpot: fish.locations.length !== 0,
           // zone: this.getZoneName(fish.location),
@@ -1437,6 +1520,7 @@ export default {
       'setDarkMode',
       'startLoading',
       'finishLoading',
+      'setStartLight',
     ]),
   },
 }

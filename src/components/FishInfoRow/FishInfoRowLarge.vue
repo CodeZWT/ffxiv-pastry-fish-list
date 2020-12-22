@@ -46,10 +46,21 @@
                 bottom
                 bordered
               >
-                <item-icon :icon-class="fish.icon" small style="min-width: 30px" />
+                <item-icon
+                  :icon-class="fish.icon"
+                  small
+                  style="min-width: 30px"
+                  :hat="fish.showHatCover"
+                />
               </v-badge>
               <!-- or show normal icon for fish -->
-              <item-icon v-else :icon-class="fish.icon" style="min-width: 40px" />
+              <item-icon
+                v-else
+                :icon-class="fish.icon"
+                style="min-width: 40px"
+                :hat="fish.showHatCover"
+              />
+
               <div :class="inPredator ? 'ml-4' : 'ml-1'">
                 <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">
                   {{ fish.name }}
@@ -63,8 +74,8 @@
               </div>
             </div>
           </v-col>
-          <!--  1st: end / start count down  -->
           <v-col :class="`${countDownColClass} d-flex flex-column justify-center`">
+            <!--  1st: end / start count down  -->
             <div class="text-subtitle-1 d-flex">
               <div>
                 <v-tooltip right color="secondary">
@@ -98,7 +109,12 @@
                   color="secondary"
                 >
                   <template v-slot:activator="{ on, attrs }">
-                    <div v-bind="attrs" v-on="on" class="text-subtitle-2">
+                    <div
+                      v-bind="attrs"
+                      v-on="on"
+                      class="text-subtitle-2"
+                      style="padding-top: 3px"
+                    >
                       {{ transformedFishTimePart.countDownNextInterval }}
                     </div>
                   </template>
@@ -106,19 +122,29 @@
                 </v-tooltip>
               </div>
               <div v-if="transformedFishTimePart.isWaiting">
-                <div class="text-subtitle-2">
+                <div class="text-subtitle-2" style="padding-top: 3px">
                   {{ transformedFishTimePart.countDownTotalHint }}
                 </div>
               </div>
-              <div
-                class="text-subtitle-2 ml-1"
+              <v-btn
+                small
                 v-if="fish.rate < 1 && !showFishPageRightPane"
+                text
+                class="pl-2 pr-1"
+                @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
               >
                 {{ fish.rateText }}
-              </div>
+              </v-btn>
             </div>
-            <div class="text-subtitle-2" v-if="fish.rate < 1 && showFishPageRightPane">
-              {{ fish.rateText }}
+            <div v-if="fish.rate < 1 && showFishPageRightPane">
+              <v-btn
+                small
+                text
+                style="padding: 0 1px;"
+                @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
+              >
+                {{ fish.rateText }}
+              </v-btn>
             </div>
           </v-col>
           <v-col :class="`${locationColClass} d-flex flex-column justify-center`">

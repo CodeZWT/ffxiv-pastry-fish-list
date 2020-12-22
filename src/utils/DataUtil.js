@@ -589,6 +589,9 @@ export default {
     theme: {
       dark: true,
     },
+    event: {
+      startLight: true,
+    },
   },
 
   DETAIL_ITEM_DISPLAY_CONSTRAINTS: {

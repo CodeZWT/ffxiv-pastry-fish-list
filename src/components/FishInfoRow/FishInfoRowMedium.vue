@@ -22,7 +22,12 @@
                     bottom
                     bordered
                   >
-                    <item-icon :icon-class="fish.icon" small style="min-width: 48px" />
+                    <item-icon
+                      :icon-class="fish.icon"
+                      small
+                      style="min-width: 48px"
+                      :hat="fish.showHatCover"
+                    />
                   </v-badge>
 
                   <div class="ml-1">
