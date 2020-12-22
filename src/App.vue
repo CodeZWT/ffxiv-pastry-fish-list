@@ -283,7 +283,7 @@
         style="height: 100%"
         v-show="!collapse"
       >
-        <v-overlay :value="loading" z-index="9999">
+        <v-overlay :value="loading || showJumpingOverlay" z-index="9999">
           <div class="d-flex flex-column align-center">
             <v-progress-circular indeterminate size="64" />
             <div>{{ $t('list.loading') }}</div>
@@ -351,6 +351,31 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.4.2</div>
+          <div>
+            <div class="text-h5 text-center">
+              星芒节快乐！
+            </div>
+            <div>
+              在星芒节期间，三大主城以及四个住宅区的天气变为了
+              <span style="font-weight: bold">小雪</span>。<br />
+              根据饿猫的招雨王的小雪上钩记录，<br />
+              以及游戏内天气预报员处天气也显示为小雪为前提，<br />
+              有理由相信，实际游戏判断的天气为小雪。因此对相应天气鱼的时间进行了修正。<br />
+              <em>*星芒节时段外的窗口期计算没有改变</em><br />
+              当然，也可以通过右上角的红色切换按钮切换成普通模式。<br />
+              <em>*此模式将依旧按照原先的天气算法计算窗口期</em><br />
+              <p />
+              受影响鱼：<br />
+              星芒节期间全勤奖普通鱼：求雨鱼<br />
+              星芒节期间窗口期变长：招雨王<br />
+              星芒节期间无窗口期：倔强鲫鱼、抽须王、枪鼻头、芳香蝾螈
+              (<s>我们放寒假了~</s>）
+            </div>
+          </div>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.4.1</div>
           <ul>
             <li>
@@ -364,6 +389,7 @@
             </li>
           </ul>
           <p />
+          <v-divider />
 
           <div class="text-h6">Version 0.4.0</div>
           <ul>
@@ -378,6 +404,7 @@
             </li>
           </ul>
           <p />
+          <v-divider />
 
           <div class="text-h6">Version 0.3.2</div>
           <ul>
@@ -799,6 +826,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    showJumpingOverlay: false,
     now: Date.now(),
     fisher: ImgUtil.getImgUrl('pastry-fish.png'),
     version,
@@ -1045,7 +1073,8 @@ export default {
       },
       set(startLight) {
         this.setStartLight(startLight)
-        window.location.reload()
+        this.showJumpingOverlay = true
+        this.$nextTick(() => window.location.reload())
       },
     },
     inMigrationPage() {
