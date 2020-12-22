@@ -407,4 +407,11 @@ export default {
       hookset: 'Powerful',
     },
   },
+  STARLIGHT_CELEBRATION: {
+    startTime: 1608616800000,
+    endTime: 1609912800000,
+    weather: 15,
+    spots: [35, 36, 104, 90, 91, 81, 100, 105, 106, 197, 198],
+    territories: [129, 128, 133, 132, 339, 340, 341, 641],
+  },
 }
