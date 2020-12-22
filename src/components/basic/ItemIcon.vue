@@ -21,6 +21,11 @@
       class="item-checked-icon-48"
       :style="`background: url('${checkedCover48}') no-repeat;`"
     />
+    <div
+      v-if="hat"
+      class="item-checked-icon-48"
+      :style="`background: url('${hatCover48}') no-repeat;`"
+    />
   </div>
 </template>
 
@@ -51,12 +56,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    hat: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
       itemCover48: ImgUtil.getImgUrl('item-icon-cover-48x48.png'),
       achievementFrame48: ImgUtil.getImgUrl('achievement-icon-frame-48x48.png'),
       checkedCover48: ImgUtil.getImgUrl('item-icon-checked-48x48.png'),
+      hatCover48: ImgUtil.getImgUrl('item-cover-hat-48x48.png'),
     }
   },
   computed: {

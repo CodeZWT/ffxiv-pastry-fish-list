@@ -96,6 +96,31 @@
             </v-badge>
           </v-tab>
         </v-tabs>
+        <div v-if="inStartLight">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <div v-bind="attrs" v-on="on">
+                <v-switch
+                  v-model="showHatCover"
+                  inset
+                  class="theme-switch"
+                  color="pink darken-3"
+                />
+              </div>
+            </template>
+            <div>
+              点击切换星芒节天气模式<br />
+              在星芒节期间，三大主城以及四个住宅区的天气固定为小雪。<br />
+              此开关开启时，将会以星芒节的小雪作为窗口期天气计算的条件。<br />
+              关闭时，以地图区域的默认天气转换进行计算。
+            </div>
+          </v-tooltip>
+        </div>
+
+        <v-btn icon v-if="isListPage" @click="toggleFilterPanel">
+          <v-icon>mdi-filter</v-icon>
+        </v-btn>
+
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <click-helper @click="setShowSearchDialog(true)">
@@ -106,11 +131,7 @@
           </template>
           <span>按<kbd>/</kbd>键直接搜索</span>
         </v-tooltip>
-        <click-helper v-if="isListPage" @click="toggleFilterPanel">
-          <v-btn icon>
-            <v-icon>mdi-filter</v-icon>
-          </v-btn>
-        </click-helper>
+
         <div>
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
@@ -121,6 +142,7 @@
             <div>点击切换浅色/深色模式</div>
           </v-tooltip>
         </div>
+
         <div v-if="!isMobile" class="d-flex flex-column ml-1">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
@@ -346,7 +368,9 @@
           <div class="text-h6">Version 0.4.0</div>
           <ul>
             <li>
-              增加海钓时间表。点击左侧图标 <v-icon small>mdi-ferry</v-icon> 即可查看。
+              增加海钓时间表。点击左侧图标
+              <v-icon small>mdi-ferry</v-icon>
+              即可查看。
               <div>之后会增加更多海钓相关功能，敬请期待~</div>
             </li>
             <li>
@@ -763,6 +787,7 @@ import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import ImgUtil from '@/utils/ImgUtil'
+import FIX from '@/store/fix'
 
 export default {
   name: 'App',
@@ -1014,8 +1039,23 @@ export default {
         this.setDarkMode(dark)
       },
     },
+    showHatCover: {
+      get() {
+        return this.startLight
+      },
+      set(startLight) {
+        this.setStartLight(startLight)
+        window.location.reload()
+      },
+    },
     inMigrationPage() {
       return this.$route.name === 'MigrationPage'
+    },
+    inStartLight() {
+      return (
+        this.now >= FIX.STARLIGHT_CELEBRATION.startTime &&
+        this.now <= FIX.STARLIGHT_CELEBRATION.endTime
+      )
     },
     ...mapState([
       'loading',
@@ -1054,6 +1094,7 @@ export default {
       'isSystemNotificationEnabled',
       'getFishingSpots',
       'darkMode',
+      'startLight',
     ]),
   },
   watch: {
@@ -1263,6 +1304,10 @@ export default {
           id: fish._id,
           icon: this.getItemIconClass(fish._id),
           iconRemoteUrl: this.getItemIconUrl(fish._id),
+          showHatCover:
+            this.inStartLight &&
+            this.showHatCover &&
+            FIX.STARLIGHT_CELEBRATION.fish.includes(fish._id),
           name: this.getItemName(fish._id),
           hasFishingSpot: fish.locations.length !== 0,
           // zone: this.getZoneName(fish.location),
@@ -1445,6 +1490,7 @@ export default {
       'setDarkMode',
       'startLoading',
       'finishLoading',
+      'setStartLight',
     ]),
   },
 }

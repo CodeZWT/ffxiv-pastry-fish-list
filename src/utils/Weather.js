@@ -1,4 +1,16 @@
 import { DATA } from '@/store/data'
+import FIX from '@/store/fix'
+import DataUtil from '@/utils/DataUtil'
+import _ from 'lodash'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
+
+function getStartLight() {
+  const userData = DataUtil.mergeUserData(
+    _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
+    LocalStorageUtil.loadAndBackupUserData()
+  )
+  return userData.event.startLight
+}
 
 function calculateForecastTarget(m) {
   // Based on Rougeadyn's SaintCoinach library.
@@ -21,7 +33,16 @@ function calculateForecastTarget(m) {
 
 export default {
   weatherAt(zone, eorzeaTime) {
-    const seed = calculateForecastTarget(eorzeaTime.toEarthTime())
+    const earthTime = eorzeaTime.toEarthTime()
+    if (
+      getStartLight() &&
+      earthTime >= FIX.STARLIGHT_CELEBRATION.startTime &&
+      earthTime <= FIX.STARLIGHT_CELEBRATION.endTime &&
+      FIX.STARLIGHT_CELEBRATION.territories.includes(zone)
+    ) {
+      return FIX.STARLIGHT_CELEBRATION.weather
+    }
+    const seed = calculateForecastTarget(earthTime)
     return DATA.WEATHER_RATES[zone].weather_rates.find(it => seed < it[1])[0]
   },
 }

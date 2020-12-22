@@ -754,6 +754,11 @@ const CDN_DICT = {
     id: '5fdf09a03ffa7d37b36ceff6',
     ext: 'png',
   },
+  'item-cover-hat-48x48.png': {
+    name: 'item-cover-hat-48x48.png',
+    id: '5fe207c63ffa7d37b3ad6466',
+    ext: 'png',
+  },
 }
 
 export default {

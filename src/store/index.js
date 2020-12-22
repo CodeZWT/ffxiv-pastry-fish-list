@@ -216,6 +216,9 @@ export default new Vuex.Store({
     darkMode: state => {
       return state.userData.theme.dark
     },
+    startLight: state => {
+      return state.userData.event.startLight
+    },
   },
   mutations: {
     setUserData(state, data) {
@@ -355,6 +358,13 @@ export default new Vuex.Store({
     },
     finishLoading(state) {
       state.loading = false
+    },
+    setStartLight(state, startLight) {
+      state.userData = {
+        ...state.userData,
+        event: { ...state.userData.event, startLight },
+      }
+      LocalStorageUtil.storeUserData(state.userData)
     },
   },
   actions: {},

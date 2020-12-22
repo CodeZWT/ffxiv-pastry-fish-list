@@ -46,10 +46,21 @@
                 bottom
                 bordered
               >
-                <item-icon :icon-class="fish.icon" small style="min-width: 30px" />
+                <item-icon
+                  :icon-class="fish.icon"
+                  small
+                  style="min-width: 30px"
+                  :hat="fish.showHatCover"
+                />
               </v-badge>
               <!-- or show normal icon for fish -->
-              <item-icon v-else :icon-class="fish.icon" style="min-width: 40px" />
+              <item-icon
+                v-else
+                :icon-class="fish.icon"
+                style="min-width: 40px"
+                :hat="fish.showHatCover"
+              />
+
               <div :class="inPredator ? 'ml-4' : 'ml-1'">
                 <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">
                   {{ fish.name }}
