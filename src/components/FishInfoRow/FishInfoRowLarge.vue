@@ -109,7 +109,12 @@
                   color="secondary"
                 >
                   <template v-slot:activator="{ on, attrs }">
-                    <div v-bind="attrs" v-on="on" class="text-subtitle-2">
+                    <div
+                      v-bind="attrs"
+                      v-on="on"
+                      class="text-subtitle-2"
+                      style="padding-top: 3px"
+                    >
                       {{ transformedFishTimePart.countDownNextInterval }}
                     </div>
                   </template>
@@ -117,19 +122,29 @@
                 </v-tooltip>
               </div>
               <div v-if="transformedFishTimePart.isWaiting">
-                <div class="text-subtitle-2">
+                <div class="text-subtitle-2" style="padding-top: 3px">
                   {{ transformedFishTimePart.countDownTotalHint }}
                 </div>
               </div>
-              <div
-                class="text-subtitle-2 ml-1"
+              <v-btn
+                small
                 v-if="fish.rate < 1 && !showFishPageRightPane"
+                text
+                class="pl-2 pr-1"
+                @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
               >
                 {{ fish.rateText }}
-              </div>
+              </v-btn>
             </div>
-            <div class="text-subtitle-2" v-if="fish.rate < 1 && showFishPageRightPane">
-              {{ fish.rateText }}
+            <div v-if="fish.rate < 1 && showFishPageRightPane">
+              <v-btn
+                small
+                text
+                style="padding: 0 1px;"
+                @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
+              >
+                {{ fish.rateText }}
+              </v-btn>
             </div>
           </v-col>
           <v-col :class="`${locationColClass} d-flex flex-column justify-center`">
