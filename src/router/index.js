@@ -33,6 +33,15 @@ const routes = [
       ),
   },
   {
+    path: '/diadem',
+    name: 'DiademPage',
+    component: () =>
+      import(
+        /* webpackChunkName: "diadem" */
+        '@/views/DiademPage'
+      ),
+  },
+  {
     path: '/migration',
     name: 'MigrationPage',
     component: MigrationPage,
