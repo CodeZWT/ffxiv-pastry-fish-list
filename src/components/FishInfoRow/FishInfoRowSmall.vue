@@ -92,7 +92,8 @@
         <div v-if="!transformedFishTimePart.hasCountDown" class="text-subtitle-2">
           {{ $t(transformedFishTimePart.countDownType) }}
         </div>
-        <div v-else class="d-flex align-center">
+        <div v-else class="d-flex flex-column">
+          <!--  1st: end / start count down  -->
           <div class="text-subtitle-1 d-flex">
             <div>
               <v-tooltip right color="secondary">
@@ -110,25 +111,35 @@
                 </div>
               </v-tooltip>
             </div>
+            <div
+              v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
+              :title="$t('list.item.countDown.fishShadowHint')"
+              :class="fish.predatorsIcon"
+              style="margin-left: 2px"
+            />
           </div>
-          <div
-            v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
-            :title="$t('list.item.countDown.fishShadowHint')"
-            :class="fish.predatorsIcon"
-            style="margin-left: 2px"
-          />
-          <div class="text-subtitle-2 ml-1">
-            {{ transformedFishTimePart.countDownNextInterval }}
-          </div>
-          <div>
-            <v-tooltip v-if="transformedFishTimePart.isWaiting" top color="secondary">
-              <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" class="text-subtitle-2">
-                  ({{ transformedFishTimePart.countDownTotal }})
-                </div>
-              </template>
-              <span>{{ transformedFishTimePart.countDownTotalHint }}</span>
-            </v-tooltip>
+          <!--  2nd: next count down / interval & fishing window rate -->
+          <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
+            <div>
+              <v-tooltip v-if="transformedFishTimePart.isFishing" right color="secondary">
+                <template v-slot:activator="{ on, attrs }">
+                  <div
+                    v-bind="attrs"
+                    v-on="on"
+                    class="text-subtitle-2"
+                    style="padding-top: 3px"
+                  >
+                    {{ transformedFishTimePart.countDownNextInterval }}
+                  </div>
+                </template>
+                <span>{{ transformedFishTimePart.countDownNextTimePointText }}</span>
+              </v-tooltip>
+            </div>
+            <div v-if="transformedFishTimePart.isWaiting">
+              <div class="text-subtitle-2" style="padding-top: 3px">
+                {{ transformedFishTimePart.countDownTotalHint }}
+              </div>
+            </div>
           </div>
         </div>
       </v-col>

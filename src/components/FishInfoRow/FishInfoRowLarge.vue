@@ -74,8 +74,8 @@
               </div>
             </div>
           </v-col>
-          <!--  1st: end / start count down  -->
           <v-col :class="`${countDownColClass} d-flex flex-column justify-center`">
+            <!--  1st: end / start count down  -->
             <div class="text-subtitle-1 d-flex">
               <div>
                 <v-tooltip right color="secondary">
