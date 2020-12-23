@@ -374,7 +374,10 @@ export default new Vuex.Store({
 function updateUserDataStateRecords(userData, type, key, value) {
   const temp = _.cloneDeep(userData)
   if (value) {
-    temp[type].push(key)
+    const arr = temp[type]
+    if (arr.indexOf(key) === -1) {
+      arr.push(key)
+    }
   } else {
     temp[type] = userData[type].filter(it => it !== key)
   }
