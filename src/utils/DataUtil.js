@@ -206,7 +206,8 @@ export default {
 
   mergeArray(objValue, srcValue) {
     if (_.isArray(srcValue)) {
-      return srcValue
+      // force removing duplication here to fix old data
+      return _.uniq(srcValue)
     }
   },
 
