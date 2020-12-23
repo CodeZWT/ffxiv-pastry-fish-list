@@ -202,14 +202,14 @@
               <v-list-item-title>{{ $t('top.oceanFishing') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <!--          <v-list-item @click="toPage('DiademPage')" link>-->
-          <!--            <v-list-item-icon>-->
-          <!--              <v-icon>mdi-cloud</v-icon>-->
-          <!--            </v-list-item-icon>-->
-          <!--            <v-list-item-content>-->
-          <!--              <v-list-item-title>{{ $t('top.diadem') }}</v-list-item-title>-->
-          <!--            </v-list-item-content>-->
-          <!--          </v-list-item>-->
+          <v-list-item @click="toPage('DiademPage')" link>
+            <v-list-item-icon>
+              <v-icon>mdi-cloud</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.diadem') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
 
         <template v-slot:append>
