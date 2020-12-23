@@ -110,7 +110,7 @@ const CDN_DICT = {
   },
   'fish_icons.png': {
     name: 'fish_icons.png',
-    id: '5fd22e313ffa7d37b3add8a1',
+    id: '5fe3685e3ffa7d37b3f94898',
     ext: 'png',
   },
   'item-icon-cover.png': {
