@@ -31,6 +31,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isLast: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     transformedFishPart() {

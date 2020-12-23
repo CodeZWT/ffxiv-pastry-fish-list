@@ -11,6 +11,7 @@
       :predators="[]"
       :in-predator="fish.isPredator"
       :hide-spot-column="hideSpotColumn"
+      :is-last="position === 'last'"
       @click="$emit('click', $event)"
     />
   </v-sheet>
