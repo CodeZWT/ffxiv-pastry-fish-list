@@ -9,6 +9,7 @@
     :showDivider="showDivider"
     :mode="mode"
     :hide-spot-column="hideSpotColumn"
+    :is-last="isLast"
     @click="$emit('click', $event)"
   />
 </template>
@@ -28,6 +29,7 @@ export default {
     'showDivider',
     'mode',
     'hideSpotColumn',
+    'isLast',
   ],
   name: 'FishInfoRow',
   components: { FishInfoRowSmall, FishInfoRowMedium, FishInfoRowLarge },
