@@ -25,7 +25,7 @@
             {{ item }}
             <v-list>
               <v-list-item v-for="fish in item.fishList" :key="fish.id">
-                {{ fishId }}
+                {{ fish.id }}
                 <item-icon :icon-class="fish.icon" />
                 <div class="text-subtitle-1 ml-1" :title="fish.name + '#' + fish.id">
                   {{ fish.name }}
