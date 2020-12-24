@@ -760,6 +760,11 @@ const CDN_DICT = {
     id: '5fe207c63ffa7d37b3ad6466',
     ext: 'png',
   },
+  'skybuilders-scrips-065073-36x36.png': {
+    name: 'skybuilders-scrips-065073-36x36.png',
+    id: '5fe4c9de3ffa7d37b363779d',
+    ext: 'png',
+  },
 }
 
 export default {

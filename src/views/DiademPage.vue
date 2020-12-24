@@ -7,12 +7,12 @@
             云冠群岛
           </v-card-title>
           <v-card-text>
-            {{ diademSpots }}
-            <v-list>
-              <v-list-item v-for="spot in diademSpots" :key="spot.id">
-                {{ spot }}
-              </v-list-item>
-            </v-list>
+            <!--            {{ diademSpots }}-->
+            <!--            <v-list>-->
+            <!--              <v-list-item v-for="spot in diademSpots" :key="spot.id">-->
+            <!--                {{ spot }}-->
+            <!--              </v-list-item>-->
+            <!--            </v-list>-->
           </v-card-text>
         </v-card>
       </v-col>
@@ -27,15 +27,70 @@
               <detail-item-map :fish="toFishingSpotData(item)" :expanded="false" />
             </div>
             <div class="d-flex">
-              <v-list>
-                <v-list-item v-for="fish in item.fishList" :key="fish.id">
-                  {{ fish.id }}
-                  <item-icon :icon-class="fish.icon" />
-                  <div class="text-subtitle-1 ml-1" :title="fish.name + '#' + fish.id">
-                    {{ fish.name }}
-                  </div>
-                </v-list-item>
-              </v-list>
+              <v-simple-table>
+                <thead>
+                  <tr>
+                    <th>
+                      名称
+                    </th>
+                    <th>
+                      天气
+                    </th>
+                    <th>
+                      天穹振兴票
+                    </th>
+                    <th>
+                      技巧点
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="fish in item.fishList" :key="fish.id">
+                    <td>
+                      <!--                    {{ fish.id }}-->
+                      <div class="d-flex">
+                        <item-icon :icon-class="fish.icon" />
+                        <div
+                          class="text-subtitle-1 ml-1"
+                          :title="fish.name + '#' + fish.id"
+                        >
+                          {{ fish.name }}
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex justify-center" v-if="fish.hasWeatherConstraint">
+                        <div style="display: flex">
+                          <div
+                            v-for="(weather, index) in fish.weatherSetDetail"
+                            :key="index"
+                            :title="weather.name"
+                          >
+                            <div :class="weather.icon" :title="weather.name" />
+                            <!--                        <div>{{ weather.name }}</div>-->
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-center justify-end">
+                        <div class="text-subtitle-1 mr-1">{{ fish.scrips }}</div>
+                        <div>
+                          <v-img :src="scripsIcon" width="36" height="36" />
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-center justify-end">
+                        <div class="text-subtitle-1 mr-1">{{ fish.points }}</div>
+                        <div>
+                          <v-icon>mdi-plus-circle</v-icon>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </v-simple-table>
             </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -51,6 +106,8 @@ import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
+import FIX from '@/store/fix'
+import ImgUtil from '@/utils/ImgUtil'
 // https://ngabbs.com/read.php?tid=23286917
 export default {
   name: 'DiademPage',
@@ -60,6 +117,7 @@ export default {
       regionTerritorySpots: regionTerritorySpots,
       diademSpots: [],
       spotPanels: [],
+      scripsIcon: ImgUtil.getImgUrl('skybuilders-scrips-065073-36x36.png'),
     }
   },
   computed: {
@@ -72,6 +130,7 @@ export default {
       'getFishingSpotsName',
       'getItemName',
       'getItemIconClass',
+      'getWeather',
     ]),
   },
   created() {
@@ -94,11 +153,15 @@ export default {
           fishingSpotId: spot.id,
           fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
           fishList: spot.fishList.map(fishId => {
+            const fish = FIX.DIADEM_FISH[fishId + '-2']
+            const weatherSet = fish?.weatherSet ?? []
             return {
-              ...this.items[fishId],
+              ...fish,
               id: fishId,
               name: this.getItemName(fishId),
               icon: this.getItemIconClass(fishId),
+              hasWeatherConstraint: weatherSet.length > 0,
+              weatherSetDetail: this.getWeather(weatherSet),
             }
           }),
         }
