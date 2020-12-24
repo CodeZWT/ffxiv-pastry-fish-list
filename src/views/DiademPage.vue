@@ -22,16 +22,21 @@
         <v-expansion-panel v-for="(item, i) in diademSpots" :key="i">
           <v-expansion-panel-header>{{ item.fishingSpotName }}</v-expansion-panel-header>
           <v-expansion-panel-content>
-            {{ item }}
-            <v-list>
-              <v-list-item v-for="fish in item.fishList" :key="fish.id">
-                {{ fish.id }}
-                <item-icon :icon-class="fish.icon" />
-                <div class="text-subtitle-1 ml-1" :title="fish.name + '#' + fish.id">
-                  {{ fish.name }}
-                </div>
-              </v-list-item>
-            </v-list>
+            <div>{{ JSON.stringify(item, null, 2) }}</div>
+            <div>
+              <detail-item-map :fish="toFishingSpotData(item)" :expanded="false" />
+            </div>
+            <div class="d-flex">
+              <v-list>
+                <v-list-item v-for="fish in item.fishList" :key="fish.id">
+                  {{ fish.id }}
+                  <item-icon :icon-class="fish.icon" />
+                  <div class="text-subtitle-1 ml-1" :title="fish.name + '#' + fish.id">
+                    {{ fish.name }}
+                  </div>
+                </v-list-item>
+              </v-list>
+            </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -45,10 +50,11 @@ import _ from 'lodash'
 import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
-
+import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
+// https://ngabbs.com/read.php?tid=23286917
 export default {
   name: 'DiademPage',
-  components: { ItemIcon },
+  components: { DetailItemMap, ItemIcon },
   data() {
     return {
       regionTerritorySpots: regionTerritorySpots,
@@ -97,6 +103,12 @@ export default {
           }),
         }
       })
+    },
+    toFishingSpotData(fishingSpot) {
+      return {
+        id: -1,
+        fishingSpots: [fishingSpot],
+      }
     },
   },
 }
