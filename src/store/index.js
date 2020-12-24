@@ -19,7 +19,7 @@ export default new Vuex.Store({
     items: DATA_CN.ITEMS,
     achievements: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS,
     weatherRates: DATA.WEATHER_RATES,
-    weatherTypes: merge(DATA.WEATHER_TYPES, DATA_CN.WEATHER_TYPES),
+    weatherTypes: DATA_CN.WEATHER_TYPES,
     zones: DATA_CN.ZONES,
     bigFish: DATA_CN.BIG_FISH,
     newPatchFish: DATA_CN.NEW_PATCH_FISH,
