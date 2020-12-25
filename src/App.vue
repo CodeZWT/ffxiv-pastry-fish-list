@@ -204,7 +204,11 @@
           </v-list-item>
           <v-list-item @click="toPage('DiademPage')" link>
             <v-list-item-icon>
-              <v-icon>mdi-cloud</v-icon>
+              <v-img
+                :src="dark ? diademDark : diademLight"
+                height="24"
+                width="24"
+              ></v-img>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.diadem') }}</v-list-item-title>
@@ -858,6 +862,8 @@ export default {
     fishListWeatherChangePart: {},
     extraFishListTimePart: {},
     lazyFishWindowRates: {},
+    diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
+    diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
