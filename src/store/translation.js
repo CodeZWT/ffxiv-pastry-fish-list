@@ -9216,7 +9216,7 @@ export default {
       y: 1675,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 80102,
+      anglerLocationId: 140101,
     },
     '10002': {
       _id: 10002,
@@ -9227,7 +9227,7 @@ export default {
       y: 1475,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 80103,
+      anglerLocationId: 140102,
     },
     '10003': {
       _id: 10003,
@@ -9238,7 +9238,7 @@ export default {
       y: 425,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 80105,
+      anglerLocationId: 140103,
     },
     '10004': {
       _id: 10004,
@@ -9249,7 +9249,7 @@ export default {
       y: 525,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 80106,
+      anglerLocationId: 140104,
     },
     '10005': {
       _id: 10005,
@@ -9260,7 +9260,7 @@ export default {
       y: 1625,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 80107,
+      anglerLocationId: 140105,
     },
     '10006': {
       _id: 10006,
@@ -9271,7 +9271,7 @@ export default {
       y: 1175,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 80108,
+      anglerLocationId: 140106,
     },
     '10007': {
       _id: 10007,
