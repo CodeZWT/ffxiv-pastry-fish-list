@@ -23,8 +23,8 @@
           <v-expansion-panel-header>{{ item.fishingSpotName }}</v-expansion-panel-header>
           <v-expansion-panel-content>
             <!--            <div>{{ JSON.stringify(item, null, 2) }}</div>-->
-            <div class="d-flex">
-              <div class="col-8">
+            <div class="d-flex flex-wrap">
+              <div class="col-12">
                 <v-simple-table>
                   <thead>
                     <tr>
@@ -100,7 +100,7 @@
                   </tbody>
                 </v-simple-table>
               </div>
-              <div class="col-4">
+              <div class="col-12">
                 <detail-item-map :fish="toFishingSpotData(item)" :expanded="true" />
               </div>
             </div>
