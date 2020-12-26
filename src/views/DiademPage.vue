@@ -18,7 +18,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-expansion-panels accordion v-model="spotPanels">
+      <v-expansion-panels focusable v-model="spotPanels" multiple>
         <v-expansion-panel v-for="(item, i) in diademSpots" :key="i">
           <v-expansion-panel-header>{{ item.fishingSpotName }}</v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -39,6 +39,9 @@
                       </th>
                       <th>
                         技巧点
+                      </th>
+                      <th>
+                        双提个数
                       </th>
                       <th>
                         钓法
@@ -69,9 +72,10 @@
                               v-for="(weather, index) in fish.weatherSetDetail"
                               :key="index"
                               :title="weather.name"
+                              class="d-flex align-center"
                             >
                               <div :class="weather.icon" :title="weather.name" />
-                              <!--                        <div>{{ weather.name }}</div>-->
+                              <div class="ml-1">{{ weather.name }}</div>
                             </div>
                           </div>
                         </div>
@@ -91,6 +95,9 @@
                             <v-icon>mdi-plus-circle</v-icon>
                           </div>
                         </div>
+                      </td>
+                      <td>
+                        {{ fish.doubleHook ? fish.doubleHook : '-' }}
                       </td>
                       <td>
                         <!--                      {{ fish.baits }}-->
