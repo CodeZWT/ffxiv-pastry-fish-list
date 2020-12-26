@@ -221,7 +221,7 @@ export default {
         ImgUtil.getImgUrl('diadem-tip-map-grade2.png'),
         ImgUtil.getImgUrl('diadem-tip-map-grade3.png'),
       ],
-      versionIndex: 1,
+      versionIndex: 0,
     }
   },
   computed: {
