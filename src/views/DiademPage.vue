@@ -177,7 +177,21 @@
                         </td>
                         <td>
                           <!--                      {{ fish.baits }}-->
-                          <fish-bait-list :baits="fish.baits" />
+                          <div class="d-flex">
+                            <div class="d-flex align-center">
+                              <i
+                                class="xiv square-a"
+                                v-if="fish.baitsExtra.length > 0"
+                              ></i>
+                              <fish-bait-list :baits="fish.baits" />
+                            </div>
+                            <template v-if="fish.baitsExtra.length > 0">
+                              <div class="d-flex align-center">
+                                <i class="xiv square-b"></i>
+                                <fish-bait-list :baits="fish.baitsExtra" />
+                              </div>
+                            </template>
+                          </div>
                         </td>
                         <td class="text-left">
                           {{ fish.desynthesis }}
@@ -276,7 +290,11 @@ export default {
               scrips: fish.scrips[this.versionIndex],
               hasWeatherConstraint: weatherSet.length > 0,
               weatherSetDetail: this.getWeather(weatherSet),
-              baits: this.getBaits(fish, DIADEM.FISH),
+              baits: this.getBaits(fish, fish.bestCatchPath, DIADEM.FISH),
+              baitsExtra:
+                fish.bestCatchPathExtra.length > 0
+                  ? this.getBaits(fish, fish.bestCatchPathExtra, DIADEM.FISH)
+                  : [],
               biteTimeText: this.toBiteTimeText(fish.biteMin, fish.biteMax),
             }
           }),
@@ -324,6 +342,7 @@ export default {
 
 .detail-wrapper
   width: 100%
+
   height: 100%
   overflow-scrolling: auto
   overflow-y: scroll

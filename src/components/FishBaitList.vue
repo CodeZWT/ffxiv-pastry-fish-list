@@ -5,7 +5,7 @@
   >
     <div v-for="(bait, baitInx) in baits" :key="baitInx">
       <div class="d-flex align-center">
-        <span v-if="bait.optional" style="font-size: x-large">(</span>
+        <!--        <span v-if="bait.optional" style="font-size: x-large">(</span>-->
         <div v-if="baitInx !== 0" style="display: flex; align-items: center">
           <v-icon small>mdi-arrow-right</v-icon>
         </div>
@@ -29,7 +29,7 @@
             />
           </v-col>
         </v-row>
-        <span v-if="bait.optional" style="font-size: x-large">)</span>
+        <!--        <span v-if="bait.optional" style="font-size: x-large">)</span>-->
       </div>
     </div>
   </div>

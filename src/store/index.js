@@ -98,9 +98,10 @@ export default new Vuex.Store({
           fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
         }
       }),
-    getBaits: (state, getters) => (fish, customizeFishDict) => {
-      if (fish.bestCatchPath.length < 1) return []
-      const baitId = fish.bestCatchPath[fish.bestCatchPath.length - 1]
+    getBaits: (state, getters) => (fish, customizedBestCatchPath, customizeFishDict) => {
+      const bestCatchPath = customizedBestCatchPath ?? fish.bestCatchPath
+      if (bestCatchPath.length < 1) return []
+      const baitId = bestCatchPath[bestCatchPath.length - 1]
       const hookset = DataUtil.tugToHookset(fish.tug, fish.hookset)
       const optionalIndices = fish.optional ?? []
       const lastBait = {
@@ -112,12 +113,11 @@ export default new Vuex.Store({
         baitId: baitId,
         baitName: getters.getItemName(baitId),
         baitIcon: getters.getItemIconClass(baitId),
-        optional: optionalIndices.includes(fish.bestCatchPath.length - 1),
       }
-      if (fish.bestCatchPath.length === 1) {
+      if (bestCatchPath.length === 1) {
         return [lastBait]
       } else {
-        return fish.bestCatchPath.map((baitId, index, arr) => {
+        return bestCatchPath.map((baitId, index, arr) => {
           if (index === arr.length - 1) {
             return lastBait
           } else {
