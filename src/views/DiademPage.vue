@@ -57,7 +57,7 @@
               item.fishingSpotName
             }}</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <!--            <div>{{ JSON.stringify(item, null, 2) }}</div>-->
+              <div>{{ JSON.stringify(item, null, 2) }}</div>
               <div class="d-flex flex-wrap">
                 <div class="col-12">
                   <v-simple-table>
@@ -244,15 +244,17 @@ export default {
           fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
           fishList: spot.fishList.map(fishId => {
             const fish = DIADEM.FISH[fishId]
-            // const weatherSet = fish?.weatherSet ?? []
+            const weatherSet = fish?.weatherSet ?? []
             return {
               ...fish,
               id: fishId,
               name: this.getItemName(fishId),
               icon: this.getItemIconClass(fishId),
-              // hasWeatherConstraint: weatherSet.length > 0,
-              // weatherSetDetail: this.getWeather(weatherSet),
-              // baits: this.getBaits(fish, DIADEM.FISH),
+              points: fish.points[this.versionIndex],
+              scrips: fish.scrips[this.versionIndex],
+              hasWeatherConstraint: weatherSet.length > 0,
+              weatherSetDetail: this.getWeather(weatherSet),
+              baits: this.getBaits(fish, DIADEM.FISH),
             }
           }),
         }

@@ -6145,106 +6145,6 @@ export default {
       name_chs: '依拉丝莫龙',
       icon: 28012,
     },
-    '29994': {
-      _id: 29994,
-      name_chs: '第二期重建用的云冠跳鱼',
-      icon: 29473,
-    },
-    '29995': {
-      _id: 29995,
-      name_chs: '第二期重建用的冥想鱼',
-      icon: 29400,
-    },
-    '29996': {
-      _id: 29996,
-      name_chs: '第二期重建用的豹鱼',
-      icon: 29261,
-    },
-    '29997': {
-      _id: 29997,
-      name_chs: '第二期重建用的雀鳝',
-      icon: 29511,
-    },
-    '29998': {
-      _id: 29998,
-      name_chs: '第二期重建用的巨骨舌鱼',
-      icon: 29224,
-    },
-    '29999': {
-      _id: 29999,
-      name_chs: '第二期重建用的褐飞刀',
-      icon: 29232,
-    },
-    '30000': {
-      _id: 30000,
-      name_chs: '第二期重建用的苦鱼',
-      icon: 29596,
-    },
-    '30001': {
-      _id: 30001,
-      name_chs: '第二期重建用的凯门鳄',
-      icon: 29415,
-    },
-    '30002': {
-      _id: 30002,
-      name_chs: '第二期重建用的破云飞鱼',
-      icon: 29655,
-    },
-    '30003': {
-      _id: 30003,
-      name_chs: '第二期重建用的吸血魔毯',
-      icon: 29701,
-    },
-    '30004': {
-      _id: 30004,
-      name_chs: '第二期重建用的妖精翼龙',
-      icon: 29709,
-    },
-    '30005': {
-      _id: 30005,
-      name_chs: '第二期重建用的飞蝠鲼',
-      icon: 29130,
-    },
-    '30006': {
-      _id: 30006,
-      name_chs: '第二期重建用的特供菱龙',
-      icon: 29116,
-    },
-    '30007': {
-      _id: 30007,
-      name_chs: '第二期重建用的特供哥布面具',
-      icon: 29708,
-    },
-    '30008': {
-      _id: 30008,
-      name_chs: '第二期重建用的特供翼手龙',
-      icon: 29724,
-    },
-    '30009': {
-      _id: 30009,
-      name_chs: '第二期重建用的特供天鱼',
-      icon: 29653,
-    },
-    '30010': {
-      _id: 30010,
-      name_chs: '第二期重建用的特供彗星鱼',
-      icon: 29865,
-    },
-    '30011': {
-      _id: 30011,
-      name_chs: '第二期重建用的特供奇虾',
-      icon: 29658,
-    },
-    '30012': {
-      _id: 30012,
-      name_chs: '第二期重建用的特供喙嘴龙',
-      icon: 29660,
-    },
-    '30013': {
-      _id: 30013,
-      name_chs: '第二期重建用的特供龙魂',
-      icon: 29074,
-    },
     '30014': {
       _id: 30014,
       name_chs: '第二期重建用的云冠跳鱼（检）',
@@ -6454,6 +6354,236 @@ export default {
       _id: 31134,
       name_en: 'Allagan Hunter',
       icon: 29462,
+    },
+    '29994': {
+      _id: 29994,
+      icon: 29473,
+      name_chs: '第二期重建用的云冠跳鱼',
+    },
+    '29995': {
+      _id: 29995,
+      icon: 29400,
+      name_chs: '第二期重建用的冥想鱼',
+    },
+    '29996': {
+      _id: 29996,
+      icon: 29261,
+      name_chs: '第二期重建用的豹鱼',
+    },
+    '29997': {
+      _id: 29997,
+      icon: 29511,
+      name_chs: '第二期重建用的雀鳝',
+    },
+    '29998': {
+      _id: 29998,
+      icon: 29224,
+      name_chs: '第二期重建用的巨骨舌鱼',
+    },
+    '29999': {
+      _id: 29999,
+      icon: 29232,
+      name_chs: '第二期重建用的褐飞刀',
+    },
+    '30000': {
+      _id: 30000,
+      icon: 29596,
+      name_chs: '第二期重建用的苦鱼',
+    },
+    '30001': {
+      _id: 30001,
+      icon: 29415,
+      name_chs: '第二期重建用的凯门鳄',
+    },
+    '30002': {
+      _id: 30002,
+      icon: 29655,
+      name_chs: '第二期重建用的破云飞鱼',
+    },
+    '30003': {
+      _id: 30003,
+      icon: 29701,
+      name_chs: '第二期重建用的吸血魔毯',
+    },
+    '30004': {
+      _id: 30004,
+      icon: 29709,
+      name_chs: '第二期重建用的妖精翼龙',
+    },
+    '30005': {
+      _id: 30005,
+      icon: 29130,
+      name_chs: '第二期重建用的飞蝠鲼',
+    },
+    '30006': {
+      _id: 30006,
+      icon: 29116,
+      name_chs: '第二期重建用的特供菱龙',
+    },
+    '30007': {
+      _id: 30007,
+      icon: 29708,
+      name_chs: '第二期重建用的特供哥布面具',
+    },
+    '30008': {
+      _id: 30008,
+      icon: 29724,
+      name_chs: '第二期重建用的特供翼手龙',
+    },
+    '30009': {
+      _id: 30009,
+      icon: 29653,
+      name_chs: '第二期重建用的特供天鱼',
+    },
+    '30010': {
+      _id: 30010,
+      icon: 29865,
+      name_chs: '第二期重建用的特供彗星鱼',
+    },
+    '30011': {
+      _id: 30011,
+      icon: 29658,
+      name_chs: '第二期重建用的特供奇虾',
+    },
+    '30012': {
+      _id: 30012,
+      icon: 29660,
+      name_chs: '第二期重建用的特供喙嘴龙',
+    },
+    '30013': {
+      _id: 30013,
+      icon: 29074,
+      name_chs: '第二期重建用的特供龙魂',
+    },
+    '31578': {
+      _id: 31578,
+      icon: 29303,
+      name_chs: "Grade 3 Skybuilders' Thunderbolt Sculpin",
+    },
+    '31579': {
+      _id: 31579,
+      icon: 29519,
+      name_chs: "Grade 3 Skybuilders' Alligator Snapping Turtle",
+    },
+    '31580': {
+      _id: 31580,
+      icon: 29243,
+      name_chs: "Grade 3 Skybuilders' Bonytongue",
+    },
+    '31581': {
+      _id: 31581,
+      icon: 29493,
+      name_chs: "Grade 3 Skybuilders' Hermit Goby",
+    },
+    '31582': {
+      _id: 31582,
+      icon: 29291,
+      name_chs: "Grade 3 Skybuilders' Mudskipper",
+    },
+    '31583': {
+      _id: 31583,
+      icon: 29443,
+      name_chs: "Grade 3 Skybuilders' Steppe Bullfrog",
+    },
+    '31584': {
+      _id: 31584,
+      icon: 29258,
+      name_chs: "Grade 3 Skybuilders' Golden Loach",
+    },
+    '31585': {
+      _id: 31585,
+      icon: 29268,
+      name_chs: "Grade 3 Skybuilders' Bass",
+    },
+    '31586': {
+      _id: 31586,
+      icon: 29227,
+      name_chs: "Grade 3 Skybuilders' Cherax",
+    },
+    '31587': {
+      _id: 31587,
+      icon: 29316,
+      name_chs: "Grade 3 Skybuilders' Marimo",
+    },
+    '31588': {
+      _id: 31588,
+      icon: 29217,
+      name_chs: "Grade 3 Skybuilders' Catfish",
+    },
+    '31589': {
+      _id: 31589,
+      icon: 29484,
+      name_chs: "Grade 3 Skybuilders' Ricefish",
+    },
+    '31590': {
+      _id: 31590,
+      icon: 29721,
+      name_chs: "Grade 3 Skybuilders' Scorpionfly",
+    },
+    '31591': {
+      _id: 31591,
+      icon: 29719,
+      name_chs: "Grade 3 Skybuilders' Whiteloom",
+    },
+    '31592': {
+      _id: 31592,
+      icon: 29707,
+      name_chs: "Grade 3 Skybuilders' Pteranodon",
+    },
+    '31593': {
+      _id: 31593,
+      icon: 29910,
+      name_chs: "Grade 3 Skybuilders' King's Mantle",
+    },
+    '31594': {
+      _id: 31594,
+      icon: 29711,
+      name_chs: "Grade 3 Skybuilders' Blue Medusa",
+    },
+    '31595': {
+      _id: 31595,
+      icon: 29720,
+      name_chs: "Grade 3 Skybuilders' Gurnard",
+    },
+    '31596': {
+      _id: 31596,
+      icon: 29403,
+      name_chs: "Grade 3 Artisanal Skybuilders' Oscar",
+    },
+    '31597': {
+      _id: 31597,
+      icon: 29651,
+      name_chs: "Grade 3 Artisanal Skybuilders' Blind Manta",
+    },
+    '31598': {
+      _id: 31598,
+      icon: 29904,
+      name_chs: "Grade 3 Artisanal Skybuilders' Mosasaur",
+    },
+    '31599': {
+      _id: 31599,
+      icon: 29712,
+      name_chs: "Grade 3 Artisanal Skybuilders' Storm Chaser",
+    },
+    '31600': {
+      _id: 31600,
+      icon: 29737,
+      name_chs: "Grade 3 Artisanal Skybuilders' Archaeopteryx",
+    },
+    '31601': {
+      _id: 31601,
+      icon: 29738,
+      name_chs: "Grade 3 Artisanal Skybuilders' Wyvern",
+    },
+    '31602': {
+      _id: 31602,
+      icon: 29739,
+      name_chs: "Grade 3 Artisanal Skybuilders' Cloudshark",
+    },
+    '31603': {
+      _id: 31603,
+      icon: 29740,
+      name_chs: "Grade 3 Artisanal Skybuilders' Helicoprion",
     },
   },
   FISHING_SPOTS: {
