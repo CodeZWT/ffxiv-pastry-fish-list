@@ -356,6 +356,46 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.4.3</div>
+          <div>
+            <div class="text-h5 text-center">
+              新增云冠群岛支持<br />（包括第二期以及即将更新的第三期重建）
+            </div>
+            <div>
+              页面中攻略与资料参考：
+              <div class="text-subtitle-1">
+                <a :href="diademTips[0].reference.link" target="_blank">
+                  {{ diademTips[0].reference.title }}
+                </a>
+              </div>
+              <div class="text-subtitle-1">
+                <a :href="diademTips[1].reference.link" target="_blank">
+                  {{ diademTips[1].reference.title }}
+                </a>
+              </div>
+              <div>
+                {{ diademTips[0].reference.author }}
+              </div>
+              <p />
+              <div>
+                <div class="d-flex justify-center">
+                  <div>
+                    <v-img
+                      :src="dark ? diademDark : diademLight"
+                      height="24"
+                      width="24"
+                    />
+                  </div>
+                </div>
+                感谢
+                <span style="font-weight: bold">煋月丶幻神@琥珀原</span>
+                友情绘制的云冠群岛图标！
+              </div>
+            </div>
+          </div>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.4.2</div>
           <div>
             <div class="text-h5 text-center">
@@ -820,6 +860,7 @@ import FishSearch from '@/components/FishSearch'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import ImgUtil from '@/utils/ImgUtil'
 import FIX from '@/store/fix'
+import DIADEM from '@/store/diadem'
 
 export default {
   name: 'App',
@@ -864,6 +905,7 @@ export default {
     lazyFishWindowRates: {},
     diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
     diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
+    diademTips: DIADEM.SIMPLE_TIPS,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute

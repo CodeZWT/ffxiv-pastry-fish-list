@@ -209,7 +209,7 @@ import DIADEM from '@/store/diadem'
 import ImgUtil from '@/utils/ImgUtil'
 import FishBaitList from '@/components/FishBaitList'
 import ClickHelper from '@/components/basic/ClickHelper'
-// https://ngabbs.com/read.php?tid=23286917
+
 export default {
   name: 'DiademPage',
   components: { ClickHelper, FishBaitList, DetailItemMap, ItemIcon },
