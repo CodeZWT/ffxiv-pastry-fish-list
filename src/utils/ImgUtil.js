@@ -775,6 +775,16 @@ const CDN_DICT = {
     id: '5fe5ee383ffa7d37b3fc28b7',
     ext: 'png',
   },
+  'diadem-tip-map-grade2.png': {
+    name: 'diadem-tip-map-grade2.png',
+    id: '5fe71f383ffa7d37b3a98aae',
+    ext: 'png',
+  },
+  'diadem-tip-map-grade3.png': {
+    name: 'diadem-tip-map-grade3.png',
+    id: '5fe71f383ffa7d37b3a98ab2',
+    ext: 'png',
+  },
 }
 
 export default {

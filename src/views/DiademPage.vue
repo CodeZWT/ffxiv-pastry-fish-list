@@ -29,22 +29,19 @@
                     <v-card-text>
                       完整攻略请见：
                       <div class="text-subtitle-1">
-                        <a
-                          href="https://bbs.nga.cn/read.php?tid=23009886"
-                          target="_blank"
-                        >
-                          [5.21][空岛][捕鱼人][第二次伊修加德复兴](已更新钓场地图)谁敢向我挑衅，我将终结他的生命！捕鱼人空岛垂钓符文已配备
+                        <a :href="simpleTip.reference.link" target="_blank">
+                          {{ simpleTip.reference.title }}
                         </a>
                       </div>
                       <div>
-                        高咲侑@红玉海
+                        {{ simpleTip.reference.author }}
                       </div>
                     </v-card-text>
                   </v-card>
                 </div>
               </v-col>
               <v-col cols="4">
-                <v-img :src="tipGarde2Map" />
+                <v-img :src="tipMap" />
               </v-col>
             </v-row>
           </v-card-text>
@@ -53,9 +50,9 @@
       <v-col>
         <v-expansion-panels focusable v-model="spotPanels" multiple>
           <v-expansion-panel v-for="(item, i) in diademSpots" :key="i">
-            <v-expansion-panel-header>{{
-              item.fishingSpotName
-            }}</v-expansion-panel-header>
+            <v-expansion-panel-header
+              >{{ item.fishingSpotName }}
+            </v-expansion-panel-header>
             <v-expansion-panel-content>
               <!-- <div>{{ JSON.stringify(item, null, 2) }}</div> -->
               <div class="d-flex flex-wrap">
@@ -209,7 +206,6 @@ import DIADEM from '@/store/diadem'
 import ImgUtil from '@/utils/ImgUtil'
 import FishBaitList from '@/components/FishBaitList'
 import ClickHelper from '@/components/basic/ClickHelper'
-import tipGarde2Map from '@/assets/cdn/misc/diadem-tip-map-grade2.jpg'
 // https://ngabbs.com/read.php?tid=23286917
 export default {
   name: 'DiademPage',
@@ -217,11 +213,12 @@ export default {
   data() {
     return {
       regionTerritorySpots: regionTerritorySpots,
-      // diademSpots: [],
       spotPanels: [],
       scripsIcon: ImgUtil.getImgUrl('skybuilders-scrips-065073-36x36.png'),
-      simpleTip: DIADEM.SIMPLE_TIP,
-      tipGarde2Map: tipGarde2Map,
+      tipMaps: [
+        ImgUtil.getImgUrl('diadem-tip-map-grade2.png'),
+        ImgUtil.getImgUrl('diadem-tip-map-grade3.png'),
+      ],
       versionIndex: 1,
     }
   },
@@ -231,6 +228,12 @@ export default {
     },
     version() {
       return [2, 3, 4][this.versionIndex]
+    },
+    simpleTip() {
+      return DIADEM.SIMPLE_TIPS[this.versionIndex]
+    },
+    tipMap() {
+      return this.tipMaps[this.versionIndex]
     },
     versionSpots() {
       switch (this.version) {
