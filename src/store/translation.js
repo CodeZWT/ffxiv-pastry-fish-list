@@ -9423,7 +9423,7 @@ export default {
       y: 1675,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 140108,
+      anglerLocationId: 140101,
     },
     '10009': {
       _id: 10009,
@@ -9434,7 +9434,7 @@ export default {
       y: 1475,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 140109,
+      anglerLocationId: 140102,
     },
     '10010': {
       _id: 10010,
@@ -9445,7 +9445,7 @@ export default {
       y: 425,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 140110,
+      anglerLocationId: 140103,
     },
     '10011': {
       _id: 10011,
@@ -9456,7 +9456,7 @@ export default {
       y: 525,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 140111,
+      anglerLocationId: 140104,
     },
     '10012': {
       _id: 10012,
@@ -9467,7 +9467,7 @@ export default {
       y: 1625,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 140112,
+      anglerLocationId: 140105,
     },
     '10013': {
       _id: 10013,
@@ -9478,7 +9478,7 @@ export default {
       y: 1175,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 140113,
+      anglerLocationId: 140106,
     },
     '10014': {
       _id: 10014,
@@ -9489,7 +9489,7 @@ export default {
       y: 1645,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 140114,
+      anglerLocationId: 140107,
     },
     '10015': {
       _id: 10015,
@@ -9500,7 +9500,7 @@ export default {
       y: 305,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 140115,
+      anglerLocationId: 140108,
     },
     '10016': {
       _id: 10016,
@@ -9511,7 +9511,7 @@ export default {
       y: 850,
       mapFileId: 'a2fh/00',
       radius: 300,
-      anglerLocationId: 140116,
+      anglerLocationId: 140109,
     },
   },
   // PlaceName id to Name_CHS
