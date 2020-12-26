@@ -52,31 +52,45 @@
                     <tr v-for="fish in item.fishList" :key="fish.id">
                       <td>
                         <!--                    {{ fish.id }}-->
-                        <div class="d-flex">
+                        <div class="d-flex align-center">
                           <item-icon :icon-class="fish.icon" />
-                          <div
-                            class="text-subtitle-1 ml-1"
-                            :title="fish.name + '#' + fish.id"
-                          >
-                            {{ fish.name }}
+                          <div class="d-flex flex-column ml-1">
+                            <div
+                              class="text-subtitle-1"
+                              :title="fish.name + '#' + fish.id"
+                            >
+                              {{ fish.name }}
+                            </div>
+                            <div class="d-flex">
+                              <click-helper @click.stop :copy-text="fish.name">
+                                <v-btn text icon small :title="$t('list.item.copyHint')">
+                                  <v-icon small>mdi-content-copy</v-icon>
+                                </v-btn>
+                              </click-helper>
+                              <click-helper
+                                @click.stop="goToFishAngelPage(fish.anglerFishId)"
+                              >
+                                <v-btn text icon small :title="$t('list.item.linkHint')">
+                                  <v-icon small>mdi-link-variant</v-icon>
+                                </v-btn>
+                              </click-helper>
+                            </div>
                           </div>
                         </div>
                       </td>
                       <td>
                         <div
-                          class="d-flex justify-center"
+                          class="d-flex justify-start"
                           v-if="fish.hasWeatherConstraint"
                         >
-                          <div style="display: flex">
-                            <div
-                              v-for="(weather, index) in fish.weatherSetDetail"
-                              :key="index"
-                              :title="weather.name"
-                              class="d-flex align-center"
-                            >
-                              <div :class="weather.icon" :title="weather.name" />
-                              <div class="ml-1">{{ weather.name }}</div>
-                            </div>
+                          <div
+                            v-for="(weather, index) in fish.weatherSetDetail"
+                            :key="index"
+                            :title="weather.name"
+                            class="d-flex align-center"
+                          >
+                            <div :class="weather.icon" :title="weather.name" />
+                            <div class="ml-1">{{ weather.name }}</div>
                           </div>
                         </div>
                       </td>
@@ -128,10 +142,11 @@ import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import FIX from '@/store/fix'
 import ImgUtil from '@/utils/ImgUtil'
 import FishBaitList from '@/components/FishBaitList'
+import ClickHelper from '@/components/basic/ClickHelper'
 // https://ngabbs.com/read.php?tid=23286917
 export default {
   name: 'DiademPage',
-  components: { FishBaitList, DetailItemMap, ItemIcon },
+  components: { ClickHelper, FishBaitList, DetailItemMap, ItemIcon },
   data() {
     return {
       regionTerritorySpots: regionTerritorySpots,
@@ -195,6 +210,7 @@ export default {
         fishingSpots: [fishingSpot],
       }
     },
+    goToFishAngelPage: DataUtil.goToFishAngelPage,
   },
 }
 </script>

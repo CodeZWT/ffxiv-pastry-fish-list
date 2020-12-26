@@ -98,9 +98,7 @@ export default {
   },
   methods: {
     printCountDownTime: DataUtil.printCountDownTime,
-    goToFishAngelPage(anglerFishId) {
-      window.open(`https://cn.ff14angler.com/fish/${anglerFishId}`)
-    },
+    goToFishAngelPage: DataUtil.goToFishAngelPage,
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
     },

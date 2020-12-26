@@ -76,7 +76,9 @@ export default {
   printCountDownTime(time, showCnt = 1, paddingZero = true) {
     return TimeFormatter.millisecondsToText(time, showCnt, true, paddingZero)
   },
-
+  goToFishAngelPage(anglerFishId) {
+    window.open(`https://cn.ff14angler.com/fish/${anglerFishId}`)
+  },
   secondsToFishEyesString(seconds) {
     if (seconds === true) return ''
     return TimeFormatter.millisecondsToText(seconds * 1000, 2, false, false)
