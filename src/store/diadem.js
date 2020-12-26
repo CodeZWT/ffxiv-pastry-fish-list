@@ -938,19 +938,21 @@ export default {
         title:
           '[5.21][空岛][捕鱼人][第二次伊修加德复兴](已更新钓场地图)谁敢向我挑衅，我将终结他的生命！捕鱼人空岛垂钓符文已配备',
         author: '高咲侑@红玉海',
-        link: 'https://bbs.nga.cn/read.php?tid=23009886',
+        link: 'https://ngabbs.com/read.php?tid=23009886',
       },
     },
     {
       title: '冲榜\\冲分的简易攻略',
       content: `
+        <div class="red--text">
         买满4*999个鱼饵，有绿钓绿。<br />
         没绿的时候，吃食物获得力有2300去无风云海，双提20秒以上中。<br />
         获得力没2300去摇风云海，以小钓大鱼王杆强力提钩。<br />
+        </div>
         <br />
           1.与第二期不同，如果遇到特殊天气请直接去绿鱼钓场钓绿鱼，分很高(虽然咬钩率不高)<br>2.根据获得力不同，有不同的方法，具体如下：
           <ul>
-            <li>使用食物后获得力在<span style="font-weight:bold">2300以上</span>：
+            <li>使用食物后获得力在<span style="font-weight:bold" class="red--text">2300以上</span>：
               <ul>
                 <li>无风云海(咬钩时间略长，但分高，推荐)：<br>鱼饵用任意空岛专属饵，<span style="font-weight:bold">20秒</span>以上<span
                   style="font-weight:bold">中杆(！！)</span>双提<br>如果为盲蝠鲼则用专一 + 强心剂 + 双重提钩的comob。
@@ -960,7 +962,7 @@ export default {
                 </li>
               </ul>
             </li>
-            <li>获得力在<span style="font-weight:bold">2300以下</span>：<br>摇风云海/旋风云海：<br>鱼饵用任意空岛专属饵，<span style="font-weight:bold">15秒以下</span>轻杆钓蛉蝎，以小钓大<span
+            <li>获得力在<span style="font-weight:bold" class="red--text">2300以下</span>：<br>摇风云海/旋风云海：<br>鱼饵用任意空岛专属饵，<span style="font-weight:bold">15秒以下</span>轻杆钓蛉蝎，以小钓大<span
               style="font-weight:bold">鱼王杆/重杆(！！！)</span>，如果开耐心请使用<span style="font-weight:bold">强力提钩</span><br>推荐全程耐心常驻，摇风云海鱼分数高，比较推荐
             </li>
           </ul>
@@ -969,7 +971,7 @@ export default {
       reference: {
         title: '[5_31][伊修加德重建3期][云冠群岛] 5.31版本空岛捕鱼人资料整理',
         author: '高咲侑@红玉海',
-        link: 'https://bbs.nga.cn/read.php?tid=23286917',
+        link: 'https://ngabbs.com/read.php?tid=23286917',
       },
     },
   ],

@@ -464,7 +464,7 @@
                 <li>
                   <a
                     class="text-subtitle-1"
-                    href="https://bbs.nga.cn/read.php?tid=18484723"
+                    href="https://ngabbs.com/read.php?tid=18484723"
                     target="_blank"
                   >
                     [烟波钓徒]红莲之狂潮&苍穹之禁城 钓场之皇捕获指南

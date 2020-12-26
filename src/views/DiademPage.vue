@@ -367,4 +367,8 @@ export default {
 
   &-pc
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+
+.red
+  color: orangered !important
+  background-color: unset !important
 </style>
