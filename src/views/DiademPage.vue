@@ -216,7 +216,6 @@ export default {
   data() {
     return {
       regionTerritorySpots: regionTerritorySpots,
-      spotPanels: [],
       scripsIcon: ImgUtil.getImgUrl('skybuilders-scrips-065073-36x36.png'),
       tipMaps: [
         ImgUtil.getImgUrl('diadem-tip-map-grade2.png'),
@@ -284,6 +283,9 @@ export default {
         }
       })
     },
+    spotPanels() {
+      return this.diademSpots.map((it, index) => index).slice(3)
+    },
     ...mapState(['fish', 'items']),
     ...mapGetters([
       'getFishingSpot',
@@ -294,41 +296,7 @@ export default {
       'getBaits',
     ]),
   },
-  created() {
-    // this.diademSpots = this.getDiademSpots()
-    this.spotPanels = this.diademSpots.map((it, index) => index).slice(3)
-  },
   methods: {
-    // getDiademSpots() {
-    //   return _.sortBy(
-    //     this.regionTerritorySpots
-    //       .find(it => it.id === null)
-    //       .territories[0].spots.filter(spot => this.versionSpots.includes(spot.id)),
-    //     'id'
-    //   ).map(spot => {
-    //     const fishingSpot = this.getFishingSpot(spot.id)
-    //     return {
-    //       ...spot,
-    //       fishingSpot,
-    //       fishingSpotName: this.getFishingSpotsName(spot.id),
-    //       fishingSpotId: spot.id,
-    //       fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
-    //       fishList: spot.fishList.map(fishId => {
-    //         const fish = DIADEM.FISH[fishId]
-    //         const weatherSet = fish?.weatherSet ?? []
-    //         return {
-    //           ...fish,
-    //           id: fishId,
-    //           name: this.getItemName(fishId),
-    //           icon: this.getItemIconClass(fishId),
-    //           hasWeatherConstraint: weatherSet.length > 0,
-    //           weatherSetDetail: this.getWeather(weatherSet),
-    //           baits: this.getBaits(fish, DIADEM.FISH),
-    //         }
-    //       }),
-    //     }
-    //   })
-    // },
     toFishingSpotData(fishingSpot) {
       return {
         id: -1,
