@@ -928,8 +928,8 @@ export default {
         鱼饵进门的地方买，999拉满<br />
         2种高分技巧鱼需要以小钓大，可以双提，位于狂风云海(X34 Y10)和无风云海(X30 Y35)，冲分直接冲这两个钓场就行<br />
         <br />
-        无风云海：钓破云飞鱼,以小钓大，轻杆(！)直接双提<br />
-        狂风云海：钓破云飞鱼,以小钓大,20S以上中杆(!!)直接双提<br />
+        无风云海：钓破云飞鱼，以小钓大，轻杆(！)直接双提<br />
+        狂风云海：钓破云飞鱼，以小钓大，20S以上中杆(!!)直接双提<br />
         <br />
         以上两种鱼推荐先用NQ飞鱼以小钓大II，以小钓大II进入CD后用耐心提HQ飞鱼，等耐心消失后，用钓到的HQ飞鱼以小钓大，再双提特定鱼<br />
         4种绿鱼需要对应天气，分不高(对于千分鱼来说)，建议冲分后再钓，不计入烟波成就数量，但是存在单独的数量成就(无称号奖励)<br />
@@ -953,10 +953,10 @@ export default {
             <li>使用食物后获得力在<span style="font-weight:bold">2300以上</span>：
               <ul>
                 <li>无风云海(咬钩时间略长，但分高，推荐)：<br>鱼饵用任意空岛专属饵，<span style="font-weight:bold">20秒</span>以上<span
-                  style="font-weight:bold">中杆(！！)</span>双提<br>如果为盲蝠鲼则用专一+强心剂+双重提钩的comob。
+                  style="font-weight:bold">中杆(！！)</span>双提<br>如果为盲蝠鲼则用专一 + 强心剂 + 双重提钩的comob。
                 </li>
                 <li>狂风云海(分数较低，咬钩时间略短，综合不推荐)：<br>鱼饵用任意空岛专属饵，<span style="font-weight:bold">20秒</span>以上<span
-                  style="font-weight:bold">轻杆(！)</span>双提<br>如果为白丽鱼则用专一+强心剂+双重提钩的comob。
+                  style="font-weight:bold">轻杆(！)</span>双提<br>如果为白丽鱼则用专一 + 强心剂 + 双重提钩的comob。
                 </li>
               </ul>
             </li>

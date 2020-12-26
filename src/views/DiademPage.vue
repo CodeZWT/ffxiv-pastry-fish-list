@@ -1,5 +1,8 @@
 <template>
-  <v-container fluid>
+  <v-container
+    fluid
+    :class="`detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`"
+  >
     <v-row>
       <v-col cols="12">
         <v-card>
@@ -17,8 +20,8 @@
               <v-col cols="8">
                 <div>
                   <v-tabs v-model="versionIndex">
-                    <v-tab>第二期</v-tab>
-                    <v-tab>第三期</v-tab>
+                    <v-tab>第二期重建</v-tab>
+                    <v-tab>第三期重建</v-tab>
                   </v-tabs>
                   <v-card color="system">
                     <v-card-title>{{ simpleTip.title }}</v-card-title>
@@ -27,7 +30,7 @@
                     </v-card-text>
                     <v-divider />
                     <v-card-text>
-                      完整攻略请见：
+                      攻略及下方资料参考：
                       <div class="text-subtitle-1">
                         <a :href="simpleTip.reference.link" target="_blank">
                           {{ simpleTip.reference.title }}
@@ -223,6 +226,9 @@ export default {
     }
   },
   computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
+    },
     allFish() {
       return this.fish
     },
@@ -345,4 +351,20 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+@import "../styles/RcVariables"
+
+.detail-wrapper
+  width: 100%
+  height: 100%
+  overflow-scrolling: auto
+  overflow-y: scroll
+  overflow-x: hidden
+
+  &-mobile
+    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding + 40})
+    margin-top: 40px
+
+  &-pc
+    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+</style>
