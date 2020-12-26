@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row>
       <v-col cols="12">
         <v-card>
@@ -57,17 +57,19 @@
               item.fishingSpotName
             }}</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <div>{{ JSON.stringify(item, null, 2) }}</div>
+              <!-- <div>{{ JSON.stringify(item, null, 2) }}</div> -->
               <div class="d-flex flex-wrap">
                 <div class="col-12">
                   <v-simple-table>
                     <colgroup>
-                      <col span="1" style="width: 30%;" />
-                      <col span="1" style="width: 15%;" />
+                      <col span="1" style="width: 25%;" />
+                      <col span="1" style="width: 8%;" />
                       <col span="1" style="width: 6%;" />
                       <col span="1" style="width: 5%;" />
-                      <col span="1" style="width: 4%;" />
-                      <col span="1" style="width: 40%;" />
+                      <col span="1" style="width: 5%;" />
+                      <col span="1" style="width: 7%;" />
+                      <col span="1" style="width: 32%;" />
+                      <col span="1" style="width: 12%;" />
                     </colgroup>
                     <thead>
                       <tr>
@@ -84,8 +86,14 @@
                         <th class="text-center">
                           双提
                         </th>
+                        <th class="text-center">
+                          咬钩(s)
+                        </th>
                         <th>
                           钓法
+                        </th>
+                        <th>
+                          分解
                         </th>
                       </tr>
                     </thead>
@@ -94,7 +102,7 @@
                         <td>
                           <!--                    {{ fish.id }}-->
                           <div class="d-flex align-center">
-                            <item-icon :icon-class="fish.icon" />
+                            <item-icon :icon-class="fish.icon" style="min-width: 48px" />
                             <div class="d-flex flex-column ml-1">
                               <div
                                 class="text-subtitle-1"
@@ -138,7 +146,7 @@
                               v-for="(weather, index) in fish.weatherSetDetail"
                               :key="index"
                               :title="weather.name"
-                              class="d-flex align-center"
+                              class="d-flex flex-column align-center"
                             >
                               <div :class="weather.icon" :title="weather.name" />
                               <div class="ml-1">{{ weather.name }}</div>
@@ -164,9 +172,15 @@
                         <td class="text-center">
                           {{ fish.doubleHook ? fish.doubleHook : '-' }}
                         </td>
+                        <td class="text-center">
+                          {{ fish.biteTimeText }}
+                        </td>
                         <td>
                           <!--                      {{ fish.baits }}-->
                           <fish-bait-list :baits="fish.baits" />
+                        </td>
+                        <td class="text-left">
+                          {{ fish.desynthesis }}
                         </td>
                       </tr>
                     </tbody>
@@ -255,6 +269,7 @@ export default {
               hasWeatherConstraint: weatherSet.length > 0,
               weatherSetDetail: this.getWeather(weatherSet),
               baits: this.getBaits(fish, DIADEM.FISH),
+              biteTimeText: this.toBiteTimeText(fish.biteMin, fish.biteMax),
             }
           }),
         }
@@ -309,6 +324,17 @@ export default {
       return {
         id: -1,
         fishingSpots: [fishingSpot],
+      }
+    },
+    toBiteTimeText(min, max) {
+      if (min == null && max == null) {
+        return ''
+      } else if (min == null) {
+        return `< ${max}`
+      } else if (max == null) {
+        return `> ${min}`
+      } else {
+        return `${min} - ${max}`
       }
     },
     goToFishAngelPage: DataUtil.goToFishAngelPage,
