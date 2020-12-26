@@ -4,7 +4,7 @@
       <v-col cols="12">
         <v-card>
           <v-card-title>
-            云冠群岛
+            <div>云冠群岛</div>
           </v-card-title>
           <v-card-text>
             <!--            {{ diademSpots }}-->
@@ -15,24 +15,33 @@
             <!--            </v-list>-->
             <v-row>
               <v-col cols="8">
-                <v-card color="system">
-                  <v-card-title>{{ simpleTip.title }}</v-card-title>
-                  <v-card-text>
-                    <div v-html="simpleTip.content" />
-                  </v-card-text>
-                  <v-divider />
-                  <v-card-text>
-                    完整攻略请见：
-                    <div class="text-subtitle-1">
-                      <a href="https://bbs.nga.cn/read.php?tid=23009886" target="_blank">
-                        [5.21][空岛][捕鱼人][第二次伊修加德复兴](已更新钓场地图)谁敢向我挑衅，我将终结他的生命！捕鱼人空岛垂钓符文已配备
-                      </a>
-                    </div>
-                    <div>
-                      高咲侑@红玉海
-                    </div>
-                  </v-card-text>
-                </v-card>
+                <div>
+                  <v-tabs v-model="versionIndex">
+                    <v-tab>第二期</v-tab>
+                    <v-tab>第三期</v-tab>
+                  </v-tabs>
+                  <v-card color="system">
+                    <v-card-title>{{ simpleTip.title }}</v-card-title>
+                    <v-card-text>
+                      <div v-html="simpleTip.content" />
+                    </v-card-text>
+                    <v-divider />
+                    <v-card-text>
+                      完整攻略请见：
+                      <div class="text-subtitle-1">
+                        <a
+                          href="https://bbs.nga.cn/read.php?tid=23009886"
+                          target="_blank"
+                        >
+                          [5.21][空岛][捕鱼人][第二次伊修加德复兴](已更新钓场地图)谁敢向我挑衅，我将终结他的生命！捕鱼人空岛垂钓符文已配备
+                        </a>
+                      </div>
+                      <div>
+                        高咲侑@红玉海
+                      </div>
+                    </v-card-text>
+                  </v-card>
+                </div>
               </v-col>
               <v-col cols="4">
                 <v-img :src="tipGarde2Map" />
@@ -194,16 +203,60 @@ export default {
   data() {
     return {
       regionTerritorySpots: regionTerritorySpots,
-      diademSpots: [],
+      // diademSpots: [],
       spotPanels: [],
       scripsIcon: ImgUtil.getImgUrl('skybuilders-scrips-065073-36x36.png'),
       simpleTip: DIADEM.SIMPLE_TIP,
       tipGarde2Map: tipGarde2Map,
+      versionIndex: 1,
     }
   },
   computed: {
     allFish() {
       return this.fish
+    },
+    version() {
+      return [2, 3, 4][this.versionIndex]
+    },
+    versionSpots() {
+      switch (this.version) {
+        case 2:
+          return [10001, 10002, 10003, 10004, 10005, 10006, 10007]
+        case 3:
+          return [10008, 10009, 10010, 10011, 10012, 10013, 10014, 10015, 10016]
+        default:
+          return []
+      }
+    },
+    diademSpots() {
+      return _.sortBy(
+        this.regionTerritorySpots
+          .find(it => it.id === null)
+          .territories[0].spots.filter(spot => this.versionSpots.includes(spot.id)),
+        'id'
+      ).map(spot => {
+        const fishingSpot = this.getFishingSpot(spot.id)
+        return {
+          ...spot,
+          fishingSpot,
+          fishingSpotName: this.getFishingSpotsName(spot.id),
+          fishingSpotId: spot.id,
+          fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
+          fishList: spot.fishList.map(fishId => {
+            const fish = DIADEM.FISH[fishId]
+            // const weatherSet = fish?.weatherSet ?? []
+            return {
+              ...fish,
+              id: fishId,
+              name: this.getItemName(fishId),
+              icon: this.getItemIconClass(fishId),
+              // hasWeatherConstraint: weatherSet.length > 0,
+              // weatherSetDetail: this.getWeather(weatherSet),
+              // baits: this.getBaits(fish, DIADEM.FISH),
+            }
+          }),
+        }
+      })
     },
     ...mapState(['fish', 'items']),
     ...mapGetters([
@@ -216,40 +269,40 @@ export default {
     ]),
   },
   created() {
-    this.diademSpots = this.getDiademSpots()
+    // this.diademSpots = this.getDiademSpots()
     this.spotPanels = this.diademSpots.map((it, index) => index).slice(3)
   },
   methods: {
-    getDiademSpots() {
-      return _.sortBy(
-        this.regionTerritorySpots
-          .find(it => it.id === null)
-          .territories[0].spots.filter(spot => spot.id > 10000 && spot.id < 10008),
-        'id'
-      ).map(spot => {
-        const fishingSpot = this.getFishingSpot(spot.id)
-        return {
-          ...spot,
-          fishingSpot,
-          fishingSpotName: this.getFishingSpotsName(spot.id),
-          fishingSpotId: spot.id,
-          fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
-          fishList: spot.fishList.map(fishId => {
-            const fish = DIADEM.FISH[fishId]
-            const weatherSet = fish?.weatherSet ?? []
-            return {
-              ...fish,
-              id: fishId,
-              name: this.getItemName(fishId),
-              icon: this.getItemIconClass(fishId),
-              hasWeatherConstraint: weatherSet.length > 0,
-              weatherSetDetail: this.getWeather(weatherSet),
-              baits: this.getBaits(fish, DIADEM.FISH),
-            }
-          }),
-        }
-      })
-    },
+    // getDiademSpots() {
+    //   return _.sortBy(
+    //     this.regionTerritorySpots
+    //       .find(it => it.id === null)
+    //       .territories[0].spots.filter(spot => this.versionSpots.includes(spot.id)),
+    //     'id'
+    //   ).map(spot => {
+    //     const fishingSpot = this.getFishingSpot(spot.id)
+    //     return {
+    //       ...spot,
+    //       fishingSpot,
+    //       fishingSpotName: this.getFishingSpotsName(spot.id),
+    //       fishingSpotId: spot.id,
+    //       fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
+    //       fishList: spot.fishList.map(fishId => {
+    //         const fish = DIADEM.FISH[fishId]
+    //         const weatherSet = fish?.weatherSet ?? []
+    //         return {
+    //           ...fish,
+    //           id: fishId,
+    //           name: this.getItemName(fishId),
+    //           icon: this.getItemIconClass(fishId),
+    //           hasWeatherConstraint: weatherSet.length > 0,
+    //           weatherSetDetail: this.getWeather(weatherSet),
+    //           baits: this.getBaits(fish, DIADEM.FISH),
+    //         }
+    //       }),
+    //     }
+    //   })
+    // },
     toFishingSpotData(fishingSpot) {
       return {
         id: -1,
