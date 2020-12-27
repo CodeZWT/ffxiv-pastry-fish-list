@@ -179,12 +179,16 @@
                           <!--                      {{ fish.baits }}-->
                           <div class="d-flex">
                             <div class="d-flex align-center">
-                              <i class="xiv square-a" v-if="fish.baitsExtra.length > 0" />
+                              <i
+                                class="xiv square-a"
+                                v-if="fish.baitsExtra.length > 0"
+                                title="一种可能情况A"
+                              />
                               <fish-bait-list :baits="fish.baits" />
                             </div>
                             <template v-if="fish.baitsExtra.length > 0">
                               <div class="d-flex align-center">
-                                <i class="xiv square-b"></i>
+                                <i class="xiv square-b" title="另一种可能情况B" />
                                 <fish-bait-list :baits="fish.baitsExtra" />
                               </div>
                             </template>
