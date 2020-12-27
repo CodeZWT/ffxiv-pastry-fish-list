@@ -23,6 +23,7 @@ const CDN_DICT = {
   'a2f1.00.jpg': { name: 'a2f1.00.jpg', id: '5fd22e113ffa7d37b3ada5d9', ext: 'jpg' },
   'a2f2.00.jpg': { name: 'a2f2.00.jpg', id: '5fd22e113ffa7d37b3ada6e9', ext: 'jpg' },
   'a2fh.00.jpg': { name: 'a2fh.00.jpg', id: '5fe3f14f3ffa7d37b338535a', ext: 'jpg' },
+  'a2fx.00.jpg': { name: 'a2fx.00.jpg', id: '5fe86ca93ffa7d37b3d6db25', ext: 'jpg' },
   'd2f1.00.jpg': { name: 'd2f1.00.jpg', id: '5fd22e123ffa7d37b3ada77f', ext: 'jpg' },
   'd2f2.00.jpg': { name: 'd2f2.00.jpg', id: '5fd22e123ffa7d37b3ada7c9', ext: 'jpg' },
   'd2f3.00.jpg': { name: 'd2f3.00.jpg', id: '5fd22e133ffa7d37b3ada85c', ext: 'jpg' },
