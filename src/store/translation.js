@@ -6145,106 +6145,6 @@ export default {
       name_chs: '依拉丝莫龙',
       icon: 28012,
     },
-    '29994': {
-      _id: 29994,
-      name_chs: '第二期重建用的云冠跳鱼',
-      icon: 29473,
-    },
-    '29995': {
-      _id: 29995,
-      name_chs: '第二期重建用的冥想鱼',
-      icon: 29400,
-    },
-    '29996': {
-      _id: 29996,
-      name_chs: '第二期重建用的豹鱼',
-      icon: 29261,
-    },
-    '29997': {
-      _id: 29997,
-      name_chs: '第二期重建用的雀鳝',
-      icon: 29511,
-    },
-    '29998': {
-      _id: 29998,
-      name_chs: '第二期重建用的巨骨舌鱼',
-      icon: 29224,
-    },
-    '29999': {
-      _id: 29999,
-      name_chs: '第二期重建用的褐飞刀',
-      icon: 29232,
-    },
-    '30000': {
-      _id: 30000,
-      name_chs: '第二期重建用的苦鱼',
-      icon: 29596,
-    },
-    '30001': {
-      _id: 30001,
-      name_chs: '第二期重建用的凯门鳄',
-      icon: 29415,
-    },
-    '30002': {
-      _id: 30002,
-      name_chs: '第二期重建用的破云飞鱼',
-      icon: 29655,
-    },
-    '30003': {
-      _id: 30003,
-      name_chs: '第二期重建用的吸血魔毯',
-      icon: 29701,
-    },
-    '30004': {
-      _id: 30004,
-      name_chs: '第二期重建用的妖精翼龙',
-      icon: 29709,
-    },
-    '30005': {
-      _id: 30005,
-      name_chs: '第二期重建用的飞蝠鲼',
-      icon: 29130,
-    },
-    '30006': {
-      _id: 30006,
-      name_chs: '第二期重建用的特供菱龙',
-      icon: 29116,
-    },
-    '30007': {
-      _id: 30007,
-      name_chs: '第二期重建用的特供哥布面具',
-      icon: 29708,
-    },
-    '30008': {
-      _id: 30008,
-      name_chs: '第二期重建用的特供翼手龙',
-      icon: 29724,
-    },
-    '30009': {
-      _id: 30009,
-      name_chs: '第二期重建用的特供天鱼',
-      icon: 29653,
-    },
-    '30010': {
-      _id: 30010,
-      name_chs: '第二期重建用的特供彗星鱼',
-      icon: 29865,
-    },
-    '30011': {
-      _id: 30011,
-      name_chs: '第二期重建用的特供奇虾',
-      icon: 29658,
-    },
-    '30012': {
-      _id: 30012,
-      name_chs: '第二期重建用的特供喙嘴龙',
-      icon: 29660,
-    },
-    '30013': {
-      _id: 30013,
-      name_chs: '第二期重建用的特供龙魂',
-      icon: 29074,
-    },
     '30014': {
       _id: 30014,
       name_chs: '第二期重建用的云冠跳鱼（检）',
@@ -6454,6 +6354,236 @@ export default {
       _id: 31134,
       name_en: 'Allagan Hunter',
       icon: 29462,
+    },
+    '29994': {
+      _id: 29994,
+      icon: 29473,
+      name_chs: '第二期重建用的云冠跳鱼',
+    },
+    '29995': {
+      _id: 29995,
+      icon: 29400,
+      name_chs: '第二期重建用的冥想鱼',
+    },
+    '29996': {
+      _id: 29996,
+      icon: 29261,
+      name_chs: '第二期重建用的豹鱼',
+    },
+    '29997': {
+      _id: 29997,
+      icon: 29511,
+      name_chs: '第二期重建用的雀鳝',
+    },
+    '29998': {
+      _id: 29998,
+      icon: 29224,
+      name_chs: '第二期重建用的巨骨舌鱼',
+    },
+    '29999': {
+      _id: 29999,
+      icon: 29232,
+      name_chs: '第二期重建用的褐飞刀',
+    },
+    '30000': {
+      _id: 30000,
+      icon: 29596,
+      name_chs: '第二期重建用的苦鱼',
+    },
+    '30001': {
+      _id: 30001,
+      icon: 29415,
+      name_chs: '第二期重建用的凯门鳄',
+    },
+    '30002': {
+      _id: 30002,
+      icon: 29655,
+      name_chs: '第二期重建用的破云飞鱼',
+    },
+    '30003': {
+      _id: 30003,
+      icon: 29701,
+      name_chs: '第二期重建用的吸血魔毯',
+    },
+    '30004': {
+      _id: 30004,
+      icon: 29709,
+      name_chs: '第二期重建用的妖精翼龙',
+    },
+    '30005': {
+      _id: 30005,
+      icon: 29130,
+      name_chs: '第二期重建用的飞蝠鲼',
+    },
+    '30006': {
+      _id: 30006,
+      icon: 29116,
+      name_chs: '第二期重建用的特供菱龙',
+    },
+    '30007': {
+      _id: 30007,
+      icon: 29708,
+      name_chs: '第二期重建用的特供哥布面具',
+    },
+    '30008': {
+      _id: 30008,
+      icon: 29724,
+      name_chs: '第二期重建用的特供翼手龙',
+    },
+    '30009': {
+      _id: 30009,
+      icon: 29653,
+      name_chs: '第二期重建用的特供天鱼',
+    },
+    '30010': {
+      _id: 30010,
+      icon: 29865,
+      name_chs: '第二期重建用的特供彗星鱼',
+    },
+    '30011': {
+      _id: 30011,
+      icon: 29658,
+      name_chs: '第二期重建用的特供奇虾',
+    },
+    '30012': {
+      _id: 30012,
+      icon: 29660,
+      name_chs: '第二期重建用的特供喙嘴龙',
+    },
+    '30013': {
+      _id: 30013,
+      icon: 29074,
+      name_chs: '第二期重建用的特供龙魂',
+    },
+    '31578': {
+      _id: 31578,
+      icon: 29303,
+      name_chs: "Grade 3 Skybuilders' Thunderbolt Sculpin",
+    },
+    '31579': {
+      _id: 31579,
+      icon: 29519,
+      name_chs: "Grade 3 Skybuilders' Alligator Snapping Turtle",
+    },
+    '31580': {
+      _id: 31580,
+      icon: 29243,
+      name_chs: "Grade 3 Skybuilders' Bonytongue",
+    },
+    '31581': {
+      _id: 31581,
+      icon: 29493,
+      name_chs: "Grade 3 Skybuilders' Hermit Goby",
+    },
+    '31582': {
+      _id: 31582,
+      icon: 29291,
+      name_chs: "Grade 3 Skybuilders' Mudskipper",
+    },
+    '31583': {
+      _id: 31583,
+      icon: 29443,
+      name_chs: "Grade 3 Skybuilders' Steppe Bullfrog",
+    },
+    '31584': {
+      _id: 31584,
+      icon: 29258,
+      name_chs: "Grade 3 Skybuilders' Golden Loach",
+    },
+    '31585': {
+      _id: 31585,
+      icon: 29268,
+      name_chs: "Grade 3 Skybuilders' Bass",
+    },
+    '31586': {
+      _id: 31586,
+      icon: 29227,
+      name_chs: "Grade 3 Skybuilders' Cherax",
+    },
+    '31587': {
+      _id: 31587,
+      icon: 29316,
+      name_chs: "Grade 3 Skybuilders' Marimo",
+    },
+    '31588': {
+      _id: 31588,
+      icon: 29217,
+      name_chs: "Grade 3 Skybuilders' Catfish",
+    },
+    '31589': {
+      _id: 31589,
+      icon: 29484,
+      name_chs: "Grade 3 Skybuilders' Ricefish",
+    },
+    '31590': {
+      _id: 31590,
+      icon: 29721,
+      name_chs: "Grade 3 Skybuilders' Scorpionfly",
+    },
+    '31591': {
+      _id: 31591,
+      icon: 29719,
+      name_chs: "Grade 3 Skybuilders' Whiteloom",
+    },
+    '31592': {
+      _id: 31592,
+      icon: 29707,
+      name_chs: "Grade 3 Skybuilders' Pteranodon",
+    },
+    '31593': {
+      _id: 31593,
+      icon: 29910,
+      name_chs: "Grade 3 Skybuilders' King's Mantle",
+    },
+    '31594': {
+      _id: 31594,
+      icon: 29711,
+      name_chs: "Grade 3 Skybuilders' Blue Medusa",
+    },
+    '31595': {
+      _id: 31595,
+      icon: 29720,
+      name_chs: "Grade 3 Skybuilders' Gurnard",
+    },
+    '31596': {
+      _id: 31596,
+      icon: 29403,
+      name_chs: "Grade 3 Artisanal Skybuilders' Oscar",
+    },
+    '31597': {
+      _id: 31597,
+      icon: 29651,
+      name_chs: "Grade 3 Artisanal Skybuilders' Blind Manta",
+    },
+    '31598': {
+      _id: 31598,
+      icon: 29904,
+      name_chs: "Grade 3 Artisanal Skybuilders' Mosasaur",
+    },
+    '31599': {
+      _id: 31599,
+      icon: 29712,
+      name_chs: "Grade 3 Artisanal Skybuilders' Storm Chaser",
+    },
+    '31600': {
+      _id: 31600,
+      icon: 29737,
+      name_chs: "Grade 3 Artisanal Skybuilders' Archaeopteryx",
+    },
+    '31601': {
+      _id: 31601,
+      icon: 29738,
+      name_chs: "Grade 3 Artisanal Skybuilders' Wyvern",
+    },
+    '31602': {
+      _id: 31602,
+      icon: 29739,
+      name_chs: "Grade 3 Artisanal Skybuilders' Cloudshark",
+    },
+    '31603': {
+      _id: 31603,
+      icon: 29740,
+      name_chs: "Grade 3 Artisanal Skybuilders' Helicoprion",
     },
   },
   FISHING_SPOTS: {
@@ -9210,81 +9340,181 @@ export default {
     '10001': {
       _id: 10001,
       name_chs: '云冠洞穴',
-      map: 0,
+      map: 356,
       size_factor: 100,
-      x: 0,
-      y: 0,
-      mapFileId: null,
-      radius: 0,
-      anglerLocationId: 80102,
+      x: 675,
+      y: 1675,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140101,
     },
     '10002': {
       _id: 10002,
       name_chs: '云冠西南池',
-      map: 0,
+      map: 356,
       size_factor: 100,
-      x: 0,
-      y: 0,
-      mapFileId: null,
-      radius: 0,
-      anglerLocationId: 80103,
+      x: 375,
+      y: 1475,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140102,
     },
     '10003': {
       _id: 10003,
       name_chs: '云冠西北池',
-      map: 0,
+      map: 356,
       size_factor: 100,
-      x: 0,
-      y: 0,
-      mapFileId: null,
-      radius: 0,
-      anglerLocationId: 80105,
+      x: 475,
+      y: 425,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140103,
     },
     '10004': {
       _id: 10004,
       name_chs: '狂风云海',
-      map: 0,
+      map: 356,
       size_factor: 100,
-      x: 0,
-      y: 0,
-      mapFileId: null,
-      radius: 0,
-      anglerLocationId: 80106,
+      x: 1525,
+      y: 525,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140104,
     },
     '10005': {
       _id: 10005,
       name_chs: '无风云海',
-      map: 0,
+      map: 356,
       size_factor: 100,
-      x: 0,
-      y: 0,
-      mapFileId: null,
-      radius: 0,
-      anglerLocationId: 80107,
+      x: 1375,
+      y: 1625,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140105,
     },
     '10006': {
       _id: 10006,
       name_chs: '旋风云海',
-      map: 0,
+      map: 356,
       size_factor: 100,
-      x: 0,
-      y: 0,
-      mapFileId: null,
-      radius: 0,
-      anglerLocationId: 80108,
+      x: 625,
+      y: 1175,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140106,
     },
     '10007': {
       _id: 10007,
       name_chs: '摇风云海',
-      map: 0,
+      map: 356,
       size_factor: 100,
-      x: 0,
-      y: 0,
-      mapFileId: null,
-      radius: 0,
-      anglerLocationId: null,
+      x: 1375,
+      y: 1645,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140107,
+    },
+    '10008': {
+      _id: 10008,
+      name_chs: '云冠洞穴',
+      map: 356,
+      size_factor: 100,
+      x: 675,
+      y: 1675,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140101,
+    },
+    '10009': {
+      _id: 10009,
+      name_chs: '云冠西南池',
+      map: 356,
+      size_factor: 100,
+      x: 375,
+      y: 1475,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140102,
+    },
+    '10010': {
+      _id: 10010,
+      name_chs: '云冠西北池',
+      map: 356,
+      size_factor: 100,
+      x: 475,
+      y: 425,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140103,
+    },
+    '10011': {
+      _id: 10011,
+      name_chs: '狂风云海',
+      map: 356,
+      size_factor: 100,
+      x: 1525,
+      y: 525,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140104,
+    },
+    '10012': {
+      _id: 10012,
+      name_chs: '无风云海',
+      map: 356,
+      size_factor: 100,
+      x: 1375,
+      y: 1625,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140105,
+    },
+    '10013': {
+      _id: 10013,
+      name_chs: '旋风云海',
+      map: 356,
+      size_factor: 100,
+      x: 625,
+      y: 1175,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140106,
+    },
+    '10014': {
+      _id: 10014,
+      name_chs: '摇风云海',
+      map: 356,
+      size_factor: 100,
+      x: 1375,
+      y: 1645,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140107,
+    },
+    '10015': {
+      _id: 10015,
+      name_chs: 'Windbreaking Cloudtop',
+      map: 356,
+      size_factor: 100,
+      x: 1325,
+      y: 305,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140108,
+    },
+    '10016': {
+      _id: 10016,
+      name_chs: 'Buffeted Cloudtop',
+      map: 356,
+      size_factor: 100,
+      x: 1700,
+      y: 850,
+      mapFileId: 'a2fh/00',
+      radius: 300,
+      anglerLocationId: 140109,
     },
   },
+  // PlaceName id to Name_CHS
   ZONES: {
     '0': {
       _id: 0,
@@ -10596,593 +10826,130 @@ export default {
     },
   },
   WEATHER_TYPES: {
-    '0': {
-      _id: 0,
-      name_chs: null,
-    },
     '1': {
       _id: 1,
+      icon: 60201,
       name_chs: '碧空',
     },
     '2': {
       _id: 2,
+      icon: 60202,
       name_chs: '晴朗',
     },
     '3': {
       _id: 3,
+      icon: 60203,
       name_chs: '阴云',
     },
     '4': {
       _id: 4,
+      icon: 60204,
       name_chs: '薄雾',
     },
     '5': {
       _id: 5,
+      icon: 60205,
       name_chs: '微风',
     },
     '6': {
       _id: 6,
+      icon: 60206,
       name_chs: '强风',
     },
     '7': {
       _id: 7,
+      icon: 60207,
       name_chs: '小雨',
     },
     '8': {
       _id: 8,
+      icon: 60208,
       name_chs: '暴雨',
     },
     '9': {
       _id: 9,
+      icon: 60209,
       name_chs: '打雷',
     },
     '10': {
       _id: 10,
+      icon: 60210,
       name_chs: '雷雨',
     },
     '11': {
       _id: 11,
+      icon: 60211,
       name_chs: '扬沙',
     },
     '12': {
       _id: 12,
+      icon: 60212,
       name_chs: '沙尘暴',
     },
     '13': {
       _id: 13,
+      icon: 60213,
       name_chs: '高温',
     },
     '14': {
       _id: 14,
+      icon: 60214,
       name_chs: '热浪',
     },
     '15': {
       _id: 15,
+      icon: 60215,
       name_chs: '小雪',
     },
     '16': {
       _id: 16,
+      icon: 60216,
       name_chs: '暴雪',
     },
     '17': {
       _id: 17,
+      icon: 60218,
       name_chs: '妖雾',
-    },
-    '18': {
-      _id: 18,
-      name_chs: '极光',
-    },
-    '19': {
-      _id: 19,
-      name_chs: '黑暗',
-    },
-    '20': {
-      _id: 20,
-      name_chs: '绝命',
-    },
-    '21': {
-      _id: 21,
-      name_chs: '阴云',
-    },
-    '22': {
-      _id: 22,
-      name_chs: '雷云',
-    },
-    '23': {
-      _id: 23,
-      name_chs: '暴风雨',
-    },
-    '24': {
-      _id: 24,
-      name_chs: '暴风雨',
-    },
-    '25': {
-      _id: 25,
-      name_chs: '阴沉',
-    },
-    '26': {
-      _id: 26,
-      name_chs: '热浪',
-    },
-    '27': {
-      _id: 27,
-      name_chs: '妖雾',
-    },
-    '28': {
-      _id: 28,
-      name_chs: '暴风',
-    },
-    '29': {
-      _id: 29,
-      name_chs: '烟雾',
-    },
-    '30': {
-      _id: 30,
-      name_chs: '晴朗',
-    },
-    '31': {
-      _id: 31,
-      name_chs: '晴朗',
-    },
-    '32': {
-      _id: 32,
-      name_chs: '晴朗',
-    },
-    '33': {
-      _id: 33,
-      name_chs: '晴朗',
-    },
-    '34': {
-      _id: 34,
-      name_chs: '晴朗',
-    },
-    '35': {
-      _id: 35,
-      name_chs: '极光',
-    },
-    '36': {
-      _id: 36,
-      name_chs: '辉核',
-    },
-    '37': {
-      _id: 37,
-      name_chs: '辉核',
-    },
-    '38': {
-      _id: 38,
-      name_chs: '辉核',
-    },
-    '39': {
-      _id: 39,
-      name_chs: '辉核',
-    },
-    '40': {
-      _id: 40,
-      name_chs: '滩云',
-    },
-    '41': {
-      _id: 41,
-      name_chs: '滩云',
-    },
-    '42': {
-      _id: 42,
-      name_chs: '滩云',
-    },
-    '43': {
-      _id: 43,
-      name_chs: '滩云',
-    },
-    '44': {
-      _id: 44,
-      name_chs: '神意',
-    },
-    '45': {
-      _id: 45,
-      name_chs: '神意',
-    },
-    '46': {
-      _id: 46,
-      name_chs: '神意',
-    },
-    '47': {
-      _id: 47,
-      name_chs: '神意',
-    },
-    '48': {
-      _id: 48,
-      name_chs: '神意',
     },
     '49': {
       _id: 49,
+      icon: 60219,
       name_chs: '灵风',
     },
     '50': {
       _id: 50,
+      icon: 60220,
       name_chs: '灵电',
-    },
-    '51': {
-      _id: 51,
-      name_chs: '烟武',
-    },
-    '52': {
-      _id: 52,
-      name_chs: '晴朗',
-    },
-    '53': {
-      _id: 53,
-      name_chs: '兽雷',
-    },
-    '54': {
-      _id: 54,
-      name_chs: '雷波',
-    },
-    '55': {
-      _id: 55,
-      name_chs: '兽雷',
-    },
-    '56': {
-      _id: 56,
-      name_chs: '神意',
-    },
-    '57': {
-      _id: 57,
-      name_chs: '打雷',
-    },
-    '58': {
-      _id: 58,
-      name_chs: '打雷',
-    },
-    '59': {
-      _id: 59,
-      name_chs: null,
-    },
-    '60': {
-      _id: 60,
-      name_chs: '神秘',
-    },
-    '61': {
-      _id: 61,
-      name_chs: '神秘',
-    },
-    '62': {
-      _id: 62,
-      name_chs: '小雨',
-    },
-    '63': {
-      _id: 63,
-      name_chs: '晴朗',
-    },
-    '64': {
-      _id: 64,
-      name_chs: '小雨',
-    },
-    '65': {
-      _id: 65,
-      name_chs: '晴朗',
-    },
-    '66': {
-      _id: 66,
-      name_chs: '邪天',
-    },
-    '67': {
-      _id: 67,
-      name_chs: '邪天',
-    },
-    '68': {
-      _id: 68,
-      name_chs: '晴朗',
-    },
-    '69': {
-      _id: 69,
-      name_chs: '平衡',
-    },
-    '70': {
-      _id: 70,
-      name_chs: '平衡',
-    },
-    '71': {
-      _id: 71,
-      name_chs: '时光',
-    },
-    '72': {
-      _id: 72,
-      name_chs: '时光',
-    },
-    '73': {
-      _id: 73,
-      name_chs: '时光',
-    },
-    '74': {
-      _id: 74,
-      name_chs: '鬼气',
-    },
-    '75': {
-      _id: 75,
-      name_chs: '鬼气',
-    },
-    '76': {
-      _id: 76,
-      name_chs: '鬼气',
-    },
-    '77': {
-      _id: 77,
-      name_chs: '次元',
-    },
-    '78': {
-      _id: 78,
-      name_chs: '次元',
-    },
-    '79': {
-      _id: 79,
-      name_chs: '次元',
-    },
-    '80': {
-      _id: 80,
-      name_chs: '豪雨',
-    },
-    '81': {
-      _id: 81,
-      name_chs: '豪雨',
-    },
-    '82': {
-      _id: 82,
-      name_chs: '极乐',
-    },
-    '83': {
-      _id: 83,
-      name_chs: '极乐',
-    },
-    '84': {
-      _id: 84,
-      name_chs: '龙威',
-    },
-    '85': {
-      _id: 85,
-      name_chs: '龙威',
-    },
-    '86': {
-      _id: 86,
-      name_chs: '豪雨',
-    },
-    '87': {
-      _id: 87,
-      name_chs: '迅雷',
-    },
-    '88': {
-      _id: 88,
-      name_chs: '打雷',
-    },
-    '89': {
-      _id: 89,
-      name_chs: '次元',
-    },
-    '90': {
-      _id: 90,
-      name_chs: '晴朗',
-    },
-    '91': {
-      _id: 91,
-      name_chs: '碧空',
-    },
-    '92': {
-      _id: 92,
-      name_chs: '白旋风',
-    },
-    '93': {
-      _id: 93,
-      name_chs: '白旋风',
-    },
-    '94': {
-      _id: 94,
-      name_chs: '白旋风',
-    },
-    '95': {
-      _id: 95,
-      name_chs: '幻想',
-    },
-    '96': {
-      _id: 96,
-      name_chs: '白旋风',
-    },
-    '97': {
-      _id: 97,
-      name_chs: '月夜',
-    },
-    '98': {
-      _id: 98,
-      name_chs: '月夜',
-    },
-    '99': {
-      _id: 99,
-      name_chs: '月夜',
-    },
-    '100': {
-      _id: 100,
-      name_chs: '月夜',
-    },
-    '101': {
-      _id: 101,
-      name_chs: '红月下',
-    },
-    '102': {
-      _id: 102,
-      name_chs: '朱炎',
-    },
-    '103': {
-      _id: 103,
-      name_chs: '朱炎',
-    },
-    '104': {
-      _id: 104,
-      name_chs: '朱炎',
-    },
-    '105': {
-      _id: 105,
-      name_chs: '晴朗',
-    },
-    '106': {
-      _id: 106,
-      name_chs: '晴朗',
-    },
-    '107': {
-      _id: 107,
-      name_chs: '晴朗',
-    },
-    '108': {
-      _id: 108,
-      name_chs: '晴朗',
-    },
-    '109': {
-      _id: 109,
-      name_chs: '烈焰',
-    },
-    '110': {
-      _id: 110,
-      name_chs: '海啸',
-    },
-    '111': {
-      _id: 111,
-      name_chs: '龙卷风',
-    },
-    '112': {
-      _id: 112,
-      name_chs: '地震',
-    },
-    '113': {
-      _id: 113,
-      name_chs: '青空',
-    },
-    '114': {
-      _id: 114,
-      name_chs: '青空',
-    },
-    '115': {
-      _id: 115,
-      name_chs: '青空',
-    },
-    '116': {
-      _id: 116,
-      name_chs: '乱灵流',
-    },
-    '117': {
-      _id: 117,
-      name_chs: '青空',
-    },
-    '118': {
-      _id: 118,
-      name_chs: '无尽光',
-    },
-    '119': {
-      _id: 119,
-      name_chs: '暴风',
-    },
-    '120': {
-      _id: 120,
-      name_chs: '末日',
-    },
-    '121': {
-      _id: 121,
-      name_chs: '末日',
-    },
-    '122': {
-      _id: 122,
-      name_chs: '妖梦',
-    },
-    '123': {
-      _id: 123,
-      name_chs: '妖梦',
-    },
-    '124': {
-      _id: 124,
-      name_chs: '妖梦',
-    },
-    '125': {
-      _id: 125,
-      name_chs: '光天',
-    },
-    '126': {
-      _id: 126,
-      name_chs: '光天',
-    },
-    '127': {
-      _id: 127,
-      name_chs: '末日',
-    },
-    '128': {
-      _id: 128,
-      name_chs: '末日',
-    },
-    '129': {
-      _id: 129,
-      name_chs: '无尽光',
-    },
-    '130': {
-      _id: 130,
-      name_chs: '烟雾',
-    },
-    '131': {
-      _id: 131,
-      name_chs: '末日',
-    },
-    '132': {
-      _id: 132,
-      name_chs: '晴朗',
     },
     '133': {
       _id: 133,
+      icon: 60288,
       name_chs: '灵烈火',
     },
     '134': {
       _id: 134,
+      icon: 60289,
       name_chs: '灵飘尘',
     },
     '135': {
       _id: 135,
+      icon: 60290,
       name_chs: '灵飞电',
     },
     '136': {
       _id: 136,
+      icon: 60291,
       name_chs: '灵罡风',
     },
     '137': {
       _id: 137,
+      icon: 60296,
       name_chs: '流星雨',
-    },
-    '138': {
-      _id: 138,
-      name_chs: null,
-    },
-    '139': {
-      _id: 139,
-      name_chs: '阴云',
-    },
-    '140': {
-      _id: 140,
-      name_chs: '阴云',
-    },
-    '141': {
-      _id: 141,
-      name_chs: '极光',
-    },
-    '142': {
-      _id: 142,
-      name_chs: '极光',
-    },
-    '143': {
-      _id: 143,
-      name_chs: '雷云',
-    },
-    '144': {
-      _id: 144,
-      name_chs: '火风暴',
     },
     '145': {
       _id: 145,
+      icon: 60292,
       name_chs: '幻海流',
-    },
-    '146': {
-      _id: 146,
-      name_chs: null,
     },
   },
   FISH_ANGLER_ID: {

@@ -38,10 +38,14 @@ export default {
   },
   computed: {
     transformedFishPart() {
+      const toBeNotified = this.getFishToBeNotified(this.fish.id)
       return {
         completed: this.getFishCompleted(this.fish.id),
         pinned: this.getFishPinned(this.fish.id),
-        toBeNotified: this.getFishToBeNotified(this.fish.id),
+        toBeNotified: toBeNotified,
+        notificationHint: toBeNotified
+          ? this.$t('list.item.notificationHintOff')
+          : this.$t('list.item.notificationHint'),
       }
     },
     transformedFishTimePart() {
@@ -98,9 +102,7 @@ export default {
   },
   methods: {
     printCountDownTime: DataUtil.printCountDownTime,
-    goToFishAngelPage(anglerFishId) {
-      window.open(`https://cn.ff14angler.com/fish/${anglerFishId}`)
-    },
+    goToFishAngelPage: DataUtil.goToFishAngelPage,
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
     },

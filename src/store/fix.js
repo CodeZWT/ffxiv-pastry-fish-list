@@ -406,6 +406,17 @@ export default {
       _id: 4997,
       hookset: 'Powerful',
     },
+    '12771': {
+      _id: 12771,
+      hookset: 'Precision',
+      tug: 'light',
+    },
+    '17564': {
+      _id: 17564,
+      patch: 3.5,
+      hookset: 'Precision',
+      tug: 'light',
+    },
   },
   STARLIGHT_CELEBRATION: {
     startTime: 1608616800000,

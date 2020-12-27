@@ -202,14 +202,18 @@
               <v-list-item-title>{{ $t('top.oceanFishing') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <!--          <v-list-item @click="toPage('DiademPage')" link>-->
-          <!--            <v-list-item-icon>-->
-          <!--              <v-icon>mdi-cloud</v-icon>-->
-          <!--            </v-list-item-icon>-->
-          <!--            <v-list-item-content>-->
-          <!--              <v-list-item-title>{{ $t('top.diadem') }}</v-list-item-title>-->
-          <!--            </v-list-item-content>-->
-          <!--          </v-list-item>-->
+          <v-list-item @click="toPage('DiademPage')" link>
+            <v-list-item-icon>
+              <v-img
+                :src="dark ? diademDark : diademLight"
+                height="24"
+                width="24"
+              ></v-img>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.diadem') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
 
         <template v-slot:append>
@@ -352,6 +356,46 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.4.3</div>
+          <div>
+            <div class="text-h5 text-center">
+              新增云冠群岛支持<br />（包括第二期以及即将更新的第三期重建）
+            </div>
+            <div>
+              页面中攻略与资料参考：
+              <div class="text-subtitle-1">
+                <a :href="diademTips[0].reference.link" target="_blank">
+                  {{ diademTips[0].reference.title }}
+                </a>
+              </div>
+              <div class="text-subtitle-1">
+                <a :href="diademTips[1].reference.link" target="_blank">
+                  {{ diademTips[1].reference.title }}
+                </a>
+              </div>
+              <div>
+                {{ diademTips[0].reference.author }}
+              </div>
+              <p />
+              <div>
+                <div class="d-flex justify-center">
+                  <div>
+                    <v-img
+                      :src="dark ? diademDark : diademLight"
+                      height="24"
+                      width="24"
+                    />
+                  </div>
+                </div>
+                感谢
+                <span style="font-weight: bold">煋月丶幻神@琥珀原</span>
+                友情绘制的云冠群岛图标！
+              </div>
+            </div>
+          </div>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.4.2</div>
           <div>
             <div class="text-h5 text-center">
@@ -420,7 +464,7 @@
                 <li>
                   <a
                     class="text-subtitle-1"
-                    href="https://bbs.nga.cn/read.php?tid=18484723"
+                    href="https://ngabbs.com/read.php?tid=18484723"
                     target="_blank"
                   >
                     [烟波钓徒]红莲之狂潮&苍穹之禁城 钓场之皇捕获指南
@@ -816,6 +860,7 @@ import FishSearch from '@/components/FishSearch'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import ImgUtil from '@/utils/ImgUtil'
 import FIX from '@/store/fix'
+import DIADEM from '@/store/diadem'
 
 export default {
   name: 'App',
@@ -858,6 +903,9 @@ export default {
     fishListWeatherChangePart: {},
     extraFishListTimePart: {},
     lazyFishWindowRates: {},
+    diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
+    diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
+    diademTips: DIADEM.SIMPLE_TIPS,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -1167,53 +1215,53 @@ export default {
     })
   },
   async mounted() {
-    setTimeout(async () => {
-      this.initialUserData()
+    // setTimeout(async () => {
+    this.initialUserData()
 
-      this.$vuetify.theme.dark = this.dark
-      if (
-        this.toComparableVersion(this.version) >
-        this.toComparableVersion(this.websiteVersion)
-      ) {
-        this.showPatchNoteDialog = true
+    this.$vuetify.theme.dark = this.dark
+    if (
+      this.toComparableVersion(this.version) >
+      this.toComparableVersion(this.websiteVersion)
+    ) {
+      this.showPatchNoteDialog = true
+    }
+    this.cafeKitTooltipCopyPatch()
+
+    this.now = Date.now()
+    this.lazyFishSourceList = Object.values(this.allFish).filter(
+      it => it.gig == null && (it.patch == null || it.patch <= DataUtil.PATCH_MAX)
+    )
+    this.lazyImportantFishSourceList = this.lazyFishSourceList.filter(
+      it =>
+        this.bigFish.includes(it._id) ||
+        this.newPatchFish.includes(it._id) ||
+        !DataUtil.isAllAvailableFish(it)
+    )
+    this.updateWeatherChangePart(this.now)
+
+    this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
+    this.lazyTransformedFishDict = DataUtil.toMap(
+      this.lazyTransformedFishList,
+      fish => fish.id
+    )
+    const sounds = await this.loadingSounds()
+    this.setSounds(DataUtil.toMap(sounds, it => it.key))
+
+    setInterval(() => {
+      const now = Date.now()
+      this.now = now
+      this.updateFishListTimePart(now)
+      this.checkNotification(now)
+      if (this.loading) {
+        this.finishLoading()
       }
-      this.cafeKitTooltipCopyPatch()
+    }, 1000)
 
-      this.now = Date.now()
-      this.lazyFishSourceList = Object.values(this.allFish).filter(
-        it => it.gig == null && (it.patch == null || it.patch <= DataUtil.PATCH_MAX)
-      )
-      this.lazyImportantFishSourceList = this.lazyFishSourceList.filter(
-        it =>
-          this.bigFish.includes(it._id) ||
-          this.newPatchFish.includes(it._id) ||
-          !DataUtil.isAllAvailableFish(it)
-      )
-      this.updateWeatherChangePart(this.now)
-
-      this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
-      this.lazyTransformedFishDict = DataUtil.toMap(
-        this.lazyTransformedFishList,
-        fish => fish.id
-      )
-      const sounds = await this.loadingSounds()
-      this.setSounds(DataUtil.toMap(sounds, it => it.key))
-
-      setInterval(() => {
-        const now = Date.now()
-        this.now = now
-        this.updateFishListTimePart(now)
-        this.checkNotification(now)
-        if (this.loading) {
-          this.finishLoading()
-        }
-      }, 1000)
-
-      // this.weatherChangeTrigger *= -1
-      setInterval(() => {
-        this.weatherChangeTrigger *= -1
-      }, WEATHER_CHANGE_INTERVAL_EARTH)
-    }, 200)
+    // this.weatherChangeTrigger *= -1
+    setInterval(() => {
+      this.weatherChangeTrigger *= -1
+    }, WEATHER_CHANGE_INTERVAL_EARTH)
+    // }, 200)
   },
   methods: {
     updateWeatherChangePart(now) {

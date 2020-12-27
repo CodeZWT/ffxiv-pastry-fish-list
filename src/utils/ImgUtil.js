@@ -22,6 +22,7 @@ const CDN_DICT = {
   },
   'a2f1.00.jpg': { name: 'a2f1.00.jpg', id: '5fd22e113ffa7d37b3ada5d9', ext: 'jpg' },
   'a2f2.00.jpg': { name: 'a2f2.00.jpg', id: '5fd22e113ffa7d37b3ada6e9', ext: 'jpg' },
+  'a2fh.00.jpg': { name: 'a2fh.00.jpg', id: '5fe3f14f3ffa7d37b338535a', ext: 'jpg' },
   'd2f1.00.jpg': { name: 'd2f1.00.jpg', id: '5fd22e123ffa7d37b3ada77f', ext: 'jpg' },
   'd2f2.00.jpg': { name: 'd2f2.00.jpg', id: '5fd22e123ffa7d37b3ada7c9', ext: 'jpg' },
   'd2f3.00.jpg': { name: 'd2f3.00.jpg', id: '5fd22e133ffa7d37b3ada85c', ext: 'jpg' },
@@ -110,7 +111,7 @@ const CDN_DICT = {
   },
   'fish_icons.png': {
     name: 'fish_icons.png',
-    id: '5fd22e313ffa7d37b3add8a1',
+    id: '5fe3685e3ffa7d37b3f94898',
     ext: 'png',
   },
   'item-icon-cover.png': {
@@ -757,6 +758,31 @@ const CDN_DICT = {
   'item-cover-hat-48x48.png': {
     name: 'item-cover-hat-48x48.png',
     id: '5fe207c63ffa7d37b3ad6466',
+    ext: 'png',
+  },
+  'skybuilders-scrips-065073-36x36.png': {
+    name: 'skybuilders-scrips-065073-36x36.png',
+    id: '5fe4c9de3ffa7d37b363779d',
+    ext: 'png',
+  },
+  'diadem-dark-24x24.png': {
+    name: 'diadem-dark-24x24.png',
+    id: '5fe5ee383ffa7d37b3fc28b4',
+    ext: 'png',
+  },
+  'diadem-light-24x24.png': {
+    name: 'diadem-light-24x24.png',
+    id: '5fe5ee383ffa7d37b3fc28b7',
+    ext: 'png',
+  },
+  'diadem-tip-map-grade2.png': {
+    name: 'diadem-tip-map-grade2.png',
+    id: '5fe71f383ffa7d37b3a98aae',
+    ext: 'png',
+  },
+  'diadem-tip-map-grade3.png': {
+    name: 'diadem-tip-map-grade3.png',
+    id: '5fe71f383ffa7d37b3a98ab2',
     ext: 'png',
   },
 }

@@ -19,7 +19,7 @@ export default new Vuex.Store({
     items: DATA_CN.ITEMS,
     achievements: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS,
     weatherRates: DATA.WEATHER_RATES,
-    weatherTypes: merge(DATA.WEATHER_TYPES, DATA_CN.WEATHER_TYPES),
+    weatherTypes: DATA_CN.WEATHER_TYPES,
     zones: DATA_CN.ZONES,
     bigFish: DATA_CN.BIG_FISH,
     newPatchFish: DATA_CN.NEW_PATCH_FISH,
@@ -36,7 +36,10 @@ export default new Vuex.Store({
     sounds: {},
     showFishPageRightPane: false,
     loading: false,
-    userData: _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
+    userData: DataUtil.mergeUserData(
+      _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
+      LocalStorageUtil.loadAndBackupUserData()
+    ),
   },
   getters: {
     getItemIconUrl: state => id => {
@@ -98,10 +101,12 @@ export default new Vuex.Store({
           fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
         }
       }),
-    getBaits: (state, getters) => fish => {
-      if (fish.bestCatchPath.length < 1) return []
-      const baitId = fish.bestCatchPath[fish.bestCatchPath.length - 1]
+    getBaits: (state, getters) => (fish, customizedBestCatchPath, customizeFishDict) => {
+      const bestCatchPath = customizedBestCatchPath ?? fish.bestCatchPath
+      if (bestCatchPath.length < 1) return []
+      const baitId = bestCatchPath[bestCatchPath.length - 1]
       const hookset = DataUtil.tugToHookset(fish.tug, fish.hookset)
+      const optionalIndices = fish.optional ?? []
       const lastBait = {
         tug: fish.tug,
         tugIcon: DataUtil.TUG_ICON[fish.tug],
@@ -112,14 +117,15 @@ export default new Vuex.Store({
         baitName: getters.getItemName(baitId),
         baitIcon: getters.getItemIconClass(baitId),
       }
-      if (fish.bestCatchPath.length === 1) {
+      if (bestCatchPath.length === 1) {
         return [lastBait]
       } else {
-        return fish.bestCatchPath.map((baitId, index, arr) => {
+        return bestCatchPath.map((baitId, index, arr) => {
           if (index === arr.length - 1) {
             return lastBait
           } else {
-            const baitFish = state.fish[arr[index + 1]]
+            const fishDict = customizeFishDict ?? state.fish
+            const baitFish = fishDict[arr[index + 1]]
             const hookset = DataUtil.tugToHookset(baitFish.tug, baitFish.hookset)
             return {
               tug: baitFish.tug,
@@ -129,6 +135,7 @@ export default new Vuex.Store({
               baitId: baitId,
               baitName: getters.getItemName(baitId),
               baitIcon: getters.getItemIconClass(baitId),
+              optional: optionalIndices.includes(index),
             }
           }
         })
@@ -219,10 +226,10 @@ export default new Vuex.Store({
   },
   mutations: {
     initialUserData(state) {
-      state.userData = DataUtil.mergeUserData(
-        _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
-        LocalStorageUtil.loadAndBackupUserData()
-      )
+      // state.userData = DataUtil.mergeUserData(
+      //   _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
+      //   LocalStorageUtil.loadAndBackupUserData()
+      // )
       LocalStorageUtil.storeAndBackupUserData(state.userData)
     },
     setUserData(state, data) {
@@ -379,7 +386,7 @@ function updateUserDataStateRecords(userData, type, key, value) {
   const temp = _.cloneDeep(userData)
   if (value) {
     const arr = temp[type]
-    if (arr.indexOf(key) === -1) {
+    if (arr.indexOf(key) === -1 && key != null) {
       arr.push(key)
     }
   } else {

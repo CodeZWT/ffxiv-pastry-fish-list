@@ -432,7 +432,7 @@ export default {
       }
     },
   },
-  created() {
+  mounted() {
     this.openedItems = this.normalOpenedItems
     this.detailWindowLeft = window.innerWidth * 0.7 - 100
     this.detailWindowHeight = window.innerHeight * 0.7
@@ -460,6 +460,7 @@ export default {
               name: placeNames[territory.id],
               children: territory.spots.map(spot => {
                 // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
+                // console.log(Object.keys(this.lazyTransformedFishDict))
                 const fishList = spot.fishList.filter(fishId => {
                   const fish = this.lazyTransformedFishDict[fishId]
                   if (!fish) {
