@@ -13,7 +13,11 @@
           :data-ck-item-id="toItemIdIfExisted(bait.baitId, bait.baitName)"
           style="height: 36px; width: 36px"
         >
-          <item-icon :icon-class="bait.baitIcon" :title="bait.baitName" small />
+          <item-icon
+            :icon-class="bait.baitIcon"
+            :title="bait.baitName + '#' + bait.baitId"
+            small
+          />
         </div>
         <v-row no-gutters class="d-flex" style="max-width: 27px">
           <v-col cols="12">
