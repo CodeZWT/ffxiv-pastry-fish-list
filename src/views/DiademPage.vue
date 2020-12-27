@@ -10,12 +10,6 @@
             <div>云冠群岛</div>
           </v-card-title>
           <v-card-text>
-            <!--            {{ diademSpots }}-->
-            <!--            <v-list>-->
-            <!--              <v-list-item v-for="spot in diademSpots" :key="spot.id">-->
-            <!--                {{ spot }}-->
-            <!--              </v-list-item>-->
-            <!--            </v-list>-->
             <v-row>
               <v-col cols="8">
                 <div>
@@ -356,8 +350,7 @@ export default {
   overflow-x: hidden
 
   &-mobile
-    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding + 40})
-    margin-top: 40px
+    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
 
   &-pc
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
