@@ -9,7 +9,10 @@
         <div v-if="baitInx !== 0" style="display: flex; align-items: center">
           <v-icon small>mdi-arrow-right</v-icon>
         </div>
-        <div :data-ck-item-id="bait.baitId" style="height: 36px; width: 36px">
+        <div
+          :data-ck-item-id="toItemIdIfExisted(bait.baitId, bait.baitName)"
+          style="height: 36px; width: 36px"
+        >
           <item-icon :icon-class="bait.baitIcon" :title="bait.baitName" small />
         </div>
         <v-row no-gutters class="d-flex" style="max-width: 27px">
@@ -51,6 +54,15 @@ export default {
   data: () => ({
     TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
   }),
+  methods: {
+    toItemIdIfExisted(id, name) {
+      if (name.match('[\u4e00-\u9fff]+')) {
+        return id
+      } else {
+        return null
+      }
+    },
+  },
 }
 </script>
 
