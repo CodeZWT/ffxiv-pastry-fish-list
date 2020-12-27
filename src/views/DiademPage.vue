@@ -179,10 +179,7 @@
                           <!--                      {{ fish.baits }}-->
                           <div class="d-flex">
                             <div class="d-flex align-center">
-                              <i
-                                class="xiv square-a"
-                                v-if="fish.baitsExtra.length > 0"
-                              ></i>
+                              <i class="xiv square-a" v-if="fish.baitsExtra.length > 0" />
                               <fish-bait-list :baits="fish.baits" />
                             </div>
                             <template v-if="fish.baitsExtra.length > 0">
@@ -280,6 +277,12 @@ export default {
           fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
           fishList: spot.fishList.map(fishId => {
             const fish = DIADEM.FISH[fishId]
+            const bestCatchPath = fish.bestCatchPathGroup
+              ? fish.bestCatchPathGroup[spot.id].bestCatchPath
+              : fish.bestCatchPath
+            const bestCatchPathExtra = fish.bestCatchPathGroup
+              ? fish.bestCatchPathGroup[spot.id].bestCatchPathExtra
+              : fish.bestCatchPathExtra
             const weatherSet = fish?.weatherSet ?? []
             return {
               ...fish,
@@ -290,10 +293,10 @@ export default {
               scrips: fish.scrips[this.versionIndex],
               hasWeatherConstraint: weatherSet.length > 0,
               weatherSetDetail: this.getWeather(weatherSet),
-              baits: this.getBaits(fish, fish.bestCatchPath, DIADEM.FISH),
+              baits: this.getBaits(fish, bestCatchPath, DIADEM.FISH),
               baitsExtra:
-                fish.bestCatchPathExtra.length > 0
-                  ? this.getBaits(fish, fish.bestCatchPathExtra, DIADEM.FISH)
+                bestCatchPathExtra.length > 0
+                  ? this.getBaits(fish, bestCatchPathExtra, DIADEM.FISH)
                   : [],
               biteTimeText: this.toBiteTimeText(fish.biteMin, fish.biteMax),
             }
