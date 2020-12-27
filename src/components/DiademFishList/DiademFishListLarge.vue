@@ -92,8 +92,18 @@
                 </div>
               </div>
             </td>
-            <td class="text-center">
-              {{ fish.doubleHook ? fish.doubleHook : '-' }}
+            <td>
+              <div class="d-flex justify-center align-center">
+                <div class="mr-1">{{ fish.doubleHook ? fish.doubleHook : '-' }}</div>
+                <v-tooltip v-if="fish.doubleHookTip" right color="secondary">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-icon small v-bind="attrs" v-on="on">
+                      mdi-help-circle-outline
+                    </v-icon>
+                  </template>
+                  <div>{{ fish.doubleHookTip }}</div>
+                </v-tooltip>
+              </div>
             </td>
             <td class="text-center">
               {{ fish.biteTimeText }}
