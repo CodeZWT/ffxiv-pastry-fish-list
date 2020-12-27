@@ -11,7 +11,7 @@
           </v-card-title>
           <v-card-text>
             <v-row>
-              <v-col cols="8">
+              <v-col class="col-12 col-md-8">
                 <div>
                   <v-tabs v-model="versionIndex">
                     <v-tab>第二期重建</v-tab>
@@ -37,7 +37,7 @@
                   </v-card>
                 </div>
               </v-col>
-              <v-col cols="4">
+              <v-col class="col-12 col-md-4">
                 <v-img :src="tipMap" />
               </v-col>
             </v-row>
