@@ -432,7 +432,7 @@ export default {
       }
     },
   },
-  mounted() {
+  created() {
     this.openedItems = this.normalOpenedItems
     this.detailWindowLeft = window.innerWidth * 0.7 - 100
     this.detailWindowHeight = window.innerHeight * 0.7
