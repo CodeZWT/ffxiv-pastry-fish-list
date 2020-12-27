@@ -209,7 +209,7 @@ export default {
   mergeArray(objValue, srcValue) {
     if (_.isArray(srcValue)) {
       // force removing duplication here to fix old data
-      return _.uniq(srcValue)
+      return _.uniq(srcValue).filter(it => it != null)
     }
   },
 

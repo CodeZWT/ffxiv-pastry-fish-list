@@ -383,7 +383,7 @@ function updateUserDataStateRecords(userData, type, key, value) {
   const temp = _.cloneDeep(userData)
   if (value) {
     const arr = temp[type]
-    if (arr.indexOf(key) === -1) {
+    if (arr.indexOf(key) === -1 && key != null) {
       arr.push(key)
     }
   } else {
