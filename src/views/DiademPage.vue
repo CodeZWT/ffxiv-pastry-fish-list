@@ -153,7 +153,7 @@ export default {
       })
     },
     spotPanels() {
-      return this.diademSpots.map((it, index) => index).slice(3)
+      return this.isMobile ? [] : this.diademSpots.map((it, index) => index).slice(3)
     },
     ...mapState(['fish', 'items']),
     ...mapGetters([
