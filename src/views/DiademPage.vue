@@ -45,7 +45,7 @@
         </v-card>
       </v-col>
       <v-col>
-        <v-expansion-panels focusable v-model="spotPanels" multiple>
+        <v-expansion-panels focusable :value="spotPanels" multiple>
           <v-expansion-panel v-for="(item, i) in diademSpots" :key="i">
             <v-expansion-panel-header
               >{{ item.fishingSpotName }}
@@ -201,4 +201,7 @@ export default {
 .red
   color: orangered !important
   background-color: unset !important
+
+::v-deep .v-expansion-panel-content__wrap
+  padding: 0 !important
 </style>
