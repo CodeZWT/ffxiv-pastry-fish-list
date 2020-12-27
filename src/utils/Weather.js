@@ -5,11 +5,16 @@ import _ from 'lodash'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
 function getStartLight() {
-  const userData = DataUtil.mergeUserData(
-    _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
-    LocalStorageUtil.loadAndBackupUserData()
+  // const userData = DataUtil.mergeUserData(
+  //   _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
+  //   LocalStorageUtil.loadAndBackupUserData()
+  // )
+  const starLigtSettingPath = 'event.startLight'
+  return _.get(
+    LocalStorageUtil.loadAndBackupUserData(),
+    starLigtSettingPath,
+    _.get(DataUtil.USER_DEFAULT_DATA, starLigtSettingPath)
   )
-  return userData.event.startLight
 }
 
 function calculateForecastTarget(m) {

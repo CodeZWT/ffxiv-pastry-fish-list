@@ -1215,53 +1215,53 @@ export default {
     })
   },
   async mounted() {
-    setTimeout(async () => {
-      this.initialUserData()
+    // setTimeout(async () => {
+    this.initialUserData()
 
-      this.$vuetify.theme.dark = this.dark
-      if (
-        this.toComparableVersion(this.version) >
-        this.toComparableVersion(this.websiteVersion)
-      ) {
-        this.showPatchNoteDialog = true
+    this.$vuetify.theme.dark = this.dark
+    if (
+      this.toComparableVersion(this.version) >
+      this.toComparableVersion(this.websiteVersion)
+    ) {
+      this.showPatchNoteDialog = true
+    }
+    this.cafeKitTooltipCopyPatch()
+
+    this.now = Date.now()
+    this.lazyFishSourceList = Object.values(this.allFish).filter(
+      it => it.gig == null && (it.patch == null || it.patch <= DataUtil.PATCH_MAX)
+    )
+    this.lazyImportantFishSourceList = this.lazyFishSourceList.filter(
+      it =>
+        this.bigFish.includes(it._id) ||
+        this.newPatchFish.includes(it._id) ||
+        !DataUtil.isAllAvailableFish(it)
+    )
+    this.updateWeatherChangePart(this.now)
+
+    this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
+    this.lazyTransformedFishDict = DataUtil.toMap(
+      this.lazyTransformedFishList,
+      fish => fish.id
+    )
+    const sounds = await this.loadingSounds()
+    this.setSounds(DataUtil.toMap(sounds, it => it.key))
+
+    setInterval(() => {
+      const now = Date.now()
+      this.now = now
+      this.updateFishListTimePart(now)
+      this.checkNotification(now)
+      if (this.loading) {
+        this.finishLoading()
       }
-      this.cafeKitTooltipCopyPatch()
+    }, 1000)
 
-      this.now = Date.now()
-      this.lazyFishSourceList = Object.values(this.allFish).filter(
-        it => it.gig == null && (it.patch == null || it.patch <= DataUtil.PATCH_MAX)
-      )
-      this.lazyImportantFishSourceList = this.lazyFishSourceList.filter(
-        it =>
-          this.bigFish.includes(it._id) ||
-          this.newPatchFish.includes(it._id) ||
-          !DataUtil.isAllAvailableFish(it)
-      )
-      this.updateWeatherChangePart(this.now)
-
-      this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
-      this.lazyTransformedFishDict = DataUtil.toMap(
-        this.lazyTransformedFishList,
-        fish => fish.id
-      )
-      const sounds = await this.loadingSounds()
-      this.setSounds(DataUtil.toMap(sounds, it => it.key))
-
-      setInterval(() => {
-        const now = Date.now()
-        this.now = now
-        this.updateFishListTimePart(now)
-        this.checkNotification(now)
-        if (this.loading) {
-          this.finishLoading()
-        }
-      }, 1000)
-
-      // this.weatherChangeTrigger *= -1
-      setInterval(() => {
-        this.weatherChangeTrigger *= -1
-      }, WEATHER_CHANGE_INTERVAL_EARTH)
-    }, 200)
+    // this.weatherChangeTrigger *= -1
+    setInterval(() => {
+      this.weatherChangeTrigger *= -1
+    }, WEATHER_CHANGE_INTERVAL_EARTH)
+    // }, 200)
   },
   methods: {
     updateWeatherChangePart(now) {

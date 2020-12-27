@@ -36,7 +36,10 @@ export default new Vuex.Store({
     sounds: {},
     showFishPageRightPane: false,
     loading: false,
-    userData: _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
+    userData: DataUtil.mergeUserData(
+      _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
+      LocalStorageUtil.loadAndBackupUserData()
+    ),
   },
   getters: {
     getItemIconUrl: state => id => {
@@ -223,10 +226,10 @@ export default new Vuex.Store({
   },
   mutations: {
     initialUserData(state) {
-      state.userData = DataUtil.mergeUserData(
-        _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
-        LocalStorageUtil.loadAndBackupUserData()
-      )
+      // state.userData = DataUtil.mergeUserData(
+      //   _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
+      //   LocalStorageUtil.loadAndBackupUserData()
+      // )
       LocalStorageUtil.storeAndBackupUserData(state.userData)
     },
     setUserData(state, data) {
