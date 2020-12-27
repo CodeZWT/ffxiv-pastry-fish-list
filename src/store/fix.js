@@ -417,6 +417,37 @@ export default {
       hookset: 'Precision',
       tug: 'light',
     },
+    // '12776': {
+    //   bestCatchPathGroup: {
+    //     '140': {
+    //       bestCatchPath: [12710],
+    //     },
+    //     '141': {
+    //       bestCatchPath: [12710],
+    //     },
+    //     '142': {
+    //       bestCatchPath: [30136],
+    //     },
+    //     '146': {
+    //       bestCatchPath: [30136],
+    //     },
+    //   },
+    // },
+    '12815': {
+      bestCatchPath: [30136, 12776],
+    },
+    '12816': {
+      bestCatchPath: [30136, 12776],
+    },
+    '12827': {
+      bestCatchPath: [30136, 12776],
+    },
+    '16744': {
+      bestCatchPath: [30136, 12776],
+    },
+    '17589': {
+      bestCatchPath: [30136, 12776],
+    },
   },
   STARLIGHT_CELEBRATION: {
     startTime: 1608616800000,
