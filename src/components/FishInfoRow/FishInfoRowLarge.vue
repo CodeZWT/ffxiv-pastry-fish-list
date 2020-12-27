@@ -250,7 +250,7 @@
                   <toggle-button
                     v-if="transformedFishTimePart.hasCountDown"
                     :value="transformedFishPart.toBeNotified"
-                    :title="$t('list.item.notificationHint')"
+                    :title="transformedFishPart.notificationHint"
                     @input="setToBeNotified($event)"
                     checked-icon="mdi-bell"
                     unchecked-icon="mdi-bell-outline"

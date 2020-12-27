@@ -38,10 +38,14 @@ export default {
   },
   computed: {
     transformedFishPart() {
+      const toBeNotified = this.getFishToBeNotified(this.fish.id)
       return {
         completed: this.getFishCompleted(this.fish.id),
         pinned: this.getFishPinned(this.fish.id),
-        toBeNotified: this.getFishToBeNotified(this.fish.id),
+        toBeNotified: toBeNotified,
+        notificationHint: toBeNotified
+          ? this.$t('list.item.notificationHintOff')
+          : this.$t('list.item.notificationHint'),
       }
     },
     transformedFishTimePart() {
