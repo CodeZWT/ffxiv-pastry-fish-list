@@ -14,9 +14,9 @@
       </div>
     </template>
     <template v-slot:item.baitId="{ item }">
-      <div class="d-flex align-center justify-center" style="min-height: 60px">
-        <div v-if="item.hasPredators" class="d-flex align-center">
-          <div v-for="(fish, index) in item.predators" :key="index" class="ml-1">
+      <div class="d-flex align-center justify-center" style="min-height: 70px">
+        <template v-if="item.hasPredators">
+          <div v-for="(fish, index) in item.predators" :key="index" class="pt-1 ml-1">
             <v-badge
               :content="fish.requiredCnt"
               color="predatorCnt black--text"
@@ -28,7 +28,7 @@
             </v-badge>
           </div>
           <div :class="item.predatorsIcon" style="margin-left: 2px" />
-        </div>
+        </template>
 
         <item-icon
           :data-ck-item-id="toItemIdIfExisted(item.bait.id, item.bait.name)"
