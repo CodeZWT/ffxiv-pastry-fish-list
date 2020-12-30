@@ -114,7 +114,6 @@
                         :title="item.name"
                         :icon-url="item.iconUrl"
                         :icon-class="item.icon"
-                        :cover="item.cover"
                         :type="item.type"
                       />
                     </div>

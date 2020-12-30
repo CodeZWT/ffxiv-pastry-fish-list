@@ -872,6 +872,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
     showJumpingOverlay: false,
     now: Date.now(),
     fisher: ImgUtil.getImgUrl('pastry-fish.png'),
@@ -1173,6 +1174,8 @@ export default {
       'getFishingSpots',
       'darkMode',
       'startLight',
+      'getAchievementName',
+      'getAchievementIconClass',
     ]),
   },
   watch: {
@@ -1384,6 +1387,7 @@ export default {
     },
     assembleOceanFish(fish) {
       const hasPredators = fish.predators && Object.keys(fish.predators).length > 0
+      const bonus = FIX.OCEAN_FISHING_BONUS[fish.bonus]
       return {
         ...fish,
         id: fish._id,
@@ -1393,12 +1397,14 @@ export default {
         fishingSpots: this.getFishingSpots(fish.locations),
         baitId: fish.bait,
         bait: {
+          id: fish.bait,
           name: this.getItemName(fish.bait),
           icon: this.getItemIconClass(fish.bait),
         },
         baitExtraId: fish.baitExtra,
         baitExtra: fish.baitExtra
           ? {
+              id: fish.baitExtra,
               name: this.getItemName(fish.baitExtra),
               icon: this.getItemIconClass(fish.baitExtra),
             }
@@ -1413,6 +1419,11 @@ export default {
         hasPredators: hasPredators,
         predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
         predators: hasPredators ? this.getOceanFishPredators(fish.predators) : [],
+        bonusId: fish.bonus,
+        bonus: {
+          name: bonus.objective,
+          icon: DataUtil.iconIdToClass(bonus.icon),
+        },
       }
     },
     getOceanFishPredators(predators) {

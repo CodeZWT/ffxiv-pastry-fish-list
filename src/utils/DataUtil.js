@@ -434,6 +434,14 @@ export default {
     return timeTextList[timeId]
   },
 
+  toItemIdIfExisted(id, name) {
+    if (name.match('[\u4e00-\u9fff]+')) {
+      return id
+    } else {
+      return null
+    }
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: INTERVAL_SECOND,

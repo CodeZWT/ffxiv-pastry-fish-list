@@ -59,13 +59,7 @@ export default {
     TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
   }),
   methods: {
-    toItemIdIfExisted(id, name) {
-      if (name.match('[\u4e00-\u9fff]+')) {
-        return id
-      } else {
-        return null
-      }
-    },
+    toItemIdIfExisted: DataUtil.toItemIdIfExisted,
   },
 }
 </script>

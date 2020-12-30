@@ -30,11 +30,19 @@
           <div :class="item.predatorsIcon" style="margin-left: 2px" />
         </div>
 
-        <item-icon :icon-class="item.bait.icon" :title="item.bait.name" />
+        <item-icon
+          :data-ck-item-id="toItemIdIfExisted(item.bait.id, item.bait.name)"
+          :icon-class="item.bait.icon"
+          :title="item.bait.name"
+        />
         <!--        <div>{{ item.bait.name }}</div>-->
         <template v-if="item.baitExtra">
           <div>或</div>
-          <item-icon :icon-class="item.baitExtra.icon" :title="item.baitExtra.name" />
+          <item-icon
+            :data-ck-item-id="toItemIdIfExisted(item.baitExtra.id, item.baitExtra.name)"
+            :icon-class="item.baitExtra.icon"
+            :title="item.baitExtra.name"
+          />
           <!--          <div>{{ item.baitExtra.name }}</div>-->
         </template>
       </div>
@@ -84,6 +92,16 @@
     <template v-slot:item.time="{ item }">
       <div class="d-flex align-center justify-center">
         <v-icon :title="item.timeText">{{ item.timeIcon }}</v-icon>
+      </div>
+    </template>
+
+    <template v-slot:item.bonusId="{ item }">
+      <div class="d-flex align-center justify-center">
+        <item-icon
+          v-if="item.bonusId !== 0"
+          :title="item.bonus.name"
+          :icon-class="item.bonus.icon"
+        />
       </div>
     </template>
   </v-data-table>
@@ -148,6 +166,12 @@ export default {
           value: 'doubleHook',
         },
         this.restrictColumnHeader,
+        {
+          text: '分类',
+          align: 'center',
+          sortable: true,
+          value: 'bonusId',
+        },
       ]
     },
     transformFishList() {
@@ -182,6 +206,7 @@ export default {
     setCompleted(fishId, completed) {
       this.setFishCompleted({ fishId, completed })
     },
+    toItemIdIfExisted: DataUtil.toItemIdIfExisted,
     ...mapMutations(['setFishCompleted']),
   },
 }
