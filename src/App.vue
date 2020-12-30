@@ -1400,6 +1400,8 @@ export default {
                 icon: this.getItemIconClass(fish.baitExtra),
               }
             : null,
+          tug: fish.tug,
+          tugIcon: DataUtil.TUG_ICON[fish.tug],
         }
       })
     },

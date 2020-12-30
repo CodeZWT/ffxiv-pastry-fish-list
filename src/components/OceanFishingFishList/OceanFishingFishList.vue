@@ -14,7 +14,7 @@
       </div>
     </template>
     <template v-slot:item.baitId="{ item }">
-      <div class="d-flex align-center">
+      <div class="d-flex align-center justify-center">
         <item-icon :icon-class="item.bait.icon" :title="item.bait.name" />
         <!--        <div>{{ item.bait.name }}</div>-->
         <template v-if="item.baitExtra">
@@ -24,6 +24,16 @@
         </template>
       </div>
     </template>
+    <template v-slot:item.tug="{ item }">
+      <div class="d-flex align-center justify-center">
+        <v-badge
+          v-show="item.tug != null"
+          :color="TUG_ICON_COLOR[item.tugIcon]"
+          :content="item.tugIcon"
+          inline
+        />
+      </div>
+    </template>
   </v-data-table>
 </template>
 
@@ -31,6 +41,7 @@
 import ItemIcon from '@/components/basic/ItemIcon'
 import { mapGetters, mapMutations } from 'vuex'
 import ToggleButton from '@/components/basic/ToggleButton'
+import DataUtil from '@/utils/DataUtil'
 export default {
   name: 'OceanFishingFishList',
   components: { ToggleButton, ItemIcon },
@@ -51,11 +62,18 @@ export default {
         },
         {
           text: '鱼饵',
-          align: 'start',
+          align: 'center',
           sortable: true,
           value: 'baitId',
         },
+        {
+          text: '杆型',
+          align: 'center',
+          sortable: true,
+          value: 'tug',
+        },
       ],
+      TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
     }
   },
   computed: {
