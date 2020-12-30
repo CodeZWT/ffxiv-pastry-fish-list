@@ -12,6 +12,17 @@
         <div>{{ item.name }}</div>
       </div>
     </template>
+    <template v-slot:item.bait="{ item }">
+      <div class="d-flex align-center">
+        <item-icon :icon-class="item.bait.icon" :title="item.bait.name" />
+        <!--        <div>{{ item.bait.name }}</div>-->
+        <template v-if="item.baitExtra">
+          <div>或</div>
+          <item-icon :icon-class="item.baitExtra.icon" :title="item.baitExtra.name" />
+          <!--          <div>{{ item.baitExtra.name }}</div>-->
+        </template>
+      </div>
+    </template>
   </v-data-table>
 </template>
 
@@ -36,6 +47,12 @@ export default {
           align: 'start',
           sortable: false,
           value: 'name',
+        },
+        {
+          text: '鱼饵',
+          align: 'start',
+          sortable: true,
+          value: 'bait',
         },
       ],
     }
