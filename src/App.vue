@@ -1404,6 +1404,9 @@ export default {
           tugIcon: DataUtil.TUG_ICON[fish.tug],
           hasWeatherConstraint: fish.notAvailableWeatherSet.length > 0,
           notAvailableWeatherSetDetail: this.getWeather(fish.notAvailableWeatherSet),
+          time: fish.time,
+          timeText: DataUtil.timeId2TimeText(fish.time),
+          timeIcon: DataUtil.timeId2TimeIcon(fish.time),
         }
       })
     },

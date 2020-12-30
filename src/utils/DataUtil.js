@@ -419,6 +419,21 @@ export default {
     }
   },
 
+  timeId2TimeText(timeId) {
+    const timeTextList = ['无要求', '白天', '黄昏', '夜晚']
+    return timeTextList[timeId]
+  },
+
+  timeId2TimeIcon(timeId) {
+    const timeTextList = [
+      null,
+      'mdi-weather-sunny',
+      'mdi-weather-sunset',
+      'mdi-weather-night',
+    ]
+    return timeTextList[timeId]
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: INTERVAL_SECOND,

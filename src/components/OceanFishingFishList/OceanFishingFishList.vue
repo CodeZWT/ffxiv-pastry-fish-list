@@ -65,6 +65,12 @@
         </div>
       </div>
     </template>
+
+    <template v-slot:item.time="{ item }">
+      <div class="d-flex align-center justify-center">
+        <v-icon :title="item.timeText">{{ item.timeIcon }}</v-icon>
+      </div>
+    </template>
   </v-data-table>
 </template>
 
@@ -84,7 +90,12 @@ export default {
   },
   data() {
     return {
-      oceanFishingHeaders: [
+      TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
+    }
+  },
+  computed: {
+    oceanFishingHeaders() {
+      return [
         {
           text: '名称',
           align: 'start',
@@ -121,17 +132,9 @@ export default {
           sortable: true,
           value: 'doubleHook',
         },
-        {
-          text: '天气',
-          align: 'center',
-          sortable: false,
-          value: 'notAvailableWeatherSet',
-        },
-      ],
-      TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
-    }
-  },
-  computed: {
+        this.restrictColumnHeader,
+      ]
+    },
     transformFishList() {
       return this.fishList.map(fish => {
         return {
@@ -139,6 +142,24 @@ export default {
           ...fish,
         }
       })
+    },
+    isSpectralCurrentSpot() {
+      return this.fishList.every(it => !it.hasWeatherConstraint)
+    },
+    restrictColumnHeader() {
+      return this.isSpectralCurrentSpot
+        ? {
+            text: '时间',
+            align: 'center',
+            sortable: false,
+            value: 'time',
+          }
+        : {
+            text: '天气',
+            align: 'center',
+            sortable: false,
+            value: 'notAvailableWeatherSet',
+          }
     },
     ...mapGetters(['getFishCompleted']),
   },
