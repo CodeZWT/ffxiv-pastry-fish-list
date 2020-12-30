@@ -6,6 +6,7 @@
       :targetOptions="targetOptions"
       :voyageN="voyageN"
       :targets="targets"
+      :hide-filters="hideFilters"
       @filterChanged="filterChanged"
     />
   </div>
@@ -33,6 +34,10 @@ export default {
     targetOptions: {
       type: Array,
       default: () => [],
+    },
+    hideFilters: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {

@@ -2,6 +2,24 @@
   <v-container
     :class="`detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`"
   >
+    <v-card class="mb-4">
+      <v-card-title>当前航班</v-card-title>
+      <v-card-text>
+        <div>
+          <span>{{ currentVoyage.status }}</span>
+          <span v-if="currentVoyage.status === 'check-in'">
+            {{ currentVoyage.checkInLimit }}
+          </span>
+        </div>
+        <ocean-fishing-time-table
+          :voyages="currentVoyage.voyage"
+          :targetOptions="targetOptions"
+          hide-filters
+        />
+        <pre>{{ JSON.stringify(currentVoyage, null, 2) }}</pre>
+      </v-card-text>
+    </v-card>
+
     <v-card>
       <v-card-title>海钓航班时间表</v-card-title>
       <v-card-subtitle>努力号航运表</v-card-subtitle>
@@ -24,6 +42,9 @@ import { mapGetters } from 'vuex'
 import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
 import ImgUtil from '@/utils/ImgUtil'
 // https://ngabbs.com/read.php?tid=20553241
+
+const MINUTE = 60000
+
 export default {
   name: 'OceanFishingPage',
   components: { OceanFishingTimeTable },
@@ -33,6 +54,7 @@ export default {
       achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
       filter: { voyageN: 13 },
       lazyNow: this.now,
+      currentVoyageLastUpdate: 0,
     }
   },
   computed: {
@@ -40,41 +62,11 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
     voyages() {
-      return OceanFishingUtil.voyagesWithTipOf(
+      return this.assembleVoyages(
         OceanFishingUtil.shiftTimeForCheckInLimit(this.lazyNow),
         this.filter.voyageN,
         this.filter.voyageTypes
-      ).map((voyageWithTip, index) => {
-        const showDay = index === 0 || getCNTime(voyageWithTip.time).hour === 0
-        const targets = voyageWithTip.voyageTip.achievements
-          .map(it => this.assembleAchievement(it))
-          .concat(
-            voyageWithTip.locationTips
-              .map(locationTip => {
-                return {
-                  blueFish: this.assembleItem(locationTip.blueFish),
-                }
-              })
-              .flatMap(it => {
-                return [it.blueFish]
-              })
-          )
-          .filter(it => it)
-        return {
-          showDay,
-          simpleName: voyageWithTip.voyageSimpleName,
-          day: DataUtil.formatDateTime(voyageWithTip.time, 'MM-dd'),
-          time: DataUtil.formatDateTime(voyageWithTip.time, 'HH:mm'),
-          shiftIcon: shift2Icon(voyageWithTip.shift.type),
-          name: voyageWithTip.shift.name,
-          targets: targets,
-          voyageLocations: voyageWithTip.locationTips.map(it => ({
-            name: it.locationName,
-            icon: shift2Icon(it.locationShift),
-            hint: it.locationHint,
-          })),
-        }
-      })
+      )
     },
     targetOptions() {
       return OceanFishingUtil.allTargets().map(group => {
@@ -107,6 +99,22 @@ export default {
     //   // todo map targets to voyage types
     //   return _.uniq(this.targets.flatMap(it => it.voyageTypes))
     // },
+    currentVoyage() {
+      const timeSlot = this.now % (2 * 60 * MINUTE)
+      const status = timeSlot < 15 * MINUTE ? 'check-in' : 'traveling'
+      if (timeSlot < 45 * MINUTE) {
+        return {
+          voyage: this.lazyCurrentVoyage,
+          status: status,
+          checkInLimit: DataUtil.printCountDownTime(15 * MINUTE - timeSlot, 2),
+        }
+      } else {
+        return {
+          nextInterval: DataUtil.printCountDownTime(2 * 60 * MINUTE - timeSlot, 2),
+          status: 'none',
+        }
+      }
+    },
     ...mapGetters([
       'getItemName',
       'getItemIconClass',
@@ -116,12 +124,55 @@ export default {
   },
   watch: {
     now(now) {
-      if (now % 900000 < 2000) {
+      if (this.shouldUpdate(this.lazyNow, now)) {
         this.lazyNow = now
+      }
+
+      if (this.shouldUpdate(this.currentVoyageLastUpdate, this.now)) {
+        this.lazyCurrentVoyage = this.assembleVoyages(this.now, 1)
+        this.currentVoyageLastUpdate = this.now
       }
     },
   },
   methods: {
+    shouldUpdate(lastUpdate, now) {
+      return Math.floor(now / (15 * MINUTE)) > Math.floor(lastUpdate / (15 * MINUTE))
+    },
+    assembleVoyages(time, n, types) {
+      return OceanFishingUtil.voyagesWithTipOf(time, n, types).map(
+        (voyageWithTip, index) => {
+          const showDay = index === 0 || getCNTime(voyageWithTip.time).hour === 0
+          const targets = voyageWithTip.voyageTip.achievements
+            .map(it => this.assembleAchievement(it))
+            .concat(
+              voyageWithTip.locationTips
+                .map(locationTip => {
+                  return {
+                    blueFish: this.assembleItem(locationTip.blueFish),
+                  }
+                })
+                .flatMap(it => {
+                  return [it.blueFish]
+                })
+            )
+            .filter(it => it)
+          return {
+            showDay,
+            simpleName: voyageWithTip.voyageSimpleName,
+            day: DataUtil.formatDateTime(voyageWithTip.time, 'MM-dd'),
+            time: DataUtil.formatDateTime(voyageWithTip.time, 'HH:mm'),
+            shiftIcon: shift2Icon(voyageWithTip.shift.type),
+            name: voyageWithTip.shift.name,
+            targets: targets,
+            voyageLocations: voyageWithTip.locationTips.map(it => ({
+              name: it.locationName,
+              icon: shift2Icon(it.locationShift),
+              hint: it.locationHint,
+            })),
+          }
+        }
+      )
+    },
     assembleItem(itemId) {
       return (
         itemId && {

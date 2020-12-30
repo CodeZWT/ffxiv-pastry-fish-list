@@ -13,6 +13,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    hideFilters: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     voyageNLazy: 13,

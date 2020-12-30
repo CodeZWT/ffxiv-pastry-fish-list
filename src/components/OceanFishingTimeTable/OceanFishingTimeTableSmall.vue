@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-form>
+    <v-form v-if="!hideFilters">
       <v-container>
         <v-row>
           <v-col cols="12" md="3" class="d-flex">
