@@ -77,7 +77,7 @@ export default new Vuex.Store({
       const fishingSpot = state.fishingSpots[id]
       if (fishingSpot) {
         return DataUtil.getName(
-          state.zones[state.weatherRates[fishingSpot.territory_id].zone_id]
+          state.zones[state.weatherRates[fishingSpot.territory_id]?.zone_id]
         )
       } else {
         return ''

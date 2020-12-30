@@ -466,6 +466,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [237],
     },
     '28938': {
       _id: 28938,
@@ -483,6 +484,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [237],
     },
     '28939': {
       _id: 28939,
@@ -500,6 +502,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [237],
     },
     '28940': {
       _id: 28940,
@@ -517,6 +520,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [3, 4],
       time: null,
+      locations: [241],
     },
     '28941': {
       _id: 28941,
@@ -534,6 +538,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [239],
     },
     '28942': {
       _id: 28942,
@@ -551,6 +556,7 @@ export default {
       bonus: 14,
       notAvailableWeatherSet: [4],
       time: null,
+      locations: [237],
     },
     '29718': {
       _id: 29718,
@@ -568,6 +574,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [8],
       time: null,
+      locations: [241],
     },
     '29719': {
       _id: 29719,
@@ -585,6 +592,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [3, 4],
       time: null,
+      locations: [237],
     },
     '29720': {
       _id: 29720,
@@ -602,6 +610,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [241],
     },
     '29721': {
       _id: 29721,
@@ -619,6 +628,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [237],
     },
     '29722': {
       _id: 29722,
@@ -636,6 +646,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [5, 6],
       time: null,
+      locations: [239],
     },
     '29723': {
       _id: 29723,
@@ -653,6 +664,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [7, 8],
       time: null,
+      locations: [237],
     },
     '29724': {
       _id: 29724,
@@ -670,6 +682,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [6],
       time: null,
+      locations: [239],
     },
     '29725': {
       _id: 29725,
@@ -687,6 +700,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [239],
     },
     '29726': {
       _id: 29726,
@@ -704,6 +718,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [239],
     },
     '29727': {
       _id: 29727,
@@ -721,6 +736,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [239],
     },
     '29728': {
       _id: 29728,
@@ -738,6 +754,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [14],
       time: null,
+      locations: [243],
     },
     '29729': {
       _id: 29729,
@@ -755,6 +772,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [243],
     },
     '29730': {
       _id: 29730,
@@ -772,6 +790,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [11, 14],
       time: null,
+      locations: [243],
     },
     '29731': {
       _id: 29731,
@@ -789,6 +808,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [243],
     },
     '29732': {
       _id: 29732,
@@ -806,6 +826,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [243],
     },
     '29733': {
       _id: 29733,
@@ -823,6 +844,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [3, 4],
       time: null,
+      locations: [243],
     },
     '29734': {
       _id: 29734,
@@ -840,6 +862,7 @@ export default {
       bonus: 13,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [237],
     },
     '29735': {
       _id: 29735,
@@ -857,6 +880,7 @@ export default {
       bonus: 14,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [243],
     },
     '29736': {
       _id: 29736,
@@ -874,6 +898,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [7, 8],
       time: null,
+      locations: [241],
     },
     '29737': {
       _id: 29737,
@@ -891,6 +916,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [241],
     },
     '29738': {
       _id: 29738,
@@ -908,6 +934,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [241],
     },
     '29739': {
       _id: 29739,
@@ -925,6 +952,7 @@ export default {
       bonus: 15,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [239],
     },
     '29740': {
       _id: 29740,
@@ -942,6 +970,7 @@ export default {
       bonus: 16,
       notAvailableWeatherSet: [3, 4],
       time: null,
+      locations: [239],
     },
     '29741': {
       _id: 29741,
@@ -959,6 +988,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [241],
     },
     '29742': {
       _id: 29742,
@@ -976,6 +1006,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [243],
     },
     '29743': {
       _id: 29743,
@@ -993,6 +1024,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [241],
     },
     '29744': {
       _id: 29744,
@@ -1012,6 +1044,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [237],
     },
     '29745': {
       _id: 29745,
@@ -1031,6 +1064,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [239],
     },
     '29746': {
       _id: 29746,
@@ -1050,6 +1084,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [243],
     },
     '29747': {
       _id: 29747,
@@ -1069,6 +1104,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [241],
     },
     '29748': {
       _id: 29748,
@@ -1086,6 +1122,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [242],
     },
     '29749': {
       _id: 29749,
@@ -1103,6 +1140,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [238],
     },
     '29750': {
       _id: 29750,
@@ -1120,6 +1158,7 @@ export default {
       bonus: 14,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [238],
     },
     '29751': {
       _id: 29751,
@@ -1137,6 +1176,7 @@ export default {
       bonus: 14,
       notAvailableWeatherSet: [],
       time: 2,
+      locations: [238],
     },
     '29752': {
       _id: 29752,
@@ -1154,6 +1194,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [238],
     },
     '29753': {
       _id: 29753,
@@ -1171,6 +1212,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 1,
+      locations: [238],
     },
     '29754': {
       _id: 29754,
@@ -1188,6 +1230,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [238],
     },
     '29755': {
       _id: 29755,
@@ -1205,6 +1248,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 1,
+      locations: [240],
     },
     '29756': {
       _id: 29756,
@@ -1222,6 +1266,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 1,
+      locations: [238],
     },
     '29757': {
       _id: 29757,
@@ -1239,6 +1284,7 @@ export default {
       bonus: 15,
       notAvailableWeatherSet: [],
       time: 2,
+      locations: [240],
     },
     '29758': {
       _id: 29758,
@@ -1256,6 +1302,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [240],
     },
     '29759': {
       _id: 29759,
@@ -1273,6 +1320,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [240],
     },
     '29760': {
       _id: 29760,
@@ -1290,6 +1338,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [240],
     },
     '29761': {
       _id: 29761,
@@ -1307,6 +1356,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [240],
     },
     '29762': {
       _id: 29762,
@@ -1324,6 +1374,7 @@ export default {
       bonus: 15,
       notAvailableWeatherSet: [],
       time: 3,
+      locations: [244],
     },
     '29763': {
       _id: 29763,
@@ -1341,6 +1392,7 @@ export default {
       bonus: 16,
       notAvailableWeatherSet: [],
       time: 3,
+      locations: [240],
     },
     '29764': {
       _id: 29764,
@@ -1358,6 +1410,7 @@ export default {
       bonus: 16,
       notAvailableWeatherSet: [],
       time: 2,
+      locations: [242],
     },
     '29765': {
       _id: 29765,
@@ -1375,6 +1428,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 2,
+      locations: [240],
     },
     '29766': {
       _id: 29766,
@@ -1392,6 +1446,7 @@ export default {
       bonus: 13,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [238],
     },
     '29767': {
       _id: 29767,
@@ -1409,6 +1464,7 @@ export default {
       bonus: 14,
       notAvailableWeatherSet: [],
       time: 1,
+      locations: [244],
     },
     '29768': {
       _id: 29768,
@@ -1426,6 +1482,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [244],
     },
     '29769': {
       _id: 29769,
@@ -1443,6 +1500,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [244],
     },
     '29770': {
       _id: 29770,
@@ -1460,6 +1518,7 @@ export default {
       bonus: 14,
       notAvailableWeatherSet: [],
       time: 1,
+      locations: [244],
     },
     '29771': {
       _id: 29771,
@@ -1477,6 +1536,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [242],
     },
     '29772': {
       _id: 29772,
@@ -1494,6 +1554,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [244],
     },
     '29773': {
       _id: 29773,
@@ -1511,6 +1572,7 @@ export default {
       bonus: 13,
       notAvailableWeatherSet: [],
       time: 3,
+      locations: [242],
     },
     '29774': {
       _id: 29774,
@@ -1528,6 +1590,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 3,
+      locations: [244],
     },
     '29775': {
       _id: 29775,
@@ -1545,6 +1608,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [244],
     },
     '29776': {
       _id: 29776,
@@ -1562,6 +1626,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [242],
     },
     '29777': {
       _id: 29777,
@@ -1579,6 +1644,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 3,
+      locations: [242],
     },
     '29778': {
       _id: 29778,
@@ -1596,6 +1662,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [242],
     },
     '29779': {
       _id: 29779,
@@ -1613,6 +1680,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [240],
     },
     '29780': {
       _id: 29780,
@@ -1630,6 +1698,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [244],
     },
     '29781': {
       _id: 29781,
@@ -1647,6 +1716,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: null,
+      locations: [242],
     },
     '29782': {
       _id: 29782,
@@ -1664,6 +1734,7 @@ export default {
       bonus: 14,
       notAvailableWeatherSet: [],
       time: 2,
+      locations: [238],
     },
     '29783': {
       _id: 29783,
@@ -1681,6 +1752,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 2,
+      locations: [242],
     },
     '29784': {
       _id: 29784,
@@ -1698,6 +1770,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [1],
       time: null,
+      locations: [237],
     },
     '29785': {
       _id: 29785,
@@ -1715,6 +1788,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [1],
       time: null,
+      locations: [239],
     },
     '29786': {
       _id: 29786,
@@ -1732,6 +1806,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [1],
       time: null,
+      locations: [241],
     },
     '29787': {
       _id: 29787,
@@ -1749,6 +1824,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [1],
       time: null,
+      locations: [243],
     },
     '29788': {
       _id: 29788,
@@ -1769,6 +1845,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 3,
+      locations: [238],
     },
     '29789': {
       _id: 29789,
@@ -1788,6 +1865,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 3,
+      locations: [240],
     },
     '29790': {
       _id: 29790,
@@ -1808,6 +1886,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 2,
+      locations: [244],
     },
     '29791': {
       _id: 29791,
@@ -1827,6 +1906,7 @@ export default {
       bonus: 0,
       notAvailableWeatherSet: [],
       time: 1,
+      locations: [242],
     },
   },
   STARLIGHT_CELEBRATION: {

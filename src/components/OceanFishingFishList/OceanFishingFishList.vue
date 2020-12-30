@@ -1,7 +1,13 @@
 <template>
-  <v-data-table :headers="oceanFishingHeaders" :items="fishList" class="elevation-1">
+  <v-data-table
+    :headers="oceanFishingHeaders"
+    :items="transformFishList"
+    class="elevation-4 mt-2 ml-2"
+    hide-default-footer
+  >
     <template v-slot:item.name="{ item }">
       <div class="d-flex align-center">
+        <toggle-button :value="item.completed" @input="setCompleted(item.id, $event)" />
         <item-icon :icon-class="item.icon" :title="item.name" />
         <div>{{ item.name }}</div>
       </div>
@@ -11,9 +17,11 @@
 
 <script>
 import ItemIcon from '@/components/basic/ItemIcon'
+import { mapGetters, mapMutations } from 'vuex'
+import ToggleButton from '@/components/basic/ToggleButton'
 export default {
   name: 'OceanFishingFishList',
-  components: { ItemIcon },
+  components: { ToggleButton, ItemIcon },
   props: {
     fishList: {
       type: Array,
@@ -31,6 +39,23 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    transformFishList() {
+      return this.fishList.map(fish => {
+        return {
+          completed: this.getFishCompleted(fish.id),
+          ...fish,
+        }
+      })
+    },
+    ...mapGetters(['getFishCompleted']),
+  },
+  methods: {
+    setCompleted(fishId, completed) {
+      this.setFishCompleted({ fishId, completed })
+    },
+    ...mapMutations(['setFishCompleted']),
   },
 }
 </script>
