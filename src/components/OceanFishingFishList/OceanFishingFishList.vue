@@ -4,6 +4,7 @@
     :items="transformFishList"
     class="elevation-4 mt-2 ml-2"
     hide-default-footer
+    multi-sort
   >
     <template v-slot:item.name="{ item }">
       <div class="d-flex align-center">
@@ -12,7 +13,7 @@
         <div>{{ item.name }}</div>
       </div>
     </template>
-    <template v-slot:item.bait="{ item }">
+    <template v-slot:item.baitId="{ item }">
       <div class="d-flex align-center">
         <item-icon :icon-class="item.bait.icon" :title="item.bait.name" />
         <!--        <div>{{ item.bait.name }}</div>-->
@@ -52,7 +53,7 @@ export default {
           text: '鱼饵',
           align: 'start',
           sortable: true,
-          value: 'bait',
+          value: 'baitId',
         },
       ],
     }

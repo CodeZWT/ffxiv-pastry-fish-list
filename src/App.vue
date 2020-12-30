@@ -1388,10 +1388,12 @@ export default {
           icon: this.getItemIconClass(fish._id),
           hasFishingSpot: fish.locations.length !== 0,
           fishingSpots: this.getFishingSpots(fish.locations),
+          baitId: fish.bait,
           bait: {
             name: this.getItemName(fish.bait),
             icon: this.getItemIconClass(fish.bait),
           },
+          baitExtraId: fish.baitExtra,
           baitExtra: fish.baitExtra
             ? {
                 name: this.getItemName(fish.baitExtra),
