@@ -14,7 +14,22 @@
       </div>
     </template>
     <template v-slot:item.baitId="{ item }">
-      <div class="d-flex align-center justify-center">
+      <div class="d-flex align-center justify-center" style="min-height: 60px">
+        <div v-if="item.hasPredators" class="d-flex align-center">
+          <div v-for="(fish, index) in item.predators" :key="index" class="ml-1">
+            <v-badge
+              :content="fish.requiredCnt"
+              color="predatorCnt black--text"
+              overlap
+              bottom
+              bordered
+            >
+              <item-icon :icon-class="fish.icon" />
+            </v-badge>
+          </div>
+          <div :class="item.predatorsIcon" style="margin-left: 2px" />
+        </div>
+
         <item-icon :icon-class="item.bait.icon" :title="item.bait.name" />
         <!--        <div>{{ item.bait.name }}</div>-->
         <template v-if="item.baitExtra">

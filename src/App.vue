@@ -1240,7 +1240,7 @@ export default {
     this.updateWeatherChangePart(this.now)
 
     this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList).concat(
-      this.assembleOceanFish()
+      this.assembleOceanFishList()
     )
     this.lazyTransformedFishDict = DataUtil.toMap(
       this.lazyTransformedFishList,
@@ -1378,37 +1378,54 @@ export default {
         this.sounds[key]?.player?.volume(this.notification.volume).play()
       })
     },
-    assembleOceanFish() {
+    assembleOceanFishList() {
       const fishList = Object.values(FIX.OCEAN_FISHING_FISH)
-      return fishList.map(fish => {
-        return {
-          ...fish,
-          id: fish._id,
-          name: this.getItemName(fish._id),
-          icon: this.getItemIconClass(fish._id),
-          hasFishingSpot: fish.locations.length !== 0,
-          fishingSpots: this.getFishingSpots(fish.locations),
-          baitId: fish.bait,
-          bait: {
-            name: this.getItemName(fish.bait),
-            icon: this.getItemIconClass(fish.bait),
-          },
-          baitExtraId: fish.baitExtra,
-          baitExtra: fish.baitExtra
-            ? {
-                name: this.getItemName(fish.baitExtra),
-                icon: this.getItemIconClass(fish.baitExtra),
-              }
-            : null,
-          tug: fish.tug,
-          tugIcon: DataUtil.TUG_ICON[fish.tug],
-          hasWeatherConstraint: fish.notAvailableWeatherSet.length > 0,
-          notAvailableWeatherSetDetail: this.getWeather(fish.notAvailableWeatherSet),
-          time: fish.time,
-          timeText: DataUtil.timeId2TimeText(fish.time),
-          timeIcon: DataUtil.timeId2TimeIcon(fish.time),
-        }
-      })
+      return fishList.map(fish => this.assembleOceanFish(fish))
+    },
+    assembleOceanFish(fish) {
+      const hasPredators = fish.predators && Object.keys(fish.predators).length > 0
+      return {
+        ...fish,
+        id: fish._id,
+        name: this.getItemName(fish._id),
+        icon: this.getItemIconClass(fish._id),
+        hasFishingSpot: fish.locations.length !== 0,
+        fishingSpots: this.getFishingSpots(fish.locations),
+        baitId: fish.bait,
+        bait: {
+          name: this.getItemName(fish.bait),
+          icon: this.getItemIconClass(fish.bait),
+        },
+        baitExtraId: fish.baitExtra,
+        baitExtra: fish.baitExtra
+          ? {
+              name: this.getItemName(fish.baitExtra),
+              icon: this.getItemIconClass(fish.baitExtra),
+            }
+          : null,
+        tug: fish.tug,
+        tugIcon: DataUtil.TUG_ICON[fish.tug],
+        hasWeatherConstraint: fish.notAvailableWeatherSet.length > 0,
+        notAvailableWeatherSetDetail: this.getWeather(fish.notAvailableWeatherSet),
+        time: fish.time,
+        timeText: DataUtil.timeId2TimeText(fish.time),
+        timeIcon: DataUtil.timeId2TimeIcon(fish.time),
+        hasPredators: hasPredators,
+        predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
+        predators: hasPredators ? this.getOceanFishPredators(fish.predators) : [],
+      }
+    },
+    getOceanFishPredators(predators) {
+      if (predators == null || Object.keys(predators).length === 0) {
+        return []
+      } else {
+        return Object.entries(predators).map(([predatorId, count]) => {
+          return {
+            ...this.assembleOceanFish(FIX.OCEAN_FISHING_FISH[predatorId]),
+            requiredCnt: count,
+          }
+        })
+      }
     },
     assembleFish(fishSourceList, isPredator = false) {
       return fishSourceList.map(fish => {
