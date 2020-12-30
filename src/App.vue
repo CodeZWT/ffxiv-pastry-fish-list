@@ -1239,7 +1239,9 @@ export default {
     )
     this.updateWeatherChangePart(this.now)
 
-    this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
+    this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList).concat(
+      this.assembleOceanFish()
+    )
     this.lazyTransformedFishDict = DataUtil.toMap(
       this.lazyTransformedFishList,
       fish => fish.id
@@ -1374,6 +1376,17 @@ export default {
     ringBell(soundsToPlay) {
       soundsToPlay.forEach(key => {
         this.sounds[key]?.player?.volume(this.notification.volume).play()
+      })
+    },
+    assembleOceanFish() {
+      const fishList = Object.values(FIX.OCEAN_FISHING_FISH)
+      return fishList.map(fish => {
+        return {
+          ...fish,
+          id: fish._id,
+          name: this.getItemName(fish._id),
+          icon: this.getItemIconClass(fish._id),
+        }
       })
     },
     assembleFish(fishSourceList, isPredator = false) {

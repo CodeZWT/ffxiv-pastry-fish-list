@@ -61,7 +61,11 @@
         <!--          <code>{{ currentSpotId }}</code>-->
         <!--          <code>{{ currentFishId }}</code>-->
         <div
-          v-if="!type || type === 'region'"
+          v-if="
+            !type ||
+              type === 'region' ||
+              (type === 'territory' && isOceanFishingTerritory)
+          "
           class="d-flex justify-center align-center fill-height"
         >
           <!--  show empty / region view  -->
@@ -76,7 +80,7 @@
             :fishing-spots="currentSpotList"
           />
         </div>
-        <div v-else-if="type === 'spot' || type === 'fish'">
+        <div v-else-if="(type === 'spot' || type === 'fish') && !isOceanFishingSpot">
           <!--  show spot/fish view  -->
           <grid-layout
             v-if="currentSpotId"
@@ -157,6 +161,10 @@
             </grid-item>
           </grid-layout>
         </div>
+        <div v-else-if="isOceanFishingSpot">
+          <ocean-fishing-fish-list :fish-list="currentFishList" />
+          <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>
+        </div>
       </div>
       <div v-if="isMobile" style="position: absolute; top: 4px; left: 0; right: 0">
         <v-btn @click="showMapMenu = !showMapMenu" block color="primary" tile>
@@ -206,10 +214,12 @@ import FishDetail from '@/components/FishDetail'
 import TreeModel from 'tree-model'
 import ClickHelper from '@/components/basic/ClickHelper'
 import FishList from '@/components/FishList'
+import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
 
 export default {
   name: 'WikiPage',
   components: {
+    OceanFishingFishList,
     FishList,
     ClickHelper,
     FishDetail,
@@ -251,6 +261,12 @@ export default {
     forceShowComponents: undefined,
   }),
   computed: {
+    isOceanFishingTerritory() {
+      return this.currentTerritoryId === 3477
+    },
+    isOceanFishingSpot() {
+      return this.territoryDict[3477]?.includes(this.currentSpotId)
+    },
     // [TODO-TREE-PATH-AUTO-OPEN]
     // expandAllInSearching() {
     //   return this.searching && this.searchResults.nodeIds.length > 0 && this.searchResults.nodeIds.length < 10
@@ -445,7 +461,7 @@ export default {
 
     // let output = ''
     this.regionTerritorySpots = regionTerritorySpots
-      .filter(region => region.id != null && region.id !== 3443)
+      .filter(region => region.id != null)
       .map(region => {
         // output += `region,${region.id},${placeNames[region.id]}\n`
         return {

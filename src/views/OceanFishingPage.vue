@@ -23,7 +23,7 @@ import { DateTime, FixedOffsetZone } from 'luxon'
 import { mapGetters } from 'vuex'
 import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
 import ImgUtil from '@/utils/ImgUtil'
-
+// https://ngabbs.com/read.php?tid=20553241
 export default {
   name: 'OceanFishingPage',
   components: { OceanFishingTimeTable },
