@@ -43,6 +43,28 @@
         </template>
       </div>
     </template>
+    <template v-slot:item.notAvailableWeatherSet="{ item }">
+      <div class="d-flex align-center justify-center">
+        <div v-if="!item.hasWeatherConstraint">
+          无要求
+        </div>
+        <div v-else>
+          在
+        </div>
+        <div
+          v-for="(weather, index) in item.notAvailableWeatherSetDetail"
+          :key="index"
+          :title="weather.name"
+          class="d-flex flex-column align-center"
+        >
+          <div :class="weather.icon" :title="weather.name" />
+          <!--          <div class="ml-1">{{ weather.name }}</div>-->
+        </div>
+        <div v-if="item.hasWeatherConstraint">
+          不出现
+        </div>
+      </div>
+    </template>
   </v-data-table>
 </template>
 
@@ -86,6 +108,24 @@ export default {
           align: 'center',
           sortable: true,
           value: 'biteTimeMin',
+        },
+        {
+          text: '分数',
+          align: 'center',
+          sortable: true,
+          value: 'points',
+        },
+        {
+          text: '双提',
+          align: 'center',
+          sortable: true,
+          value: 'doubleHook',
+        },
+        {
+          text: '天气',
+          align: 'center',
+          sortable: false,
+          value: 'notAvailableWeatherSet',
         },
       ],
       TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
