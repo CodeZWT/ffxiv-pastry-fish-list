@@ -101,8 +101,8 @@ export default {
     // },
     currentVoyage() {
       const timeSlot = this.now % (2 * 60 * MINUTE)
-      const status = timeSlot < 15 * MINUTE ? 'check-in' : 'traveling'
-      if (timeSlot < 45 * MINUTE) {
+      if (timeSlot < 60 * MINUTE) {
+        const status = timeSlot < 15 * MINUTE ? 'check-in' : 'traveling'
         return {
           voyage: this.lazyCurrentVoyage,
           status: status,
@@ -110,6 +110,7 @@ export default {
         }
       } else {
         return {
+          voyage: this.lazyCurrentVoyage,
           nextInterval: DataUtil.printCountDownTime(2 * 60 * MINUTE - timeSlot, 2),
           status: 'none',
         }
@@ -129,7 +130,10 @@ export default {
       }
 
       if (this.shouldUpdate(this.currentVoyageLastUpdate, this.now)) {
-        this.lazyCurrentVoyage = this.assembleVoyages(this.now, 1)
+        this.lazyCurrentVoyage = this.assembleVoyages(
+          OceanFishingUtil.shiftTimeForLimit(this.now, 60 * MINUTE),
+          1
+        )
         this.currentVoyageLastUpdate = this.now
       }
     },
