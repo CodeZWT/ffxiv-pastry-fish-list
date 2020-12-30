@@ -16,6 +16,10 @@
           :targetOptions="targetOptions"
           hide-filters
         />
+
+        <!--        <div>{{ currentFishList }}</div>-->
+        <ocean-fishing-fish-list :fish-list="currentFishList" />
+
         <pre>{{ JSON.stringify(currentVoyage, null, 2) }}</pre>
       </v-card-text>
     </v-card>
@@ -41,14 +45,17 @@ import { DateTime, FixedOffsetZone } from 'luxon'
 import { mapGetters } from 'vuex'
 import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
 import ImgUtil from '@/utils/ImgUtil'
+import regionTerritorySpots from '@/store/fishingSpots.json'
+import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
+
 // https://ngabbs.com/read.php?tid=20553241
 
 const MINUTE = 60000
 
 export default {
   name: 'OceanFishingPage',
-  components: { OceanFishingTimeTable },
-  props: ['now'],
+  components: { OceanFishingFishList, OceanFishingTimeTable },
+  props: ['now', 'lazyTransformedFishDict'],
   data() {
     return {
       achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
@@ -116,6 +123,16 @@ export default {
         }
       }
     },
+    currentFishingSpotId() {
+      return this.currentVoyage.voyage[0].voyageLocations[0].id
+    },
+    currentFishList() {
+      return regionTerritorySpots
+        .find(it => it.id === 3443)
+        ?.territories.find(it => it.id === 3477)
+        ?.spots.find(it => it.id === this.currentFishingSpotId)
+        ?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
+    },
     ...mapGetters([
       'getItemName',
       'getItemIconClass',
@@ -169,6 +186,8 @@ export default {
             name: voyageWithTip.shift.name,
             targets: targets,
             voyageLocations: voyageWithTip.locationTips.map(it => ({
+              id: it.fishingSpots.normal,
+              spectralCurrentId: it.fishingSpots.spectralCurrent,
               name: it.locationName,
               icon: shift2Icon(it.locationShift),
               hint: it.locationHint,

@@ -244,6 +244,13 @@ function locationShiftToShift(locationShiftIndex) {
   return locationShiftIndex >>> 2
 }
 
+const LOCATION_TO_FISHING_SPOTS = [
+  { normal: 241, spectralCurrent: 242 },
+  { normal: 243, spectralCurrent: 244 },
+  { normal: 237, spectralCurrent: 238 },
+  { normal: 239, spectralCurrent: 240 },
+]
+
 function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
   return getVoyages(time, voyageN, targets).map(voyage => {
     const voyageType = voyage.voyageType
@@ -252,6 +259,7 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPE
     const locationTips = locations.map((locationIndex, i) => {
       const shiftIndex = (shiftStart + i) % 3
       return {
+        fishingSpots: LOCATION_TO_FISHING_SPOTS[locationIndex],
         locationName: LOCATIONS[locationIndex],
         locationShift: shiftIndex,
         locationHint: SHIFTS[shiftIndex],

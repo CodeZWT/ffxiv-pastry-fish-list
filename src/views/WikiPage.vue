@@ -162,7 +162,7 @@
           </grid-layout>
         </div>
         <div v-else-if="isOceanFishingSpot">
-          <ocean-fishing-fish-list :fish-list="currentFishList" />
+          <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
           <!--          <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
         </div>
       </div>

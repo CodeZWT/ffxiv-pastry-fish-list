@@ -2,7 +2,7 @@
   <v-data-table
     :headers="oceanFishingHeaders"
     :items="transformFishList"
-    class="elevation-4 mt-2 ml-2"
+    class="elevation-4 mt-2"
     hide-default-footer
     multi-sort
   >
