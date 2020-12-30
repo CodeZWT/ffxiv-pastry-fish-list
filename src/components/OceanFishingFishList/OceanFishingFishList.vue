@@ -24,7 +24,7 @@
         </template>
       </div>
     </template>
-    <template v-slot:item.tug="{ item }">
+    <template v-slot:item.tugIcon="{ item }">
       <div class="d-flex align-center justify-center">
         <v-badge
           v-show="item.tug != null"
@@ -32,6 +32,15 @@
           :content="item.tugIcon"
           inline
         />
+      </div>
+    </template>
+    <template v-slot:item.biteTimeMin="{ item }">
+      <div class="d-flex align-center justify-center">
+        <span>{{ item.biteTimeMin }}</span>
+        <template v-if="item.biteTimeMax">
+          <span class="mx-1">-</span>
+          <span>{{ item.biteTimeMax }}</span>
+        </template>
       </div>
     </template>
   </v-data-table>
@@ -70,7 +79,13 @@ export default {
           text: '杆型',
           align: 'center',
           sortable: true,
-          value: 'tug',
+          value: 'tugIcon',
+        },
+        {
+          text: '咬钩时间',
+          align: 'center',
+          sortable: true,
+          value: 'biteTimeMin',
         },
       ],
       TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
