@@ -1411,6 +1411,7 @@ export default {
           : null,
         tug: fish.tug,
         tugIcon: DataUtil.TUG_ICON[fish.tug],
+        biteTimeForSort: fish.biteTimeMin * 100 + (fish.biteTimeMax ?? 0),
         hasWeatherConstraint: fish.notAvailableWeatherSet.length > 0,
         notAvailableWeatherSetDetail: this.getWeather(fish.notAvailableWeatherSet),
         time: fish.time,

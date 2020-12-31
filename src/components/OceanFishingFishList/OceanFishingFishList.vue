@@ -69,7 +69,7 @@
           />
         </div>
       </template>
-      <template v-slot:item.biteTimeMin="{ item }">
+      <template v-slot:item.biteTimeForSort="{ item }">
         <div class="d-flex align-center justify-center">
           <span>{{ item.biteTimeMin }}</span>
           <template v-if="item.biteTimeMax">
@@ -190,7 +190,7 @@ export default {
           text: '咬钩时间',
           align: 'center',
           sortable: true,
-          value: 'biteTimeMin',
+          value: 'biteTimeForSort',
         },
         {
           text: '分数',
@@ -229,7 +229,7 @@ export default {
         ? {
             text: '时间',
             align: 'center',
-            sortable: false,
+            sortable: true,
             value: 'time',
           }
         : {
