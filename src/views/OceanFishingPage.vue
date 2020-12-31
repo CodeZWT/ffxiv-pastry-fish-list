@@ -32,8 +32,18 @@
           weather-filter
           :weather-set="currentWeatherSet"
         />
-        <div class="text-h6 text-center my-4" style="width: 100%">幻海流</div>
-        <ocean-fishing-fish-list :fish-list="currentSpectralCurrentFishList" />
+        <div class="d-flex my-4" style="width: 100%">
+          <div class="text-h6">{{ currentFishingSpotSpectralCurrentName }}</div>
+          <v-spacer />
+          <v-btn @click="toggleShiftFilter" text color="error">
+            {{ shiftFilterEnabled ? '清除时间限制' : '只显示当前时间可钓的鱼' }}
+          </v-btn>
+        </div>
+        <ocean-fishing-fish-list
+          :fish-list="currentSpectralCurrentFishList"
+          :shift-filter="shiftFilterEnabled"
+          :shift="currentShift"
+        />
 
         <!--        <pre>{{ JSON.stringify(currentVoyage, null, 2) }}</pre>-->
       </v-card-text>
@@ -78,6 +88,7 @@ export default {
       lazyNow: this.now,
       currentVoyageLastUpdate: 0,
       currentLocationIndex: 0,
+      shiftFilterEnabled: true,
     }
   },
   computed: {
@@ -145,6 +156,9 @@ export default {
     currentFishingSpot() {
       return this.currentVoyage.voyage?.[0]?.voyageLocations[this.currentLocationIndex]
     },
+    currentShift() {
+      return this.currentFishingSpot?.shift
+    },
     currentWeatherSet() {
       return this.currentFishingSpot?.weatherSet ?? []
     },
@@ -153,6 +167,9 @@ export default {
     },
     currentFishingSpotSpectralCurrentId() {
       return this.currentFishingSpot?.spectralCurrentId
+    },
+    currentFishingSpotSpectralCurrentName() {
+      return this.getFishingSpotsName(this.currentFishingSpotSpectralCurrentId)
     },
     oceanFishingSpots() {
       return regionTerritorySpots
@@ -178,6 +195,7 @@ export default {
       'getItemIconClass',
       'getAchievementName',
       'getAchievementIconClass',
+      'getFishingSpotsName',
     ]),
   },
   watch: {
@@ -196,6 +214,9 @@ export default {
     },
   },
   methods: {
+    toggleShiftFilter() {
+      this.shiftFilterEnabled = !this.shiftFilterEnabled
+    },
     shouldUpdate(lastUpdate, now) {
       return Math.floor(now / (15 * MINUTE)) > Math.floor(lastUpdate / (15 * MINUTE))
     },
@@ -229,6 +250,7 @@ export default {
               id: it.fishingSpots.normal,
               spectralCurrentId: it.fishingSpots.spectralCurrent,
               weatherSet: it.weatherSet,
+              shift: it.locationShift,
               name: it.locationName,
               icon: shift2Icon(it.locationShift),
               hint: it.locationHint,

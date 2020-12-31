@@ -1121,7 +1121,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [242],
     },
     '29749': {
@@ -1139,7 +1139,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [238],
     },
     '29750': {
@@ -1157,7 +1157,7 @@ export default {
       predators: null,
       bonus: 14,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [238],
     },
     '29751': {
@@ -1193,7 +1193,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [238],
     },
     '29753': {
@@ -1229,7 +1229,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [238],
     },
     '29755': {
@@ -1301,7 +1301,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [240],
     },
     '29759': {
@@ -1319,7 +1319,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [240],
     },
     '29760': {
@@ -1337,7 +1337,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [240],
     },
     '29761': {
@@ -1355,7 +1355,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [240],
     },
     '29762': {
@@ -1445,7 +1445,7 @@ export default {
       predators: null,
       bonus: 13,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [238],
     },
     '29767': {
@@ -1481,7 +1481,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [244],
     },
     '29769': {
@@ -1499,7 +1499,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [244],
     },
     '29770': {
@@ -1535,7 +1535,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [242],
     },
     '29772': {
@@ -1553,7 +1553,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [244],
     },
     '29773': {
@@ -1607,7 +1607,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [244],
     },
     '29776': {
@@ -1625,7 +1625,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [242],
     },
     '29777': {
@@ -1661,7 +1661,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [242],
     },
     '29779': {
@@ -1679,7 +1679,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [240],
     },
     '29780': {
@@ -1697,7 +1697,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [244],
     },
     '29781': {
@@ -1715,7 +1715,7 @@ export default {
       predators: null,
       bonus: 0,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [242],
     },
     '29782': {

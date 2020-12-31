@@ -9,7 +9,7 @@
           </template>
         </v-radio>
       </v-radio-group>
-      <v-btn @click="clearWeatherFilter" color="error" text>清空天气</v-btn>
+      <v-btn @click="clearWeatherFilter" color="error" text>清除天气限制</v-btn>
     </div>
     <v-data-table
       :headers="oceanFishingHeaders"
@@ -103,7 +103,8 @@
 
       <template v-slot:item.time="{ item }">
         <div class="d-flex align-center justify-center">
-          <v-icon :title="item.timeText">{{ item.timeIcon }}</v-icon>
+          <div v-if="item.time === 0">{{ item.timeText }}</div>
+          <v-icon v-else :title="item.timeText">{{ item.timeIcon }}</v-icon>
         </div>
       </template>
 
@@ -143,11 +144,20 @@ export default {
       type: Array,
       default: () => [],
     },
+    shiftFilter: {
+      type: Boolean,
+      default: false,
+    },
+    shift: {
+      type: Number,
+      default: undefined,
+    },
   },
   data() {
     return {
       TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
       currentWeather: null,
+      currentShift: null,
     }
   },
   computed: {
@@ -163,7 +173,13 @@ export default {
     },
     filteredFishList() {
       return this.fishList.filter(
-        fish => !fish.notAvailableWeatherSet.includes(this.currentWeather)
+        fish =>
+          (!this.weatherFilter ||
+            !fish.notAvailableWeatherSet.includes(this.currentWeather)) &&
+          (!this.shiftFilter ||
+            this.currentShift == null ||
+            fish.time === 0 ||
+            fish.time === this.currentShift + 1)
       )
     },
     oceanFishingHeaders() {
@@ -241,7 +257,20 @@ export default {
     },
     ...mapGetters(['getFishCompleted']),
   },
+  mounted() {
+    // this.initFilters()
+  },
+  watch: {
+    shift(shift) {
+      this.currentShift = shift
+    },
+  },
   methods: {
+    initFilters() {
+      console.log('init triggered')
+      this.currentWeather = null
+      this.currentShift = this.shift
+    },
     clearWeatherFilter() {
       this.currentWeather = null
     },
