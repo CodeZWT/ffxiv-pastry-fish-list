@@ -1388,6 +1388,8 @@ export default {
     assembleOceanFish(fish) {
       const hasPredators = fish.predators && Object.keys(fish.predators).length > 0
       const bonus = FIX.OCEAN_FISHING_BONUS[fish.bonus]
+      const realNotAvailableWeatherSet = this.getRealNotAvailableWeatherSet(fish._id)
+      console.log(realNotAvailableWeatherSet)
       return {
         ...fish,
         id: fish._id,
@@ -1414,7 +1416,10 @@ export default {
         tugIcon: DataUtil.TUG_ICON[fish.tug],
         biteTimeForSort: fish.biteTimeMin * 100 + (fish.biteTimeMax ?? 0),
         hasWeatherConstraint: fish.notAvailableWeatherSet.length > 0,
-        notAvailableWeatherSetDetail: this.getWeather(fish.notAvailableWeatherSet),
+        hasRealWeatherConstraint:
+          realNotAvailableWeatherSet.length > fish.notAvailableWeatherSet.length,
+        notAvailableWeatherSetDetail: this.getWeather(realNotAvailableWeatherSet),
+        notAvailableWeatherSet: realNotAvailableWeatherSet,
         time: fish.time,
         timeText: DataUtil.timeId2TimeText(fish.time),
         timeIcon: DataUtil.timeId2TimeIcon(fish.time),
@@ -1427,6 +1432,28 @@ export default {
           icon: DataUtil.iconIdToClass(bonus.icon),
         },
       }
+    },
+    getRealNotAvailableWeatherSet(fishId) {
+      const fish = FIX.OCEAN_FISHING_FISH[fishId]
+      if (fish == null) return []
+
+      const predatorIds = fish.predators ? Object.keys(fish.predators) : []
+      return _.union(
+        fish.notAvailableWeatherSet,
+        fish.bestCatchPathExtra.length === 0
+          ? fish.bestCatchPath.flatMap(fishId => {
+              return this.getRealNotAvailableWeatherSet(fishId)
+            })
+          : _.intersection(
+              fish.bestCatchPath.flatMap(fishId => {
+                return this.getRealNotAvailableWeatherSet(fishId)
+              }),
+              fish.bestCatchPathExtra.flatMap(fishId => {
+                return this.getRealNotAvailableWeatherSet(fishId)
+              })
+            ),
+        predatorIds.flatMap(fishId => this.getRealNotAvailableWeatherSet(fishId))
+      )
     },
     getOceanFishPredators(predators) {
       if (predators == null || Object.keys(predators).length === 0) {

@@ -93,7 +93,7 @@
       </template>
       <template v-slot:item.notAvailableWeatherSet="{ item }">
         <div class="d-flex align-center justify-center">
-          <div v-if="!item.hasWeatherConstraint">
+          <div v-if="!item.hasWeatherConstraint && !item.hasRealWeatherConstraint">
             无要求
           </div>
           <div v-else>
@@ -110,6 +110,9 @@
           </div>
           <div v-if="item.hasWeatherConstraint">
             不出现
+          </div>
+          <div v-else-if="item.hasRealWeatherConstraint" title="条件无法满足">
+            不可钓
           </div>
         </div>
       </template>
