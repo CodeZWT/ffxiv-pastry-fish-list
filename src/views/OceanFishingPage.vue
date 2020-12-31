@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
-      filter: { voyageN: 13 },
+      filter: { voyageN: 10 },
       lazyNow: this.now,
       currentVoyageLastUpdate: 0,
       selectedVoyage: undefined,

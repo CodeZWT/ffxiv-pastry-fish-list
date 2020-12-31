@@ -19,7 +19,7 @@ export default {
     },
   },
   data: () => ({
-    voyageNLazy: 13,
+    voyageNLazy: 10,
     targets: [],
   }),
   computed: {

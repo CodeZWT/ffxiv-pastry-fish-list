@@ -258,7 +258,7 @@ const FISHING_SPOTS_WEATHER_SET = {
   243: [2, 3, 4, 15, 16, 1],
 }
 
-function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
+function voyagesWithTipOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPES) {
   return getVoyages(time, voyageN, targets).map(voyage => {
     const voyageType = voyage.voyageType
     const locations = VOYAGE_LOCATIONS[voyageToLocation(voyageType)]
@@ -289,7 +289,7 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPE
   })
 }
 
-function simpleTipsOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
+function simpleTipsOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPES) {
   return voyagesWithTipOf(time, voyageN, targets).map(tip => {
     return {
       time: new Intl.DateTimeFormat('zh-Hans-CN', {
