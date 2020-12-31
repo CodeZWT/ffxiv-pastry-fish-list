@@ -12,38 +12,43 @@
           </span>
         </div>
         <ocean-fishing-time-table
-          :voyages="currentVoyage.voyage"
+          :voyages="currentVoyage.voyageList"
           :targetOptions="targetOptions"
           hide-filters
         />
 
-        <v-tabs v-model="currentLocationIndex" centered icons-and-text grow>
-          <v-tabs-slider></v-tabs-slider>
-
-          <v-tab v-for="location in currentLocations" :key="location.id">
-            {{ location.name }}
-            <v-icon>{{ location.icon }}</v-icon>
-          </v-tab>
-        </v-tabs>
-
-        <!--        <div>{{ currentFishList }}</div>-->
-        <ocean-fishing-fish-list
-          :fish-list="currentFishList"
-          weather-filter
-          :weather-set="currentWeatherSet"
+        <ocean-fishing-voyage
+          :voyage="currentVoyage"
+          :fish-dict="lazyTransformedFishDict"
         />
-        <div class="d-flex my-4" style="width: 100%">
-          <div class="text-h6">{{ currentFishingSpotSpectralCurrentName }}</div>
-          <v-spacer />
-          <v-btn @click="toggleShiftFilter" text color="error">
-            {{ shiftFilterEnabled ? '清除时间限制' : '只显示当前时间可钓的鱼' }}
-          </v-btn>
-        </div>
-        <ocean-fishing-fish-list
-          :fish-list="currentSpectralCurrentFishList"
-          :shift-filter="shiftFilterEnabled"
-          :shift="currentShift"
-        />
+
+        <!--        <v-tabs v-model="currentLocationIndex" centered icons-and-text grow>-->
+        <!--          <v-tabs-slider></v-tabs-slider>-->
+
+        <!--          <v-tab v-for="location in currentLocations" :key="location.id">-->
+        <!--            {{ location.name }}-->
+        <!--            <v-icon>{{ location.icon }}</v-icon>-->
+        <!--          </v-tab>-->
+        <!--        </v-tabs>-->
+
+        <!--        &lt;!&ndash;        <div>{{ currentFishList }}</div>&ndash;&gt;-->
+        <!--        <ocean-fishing-fish-list-->
+        <!--          :fish-list="currentFishList"-->
+        <!--          weather-filter-->
+        <!--          :weather-set="currentWeatherSet"-->
+        <!--        />-->
+        <!--        <div class="d-flex my-4" style="width: 100%">-->
+        <!--          <div class="text-h6">{{ currentFishingSpotSpectralCurrentName }}</div>-->
+        <!--          <v-spacer />-->
+        <!--          <v-btn @click="toggleShiftFilter" text color="error">-->
+        <!--            {{ shiftFilterEnabled ? '清除时间限制' : '只显示当前时间可钓的鱼' }}-->
+        <!--          </v-btn>-->
+        <!--        </div>-->
+        <!--        <ocean-fishing-fish-list-->
+        <!--          :fish-list="currentSpectralCurrentFishList"-->
+        <!--          :shift-filter="shiftFilterEnabled"-->
+        <!--          :shift="currentShift"-->
+        <!--        />-->
 
         <!--        <pre>{{ JSON.stringify(currentVoyage, null, 2) }}</pre>-->
       </v-card-text>
@@ -70,8 +75,7 @@ import { DateTime, FixedOffsetZone } from 'luxon'
 import { mapGetters } from 'vuex'
 import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
 import ImgUtil from '@/utils/ImgUtil'
-import regionTerritorySpots from '@/store/fishingSpots.json'
-import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
+import OceanFishingVoyage from '@/components/OceanFishingVoyage/OceanFishingVoyage'
 
 // https://ngabbs.com/read.php?tid=20553241
 
@@ -79,7 +83,7 @@ const MINUTE = 60000
 
 export default {
   name: 'OceanFishingPage',
-  components: { OceanFishingFishList, OceanFishingTimeTable },
+  components: { OceanFishingVoyage, OceanFishingTimeTable },
   props: ['now', 'lazyTransformedFishDict'],
   data() {
     return {
@@ -87,8 +91,6 @@ export default {
       filter: { voyageN: 13 },
       lazyNow: this.now,
       currentVoyageLastUpdate: 0,
-      currentLocationIndex: 0,
-      shiftFilterEnabled: true,
     }
   },
   computed: {
@@ -138,64 +140,23 @@ export default {
       if (timeSlot < 60 * MINUTE) {
         const status = timeSlot < 15 * MINUTE ? 'check-in' : 'traveling'
         return {
-          voyage: this.lazyCurrentVoyage,
+          voyageList: this.lazyCurrentVoyage,
           status: status,
           checkInLimit: DataUtil.printCountDownTime(15 * MINUTE - timeSlot, 2),
         }
       } else {
         return {
-          voyage: this.lazyCurrentVoyage,
+          voyageList: this.lazyCurrentVoyage,
           nextInterval: DataUtil.printCountDownTime(2 * 60 * MINUTE - timeSlot, 2),
           status: 'none',
         }
       }
-    },
-    currentLocations() {
-      return this.currentVoyage.voyage?.[0]?.voyageLocations
-    },
-    currentFishingSpot() {
-      return this.currentVoyage.voyage?.[0]?.voyageLocations[this.currentLocationIndex]
-    },
-    currentShift() {
-      return this.currentFishingSpot?.shift
-    },
-    currentWeatherSet() {
-      return this.currentFishingSpot?.weatherSet ?? []
-    },
-    currentFishingSpotId() {
-      return this.currentFishingSpot?.id
-    },
-    currentFishingSpotSpectralCurrentId() {
-      return this.currentFishingSpot?.spectralCurrentId
-    },
-    currentFishingSpotSpectralCurrentName() {
-      return this.getFishingSpotsName(this.currentFishingSpotSpectralCurrentId)
-    },
-    oceanFishingSpots() {
-      return regionTerritorySpots
-        .find(it => it.id === 3443)
-        ?.territories.find(it => it.id === 3477)?.spots
-    },
-    currentFishList() {
-      return this.currentFishingSpotId == null
-        ? []
-        : this.oceanFishingSpots
-            ?.find(it => it.id === this.currentFishingSpotId)
-            ?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
-    },
-    currentSpectralCurrentFishList() {
-      return this.currentFishingSpotSpectralCurrentId == null
-        ? []
-        : this.oceanFishingSpots
-            ?.find(it => it.id === this.currentFishingSpotSpectralCurrentId)
-            ?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
     },
     ...mapGetters([
       'getItemName',
       'getItemIconClass',
       'getAchievementName',
       'getAchievementIconClass',
-      'getFishingSpotsName',
     ]),
   },
   watch: {
@@ -214,9 +175,6 @@ export default {
     },
   },
   methods: {
-    toggleShiftFilter() {
-      this.shiftFilterEnabled = !this.shiftFilterEnabled
-    },
     shouldUpdate(lastUpdate, now) {
       return Math.floor(now / (15 * MINUTE)) > Math.floor(lastUpdate / (15 * MINUTE))
     },
