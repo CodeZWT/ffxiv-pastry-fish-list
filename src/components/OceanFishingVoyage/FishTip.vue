@@ -26,8 +26,15 @@
       </div>
     </template>
     <v-card :color="fish.hasPredators ? 'info' : 'system'">
-      <v-card-text class="d-flex justify-center" style="position:relative;">
+      <v-card-text class="d-flex justify-center align-center" style="position:relative;">
+        <div v-if="showTip" class="d-flex mr-2">
+          <div>{{ fish.biteTimeMin }}</div>
+          <div v-if="fish.biteTimeMax">-{{ fish.biteTimeMax }}</div>
+        </div>
         <fish-bait-list :baits="fish.baits" :target="fish" />
+        <div v-if="showTip" style="position: absolute; top: 4px; right: 4px">
+          {{ fish.points }} X {{ fish.doubleHook.join(',') }}
+        </div>
         <div
           v-if="fish.hasWeatherConstraint || fish.hasRealWeatherConstraint"
           style="position: absolute; right: 4px; bottom: 4px"
@@ -49,6 +56,10 @@ export default {
     fish: {
       type: Object,
       default: () => {},
+    },
+    showTip: {
+      type: Boolean,
+      default: false,
     },
   },
 }

@@ -66,6 +66,19 @@
         </v-col>
       </v-row>
     </div>
+    <div v-else-if="currentTip.id === 2562">
+      <v-row>
+        <v-col v-for="location in currentLocations" :key="location.id">
+          <v-col cols="12">
+            <div class="d-flex justify-center">
+              {{ location.name }}
+              <v-icon>{{ location.icon }}</v-icon>
+            </div>
+          </v-col>
+          <point-tip :location="location" :fish-dict="fishDict" />
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 
@@ -75,10 +88,11 @@ import regionTerritorySpots from '@/store/fishingSpots.json'
 import { mapGetters } from 'vuex'
 import ItemIcon from '@/components/basic/ItemIcon'
 import FishTip from '@/components/OceanFishingVoyage/FishTip'
+import PointTip from '@/components/OceanFishingVoyage/PointTip'
 
 export default {
   name: 'OceanFishingVoyage',
-  components: { FishTip, ItemIcon, OceanFishingFishList },
+  components: { PointTip, FishTip, ItemIcon, OceanFishingFishList },
   props: {
     voyage: {
       type: Object,
