@@ -7,9 +7,12 @@
       <v-card-title>当前航班</v-card-title>
       <v-card-text>
         <div>
-          <span>{{ currentVoyage.status }}</span>
+          <span>{{ $t(`oceanFishing.currentVoyage.${currentVoyage.status}`) }}</span>
           <span v-if="currentVoyage.status === 'check-in'">
             {{ currentVoyage.checkInLimit }}
+          </span>
+          <span v-else-if="currentVoyage.status === 'none'">
+            {{ currentVoyage.nextInterval }}
           </span>
         </div>
         <ocean-fishing-time-table
