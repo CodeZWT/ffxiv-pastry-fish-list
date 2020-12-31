@@ -245,8 +245,8 @@ function locationShiftToShift(locationShiftIndex) {
 }
 
 const LOCATION_TO_FISHING_SPOTS = [
-  { normal: 241, spectralCurrent: 242 },
   { normal: 243, spectralCurrent: 244 },
+  { normal: 241, spectralCurrent: 242 },
   { normal: 237, spectralCurrent: 238 },
   { normal: 239, spectralCurrent: 240 },
 ]
