@@ -178,7 +178,7 @@ export default {
     return {
       TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
       currentWeather: null,
-      currentShift: null,
+      currentShift: this.shift,
     }
   },
   computed: {
