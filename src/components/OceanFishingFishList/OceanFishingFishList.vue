@@ -17,26 +17,37 @@
       class="elevation-4 mt-2"
       hide-default-footer
       multi-sort
+      :dense="dense"
     >
       <template v-slot:item.name="{ item }">
         <div class="d-flex align-center">
           <toggle-button :value="item.completed" @input="setCompleted(item.id, $event)" />
-          <item-icon :icon-class="item.icon" :title="item.name" style="min-width: 48px" />
+          <item-icon
+            :icon-class="item.icon"
+            :title="item.name"
+            style="min-width: 36px"
+            :small="dense"
+          />
           <div>{{ item.name }}</div>
         </div>
       </template>
       <template v-slot:item.baitId="{ item }">
-        <div class="d-flex align-center justify-center" style="min-height: 70px">
+        <div class="d-flex align-center justify-center">
           <template v-if="item.hasPredators">
-            <div v-for="(fish, index) in item.predators" :key="index" class="pt-1 ml-1">
+            <div
+              v-for="(fish, index) in item.predators"
+              :key="index"
+              class="d-flex align-center ml-1"
+            >
+              <item-icon :icon-class="fish.icon" :small="dense" />
+              <span>X</span>
               <v-badge
                 :content="fish.requiredCnt"
                 color="predatorCnt black--text"
-                overlap
+                inline
                 bottom
                 bordered
               >
-                <item-icon :icon-class="fish.icon" />
               </v-badge>
             </div>
             <div :class="item.predatorsIcon" style="margin-left: 2px" />
@@ -46,6 +57,7 @@
             :data-ck-item-id="toItemIdIfExisted(item.bait.id, item.bait.name)"
             :icon-class="item.bait.icon"
             :title="item.bait.name"
+            :small="dense"
           />
           <!--        <div>{{ item.bait.name }}</div>-->
           <template v-if="item.baitExtra">
@@ -54,6 +66,7 @@
               :data-ck-item-id="toItemIdIfExisted(item.baitExtra.id, item.baitExtra.name)"
               :icon-class="item.baitExtra.icon"
               :title="item.baitExtra.name"
+              :small="dense"
             />
             <!--          <div>{{ item.baitExtra.name }}</div>-->
           </template>
@@ -114,6 +127,7 @@
             v-if="item.bonusId !== 0"
             :title="item.bonus.name"
             :icon-class="item.bonus.icon"
+            :small="dense"
           />
         </div>
       </template>
@@ -132,6 +146,10 @@ export default {
   name: 'OceanFishingFishList',
   components: { ToggleButton, ItemIcon },
   props: {
+    dense: {
+      type: Boolean,
+      default: false,
+    },
     fishList: {
       type: Array,
       default: () => [],
@@ -189,36 +207,42 @@ export default {
           align: 'start',
           sortable: false,
           value: 'name',
+          width: '15%',
         },
         {
           text: '鱼饵',
           align: 'center',
           sortable: true,
           value: 'baitId',
+          width: '15%',
         },
         {
           text: '杆型',
           align: 'center',
           sortable: true,
           value: 'tugIcon',
+          width: '5%',
         },
         {
           text: '咬钩时间',
           align: 'center',
           sortable: true,
           value: 'biteTimeForSort',
+          width: '10%',
         },
         {
           text: '分数',
           align: 'center',
           sortable: true,
           value: 'points',
+          width: '5%',
         },
         {
           text: '双提',
           align: 'center',
           sortable: true,
           value: 'doubleHook',
+          width: '5%',
         },
         this.restrictColumnHeader,
         {
@@ -226,6 +250,7 @@ export default {
           align: 'center',
           sortable: true,
           value: 'bonusId',
+          width: '10%',
         },
       ]
     },
@@ -247,12 +272,14 @@ export default {
             align: 'center',
             sortable: true,
             value: 'time',
+            width: '15%',
           }
         : {
             text: '天气',
             align: 'center',
             sortable: false,
             value: 'notAvailableWeatherSet',
+            width: '15%',
           }
     },
     ...mapGetters(['getFishCompleted']),
