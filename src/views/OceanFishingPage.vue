@@ -17,10 +17,19 @@
           hide-filters
         />
 
+        <v-tabs v-model="currentLocationIndex" centered icons-and-text grow>
+          <v-tabs-slider></v-tabs-slider>
+
+          <v-tab v-for="location in currentLocations" :key="location.id">
+            {{ location.name }}
+            <v-icon>{{ location.icon }}</v-icon>
+          </v-tab>
+        </v-tabs>
+
         <!--        <div>{{ currentFishList }}</div>-->
         <ocean-fishing-fish-list :fish-list="currentFishList" />
 
-        <pre>{{ JSON.stringify(currentVoyage, null, 2) }}</pre>
+        <!--        <pre>{{ JSON.stringify(currentVoyage, null, 2) }}</pre>-->
       </v-card-text>
     </v-card>
 
@@ -62,6 +71,7 @@ export default {
       filter: { voyageN: 13 },
       lazyNow: this.now,
       currentVoyageLastUpdate: 0,
+      currentLocationIndex: 0,
     }
   },
   computed: {
@@ -123,15 +133,21 @@ export default {
         }
       }
     },
+    currentLocations() {
+      return this.currentVoyage.voyage?.[0]?.voyageLocations
+    },
     currentFishingSpotId() {
-      return this.currentVoyage.voyage[0].voyageLocations[0].id
+      return this.currentVoyage.voyage?.[0]?.voyageLocations[this.currentLocationIndex]
+        ?.id
     },
     currentFishList() {
-      return regionTerritorySpots
-        .find(it => it.id === 3443)
-        ?.territories.find(it => it.id === 3477)
-        ?.spots.find(it => it.id === this.currentFishingSpotId)
-        ?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
+      return this.currentFishingSpotId == null
+        ? []
+        : regionTerritorySpots
+            .find(it => it.id === 3443)
+            ?.territories.find(it => it.id === 3477)
+            ?.spots.find(it => it.id === this.currentFishingSpotId)
+            ?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
     },
     ...mapGetters([
       'getItemName',
