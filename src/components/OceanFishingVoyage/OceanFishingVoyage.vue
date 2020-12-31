@@ -54,7 +54,9 @@
               <fish-tip :fish="currentTipSpectralFishList[index]" />
             </v-col>
             <v-col cols="12" v-if="currentTipNormalBigFishList[index]">
-              <fish-tip :fish="currentTipNormalBigFishList[index]" />
+              <div class="d-flex flex-column">
+                <fish-tip :fish="currentTipNormalBigFishList[index]" />
+              </div>
             </v-col>
             <v-col cols="12" v-if="currentTipBlueFishList[index]">
               <fish-tip :fish="currentTipBlueFishList[index]" />

@@ -1,5 +1,6 @@
 <template>
   <v-container
+    fluid
     :class="`detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`"
   >
     <v-card class="mb-4">

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-subheader>{{ fish.name }}</v-subheader>
+    <div class="text-subtitle-1">
+      {{ fish.name }}
+    </div>
     <template v-if="fish.hasPredators">
       <v-card color="system">
         <v-card-text class="d-flex justify-center">
@@ -24,8 +26,14 @@
       </div>
     </template>
     <v-card :color="fish.hasPredators ? 'info' : 'system'">
-      <v-card-text class="d-flex justify-center">
+      <v-card-text class="d-flex justify-center" style="position:relative;">
         <fish-bait-list :baits="fish.baits" :target="fish" />
+        <div
+          v-if="fish.hasWeatherConstraint || fish.hasRealWeatherConstraint"
+          style="position: absolute; right: 4px; bottom: 4px"
+        >
+          <fish-weather-not-available :item="fish" />
+        </div>
       </v-card-text>
     </v-card>
   </div>
@@ -33,9 +41,10 @@
 
 <script>
 import FishBaitList from '@/components/FishBaitList'
+import FishWeatherNotAvailable from '@/components/OceanFishingFishList/FishWeatherNotAvailable'
 export default {
   name: 'FishTip',
-  components: { FishBaitList },
+  components: { FishWeatherNotAvailable, FishBaitList },
   props: {
     fish: {
       type: Object,
