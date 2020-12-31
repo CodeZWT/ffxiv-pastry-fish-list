@@ -28,11 +28,15 @@
     <v-card :color="fish.hasPredators ? 'info' : 'system'">
       <v-card-text class="d-flex justify-center align-center" style="position:relative;">
         <div v-if="showTip" class="d-flex mr-2">
-          <div>{{ fish.biteTimeMin }}</div>
-          <div v-if="fish.biteTimeMax">-{{ fish.biteTimeMax }}</div>
+          <div>{{ fish.biteTimeMin }}s</div>
+          <div v-if="fish.biteTimeMax">-{{ fish.biteTimeMax }}s</div>
         </div>
         <fish-bait-list :baits="fish.baits" :target="fish" />
-        <div v-if="showTip" style="position: absolute; top: 4px; right: 4px">
+        <div
+          v-if="showTip"
+          style="position: absolute; top: 4px; right: 4px"
+          title="渔分X双提个数"
+        >
           {{ fish.points }} X {{ fish.doubleHook.join(',') }}
         </div>
         <div

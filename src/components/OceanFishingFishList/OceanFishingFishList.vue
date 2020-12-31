@@ -234,7 +234,7 @@ export default {
           width: '10%',
         },
         {
-          text: '分数',
+          text: '渔分',
           align: 'center',
           sortable: true,
           value: 'points',
