@@ -55,7 +55,7 @@ export default new Vuex.Store({
     // https://css-tricks.com/css-sprites/
     // https://www.toptal.com/developers/css/sprite-generator
     getItemIconClass: state => id => {
-      const iconId = state.items[id]?.icon ?? 1100
+      const iconId = state.items[id]?.icon ?? 60034
       // const localImg = require(`../assert/${iconId}.png`)
       // if (localImg) {
       //   return localImg
