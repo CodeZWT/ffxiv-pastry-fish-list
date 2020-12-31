@@ -2030,6 +2030,78 @@ export default {
       order: 16,
     },
   },
+  OCEAN_FISHING_WEATHER: {
+    '1': {
+      _id: 1,
+      icon: 60201,
+      name_chs: '碧空',
+    },
+    '2': {
+      _id: 2,
+      icon: 60202,
+      name_chs: '晴朗',
+    },
+    '3': {
+      _id: 3,
+      icon: 60203,
+      name_chs: '阴云',
+    },
+    '4': {
+      _id: 4,
+      icon: 60204,
+      name_chs: '薄雾',
+    },
+    '5': {
+      _id: 5,
+      icon: 60205,
+      name_chs: '微风',
+    },
+    '6': {
+      _id: 6,
+      icon: 60206,
+      name_chs: '强风',
+    },
+    '7': {
+      _id: 7,
+      icon: 60207,
+      name_chs: '小雨',
+    },
+    '8': {
+      _id: 8,
+      icon: 60208,
+      name_chs: '暴雨',
+    },
+    '9': {
+      _id: 9,
+      icon: 60209,
+      name_chs: '打雷',
+    },
+    '10': {
+      _id: 10,
+      icon: 60210,
+      name_chs: '雷雨',
+    },
+    '11': {
+      _id: 11,
+      icon: 60211,
+      name_chs: '扬沙',
+    },
+    '14': {
+      _id: 14,
+      icon: 60214,
+      name_chs: '热浪',
+    },
+    '15': {
+      _id: 15,
+      icon: 60215,
+      name_chs: '小雪',
+    },
+    '16': {
+      _id: 16,
+      icon: 60216,
+      name_chs: '暴雪',
+    },
+  },
   STARLIGHT_CELEBRATION: {
     startTime: 1608616800000,
     endTime: 1609912800000,

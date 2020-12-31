@@ -27,7 +27,11 @@
         </v-tabs>
 
         <!--        <div>{{ currentFishList }}</div>-->
-        <ocean-fishing-fish-list :fish-list="currentFishList" />
+        <ocean-fishing-fish-list
+          :fish-list="currentFishList"
+          weather-filter
+          :weather-set="currentWeatherSet"
+        />
         <div class="text-h6 text-center my-4" style="width: 100%">幻海流</div>
         <ocean-fishing-fish-list :fish-list="currentSpectralCurrentFishList" />
 
@@ -141,6 +145,9 @@ export default {
     currentFishingSpot() {
       return this.currentVoyage.voyage?.[0]?.voyageLocations[this.currentLocationIndex]
     },
+    currentWeatherSet() {
+      return this.currentFishingSpot?.weatherSet ?? []
+    },
     currentFishingSpotId() {
       return this.currentFishingSpot?.id
     },
@@ -221,6 +228,7 @@ export default {
             voyageLocations: voyageWithTip.locationTips.map(it => ({
               id: it.fishingSpots.normal,
               spectralCurrentId: it.fishingSpots.spectralCurrent,
+              weatherSet: it.weatherSet,
               name: it.locationName,
               icon: shift2Icon(it.locationShift),
               hint: it.locationHint,

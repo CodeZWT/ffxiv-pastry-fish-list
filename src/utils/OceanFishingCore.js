@@ -251,6 +251,13 @@ const LOCATION_TO_FISHING_SPOTS = [
   { normal: 239, spectralCurrent: 240 },
 ]
 
+const FISHING_SPOTS_WEATHER_SET = {
+  237: [2, 3, 4, 7, 8, 1],
+  239: [2, 3, 4, 5, 6, 1],
+  241: [2, 3, 4, 11, 14, 1],
+  243: [2, 3, 4, 15, 16, 1],
+}
+
 function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
   return getVoyages(time, voyageN, targets).map(voyage => {
     const voyageType = voyage.voyageType
@@ -258,8 +265,10 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPE
     let shiftStart = voyageToShift(voyageType)
     const locationTips = locations.map((locationIndex, i) => {
       const shiftIndex = (shiftStart + i) % 3
+      const fishingSpots = LOCATION_TO_FISHING_SPOTS[locationIndex]
       return {
-        fishingSpots: LOCATION_TO_FISHING_SPOTS[locationIndex],
+        fishingSpots: fishingSpots,
+        weatherSet: FISHING_SPOTS_WEATHER_SET[fishingSpots.normal],
         locationName: LOCATIONS[locationIndex],
         locationShift: shiftIndex,
         locationHint: SHIFTS[shiftIndex],
