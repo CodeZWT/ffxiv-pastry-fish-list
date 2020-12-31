@@ -7,7 +7,7 @@
       v-for="(fishId, index) in tip[location.spectralCurrentId + '-' + location.shift]"
       :key="index"
     >
-      <fish-tip :fish="fishDict[fishId]" show-tip />
+      <fish-tip :fish="fishDict[fishId]" show-point-tip />
     </div>
   </div>
 </template>

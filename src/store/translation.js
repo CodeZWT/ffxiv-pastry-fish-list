@@ -28007,24 +28007,28 @@ export default {
       name_chs: '八爪旅人',
       description: '在出海垂钓中达成八爪旅人。',
       icon: 29023,
+      bonus: 13,
     },
     '2564': {
       _id: 2564,
       name_chs: '捕鲨人',
       description: '在出海垂钓中达成捕鲨人。',
       icon: 29011,
+      bonus: 14,
     },
     '2565': {
       _id: 2565,
       name_chs: '水母狂魔',
       description: '在出海垂钓中达成水母狂魔。',
       icon: 29755,
+      bonus: 15,
     },
     '2566': {
       _id: 2566,
       name_chs: '龙马惊神',
       description: '在出海垂钓中达成龙马惊神。',
       icon: 29040,
+      bonus: 16,
     },
   },
 }

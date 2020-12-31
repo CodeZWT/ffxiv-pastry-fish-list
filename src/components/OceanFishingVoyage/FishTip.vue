@@ -27,23 +27,36 @@
     </template>
     <v-card :color="fish.hasPredators ? 'info' : 'system'">
       <v-card-text class="d-flex justify-center align-center" style="position:relative;">
-        <div v-if="showTip" class="d-flex mr-2">
+        <div v-if="showPointTip || showAchievementTip" class="d-flex mr-2">
           <div>{{ fish.biteTimeMin }}s</div>
           <div v-if="fish.biteTimeMax">-{{ fish.biteTimeMax }}s</div>
         </div>
         <fish-bait-list :baits="fish.baits" :target="fish" />
         <div
-          v-if="showTip"
-          style="position: absolute; top: 4px; right: 4px"
-          title="渔分X双提个数"
+          v-if="showPointTip"
+          style="position: absolute; top: 0; right: 0"
+          title="渔分 x 双提个数"
         >
-          {{ fish.points }} X {{ fish.doubleHook.join(',') }}
+          <v-chip label class="rounded-tl-0 rounded-bl-lg rounded-br-0" color="primary">
+            {{ fish.points }} x {{ fish.doubleHook.join(',') }}
+          </v-chip>
+        </div>
+        <div
+          v-else-if="showAchievementTip"
+          style="position: absolute; top: 0; right: 0"
+          title="双提个数"
+        >
+          <v-chip label class="rounded-tl-0 rounded-bl-lg rounded-br-0" color="primary">
+            {{ fish.doubleHook.join(',') }}
+          </v-chip>
         </div>
         <div
           v-if="fish.hasWeatherConstraint || fish.hasRealWeatherConstraint"
-          style="position: absolute; right: 4px; bottom: 4px"
+          style="position: absolute; right: 0; bottom: 0"
         >
-          <fish-weather-not-available :item="fish" />
+          <v-chip label class="rounded-bl-0 rounded-tl-lg rounded-tr-0" color="error">
+            <fish-weather-not-available :item="fish" />
+          </v-chip>
         </div>
       </v-card-text>
     </v-card>
@@ -61,7 +74,11 @@ export default {
       type: Object,
       default: () => {},
     },
-    showTip: {
+    showPointTip: {
+      type: Boolean,
+      default: false,
+    },
+    showAchievementTip: {
       type: Boolean,
       default: false,
     },

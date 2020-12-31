@@ -39,7 +39,6 @@
     </v-card>
 
     <v-card v-if="selectedVoyage" class="my-4">
-      <!--      {{ selectedVoyage }}-->
       <ocean-fishing-voyage
         :voyage="selectedVoyage"
         :fish-dict="lazyTransformedFishDict"
@@ -56,6 +55,7 @@ import { mapGetters } from 'vuex'
 import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
 import ImgUtil from '@/utils/ImgUtil'
 import OceanFishingVoyage from '@/components/OceanFishingVoyage/OceanFishingVoyage'
+import DATA_CN from '@/store/translation'
 
 // https://ngabbs.com/read.php?tid=20553241
 
@@ -221,6 +221,7 @@ export default {
               ? '游钓大洋1-3(冲分)'
               : this.getAchievementName(achievementId),
           icon: this.getAchievementIconClass(achievementId),
+          bonus: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS[achievementId].bonus,
           // 2562 游钓大洋3
           iconUrl: achievementId === 2562 ? this.achievementScore40 : null,
           type: 'achievement',

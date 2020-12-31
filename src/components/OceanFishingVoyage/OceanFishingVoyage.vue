@@ -79,6 +79,24 @@
         </v-col>
       </v-row>
     </div>
+    <div v-else>
+      <v-row>
+        <v-col v-for="(location, index) in currentLocations" :key="location.id">
+          <!--          <v-col cols="12">-->
+          <!--            <div class="d-flex justify-center">-->
+          <!--              {{ location.name }}-->
+          <!--              <v-icon>{{ location.icon }}</v-icon>-->
+          <!--            </div>-->
+          <!--          </v-col>-->
+          <!--          <div>{{ location }}</div>-->
+          <achievement-tip
+            :location="location"
+            :normal-fish="currentTipFish[index]"
+            :spectral-current-fish="currentTipSpectralCurrentFish[index]"
+          />
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 
@@ -89,10 +107,11 @@ import { mapGetters } from 'vuex'
 import ItemIcon from '@/components/basic/ItemIcon'
 import FishTip from '@/components/OceanFishingVoyage/FishTip'
 import PointTip from '@/components/OceanFishingVoyage/PointTip'
+import AchievementTip from '@/components/OceanFishingVoyage/AchievementTip'
 
 export default {
   name: 'OceanFishingVoyage',
-  components: { PointTip, FishTip, ItemIcon, OceanFishingFishList },
+  components: { AchievementTip, PointTip, FishTip, ItemIcon, OceanFishingFishList },
   props: {
     voyage: {
       type: Object,
@@ -128,6 +147,7 @@ export default {
               icon: achievement.icon,
               name: achievement.name,
               iconUrl: achievement.iconUrl,
+              bonus: achievement.bonus,
             }
           }) ?? []),
         {
@@ -214,7 +234,27 @@ export default {
           ?.filter(
             fish =>
               fish.fishTipType === 3 &&
-              fish.time === this.currentLocations[locationIndex].shift + 1
+              (!fish.time || fish.time === this.currentLocations[locationIndex].shift + 1)
+          )
+      )
+    },
+    currentTipFish() {
+      return this.normalFishingSpotIds.map(spotId =>
+        this.oceanFishingSpots
+          ?.find(it => it.id === spotId)
+          ?.fishList?.map(fishId => this.fishDict[fishId])
+          ?.filter(fish => fish.bonusId === this.currentTip.bonus)
+      )
+    },
+    currentTipSpectralCurrentFish() {
+      return this.spectralCurrentFishingSpotIds.map((spotId, locationIndex) =>
+        this.oceanFishingSpots
+          ?.find(it => it.id === spotId)
+          ?.fishList?.map(fishId => this.fishDict[fishId])
+          ?.filter(
+            fish =>
+              fish.bonusId === this.currentTip.bonus &&
+              (!fish.time || fish.time === this.currentLocations[locationIndex].shift + 1)
           )
       )
     },
