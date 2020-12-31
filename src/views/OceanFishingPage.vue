@@ -18,39 +18,9 @@
         />
 
         <ocean-fishing-voyage
-          :voyage="currentVoyage"
+          :voyage="currentVoyage.voyageList && currentVoyage.voyageList[0]"
           :fish-dict="lazyTransformedFishDict"
         />
-
-        <!--        <v-tabs v-model="currentLocationIndex" centered icons-and-text grow>-->
-        <!--          <v-tabs-slider></v-tabs-slider>-->
-
-        <!--          <v-tab v-for="location in currentLocations" :key="location.id">-->
-        <!--            {{ location.name }}-->
-        <!--            <v-icon>{{ location.icon }}</v-icon>-->
-        <!--          </v-tab>-->
-        <!--        </v-tabs>-->
-
-        <!--        &lt;!&ndash;        <div>{{ currentFishList }}</div>&ndash;&gt;-->
-        <!--        <ocean-fishing-fish-list-->
-        <!--          :fish-list="currentFishList"-->
-        <!--          weather-filter-->
-        <!--          :weather-set="currentWeatherSet"-->
-        <!--        />-->
-        <!--        <div class="d-flex my-4" style="width: 100%">-->
-        <!--          <div class="text-h6">{{ currentFishingSpotSpectralCurrentName }}</div>-->
-        <!--          <v-spacer />-->
-        <!--          <v-btn @click="toggleShiftFilter" text color="error">-->
-        <!--            {{ shiftFilterEnabled ? '清除时间限制' : '只显示当前时间可钓的鱼' }}-->
-        <!--          </v-btn>-->
-        <!--        </div>-->
-        <!--        <ocean-fishing-fish-list-->
-        <!--          :fish-list="currentSpectralCurrentFishList"-->
-        <!--          :shift-filter="shiftFilterEnabled"-->
-        <!--          :shift="currentShift"-->
-        <!--        />-->
-
-        <!--        <pre>{{ JSON.stringify(currentVoyage, null, 2) }}</pre>-->
       </v-card-text>
     </v-card>
 
@@ -62,8 +32,17 @@
           :voyages="voyages"
           :targetOptions="targetOptions"
           @filterChanged="filterChanged"
+          @voyage-selected="onVoyageSelected"
         />
       </div>
+    </v-card>
+
+    <v-card v-if="selectedVoyage" class="my-4">
+      <!--      {{ selectedVoyage }}-->
+      <ocean-fishing-voyage
+        :voyage="selectedVoyage"
+        :fish-dict="lazyTransformedFishDict"
+      />
     </v-card>
   </v-container>
 </template>
@@ -91,6 +70,7 @@ export default {
       filter: { voyageN: 13 },
       lazyNow: this.now,
       currentVoyageLastUpdate: 0,
+      selectedVoyage: undefined,
     }
   },
   computed: {
@@ -175,6 +155,9 @@ export default {
     },
   },
   methods: {
+    onVoyageSelected(voyageIndex) {
+      this.selectedVoyage = this.voyages[voyageIndex]
+    },
     shouldUpdate(lastUpdate, now) {
       return Math.floor(now / (15 * MINUTE)) > Math.floor(lastUpdate / (15 * MINUTE))
     },
@@ -199,6 +182,7 @@ export default {
           return {
             showDay,
             simpleName: voyageWithTip.voyageSimpleName,
+            milliseconds: voyageWithTip.time,
             day: DataUtil.formatDateTime(voyageWithTip.time, 'MM-dd'),
             time: DataUtil.formatDateTime(voyageWithTip.time, 'HH:mm'),
             shiftIcon: shift2Icon(voyageWithTip.shift.type),

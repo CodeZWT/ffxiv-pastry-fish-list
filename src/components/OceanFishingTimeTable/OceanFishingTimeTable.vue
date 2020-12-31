@@ -8,6 +8,7 @@
       :targets="targets"
       :hide-filters="hideFilters"
       @filterChanged="filterChanged"
+      @voyage-selected="onVoyageSelected"
     />
   </div>
 </template>
@@ -54,6 +55,9 @@ export default {
   methods: {
     filterChanged(filter) {
       this.$emit('filterChanged', filter)
+    },
+    onVoyageSelected(voyageIndex) {
+      this.$emit('voyage-selected', voyageIndex)
     },
   },
 }
