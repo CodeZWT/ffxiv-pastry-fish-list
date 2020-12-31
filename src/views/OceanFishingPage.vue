@@ -28,6 +28,8 @@
 
         <!--        <div>{{ currentFishList }}</div>-->
         <ocean-fishing-fish-list :fish-list="currentFishList" />
+        <div class="text-h6 text-center my-4" style="width: 100%">幻海流</div>
+        <ocean-fishing-fish-list :fish-list="currentSpectralCurrentFishList" />
 
         <!--        <pre>{{ JSON.stringify(currentVoyage, null, 2) }}</pre>-->
       </v-card-text>
@@ -136,17 +138,32 @@ export default {
     currentLocations() {
       return this.currentVoyage.voyage?.[0]?.voyageLocations
     },
-    currentFishingSpotId() {
+    currentFishingSpot() {
       return this.currentVoyage.voyage?.[0]?.voyageLocations[this.currentLocationIndex]
-        ?.id
+    },
+    currentFishingSpotId() {
+      return this.currentFishingSpot?.id
+    },
+    currentFishingSpotSpectralCurrentId() {
+      return this.currentFishingSpot?.spectralCurrentId
+    },
+    oceanFishingSpots() {
+      return regionTerritorySpots
+        .find(it => it.id === 3443)
+        ?.territories.find(it => it.id === 3477)?.spots
     },
     currentFishList() {
       return this.currentFishingSpotId == null
         ? []
-        : regionTerritorySpots
-            .find(it => it.id === 3443)
-            ?.territories.find(it => it.id === 3477)
-            ?.spots.find(it => it.id === this.currentFishingSpotId)
+        : this.oceanFishingSpots
+            ?.find(it => it.id === this.currentFishingSpotId)
+            ?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
+    },
+    currentSpectralCurrentFishList() {
+      return this.currentFishingSpotSpectralCurrentId == null
+        ? []
+        : this.oceanFishingSpots
+            ?.find(it => it.id === this.currentFishingSpotSpectralCurrentId)
             ?.fishList?.map(fishId => this.lazyTransformedFishDict[fishId])
     },
     ...mapGetters([
