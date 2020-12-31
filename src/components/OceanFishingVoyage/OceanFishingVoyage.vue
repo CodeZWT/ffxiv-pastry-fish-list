@@ -50,10 +50,17 @@
                 <v-icon>{{ location.icon }}</v-icon>
               </div>
             </v-col>
-            <v-col cols="12"> </v-col>
+            <v-col cols="12" v-if="currentTipSpectralFishList[index]">
+              <fish-tip :fish="currentTipSpectralFishList[index]" />
+            </v-col>
+            <v-col cols="12" v-if="currentTipNormalBigFishList[index]">
+              <fish-tip :fish="currentTipNormalBigFishList[index]" />
+            </v-col>
+            <v-col cols="12" v-if="currentTipBlueFishList[index]">
+              <fish-tip :fish="currentTipBlueFishList[index]" />
+            </v-col>
           </v-row>
-
-          <pre>{{ location }}</pre>
+          <!--          <pre>{{ location }}</pre>-->
         </v-col>
       </v-row>
     </div>
@@ -65,10 +72,11 @@ import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishing
 import regionTerritorySpots from '@/store/fishingSpots.json'
 import { mapGetters } from 'vuex'
 import ItemIcon from '@/components/basic/ItemIcon'
+import FishTip from '@/components/OceanFishingVoyage/FishTip'
 
 export default {
   name: 'OceanFishingVoyage',
-  components: { ItemIcon, OceanFishingFishList },
+  components: { FishTip, ItemIcon, OceanFishingFishList },
   props: {
     voyage: {
       type: Object,
@@ -123,6 +131,12 @@ export default {
     currentLocations() {
       return this.voyage?.voyageLocations
     },
+    normalFishingSpotIds() {
+      return this.currentLocations.map(it => it.id)
+    },
+    spectralCurrentFishingSpotIds() {
+      return this.currentLocations.map(it => it.spectralCurrentId)
+    },
     currentFishingSpot() {
       return this.voyage?.voyageLocations[this.currentLocationIndex]
     },
@@ -159,6 +173,34 @@ export default {
         : this.oceanFishingSpots
             ?.find(it => it.id === this.currentFishingSpotSpectralCurrentId)
             ?.fishList?.map(fishId => this.fishDict[fishId])
+    },
+    currentTipSpectralFishList() {
+      return this.normalFishingSpotIds.flatMap(spotId =>
+        this.oceanFishingSpots
+          ?.find(it => it.id === spotId)
+          ?.fishList?.map(fishId => this.fishDict[fishId])
+          ?.filter(fish => fish.fishTipType === 1)
+      )
+    },
+    currentTipNormalBigFishList() {
+      return this.normalFishingSpotIds.flatMap(spotId =>
+        this.oceanFishingSpots
+          ?.find(it => it.id === spotId)
+          ?.fishList?.map(fishId => this.fishDict[fishId])
+          ?.filter(fish => fish.fishTipType === 2)
+      )
+    },
+    currentTipBlueFishList() {
+      return this.spectralCurrentFishingSpotIds.flatMap((spotId, locationIndex) =>
+        this.oceanFishingSpots
+          ?.find(it => it.id === spotId)
+          ?.fishList?.map(fishId => this.fishDict[fishId])
+          ?.filter(
+            fish =>
+              fish.fishTipType === 3 &&
+              fish.time === this.currentLocations[locationIndex].shift + 1
+          )
+      )
     },
     ...mapGetters(['getFishingSpotsName']),
   },

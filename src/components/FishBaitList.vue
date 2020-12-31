@@ -39,6 +39,20 @@
         <!--        <span v-if="bait.optional" style="font-size: x-large">)</span>-->
       </div>
     </div>
+    <template v-if="target">
+      <v-icon small>mdi-arrow-right</v-icon>
+      <item-icon :icon-class="target.icon" :title="target.name" />
+      <template v-if="target.requiredCnt">
+        <span class="mx-1">X</span>
+        <v-badge
+          :content="target.requiredCnt"
+          color="predatorCnt black--text"
+          inline
+          bottom
+          bordered
+        />
+      </template>
+    </template>
   </div>
 </template>
 
@@ -53,6 +67,10 @@ export default {
     baits: {
       type: Array,
       default: () => [],
+    },
+    target: {
+      type: Object,
+      default: undefined,
     },
   },
   data: () => ({

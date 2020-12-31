@@ -1409,6 +1409,7 @@ export default {
               icon: this.getItemIconClass(fish.baitExtra),
             }
           : null,
+        baits: this.getBaits(fish, undefined, FIX.OCEAN_FISHING_FISH),
         tug: fish.tug,
         tugIcon: DataUtil.TUG_ICON[fish.tug],
         biteTimeForSort: fish.biteTimeMin * 100 + (fish.biteTimeMax ?? 0),
