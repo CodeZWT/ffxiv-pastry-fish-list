@@ -45,21 +45,38 @@
         <v-col v-for="(location, index) in currentLocations" :key="index">
           <v-row no-gutters>
             <v-col cols="12">
-              <div class="d-flex justify-center">
-                {{ location.name }}
-                <v-icon>{{ location.icon }}</v-icon>
-              </div>
+              <v-card outlined class="mt-2">
+                <v-card-title>
+                  <div class="d-flex justify-center">
+                    <div>{{ location.name }}</div>
+                    <v-icon>{{ location.icon }}</v-icon>
+                  </div>
+                </v-card-title>
+                <v-card-text>
+                  <div v-if="currentTipSpectralFishList[index]">
+                    <fish-tip :fish="currentTipSpectralFishList[index]" />
+                  </div>
+                  <div v-if="currentTipNormalBigFishList[index]">
+                    <div class="d-flex flex-column">
+                      <fish-tip :fish="currentTipNormalBigFishList[index]" />
+                    </div>
+                  </div>
+                </v-card-text>
+              </v-card>
             </v-col>
-            <v-col cols="12" v-if="currentTipSpectralFishList[index]">
-              <fish-tip :fish="currentTipSpectralFishList[index]" />
-            </v-col>
-            <v-col cols="12" v-if="currentTipNormalBigFishList[index]">
-              <div class="d-flex flex-column">
-                <fish-tip :fish="currentTipNormalBigFishList[index]" />
-              </div>
-            </v-col>
+
             <v-col cols="12" v-if="currentTipBlueFishList[index]">
-              <fish-tip :fish="currentTipBlueFishList[index]" />
+              <v-card outlined color="info" class="mt-2">
+                <v-card-title>
+                  <div class="d-flex justify-center">
+                    <div>{{ location.name }}幻海流</div>
+                    <v-icon>{{ location.icon }}</v-icon>
+                  </div>
+                </v-card-title>
+                <v-card-text>
+                  <fish-tip :fish="currentTipBlueFishList[index]" />
+                </v-card-text>
+              </v-card>
             </v-col>
           </v-row>
           <!--          <pre>{{ location }}</pre>-->
@@ -68,14 +85,18 @@
     </div>
     <div v-else-if="currentTip.id === 2562">
       <v-row>
-        <v-col v-for="location in currentLocations" :key="location.id">
-          <v-col cols="12">
-            <div class="d-flex justify-center">
-              {{ location.name }}
-              <v-icon>{{ location.icon }}</v-icon>
-            </div>
-          </v-col>
-          <point-tip :location="location" :fish-dict="fishDict" />
+        <v-col v-for="(location, index) in currentLocations" :key="location.id">
+          <!--          <v-col cols="12">-->
+          <!--            <div class="d-flex justify-center">-->
+          <!--              {{ location.name }}-->
+          <!--              <v-icon>{{ location.icon }}</v-icon>-->
+          <!--            </div>-->
+          <!--          </v-col>-->
+          <point-tip
+            :location="location"
+            :fish-dict="fishDict"
+            :spectral-trigger-fish="currentTipSpectralFishList[index]"
+          />
         </v-col>
       </v-row>
     </div>
@@ -135,6 +156,12 @@ export default {
       return [
         {
           type: 'item',
+          id: 'fish-list',
+          icon: 'bg-000024',
+          name: '鱼列表',
+        },
+        {
+          type: 'item',
           id: 'fish-tip',
           icon: 'bg-060034',
           name: '幻光鱼/绿鱼/蓝鱼',
@@ -151,12 +178,6 @@ export default {
               bonus: achievement.bonus,
             }
           }) ?? []),
-        {
-          type: 'item',
-          id: 'fish-list',
-          icon: 'bg-000024',
-          name: '显示鱼列表',
-        },
       ]
     },
     currentTip() {

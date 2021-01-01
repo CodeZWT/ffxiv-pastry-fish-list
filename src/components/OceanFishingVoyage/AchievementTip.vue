@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card flat color="system" class="mt-2">
+    <v-card outlined class="mt-2">
       <v-card-title>
         <div class="d-flex justify-center">
           <div>{{ location.name }}</div>
@@ -33,11 +33,17 @@
         </div>
       </v-card-text>
     </v-card>
-    <v-card flat color="system" class="mt-2">
+    <v-card outlined class="mt-2">
       <v-card-subtitle>
-        <a :href="oceanFishTipReference.link" target="_blank">
-          {{ oceanFishTipReference.title }}
-        </a>
+        <div class="d-flex">
+          <a :href="oceanFishTipReference.link" target="_blank">
+            {{ oceanFishTipReference.title }}
+          </a>
+          <v-spacer />
+          <div>
+            {{ oceanFishTipReference.author }}
+          </div>
+        </div>
       </v-card-subtitle>
       <!-- <v-card-subtitle>{{ achievementId }}-{{ location.id }}</v-card-subtitle> -->
       <v-card-text>{{ tip[achievementId][location.id] }}</v-card-text>
@@ -73,13 +79,14 @@ export default {
       oceanFishTipReference: {
         title: '[苍海龙骑]海钓手册',
         link: 'https://ngabbs.com/read.php?tid=20553241',
+        author: '月咏泠音@摩杜纳',
       },
       tip: {
         // 八爪旅人
         '2563': {
           // 加拉迪翁湾外海
           '237':
-            '通常海域用磷虾钓青色章鱼,双提18s多的中杆[!!]4条，阴云/薄雾可以排除碧玉头，18s即可双提，小雨/暴雨可以排除猎豹鳗干扰，但仍有碧玉头，需等24s再双提。幻海流还是磷虾钓人鱼发，双提2.8s以内的中杆[!!]4条，可能提到幽灵鲨干扰，有余力可以拍了。强调一下，人鱼发确实2-5s都有，但是只有2.8s以前的不会歪可以放心双提。如果你拍掉了幽灵鲨，可以放宽到接近4s。',
+            '通常海域用磷虾钓青色章鱼，双提18s多的中杆[!!]4条，阴云/薄雾可以排除碧玉头，18s即可双提，小雨/暴雨可以排除猎豹鳗干扰，但仍有碧玉头，需等24s再双提。幻海流还是磷虾钓人鱼发，双提2.8s以内的中杆[!!]4条，可能提到幽灵鲨干扰，有余力可以拍了。强调一下，人鱼发确实2-5s都有，但是只有2.8s以前的不会歪可以放心双提。如果你拍掉了幽灵鲨，可以放宽到接近4s。',
           // 梅尔托尔海峡南
           '239': '没有章鱼，随便钓。',
           // 罗塔诺海海面

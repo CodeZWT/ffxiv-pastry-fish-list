@@ -1599,7 +1599,7 @@ export default {
       tug: 'medium',
       hookset: null,
       biteTimeMin: 2,
-      biteTimeMax: 5,
+      biteTimeMax: 3,
       points: 94,
       doubleHook: [4],
       bait: 29715,
