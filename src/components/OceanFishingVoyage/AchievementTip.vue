@@ -17,7 +17,7 @@
       </v-card-text>
     </v-card>
 
-    <v-card flat color="info" class="mt-2">
+    <v-card outlined color="info" class="mt-2">
       <v-card-title>
         <div class="d-flex justify-center">
           <div>{{ location.name }}幻海流</div>
@@ -33,6 +33,7 @@
         </div>
       </v-card-text>
     </v-card>
+
     <v-card outlined class="mt-2">
       <v-card-subtitle>
         <div class="d-flex">

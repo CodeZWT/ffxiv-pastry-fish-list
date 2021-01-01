@@ -42,7 +42,12 @@
     </div>
     <div v-else-if="currentTip.id === 'fish-tip'">
       <v-row>
-        <v-col v-for="(location, index) in currentLocations" :key="index">
+        <v-col
+          v-for="(location, index) in currentLocations"
+          :key="index"
+          cols="12"
+          md="4"
+        >
           <v-row no-gutters>
             <v-col cols="12">
               <v-card outlined class="mt-2">
@@ -85,13 +90,12 @@
     </div>
     <div v-else-if="currentTip.id === 2562">
       <v-row>
-        <v-col v-for="(location, index) in currentLocations" :key="location.id">
-          <!--          <v-col cols="12">-->
-          <!--            <div class="d-flex justify-center">-->
-          <!--              {{ location.name }}-->
-          <!--              <v-icon>{{ location.icon }}</v-icon>-->
-          <!--            </div>-->
-          <!--          </v-col>-->
+        <v-col
+          v-for="(location, index) in currentLocations"
+          :key="location.id"
+          cols="12"
+          md="4"
+        >
           <point-tip
             :location="location"
             :fish-dict="fishDict"
@@ -102,14 +106,12 @@
     </div>
     <div v-else>
       <v-row>
-        <v-col v-for="(location, index) in currentLocations" :key="location.id">
-          <!--          <v-col cols="12">-->
-          <!--            <div class="d-flex justify-center">-->
-          <!--              {{ location.name }}-->
-          <!--              <v-icon>{{ location.icon }}</v-icon>-->
-          <!--            </div>-->
-          <!--          </v-col>-->
-          <!--          <div>{{ location }}</div>-->
+        <v-col
+          v-for="(location, index) in currentLocations"
+          :key="location.id"
+          cols="12"
+          md="4"
+        >
           <achievement-tip
             :achievement-id="currentTip.id"
             :location="location"
@@ -122,11 +124,20 @@
         <v-col>
           <v-expansion-panels accordion>
             <v-expansion-panel>
-              <v-expansion-panel-header>{{ currentTip.name }}宏</v-expansion-panel-header>
+              <v-expansion-panel-header>
+                <div class="d-flex align-center">
+                  {{ currentTip.name }}宏
+                  <click-helper @click.stop :copy-text="achievementMacro[currentTip.id]">
+                    <v-btn text icon small :title="$t('list.item.copyHint')">
+                      <v-icon small>mdi-content-copy</v-icon>
+                    </v-btn>
+                  </click-helper>
+                </div>
+              </v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-card outlined class="mt-2">
                   <v-card-text>
-                    <pre>{{ achievementMacro[currentTip.id] }}</pre>
+                    <pre class="tip-macro">{{ achievementMacro[currentTip.id] }}</pre>
                   </v-card-text>
                 </v-card>
               </v-expansion-panel-content>
@@ -146,10 +157,18 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import FishTip from '@/components/OceanFishingVoyage/FishTip'
 import PointTip from '@/components/OceanFishingVoyage/PointTip'
 import AchievementTip from '@/components/OceanFishingVoyage/AchievementTip'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'OceanFishingVoyage',
-  components: { AchievementTip, PointTip, FishTip, ItemIcon, OceanFishingFishList },
+  components: {
+    ClickHelper,
+    AchievementTip,
+    PointTip,
+    FishTip,
+    ItemIcon,
+    OceanFishingFishList,
+  },
   props: {
     voyage: {
       type: Object,
@@ -363,4 +382,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+.tip-macro
+  white-space: pre-wrap       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap  /* Mozilla, since 1999 */
+  white-space: -o-pre-wrap    /* Opera 7 */
+  word-wrap: break-word       /* Internet Explorer 5.5+ */
+</style>

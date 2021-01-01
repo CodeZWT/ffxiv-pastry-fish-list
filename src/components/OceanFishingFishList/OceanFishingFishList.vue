@@ -4,12 +4,12 @@
       <v-radio-group v-model="currentWeather" row>
         <v-radio v-for="weather in weathers" :value="weather.id" :key="weather.id">
           <template v-slot:label>
-            <div :class="weather.icon" :title="weather.name" />
+            <div v-if="weather.icon" :class="weather.icon" :title="weather.name" />
             <div class="ml-1">{{ weather.name }}</div>
           </template>
         </v-radio>
       </v-radio-group>
-      <v-btn @click="clearWeatherFilter" color="error" text>清除天气限制</v-btn>
+      <!--      <v-btn @click="clearWeatherFilter" color="error" text>清除天气限制</v-btn>-->
     </div>
     <v-data-table
       :headers="oceanFishingHeaders"
@@ -177,20 +177,28 @@ export default {
   data() {
     return {
       TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
-      currentWeather: null,
+      currentWeather: 0,
       currentShift: this.shift,
     }
   },
   computed: {
     weathers() {
-      return this.weatherSet.map(weatherId => {
-        const weather = FIX.OCEAN_FISHING_WEATHER[weatherId]
-        return {
-          id: weather._id,
-          name: DataUtil.getName(weather),
-          icon: DataUtil.iconIdToClass(weather.icon),
-        }
-      })
+      return this.weatherSet
+        .map(weatherId => {
+          const weather = FIX.OCEAN_FISHING_WEATHER[weatherId]
+          return {
+            id: weather._id,
+            name: DataUtil.getName(weather),
+            icon: DataUtil.iconIdToClass(weather.icon),
+          }
+        })
+        .concat([
+          {
+            id: 0,
+            name: '无特定',
+            icon: null,
+          },
+        ])
     },
     filteredFishList() {
       return this.fishList.filter(
@@ -287,20 +295,12 @@ export default {
     },
     ...mapGetters(['getFishCompleted']),
   },
-  mounted() {
-    // this.initFilters()
-  },
   watch: {
     shift(shift) {
       this.currentShift = shift
     },
   },
   methods: {
-    initFilters() {
-      console.log('init triggered')
-      this.currentWeather = null
-      this.currentShift = this.shift
-    },
     clearWeatherFilter() {
       this.currentWeather = null
     },

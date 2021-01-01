@@ -82,7 +82,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(voyage, index) in voyages" :key="index">
+              <tr
+                v-for="(voyage, index) in voyages"
+                :key="index"
+                @click="onVoyageSelected(index)"
+                style="cursor: pointer"
+              >
                 <td>
                   <div class="d-flex justify-end">
                     <div :style="voyage.showDay ? '' : 'visibility: hidden'">
