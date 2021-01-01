@@ -468,7 +468,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [237],
     },
     '28938': {
@@ -489,7 +489,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [237],
     },
     '28939': {
@@ -510,7 +510,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [237],
     },
     '28940': {
@@ -531,7 +531,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [3, 4],
-      time: null,
+      time: 0,
       locations: [241],
     },
     '28941': {
@@ -552,7 +552,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [239],
     },
     '28942': {
@@ -572,8 +572,8 @@ export default {
       predators: null,
       bonus: 14,
       fishTipType: null,
-      notAvailableWeatherSet: [4],
-      time: null,
+      notAvailableWeatherSet: [8],
+      time: 0,
       locations: [237],
     },
     '29718': {
@@ -593,8 +593,8 @@ export default {
       predators: null,
       bonus: 0,
       fishTipType: null,
-      notAvailableWeatherSet: [8],
-      time: null,
+      notAvailableWeatherSet: [16],
+      time: 0,
       locations: [241],
     },
     '29719': {
@@ -615,7 +615,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [3, 4],
-      time: null,
+      time: 0,
       locations: [237],
     },
     '29720': {
@@ -636,7 +636,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [241],
     },
     '29721': {
@@ -657,7 +657,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [237],
     },
     '29722': {
@@ -678,7 +678,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [5, 6],
-      time: null,
+      time: 0,
       locations: [239],
     },
     '29723': {
@@ -699,7 +699,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [7, 8],
-      time: null,
+      time: 0,
       locations: [237],
     },
     '29724': {
@@ -720,7 +720,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [6],
-      time: null,
+      time: 0,
       locations: [239],
     },
     '29725': {
@@ -741,7 +741,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [239],
     },
     '29726': {
@@ -762,7 +762,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [239],
     },
     '29727': {
@@ -783,7 +783,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [239],
     },
     '29728': {
@@ -804,7 +804,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [14],
-      time: null,
+      time: 0,
       locations: [243],
     },
     '29729': {
@@ -825,7 +825,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [243],
     },
     '29730': {
@@ -846,7 +846,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [11, 14],
-      time: null,
+      time: 0,
       locations: [243],
     },
     '29731': {
@@ -867,7 +867,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [243],
     },
     '29732': {
@@ -888,7 +888,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [243],
     },
     '29733': {
@@ -909,7 +909,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [3, 4],
-      time: null,
+      time: 0,
       locations: [243],
     },
     '29734': {
@@ -930,7 +930,7 @@ export default {
       bonus: 13,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [237],
     },
     '29735': {
@@ -951,7 +951,7 @@ export default {
       bonus: 14,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [243],
     },
     '29736': {
@@ -971,8 +971,8 @@ export default {
       predators: null,
       bonus: 0,
       fishTipType: null,
-      notAvailableWeatherSet: [7, 8],
-      time: null,
+      notAvailableWeatherSet: [15, 16],
+      time: 0,
       locations: [241],
     },
     '29737': {
@@ -993,7 +993,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [241],
     },
     '29738': {
@@ -1014,7 +1014,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [241],
     },
     '29739': {
@@ -1035,7 +1035,7 @@ export default {
       bonus: 15,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [239],
     },
     '29740': {
@@ -1056,7 +1056,7 @@ export default {
       bonus: 16,
       fishTipType: null,
       notAvailableWeatherSet: [3, 4],
-      time: null,
+      time: 0,
       locations: [239],
     },
     '29741': {
@@ -1077,7 +1077,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [241],
     },
     '29742': {
@@ -1098,7 +1098,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [243],
     },
     '29743': {
@@ -1119,7 +1119,7 @@ export default {
       bonus: 0,
       fishTipType: null,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [241],
     },
     '29744': {
@@ -1142,7 +1142,7 @@ export default {
       bonus: 0,
       fishTipType: 2,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [237],
     },
     '29745': {
@@ -1165,7 +1165,7 @@ export default {
       bonus: 0,
       fishTipType: 2,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [239],
     },
     '29746': {
@@ -1188,7 +1188,7 @@ export default {
       bonus: 0,
       fishTipType: 2,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [243],
     },
     '29747': {
@@ -1211,7 +1211,7 @@ export default {
       bonus: 0,
       fishTipType: 2,
       notAvailableWeatherSet: [],
-      time: null,
+      time: 0,
       locations: [241],
     },
     '29748': {
@@ -1988,7 +1988,7 @@ export default {
       bonus: 0,
       fishTipType: 1,
       notAvailableWeatherSet: [1],
-      time: null,
+      time: 0,
       locations: [237],
     },
     '29785': {
@@ -2009,7 +2009,7 @@ export default {
       bonus: 0,
       fishTipType: 1,
       notAvailableWeatherSet: [1],
-      time: null,
+      time: 0,
       locations: [239],
     },
     '29786': {
@@ -2030,7 +2030,7 @@ export default {
       bonus: 0,
       fishTipType: 1,
       notAvailableWeatherSet: [1],
-      time: null,
+      time: 0,
       locations: [241],
     },
     '29787': {
@@ -2051,7 +2051,7 @@ export default {
       bonus: 0,
       fishTipType: 1,
       notAvailableWeatherSet: [1],
-      time: null,
+      time: 0,
       locations: [243],
     },
     '29788': {
