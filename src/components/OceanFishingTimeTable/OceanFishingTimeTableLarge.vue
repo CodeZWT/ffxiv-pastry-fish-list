@@ -73,9 +73,9 @@
           <template v-slot:default>
             <colgroup>
               <col span="1" style="width: 15%;" />
+              <col span="1" style="width: 15%;" />
               <col span="1" style="width: 20%;" />
-              <col span="1" style="width: 20%;" />
-              <col span="1" style="width: 45%;" />
+              <col span="1" style="width: 50%;" />
             </colgroup>
             <thead>
               <tr>
