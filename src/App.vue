@@ -356,10 +356,41 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.5.0</div>
+          <div>
+            <div class="text-h5 text-center">
+              新增出海垂钓攻略支持
+            </div>
+            <div class="text-h6 text-center">
+              钓鱼图鉴也已同步更新
+            </div>
+            <div>
+              页面中攻略与资料参考：
+              <div class="d-flex align-center">
+                <div class="text-subtitle-1">
+                  <a :href="oceanFishTipReference.link" target="_blank">
+                    {{ oceanFishTipReference.title }}
+                  </a>
+                </div>
+                <v-spacer />
+                <div>
+                  {{ oceanFishTipReference.author }}
+                </div>
+              </div>
+              <p />
+              <div></div>
+            </div>
+          </div>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.4.3</div>
           <div>
             <div class="text-h5 text-center">
-              新增云冠群岛支持<br />（包括第二期以及即将更新的第三期重建）
+              新增云冠群岛支持
+            </div>
+            <div class="text-h6 text-center">
+              包括第二期以及即将更新的第三期重建
             </div>
             <div>
               页面中攻略与资料参考：
@@ -907,6 +938,7 @@ export default {
     diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
     diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
     diademTips: DIADEM.SIMPLE_TIPS,
+    oceanFishTipReference: FIX.OCEAN_FISHING_TIPS.tip1,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute

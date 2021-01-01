@@ -54,6 +54,8 @@
 
 <script>
 import FishTip from '@/components/OceanFishingVoyage/FishTip'
+import FIX from '@/store/fix'
+
 export default {
   name: 'AchievementTip',
   components: { FishTip },
@@ -77,11 +79,7 @@ export default {
   },
   data() {
     return {
-      oceanFishTipReference: {
-        title: '[苍海龙骑]海钓手册',
-        link: 'https://ngabbs.com/read.php?tid=20553241',
-        author: '月咏泠音@摩杜纳',
-      },
+      oceanFishTipReference: FIX.OCEAN_FISHING_TIPS.tip1,
       tip: {
         // 八爪旅人
         '2563': {

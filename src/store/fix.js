@@ -2342,6 +2342,13 @@ export default {
       name_chs: '暴雪',
     },
   },
+  OCEAN_FISHING_TIPS: {
+    tip1: {
+      title: '[苍海龙骑]海钓手册',
+      link: 'https://ngabbs.com/read.php?tid=20553241',
+      author: '月咏泠音@摩杜纳',
+    },
+  },
   STARLIGHT_CELEBRATION: {
     startTime: 1608616800000,
     endTime: 1609912800000,
