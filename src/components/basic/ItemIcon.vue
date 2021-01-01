@@ -3,7 +3,7 @@
     :title="title"
     style="width: 48px; height: 48px; position: relative"
     :class="{ 'zoom-in': small }"
-    @click.stop="onClicked"
+    @click="onClicked"
   >
     <div v-if="!iconUrl" :class="`${iconClass} ${iconPositionClass}`" />
     <div
