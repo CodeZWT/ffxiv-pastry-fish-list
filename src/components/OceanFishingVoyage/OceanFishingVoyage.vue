@@ -90,6 +90,7 @@
           <!--          </v-col>-->
           <!--          <div>{{ location }}</div>-->
           <achievement-tip
+            :achievement-id="currentTip.id"
             :location="location"
             :normal-fish="currentTipFish[index]"
             :spectral-current-fish="currentTipSpectralCurrentFish[index]"

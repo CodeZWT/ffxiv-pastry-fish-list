@@ -1389,7 +1389,6 @@ export default {
       const hasPredators = fish.predators && Object.keys(fish.predators).length > 0
       const bonus = FIX.OCEAN_FISHING_BONUS[fish.bonus]
       const realNotAvailableWeatherSet = this.getRealNotAvailableWeatherSet(fish._id)
-      console.log(realNotAvailableWeatherSet)
       return {
         ...fish,
         id: fish._id,
