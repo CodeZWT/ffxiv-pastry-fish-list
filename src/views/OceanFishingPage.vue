@@ -3,7 +3,15 @@
     fluid
     :class="`detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`"
   >
-    <v-card class="mb-4">
+    <v-tabs v-model="pageSection" centered icons-and-text grow>
+      <v-tabs-slider></v-tabs-slider>
+      <v-tab v-for="(section, index) in pageSections" :key="index">
+        {{ section.title }}
+        <v-icon>{{ section.icon }}</v-icon>
+      </v-tab>
+    </v-tabs>
+
+    <v-card v-if="pageSection === 0" class="mb-4">
       <v-card-title>当前航班</v-card-title>
       <v-card-text>
         <div>
@@ -28,36 +36,38 @@
       </v-card-text>
     </v-card>
 
-    <v-card>
-      <v-card-title>海钓航班时间表</v-card-title>
-      <v-card-subtitle>努力号航运表</v-card-subtitle>
-      <div>
-        <ocean-fishing-time-table
-          :voyages="voyages"
-          :targetOptions="targetOptions"
-          @filterChanged="filterChanged"
-          @voyage-selected="onVoyageSelected"
-        />
-      </div>
-    </v-card>
-
-    <v-card v-if="selectedVoyage" class="my-4">
-      <v-card-title>
-        <div class="d-flex justify-center">
-          {{ selectedVoyage.name }}
-          <v-icon>{{ selectedVoyage.shiftIcon }}</v-icon>
+    <template v-else>
+      <v-card>
+        <v-card-title>海钓航班时间表</v-card-title>
+        <v-card-subtitle>努力号航运表</v-card-subtitle>
+        <div>
+          <ocean-fishing-time-table
+            :voyages="voyages"
+            :targetOptions="targetOptions"
+            @filterChanged="filterChanged"
+            @voyage-selected="onVoyageSelected"
+          />
         </div>
-      </v-card-title>
-      <v-card-subtitle>
-        点击上方时间表以显示对应航线
-      </v-card-subtitle>
-      <v-card-text>
-        <ocean-fishing-voyage
-          :voyage="selectedVoyage"
-          :fish-dict="lazyTransformedFishDict"
-        />
-      </v-card-text>
-    </v-card>
+      </v-card>
+
+      <v-card v-if="selectedVoyage" class="my-4">
+        <v-card-title>
+          <div class="d-flex justify-center">
+            {{ selectedVoyage.name }}
+            <v-icon>{{ selectedVoyage.shiftIcon }}</v-icon>
+          </div>
+        </v-card-title>
+        <v-card-subtitle>
+          点击上方时间表以显示对应航线
+        </v-card-subtitle>
+        <v-card-text>
+          <ocean-fishing-voyage
+            :voyage="selectedVoyage"
+            :fish-dict="lazyTransformedFishDict"
+          />
+        </v-card-text>
+      </v-card>
+    </template>
   </v-container>
 </template>
 
@@ -81,6 +91,11 @@ export default {
   props: ['now', 'lazyTransformedFishDict'],
   data() {
     return {
+      pageSections: [
+        { title: '当前航班', icon: 'mdi-ferry' },
+        { title: '海钓航班时间表', icon: 'mdi-calendar' },
+      ],
+      pageSection: 0,
       achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
       filter: { voyageN: 10 },
       lazyNow: this.now,
