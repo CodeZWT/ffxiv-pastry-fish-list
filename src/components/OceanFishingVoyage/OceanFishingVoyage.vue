@@ -29,8 +29,13 @@
       />
       <div class="d-flex my-4" style="width: 100%">
         <div class="text-h6">{{ currentFishingSpotSpectralCurrentName }}</div>
-        <v-spacer />
-        <v-btn @click="toggleShiftFilter" text color="error">
+        <v-icon>{{ currentFishingSpot.icon }}</v-icon>
+      </div>
+      <div>
+        <v-btn
+          @click="toggleShiftFilter"
+          :color="shiftFilterEnabled ? 'error' : 'primary'"
+        >
           {{ shiftFilterEnabled ? '清除时间限制' : '只显示当前时间可钓的鱼' }}
         </v-btn>
       </div>
