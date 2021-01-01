@@ -69,6 +69,23 @@
         </v-card-text>
       </v-card>
     </template>
+    <v-dialog :value="showWarningDialog" width="500">
+      <v-card>
+        <v-card-title>
+          攻略数据说明
+        </v-card-title>
+        <v-card-text>
+          本页面中的攻略相关数据仅供参考。<br />
+          <span class="font-weight-bold">咬钩时间</span>
+          从攻略与网站收集，请结合实际情况酌情参考。
+        </v-card-text>
+        <v-card-actions>
+          <v-btn block color="primary" @click="setShowOceanFishingWarningDialog(false)">
+            确认
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -76,7 +93,7 @@
 import OceanFishingUtil from '@/utils/OceanFishingUtil'
 import DataUtil from '@/utils/DataUtil'
 import { DateTime, FixedOffsetZone } from 'luxon'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
 import ImgUtil from '@/utils/ImgUtil'
 import OceanFishingVoyage from '@/components/OceanFishingVoyage/OceanFishingVoyage'
@@ -106,6 +123,14 @@ export default {
     }
   },
   computed: {
+    showWarningDialog: {
+      get() {
+        return this.showOceanFishingWarningDialog
+      },
+      set(show) {
+        return this.setShowOceanFishingWarningDialog(show)
+      },
+    },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
@@ -169,6 +194,7 @@ export default {
       'getItemIconClass',
       'getAchievementName',
       'getAchievementIconClass',
+      'showOceanFishingWarningDialog',
     ]),
   },
   watch: {
@@ -273,6 +299,7 @@ export default {
     filterChanged(filter) {
       this.filter = filter
     },
+    ...mapMutations(['setShowOceanFishingWarningDialog']),
   },
 }
 

@@ -223,6 +223,9 @@ export default new Vuex.Store({
     startLight: state => {
       return state.userData.event.startLight
     },
+    showOceanFishingWarningDialog: state => {
+      return state.userData.oceanFishing.showWarningDialog
+    },
   },
   mutations: {
     initialUserData(state) {
@@ -374,6 +377,13 @@ export default new Vuex.Store({
       state.userData = {
         ...state.userData,
         event: { ...state.userData.event, startLight },
+      }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
+    setShowOceanFishingWarningDialog(state, show) {
+      state.userData = {
+        ...state.userData,
+        oceanFishing: { ...state.userData.oceanFishing, showWarningDialog: show },
       }
       LocalStorageUtil.storeUserData(state.userData)
     },

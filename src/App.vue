@@ -1671,6 +1671,7 @@ export default {
 
 <style>
 @import './assets/css/fish_icons.css';
+@import './assets/css/keys.css';
 
 @font-face {
   font-family: 'FFXIV';

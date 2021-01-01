@@ -618,6 +618,9 @@ export default {
     event: {
       startLight: true,
     },
+    oceanFishing: {
+      showWarningDialog: true,
+    },
   },
 
   DETAIL_ITEM_DISPLAY_CONSTRAINTS: {
