@@ -61,7 +61,11 @@
         <!--          <code>{{ currentSpotId }}</code>-->
         <!--          <code>{{ currentFishId }}</code>-->
         <div
-          v-if="!type || type === 'region'"
+          v-if="
+            !type ||
+              type === 'region' ||
+              (type === 'territory' && isOceanFishingTerritory)
+          "
           class="d-flex justify-center align-center fill-height"
         >
           <!--  show empty / region view  -->
@@ -76,7 +80,7 @@
             :fishing-spots="currentSpotList"
           />
         </div>
-        <div v-else-if="type === 'spot' || type === 'fish'">
+        <div v-else-if="(type === 'spot' || type === 'fish') && !isOceanFishingSpot">
           <!--  show spot/fish view  -->
           <grid-layout
             v-if="currentSpotId"
@@ -157,6 +161,10 @@
             </grid-item>
           </grid-layout>
         </div>
+        <div v-else-if="isOceanFishingSpot">
+          <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
+          <!--          <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
+        </div>
       </div>
       <div v-if="isMobile" style="position: absolute; top: 4px; left: 0; right: 0">
         <v-btn @click="showMapMenu = !showMapMenu" block color="primary" tile>
@@ -206,10 +214,12 @@ import FishDetail from '@/components/FishDetail'
 import TreeModel from 'tree-model'
 import ClickHelper from '@/components/basic/ClickHelper'
 import FishList from '@/components/FishList'
+import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
 
 export default {
   name: 'WikiPage',
   components: {
+    OceanFishingFishList,
     FishList,
     ClickHelper,
     FishDetail,
@@ -233,7 +243,7 @@ export default {
     currentSpotId: -1,
     currentFishId: -1,
     completedSpots: [],
-    regionTerritorySpots: [],
+    // regionTerritorySpots: [],
     openedItems: undefined,
     normalOpenedItems: [],
     searchOpenedItems: [],
@@ -251,6 +261,68 @@ export default {
     forceShowComponents: undefined,
   }),
   computed: {
+    regionTerritorySpots() {
+      if (
+        this.lazyTransformedFishDict &&
+        Object.keys(this.lazyTransformedFishDict).length > 0
+      ) {
+        return regionTerritorySpots
+          .filter(region => region.id != null)
+          .map(region => {
+            // output += `region,${region.id},${placeNames[region.id]}\n`
+            return {
+              id: 'region-' + region.id,
+              name: placeNames[region.id],
+              // TODO: arrange region & territory according to order
+              children: region.territories.map(territory => {
+                // output += `territory,${territory.id},${placeNames[territory.id]}\n`
+                this.territoryDict[territory.id] = territory.spots.map(spot => spot.id)
+                return {
+                  id: 'territory-' + territory.id,
+                  name: placeNames[territory.id],
+                  children: territory.spots.map(spot => {
+                    // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
+                    // console.log(Object.keys(this.lazyTransformedFishDict))
+                    const fishList = spot.fishList.filter(fishId => {
+                      const fish = this.lazyTransformedFishDict[fishId]
+                      if (!fish) {
+                        console.warn('fish data missing for', fishId)
+                      }
+                      return fish
+                    })
+                    this.spotDict[spot.id] = {
+                      spotId: spot.id,
+                      territoryId: territory.id,
+                      regionId: region.id,
+                      // [NOTE][VERSION]
+                      // filter future version fish out
+                      fishList,
+                    }
+                    return {
+                      id: 'spot-' + spot.id,
+                      name: this.getFishingSpotsName(spot.id),
+                      children: fishList.map(fishId => {
+                        // output += `fish,${fishId},${this.lazyTransformedFishDict[fishId].name}\n`
+                        return {
+                          id: 'spot-' + spot.id + '-fish-' + fishId,
+                          name: this.lazyTransformedFishDict[fishId].name,
+                        }
+                      }),
+                    }
+                  }),
+                }
+              }),
+            }
+          })
+      }
+      return []
+    },
+    isOceanFishingTerritory() {
+      return this.currentTerritoryId === 3477
+    },
+    isOceanFishingSpot() {
+      return this.territoryDict[3477]?.includes(this.currentSpotId)
+    },
     // [TODO-TREE-PATH-AUTO-OPEN]
     // expandAllInSearching() {
     //   return this.searching && this.searchResults.nodeIds.length > 0 && this.searchResults.nodeIds.length < 10
@@ -380,6 +452,76 @@ export default {
     ]),
   },
   watch: {
+    regionTerritorySpots(regionTerritorySpots) {
+      if (regionTerritorySpots && regionTerritorySpots.length > 0) {
+        this.root = new TreeModel().parse({
+          name: 'root',
+          children: this.regionTerritorySpots,
+        })
+        this.updateCompletedSpot(this.allCompletedFish)
+      }
+    },
+    // lazyTransformedFishDict: {
+    //   handler(lazyTransformedFishDict) {
+    //     if (lazyTransformedFishDict && lazyTransformedFishDict.length > 0) {
+    //       this.regionTerritorySpots = regionTerritorySpots
+    //         .filter(region => region.id != null)
+    //         .map(region => {
+    //           // output += `region,${region.id},${placeNames[region.id]}\n`
+    //           return {
+    //             id: 'region-' + region.id,
+    //             name: placeNames[region.id],
+    //             // TODO: arrange region & territory according to order
+    //             children: region.territories.map(territory => {
+    //               // output += `territory,${territory.id},${placeNames[territory.id]}\n`
+    //               this.territoryDict[territory.id] = territory.spots.map(spot => spot.id)
+    //               return {
+    //                 id: 'territory-' + territory.id,
+    //                 name: placeNames[territory.id],
+    //                 children: territory.spots.map(spot => {
+    //                   // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
+    //                   // console.log(Object.keys(this.lazyTransformedFishDict))
+    //                   const fishList = spot.fishList.filter(fishId => {
+    //                     const fish = this.lazyTransformedFishDict[fishId]
+    //                     if (!fish) {
+    //                       console.warn('fish data missing for', fishId)
+    //                     }
+    //                     return fish
+    //                   })
+    //                   this.spotDict[spot.id] = {
+    //                     spotId: spot.id,
+    //                     territoryId: territory.id,
+    //                     regionId: region.id,
+    //                     // [NOTE][VERSION]
+    //                     // filter future version fish out
+    //                     fishList,
+    //                   }
+    //                   return {
+    //                     id: 'spot-' + spot.id,
+    //                     name: this.getFishingSpotsName(spot.id),
+    //                     children: fishList.map(fishId => {
+    //                       // output += `fish,${fishId},${this.lazyTransformedFishDict[fishId].name}\n`
+    //                       return {
+    //                         id: 'spot-' + spot.id + '-fish-' + fishId,
+    //                         name: this.lazyTransformedFishDict[fishId].name,
+    //                       }
+    //                     }),
+    //                   }
+    //                 }),
+    //               }
+    //             }),
+    //           }
+    //         })
+    //
+    //       this.root = new TreeModel().parse({
+    //         name: 'root',
+    //         children: this.regionTerritorySpots,
+    //       })
+    //       this.updateCompletedSpot(this.allCompletedFish)
+    //     }
+    //   },
+    //   immediate: true,
+    // },
     // [TODO-TREE-PATH-AUTO-OPEN]
     // expandAllInSearching(expand) {
     //   if (expand) {
@@ -444,60 +586,6 @@ export default {
     }, 500)
 
     // let output = ''
-    this.regionTerritorySpots = regionTerritorySpots
-      .filter(region => region.id != null && region.id !== 3443)
-      .map(region => {
-        // output += `region,${region.id},${placeNames[region.id]}\n`
-        return {
-          id: 'region-' + region.id,
-          name: placeNames[region.id],
-          // TODO: arrange region & territory according to order
-          children: region.territories.map(territory => {
-            // output += `territory,${territory.id},${placeNames[territory.id]}\n`
-            this.territoryDict[territory.id] = territory.spots.map(spot => spot.id)
-            return {
-              id: 'territory-' + territory.id,
-              name: placeNames[territory.id],
-              children: territory.spots.map(spot => {
-                // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
-                // console.log(Object.keys(this.lazyTransformedFishDict))
-                const fishList = spot.fishList.filter(fishId => {
-                  const fish = this.lazyTransformedFishDict[fishId]
-                  if (!fish) {
-                    console.warn('fish data missing for', fishId)
-                  }
-                  return fish
-                })
-                this.spotDict[spot.id] = {
-                  spotId: spot.id,
-                  territoryId: territory.id,
-                  regionId: region.id,
-                  // [NOTE][VERSION]
-                  // filter future version fish out
-                  fishList,
-                }
-                return {
-                  id: 'spot-' + spot.id,
-                  name: this.getFishingSpotsName(spot.id),
-                  children: fishList.map(fishId => {
-                    // output += `fish,${fishId},${this.lazyTransformedFishDict[fishId].name}\n`
-                    return {
-                      id: 'spot-' + spot.id + '-fish-' + fishId,
-                      name: this.lazyTransformedFishDict[fishId].name,
-                    }
-                  }),
-                }
-              }),
-            }
-          }),
-        }
-      })
-
-    this.root = new TreeModel().parse({
-      name: 'root',
-      children: this.regionTerritorySpots,
-    })
-    this.updateCompletedSpot(this.allCompletedFish)
   },
   methods: {
     toPos(index) {

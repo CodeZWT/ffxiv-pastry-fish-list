@@ -13,9 +13,13 @@ export default {
       type: Array,
       default: () => [],
     },
+    hideFilters: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
-    voyageNLazy: 13,
+    voyageNLazy: 10,
     targets: [],
   }),
   computed: {
@@ -60,6 +64,9 @@ export default {
         voyageN: voyageN,
         voyageTypes: _.uniq(targets.flatMap(it => it.voyageTypes)),
       })
+    },
+    onVoyageSelected(voyage) {
+      this.$emit('voyage-selected', voyage)
     },
   },
 }

@@ -43,8 +43,12 @@ const VOYAGE_SEQ = [
 ]
 
 function shiftTimeForCheckInLimit(time) {
+  return shiftTimeForLimit(time, 15 * MINUTE)
+}
+
+function shiftTimeForLimit(time, limit) {
   const startCheckPoint = time - (time % (2 * HOUR))
-  if (time % (2 * HOUR) < 15 * MINUTE) {
+  if (time % (2 * HOUR) < limit) {
     return startCheckPoint
   } else {
     return startCheckPoint + 2 * HOUR
@@ -240,14 +244,31 @@ function locationShiftToShift(locationShiftIndex) {
   return locationShiftIndex >>> 2
 }
 
-function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
+const LOCATION_TO_FISHING_SPOTS = [
+  { normal: 243, spectralCurrent: 244 },
+  { normal: 241, spectralCurrent: 242 },
+  { normal: 237, spectralCurrent: 238 },
+  { normal: 239, spectralCurrent: 240 },
+]
+
+const FISHING_SPOTS_WEATHER_SET = {
+  237: [2, 3, 4, 7, 8, 1],
+  239: [2, 3, 4, 5, 6, 1],
+  241: [2, 3, 4, 11, 14, 1],
+  243: [2, 3, 4, 15, 16, 1],
+}
+
+function voyagesWithTipOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPES) {
   return getVoyages(time, voyageN, targets).map(voyage => {
     const voyageType = voyage.voyageType
     const locations = VOYAGE_LOCATIONS[voyageToLocation(voyageType)]
     let shiftStart = voyageToShift(voyageType)
     const locationTips = locations.map((locationIndex, i) => {
       const shiftIndex = (shiftStart + i) % 3
+      const fishingSpots = LOCATION_TO_FISHING_SPOTS[locationIndex]
       return {
+        fishingSpots: fishingSpots,
+        weatherSet: FISHING_SPOTS_WEATHER_SET[fishingSpots.normal],
         locationName: LOCATIONS[locationIndex],
         locationShift: shiftIndex,
         locationHint: SHIFTS[shiftIndex],
@@ -268,7 +289,7 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPE
   })
 }
 
-function simpleTipsOf(time = Date.now(), voyageN = 13, targets = VOYAGE_TYPES) {
+function simpleTipsOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPES) {
   return voyagesWithTipOf(time, voyageN, targets).map(tip => {
     return {
       time: new Intl.DateTimeFormat('zh-Hans-CN', {
@@ -299,6 +320,7 @@ export default {
   voyagesWithTipOf,
   simpleTipsOf,
   shiftTimeForCheckInLimit,
+  shiftTimeForLimit,
   voyageToShift,
   voyageToLocation,
   locationShiftIndexOf,

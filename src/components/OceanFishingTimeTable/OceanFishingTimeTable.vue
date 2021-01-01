@@ -6,7 +6,9 @@
       :targetOptions="targetOptions"
       :voyageN="voyageN"
       :targets="targets"
+      :hide-filters="hideFilters"
       @filterChanged="filterChanged"
+      @voyage-selected="onVoyageSelected"
     />
   </div>
 </template>
@@ -34,6 +36,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    hideFilters: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {}
@@ -49,6 +55,9 @@ export default {
   methods: {
     filterChanged(filter) {
       this.$emit('filterChanged', filter)
+    },
+    onVoyageSelected(voyage) {
+      this.$emit('voyage-selected', voyage)
     },
   },
 }

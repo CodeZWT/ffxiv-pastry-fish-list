@@ -356,10 +356,41 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.5.0</div>
+          <div>
+            <div class="text-h5 text-center">
+              新增出海垂钓攻略支持
+            </div>
+            <div class="text-h6 text-center">
+              钓鱼图鉴也已同步更新
+            </div>
+            <div>
+              页面中攻略与资料参考：
+              <div class="d-flex align-center">
+                <div class="text-subtitle-1">
+                  <a :href="oceanFishTipReference.link" target="_blank">
+                    {{ oceanFishTipReference.title }}
+                  </a>
+                </div>
+                <v-spacer />
+                <div>
+                  {{ oceanFishTipReference.author }}
+                </div>
+              </div>
+              <p />
+              <div></div>
+            </div>
+          </div>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.4.3</div>
           <div>
             <div class="text-h5 text-center">
-              新增云冠群岛支持<br />（包括第二期以及即将更新的第三期重建）
+              新增云冠群岛支持
+            </div>
+            <div class="text-h6 text-center">
+              包括第二期以及即将更新的第三期重建
             </div>
             <div>
               页面中攻略与资料参考：
@@ -872,6 +903,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
     showJumpingOverlay: false,
     now: Date.now(),
     fisher: ImgUtil.getImgUrl('pastry-fish.png'),
@@ -906,6 +938,7 @@ export default {
     diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
     diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
     diademTips: DIADEM.SIMPLE_TIPS,
+    oceanFishTipReference: FIX.OCEAN_FISHING_TIPS.tip1,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -1173,6 +1206,8 @@ export default {
       'getFishingSpots',
       'darkMode',
       'startLight',
+      'getAchievementName',
+      'getAchievementIconClass',
     ]),
   },
   watch: {
@@ -1239,7 +1274,9 @@ export default {
     )
     this.updateWeatherChangePart(this.now)
 
-    this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList)
+    this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList).concat(
+      this.assembleOceanFishList()
+    )
     this.lazyTransformedFishDict = DataUtil.toMap(
       this.lazyTransformedFishList,
       fish => fish.id
@@ -1375,6 +1412,91 @@ export default {
       soundsToPlay.forEach(key => {
         this.sounds[key]?.player?.volume(this.notification.volume).play()
       })
+    },
+    assembleOceanFishList() {
+      const fishList = Object.values(FIX.OCEAN_FISHING_FISH)
+      return fishList.map(fish => this.assembleOceanFish(fish))
+    },
+    assembleOceanFish(fish) {
+      const hasPredators = fish.predators && Object.keys(fish.predators).length > 0
+      const bonus = FIX.OCEAN_FISHING_BONUS[fish.bonus]
+      const realNotAvailableWeatherSet = this.getRealNotAvailableWeatherSet(fish._id)
+      return {
+        ...fish,
+        id: fish._id,
+        name: this.getItemName(fish._id),
+        icon: this.getItemIconClass(fish._id),
+        hasFishingSpot: fish.locations.length !== 0,
+        fishingSpots: this.getFishingSpots(fish.locations),
+        baitId: fish.bait,
+        bait: {
+          id: fish.bait,
+          name: this.getItemName(fish.bait),
+          icon: this.getItemIconClass(fish.bait),
+        },
+        baitExtraId: fish.baitExtra,
+        baitExtra: fish.baitExtra
+          ? {
+              id: fish.baitExtra,
+              name: this.getItemName(fish.baitExtra),
+              icon: this.getItemIconClass(fish.baitExtra),
+            }
+          : null,
+        baits: this.getBaits(fish, undefined, FIX.OCEAN_FISHING_FISH),
+        tug: fish.tug,
+        tugIcon: DataUtil.TUG_ICON[fish.tug],
+        biteTimeForSort: fish.biteTimeMin * 100 + (fish.biteTimeMax ?? 0),
+        hasWeatherConstraint: fish.notAvailableWeatherSet.length > 0,
+        hasRealWeatherConstraint:
+          realNotAvailableWeatherSet.length > fish.notAvailableWeatherSet.length,
+        notAvailableWeatherSetDetail: this.getWeather(realNotAvailableWeatherSet),
+        notAvailableWeatherSet: realNotAvailableWeatherSet,
+        time: fish.time,
+        timeText: DataUtil.timeId2TimeText(fish.time),
+        timeIcon: DataUtil.timeId2TimeIcon(fish.time),
+        hasPredators: hasPredators,
+        predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
+        predators: hasPredators ? this.getOceanFishPredators(fish.predators) : [],
+        bonusId: fish.bonus,
+        bonus: {
+          name: bonus.objective,
+          icon: DataUtil.iconIdToClass(bonus.icon),
+        },
+      }
+    },
+    getRealNotAvailableWeatherSet(fishId) {
+      const fish = FIX.OCEAN_FISHING_FISH[fishId]
+      if (fish == null) return []
+
+      const predatorIds = fish.predators ? Object.keys(fish.predators) : []
+      return _.union(
+        fish.notAvailableWeatherSet,
+        fish.bestCatchPathExtra.length === 0
+          ? fish.bestCatchPath.flatMap(fishId => {
+              return this.getRealNotAvailableWeatherSet(fishId)
+            })
+          : _.intersection(
+              fish.bestCatchPath.flatMap(fishId => {
+                return this.getRealNotAvailableWeatherSet(fishId)
+              }),
+              fish.bestCatchPathExtra.flatMap(fishId => {
+                return this.getRealNotAvailableWeatherSet(fishId)
+              })
+            ),
+        predatorIds.flatMap(fishId => this.getRealNotAvailableWeatherSet(fishId))
+      )
+    },
+    getOceanFishPredators(predators) {
+      if (predators == null || Object.keys(predators).length === 0) {
+        return []
+      } else {
+        return Object.entries(predators).map(([predatorId, count]) => {
+          return {
+            ...this.assembleOceanFish(FIX.OCEAN_FISHING_FISH[predatorId]),
+            requiredCnt: count,
+          }
+        })
+      }
     },
     assembleFish(fishSourceList, isPredator = false) {
       return fishSourceList.map(fish => {
@@ -1581,6 +1703,7 @@ export default {
 
 <style>
 @import './assets/css/fish_icons.css';
+@import './assets/css/keys.css';
 
 @font-face {
   font-family: 'FFXIV';

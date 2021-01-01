@@ -55,7 +55,7 @@ export default new Vuex.Store({
     // https://css-tricks.com/css-sprites/
     // https://www.toptal.com/developers/css/sprite-generator
     getItemIconClass: state => id => {
-      const iconId = state.items[id]?.icon ?? 1100
+      const iconId = state.items[id]?.icon ?? 60034
       // const localImg = require(`../assert/${iconId}.png`)
       // if (localImg) {
       //   return localImg
@@ -77,7 +77,7 @@ export default new Vuex.Store({
       const fishingSpot = state.fishingSpots[id]
       if (fishingSpot) {
         return DataUtil.getName(
-          state.zones[state.weatherRates[fishingSpot.territory_id].zone_id]
+          state.zones[state.weatherRates[fishingSpot.territory_id]?.zone_id]
         )
       } else {
         return ''
@@ -222,6 +222,9 @@ export default new Vuex.Store({
     },
     startLight: state => {
       return state.userData.event.startLight
+    },
+    showOceanFishingWarningDialog: state => {
+      return state.userData.oceanFishing.showWarningDialog
     },
   },
   mutations: {
@@ -374,6 +377,13 @@ export default new Vuex.Store({
       state.userData = {
         ...state.userData,
         event: { ...state.userData.event, startLight },
+      }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
+    setShowOceanFishingWarningDialog(state, show) {
+      state.userData = {
+        ...state.userData,
+        oceanFishing: { ...state.userData.oceanFishing, showWarningDialog: show },
       }
       LocalStorageUtil.storeUserData(state.userData)
     },
