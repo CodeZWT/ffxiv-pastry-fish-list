@@ -98,6 +98,7 @@
                 v-for="(voyage, index) in voyages"
                 :key="index"
                 @click="onVoyageSelected(index)"
+                style="cursor: pointer"
               >
                 <td>
                   <div class="d-flex justify-end">

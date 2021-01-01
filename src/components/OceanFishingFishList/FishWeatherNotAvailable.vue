@@ -3,9 +3,10 @@
     <div v-if="!item.hasWeatherConstraint && !item.hasRealWeatherConstraint">
       无要求
     </div>
-    <div v-else>
+    <div v-else-if="!dense">
       在
     </div>
+    <div v-else>非</div>
     <div
       v-for="(weather, index) in item.notAvailableWeatherSetDetail"
       :key="index"
@@ -15,7 +16,8 @@
       <div :class="weather.icon" :title="weather.name" />
       <!--          <div class="ml-1">{{ weather.name }}</div>-->
     </div>
-    <div v-if="item.hasWeatherConstraint">
+    <div v-if="dense"></div>
+    <div v-else-if="item.hasWeatherConstraint">
       不出现
     </div>
     <div v-else-if="item.hasRealWeatherConstraint" title="条件无法满足">
@@ -27,7 +29,16 @@
 <script>
 export default {
   name: 'FishWeatherNotAvailable',
-  props: ['item'],
+  props: {
+    item: {
+      type: Object,
+      default: undefined,
+    },
+    dense: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
 

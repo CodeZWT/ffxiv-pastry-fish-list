@@ -42,10 +42,21 @@
     </v-card>
 
     <v-card v-if="selectedVoyage" class="my-4">
-      <ocean-fishing-voyage
-        :voyage="selectedVoyage"
-        :fish-dict="lazyTransformedFishDict"
-      />
+      <v-card-title>
+        <div class="d-flex justify-center">
+          {{ selectedVoyage.name }}
+          <v-icon>{{ selectedVoyage.shiftIcon }}</v-icon>
+        </div>
+      </v-card-title>
+      <v-card-subtitle>
+        点击上方时间表以显示对应航线
+      </v-card-subtitle>
+      <v-card-text>
+        <ocean-fishing-voyage
+          :voyage="selectedVoyage"
+          :fish-dict="lazyTransformedFishDict"
+        />
+      </v-card-text>
     </v-card>
   </v-container>
 </template>
@@ -156,6 +167,14 @@ export default {
         )
         this.currentVoyageLastUpdate = this.now
       }
+    },
+    voyages: {
+      handler(voyages) {
+        if (voyages?.length > 0) {
+          this.selectedVoyage = voyages[0]
+        }
+      },
+      immediate: true,
     },
   },
   methods: {
