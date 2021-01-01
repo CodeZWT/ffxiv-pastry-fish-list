@@ -12,7 +12,7 @@
       </v-radio-group>
     </div>
     <div v-if="currentTip.id === 'fish-list'">
-      <v-tabs v-model="currentLocationIndex" centered icons-and-text grow>
+      <v-tabs v-model="currentLocationIndex" centered icons-and-text grow show-arrows>
         <v-tabs-slider></v-tabs-slider>
 
         <v-tab v-for="(location, index) in currentLocations" :key="index">

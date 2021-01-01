@@ -299,6 +299,9 @@ export default {
     shift(shift) {
       this.currentShift = shift
     },
+    weatherSet() {
+      this.currentWeather = 0
+    },
   },
   methods: {
     clearWeatherFilter() {
