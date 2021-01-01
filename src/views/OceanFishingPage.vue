@@ -64,6 +64,7 @@
           <ocean-fishing-voyage
             :voyage="selectedVoyage"
             :fish-dict="lazyTransformedFishDict"
+            :default-target="selectedTarget"
           />
         </v-card-text>
       </v-card>
@@ -101,6 +102,7 @@ export default {
       lazyNow: this.now,
       currentVoyageLastUpdate: 0,
       selectedVoyage: undefined,
+      selectedTarget: undefined,
     }
   },
   computed: {
@@ -193,8 +195,11 @@ export default {
     },
   },
   methods: {
-    onVoyageSelected(voyageIndex) {
-      this.selectedVoyage = this.voyages[voyageIndex]
+    onVoyageSelected(voyage) {
+      this.selectedTarget = voyage.targetId
+        ? { id: voyage.targetId, type: voyage.targetType }
+        : null
+      this.selectedVoyage = this.voyages[voyage.index]
     },
     shouldUpdate(lastUpdate, now) {
       return Math.floor(now / (15 * MINUTE)) > Math.floor(lastUpdate / (15 * MINUTE))

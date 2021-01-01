@@ -65,8 +65,8 @@ export default {
         voyageTypes: _.uniq(targets.flatMap(it => it.voyageTypes)),
       })
     },
-    onVoyageSelected(voyageIndex) {
-      this.$emit('voyage-selected', voyageIndex)
+    onVoyageSelected(voyage) {
+      this.$emit('voyage-selected', voyage)
     },
   },
 }

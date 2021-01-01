@@ -97,7 +97,7 @@
               <tr
                 v-for="(voyage, index) in voyages"
                 :key="index"
-                @click="onVoyageSelected(index)"
+                @click="onVoyageSelected({ index })"
                 style="cursor: pointer"
               >
                 <td>
@@ -114,6 +114,13 @@
                       v-for="item in voyage.targets"
                       :key="item.id"
                       :style="item.type === 'item' ? 'padding-top: 4px' : ''"
+                      @click.stop="
+                        onVoyageSelected({
+                          index,
+                          targetId: item.id,
+                          targetType: item.type,
+                        })
+                      "
                     >
                       <item-icon
                         :title="item.name"

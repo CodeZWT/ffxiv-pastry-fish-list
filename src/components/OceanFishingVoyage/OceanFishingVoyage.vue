@@ -29,7 +29,7 @@
       />
       <div class="d-flex my-4" style="width: 100%">
         <div class="text-h6">{{ currentFishingSpotSpectralCurrentName }}</div>
-        <v-icon>{{ currentFishingSpot.icon }}</v-icon>
+        <v-icon>{{ currentFishingSpot && currentFishingSpot.icon }}</v-icon>
       </div>
       <div>
         <v-btn
@@ -180,6 +180,10 @@ export default {
       default: undefined,
     },
     fishDict: {
+      type: Object,
+      default: undefined,
+    },
+    defaultTarget: {
       type: Object,
       default: undefined,
     },
@@ -376,7 +380,17 @@ export default {
   watch: {
     'voyage.milliseconds'() {
       this.currentLocationIndex = 0
-      this.tipIndex = 0
+    },
+    defaultTarget(defaultTarget) {
+      if (defaultTarget == null) {
+        this.tipIndex = 0
+      } else if (defaultTarget.type === 'item') {
+        this.tipIndex = 1
+      } else if (defaultTarget.id === 2562) {
+        this.tipIndex = 2
+      } else {
+        this.tipIndex = this.tips.length - 1
+      }
     },
   },
   methods: {

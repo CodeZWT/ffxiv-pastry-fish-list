@@ -56,8 +56,8 @@ export default {
     filterChanged(filter) {
       this.$emit('filterChanged', filter)
     },
-    onVoyageSelected(voyageIndex) {
-      this.$emit('voyage-selected', voyageIndex)
+    onVoyageSelected(voyage) {
+      this.$emit('voyage-selected', voyage)
     },
   },
 }
