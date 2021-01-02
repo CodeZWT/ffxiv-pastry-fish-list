@@ -64,8 +64,16 @@
                     </template>
                   </v-banner>
                   <v-tabs-items v-model="activeTabIndex">
+                    <!--                    <v-tab-item-->
+                    <!--                      key="pin"-->
+                    <!--                      class="list-wrapper"-->
+                    <!--                      :transition="false"-->
+                    <!--                      :reverse-transition="false"-->
+                    <!--                    >-->
+                    <!--                      -->
+                    <!--                    </v-tab-item>-->
                     <v-tab-item
-                      key="pin"
+                      key="normal"
                       class="list-wrapper"
                       :transition="false"
                       :reverse-transition="false"
@@ -84,13 +92,7 @@
                           </span>
                         </template>
                       </fish-list>
-                    </v-tab-item>
-                    <v-tab-item
-                      key="normal"
-                      class="list-wrapper"
-                      :transition="false"
-                      :reverse-transition="false"
-                    >
+
                       <fish-list
                         :fish-list="sortedFilteredFishList"
                         :fish-list-time-part="fishListTimePart"

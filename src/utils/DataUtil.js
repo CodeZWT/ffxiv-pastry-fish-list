@@ -646,12 +646,12 @@ export default {
     theme: 'dark',
   },
 
-  TAB_INDEX_PINNED: 0,
-  TAB_INDEX_NORMAL: 1,
-  TAB_INDEX_TO_BE_NOTIFIED: 2,
+  // TAB_INDEX_PINNED: 0,
+  TAB_INDEX_NORMAL: 0,
+  TAB_INDEX_TO_BE_NOTIFIED: 1,
 
   TABS: [
-    { icon: 'mdi-pin', title: 'list.pinTitle' },
+    // { icon: 'mdi-pin', title: 'list.pinTitle' },
     { icon: 'mdi-format-list-text', title: 'list.normalTitle' },
     { icon: 'mdi-bell', title: 'list.toBeNotifiedTitle' },
   ],

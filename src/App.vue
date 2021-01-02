@@ -1052,7 +1052,7 @@ export default {
     listFishCnt() {
       const fishListTimePart = this.fishListTimePart
       const doFullCountSearch = [true, false, true]
-      return [
+      const allListCnt = [
         this.pinnedFishList,
         this.sortedFilteredFishList,
         this.toBeNotifiedFishList,
@@ -1074,15 +1074,20 @@ export default {
               )
             }, 0),
           }
-        }
-        const firstNotFishingIndex = list.findIndex(
-          it => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING
-        )
-        return {
-          type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
-          cnt: firstNotFishingIndex === -1 ? list.length : firstNotFishingIndex,
+        } else {
+          const firstNotFishingIndex = list.findIndex(
+            it => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING
+          )
+          return {
+            type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
+            cnt: firstNotFishingIndex === -1 ? list.length : firstNotFishingIndex,
+          }
         }
       })
+      return [
+        { type: allListCnt[1].type, cnt: allListCnt[0].cnt + allListCnt[1].cnt },
+        allListCnt[2],
+      ]
     },
     toBeNotifiedFishList() {
       const fishSourceList = this.lazyTransformedFishList
