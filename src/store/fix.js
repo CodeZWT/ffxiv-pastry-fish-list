@@ -532,7 +532,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [3, 4],
       time: 0,
-      locations: [241],
+      locations: [243],
     },
     '28941': {
       _id: 28941,
@@ -595,7 +595,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [16],
       time: 0,
-      locations: [241],
+      locations: [243],
     },
     '29719': {
       _id: 29719,
@@ -637,7 +637,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [241],
+      locations: [243],
     },
     '29721': {
       _id: 29721,
@@ -805,7 +805,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [14],
       time: 0,
-      locations: [243],
+      locations: [241],
     },
     '29729': {
       _id: 29729,
@@ -826,7 +826,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [243],
+      locations: [241],
     },
     '29730': {
       _id: 29730,
@@ -847,7 +847,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [11, 14],
       time: 0,
-      locations: [243],
+      locations: [241],
     },
     '29731': {
       _id: 29731,
@@ -868,7 +868,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [243],
+      locations: [241],
     },
     '29732': {
       _id: 29732,
@@ -889,7 +889,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [243],
+      locations: [241],
     },
     '29733': {
       _id: 29733,
@@ -910,7 +910,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [3, 4],
       time: 0,
-      locations: [243],
+      locations: [241],
     },
     '29734': {
       _id: 29734,
@@ -952,7 +952,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [243],
+      locations: [241],
     },
     '29736': {
       _id: 29736,
@@ -973,7 +973,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [15, 16],
       time: 0,
-      locations: [241],
+      locations: [243],
     },
     '29737': {
       _id: 29737,
@@ -994,7 +994,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [241],
+      locations: [243],
     },
     '29738': {
       _id: 29738,
@@ -1015,7 +1015,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [241],
+      locations: [243],
     },
     '29739': {
       _id: 29739,
@@ -1078,7 +1078,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [241],
+      locations: [243],
     },
     '29742': {
       _id: 29742,
@@ -1099,7 +1099,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [243],
+      locations: [241],
     },
     '29743': {
       _id: 29743,
@@ -1120,7 +1120,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [241],
+      locations: [243],
     },
     '29744': {
       _id: 29744,
@@ -1189,7 +1189,7 @@ export default {
       fishTipType: 2,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [243],
+      locations: [241],
     },
     '29747': {
       _id: 29747,
@@ -1212,7 +1212,7 @@ export default {
       fishTipType: 2,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [241],
+      locations: [243],
     },
     '29748': {
       _id: 29748,
@@ -1233,7 +1233,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [242],
+      locations: [244],
     },
     '29749': {
       _id: 29749,
@@ -1527,7 +1527,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 3,
-      locations: [244],
+      locations: [242],
     },
     '29763': {
       _id: 29763,
@@ -1569,7 +1569,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 2,
-      locations: [242],
+      locations: [244],
     },
     '29765': {
       _id: 29765,
@@ -1632,7 +1632,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 1,
-      locations: [244],
+      locations: [242],
     },
     '29768': {
       _id: 29768,
@@ -1653,7 +1653,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [244],
+      locations: [242],
     },
     '29769': {
       _id: 29769,
@@ -1674,7 +1674,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [244],
+      locations: [242],
     },
     '29770': {
       _id: 29770,
@@ -1695,7 +1695,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 1,
-      locations: [244],
+      locations: [242],
     },
     '29771': {
       _id: 29771,
@@ -1716,7 +1716,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [242],
+      locations: [244],
     },
     '29772': {
       _id: 29772,
@@ -1737,7 +1737,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [244],
+      locations: [242],
     },
     '29773': {
       _id: 29773,
@@ -1758,7 +1758,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 3,
-      locations: [242],
+      locations: [244],
     },
     '29774': {
       _id: 29774,
@@ -1779,7 +1779,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 3,
-      locations: [244],
+      locations: [242],
     },
     '29775': {
       _id: 29775,
@@ -1800,7 +1800,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [244],
+      locations: [242],
     },
     '29776': {
       _id: 29776,
@@ -1821,7 +1821,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [242],
+      locations: [244],
     },
     '29777': {
       _id: 29777,
@@ -1842,7 +1842,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 3,
-      locations: [242],
+      locations: [244],
     },
     '29778': {
       _id: 29778,
@@ -1863,7 +1863,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [242],
+      locations: [244],
     },
     '29779': {
       _id: 29779,
@@ -1905,7 +1905,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [244],
+      locations: [242],
     },
     '29781': {
       _id: 29781,
@@ -1926,7 +1926,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 0,
-      locations: [242],
+      locations: [244],
     },
     '29782': {
       _id: 29782,
@@ -1968,7 +1968,7 @@ export default {
       fishTipType: null,
       notAvailableWeatherSet: [],
       time: 2,
-      locations: [242],
+      locations: [244],
     },
     '29784': {
       _id: 29784,
@@ -2031,7 +2031,7 @@ export default {
       fishTipType: 1,
       notAvailableWeatherSet: [1],
       time: 0,
-      locations: [241],
+      locations: [243],
     },
     '29787': {
       _id: 29787,
@@ -2052,7 +2052,7 @@ export default {
       fishTipType: 1,
       notAvailableWeatherSet: [1],
       time: 0,
-      locations: [243],
+      locations: [241],
     },
     '29788': {
       _id: 29788,
@@ -2123,7 +2123,7 @@ export default {
       fishTipType: 3,
       notAvailableWeatherSet: [],
       time: 2,
-      locations: [244],
+      locations: [242],
     },
     '29791': {
       _id: 29791,
@@ -2146,7 +2146,7 @@ export default {
       fishTipType: 3,
       notAvailableWeatherSet: [],
       time: 1,
-      locations: [242],
+      locations: [244],
     },
   },
   OCEAN_FISHING_BONUS: {
