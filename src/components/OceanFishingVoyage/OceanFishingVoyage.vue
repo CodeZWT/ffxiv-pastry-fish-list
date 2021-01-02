@@ -348,11 +348,13 @@ export default {
         this.oceanFishingSpots
           ?.find(it => it.id === spotId)
           ?.fishList?.map(fishId => this.fishDict[fishId])
-          ?.filter(
-            fish =>
-              fish.fishTipType === 3 &&
-              (!fish.time || fish.time === this.currentLocations[locationIndex].shift + 1)
-          )
+          ?.filter(fish => fish.fishTipType === 3)
+          ?.map(fish => {
+            return !fish.time ||
+              fish.time === this.currentLocations[locationIndex].shift + 1
+              ? fish
+              : null
+          })
       )
     },
     currentTipFish() {
