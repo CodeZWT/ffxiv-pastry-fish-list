@@ -81,7 +81,9 @@
                     "
                     class="mr-2"
                   >
-                    <v-icon small :title="fish.folklore.name">mdi-book-open</v-icon>
+                    <v-icon small :title="fish.folklore.name"
+                      >mdi-book-open-variant</v-icon
+                    >
                   </div>
                   <div v-if="fish.collectable">
                     <i class="xiv collectables" title="收藏品" />

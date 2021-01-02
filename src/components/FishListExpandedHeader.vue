@@ -42,7 +42,7 @@
           :data-ck-item-id="toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)"
           class="mr-2"
         >
-          <v-icon :title="fish.folklore.name">mdi-book-open</v-icon>
+          <v-icon :title="fish.folklore.name">mdi-book-open-variant</v-icon>
         </div>
         <div v-if="fish.collectable">
           <i class="xiv collectables" title="收藏品" />
