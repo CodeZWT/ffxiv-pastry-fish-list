@@ -356,6 +356,21 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.5.1</div>
+          <ul>
+            <li>
+              固定列表鱼默认列表合并，显示在同一页面中。
+            </li>
+            <li>
+              列表中增加传承录，收藏品信息。
+            </li>
+            <li>
+              修正多条鱼数据。
+            </li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.5.0</div>
           <div>
             <div class="text-h5 text-center">
