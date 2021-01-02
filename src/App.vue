@@ -1782,7 +1782,7 @@ body {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #0000001f #00000061;
+  scrollbar-color: #ffffff66 #00000061;
 }
 
 /* Works on Chrome/Edge/Safari */
@@ -1792,7 +1792,7 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: #ffffff00;
+  background: #00000061;
 }
 
 *::-webkit-scrollbar-thumb {
