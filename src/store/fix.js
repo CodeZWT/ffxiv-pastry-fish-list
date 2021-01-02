@@ -465,6 +465,12 @@ export default {
       hookset: 'Precision',
       tug: 'light',
     },
+    '29673': {
+      patch: 5.25,
+    },
+    '29678': {
+      patch: 5.25,
+    },
   },
   OCEAN_FISHING_FISH: {
     '28937': {
