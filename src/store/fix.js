@@ -393,7 +393,7 @@ export default {
       patch: 4.3,
     },
     '17565': {
-      patch: 4.3,
+      patch: 3.5,
       bait: 28634,
       hookset: 'Precision',
       bestCatchPath: [28634],
@@ -447,6 +447,23 @@ export default {
     },
     '17589': {
       bestCatchPath: [30136, 12776],
+    },
+    '17562': {
+      patch: 3.5,
+    },
+    '17563': {
+      patch: 3.5,
+    },
+    '17566': {
+      patch: 3.5,
+    },
+    '22393': {
+      bestCatchPath: [20617],
+      bestCatchPathExtra: [20617, 20112],
+    },
+    '12764': {
+      hookset: 'Precision',
+      tug: 'light',
     },
   },
   OCEAN_FISHING_FISH: {
