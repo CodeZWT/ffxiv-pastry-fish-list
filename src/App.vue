@@ -1561,6 +1561,7 @@ export default {
             name: this.getItemName(folklore.itemId),
             icon: this.getItemIconClass(folklore.itemId),
           },
+          collectable: fish.collectable,
           isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
           rate: rate,
           rateText: this.$t('countDown.rate', {
