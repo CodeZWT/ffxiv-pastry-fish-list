@@ -1,5 +1,5 @@
 <template>
-  <v-row no-gutters class="my-4 inner elevation-4">
+  <v-row no-gutters class="my-4 inner">
     <v-col cols="12">
       <div
         v-if="fishList.length <= 0"
