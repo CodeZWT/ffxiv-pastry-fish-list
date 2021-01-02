@@ -109,7 +109,6 @@
               {{ fish.biteTimeText }}
             </td>
             <td>
-              <!--                      {{ fish.baits }}-->
               <div class="d-flex">
                 <div class="d-flex align-center">
                   <i

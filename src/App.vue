@@ -1507,6 +1507,7 @@ export default {
       return fishSourceList.map(fish => {
         const hasPredators = Object.keys(fish.predators).length > 0
         const rate = this.lazyFishWindowRates[fish._id]
+        const bestCatchPathExtra = fish.bestCatchPathExtra ?? []
         return {
           // TODO remove _id
           _id: fish._id,
@@ -1529,6 +1530,8 @@ export default {
           //   fishingSpotId: location,
           // }
           // }),
+          baitsExtra:
+            bestCatchPathExtra.length > 0 ? this.getBaits(fish, bestCatchPathExtra) : [],
           baits: this.getBaits(fish),
           hasFishEyes: fish.fishEyes !== false,
           fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
