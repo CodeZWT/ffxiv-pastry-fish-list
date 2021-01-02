@@ -44,13 +44,15 @@
                     </v-avatar>
 
                     <div>
-                      欢迎使用鱼糕钓鱼时钟，如有任何问题，首先尝试刷新(F5)或强制刷新页面(Ctrl+F5)。
-                    </div>
-                    <div>
-                      点击每列鱼可以打开右侧详细界面，窗口比例可以调整，最近10次窗口期的表格也在其中，请点击“查看窗口期详情”展开。
-                    </div>
-                    <div>
-                      本站与其他钓鱼时钟的导入、导出功能在侧边栏的设置中。
+                      <div>
+                        欢迎使用鱼糕钓鱼时钟，如有任何问题，首先尝试刷新<kbd>F5</kbd>或强制刷新页面<kbd>Ctrl</kbd>+<kbd>F5</kbd>。
+                      </div>
+                      <div>
+                        点击每列鱼可以打开右侧详细界面。其他功能如钓鱼笔记，云冠群岛，出海垂钓内容请通过左边的侧边栏访问。
+                      </div>
+                      <div>
+                        本站与其他钓鱼时钟的导入、导出功能在侧边栏的设置中。
+                      </div>
                     </div>
 
                     <template v-slot:actions>
@@ -62,47 +64,64 @@
                     </template>
                   </v-banner>
                   <v-tabs-items v-model="activeTabIndex">
-                    <v-tab-item
-                      key="pin"
-                      class="list-wrapper"
-                      :transition="false"
-                      :reverse-transition="false"
-                    >
-                      <fish-list
-                        :fish-list="pinnedFishList"
-                        :fish-list-time-part="fishListTimePart"
-                        :fish-list-weather-change-part="fishListWeatherChangePart"
-                        @fish-selected="onFishSelected($event)"
-                      >
-                        <template v-slot:empty>
-                          <span>
-                            {{ $t('list.pinned.empty.prefix') }}
-                            <v-icon small class="mx-1">mdi-pin-outline</v-icon>
-                            {{ $t('list.pinned.empty.suffix') }}
-                          </span>
-                        </template>
-                      </fish-list>
-                    </v-tab-item>
+                    <!--                    <v-tab-item-->
+                    <!--                      key="pin"-->
+                    <!--                      class="list-wrapper"-->
+                    <!--                      :transition="false"-->
+                    <!--                      :reverse-transition="false"-->
+                    <!--                    >-->
+                    <!--                      -->
+                    <!--                    </v-tab-item>-->
                     <v-tab-item
                       key="normal"
                       class="list-wrapper"
                       :transition="false"
                       :reverse-transition="false"
                     >
-                      <fish-list
-                        :fish-list="sortedFilteredFishList"
-                        :fish-list-time-part="fishListTimePart"
-                        :fish-list-weather-change-part="fishListWeatherChangePart"
-                        show-fish-divider
-                        @fish-selected="onFishSelected($event)"
-                      >
-                        <template v-slot:empty>
-                          <span>
-                            {{ $t('list.normal.empty') }}
-                          </span>
-                        </template>
-                      </fish-list>
+                      <v-expansion-panels :value="0" accordion class="my-2 rounded-lg">
+                        <v-expansion-panel>
+                          <v-expansion-panel-header>固定列表</v-expansion-panel-header>
+                          <v-expansion-panel-content>
+                            <fish-list
+                              :fish-list="pinnedFishList"
+                              :fish-list-time-part="fishListTimePart"
+                              :fish-list-weather-change-part="fishListWeatherChangePart"
+                              @fish-selected="onFishSelected($event)"
+                            >
+                              <template v-slot:empty>
+                                <span>
+                                  {{ $t('list.pinned.empty.prefix') }}
+                                  <v-icon small class="mx-1">mdi-pin-outline</v-icon>
+                                  {{ $t('list.pinned.empty.suffix') }}
+                                </span>
+                              </template>
+                            </fish-list>
+                          </v-expansion-panel-content>
+                        </v-expansion-panel>
+                      </v-expansion-panels>
+
+                      <v-expansion-panels :value="0" accordion class="my-2 rounded-lg">
+                        <v-expansion-panel>
+                          <v-expansion-panel-header>默认列表</v-expansion-panel-header>
+                          <v-expansion-panel-content>
+                            <fish-list
+                              :fish-list="sortedFilteredFishList"
+                              :fish-list-time-part="fishListTimePart"
+                              :fish-list-weather-change-part="fishListWeatherChangePart"
+                              show-fish-divider
+                              @fish-selected="onFishSelected($event)"
+                            >
+                              <template v-slot:empty>
+                                <span>
+                                  {{ $t('list.normal.empty') }}
+                                </span>
+                              </template>
+                            </fish-list>
+                          </v-expansion-panel-content>
+                        </v-expansion-panel>
+                      </v-expansion-panels>
                     </v-tab-item>
+
                     <v-tab-item
                       key="notification"
                       class="list-wrapper"

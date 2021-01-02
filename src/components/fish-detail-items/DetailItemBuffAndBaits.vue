@@ -19,7 +19,24 @@
       <div v-if="!fish.hasFishEyes && !fish.hasPredators && !fish.hasSnagging">
         {{ $t('none') }}
       </div>
-      <fish-bait-list :baits="fish.baits" class="ml-3" />
+      <!--      <fish-bait-list :baits="fish.baits" class="ml-3" />-->
+      <div class="mx-2" style="font-size: x-large">|</div>
+      <div class="d-flex">
+        <div class="d-flex align-center">
+          <i
+            class="xiv square-a"
+            v-if="fish.baitsExtra.length > 0"
+            title="一种可能情况A"
+          />
+          <fish-bait-list :baits="fish.baits" />
+        </div>
+        <template v-if="fish.baitsExtra.length > 0">
+          <div class="d-flex align-center">
+            <i class="xiv square-b" title="另一种可能情况B" />
+            <fish-bait-list :baits="fish.baitsExtra" />
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>

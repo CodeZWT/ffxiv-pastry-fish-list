@@ -760,7 +760,7 @@ export default {
 .grid-content
   height: 100%
   overflow-scrolling: auto
-  overflow-y: scroll
+  overflow-y: auto
   padding: 0 4px
   margin: 0 0 4px 0
 

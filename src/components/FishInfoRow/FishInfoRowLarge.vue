@@ -65,12 +65,30 @@
                 <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">
                   {{ fish.name }}
                 </div>
-                <v-badge
-                  inline
-                  :color="fish.isFuturePatch ? 'grey' : 'primary'"
-                  :content="fish.patch"
-                  :title="fish.isFuturePatch ? '未实装' : ''"
-                ></v-badge>
+                <div class="d-flex align-center">
+                  <v-badge
+                    inline
+                    bordered
+                    :color="fish.isFuturePatch ? 'grey' : 'primary'"
+                    :content="fish.patch"
+                    :title="fish.isFuturePatch ? '未实装' : ''"
+                    class="mr-1"
+                  ></v-badge>
+                  <div
+                    v-if="fish.folklore"
+                    :data-ck-item-id="
+                      toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)
+                    "
+                    class="mr-2"
+                  >
+                    <v-icon small :title="fish.folklore.name"
+                      >mdi-book-open-variant</v-icon
+                    >
+                  </div>
+                  <div v-if="fish.collectable">
+                    <i class="xiv collectables" title="收藏品" />
+                  </div>
+                </div>
               </div>
             </div>
           </v-col>
@@ -209,18 +227,29 @@
                 <div :class="fish.snaggingIcon" data-ck-action-name="钓组" />
               </div>
             </div>
-            <fish-bait-list :baits="fish.baits" />
+            <div class="d-flex">
+              <div class="d-flex align-center">
+                <i
+                  class="xiv square-a"
+                  v-if="fish.baitsExtra.length > 0"
+                  title="一种可能情况A"
+                />
+                <fish-bait-list :baits="fish.baits" />
+              </div>
+              <template v-if="fish.baitsExtra.length > 0">
+                <div class="d-flex align-center">
+                  <i class="xiv square-b" title="另一种可能情况B" />
+                  <fish-bait-list :baits="fish.baitsExtra" />
+                </div>
+              </template>
+            </div>
           </v-col>
         </v-row>
         <v-expand-transition>
           <div
             v-if="hover"
-            :style="
-              `${
-                isLast ? '' : 'position: absolute;'
-              } height: 28px; z-index: 9999; width: 100%`
-            "
-            class="d-flex align-center primary rounded-b-lg elevation-4"
+            style="position: absolute; height: 28px; z-index: 9999; width: 100%"
+            class="d-flex align-center primary rounded-b-lg elevation-2"
           >
             <v-row no-gutters>
               <v-col :class="fishColClass">

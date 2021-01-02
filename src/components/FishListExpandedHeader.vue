@@ -37,6 +37,16 @@
             <v-icon>mdi-link-variant</v-icon>
           </v-btn>
         </click-helper>
+        <div
+          v-if="fish.folklore"
+          :data-ck-item-id="toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)"
+          class="mr-2"
+        >
+          <v-icon :title="fish.folklore.name">mdi-book-open-variant</v-icon>
+        </div>
+        <div v-if="fish.collectable">
+          <i class="xiv collectables" title="收藏品" />
+        </div>
         <v-spacer />
         <toggle-button
           v-if="fish.setNotificationAvailable"
@@ -57,7 +67,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import ToggleButton from '@/components/basic/ToggleButton'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
@@ -89,6 +99,7 @@ export default {
   }),
   computed: {
     fish() {
+      const folklore = this.value.folklore && this.folklore[this.value.folklore]
       return {
         id: this.value._id,
         completed: this.getFishCompleted(this.value._id),
@@ -98,10 +109,18 @@ export default {
         name: this.getItemName(this.value._id),
         patch: this.value.patch,
         isFuturePatch: this.value.patch > DataUtil.PATCH_AVAILABLE_MAX,
+        folklore: folklore && {
+          id: folklore._id,
+          itemId: folklore.itemId,
+          name: this.getItemName(folklore.itemId),
+          icon: this.getItemIconClass(folklore.itemId),
+        },
+        collectable: this.value.collectable,
         anglerFishId: this.value.anglerFishId,
         setNotificationAvailable: DataUtil.hasCountDown(this.fishTimePart?.countDown),
       }
     },
+    ...mapState(['folklore']),
     ...mapGetters([
       'getItemIconClass',
       'getItemName',
@@ -133,6 +152,7 @@ export default {
     setToBeNotified(toBeNotified) {
       this.setFishToBeNotified({ fishId: this.fish.id, toBeNotified })
     },
+    toItemIdIfExisted: DataUtil.toItemIdIfExisted,
     ...mapMutations([
       'setFishCompleted',
       'setFishPinned',

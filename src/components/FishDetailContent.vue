@@ -81,6 +81,7 @@ export default {
     fish() {
       // const fishingSpot = this.getFishingSpot(this.value.location)
       const hasPredators = Object.keys(this.value.predators).length > 0
+      const bestCatchPathExtra = this.value.bestCatchPathExtra ?? []
       return {
         id: this.value._id,
         startHourText:
@@ -129,6 +130,10 @@ export default {
             this.fishTimePart.countDown.fishWindowTotal) *
           100,
         isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
+        baitsExtra:
+          bestCatchPathExtra.length > 0
+            ? this.getBaits(this.value, bestCatchPathExtra)
+            : [],
         baits: this.getBaits(this.value),
         isCompleted: this.getFishCompleted(this.value._id),
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),

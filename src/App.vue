@@ -356,6 +356,21 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.5.1</div>
+          <ul>
+            <li>
+              固定列表鱼默认列表合并，显示在同一页面中。
+            </li>
+            <li>
+              列表中增加传承录，收藏品信息。
+            </li>
+            <li>
+              修正多条鱼数据。
+            </li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.5.0</div>
           <div>
             <div class="text-h5 text-center">
@@ -1052,7 +1067,7 @@ export default {
     listFishCnt() {
       const fishListTimePart = this.fishListTimePart
       const doFullCountSearch = [true, false, true]
-      return [
+      const allListCnt = [
         this.pinnedFishList,
         this.sortedFilteredFishList,
         this.toBeNotifiedFishList,
@@ -1074,15 +1089,20 @@ export default {
               )
             }, 0),
           }
-        }
-        const firstNotFishingIndex = list.findIndex(
-          it => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING
-        )
-        return {
-          type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
-          cnt: firstNotFishingIndex === -1 ? list.length : firstNotFishingIndex,
+        } else {
+          const firstNotFishingIndex = list.findIndex(
+            it => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING
+          )
+          return {
+            type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
+            cnt: firstNotFishingIndex === -1 ? list.length : firstNotFishingIndex,
+          }
         }
       })
+      return [
+        { type: allListCnt[1].type, cnt: allListCnt[0].cnt + allListCnt[1].cnt },
+        allListCnt[2],
+      ]
     },
     toBeNotifiedFishList() {
       const fishSourceList = this.lazyTransformedFishList
@@ -1182,6 +1202,7 @@ export default {
       'showSearchDialog',
       'showImportExportDialog',
       'newPatchFish',
+      'folklore',
     ]),
     ...mapGetters([
       'opacity',
@@ -1502,6 +1523,8 @@ export default {
       return fishSourceList.map(fish => {
         const hasPredators = Object.keys(fish.predators).length > 0
         const rate = this.lazyFishWindowRates[fish._id]
+        const bestCatchPathExtra = fish.bestCatchPathExtra ?? []
+        const folklore = fish.folklore && this.folklore[fish.folklore]
         return {
           // TODO remove _id
           _id: fish._id,
@@ -1524,6 +1547,8 @@ export default {
           //   fishingSpotId: location,
           // }
           // }),
+          baitsExtra:
+            bestCatchPathExtra.length > 0 ? this.getBaits(fish, bestCatchPathExtra) : [],
           baits: this.getBaits(fish),
           hasFishEyes: fish.fishEyes !== false,
           fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
@@ -1545,6 +1570,13 @@ export default {
           weatherSet: fish.weatherSet,
           previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
           patch: fish.patch,
+          folklore: folklore && {
+            id: folklore._id,
+            itemId: folklore.itemId,
+            name: this.getItemName(folklore.itemId),
+            icon: this.getItemIconClass(folklore.itemId),
+          },
+          collectable: fish.collectable,
           isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
           rate: rate,
           rateText: this.$t('countDown.rate', {
@@ -1774,7 +1806,7 @@ body {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #0000001f #00000061;
+  scrollbar-color: #ffffff66 #00000061;
 }
 
 /* Works on Chrome/Edge/Safari */
@@ -1784,7 +1816,7 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: #ffffff00;
+  background: #00000061;
 }
 
 *::-webkit-scrollbar-thumb {

@@ -122,6 +122,7 @@ export default {
         this.fish.fishingSpots[0].fishingSpot.anglerLocationId
       )
     },
+    toItemIdIfExisted: DataUtil.toItemIdIfExisted,
     ...mapMutations(['setFishCompleted', 'setFishPinned', 'setFishToBeNotified']),
   },
 }
