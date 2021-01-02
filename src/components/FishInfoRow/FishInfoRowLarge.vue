@@ -215,11 +215,7 @@
         <v-expand-transition>
           <div
             v-if="hover"
-            :style="
-              `${
-                isLast ? '' : 'position: absolute;'
-              } height: 28px; z-index: 9999; width: 100%`
-            "
+            style="position: absolute; height: 28px; z-index: 9999; width: 100%"
             class="d-flex align-center primary rounded-b-lg elevation-4"
           >
             <v-row no-gutters>

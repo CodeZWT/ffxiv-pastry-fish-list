@@ -78,35 +78,50 @@
                       :transition="false"
                       :reverse-transition="false"
                     >
-                      <fish-list
-                        :fish-list="pinnedFishList"
-                        :fish-list-time-part="fishListTimePart"
-                        :fish-list-weather-change-part="fishListWeatherChangePart"
-                        @fish-selected="onFishSelected($event)"
-                      >
-                        <template v-slot:empty>
-                          <span>
-                            {{ $t('list.pinned.empty.prefix') }}
-                            <v-icon small class="mx-1">mdi-pin-outline</v-icon>
-                            {{ $t('list.pinned.empty.suffix') }}
-                          </span>
-                        </template>
-                      </fish-list>
+                      <v-expansion-panels :value="0" accordion class="my-2 rounded-lg">
+                        <v-expansion-panel>
+                          <v-expansion-panel-header>固定列表</v-expansion-panel-header>
+                          <v-expansion-panel-content>
+                            <fish-list
+                              :fish-list="pinnedFishList"
+                              :fish-list-time-part="fishListTimePart"
+                              :fish-list-weather-change-part="fishListWeatherChangePart"
+                              @fish-selected="onFishSelected($event)"
+                            >
+                              <template v-slot:empty>
+                                <span>
+                                  {{ $t('list.pinned.empty.prefix') }}
+                                  <v-icon small class="mx-1">mdi-pin-outline</v-icon>
+                                  {{ $t('list.pinned.empty.suffix') }}
+                                </span>
+                              </template>
+                            </fish-list>
+                          </v-expansion-panel-content>
+                        </v-expansion-panel>
+                      </v-expansion-panels>
 
-                      <fish-list
-                        :fish-list="sortedFilteredFishList"
-                        :fish-list-time-part="fishListTimePart"
-                        :fish-list-weather-change-part="fishListWeatherChangePart"
-                        show-fish-divider
-                        @fish-selected="onFishSelected($event)"
-                      >
-                        <template v-slot:empty>
-                          <span>
-                            {{ $t('list.normal.empty') }}
-                          </span>
-                        </template>
-                      </fish-list>
+                      <v-expansion-panels :value="0" accordion class="my-2 rounded-lg">
+                        <v-expansion-panel>
+                          <v-expansion-panel-header>默认列表</v-expansion-panel-header>
+                          <v-expansion-panel-content>
+                            <fish-list
+                              :fish-list="sortedFilteredFishList"
+                              :fish-list-time-part="fishListTimePart"
+                              :fish-list-weather-change-part="fishListWeatherChangePart"
+                              show-fish-divider
+                              @fish-selected="onFishSelected($event)"
+                            >
+                              <template v-slot:empty>
+                                <span>
+                                  {{ $t('list.normal.empty') }}
+                                </span>
+                              </template>
+                            </fish-list>
+                          </v-expansion-panel-content>
+                        </v-expansion-panel>
+                      </v-expansion-panels>
                     </v-tab-item>
+
                     <v-tab-item
                       key="notification"
                       class="list-wrapper"
