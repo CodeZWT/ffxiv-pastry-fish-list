@@ -67,6 +67,7 @@
                 </div>
                 <v-badge
                   inline
+                  bordered
                   :color="fish.isFuturePatch ? 'grey' : 'primary'"
                   :content="fish.patch"
                   :title="fish.isFuturePatch ? '未实装' : ''"
@@ -231,7 +232,7 @@
           <div
             v-if="hover"
             style="position: absolute; height: 28px; z-index: 9999; width: 100%"
-            class="d-flex align-center primary rounded-b-lg elevation-4"
+            class="d-flex align-center primary rounded-b-lg elevation-2"
           >
             <v-row no-gutters>
               <v-col :class="fishColClass">
