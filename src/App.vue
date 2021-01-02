@@ -1187,6 +1187,7 @@ export default {
       'showSearchDialog',
       'showImportExportDialog',
       'newPatchFish',
+      'folklore',
     ]),
     ...mapGetters([
       'opacity',
@@ -1508,6 +1509,7 @@ export default {
         const hasPredators = Object.keys(fish.predators).length > 0
         const rate = this.lazyFishWindowRates[fish._id]
         const bestCatchPathExtra = fish.bestCatchPathExtra ?? []
+        const folklore = fish.folklore && this.folklore[fish.folklore]
         return {
           // TODO remove _id
           _id: fish._id,
@@ -1553,6 +1555,12 @@ export default {
           weatherSet: fish.weatherSet,
           previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
           patch: fish.patch,
+          folklore: folklore && {
+            id: folklore._id,
+            itemId: folklore.itemId,
+            name: this.getItemName(folklore.itemId),
+            icon: this.getItemIconClass(folklore.itemId),
+          },
           isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
           rate: rate,
           rateText: this.$t('countDown.rate', {

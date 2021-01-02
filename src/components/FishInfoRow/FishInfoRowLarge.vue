@@ -65,13 +65,24 @@
                 <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">
                   {{ fish.name }}
                 </div>
-                <v-badge
-                  inline
-                  bordered
-                  :color="fish.isFuturePatch ? 'grey' : 'primary'"
-                  :content="fish.patch"
-                  :title="fish.isFuturePatch ? '未实装' : ''"
-                ></v-badge>
+                <div class="d-flex align-center">
+                  <v-badge
+                    inline
+                    bordered
+                    :color="fish.isFuturePatch ? 'grey' : 'primary'"
+                    :content="fish.patch"
+                    :title="fish.isFuturePatch ? '未实装' : ''"
+                    class="mr-1"
+                  ></v-badge>
+                  <div
+                    v-if="fish.folklore"
+                    :data-ck-item-id="
+                      toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)
+                    "
+                  >
+                    <v-icon small :title="fish.folklore.name">mdi-book-open</v-icon>
+                  </div>
+                </div>
               </div>
             </div>
           </v-col>
