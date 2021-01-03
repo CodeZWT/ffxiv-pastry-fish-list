@@ -17,6 +17,7 @@ export default new Vuex.Store({
     fish: DataUtil.mergeByReplacingArray(
       FishingData,
       FIX.FISH,
+      FIX.SPEAR_FISH,
       DevelopmentModeUtil.isLocal() ? FIX.TEST_FISH : {}
     ),
     fishingSpots: merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
