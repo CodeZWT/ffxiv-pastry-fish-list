@@ -21,29 +21,55 @@
         </v-tab>
       </v-tabs>
 
-      <!--        <div>{{ currentFishList }}</div>-->
-      <ocean-fishing-fish-list
-        :fish-list="currentFishList"
-        weather-filter
-        :weather-set="currentWeatherSet"
-      />
-      <div class="d-flex my-4" style="width: 100%">
-        <div class="text-h6">{{ currentFishingSpotSpectralCurrentName }}</div>
-        <v-icon>{{ currentFishingSpot && currentFishingSpot.icon }}</v-icon>
-      </div>
-      <div>
-        <v-btn
-          @click="toggleShiftFilter"
-          :color="shiftFilterEnabled ? 'error' : 'primary'"
-        >
-          {{ shiftFilterEnabled ? '清除时间限制' : '只显示当前时间可钓的鱼' }}
-        </v-btn>
-      </div>
-      <ocean-fishing-fish-list
-        :fish-list="currentSpectralCurrentFishList"
-        :shift-filter="shiftFilterEnabled"
-        :shift="currentShift"
-      />
+      <v-expansion-panels :value="0" accordion class="my-2 rounded-lg">
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            <div class="d-flex my-4" style="width: 100%">
+              <div class="text-h6">
+                {{ currentFishingSpot && currentFishingSpot.name }}
+              </div>
+              <v-icon>{{ currentFishingSpot && currentFishingSpot.icon }}</v-icon>
+            </div>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <ocean-fishing-fish-list
+              :fish-list="currentFishList"
+              weather-filter
+              :weather-set="currentWeatherSet"
+            />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <!--      <ocean-fishing-fish-list-->
+      <!--        :fish-list="currentFishList"-->
+      <!--        weather-filter-->
+      <!--        :weather-set="currentWeatherSet"-->
+      <!--      />-->
+      <v-expansion-panels :value="0" accordion class="my-2 rounded-lg">
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            <div class="d-flex my-4" style="width: 100%">
+              <div class="text-h6">{{ currentFishingSpotSpectralCurrentName }}</div>
+              <v-icon>{{ currentFishingSpot && currentFishingSpot.icon }}</v-icon>
+            </div>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <div class="my-1">
+              <v-btn
+                @click="toggleShiftFilter"
+                :color="shiftFilterEnabled ? 'error' : 'primary'"
+              >
+                {{ shiftFilterEnabled ? '清除时间限制' : '只显示当前时间可钓的鱼' }}
+              </v-btn>
+            </div>
+            <ocean-fishing-fish-list
+              :fish-list="currentSpectralCurrentFishList"
+              :shift-filter="shiftFilterEnabled"
+              :shift="currentShift"
+            />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </div>
     <div v-else-if="currentTip.id === 'fish-tip'">
       <v-row>
