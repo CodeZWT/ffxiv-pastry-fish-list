@@ -124,7 +124,7 @@ export default {
   methods: {
     toSimpleName(name) {
       if (name.match('[\u4e00-\u9fff]+')) {
-        return `${name.slice(9)}`
+        return `${name.slice(7)}`
       } else {
         return `${name.slice(21)}`
       }
