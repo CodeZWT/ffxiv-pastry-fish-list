@@ -24,7 +24,7 @@
                     </v-card-text>
                     <v-divider />
                     <v-card-text>
-                      攻略及下方资料参考：
+                      <div>攻略及下方资料参考：</div>
                       <div class="text-subtitle-1">
                         <a :href="simpleTip.reference.link" target="_blank">
                           {{ simpleTip.reference.title }}
@@ -32,8 +32,9 @@
                       </div>
                       <div>
                         {{ simpleTip.reference.author }}
-                      </div> </v-card-text
-                    ><v-divider />
+                      </div>
+                    </v-card-text>
+                    <v-divider />
                     <v-card-text>
                       <div>关于鱼饵的一些说明</div>
                       <div>
@@ -44,6 +45,16 @@
                         <span style="font-size: small">
                           *注1：部分鱼也有万能拟饵的咬钩记录，可以自行尝试。
                         </span>
+                      </div>
+                    </v-card-text>
+                    <v-divider />
+                    <v-card-text>
+                      <div>关于钓场的一些说明</div>
+                      <div>
+                        3个钓场有第三期的普通鱼<br />
+                        4个钓场有第三期的特供鱼<br />
+                        2个钓场有第二期的特供鱼
+                        <span class="error--text">（其中一个钓场【狂风云海】与第三期特供鱼钓场同名请注意看地图分辨！）</span>
                       </div>
                     </v-card-text>
                   </v-card>
