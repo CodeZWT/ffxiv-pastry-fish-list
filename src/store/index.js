@@ -110,7 +110,7 @@ export default new Vuex.Store({
       }),
     getBaits: (state, getters) => (fish, customizedBestCatchPath, customizeFishDict) => {
       const bestCatchPath = customizedBestCatchPath ?? fish.bestCatchPath
-      if (bestCatchPath.length < 1) return []
+      if (bestCatchPath == null || bestCatchPath.length < 1) return []
       const baitId = bestCatchPath[bestCatchPath.length - 1]
       const hookset = DataUtil.tugToHookset(fish.tug, fish.hookset)
       const optionalIndices = fish.optional ?? []

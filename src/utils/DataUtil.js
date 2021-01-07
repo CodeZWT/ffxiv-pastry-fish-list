@@ -339,7 +339,7 @@ export default {
       // so just take the 1st one
       // e.g. 温泉王
       fish._id,
-      fishingSpots[fish.locations[0]]?.territory_id,
+      fishingSpots?.[fish.locations[0]]?.territory_id,
       new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
       fish.startHour,
       fish.endHour,

@@ -1686,7 +1686,7 @@ export default {
         if (missingFishWindowN > 0) {
           fishWindowsComputed = FishWindow.getNextNFishWindows(
             fish._id,
-            fishingSpot.territory_id,
+            fishingSpot?.territory_id,
             new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
             fish.startHour,
             fish.endHour,
