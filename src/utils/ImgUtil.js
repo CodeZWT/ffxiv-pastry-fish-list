@@ -447,12 +447,12 @@ const CDN_DICT = {
   },
   '沙利亚克河.png': {
     name: '沙利亚克河.png',
-    id: '5fccbf04394ac523786e1b9c',
+    id: '5ff7301b3ffa7d37b38326a6',
     ext: 'png',
   },
   '沙利亚克河上流.png': {
     name: '沙利亚克河上流.png',
-    id: '5fccbf04394ac523786e1bf3',
+    id: '5ff7301b3ffa7d37b38326bd',
     ext: 'png',
   },
   '沙利亚克河中流.png': {
@@ -478,7 +478,7 @@ const CDN_DICT = {
   '渔村沿岸.png': { name: '渔村沿岸.png', id: '5fccbf05394ac523786e1eac', ext: 'png' },
   '湍流三角地.png': {
     name: '湍流三角地.png',
-    id: '5fccbf05394ac523786e1efa',
+    id: '5ff7301b3ffa7d37b38326c2',
     ext: 'png',
   },
   '火墙.png': { name: '火墙.png', id: '5fccbf05394ac523786e1f38', ext: 'png' },
