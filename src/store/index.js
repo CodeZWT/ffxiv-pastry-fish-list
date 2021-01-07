@@ -8,15 +8,20 @@ import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import FishingData from '@/store/fishingData'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    fish: DataUtil.mergeByReplacingArray(FishingData, FIX.FISH),
+    fish: DataUtil.mergeByReplacingArray(
+      FishingData,
+      FIX.FISH,
+      DevelopmentModeUtil.isLocal() ? FIX.TEST_FISH : {}
+    ),
     fishingSpots: merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
-    items: DATA_CN.ITEMS,
+    items: merge(DATA_CN.ITEMS, DevelopmentModeUtil.isLocal() ? FIX.TEST_ITEMS : {}),
     achievements: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS,
     weatherRates: DATA.WEATHER_RATES,
     weatherTypes: DATA_CN.WEATHER_TYPES,

@@ -885,7 +885,7 @@
 </template>
 
 <script>
-import EorzeaTime, { WEATHER_CHANGE_INTERVAL_EARTH } from '@/utils/Time'
+import EorzeaTime from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import helpHTML from '@/assets/doc/help.html'
@@ -941,7 +941,7 @@ export default {
     lazyImportantFishSourceList: [],
     lazyTransformedFishList: [],
     lazyTransformedFishDict: {},
-    weatherChangeTrigger: 1,
+    // weatherChangeTrigger: 1,
     sortedFishIds: [],
     fishListTimePart: {},
     notifiedBefore: 0,
@@ -1255,9 +1255,9 @@ export default {
     listFishCnt(listFishCnt) {
       this.$emit('fishCntUpdated', listFishCnt)
     },
-    weatherChangeTrigger() {
-      this.updateWeatherChangePart(this.now)
-    },
+    // weatherChangeTrigger() {
+      // this.updateWeatherChangePart(this.now)
+    // },
   },
   created() {
     this.startLoading()
@@ -1316,9 +1316,9 @@ export default {
     }, 1000)
 
     // this.weatherChangeTrigger *= -1
-    setInterval(() => {
-      this.weatherChangeTrigger *= -1
-    }, WEATHER_CHANGE_INTERVAL_EARTH)
+    // setInterval(() => {
+    //   this.weatherChangeTrigger *= -1
+    // }, Math.floor(WEATHER_CHANGE_INTERVAL_EARTH))
     // }, 200)
   },
   methods: {
@@ -1594,17 +1594,32 @@ export default {
       // and not out of time(use 2 fish window cached if necessary)
       const fishingSpot = this.fishingSpots[fish.locations[0]]
       if (fishingSpot) {
-        const fishWindowsComputed =
-          this.fishListWeatherChangePart[fish._id]?.fishWindows ??
-          FishWindow.getNextNFishWindows(
+        const remainingFishWindows = (
+          this.fishListWeatherChangePart[fish._id]?.fishWindows ?? []
+        ).filter(it => it[1] > now)
+
+        const missingFishWindowN =
+          FishWindow.FISH_WINDOW_FORECAST_N - remainingFishWindows.length
+
+        let fishWindowsComputed
+        if (missingFishWindowN > 0) {
+          fishWindowsComputed = FishWindow.getNextNFishWindows(
+            fish._id,
             fishingSpot.territory_id,
             new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
             fish.startHour,
             fish.endHour,
             fish.previousWeatherSet,
             fish.weatherSet,
-            2
+            FishWindow.FISH_WINDOW_FORECAST_N
           )
+        } else {
+          fishWindowsComputed = remainingFishWindows
+        }
+        this.fishListWeatherChangePart[fish._id] = {
+          ...this.fishListWeatherChangePart[fish._id],
+          fishWindows: fishWindowsComputed,
+        }
 
         let targetFishWindow
         let nextTargetFishWindow

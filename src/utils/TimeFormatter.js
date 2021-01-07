@@ -43,7 +43,7 @@ export default {
     const unitQuantity = []
     for (const unit of UNITS) {
       if (tmp >= unit) {
-        const number = parseInt((tmp / unit).toString())
+        const number = Math.floor(tmp / unit)
         unitQuantity.push(number)
         tmp -= number * unit
       } else {

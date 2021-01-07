@@ -1,4 +1,31 @@
 export default {
+  TEST_FISH: {
+    '999999': {
+      _id: 999999,
+      previousWeatherSet: [],
+      weatherSet: [],
+      startHour: 0,
+      endHour: 12,
+      predators: {},
+      fishEyes: false,
+      snagging: false,
+      hookset: null,
+      tug: 'light',
+      dataMissing: true,
+      anglerFishId: 1,
+      bait: 2585,
+      locations: [36, 35, 44],
+      bestCatchPath: [2585],
+      patch: 5.3,
+    },
+  },
+  TEST_ITEMS: {
+    '999999': {
+      _id: 999999,
+      name_chs: '测试鱼',
+      icon: 60034,
+    },
+  },
   FISH: {
     '24995': {
       _id: 24995,

@@ -43,20 +43,19 @@ export default {
   },
 
   getNextNFishWindows(
+    fishId,
     territoryId,
     eorzeaTime,
     hourStart,
     hourEnd,
     previousWeatherSet,
     weatherSet,
-    n = this.FISH_WINDOW_FORECAST_N + 2
+    requiredWindowCnt = this.FISH_WINDOW_FORECAST_N
+  ) {
     // add 1 to make sure nextInterval process can also get enough fish windows
     // add another 1 to make sure previous fish windows take continuous fish windows
     // (which should be merged) into account
-  ) {
-    if (n < this.FISH_WINDOW_FORECAST_N + 2) {
-      console.debug('fish window cache not found')
-    }
+    const n = requiredWindowCnt + 2
     if (
       territoryId == null ||
       (previousWeatherSet.length === 0 &&
@@ -155,7 +154,28 @@ export default {
       }
     }
     // console.debug('loop count', loopCounter)
-    return fishWindows.slice(0, n - 2)
+    let dummyWindows = []
+    const temp = Math.floor(eorzeaTime.toEarthTime())
+    const baseTime = temp - (temp % 10000)
+    for (let i = 0; i < n + 10; i++) {
+      dummyWindows.push([baseTime + i * 10000, baseTime + i * 10000 + 5000])
+    }
+    let windowsRet = fishWindows
+      .slice(0, n - 1)
+      .filter(it => it[1] > eorzeaTime.toEarthTime())
+    if (windowsRet.length > requiredWindowCnt) {
+      windowsRet = windowsRet.slice(0, requiredWindowCnt)
+    }
+    if (windowsRet.length < requiredWindowCnt) {
+      console.warn(
+        'return window less than required',
+        windowsRet.length,
+        requiredWindowCnt
+      )
+    }
+    return fishId === 999999
+      ? dummyWindows.filter(it => it[1] > temp).slice(0, requiredWindowCnt)
+      : windowsRet
   },
 }
 

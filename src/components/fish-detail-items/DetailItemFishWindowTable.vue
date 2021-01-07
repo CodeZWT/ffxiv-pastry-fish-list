@@ -88,10 +88,13 @@ export default {
       this.fishWindowsToShow = []
     },
     now(now) {
-      if (this.recordsCntToShow === this.fishWindowsProvided.length) {
+      if (
+        this.recordsCntToShow ===
+        this.fishWindowsProvided.filter(it => it.endTime > now).length
+      ) {
         this.fishWindowsToShow = this.fishWindowsProvided
       } else {
-        const existedFishWindows = this.lazyFishWindows.filter(it => it.endTime >= now)
+        const existedFishWindows = this.lazyFishWindows.filter(it => it.endTime > now)
         if (existedFishWindows.length > this.recordsCntToShow) {
           this.fishWindowsToShow = existedFishWindows.slice(0, this.recordsCntToShow)
         } else if (existedFishWindows.length === this.recordsCntToShow) {
@@ -106,7 +109,8 @@ export default {
               this.fishingSpots,
               this.recordsCntToShow
             ),
-            this.recordsCntToShow
+            this.recordsCntToShow,
+            now
           )
           this.loadingShowMore = false
         }
@@ -125,7 +129,8 @@ export default {
     fishWindowsProvided() {
       return this.transformFishWindows(
         this.fishWeatherChangePart.fishWindows,
-        FishWindow.FISH_WINDOW_FORECAST_N
+        FishWindow.FISH_WINDOW_FORECAST_N,
+        this.now
       )
     },
     ...mapState({
@@ -134,10 +139,10 @@ export default {
     }),
   },
   methods: {
-    transformFishWindows(original, n) {
-      let fishWindows = original.filter(it => it[1] >= this.now)
+    transformFishWindows(original, n, now) {
+      let fishWindows = original.filter(it => it[1] > now)
       if (n > fishWindows.length) {
-        // console.warn('fish window cnt:', fishWindows.length)
+        console.warn('fish window cnt less than n', fishWindows.length, n)
       }
       fishWindows = fishWindows.slice(0, Math.min(n, fishWindows.length))
 
