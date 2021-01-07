@@ -318,10 +318,10 @@ export default {
       return []
     },
     isOceanFishingTerritory() {
-      return this.currentTerritoryId === 3477
+      return this.currentTerritoryId >= 3444 && this.currentTerritoryId <= 3447
     },
     isOceanFishingSpot() {
-      return this.territoryDict[3477]?.includes(this.currentSpotId)
+      return this.currentSpotId >= 237 && this.currentSpotId <= 244
     },
     // [TODO-TREE-PATH-AUTO-OPEN]
     // expandAllInSearching() {
@@ -563,7 +563,7 @@ export default {
       }
     },
     currentFishId(fishId) {
-      if (fishId > 0) {
+      if (fishId > 0 && !this.isOceanFishingSpot) {
         this.isDetailFishWindowOpen = true
         this.$emit('fish-selected', fishId)
       }
