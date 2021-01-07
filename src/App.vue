@@ -1584,14 +1584,25 @@ export default {
         rateText: this.$t('countDown.rate', {
           rate: ((rate ?? 1) * 100).toPrecision(2),
         }),
-        isPredator: isPredator, // TODO
-        anglerFishId: fish.anglerFishId, // TODO
+        isPredator: isPredator,
+        anglerFishId: fish.anglerFishId,
         hasTips: DataUtil.hasTips(fish._id),
-        predators: [], // TODO
-
+        predators: hasPredators ? this.getSpearFishPredators(fish.predators) : [],
         gig: DataUtil.GIG_DICT[fish.gig],
         gigIcon: DataUtil.GIG_ICON[DataUtil.GIG_DICT[fish.gig]],
         gigText: this.$t('gig.' + DataUtil.GIG_DICT[fish.gig]),
+      }
+    },
+    getSpearFishPredators(predators) {
+      if (predators == null || Object.keys(predators).length === 0) {
+        return []
+      } else {
+        return Object.entries(predators).map(([predatorId, count]) => {
+          return {
+            ...this.assembleSpearFish(FIX.SPEAR_FISH[predatorId], true),
+            requiredCnt: count,
+          }
+        })
       }
     },
     assembleFish(fishSourceList, isPredator = false) {
