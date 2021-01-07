@@ -827,35 +827,34 @@
             <li>钓鱼数据：</li>
             <ul>
               <li>
-                <a @click="goTo('https://ff14fish.carbuncleplushy.com/')"
-                  >FFX|V Fish Tracker App</a
-                >
+                <a @click="goTo('https://ff14fish.carbuncleplushy.com/')">
+                  FFX|V Fish Tracker App
+                </a>
               </li>
               <li><a @click="goTo('http://garlandtools.org/db/')">Garland Data</a></li>
               <li><a @click="goTo('https://cn.ff14angler.com/')">饥饿的猫</a></li>
             </ul>
             <li>
-              游戏内相关数据(英文)：<a @click="goTo('https://xivapi.com/')"
-                >A FINAL FANTASY XIV: Online REST API</a
-              >
+              游戏内相关数据(英文)：
+              <a @click="goTo('https://xivapi.com/')">
+                A FINAL FANTASY XIV: Online REST API
+              </a>
             </li>
             <li>
-              游戏内相关数据(中文)：<a
-                @click="goTo('https://github.com/thewakingsands/ffxiv-datamining-cn')"
-                >ffxiv-datamining-cn</a
-              >
+              游戏内相关数据(中文)：
+              <a @click="goTo('https://github.com/thewakingsands/ffxiv-datamining-cn')">
+                ffxiv-datamining-cn
+              </a>
             </li>
             <li>
-              道具悬浮提示框：<a
-                @click="goTo('https://github.com/thewakingsands/cafe-kit')"
-                >cafe-kit</a
-              >
+              道具悬浮提示框：
+              <a @click="goTo('https://github.com/thewakingsands/cafe-kit')"> cafe-kit</a>
             </li>
             <li>
-              FF XIV 字体：<a
-                @click="goTo('https://github.com/thewakingsands/ffxiv-axis-font-icons')"
-                >ffxiv-axis-font-icons</a
-              >
+              FF XIV 字体：
+              <a @click="goTo('https://github.com/thewakingsands/ffxiv-axis-font-icons')">
+                ffxiv-axis-font-icons
+              </a>
             </li>
           </ul>
         </v-card-text>
@@ -1256,7 +1255,7 @@ export default {
       this.$emit('fishCntUpdated', listFishCnt)
     },
     // weatherChangeTrigger() {
-      // this.updateWeatherChangePart(this.now)
+    // this.updateWeatherChangePart(this.now)
     // },
   },
   created() {
