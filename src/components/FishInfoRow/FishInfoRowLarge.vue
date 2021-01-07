@@ -96,7 +96,11 @@
             <!--  1st: end / start count down  -->
             <div class="text-subtitle-1 d-flex">
               <div>
-                <v-tooltip right color="secondary">
+                <v-tooltip
+                  right
+                  color="secondary"
+                  :disabled="!transformedFishTimePart.hasCountDown"
+                >
                   <template v-slot:activator="{ on, attrs }">
                     <div v-bind="attrs" v-on="on">
                       {{

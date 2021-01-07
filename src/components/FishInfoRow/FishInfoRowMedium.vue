@@ -43,7 +43,11 @@
           <v-col :class="`${countDownColClass} d-flex flex-column justify-center`">
             <div class="text-subtitle-1 d-flex">
               <div>
-                <v-tooltip right color="secondary">
+                <v-tooltip
+                  right
+                  color="secondary"
+                  :disabled="!transformedFishTimePart.hasCountDown"
+                >
                   <template v-slot:activator="{ on, attrs }">
                     <div v-bind="attrs" v-on="on">
                       {{
