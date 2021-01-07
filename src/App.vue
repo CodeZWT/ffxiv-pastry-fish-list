@@ -356,6 +356,21 @@
         </v-card-title>
         <v-divider />
         <v-card-text style="max-height: 600px;">
+          <div class="text-h6">Version 0.5.2</div>
+          <ul>
+            <li>
+              修正窗口期计算的问题。
+            </li>
+            <li>
+              调整钓鱼笔记的顺序，与游戏中对应。
+            </li>
+            <li>
+              调整出海垂钓钓鱼笔记的结构，与游戏中对应。
+            </li>
+          </ul>
+          <p />
+          <v-divider />
+
           <div class="text-h6">Version 0.5.1</div>
           <ul>
             <li>
