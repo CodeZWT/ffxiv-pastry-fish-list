@@ -17,6 +17,7 @@
           :color="listItemColors[index]"
           :position="toPos(index)"
           :hide-spot-column="hideSpotColumn"
+          :show-divider="showFishDivider"
           @click="onFishClicked($event)"
         />
       </div>
@@ -79,7 +80,7 @@ export default {
     },
     showFishDivider: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     clearAllButton: {
       type: Boolean,

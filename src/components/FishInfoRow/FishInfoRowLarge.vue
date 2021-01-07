@@ -3,7 +3,7 @@
     <v-hover v-slot="{ hover }" open-delay="200" close-deplay="500">
       <div style="position: relative">
         <v-divider
-          v-if="inPredator"
+          v-if="inPredator && showDivider"
           class="ml-9"
           style="margin-top: -2px; margin-bottom: 2px; border-color: grey"
         />

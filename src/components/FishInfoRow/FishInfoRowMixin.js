@@ -25,7 +25,7 @@ export default {
     },
     showDivider: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     hideSpotColumn: {
       type: Boolean,

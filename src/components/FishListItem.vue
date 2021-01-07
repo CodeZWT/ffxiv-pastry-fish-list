@@ -12,6 +12,7 @@
       :in-predator="fish.isPredator"
       :hide-spot-column="hideSpotColumn"
       :is-last="position === 'last'"
+      :show-divider="showDivider"
       @click="$emit('click', $event)"
     />
   </v-sheet>
@@ -43,6 +44,10 @@ export default {
     hideSpotColumn: {
       type: Boolean,
       default: false,
+    },
+    showDivider: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {

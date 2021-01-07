@@ -121,7 +121,17 @@
               :i="fishListLayout.i"
             >
               <div class="grid-content">
-                <!--                <code>{{ currentFishList }}</code>-->
+                <div v-if="showSpotPredators">
+                  鱼影前置鱼
+                  <fish-list
+                    :fish-list="currentSpotPredators"
+                    :fish-list-time-part="fishListTimePart"
+                    :fish-list-weather-change-part="fishListWeatherChangePart"
+                    :show-fish-divider="false"
+                    @fish-selected="onFishClicked($event)"
+                  />
+                </div>
+
                 <fish-list
                   :fish-list="currentFishList"
                   :fish-list-time-part="fishListTimePart"
@@ -129,6 +139,7 @@
                   hide-spot-column
                   @fish-selected="onFishClicked($event)"
                 />
+
                 <!--                <div style="overflow: hidden" class="rounded-lg inner elevation-4">-->
                 <!--                  <div-->
                 <!--                    v-for="(fish, index) in currentFlattenFishList"-->
@@ -267,6 +278,14 @@ export default {
     mode: 'spear', //'normal',
   }),
   computed: {
+    showSpotPredators() {
+      return (
+        this.mode === 'spear' && this.currentFishList.some(it => it.predators.length > 0)
+      )
+    },
+    currentSpotPredators() {
+      return this.currentFishList.find(fish => fish.predators.length > 0)?.predators ?? []
+    },
     currentSpotsData() {
       return this.mode === 'normal' ? normSpots : FIX.SPEAR_REGION_TERRITORY_POINT
     },
