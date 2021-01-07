@@ -24,7 +24,7 @@
         <v-badge
           inline
           :color="fish.isFuturePatch ? 'grey' : 'primary'"
-          :content="fish.patch"
+          :content="fish.patchText"
           :title="fish.isFuturePatch ? '未实装' : ''"
         ></v-badge>
         <click-helper @click.stop :copy-text="fish.name">
@@ -108,6 +108,10 @@ export default {
         icon: this.getItemIconClass(this.value._id),
         name: this.getItemName(this.value._id),
         patch: this.value.patch,
+        patchText:
+          this.value.patch.toString().indexOf('.') !== -1
+            ? this.value.patch.toString()
+            : this.value.patch.toFixed(1),
         isFuturePatch: this.value.patch > DataUtil.PATCH_AVAILABLE_MAX,
         folklore: folklore && {
           id: folklore._id,

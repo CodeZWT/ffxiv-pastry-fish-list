@@ -70,7 +70,7 @@
                     inline
                     bordered
                     :color="fish.isFuturePatch ? 'grey' : 'primary'"
-                    :content="fish.patch"
+                    :content="fish.patchText"
                     :title="fish.isFuturePatch ? '未实装' : ''"
                     class="mr-1"
                   ></v-badge>

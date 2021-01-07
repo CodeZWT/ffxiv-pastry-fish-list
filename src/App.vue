@@ -1537,7 +1537,6 @@ export default {
     assembleSpearFish(fish, isPredator = false) {
       const hasPredators = Object.keys(fish.predators).length > 0
       const rate = this.lazyFishWindowRates[fish._id]
-      const folklore = fish.folklore && this.folklore[fish.folklore]
       return {
         _id: fish._id,
         id: fish._id,
@@ -1573,14 +1572,13 @@ export default {
         weatherSet: fish.weatherSet,
         previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
         weatherSetDetail: this.getWeather(fish.weatherSet),
-        patch: fish.patch, // TODO
-        folklore: folklore && {
-          id: folklore._id,
-          itemId: folklore.itemId,
-          name: this.getItemName(folklore.itemId),
-          icon: this.getItemIconClass(folklore.itemId),
-        }, // TODO
-        collectable: false, //TODO
+        patch: fish.patch,
+        patchText:
+          fish.patch.toString().indexOf('.') !== -1
+            ? fish.patch.toString()
+            : fish.patch.toFixed(1),
+        folklore: null,
+        collectable: fish.collectable,
         isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
         rate: rate,
         rateText: this.$t('countDown.rate', {
@@ -1651,6 +1649,10 @@ export default {
           previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
           weatherSetDetail: this.getWeather(fish.weatherSet),
           patch: fish.patch,
+          patchText:
+            fish.patch.toString().indexOf('.') !== -1
+              ? fish.patch.toString()
+              : fish.patch.toFixed(1),
           folklore: folklore && {
             id: folklore._id,
             itemId: folklore.itemId,
