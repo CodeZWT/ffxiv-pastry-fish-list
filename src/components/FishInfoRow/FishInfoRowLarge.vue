@@ -171,7 +171,7 @@
           </v-col>
           <v-col :class="`${locationColClass} d-flex flex-column justify-center`">
             <fishing-spot-column
-              v-if="!inPredator && !hideSpotColumn"
+              v-if="!hideSpotColumn"
               :fishing-spots="fish.fishingSpots"
               @click="onFishClicked(['DetailItemMap'])"
             />
@@ -231,7 +231,7 @@
                 <div :class="fish.snaggingIcon" data-ck-action-name="钓组" />
               </div>
             </div>
-            <div v-if="fish.type === 'spear'" class="d-flex align-center">
+            <div v-if="isSpearFish" class="d-flex align-center">
               <item-icon :icon-class="fish.gigIcon" :title="fish.gigText" />
               <div>{{ fish.gigText }}</div>
             </div>
@@ -391,6 +391,9 @@ export default {
     },
     buffAndBaitColClass() {
       return this.hideSpotColumn ? 'col-4' : 'col-3'
+    },
+    isSpearFish() {
+      return this.fish.type === 'spear'
     },
     fishingSpotName() {
       return this.fish.fishingSpots[0].fishingSpotName

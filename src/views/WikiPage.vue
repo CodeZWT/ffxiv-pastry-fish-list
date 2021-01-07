@@ -121,16 +121,21 @@
               :i="fishListLayout.i"
             >
               <div class="grid-content">
-                <div v-if="showSpotPredators">
-                  鱼影前置鱼
-                  <fish-list
-                    :fish-list="currentSpotPredators"
-                    :fish-list-time-part="fishListTimePart"
-                    :fish-list-weather-change-part="fishListWeatherChangePart"
-                    :show-fish-divider="false"
-                    @fish-selected="onFishClicked($event)"
-                  />
-                </div>
+                <v-card v-if="showSpotPredators">
+                  <v-card-subtitle> 鱼影前置鱼</v-card-subtitle>
+                  <v-card-text>
+                    <detail-item-map :fish="currentSpotPredators[0]" />
+
+                    <fish-list
+                      :fish-list="currentSpotPredators"
+                      :fish-list-time-part="fishListTimePart"
+                      :fish-list-weather-change-part="fishListWeatherChangePart"
+                      :show-fish-divider="false"
+                      hide-spot-column
+                      @fish-selected="onFishClicked($event)"
+                    />
+                  </v-card-text>
+                </v-card>
 
                 <fish-list
                   :fish-list="currentFishList"
@@ -230,10 +235,12 @@ import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishing
 import FIX from '@/store/fix'
 import FishGigTable from '@/components/FishingGigTable'
 import FishTugTable from '@/components/FishingTugTable'
+import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 
 export default {
   name: 'WikiPage',
   components: {
+    DetailItemMap,
     FishTugTable,
     FishGigTable,
     OceanFishingFishList,
