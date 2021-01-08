@@ -21,7 +21,7 @@
       </div>
       <!--      <fish-bait-list :baits="fish.baits" class="ml-3" />-->
       <div class="mx-2" style="font-size: x-large">|</div>
-      <div class="d-flex">
+      <div v-if="fish.type === 'normal'" class="d-flex">
         <div class="d-flex align-center">
           <i
             class="xiv square-a"
@@ -37,16 +37,21 @@
           </div>
         </template>
       </div>
+      <div v-else class="d-flex align-center">
+        <item-icon :icon-class="fish.gigIcon" :title="fish.gigText" />
+        <div>{{ fish.gigText }}</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import FishBaitList from '@/components/FishBaitList'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'DetailItemBuffAndBaits',
-  components: { FishBaitList },
+  components: { ItemIcon, FishBaitList },
   props: {
     fish: {
       type: Object,

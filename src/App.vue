@@ -1564,7 +1564,7 @@ export default {
         startHourText: DataUtil.formatET(fish.startHour),
         endHourText: DataUtil.formatET(fish.endHour),
         hasTimeConstraint: fish.startHour !== 0 || fish.endHour !== 24,
-        requiredCnt: fish.requiredCnt ?? 0, // TODO
+        requiredCnt: fish.requiredCnt ?? 0,
         addBuffSuffix: false,
         hasWeatherConstraint:
           fish.previousWeatherSet.length > 0 || fish.weatherSet.length > 0,

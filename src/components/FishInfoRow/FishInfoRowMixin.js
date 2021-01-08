@@ -37,6 +37,9 @@ export default {
     },
   },
   computed: {
+    isSpearFish() {
+      return this.fish.type === 'spear'
+    },
     transformedFishPart() {
       const toBeNotified = this.getFishToBeNotified(this.fish.id)
       return {

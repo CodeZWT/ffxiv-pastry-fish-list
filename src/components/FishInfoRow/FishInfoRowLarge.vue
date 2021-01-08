@@ -392,9 +392,6 @@ export default {
     buffAndBaitColClass() {
       return this.hideSpotColumn ? 'col-4' : 'col-3'
     },
-    isSpearFish() {
-      return this.fish.type === 'spear'
-    },
     fishingSpotName() {
       return this.fish.fishingSpots[0].fishingSpotName
     },
