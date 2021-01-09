@@ -26,7 +26,10 @@
                 </v-list>
               </v-menu>
             </div>
-            <div class="text-subtitle-1" :title="currentSpot.fishingSpotId">
+            <div
+              class="text-subtitle-1"
+              :title="currentSpot.fishingSpotName + '#' + currentSpot.fishingSpotId"
+            >
               {{ currentSpot.fishingSpotName }}
             </div>
             <div class="text-subtitle-2 ml-2">
@@ -126,9 +129,7 @@ export default {
     },
   },
   methods: {
-    goToFishingSpotAngelPage(anglerLocationId) {
-      window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
-    },
+    goToFishingSpotAngelPage: DataUtil.goToFishingSpotAngelPage,
     getName: DataUtil.getName,
   },
 }

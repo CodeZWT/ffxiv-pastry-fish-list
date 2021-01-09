@@ -82,37 +82,64 @@
         </div>
         <div v-else-if="(type === 'spot' || type === 'fish') && !isOceanFishingSpot">
           <!--  show spot/fish view  -->
-          <grid-layout
-            v-if="currentSpotId"
-            :layout.sync="layout"
-            :col-num="12"
-            :row-height="32"
-            :is-draggable="isSettingMode"
-            :is-resizable="isSettingMode"
-            :is-mirrored="false"
-            :vertical-compact="true"
-            :margin="[10, 10]"
-            :use-css-transforms="true"
-            style="z-index: 0"
-          >
-            <grid-item
-              :static="mapLayout.static"
-              :x="mapLayout.x"
-              :y="mapLayout.y"
-              :w="mapLayout.w"
-              :h="mapLayout.h"
-              @resized="onMapCardResized"
-              :i="mapLayout.i"
-            >
-              <eorzea-simple-map
-                ref="simpleMap"
-                :id="currentMapInfo.mapFileId"
-                :size-factor="currentMapInfo.size_factor"
-                :fishing-spots="currentSpotList"
-              />
-            </grid-item>
+          <v-row v-if="currentSpotId" style="z-index: 0">
+            <v-col cols="12">
+              <v-expansion-panels hover flat tile :value="0">
+                <v-expansion-panel class="systemSecondary">
+                  <v-expansion-panel-header class="systemSecondary">
+                    <div
+                      style="display: flex; align-items: center; justify-content: center"
+                    >
+                      <div
+                        class="text-subtitle-1"
+                        :title="currentMapInfo.name + '#' + currentMapInfo.id"
+                      >
+                        {{ currentMapInfo.name }}
+                      </div>
+                      <div class="text-subtitle-2 ml-2">
+                        {{ currentMapInfo.zone }}
+                      </div>
+                      <div class="text-subtitle-1 ml-2">
+                        ({{ currentMapInfo.fishSpotPositionText }})
+                      </div>
+                      <click-helper @click.stop :copy-text="currentMapInfo.name">
+                        <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
+                          <v-icon>mdi-content-copy</v-icon>
+                        </v-btn>
+                      </click-helper>
+                      <click-helper
+                        @click.stop="
+                          goToFishingSpotAngelPage(currentMapInfo.anglerLocationId)
+                        "
+                      >
+                        <v-btn class="my-2" text icon :title="$t('list.item.linkHint')">
+                          <v-icon>mdi-link-variant</v-icon>
+                        </v-btn>
+                      </click-helper>
+                      <!--                    {{ currentMapInfo }}-->
+                    </div>
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <div
+                      style="width: 100%; height: 512px"
+                      class="d-flex justify-center mt-4"
+                    >
+                      <div style="width: 100%; max-width: 512px">
+                        <eorzea-simple-map
+                          ref="simpleMap"
+                          :id="currentMapInfo.mapFileId"
+                          :size-factor="currentMapInfo.size_factor"
+                          :fishing-spots="currentSpotList"
+                        />
+                      </div>
+                    </div>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
+            </v-col>
 
-            <grid-item
+            <v-col
+              cols="12"
               :static="fishListLayout.static"
               :x="fishListLayout.x"
               :y="fishListLayout.y"
@@ -162,9 +189,10 @@
                 <!--                  </div>-->
                 <!--                </div>-->
               </div>
-            </grid-item>
+            </v-col>
 
-            <grid-item
+            <v-col
+              cols="12"
               :static="baitTableLayout.static"
               :x="baitTableLayout.x"
               :y="baitTableLayout.y"
@@ -176,8 +204,8 @@
                 <fish-tug-table v-if="mode === 'normal'" :value="currentFishList" />
                 <fish-gig-table v-else :value="currentFishList" />
               </div>
-            </grid-item>
-          </grid-layout>
+            </v-col>
+          </v-row>
         </div>
         <div v-else-if="isOceanFishingSpot">
           <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
@@ -223,7 +251,6 @@ import normSpots from '@/store/fishingSpots.json'
 import placeNames from '@/store/placeNames.json'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
-import VueGridLayout from 'vue-grid-layout'
 import _ from 'lodash'
 import PinyinMatch from 'pinyin-match'
 import DataUtil from '@/utils/DataUtil'
@@ -248,8 +275,8 @@ export default {
     ClickHelper,
     FishDetail,
     EorzeaSimpleMap,
-    GridLayout: VueGridLayout.GridLayout,
-    GridItem: VueGridLayout.GridItem,
+    // GridLayout: VueGridLayout.GridLayout,
+    // GridItem: VueGridLayout.GridItem,
   },
   props: [
     'lazyTransformedFishDict',
@@ -413,6 +440,8 @@ export default {
     currentMapInfo() {
       const currentSpot = _.first(this.currentSpotList)
       return {
+        ...currentSpot,
+        fishSpotPositionText: DataUtil.toPositionText(currentSpot),
         size_factor: currentSpot.size_factor,
         mapFileId: currentSpot.mapFileId,
       }
@@ -627,6 +656,7 @@ export default {
     // let output = ''
   },
   methods: {
+    goToFishingSpotAngelPage: DataUtil.goToFishingSpotAngelPage,
     toPos(index) {
       return index === 0
         ? 'first'
@@ -758,14 +788,22 @@ export default {
     assembleSpot(spotId) {
       if (this.mode === 'normal') {
         const spot = this.getFishingSpot(spotId)
-        return { ...spot, name: DataUtil.getName(spot) }
+        return {
+          ...spot,
+          name: DataUtil.getName(spot),
+          zone: placeNames[spot.territoryId],
+        }
       } else {
         const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[spotId]
         // console.log('gp', spotId, {
         //   ...gatheringPoint,
         //   name: DataUtil.getName(gatheringPoint),
         // })
-        return { ...gatheringPoint, name: DataUtil.getName(gatheringPoint) }
+        return {
+          ...gatheringPoint,
+          name: DataUtil.getName(gatheringPoint),
+          zone: placeNames[gatheringPoint.regionPlaceNameId],
+        }
       }
     },
     ...mapMutations(['setFishCompleted']),
