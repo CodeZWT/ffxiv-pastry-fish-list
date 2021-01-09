@@ -273,7 +273,11 @@
     "content": "数据与鱼糕可能会有所出入，请自行判断，并尊重作者的工作，谢谢！"
   },
   "wiki": {
-    "searchTitle": "例：红龙/hl，红玉海/hyh"
+    "searchTitle": "例：红龙/hl，红玉海/hyh",
+    "mode": {
+      "normal": "钓鱼",
+      "spear": "刺鱼"
+    }
   },
   "oceanFishing": {
     "targetFilterPlaceholder": "例：石骨鱼 或 sgy",

@@ -90,6 +90,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    hidePredators: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     openPanelIndex: undefined,
@@ -98,23 +102,9 @@ export default {
   computed: {
     flattenFishList() {
       return this.fishList.flatMap(fish => {
-        // const predators = DataUtil.getPredators(
-        //   fish,
-        //   this.allFish
-        //   // this.fishListTimePart,
-        //   // this.fishListWeatherChangePart,
-        //   // this.getFishCompleted(fish._id)
-        // )
-        return [fish, ...fish.predators]
+        return [fish, ...(this.hidePredators ? [] : fish.predators)]
       })
     },
-    // fishColors() {
-    //   return this.fishList.map(fish => {
-    //     const completed = this.getFishCompleted(fish._id)
-    //     const countDownType = this.fishListTimePart[fish._id].countDown?.type
-    //     return DataUtil.getColorByStatus(completed, countDownType)
-    //   })
-    // },
     listItemColors() {
       let parentFishColor = ''
       let colorCounter = 0

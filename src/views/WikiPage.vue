@@ -25,10 +25,32 @@
             <!--            </v-btn>-->
           </div>
         </v-sheet>
+        <div class="d-flex justify-center">
+          <v-btn-toggle
+            v-model="mode"
+            color="primary"
+            class="my-1"
+            mandatory
+            background-color="transparent"
+          >
+            <v-btn
+              :value="mode.value"
+              v-for="(mode, index) in modes"
+              :key="index"
+              @click="clearCurrentStatus(mode)"
+            >
+              <div class="d-flex align-center">
+                <item-icon :icon-class="mode.icon" />
+                <span>{{ mode.title }}</span>
+              </div>
+            </v-btn>
+          </v-btn-toggle>
+        </div>
         <v-card-text class="spot-list">
           <v-treeview
-            ref="spotMenu"
-            v-model="completedSpotFishIds"
+            v-show="mode === 'normal'"
+            ref="normalSpotMenu"
+            v-model="normalCompletedSpotFishIds"
             :items="regionTerritorySpots"
             item-key="id"
             hoverable
@@ -41,8 +63,24 @@
             selected-color="primary"
             color="select"
             @update:active="onMenuItemActive"
-          >
-          </v-treeview>
+          />
+          <v-treeview
+            v-show="mode === 'spear'"
+            ref="spearSpotMenu"
+            v-model="spearCompletedSpotFishIds"
+            :items="spearRegionTerritorySpots"
+            item-key="id"
+            hoverable
+            dense
+            activatable
+            selectable
+            :search="searchText"
+            :filter="spotMenuSearchFn"
+            :open.sync="spearOpenedItems"
+            selected-color="primary"
+            color="select"
+            @update:active="onMenuItemActive"
+          />
         </v-card-text>
       </v-card>
     </v-navigation-drawer>
@@ -52,14 +90,6 @@
           `detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`
         "
       >
-        <!--        <code>{{ expandAllInSearching }}</code>-->
-        <!--        <code>{{ searchResults }}</code>-->
-        <!--        <code>{{ openedItems }}</code>-->
-        <!--        <code>{{ normalOpenedItems }}</code>-->
-        <!--        <code>{{ searchOpenedItems }}</code>-->
-        <!--          <code>{{ currentTerritoryId }}</code>-->
-        <!--          <code>{{ currentSpotId }}</code>-->
-        <!--          <code>{{ currentFishId }}</code>-->
         <div
           v-if="
             !type ||
@@ -169,6 +199,7 @@
                     :fish-list-time-part="fishListTimePart"
                     :fish-list-weather-change-part="fishListWeatherChangePart"
                     hide-spot-column
+                    hide-predators
                     @fish-selected="onFishClicked($event)"
                   />
                 </v-card-text>
@@ -237,10 +268,12 @@ import FIX from '@/store/fix'
 import FishGigTable from '@/components/FishingGigTable'
 import FishTugTable from '@/components/FishingTugTable'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'WikiPage',
   components: {
+    ItemIcon,
     DetailItemMap,
     FishTugTable,
     FishGigTable,
@@ -261,16 +294,23 @@ export default {
     'lazyFishSourceList',
     'lazyTransformedFishList',
   ],
-  data: () => ({
+  data: vm => ({
+    modes: [
+      { title: vm.$t('wiki.mode.normal'), icon: 'bg-060027', value: 'normal' },
+      { title: vm.$t('wiki.mode.spear'), icon: 'bg-060037', value: 'spear' },
+    ],
     type: undefined,
     currentTerritoryId: -1,
     currentSpotId: -1,
     currentFishId: -1,
     completedSpots: [],
     // regionTerritorySpots: [],
-    openedItems: undefined,
+    openedItems: [],
     normalOpenedItems: [],
     searchOpenedItems: [],
+    spearOpenedItems: [],
+    spearNormalOpenedItems: [],
+    spearSearchOpenedItems: [],
     spotDict: {},
     territoryDict: {},
     isSettingMode: false,
@@ -283,7 +323,7 @@ export default {
     root: undefined,
     searchResults: { text: '', nodeIds: [] },
     forceShowComponents: undefined,
-    mode: 'spear', //'normal',
+    mode: 'normal',
   }),
   computed: {
     showSpotPredators() {
@@ -294,68 +334,16 @@ export default {
     currentSpotPredators() {
       return this.currentFishList.find(fish => fish.predators.length > 0)?.predators ?? []
     },
-    currentSpotsData() {
-      return this.mode === 'normal' ? normSpots : FIX.SPEAR_REGION_TERRITORY_POINT
+    currentRegionTerritorySpots() {
+      return this.mode === 'normal'
+        ? this.regionTerritorySpots
+        : this.spearRegionTerritorySpots
     },
     regionTerritorySpots() {
-      if (
-        this.lazyTransformedFishDict &&
-        Object.keys(this.lazyTransformedFishDict).length > 0
-      ) {
-        return this.currentSpotsData
-          .filter(region => region.id != null)
-          .map(region => {
-            // output += `region,${region.id},${placeNames[region.id]}\n`
-            return {
-              id: 'region-' + region.id,
-              name: placeNames[region.id],
-              // TODO: arrange region & territory according to order
-              children: region.territories.map(territory => {
-                // output += `territory,${territory.id},${placeNames[territory.id]}\n`
-                this.territoryDict[territory.id] = territory.spots.map(spot => spot.id)
-                return {
-                  id: 'territory-' + territory.id,
-                  name: placeNames[territory.id],
-                  children: territory.spots.map(spot => {
-                    // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
-                    // console.log(Object.keys(this.lazyTransformedFishDict))
-                    const fishList = spot.fishList.filter(fishId => {
-                      const fish = this.lazyTransformedFishDict[fishId]
-                      if (!fish) {
-                        console.warn('fish data missing for', fishId)
-                      }
-                      return fish
-                    })
-                    this.spotDict[spot.id] = {
-                      spotId: spot.id,
-                      territoryId: territory.id,
-                      regionId: region.id,
-                      // [NOTE][VERSION]
-                      // filter future version fish out
-                      fishList,
-                    }
-                    return {
-                      id: 'spot-' + spot.id,
-                      name:
-                        this.mode === 'normal'
-                          ? this.getFishingSpotsName(spot.id)
-                          : placeNames[
-                              FIX.SPEAR_FISH_GATHERING_POINTS[spot.id].placeNameId
-                            ],
-                      children: fishList.map(fishId => {
-                        return {
-                          id: 'spot-' + spot.id + '-fish-' + fishId,
-                          name: this.lazyTransformedFishDict[fishId].name,
-                        }
-                      }),
-                    }
-                  }),
-                }
-              }),
-            }
-          })
-      }
-      return []
+      return this.loadWikiDataOfType('normal')
+    },
+    spearRegionTerritorySpots() {
+      return this.loadWikiDataOfType('spear')
     },
     isOceanFishingTerritory() {
       return this.currentTerritoryId >= 3444 && this.currentTerritoryId <= 3447
@@ -367,33 +355,6 @@ export default {
     // expandAllInSearching() {
     //   return this.searching && this.searchResults.nodeIds.length > 0 && this.searchResults.nodeIds.length < 10
     // },
-    layout() {
-      if (this.isMobile) {
-        return [
-          { x: 0, y: 0, w: 12, h: 10, i: 'map' },
-          {
-            x: 0,
-            y: 20,
-            w: 12,
-            h: 30,
-            i: 'fishList',
-          },
-          { x: 0, y: 10, w: 12, h: 6, i: 'fishTugList' },
-        ]
-      } else {
-        return [
-          { x: 7, y: 0, w: 5, h: 17, i: 'map' },
-          {
-            x: 0,
-            y: 5.5,
-            w: 7,
-            h: 18,
-            i: 'fishList',
-          },
-          { x: 0, y: 0, w: 7, h: 5.5, i: 'fishTugList' },
-        ]
-      }
-    },
     searchText: {
       get() {
         return this.lazySearchText
@@ -401,15 +362,6 @@ export default {
       set(newSearchText) {
         this.debouncedSearchTextUpdater(newSearchText)
       },
-    },
-    mapLayout() {
-      return this.layout[0]
-    },
-    fishListLayout() {
-      return this.layout[1]
-    },
-    baitTableLayout() {
-      return this.layout[2]
     },
     currentMapInfo() {
       const currentSpot = _.first(this.currentSpotList)
@@ -421,9 +373,14 @@ export default {
       }
     },
     currentSpotList() {
+      if (this.currentSpotId === -1 && this.currentTerritoryId === -1) {
+        return []
+      }
       switch (this.type) {
         case 'territory':
-          return this.territoryDict[this.currentTerritoryId].map(this.assembleSpot)
+          return this.territoryDict[`${this.mode}-${this.currentTerritoryId}`].map(
+            this.assembleSpot
+          )
         case 'fish':
         case 'spot':
           return [this.assembleSpot(this.currentSpotId)]
@@ -443,33 +400,22 @@ export default {
         }) ?? []
       )
     },
-    completedSpotFishIds: {
+    normalCompletedSpotFishIds: {
       get() {
-        return this.allCompletedFish.flatMap(
-          fishId =>
-            this.lazyTransformedFishDict[fishId]?.fishingSpots.map(
-              spot => `spot-${spot.fishingSpotId}-fish-${fishId}`
-            ) ?? []
-        )
+        return this.getSpotsOfType('normal')
       },
       set(newSpotFishIds) {
-        const oldSpotFishIds = this.completedSpotFishIds
-
-        if (_.isEqual(_.sortBy(oldSpotFishIds), _.sortBy(newSpotFishIds))) {
-          return
-        }
-
-        const removed = _.difference(oldSpotFishIds, newSpotFishIds).map(it =>
-          this.extractFishId(it)
-        )
-        const added = _.difference(newSpotFishIds, oldSpotFishIds).map(it =>
-          this.extractFishId(it)
-        )
-        if (removed.length > 0) {
-          removed.forEach(id => this.setFishCompleted({ fishId: id, completed: false }))
-        } else if (added.length > 0) {
-          added.forEach(id => this.setFishCompleted({ fishId: id, completed: true }))
-        }
+        const oldSpotFishIds = this.normalCompletedSpotFishIds
+        this.updateCompleted(oldSpotFishIds, newSpotFishIds)
+      },
+    },
+    spearCompletedSpotFishIds: {
+      get() {
+        return this.getSpotsOfType('spear')
+      },
+      set(newSpotFishIds) {
+        const oldSpotFishIds = this.spearCompletedSpotFishIds
+        this.updateCompleted(oldSpotFishIds, newSpotFishIds)
       },
     },
     currentFish() {
@@ -494,98 +440,20 @@ export default {
     ]),
   },
   watch: {
-    regionTerritorySpots(regionTerritorySpots) {
+    currentRegionTerritorySpots(regionTerritorySpots) {
       if (regionTerritorySpots && regionTerritorySpots.length > 0) {
         this.root = new TreeModel().parse({
           name: 'root',
           children: this.regionTerritorySpots,
         })
-        this.updateCompletedSpot(this.allCompletedFish)
+        // this.updateCompletedSpot(this.allCompletedFish)
       }
     },
-    // lazyTransformedFishDict: {
-    //   handler(lazyTransformedFishDict) {
-    //     if (lazyTransformedFishDict && lazyTransformedFishDict.length > 0) {
-    //       this.regionTerritorySpots = regionTerritorySpots
-    //         .filter(region => region.id != null)
-    //         .map(region => {
-    //           // output += `region,${region.id},${placeNames[region.id]}\n`
-    //           return {
-    //             id: 'region-' + region.id,
-    //             name: placeNames[region.id],
-    //             // TODO: arrange region & territory according to order
-    //             children: region.territories.map(territory => {
-    //               // output += `territory,${territory.id},${placeNames[territory.id]}\n`
-    //               this.territoryDict[territory.id] = territory.spots.map(spot => spot.id)
-    //               return {
-    //                 id: 'territory-' + territory.id,
-    //                 name: placeNames[territory.id],
-    //                 children: territory.spots.map(spot => {
-    //                   // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
-    //                   // console.log(Object.keys(this.lazyTransformedFishDict))
-    //                   const fishList = spot.fishList.filter(fishId => {
-    //                     const fish = this.lazyTransformedFishDict[fishId]
-    //                     if (!fish) {
-    //                       console.warn('fish data missing for', fishId)
-    //                     }
-    //                     return fish
-    //                   })
-    //                   this.spotDict[spot.id] = {
-    //                     spotId: spot.id,
-    //                     territoryId: territory.id,
-    //                     regionId: region.id,
-    //                     // [NOTE][VERSION]
-    //                     // filter future version fish out
-    //                     fishList,
-    //                   }
-    //                   return {
-    //                     id: 'spot-' + spot.id,
-    //                     name: this.getFishingSpotsName(spot.id),
-    //                     children: fishList.map(fishId => {
-    //                       // output += `fish,${fishId},${this.lazyTransformedFishDict[fishId].name}\n`
-    //                       return {
-    //                         id: 'spot-' + spot.id + '-fish-' + fishId,
-    //                         name: this.lazyTransformedFishDict[fishId].name,
-    //                       }
-    //                     }),
-    //                   }
-    //                 }),
-    //               }
-    //             }),
-    //           }
-    //         })
-    //
-    //       this.root = new TreeModel().parse({
-    //         name: 'root',
-    //         children: this.regionTerritorySpots,
-    //       })
-    //       this.updateCompletedSpot(this.allCompletedFish)
-    //     }
-    //   },
-    //   immediate: true,
-    // },
-    // [TODO-TREE-PATH-AUTO-OPEN]
-    // expandAllInSearching(expand) {
-    //   if (expand) {
-    //     this.$nextTick(() => {
-    //       this.openedItems = _.uniq(
-    //         this.searchResults.nodeIds.flatMap(id => {
-    //           // console.log(id, this.getPathNodesOf(id))
-    //           return this.getPathNodesOf(id)
-    //         })
-    //       )
-    //     })
-    //   }
-    // },
-    // TODO resize map in simple map correctly
     currentSpotId(currentSpotId) {
       if (currentSpotId !== -1) {
         setTimeout(() => this.$refs.simpleMap?.resize(), 500)
       }
     },
-    // allCompletedFish(allCompletedFish) {
-    //   this.updateCompletedSpot(allCompletedFish)
-    // },
     completedSpots(newSpots, oldSpots) {
       // console.log(newSpots, oldSpots)
       const removed = _.difference(oldSpots, newSpots).map(
@@ -618,6 +486,7 @@ export default {
   },
   created() {
     this.openedItems = this.normalOpenedItems
+    this.spearOpenedItems = this.spearNormalOpenedItems
     this.detailWindowLeft = window.innerWidth * 0.7 - 100
     this.detailWindowHeight = window.innerHeight * 0.7
     this.detailWindowWidth = window.innerWidth * 0.25
@@ -630,6 +499,112 @@ export default {
     // let output = ''
   },
   methods: {
+    clearCurrentStatus(mode) {
+      if (mode !== this.mode) {
+        this.type = undefined
+        this.currentTerritoryId = -1
+        this.currentSpotId = -1
+        this.currentFishId = -1
+        this.openedItems = this.normalOpenedItems = []
+        this.searchOpenedItems = []
+        this.spearOpenedItems = this.spearNormalOpenedItems = []
+        this.spearSearchOpenedItems = []
+      }
+    },
+    getSpotsOfType(type) {
+      return this.allCompletedFish.flatMap(fishId => {
+        const fish = this.lazyTransformedFishDict[fishId]
+        if (fish?.type === type) {
+          return (
+            fish?.fishingSpots.map(spot => `spot-${spot.fishingSpotId}-fish-${fishId}`) ??
+            []
+          )
+        } else {
+          return []
+        }
+      })
+    },
+    updateCompleted(oldSpotFishIds, newSpotFishIds) {
+      // const oldSpotFishIds = this.normalCompletedSpotFishIds
+
+      if (_.isEqual(_.sortBy(oldSpotFishIds), _.sortBy(newSpotFishIds))) {
+        return
+      }
+
+      const removed = _.difference(oldSpotFishIds, newSpotFishIds).map(it =>
+        this.extractFishId(it)
+      )
+      const added = _.difference(newSpotFishIds, oldSpotFishIds).map(it =>
+        this.extractFishId(it)
+      )
+      if (removed.length > 0) {
+        removed.forEach(id => this.setFishCompleted({ fishId: id, completed: false }))
+      } else if (added.length > 0) {
+        added.forEach(id => this.setFishCompleted({ fishId: id, completed: true }))
+      }
+    },
+    loadWikiDataOfType(type) {
+      if (
+        this.lazyTransformedFishDict &&
+        Object.keys(this.lazyTransformedFishDict).length > 0
+      ) {
+        return (type === 'normal' ? normSpots : FIX.SPEAR_REGION_TERRITORY_POINT)
+          .filter(region => region.id != null)
+          .map(region => {
+            // output += `region,${region.id},${placeNames[region.id]}\n`
+            return {
+              id: 'region-' + region.id,
+              name: placeNames[region.id],
+              // TODO: arrange region & territory according to order
+              children: region.territories.map(territory => {
+                // output += `territory,${territory.id},${placeNames[territory.id]}\n`
+                this.territoryDict[`${type}-${territory.id}`] = territory.spots.map(
+                  spot => spot.id
+                )
+                return {
+                  id: 'territory-' + territory.id,
+                  name: placeNames[territory.id],
+                  children: territory.spots.map(spot => {
+                    // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
+                    // console.log(Object.keys(this.lazyTransformedFishDict))
+                    const fishList = spot.fishList.filter(fishId => {
+                      const fish = this.lazyTransformedFishDict[fishId]
+                      if (!fish) {
+                        console.warn('fish data missing for', fishId)
+                      }
+                      return fish
+                    })
+                    this.spotDict[spot.id] = {
+                      spotId: spot.id,
+                      territoryId: territory.id,
+                      regionId: region.id,
+                      // [NOTE][VERSION]
+                      // filter future version fish out
+                      fishList,
+                    }
+                    return {
+                      id: 'spot-' + spot.id,
+                      name:
+                        type === 'normal'
+                          ? this.getFishingSpotsName(spot.id)
+                          : placeNames[
+                              FIX.SPEAR_FISH_GATHERING_POINTS[spot.id].placeNameId
+                            ],
+                      children: fishList.map(fishId => {
+                        return {
+                          id: 'spot-' + spot.id + '-fish-' + fishId,
+                          name: this.lazyTransformedFishDict[fishId].name,
+                        }
+                      }),
+                    }
+                  }),
+                }
+              }),
+            }
+          })
+      }
+      return []
+    },
     goToFishingSpotAngelPage: DataUtil.goToFishingSpotAngelPage,
     toPos(index) {
       return index === 0
@@ -653,12 +628,22 @@ export default {
       if (search === '' && oldSearch !== '') {
         const activeNodes = this.getPathNodesOf(this.activeItem)
 
-        this.openedItems = _.uniq([...this.normalOpenedItems, ...activeNodes])
-        this.searchOpenedItems = []
+        if (this.mode === 'normal') {
+          this.openedItems = _.uniq([...this.normalOpenedItems, ...activeNodes])
+          this.searchOpenedItems = []
+        } else {
+          this.spearOpenedItems = _.uniq([...this.spearNormalOpenedItems, ...activeNodes])
+          this.spearSearchOpenedItems = []
+        }
         this.searching = false
       } else if (search !== '' && oldSearch === '') {
-        this.normalOpenedItems = this.openedItems
-        this.openedItems = this.searchOpenedItems
+        if (this.mode === 'normal') {
+          this.normalOpenedItems = this.openedItems
+          this.openedItems = this.searchOpenedItems
+        } else {
+          this.spearNormalOpenedItems = this.spearOpenedItems
+          this.spearOpenedItems = this.spearSearchOpenedItems
+        }
         this.searching = true
       }
     },
@@ -688,9 +673,11 @@ export default {
       }
     },
     onMenuItemActive(items) {
+      const targetOpenedItems =
+        this.mode === 'normal' ? this.openedItems : this.spearOpenedItems
       if (items.length === 0) {
         if (this.preActiveItem != null) {
-          this.openedItems.splice(this.openedItems.indexOf(this.preActiveItem), 1)
+          targetOpenedItems.splice(targetOpenedItems.indexOf(this.preActiveItem), 1)
         }
         return
       }
@@ -721,8 +708,8 @@ export default {
       }
 
       if (this.type !== 'spot') {
-        if (!this.openedItems.includes(this.activeItem)) {
-          this.openedItems.push(this.activeItem)
+        if (!targetOpenedItems.includes(this.activeItem)) {
+          targetOpenedItems.push(this.activeItem)
         }
         this.preActiveItem = this.activeItem
       } else {
@@ -754,10 +741,12 @@ export default {
       return result
     },
     expandAll() {
-      this.$refs.spotMenu.updateAll(true)
+      this.$refs.normalSpotMenu?.updateAll(true)
+      this.$refs.spearSpotMenu?.updateAll(true)
     },
     collapseAll() {
-      this.$refs.spotMenu.updateAll(false)
+      this.$refs.normalSpotMenu?.updateAll(false)
+      this.$refs.spearSpotMenu?.updateAll(false)
     },
     assembleSpot(spotId) {
       if (this.mode === 'normal') {

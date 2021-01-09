@@ -1619,6 +1619,7 @@ export default {
           // TODO remove _id
           _id: fish._id,
           id: fish._id,
+          type: 'normal',
           icon: this.getItemIconClass(fish._id),
           iconRemoteUrl: this.getItemIconUrl(fish._id),
           showHatCover:
