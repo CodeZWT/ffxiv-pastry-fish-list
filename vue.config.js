@@ -38,7 +38,6 @@ module.exports = {
         vuetify: 'Vuetify',
         konva: 'konva',
         'konva-vue': 'VueKonva',
-        'vue-grid-layout': 'VueGridLayout',
       })
     }
 
