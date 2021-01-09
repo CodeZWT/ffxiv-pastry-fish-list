@@ -80,10 +80,13 @@
             :fishing-spots="currentSpotList"
           />
         </div>
-        <div v-else-if="(type === 'spot' || type === 'fish') && !isOceanFishingSpot">
+        <div
+          v-else-if="(type === 'spot' || type === 'fish') && !isOceanFishingSpot"
+          class="grid-content"
+        >
           <!--  show spot/fish view  -->
-          <v-row v-if="currentSpotId" style="z-index: 0">
-            <v-col cols="12">
+          <v-row v-if="currentSpotId" no-gutters>
+            <v-col cols="12" class="my-1">
               <v-expansion-panels hover flat tile :value="0">
                 <v-expansion-panel class="systemSecondary">
                   <v-expansion-panel-header class="systemSecondary">
@@ -138,18 +141,10 @@
               </v-expansion-panels>
             </v-col>
 
-            <v-col
-              cols="12"
-              :static="fishListLayout.static"
-              :x="fishListLayout.x"
-              :y="fishListLayout.y"
-              :w="fishListLayout.w"
-              :h="fishListLayout.h"
-              :i="fishListLayout.i"
-            >
-              <div class="grid-content">
-                <v-card v-if="showSpotPredators">
-                  <v-card-subtitle> 鱼影前置鱼</v-card-subtitle>
+            <v-col cols="12" class="my-1">
+              <div>
+                <v-card v-if="showSpotPredators" color="info">
+                  <v-card-subtitle>鱼影前置鱼</v-card-subtitle>
                   <v-card-text>
                     <detail-item-map :fish="currentSpotPredators[0]" />
 
@@ -163,47 +158,26 @@
                     />
                   </v-card-text>
                 </v-card>
-
-                <fish-list
-                  :fish-list="currentFishList"
-                  :fish-list-time-part="fishListTimePart"
-                  :fish-list-weather-change-part="fishListWeatherChangePart"
-                  hide-spot-column
-                  @fish-selected="onFishClicked($event)"
-                />
-
-                <!--                <div style="overflow: hidden" class="rounded-lg inner elevation-4">-->
-                <!--                  <div-->
-                <!--                    v-for="(fish, index) in currentFlattenFishList"-->
-                <!--                    :key="`${currentSpotId}-${fish._id}-${fish.isPredator ? 'p' : ''}`"-->
-                <!--                    style="position: relative"-->
-                <!--                  >-->
-                <!--                    <fish-list-item-->
-                <!--                      :fish="fish"-->
-                <!--                      :fish-time-part="fishListTimePart[fish._id]"-->
-                <!--                      :position="toPos(index)"-->
-                <!--                      hide-spot-column-->
-                <!--                      @click="onFishClicked(fish._id)"-->
-                <!--                      :color="['waiting', 'waitingSecondary'][index % 2]"-->
-                <!--                    />-->
-                <!--                  </div>-->
-                <!--                </div>-->
               </div>
             </v-col>
 
-            <v-col
-              cols="12"
-              :static="baitTableLayout.static"
-              :x="baitTableLayout.x"
-              :y="baitTableLayout.y"
-              :w="baitTableLayout.w"
-              :h="baitTableLayout.h"
-              :i="baitTableLayout.i"
-            >
-              <div class="grid-content">
-                <fish-tug-table v-if="mode === 'normal'" :value="currentFishList" />
-                <fish-gig-table v-else :value="currentFishList" />
-              </div>
+            <v-col cols="12" class="my-1">
+              <v-card>
+                <v-card-text>
+                  <fish-list
+                    :fish-list="currentFishList"
+                    :fish-list-time-part="fishListTimePart"
+                    :fish-list-weather-change-part="fishListWeatherChangePart"
+                    hide-spot-column
+                    @fish-selected="onFishClicked($event)"
+                  />
+                </v-card-text>
+              </v-card>
+            </v-col>
+
+            <v-col cols="12" class="my-1">
+              <fish-tug-table v-if="mode === 'normal'" :value="currentFishList" />
+              <fish-gig-table v-else :value="currentFishList" />
             </v-col>
           </v-row>
         </div>
