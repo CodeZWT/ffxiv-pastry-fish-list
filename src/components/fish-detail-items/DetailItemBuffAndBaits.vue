@@ -11,7 +11,8 @@
         <div class="ml-3">{{ fish.fishEyesText }}</div>
       </div>
       <div v-if="fish.hasPredators">
-        <div :class="fish.predatorsIcon" />
+        <div v-if="fish.type === 'normal'" :class="fish.predatorsIcon" />
+        <div v-else>触发鱼影</div>
       </div>
       <div v-if="fish.hasSnagging">
         <div :class="fish.snaggingIcon" data-ck-action-name="钓组" />
