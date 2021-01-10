@@ -18,7 +18,6 @@
           :predators="predators"
           :now="now"
           :forceShowComponents="forceShowComponents"
-          :show-fishing-range-helper="showFishingRangeHelper"
         ></fish-detail-content>
       </div>
     </template>
@@ -52,10 +51,6 @@ export default {
     forceShowComponents: {
       type: Array,
       default: undefined,
-    },
-    showFishingRangeHelper: {
-      type: Boolean,
-      default: true,
     },
   },
   computed: {

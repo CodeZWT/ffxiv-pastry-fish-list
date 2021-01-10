@@ -13,7 +13,7 @@
           :fish-weather-change-part="fishWeatherChangePart"
           :expanded="component.expanded"
           :now="component.name === 'DetailItemFishWindowTable' ? now : undefined"
-          :show-fishing-range-helper="showFishingRangeHelper"
+          :show-fishing-range-helper="fish.type === 'normal'"
         />
       </v-col>
     </template>
@@ -77,10 +77,6 @@ export default {
     forceShowComponents: {
       type: Array,
       default: undefined,
-    },
-    showFishingRangeHelper: {
-      type: Boolean,
-      default: true,
     },
   },
   data: () => ({}),
