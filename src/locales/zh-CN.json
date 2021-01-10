@@ -271,7 +271,13 @@
   },
   "gigTip": {
     "isPredator": "{requiredCnt}个触发鱼影",
-    "hasPredators":"只在鱼影中出现"
+    "hasPredators":"只在鱼影中出现",
+    "fishShadow": {
+      "title": "鱼影",
+      "introduction": "",
+      "location": "前置鱼位置",
+      "predators": "前置鱼"
+    }
   },
   "pastryFishTip": {
     "title": "鱼糕注：",

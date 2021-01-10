@@ -176,10 +176,26 @@
             <v-col cols="12" class="my-1">
               <div>
                 <v-card v-if="showSpotPredators" color="info">
-                  <v-card-subtitle>鱼影前置鱼</v-card-subtitle>
+                  <v-card-title>
+                    {{ $t('gigTip.fishShadow.title') }}
+                  </v-card-title>
+                  <v-card-text>
+                    此处为鱼影，需要刺相应个数的前置鱼才能触发，触发后在小地图上会有鱼影位置提示。<br />
+                    当前版本中，鱼影并没有记录在钓鱼笔记中。<br />
+                    在5.4版本，所有鱼影会加入钓鱼笔记。此处鱼影的名称以及位置均来自于5.4版本数据。<br />
+                    少数位置与当前5.3版本并不一致，请以游戏中的提示为准。<br />
+                  </v-card-text>
+                  <v-card-subtitle>
+                    {{ $t('gigTip.fishShadow.location') }}
+                  </v-card-subtitle>
                   <v-card-text>
                     <detail-item-map :fish="currentSpotPredators[0]" />
+                  </v-card-text>
+                  <v-card-subtitle>
+                    {{ $t('gigTip.fishShadow.predators') }}
+                  </v-card-subtitle>
 
+                  <v-card-text>
                     <fish-list
                       :fish-list="currentSpotPredators"
                       :fish-list-time-part="fishListTimePart"
