@@ -454,9 +454,10 @@ export default {
     small: 'bg-060671',
     normal: 'bg-060672',
     large: 'bg-060673',
+    all: 'bg-001121',
   },
 
-  GIG_DICT: ['', 'small', 'normal', 'large'],
+  GIG_DICT: ['', 'small', 'normal', 'large', 'all'],
 
   TUG_ICON: {
     light: '!',

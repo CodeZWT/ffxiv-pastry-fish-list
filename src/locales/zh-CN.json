@@ -266,7 +266,8 @@
   "gig": {
     "small": "小型",
     "normal": "中型",
-    "large": "大型"
+    "large": "大型",
+    "all": "任意"
   },
   "pastryFishTip": {
     "title": "鱼糕注：",

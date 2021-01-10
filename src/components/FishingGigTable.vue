@@ -27,7 +27,9 @@
             @mouseout="onCellHoverEnd(index)"
             class="text-center"
           >
-            <v-icon v-show="spotFish.gig === gig">mdi-fish</v-icon>
+            <v-icon v-show="spotFish.gig === 'all' || spotFish.gig === gig"
+              >mdi-fish</v-icon
+            >
           </td>
         </tr>
       </tbody>
@@ -47,7 +49,7 @@ export default {
   },
   data() {
     return {
-      GIGS: Object.keys(DataUtil.GIG_ICON),
+      GIGS: Object.keys(DataUtil.GIG_ICON).filter(it => it !== 'all'),
       GIG_ICON: DataUtil.GIG_ICON,
       currentCol: -1,
     }
@@ -59,7 +61,7 @@ export default {
           id: it.id,
           name: it.name,
           icon: it.icon,
-          gig: it.gig,
+          gig: it.gig.type,
         }
       })
     },
