@@ -269,6 +269,10 @@
     "large": "大型",
     "all": "任意"
   },
+  "gigTip": {
+    "isPredator": "{requiredCnt}个触发鱼影",
+    "hasPredators":"只在鱼影中出现"
+  },
   "pastryFishTip": {
     "title": "鱼糕注：",
     "content": "数据与鱼糕可能会有所出入，请自行判断，并尊重作者的工作，谢谢！"

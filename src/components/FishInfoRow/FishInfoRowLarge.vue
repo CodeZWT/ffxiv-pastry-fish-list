@@ -233,7 +233,15 @@
             </div>
             <div v-if="isSpearFish" class="d-flex align-center">
               <item-icon :icon-class="fish.gig.icon" :title="fish.gig.text" />
-              <div>{{ fish.gig.text }}</div>
+              <div>
+                <div>{{ fish.gig.text }}</div>
+                <div v-if="fish.hasPredators">
+                  {{ $t('gigTip.hasPredators') }}
+                </div>
+                <div v-else-if="fish.requiredCnt && !inPredator">
+                  {{ $t('gigTip.isPredator', { requiredCnt: fish.requiredCnt }) }}
+                </div>
+              </div>
             </div>
             <div v-else class="d-flex">
               <div class="d-flex align-center">
