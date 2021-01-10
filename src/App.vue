@@ -965,7 +965,7 @@ export default {
     drawer: true,
     mini: true,
     lazySourceFishList: [],
-    lazyImportantFishSourceList: [],
+    lazySourceImportantFishList: [],
     lazyTransformedFishList: [],
     lazyTransformedFishDict: {},
     // weatherChangeTrigger: 1,
@@ -1314,7 +1314,7 @@ export default {
     this.lazySourceFishList = Object.values(this.allFish).filter(
       it => it.patch == null || it.patch <= DataUtil.PATCH_MAX
     )
-    this.lazyImportantFishSourceList = this.lazySourceFishList.filter(
+    this.lazySourceImportantFishList = this.lazySourceFishList.filter(
       it =>
         this.bigFish.includes(it._id) ||
         this.newPatchFish.includes(it._id) ||
@@ -1350,7 +1350,7 @@ export default {
   },
   methods: {
     updateWeatherChangePart(now) {
-      this.fishListWeatherChangePart = this.lazyImportantFishSourceList.reduce(
+      this.fishListWeatherChangePart = this.lazySourceImportantFishList.reduce(
         (fish2WeatherPart, fish) => {
           fish2WeatherPart[fish._id] = {
             fishWindows: this.getFishWindow(fish, now),
@@ -1361,7 +1361,7 @@ export default {
       )
 
       if (Object.keys(this.lazyFishWindowRates).length === 0) {
-        this.lazyImportantFishSourceList.forEach(fish => {
+        this.lazySourceImportantFishList.forEach(fish => {
           const fishWindows = this.fishListWeatherChangePart[fish._id]?.fishWindows
           this.lazyFishWindowRates[fish._id] = DataUtil.computeRate(fishWindows)
         })
@@ -1382,7 +1382,7 @@ export default {
       )
     },
     updateFishListTimePart(now) {
-      this.lazyImportantFishSourceList.forEach(fish => {
+      this.lazySourceImportantFishList.forEach(fish => {
         const countDown = this.fishListTimePart[fish._id]?.countDown
         if (countDown?.type === DataUtil.ALL_AVAILABLE) return
 
