@@ -498,6 +498,21 @@ export default {
     '29678': {
       patch: 5.25,
     },
+    '12719': {
+      _id: 12719,
+      hookset: 'Powerful',
+      tug: 'medium',
+    },
+    '16747': {
+      _id: 16747,
+      previousWeatherSet: [3, 4, 11],
+      weatherSet: [1],
+    },
+    '12738': {
+      _id: 12738,
+      hookset: 'Powerful',
+      tug: 'medium',
+    },
   },
   OCEAN_FISHING_FISH: {
     '28937': {
