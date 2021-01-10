@@ -357,7 +357,19 @@
         <v-divider />
         <v-card-text style="max-height: 600px;">
           <div class="text-h6">Version 0.5.2</div>
+          <div class="text-h5 text-center">
+            刺鱼笔记
+          </div>
           <ul>
+            <li>
+              增加钓鱼笔记中刺鱼相关内容。
+            </li>
+            <li>
+              增加默认列表中刺鱼内容的支持。
+            </li>
+            <li>
+              增加搜索中刺鱼内容的支持。
+            </li>
             <li>
               修正窗口期计算的问题。
             </li>
