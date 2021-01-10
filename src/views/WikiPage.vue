@@ -817,7 +817,7 @@ export default {
   margin: 0 0 4px 0
 
 .spot-list
-  height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56})
+  height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56 + 56})
   overflow-scrolling: auto
   overflow-y: scroll
 
