@@ -296,7 +296,7 @@
         </v-overlay>
         <router-view
           :now="now"
-          :lazyFishSourceList="lazyFishSourceList"
+          :lazyFishSourceList="lazySourceFishList"
           :lazyTransformedFishList="lazyTransformedFishList"
           :lazyTransformedFishDict="lazyTransformedFishDict"
           :fishListTimePart="fishListTimePart"
@@ -321,7 +321,7 @@
 
     <fish-search
       v-model="showSearch"
-      :fish-data="lazyFishSourceList"
+      :fish-data="lazySourceFishList"
       :fish-dict="lazyTransformedFishDict"
       :fish-list-time-part="fishListTimePart"
       :extraFishListTimePart="extraFishListTimePart"
@@ -964,7 +964,7 @@ export default {
       (DevelopmentModeUtil.isTest() ? vm.$t('top.testSuffix') : ''),
     drawer: true,
     mini: true,
-    lazyFishSourceList: [],
+    lazySourceFishList: [],
     lazyImportantFishSourceList: [],
     lazyTransformedFishList: [],
     lazyTransformedFishDict: {},
@@ -1311,10 +1311,10 @@ export default {
     this.cafeKitTooltipCopyPatch()
 
     this.now = Date.now()
-    this.lazyFishSourceList = Object.values(this.allFish).filter(
+    this.lazySourceFishList = Object.values(this.allFish).filter(
       it => it.patch == null || it.patch <= DataUtil.PATCH_MAX
     )
-    this.lazyImportantFishSourceList = this.lazyFishSourceList.filter(
+    this.lazyImportantFishSourceList = this.lazySourceFishList.filter(
       it =>
         this.bigFish.includes(it._id) ||
         this.newPatchFish.includes(it._id) ||
@@ -1322,7 +1322,7 @@ export default {
     )
     this.updateWeatherChangePart(this.now)
 
-    this.lazyTransformedFishList = this.assembleFish(this.lazyFishSourceList).concat(
+    this.lazyTransformedFishList = this.assembleFish(this.lazySourceFishList).concat(
       this.assembleOceanFishList()
     )
     this.lazyTransformedFishDict = DataUtil.toMap(
