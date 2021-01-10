@@ -108,6 +108,7 @@
             :id="currentMapInfo.mapFileId"
             :size-factor="currentMapInfo.size_factor"
             :fishing-spots="currentSpotList"
+            :show-fishing-range-helper="mode === 'normal'"
           />
         </div>
         <div
@@ -163,6 +164,7 @@
                           :id="currentMapInfo.mapFileId"
                           :size-factor="currentMapInfo.size_factor"
                           :fishing-spots="currentSpotList"
+                          :show-fishing-range-helper="mode === 'normal'"
                         />
                       </div>
                     </div>
@@ -235,6 +237,7 @@
             :fish="currentFish"
             :now="now"
             :forceShowComponents="forceShowComponents"
+            :show-fishing-range-helper="mode === 'normal'"
           />
         </v-card-text>
         <v-card-actions>

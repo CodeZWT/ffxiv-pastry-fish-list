@@ -384,6 +384,10 @@ export default {
       type: Number,
       default: 1,
     },
+    showFishingRangeHelper: {
+      type: Boolean,
+      default: true,
+    },
   },
   data: () => ({
     fishMarker: ImgUtil.getImgUrl('fishingSpot.png'),
@@ -653,8 +657,11 @@ export default {
       })
     },
     getFishingSpotRangeHelper(fishingSpotName) {
-      const imageName = AVAILABLE_HELP.has(fishingSpotName) ? fishingSpotName : 'default'
-      if (imageName === 'default') {
+      const imageName =
+        this.showFishingRangeHelper && AVAILABLE_HELP.has(fishingSpotName)
+          ? fishingSpotName
+          : 'default'
+      if (this.showFishingRangeHelper && imageName === 'default') {
         console.warn(fishingSpotName + ' range helper is missing.')
       }
       return ImgUtil.getImgUrl(imageName + '.png')

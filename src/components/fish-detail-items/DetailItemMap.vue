@@ -67,6 +67,7 @@
           :id="currentSpot.fishingSpot.mapFileId"
           :size-factor="currentSpot.fishingSpot.size_factor"
           :fishing-spots="fishingSpotsForMap"
+          :show-fishing-range-helper="showFishingRangeHelper"
         />
       </div>
     </div>
@@ -91,10 +92,10 @@ export default {
       type: Boolean,
       default: false,
     },
-    // currentSpotIndex: {
-    //   type: Number,
-    //   default: 0,
-    // },
+    showFishingRangeHelper: {
+      type: Boolean,
+      default: true,
+    },
   },
   data: vm => ({
     currentSpotIndex: 0,
