@@ -584,7 +584,7 @@ const CDN_DICT = {
   '结誓洞窟.png': { name: '结誓洞窟.png', id: '5fccbf0b394ac523786e278a', ext: 'png' },
   '绝鬼岛近海.png': {
     name: '绝鬼岛近海.png',
-    id: '5fccbf0c394ac523786e27a9',
+    id: '5ffad81c3ffa7d37b3691b5c',
     ext: 'png',
   },
   '绿茵岛.png': { name: '绿茵岛.png', id: '5fccbf0c394ac523786e27d9', ext: 'png' },
