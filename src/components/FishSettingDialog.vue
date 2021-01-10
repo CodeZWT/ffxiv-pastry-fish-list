@@ -82,9 +82,9 @@
                   v-if="isNotificationSupported"
                   class="d-flex flex-row align-center pr-3"
                 >
-                  <v-label>{{
-                    $t('setting.dialog.notification.systemNotification.title')
-                  }}</v-label>
+                  <v-subheader>
+                    {{ $t('setting.dialog.notification.systemNotification.title') }}
+                  </v-subheader>
                   <v-switch
                     :label="
                       $t(
@@ -191,9 +191,9 @@
                 <v-row>
                   <v-col cols="6">
                     <v-card rounded color="#00695c66" class="pa-2">
-                      <v-card-title>{{
-                        $t('setting.dialog.detailArrangement.enabled')
-                      }}</v-card-title>
+                      <v-card-title>
+                        {{ $t('setting.dialog.detailArrangement.enabled') }}
+                      </v-card-title>
                       <draggable
                         v-model="lazyEnabledDetailComponents"
                         group="componentSettings"
@@ -209,9 +209,9 @@
                   </v-col>
                   <v-col cols="6">
                     <v-card rounded color="#ad145766" class="pa-2">
-                      <v-card-title>{{
-                        $t('setting.dialog.detailArrangement.disabled')
-                      }}</v-card-title>
+                      <v-card-title>
+                        {{ $t('setting.dialog.detailArrangement.disabled') }}
+                      </v-card-title>
                       <draggable
                         v-model="lazyDisabledDetailComponents"
                         group="componentSettings"
