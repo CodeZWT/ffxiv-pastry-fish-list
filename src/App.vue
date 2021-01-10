@@ -1588,9 +1588,14 @@ export default {
         anglerFishId: fish.anglerFishId,
         hasTips: DataUtil.hasTips(fish._id),
         predators: hasPredators ? this.getSpearFishPredators(fish.predators) : [],
-        gig: DataUtil.GIG_DICT[fish.gig],
-        gigIcon: DataUtil.GIG_ICON[DataUtil.GIG_DICT[fish.gig]],
-        gigText: this.$t('gig.' + DataUtil.GIG_DICT[fish.gig]),
+        gig: fish.gig
+          ? {
+              id: fish.gig,
+              type: DataUtil.GIG_DICT[fish.gig],
+              icon: DataUtil.GIG_ICON[DataUtil.GIG_DICT[fish.gig]],
+              text: this.$t('gig.' + DataUtil.GIG_DICT[fish.gig]),
+            }
+          : {},
       }
     },
     getSpearFishPredators(predators) {

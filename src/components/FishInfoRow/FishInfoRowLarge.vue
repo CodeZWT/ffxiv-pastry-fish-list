@@ -232,8 +232,8 @@
               </div>
             </div>
             <div v-if="isSpearFish" class="d-flex align-center">
-              <item-icon :icon-class="fish.gigIcon" :title="fish.gigText" />
-              <div>{{ fish.gigText }}</div>
+              <item-icon :icon-class="fish.gig.icon" :title="fish.gig.text" />
+              <div>{{ fish.gig.text }}</div>
             </div>
             <div v-else class="d-flex">
               <div class="d-flex align-center">

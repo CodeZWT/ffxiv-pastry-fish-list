@@ -152,9 +152,14 @@ export default {
         isCompleted: this.getFishCompleted(this.value._id),
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
         hasTips: DataUtil.hasTips(this.value._id),
-        gig: DataUtil.GIG_DICT[this.value.gig],
-        gigIcon: DataUtil.GIG_ICON[DataUtil.GIG_DICT[this.value.gig]],
-        gigText: this.$t('gig.' + DataUtil.GIG_DICT[this.value.gig]),
+        gig: this.value.gig
+          ? {
+              id: this.value.gig,
+              type: DataUtil.GIG_DICT[this.value.gig],
+              icon: DataUtil.GIG_ICON[DataUtil.GIG_DICT[this.value.gig]],
+              text: this.$t('gig.' + DataUtil.GIG_DICT[this.value.gig]),
+            }
+          : {},
       }
     },
     sortedDetailComponents() {
