@@ -443,6 +443,14 @@ export default {
     }
   },
 
+  toItemId(fishLocationId) {
+    if (fishLocationId >= 1000001) {
+      return fishLocationId % 1000000
+    } else {
+      return fishLocationId
+    }
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: INTERVAL_SECOND,

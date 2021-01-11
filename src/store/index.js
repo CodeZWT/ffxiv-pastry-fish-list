@@ -50,7 +50,7 @@ export default new Vuex.Store({
   },
   getters: {
     getItemIconUrl: state => id => {
-      const iconId = state.items[id]?.icon ?? 1100
+      const iconId = state.items[DataUtil.toItemId(id)]?.icon ?? 1100
       // const localImg = require(`../assert/${iconId}.png`)
       // if (localImg) {
       //   return localImg
@@ -62,7 +62,7 @@ export default new Vuex.Store({
     // https://css-tricks.com/css-sprites/
     // https://www.toptal.com/developers/css/sprite-generator
     getItemIconClass: state => id => {
-      const iconId = state.items[id]?.icon ?? 60034
+      const iconId = state.items[DataUtil.toItemId(id)]?.icon ?? 60034
       // const localImg = require(`../assert/${iconId}.png`)
       // if (localImg) {
       //   return localImg
@@ -78,7 +78,7 @@ export default new Vuex.Store({
       return DataUtil.getName(state.achievements[id])
     },
     getItemName: state => id => {
-      return DataUtil.getName(state.items[id])
+      return DataUtil.getName(state.items[DataUtil.toItemId(id)])
     },
     getZoneName: state => id => {
       const fishingSpot = state.fishingSpots[id]
@@ -180,16 +180,16 @@ export default new Vuex.Store({
       }))
     },
     getFishCompleted: state => fishId => {
-      return state.userData.completed.includes(fishId)
+      return state.userData.completed.includes(DataUtil.toItemId(fishId))
     },
     allCompletedFish: state => {
       return state.userData.completed
     },
     getFishPinned: state => fishId => {
-      return state.userData.pinned.includes(fishId)
+      return state.userData.pinned.includes(DataUtil.toItemId(fishId))
     },
     getFishToBeNotified: state => fishId => {
-      return state.userData.toBeNotified.includes(fishId)
+      return state.userData.toBeNotified.includes(DataUtil.toItemId(fishId))
     },
     filters: state => {
       return state.userData.filters
@@ -254,14 +254,14 @@ export default new Vuex.Store({
       state.userData = updateUserDataStateRecords(
         state.userData,
         'completed',
-        fishId,
+        DataUtil.toItemId(fishId),
         completed
       )
       if (completed) {
         state.userData = updateUserDataStateRecords(
           state.userData,
           'toBeNotified',
-          fishId,
+          DataUtil.toItemId(fishId),
           false
         )
       }
@@ -270,7 +270,7 @@ export default new Vuex.Store({
       state.userData = updateUserDataStateRecords(
         state.userData,
         'pinned',
-        fishId,
+        DataUtil.toItemId(fishId),
         pinned
       )
     },
@@ -278,7 +278,7 @@ export default new Vuex.Store({
       state.userData = updateUserDataStateRecords(
         state.userData,
         'toBeNotified',
-        fishId,
+        DataUtil.toItemId(fishId),
         toBeNotified
       )
     },

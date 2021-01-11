@@ -1226,10 +1226,10 @@ export default {
       'zones',
       'bigFish',
       'sounds',
-      'showSearchDialog',
       'showImportExportDialog',
       'newPatchFish',
       'folklore',
+      'weatherRates',
     ]),
     ...mapGetters([
       'opacity',
@@ -1314,6 +1314,7 @@ export default {
     this.lazySourceFishList = Object.values(this.allFish).filter(
       it => it.patch == null || it.patch <= DataUtil.PATCH_MAX
     )
+    this.checkFishNeedSplit(this.lazySourceFishList)
     this.lazySourceImportantFishList = this.lazySourceFishList.filter(
       it =>
         this.bigFish.includes(it._id) ||
@@ -1349,6 +1350,45 @@ export default {
     // }, 200)
   },
   methods: {
+    checkFishNeedSplit(fishList) {
+      // console.log(fishList.find(it => it._id === 56004991))
+      return fishList.forEach(fish => {
+        if (
+          fish.locations.length === 1 ||
+          (fish.previousWeatherSet.length === 0 && fish.weatherSet.length === 0)
+        ) {
+          // return fish
+          return
+        }
+        const territories = _.mapValues(
+          _.groupBy(
+            fish.locations.map(location => {
+              return {
+                key: JSON.stringify(
+                  this.weatherRates[this.fishingSpots[location]?.territory_id]
+                    ?.weather_rates
+                ),
+                location: location,
+              }
+            }),
+            'key'
+          ),
+          infoList => infoList.map(it => it.location)
+        )
+
+        if (Object.keys(territories).length > 1) {
+          console.log(fish._id, territories)
+          // return Object.values(territories).map(locations => {
+          //   return {
+          //     ...fish,
+          //     locations,
+          //   }
+          // })
+        } else {
+          // return fish
+        }
+      })
+    },
     updateWeatherChangePart(now) {
       this.fishListWeatherChangePart = this.lazySourceImportantFishList.reduce(
         (fish2WeatherPart, fish) => {
