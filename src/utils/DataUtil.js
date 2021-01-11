@@ -451,6 +451,20 @@ export default {
     }
   },
 
+  toSpotItemId(spotId, itemId) {
+    return spotId * 1000000 + itemId
+  },
+
+  getSpotIdOfFishId(fishId) {
+    return this.FISH_ID_TO_SPOTS[fishId]
+  },
+
+  FISH_ID_TO_SPOTS: {
+    4991: [56, 99],
+    5005: [103, 89, 93],
+    20036: [175, 198],
+  },
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: INTERVAL_SECOND,

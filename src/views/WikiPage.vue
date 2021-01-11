@@ -532,14 +532,29 @@ export default {
     },
     getSpotsOfType(type) {
       return this.allCompletedFish.flatMap(fishId => {
-        const fish = this.lazyTransformedFishDict[fishId]
-        if (fish?.type === type) {
-          return (
-            fish?.fishingSpots.map(spot => `spot-${spot.fishingSpotId}-fish-${fishId}`) ??
-            []
-          )
+        const spotIds = DataUtil.getSpotIdOfFishId(fishId)
+        if (spotIds) {
+          const fishType = this.lazyTransformedFishDict[
+            DataUtil.toSpotItemId(spotIds[0], fishId)
+          ].type
+          if (fishType === type) {
+            return spotIds.map(
+              spotId => `spot-${spotId}-fish-${DataUtil.toSpotItemId(spotId, fishId)}`
+            )
+          } else {
+            return []
+          }
         } else {
-          return []
+          const fish = this.lazyTransformedFishDict[fishId]
+          if (fish?.type === type) {
+            return (
+              fish?.fishingSpots.map(
+                spot => `spot-${spot.fishingSpotId}-fish-${fishId}`
+              ) ?? []
+            )
+          } else {
+            return []
+          }
         }
       })
     },
