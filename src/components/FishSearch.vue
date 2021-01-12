@@ -39,7 +39,14 @@
                         <div :class="data.item.icon" />
                       </v-list-item-avatar>
                       <v-list-item-content>
-                        <v-list-item-title v-html="data.item.name"></v-list-item-title>
+                        <v-list-item-title>
+                          <div>
+                            {{ data.item.name }}
+                          </div>
+                          <div style="font-size: small">
+                            {{ data.item.spotName }}
+                          </div>
+                        </v-list-item-title>
                       </v-list-item-content>
                     </div>
                   </click-helper>
@@ -114,15 +121,24 @@ export default {
         return this.$emit('input', showDialog)
       },
     },
-    // fish() {
-    //   return this.fishData.filter(it => it._id === this.fishId)[0]
-    // },
     fishSearchData() {
-      return this.fishData.map(it => ({
-        id: it._id,
-        name: this.getItemName(it._id),
-        icon: this.getItemIconClass(it._id),
-      }))
+      return this.fishData.map(it => {
+        const fishingSpots = this.fishDict[it._id].fishingSpots
+        let spotText = fishingSpots
+          .slice(0, 3)
+          .map(it => it.fishingSpotName)
+          .join('，')
+        const remaining = fishingSpots.length - 3
+        if (remaining > 0) {
+          spotText = this.$t('search.dialog.spot', { spots: spotText, remaining })
+        }
+        return {
+          id: it._id,
+          name: this.getItemName(it._id),
+          icon: this.getItemIconClass(it._id),
+          spotName: spotText,
+        }
+      })
     },
     // getPredators() {
     //   return value =>
