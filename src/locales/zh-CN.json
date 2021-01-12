@@ -64,7 +64,7 @@
     "btn": "搜索鱼",
     "dialog": {
       "title": "搜索鱼",
-      "placeholder": "输入鱼名称搜索：七彩天主 或 qctz",
+      "placeholder": "输入鱼或钓场搜索：七彩天主 或 qctz；七彩沟 或 qcg",
       "close": "关闭",
       "hint": "在ACT模式下如果无法输入，请参照帮助中的步骤设置ACTWS。",
       "spot": "{spots}，以及另{remaining}个钓场"

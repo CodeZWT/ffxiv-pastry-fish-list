@@ -44,7 +44,7 @@
                             {{ data.item.name }}
                           </div>
                           <div style="font-size: small">
-                            {{ data.item.spotName }}
+                            {{ data.item.spotNamesSimple }}
                           </div>
                         </v-list-item-title>
                       </v-list-item-content>
@@ -136,7 +136,8 @@ export default {
           id: it._id,
           name: this.getItemName(it._id),
           icon: this.getItemIconClass(it._id),
-          spotName: spotText,
+          spotNamesSimple: spotText,
+          spotNamesFull: fishingSpots.map(it => it.fishingSpotName).join(','),
         }
       })
     },
@@ -180,7 +181,10 @@ export default {
   methods: {
     filterOptions(item, searchText, itemText) {
       if (this.$i18n.locale === 'zh-CN') {
-        return PinyinMatch.match(itemText, searchText) !== false
+        return (
+          PinyinMatch.match(item.name, searchText) !== false ||
+          PinyinMatch.match(item.spotNamesFull, searchText)
+        )
       } else {
         return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
       }
