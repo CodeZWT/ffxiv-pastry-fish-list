@@ -42,6 +42,10 @@ const INTERVAL_DAY = 86400000
 
 const INTERVALS = [INTERVAL_DAY, INTERVAL_HOUR, INTERVAL_MINUTE, INTERVAL_SECOND]
 
+function hasChineseCharacter(text) {
+  return text.match('[\u4e00-\u9fff]+')
+}
+
 export default {
   iconIdToUrl(iconId) {
     if (iconId == null) return ''
@@ -436,7 +440,7 @@ export default {
   },
 
   toItemIdIfExisted(id, name) {
-    if (name.match('[\u4e00-\u9fff]+')) {
+    if (hasChineseCharacter(name)) {
       return id
     } else {
       return null
@@ -458,6 +462,8 @@ export default {
   getSpotIdOfFishId(fishId) {
     return this.FISH_ID_TO_SPOTS[fishId]
   },
+
+  hasChineseCharacter: hasChineseCharacter,
 
   FISH_ID_TO_SPOTS: {
     4991: [56, 99],

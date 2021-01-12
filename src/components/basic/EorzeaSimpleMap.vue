@@ -718,12 +718,13 @@ export default {
       this.$refs.stage.getNode().container().style.cursor = 'default'
     },
     computeSafeTextConfig(text, x, y, option) {
-      const textLength = text.length
+      const textLength = DataUtil.hasChineseCharacter(text)
+        ? text.length
+        : text.length / 2
       const width = option.fontSize * textLength
       const height = option.fontSize
       return {
         text: text,
-
         width: width,
         offsetX: this.getOffset(width),
         height: height,

@@ -117,13 +117,14 @@
 
 <script>
 import DiademFishListMixin from '@/components/DiademFishList/DiademFishListMixin'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'DiademFishListSmall',
   mixins: [DiademFishListMixin],
   methods: {
     toSimpleName(name) {
-      if (name.match('[\u4e00-\u9fff]+')) {
+      if (DataUtil.hasChineseCharacter(name)) {
         return `${name.slice(7)}`
       } else {
         return `${name.slice(21)}`
