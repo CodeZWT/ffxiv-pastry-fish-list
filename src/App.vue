@@ -306,6 +306,7 @@
           :sortedFilteredFishList="sortedFilteredFishList"
           :toBeNotifiedFishList="toBeNotifiedFishList"
           :selectedFish="selectedFish"
+          :filteredFishIdSet="filteredFishIdSet"
           @fish-selected="selectedFishId = $event"
         />
         <!--                @fishCntUpdated="listFishCnt = $event"     -->
@@ -1024,8 +1025,27 @@ export default {
         .forEach(it => idSet.add(it._id))
       return idSet
     },
+    baitFilteredFishIdSet() {
+      const list = Array.from(this.filteredFishIdSet)
+      const idSet = new Set()
+      const baitIds = this.baitFilterIds
+      list
+        .filter(fishId => {
+          const fish = this.allFish[fishId]
+          return (
+            !this.baitFilterEnabled ||
+            (fish.bestCatchPath != null && baitIds.includes(fish.bestCatchPath[0]))
+          )
+        })
+        .forEach(it => {
+          idSet.add(it)
+        })
+      // console.log(baitIds)
+      // console.log(Array.from(idSet))
+      return idSet
+    },
     sortedFilteredFishList() {
-      const idSet = this.filteredFishIdSet
+      const idSet = this.baitFilteredFishIdSet
       let countdownSortedFishList = this.sortedFishIds
         .filter(id => idSet.has(id))
         .map(id => this.lazyTransformedFishDict[id])
@@ -1230,6 +1250,8 @@ export default {
       'newPatchFish',
       'folklore',
       'weatherRates',
+      'baitFilterEnabled',
+      'baitFilterIds',
     ]),
     ...mapGetters([
       'opacity',
@@ -1315,11 +1337,8 @@ export default {
       it => it.patch == null || it.patch <= DataUtil.PATCH_MAX
     )
     this.checkFishNeedSplit(this.lazySourceFishList)
-    this.lazySourceImportantFishList = this.lazySourceFishList.filter(
-      it =>
-        this.bigFish.includes(it._id) ||
-        this.newPatchFish.includes(it._id) ||
-        !DataUtil.isAllAvailableFish(it)
+    this.lazySourceImportantFishList = this.lazySourceFishList.filter(it =>
+      DataUtil.showFishInList(it)
     )
     this.updateWeatherChangePart(this.now)
 

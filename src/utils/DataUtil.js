@@ -7,6 +7,7 @@ import EorzeaTime from '@/utils/Time'
 import tip1Data from '@/store/tip1.json'
 import tip2Data from '@/store/tip2.json'
 import flatten from 'flat'
+import DATA_CN from '@/store/translation'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -44,6 +45,15 @@ const INTERVALS = [INTERVAL_DAY, INTERVAL_HOUR, INTERVAL_MINUTE, INTERVAL_SECOND
 
 function hasChineseCharacter(text) {
   return text.match('[\u4e00-\u9fff]+')
+}
+
+function isAllAvailableFish(fish) {
+  return (
+    fish.previousWeatherSet.length === 0 &&
+    fish.weatherSet.length === 0 &&
+    fish.startHour === 0 &&
+    fish.endHour === 24
+  )
 }
 
 export default {
@@ -135,12 +145,13 @@ export default {
       }
     }
   },
-  isAllAvailableFish(fish) {
+  isAllAvailableFish: isAllAvailableFish,
+
+  showFishInList(fish) {
     return (
-      fish.previousWeatherSet.length === 0 &&
-      fish.weatherSet.length === 0 &&
-      fish.startHour === 0 &&
-      fish.endHour === 24
+      DATA_CN.BIG_FISH.includes(fish._id) ||
+      DATA_CN.NEW_PATCH_FISH.includes(fish._id) ||
+      !isAllAvailableFish(fish)
     )
   },
 

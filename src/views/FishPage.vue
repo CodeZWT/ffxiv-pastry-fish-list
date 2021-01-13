@@ -32,7 +32,68 @@
                   :show="showFilter"
                   :filters="filters"
                   @input="onFiltersUpdate"
-                />
+                >
+                  <div>
+                    <!--                    fish baits-->
+                    <!--                    <div>{{ selectedBaitIdIndices }}</div>-->
+                    <div class="d-flex align-center">
+                      <div class="text-subtitle-2 ml-1 mr-3">启用鱼饵筛选</div>
+                      <v-switch v-model="baitFilterEnabledComputed" inset />
+                    </div>
+                    <div v-if="baitFilterEnabledComputed">
+                      <div class="d-flex align-center">
+                        <v-btn text small class="mx-1" @click="selectAllBaits()">
+                          <v-icon left>
+                            mdi-check-all
+                          </v-icon>
+                          选择所有
+                        </v-btn>
+                        <v-btn text small class="mx-1" @click="clearAllBaits">
+                          <v-icon left>
+                            mdi-close
+                          </v-icon>
+                          清除所有
+                        </v-btn>
+                      </div>
+                      <v-chip-group v-model="selectedBaitIdIndices" column multiple>
+                        <template v-for="(fishIds, baitId) in bait2Fish">
+                          <v-menu open-on-hover right offset-x offset-y :key="baitId">
+                            <template v-slot:activator="{ on }">
+                              <v-chip
+                                active-class="primary--text"
+                                outlined
+                                class="ma-1"
+                                :disabled="fishIds.length === 0"
+                                v-on="on"
+                              >
+                                <!--                        <div :class="getItemIconClass(baitId)" />-->
+                                <item-icon :icon-class="getItemIconClass(baitId)" small />
+                                {{ getItemName(baitId) }}
+                                ({{ fishIds.length }})
+                              </v-chip>
+                            </template>
+                            <v-card>
+                              <v-card-text>{{ fishIds }}</v-card-text>
+                            </v-card>
+                          </v-menu>
+                        </template>
+
+                        <!--                        <v-chip-->
+                        <!--                          v-for="(fishIds, baitId) in bait2Fish"-->
+                        <!--                          :key="baitId"-->
+                        <!--                          active-class="primary&#45;&#45;text"-->
+                        <!--                          outlined-->
+                        <!--                          class="ma-1"-->
+                        <!--                        >-->
+                        <!--                          &lt;!&ndash;                        <div :class="getItemIconClass(baitId)" />&ndash;&gt;-->
+                        <!--                          <item-icon :icon-class="getItemIconClass(baitId)" small />-->
+                        <!--                          {{ getItemName(baitId) }}-->
+                        <!--                          ({{ fishIds.length }})-->
+                        <!--                        </v-chip>-->
+                      </v-chip-group>
+                    </div>
+                  </div>
+                </fish-filter>
               </div>
               <div :class="{ 'main-area': true, 'show-filter': showFilter }">
                 <div style="width: 100%">
@@ -214,10 +275,14 @@ import { Pane, Splitpanes } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
 import FishDetail from '@/components/FishDetail'
 import NotificationUtil from '@/utils/NotificationUtil'
+import ItemIcon from '@/components/basic/ItemIcon'
+import DataUtil from '@/utils/DataUtil'
+import FIX from '@/store/fix'
 
 export default {
   name: 'fish-page',
   components: {
+    ItemIcon,
     FishDetail,
     ClickHelper,
     FishList,
@@ -242,6 +307,7 @@ export default {
     'sortedFilteredFishList',
     'toBeNotifiedFishList',
     'selectedFish',
+    'filteredFishIdSet',
   ],
   data: () => ({
     openPanelIndex: undefined,
@@ -251,8 +317,47 @@ export default {
     rightPaneFullScreen: window.innerWidth < 1264,
     loading: true,
     forceShowComponents: undefined,
+    selectedBaitIdIndices: [],
+    allBaits: FIX.BAITS,
   }),
   computed: {
+    baitFilterEnabledComputed: {
+      get() {
+        return this.baitFilterEnabled
+      },
+      set(enabled) {
+        this.setBaitFilterEnabled(enabled)
+      },
+    },
+    // baitFilterIdsComputed: {
+    //   get() {
+    //     return this.baitFilterIds
+    //   },
+    //   set(ids) {
+    //     this.setBaitFilterIds(ids)
+    //   },
+    // },
+    bait2Fish() {
+      const baitFishItems = []
+      // console.log(this.filteredFishIdSet)
+      this.filteredFishIdSet.forEach(fishId => {
+        const fishData = this.allFish[fishId]
+        if (
+          fishData.gig == null &&
+          !this.getFishPinned(fishId) &&
+          DataUtil.showFishInList(fishData)
+        ) {
+          // console.log(fishId, this.allFish[fishId])
+          baitFishItems.push({
+            bait: fishData.bestCatchPath[0],
+            fish: DataUtil.toItemId(fishId),
+          })
+        }
+      })
+      return _.mapValues(_.groupBy(baitFishItems, 'bait'), baitFishList =>
+        _.uniq(baitFishList.map(it => it.fish))
+      )
+    },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
@@ -282,6 +387,7 @@ export default {
       },
     },
     ...mapState({
+      allFish: 'fish',
       items: 'items',
       fishingSpots: 'fishingSpots',
       zones: 'zones',
@@ -289,6 +395,8 @@ export default {
       activeTabIndex: 'activeTabIndex',
       sounds: 'sounds',
       showFishPageRightPane: 'showFishPageRightPane',
+      baitFilterEnabled: 'baitFilterEnabled',
+      baitFilterIds: 'baitFilterIds',
     }),
     ...mapGetters([
       'getFishCompleted',
@@ -309,7 +417,22 @@ export default {
       'isSystemNotificationEnabled',
     ]),
   },
-  watch: {},
+  watch: {
+    bait2Fish: {
+      handler(bait2Fish) {
+        // console.log(Object.keys(bait2Fish))
+        this.$nextTick(() => this.selectAllBaits(bait2Fish))
+      },
+      immediate: true,
+    },
+    selectedBaitIdIndices(indices) {
+      this.setBaitFilterIds(
+        Object.keys(this.bait2Fish)
+          .filter((_, index) => indices.includes(index))
+          .map(it => +it)
+      )
+    },
+  },
   created() {
     if (NotificationUtil.isNotificationSupported()) {
       NotificationUtil.requestNotificationPermission().then(status => {
@@ -338,6 +461,14 @@ export default {
     this.onWindowResize()
   },
   methods: {
+    selectAllBaits(bait2Fish) {
+      this.selectedBaitIdIndices = Object.keys(bait2Fish ?? this.bait2Fish).map(
+        (_, index) => index
+      )
+    },
+    clearAllBaits() {
+      this.selectedBaitIdIndices = []
+    },
     onFiltersUpdate(filters) {
       this.setFilters(filters)
     },
@@ -373,6 +504,8 @@ export default {
       'clearToBeNotified',
       'setShowFishPageRightPane',
       'showSnackbar',
+      'setBaitFilterEnabled',
+      'setBaitFilterIds',
     ]),
   },
 }

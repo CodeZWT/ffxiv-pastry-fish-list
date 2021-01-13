@@ -83,7 +83,7 @@
                   </v-btn-toggle>
                   <v-tooltip bottom>
                     <template v-slot:activator="{ on, attrs }">
-                      <v-icon v-bind="attrs" v-on="on">
+                      <v-icon v-bind="attrs" v-on="on" class="mx-1">
                         mdi-help-circle-outline
                       </v-icon>
                     </template>
@@ -94,6 +94,14 @@
                       请直接搜索，或进入图鉴页面查看。也可以使用固定功能可以将鱼显示在固定列表中。
                     </div>
                   </v-tooltip>
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-divider />
+            <v-card-text>
+              <v-row no-gutters>
+                <v-col class="col-12">
+                  <slot></slot>
                 </v-col>
               </v-row>
             </v-card-text>

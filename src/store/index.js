@@ -47,6 +47,8 @@ export default new Vuex.Store({
       _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
       LocalStorageUtil.loadAndBackupUserData()
     ),
+    baitFilterEnabled: false,
+    baitFilterIds: [],
   },
   getters: {
     getItemIconUrl: state => id => {
@@ -235,6 +237,12 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setBaitFilterEnabled(state, enabled) {
+      state.baitFilterEnabled = enabled
+    },
+    setBaitFilterIds(state, ids) {
+      state.baitFilterIds = ids
+    },
     initialUserData(state) {
       // state.userData = DataUtil.mergeUserData(
       //   _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
