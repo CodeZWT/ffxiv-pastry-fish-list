@@ -73,7 +73,24 @@
                               </v-chip>
                             </template>
                             <v-card>
-                              <v-card-text>{{ fishIds }}</v-card-text>
+                              <v-card-text>
+                                <div
+                                  class="d-flex align-center flex-wrap"
+                                  style="max-width: 500px"
+                                >
+                                  <div
+                                    v-for="fishId in fishIds"
+                                    :key="fishId"
+                                    class="d-flex align-center mx-1"
+                                  >
+                                    <item-icon
+                                      :icon-class="getItemIconClass(fishId)"
+                                      :title="getItemName(fishId)"
+                                    />
+                                    <span>{{ getItemName(fishId) }}</span>
+                                  </div>
+                                </div>
+                              </v-card-text>
                             </v-card>
                           </v-menu>
                         </template>
