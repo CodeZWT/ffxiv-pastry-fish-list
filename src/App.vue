@@ -1777,15 +1777,11 @@ export default {
 
         let fishWindowsComputed
         if (missingFishWindowN > 0) {
-          fishWindowsComputed = FishWindow.getNextNFishWindows(
-            fish._id,
-            fishingSpot?.territory_id,
-            new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
-            fish.startHour,
-            fish.endHour,
-            fish.previousWeatherSet,
-            fish.weatherSet,
-            FishWindow.FISH_WINDOW_FORECAST_N
+          fishWindowsComputed = DataUtil.getFishWindow(
+            fish,
+            now,
+            this.allFish,
+            this.fishingSpots
           )
         } else {
           fishWindowsComputed = remainingFishWindows
