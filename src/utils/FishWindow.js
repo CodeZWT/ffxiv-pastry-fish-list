@@ -173,7 +173,7 @@ export default {
         requiredWindowCnt
       )
     }
-    return fishId === 999999
+    return fishId === 999998
       ? dummyWindows.filter(it => it[1] > temp).slice(0, requiredWindowCnt)
       : windowsRet
   },

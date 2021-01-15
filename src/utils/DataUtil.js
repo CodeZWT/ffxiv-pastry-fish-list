@@ -8,6 +8,8 @@ import tip1Data from '@/store/tip1.json'
 import tip2Data from '@/store/tip2.json'
 import flatten from 'flat'
 import DATA_CN from '@/store/translation'
+import FIX from '@/store/fix'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -151,6 +153,8 @@ export default {
     return (
       DATA_CN.BIG_FISH.includes(fish._id) ||
       DATA_CN.NEW_PATCH_FISH.includes(fish._id) ||
+      (DevelopmentModeUtil.isLocal() &&
+        Object.keys(FIX.TEST_ITEMS).includes(fish._id + '')) ||
       !isAllAvailableFish(fish)
     )
   },
@@ -276,6 +280,9 @@ export default {
   },
   getFishWindow(fish, now, allFish, fishingSpots, n = FishWindow.FISH_WINDOW_FORECAST_N) {
     // console.debug(fish)
+    if (fish._id === 999999) {
+      console.log(Object.keys(fish.predators))
+    }
     if (Object.keys(fish.predators).length === 0) {
       return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
     } else {
