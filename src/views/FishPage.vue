@@ -33,81 +33,83 @@
                   :filters="filters"
                   @input="onFiltersUpdate"
                 >
-                  <!--                  <div>-->
-                  <!--                    <div class="d-flex align-center">-->
-                  <!--                      <div class="text-subtitle-2 ml-1 mr-3">启用鱼饵筛选</div>-->
-                  <!--                      <v-switch v-model="baitFilterEnabledComputed" inset />-->
-                  <!--                    </div>-->
-                  <!--                    <div v-if="baitFilterEnabledComputed">-->
-                  <!--                      <div class="d-flex align-center">-->
-                  <!--                        <v-btn text small class="mx-1" @click="selectAllBaits()">-->
-                  <!--                          <v-icon left>-->
-                  <!--                            mdi-check-all-->
-                  <!--                          </v-icon>-->
-                  <!--                          选择所有-->
-                  <!--                        </v-btn>-->
-                  <!--                        <v-btn text small class="mx-1" @click="clearAllBaits">-->
-                  <!--                          <v-icon left>-->
-                  <!--                            mdi-close-->
-                  <!--                          </v-icon>-->
-                  <!--                          清除所有-->
-                  <!--                        </v-btn>-->
-                  <!--                      </div>-->
-                  <!--                      <v-chip-group v-model="selectedBaitIdIndices" column multiple>-->
-                  <!--                        <template v-for="(fishIds, baitId) in bait2Fish">-->
-                  <!--                          <v-menu open-on-hover right offset-x offset-y :key="baitId">-->
-                  <!--                            <template v-slot:activator="{ on }">-->
-                  <!--                              <v-chip-->
-                  <!--                                active-class="primary&#45;&#45;text"-->
-                  <!--                                outlined-->
-                  <!--                                class="ma-1"-->
-                  <!--                                :disabled="fishIds.length === 0"-->
-                  <!--                                v-on="on"-->
-                  <!--                              >-->
-                  <!--                                &lt;!&ndash;                        <div :class="getItemIconClass(baitId)" />&ndash;&gt;-->
-                  <!--                                <item-icon :icon-class="getItemIconClass(baitId)" small />-->
-                  <!--                                {{ getItemName(baitId) }}-->
-                  <!--                                ({{ fishIds.length }})-->
-                  <!--                              </v-chip>-->
-                  <!--                            </template>-->
-                  <!--                            <v-card>-->
-                  <!--                              <v-card-text>-->
-                  <!--                                <div-->
-                  <!--                                  class="d-flex align-center flex-wrap"-->
-                  <!--                                  style="max-width: 500px"-->
-                  <!--                                >-->
-                  <!--                                  <div-->
-                  <!--                                    v-for="fishId in fishIds"-->
-                  <!--                                    :key="fishId"-->
-                  <!--                                    class="d-flex align-center mx-1"-->
-                  <!--                                  >-->
-                  <!--                                    <item-icon-->
-                  <!--                                      :icon-class="getItemIconClass(fishId)"-->
-                  <!--                                      :title="getItemName(fishId)"-->
-                  <!--                                    />-->
-                  <!--                                    <span>{{ getItemName(fishId) }}</span>-->
-                  <!--                                  </div>-->
-                  <!--                                </div>-->
-                  <!--                              </v-card-text>-->
-                  <!--                            </v-card>-->
-                  <!--                          </v-menu>-->
-                  <!--                        </template>-->
+                  <div>
+                    <!--                    fish baits-->
+                    <!--                    <div>{{ selectedBaitIdIndices }}</div>-->
+                    <div class="d-flex align-center">
+                      <div class="text-subtitle-2 ml-1 mr-3">启用鱼饵筛选</div>
+                      <v-switch v-model="baitFilterEnabledComputed" inset />
+                    </div>
+                    <div v-if="baitFilterEnabledComputed">
+                      <div class="d-flex align-center">
+                        <v-btn text small class="mx-1" @click="selectAllBaits()">
+                          <v-icon left>
+                            mdi-check-all
+                          </v-icon>
+                          选择所有
+                        </v-btn>
+                        <v-btn text small class="mx-1" @click="clearAllBaits">
+                          <v-icon left>
+                            mdi-close
+                          </v-icon>
+                          清除所有
+                        </v-btn>
+                      </div>
+                      <v-chip-group v-model="selectedBaitIdIndices" column multiple>
+                        <template v-for="(fishIds, baitId) in bait2Fish">
+                          <v-menu open-on-hover right offset-x offset-y :key="baitId">
+                            <template v-slot:activator="{ on }">
+                              <v-chip
+                                active-class="primary--text"
+                                outlined
+                                class="ma-1"
+                                :disabled="fishIds.length === 0"
+                                v-on="on"
+                              >
+                                <!--                        <div :class="getItemIconClass(baitId)" />-->
+                                <item-icon :icon-class="getItemIconClass(baitId)" small />
+                                {{ getItemName(baitId) }}
+                                ({{ fishIds.length }})
+                              </v-chip>
+                            </template>
+                            <v-card>
+                              <v-card-text>
+                                <div
+                                  class="d-flex align-center flex-wrap"
+                                  style="max-width: 500px"
+                                >
+                                  <div
+                                    v-for="fishId in fishIds"
+                                    :key="fishId"
+                                    class="d-flex align-center mx-1"
+                                  >
+                                    <item-icon
+                                      :icon-class="getItemIconClass(fishId)"
+                                      :title="getItemName(fishId)"
+                                    />
+                                    <span>{{ getItemName(fishId) }}</span>
+                                  </div>
+                                </div>
+                              </v-card-text>
+                            </v-card>
+                          </v-menu>
+                        </template>
 
-                  <!--                        &lt;!&ndash;                        <v-chip&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                          v-for="(fishIds, baitId) in bait2Fish"&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                          :key="baitId"&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                          active-class="primary&#45;&#45;text"&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                          outlined&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                          class="ma-1"&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                        >&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                          &lt;!&ndash;                        <div :class="getItemIconClass(baitId)" />&ndash;&gt;&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                          <item-icon :icon-class="getItemIconClass(baitId)" small />&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                          {{ getItemName(baitId) }}&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                          ({{ fishIds.length }})&ndash;&gt;-->
-                  <!--                        &lt;!&ndash;                        </v-chip>&ndash;&gt;-->
-                  <!--                      </v-chip-group>-->
-                  <!--                    </div>-->
-                  <!--                  </div>-->
+                        <!--                        <v-chip-->
+                        <!--                          v-for="(fishIds, baitId) in bait2Fish"-->
+                        <!--                          :key="baitId"-->
+                        <!--                          active-class="primary&#45;&#45;text"-->
+                        <!--                          outlined-->
+                        <!--                          class="ma-1"-->
+                        <!--                        >-->
+                        <!--                          &lt;!&ndash;                        <div :class="getItemIconClass(baitId)" />&ndash;&gt;-->
+                        <!--                          <item-icon :icon-class="getItemIconClass(baitId)" small />-->
+                        <!--                          {{ getItemName(baitId) }}-->
+                        <!--                          ({{ fishIds.length }})-->
+                        <!--                        </v-chip>-->
+                      </v-chip-group>
+                    </div>
+                  </div>
                 </fish-filter>
               </div>
               <div :class="{ 'main-area': true, 'show-filter': showFilter }">
@@ -290,12 +292,14 @@ import { Pane, Splitpanes } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
 import FishDetail from '@/components/FishDetail'
 import NotificationUtil from '@/utils/NotificationUtil'
+import ItemIcon from '@/components/basic/ItemIcon'
 import DataUtil from '@/utils/DataUtil'
 import FIX from '@/store/fix'
 
 export default {
   name: 'fish-page',
   components: {
+    ItemIcon,
     FishDetail,
     ClickHelper,
     FishList,

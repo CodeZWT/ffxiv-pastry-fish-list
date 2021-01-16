@@ -97,14 +97,14 @@
                 </v-col>
               </v-row>
             </v-card-text>
-            <!--            <v-divider />-->
-            <!--            <v-card-text>-->
-            <!--              <v-row no-gutters>-->
-            <!--                <v-col class="col-12">-->
-            <!--                  <slot></slot>-->
-            <!--                </v-col>-->
-            <!--              </v-row>-->
-            <!--            </v-card-text>-->
+            <v-divider />
+            <v-card-text>
+              <v-row no-gutters>
+                <v-col class="col-12">
+                  <slot></slot>
+                </v-col>
+              </v-row>
+            </v-card-text>
             <v-divider />
             <v-card-text>
               <v-row no-gutters>
