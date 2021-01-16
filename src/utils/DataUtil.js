@@ -279,9 +279,9 @@ export default {
     )
   },
   getFishWindow(fish, now, allFish, fishingSpots, n = FishWindow.FISH_WINDOW_FORECAST_N) {
-    if (fish._id === 999999) {
-      console.log(Object.keys(fish.predators))
-    }
+    // if (fish._id === 999999) {
+    //   console.log(Object.keys(fish.predators))
+    // }
     if (Object.keys(fish.predators).length === 0) {
       return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
     } else {

@@ -1443,9 +1443,9 @@ export default {
     updateFishListTimePart(now) {
       this.lazySourceImportantFishList.forEach(fish => {
         const countDown = this.fishListTimePart[fish._id]?.countDown
-        if (fish._id === 999999) {
-          console.log(countDown)
-        }
+        // if (fish._id === 999999) {
+        //   console.debug(countDown)
+        // }
         if (countDown?.type === DataUtil.ALL_AVAILABLE) return
 
         const lazyStartTime = countDown?.timePoint
@@ -1534,6 +1534,7 @@ export default {
       return {
         ...fish,
         id: fish._id,
+        type: 'normal',
         name: this.getItemName(fish._id),
         icon: this.getItemIconClass(fish._id),
         hasFishingSpot: fish.locations.length !== 0,

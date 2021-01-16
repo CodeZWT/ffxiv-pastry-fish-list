@@ -29,7 +29,7 @@
             style="min-width: 36px"
             :small="dense"
           />
-          <div>{{ item.name }}</div>
+          <div :title="`${item.name}#${item.id}`">{{ item.name }}</div>
         </div>
       </template>
       <template v-slot:item.baitId="{ item }">
