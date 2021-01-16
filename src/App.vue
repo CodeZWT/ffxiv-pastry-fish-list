@@ -1834,19 +1834,6 @@ export default {
     getFishWindow(fish, now) {
       return DataUtil.getFishWindow(fish, now, this.allFish, this.fishingSpots)
     },
-    mergeConstraints(fish1, fish2) {
-      const mergedFish = {
-        ...fish1,
-        previousWeatherSet: _.union(fish1.previousWeatherSet, fish2.previousWeatherSet),
-        weatherSet: _.union(fish1.weatherSet, fish2.weatherSet),
-        // TODO: actually some ranges are [20-8] but since we checked all fish with predators.
-        // So just ignore those impossible cases here...
-        startHour: Math.max(fish1.startHour, fish2.startHour),
-        endHour: Math.min(fish1.endHour, fish2.endHour),
-      }
-      console.log(mergedFish)
-      return mergedFish
-    },
     toComparableVersion(version) {
       return version
         .split('.')
