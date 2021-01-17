@@ -303,5 +303,6 @@
       "none": "距下次航班："
     }
   },
-  "loadingMore": "加载更多"
+  "loadingMore": "加载更多",
+  "loadingMoreWithRemainingCnt": "加载更多（剩余{remainingCnt}条未显示）"
 }

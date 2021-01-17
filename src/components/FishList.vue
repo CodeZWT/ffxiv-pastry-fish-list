@@ -22,9 +22,12 @@
         />
       </div>
     </v-col>
-    <v-col cols="12" v-if="enableLoadMore && flattenFishList.length > 0">
+    <v-col
+      cols="12"
+      v-if="enableLoadMore && flattenFishList.length > 0 && remainingCnt > 0"
+    >
       <v-btn block color="secondary" tile @click="loadMore">
-        {{ $t('loadingMore') }}
+        {{ $t('loadingMoreWithRemainingCnt', { remainingCnt }) }}
       </v-btn>
     </v-col>
     <v-col cols="12" v-if="clearAllButton && flattenFishList.length > 0">
@@ -110,6 +113,9 @@ export default {
     showN: 30,
   }),
   computed: {
+    remainingCnt() {
+      return this.fishList.length - this.showN
+    },
     fishListOfShowLimit() {
       return this.enableLoadMore ? this.fishList.slice(0, this.showN) : this.fishList
     },
