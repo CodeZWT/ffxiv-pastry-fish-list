@@ -37,7 +37,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">
+                <div class="text-subtitle-1" :title="toItemTitle(fish)">
                   {{ toSimpleName(fish.name) }}
                 </div>
                 <div class="d-flex align-center">

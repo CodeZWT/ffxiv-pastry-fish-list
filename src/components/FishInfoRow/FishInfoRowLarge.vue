@@ -62,7 +62,7 @@
               />
 
               <div :class="inPredator ? 'ml-4' : 'ml-1'">
-                <div class="text-subtitle-1" :title="fish.name + '#' + fish.id">
+                <div class="text-subtitle-1" :title="toItemTitle(fish)">
                   {{ fish.name }}
                 </div>
                 <div class="d-flex align-center">

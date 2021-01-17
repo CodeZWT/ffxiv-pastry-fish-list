@@ -21,5 +21,6 @@ export default {
       }
     },
     goToFishAngelPage: DataUtil.goToFishAngelPage,
+    toItemTitle: DataUtil.toItemTitle,
   },
 }

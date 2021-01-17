@@ -18,7 +18,7 @@
           <toggle-button :value="fish.completed" @input="setCompleted($event)" />
         </div>
         <item-icon :icon-class="fish.icon" />
-        <div class="text-subtitle-1 ml-1" :title="fish.name + '#' + fish.id">
+        <div class="text-subtitle-1 ml-1" :title="toItemTitle(fish)">
           {{ fish.name }}
         </div>
         <v-badge
@@ -134,6 +134,7 @@ export default {
     ]),
   },
   methods: {
+    toItemTitle: DataUtil.toItemTitle,
     goToFishAngelPage(anglerFishId) {
       window.open(`https://cn.ff14angler.com/fish/${anglerFishId}`)
     },

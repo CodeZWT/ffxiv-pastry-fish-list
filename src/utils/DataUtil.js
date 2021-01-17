@@ -58,6 +58,14 @@ function isAllAvailableFish(fish) {
   )
 }
 
+function toItemId(fishLocationId) {
+  if (fishLocationId >= 1000001) {
+    return fishLocationId % 1000000
+  } else {
+    return fishLocationId
+  }
+}
+
 export default {
   iconIdToUrl(iconId) {
     if (iconId == null) return ''
@@ -468,12 +476,10 @@ export default {
     }
   },
 
-  toItemId(fishLocationId) {
-    if (fishLocationId >= 1000001) {
-      return fishLocationId % 1000000
-    } else {
-      return fishLocationId
-    }
+  toItemId: toItemId,
+
+  toItemTitle(item) {
+    return item.name + '#' + toItemId(item.id)
   },
 
   toSpotItemId(spotId, itemId) {

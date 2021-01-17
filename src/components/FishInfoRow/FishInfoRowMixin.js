@@ -106,6 +106,7 @@ export default {
   methods: {
     printCountDownTime: DataUtil.printCountDownTime,
     goToFishAngelPage: DataUtil.goToFishAngelPage,
+    toItemTitle: DataUtil.toItemTitle,
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
     },
