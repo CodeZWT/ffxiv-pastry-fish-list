@@ -42,10 +42,14 @@
     },
     "bigFish": {
       "title": "鱼种类",
-      "ALL": "所有",
-      "BIG_FISH": "鱼王/鱼皇",
-      "ALL_AVAILABLE_BIG_FISH": "常驻鱼王",
-      "NOT_BIG_FISH": "普通鱼"
+      "LIVING_LEGENDS": "鱼皇",
+      "OLD_ONES": "鱼王",
+      "NORMAL": "普通鱼"
+    },
+    "fishConstraint": {
+      "title": "条件限制",
+      "RESTRICTED": "时间/天气限制",
+      "NOT_RESTRICTED": "常驻"
     },
     "showFirstNFish": {
       "title": "最多显示条数",

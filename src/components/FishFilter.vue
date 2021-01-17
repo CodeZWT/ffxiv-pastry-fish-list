@@ -51,26 +51,12 @@
                 </v-col>
               </v-row>
               <!-- Mark & BigFish -->
-              <v-row no-gutters>
+              <v-row no-gutters class="my-2">
                 <v-col class="col-12 col-md-6">
-                  <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
-                  <v-btn-toggle
-                    v-model="completeType"
-                    mandatory
-                    rounded
-                    active-class="primary"
-                    dense
-                    @change="onChange"
-                  >
-                    <v-btn small v-for="type in completeFilterTypes" :key="type">
-                      {{ $t(`filter.mark.${type}`) }}
-                    </v-btn>
-                  </v-btn-toggle>
-                </v-col>
-                <v-col cols="6">
                   <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
                   <v-btn-toggle
-                    v-model="bigFishType"
+                    v-model="bigFishTypes"
+                    multiple
                     mandatory
                     rounded
                     active-class="primary"
@@ -94,6 +80,40 @@
                   <!--                      请直接搜索，或进入图鉴页面查看。也可以使用固定功能可以将鱼显示在固定列表中。-->
                   <!--                    </div>-->
                   <!--                  </v-tooltip>-->
+                </v-col>
+                <v-col cols="6">
+                  <div class="subtitle-2">{{ $t('filter.fishConstraint.title') }}</div>
+                  <v-btn-toggle
+                    v-model="fishConstraintTypes"
+                    multiple
+                    mandatory
+                    rounded
+                    active-class="primary"
+                    dense
+                    @change="onChange"
+                  >
+                    <v-btn small v-for="type in fishConstraintFilterTypes" :key="type">
+                      {{ $t(`filter.fishConstraint.${type}`) }}
+                    </v-btn>
+                  </v-btn-toggle>
+                </v-col>
+              </v-row>
+              <v-row no-gutters>
+                <v-col class="col-12">
+                  <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
+                  <v-btn-toggle
+                    v-model="completeTypes"
+                    multiple
+                    mandatory
+                    rounded
+                    active-class="primary"
+                    dense
+                    @change="onChange"
+                  >
+                    <v-btn small v-for="type in completeFilterTypes" :key="type">
+                      {{ $t(`filter.mark.${type}`) }}
+                    </v-btn>
+                  </v-btn-toggle>
                 </v-col>
               </v-row>
             </v-card-text>
@@ -162,6 +182,7 @@
 <script>
 import ClickHelper from '@/components/basic/ClickHelper'
 import { mapGetters } from 'vuex'
+import DataUtil from '@/utils/DataUtil'
 
 const PATCHES = {
   '2.x': [2.0, 2.1, 2.2, 2.3, 2.4, 2.5],
@@ -169,11 +190,7 @@ const PATCHES = {
   '4.x': [4.0, 4.1, 4.2, 4.3, 4.4, 4.5],
   '5.x': [5.0, 5.1, 5.2, 5.3],
 }
-const COMPLETE_FILTER_TYPES = ['ALL', 'COMPLETED', 'UNCOMPLETED']
-// ALL_AVAILABLE_BIG_FISH is refer to fish without any time constraints in real life
-const BIG_FISH_FILTER_TYPES = ['ALL', 'BIG_FISH', 'NOT_BIG_FISH']
 const FISH_N_FILTER_TYPES = ['10', '20', '50', 'ALL']
-const FISH_SORTER_TYPES = ['COUNTDOWN', 'RATE']
 
 export default {
   name: 'FishFilter',
@@ -198,14 +215,16 @@ export default {
         '4.x': [],
         '5.x': [],
       },
-      completeFilterTypes: COMPLETE_FILTER_TYPES,
-      completeType: COMPLETE_FILTER_TYPES.indexOf('UNCOMPLETED'),
-      bigFishFilterTypes: BIG_FISH_FILTER_TYPES,
-      bigFishType: BIG_FISH_FILTER_TYPES.indexOf('BIG_FISH'),
+      completeFilterTypes: DataUtil.COMPLETE_FILTER_TYPES,
+      completeTypes: DataUtil.COMPLETE_FILTER_TYPES,
+      bigFishFilterTypes: DataUtil.BIG_FISH_FILTER_TYPES,
+      bigFishTypes: DataUtil.BIG_FISH_FILTER_TYPES,
       fishNFilterTypes: FISH_N_FILTER_TYPES,
       fishNType: FISH_N_FILTER_TYPES.length - 1,
-      fishSorterTypes: FISH_SORTER_TYPES,
-      sorterType: FISH_SORTER_TYPES.indexOf('COUNTDOWN'),
+      fishSorterTypes: DataUtil.FISH_SORTER_TYPES,
+      sorterType: DataUtil.FISH_SORTER_TYPES.indexOf('COUNTDOWN'),
+      fishConstraintFilterTypes: DataUtil.FISH_CONSTRAINT_FILTER_TYPES,
+      fishConstraintTypes: DataUtil.FISH_CONSTRAINT_FILTER_TYPES,
     }
   },
   computed: {
@@ -220,10 +239,13 @@ export default {
             patches.map(patch => this.patches[version][patch])
           )
           .sort(),
-        completeType: this.completeFilterTypes[this.completeType],
-        bigFishType: this.bigFishFilterTypes[this.bigFishType],
+        completeTypes: this.completeTypes.map(i => this.completeFilterTypes[i]),
+        bigFishTypes: this.bigFishTypes.map(i => this.bigFishFilterTypes[i]),
         fishN: fishNTypeText === 'ALL' ? -1 : +fishNTypeText,
         sorterType: this.fishSorterTypes[this.sorterType],
+        fishConstraintTypes: this.fishConstraintTypes.map(
+          i => this.fishConstraintFilterTypes[i]
+        ),
       }
     },
     ...mapGetters(['isNormalTabActive']),
@@ -244,12 +266,19 @@ export default {
         '4.x': this.getPatchesInVersion(filters?.patches, '4.x'),
         '5.x': this.getPatchesInVersion(filters?.patches, '5.x'),
       }
-      this.completeType = COMPLETE_FILTER_TYPES.indexOf(
-        filters?.completeType ?? 'UNCOMPLETED'
+      this.completeTypes = (filters?.completeTypes ?? []).map(typeStr =>
+        DataUtil.COMPLETE_FILTER_TYPES.indexOf(typeStr)
       )
-      this.bigFishType = BIG_FISH_FILTER_TYPES.indexOf(filters?.bigFishType ?? 'BIG_FISH')
+      this.bigFishTypes = (filters?.bigFishTypes ?? []).map(typeStr =>
+        DataUtil.BIG_FISH_FILTER_TYPES.indexOf(typeStr)
+      )
+      this.fishConstraintTypes = (filters?.fishConstraintTypes ?? []).map(typeStr =>
+        DataUtil.FISH_CONSTRAINT_FILTER_TYPES.indexOf(typeStr)
+      )
       this.fishNType = FISH_N_FILTER_TYPES.indexOf(this.fishN2Type(filters?.fishN))
-      this.sorterType = FISH_SORTER_TYPES.indexOf(filters?.sorterType ?? 'COUNTDOWN')
+      this.sorterType = DataUtil.FISH_SORTER_TYPES.indexOf(
+        filters?.sorterType ?? 'COUNTDOWN'
+      )
     },
     checkAll(version) {
       this.$set(

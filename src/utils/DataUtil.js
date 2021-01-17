@@ -42,6 +42,11 @@ const INTERVAL_DAY = 86400000
 
 const INTERVALS = [INTERVAL_DAY, INTERVAL_HOUR, INTERVAL_MINUTE, INTERVAL_SECOND]
 
+const COMPLETE_FILTER_TYPES = ['COMPLETED', 'UNCOMPLETED']
+const BIG_FISH_FILTER_TYPES = ['LIVING_LEGENDS', 'OLD_ONES', 'NORMAL']
+const FISH_SORTER_TYPES = ['COUNTDOWN', 'RATE']
+const FISH_CONSTRAINT_FILTER_TYPES = ['RESTRICTED', 'NOT_RESTRICTED']
+
 function hasChineseCharacter(text) {
   return text.match('[\u4e00-\u9fff]+')
 }
@@ -250,8 +255,34 @@ export default {
 
   migrateOldVersionUserData(userData) {
     if (toComparableVersion(userData.websiteVersion) < toComparableVersion('0.5.3')) {
-      if (userData.filters.bigFishType === 'ALL_AVAILABLE_BIG_FISH') {
-        userData.filters.bigFishType = 'BIG_FISH'
+      switch (userData.filters.bigFishType) {
+        case 'ALL':
+          userData.filters.bigFishTypes = BIG_FISH_FILTER_TYPES
+          userData.filters.fishConstraintTypes = FISH_CONSTRAINT_FILTER_TYPES
+          break
+        case 'BIG_FISH':
+          userData.filters.bigFishTypes = ['LIVING_LEGENDS', 'OLD_ONES']
+          userData.filters.fishConstraintTypes = FISH_CONSTRAINT_FILTER_TYPES
+          break
+        case 'ALL_AVAILABLE_BIG_FISH':
+          userData.filters.bigFishTypes = ['LIVING_LEGENDS', 'OLD_ONES']
+          userData.filters.fishConstraintTypes = ['NOT_RESTRICTED']
+          break
+        case 'NOT_BIG_FISH':
+          userData.filters.bigFishTypes = ['NORMAL']
+          userData.filters.fishConstraintTypes = FISH_CONSTRAINT_FILTER_TYPES
+          break
+      }
+      switch (userData.filters.completeType) {
+        case 'ALL':
+          userData.filters.completeTypes = COMPLETE_FILTER_TYPES
+          break
+        case 'COMPLETED':
+          userData.filters.completeTypes = ['COMPLETED']
+          break
+        case 'UNCOMPLETED':
+          userData.filters.completeTypes = ['UNCOMPLETED']
+          break
       }
     }
     return userData
@@ -580,6 +611,11 @@ export default {
   PATCH_AVAILABLE_MAX: 5.3,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
+  COMPLETE_FILTER_TYPES: COMPLETE_FILTER_TYPES,
+  BIG_FISH_FILTER_TYPES: BIG_FISH_FILTER_TYPES,
+  FISH_SORTER_TYPES: FISH_SORTER_TYPES,
+  FISH_CONSTRAINT_FILTER_TYPES: FISH_CONSTRAINT_FILTER_TYPES,
+
   USER_DEFAULT_DATA: {
     // website version info
     websiteVersion: '0.1.0',
@@ -615,10 +651,13 @@ export default {
         5.2,
         5.3,
       ],
-      completeType: 'UNCOMPLETED',
-      bigFishType: 'BIG_FISH',
+      completeType: 'UNCOMPLETED', // before 0.5.3
+      bigFishType: 'BIG_FISH', // before 0.5.3
+      completeTypes: COMPLETE_FILTER_TYPES,
+      bigFishTypes: BIG_FISH_FILTER_TYPES,
       fishN: 10,
       sorterType: 'COUNTDOWN',
+      fishConstraintTypes: FISH_CONSTRAINT_FILTER_TYPES,
     },
     // page settings
     showFilter: true,

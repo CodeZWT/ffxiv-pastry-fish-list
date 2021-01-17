@@ -253,7 +253,10 @@ export default new Vuex.Store({
       LocalStorageUtil.storeAndBackupUserData(state.userData)
     },
     setUserData(state, data) {
-      state.userData = { ..._.cloneDeep(DataUtil.USER_DEFAULT_DATA), ...data }
+      state.userData = DataUtil.migrateOldVersionUserData({
+        ..._.cloneDeep(DataUtil.USER_DEFAULT_DATA),
+        ...data,
+      })
       LocalStorageUtil.storeAndBackupUserData(state.userData)
     },
     setUserDataToDefault(state) {

@@ -224,6 +224,7 @@ export default {
                 fishTrackerData.filters?.sortingType
               ] ?? currentUserData.filters.sorterType,
           },
+          theme: { dark: fishTrackerData.theme === 'dark' },
         })
       )
     },

@@ -936,6 +936,7 @@ import FIX from '@/store/fix'
 import DIADEM from '@/store/diadem'
 import placeNames from '@/store/placeNames.json'
 import regionTerritorySpots from '@/store/fishingSpots.json'
+import DATA_CN from '@/store/translation'
 
 export default {
   name: 'App',
@@ -1007,20 +1008,23 @@ export default {
         .filter(fish => {
           return (
             this.filters.patches.includes(DataUtil.toFishFilterPatch(fish.patch)) &&
-            (this.filters.completeType === 'ALL' ||
-              (this.filters.completeType === 'COMPLETED' &&
-                this.getFishCompleted(fish.id)) ||
-              (this.filters.completeType === 'UNCOMPLETED' &&
+            ((this.filters.completeTypes.includes('COMPLETED') &&
+              this.getFishCompleted(fish.id)) ||
+              (this.filters.completeTypes.includes('UNCOMPLETED') &&
                 !this.getFishCompleted(fish.id))) &&
-            (this.filters.bigFishType === 'ALL' ||
-              (this.filters.bigFishType === 'BIG_FISH' &&
-                this.bigFish.includes(fish.id)) ||
-              (this.filters.bigFishType === 'ALL_AVAILABLE_BIG_FISH' &&
+            ((this.filters.bigFishTypes.includes('LIVING_LEGENDS') &&
+              DATA_CN.LIVING_LEGENDS.includes(fish.id)) ||
+              (this.filters.bigFishTypes.includes('OLD_ONES') &&
                 this.bigFish.includes(fish.id) &&
+                !DATA_CN.LIVING_LEGENDS.includes(fish.id)) ||
+              (this.filters.bigFishTypes === 'NOT_BIG_FISH' &&
+                !this.bigFish.includes(fish.id))) &&
+            ((this.filters.fishConstraintTypes.includes('RESTRICTED') &&
+              this.fishListTimePart[fish.id]?.countDown?.type !==
+                DataUtil.ALL_AVAILABLE) ||
+              (this.filters.fishConstraintTypes.includes('NOT_RESTRICTED') &&
                 this.fishListTimePart[fish.id]?.countDown?.type ===
-                  DataUtil.ALL_AVAILABLE) ||
-              (this.filters.bigFishType === 'NOT_BIG_FISH' &&
-                !this.bigFish.includes(fish.id)))
+                  DataUtil.ALL_AVAILABLE))
           )
         })
         .forEach(it => idSet.add(it._id))
@@ -1213,7 +1217,6 @@ export default {
         return this.darkMode
       },
       set(dark) {
-        this.$vuetify.theme.dark = dark
         this.setDarkMode(dark)
       },
     },
@@ -1289,6 +1292,9 @@ export default {
         }
       },
       immediate: true,
+    },
+    dark(dark) {
+      this.$vuetify.theme.dark = dark
     },
     fishListTimePart: {
       handler: function(fishListTimePart) {
