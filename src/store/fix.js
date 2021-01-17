@@ -350,7 +350,7 @@ export default {
       weatherSet: [16],
       startHour: 0,
       endHour: 4,
-      bestCatchPath: [2599, 31004937],
+      bestCatchPath: [2599, 109004937],
     },
     '13731': {
       weatherSet: [2, 1],
