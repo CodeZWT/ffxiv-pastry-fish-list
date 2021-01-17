@@ -792,7 +792,7 @@ export default {
   getImgUrl(filename) {
     const item = CDN_DICT[filename]
     if (item) {
-      return `https://pic.downk.cc/item/${item.id}.${item.id}`
+      return `https://pic.imgdb.cn/item/${item.id}`
     }
     return undefined
   },
