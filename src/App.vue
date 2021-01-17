@@ -935,6 +935,7 @@ import ImgUtil from '@/utils/ImgUtil'
 import FIX from '@/store/fix'
 import DIADEM from '@/store/diadem'
 import placeNames from '@/store/placeNames.json'
+import regionTerritorySpots from '@/store/fishingSpots.json'
 
 export default {
   name: 'App',
@@ -1370,8 +1371,37 @@ export default {
   },
   methods: {
     checkFishNeedSplit(fishList) {
-      // console.log(fishList.find(it => it._id === 56004991))
+      const spot2FishList = _.mapValues(
+        _.keyBy(
+          regionTerritorySpots.flatMap(it => it.territories.flatMap(t => t.spots)),
+          'id'
+        ),
+        spot => spot.fishList
+      )
+
       return fishList.forEach(fish => {
+        const notAvailableSpots = []
+        fish.locations.forEach(spotId => {
+          const availableFishList = spot2FishList[spotId]
+          if (
+            fish.bestCatchPath != null &&
+            !fish.bestCatchPath
+              .slice(1)
+              .every(smallFish => availableFishList.includes(smallFish))
+          ) {
+            notAvailableSpots.push(spotId)
+          }
+        })
+        if (notAvailableSpots.length > 0) {
+          console.log(
+            this.getItemName(fish._id),
+            fish._id,
+            notAvailableSpots,
+            notAvailableSpots.map(spotId => this.fishingSpots[spotId].name_chs)
+          )
+          return
+        }
+
         if (
           fish.locations.length === 1 ||
           (fish.previousWeatherSet.length === 0 && fish.weatherSet.length === 0)
@@ -1379,6 +1409,7 @@ export default {
           // return fish
           return
         }
+
         const territories = _.mapValues(
           _.groupBy(
             fish.locations.map(location => {
@@ -1396,7 +1427,7 @@ export default {
         )
 
         if (Object.keys(territories).length > 1) {
-          console.log(fish._id, territories)
+          console.log(this.getItemName(fish._id), fish._id, territories)
           // return Object.values(territories).map(locations => {
           //   return {
           //     ...fish,
