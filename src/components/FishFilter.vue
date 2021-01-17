@@ -17,24 +17,18 @@
                   :key="version"
                   class="col-12 col-md-6 my-1"
                 >
-                  <div style="align-items: center">
-                    <click-helper
-                      v-if="
-                        patchSelectedIndices[version].length === patches[version].length
-                      "
-                      @click="uncheckAll(version)"
-                    >
-                      <v-btn text small rounded>
-                        {{ version }}
-                        <v-icon>mdi-close</v-icon>
-                      </v-btn>
-                    </click-helper>
-                    <click-helper v-else @click="checkAll(version)">
-                      <v-btn text small rounded>
-                        {{ version }}
+                  <div>
+                    <div class="d-flex align-center">
+                      <div class="mx-2">{{ version }}</div>
+                      <v-btn text small @click="checkAll(version)">
+                        全选
                         <v-icon>mdi-check-all</v-icon>
                       </v-btn>
-                    </click-helper>
+                      <v-btn text small @click="uncheckAll(version)">
+                        清空
+                        <v-icon>mdi-close</v-icon>
+                      </v-btn>
+                    </div>
                     <v-btn-toggle
                       v-model="patchSelectedIndices[version]"
                       rounded
@@ -180,7 +174,6 @@
 </template>
 
 <script>
-import ClickHelper from '@/components/basic/ClickHelper'
 import { mapGetters } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 
@@ -194,7 +187,6 @@ const FISH_N_FILTER_TYPES = ['10', '20', '50', 'ALL']
 
 export default {
   name: 'FishFilter',
-  components: { ClickHelper },
   props: {
     show: {
       type: Boolean,

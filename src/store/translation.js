@@ -27941,6 +27941,7 @@ export default {
     30438,
     30439,
   ],
+  // 鱼皇
   LIVING_LEGENDS: [
     8756,
     8775,
