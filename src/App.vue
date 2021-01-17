@@ -1051,7 +1051,7 @@ export default {
         .filter(id => idSet.has(id))
         .map(id => this.lazyTransformedFishDict[id])
         .filter(it => !this.getFishPinned(it.id))
-        .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
+      // .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
 
       if (this.filters.sorterType === 'RATE') {
         const firstWaitingFishLongerThanTwoHoursIndex = countdownSortedFishList.findIndex(

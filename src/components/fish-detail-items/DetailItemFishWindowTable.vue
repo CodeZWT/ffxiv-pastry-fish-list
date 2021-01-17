@@ -34,9 +34,9 @@
             </tbody>
           </template>
         </v-simple-table>
-        <v-btn block @click="showMore" :loading="loadingShowMore" color="primary"
-          >加载更多...</v-btn
-        >
+        <v-btn block @click="showMore" :loading="loadingShowMore" color="primary">
+          {{ $t('loadingMore') }}
+        </v-btn>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>

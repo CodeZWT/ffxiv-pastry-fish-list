@@ -7,9 +7,6 @@ import EorzeaTime from '@/utils/Time'
 import tip1Data from '@/store/tip1.json'
 import tip2Data from '@/store/tip2.json'
 import flatten from 'flat'
-import DATA_CN from '@/store/translation'
-import FIX from '@/store/fix'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -157,14 +154,16 @@ export default {
   },
   isAllAvailableFish: isAllAvailableFish,
 
-  showFishInList(fish) {
-    return (
-      DATA_CN.BIG_FISH.includes(fish._id) ||
-      DATA_CN.NEW_PATCH_FISH.includes(fish._id) ||
-      (DevelopmentModeUtil.isLocal() &&
-        Object.keys(FIX.TEST_ITEMS).includes(fish._id + '')) ||
-      !isAllAvailableFish(fish)
-    )
+  showFishInList() {
+    // update to show all wiki fish in default list
+    return true
+    // return (
+    //   DATA_CN.BIG_FISH.includes(fish._id) ||
+    //   DATA_CN.NEW_PATCH_FISH.includes(fish._id) ||
+    //   (DevelopmentModeUtil.isLocal() &&
+    //     Object.keys(FIX.TEST_ITEMS).includes(fish._id + '')) ||
+    //   !isAllAvailableFish(fish)
+    // )
   },
 
   formatDateTime(millis, format = "[MM-dd '{dayDescription}'] HH:mm:ss") {

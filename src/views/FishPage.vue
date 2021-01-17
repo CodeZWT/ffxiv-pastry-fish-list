@@ -187,6 +187,7 @@
                               :fish-list-time-part="fishListTimePart"
                               :fish-list-weather-change-part="fishListWeatherChangePart"
                               show-fish-divider
+                              enable-load-more
                               @fish-selected="onFishSelected($event)"
                             >
                               <template v-slot:empty>

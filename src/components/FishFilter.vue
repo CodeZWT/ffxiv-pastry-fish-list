@@ -81,19 +81,19 @@
                       {{ $t(`filter.bigFish.${type}`) }}
                     </v-btn>
                   </v-btn-toggle>
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-icon v-bind="attrs" v-on="on" class="mx-1">
-                        mdi-help-circle-outline
-                      </v-icon>
-                    </template>
-                    <div>
-                      默认列表中不包括没有时间与天气限制的普通鱼。（当前版本的鱼除外，仍会显示）
-                    </div>
-                    <div>
-                      请直接搜索，或进入图鉴页面查看。也可以使用固定功能可以将鱼显示在固定列表中。
-                    </div>
-                  </v-tooltip>
+                  <!--                  <v-tooltip bottom>-->
+                  <!--                    <template v-slot:activator="{ on, attrs }">-->
+                  <!--                      <v-icon v-bind="attrs" v-on="on" class="mx-1">-->
+                  <!--                        mdi-help-circle-outline-->
+                  <!--                      </v-icon>-->
+                  <!--                    </template>-->
+                  <!--                    <div>-->
+                  <!--                      默认列表中不包括没有时间与天气限制的普通鱼。（当前版本的鱼除外，仍会显示）-->
+                  <!--                    </div>-->
+                  <!--                    <div>-->
+                  <!--                      请直接搜索，或进入图鉴页面查看。也可以使用固定功能可以将鱼显示在固定列表中。-->
+                  <!--                    </div>-->
+                  <!--                  </v-tooltip>-->
                 </v-col>
               </v-row>
             </v-card-text>
@@ -106,29 +106,29 @@
               </v-row>
             </v-card-text>
             <v-divider />
-            <v-card-text>
-              <v-row no-gutters>
-                <v-col>
-                  <div class="subtitle-2">{{ $t('filter.showFirstNFish.title') }}</div>
-                </v-col>
-              </v-row>
-              <v-row no-gutters>
-                <v-col>
-                  <v-btn-toggle
-                    v-model="fishNType"
-                    dense
-                    rounded
-                    active-class="primary"
-                    @change="onChange"
-                  >
-                    <v-btn small v-for="type in fishNFilterTypes" :key="type">
-                      {{ $t(`filter.showFirstNFish.${type}`) }}
-                    </v-btn>
-                  </v-btn-toggle>
-                </v-col>
-              </v-row>
-            </v-card-text>
-            <v-divider />
+            <!--            <v-card-text>-->
+            <!--              <v-row no-gutters>-->
+            <!--                <v-col>-->
+            <!--                  <div class="subtitle-2">{{ $t('filter.showFirstNFish.title') }}</div>-->
+            <!--                </v-col>-->
+            <!--              </v-row>-->
+            <!--              <v-row no-gutters>-->
+            <!--                <v-col>-->
+            <!--                  <v-btn-toggle-->
+            <!--                    v-model="fishNType"-->
+            <!--                    dense-->
+            <!--                    rounded-->
+            <!--                    active-class="primary"-->
+            <!--                    @change="onChange"-->
+            <!--                  >-->
+            <!--                    <v-btn small v-for="type in fishNFilterTypes" :key="type">-->
+            <!--                      {{ $t(`filter.showFirstNFish.${type}`) }}-->
+            <!--                    </v-btn>-->
+            <!--                  </v-btn-toggle>-->
+            <!--                </v-col>-->
+            <!--              </v-row>-->
+            <!--            </v-card-text>-->
+            <!--            <v-divider />-->
           </div>
         </template>
       </v-expand-transition>

@@ -22,6 +22,11 @@
         />
       </div>
     </v-col>
+    <v-col cols="12" v-if="enableLoadMore && flattenFishList.length > 0">
+      <v-btn block color="secondary" tile @click="loadMore">
+        {{ $t('loadingMore') }}
+      </v-btn>
+    </v-col>
     <v-col cols="12" v-if="clearAllButton && flattenFishList.length > 0">
       <v-dialog v-model="showClearConfirmDialog" max-width="330">
         <template v-slot:activator="{ on, attrs }">
@@ -94,14 +99,22 @@ export default {
       type: Boolean,
       default: false,
     },
+    enableLoadMore: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     openPanelIndex: undefined,
     showClearConfirmDialog: false,
+    showN: 30,
   }),
   computed: {
+    fishListOfShowLimit() {
+      return this.enableLoadMore ? this.fishList.slice(0, this.showN) : this.fishList
+    },
     flattenFishList() {
-      return this.fishList.flatMap(fish => {
+      return this.fishListOfShowLimit.flatMap(fish => {
         return [fish, ...(this.hidePredators ? [] : fish.predators)]
       })
     },
@@ -127,47 +140,16 @@ export default {
         }
       })
     },
-    // firstFishWaitingIndex() {
-    //   return this.flattenFishList.findIndex(
-    //     fish => fish.isPredator !== true && this.fishListTimePart[fish._id].countDown?.type === DataUtil.WAITING
-    //   )
-    // },
-    // listItemBorderColors() {
-    //   return this.flattenFishList.map((fish, index) => {
-    //     if (index === this.firstFishWaitingIndex) {
-    //       return ['v-list-item', 'v-list-item--link', 'border-fishing-divider']
-    //     } else if (fish.isPredator !== true) {
-    //       return ['v-list-item', 'v-list-item--link', 'border-normal']
-    //     } else {
-    //       return ['v-list-item', 'v-list-item--link', 'border-none']
-    //     }
-    //   })
-    // },
-    // getPredators() {
-    //   return value =>
-    //     DataUtil.getPredators(
-    //       value,
-    //       this.allFish,
-    //       this.fishListTimePart,
-    //       this.fishListWeatherChangePart,
-    //       this.getFishCompleted(value._id)
-    //     )
-    // },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
-    },
-    itemHeight() {
-      return this.isMobile ? 126 : 56
-    },
-    scrollerHeight() {
-      return (
-        this.itemHeight * (this.filters.fishN === -1 ? 20 : this.flattenFishList.length)
-      )
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
   },
   methods: {
+    loadMore() {
+      this.showN += 10
+    },
     toPos(index) {
       return index === 0
         ? 'first'
