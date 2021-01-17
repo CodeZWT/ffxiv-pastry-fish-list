@@ -1326,8 +1326,8 @@ export default {
 
     this.$vuetify.theme.dark = this.dark
     if (
-      this.toComparableVersion(this.version) >
-      this.toComparableVersion(this.websiteVersion)
+      DataUtil.toComparableVersion(this.version) >
+      DataUtil.toComparableVersion(this.websiteVersion)
     ) {
       this.showPatchNoteDialog = true
     }
@@ -1864,12 +1864,6 @@ export default {
     },
     getFishWindow(fish, now) {
       return DataUtil.getFishWindow(fish, now, this.allFish, this.fishingSpots)
-    },
-    toComparableVersion(version) {
-      return version
-        .split('.')
-        .map(it => it.padStart('0', 5))
-        .join('')
     },
     goTo(href) {
       window.open(href)

@@ -63,6 +63,13 @@ function toItemId(fishLocationId) {
   }
 }
 
+function toComparableVersion(version) {
+  return version
+    .split('.')
+    .map(it => it.padStart('0', 5))
+    .join('')
+}
+
 export default {
   iconIdToUrl(iconId) {
     if (iconId == null) return ''
@@ -237,6 +244,17 @@ export default {
       // force removing duplication here to fix old data
       return _.uniq(srcValue).filter(it => it != null)
     }
+  },
+
+  toComparableVersion: toComparableVersion,
+
+  migrateOldVersionUserData(userData) {
+    if (toComparableVersion(userData.websiteVersion) < toComparableVersion('0.5.3')) {
+      if (userData.filters.bigFishType === 'ALL_AVAILABLE_BIG_FISH') {
+        userData.filters.bigFishType = 'BIG_FISH'
+      }
+    }
+    return userData
   },
 
   toPositionText(fishingSpot) {

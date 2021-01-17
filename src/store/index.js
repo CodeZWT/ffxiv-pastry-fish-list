@@ -43,9 +43,11 @@ export default new Vuex.Store({
     sounds: {},
     showFishPageRightPane: false,
     loading: false,
-    userData: DataUtil.mergeUserData(
-      _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
-      LocalStorageUtil.loadAndBackupUserData()
+    userData: DataUtil.migrateOldVersionUserData(
+      DataUtil.mergeUserData(
+        _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
+        LocalStorageUtil.loadAndBackupUserData()
+      )
     ),
     baitFilterEnabled: false,
     baitFilterIds: [],
