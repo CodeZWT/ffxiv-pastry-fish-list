@@ -147,32 +147,32 @@
                   </template>
                   <v-list>
                     <v-list-item-group color="primary" :value="themeModeIndex">
-                      <v-list-item
+                      <v-tooltip
                         v-for="(mode, index) in THEME_SETTING_MODES"
                         :key="index"
-                        @click="selectThemeMode(index)"
+                        bottom
+                        :disabled="mode !== 'AUTO'"
                       >
-                        <v-list-item-icon>
-                          <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                          <v-list-item-title>
-                            <div class="d-flex align-center">
-                              <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
-                              <v-tooltip v-if="mode === 'AUTO'" bottom>
-                                <template v-slot:activator="{ on, attrs }">
-                                  <div v-bind="attrs" v-on="on">
-                                    <v-icon class="ml-1">mdi-help-circle</v-icon>
+                        <template v-slot:activator="{ on, attrs }">
+                          <div v-bind="attrs" v-on="on">
+                            <v-list-item @click="selectThemeMode(index)">
+                              <v-list-item-icon>
+                                <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
+                              </v-list-item-icon>
+                              <v-list-item-content>
+                                <v-list-item-title>
+                                  <div class="d-flex align-center">
+                                    <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
                                   </div>
-                                </template>
-                                <div>
-                                  WINDOWS10: 设置 -> 颜色 -> 选择默认应用模式 -> 暗/亮
-                                </div>
-                              </v-tooltip>
-                            </div>
-                          </v-list-item-title>
-                        </v-list-item-content>
-                      </v-list-item>
+                                </v-list-item-title>
+                              </v-list-item-content>
+                            </v-list-item>
+                          </div>
+                        </template>
+                        <div>
+                          WINDOWS10: 设置 -> 颜色 -> 选择默认应用模式 -> 暗/亮
+                        </div>
+                      </v-tooltip>
                     </v-list-item-group>
                   </v-list>
                 </v-menu>
@@ -1378,7 +1378,6 @@ export default {
         ? 'DARK'
         : 'LIGHT'
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      console.log('system them', e.matches)
       this.systemThemeMode = e.matches ? 'DARK' : 'LIGHT'
     })
 
