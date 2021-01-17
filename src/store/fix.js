@@ -1200,6 +1200,17 @@ export default {
       bestCatchPath: [20615],
       patch: 4,
     },
+    '27494': {
+      fishEyes: 240,
+    },
+    '12784': {
+      bestCatchPath: [12708, 12753],
+      bestCatchPathExtra: [12708, 12805],
+    },
+    '28065': {
+      startHour: 18,
+      endHour: 22,
+    },
   },
   OCEAN_FISHING_FISH: {
     '28937': {
