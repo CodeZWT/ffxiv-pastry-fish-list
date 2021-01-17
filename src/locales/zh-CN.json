@@ -15,6 +15,13 @@
     "about": "关于",
     "collapseHint": "点击切换网页大小(ACT用)"
   },
+  "toolbar": {
+    "theme": {
+      "DARK": "深色",
+      "LIGHT": "浅深色",
+      "AUTO": "自动"
+    }
+  },
   "countDown": {
     "waiting": "{interval}后开始",
     "fishing": "{interval}后结束",

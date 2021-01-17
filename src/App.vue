@@ -137,10 +137,48 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <div v-bind="attrs" v-on="on">
-                <v-switch v-model="dark" inset class="theme-switch" />
+                <v-menu offset-y>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon v-bind="attrs" v-on="on">
+                      <v-icon>
+                        mdi-theme-light-dark
+                      </v-icon>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item-group color="primary" :value="themeModeIndex">
+                      <v-list-item
+                        v-for="(mode, index) in THEME_SETTING_MODES"
+                        :key="index"
+                        @click="selectThemeMode(index)"
+                      >
+                        <v-list-item-icon>
+                          <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-content>
+                          <v-list-item-title>
+                            <div class="d-flex align-center">
+                              <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
+                              <v-tooltip v-if="mode === 'AUTO'" bottom>
+                                <template v-slot:activator="{ on, attrs }">
+                                  <div v-bind="attrs" v-on="on">
+                                    <v-icon class="ml-1">mdi-help-circle</v-icon>
+                                  </div>
+                                </template>
+                                <div>
+                                  WINDOWS10: 设置 -> 颜色 -> 选择默认应用模式 -> 暗/亮
+                                </div>
+                              </v-tooltip>
+                            </div>
+                          </v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-list-item-group>
+                  </v-list>
+                </v-menu>
               </div>
             </template>
-            <div>点击切换浅色/深色模式</div>
+            <div>设置颜色模式</div>
           </v-tooltip>
         </div>
 
@@ -948,6 +986,9 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    THEME_MODE_ICONS: ['mdi-weather-night', 'mdi-weather-sunny', 'mdi-brightness-auto'],
+    systemThemeMode: 'DARK',
+    THEME_SETTING_MODES: DataUtil.THEME_SETTING_MODES,
     achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
     showJumpingOverlay: false,
     now: Date.now(),
@@ -1212,14 +1253,14 @@ export default {
         this.setShowImportExportDialog(show)
       },
     },
-    dark: {
-      get() {
-        return this.darkMode
-      },
-      set(dark) {
-        this.setDarkMode(dark)
-      },
-    },
+    // themeModeComputed: {
+    //   get() {
+    //     return this.themeMode
+    //   },
+    //   set(dark) {
+    //     this.setThemeMode(dark)
+    //   },
+    // },
     showHatCover: {
       get() {
         return this.startLight
@@ -1238,6 +1279,16 @@ export default {
         this.now >= FIX.STARLIGHT_CELEBRATION.startTime &&
         this.now <= FIX.STARLIGHT_CELEBRATION.endTime
       )
+    },
+    dark() {
+      if (this.themeMode === 'AUTO') {
+        return this.systemThemeMode === 'DARK'
+      } else {
+        return this.themeMode === 'DARK'
+      }
+    },
+    themeModeIndex() {
+      return DataUtil.THEME_SETTING_MODES.indexOf(this.themeMode)
     },
     ...mapState([
       'loading',
@@ -1278,7 +1329,7 @@ export default {
       'getItemIconUrl',
       'isSystemNotificationEnabled',
       'getFishingSpots',
-      'darkMode',
+      'themeMode',
       'startLight',
       'getAchievementName',
       'getAchievementIconClass',
@@ -1293,8 +1344,11 @@ export default {
       },
       immediate: true,
     },
-    dark(dark) {
-      this.$vuetify.theme.dark = dark
+    dark: {
+      handler(dark) {
+        this.$vuetify.theme.dark = dark
+      },
+      immediate: true,
     },
     fishListTimePart: {
       handler: function(fishListTimePart) {
@@ -1319,6 +1373,15 @@ export default {
     this.startLoading()
     this.drawer = !this.isMobile
 
+    this.systemThemeMode =
+      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'DARK'
+        : 'LIGHT'
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      console.log('system them', e.matches)
+      this.systemThemeMode = e.matches ? 'DARK' : 'LIGHT'
+    })
+
     hotkeys('/', event => {
       if (!this.showSearchDialog) {
         this.setShowSearchDialog(true)
@@ -1330,7 +1393,6 @@ export default {
     // setTimeout(async () => {
     this.initialUserData()
 
-    this.$vuetify.theme.dark = this.dark
     if (
       DataUtil.toComparableVersion(this.version) >
       DataUtil.toComparableVersion(this.websiteVersion)
@@ -1376,6 +1438,9 @@ export default {
     // }, 200)
   },
   methods: {
+    selectThemeMode(index) {
+      this.setThemeMode(DataUtil.THEME_SETTING_MODES[index])
+    },
     checkFishNeedSplit(fishList) {
       const spot2FishList = _.mapValues(
         _.keyBy(
@@ -1927,7 +1992,7 @@ export default {
       'setActiveTab',
       'showSnackbar',
       'setSounds',
-      'setDarkMode',
+      'setThemeMode',
       'startLoading',
       'finishLoading',
       'setStartLight',

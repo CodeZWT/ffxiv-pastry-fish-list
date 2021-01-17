@@ -47,6 +47,8 @@ const BIG_FISH_FILTER_TYPES = ['LIVING_LEGENDS', 'OLD_ONES', 'NORMAL']
 const FISH_SORTER_TYPES = ['COUNTDOWN', 'RATE']
 const FISH_CONSTRAINT_FILTER_TYPES = ['RESTRICTED', 'NOT_RESTRICTED']
 
+const THEME_SETTING_MODES = ['DARK', 'LIGHT', 'AUTO']
+
 function hasChineseCharacter(text) {
   return text.match('[\u4e00-\u9fff]+')
 }
@@ -734,7 +736,7 @@ export default {
       ],
     },
     theme: {
-      dark: true,
+      mode: THEME_SETTING_MODES[0],
     },
     event: {
       startLight: true,
@@ -743,6 +745,8 @@ export default {
       showWarningDialog: true,
     },
   },
+
+  THEME_SETTING_MODES: THEME_SETTING_MODES,
 
   DETAIL_ITEM_DISPLAY_CONSTRAINTS: {
     DetailItemMap: 'hasFishingSpot',

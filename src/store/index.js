@@ -228,8 +228,8 @@ export default new Vuex.Store({
     isSystemNotificationEnabled: state => {
       return state.userData.notification.isSystemNotificationEnabled
     },
-    darkMode: state => {
-      return state.userData.theme.dark
+    themeMode: state => {
+      return state.userData.theme.mode
     },
     startLight: state => {
       return state.userData.event.startLight
@@ -377,12 +377,12 @@ export default new Vuex.Store({
     setShowFishPageRightPane(state, show) {
       state.showFishPageRightPane = show
     },
-    setDarkMode(state, dark) {
+    setThemeMode(state, mode) {
       state.userData = {
         ...state.userData,
         theme: {
           ...state.userData.theme,
-          dark: dark,
+          mode: mode,
         },
       }
       LocalStorageUtil.storeUserData(state.userData)
