@@ -429,7 +429,7 @@
     "name": "太阳神杖",
     "data": "撒饵(17s；12s；13s)<br>平钓(33s)<br><span class=\"orangered\">撒饵(14s；12.8s；18s)<br>平钓(35.2s；23.4s)</span>",
     "weatherTime": "17:30-20；碧空",
-    "trick": "密虫-(鱼王杆，强力)-太阳神杖 拍纳尔扎尔鳗鱼(中杆)",
+    "trick": "蜜虫-(鱼王杆，强力)-太阳神杖 拍纳尔扎尔鳗鱼(中杆)",
     "comment": "入门鱼王。"
   },
   "7919": {
@@ -461,7 +461,7 @@
     "name": "刺鱼教父",
     "data": "平钓(25s；26s；26s；26s)<br><span class=\"orangered\">平钓(27.8s；25.8s；29s；22s)</span>",
     "weatherTime": "全天；打雷，雷雨",
-    "trick": "密虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-刺鱼教父",
+    "trick": "蜜虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-刺鱼教父",
     "comment": "钓烟波的时候开钓场的一杆出的，补数据的时候脱杆脱的自闭。<span style=\"font-weight:bold\">银鱼</span>大概率是15s内的轻杆。(数据包括脱钩的)"
   },
   "7923": {
@@ -485,7 +485,7 @@
     "name": "浓盐鲀",
     "data": "撒饵(14s；15s；15s)<br>平钓(24s；31s)<br><span class=\"orangered\">撒饵(17.8s；15.1s)<br>平钓(25s；35.2s)</span>",
     "weatherTime": "17-20；所有天气",
-    "trick": "密虫-(轻杆，精准)-浓盐鲀 拍斑点鲀(轻杆)",
+    "trick": "蜜虫-(轻杆，精准)-浓盐鲀 拍斑点鲀(轻杆)",
     "comment": "所有鱼王中唯二的非常独特的鱼王，因为居然不是鱼王杆(但提钩动作是鱼王杆的提钩动作)。体感舔钩率很低，杂鱼非常多，平钓是22s以上轻杆，撒饵12s以上轻杆。(该钓场的杂鱼大多数都是很短的轻杆，请多准备鱼饵)"
   },
   "7926": {
@@ -557,7 +557,7 @@
     "name": "绿小丑",
     "data": "撒饵(14s；16s；14s)<br>平钓(27s；30s；30s)<br><span class=\"orangered\">撒饵(15.4s)<br>平钓(31.4s；26.8s)</span>",
     "weatherTime": "18-21；所有天气",
-    "trick": "密虫-(鱼王杆，强力提钩)-绿小丑 拍小丑鳅(轻杆)",
+    "trick": "蜜虫-(鱼王杆，强力提钩)-绿小丑 拍小丑鳅(轻杆)",
     "comment": "咬钩率可观，入门鱼王。"
   },
   "7935": {
@@ -597,7 +597,7 @@
     "name": "丽舞蟹",
     "data": "撒饵(14s；13s；13s；13s)<br>平钓(30s；27s)<br><span class=\"orangered\">撒饵(13.4s)<br>平钓(30s；24s；24.8s)</span>",
     "weatherTime": "全天；薄雾",
-    "trick": "密虫-(鱼王杆，强力)-丽舞蟹 拍盘丽鱼(中杆)",
+    "trick": "蜜虫-(鱼王杆，强力)-丽舞蟹 拍盘丽鱼(中杆)",
     "comment": "拍<span style=\"font-weight:bold\">巨鲈</span>(中杆)也是可行的选择，体感上钩率中等。"
   },
   "7940": {
@@ -654,9 +654,9 @@
     "name": "一家之母",
     "data": "平钓(24s；21s；20s)<br><span class=\"orangered\">平钓(22s；29.3s；20.4s；19.7s)</span>",
     "weatherTime": "常驻",
-    "trick": "密虫-(轻杆，精准)-阿巴拉提亚公鱼-(鱼王杆，精准)-一家之母",
+    "trick": "蜜虫-(轻杆，精准)-阿巴拉提亚公鱼-(鱼王杆，精准)-一家之母",
     "trickWithStar": true,
-    "comment": "<span style=\"font-weight:bold\">残暴水蛭</span>可以100%只提<span style=\"font-weight:bold\">阿巴拉提亚公鱼</span>，<span style=\"font-weight:bold\">密虫</span>有<span style=\"font-weight:bold\">绿灯球藻</span>为干扰。推荐使用<span style=\"font-weight:bold\">残暴水蛭</span>作为该鱼王的鱼饵。"
+    "comment": "<span style=\"font-weight:bold\">残暴水蛭</span>可以100%只提<span style=\"font-weight:bold\">阿巴拉提亚公鱼</span>，<span style=\"font-weight:bold\">蜜虫</span>有<span style=\"font-weight:bold\">绿灯球藻</span>为干扰。推荐使用<span style=\"font-weight:bold\">残暴水蛭</span>作为该鱼王的鱼饵。"
   },
   "7947": {
     "id": 7947,
@@ -703,7 +703,7 @@
     "name": "皇金鱼",
     "data": "平钓(35s；33s；29s；35s)<br><span class=\"orangered\">平钓(36.1s；29.1s；24.3s)</span>",
     "weatherTime": "常驻",
-    "trick": "(常驻)密虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(中杆，强力)-丛林鲶鱼(钓起3条触发鱼识)<br>(鱼识)密虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-皇金鱼",
+    "trick": "(常驻)蜜虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(中杆，强力)-丛林鲶鱼(钓起3条触发鱼识)<br>(鱼识)蜜虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-皇金鱼",
     "comment": "看起来很复杂的鱼王，不过由于常驻加上<span style=\"font-weight:bold\">银鱼</span>、<span style=\"font-weight:bold\">金鱼</span>起钩特性，其实很简单。"
   },
   "8753": {
@@ -783,7 +783,7 @@
     "name": "加诺",
     "data": "平钓(26s)<br><span class=\"orangered\">平钓(无数据)</span>",
     "weatherTime": "8-18；妖雾",
-    "trick": "密虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(鱼王杆，强力)-加诺",
+    "trick": "蜜虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(鱼王杆，强力)-加诺",
     "comment": "钓完别走，继续钓<span style=\"font-weight:bold\">杀手库诺</span>。鱼王杆有<span style=\"font-weight:bold\">庞鱼</span>干扰，看脸的时候到了！"
   },
   "8763": {
@@ -791,7 +791,7 @@
     "name": "杀手库诺",
     "data": "平钓(27s)<br><span class=\"orangered\">平钓(26.2s；26.4s)</span>",
     "weatherTime": "常驻",
-    "trick": "(8-18；妖雾)密虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(鱼王杆，强力)-加诺(钓起1只触发鱼识)<br>(鱼识)密虫-(轻杆，精准)-银鱼-(中杆，强力)-暗斗鱼-(鱼王杆，强力)-杀手库诺",
+    "trick": "(8-18；妖雾)蜜虫-(轻杆，精准)-银鱼-(轻杆，精准)-金鱼-(鱼王杆，强力)-加诺(钓起1只触发鱼识)<br>(鱼识)蜜虫-(轻杆，精准)-银鱼-(中杆，强力)-暗斗鱼-(鱼王杆，强力)-杀手库诺",
     "comment": "<span style=\"font-weight:bold\">金鱼</span>同样可以继续以小钓大起<span style=\"font-weight:bold\">暗斗鱼</span>，暗斗鱼依然可以套娃起<span style=\"font-weight:bold\">暗斗鱼</span>。鱼识很长，可以慢慢钓。"
   },
   "8764": {
@@ -807,7 +807,7 @@
     "name": "恩登德奇",
     "data": "平钓(27s；19s；33s；29s)<br><span class=\"orangered\">平钓(18.1s；13.9s；32.2s；28s)</span>",
     "weatherTime": "18-5；薄雾",
-    "trick": "密虫-(轻杆，精准)-银鱼-(中杆，强力)-暗斗鱼-(鱼王杆，强力)-恩登德奇",
+    "trick": "蜜虫-(轻杆，精准)-银鱼-(中杆，强力)-暗斗鱼-(鱼王杆，强力)-恩登德奇",
     "comment": "经典套娃组合，<span style=\"font-weight:bold\">暗斗鱼</span>中杆可以钓起<span style=\"font-weight:bold\">暗斗鱼</span>，所以就会出现<span style=\"font-weight:bold\">暗斗鱼</span>hq以小钓大<span style=\"font-weight:bold\">暗斗鱼</span>hq以小钓大<span style=\"font-weight:bold\">暗斗鱼</span>hq以小钓大<span style=\"font-weight:bold\">暗斗鱼</span>nq(emmmmm)。此外，<span style=\"font-weight:bold\">银鱼</span>也可以直接鱼王杆强行提前结束套娃收获鱼王。希望耐心2没事。"
   },
   "8766": {
@@ -815,7 +815,7 @@
     "name": "吸血鞭",
     "data": "平钓(29s；31s；29s)<br><span class=\"orangered\">平钓(25.3s；26.4s；34.4s)</span>",
     "weatherTime": "全天；小雨转薄雾，阴云，晴朗或碧空",
-    "trick": "密虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-吸血鞭",
+    "trick": "蜜虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-吸血鞭",
     "comment": "舔钩率很低，请做好心理准备。"
   },
   "8767": {
@@ -823,7 +823,7 @@
     "name": "乌兹刀背鱼·天极",
     "data": "平钓(21s；18s；18s；17s)<br><span class=\"orangered\">平钓(17.6s；16.6s；20s)</span>",
     "weatherTime": "0-3:20；晴朗或碧空转薄雾",
-    "trick": "密虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-乌兹刀背鱼·天极",
+    "trick": "蜜虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-乌兹刀背鱼·天极",
     "comment": "<span style=\"text-decoration:line-through\" class=\"gray\"> 从前有一种绳叫做永远滴绳，众所周知，从凯西魔花身上掉下来的耳坠叫做凯西耳坠，那么从<span style=\"font-weight:bold\">乌兹刀背鱼·天极</span>鱼王分解而来的永远滴绳就叫做 乌兹永远滴绳。 </span>除了窗口期较短以外，本身的舔钩率非常可观。"
   },
   "8768": {
@@ -839,9 +839,9 @@
     "name": "暗星",
     "data": "平钓(21s；24s；19s；21s)<br><span class=\"orangered\">平钓(25.3s；18s；26.8s；23s；17.8s；21.5s)</span>",
     "weatherTime": "19-4；暴雪，小雪",
-    "trick": "(常驻)陆行鸟拟饵-(轻杆，精准)-绿灯球藻(钓起5只触发鱼识)<br>(鱼识)密虫-(轻杆，精准)-阿巴拉提亚公鱼-(鱼王杆，强力)-暗星",
+    "trick": "(常驻)陆行鸟拟饵-(轻杆，精准)-绿灯球藻(钓起5只触发鱼识)<br>(鱼识)蜜虫-(轻杆，精准)-阿巴拉提亚公鱼-(鱼王杆，强力)-暗星",
     "trickWithStar": true,
-    "comment": "<span style=\"font-weight:bold\">绿灯球藻</span>可以双提起4只；<span style=\"font-weight:bold\">残暴水蛭</span>由于只起<span style=\"font-weight:bold\">阿巴拉提亚公鱼</span>，是<span style=\"font-weight:bold\">密虫</span>的上位替代，推荐触发鱼识后用<span style=\"font-weight:bold\">残暴水蛭</span>钓公鱼。"
+    "comment": "<span style=\"font-weight:bold\">绿灯球藻</span>可以双提起4只；<span style=\"font-weight:bold\">残暴水蛭</span>由于只起<span style=\"font-weight:bold\">阿巴拉提亚公鱼</span>，是<span style=\"font-weight:bold\">蜜虫</span>的上位替代，推荐触发鱼识后用<span style=\"font-weight:bold\">残暴水蛭</span>钓公鱼。"
   },
   "8770": {
     "id": 8770,
@@ -896,7 +896,7 @@
     "name": "血红龙",
     "data": "平钓(48s；43s；43s；47s)<br><span class=\"orangered\">平钓(34s；47.9s；43.6s；42s；47s)</span>",
     "weatherTime": "4:30-11:30；晴朗或碧空转薄雾",
-    "trick": "密虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-血红龙",
+    "trick": "蜜虫-(轻杆，精准)-银鱼-(鱼王杆，强力)-血红龙",
     "comment": "找不到钓场位置的小伙伴可以去(32.3，10.1)处。(数据包括脱钩的)"
   },
   "15626": {
@@ -1630,7 +1630,7 @@
   "24995": {
     "id": 24995,
     "name": "众神之爱",
-    "data": "撒饵(6s)<br>平钓(14s)<br><span class=\"orange\">撒饵(5.7s；5.4s；5.1s)<br>平钓(11s)</span>",
+    "data": "撒饵(6s)<br>平钓(14s)<br><span class=\"orangered\">撒饵(5.7s；5.4s；5.1s)<br>平钓(11s)</span>",
     "weatherTime": "5.30-6.30；小雨转碧空",
     "trick": "嗡嗡石蝇-(鱼王杆，精准)-众神之爱 拍月神恩惠(中杆)",
     "comment": "窗口期非常少同时非常短，请保证有机会就去。5.0版本后难度大幅度下降，但困扰钓渔夫的依然有极高的脱钩率。提前到场拍掉<span style=\"font-weight:bold\">月神恩惠</span>，并保持撒饵。有亲友从头脱到尾然后下个CD11天后当场直接自闭。请注意该鱼王时间，请在ET5：31后抛竿。(数据包括脱钩的)"
