@@ -2,12 +2,18 @@
   <div class="d-flex flex-row align-center">
     <div :class="`d-flex ${direction}`">
       <div class="d-flex align-center flex-wrap">
-        <div
-          class="text-subtitle-1 text-truncate"
-          :title="firstLocation.fishingSpotName + '#' + firstLocation.fishingSpotId"
-        >
-          {{ firstLocation.fishingSpotName }}
-        </div>
+        <v-hover v-slot="{ hover }" open-delay="200" close-deplay="500">
+          <div
+            class="d-flex align-center"
+            :title="firstLocation.fishingSpotName + '#' + firstLocation.fishingSpotId"
+            @click.stop="goToWikiPage(firstLocation.fishingSpotId, type)"
+          >
+            <span class="text-subtitle-1 text-truncate">
+              {{ firstLocation.fishingSpotName }}
+            </span>
+            <v-icon v-if="hover" small>mdi-arrow-right-circle-outline</v-icon>
+          </div>
+        </v-hover>
       </div>
       <div v-if="showZone" :class="`d-flex align-center ${small ? 'ml-1' : ''}`">
         <div class="text-subtitle-2 text-truncate">
@@ -51,6 +57,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      default: 'normal',
+    },
   },
   computed: {
     firstLocation() {
@@ -68,6 +78,9 @@ export default {
   },
   methods: {
     goToFishingSpotAngelPage: DataUtil.goToFishingSpotAngelPage,
+    goToWikiPage(spotId, type) {
+      this.$router.push({ name: 'WikiPage', query: { spotId, mode: type } })
+    },
   },
 }
 </script>

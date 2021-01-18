@@ -504,6 +504,10 @@ export default {
     },
   },
   created() {
+    console.debug('nav with query', this.$route.query)
+    this.mode = this.$route.query.mode ?? 'normal'
+    this.currentSpotId = +this.$route.query.spotId ?? -1
+    this.type = this.currentSpotId !== -1 ? 'spot' : undefined
     this.openedItems = this.normalOpenedItems
     this.spearOpenedItems = this.spearNormalOpenedItems
     this.detailWindowLeft = window.innerWidth * 0.7 - 100
