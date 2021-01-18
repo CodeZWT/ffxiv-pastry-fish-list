@@ -224,7 +224,7 @@
                             </span>
                             <span>
                               {{ $t('list.toBeNotified.empty.helpPrefix') }}
-                              <v-icon small class="mx-1">mdi-dots-vertical</v-icon>
+                              <v-icon small class="mx-1">mdi-cog</v-icon>
                               {{ $t('list.toBeNotified.empty.helpSuffix') }}
                             </span>
                           </div>
