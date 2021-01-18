@@ -332,6 +332,10 @@ export default new Vuex.Store({
       state.userData = { ...state.userData, websiteVersion }
       LocalStorageUtil.storeUserData(state.userData)
     },
+    setMigrationVersion(state, migrationVersion) {
+      state.userData = { ...state.userData, migrationVersion }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
     setRightPanePercentage(state, rightPanePercentage) {
       state.userData = { ...state.userData, rightPanePercentage }
       LocalStorageUtil.storeUserData(state.userData)

@@ -256,7 +256,7 @@ export default {
   toComparableVersion: toComparableVersion,
 
   migrateOldVersionUserData(userData) {
-    if (toComparableVersion(userData.websiteVersion) < toComparableVersion('0.5.3')) {
+    if (toComparableVersion(userData.migrationVersion) < toComparableVersion('0.5.3')) {
       switch (userData.filters.bigFishType) {
         case 'ALL':
           userData.filters.bigFishTypes = BIG_FISH_FILTER_TYPES
@@ -292,6 +292,7 @@ export default {
         userData.theme.mode = 'LIGHT'
       }
     }
+    userData.migrationVersion = '0.5.3'
     return userData
   },
 
@@ -627,6 +628,7 @@ export default {
   USER_DEFAULT_DATA: {
     // website version info
     websiteVersion: '0.1.0',
+    migrationVersion: '0.1.0',
     completed: [],
     pinned: [],
     toBeNotified: [],
