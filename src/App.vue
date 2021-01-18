@@ -54,49 +54,49 @@
         </v-tooltip>
       </click-helper>
       <v-toolbar-title
-        v-if="!isMobile"
-        style="min-width: 145px !important"
-        class="ml-1"
+        style="min-width: 85px !important"
+        class="ml-1 text-truncate"
         :title="$t('top.navBarTitle', { title, version })"
       >
-        {{ $t('top.navBarTitle', { title, version }) }}
+        <span>{{ title }}</span>
+        <v-badge :content="version" class="px-1" />
       </v-toolbar-title>
       <template v-if="!collapse">
         <v-spacer />
-        <v-tabs
-          v-if="isListPage && !isMobile"
-          :value="activeTabIndex"
-          @change="setActiveTab"
-          center-active
-          show-arrows
-          centered
-        >
-          <v-tab
-            v-for="(notification, index) in listFishCnt"
-            :key="index"
-            :class="{ 'primary--text': activeTabIndex === index }"
-          >
-            <v-badge
-              color="error"
-              :value="notification.cnt"
-              :content="notification.cnt"
-              style="z-index: 10"
-            >
-              <div class="d-flex">
-                <v-icon
-                  left
-                  small
-                  :color="activeTabIndex === index ? 'primary-text' : ''"
-                >
-                  {{ TABS[index].icon }}
-                </v-icon>
-                <div v-if="!isMobile" style="font-size: 16px">
-                  {{ $t(TABS[index].title) }}
-                </div>
-              </div>
-            </v-badge>
-          </v-tab>
-        </v-tabs>
+        <!--        <v-tabs-->
+        <!--          v-if="isListPage && !isMobile"-->
+        <!--          :value="activeTabIndex"-->
+        <!--          @change="setActiveTab"-->
+        <!--          center-active-->
+        <!--          show-arrows-->
+        <!--          centered-->
+        <!--        >-->
+        <!--          <v-tab-->
+        <!--            v-for="(notification, index) in listFishCnt"-->
+        <!--            :key="index"-->
+        <!--            :class="{ 'primary&#45;&#45;text': activeTabIndex === index }"-->
+        <!--          >-->
+        <!--            <v-badge-->
+        <!--              color="error"-->
+        <!--              :value="notification.cnt"-->
+        <!--              :content="notification.cnt"-->
+        <!--              style="z-index: 10"-->
+        <!--            >-->
+        <!--              <div class="d-flex">-->
+        <!--                <v-icon-->
+        <!--                  left-->
+        <!--                  small-->
+        <!--                  :color="activeTabIndex === index ? 'primary-text' : ''"-->
+        <!--                >-->
+        <!--                  {{ TABS[index].icon }}-->
+        <!--                </v-icon>-->
+        <!--                <div v-if="!isMobile" style="font-size: 16px">-->
+        <!--                  {{ $t(TABS[index].title) }}-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--            </v-badge>-->
+        <!--          </v-tab>-->
+        <!--        </v-tabs>-->
         <div v-if="inStartLight">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
@@ -133,59 +133,55 @@
           <span>按<kbd>/</kbd>键直接搜索</span>
         </v-tooltip>
 
-        <div>
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <div v-bind="attrs" v-on="on">
-                <v-menu offset-y>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn icon v-bind="attrs" v-on="on">
-                      <v-icon>
-                        mdi-theme-light-dark
-                      </v-icon>
-                    </v-btn>
-                  </template>
-                  <v-list>
-                    <v-list-item-group color="primary" :value="themeModeIndex">
-                      <v-tooltip
-                        v-for="(mode, index) in THEME_SETTING_MODES"
-                        :key="index"
-                        bottom
-                        :disabled="mode !== 'AUTO'"
-                      >
-                        <template v-slot:activator="{ on, attrs }">
-                          <div v-bind="attrs" v-on="on">
-                            <v-list-item @click="selectThemeMode(index)">
-                              <v-list-item-icon>
-                                <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
-                              </v-list-item-icon>
-                              <v-list-item-content>
-                                <v-list-item-title>
-                                  <div class="d-flex align-center">
-                                    <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
-                                  </div>
-                                </v-list-item-title>
-                              </v-list-item-content>
-                            </v-list-item>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on: menu, attrs }">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on: tooltip }">
+                <v-btn icon v-bind="attrs" v-on="{ ...tooltip, ...menu }">
+                  <v-icon>
+                    mdi-theme-light-dark
+                  </v-icon>
+                </v-btn>
+              </template>
+              <div>设置颜色模式</div>
+            </v-tooltip>
+          </template>
+          <v-list>
+            <v-list-item-group color="primary" :value="themeModeIndex">
+              <v-tooltip
+                v-for="(mode, index) in THEME_SETTING_MODES"
+                :key="index"
+                bottom
+                :disabled="mode !== 'AUTO'"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <div v-bind="attrs" v-on="on">
+                    <v-list-item @click="selectThemeMode(index)">
+                      <v-list-item-icon>
+                        <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
+                      </v-list-item-icon>
+                      <v-list-item-content>
+                        <v-list-item-title>
+                          <div class="d-flex align-center">
+                            <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
                           </div>
-                        </template>
-                        <div>
-                          WINDOWS10: 设置 -> 颜色 -> 选择默认应用模式 -> 暗/亮
-                        </div>
-                      </v-tooltip>
-                    </v-list-item-group>
-                  </v-list>
-                </v-menu>
-              </div>
-            </template>
-            <div>设置颜色模式</div>
-          </v-tooltip>
-        </div>
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </div>
+                </template>
+                <div>
+                  WINDOWS10: 设置 -> 颜色 -> 选择默认应用模式 -> 暗/亮
+                </div>
+              </v-tooltip>
+            </v-list-item-group>
+          </v-list>
+        </v-menu>
 
-        <div v-if="!isMobile" class="d-flex flex-column ml-1">
+        <v-sheet class="d-flex flex-column ml-1 transparent">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
-        </div>
+        </v-sheet>
       </template>
     </v-app-bar>
 
@@ -194,7 +190,7 @@
         v-if="!collapse"
         v-model="drawer"
         :mini-variant.sync="mini"
-        bottom
+        :bottom="isMobile"
         :absolute="!isMobile"
         :fixed="isMobile"
         color="system"
@@ -1337,6 +1333,9 @@ export default {
       handler(isMobile) {
         if (isMobile) {
           this.mini = false
+          this.drawer = false
+        } else {
+          this.drawer = true
         }
       },
       immediate: true,
@@ -1368,7 +1367,7 @@ export default {
   },
   created() {
     this.startLoading()
-    this.drawer = !this.isMobile
+    // this.drawer = !this.isMobile
 
     this.systemThemeMode =
       window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
