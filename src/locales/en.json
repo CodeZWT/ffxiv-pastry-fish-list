@@ -2,8 +2,11 @@
   "top": {
     "systemBarTitle": "鱼糕",
     "navBarTitle": "{title} Ver. {version}",
-    "testSuffix": "===测试版===",
+    "testSuffix": " 测试版",
     "fishList": "钓鱼时钟",
+    "fishWiki": "钓鱼笔记",
+    "oceanFishing": "海钓",
+    "diadem": "云冠群岛",
     "menu": "导入/导出",
     "setting": "设置",
     "uiConfig": "设置",
@@ -12,14 +15,22 @@
     "about": "关于",
     "collapseHint": "点击切换网页大小(ACT用)"
   },
+  "toolbar": {
+    "theme": {
+      "DARK": "深色",
+      "LIGHT": "浅深色",
+      "AUTO": "自动"
+    }
+  },
   "countDown": {
-    "waiting": "等待中：",
-    "fishing": "窗口期剩余：",
+    "waiting": "{interval}后开始",
+    "fishing": "{interval}后结束",
     "allAvailable": "全天可钓",
     "fishWindowBtn": "查看窗口期详情",
-    "intervalHint": "窗口期时长：{interval}",
-    "timePointHint": "时刻：{timePoint}",
-    "nextInterval": "距下次{nextInterval}"
+    "intervalHint": "持续 {interval}",
+    "timePointHint": "{timePoint}",
+    "nextInterval": "下次{nextInterval}后",
+    "rate": "窗口期{rate}%"
   },
   "none": "无",
   "time": {
@@ -37,11 +48,15 @@
       "UNCOMPLETED": "未完成"
     },
     "bigFish": {
-      "title": "鱼王/鱼皇",
-      "ALL": "所有",
-      "BIG_FISH": "鱼王/鱼皇",
-      "ALL_AVAILABLE_BIG_FISH": "常驻鱼王",
-      "NOT_BIG_FISH": "普通鱼"
+      "title": "鱼种类",
+      "LIVING_LEGENDS": "鱼皇",
+      "OLD_ONES": "鱼王",
+      "NORMAL": "普通鱼"
+    },
+    "fishConstraint": {
+      "title": "条件限制",
+      "RESTRICTED": "时间/天气限制",
+      "NOT_RESTRICTED": "常驻"
     },
     "showFirstNFish": {
       "title": "最多显示条数",
@@ -49,15 +64,21 @@
       "20": "20",
       "50": "50",
       "ALL": "所有"
+    },
+    "sorter": {
+      "title": "排序",
+      "COUNTDOWN": "窗口期",
+      "RATE": "稀有度"
     }
   },
   "search": {
     "btn": "搜索鱼",
     "dialog": {
       "title": "搜索鱼",
-      "placeholder": "输入鱼名称搜索",
+      "placeholder": "输入鱼或钓场搜索：七彩天主 或 qctz；七彩沟 或 qcg",
       "close": "关闭",
-      "hint": "在ACT模式下如果无法输入，请参照帮助中的步骤设置ACTWS。"
+      "hint": "在ACT模式下如果无法输入，请参照帮助中的步骤设置ACTWS。",
+      "spot": "{spots}，以及另{remaining}个钓场"
     }
   },
   "importExport": {
@@ -98,6 +119,11 @@
   },
   "setting": {
     "dialog": {
+      "showFilter": {
+        "title": "显示/隐藏列表筛选界面",
+        "show": "显示",
+        "hide": "隐藏"
+      },
       "opacity": {
         "title": "页面透明度",
         "slider": "透明度",
@@ -114,13 +140,13 @@
         "unit": "分钟",
         "systemNotification": {
           "title": "系统通知",
-          "enabled":"已启用",
+          "enabled": "已启用",
           "disabled": "未启用"
         },
         "message": {
           "notificationIsNotSelectedHint": "未获取通知权限，点击此处重新设置通知权限。",
           "notificationIsDeniedHint": "通知已被禁用，点击地址栏左侧图标重新授权。",
-          "requestNotificationPermissionNotSelected": "未授权通知败，点击地址栏左侧图标重新授权。",
+          "requestNotificationPermissionNotSelected": "未授权通知，点击地址栏左侧图标重新授权。",
           "requestNotificationPermissionDenied": "禁用了通知，点击地址栏左侧图标重新授权。",
           "requestNotificationPermissionSuccessfully": "获取权限成功。"
         }
@@ -131,12 +157,13 @@
         "enabled": "显示",
         "disabled": "不显示",
         "itemNames": {
-          "DetailItemMap":  "地图",
+          "DetailItemMap": "地图",
           "DetailItemCountdownBar": "倒计时条",
-          "DetailItemRequirements":  "天气时间要求",
+          "DetailItemRequirements": "天气时间要求",
           "DetailItemBuffAndBaits": "需要状态及鱼饵",
-          "DetailItemFishWindowTable":  "窗口期详情表",
-          "DetailItemPredators": "前置鱼列表"
+          "DetailItemFishWindowTable": "窗口期详情表",
+          "DetailItemPredators": "前置鱼列表",
+          "DetailItemTips": "攻略"
         }
       }
     },
@@ -193,7 +220,10 @@
       "linkHint": "跳转至饥饿的猫",
       "copyHint": "复制名称",
       "notificationHint": "点击添加闹钟",
-      "notificationHintOff": "点击取消闹钟"
+      "notificationHintOff": "点击取消闹钟",
+      "rateHint": "窗口期时间占比",
+      "noConstraint": "无",
+      "tipHint": "显示攻略"
     }
   },
   "footer": {
@@ -233,5 +263,53 @@
   "date": {
     "today": "今天",
     "tomorrow": "明天"
-  }
+  },
+  "tug": {
+    "light": "轻杆",
+    "medium": "中杆",
+    "heavy": "重杆"
+  },
+  "tugTable": {
+    "tugFish": "杆型 \\ 鱼"
+  },
+  "gigTable": {
+    "gigFish": "渔叉尖 \\ 鱼"
+  },
+  "gig": {
+    "small": "小型",
+    "normal": "中型",
+    "large": "大型",
+    "all": "任意"
+  },
+  "gigTip": {
+    "isPredator": "{requiredCnt}个触发鱼影",
+    "hasPredators":"只在鱼影中出现",
+    "fishShadow": {
+      "title": "鱼影",
+      "introduction": "",
+      "location": "前置鱼位置",
+      "predators": "前置鱼"
+    }
+  },
+  "pastryFishTip": {
+    "title": "鱼糕注：",
+    "content": "数据与鱼糕可能会有所出入，请自行判断，并尊重作者的工作，谢谢！"
+  },
+  "wiki": {
+    "searchTitle": "例：红龙/hl，红玉海/hyh",
+    "mode": {
+      "normal": "钓鱼",
+      "spear": "刺鱼"
+    }
+  },
+  "oceanFishing": {
+    "targetFilterPlaceholder": "例：石骨鱼 或 sgy",
+    "currentVoyage": {
+      "check-in": "登船剩余时间：",
+      "traveling": "出海航行中",
+      "none": "距下次航班："
+    }
+  },
+  "loadingMore": "加载更多",
+  "loadingMoreWithRemainingCnt": "加载更多（剩余{remainingCnt}条未显示）"
 }
