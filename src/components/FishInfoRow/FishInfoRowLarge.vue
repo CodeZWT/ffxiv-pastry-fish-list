@@ -14,7 +14,7 @@
         >
           <v-col :class="fishColClass">
             <div
-              class="d-flex fill-height align-center flex-row px-1"
+              class="d-flex fill-height align-center flex-row pr-1"
               style="min-height: 48px"
             >
               <!-- hide pin & complete button for predators in list view -->
@@ -123,7 +123,10 @@
               />
             </div>
             <!--  2nd: next count down / interval & fishing window rate -->
-            <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
+            <div
+              v-if="transformedFishTimePart.hasCountDown"
+              class="d-flex align-center flex-wrap"
+            >
               <div>
                 <v-tooltip
                   v-if="transformedFishTimePart.isFishing"
@@ -150,7 +153,7 @@
               </div>
               <v-btn
                 small
-                v-if="fish.rate < 1 && !showFishPageRightPane"
+                v-if="fish.rate < 1 && !showWindowBtnNextLine"
                 text
                 class="pl-2 pr-1"
                 @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
@@ -158,7 +161,7 @@
                 {{ fish.rateText }}
               </v-btn>
             </div>
-            <div v-if="fish.rate < 1 && showFishPageRightPane">
+            <div v-if="fish.rate < 1 && showWindowBtnNextLine">
               <v-btn
                 small
                 text
@@ -380,14 +383,14 @@ export default {
     fishColClass() {
       return this.hideSpotColumn
         ? 'col-3'
-        : this.showFishPageRightPane
+        : this.showWindowBtnNextLine
         ? 'col-3'
         : 'col-2'
     },
     countDownColClass() {
       return this.hideSpotColumn
         ? 'col-3'
-        : this.showFishPageRightPane
+        : this.showWindowBtnNextLine
         ? 'col-2'
         : 'col-3'
     },
@@ -402,6 +405,9 @@ export default {
     },
     fishingSpotName() {
       return this.fish.fishingSpots[0].fishingSpotName
+    },
+    showWindowBtnNextLine() {
+      return window.innerWidth < 1264 || this.showFishPageRightPane
     },
   },
 }
