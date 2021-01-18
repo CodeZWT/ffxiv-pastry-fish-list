@@ -2113,4 +2113,8 @@ body {
 .theme-switch .v-input__slot {
   margin-bottom: 0;
 }
+
+body {
+  overscroll-behavior: none;
+}
 </style>
