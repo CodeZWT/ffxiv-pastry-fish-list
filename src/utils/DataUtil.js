@@ -257,6 +257,11 @@ export default {
 
   migrateOldVersionUserData(userData) {
     if (toComparableVersion(userData.migrationVersion) < toComparableVersion('0.5.3')) {
+      console.debug(
+        'migrating from version',
+        userData.migrationVersion,
+        'to version 0.5.3'
+      )
       switch (userData.filters.bigFishType) {
         case 'ALL':
           userData.filters.bigFishTypes = BIG_FISH_FILTER_TYPES
