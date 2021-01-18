@@ -65,7 +65,7 @@
                 <div class="text-subtitle-1" :title="toItemTitle(fish)">
                   {{ fish.name }}
                 </div>
-                <div class="d-flex align-center">
+                <div class="d-flex align-center flex-wrap">
                   <v-badge
                     inline
                     bordered
