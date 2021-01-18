@@ -286,6 +286,11 @@ export default {
           userData.filters.completeTypes = ['UNCOMPLETED']
           break
       }
+      if (userData.theme.dark) {
+        userData.theme.mode = 'DARK'
+      } else {
+        userData.theme.mode = 'LIGHT'
+      }
     }
     return userData
   },
@@ -486,6 +491,7 @@ export default {
   validateImportData(data, sample) {
     const importKeys = Object.keys(flatten(data, { safe: true })).sort()
     const sampleKeys = Object.keys(flatten(sample, { safe: true })).sort()
+    console.log(importKeys, sampleKeys)
     return importKeys.every(it => sampleKeys.includes(it))
   },
 
@@ -736,6 +742,7 @@ export default {
       ],
     },
     theme: {
+      dark: true, // before 0.5.3
       mode: THEME_SETTING_MODES[0],
     },
     event: {
