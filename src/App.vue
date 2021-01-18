@@ -1012,6 +1012,7 @@ export default {
     lazySourceImportantFishList: [],
     lazyTransformedFishList: [],
     lazyTransformedFishDict: {},
+    lazyFishConstraintDict: {},
     // weatherChangeTrigger: 1,
     sortedFishIds: [],
     fishListTimePart: {},
@@ -1047,25 +1048,21 @@ export default {
       const idSet = new Set()
       this.lazyTransformedFishList
         .filter(fish => {
+          const fishCompleted = this.getFishCompleted(fish.id)
+          const isBigFish = this.bigFish.includes(fish.id)
+          const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fish.id)
+          const restricted = this.lazyFishConstraintDict[fish.id]
           return (
             this.filters.patches.includes(DataUtil.toFishFilterPatch(fish.patch)) &&
-            ((this.filters.completeTypes.includes('COMPLETED') &&
-              this.getFishCompleted(fish.id)) ||
-              (this.filters.completeTypes.includes('UNCOMPLETED') &&
-                !this.getFishCompleted(fish.id))) &&
-            ((this.filters.bigFishTypes.includes('LIVING_LEGENDS') &&
-              DATA_CN.LIVING_LEGENDS.includes(fish.id)) ||
+            ((this.filters.completeTypes.includes('COMPLETED') && fishCompleted) ||
+              (this.filters.completeTypes.includes('UNCOMPLETED') && !fishCompleted)) &&
+            ((this.filters.bigFishTypes.includes('LIVING_LEGENDS') && isLivingLegend) ||
               (this.filters.bigFishTypes.includes('OLD_ONES') &&
-                this.bigFish.includes(fish.id) &&
-                !DATA_CN.LIVING_LEGENDS.includes(fish.id)) ||
-              (this.filters.bigFishTypes === 'NOT_BIG_FISH' &&
-                !this.bigFish.includes(fish.id))) &&
-            ((this.filters.fishConstraintTypes.includes('RESTRICTED') &&
-              this.fishListTimePart[fish.id]?.countDown?.type !==
-                DataUtil.ALL_AVAILABLE) ||
-              (this.filters.fishConstraintTypes.includes('NOT_RESTRICTED') &&
-                this.fishListTimePart[fish.id]?.countDown?.type ===
-                  DataUtil.ALL_AVAILABLE))
+                isBigFish &&
+                !isLivingLegend) ||
+              (this.filters.bigFishTypes.includes('NORMAL') && !isBigFish)) &&
+            (this.filters.fishConstraintTypes.includes('RESTRICTED') === restricted ||
+              this.filters.fishConstraintTypes.includes('NOT_RESTRICTED') === !restricted)
           )
         })
         .forEach(it => idSet.add(it._id))
@@ -1409,6 +1406,11 @@ export default {
       DataUtil.showFishInList(it)
     )
     this.updateWeatherChangePart(this.now)
+
+    this.lazyFishConstraintDict = _.mapValues(
+      this.fishListWeatherChangePart,
+      it => it.fishWindows.length > 0
+    )
 
     this.lazyTransformedFishList = this.assembleFish(this.lazySourceFishList).concat(
       this.assembleOceanFishList()
