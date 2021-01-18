@@ -384,8 +384,10 @@ export default {
     },
     currentMapInfo() {
       const currentSpot = _.first(this.currentSpotList)
+      console.debug(currentSpot)
       return {
         ...currentSpot,
+        id: currentSpot._id,
         fishSpotPositionText: DataUtil.toPositionText(currentSpot),
         size_factor: currentSpot.size_factor,
         mapFileId: currentSpot.mapFileId,
