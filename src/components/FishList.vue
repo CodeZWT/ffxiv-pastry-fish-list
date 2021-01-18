@@ -110,7 +110,7 @@ export default {
   data: () => ({
     openPanelIndex: undefined,
     showClearConfirmDialog: false,
-    showN: 30,
+    showN: 50,
   }),
   computed: {
     remainingCnt() {
@@ -154,7 +154,7 @@ export default {
   },
   methods: {
     loadMore() {
-      this.showN += 10
+      this.showN += 20
     },
     toPos(index) {
       return index === 0
