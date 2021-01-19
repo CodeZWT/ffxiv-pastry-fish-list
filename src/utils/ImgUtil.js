@@ -786,6 +786,51 @@ const CDN_DICT = {
     id: '5fe71f383ffa7d37b3a98ab2',
     ext: 'png',
   },
+  '云冠洞穴.png': {
+    name: '云冠洞穴.png',
+    id: '6006e81f3ffa7d37b3fb7b12',
+    ext: 'png',
+  },
+  '云冠西北池.png': {
+    name: '云冠西北池.png',
+    id: '6006e81f3ffa7d37b3fb7b0f',
+    ext: 'png',
+  },
+  '云冠西南池.png': {
+    name: '云冠西南池.png',
+    id: '6006e81f3ffa7d37b3fb7b0b',
+    ext: 'png',
+  },
+  '息风云海（第二期渔场）.png': {
+    name: '息风云海（第二期渔场）.png',
+    id: '6006e8203ffa7d37b3fb7b28',
+    ext: 'png',
+  },
+  '摇风云海.png': {
+    name: '摇风云海.png',
+    id: '6006e81f3ffa7d37b3fb7b17',
+    ext: 'png',
+  },
+  '旋风云海.png': {
+    name: '旋风云海.png',
+    id: '6006e81f3ffa7d37b3fb7b20',
+    ext: 'png',
+  },
+  '无风云海.png': {
+    name: '无风云海.png',
+    id: '6006e81f3ffa7d37b3fb7b09',
+    ext: 'png',
+  },
+  '狂风云海.png': {
+    name: '狂风云海.png',
+    id: '6006e8203ffa7d37b3fb7b2e',
+    ext: 'png',
+  },
+  '狂风云海（第二期渔场）.png': {
+    name: '狂风云海（第二期渔场）.png',
+    id: '6006e8203ffa7d37b3fb7b2c',
+    ext: 'png',
+  },
 }
 
 export default {
