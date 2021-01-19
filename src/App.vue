@@ -1329,6 +1329,9 @@ export default {
     ]),
   },
   watch: {
+    filters() {
+      this.startLoading()
+    },
     isMobile: {
       handler(isMobile) {
         if (isMobile) {
