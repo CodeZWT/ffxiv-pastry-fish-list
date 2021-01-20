@@ -2078,7 +2078,7 @@ body {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #ffffff66 #00000061;
+  scrollbar-color: #ffffff66 rgba(0, 0, 0, 0.2);
 }
 
 /* Works on Chrome/Edge/Safari */
@@ -2088,13 +2088,13 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: #00000061;
+  background: #ffffff00;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: #ffffff66;
   border-radius: 10px;
-  border: 1px solid #ffffff1f;
+  border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 /* scroller setting end */
