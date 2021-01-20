@@ -53,6 +53,9 @@ export default new Vuex.Store({
     baitFilterIds: [],
   },
   getters: {
+    defaultLinkOf: state => mode => {
+      return state.userData.link.default[mode]
+    },
     getItemIconUrl: state => id => {
       const iconId = state.items[DataUtil.toItemId(id)]?.icon ?? 1100
       // const localImg = require(`../assert/${iconId}.png`)
@@ -239,6 +242,12 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setLinkDefault(state, { mode, id }) {
+      const cloneUserData = _.cloneDeep(state.userData)
+      cloneUserData.link.default[mode] = id
+      state.userData = cloneUserData
+      LocalStorageUtil.storeUserData(state.userData)
+    },
     setBaitFilterEnabled(state, enabled) {
       state.baitFilterEnabled = enabled
     },

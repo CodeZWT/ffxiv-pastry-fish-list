@@ -31,9 +31,24 @@
                   </v-badge>
 
                   <div class="ml-1">
-                    <div class="text-subtitle-1" :title="toItemTitle(fish)">
-                      {{ fish.name }}
-                    </div>
+                    <link-list
+                      :id="fish.id"
+                      :angler-id="fish.anglerFishId"
+                      :name="fish.name"
+                      mode="item"
+                    >
+                      <v-hover v-slot="{ hover }">
+                        <div
+                          :class="
+                            `text-subtitle-1 ${
+                              hover ? 'primary--text text-decoration-underline' : ''
+                            }`
+                          "
+                        >
+                          {{ fish.name }}
+                        </div>
+                      </v-hover>
+                    </link-list>
                   </div>
                 </div>
               </div>
@@ -254,10 +269,18 @@ import FishingSpotColumn from '@/components/FishingSpotColumn'
 import ItemIcon from '@/components/basic/ItemIcon'
 import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 import ClickHelper from '@/components/basic/ClickHelper'
+import LinkList from '@/components/basic/LinkList'
 
 export default {
   name: 'FishInfoRowLarge',
-  components: { ClickHelper, ItemIcon, FishingSpotColumn, FishBaitList, ToggleButton },
+  components: {
+    LinkList,
+    ClickHelper,
+    ItemIcon,
+    FishingSpotColumn,
+    FishBaitList,
+    ToggleButton,
+  },
   mixins: [fishInfoRowMixin],
   computed: {
     fishColClass() {

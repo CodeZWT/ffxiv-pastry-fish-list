@@ -2,18 +2,34 @@
   <div class="d-flex flex-row align-center">
     <div :class="`d-flex ${direction}`">
       <div class="d-flex align-center flex-wrap">
-        <v-hover v-slot="{ hover }" open-delay="200" close-deplay="500">
-          <div
-            class="d-flex align-center"
-            :title="firstLocation.fishingSpotName + '#' + firstLocation.fishingSpotId"
-            @click.stop="goToWikiPage(firstLocation.fishingSpotId, type)"
-          >
-            <span class="text-subtitle-1 text-truncate">
+        <link-list
+          :id="firstLocation.fishingSpotId"
+          :angler-id="firstLocation.fishingSpot.anglerLocationId"
+          :name="firstLocation.fishingSpotName"
+          mode="spot"
+          :spot-mode="type"
+        >
+          <v-hover v-slot="{ hover }">
+            <div
+              :class="
+                `text-subtitle-1 ${
+                  hover ? 'primary--text text-decoration-underline' : ''
+                }`
+              "
+            >
               {{ firstLocation.fishingSpotName }}
-            </span>
-            <v-icon v-if="hover" small>mdi-arrow-right-circle-outline</v-icon>
-          </div>
-        </v-hover>
+            </div>
+          </v-hover>
+        </link-list>
+        <!--          <div-->
+        <!--            class="d-flex align-center"-->
+        <!--            :title="firstLocation.fishingSpotName + '#' + firstLocation.fishingSpotId"-->
+        <!--            @click.stop="goToWikiPage(firstLocation.fishingSpotId, type)"-->
+        <!--          >-->
+        <!--            <span class="text-subtitle-1 text-truncate">-->
+        <!--              {{ firstLocation.fishingSpotName }}-->
+        <!--            </span>-->
+        <!--          </div>-->
       </div>
       <div v-if="showZone" :class="`d-flex align-center ${small ? 'ml-1' : ''}`">
         <div class="text-subtitle-2 text-truncate">
@@ -45,9 +61,11 @@
 
 <script>
 import DataUtil from '@/utils/DataUtil'
+import LinkList from '@/components/basic/LinkList'
 
 export default {
   name: 'FishingSpotColumn',
+  components: { LinkList },
   props: {
     fishingSpots: {
       type: Array,
@@ -78,9 +96,6 @@ export default {
   },
   methods: {
     goToFishingSpotAngelPage: DataUtil.goToFishingSpotAngelPage,
-    goToWikiPage(spotId, type) {
-      this.$router.push({ name: 'WikiPage', query: { spotId, mode: type } })
-    },
   },
 }
 </script>

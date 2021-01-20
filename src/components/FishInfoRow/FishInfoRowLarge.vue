@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%;" @click="onFishClicked()">
-    <v-hover v-slot="{ hover }" open-delay="200" close-deplay="500">
+    <v-hover v-slot="{ hover }" open-delay="300" close-deplay="300">
       <div style="position: relative">
         <v-divider
           v-if="inPredator && showDivider"
@@ -60,11 +60,25 @@
                 style="min-width: 40px"
                 :hat="fish.showHatCover"
               />
-
               <div :class="inPredator ? 'ml-4' : 'ml-1'">
-                <div class="text-subtitle-1" :title="toItemTitle(fish)">
-                  {{ fish.name }}
-                </div>
+                <link-list
+                  :id="fish.id"
+                  :angler-id="fish.anglerFishId"
+                  :name="fish.name"
+                  mode="item"
+                >
+                  <v-hover v-slot="{ hover }">
+                    <div
+                      :class="
+                        `text-subtitle-1 ${
+                          hover ? 'primary--text text-decoration-underline' : ''
+                        }`
+                      "
+                    >
+                      {{ fish.name }}
+                    </div>
+                  </v-hover>
+                </link-list>
                 <div class="d-flex align-center flex-wrap">
                   <v-badge
                     inline
@@ -176,6 +190,7 @@
             <fishing-spot-column
               v-if="!hideSpotColumn"
               :fishing-spots="fish.fishingSpots"
+              :type="fish.type"
               @click="onFishClicked(['DetailItemMap'])"
             />
           </v-col>
@@ -314,11 +329,11 @@
                     </v-btn>
                   </click-helper>
                   <!-- fish angel link -->
-                  <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">
-                    <v-btn text icon small :title="$t('list.item.linkHint')">
-                      <v-icon small>mdi-link-variant</v-icon>
-                    </v-btn>
-                  </click-helper>
+                  <!--                  <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">-->
+                  <!--                    <v-btn text icon small :title="$t('list.item.linkHint')">-->
+                  <!--                      <v-icon small>mdi-link-variant</v-icon>-->
+                  <!--                    </v-btn>-->
+                  <!--                  </click-helper>-->
                 </div>
               </v-col>
               <v-col :class="countDownColClass">
@@ -348,15 +363,15 @@
                       <v-icon small>mdi-content-copy</v-icon>
                     </v-btn>
                   </click-helper>
-                  <v-btn
-                    text
-                    small
-                    icon
-                    :title="$t('list.item.linkHint')"
-                    @click.stop="goToFishingSpotAngelPage"
-                  >
-                    <v-icon small>mdi-link-variant</v-icon>
-                  </v-btn>
+                  <!--                  <v-btn-->
+                  <!--                    text-->
+                  <!--                    small-->
+                  <!--                    icon-->
+                  <!--                    :title="$t('list.item.linkHint')"-->
+                  <!--                    @click.stop="goToFishingSpotAngelPage"-->
+                  <!--                  >-->
+                  <!--                    <v-icon small>mdi-link-variant</v-icon>-->
+                  <!--                  </v-btn>-->
                 </div>
               </v-col>
             </v-row>
@@ -374,10 +389,18 @@ import FishingSpotColumn from '@/components/FishingSpotColumn'
 import ItemIcon from '@/components/basic/ItemIcon'
 import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 import ClickHelper from '@/components/basic/ClickHelper'
+import LinkList from '@/components/basic/LinkList'
 
 export default {
   name: 'FishInfoRowLarge',
-  components: { ClickHelper, ItemIcon, FishingSpotColumn, FishBaitList, ToggleButton },
+  components: {
+    LinkList,
+    ClickHelper,
+    ItemIcon,
+    FishingSpotColumn,
+    FishBaitList,
+    ToggleButton,
+  },
   mixins: [fishInfoRowMixin],
   computed: {
     fishColClass() {

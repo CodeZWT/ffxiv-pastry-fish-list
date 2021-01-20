@@ -18,9 +18,24 @@
           <toggle-button :value="fish.completed" @input="setCompleted($event)" />
         </div>
         <item-icon :icon-class="fish.icon" />
-        <div class="text-subtitle-1 ml-1" :title="toItemTitle(fish)">
-          {{ fish.name }}
-        </div>
+        <link-list
+          :id="fish.id"
+          :angler-id="fish.anglerFishId"
+          :name="fish.name"
+          mode="item"
+        >
+          <v-hover v-slot="{ hover }">
+            <div
+              :class="
+                `text-subtitle-1 ${
+                  hover ? 'primary--text text-decoration-underline' : ''
+                }`
+              "
+            >
+              {{ fish.name }}
+            </div>
+          </v-hover>
+        </link-list>
         <v-badge
           inline
           :color="fish.isFuturePatch ? 'grey' : 'primary'"
@@ -32,7 +47,7 @@
             <v-icon>mdi-content-copy</v-icon>
           </v-btn>
         </click-helper>
-        <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">
+        <click-helper v-if="isMobile" @click.stop="goToFishAngelPage(fish.anglerFishId)">
           <v-btn text icon :title="$t('list.item.linkHint')">
             <v-icon>mdi-link-variant</v-icon>
           </v-btn>
@@ -72,10 +87,11 @@ import ToggleButton from '@/components/basic/ToggleButton'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
+import LinkList from '@/components/basic/LinkList'
 
 export default {
   name: 'FishListExpandedHeader',
-  components: { ItemIcon, ClickHelper, ToggleButton },
+  components: { LinkList, ItemIcon, ClickHelper, ToggleButton },
   props: {
     value: {
       type: Object,
@@ -123,6 +139,9 @@ export default {
         anglerFishId: this.value.anglerFishId,
         setNotificationAvailable: DataUtil.hasCountDown(this.fishTimePart?.countDown),
       }
+    },
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
     },
     ...mapState(['folklore']),
     ...mapGetters([

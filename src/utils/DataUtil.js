@@ -77,7 +77,75 @@ function toComparableVersion(version) {
     .join('')
 }
 
+const FISH_ANGEL_BASE_URL = 'https://cn.ff14angler.com'
+function toFishAngelFishLink({ anglerId }) {
+  return `${FISH_ANGEL_BASE_URL}/fish/${anglerId}`
+}
+function toFishAngelSpotLink({ anglerId }) {
+  return `${FISH_ANGEL_BASE_URL}/spot/${anglerId}`
+}
+
+function toHuijiWikiItemLink({ name }) {
+  return `https://ff14.huijiwiki.com/wiki/%E7%89%A9%E5%93%81:${encodeURI(name)}`
+}
+const GARLAND_BASE_URL = 'https://garlandtools.org/db'
+function toGarlandItemLink({ id }) {
+  return `${GARLAND_BASE_URL}/#item/${id}`
+}
+function toGarlandSpotLink({ id }) {
+  return `${GARLAND_BASE_URL}/#fishing/${id}`
+}
+
+const TEAMCRAFT_BASE_URL = 'https://ffxivteamcraft.com/db/zh'
+function toTeamcraftItemLink({ id }) {
+  return `${TEAMCRAFT_BASE_URL}/item/${id}`
+}
+function toTeamcraftSpotLink({ id }) {
+  return `${TEAMCRAFT_BASE_URL}/fishing-spot/${id}`
+}
+
+function toInnerSpotLink({ id, mode }) {
+  return { name: 'WikiPage', query: { spotId: id, mode } }
+}
+
 export default {
+  LINKS: {
+    PASTRY_FISH: {
+      id: 'PASTRY_FISH',
+      icon: 'https://pic.imgdb.cn/item/5fdb51b33ffa7d37b3a8cd57',
+      title: '钓鱼笔记',
+      inner: true,
+      spotFn: toInnerSpotLink,
+    },
+    ANGLER: {
+      id: 'ANGLER',
+      icon: 'https://cn.ff14angler.com/favicon.ico',
+      title: '饥饿的猫',
+      itemFn: toFishAngelFishLink,
+      spotFn: toFishAngelSpotLink,
+    },
+    HUIJI: {
+      id: 'HUIJI',
+      icon: 'https://av.huijiwiki.com/site_avatar_ff14_m.png',
+      title: '灰机WIKI',
+      itemFn: toHuijiWikiItemLink,
+    },
+    GARLAND: {
+      id: 'GARLAND',
+      icon: 'http://garlandtools.org/favicon.png',
+      title: 'Garland Data',
+      itemFn: toGarlandItemLink,
+      spotFn: toGarlandSpotLink,
+    },
+    TEAMCRAFT: {
+      id: 'TEAMCRAFT',
+      icon: 'https://ffxivteamcraft.com/assets/logo.png',
+      title: 'FFXIV Teamcraft',
+      itemFn: toTeamcraftItemLink,
+      spotFn: toTeamcraftSpotLink,
+    },
+  },
+
   iconIdToUrl(iconId) {
     if (iconId == null) return ''
     const iconIdStr = iconId + ''
@@ -112,8 +180,17 @@ export default {
     return TimeFormatter.millisecondsToText(time, showCnt, true, paddingZero)
   },
   goToFishAngelPage(anglerFishId) {
-    window.open(`https://cn.ff14angler.com/fish/${anglerFishId}`)
+    window.open(toFishAngelFishLink(anglerFishId))
   },
+
+  toFishAngelFishLink: toFishAngelFishLink,
+  toFishAngelSpotLink: toFishAngelSpotLink,
+  toHuijiWikiItemLink: toHuijiWikiItemLink,
+  toGarlandItemLink: toGarlandItemLink,
+  toGarlandSpotLink: toGarlandSpotLink,
+  toTeamcraftItemLink: toTeamcraftItemLink,
+  toTeamcraftSpotLink: toTeamcraftSpotLink,
+
   secondsToFishEyesString(seconds) {
     if (seconds === true) return ''
     return TimeFormatter.millisecondsToText(seconds * 1000, 2, false, false)
@@ -757,6 +834,12 @@ export default {
     },
     oceanFishing: {
       showWarningDialog: true,
+    },
+    link: {
+      default: {
+        item: 'ANGLER',
+        spot: 'ANGLER',
+      },
     },
   },
 
