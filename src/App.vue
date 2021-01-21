@@ -171,7 +171,7 @@
                   </div>
                 </template>
                 <div>
-                  WINDOWS10: 设置 -> 颜色 -> 选择默认应用模式 -> 暗/亮
+                  WINDOWS10: 设置 -> 颜色 -> 选择颜色
                 </div>
               </v-tooltip>
             </v-list-item-group>
