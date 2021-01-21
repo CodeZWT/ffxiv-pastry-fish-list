@@ -7,6 +7,7 @@ import EorzeaTime from '@/utils/Time'
 import tip1Data from '@/store/tip1.json'
 import tip2Data from '@/store/tip2.json'
 import flatten from 'flat'
+import Tip4 from '@/store/Tip4'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -577,7 +578,12 @@ export default {
   },
 
   hasTips(fishId) {
-    return tip1Data[fishId] || tip2Data[fishId] || TIP3_FISH_IDS.includes(fishId)
+    return (
+      tip1Data[fishId] ||
+      tip2Data[fishId] ||
+      TIP3_FISH_IDS.includes(fishId) ||
+      !!Tip4.TIPS[fishId]
+    )
   },
 
   validateImportData(data, sample) {
