@@ -2,7 +2,6 @@
   <div v-resize="onWindowResize">
     <splitpanes
       ref="splitPanes"
-      class="default-theme"
       @resize="onResize"
       @splitter-click="resizing = true"
       @resized="resizing = false"
@@ -609,6 +608,18 @@ export default {
   height: calc(100vh - #{ $top-bars-padding + $footer-padding })
 //overflow-scrolling: auto
 //overflow: scroll
+
+.theme--dark
+  .splitpanes--vertical::v-deep
+    .splitpanes__splitter
+      min-width: 3px
+      background: linear-gradient(90deg, #ccc, #111)
+
+.theme--light
+  .splitpanes--vertical::v-deep
+    .splitpanes__splitter
+      min-width: 3px
+      background:  linear-gradient(90deg, #ccc, #111)
 
 .fish-detail-pane
   //max-height: calc(100vh - #{$top-bars-padding})
