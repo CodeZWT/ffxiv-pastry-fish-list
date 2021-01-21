@@ -71,7 +71,7 @@
                     <div
                       :class="
                         `text-subtitle-1 ${
-                          hover ? 'primary--text text-decoration-underline' : ''
+                          hover ? 'info--text text-decoration-underline' : ''
                         }`
                       "
                     >

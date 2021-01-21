@@ -12,9 +12,7 @@
           <v-hover v-slot="{ hover }">
             <div
               :class="
-                `text-subtitle-1 ${
-                  hover ? 'primary--text text-decoration-underline' : ''
-                }`
+                `text-subtitle-1 ${hover ? 'info--text text-decoration-underline' : ''}`
               "
             >
               {{ firstLocation.fishingSpotName }}
