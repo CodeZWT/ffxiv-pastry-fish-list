@@ -10,8 +10,20 @@
         <div class="d-flex align-center">
           <v-subheader>{{ title }}</v-subheader>
           <v-spacer />
-          <v-btn icon @click="showConfigDialog = true" class="mr-1" title="设置默认跳转">
-            <v-icon>mdi-cog</v-icon>
+          <click-helper @click.stop="emitClick" :copy-text="name">
+            <v-btn text icon small :title="$t('list.item.copyHint')">
+              <v-icon small>mdi-content-copy</v-icon>
+            </v-btn>
+          </click-helper>
+          <v-btn
+            text
+            icon
+            small
+            @click="onSettingBtnClick"
+            class="mr-1"
+            title="设置默认跳转"
+          >
+            <v-icon small>mdi-cog</v-icon>
           </v-btn>
         </div>
         <v-list dense>
@@ -65,9 +77,11 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations } from 'vuex'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'LinkList',
+  components: { ClickHelper },
   props: {
     id: {
       type: Number,
@@ -121,7 +135,15 @@ export default {
     ...mapGetters(['getItemName', 'defaultLinkOf']),
   },
   methods: {
+    onSettingBtnClick() {
+      this.showConfigDialog = true
+      this.emitClick()
+    },
+    emitClick() {
+      this.$emit('click')
+    },
     goToPage(link) {
+      this.emitClick()
       if (link.inner) {
         this.$router.push(link.url)
       } else {
