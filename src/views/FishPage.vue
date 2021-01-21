@@ -10,6 +10,8 @@
       <pane
         :size="100 - rightPaneSizeOfCurrentWindowSize"
         v-if="!rightPaneFullScreen || !showRightPane"
+        ref="scrollTarget"
+        v-scroll.self="onScroll"
       >
         <div v-if="resizing" style="height: 100%">
           <v-sheet
@@ -25,7 +27,10 @@
           </v-sheet>
         </div>
         <div v-else class="main-pane">
-          <v-container :class="{ 'py-0': true, 'px-0': isMobile }">
+          <v-container
+            :class="{ 'py-0': true, 'px-0': isMobile }"
+            style="position: relative"
+          >
             <div>
               <div class="filter-wrapper">
                 <fish-filter
@@ -235,6 +240,19 @@
                 </div>
               </div>
             </div>
+            <v-fab-transition>
+              <v-btn
+                v-show="showBackToTopBtn"
+                fab
+                class="primary back-to-top-btn"
+                @click="backToTop"
+                :style="`right: ${rightPercentage}%`"
+              >
+                <v-icon>
+                  mdi-chevron-up
+                </v-icon>
+              </v-btn>
+            </v-fab-transition>
           </v-container>
         </div>
       </pane>
@@ -337,8 +355,15 @@ export default {
     forceShowComponents: undefined,
     selectedBaitIdIndices: [],
     allBaits: FIX.BAITS,
+    offsetTop: 0,
   }),
   computed: {
+    rightPercentage() {
+      return this.rightPaneSizeOfCurrentWindowSize
+    },
+    showBackToTopBtn() {
+      return this.offsetTop > 0
+    },
     baitFilterEnabledComputed: {
       get() {
         return this.baitFilterEnabled
@@ -479,6 +504,12 @@ export default {
     this.onWindowResize()
   },
   methods: {
+    onScroll(e) {
+      this.offsetTop = e.target.scrollTop
+    },
+    backToTop() {
+      this.$refs.scrollTarget.$el.scroll({ top: 0, left: 0, behavior: 'smooth' })
+    },
     selectAllBaits(bait2Fish) {
       this.selectedBaitIdIndices = Object.keys(bait2Fish ?? this.bait2Fish).map(
         (_, index) => index
@@ -582,4 +613,10 @@ export default {
 .fish-detail-pane
   //max-height: calc(100vh - #{$top-bars-padding})
   width: 100%
+
+.back-to-top-btn
+  z-index: 2
+  position: fixed
+  bottom: calc(4px + #{ $footer-padding })
+  margin-right: 8px
 </style>
