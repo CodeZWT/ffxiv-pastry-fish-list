@@ -78,9 +78,11 @@ function toComparableVersion(version) {
 }
 
 const FISH_ANGEL_BASE_URL = 'https://cn.ff14angler.com'
+
 function toFishAngelFishLink({ anglerId }) {
   return `${FISH_ANGEL_BASE_URL}/fish/${anglerId}`
 }
+
 function toFishAngelSpotLink({ anglerId }) {
   return `${FISH_ANGEL_BASE_URL}/spot/${anglerId}`
 }
@@ -88,18 +90,23 @@ function toFishAngelSpotLink({ anglerId }) {
 function toHuijiWikiItemLink({ name }) {
   return `https://ff14.huijiwiki.com/wiki/%E7%89%A9%E5%93%81:${encodeURI(name)}`
 }
+
 const GARLAND_BASE_URL = 'https://garlandtools.org/db'
+
 function toGarlandItemLink({ id }) {
   return `${GARLAND_BASE_URL}/#item/${id}`
 }
+
 function toGarlandSpotLink({ id }) {
   return `${GARLAND_BASE_URL}/#fishing/${id}`
 }
 
 const TEAMCRAFT_BASE_URL = 'https://ffxivteamcraft.com/db/zh'
+
 function toTeamcraftItemLink({ id }) {
   return `${TEAMCRAFT_BASE_URL}/item/${id}`
 }
+
 function toTeamcraftSpotLink({ id }) {
   return `${TEAMCRAFT_BASE_URL}/fishing-spot/${id}`
 }
@@ -107,6 +114,8 @@ function toTeamcraftSpotLink({ id }) {
 function toInnerSpotLink({ id, mode }) {
   return { name: 'WikiPage', query: { spotId: id, mode } }
 }
+
+const TIP3_FISH_IDS = [16744, 17589]
 
 export default {
   LINKS: {
@@ -568,7 +577,7 @@ export default {
   },
 
   hasTips(fishId) {
-    return tip1Data[fishId] || tip2Data[fishId]
+    return tip1Data[fishId] || tip2Data[fishId] || TIP3_FISH_IDS.includes(fishId)
   },
 
   validateImportData(data, sample) {
@@ -630,6 +639,8 @@ export default {
   },
 
   hasChineseCharacter: hasChineseCharacter,
+
+  TIP3_FISH_IDS: TIP3_FISH_IDS,
 
   FISH_ID_TO_SPOTS: {
     4991: [56, 99],

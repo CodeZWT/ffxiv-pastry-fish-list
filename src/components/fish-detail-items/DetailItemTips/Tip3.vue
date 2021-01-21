@@ -26,6 +26,8 @@
   </div>
 </template>
 <script>
+import DataUtil from '@/utils/DataUtil'
+
 export default {
   name: 'Tip3',
   props: ['id'],
@@ -34,7 +36,7 @@ export default {
   }),
   computed: {
     tip() {
-      return [16744, 17589].includes(this.id)
+      return DataUtil.TIP3_FISH_IDS.includes(this.id)
     },
   },
 }
