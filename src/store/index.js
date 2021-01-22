@@ -30,7 +30,6 @@ export default new Vuex.Store({
     bigFish: DATA_CN.BIG_FISH,
     newPatchFish: DATA_CN.NEW_PATCH_FISH,
     folklore: DATA_CN.FOLKLORE,
-    fishingSpotFish: _.groupBy(DATA_CN.FISHING_SPOT_FISH, 'fishingSpot'),
     showSearchDialog: false,
     showImportExportDialog: false,
     snackbar: {
@@ -177,14 +176,6 @@ export default new Vuex.Store({
     },
     getFishingSpot: state => fishingSpotId => {
       return state.fishingSpots[fishingSpotId]
-    },
-    getFishingSpotFish: (state, getters) => fishingSpotId => {
-      if (fishingSpotId == null) return []
-      return state.fishingSpotFish[fishingSpotId].map(it => ({
-        id: it.fish,
-        tug: it.tug,
-        icon: getters.getItemIconClass(it.fish),
-      }))
     },
     getFishCompleted: state => fishId => {
       return state.userData.completed.includes(DataUtil.toItemId(fishId))

@@ -186,7 +186,6 @@ export default {
       'getWeather',
       'getFishingSpot',
       'getBaits',
-      'getFishingSpotFish',
       'getItemName',
       'getZoneName',
       'getFishingSpotsName',
