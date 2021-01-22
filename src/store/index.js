@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import { DATA } from '@/store/data'
 import DATA_CN from '@/store/translation'
 import FIX from '@/store/fix'
-import merge from 'lodash/merge'
 import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
@@ -20,9 +19,9 @@ export default new Vuex.Store({
       FIX.SPEAR_FISH,
       DevelopmentModeUtil.isLocal() ? FIX.TEST_FISH : {}
     ),
-    fishingSpots: merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
+    fishingSpots: _.merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
-    items: merge(DATA_CN.ITEMS, DevelopmentModeUtil.isLocal() ? FIX.TEST_ITEMS : {}),
+    items: _.merge(DATA_CN.ITEMS, DevelopmentModeUtil.isLocal() ? FIX.TEST_ITEMS : {}),
     achievements: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS,
     weatherRates: DATA.WEATHER_RATES,
     weatherTypes: DATA_CN.WEATHER_TYPES,

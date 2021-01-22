@@ -495,7 +495,6 @@ import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import ClipboardJS from 'clipboard'
 import hotkeys from 'hotkeys-js'
 import { Howl } from 'howler'
-import sortBy from 'lodash/sortBy'
 import _ from 'lodash'
 import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
@@ -650,7 +649,7 @@ export default {
                 countdownSortedFishList.length - firstWaitingFishLongerThanTwoHoursIndex
               )
 
-        countdownSortedFishList = sortBy(countdownSortedFishList, [
+        countdownSortedFishList = _.sortBy(countdownSortedFishList, [
           fish =>
             this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE,
           fish => this.lazyFishWindowRates[fish._id],
@@ -662,7 +661,7 @@ export default {
     pinnedFishList() {
       const fishSourceList = this.lazyTransformedFishList
       const sortedFishIds = this.sortedFishIds
-      return sortBy(
+      return _.sortBy(
         fishSourceList.filter(it => this.getFishPinned(it.id)),
         [
           fish => {
@@ -727,7 +726,7 @@ export default {
     toBeNotifiedFishList() {
       const fishSourceList = this.lazyTransformedFishList
       const sortedFishIds = this.sortedFishIds
-      return sortBy(
+      return _.sortBy(
         fishSourceList.filter(it => this.getFishToBeNotified(it.id)),
         [
           fish => {
@@ -885,7 +884,7 @@ export default {
     },
     fishListTimePart: {
       handler: function(fishListTimePart) {
-        const newSortedFishIds = sortBy(fishListTimePart, [
+        const newSortedFishIds = _.sortBy(fishListTimePart, [
           'countDown.type',
           'countDown.time',
         ]).map(it => it.id)
