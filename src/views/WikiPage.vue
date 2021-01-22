@@ -90,6 +90,7 @@
           `detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`
         "
       >
+        <div>{{ currentSpotId }}</div>
         <div
           v-if="
             !type ||
@@ -509,7 +510,7 @@ export default {
   created() {
     console.debug('nav with query', this.$route.query)
     this.mode = this.$route.query.mode ?? 'normal'
-    this.currentSpotId = +this.$route.query.spotId ?? -1
+    this.currentSpotId = +(this.$route.query.spotId ?? -1)
     this.type = this.currentSpotId !== -1 ? 'spot' : undefined
     this.openedItems = this.normalOpenedItems
     this.spearOpenedItems = this.spearNormalOpenedItems
