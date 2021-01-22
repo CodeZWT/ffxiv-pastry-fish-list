@@ -514,16 +514,11 @@ export default {
     this.type = this.currentSpotId !== -1 ? 'spot' : undefined
     this.openedItems = this.normalOpenedItems
     this.spearOpenedItems = this.spearNormalOpenedItems
-    this.detailWindowLeft = window.innerWidth * 0.7 - 100
-    this.detailWindowHeight = window.innerHeight * 0.7
-    this.detailWindowWidth = window.innerWidth * 0.25
     this.debouncedSearchTextUpdater = _.debounce(text => {
       const t = text == null ? '' : text
       this.updateOpenItems(t, this.lazySearchText)
       this.lazySearchText = t
     }, 500)
-
-    // let output = ''
   },
   methods: {
     clearCurrentStatus(mode) {
