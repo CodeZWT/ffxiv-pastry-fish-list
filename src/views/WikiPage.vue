@@ -343,6 +343,7 @@ export default {
     searchResults: { text: '', nodeIds: [] },
     forceShowComponents: undefined,
     mode: 'normal',
+    FISH_ID_TO_WIKI_IDS: DataUtil.generateFishId2WikiId(FIX.FISH),
   }),
   computed: {
     showSpotPredators() {
@@ -538,15 +539,12 @@ export default {
     },
     getSpotsOfType(type) {
       return this.allCompletedFish.flatMap(fishId => {
-        const spotIds = DataUtil.getSpotIdOfFishId(fishId)
-        if (spotIds) {
-          const fishType = this.lazyTransformedFishDict[
-            DataUtil.toSpotItemId(spotIds[0], fishId)
-          ].type
+        const wikiIds = this.FISH_ID_TO_WIKI_IDS[fishId]
+        if (wikiIds) {
+          const spotFishId = wikiIds[0].split('-')[3]
+          const fishType = this.lazyTransformedFishDict[spotFishId].type
           if (fishType === type) {
-            return spotIds.map(
-              spotId => `spot-${spotId}-fish-${DataUtil.toSpotItemId(spotId, fishId)}`
-            )
+            return wikiIds
           } else {
             return []
           }

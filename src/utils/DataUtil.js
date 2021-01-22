@@ -640,18 +640,24 @@ export default {
     return spotId * 1000000 + itemId
   },
 
-  getSpotIdOfFishId(fishId) {
-    return this.FISH_ID_TO_SPOTS[fishId]
-  },
-
   hasChineseCharacter: hasChineseCharacter,
 
   TIP3_FISH_IDS: TIP3_FISH_IDS,
 
-  FISH_ID_TO_SPOTS: {
-    4991: [56, 99],
-    5005: [103, 89, 93],
-    20036: [175, 198],
+  generateFishId2WikiId(fishDict) {
+    const dict = {}
+    Object.keys(fishDict)
+      .filter(id => id > 1000000)
+      .forEach(spotFishId => {
+        const itemId = toItemId(spotFishId)
+        dict[itemId] = [
+          ...(dict[itemId] ?? []),
+          ...fishDict[spotFishId].locations.map(
+            spotId => `spot-${spotId}-fish-${spotFishId}`
+          ),
+        ]
+      })
+    return dict
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
