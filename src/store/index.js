@@ -13,12 +13,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    fish: DataUtil.mergeByReplacingArray(
-      FishingData,
-      FIX.FISH,
-      FIX.SPEAR_FISH,
-      DevelopmentModeUtil.isLocal() ? FIX.TEST_FISH : {}
-    ),
+    fish: getCombinedFishData(),
     fishingSpots: _.merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
     items: _.merge(DATA_CN.ITEMS, DevelopmentModeUtil.isLocal() ? FIX.TEST_ITEMS : {}),
@@ -47,8 +42,12 @@ export default new Vuex.Store({
         LocalStorageUtil.loadAndBackupUserData()
       )
     ),
+    // fish page filter
     baitFilterEnabled: false,
     baitFilterIds: [],
+    // bait notification cache
+    remainingBaitIds: initRemainingBaitIds(),
+    baitIdsForNotification: [],
   },
   getters: {
     defaultLinkOf: state => mode => {
@@ -238,6 +237,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    updateRemainingBaitIdsWithoutCheck(state) {
+      state.remainingBaitIds = getRemainingBaitIdsWithUserData(state.userData)
+    },
     updateBaitSetting(state, baitSetting) {
       const cloneUserData = _.cloneDeep(state.userData)
       cloneUserData.bait = baitSetting
@@ -282,6 +284,12 @@ export default new Vuex.Store({
         simpleFishIds,
         completed
       )
+      const newRemainingBaitIds = getRemainingBaitIdsWithUserData(state.userData)
+      const removed = _.difference(state.remainingBaitIds, newRemainingBaitIds)
+      if (removed.length > 0) {
+        state.baitIdsForNotification = removed
+      }
+      state.remainingBaitIds = newRemainingBaitIds
       if (completed) {
         state.userData = updateUserDataStateRecords(
           state.userData,
@@ -298,6 +306,12 @@ export default new Vuex.Store({
         [DataUtil.toItemId(fishId)],
         completed
       )
+      const newRemainingBaitIds = getRemainingBaitIdsWithUserData(state.userData)
+      const removed = _.difference(state.remainingBaitIds, newRemainingBaitIds)
+      if (removed.length > 0) {
+        state.baitIdsForNotification = removed
+      }
+      state.remainingBaitIds = newRemainingBaitIds
       if (completed) {
         state.userData = updateUserDataStateRecords(
           state.userData,
@@ -459,4 +473,37 @@ function updateUserDataStateRecords(userData, type, keys, value) {
   }
   LocalStorageUtil.storeUserData(temp)
   return temp
+}
+
+function getCombinedFishData() {
+  return DataUtil.mergeByReplacingArray(
+    FishingData,
+    FIX.FISH,
+    FIX.SPEAR_FISH,
+    DevelopmentModeUtil.isLocal() ? FIX.TEST_FISH : {}
+  )
+}
+
+function getRemainingBaitIds(completeTypes, bigFishTypes, completedFishIds) {
+  const fishList = Object.values(getCombinedFishData())
+  const baitFishItems = DataUtil.generateBaitFishItems(
+    fishList,
+    completeTypes,
+    bigFishTypes,
+    completedFishIds
+  )
+  return Object.keys(_.groupBy(baitFishItems, 'bait')).map(key => +key)
+}
+
+function getRemainingBaitIdsWithUserData(userData) {
+  return getRemainingBaitIds(
+    userData.bait.notificationFilter.completeTypes,
+    userData.bait.notificationFilter.bigFishTypes,
+    userData.completed
+  )
+}
+
+function initRemainingBaitIds() {
+  const userData = LocalStorageUtil.loadAndBackupUserData()
+  return getRemainingBaitIdsWithUserData(userData)
 }

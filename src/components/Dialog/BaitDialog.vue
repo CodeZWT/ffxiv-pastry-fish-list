@@ -30,7 +30,8 @@
         <v-row no-gutters v-if="isListTab || enableBaitNotification">
           <v-col cols="12" class="my-2">
             <v-card color="system" outlined>
-              <v-subheader>筛选</v-subheader>
+              <v-subheader v-if="isListTab">筛选查找范围</v-subheader>
+              <v-subheader v-else>筛选提醒范围</v-subheader>
               <v-divider />
               <v-row>
                 <v-col class="mx-2">
@@ -49,7 +50,7 @@
                     </v-btn>
                   </v-btn-toggle>
                 </v-col>
-                <v-col class="mx-2">
+                <v-col class="mx-2" v-if="isListTab">
                   <div class="subtitle-2 ml-2">{{ $t('filter.mark.title') }}</div>
                   <v-btn-toggle
                     :value="completeTypeIndices"
@@ -148,7 +149,7 @@
       </v-card-text>
       <v-divider />
       <v-card-actions>
-        <click-helper @click="dialog = false" block>
+        <click-helper @click="$emit('input', false)" block>
           <v-btn color="primary" block>{{ $t('search.dialog.close') }}</v-btn>
         </click-helper>
       </v-card-actions>
@@ -159,7 +160,6 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import DATA_CN from '@/store/translation'
 import _ from 'lodash'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PinyinMatch from 'pinyin-match'
@@ -188,7 +188,7 @@ export default {
       sorterFilterTypes: DataUtil.BAIT_FISH_SORTER_TYPES,
       // sorterTypeIndex: DataUtil.FISH_SORTER_TYPES.indexOf('QUANTITY'),
       searchBaitId: undefined,
-      tabIndex: 1,
+      tabIndex: 0,
       FILTER_TYPES: ['listFilter', 'notificationFilter'],
     }
   },
@@ -218,25 +218,12 @@ export default {
       return this.sorterFilterTypes.indexOf(this.sorterType)
     },
     baits() {
-      const targetFishList = this.fishList.filter(fish => {
-        const fishCompleted = this.getFishCompleted(fish._id)
-        const isBigFish = this.bigFish.includes(fish._id)
-        const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fish._id)
-        return (
-          fish.gig == null &&
-          ((this.completeTypes.includes('COMPLETED') && fishCompleted) ||
-            (this.completeTypes.includes('UNCOMPLETED') && !fishCompleted)) &&
-          ((this.bigFishTypes.includes('LIVING_LEGENDS') && isLivingLegend) ||
-            (this.bigFishTypes.includes('OLD_ONES') && isBigFish && !isLivingLegend) ||
-            (this.bigFishTypes.includes('NORMAL') && !isBigFish))
-        )
-      })
-      const baitFishItems = targetFishList.map(fishData => {
-        return {
-          bait: fishData.bestCatchPath[0],
-          fish: DataUtil.toItemId(fishData._id),
-        }
-      })
+      const baitFishItems = DataUtil.generateBaitFishItems(
+        this.fishList,
+        this.completeTypes,
+        this.bigFishTypes,
+        this.allCompletedFish
+      )
       const remainingBaitDict = _.mapValues(
         _.groupBy(baitFishItems, 'bait'),
         baitFishList => {
@@ -274,7 +261,7 @@ export default {
     },
     ...mapState(['fish', 'bigFish']),
     ...mapGetters([
-      'getFishCompleted',
+      'allCompletedFish',
       'getItemName',
       'getItemIconClass',
       'enableBaitNotification',
@@ -293,6 +280,9 @@ export default {
       _.set(baitSetting, `${this.filterType}.${updatePath}`, updatePart)
       console.debug('update filter', baitSetting)
       this.updateBaitSetting(baitSetting)
+      if (this.filterType === 'notificationFilter') {
+        this.updateRemainingBaitIdsWithoutCheck()
+      }
     },
     filterOptions(item, searchText, itemText) {
       if (this.$i18n.locale === 'zh-CN') {
@@ -323,7 +313,7 @@ export default {
         ...updatePart,
       })
     },
-    ...mapMutations(['updateBaitSetting']),
+    ...mapMutations(['updateBaitSetting', 'updateRemainingBaitIdsWithoutCheck']),
   },
 }
 </script>

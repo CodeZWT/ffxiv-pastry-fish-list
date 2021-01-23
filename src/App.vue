@@ -122,7 +122,7 @@
           <v-icon>mdi-filter</v-icon>
         </v-btn>
         <v-btn icon v-if="isListPage || isWikiPage" @click="showBaitDialog = true">
-          <v-icon>mdi-calculator</v-icon>
+          <v-icon>mdi-hook</v-icon>
         </v-btn>
 
         <v-tooltip bottom>
@@ -481,6 +481,47 @@
     >
       <div class="text-center">{{ snackbar.text }}</div>
     </v-snackbar>
+    <v-snackbar
+      :timeout="baitIdsForNotification.length > 1 ? -1 : 3000"
+      v-model="showBaitNotification"
+      elevation="24"
+    >
+      <div class="d-flex align-center" v-if="baitIdsForNotification.length === 1">
+        <item-icon
+          :icon-class="getItemIconClass(baitIdsForNotification[0])"
+          small
+          class="mt-1"
+        />
+        <span>{{ getItemName(baitIdsForNotification[0]) }}</span>
+        <span class="ml-2">已钓完所有鱼</span>
+      </div>
+      <div class="d-flex align-center" v-else>
+        <v-expansion-panels flat>
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              多个鱼饵已钓完所有鱼
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <div class="d-flex flex-wrap">
+                <div
+                  class="d-flex align-center"
+                  v-for="baitId in baitIdsForNotification"
+                  :key="baitId"
+                >
+                  <item-icon :icon-class="getItemIconClass(baitId)" small class="mt-1" />
+                  <span>{{ getItemName(baitId) }}</span>
+                </div>
+              </div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </div>
+      <template v-slot:action="{ attrs }">
+        <v-btn color="primary" text v-bind="attrs" @click="showBaitNotification = false">
+          关闭
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -510,10 +551,12 @@ import regionTerritorySpots from '@/store/fishingSpots.json'
 import DATA_CN from '@/store/translation'
 import PatchNoteDialog from '@/components/Dialog/PatchNoteDialog'
 import BaitDialog from '@/components/Dialog/BaitDialog'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'App',
   components: {
+    ItemIcon,
     BaitDialog,
     PatchNoteDialog,
     ImportExportDialog,
@@ -561,7 +604,8 @@ export default {
     lazyFishWindowRates: {},
     diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
     diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
-    showBaitDialog: true,
+    showBaitDialog: false,
+    showBaitNotification: false,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -843,6 +887,7 @@ export default {
       'weatherRates',
       'baitFilterEnabled',
       'baitFilterIds',
+      'baitIdsForNotification',
     ]),
     ...mapGetters([
       'opacity',
@@ -872,6 +917,11 @@ export default {
     ]),
   },
   watch: {
+    baitIdsForNotification(baitIdsForNotification) {
+      if (baitIdsForNotification.length > 0) {
+        this.showBaitNotification = true
+      }
+    },
     // filters() {
     //   this.startLoading()
     // },

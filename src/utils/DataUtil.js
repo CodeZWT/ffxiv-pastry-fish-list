@@ -8,6 +8,7 @@ import tip1Data from '@/store/tip1.json'
 import tip2Data from '@/store/tip2.json'
 import flatten from 'flat'
 import Tip4 from '@/store/Tip4'
+import DATA_CN from '@/store/translation'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -660,6 +661,29 @@ export default {
         ]
       })
     return dict
+  },
+
+  generateBaitFishItems(fishList, completeTypes, bigFishTypes, completedFishIds) {
+    const completedFishIdSet = new Set(completedFishIds)
+    const targetFishList = fishList.filter(fish => {
+      const fishCompleted = completedFishIdSet.has(fish._id)
+      const isBigFish = DATA_CN.BIG_FISH.includes(fish._id)
+      const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fish._id)
+      return (
+        fish.gig == null &&
+        ((completeTypes.includes('COMPLETED') && fishCompleted) ||
+          (completeTypes.includes('UNCOMPLETED') && !fishCompleted)) &&
+        ((bigFishTypes.includes('LIVING_LEGENDS') && isLivingLegend) ||
+          (bigFishTypes.includes('OLD_ONES') && isBigFish && !isLivingLegend) ||
+          (bigFishTypes.includes('NORMAL') && !isBigFish))
+      )
+    })
+    return targetFishList.map(fishData => {
+      return {
+        bait: fishData.bestCatchPath[0],
+        fish: toItemId(fishData._id),
+      }
+    })
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
