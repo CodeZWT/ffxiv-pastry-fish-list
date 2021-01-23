@@ -497,8 +497,8 @@ function getRemainingBaitIds(completeTypes, bigFishTypes, completedFishIds) {
 
 function getRemainingBaitIdsWithUserData(userData) {
   return getRemainingBaitIds(
-    userData.bait.notificationFilter.completeTypes,
-    userData.bait.notificationFilter.bigFishTypes,
+    userData.bait?.notificationFilter?.completeTypes ?? ['UNCOMPLETED'],
+    userData.bait?.notificationFilter?.bigFishTypes ?? DataUtil.BIG_FISH_FILTER_TYPES,
     userData.completed
   )
 }
