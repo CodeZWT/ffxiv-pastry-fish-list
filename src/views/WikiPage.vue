@@ -427,7 +427,6 @@ export default {
         return this.getSpotsOfType('normal')
       },
       set(newSpotFishIds) {
-        console.log('herer')
         const oldSpotFishIds = this.normalCompletedSpotFishIds
         this.updateCompleted(oldSpotFishIds, newSpotFishIds)
       },
