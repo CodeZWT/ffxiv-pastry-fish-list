@@ -274,18 +274,35 @@ export default new Vuex.Store({
       state.userData = _.cloneDeep(DataUtil.USER_DEFAULT_DATA)
       LocalStorageUtil.storeUserData(state.userData)
     },
-    setFishCompleted(state, { fishId, completed }) {
+    batchSetFishCompleted(state, { fishIds, completed }) {
+      const simpleFishIds = fishIds.map(fishId => DataUtil.toItemId(fishId))
       state.userData = updateUserDataStateRecords(
         state.userData,
         'completed',
-        DataUtil.toItemId(fishId),
+        simpleFishIds,
         completed
       )
       if (completed) {
         state.userData = updateUserDataStateRecords(
           state.userData,
           'toBeNotified',
-          DataUtil.toItemId(fishId),
+          simpleFishIds,
+          false
+        )
+      }
+    },
+    setFishCompleted(state, { fishId, completed }) {
+      state.userData = updateUserDataStateRecords(
+        state.userData,
+        'completed',
+        [DataUtil.toItemId(fishId)],
+        completed
+      )
+      if (completed) {
+        state.userData = updateUserDataStateRecords(
+          state.userData,
+          'toBeNotified',
+          [DataUtil.toItemId(fishId)],
           false
         )
       }
@@ -294,7 +311,7 @@ export default new Vuex.Store({
       state.userData = updateUserDataStateRecords(
         state.userData,
         'pinned',
-        DataUtil.toItemId(fishId),
+        [DataUtil.toItemId(fishId)],
         pinned
       )
     },
@@ -302,7 +319,7 @@ export default new Vuex.Store({
       state.userData = updateUserDataStateRecords(
         state.userData,
         'toBeNotified',
-        DataUtil.toItemId(fishId),
+        [DataUtil.toItemId(fishId)],
         toBeNotified
       )
     },
@@ -427,15 +444,18 @@ export default new Vuex.Store({
   modules: {},
 })
 
-function updateUserDataStateRecords(userData, type, key, value) {
+function updateUserDataStateRecords(userData, type, keys, value) {
+  // console.debug('set', type, value, keys)
   const temp = _.cloneDeep(userData)
   if (value) {
     const arr = temp[type]
-    if (arr.indexOf(key) === -1 && key != null) {
-      arr.push(key)
-    }
+    keys.forEach(key => {
+      if (arr.indexOf(key) === -1 && key != null) {
+        arr.push(key)
+      }
+    })
   } else {
-    temp[type] = userData[type].filter(it => it !== key)
+    temp[type] = userData[type].filter(it => !keys.includes(it))
   }
   LocalStorageUtil.storeUserData(temp)
   return temp

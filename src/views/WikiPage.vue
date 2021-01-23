@@ -322,7 +322,7 @@ export default {
     currentTerritoryId: -1,
     currentSpotId: -1,
     currentFishId: -1,
-    completedSpots: [],
+    // completedSpots: [],
     // regionTerritorySpots: [],
     openedItems: [],
     normalOpenedItems: [],
@@ -427,6 +427,7 @@ export default {
         return this.getSpotsOfType('normal')
       },
       set(newSpotFishIds) {
+        console.log('herer')
         const oldSpotFishIds = this.normalCompletedSpotFishIds
         this.updateCompleted(oldSpotFishIds, newSpotFishIds)
       },
@@ -476,24 +477,25 @@ export default {
         setTimeout(() => this.$refs.simpleMap?.resize(), 500)
       }
     },
-    completedSpots(newSpots, oldSpots) {
-      // console.log(newSpots, oldSpots)
-      const removed = _.difference(oldSpots, newSpots).map(
-        it => +it.substring('spot-'.length)
-      )
-      const added = _.difference(newSpots, oldSpots).map(
-        it => +it.substring('spot-'.length)
-      )
-      if (removed.length > 0) {
-        _.uniq(removed.flatMap(it => this.spotDict[it].fishList)).forEach(it => {
-          this.setFishCompleted({ fishId: it, completed: false })
-        })
-      } else if (added.length > 0) {
-        _.uniq(added.flatMap(it => this.spotDict[it].fishList)).forEach(it => {
-          this.setFishCompleted({ fishId: it, completed: true })
-        })
-      }
-    },
+    // completedSpots(newSpots, oldSpots) {
+    //   console.debug('not used')
+    //   // console.log(newSpots, oldSpots)
+    //   const removed = _.difference(oldSpots, newSpots).map(
+    //     it => +it.substring('spot-'.length)
+    //   )
+    //   const added = _.difference(newSpots, oldSpots).map(
+    //     it => +it.substring('spot-'.length)
+    //   )
+    //   if (removed.length > 0) {
+    //     _.uniq(removed.flatMap(it => this.spotDict[it].fishList)).forEach(it => {
+    //       this.setFishCompleted({ fishId: it, completed: false })
+    //     })
+    //   } else if (added.length > 0) {
+    //     _.uniq(added.flatMap(it => this.spotDict[it].fishList)).forEach(it => {
+    //       this.setFishCompleted({ fishId: it, completed: true })
+    //     })
+    //   }
+    // },
     currentFishId(fishId) {
       if (fishId > 0 && !this.isOceanFishingSpot) {
         this.isDetailFishWindowOpen = true
@@ -571,9 +573,9 @@ export default {
         this.extractFishId(it)
       )
       if (removed.length > 0) {
-        removed.forEach(id => this.setFishCompleted({ fishId: id, completed: false }))
+        this.batchSetFishCompleted({ fishIds: removed, completed: false })
       } else if (added.length > 0) {
-        added.forEach(id => this.setFishCompleted({ fishId: id, completed: true }))
+        this.batchSetFishCompleted({ fishIds: added, completed: true })
       }
     },
     loadWikiDataOfType(type) {
@@ -690,21 +692,22 @@ export default {
     toggleSettingMode() {
       this.isSettingMode = !this.isSettingMode
     },
-    updateCompletedSpot(allCompletedFish) {
-      const completedSpots = []
-      Object.values(this.spotDict).forEach(spot => {
-        if (
-          spot.fishList.length > 0 &&
-          spot.fishList.every(fishId => allCompletedFish.includes(fishId))
-        ) {
-          completedSpots.push('spot-' + spot.spotId)
-        }
-      })
-      // console.log(_.isEqual(this.completedSpots, completedSpots))
-      if (!_.isEqual(_.sortBy(this.completedSpots), _.sortBy(completedSpots))) {
-        this.completedSpots = completedSpots
-      }
-    },
+    // updateCompletedSpot(allCompletedFish) {
+    //   console.debug('not used')
+    //   const completedSpots = []
+    //   Object.values(this.spotDict).forEach(spot => {
+    //     if (
+    //       spot.fishList.length > 0 &&
+    //       spot.fishList.every(fishId => allCompletedFish.includes(fishId))
+    //     ) {
+    //       completedSpots.push('spot-' + spot.spotId)
+    //     }
+    //   })
+    //   // console.log(_.isEqual(this.completedSpots, completedSpots))
+    //   if (!_.isEqual(_.sortBy(this.completedSpots), _.sortBy(completedSpots))) {
+    //     this.completedSpots = completedSpots
+    //   }
+    // },
     onMenuItemActive(items) {
       const targetOpenedItems =
         this.mode === 'normal' ? this.openedItems : this.spearOpenedItems
@@ -802,7 +805,7 @@ export default {
         }
       }
     },
-    ...mapMutations(['setFishCompleted']),
+    ...mapMutations(['setFishCompleted', 'batchSetFishCompleted']),
   },
 }
 </script>
