@@ -90,7 +90,6 @@
           `detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`
         "
       >
-        <div>{{ currentSpotId }}</div>
         <div
           v-if="
             !type ||
