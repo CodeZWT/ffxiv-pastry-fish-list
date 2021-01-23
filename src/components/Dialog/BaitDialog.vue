@@ -2,11 +2,11 @@
   <v-dialog :value="showBaitDialog" @input="$emit('input', $event)" max-width="600">
     <v-card>
       <v-card-title>
-        鱼饵列表
+        {{ $t('baitSearch.dialog.title') }}
       </v-card-title>
       <v-card-text>
-        <v-row>
-          <v-col cols="12">
+        <v-row no-gutters>
+          <v-col cols="12" class="my-2">
             <v-card color="system" outlined>
               <v-row>
                 <v-col class="mx-2">
@@ -61,22 +61,37 @@
               </v-row>
             </v-card>
           </v-col>
-          <v-col>
-            <!--            <v-autocomplete-->
-            <!--              ref="search"-->
-            <!--              v-model="searchBaitId"-->
-            <!--              :items="baits"-->
-            <!--              item-value="baitId"-->
-            <!--              item-text="name"-->
-            <!--              :label="$t('search.dialog.placeholder')"-->
-            <!--              clearable-->
-            <!--              solo-->
-            <!--              :filter="filterOptions"-->
-            <!--              :hint="$t('search.dialog.hint')"-->
-            <!--            >-->
-            <!--              <template v-slot:item="data">-->
-            <!--              </template>-->
-            <!--            </v-autocomplete>-->
+
+          <v-col cols="12" class="my-2">
+            <v-autocomplete
+              ref="search"
+              v-model="searchBaitId"
+              :items="baitsForSearch"
+              item-value="id"
+              item-text="name"
+              :label="$t('baitSearch.dialog.placeholder')"
+              clearable
+              solo
+              :filter="filterOptions"
+              :hint="$t('baitSearch.dialog.hint')"
+            >
+              <template v-slot:item="data">
+                <click-helper>
+                  <div class="d-flex">
+                    <v-list-item-avatar>
+                      <div :class="data.item.icon" />
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <div>
+                          {{ data.item.name }}
+                        </div>
+                      </v-list-item-title>
+                    </v-list-item-content>
+                  </div>
+                </click-helper>
+              </template>
+            </v-autocomplete>
           </v-col>
 
           <v-col cols="12">
@@ -87,7 +102,7 @@
                     <item-icon :icon-class="bait.icon" small class="mt-1" />
                     <span :title="toItemTitle(bait)">{{ bait.name }}</span>
                     <v-spacer />
-                    <span>剩{{ bait.fishList.length }}条</span>
+                    <span>{{ bait.fishList.length }}条</span>
                   </div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
@@ -117,10 +132,13 @@ import { mapGetters, mapState } from 'vuex'
 import DATA_CN from '@/store/translation'
 import _ from 'lodash'
 import ItemIcon from '@/components/basic/ItemIcon'
+import PinyinMatch from 'pinyin-match'
+import ClickHelper from '@/components/basic/ClickHelper'
+import FIX from '@/store/fix'
 
 export default {
   name: 'BaitDialog',
-  components: { ItemIcon },
+  components: { ClickHelper, ItemIcon },
   model: {
     prop: 'showBaitDialog',
     event: 'input',
@@ -139,6 +157,7 @@ export default {
       bigFishFilterTypes: DataUtil.BIG_FISH_FILTER_TYPES,
       sorterFilterTypes: DataUtil.BAIT_FISH_SORTER_TYPES,
       sorterTypeIndex: DataUtil.FISH_SORTER_TYPES.indexOf('QUANTITY'),
+      searchBaitId: undefined,
     }
   },
   computed: {
@@ -171,7 +190,8 @@ export default {
           fish: DataUtil.toItemId(fishData._id),
         }
       })
-      const baitList = Object.values(_.groupBy(baitFishItems, 'bait')).map(
+      const remainingBaitDict = _.mapValues(
+        _.groupBy(baitFishItems, 'bait'),
         baitFishList => {
           return {
             baitId: baitFishList[0].bait,
@@ -179,24 +199,27 @@ export default {
           }
         }
       )
+      console.debug(this.searchBaitId)
+      const baitList = FIX.BAITS.map(
+        baitId => remainingBaitDict[baitId] ?? { baitId, fishIds: [] }
+      )
+
       return _.sortBy(baitList, bait => {
         if (this.sorterType === 'QUANTITY') {
           return -bait.fishIds.length
         } else {
           return bait.baitId
         }
-      }).map(baitMeta => {
+      })
+        .filter(it => this.searchBaitId == null || it.baitId === this.searchBaitId)
+        .map(it => this.assembleBait(it))
+    },
+    baitsForSearch() {
+      return FIX.BAITS.map(baitId => {
         return {
-          id: baitMeta.baitId,
-          icon: this.getItemIconClass(baitMeta.baitId),
-          name: this.getItemName(baitMeta.baitId),
-          fishList: baitMeta.fishIds.map(fishId => {
-            return {
-              id: fishId,
-              icon: this.getItemIconClass(fishId),
-              name: this.getItemName(fishId),
-            }
-          }),
+          id: baitId,
+          name: this.getItemName(baitId),
+          icon: this.getItemIconClass(baitId),
         }
       })
     },
@@ -207,7 +230,28 @@ export default {
     ...mapGetters(['getFishCompleted', 'getItemName', 'getItemIconClass']),
   },
   methods: {
+    filterOptions(item, searchText, itemText) {
+      if (this.$i18n.locale === 'zh-CN') {
+        return PinyinMatch.match(itemText, searchText) !== false
+      } else {
+        return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+      }
+    },
     toItemTitle: DataUtil.toItemTitle,
+    assembleBait(baitMeta) {
+      return {
+        id: baitMeta.baitId,
+        icon: this.getItemIconClass(baitMeta.baitId),
+        name: this.getItemName(baitMeta.baitId),
+        fishList: baitMeta.fishIds.map(fishId => {
+          return {
+            id: fishId,
+            icon: this.getItemIconClass(fishId),
+            name: this.getItemName(fishId),
+          }
+        }),
+      }
+    },
     onChange() {},
   },
 }
