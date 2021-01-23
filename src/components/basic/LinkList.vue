@@ -1,6 +1,13 @@
 <template>
   <div>
-    <v-menu open-on-hover offset-x nudge-right="4" open-delay="300" close-delay="300">
+    <v-menu
+      :disabled="disabled"
+      open-on-hover
+      offset-x
+      nudge-right="4"
+      open-delay="300"
+      close-delay="300"
+    >
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on" @click.stop="goToDefaultPage">
           <slot />
@@ -102,6 +109,10 @@ export default {
     spotMode: {
       type: String,
       default: 'normal',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {

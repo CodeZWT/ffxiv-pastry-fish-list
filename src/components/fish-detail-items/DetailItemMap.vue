@@ -5,7 +5,7 @@
         <v-expansion-panel-header class="systemSecondary">
           <div style="display: flex; align-items: center; justify-content: center">
             <div v-if="multiple">
-              <v-menu open-on-hover offset-x top>
+              <v-menu v-model="showSpotMenu" offset-x top>
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn icon v-bind="attrs" v-on="on">
                     <v-icon>mdi-view-list</v-icon>
@@ -18,7 +18,27 @@
                     @click.stop="currentSpotIndex = index"
                   >
                     <v-list-item-title class="d-flex align-center">
-                      <div class="subtitle-1">{{ spot.fishingSpotName }}</div>
+                      <link-list
+                        :id="spot.fishingSpotId"
+                        :angler-id="spot.fishingSpot.anglerLocationId"
+                        :name="spot.fishingSpotName"
+                        mode="spot"
+                        :spot-mode="fish.type"
+                        @click="showSpotMenu = false"
+                        :disabled="showSpotLink"
+                      >
+                        <v-hover v-slot="{ hover }">
+                          <div
+                            :class="
+                              `text-subtitle-1 ${
+                                hover && !showSpotLink ? 'text-decoration-underline' : ''
+                              }`
+                            "
+                          >
+                            {{ spot.fishingSpotName }}
+                          </div>
+                        </v-hover>
+                      </link-list>
                       <v-spacer />
                       <div class="ml-2 subtitle-2">{{ spot.zone }}</div>
                     </v-list-item-title>
@@ -30,7 +50,28 @@
               class="text-subtitle-1"
               :title="currentSpot.fishingSpotName + '#' + currentSpot.fishingSpotId"
             >
-              {{ currentSpot.fishingSpotName }}
+              <link-list
+                :id="currentSpot.fishingSpotId"
+                :angler-id="currentSpot.fishingSpot.anglerLocationId"
+                :name="currentSpot.fishingSpotName"
+                mode="spot"
+                :spot-mode="type"
+                :disabled="showSpotLink"
+              >
+                <v-hover v-slot="{ hover }">
+                  <div
+                    :class="
+                      `text-subtitle-1 ${
+                        hover && !showSpotLink
+                          ? 'info--text text-decoration-underline'
+                          : ''
+                      }`
+                    "
+                  >
+                    {{ currentSpot.fishingSpotName }}
+                  </div>
+                </v-hover>
+              </link-list>
             </div>
             <div class="text-subtitle-2 ml-2">
               {{ currentSpot.zone }}
@@ -44,6 +85,7 @@
               </v-btn>
             </click-helper>
             <click-helper
+              v-if="showSpotLink"
               @click.stop="
                 goToFishingSpotAngelPage(currentSpot.fishingSpot.anglerLocationId)
               "
@@ -79,10 +121,11 @@ import ClickHelper from '@/components/basic/ClickHelper'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import DataUtil from '@/utils/DataUtil'
 import { mapGetters } from 'vuex'
+import LinkList from '@/components/basic/LinkList'
 
 export default {
   name: 'DetailItemMap',
-  components: { ClickHelper, EorzeaSimpleMap },
+  components: { LinkList, ClickHelper, EorzeaSimpleMap },
   props: {
     fish: {
       type: Object,
@@ -96,10 +139,15 @@ export default {
       type: Boolean,
       default: true,
     },
+    showSpotLink: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: vm => ({
     currentSpotIndex: 0,
     lazyExpansionValue: vm.expanded ? 0 : undefined,
+    showSpotMenu: false,
   }),
   computed: {
     fishingSpots() {

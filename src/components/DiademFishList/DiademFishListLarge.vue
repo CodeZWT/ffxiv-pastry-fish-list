@@ -134,7 +134,11 @@
       </v-simple-table>
     </div>
     <div class="col-12">
-      <detail-item-map :fish="toFishingSpotData(spotData)" :expanded="false" />
+      <detail-item-map
+        :fish="toFishingSpotData(spotData)"
+        :expanded="false"
+        show-spot-link
+      />
     </div>
   </div>
 </template>

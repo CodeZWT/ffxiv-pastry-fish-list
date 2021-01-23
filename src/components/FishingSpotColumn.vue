@@ -44,7 +44,6 @@
               <template v-slot:default>
                 <tbody>
                   <tr v-for="(spot, index) in fishingSpots" :key="index">
-                    <td>{{ spot.zone }}</td>
                     <td>
                       <link-list
                         :id="spot.fishingSpotId"
@@ -67,6 +66,7 @@
                         </v-hover>
                       </link-list>
                     </td>
+                    <td>{{ spot.zone }}</td>
                   </tr>
                 </tbody>
               </template>
