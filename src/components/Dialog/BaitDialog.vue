@@ -61,33 +61,44 @@
               </v-row>
             </v-card>
           </v-col>
+          <v-col>
+            <!--            <v-autocomplete-->
+            <!--              ref="search"-->
+            <!--              v-model="searchBaitId"-->
+            <!--              :items="baits"-->
+            <!--              item-value="baitId"-->
+            <!--              item-text="name"-->
+            <!--              :label="$t('search.dialog.placeholder')"-->
+            <!--              clearable-->
+            <!--              solo-->
+            <!--              :filter="filterOptions"-->
+            <!--              :hint="$t('search.dialog.hint')"-->
+            <!--            >-->
+            <!--              <template v-slot:item="data">-->
+            <!--              </template>-->
+            <!--            </v-autocomplete>-->
+          </v-col>
+
           <v-col cols="12">
             <v-expansion-panels>
               <v-expansion-panel v-for="(bait, index) in baits" :key="index">
                 <v-expansion-panel-header>
                   <div class="d-flex align-center">
-                    <item-icon
-                      :icon-class="getItemIconClass(bait.baitId)"
-                      small
-                      class="mt-1"
-                    />
-                    <span>{{ getItemName(bait.baitId) }}</span>
+                    <item-icon :icon-class="bait.icon" small class="mt-1" />
+                    <span :title="toItemTitle(bait)">{{ bait.name }}</span>
                     <v-spacer />
-                    <span>剩{{ bait.fishIds.length }}条</span>
+                    <span>剩{{ bait.fishList.length }}条</span>
                   </div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="d-flex align-center flex-wrap" style="max-width: 500px">
                     <div
-                      v-for="fishId in bait.fishIds"
-                      :key="fishId"
+                      v-for="fish in bait.fishList"
+                      :key="fish.id"
                       class="d-flex align-center mx-1"
                     >
-                      <item-icon
-                        :icon-class="getItemIconClass(fishId)"
-                        :title="getItemName(fishId)"
-                      />
-                      <span>{{ getItemName(fishId) }}</span>
+                      <item-icon :icon-class="fish.icon" />
+                      <span :title="toItemTitle(fish)">{{ fish.name }}</span>
                     </div>
                   </div>
                 </v-expansion-panel-content>
@@ -168,12 +179,24 @@ export default {
           }
         }
       )
-      console.debug(this.sorterType)
       return _.sortBy(baitList, bait => {
         if (this.sorterType === 'QUANTITY') {
           return -bait.fishIds.length
         } else {
           return bait.baitId
+        }
+      }).map(baitMeta => {
+        return {
+          id: baitMeta.baitId,
+          icon: this.getItemIconClass(baitMeta.baitId),
+          name: this.getItemName(baitMeta.baitId),
+          fishList: baitMeta.fishIds.map(fishId => {
+            return {
+              id: fishId,
+              icon: this.getItemIconClass(fishId),
+              name: this.getItemName(fishId),
+            }
+          }),
         }
       })
     },
@@ -184,6 +207,7 @@ export default {
     ...mapGetters(['getFishCompleted', 'getItemName', 'getItemIconClass']),
   },
   methods: {
+    toItemTitle: DataUtil.toItemTitle,
     onChange() {},
   },
 }
