@@ -27,6 +27,7 @@
         </div>
         <div v-else class="main-pane">
           <v-container
+            fluid
             :class="{ 'py-0': true, 'px-0': isMobile }"
             style="position: relative"
           >
