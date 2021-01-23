@@ -46,12 +46,33 @@
           </v-col>
           <v-col cols="12">
             <v-expansion-panels accordion class="my-2 rounded-lg">
-              <v-expansion-panel v-for="(fishList, bait) in baits" :key="bait">
+              <v-expansion-panel v-for="(fishIds, baitId) in baits" :key="baitId">
                 <v-expansion-panel-header>
-                  {{ bait }}
+                  <div class="d-flex align-center">
+                    <item-icon
+                      :icon-class="getItemIconClass(baitId)"
+                      small
+                      class="mt-1"
+                    />
+                    <span>{{ getItemName(baitId) }}</span>
+                    <v-spacer />
+                    <span>({{ fishIds.length }})</span>
+                  </div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                  {{ fishList }}
+                  <div class="d-flex align-center flex-wrap" style="max-width: 500px">
+                    <div
+                      v-for="fishId in fishIds"
+                      :key="fishId"
+                      class="d-flex align-center mx-1"
+                    >
+                      <item-icon
+                        :icon-class="getItemIconClass(fishId)"
+                        :title="getItemName(fishId)"
+                      />
+                      <span>{{ getItemName(fishId) }}</span>
+                    </div>
+                  </div>
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
@@ -67,9 +88,11 @@ import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapState } from 'vuex'
 import DATA_CN from '@/store/translation'
 import _ from 'lodash'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'BaitDialog',
+  components: { ItemIcon },
   model: {
     prop: 'showBaitDialog',
     event: 'input',
@@ -126,8 +149,7 @@ export default {
       return Object.values(this.fish)
     },
     ...mapState(['fish', 'bigFish']),
-
-    ...mapGetters(['getFishCompleted']),
+    ...mapGetters(['getFishCompleted', 'getItemName', 'getItemIconClass']),
   },
   methods: {
     onChange() {},
