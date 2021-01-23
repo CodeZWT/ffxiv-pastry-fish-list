@@ -1,5 +1,10 @@
 <template>
-  <v-dialog :value="showPatchNoteDialog && !inMigrationPage" max-width="600px" scrollable>
+  <v-dialog
+    :value="showPatchNoteDialog && !inMigrationPage"
+    @input="$emit('input', $event)"
+    max-width="600px"
+    scrollable
+  >
     <v-card>
       <v-card-title>
         {{ $t('top.patchNote') }}
