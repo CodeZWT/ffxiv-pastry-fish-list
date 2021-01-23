@@ -230,8 +230,20 @@ export default new Vuex.Store({
     showOceanFishingWarningDialog: state => {
       return state.userData.oceanFishing.showWarningDialog
     },
+    enableBaitNotification: state => {
+      return state.userData.bait.enableNotification
+    },
+    baitSetting: state => {
+      return state.userData.bait
+    },
   },
   mutations: {
+    updateBaitSetting(state, baitSetting) {
+      const cloneUserData = _.cloneDeep(state.userData)
+      cloneUserData.bait = baitSetting
+      state.userData = cloneUserData
+      LocalStorageUtil.storeUserData(state.userData)
+    },
     setLinkDefault(state, { mode, id }) {
       const cloneUserData = _.cloneDeep(state.userData)
       cloneUserData.link.default[mode] = id

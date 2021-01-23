@@ -8,7 +8,7 @@
               <!-- Patches -->
               <v-row no-gutters>
                 <v-col>
-                  <div class="subtitle-2">{{ $t('filter.patch') }}</div>
+                  <div class="subtitle-2 ml-2">{{ $t('filter.patch') }}</div>
                 </v-col>
               </v-row>
               <v-row wrap no-gutters>
@@ -19,7 +19,7 @@
                 >
                   <div>
                     <div class="d-flex align-center">
-                      <div class="mx-2">{{ version }}</div>
+                      <div class="mr-2 ml-4">{{ version }}</div>
                       <v-btn text small @click="checkAll(version)">
                         全选
                         <v-icon>mdi-check-all</v-icon>
@@ -47,7 +47,7 @@
               <!-- Mark & BigFish -->
               <v-row no-gutters class="my-2">
                 <v-col class="col-12 col-md-6">
-                  <div class="subtitle-2">{{ $t('filter.bigFish.title') }}</div>
+                  <div class="subtitle-2 ml-2">{{ $t('filter.bigFish.title') }}</div>
                   <v-btn-toggle
                     v-model="bigFishTypes"
                     multiple
@@ -76,7 +76,9 @@
                   <!--                  </v-tooltip>-->
                 </v-col>
                 <v-col cols="6">
-                  <div class="subtitle-2">{{ $t('filter.fishConstraint.title') }}</div>
+                  <div class="subtitle-2 ml-2">
+                    {{ $t('filter.fishConstraint.title') }}
+                  </div>
                   <v-btn-toggle
                     v-model="fishConstraintTypes"
                     multiple
@@ -94,7 +96,7 @@
               </v-row>
               <v-row no-gutters>
                 <v-col class="col-12">
-                  <div class="subtitle-2">{{ $t('filter.mark.title') }}</div>
+                  <div class="subtitle-2 ml-2">{{ $t('filter.mark.title') }}</div>
                   <v-btn-toggle
                     v-model="completeTypes"
                     multiple
@@ -123,7 +125,7 @@
             <!--            <v-card-text>-->
             <!--              <v-row no-gutters>-->
             <!--                <v-col>-->
-            <!--                  <div class="subtitle-2">{{ $t('filter.showFirstNFish.title') }}</div>-->
+            <!--                  <div class="subtitle-2 ml-2">{{ $t('filter.showFirstNFish.title') }}</div>-->
             <!--                </v-col>-->
             <!--              </v-row>-->
             <!--              <v-row no-gutters>-->
@@ -149,7 +151,7 @@
       <v-card-text>
         <v-row no-gutters>
           <v-col>
-            <div class="subtitle-2">{{ $t('filter.sorter.title') }}</div>
+            <div class="subtitle-2 ml-2">{{ $t('filter.sorter.title') }}</div>
           </v-col>
         </v-row>
         <v-row no-gutters>

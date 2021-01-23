@@ -868,6 +868,18 @@ export default {
         spot: 'ANGLER',
       },
     },
+    bait: {
+      enableNotification: true,
+      listFilter: {
+        completeTypes: ['UNCOMPLETED'],
+        bigFishTypes: BIG_FISH_FILTER_TYPES,
+        sorterType: 'QUANTITY',
+      },
+      notificationFilter: {
+        completeTypes: ['UNCOMPLETED'],
+        bigFishTypes: BIG_FISH_FILTER_TYPES,
+      },
+    },
   },
 
   THEME_SETTING_MODES: THEME_SETTING_MODES,

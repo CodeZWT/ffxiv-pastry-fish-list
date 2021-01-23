@@ -85,7 +85,8 @@
   },
   "baitSearch": {
     "dialog": {
-      "title": "查看鱼饵使用情况",
+      "baitList": "查看鱼饵使用情况",
+      "baitBell": "鱼饵完成提醒",
       "placeholder": "输入鱼饵搜索：天钢之球 或 tgzq",
       "hint": "在ACT模式下如果无法输入，请参照帮助中的步骤设置ACTWS。"
     }
