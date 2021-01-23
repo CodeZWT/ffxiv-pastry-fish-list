@@ -7,62 +7,50 @@
     scrollable
   >
     <v-card>
-      <!--      <v-card-title>-->
-      <!--        <span class="headline">{{ $t('search.dialog.title') }}</span>-->
-      <!--      </v-card-title>-->
-      <v-card-text>
-        <div>
-          <!--          <v-row v-if="isMobile">-->
-          <!--            <v-col>-->
-          <!--              <v-icon class="mr-1">mdi-information</v-icon>-->
-          <!--              -->
-          <!--            </v-col>-->
-          <!--          </v-row>-->
-          <v-row>
-            <v-col>
-              <v-autocomplete
-                ref="search"
-                v-model="fishId"
-                :items="fishSearchData"
-                item-value="id"
-                item-text="name"
-                :label="$t('search.dialog.placeholder')"
-                clearable
-                solo
-                :filter="filterOptions"
-                :hint="$t('search.dialog.hint')"
-              >
-                <template v-slot:item="data">
-                  <click-helper>
-                    <div class="d-flex">
-                      <v-list-item-avatar>
-                        <div :class="data.item.icon" />
-                      </v-list-item-avatar>
-                      <v-list-item-content>
-                        <v-list-item-title>
-                          <div>
-                            {{ data.item.name }}
-                          </div>
-                          <div style="font-size: small">
-                            {{ data.item.spotNamesSimple }}
-                          </div>
-                        </v-list-item-title>
-                      </v-list-item-content>
+      <v-card-title>
+        <v-autocomplete
+          ref="search"
+          v-model="fishId"
+          :items="fishSearchData"
+          item-value="id"
+          item-text="name"
+          :label="$t('search.dialog.placeholder')"
+          clearable
+          solo
+          :filter="filterOptions"
+          :hint="$t('search.dialog.hint')"
+        >
+          <template v-slot:item="data">
+            <click-helper>
+              <div class="d-flex">
+                <v-list-item-avatar>
+                  <div :class="data.item.icon" />
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>
+                    <div>
+                      {{ data.item.name }}
                     </div>
-                  </click-helper>
-                </template>
-              </v-autocomplete>
-            </v-col>
-          </v-row>
-        </div>
-        <template v-if="fish != null">
-          <v-divider class="mb-3" />
+                    <div style="font-size: small">
+                      {{ data.item.spotNamesSimple }}
+                    </div>
+                  </v-list-item-title>
+                </v-list-item-content>
+              </div>
+            </click-helper>
+          </template>
+        </v-autocomplete>
+      </v-card-title>
+      <template v-if="fish != null">
+        <v-divider />
+        <v-card-text>
           <fish-detail :fish="fish" :now="now" />
-        </template>
-      </v-card-text>
+        </v-card-text>
+      </template>
+      <v-divider />
       <v-card-actions>
         <click-helper @click="dialog = false" block>
-          <v-btn color="default" block text>{{ $t('search.dialog.close') }}</v-btn>
+          <v-btn color="primary" block>{{ $t('search.dialog.close') }}</v-btn>
         </click-helper>
       </v-card-actions>
     </v-card>
@@ -179,14 +167,17 @@ export default {
     },
   },
   methods: {
-    filterOptions(item, searchText, itemText) {
+    filterOptions(item, searchText) {
       if (this.$i18n.locale === 'zh-CN') {
         return (
           PinyinMatch.match(item.name, searchText) !== false ||
           PinyinMatch.match(item.spotNamesFull, searchText)
         )
       } else {
-        return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+        return (
+          item.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 ||
+          item.spotNamesFull.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+        )
       }
     },
   },
