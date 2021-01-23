@@ -208,15 +208,15 @@ export default {
         '5.x': [],
       },
       completeFilterTypes: DataUtil.COMPLETE_FILTER_TYPES,
-      completeTypes: DataUtil.COMPLETE_FILTER_TYPES,
+      completeTypes: [],
       bigFishFilterTypes: DataUtil.BIG_FISH_FILTER_TYPES,
-      bigFishTypes: DataUtil.BIG_FISH_FILTER_TYPES,
+      bigFishTypes: [],
       fishNFilterTypes: FISH_N_FILTER_TYPES,
       fishNType: FISH_N_FILTER_TYPES.length - 1,
       fishSorterTypes: DataUtil.FISH_SORTER_TYPES,
       sorterType: DataUtil.FISH_SORTER_TYPES.indexOf('COUNTDOWN'),
       fishConstraintFilterTypes: DataUtil.FISH_CONSTRAINT_FILTER_TYPES,
-      fishConstraintTypes: DataUtil.FISH_CONSTRAINT_FILTER_TYPES,
+      fishConstraintTypes: [],
     }
   },
   computed: {

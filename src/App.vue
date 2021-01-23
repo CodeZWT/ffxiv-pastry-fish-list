@@ -121,6 +121,9 @@
         <v-btn icon v-if="isListPage" @click="toggleFilterPanel">
           <v-icon>mdi-filter</v-icon>
         </v-btn>
+        <v-btn icon v-if="isListPage || isWikiPage" @click="showBaitDialog = true">
+          <v-icon>mdi-calculator</v-icon>
+        </v-btn>
 
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
@@ -468,6 +471,7 @@
       </v-card>
     </v-dialog>
     <import-export-dialog v-model="showImportExport" />
+    <bait-dialog v-model="showBaitDialog" />
     <v-snackbar
       :timeout="2000"
       v-model="snackbar.show"
@@ -505,10 +509,12 @@ import placeNames from '@/store/placeNames.json'
 import regionTerritorySpots from '@/store/fishingSpots.json'
 import DATA_CN from '@/store/translation'
 import PatchNoteDialog from '@/components/Dialog/PatchNoteDialog'
+import BaitDialog from '@/components/Dialog/BaitDialog'
 
 export default {
   name: 'App',
   components: {
+    BaitDialog,
     PatchNoteDialog,
     ImportExportDialog,
     FishSearch,
@@ -555,6 +561,7 @@ export default {
     lazyFishWindowRates: {},
     diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
     diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
+    showBaitDialog: true,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -762,6 +769,9 @@ export default {
     },
     isListPage() {
       return this.$route.name === 'ListPage'
+    },
+    isWikiPage() {
+      return this.$route.name === 'WikiPage'
     },
     showSearch: {
       get() {
