@@ -70,7 +70,6 @@
                                 :disabled="fishIds.length === 0"
                                 v-on="on"
                               >
-                                <!--                        <div :class="getItemIconClass(baitId)" />-->
                                 <item-icon :icon-class="getItemIconClass(baitId)" small />
                                 {{ getItemName(baitId) }}
                                 ({{ fishIds.length }})

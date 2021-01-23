@@ -68,7 +68,9 @@
     "sorter": {
       "title": "排序",
       "COUNTDOWN": "窗口期",
-      "RATE": "稀有度"
+      "RATE": "稀有度",
+      "QUANTITY": "剩余鱼条数",
+      "ID": "默认"
     }
   },
   "search": {
