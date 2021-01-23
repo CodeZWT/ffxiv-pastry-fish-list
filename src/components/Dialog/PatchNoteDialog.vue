@@ -6,6 +6,86 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.5.3</div>
+        <div class="text-h5 text-center my-1">
+          鱼饵相关功能
+        </div>
+        <ul>
+          <li>
+            增加鱼饵筛选功能，在筛选界面中可以开启鱼饵筛选。
+          </li>
+          <li>
+            增加鱼饵查询小工具，点击右上角 <v-icon>mdi-hook</v-icon>按钮即可使用。
+            <ul>
+              <li>
+                可以筛选，查找鱼饵，以查看鱼饵的使用情况。
+              </li>
+              <li>
+                可以设置鱼饵使用完毕的提醒功能（默认开启），在鱼饵对应鱼全部标记已完成时将会跳出提示。
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="subtitle-1 text-center">
+          其他功能更新
+        </div>
+        <ul>
+          <li>
+            筛选功能更新，所有选项变为多选，可以支持更多的条件。
+          </li>
+          <li>
+            去除了显示个数的配置，增加了加载更多的按钮。
+          </li>
+          <li>
+            增加随系统主题（Windows 10: 设置 -> 颜色 -> 选择颜色）自动设置深浅模式的功能。
+          </li>
+          <li>
+            增加链接跳转的设置功能，支持鱼和钓场的多网站跳转。
+          </li>
+          <li>
+            增加跳转至顶的按钮。
+          </li>
+
+          <li>
+            增加关于天钢之球的说明。
+          </li>
+          <li>
+            增加5.x的鱼王心得，感谢
+            <span class="font-weight-bold">颜君行@琥珀原</span> 和
+            <span class="font-weight-bold">Aki秋山@紫水栈桥</span> 的支持！
+          </li>
+          <li>
+            增加空岛钓场的范围提示。
+          </li>
+        </ul>
+        <div class="subtitle-1 text-center">
+          错误修正
+        </div>
+        <ul>
+          <li>
+            修正多钓场鱼不能在笔记中正常标记的问题。
+          </li>
+          <li>
+            计算逻辑更新，列表将更加流畅。
+          </li>
+          <li>
+            海钓双提数据修正为国服数据：<br />
+            <ul>
+              <li>
+                沉寂者 双提个数 4 -> 2
+              </li>
+              <li>
+                剪碎手巴塞洛缪 双提个数 4 -> 2
+              </li>
+            </ul>
+          </li>
+          <li>
+            鱼数据修正。
+          </li>
+        </ul>
+        <p />
+        <v-divider />
+
         <div class="text-h6">Version 0.5.2</div>
         <div class="text-h5 text-center">
           刺鱼笔记
