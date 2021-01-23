@@ -592,7 +592,7 @@ export default {
   validateImportData(data, sample) {
     const importKeys = Object.keys(flatten(data, { safe: true })).sort()
     const sampleKeys = Object.keys(flatten(sample, { safe: true })).sort()
-    console.log(importKeys, sampleKeys)
+    // console.debug(importKeys, sampleKeys)
     return importKeys.every(it => sampleKeys.includes(it))
   },
 
