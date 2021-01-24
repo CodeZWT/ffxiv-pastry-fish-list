@@ -105,7 +105,9 @@ export default {
   },
   methods: {
     printCountDownTime: DataUtil.printCountDownTime,
-    goToFishAngelPage: DataUtil.goToFishAngelPage,
+    goToFishAngelPage(angelId, name) {
+      DataUtil.goToFishAngelPage(angelId, name, this.isMobile, this.showSnackbar)
+    },
     toItemTitle: DataUtil.toItemTitle,
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
@@ -127,6 +129,11 @@ export default {
       )
     },
     toItemIdIfExisted: DataUtil.toItemIdIfExisted,
-    ...mapMutations(['setFishCompleted', 'setFishPinned', 'setFishToBeNotified']),
+    ...mapMutations([
+      'setFishCompleted',
+      'setFishPinned',
+      'setFishToBeNotified',
+      'showSnackbar',
+    ]),
   },
 }

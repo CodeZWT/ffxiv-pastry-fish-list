@@ -45,7 +45,7 @@
             <v-icon>mdi-content-copy</v-icon>
           </v-btn>
         </click-helper>
-        <click-helper v-if="isMobile" @click.stop="goToFishAngelPage(fish.anglerFishId)">
+        <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId, fish.name)">
           <v-btn text icon :title="$t('list.item.linkHint')">
             <v-icon>mdi-link-variant</v-icon>
           </v-btn>
@@ -152,8 +152,8 @@ export default {
   },
   methods: {
     toItemTitle: DataUtil.toItemTitle,
-    goToFishAngelPage(anglerFishId) {
-      window.open(`https://cn.ff14angler.com/fish/${anglerFishId}`)
+    goToFishAngelPage(angelId, name) {
+      DataUtil.goToFishAngelPage(angelId, name, this.isMobile, this.showSnackbar)
     },
     copyToClipboard() {
       // const clipboard = document.getElementById('clipboard')

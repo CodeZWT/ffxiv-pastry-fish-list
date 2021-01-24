@@ -45,16 +45,31 @@
               <div class="d-flex align-center">
                 <item-icon :icon-class="fish.icon" style="min-width: 48px" />
                 <div class="d-flex flex-column ml-1">
-                  <div class="text-subtitle-1" :title="toItemTitle(fish)">
-                    {{ fish.name }}
-                  </div>
+                  <link-list
+                    :id="fish.id"
+                    :angler-id="fish.anglerFishId"
+                    :name="fish.name"
+                    mode="item"
+                  >
+                    <v-hover v-slot="{ hover }">
+                      <div
+                        :class="
+                          `text-subtitle-1 ${hover ? 'text-decoration-underline' : ''}`
+                        "
+                      >
+                        {{ fish.name }}
+                      </div>
+                    </v-hover>
+                  </link-list>
                   <div class="d-flex">
                     <click-helper @click.stop :copy-text="fish.name">
                       <v-btn text icon small :title="$t('list.item.copyHint')">
                         <v-icon small>mdi-content-copy</v-icon>
                       </v-btn>
                     </click-helper>
-                    <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">
+                    <click-helper
+                      @click.stop="goToFishAngelPage(fish.anglerFishId, fish.name)"
+                    >
                       <v-btn text icon small :title="$t('list.item.linkHint')">
                         <v-icon small>mdi-link-variant</v-icon>
                       </v-btn>
@@ -145,9 +160,11 @@
 
 <script>
 import DiademFishListMixin from '@/components/DiademFishList/DiademFishListMixin'
+import LinkList from '@/components/basic/LinkList'
 
 export default {
   name: 'DiademFishListLarge',
+  components: { LinkList },
   mixins: [DiademFishListMixin],
 }
 </script>

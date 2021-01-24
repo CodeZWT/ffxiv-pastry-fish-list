@@ -4,6 +4,7 @@ import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import ItemIcon from '@/components/basic/ItemIcon'
 import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
+import { mapMutations } from 'vuex'
 
 export default {
   components: { ClickHelper, FishBaitList, DetailItemMap, ItemIcon },
@@ -13,6 +14,11 @@ export default {
       scripsIcon: ImgUtil.getImgUrl('skybuilders-scrips-065073-36x36.png'),
     }
   },
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
+    },
+  },
   methods: {
     toFishingSpotData(fishingSpot) {
       return {
@@ -20,7 +26,10 @@ export default {
         fishingSpots: [fishingSpot],
       }
     },
-    goToFishAngelPage: DataUtil.goToFishAngelPage,
+    goToFishAngelPage(angelId, name) {
+      DataUtil.goToFishAngelPage(angelId, name, this.isMobile, this.showSnackbar)
+    },
     toItemTitle: DataUtil.toItemTitle,
+    ...mapMutations(['showSnackbar']),
   },
 }

@@ -329,11 +329,13 @@
                     </v-btn>
                   </click-helper>
                   <!-- fish angel link -->
-                  <!--                  <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId)">-->
-                  <!--                    <v-btn text icon small :title="$t('list.item.linkHint')">-->
-                  <!--                      <v-icon small>mdi-link-variant</v-icon>-->
-                  <!--                    </v-btn>-->
-                  <!--                  </click-helper>-->
+                  <click-helper
+                    @click.stop="goToFishAngelPage(fish.anglerFishId, fish.name)"
+                  >
+                    <v-btn text icon small :title="$t('list.item.linkHint')">
+                      <v-icon small>mdi-link-variant</v-icon>
+                    </v-btn>
+                  </click-helper>
                 </div>
               </v-col>
               <v-col :class="countDownColClass">
