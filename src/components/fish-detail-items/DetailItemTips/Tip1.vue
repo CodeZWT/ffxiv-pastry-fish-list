@@ -24,7 +24,7 @@
             </template>
             <v-card>
               <v-card-title>
-                关于攻略的时效性
+                作者说明
               </v-card-title>
               <v-card-text>
                 大部分内容是4.5写的，在新技能下可能不是最优解。
