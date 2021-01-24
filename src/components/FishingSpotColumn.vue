@@ -79,7 +79,6 @@
 </template>
 
 <script>
-import DataUtil from '@/utils/DataUtil'
 import LinkList from '@/components/basic/LinkList'
 
 export default {
@@ -117,9 +116,6 @@ export default {
     showZone() {
       return this.firstLocation.zone !== this.firstLocation.fishingSpotName || !this.small
     },
-  },
-  methods: {
-    goToFishingSpotAngelPage: DataUtil.goToFishingSpotAngelPage,
   },
 }
 </script>

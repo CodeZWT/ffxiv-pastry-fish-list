@@ -85,9 +85,11 @@
               </v-btn>
             </click-helper>
             <click-helper
-              v-if="showSpotLink"
               @click.stop="
-                goToFishingSpotAngelPage(currentSpot.fishingSpot.anglerLocationId)
+                goToFishingSpotAngelPage(
+                  currentSpot.fishingSpot.anglerLocationId,
+                  currentSpot.fishingSpotName
+                )
               "
             >
               <v-btn class="my-2" text icon :title="$t('list.item.linkHint')">
@@ -120,7 +122,7 @@
 import ClickHelper from '@/components/basic/ClickHelper'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import DataUtil from '@/utils/DataUtil'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import LinkList from '@/components/basic/LinkList'
 
 export default {
@@ -163,6 +165,9 @@ export default {
     multiple() {
       return this.fishingSpots.length > 1
     },
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
+    },
     ...mapGetters(['getFishingSpot']),
   },
   created() {
@@ -178,8 +183,16 @@ export default {
     },
   },
   methods: {
-    goToFishingSpotAngelPage: DataUtil.goToFishingSpotAngelPage,
+    goToFishingSpotAngelPage(anglerId, name) {
+      DataUtil.goToFishingSpotAngelPage(
+        anglerId,
+        name,
+        this.isMobile || this.showSpotLink,
+        this.showSnackbar
+      )
+    },
     getName: DataUtil.getName,
+    ...mapMutations(['showSnackbar']),
   },
 }
 </script>

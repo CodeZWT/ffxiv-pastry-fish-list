@@ -124,15 +124,31 @@
                     <div
                       style="display: flex; align-items: center; justify-content: center"
                     >
-                      <div
-                        class="text-subtitle-1"
-                        :title="currentMapInfo.name + '#' + currentMapInfo.id"
+                      <link-list
+                        :id="currentMapInfo.id"
+                        :angler-id="currentMapInfo.anglerLocationId"
+                        :name="currentMapInfo.name"
+                        mode="spot"
+                        :spot-mode="mode"
                       >
-                        {{ currentMapInfo.name }}
-                      </div>
-                      <div class="text-subtitle-2 ml-2">
-                        {{ currentMapInfo.zone }}
-                      </div>
+                        <v-hover v-slot="{ hover }">
+                          <div
+                            :class="
+                              `text-subtitle-1 ${
+                                hover ? 'info--text text-decoration-underline' : ''
+                              }`
+                            "
+                          >
+                            {{ currentMapInfo.name }}
+                          </div>
+                        </v-hover>
+                      </link-list>
+                      <!--                      <div-->
+                      <!--                        class="text-subtitle-1"-->
+                      <!--                        :title="currentMapInfo.name + '#' + currentMapInfo.id"-->
+                      <!--                      >-->
+                      <!--                        {{ currentMapInfo.name }}-->
+                      <!--                      </div>-->
                       <div class="text-subtitle-1 ml-2">
                         ({{ currentMapInfo.fishSpotPositionText }})
                       </div>
@@ -143,7 +159,10 @@
                       </click-helper>
                       <click-helper
                         @click.stop="
-                          goToFishingSpotAngelPage(currentMapInfo.anglerLocationId)
+                          goToFishingSpotAngelPage(
+                            currentMapInfo.anglerLocationId,
+                            currentMapInfo.name
+                          )
                         "
                       >
                         <v-btn class="my-2" text icon :title="$t('list.item.linkHint')">
@@ -288,10 +307,12 @@ import FishGigTable from '@/components/FishingGigTable'
 import FishTugTable from '@/components/FishingTugTable'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import ItemIcon from '@/components/basic/ItemIcon'
+import LinkList from '@/components/basic/LinkList'
 
 export default {
   name: 'WikiPage',
   components: {
+    LinkList,
     ItemIcon,
     DetailItemMap,
     FishTugTable,
@@ -385,7 +406,7 @@ export default {
     },
     currentMapInfo() {
       const currentSpot = _.first(this.currentSpotList)
-      console.debug(currentSpot)
+      console.debug('Current Spot', currentSpot)
       return {
         ...currentSpot,
         id: currentSpot._id,
@@ -639,7 +660,9 @@ export default {
       }
       return []
     },
-    goToFishingSpotAngelPage: DataUtil.goToFishingSpotAngelPage,
+    goToFishingSpotAngelPage(anglerId, name) {
+      DataUtil.goToFishingSpotAngelPage(anglerId, name, this.isMobile, this.showSnackbar)
+    },
     toPos(index) {
       return index === 0
         ? 'first'
@@ -804,7 +827,7 @@ export default {
         }
       }
     },
-    ...mapMutations(['setFishCompleted', 'batchSetFishCompleted']),
+    ...mapMutations(['setFishCompleted', 'batchSetFishCompleted', 'showSnackbar']),
   },
 }
 </script>

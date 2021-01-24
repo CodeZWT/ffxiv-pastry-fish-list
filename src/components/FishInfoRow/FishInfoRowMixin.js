@@ -125,7 +125,10 @@ export default {
     },
     goToFishingSpotAngelPage() {
       DataUtil.goToFishingSpotAngelPage(
-        this.fish.fishingSpots[0].fishingSpot.anglerLocationId
+        this.fish.fishingSpots[0].fishingSpot.anglerLocationId,
+        this.fish.fishingSpots[0].fishingSpotName,
+        this.isMobile,
+        this.showSnackbar
       )
     },
     toItemIdIfExisted: DataUtil.toItemIdIfExisted,

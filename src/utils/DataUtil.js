@@ -195,11 +195,22 @@ export default {
   goToFishAngelPage(anglerId, name, isMobile, showSnackBarFn) {
     if (!isMobile) {
       showSnackBarFn({
-        text: '跳转功能已整合至鱼或钓场名称，请点击“' + name + '”直接跳转。',
+        text: '跳转功能已整合至鱼名称，请点击“' + name + '”直接跳转。',
         color: 'warning',
       })
     } else {
       window.open(toFishAngelFishLink({ anglerId }))
+    }
+  },
+
+  goToFishingSpotAngelPage(anglerId, name, isMobile, showSnackBarFn) {
+    if (!isMobile) {
+      showSnackBarFn({
+        text: '跳转功能已整合至钓场名称，请点击“' + name + '”直接跳转。',
+        color: 'warning',
+      })
+    } else {
+      window.open(toFishAngelSpotLink({ anglerId }))
     }
   },
 
@@ -601,10 +612,6 @@ export default {
     const sampleKeys = Object.keys(flatten(sample, { safe: true })).sort()
     // console.debug(importKeys, sampleKeys)
     return importKeys.every(it => sampleKeys.includes(it))
-  },
-
-  goToFishingSpotAngelPage(anglerLocationId) {
-    window.open(`https://cn.ff14angler.com/?spot=${anglerLocationId}`)
   },
 
   tugToHookset(tug, hookset) {

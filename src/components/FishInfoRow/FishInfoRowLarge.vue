@@ -365,15 +365,15 @@
                       <v-icon small>mdi-content-copy</v-icon>
                     </v-btn>
                   </click-helper>
-                  <!--                  <v-btn-->
-                  <!--                    text-->
-                  <!--                    small-->
-                  <!--                    icon-->
-                  <!--                    :title="$t('list.item.linkHint')"-->
-                  <!--                    @click.stop="goToFishingSpotAngelPage"-->
-                  <!--                  >-->
-                  <!--                    <v-icon small>mdi-link-variant</v-icon>-->
-                  <!--                  </v-btn>-->
+                  <v-btn
+                    text
+                    small
+                    icon
+                    :title="$t('list.item.linkHint')"
+                    @click.stop="goToFishingSpotAngelPage"
+                  >
+                    <v-icon small>mdi-link-variant</v-icon>
+                  </v-btn>
                 </div>
               </v-col>
             </v-row>
