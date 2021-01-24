@@ -4,15 +4,19 @@
   "private": true,
   "author": "RiceCake404 <etenaelta@outlook.com>",
   "license": "MIT",
+  "description": "FFXIV Pastry Fish App",
   "scripts": {
     "start": "chcp 65001 && electron .",
     "dev:pack": "chcp 65001 && electron-builder -w --dir",
-    "prod:pack": "chcp 65001 && electron-builder -w"
+    "prod:pack": "chcp 65001 && electron-builder -w",
+    "build:front": "cd front & yarn build:electron"
   },
   "main": "main.js",
   "devDependencies": {
     "electron": "^11.2.1",
-    "electron-builder": "^22.9.1"
+    "electron-builder": "^22.9.1",
+    "eslint": "^7.18.0",
+    "prettier": "^2.2.1"
   },
   "dependencies": {
     "@thewakingsands/axis-font-icons": "^0.2.1",

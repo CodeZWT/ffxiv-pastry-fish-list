@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "inspect": "vue-cli-service inspect",
     "build:main": "vue-cli-service build --mode main --dest ../front-dist",
+    "build:electron": "vue-cli-service build --mode electron --dest ../front-dist",
     "build": "vue-cli-service build --dest ../front-dist",
     "build:staging": "vue-cli-service build --mode staging --dest ../front-dist",
     "lint": "vue-cli-service lint",
