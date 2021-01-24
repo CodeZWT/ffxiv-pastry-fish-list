@@ -472,7 +472,10 @@
       </v-card>
     </v-dialog>
     <import-export-dialog v-model="showImportExport" />
-    <bait-dialog v-model="showBaitDialog" />
+    <bait-dialog
+      v-model="showBaitDialog"
+      :show-setting.camel.sync="showBaitNotificationSetting"
+    />
     <v-snackbar
       :timeout="2000"
       v-model="snackbar.show"
@@ -483,7 +486,7 @@
       <div class="text-center">{{ snackbar.text }}</div>
     </v-snackbar>
     <v-snackbar
-      :timeout="baitIdsForNotification.length > 1 ? -1 : 3000"
+      :timeout="baitIdsForNotification.length > 1 ? -1 : 5000"
       v-model="showBaitNotification"
       elevation="24"
     >
@@ -518,7 +521,10 @@
         </v-expansion-panels>
       </div>
       <template v-slot:action="{ attrs }">
-        <v-btn color="primary" text v-bind="attrs" @click="showBaitNotification = false">
+        <v-btn color="primary" text v-bind="attrs" @click="showBaitDialogOfSetting">
+          设置
+        </v-btn>
+        <v-btn color="error" text v-bind="attrs" @click="showBaitNotification = false">
           关闭
         </v-btn>
       </template>
@@ -606,6 +612,7 @@ export default {
     diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
     diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
     showBaitDialog: false,
+    showBaitNotificationSetting: false,
     showBaitNotification: false,
   }),
   computed: {
@@ -1035,6 +1042,10 @@ export default {
     // }, 200)
   },
   methods: {
+    showBaitDialogOfSetting() {
+      this.showBaitDialog = true
+      this.showBaitNotificationSetting = true
+    },
     selectThemeMode(index) {
       this.setThemeMode(DataUtil.THEME_SETTING_MODES[index])
     },

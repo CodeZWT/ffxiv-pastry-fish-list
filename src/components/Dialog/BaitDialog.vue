@@ -178,6 +178,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showSetting: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -267,6 +271,18 @@ export default {
       'enableBaitNotification',
       'baitSetting',
     ]),
+  },
+  watch: {
+    showBaitDialog(showBaitDialog) {
+      if (showBaitDialog) {
+        if (this.showSetting) {
+          this.tabIndex = 1
+          this.$emit('update:showSetting', false)
+        } else {
+          this.tabIndex = 0
+        }
+      }
+    },
   },
   methods: {
     onFilterChange(updatePath, types, indices) {
