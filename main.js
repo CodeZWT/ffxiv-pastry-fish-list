@@ -11,7 +11,7 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 1280,
         height: 500,
-        frame: false,
+        frame: true,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
@@ -19,8 +19,9 @@ function createWindow() {
         }
     })
 
-    win.setOpacity(0.9)
-    win.setAlwaysOnTop(true)
+    // win.setOpacity(0.9)
+    // win.setAlwaysOnTop(true)
+    win.removeMenu()
 
     win.loadURL(winURL)
         .then(() => {

@@ -37,7 +37,8 @@ exports.start = callBack => {
 }
 exports.onUpdate = onUpdate
 
-let updateCallBack = () => {
+let updateCallBack = data => {
+    console.log('sending data', data)
 }
 
 function onUpdate(callBack) {

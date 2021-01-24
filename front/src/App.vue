@@ -989,6 +989,17 @@ export default {
       this.showChromeTimeZoneBugDialog = this.showChromeBugDialog
     }
 
+    window.electron.ipcRenderer.on('fishingData', (event, data) => {
+      console.log(JSON.stringify(data))
+      // this.dataStatus = {
+      //   ...data.status,
+      //   effects: Array.from(data.status && data.status.effects),
+      // }
+      // this.dataCurrentRecord = data.currentRecord
+      // this.dataRecords = data.records
+      // this.dataReadableRecords = data.readableRecords
+    })
+
     this.startLoading()
     // this.drawer = !this.isMobile
 
