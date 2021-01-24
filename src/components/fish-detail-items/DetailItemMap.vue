@@ -55,7 +55,7 @@
                 :angler-id="currentSpot.fishingSpot.anglerLocationId"
                 :name="currentSpot.fishingSpotName"
                 mode="spot"
-                :spot-mode="type"
+                :spot-mode="fish.type"
                 :disabled="showSpotLink"
               >
                 <v-hover v-slot="{ hover }">
