@@ -54,6 +54,7 @@
         </v-tooltip>
       </click-helper>
       <v-toolbar-title
+        v-if="!isMobile"
         style="min-width: 85px !important"
         class="ml-1 text-truncate"
         :title="$t('top.navBarTitle', { title, version })"
