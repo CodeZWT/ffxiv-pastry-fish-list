@@ -286,7 +286,7 @@ export default new Vuex.Store({
       )
       const newRemainingBaitIds = getRemainingBaitIdsWithUserData(state.userData)
       const removed = _.difference(state.remainingBaitIds, newRemainingBaitIds)
-      if (removed.length > 0) {
+      if (removed.length > 0 && state.userData.bait.enableNotification) {
         state.baitIdsForNotification = removed
       }
       state.remainingBaitIds = newRemainingBaitIds
@@ -308,7 +308,7 @@ export default new Vuex.Store({
       )
       const newRemainingBaitIds = getRemainingBaitIdsWithUserData(state.userData)
       const removed = _.difference(state.remainingBaitIds, newRemainingBaitIds)
-      if (removed.length > 0) {
+      if (removed.length > 0 && state.userData.bait.enableNotification) {
         state.baitIdsForNotification = removed
       }
       state.remainingBaitIds = newRemainingBaitIds
