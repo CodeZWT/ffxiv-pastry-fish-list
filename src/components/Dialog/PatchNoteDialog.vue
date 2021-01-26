@@ -57,7 +57,7 @@
           <li>
             增加5.x的鱼王心得，感谢
             <span class="font-weight-bold">颜君行@琥珀原</span> 和
-            <span class="font-weight-bold">Aki秋山@魔杜纳</span> 的支持！
+            <span class="font-weight-bold">Aki秋山@摩杜纳</span> 的支持！
           </li>
           <li>
             增加空岛钓场的范围提示。

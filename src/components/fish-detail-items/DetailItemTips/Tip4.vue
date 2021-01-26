@@ -32,6 +32,7 @@
           <v-col cols="12">
             <div class="text-subtitle-2" style="font-weight: bold">其他</div>
             <div class="text--primary" v-html="tip.comment"></div>
+            <div class="text--primary mt-1" v-html="tip.comment2"></div>
           </v-col>
         </v-row>
       </v-card-text>
