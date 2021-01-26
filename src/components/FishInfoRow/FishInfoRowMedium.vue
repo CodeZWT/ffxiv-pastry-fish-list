@@ -191,8 +191,8 @@
         <v-expand-transition>
           <div
             v-if="hover || isMobile"
-            style="position: absolute; height: 28px; z-index: 2; width: 100%"
-            class="d-flex align-center primary rounded-b-lg elevation-2"
+            style="height: 28px"
+            class="d-flex; align-center; primary"
           >
             <v-row no-gutters>
               <v-col class="col-7">
