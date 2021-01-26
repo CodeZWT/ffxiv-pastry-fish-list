@@ -679,10 +679,11 @@ export default {
 
   generateBaitFishItems(fishList, completeTypes, bigFishTypes, completedFishIds) {
     const completedFishIdSet = new Set(completedFishIds)
-    const targetFishList = fishList.filter(fish => {
-      const fishCompleted = completedFishIdSet.has(fish._id)
-      const isBigFish = DATA_CN.BIG_FISH.includes(fish._id)
-      const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fish._id)
+    return fishList.filter(fish => {
+      const fishId = toItemId(fish._id)
+      const fishCompleted = completedFishIdSet.has(fishId)
+      const isBigFish = DATA_CN.BIG_FISH.includes(fishId)
+      const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fishId)
       return (
         fish.gig == null &&
         ((completeTypes.includes('COMPLETED') && fishCompleted) ||
@@ -692,12 +693,12 @@ export default {
           (bigFishTypes.includes('NORMAL') && !isBigFish))
       )
     })
-    return targetFishList.map(fishData => {
-      return {
-        bait: fishData.bestCatchPath[0],
-        fish: toItemId(fishData._id),
-      }
-    })
+      .map(fish => {
+        return {
+          bait: fish.bestCatchPath[0],
+          fish: toItemId(fish._id),
+        }
+      })
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
