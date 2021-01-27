@@ -1,10 +1,5 @@
 <template>
-  <div
-    :title="title"
-    style="width: 48px; height: 48px; position: relative"
-    :class="{ 'zoom-in': small }"
-    @click="onClicked"
-  >
+  <div :title="title" :class="{ 'zoom-in': small, normal: !small }" @click="onClicked">
     <div v-if="!iconUrl" :class="`${iconClass} ${iconPositionClass}`" />
     <div
       v-else
@@ -93,8 +88,19 @@ export default {
   zoom: 0.75;
   -moz-transform: scale(0.75);
   -moz-transform-origin: 0 0;
+  position: relative;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
 }
-
+.normal {
+  position: relative;
+  height: 48px;
+  width: 48px;
+  min-height: 48px;
+  min-width: 48px;
+}
 /*.db-list__item__icon__cover {*/
 /*  width: 48px;*/
 /*  height: 48px;*/
