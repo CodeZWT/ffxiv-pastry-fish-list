@@ -485,7 +485,7 @@ export default {
       dataMissing: false,
       anglerFishId: 776,
       locations: [116],
-      bestCatchPath: [12704],
+      bestCatchPath: [28634],
       patch: 4.3,
     },
     '23075': {
@@ -1216,6 +1216,23 @@ export default {
     },
     '12810': {
       bestCatchPath: [28634],
+    },
+    '23055': {
+      startHour: 0,
+      endHour: 24,
+    },
+    '12798': {
+      tug: 'medium',
+    },
+    '20108': {
+      snagging: false,
+    },
+    '4994': {
+      bestCatchPath: [2601],
+    },
+    '12811': {
+      tug: 'light',
+      bestCatchPath: [12706],
     },
   },
   COLLECTABLE_FISH_ITEM_ID: [
