@@ -120,6 +120,7 @@ function toInnerSpotLink({ id, mode }) {
 }
 
 const TIP3_FISH_IDS = [16744, 17589]
+const TIP5_FISH_IDS = [17591, 12753, 12810]
 
 export default {
   LINKS: {
@@ -600,10 +601,11 @@ export default {
 
   hasTips(fishId) {
     return (
-      tip1Data[fishId] ||
-      tip2Data[fishId] ||
+      !!tip1Data[fishId] ||
+      !!tip2Data[fishId] ||
       TIP3_FISH_IDS.includes(fishId) ||
-      !!Tip4.TIPS[fishId]
+      !!Tip4.TIPS[fishId] ||
+      TIP5_FISH_IDS.includes(fishId)
     )
   },
 
@@ -660,6 +662,7 @@ export default {
   hasChineseCharacter: hasChineseCharacter,
 
   TIP3_FISH_IDS: TIP3_FISH_IDS,
+  TIP5_FISH_IDS: TIP5_FISH_IDS,
 
   generateFishId2WikiId(fishDict) {
     const dict = {}
@@ -679,20 +682,21 @@ export default {
 
   generateBaitFishItems(fishList, completeTypes, bigFishTypes, completedFishIds) {
     const completedFishIdSet = new Set(completedFishIds)
-    return fishList.filter(fish => {
-      const fishId = toItemId(fish._id)
-      const fishCompleted = completedFishIdSet.has(fishId)
-      const isBigFish = DATA_CN.BIG_FISH.includes(fishId)
-      const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fishId)
-      return (
-        fish.gig == null &&
-        ((completeTypes.includes('COMPLETED') && fishCompleted) ||
-          (completeTypes.includes('UNCOMPLETED') && !fishCompleted)) &&
-        ((bigFishTypes.includes('LIVING_LEGENDS') && isLivingLegend) ||
-          (bigFishTypes.includes('OLD_ONES') && isBigFish && !isLivingLegend) ||
-          (bigFishTypes.includes('NORMAL') && !isBigFish))
-      )
-    })
+    return fishList
+      .filter(fish => {
+        const fishId = toItemId(fish._id)
+        const fishCompleted = completedFishIdSet.has(fishId)
+        const isBigFish = DATA_CN.BIG_FISH.includes(fishId)
+        const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fishId)
+        return (
+          fish.gig == null &&
+          ((completeTypes.includes('COMPLETED') && fishCompleted) ||
+            (completeTypes.includes('UNCOMPLETED') && !fishCompleted)) &&
+          ((bigFishTypes.includes('LIVING_LEGENDS') && isLivingLegend) ||
+            (bigFishTypes.includes('OLD_ONES') && isBigFish && !isLivingLegend) ||
+            (bigFishTypes.includes('NORMAL') && !isBigFish))
+        )
+      })
       .map(fish => {
         return {
           bait: fish.bestCatchPath[0],

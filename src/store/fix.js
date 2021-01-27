@@ -1211,6 +1211,12 @@ export default {
       startHour: 18,
       endHour: 22,
     },
+    '12753': {
+      bestCatchPath: [28634],
+    },
+    '12810': {
+      bestCatchPath: [28634],
+    },
   },
   OCEAN_FISHING_FISH: {
     '28937': {
