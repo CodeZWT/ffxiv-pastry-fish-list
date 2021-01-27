@@ -12,6 +12,10 @@
 //     ASSET_PATH = '/'
 // }
 
+const webpack = require('webpack')
+const GitRevPlugin = require('git-revision-webpack-plugin')
+const GitRevisionPlugin = new GitRevPlugin()
+
 module.exports = {
   transpileDependencies: ['vuetify'],
   publicPath: process.env.VUE_APP_STATIC_FILES_URL,
@@ -82,5 +86,15 @@ module.exports = {
       .use('html-loader')
       .loader('html-loader')
       .end()
+  },
+  configureWebpack: {
+    plugins: [
+      GitRevisionPlugin,
+      new webpack.DefinePlugin({
+        // VERSION: JSON.stringify(GitRevisionPlugin.version()),
+        'process.env.commit_hash': JSON.stringify(GitRevisionPlugin.commithash()),
+        // BRANCH: JSON.stringify(GitRevisionPlugin.branch()),
+      }),
+    ],
   },
 }

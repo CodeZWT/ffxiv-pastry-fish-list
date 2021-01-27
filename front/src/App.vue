@@ -142,9 +142,7 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ on: tooltip }">
                 <v-btn icon v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                  <v-icon>
-                    mdi-theme-light-dark
-                  </v-icon>
+                  <v-icon> mdi-theme-light-dark </v-icon>
                 </v-btn>
               </template>
               <div>设置颜色模式</div>
@@ -174,9 +172,7 @@
                     </v-list-item>
                   </div>
                 </template>
-                <div>
-                  WINDOWS10: 设置 -> 颜色 -> 选择颜色
-                </div>
+                <div>WINDOWS10: 设置 -> 颜色 -> 选择颜色</div>
               </v-tooltip>
             </v-list-item-group>
           </v-list>
@@ -504,9 +500,7 @@
       <div class="d-flex align-center" v-else>
         <v-expansion-panels flat>
           <v-expansion-panel>
-            <v-expansion-panel-header>
-              多个鱼饵已钓完所有鱼
-            </v-expansion-panel-header>
+            <v-expansion-panel-header> 多个鱼饵已钓完所有鱼 </v-expansion-panel-header>
             <v-expansion-panel-content>
               <div class="d-flex flex-wrap">
                 <div
@@ -989,16 +983,24 @@ export default {
       this.showChromeTimeZoneBugDialog = this.showChromeBugDialog
     }
 
-    window.electron.ipcRenderer.on('fishingData', (event, data) => {
-      console.log(JSON.stringify(data))
-      // this.dataStatus = {
-      //   ...data.status,
-      //   effects: Array.from(data.status && data.status.effects),
-      // }
-      // this.dataCurrentRecord = data.currentRecord
-      // this.dataRecords = data.records
-      // this.dataReadableRecords = data.readableRecords
-    })
+    console.debug(process.env.commit_hash)
+
+    if (DevelopmentModeUtil.isElectron()) {
+      window.electron?.ipcRenderer
+        ?.on('fishingData', (event, data) => {
+          console.log(JSON.stringify(data))
+          // this.dataStatus = {
+          //   ...data.status,
+          //   effects: Array.from(data.status && data.status.effects),
+          // }
+          // this.dataCurrentRecord = data.currentRecord
+          // this.dataRecords = data.records
+          // this.dataReadableRecords = data.readableRecords
+        })
+        ?.on('setupDownload', (event, data) => {
+          console.log(data)
+        })
+    }
 
     this.startLoading()
     // this.drawer = !this.isMobile

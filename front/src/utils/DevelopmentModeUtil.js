@@ -5,4 +5,8 @@ export default {
   isLocal() {
     return process.env.NODE_ENV === 'development'
   },
+  isElectron() {
+    return true
+    // return process.env.VUE_APP_ELECTRON === 'true'
+  },
 }

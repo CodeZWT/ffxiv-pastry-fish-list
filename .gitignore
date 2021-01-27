@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 dumpData
 ff14-fish-tracker-app-master
+/front-electron-dist/

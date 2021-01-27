@@ -7,12 +7,11 @@
   "description": "FFXIV Pastry Fish App",
   "scripts": {
     "start": "chcp 65001 && electron .",
+    "front:start":"cd front && yarn serve",
     "dev:pack": "chcp 65001 && electron-builder -w --dir",
     "prod:pack": "chcp 65001 && electron-builder -w",
     "build:electronFront": "cd front && yarn build:electron",
-    "build:websiteFront": "cd front && yarn build:main",
-    "build": "ls dist/PastryFish-%npm_package_version%.exe",
-    "publish:electron": "coding-generic -u=etenaelta@outlook.com --path=dist/PastryFish-%npm_package_version%.exe --registry=\"https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/chunks/PastryFish?version=%npm_package_version%\""
+    "build:websiteFront": "cd front && yarn build:main"
   },
   "main": "main.js",
   "devDependencies": {
@@ -24,8 +23,9 @@
   },
   "dependencies": {
     "@thewakingsands/axis-font-icons": "^0.2.1",
+    "download": "^8.0.0",
     "electron-is-dev": "^1.2.0",
-    "electron-log": "^4.3.0",
+    "electron-log": "^4.3.1",
     "is-elevated": "^3.0.0",
     "lodash": "^4.17.20",
     "luxon": "^1.25.0",
@@ -33,7 +33,7 @@
   },
   "build": {
     "appId": "ffxiv-pastry-fish",
-    "artifactName": "PastryFish-${version}.${ext}",
+    "artifactName": "PastryFishSetup.${ext}",
     "extraResources": [
       {
         "from": "./node_modules/node-machina-ffxiv/MachinaWrapper",
@@ -41,12 +41,21 @@
         "filter": [
           "**/*"
         ]
+      },
+      {
+        "from": "./front-electron-dist/COMMITHASH",
+        "to": "COMMITHASH"
       }
     ],
+    "files": [
+      "**/*",
+      "!front",
+      "!front-dist"
+    ],
     "win": {
-      "publisherName": "RiceCake 404",
       "requestedExecutionLevel": "highestAvailable",
-      "icon": "./assets/icon256.png"
+      "icon": "./assets/icon256.png",
+      "asar": true
     }
   }
 }

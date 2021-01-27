@@ -36,6 +36,7 @@ exports.start = callBack => {
         .then(() => Machina.start(callBack))
 }
 exports.onUpdate = onUpdate
+exports.stop = Machina.stop
 
 let updateCallBack = data => {
     console.log('sending data', data)
