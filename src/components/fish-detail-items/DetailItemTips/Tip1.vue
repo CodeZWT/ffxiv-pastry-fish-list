@@ -35,6 +35,12 @@
             </v-card>
           </v-dialog>
         </div>
+
+        <div class="red">
+          本系列的攻略中的技巧偏向于钓
+          <span style="font-weight: bold; color: orangered">HQ鱼</span>
+          ，如果不追求HQ，请酌情参考攻略中的技巧。
+        </div>
       </v-card-subtitle>
       <v-divider />
       <v-card-text>
