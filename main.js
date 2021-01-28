@@ -9,7 +9,7 @@ const throttle = require('lodash/throttle')
 const exec = require('child_process').exec
 
 const COMMIT_HASH_DOWNLOAD_LINK =
-  'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/COMMITHASH?version=latest'
+  'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
 const SETUP_EXE_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
