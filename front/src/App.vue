@@ -470,7 +470,7 @@
     <v-dialog v-model="showCheckStartSetupDialog" max-width="600" persistent>
       <v-card>
         <v-card-title>
-          更新程序下载完成
+          更新程序下载完成Test
         </v-card-title>
         <v-card-text>
           <div>请双击随后打开文件夹中的 PastryFishSetup.exe 更新</div>
