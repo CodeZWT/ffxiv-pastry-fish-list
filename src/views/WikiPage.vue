@@ -527,12 +527,21 @@ export default {
         this.currentFishId = -1
       }
     },
+    '$route.query': {
+      handler(query) {
+        console.debug('watch query', query)
+        this.mode = query.mode ?? 'normal'
+        this.currentSpotId = +(query.spotId ?? -1)
+        this.type = this.currentSpotId !== -1 ? 'spot' : undefined
+      },
+      immediate: true,
+    },
   },
   created() {
     console.debug('nav with query', this.$route.query)
-    this.mode = this.$route.query.mode ?? 'normal'
-    this.currentSpotId = +(this.$route.query.spotId ?? -1)
-    this.type = this.currentSpotId !== -1 ? 'spot' : undefined
+    // this.mode = this.$route.query.mode ?? 'normal'
+    // this.currentSpotId = +(this.$route.query.spotId ?? -1)
+    // this.type = this.currentSpotId !== -1 ? 'spot' : undefined
     this.openedItems = this.normalOpenedItems
     this.spearOpenedItems = this.spearNormalOpenedItems
     this.debouncedSearchTextUpdater = _.debounce(text => {
@@ -540,6 +549,9 @@ export default {
       this.updateOpenItems(t, this.lazySearchText)
       this.lazySearchText = t
     }, 500)
+  },
+  mounted() {
+    console.log('123123')
   },
   methods: {
     clearCurrentStatus(mode) {
