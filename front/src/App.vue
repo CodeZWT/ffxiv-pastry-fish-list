@@ -467,6 +467,21 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="showCheckStartSetupDialog" max-width="600" persistent>
+      <v-card>
+        <v-card-title>
+          更新程序下载完成
+        </v-card-title>
+        <v-card-text>
+          <div>请双击随后打开文件夹中的 PastryFishSetup.exe 更新</div>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="startUpdate" color="primary" block>
+            开始更新
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <import-export-dialog v-model="showImportExport" />
     <bait-dialog
       v-model="showBaitDialog"
@@ -617,6 +632,7 @@ export default {
     showBaitNotification: false,
     showChromeTimeZoneBugDialog: false,
     showMigrationDialog: false,
+    showCheckStartSetupDialog: false,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -1000,6 +1016,9 @@ export default {
         ?.on('setupDownload', (event, data) => {
           console.log(data)
         })
+        ?.on('checkStartSetup', () => {
+          this.showCheckStartSetupDialog = true
+        })
     }
 
     this.startLoading()
@@ -1074,6 +1093,9 @@ export default {
     // }, 200)
   },
   methods: {
+    startUpdate() {
+      window.electron?.ipcRenderer?.send('startUpdate')
+    },
     onFishSelected({ fishId, firstSpotId }) {
       this.selectedFishId = fishId
       this.selectedFishFirstSpotId = firstSpotId
