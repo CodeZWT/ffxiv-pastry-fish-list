@@ -34,6 +34,7 @@
   "build": {
     "appId": "ffxiv-pastry-fish",
     "artifactName": "PastryFishSetup.${ext}",
+    "productName": "鱼糕",
     "extraResources": [
       {
         "from": "./node_modules/node-machina-ffxiv/MachinaWrapper",
