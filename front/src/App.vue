@@ -142,7 +142,7 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ on: tooltip }">
                 <v-btn icon v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                  <v-icon> mdi-theme-light-dark </v-icon>
+                  <v-icon> mdi-theme-light-dark</v-icon>
                 </v-btn>
               </template>
               <div>设置颜色模式</div>
@@ -469,15 +469,11 @@
     </v-dialog>
     <v-dialog v-model="showCheckStartSetupDialog" max-width="600" persistent>
       <v-card>
-        <v-card-title>
-          更新程序下载完成Test
-        </v-card-title>
-        <v-card-text>
-          <div>请双击随后打开文件夹中的 PastryFishSetup.exe 更新</div>
-        </v-card-text>
+        <v-card-title> 更新程序下载完成 </v-card-title>
+        <v-card-subtitle> 双击 PastryFishSetup.exe 直接更新 </v-card-subtitle>
         <v-card-actions>
           <v-btn @click="startUpdate" color="primary" block>
-            开始更新
+            打开更新程序所在文件夹
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -515,7 +511,7 @@
       <div class="d-flex align-center" v-else>
         <v-expansion-panels flat>
           <v-expansion-panel>
-            <v-expansion-panel-header> 多个鱼饵已钓完所有鱼 </v-expansion-panel-header>
+            <v-expansion-panel-header> 多个鱼饵已钓完所有鱼</v-expansion-panel-header>
             <v-expansion-panel-content>
               <div class="d-flex flex-wrap">
                 <div
@@ -587,7 +583,7 @@ export default {
     ClickHelper,
     ResetButton,
   },
-  data: vm => ({
+  data: (vm) => ({
     THEME_MODE_ICONS: ['mdi-weather-night', 'mdi-weather-sunny', 'mdi-brightness-auto'],
     systemThemeMode: 'DARK',
     THEME_SETTING_MODES: DataUtil.THEME_SETTING_MODES,
@@ -632,7 +628,7 @@ export default {
     showBaitNotification: false,
     showChromeTimeZoneBugDialog: false,
     showMigrationDialog: false,
-    showCheckStartSetupDialog: false,
+    showCheckStartSetupDialog: true,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -654,7 +650,7 @@ export default {
     filteredFishIdSet() {
       const idSet = new Set()
       this.lazyTransformedFishList
-        .filter(fish => {
+        .filter((fish) => {
           const fishCompleted = this.getFishCompleted(fish.id)
           const isBigFish = this.bigFish.includes(fish.id)
           const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fish.id)
@@ -672,7 +668,7 @@ export default {
               this.filters.fishConstraintTypes.includes('NOT_RESTRICTED') === !restricted)
           )
         })
-        .forEach(it => idSet.add(it._id))
+        .forEach((it) => idSet.add(it._id))
       return idSet
     },
     baitFilteredFishIdSet() {
@@ -680,14 +676,14 @@ export default {
       const idSet = new Set()
       const baitIds = this.baitFilterIds
       list
-        .filter(fishId => {
+        .filter((fishId) => {
           const fish = this.allFish[fishId]
           return (
             !this.baitFilterEnabled ||
             (fish.bestCatchPath != null && baitIds.includes(fish.bestCatchPath[0]))
           )
         })
-        .forEach(it => {
+        .forEach((it) => {
           idSet.add(it)
         })
       // console.log(baitIds)
@@ -697,14 +693,14 @@ export default {
     sortedFilteredFishList() {
       const idSet = this.baitFilteredFishIdSet
       let countdownSortedFishList = this.sortedFishIds
-        .filter(id => idSet.has(id))
-        .map(id => this.lazyTransformedFishDict[id])
-        .filter(it => !this.getFishPinned(it.id))
+        .filter((id) => idSet.has(id))
+        .map((id) => this.lazyTransformedFishDict[id])
+        .filter((it) => !this.getFishPinned(it.id))
       // .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
 
       if (this.filters.sorterType === 'RATE') {
         const firstWaitingFishLongerThanTwoHoursIndex = countdownSortedFishList.findIndex(
-          fish => {
+          (fish) => {
             const countDownType =
               this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE
             if (countDownType === DataUtil.FISHING) {
@@ -728,9 +724,9 @@ export default {
               )
 
         countdownSortedFishList = _.sortBy(countdownSortedFishList, [
-          fish =>
+          (fish) =>
             this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE,
-          fish => this.lazyFishWindowRates[fish._id],
+          (fish) => this.lazyFishWindowRates[fish._id],
         ]).concat(rateSortExcludedFish)
       }
 
@@ -740,16 +736,16 @@ export default {
       const fishSourceList = this.lazyTransformedFishList
       const sortedFishIds = this.sortedFishIds
       return _.sortBy(
-        fishSourceList.filter(it => this.getFishPinned(it.id)),
+        fishSourceList.filter((it) => this.getFishPinned(it.id)),
         [
-          fish => {
+          (fish) => {
             if (this.filters.sorterType === 'COUNTDOWN') {
               return 1
             } else {
               return this.lazyFishWindowRates[fish.id]
             }
           },
-          fish => {
+          (fish) => {
             const index = sortedFishIds.indexOf(fish.id)
             if (index === -1) {
               return sortedFishIds.length
@@ -757,7 +753,7 @@ export default {
               return index
             }
           },
-          fish => fish.id,
+          (fish) => fish.id,
         ]
       )
     },
@@ -788,7 +784,7 @@ export default {
           }
         } else {
           const firstNotFishingIndex = list.findIndex(
-            it => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING
+            (it) => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING
           )
           return {
             type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
@@ -805,16 +801,16 @@ export default {
       const fishSourceList = this.lazyTransformedFishList
       const sortedFishIds = this.sortedFishIds
       return _.sortBy(
-        fishSourceList.filter(it => this.getFishToBeNotified(it.id)),
+        fishSourceList.filter((it) => this.getFishToBeNotified(it.id)),
         [
-          fish => {
+          (fish) => {
             if (this.filters.sorterType === 'COUNTDOWN') {
               return 1
             } else {
               return this.lazyFishWindowRates[fish.id]
             }
           },
-          fish => sortedFishIds.indexOf(fish.id),
+          (fish) => sortedFishIds.indexOf(fish.id),
         ]
       )
     },
@@ -972,11 +968,11 @@ export default {
       immediate: true,
     },
     fishListTimePart: {
-      handler: function(fishListTimePart) {
+      handler: function (fishListTimePart) {
         const newSortedFishIds = _.sortBy(fishListTimePart, [
           'countDown.type',
           'countDown.time',
-        ]).map(it => it.id)
+        ]).map((it) => it.id)
         if (!_.isEqual(this.sortedFishIds, newSortedFishIds)) {
           this.sortedFishIds = newSortedFishIds
         }
@@ -1028,11 +1024,11 @@ export default {
       window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'DARK'
         : 'LIGHT'
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
       this.systemThemeMode = e.matches ? 'DARK' : 'LIGHT'
     })
 
-    hotkeys('/', event => {
+    hotkeys('/', (event) => {
       if (!this.showSearchDialog) {
         this.setShowSearchDialog(true)
       }
@@ -1053,17 +1049,17 @@ export default {
 
     this.now = Date.now()
     this.lazySourceFishList = Object.values(this.allFish).filter(
-      it => it.patch == null || it.patch <= DataUtil.PATCH_MAX
+      (it) => it.patch == null || it.patch <= DataUtil.PATCH_MAX
     )
     this.checkFishNeedSplit(this.lazySourceFishList)
-    this.lazySourceImportantFishList = this.lazySourceFishList.filter(it =>
+    this.lazySourceImportantFishList = this.lazySourceFishList.filter((it) =>
       DataUtil.showFishInList(it)
     )
     this.updateWeatherChangePart(this.now)
 
     this.lazyFishConstraintDict = _.mapValues(
       this.fishListWeatherChangePart,
-      it => it.fishWindows.length > 0
+      (it) => it.fishWindows.length > 0
     )
 
     this.lazyTransformedFishList = this.assembleFish(this.lazySourceFishList).concat(
@@ -1071,10 +1067,10 @@ export default {
     )
     this.lazyTransformedFishDict = DataUtil.toMap(
       this.lazyTransformedFishList,
-      fish => fish.id
+      (fish) => fish.id
     )
     const sounds = await this.loadingSounds()
-    this.setSounds(DataUtil.toMap(sounds, it => it.key))
+    this.setSounds(DataUtil.toMap(sounds, (it) => it.key))
 
     setInterval(() => {
       const now = Date.now()
@@ -1110,21 +1106,21 @@ export default {
     checkFishNeedSplit(fishList) {
       const spot2FishList = _.mapValues(
         _.keyBy(
-          regionTerritorySpots.flatMap(it => it.territories.flatMap(t => t.spots)),
+          regionTerritorySpots.flatMap((it) => it.territories.flatMap((t) => t.spots)),
           'id'
         ),
-        spot => spot.fishList
+        (spot) => spot.fishList
       )
 
-      return fishList.forEach(fish => {
+      return fishList.forEach((fish) => {
         const notAvailableSpots = []
-        fish.locations.forEach(spotId => {
+        fish.locations.forEach((spotId) => {
           const availableFishList = spot2FishList[spotId]
           if (
             fish.bestCatchPath != null &&
             !fish.bestCatchPath
               .slice(1)
-              .every(smallFish => availableFishList.includes(smallFish))
+              .every((smallFish) => availableFishList.includes(smallFish))
           ) {
             notAvailableSpots.push(spotId)
           }
@@ -1134,7 +1130,7 @@ export default {
             this.getItemName(fish._id),
             fish._id,
             notAvailableSpots,
-            notAvailableSpots.map(spotId => this.fishingSpots[spotId].name_chs)
+            notAvailableSpots.map((spotId) => this.fishingSpots[spotId].name_chs)
           )
           return
         }
@@ -1149,7 +1145,7 @@ export default {
 
         const territories = _.mapValues(
           _.groupBy(
-            fish.locations.map(location => {
+            fish.locations.map((location) => {
               return {
                 key: JSON.stringify(
                   this.weatherRates[this.fishingSpots[location]?.territory_id]
@@ -1160,7 +1156,7 @@ export default {
             }),
             'key'
           ),
-          infoList => infoList.map(it => it.location)
+          (infoList) => infoList.map((it) => it.location)
         )
 
         if (Object.keys(territories).length > 1) {
@@ -1188,7 +1184,7 @@ export default {
       )
 
       if (Object.keys(this.lazyFishWindowRates).length === 0) {
-        this.lazySourceImportantFishList.forEach(fish => {
+        this.lazySourceImportantFishList.forEach((fish) => {
           const fishWindows = this.fishListWeatherChangePart[fish._id]?.fishWindows
           this.lazyFishWindowRates[fish._id] = DataUtil.computeRate(fishWindows)
         })
@@ -1196,10 +1192,10 @@ export default {
     },
     loadingSounds() {
       return Promise.all(
-        DataUtil.NOTIFICATION_SOUNDS.map(sound => {
+        DataUtil.NOTIFICATION_SOUNDS.map((sound) => {
           if (sound.filename == null)
             return Promise.resolve({ key: sound.key, player: null })
-          return import(`@/assets/sound/${sound.filename}`).then(it => {
+          return import(`@/assets/sound/${sound.filename}`).then((it) => {
             return {
               key: sound.key,
               player: new Howl({ src: it?.default, preload: true }),
@@ -1209,7 +1205,7 @@ export default {
       )
     },
     updateFishListTimePart(now) {
-      this.lazySourceImportantFishList.forEach(fish => {
+      this.lazySourceImportantFishList.forEach((fish) => {
         const countDown = this.fishListTimePart[fish._id]?.countDown
         // if (fish._id === 999999) {
         //   console.debug(countDown)
@@ -1243,17 +1239,17 @@ export default {
     checkNotification(now) {
       const rangeToEnsureAlarm = DataUtil.INTERVAL_SECOND * 2
       let notifications = []
-      this.toBeNotifiedFishList.forEach(fish => {
+      this.toBeNotifiedFishList.forEach((fish) => {
         const countDown = this.fishListTimePart[fish.id]?.countDown
         if (countDown?.type === DataUtil.ALL_AVAILABLE) return false
 
-        this.notification.settings.forEach(setting => {
+        this.notification.settings.forEach((setting) => {
           if (setting.enabled) {
             const fishWindows = this.fishListWeatherChangePart[fish.id]?.fishWindows ?? []
             fishWindows
-              .map(fishWindow => fishWindow[0] - now)
+              .map((fishWindow) => fishWindow[0] - now)
               .filter((it, index) => it > 0 && index < 2)
-              .some(interval => {
+              .some((interval) => {
                 // console.log(fish.id)
                 const notifyMin = setting.before * DataUtil.INTERVAL_MINUTE
                 const notifyMax = notifyMin + rangeToEnsureAlarm
@@ -1277,7 +1273,7 @@ export default {
       const toRingBell = notifications.length > 0
 
       if (toRingBell && this.notifiedBefore === 0) {
-        this.ringBell(notifications.map(it => it.setting.sound))
+        this.ringBell(notifications.map((it) => it.setting.sound))
         if (this.isSystemNotificationEnabled) {
           NotificationUtil.showFishNotification(notifications)
         }
@@ -1287,13 +1283,13 @@ export default {
       }
     },
     ringBell(soundsToPlay) {
-      soundsToPlay.forEach(key => {
+      soundsToPlay.forEach((key) => {
         this.sounds[key]?.player?.volume(this.notification.volume).play()
       })
     },
     assembleOceanFishList() {
       const fishList = Object.values(FIX.OCEAN_FISHING_FISH)
-      return fishList.map(fish => this.assembleOceanFish(fish))
+      return fishList.map((fish) => this.assembleOceanFish(fish))
     },
     assembleOceanFish(fish) {
       const hasPredators = fish.predators && Object.keys(fish.predators).length > 0
@@ -1351,18 +1347,18 @@ export default {
       return _.union(
         fish.notAvailableWeatherSet,
         fish.bestCatchPathExtra.length === 0
-          ? fish.bestCatchPath.flatMap(fishId => {
+          ? fish.bestCatchPath.flatMap((fishId) => {
               return this.getRealNotAvailableWeatherSet(fishId)
             })
           : _.intersection(
-              fish.bestCatchPath.flatMap(fishId => {
+              fish.bestCatchPath.flatMap((fishId) => {
                 return this.getRealNotAvailableWeatherSet(fishId)
               }),
-              fish.bestCatchPathExtra.flatMap(fishId => {
+              fish.bestCatchPathExtra.flatMap((fishId) => {
                 return this.getRealNotAvailableWeatherSet(fishId)
               })
             ),
-        predatorIds.flatMap(fishId => this.getRealNotAvailableWeatherSet(fishId))
+        predatorIds.flatMap((fishId) => this.getRealNotAvailableWeatherSet(fishId))
       )
     },
     getOceanFishPredators(predators) {
@@ -1389,7 +1385,7 @@ export default {
         showHatCover: false,
         name: this.getItemName(fish._id),
         hasFishingSpot: true,
-        fishingSpots: fish.locations.map(location => {
+        fishingSpots: fish.locations.map((location) => {
           const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[location]
           return {
             zone: placeNames[gatheringPoint.territoryPlaceNameId],
@@ -1454,7 +1450,7 @@ export default {
       }
     },
     assembleFish(fishSourceList, isPredator = false) {
-      return fishSourceList.map(fish => {
+      return fishSourceList.map((fish) => {
         if (fish.gig != null) {
           // console.log('spear fish', fish)
           return this.assembleSpearFish(fish)
@@ -1539,7 +1535,7 @@ export default {
       if (fishingSpot || fish.gig != null) {
         const remainingFishWindows = (
           this.fishListWeatherChangePart[fish._id]?.fishWindows ?? []
-        ).filter(it => it[1] > now)
+        ).filter((it) => it[1] > now)
 
         const missingFishWindowN =
           FishWindow.FISH_WINDOW_FORECAST_N - remainingFishWindows.length
@@ -1617,7 +1613,7 @@ export default {
     },
     cafeKitTooltipCopyPatch() {
       new ClipboardJS('.cafekit.ck-popup .ck-container button', {
-        text: trigger => {
+        text: (trigger) => {
           if (trigger.innerText === '已复制') {
             this.showSnackbar({
               text: this.$t('importExport.dialog.message.copySuccess'),
