@@ -23,6 +23,7 @@ console.log(winURL)
 
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
+
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
 
 function createWindow() {
@@ -48,29 +49,50 @@ function createWindow() {
       log.info('Machina started!')
     })
 
-    let LOCAL_COMMIT_HAST_PATH
-    if (isDev) {
-      LOCAL_COMMIT_HAST_PATH = __dirname + '/front-electron-dist/COMMITHASH'
-    } else {
-      LOCAL_COMMIT_HAST_PATH = path.join(app.getAppPath(), '../../resources/COMMITHASH')
-    }
-    const localCommitHash = fs.readFileSync(LOCAL_COMMIT_HAST_PATH).toString(FILE_ENCODING)
-    // let downloadedCommitHash
-    // if (fs.existsSync(DOWNLOADED_COMMITHASH_PATH)) {
-    //   downloadedCommitHash = fs.readFileSync(DOWNLOADED_COMMITHASH_PATH).toString(FILE_ENCODING)
-    // }
-    // if (downloadedCommitHash === localCommitHash)
 
-    log.info('Local commit hash', localCommitHash)
-    streamToString(download(COMMIT_HASH_DOWNLOAD_LINK)).then((remoteCommitHash) => {
-      log.info('Remote commit hash:', remoteCommitHash)
-      if (localCommitHash !== remoteCommitHash) {
-        log.info('New Version Detected!')
-        const throttled = throttle(
-          (progress) => win.webContents.send('setupDownload', progress),
-          500
-        )
-        download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH).on('downloadProgress', (progress) => {
+    updateIfNeeded()
+    setInterval(updateIfNeeded, 600000)
+
+    ipcMain.on('startUpdate', () => {
+      quitAndSetup()
+    })
+  })
+  if (isDev) {
+    win.webContents.openDevTools({
+      mode: 'undocked',
+    })
+  }
+}
+
+function updateIfNeeded() {
+  log.info('Check Update...')
+  let LOCAL_COMMIT_HAST_PATH
+  if (isDev) {
+    LOCAL_COMMIT_HAST_PATH = __dirname + '/front-electron-dist/COMMITHASH'
+  } else {
+    LOCAL_COMMIT_HAST_PATH = path.join(app.getAppPath(), '../../resources/COMMITHASH')
+  }
+  const localCommitHash = fs
+    .readFileSync(LOCAL_COMMIT_HAST_PATH)
+    .toString(FILE_ENCODING)
+  // let downloadedCommitHash
+  // if (fs.existsSync(DOWNLOADED_COMMITHASH_PATH)) {
+  //   downloadedCommitHash = fs.readFileSync(DOWNLOADED_COMMITHASH_PATH).toString(FILE_ENCODING)
+  // }
+  // if (downloadedCommitHash === localCommitHash)
+
+  log.info('Local commit hash', localCommitHash)
+  streamToString(download(COMMIT_HASH_DOWNLOAD_LINK)).then((remoteCommitHash) => {
+    log.info('Remote commit hash:', remoteCommitHash)
+    if (localCommitHash !== remoteCommitHash) {
+      log.info('New Version Detected!')
+      const throttled = throttle(
+        (progress) => win.webContents.send('setupDownload', progress),
+        500
+      )
+      download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH).on(
+        'downloadProgress',
+        (progress) => {
           // Report download progress
           throttled(progress)
           win.setProgressBar(progress.percent)
@@ -78,19 +100,12 @@ function createWindow() {
             // fs.writeFileSync(DOWNLOADED_COMMITHASH_PATH, remoteCommitHash, {encoding: FILE_ENCODING})
             win.webContents.send('checkStartSetup')
           }
-        })
-      }
-    })
-
-    ipcMain.on('startUpdate', () => {
-      quitAndSetup()
-    })
+        }
+      )
+    } else {
+      log.info('No Update. Wait 10 minutes to check...')
+    }
   })
-  // if (isDev) {
-  win.webContents.openDevTools({
-    mode: 'undocked',
-  })
-  // }
 }
 
 function quitAndSetup() {
@@ -126,8 +141,8 @@ app.on('window-all-closed', () => {
   }
 })
 
-app.on('activate', () => {
+app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
+    createWindow();
   }
-})
+});
