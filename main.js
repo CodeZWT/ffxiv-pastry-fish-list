@@ -6,6 +6,7 @@ const download = require('download')
 const fs = require('fs')
 const path = require('path')
 const throttle = require('lodash/throttle')
+const exec = require('child_process').exec
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/COMMITHASH?version=latest'
@@ -13,6 +14,7 @@ const SETUP_EXE_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
 
+let toInstallUpdates = false
 let win
 const winURL = isDev
   ? `http://localhost:8080`
@@ -48,23 +50,27 @@ function createWindow() {
     } else {
       LOCAL_COMMIT_HAST_PATH = path.join(app.getAppPath(), '../../resources/COMMITHASH')
     }
-    const localCommitHash =fs.readFileSync(LOCAL_COMMIT_HAST_PATH).toString('utf8')
+    const localCommitHash = fs.readFileSync(LOCAL_COMMIT_HAST_PATH).toString('utf8')
     log.info('Local commit hash', localCommitHash)
-
     streamToString(download(COMMIT_HASH_DOWNLOAD_LINK)).then((remoteCommitHash) => {
       log.info('Remote commit hash:', remoteCommitHash)
       if (localCommitHash === remoteCommitHash) {
         log.info('New Version Detected!')
-        download(SETUP_EXE_DOWNLOAD_LINK, 'setup')
-          .on('downloadProgress', progress => {
-            // Report download progress
-            const throttled = throttle(() => win.webContents.send('setupDownload', progress), 500)
-            if (progress.percent < 1) {
-              throttled()
-            } else {
-              win.webContents.send('setupDownload', progress)
-            }
-          })
+        const throttled = throttle(
+          (progress) => win.webContents.send('setupDownload', progress),
+          500
+        )
+        download(SETUP_EXE_DOWNLOAD_LINK, 'setup').on('downloadProgress', (progress) => {
+          // Report download progress
+          throttled(progress)
+          win.setProgressBar(progress.percent)
+          if (progress.percent === 1) {
+            FishingDataReader.stop(() => {
+              log.info('try install')
+              exec('start "" "setup"', () => app.quit())
+            })
+          }
+        })
       }
     })
   })
@@ -88,8 +94,16 @@ app.whenReady().then(createWindow)
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    FishingDataReader.stop()
-    app.quit()
+    log.info('in all closed')
+    FishingDataReader.stop(() => {
+      log.info('call quit')
+      // if (toInstallUpdates) {
+      //   log.info('try install')
+      //   exec('./setup/PastryFishSetup.exe')
+      // } else {
+      app.quit()
+      // }
+    })
   }
 })
 
