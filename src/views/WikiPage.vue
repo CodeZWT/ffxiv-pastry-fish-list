@@ -550,9 +550,6 @@ export default {
       this.lazySearchText = t
     }, 500)
   },
-  mounted() {
-    console.log('123123')
-  },
   methods: {
     clearCurrentStatus(mode) {
       if (mode !== this.mode) {
