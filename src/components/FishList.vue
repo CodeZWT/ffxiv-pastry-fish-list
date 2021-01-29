@@ -69,6 +69,7 @@ import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import FishListItem from '@/components/FishListItem'
 import ClickHelper from '@/components/basic/ClickHelper'
+import cloneDeep from 'lodash/cloneDeep'
 
 export default {
   name: 'fish-list',
@@ -121,7 +122,19 @@ export default {
     },
     flattenFishList() {
       return this.fishListOfShowLimit.flatMap(fish => {
-        return [fish, ...(this.hidePredators ? [] : fish.predators)]
+        return [
+          fish,
+          ...(this.hidePredators
+            ? []
+            : fish.predators.map(predator => {
+                const spots = cloneDeep(predator.fishingSpots)
+                const predatorSpotIndex = spots.findIndex(
+                  spot => spot.fishingSpotId === fish.fishingSpots[0].fishingSpotId
+                )
+                const predatorSpot = spots.splice(predatorSpotIndex, 1)
+                return { ...predator, fishingSpots: [...predatorSpot, ...spots] }
+              })),
+        ]
       })
     },
     listItemColors() {
