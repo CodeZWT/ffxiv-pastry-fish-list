@@ -273,6 +273,7 @@
             :now="now"
             :forceShowComponents="forceShowComponents"
             :show-fishing-range-helper="mode === 'normal'"
+            hide-map
           />
         </v-card-text>
         <v-card-actions>

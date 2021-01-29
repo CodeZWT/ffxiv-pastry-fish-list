@@ -18,6 +18,7 @@
           :predators="predators"
           :now="now"
           :forceShowComponents="forceShowComponents"
+          :hide-map="hideMap"
         ></fish-detail-content>
       </div>
     </template>
@@ -51,6 +52,10 @@ export default {
     forceShowComponents: {
       type: Array,
       default: undefined,
+    },
+    hideMap: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

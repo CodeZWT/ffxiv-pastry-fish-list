@@ -354,7 +354,7 @@
                 </div>
               </v-col>
               <v-col :class="locationColClass">
-                <div v-if="!inPredator && !hideSpotColumn" class="d-flex">
+                <div v-if="!hideSpotColumn" class="d-flex">
                   <v-btn text small icon @click.stop="onFishClicked(['DetailItemMap'])">
                     <v-icon small>
                       mdi-map

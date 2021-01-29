@@ -78,6 +78,10 @@ export default {
       type: Array,
       default: undefined,
     },
+    hideMap: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({}),
   computed: {
@@ -173,10 +177,12 @@ export default {
         )
       } else {
         return _.sortBy(
-          this.detailComponents.filter(component =>
-            DataUtil.USER_DEFAULT_DATA.detailArrangement.components.some(
-              defaultComp => defaultComp.name === component.name
-            )
+          this.detailComponents.filter(
+            component =>
+              DataUtil.USER_DEFAULT_DATA.detailArrangement.components.some(
+                defaultComp => defaultComp.name === component.name
+              ) &&
+              (!this.hideMap || component.name !== 'DetailItemMap')
           ),
           'order'
         ).map(it => ({
