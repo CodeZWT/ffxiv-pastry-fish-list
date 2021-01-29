@@ -18,7 +18,7 @@
           :position="toPos(index)"
           :hide-spot-column="hideSpotColumn"
           :show-divider="showFishDivider"
-          @click="onFishClicked($event)"
+          @click="onFishClicked($event, fish.fishingSpots)"
         />
       </div>
     </v-col>
@@ -69,7 +69,6 @@ import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import FishListItem from '@/components/FishListItem'
 import ClickHelper from '@/components/basic/ClickHelper'
-import cloneDeep from 'lodash/cloneDeep'
 
 export default {
   name: 'fish-list',
@@ -127,12 +126,13 @@ export default {
           ...(this.hidePredators
             ? []
             : fish.predators.map(predator => {
-                const spots = cloneDeep(predator.fishingSpots)
-                const predatorSpotIndex = spots.findIndex(
-                  spot => spot.fishingSpotId === fish.fishingSpots[0].fishingSpotId
-                )
-                const predatorSpot = spots.splice(predatorSpotIndex, 1)
-                return { ...predator, fishingSpots: [...predatorSpot, ...spots] }
+                return {
+                  ...predator,
+                  fishingSpots: DataUtil.toSpotsOfPredator(
+                    predator.fishingSpots,
+                    fish.fishingSpots?.[0]?.fishingSpotId
+                  ),
+                }
               })),
         ]
       })
@@ -176,8 +176,11 @@ export default {
         ? 'last'
         : 'inside'
     },
-    onFishClicked(fishAndComponents) {
-      this.$emit('fish-selected', fishAndComponents)
+    onFishClicked(fishAndComponents, spots) {
+      this.$emit('fish-selected', {
+        ...fishAndComponents,
+        firstSpotId: spots?.[0]?.fishingSpotId,
+      })
     },
     onConfirmClear() {
       this.$emit('clear-all')

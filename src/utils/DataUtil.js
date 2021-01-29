@@ -9,6 +9,7 @@ import tip2Data from '@/store/tip2.json'
 import flatten from 'flat'
 import Tip4 from '@/store/Tip4'
 import DATA_CN from '@/store/translation'
+import cloneDeep from 'lodash/cloneDeep'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -703,6 +704,14 @@ export default {
           fish: toItemId(fish._id),
         }
       })
+  },
+
+  toSpotsOfPredator(fishingSpots, firstSpotId) {
+    if (!firstSpotId) return fishingSpots
+    const spots = cloneDeep(fishingSpots)
+    const predatorSpotIndex = spots.findIndex(spot => spot.fishingSpotId === firstSpotId)
+    const predatorSpot = spots.splice(predatorSpotIndex, 1)
+    return [...predatorSpot, ...spots]
   },
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],

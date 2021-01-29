@@ -287,12 +287,12 @@
         </div>
         <div v-else class="fish-detail-pane">
           <fish-detail
-            :fish="selectedFish"
             ref="fishDetail"
-            @close="showRightPane = false"
-            in-pane
-            :now="now"
+            :fish="selectedFish"
             :forceShowComponents="forceShowComponents"
+            :now="now"
+            in-pane
+            @close="showRightPane = false"
           />
         </div>
       </pane>
@@ -523,8 +523,8 @@ export default {
     onDismiss() {
       this.setNotShowBanner()
     },
-    onFishSelected({ fishId, components }) {
-      this.$emit('fish-selected', fishId)
+    onFishSelected({ fishId, components, firstSpotId }) {
+      this.$emit('fish-selected', { fishId, firstSpotId })
       this.forceShowComponents = components
       this.showRightPane = true
     },

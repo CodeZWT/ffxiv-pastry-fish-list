@@ -519,7 +519,7 @@ export default {
     currentFishId(fishId) {
       if (fishId > 0 && !this.isOceanFishingSpot) {
         this.isDetailFishWindowOpen = true
-        this.$emit('fish-selected', fishId)
+        this.$emit('fish-selected', { fishId })
       }
     },
     isDetailFishWindowOpen(isOpen) {

@@ -345,7 +345,7 @@
           :toBeNotifiedFishList="toBeNotifiedFishList"
           :selectedFish="selectedFish"
           :filteredFishIdSet="filteredFishIdSet"
-          @fish-selected="selectedFishId = $event"
+          @fish-selected="onFishSelected"
         />
         <!--                @fishCntUpdated="listFishCnt = $event"     -->
       </div>
@@ -606,6 +606,7 @@ export default {
     notifiedBefore: 0,
     searchedFishId: undefined,
     selectedFishId: undefined,
+    selectedFishFirstSpotId: undefined,
     fishListWeatherChangePart: {},
     extraFishListTimePart: {},
     lazyFishWindowRates: {},
@@ -805,6 +806,7 @@ export default {
         return {
           ...fish,
           parts: {
+            firstSpotId: this.selectedFishFirstSpotId,
             fishTimePart: this.extraFishListTimePart[this.selectedFishId],
             fishWeatherChangePart: this.fishListWeatherChangePart[this.selectedFishId],
             predators: DataUtil.getPredators(
@@ -1042,6 +1044,10 @@ export default {
     // }, 200)
   },
   methods: {
+    onFishSelected({ fishId, firstSpotId }) {
+      this.selectedFishId = fishId
+      this.selectedFishFirstSpotId = firstSpotId
+    },
     showBaitDialogOfSetting() {
       this.showBaitDialog = true
       this.showBaitNotificationSetting = true
