@@ -643,7 +643,7 @@ export default {
 
   toItemIdIfExisted(id, name) {
     if (hasChineseCharacter(name)) {
-      return id
+      return toItemId(id)
     } else {
       return null
     }
