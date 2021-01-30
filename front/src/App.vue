@@ -987,6 +987,7 @@ export default {
     // },
   },
   created() {
+    console.debug('github-version')
     // if (window.location.href.indexOf('fish.ricecake302.com') === -1) {
     //   this.showMigrationDialog = true
     // }
