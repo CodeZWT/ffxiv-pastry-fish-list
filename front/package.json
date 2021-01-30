@@ -7,6 +7,7 @@
     "inspect": "vue-cli-service inspect",
     "build:main": "vue-cli-service build --mode main --dest ../front-web-dist",
     "build:electron": "vue-cli-service build --mode electron --dest ../front-electron-dist",
+    "build:github": "vue-cli-service build --mode github",
     "build": "vue-cli-service build --dest ../front-dist",
     "build:staging": "vue-cli-service build --mode staging --dest ../front-dist",
     "lint": "vue-cli-service lint",

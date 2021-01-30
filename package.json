@@ -11,7 +11,8 @@
     "dev:pack": "chcp 65001 && electron-builder -w --dir",
     "prod:pack": "chcp 65001 && electron-builder -w",
     "build:electronFront": "cd front && yarn build:electron",
-    "build:websiteFront": "cd front && yarn build:main"
+    "build:websiteFront": "cd front && yarn build:main",
+    "build": "cd front && yarn build:github"
   },
   "main": "main.js",
   "devDependencies": {

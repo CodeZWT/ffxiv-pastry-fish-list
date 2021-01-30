@@ -34,7 +34,7 @@ jobs:
           secret_key: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
           cos_bucket: ${{ secrets.COS_BUCKET }}
           cos_region: ${{ secrets.COS_REGION }}
-          local_path: dist
+          local_path: front-dist
           remote_path: fish
           clean: true
 
@@ -42,7 +42,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./front-dist
           cname: fish.ricecake302.com
 
       - name: Push to ffxiv-pastry-fish-list-develop
@@ -50,7 +50,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.PUSH_TO_PASTRY_FISH_STATIC_REPO }}
         with:
-          source-directory: 'dist'
+          source-directory: 'front-dist'
           destination-github-username: 'ricecake404'
           destination-repository-name: 'ffxiv-pastry-fish-list-develop'
           user-email: etenaelta@outlook.com
