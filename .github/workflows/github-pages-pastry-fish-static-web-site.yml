@@ -18,8 +18,10 @@ jobs:
 
       - name: Install Dependencies and Build
         run: |
+          cd front
           yarn install
-          yarn run build
+          yarn build:github
+          cd ..
 
       - name: Tencent Update COS
         uses: TencentCloud/cos-action@v1
