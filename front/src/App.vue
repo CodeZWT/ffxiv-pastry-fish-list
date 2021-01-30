@@ -119,17 +119,17 @@
           </v-tooltip>
         </div>
 
-        <v-btn icon v-if="isListPage" @click="toggleFilterPanel">
+        <v-btn icon text v-if="isListPage" @click="toggleFilterPanel">
           <v-icon>mdi-filter</v-icon>
         </v-btn>
-        <v-btn icon v-if="isListPage || isWikiPage" @click="showBaitDialog = true">
+        <v-btn icon text v-if="isListPage || isWikiPage" @click="showBaitDialog = true">
           <v-icon>mdi-hook</v-icon>
         </v-btn>
 
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <click-helper @click="setShowSearchDialog(true)">
-              <v-btn icon v-bind="attrs" v-on="on">
+              <v-btn icon text v-bind="attrs" v-on="on">
                 <v-icon>mdi-magnify</v-icon>
               </v-btn>
             </click-helper>
@@ -141,7 +141,7 @@
           <template v-slot:activator="{ on: menu, attrs }">
             <v-tooltip bottom>
               <template v-slot:activator="{ on: tooltip }">
-                <v-btn icon v-bind="attrs" v-on="{ ...tooltip, ...menu }">
+                <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
                   <v-icon> mdi-theme-light-dark</v-icon>
                 </v-btn>
               </template>

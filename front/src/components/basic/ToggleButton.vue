@@ -1,6 +1,6 @@
 <template>
   <click-helper @click.stop="toggleValue">
-    <v-btn icon :small="small">
+    <v-btn icon text :small="small">
       <v-icon :small="small">{{ value ? checkedIcon : uncheckedIcon }}</v-icon>
     </v-btn>
   </click-helper>

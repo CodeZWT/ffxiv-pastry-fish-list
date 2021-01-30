@@ -7,7 +7,7 @@
             <div v-if="multiple">
               <v-menu v-model="showSpotMenu" offset-x top>
                 <template v-slot:activator="{ on, attrs }">
-                  <v-btn icon v-bind="attrs" v-on="on">
+                  <v-btn icon text v-bind="attrs" v-on="on">
                     <v-icon>mdi-view-list</v-icon>
                   </v-btn>
                 </template>

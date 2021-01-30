@@ -36,7 +36,7 @@
         <div v-if="multiple && !small">
           <v-menu v-model="showSpotMenu" offset-x>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn small icon v-bind="attrs" v-on="on" @click.stop="">
+              <v-btn small icon text v-bind="attrs" v-on="on" @click.stop="">
                 <v-icon small>mdi-view-list</v-icon>
               </v-btn>
             </template>

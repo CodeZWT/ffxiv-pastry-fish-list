@@ -12,11 +12,11 @@
               hide-details
               clearable
             ></v-text-field>
-            <v-btn icon class="ml-1" @click="collapseAll">
+            <v-btn icon text class="ml-1" @click="collapseAll">
               <v-icon>mdi-arrow-collapse-vertical</v-icon>
             </v-btn>
             <!-- expand all button -->
-            <!--            <v-btn icon class="ml-1" @click="expandAll">-->
+            <!--            <v-btn icon text class="ml-1" @click="expandAll">-->
             <!--              <v-icon>mdi-arrow-expand-vertical</v-icon>-->
             <!--            </v-btn>-->
             <!-- setting button -->
