@@ -831,6 +831,21 @@ const CDN_DICT = {
     id: '6006e8203ffa7d37b3fb7b2c',
     ext: 'png',
   },
+  'keep.jpg': {
+    name: 'keep.jpg',
+    id: '601516d53ffa7d37b3d3e867',
+    ext: 'jpg',
+  },
+  'still-keep.jpg': {
+    name: 'still-keep.jpg',
+    id: '601516d53ffa7d37b3d3e86d',
+    ext: 'jpg',
+  },
+  'still-run.jpg': {
+    name: 'still-run.jpg',
+    id: '601516d53ffa7d37b3d3e869',
+    ext: 'jpg',
+  },
 }
 
 export default {

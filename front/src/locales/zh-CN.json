@@ -14,7 +14,8 @@
     "help": "帮助",
     "about": "关于",
     "collapseHint": "点击切换网页大小(ACT用)",
-    "update": "更新"
+    "update": "更新",
+    "desktopVersion": "桌面版下载"
   },
   "toolbar": {
     "theme": {

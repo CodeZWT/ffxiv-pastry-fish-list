@@ -248,6 +248,14 @@
               <v-list-item-title>{{ $t('top.diadem') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item @click="showDownloadDialog = true" link>
+            <v-list-item-icon>
+              <v-icon>mdi-desktop-mac-dashboard</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.desktopVersion') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
 
         <template v-slot:append>
@@ -485,6 +493,7 @@
     />
     <chrome-time-zone-bug-dialog v-model="showChromeTimeZoneBugDialog" />
     <fish302-migration-dialog v-model="showMigrationDialog" />
+    <desktop-version-dialog v-model="showDownloadDialog" />
     <v-snackbar
       :timeout="2000"
       v-model="snackbar.show"
@@ -568,10 +577,12 @@ import BaitDialog from '@/components/Dialog/BaitDialog'
 import ItemIcon from '@/components/basic/ItemIcon'
 import ChromeTimeZoneBugDialog from '@/components/Dialog/ChromeTimeZoneBugDialog'
 import Fish302MigrationDialog from '@/components/Dialog/Fish302MigrationDialog'
+import DesktopVersionDialog from '@/components/Dialog/DesktopVersionDialog'
 
 export default {
   name: 'App',
   components: {
+    DesktopVersionDialog,
     Fish302MigrationDialog,
     ChromeTimeZoneBugDialog,
     ItemIcon,
@@ -629,6 +640,7 @@ export default {
     showChromeTimeZoneBugDialog: false,
     showMigrationDialog: false,
     showCheckStartSetupDialog: false,
+    showDownloadDialog: false,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
