@@ -477,6 +477,7 @@
       :show-setting.camel.sync="showBaitNotificationSetting"
     />
     <chrome-time-zone-bug-dialog v-model="showChromeTimeZoneBugDialog" />
+    <fish302-migration-dialog v-model="showMigrationDialog" />
     <v-snackbar
       :timeout="2000"
       v-model="snackbar.show"
@@ -561,10 +562,12 @@ import PatchNoteDialog from '@/components/Dialog/PatchNoteDialog'
 import BaitDialog from '@/components/Dialog/BaitDialog'
 import ItemIcon from '@/components/basic/ItemIcon'
 import ChromeTimeZoneBugDialog from '@/components/Dialog/ChromeTimeZoneBugDialog'
+import Fish302MigrationDialog from '@/components/Dialog/Fish302MigrationDialog'
 
 export default {
   name: 'App',
   components: {
+    Fish302MigrationDialog,
     ChromeTimeZoneBugDialog,
     ItemIcon,
     BaitDialog,
@@ -619,6 +622,7 @@ export default {
     showBaitNotificationSetting: false,
     showBaitNotification: false,
     showChromeTimeZoneBugDialog: false,
+    showMigrationDialog: false,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -977,6 +981,10 @@ export default {
     // },
   },
   created() {
+    // if (window.location.href.indexOf('fish.ricecake302.com') === -1) {
+    //   this.showMigrationDialog = true
+    // }
+
     if (DataUtil.isBugChromeTimeZone()) {
       this.showChromeTimeZoneBugDialog = this.showChromeBugDialog
     }
