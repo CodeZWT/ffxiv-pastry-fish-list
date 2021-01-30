@@ -14,18 +14,12 @@ jobs:
         with:
           node-version: '12.x'
 
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - run: npm install -g yarn
 
       - name: Install Dependencies and Build
         run: |
-          npm install
-          npm run build
+          yarn install
+          yarn run build
 
       - name: Tencent Update COS
         uses: TencentCloud/cos-action@v1
