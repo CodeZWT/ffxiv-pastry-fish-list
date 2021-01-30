@@ -70,6 +70,7 @@
                                 class="ma-1"
                                 :disabled="fishIds.length === 0"
                                 v-on="on"
+                                @click="baitFilterInputted = true"
                               >
                                 <item-icon :icon-class="getItemIconClass(baitId)" small />
                                 {{ getItemName(baitId) }}
@@ -355,6 +356,7 @@ export default {
     selectedBaitIdIndices: [],
     allBaits: FIX.BAITS,
     offsetTop: 0,
+    baitFilterInputted: false,
   }),
   computed: {
     rightPercentage() {
@@ -460,10 +462,26 @@ export default {
     ]),
   },
   watch: {
+    baitFilterEnabledComputed(enabled) {
+      if (enabled) {
+        this.$nextTick(() => this.selectAllBaits())
+      }
+    },
     bait2Fish: {
       handler(bait2Fish) {
-        // console.log(Object.keys(bait2Fish))
-        this.$nextTick(() => this.selectAllBaits(bait2Fish))
+        if (this.baitFilterInputted) {
+          this.$nextTick(() => {
+            const indices = []
+            Object.keys(bait2Fish).forEach((baitId, index) => {
+              if (this.baitFilterIds.includes(+baitId)) {
+                indices.push(index)
+              }
+            })
+            this.selectedBaitIdIndices = indices
+          })
+        } else {
+          this.$nextTick(() => this.selectAllBaits(bait2Fish))
+        }
       },
       immediate: true,
     },
@@ -510,6 +528,7 @@ export default {
       this.$refs.scrollTarget.$el.scroll({ top: 0, left: 0, behavior: 'smooth' })
     },
     selectAllBaits(bait2Fish) {
+      this.baitFilterInputted = false
       this.selectedBaitIdIndices = Object.keys(bait2Fish ?? this.bait2Fish).map(
         (_, index) => index
       )
