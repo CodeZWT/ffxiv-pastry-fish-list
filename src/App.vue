@@ -476,6 +476,7 @@
       v-model="showBaitDialog"
       :show-setting.camel.sync="showBaitNotificationSetting"
     />
+    <chrome-time-zone-bug-dialog v-model="showChromeTimeZoneBugDialog" />
     <v-snackbar
       :timeout="2000"
       v-model="snackbar.show"
@@ -559,10 +560,12 @@ import DATA_CN from '@/store/translation'
 import PatchNoteDialog from '@/components/Dialog/PatchNoteDialog'
 import BaitDialog from '@/components/Dialog/BaitDialog'
 import ItemIcon from '@/components/basic/ItemIcon'
+import ChromeTimeZoneBugDialog from '@/components/Dialog/ChromeTimeZoneBugDialog'
 
 export default {
   name: 'App',
   components: {
+    ChromeTimeZoneBugDialog,
     ItemIcon,
     BaitDialog,
     PatchNoteDialog,
@@ -615,6 +618,7 @@ export default {
     showBaitDialog: false,
     showBaitNotificationSetting: false,
     showBaitNotification: false,
+    showChromeTimeZoneBugDialog: false,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -900,6 +904,7 @@ export default {
       'baitIdsForNotification',
     ]),
     ...mapGetters([
+      'showChromeBugDialog',
       'opacity',
       'websiteVersion',
       'getFishToBeNotified',
@@ -972,6 +977,10 @@ export default {
     // },
   },
   created() {
+    if (DataUtil.isBugChromeTimeZone()) {
+      this.showChromeTimeZoneBugDialog = this.showChromeBugDialog
+    }
+
     this.startLoading()
     // this.drawer = !this.isMobile
 

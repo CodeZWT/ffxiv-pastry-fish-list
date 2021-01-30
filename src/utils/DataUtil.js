@@ -10,6 +10,7 @@ import flatten from 'flat'
 import Tip4 from '@/store/Tip4'
 import DATA_CN from '@/store/translation'
 import cloneDeep from 'lodash/cloneDeep'
+import { detect } from 'detect-browser'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -714,6 +715,19 @@ export default {
     return [...predatorSpot, ...spots]
   },
 
+  isBugChromeTimeZone() {
+    const dateTime = DateTime.local()
+    const browser = detect()
+    console.debug('Browser Info', browser)
+    console.debug('Time Zone', dateTime.zoneName, dateTime.offset)
+    return browser?.name === 'chrome' && dateTime.offset === -480
+
+    // const userAgent = new UserAgent()
+    // console.debug(userAgent.toString())
+    // console.debug(JSON.stringify(userAgent.data, null, 2))
+  },
+  // FUNCTION END
+
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
   INTERVAL_SECOND: INTERVAL_SECOND,
@@ -932,6 +946,7 @@ export default {
         bigFishTypes: BIG_FISH_FILTER_TYPES,
       },
     },
+    showChromeBugDialog: true,
   },
 
   THEME_SETTING_MODES: THEME_SETTING_MODES,

@@ -50,6 +50,9 @@ export default new Vuex.Store({
     baitIdsForNotification: [],
   },
   getters: {
+    showChromeBugDialog: state => {
+      return state.userData.showChromeBugDialog
+    },
     defaultLinkOf: state => mode => {
       return state.userData.link.default[mode]
     },
@@ -451,6 +454,10 @@ export default new Vuex.Store({
         ...state.userData,
         oceanFishing: { ...state.userData.oceanFishing, showWarningDialog: show },
       }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
+    setNotShowChromeBugDialog(state) {
+      state.userData = { ...state.userData, showChromeBugDialog: false }
       LocalStorageUtil.storeUserData(state.userData)
     },
   },
