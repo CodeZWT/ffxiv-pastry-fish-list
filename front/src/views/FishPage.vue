@@ -59,6 +59,14 @@
                           </v-icon>
                           清除所有
                         </v-btn>
+                        <v-tooltip right>
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-icon v-on="on" v-bind="attrs">
+                              mdi-help-circle-outline
+                            </v-icon>
+                          </template>
+                          <span>{{ $t('baitSearch.dialog.hint') }}</span>
+                        </v-tooltip>
                       </div>
                       <v-chip-group v-model="selectedBaitIdIndices" column multiple>
                         <template v-for="(fishIds, baitId) in bait2Fish">
@@ -396,6 +404,16 @@ export default {
             bait: fishData.bestCatchPath[0],
             fish: DataUtil.toItemId(fishId),
           })
+
+          if (fishData.predators) {
+            Object.keys(fishData.predators).map(predatorId => {
+              const predator = this.allFish[predatorId]
+              baitFishItems.push({
+                bait: predator.bestCatchPath[0],
+                fish: DataUtil.toItemId(fishId),
+              })
+            })
+          }
         }
       })
       return _.mapValues(_.groupBy(baitFishItems, 'bait'), baitFishList =>

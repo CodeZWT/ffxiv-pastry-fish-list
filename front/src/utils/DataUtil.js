@@ -699,11 +699,23 @@ export default {
             (bigFishTypes.includes('NORMAL') && !isBigFish))
         )
       })
-      .map(fish => {
-        return {
-          bait: fish.bestCatchPath[0],
-          fish: toItemId(fish._id),
+      .flatMap(fish => {
+        const baitFishItems = [
+          {
+            bait: fish.bestCatchPath[0],
+            fish: toItemId(fish._id),
+          },
+        ]
+        if (fish.predators) {
+          Object.keys(fish.predators).map(predatorId => {
+            const predator = fishList.find(it => it._id === +predatorId)
+            baitFishItems.push({
+              bait: predator.bestCatchPath[0],
+              fish: toItemId(fish._id),
+            })
+          })
         }
+        return baitFishItems
       })
   },
 
