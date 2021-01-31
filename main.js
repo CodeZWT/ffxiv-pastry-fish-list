@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, shell } = require('electron')
 const isDev = require('electron-is-dev')
 const FishingDataReader = require('./server/reader')
 const log = require('electron-log')
@@ -43,6 +43,11 @@ function createWindow() {
   win.removeMenu()
   // win.maximize()
   win.loadURL(winURL).then(() => {
+    win.webContents.on('new-window', function(e, url) {
+      e.preventDefault();
+      shell.openExternal(url);
+    });
+
     FishingDataReader.onUpdate((data) => {
       win.webContents.send('fishingData', data)
     })
