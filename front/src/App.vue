@@ -496,7 +496,7 @@
       v-model="showMigrationDialog"
       :source="migrationSource"
     />
-    <desktop-version-dialog v-model="showDownloadDialog" />
+    <!--    <desktop-version-dialog v-model="showDownloadDialog" />-->
     <v-snackbar
       :timeout="2000"
       v-model="snackbar.show"
@@ -579,14 +579,14 @@ import PatchNoteDialog from '@/components/Dialog/PatchNoteDialog'
 import BaitDialog from '@/components/Dialog/BaitDialog'
 import ItemIcon from '@/components/basic/ItemIcon'
 import ChromeTimeZoneBugDialog from '@/components/Dialog/ChromeTimeZoneBugDialog'
-import DesktopVersionDialog from '@/components/Dialog/DesktopVersionDialog'
+// import DesktopVersionDialog from '@/components/Dialog/DesktopVersionDialog'
 import MigrateToTravelEorzeaDialog from '@/components/Dialog/MigrateToTravelEorzeaDialog'
 
 export default {
   name: 'App',
   components: {
     MigrateToTravelEorzeaDialog,
-    DesktopVersionDialog,
+    // DesktopVersionDialog,
     ChromeTimeZoneBugDialog,
     ItemIcon,
     BaitDialog,
@@ -1008,18 +1008,23 @@ export default {
       case 'fish.ricecake302.com':
         this.migrationSource = 'main'
         this.showDownloadDialog = true
+        console.debug('migration match', this.showDownloadDialog)
         break
       case 'ricecake500.gitee.io':
         this.migrationSource = 'sub'
+        console.debug('migration match', this.showDownloadDialog)
         this.showDownloadDialog = true
         break
       case 'ricecake404.gitee.io':
         this.migrationSource = 'old'
+        console.debug('migration match', this.showDownloadDialog)
         this.showDownloadDialog = true
         break
       default:
         this.showDownloadDialog = false
     }
+    // comment out when start migration
+    this.showDownloadDialog = false
 
     if (DataUtil.isBugChromeTimeZone()) {
       this.showChromeTimeZoneBugDialog = this.showChromeBugDialog

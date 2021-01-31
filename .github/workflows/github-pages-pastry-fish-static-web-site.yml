@@ -32,7 +32,7 @@ jobs:
           cos_region: ${{ secrets.COS_REGION }}
           local_path: front-web-dist
           remote_path: fish
-          clean: true
+          clean: false
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
