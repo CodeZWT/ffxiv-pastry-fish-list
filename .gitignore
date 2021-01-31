@@ -28,3 +28,4 @@ ff14-fish-tracker-app-master
 /front-electron-dist/
 electron-deploy.sh
 /setup/
+/front-web-dist/

@@ -8,6 +8,7 @@
     "build:main": "vue-cli-service build --mode main --dest ../front-web-dist",
     "build:electron": "vue-cli-service build --mode electron --dest ../front-electron-dist",
     "build:github": "vue-cli-service build --mode github --dest ../front-web-dist",
+    "build:traveleorzea": "vue-cli-service build --mode traveleorzea --dest ../front-web-dist",
     "build": "vue-cli-service build --dest ../front-web-dist",
     "build:staging": "vue-cli-service build --mode staging --dest ../front-web-dist",
     "lint": "vue-cli-service lint",
