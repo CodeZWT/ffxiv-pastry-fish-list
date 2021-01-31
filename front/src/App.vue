@@ -1072,7 +1072,7 @@ export default {
   async mounted() {
     // setTimeout(async () => {
     this.initialUserData()
-
+    console.debug('website version', this.version)
     if (
       DataUtil.toComparableVersion(this.version) >
       DataUtil.toComparableVersion(this.websiteVersion)

@@ -11,6 +11,28 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.6.0</div>
+        <div class="text-h5 text-center my-1">
+          网站迁移
+        </div>
+        <ul>
+          <li>如果你看到这行字，说明已经在新版页面了。</li>
+          <li>请更新收藏夹中的地址：https://ricecake.traveleorzea.com</li>
+          <li>
+            桌面版是自动更新的，无需任何操作
+          </li>
+        </ul>
+        <div class="text-h5 text-center my-1">
+          鱼糕桌面版
+        </div>
+        <ul>
+          <li>点击左侧 <v-icon>mdi-desktop-mac-dashboard</v-icon> 下载桌面版</li>
+          <li>
+            支持自动更新
+          </li>
+        </ul>
+        <p />
+        <v-divider />
         <div class="text-h6">Version 0.5.3</div>
         <div class="text-h5 text-center my-1">
           鱼饵相关功能
