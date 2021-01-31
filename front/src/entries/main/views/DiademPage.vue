@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import regionTerritorySpots from 'Data/fishingSpots.json'
+import regionTerritorySpots from 'Data/fishingSpots'
 import _ from 'lodash'
 import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'

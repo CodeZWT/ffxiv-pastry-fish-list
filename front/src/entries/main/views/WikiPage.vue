@@ -291,7 +291,7 @@
 </template>
 
 <script>
-import normSpots from 'Data/fishingSpots.json'
+import normSpots from 'Data/fishingSpots'
 import placeNames from 'Data/placeNames.json'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
