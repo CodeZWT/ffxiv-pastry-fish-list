@@ -248,7 +248,7 @@
               <v-list-item-title>{{ $t('top.diadem') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item @click="showDownloadDialog = true" link>
+          <v-list-item v-if="!isElectron" @click="showDownloadDialog = true" link>
             <v-list-item-icon>
               <v-icon>mdi-desktop-mac-dashboard</v-icon>
             </v-list-item-icon>
@@ -598,6 +598,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    isElectron: DevelopmentModeUtil.isElectron(),
     THEME_MODE_ICONS: ['mdi-weather-night', 'mdi-weather-sunny', 'mdi-brightness-auto'],
     systemThemeMode: 'DARK',
     THEME_SETTING_MODES: DataUtil.THEME_SETTING_MODES,
@@ -1003,7 +1004,6 @@ export default {
     // },
   },
   created() {
-    console.debug('github-version')
     switch (window.location.host) {
       case 'fish.ricecake302.com':
         this.migrationSource = 'main'
