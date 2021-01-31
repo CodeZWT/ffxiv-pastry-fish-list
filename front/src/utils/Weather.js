@@ -1,4 +1,4 @@
-import { DATA } from 'RCData/data'
+import DATA from 'RCData/data.json'
 import FIX from 'RCData/fix'
 import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'

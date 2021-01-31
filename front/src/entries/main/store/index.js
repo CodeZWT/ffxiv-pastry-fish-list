@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
-import { DATA } from 'RCData/data'
+import DATA from 'RCData/data.json'
 import DATA_CN from 'RCData/translation'
 import FIX from 'RCData/fix'
 import FishingData from 'RCData/fishingData'
