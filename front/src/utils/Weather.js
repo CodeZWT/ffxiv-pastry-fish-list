@@ -1,4 +1,4 @@
-import DATA from 'Data/data.json'
+import DATA from 'Data/data'
 import FIX from 'Data/fix'
 import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'
