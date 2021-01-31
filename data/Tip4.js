@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   author: '颜君行@琥珀原 & Aki秋山@摩杜纳',
   title: '5.x 鱼王心得（至5.3）',
   lastUpdate: '2021/01/21',

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   '4776': {
     _id: 4776,
     previousWeatherSet: [],

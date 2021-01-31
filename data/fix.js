@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   TEST_FISH: {
     '999998': {
       _id: 999998,

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   FISH: {
     '29994': {
       id_version: '29994-2',
