@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { DATA } from '@/store/data'
-import DATA_CN from '@/store/translation'
-import FIX from '@/store/fix'
-import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'
+import { DATA } from 'RCData/data'
+import DATA_CN from 'RCData/translation'
+import FIX from 'RCData/fix'
+import FishingData from 'RCData/fishingData'
+import DataUtil from '@/utils/DataUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import FishingData from '@/store/fishingData'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 Vue.use(Vuex)

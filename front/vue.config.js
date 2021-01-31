@@ -15,33 +15,45 @@
 const webpack = require('webpack')
 const GitRevPlugin = require('git-revision-webpack-plugin')
 const GitRevisionPlugin = new GitRevPlugin()
+const path = require('path')
 
 module.exports = {
   transpileDependencies: ['vuetify'],
   publicPath: process.env.VUE_APP_STATIC_FILES_URL,
   productionSourceMap: false,
-
-  // pages: {
-  //   index: {
-  //     // page 的入口
-  //     entry: 'src/index/main.js',
-  //     // 模板来源
-  //     template: 'public/index.html',
-  //     // 在 dist/index.html 的输出
-  //     filename: 'index.html',
-  //     // 当使用 title 选项时，
-  //     // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
-  //     title: 'Index Page',
-  //     // 在这个页面中包含的块，默认情况下会包含
-  //     // 提取出来的通用 chunk 和 vendor chunk。
-  //     chunks: ['chunk-vendors', 'chunk-common', 'index']
-  //   },
-  //   // 当使用只有入口的字符串格式时，
-  //   // 模板会被推导为 `public/subpage.html`
-  //   // 并且如果找不到的话，就回退到 `public/index.html`。
-  //   // 输出文件名会被推导为 `subpage.html`。
-  //   subpage: 'src/subpage/main.js'
-  // },
+  pages: {
+    index: {
+      // page 的入口
+      entry: 'src/entries/main/main.js',
+      // 模板来源
+      template:
+        process.env.NODE_ENV === 'development'
+          ? 'public/index.dev.html'
+          : 'public/index.html',
+      // 在 dist/index.html 的输出
+      filename: 'index.html',
+      // 当使用 title 选项时，
+      // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+      title: '鱼糕',
+      // 在这个页面中包含的块，默认情况下会包含
+      // 提取出来的通用 chunk 和 vendor chunk。
+      // chunks: ['chunk-vendors', 'chunk-common', 'index'],
+    },
+    reader: {
+      entry: 'src/entries/reader/reader.js',
+      template:
+        process.env.NODE_ENV === 'development'
+          ? 'public/index.dev.html'
+          : 'public/index.html',
+      filename: 'reader.html',
+      title: '鱼捞',
+    },
+    // 当使用只有入口的字符串格式时，
+    // 模板会被推导为 `public/subpage.html`
+    // 并且如果找不到的话，就回退到 `public/index.html`。
+    // 输出文件名会被推导为 `subpage.html`。
+    // subpage: 'src/subpage/main.js',
+  },
   pluginOptions: {
     i18n: {
       locale: 'zh-CN',
@@ -66,18 +78,8 @@ module.exports = {
       })
     }
 
-    config
-      .plugin('html')
-      .tap(args => {
-        args[0].title = '鱼糕 - 钓鱼时钟'
-        if (process.env.NODE_ENV === 'development') {
-          args[0].template = './public/index.dev.html'
-        }
-        return args
-      })
-      .end()
-
-      .output.libraryTarget('umd')
+    config.output
+      .libraryTarget('umd')
       .globalObject('this')
       .end()
 
@@ -86,6 +88,10 @@ module.exports = {
       .use('html-loader')
       .loader('html-loader')
       .end()
+
+    config.resolve.alias
+      .set('RCData', path.join(__dirname, '../data'))
+      .set('Assets', path.join(__dirname, '../assets'))
   },
   configureWebpack: {
     plugins: [

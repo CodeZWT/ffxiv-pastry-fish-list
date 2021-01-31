@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import Tip4 from '@/store/Tip4'
+import Tip4 from 'RCData/Tip4'
 
 export default {
   name: 'Tip4',

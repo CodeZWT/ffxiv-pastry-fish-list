@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Reader from './Reader.vue'
+// import router from '@/router'
 import store from './store'
-import i18n from './i18n'
-import vuetify from './plugins/vuetify'
+import i18n from '@/i18n'
+import vuetify from '@/plugins/vuetify'
 import { initTooltip } from '@thewakingsands/kit-tooltip'
 import { Settings } from 'luxon'
 import VueKonva from 'vue-konva'
@@ -17,9 +17,9 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 new Vue({
-  router,
+  // router,
   store,
   i18n,
   vuetify,
-  render: h => h(App),
+  render: h => h(Reader),
 }).$mount('#app')

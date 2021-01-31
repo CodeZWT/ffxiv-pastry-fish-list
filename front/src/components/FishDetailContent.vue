@@ -31,8 +31,8 @@ import DetailItemBuffAndBaits from '@/components/fish-detail-items/DetailItemBuf
 import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItemFishWindowTable'
 import DetailItemTips from '@/components/fish-detail-items/DetailItemTips/DetailItemTips'
 import _ from 'lodash'
-import FIX from '@/store/fix'
-import placeNames from '@/store/placeNames.json'
+import FIX from 'RCData/fix'
+import placeNames from 'RCData/placeNames.json'
 
 export default {
   name: 'FishDetailContent',

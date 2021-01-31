@@ -182,7 +182,7 @@
 
 <script>
 import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
-import regionTerritorySpots from '@/store/fishingSpots.json'
+import regionTerritorySpots from 'RCData/fishingSpots.json'
 import { mapGetters } from 'vuex'
 import ItemIcon from '@/components/basic/ItemIcon'
 import FishTip from '@/components/OceanFishingVoyage/FishTip'

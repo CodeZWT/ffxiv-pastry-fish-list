@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "../styles/RcVariables"
+@import "~@/styles/RcVariables"
 
 .detail-header
   height: calc(100vh - #{ $top-bars-padding + $footer-padding + $detail-header-height})

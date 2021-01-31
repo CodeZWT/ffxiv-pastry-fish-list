@@ -36,7 +36,7 @@ function createWindow() {
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
     },
-    icon: path.join(__dirname, 'assets/icon256.png')
+    icon: path.join(__dirname, 'Assets/icon256.png')
   })
   // win.setOpacity(0.9)
   // win.setAlwaysOnTop(true)

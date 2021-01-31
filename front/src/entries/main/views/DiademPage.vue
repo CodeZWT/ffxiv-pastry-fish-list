@@ -87,11 +87,11 @@
 </template>
 
 <script>
-import regionTerritorySpots from '@/store/fishingSpots.json'
+import regionTerritorySpots from 'RCData/fishingSpots.json'
 import _ from 'lodash'
 import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
-import DIADEM from '@/store/diadem'
+import DIADEM from 'RCData/diadem'
 import ImgUtil from '@/utils/ImgUtil'
 import DiademFishList from '@/components/DiademFishList/DiademFishList'
 
@@ -207,7 +207,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "../styles/RcVariables"
+@import "~@/styles/RcVariables"
 
 .detail-wrapper
   width: 100%

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MigrationPage from '@/views/MigrationPage'
+import MigrationPage from '../views/MigrationPage'
 
 Vue.use(VueRouter)
 
@@ -11,7 +11,7 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "fish" */
-        '@/views/FishPage'
+        '../views/FishPage'
       ),
   },
   {
@@ -20,7 +20,7 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "wiki" */
-        '@/views/WikiPage'
+        '../views/WikiPage'
       ),
   },
   {
@@ -29,7 +29,7 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "oceanFishing" */
-        '@/views/OceanFishingPage'
+        '../views/OceanFishingPage'
       ),
   },
   {
@@ -38,7 +38,7 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "diadem" */
-        '@/views/DiademPage'
+        '../views/DiademPage'
       ),
   },
   {

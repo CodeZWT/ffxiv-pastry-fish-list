@@ -164,7 +164,7 @@ import _ from 'lodash'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PinyinMatch from 'pinyin-match'
 import ClickHelper from '@/components/basic/ClickHelper'
-import FIX from '@/store/fix'
+import FIX from 'RCData/fix'
 
 export default {
   name: 'BaitDialog',

@@ -97,7 +97,7 @@ import { mapGetters, mapMutations } from 'vuex'
 import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
 import ImgUtil from '@/utils/ImgUtil'
 import OceanFishingVoyage from '@/components/OceanFishingVoyage/OceanFishingVoyage'
-import DATA_CN from '@/store/translation'
+import DATA_CN from 'RCData/translation'
 
 // https://ngabbs.com/read.php?tid=20553241
 
@@ -313,7 +313,7 @@ function shift2Icon(shift) {
 }
 </script>
 <style lang="sass" scoped>
-@import "../styles/RcVariables"
+@import "~@/styles/RcVariables"
 
 .detail-wrapper
   width: 100%

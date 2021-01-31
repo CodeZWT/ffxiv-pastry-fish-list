@@ -1,5 +1,5 @@
-import { DATA } from '@/store/data'
-import FIX from '@/store/fix'
+import { DATA } from 'RCData/data'
+import FIX from 'RCData/fix'
 import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'

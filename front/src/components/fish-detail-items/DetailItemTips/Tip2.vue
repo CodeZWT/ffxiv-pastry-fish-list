@@ -125,8 +125,8 @@
   </div>
 </template>
 <script>
-import tip2 from '@/store/tip2.json'
-// import CN_DATA from '@/store/translation'
+import tip2 from 'RCData/tip2.json'
+// import CN_DATA from 'RCData/translation'
 // import _ from 'lodash'
 
 export default {

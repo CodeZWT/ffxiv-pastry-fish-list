@@ -557,8 +557,8 @@
 import EorzeaTime from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import helpHTML from '@/assets/doc/help.html'
-import { version } from '../package.json'
+import helpHTML from 'Assets/doc/help.html'
+import { version } from '../../../package.json'
 import ResetButton from '@/components/ResetButton'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
@@ -573,10 +573,10 @@ import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import ImgUtil from '@/utils/ImgUtil'
-import FIX from '@/store/fix'
-import placeNames from '@/store/placeNames.json'
-import regionTerritorySpots from '@/store/fishingSpots.json'
-import DATA_CN from '@/store/translation'
+import FIX from 'RCData/fix'
+import placeNames from 'RCData/placeNames.json'
+import regionTerritorySpots from 'RCData/fishingSpots.json'
+import DATA_CN from 'RCData/translation'
 import PatchNoteDialog from '@/components/Dialog/PatchNoteDialog'
 import BaitDialog from '@/components/Dialog/BaitDialog'
 import ItemIcon from '@/components/basic/ItemIcon'
@@ -1231,7 +1231,7 @@ export default {
         DataUtil.NOTIFICATION_SOUNDS.map(sound => {
           if (sound.filename == null)
             return Promise.resolve({ key: sound.key, player: null })
-          return import(`@/assets/sound/${sound.filename}`).then(it => {
+          return import(`Assets/sound/${sound.filename}`).then(it => {
             return {
               key: sound.key,
               player: new Howl({ src: it?.default, preload: true }),
@@ -1701,13 +1701,13 @@ export default {
 </script>
 
 <style>
-@import './assets/css/fish_icons.css';
-@import './assets/css/keys.css';
+@import '~Assets/css/fish_icons.css';
+@import '~Assets/css/keys.css';
 
 @font-face {
   font-family: 'FFXIV';
-  src: url('./assets/font/FFXIV_Lodestone_SSF.ttf') format('truetype'),
-    url('./assets/font/FFXIV_Lodestone_SSF.woff') format('woff');
+  src: url('~Assets/font/FFXIV_Lodestone_SSF.ttf') format('truetype'),
+    url('~Assets/font/FFXIV_Lodestone_SSF.woff') format('woff');
   unicode-range: U+E020-E0DB;
 }
 

@@ -321,7 +321,7 @@ import FishDetail from '@/components/FishDetail'
 import NotificationUtil from '@/utils/NotificationUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import DataUtil from '@/utils/DataUtil'
-import FIX from '@/store/fix'
+import FIX from 'RCData/fix'
 
 export default {
   name: 'fish-page',
@@ -597,7 +597,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "../styles/RcVariables"
+@import "~@/styles/RcVariables"
 
 .list-wrapper::v-deep
   .v-expansion-panel-content__wrap
