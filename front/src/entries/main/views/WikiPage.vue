@@ -292,7 +292,7 @@
 
 <script>
 import normSpots from 'Data/fishingSpots'
-import placeNames from 'Data/placeNames.json'
+import placeNames from 'Data/placeNames'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import _ from 'lodash'

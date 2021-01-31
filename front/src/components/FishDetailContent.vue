@@ -32,7 +32,7 @@ import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItem
 import DetailItemTips from '@/components/fish-detail-items/DetailItemTips/DetailItemTips'
 import _ from 'lodash'
 import FIX from 'Data/fix'
-import placeNames from 'Data/placeNames.json'
+import placeNames from 'Data/placeNames'
 
 export default {
   name: 'FishDetailContent',
