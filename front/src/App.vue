@@ -1023,8 +1023,6 @@ export default {
       default:
         this.showMigrationDialog = false
     }
-    // comment out when start migration
-    this.showMigrationDialog = false
 
     if (DataUtil.isBugChromeTimeZone()) {
       this.showChromeTimeZoneBugDialog = this.showChromeBugDialog
