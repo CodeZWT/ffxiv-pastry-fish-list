@@ -36,6 +36,7 @@ function createWindow() {
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
     },
+    icon: path.join(__dirname, 'assets/icon256.png')
   })
   // win.setOpacity(0.9)
   // win.setAlwaysOnTop(true)
@@ -65,6 +66,8 @@ function createWindow() {
 }
 
 function updateIfNeeded() {
+  if (isDev) return
+
   log.info('Check Update...')
   let LOCAL_COMMIT_HAST_PATH
   if (isDev) {
