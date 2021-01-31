@@ -250,7 +250,9 @@
           </v-list-item>
           <v-list-item v-if="!isElectron" @click="showDownloadDialog = true" link>
             <v-list-item-icon>
-              <v-icon>mdi-desktop-mac-dashboard</v-icon>
+              <v-badge color="error" overlap content="新">
+                <v-icon>mdi-desktop-mac-dashboard</v-icon>
+              </v-badge>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.desktopVersion') }}</v-list-item-title>
