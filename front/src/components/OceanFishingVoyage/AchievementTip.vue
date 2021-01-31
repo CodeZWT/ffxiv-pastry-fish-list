@@ -54,7 +54,7 @@
 
 <script>
 import FishTip from '@/components/OceanFishingVoyage/FishTip'
-import FIX from 'RCData/fix'
+import FIX from 'Data/fix'
 
 export default {
   name: 'AchievementTip',

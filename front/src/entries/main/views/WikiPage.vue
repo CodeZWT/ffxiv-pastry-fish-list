@@ -291,8 +291,8 @@
 </template>
 
 <script>
-import normSpots from 'RCData/fishingSpots.json'
-import placeNames from 'RCData/placeNames.json'
+import normSpots from 'Data/fishingSpots.json'
+import placeNames from 'Data/placeNames.json'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import _ from 'lodash'
@@ -303,7 +303,7 @@ import TreeModel from 'tree-model'
 import ClickHelper from '@/components/basic/ClickHelper'
 import FishList from '@/components/FishList'
 import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
-import FIX from 'RCData/fix'
+import FIX from 'Data/fix'
 import FishGigTable from '@/components/FishingGigTable'
 import FishTugTable from '@/components/FishingTugTable'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'

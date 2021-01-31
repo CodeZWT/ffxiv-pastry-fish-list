@@ -97,7 +97,7 @@ import { mapGetters, mapMutations } from 'vuex'
 import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
 import ImgUtil from '@/utils/ImgUtil'
 import OceanFishingVoyage from '@/components/OceanFishingVoyage/OceanFishingVoyage'
-import DATA_CN from 'RCData/translation'
+import DATA_CN from 'Data/translation'
 
 // https://ngabbs.com/read.php?tid=20553241
 

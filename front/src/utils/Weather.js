@@ -1,5 +1,5 @@
-import DATA from 'RCData/data.json'
-import FIX from 'RCData/fix'
+import DATA from 'Data/data.json'
+import FIX from 'Data/fix'
 import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'

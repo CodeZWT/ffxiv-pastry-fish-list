@@ -565,8 +565,8 @@
 </template>
 
 <script>
-import FIX from 'RCData/fix'
-import DIADEM from 'RCData/diadem'
+import FIX from 'Data/fix'
+import DIADEM from 'Data/diadem'
 import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {

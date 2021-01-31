@@ -90,7 +90,7 @@ module.exports = {
       .end()
 
     config.resolve.alias
-      .set('RCData', path.join(__dirname, '../data'))
+      .set('Data', path.join(__dirname, '../data'))
       .set('Assets', path.join(__dirname, '../assets'))
   },
   configureWebpack: {

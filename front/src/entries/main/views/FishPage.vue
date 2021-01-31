@@ -321,7 +321,7 @@ import FishDetail from '@/components/FishDetail'
 import NotificationUtil from '@/utils/NotificationUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import DataUtil from '@/utils/DataUtil'
-import FIX from 'RCData/fix'
+import FIX from 'Data/fix'
 
 export default {
   name: 'fish-page',

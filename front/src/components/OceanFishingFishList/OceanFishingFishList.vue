@@ -144,7 +144,7 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import { mapGetters, mapMutations } from 'vuex'
 import ToggleButton from '@/components/basic/ToggleButton'
 import DataUtil from '@/utils/DataUtil'
-import FIX from 'RCData/fix'
+import FIX from 'Data/fix'
 
 export default {
   name: 'OceanFishingFishList',
