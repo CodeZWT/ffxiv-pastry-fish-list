@@ -1021,6 +1021,7 @@ export default {
         this.showMigrationDialog = true
         break
       default:
+        console.debug('migration no match')
         this.showMigrationDialog = false
     }
 
