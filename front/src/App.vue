@@ -1021,8 +1021,6 @@ export default {
         this.showDownloadDialog = false
     }
 
-    this.showMigrationDialog = true
-
     if (DataUtil.isBugChromeTimeZone()) {
       this.showChromeTimeZoneBugDialog = this.showChromeBugDialog
     }
