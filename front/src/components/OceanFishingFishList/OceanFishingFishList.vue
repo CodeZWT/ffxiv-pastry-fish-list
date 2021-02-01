@@ -22,7 +22,12 @@
     >
       <template v-slot:item.name="{ item }">
         <div class="d-flex align-center">
-          <toggle-button :value="item.completed" @input="setCompleted(item.id, $event)" />
+          <toggle-button
+            :value="item.completed"
+            @input="setCompleted(item.id, $event)"
+            :checked-title="$t('actions.completed.checked')"
+            :unchecked-title="$t('actions.completed.unchecked')"
+          />
           <item-icon
             :icon-class="item.icon"
             :title="item.name"

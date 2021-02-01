@@ -24,6 +24,8 @@
               @input="setPinned($event)"
               checked-icon="mdi-pin"
               unchecked-icon="mdi-pin-outline"
+              :checked-title="$t('actions.pin.checked')"
+              :unchecked-title="$t('actions.pin.unchecked')"
             />
           </div>
 
@@ -148,6 +150,8 @@
           v-if="!inPredator"
           :value="transformedFishPart.completed"
           @input="setCompleted($event)"
+          :checked-title="$t('actions.completed.checked')"
+          :unchecked-title="$t('actions.completed.unchecked')"
         />
       </v-col>
       <v-col

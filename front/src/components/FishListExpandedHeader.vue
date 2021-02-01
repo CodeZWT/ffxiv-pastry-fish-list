@@ -14,8 +14,15 @@
             @input="setPinned($event)"
             checked-icon="mdi-pin"
             unchecked-icon="mdi-pin-outline"
+            :checked-title="$t('actions.pin.checked')"
+            :unchecked-title="$t('actions.pin.unchecked')"
           />
-          <toggle-button :value="fish.completed" @input="setCompleted($event)" />
+          <toggle-button
+            :value="fish.completed"
+            @input="setCompleted($event)"
+            :checked-title="$t('actions.completed.checked')"
+            :unchecked-title="$t('actions.completed.unchecked')"
+          />
         </div>
         <item-icon :icon-class="fish.icon" />
         <link-list

@@ -203,6 +203,8 @@
                     :value="transformedFishPart.completed"
                     @input="setCompleted($event)"
                     small
+                    :checked-title="$t('actions.completed.checked')"
+                    :unchecked-title="$t('actions.completed.unchecked')"
                   />
                   <!-- pin -->
                   <toggle-button
@@ -211,6 +213,8 @@
                     checked-icon="mdi-pin"
                     unchecked-icon="mdi-pin-outline"
                     small
+                    :checked-title="$t('actions.pin.checked')"
+                    :unchecked-title="$t('actions.pin.unchecked')"
                   />
                   <!-- copy name -->
                   <click-helper @click.stop :copy-text="fish.name">
