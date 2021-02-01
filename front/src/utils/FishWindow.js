@@ -156,9 +156,9 @@ export default {
     // console.debug('loop count', loopCounter)
     let dummyWindows = []
     const temp = Math.floor(eorzeaTime.toEarthTime())
-    const baseTime = temp - (temp % 10000)
-    for (let i = 0; i < n + 10; i++) {
-      dummyWindows.push([baseTime + i * 10000, baseTime + i * 10000 + 5000])
+    const baseTime = temp - (temp % 20000)
+    for (let i = 1; i < n + 11; i++) {
+      dummyWindows.push([baseTime + i * 20000, baseTime + i * 20000 + 10000])
     }
     let windowsRet = fishWindows
       .slice(0, n - 1)
