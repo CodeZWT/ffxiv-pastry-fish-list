@@ -15,11 +15,14 @@ const SETUP_EXE_DOWNLOAD_LINK =
 log.transports.console.level = 'silly'
 
 let toInstallUpdates = false
-let win
+let win, reader
 const winURL = isDev
   ? `http://localhost:8080`
   : `file://${__dirname}/front-electron-dist/index.html`
-console.log(winURL)
+
+const readerURL = isDev
+  ? `http://localhost:8080/reader`
+  : `file://${__dirname}/front-electron-dist/reader.html`
 
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
@@ -28,33 +31,81 @@ const SETUP_PATH = 'setup'
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 1280,
-    height: 500,
+    width: 1024,
+    height: 768,
     frame: true,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
     },
-    icon: path.join(__dirname, 'Assets/icon256.png')
+    icon: path.join(__dirname, 'Assets/icon256.png'),
   })
   // win.setOpacity(0.9)
   // win.setAlwaysOnTop(true)
   win.removeMenu()
   // win.maximize()
   win.loadURL(winURL).then(() => {
-    win.webContents.on('new-window', function(e, url) {
-      e.preventDefault();
-      shell.openExternal(url);
-    });
+    win.webContents.on('new-window', function (e, url) {
+      e.preventDefault()
+      shell.openExternal(url)
+    })
 
     FishingDataReader.onUpdate((data) => {
       win.webContents.send('fishingData', data)
+      reader && reader.webContents.send('fishingData', data)
     })
     FishingDataReader.start(() => {
       log.info('Machina started!')
     })
 
+    updateIfNeeded()
+    setInterval(updateIfNeeded, 600000)
+
+    ipcMain
+      .on('startUpdate', () => {
+        quitAndSetup()
+      })
+      .on('openReader', () => {
+        log.info('open reader')
+        openReader()
+      })
+  })
+  if (isDev) {
+    win.webContents.openDevTools({
+      mode: 'undocked',
+    })
+  }
+}
+
+function openReader() {
+  reader = new BrowserWindow({
+    width: 1024,
+    height: 500,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      preload: __dirname + '/preload.js',
+    },
+    icon: path.join(__dirname, 'Assets/reader.png'),
+  })
+  reader.setOpacity(0.9)
+  reader.setAlwaysOnTop(true)
+  reader.removeMenu()
+  // reader.maximize()
+  reader.loadURL(readerURL).then(() => {
+    reader.webContents.on('new-window', function (e, url) {
+      e.preventDefault()
+      shell.openExternal(url)
+    })
+
+    // FishingDataReader.onUpdate((data) => {
+    //   reader.webContents.send('fishingData', data)
+    // })
+    // FishingDataReader.start(() => {
+    //   log.info('Machina started!')
+    // })
 
     updateIfNeeded()
     setInterval(updateIfNeeded, 600000)
@@ -64,7 +115,7 @@ function createWindow() {
     })
   })
   if (isDev) {
-    win.webContents.openDevTools({
+    reader.webContents.openDevTools({
       mode: 'undocked',
     })
   }
@@ -80,9 +131,7 @@ function updateIfNeeded() {
   } else {
     LOCAL_COMMIT_HAST_PATH = path.join(app.getAppPath(), '../../resources/COMMITHASH')
   }
-  const localCommitHash = fs
-    .readFileSync(LOCAL_COMMIT_HAST_PATH)
-    .toString(FILE_ENCODING)
+  const localCommitHash = fs.readFileSync(LOCAL_COMMIT_HAST_PATH).toString(FILE_ENCODING)
   // let downloadedCommitHash
   // if (fs.existsSync(DOWNLOADED_COMMITHASH_PATH)) {
   //   downloadedCommitHash = fs.readFileSync(DOWNLOADED_COMMITHASH_PATH).toString(FILE_ENCODING)
@@ -98,18 +147,15 @@ function updateIfNeeded() {
         (progress) => win.webContents.send('setupDownload', progress),
         500
       )
-      download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH).on(
-        'downloadProgress',
-        (progress) => {
-          // Report download progress
-          throttled(progress)
-          win.setProgressBar(progress.percent)
-          if (progress.percent === 1) {
-            // fs.writeFileSync(DOWNLOADED_COMMITHASH_PATH, remoteCommitHash, {encoding: FILE_ENCODING})
-            win.webContents.send('checkStartSetup')
-          }
+      download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH).on('downloadProgress', (progress) => {
+        // Report download progress
+        throttled(progress)
+        win.setProgressBar(progress.percent)
+        if (progress.percent === 1) {
+          // fs.writeFileSync(DOWNLOADED_COMMITHASH_PATH, remoteCommitHash, {encoding: FILE_ENCODING})
+          win.webContents.send('checkStartSetup')
         }
-      )
+      })
     } else {
       log.info('No Update. Wait 10 minutes to check...')
     }

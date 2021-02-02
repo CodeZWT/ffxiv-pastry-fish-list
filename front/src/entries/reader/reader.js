@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Reader from './Reader.vue'
-// import router from '@/router'
+import router from './router'
 import store from './store'
 import i18n from '@/i18n'
 import vuetify from '@/plugins/vuetify'
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 new Vue({
-  // router,
+  router,
   store,
   i18n,
   vuetify,

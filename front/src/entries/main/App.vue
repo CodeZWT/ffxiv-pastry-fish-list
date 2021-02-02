@@ -258,6 +258,18 @@
               <v-list-item-title>{{ $t('top.desktopVersion') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
+          <v-divider />
+          <v-list-item v-if="isElectron" @click="openReader" link>
+            <v-list-item-icon>
+              <v-badge color="error" overlap content="新">
+                <v-icon>mdi-fish</v-icon>
+              </v-badge>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.fishReader') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
 
         <template v-slot:append>
@@ -1124,6 +1136,9 @@ export default {
     // }, 200)
   },
   methods: {
+    openReader() {
+      window.electron?.ipcRenderer?.send('openReader')
+    },
     startUpdate() {
       window.electron?.ipcRenderer?.send('startUpdate')
     },
