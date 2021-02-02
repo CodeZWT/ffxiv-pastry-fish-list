@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="meter" style="display: flex;">
+    <div class="meter" style="display: flex">
       <div
         :class="`range-block ${color}`"
         :style="`left: ${left}%; width: ${length}%;`"
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import DataUtil from '../../util/DataUtil'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'TimelineRow',
@@ -66,7 +66,7 @@ export default {
       return Math.max(((this.max - this.min) / this.total) * 100, 0.5)
     },
     color() {
-      return DataUtil.TUG_DICT[this.tug]
+      return DataUtil.TUG_ICON_COLOR[DataUtil.TUG_ICON[this.tug]]
     },
     pointerPos() {
       return (this.pointer / this.total) * 100 - this.pointerWidth / 2

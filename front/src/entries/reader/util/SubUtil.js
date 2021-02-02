@@ -24,7 +24,7 @@ function getSpotDict(regionDict) {
 }
 const SPOT_DICT = getSpotDict(regionTerritorySpots)
 
-const DataUtil = {
+const SubUtil = {
   STATUS_DICT: {
     '761': {
       ID: 761,
@@ -5725,11 +5725,11 @@ const DataUtil = {
   },
 
   getItem(id) {
-    const item = DataUtil.BAIT_DICT[id] || DataUtil.FISH_DICT[id]
+    const item = SubUtil.BAIT_DICT[id] || SubUtil.FISH_DICT[id]
     if (item) {
       return {
         name: item.name_chs,
-        iconUrl: DataUtil.iconIdToUrl(item.iconId),
+        iconUrl: SubUtil.iconIdToUrl(item.iconId),
       }
     } else {
       return undefined
@@ -5796,4 +5796,4 @@ export const WEATHER_CHANGE_INTERVAL = 8 * ONE_HOUR_INTERVAL
 export const WEATHER_CHANGE_INTERVAL_EARTH = WEATHER_CHANGE_INTERVAL * EROZEA_TO_EARTH
 // const ONE_DAY_INTERVAL = 24 * ONE_HOUR_INTERVAL
 
-export default DataUtil
+export default SubUtil

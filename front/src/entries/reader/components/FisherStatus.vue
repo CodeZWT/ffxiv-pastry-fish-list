@@ -126,11 +126,12 @@
 </template>
 
 <script>
-import DataUtil, { WEATHER_CHANGE_INTERVAL_EARTH } from '../util/DataUtil'
+import SubUtil, { WEATHER_CHANGE_INTERVAL_EARTH } from '../util/SubUtil'
 import max from 'lodash/max'
 import clone from 'lodash/clone'
 import DUMMY_DATA from '../util/DummyData'
 import FishTimelineTable from './FishTimelineTable'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'FisherStatus',
@@ -192,24 +193,24 @@ export default {
   computed: {
     effects() {
       return this.dataStatus.effects
-        .map(it => DataUtil.STATUS_DICT[it])
+        .map(it => SubUtil.STATUS_DICT[it])
         .filter(it => it != null)
         .map(effect => {
           return {
             id: effect.ID,
             name: effect.Name,
-            iconUrl: DataUtil.iconIdToUrl(effect.IconID),
+            iconUrl: SubUtil.iconIdToUrl(effect.IconID),
           }
         })
     },
     bait() {
-      return DataUtil.getItem(this.dataStatus?.baitId)
+      return SubUtil.getItem(this.dataStatus?.baitId)
     },
     spot() {
       const spotId = this.dataStatus?.spotId
       return {
         id: spotId,
-        name: DataUtil.toSpotText(spotId) ?? '未知',
+        name: SubUtil.toSpotText(spotId) ?? '未知',
       }
     },
     interval() {
@@ -230,10 +231,10 @@ export default {
       return this.weatherCheckPoint - WEATHER_CHANGE_INTERVAL_EARTH
     },
     weather() {
-      return DataUtil.getWeather(this.spot.id, this.weatherCheckPoint)
+      return SubUtil.getWeather(this.spot.id, this.weatherCheckPoint)
     },
     prevWeather() {
-      return DataUtil.getWeather(this.spot.id, this.prevWeatherCheckPoint)
+      return SubUtil.getWeather(this.spot.id, this.prevWeatherCheckPoint)
     },
     records() {
       const records = clone(this.dataReadableRecords ?? []).reverse()
@@ -246,14 +247,14 @@ export default {
       return records
         .filter(record => record.fishId !== -1)
         .map(record => {
-          const fish = DataUtil.getItem(record.fishId)
-          const bait = DataUtil.getItem(record.baitId)
+          const fish = SubUtil.getItem(record.fishId)
+          const bait = SubUtil.getItem(record.baitId)
           return {
             ...record,
             fishIconUrl: fish?.iconUrl,
             baitIconUrl: bait?.iconUrl,
             biteIntervalPercentage: (record.biteInterval / intervalMax) * 100,
-            tugClass: DataUtil.TUG_DICT[record.tug],
+            tugClass: DataUtil.TUG_ICON_COLOR[DataUtil.TUG_ICON[record.tug]],
           }
         })
     },
@@ -270,7 +271,7 @@ export default {
         let fish = fishDataDict[record.fishId]
         if (!fish) {
           fish = fishDataDict[record.fishId] = {
-            name: DataUtil.getItem(record.fishId)?.name,
+            name: SubUtil.getItem(record.fishId)?.name,
             tug: record.tug,
             chum: { min: 60, max: 0 },
             normal: { min: 60, max: 0 },

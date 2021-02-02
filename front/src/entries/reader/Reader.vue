@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import DataUtil from './util/DataUtil'
+import SubUtil from './util/SubUtil'
 import WindowUtil from './util/WindowUtil'
 
 export default {
@@ -29,10 +29,10 @@ export default {
   }),
   computed: {
     eorzeaTime() {
-      return DataUtil.formatDateTime(DataUtil.toET(this.now), 'HH:mm')
+      return SubUtil.formatDateTime(SubUtil.toET(this.now), 'HH:mm')
     },
     earthTime() {
-      return DataUtil.formatDateTime(this.now, 'HH:mm')
+      return SubUtil.formatDateTime(this.now, 'HH:mm')
     },
   },
   created() {
