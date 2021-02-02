@@ -25,7 +25,8 @@
               <v-spacer />
               <div v-if="bait" class="d-flex align-center">
                 <div>{{ bait.name }}</div>
-                <v-img :src="bait.iconUrl" width="32" height="32" :title="bait.name" />
+                <!--                <v-img :src="bait.iconUrl" width="32" height="32" :title="bait.name" />-->
+                <item-icon :icon-class="bait.icon" :title="bait.name" small />
               </div>
               <div v-else>
                 未知
@@ -97,9 +98,7 @@
       <v-col cols="4">
         <v-list>
           <v-list-item v-for="(record, index) in records" :key="index">
-            <v-list-item-avatar size="32">
-              <v-img :src="record.fishIconUrl"></v-img>
-            </v-list-item-avatar>
+            <item-icon :icon-class="record.fishIcon" small />
             <v-list-item-content class="d-flex flex-row">
               <div v-html="record.fishText"></div>
             </v-list-item-content>
@@ -114,9 +113,7 @@
                 </template>
               </v-progress-linear>
             </v-list-item-content>
-            <v-list-item-avatar size="32" right tile>
-              <v-img :src="record.baitIconUrl"></v-img>
-            </v-list-item-avatar>
+            <item-icon :icon-class="record.baitIcon" small />
           </v-list-item>
         </v-list>
       </v-col>
@@ -132,10 +129,11 @@ import clone from 'lodash/clone'
 import DUMMY_DATA from '../util/DummyData'
 import FishTimelineTable from './FishTimelineTable'
 import DataUtil from '@/utils/DataUtil'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'FisherStatus',
-  components: { FishTimelineTable },
+  components: { ItemIcon, FishTimelineTable },
   props: ['now'],
   data: () => ({
     dataStatus: {
@@ -251,8 +249,8 @@ export default {
           const bait = SubUtil.getItem(record.baitId)
           return {
             ...record,
-            fishIconUrl: fish?.iconUrl,
-            baitIconUrl: bait?.iconUrl,
+            fishIcon: fish?.icon,
+            baitIcon: bait?.icon,
             biteIntervalPercentage: (record.biteInterval / intervalMax) * 100,
             tugClass: DataUtil.TUG_ICON_COLOR[DataUtil.TUG_ICON[record.tug]],
           }

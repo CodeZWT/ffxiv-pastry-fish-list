@@ -13,6 +13,7 @@ import { DateTime } from 'luxon'
 import i18n from '@/i18n'
 import regionTerritorySpots from 'Data/fishingSpots.js'
 import keyBy from 'lodash/keyBy'
+import DataUtil from '@/utils/DataUtil'
 
 function getSpotDict(regionDict) {
   return keyBy(
@@ -5720,7 +5721,7 @@ const SubUtil = {
     return {
       id: weatherId,
       name: this.toWeatherText(weatherId),
-      iconUrl: this.iconIdToUrl(DATA.WEATHER_TYPES[weatherId]?.icon),
+      icon: DataUtil.iconIdToClass(DATA.WEATHER_TYPES[weatherId]?.icon),
     }
   },
 
@@ -5729,7 +5730,7 @@ const SubUtil = {
     if (item) {
       return {
         name: item.name_chs,
-        iconUrl: SubUtil.iconIdToUrl(item.iconId),
+        icon: DataUtil.iconIdToClass(item.iconId),
       }
     } else {
       return undefined
