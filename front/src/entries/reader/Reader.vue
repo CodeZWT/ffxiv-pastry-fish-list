@@ -20,6 +20,7 @@
 <script>
 import SubUtil from './util/SubUtil'
 import WindowUtil from './util/WindowUtil'
+import '@thewakingsands/axis-font-icons'
 
 export default {
   name: 'Reader',
