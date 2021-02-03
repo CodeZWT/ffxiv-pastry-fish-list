@@ -11,6 +11,7 @@ import Tip4 from 'Data/Tip4'
 import DATA_CN from 'Data/translation'
 import cloneDeep from 'lodash/cloneDeep'
 import { detect } from 'detect-browser'
+import { Howl } from 'howler'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -37,6 +38,20 @@ const NOTIFICATION_SOUNDS = [
     filename: 'FFXIV_Linkshell_Transmission.mp3',
   },
   { key: 'notification', name_chs: '通知', filename: 'FFXIV_Notification.mp3' },
+]
+
+const READER_SOUNDS = [
+  {
+    key: 'light',
+    name_chs: 'alert_high-intensity',
+    filename: 'alert_high-intensity.ogg',
+  },
+  { key: 'medium', name_chs: 'alert_simple', filename: 'alert_simple.ogg' },
+  {
+    key: 'heavy',
+    name_chs: 'hero_decorative-celebration-01',
+    filename: 'hero_decorative-celebration-01.ogg',
+  },
 ]
 
 const INTERVAL_SECOND = 1000
@@ -738,6 +753,21 @@ export default {
     // console.debug(userAgent.toString())
     // console.debug(JSON.stringify(userAgent.data, null, 2))
   },
+
+  loadingSounds(soundInfos) {
+    return Promise.all(
+      soundInfos.map(sound => {
+        if (sound.filename == null)
+          return Promise.resolve({ key: sound.key, player: null })
+        return import(`Assets/sound/${sound.filename}`).then(it => {
+          return {
+            key: sound.key,
+            player: new Howl({ src: it?.default, preload: true }),
+          }
+        })
+      })
+    )
+  },
   // FUNCTION END
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
@@ -997,4 +1027,5 @@ export default {
   ],
 
   NOTIFICATION_SOUNDS: NOTIFICATION_SOUNDS,
+  READER_SOUNDS: READER_SOUNDS,
 }

@@ -61,6 +61,7 @@
               <v-spacer />
               <div v-if="weather" class="d-flex align-center">
                 <div>{{ weather.name }}</div>
+                <div :class="weather.icon" />
               </div>
             </div>
           </v-col>
@@ -70,6 +71,7 @@
               <v-spacer />
               <div v-if="weather" class="d-flex align-center">
                 <div>{{ prevWeather.name }}</div>
+                <div :class="prevWeather.icon" />
               </div>
             </div>
           </v-col>

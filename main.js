@@ -80,9 +80,10 @@ function createWindow() {
 
 function openReader() {
   reader = new BrowserWindow({
-    width: 1024,
-    height: 500,
+    width: 500,
+    height: 300,
     frame: false,
+    transparent: true,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
@@ -90,7 +91,7 @@ function openReader() {
     },
     icon: path.join(__dirname, 'Assets/reader.png'),
   })
-  reader.setOpacity(0.9)
+  reader.setOpacity(0.8)
   reader.setAlwaysOnTop(true)
   reader.removeMenu()
   // reader.maximize()

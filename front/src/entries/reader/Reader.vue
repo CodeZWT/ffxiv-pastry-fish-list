@@ -1,15 +1,15 @@
 <template>
-  <v-app>
-    <v-system-bar app>
+  <v-app class="transparent">
+    <v-system-bar app v-if="showSystemBar">
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
       <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-minus</v-icon>
       </v-btn>
-      <!--      <v-btn @click="close" x-small text style="  -webkit-app-region: none">-->
-      <!--        <v-icon>mdi-close</v-icon>-->
-      <!--      </v-btn>-->
+      <v-btn @click="close" x-small text style="-webkit-app-region: none">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
     </v-system-bar>
     <v-main>
       <router-view :now="now" />
@@ -18,9 +18,11 @@
 </template>
 
 <script>
-import SubUtil from './util/SubUtil'
 import WindowUtil from './util/WindowUtil'
 import '@thewakingsands/axis-font-icons'
+import EorzeaTime from '@/utils/Time'
+import DataUtil from '@/utils/DataUtil'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'Reader',
@@ -29,25 +31,37 @@ export default {
     now: Date.now(),
   }),
   computed: {
+    showSystemBar() {
+      return true
+      // return this.$route.name !== 'ReaderTimer'
+    },
     eorzeaTime() {
-      return SubUtil.formatDateTime(SubUtil.toET(this.now), 'HH:mm')
+      return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
     },
     earthTime() {
-      return SubUtil.formatDateTime(this.now, 'HH:mm')
+      return DataUtil.formatDateTime(this.now, 'HH:mm')
     },
+    ...mapState(['sounds']),
   },
-  created() {
+  async created() {
     setInterval(() => {
       this.now = Date.now()
     }, 100)
+
+    const sounds = await this.loadingSounds()
+    this.setSounds(DataUtil.toMap(sounds, it => it.key))
   },
   methods: {
     minimize() {
       WindowUtil.minimizeWindow()
     },
-    // close() {
-    //   WindowUtil.closeWindow()
-    // }
+    close() {
+      WindowUtil.closeWindow()
+    },
+    loadingSounds() {
+      return DataUtil.loadingSounds(DataUtil.READER_SOUNDS)
+    },
+    ...mapMutations(['setSounds']),
   },
 }
 </script>
@@ -70,5 +84,9 @@ body::-webkit-scrollbar {
 
 .v-system-bar {
   -webkit-app-region: drag;
+}
+
+.v-application {
+  /*background-color: #ffffff00 !important;*/
 }
 </style>

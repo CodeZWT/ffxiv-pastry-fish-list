@@ -295,7 +295,7 @@ export default [
       mooch: false,
       prevFishId: 4912,
     },
-    currentRecord: { fishId: -1, hq: false, size: 0 },
+    currentRecord: { fishId: -1, hq: false, size: 0, startTime: Date.now() },
     records: [
       {
         startTime: 1605805932907,

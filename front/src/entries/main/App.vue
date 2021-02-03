@@ -579,7 +579,6 @@ import NotificationUtil from '@/utils/NotificationUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import ClipboardJS from 'clipboard'
 import hotkeys from 'hotkeys-js'
-import { Howl } from 'howler'
 import _ from 'lodash'
 import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
@@ -1241,18 +1240,7 @@ export default {
       }
     },
     loadingSounds() {
-      return Promise.all(
-        DataUtil.NOTIFICATION_SOUNDS.map(sound => {
-          if (sound.filename == null)
-            return Promise.resolve({ key: sound.key, player: null })
-          return import(`Assets/sound/${sound.filename}`).then(it => {
-            return {
-              key: sound.key,
-              player: new Howl({ src: it?.default, preload: true }),
-            }
-          })
-        })
-      )
+      return DataUtil.loadingSounds(DataUtil.NOTIFICATION_SOUNDS)
     },
     updateFishListTimePart(now) {
       this.lazySourceImportantFishList.forEach(fish => {
