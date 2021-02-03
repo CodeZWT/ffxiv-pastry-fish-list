@@ -1,6 +1,12 @@
 <template>
   <div style="height: 100%" class="d-flex">
-    <v-navigation-drawer v-model="showMapMenu" bottom :fixed="isMobile" width="20vw">
+    <v-navigation-drawer
+      v-model="showMapMenu"
+      bottom
+      :fixed="isMobile"
+      width="20vw"
+      style="min-width: 250px"
+    >
       <v-card>
         <v-sheet class="pa-1 primary">
           <div class="d-flex align-center">
