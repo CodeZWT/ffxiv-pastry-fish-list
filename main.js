@@ -88,7 +88,7 @@ function createWindow() {
 function initReader(mainWin) {
   reader = new BrowserWindow({
     width: 500,
-    height: 300,
+    height: 200,
     frame: false,
     transparent: true,
     webPreferences: {
@@ -97,7 +97,6 @@ function initReader(mainWin) {
       preload: __dirname + '/preload.js',
     },
     icon: path.join(__dirname, 'assets/reader.png'),
-    parent: mainWin,
     show: false
   })
   reader.setOpacity(0.8)

@@ -2,23 +2,18 @@
   <div>
     <v-col>
       <div>计时</div>
-      <div v-if="isTest">{{ dataCurrentRecord }}</div>
-      <v-progress-linear
-        v-show="this.interval > 0"
-        :value="intervalPercentage"
-        :color="color"
-        height="25"
-      >
+      <v-progress-linear :value="intervalPercentage" :color="color" height="25">
         <template>
           <strong>{{ intervalText }}</strong>
         </template>
       </v-progress-linear>
     </v-col>
+
+    <div v-if="isTest">{{ dataCurrentRecord }}</div>
   </div>
 </template>
 
 <script>
-import DUMMY_DATA from '@/entries/reader/util/DummyData'
 import DataUtil from '@/utils/DataUtil'
 import { mapState } from 'vuex'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
@@ -37,7 +32,7 @@ export default {
       return DevelopmentModeUtil.isTest()
     },
     tug() {
-      return this.dataCurrentRecord.tug
+      return this.dataCurrentRecord?.tug
     },
     color() {
       return DataUtil.TUG_ICON_COLOR[DataUtil.TUG_ICON[this.tug]] ?? 'blue-grey'
@@ -63,7 +58,7 @@ export default {
     },
   },
   created() {
-    const data = DUMMY_DATA[2]
+    const data = {} // DevelopmentModeUtil.isTest() ? DUMMY_DATA[2] :
     this.dataStatus = data.status
     this.dataCurrentRecord = data.currentRecord
     this.dataRecords = data.records
