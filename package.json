@@ -52,7 +52,7 @@
     "files": [
       "**/*",
       "!front",
-      "!front-dist",
+      "!front-web-dist",
       "!setup"
     ],
     "win": {
