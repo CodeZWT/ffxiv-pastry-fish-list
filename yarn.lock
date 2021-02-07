@@ -2172,10 +2172,10 @@ nice-try@^1.0.4:
   resolved "https://registry.npm.taobao.org/nice-try/download/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha1-ozeKdpbOfSI+iPybdkvX7xCJ42Y=
 
-node-machina-ffxiv@^2.42.1:
-  version "2.42.1"
-  resolved "https://registry.npm.taobao.org/node-machina-ffxiv/download/node-machina-ffxiv-2.42.1.tgz#39c0f04ef88151aa33ce23ddae2d5fcb61d8f72d"
-  integrity sha1-OcDwTviBUaozziPdri1fy2HY9y0=
+node-machina-ffxiv@^2.42.11:
+  version "2.42.11"
+  resolved "https://registry.npm.taobao.org/node-machina-ffxiv/download/node-machina-ffxiv-2.42.11.tgz#cef8584a8a9e12fbe21ac27fe07370c336f8695a"
+  integrity sha1-zvhYSoqeEvviGsJ/4HNwwzb4aVo=
   dependencies:
     jsbi "^3.1.1"
     request "^2.88.0"
@@ -2554,7 +2554,7 @@ registry-url@^5.0.0:
 
 request-promise-core@1.1.4:
   version "1.1.4"
-  resolved "https://registry.npm.taobao.org/request-promise-core/download/request-promise-core-1.1.4.tgz?cache=0&sync_timestamp=1595378713145&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frequest-promise-core%2Fdownload%2Frequest-promise-core-1.1.4.tgz#3eedd4223208d419867b78ce815167d10593a22f"
+  resolved "https://registry.npm.taobao.org/request-promise-core/download/request-promise-core-1.1.4.tgz#3eedd4223208d419867b78ce815167d10593a22f"
   integrity sha1-Pu3UIjII1BmGe3jOgVFn0QWToi8=
   dependencies:
     lodash "^4.17.19"
@@ -3303,9 +3303,9 @@ write-file-atomic@^3.0.0:
     typedarray-to-buffer "^3.1.5"
 
 ws@^7.3.1:
-  version "7.4.0"
-  resolved "https://registry.npm.taobao.org/ws/download/ws-7.4.0.tgz#a5dd76a24197940d4a8bb9e0e152bb4503764da7"
-  integrity sha1-pd12okGXlA1Ki7ng4VK7RQN2Tac=
+  version "7.4.3"
+  resolved "https://registry.npm.taobao.org/ws/download/ws-7.4.3.tgz#1f9643de34a543b8edb124bdcbc457ae55a6e5cd"
+  integrity sha1-H5ZD3jSlQ7jtsSS9y8RXrlWm5c0=
 
 xdg-basedir@^4.0.0:
   version "4.0.0"

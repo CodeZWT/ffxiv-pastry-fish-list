@@ -7,7 +7,7 @@
   "description": "FFXIV Pastry Fish App",
   "scripts": {
     "start": "chcp 65001 && electron .",
-    "front:start":"cd front && yarn serve",
+    "front:start": "cd front && yarn serve",
     "dev:pack": "chcp 65001 && electron-builder -w --dir",
     "prod:pack": "chcp 65001 && electron-builder -w",
     "build:electronFront": "cd front && yarn build:electron",
@@ -30,7 +30,7 @@
     "is-elevated": "^3.0.0",
     "lodash": "^4.17.20",
     "luxon": "^1.25.0",
-    "node-machina-ffxiv": "^2.42.1"
+    "node-machina-ffxiv": "^2.42.11"
   },
   "build": {
     "appId": "ffxiv-pastry-fish",

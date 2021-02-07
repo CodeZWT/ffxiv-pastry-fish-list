@@ -205,7 +205,7 @@ export default [
         baitId: 4904,
         mooch: true,
         spotId: 60,
-        tug: 'big',
+        tug: 'heavy',
       },
     ],
     readableRecords: [
@@ -270,7 +270,7 @@ export default [
         fishText: '拾荒鮟鱇',
         et: '19:39',
         biteInterval: 30.9,
-        tug: 'big',
+        tug: 'heavy',
         tugText: '',
         hookset: '普通',
         hq: false,

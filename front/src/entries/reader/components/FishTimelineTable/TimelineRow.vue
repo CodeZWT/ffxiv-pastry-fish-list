@@ -48,7 +48,7 @@ export default {
     },
     tug: {
       type: String,
-      default: 'big',
+      default: 'heavy',
     },
     pointerWidth: {
       type: Number,

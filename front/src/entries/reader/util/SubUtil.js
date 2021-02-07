@@ -5690,7 +5690,7 @@ const SubUtil = {
   TUG_DICT: {
     light: 'success',
     medium: 'tertiary',
-    big: 'quinary',
+    heavy: 'quinary',
   },
   SPOT_DICT: SPOT_DICT,
 
