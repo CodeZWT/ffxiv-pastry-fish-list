@@ -34,6 +34,7 @@ function createWindow() {
     width: 1024,
     height: 768,
     frame: true,
+    show: false,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
@@ -41,11 +42,17 @@ function createWindow() {
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
+
+  win.once('ready-to-show', () => {
+    win.show()
+  })
   // win.setOpacity(0.9)
   // win.setAlwaysOnTop(true)
   win.removeMenu()
   // win.maximize()
   win.loadURL(winURL).then(() => {
+    initReader(win)
+
     win.webContents.on('new-window', function (e, url) {
       e.preventDefault()
       shell.openExternal(url)
@@ -67,8 +74,8 @@ function createWindow() {
         quitAndSetup()
       })
       .on('openReader', () => {
-        log.info('open reader')
-        openReader()
+        log.info('show reader')
+        reader.show()
       })
   })
   if (isDev) {
@@ -78,7 +85,7 @@ function createWindow() {
   }
 }
 
-function openReader() {
+function initReader(mainWin) {
   reader = new BrowserWindow({
     width: 500,
     height: 300,
@@ -90,6 +97,8 @@ function openReader() {
       preload: __dirname + '/preload.js',
     },
     icon: path.join(__dirname, 'assets/reader.png'),
+    parent: mainWin,
+    show: false
   })
   reader.setOpacity(0.8)
   reader.setAlwaysOnTop(true)

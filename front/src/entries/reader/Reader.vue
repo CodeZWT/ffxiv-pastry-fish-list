@@ -4,9 +4,9 @@
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
-      <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
+      <!--      <v-btn @click="minimize" x-small text style="-webkit-app-region: none">-->
+      <!--        <v-icon>mdi-minus</v-icon>-->
+      <!--      </v-btn>-->
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -52,11 +52,11 @@ export default {
     this.setSounds(DataUtil.toMap(sounds, it => it.key))
   },
   methods: {
-    minimize() {
-      WindowUtil.minimizeWindow()
-    },
+    // minimize() {
+    //   WindowUtil.minimizeWindow()
+    // },
     close() {
-      WindowUtil.closeWindow()
+      WindowUtil.hideWindow()
     },
     loadingSounds() {
       return DataUtil.loadingSounds(DataUtil.READER_SOUNDS)
