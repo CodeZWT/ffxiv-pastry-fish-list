@@ -90,13 +90,12 @@ Machina.on('any', (packet) => {
 //     if (packet.type && packet.superType === 'message') {
 //       log.info('msg self', getString(packet.data, 0x1A))
 //       log.info('msg other', getString(packet.data, 0x30))
-//       log.info(packet)
 //       return
 //     }
 //     switch (packet.type) {
 //       case 'unknown':
 //         log.info(packet.opcode)
-//         log.info(packet)
+//         log.info(JSON.stringify(packet.data))
 //         log.info('msg self', getString(packet.data, 0x1A))
 //         log.info('msg other', getString(packet.data, 0x30))
 //         break

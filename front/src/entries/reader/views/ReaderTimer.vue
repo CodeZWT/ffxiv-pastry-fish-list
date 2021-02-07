@@ -21,7 +21,7 @@
         {{ isOceanFishing }}
         <v-progress-linear
           :value="spectralCurrentIntervalPercentage"
-          :color="color"
+          color="info"
           height="25"
         >
           <template>
@@ -33,7 +33,7 @@
         <div>{{ weatherText }}</div>
         <v-progress-linear
           :value="diademWeatherIntervalPercentage"
-          :color="color"
+          color="primary"
           height="25"
         >
           <template>
@@ -118,7 +118,9 @@ export default {
       return this.zoneId === 1647
     },
     spectralCurrentCountDown() {
-      return this.isOceanFishing && this.spectralCurrentEndTime
+      return this.isOceanFishing &&
+        this.spectralCurrentEndTime &&
+        this.spectralCurrentEndTime - this.now > 0
         ? this.spectralCurrentEndTime - this.now
         : 0
     },
@@ -130,7 +132,9 @@ export default {
     },
 
     diademWeatherCountDown() {
-      return this.isDiadem && this.diademWeatherEndTime
+      return this.isDiadem &&
+        this.diademWeatherEndTime &&
+        this.diademWeatherEndTime - this.now > 0
         ? this.diademWeatherEndTime - this.now
         : 0
     },
