@@ -78,6 +78,13 @@ function createWindow() {
         showReader()
       })
   })
+  win.on("closed", () => {
+    FishingDataReader.stop(() => {
+      log.info('quit by close')
+      app.quit()
+    })
+  })
+
   if (isDev) {
     win.webContents.openDevTools({
       mode: 'undocked',
@@ -199,20 +206,20 @@ app.whenReady()
   })
   .then(createWindow)
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    log.info('in all closed')
-    FishingDataReader.stop(() => {
-      log.info('call quit')
-      // if (toInstallUpdates) {
-      //   log.info('try install')
-      //   exec('./setup/PastryFishSetup.exe')
-      // } else {
-      app.quit()
-      // }
-    })
-  }
-})
+// app.on('window-all-closed', () => {
+//   if (process.platform !== 'darwin') {
+//     log.info('in all closed')
+//     FishingDataReader.stop(() => {
+//       log.info('call quit')
+//       // if (toInstallUpdates) {
+//       //   log.info('try install')
+//       //   exec('./setup/PastryFishSetup.exe')
+//       // } else {
+//       app.quit()
+//       // }
+//     })
+//   }
+// })
 
 app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
