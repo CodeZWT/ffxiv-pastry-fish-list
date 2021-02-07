@@ -89,7 +89,7 @@ function openReader() {
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
     },
-    icon: path.join(__dirname, 'Assets/reader.png'),
+    icon: path.join(__dirname, 'assets/reader.png'),
   })
   reader.setOpacity(0.8)
   reader.setAlwaysOnTop(true)
