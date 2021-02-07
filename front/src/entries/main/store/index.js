@@ -16,7 +16,7 @@ export default new Vuex.Store({
     fish: getCombinedFishData(),
     fishingSpots: _.merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
-    items: _.merge(DATA_CN.ITEMS, DevelopmentModeUtil.isLocal() ? FIX.TEST_ITEMS : {}),
+    items: _.merge(DATA_CN.ITEMS, DevelopmentModeUtil.isTest() ? FIX.TEST_ITEMS : {}),
     achievements: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS,
     weatherRates: DATA.WEATHER_RATES,
     weatherTypes: DATA_CN.WEATHER_TYPES,
@@ -488,7 +488,7 @@ function getCombinedFishData() {
       FishingData,
       FIX.FISH,
       FIX.SPEAR_FISH,
-      DevelopmentModeUtil.isLocal() ? FIX.TEST_FISH : {}
+      DevelopmentModeUtil.isTest() ? FIX.TEST_FISH : {}
     ),
     fish => {
       return { ...fish, collectable: FIX.COLLECTABLE_FISH_ITEM_ID.includes(fish._id) }

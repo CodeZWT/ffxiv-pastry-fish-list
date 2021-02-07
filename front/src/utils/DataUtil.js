@@ -300,7 +300,7 @@ export default {
     // return (
     //   DATA_CN.BIG_FISH.includes(fish._id) ||
     //   DATA_CN.NEW_PATCH_FISH.includes(fish._id) ||
-    //   (DevelopmentModeUtil.isLocal() &&
+    //   (DevelopmentModeUtil.isTest() &&
     //     Object.keys(FIX.TEST_ITEMS).includes(fish._id + '')) ||
     //   !isAllAvailableFish(fish)
     // )

@@ -1,7 +1,6 @@
 import store from 'store2'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
-const USER_DATA_KEY = DevelopmentModeUtil.isTest() ? 'testUserData' : 'userData'
+const USER_DATA_KEY = 'userData'
 // const USER_DATA_KEY_LOAD_BACKUP = USER_DATA_KEY + 'LoadBackup'
 // const USER_DATA_KEY_STORE_BACKUP = USER_DATA_KEY + 'StoreBackup'
 

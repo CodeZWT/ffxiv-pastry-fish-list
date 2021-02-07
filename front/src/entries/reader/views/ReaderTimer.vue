@@ -2,7 +2,7 @@
   <div>
     <v-col>
       <div>计时</div>
-      <div>{{ dataCurrentRecord }}</div>
+      <div v-if="isTest">{{ dataCurrentRecord }}</div>
       <v-progress-linear
         v-show="this.interval > 0"
         :value="intervalPercentage"
@@ -21,6 +21,7 @@
 import DUMMY_DATA from '@/entries/reader/util/DummyData'
 import DataUtil from '@/utils/DataUtil'
 import { mapState } from 'vuex'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 export default {
   name: 'ReaderTimer',
@@ -32,6 +33,9 @@ export default {
     }
   },
   computed: {
+    isTest() {
+      return DevelopmentModeUtil.isTest()
+    },
     tug() {
       return this.dataCurrentRecord.tug
     },
