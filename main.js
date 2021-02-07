@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell } = require('electron')
+const { app, BrowserWindow, ipcMain, shell, globalShortcut } = require('electron')
 const isDev = require('electron-is-dev')
 const FishingDataReader = require('./server/reader')
 const log = require('electron-log')
@@ -75,7 +75,7 @@ function createWindow() {
       })
       .on('openReader', () => {
         log.info('show reader')
-        reader.show()
+        showReader()
       })
   })
   if (isDev) {
@@ -83,6 +83,10 @@ function createWindow() {
       mode: 'undocked',
     })
   }
+}
+
+function showReader() {
+  reader && reader.show()
 }
 
 function initReader(mainWin) {
@@ -187,7 +191,13 @@ function streamToString(stream) {
   })
 }
 
-app.whenReady().then(createWindow)
+app.whenReady()
+  .then(() => {
+    globalShortcut.register('Alt+CommandOrControl+L', () => {
+      showReader()
+    })
+  })
+  .then(createWindow)
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
