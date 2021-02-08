@@ -224,15 +224,17 @@ onFFXIVEvent('prepareZoning', (packet) => {
   log.info('targetZone', packet.targetZone)
   if (packet.targetZone) {
     status.zoneId = TERRITORY_TYPES[packet.targetZone].placeName
-    status.weather = undefined
   }
+  status.weather = undefined
+  status.spectralCurrentEndTime = undefined
+  status.diademWeatherEndTime = undefined
 }, true)
 
 onFFXIVEvent('initZone', (packet) => {
-  log.info('initZone', packet.zoneID)
   if (packet.zoneID) {
     status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
     // status.weather = undefined
+    log.info('initZone', status.zoneId)
   }
 }, true)
 
@@ -270,6 +272,7 @@ onFFXIVEventSubType('fishingBaitMsg', (packet) => {
 
 const FISHING_EVENT = 0x150001
 onFFXIVEvents(['eventStart', 'eventFinish'], (packet) => {
+  // log.info('fevent', packet.type, packet.eventId)
   if (packet.eventId === FISHING_EVENT) {
     status.isFishing = packet.type === 'eventStart'
     if (!status.isFishing) {
@@ -286,8 +289,8 @@ function saveCurrentRecord() {
     status.prevFishId = currentRecord.fishId
     records.push(currentRecord)
     readableRecords.push(toReadable(currentRecord))
-    resetRecord()
   }
+  resetRecord()
 }
 
 const EMPTY_RECORD = {
@@ -310,6 +313,7 @@ function resetRecord() {
 
 onFFXIVEvent('eventPlay', (packet) => {
   if (packet.eventId === FISHING_EVENT) {
+    // log.info('eventPlay', packet.scene)
     switch (packet.scene) {
       case 1:
         status.isFishing = true
@@ -320,9 +324,9 @@ onFFXIVEvent('eventPlay', (packet) => {
         currentRecord.biteTime = Date.now()
         currentRecord.tug = getTug(packet.param5)
         break
-      // case 2:
-      //     saveCurrentRecord()
-      //     break
+      case 2:
+          saveCurrentRecord()
+          break
       default:
         log.info('other scene', packet.scene)
     }
@@ -330,7 +334,7 @@ onFFXIVEvent('eventPlay', (packet) => {
 })
 
 function applyCurrentStatus(record, status) {
-  log.info('apply status')
+  // log.info('apply status')
   // log.info(status)
   record.snagging = status.effects.has(761)
   record.chum = status.effects.has(763)
@@ -373,18 +377,22 @@ function getHookset(hookset) {
     case 4664:
       return 'powerful'
     default:
-      log.info('actionTimeline', hookset)
+      // log.info('actionTimeline', hookset)
       return 'normal'
   }
 }
 
 // caught fish
 onFFXIVEventWithFilter('actorControlSelf', null, 320, null,(packet) => {
-  currentRecord.fishId = packet.param1
-  currentRecord.hq = ((packet.param3 >> 4) & 1) === 1
+  if (records.length === 0) return
+  const prevRecord = records[records.length-1]
+  prevRecord.fishId = packet.param1
+  prevRecord.hq = ((packet.param3 >> 4) & 1) === 1
   // not used
   // currentRecord.moochable = (packet.param3 & 0x0000000F) === 5
-  currentRecord.size = packet.param2 >> 16
+  prevRecord.size = packet.param2 >> 16
+
+  readableRecords[readableRecords.length-1] = toReadable(prevRecord)
   saveCurrentRecord()
 })
 
@@ -410,8 +418,8 @@ onFFXIVEvent('someDirectorUnk4', (packet) => {
 // mooch
 onFFXIVEvent("someDirectorUnk4", packet => {
   if (packet.actionTimeline === 257 || packet.actionTimeline === 3073) {
-    log.info("mooch");
     status.mooch = packet.param1 === 1121;
+    // log.info("mooch", status.mooch);
 
     applyCurrentStatus(currentRecord, status);
   }
@@ -464,13 +472,14 @@ onFFXIVEventWithFilter('unknown', null, null, 121,(packet) => {
   status.previousWeather = status.weather
   status.weather = +packet.data[0]
 
-  if (!status.previousWeather) return
-  if (+status.weather === SPECTRAL_CURRENT_WEATHER_ID) {
+  if (status.weather === SPECTRAL_CURRENT_WEATHER_ID) {
     status.spectralCurrentEndTime = Date.now() + getSpectralCurrentCountDownTotal()
-  } else if (isDiadem()) {
-    status.diademWeatherEndTime = Date.now() + DIADEM_WEATHER_COUNTDOWN_TOTAL
-  } else {
-    status.normalWeatherStartTime = Date.now()
+  } else if (status.previousWeather) {
+    if (isDiadem()) {
+      status.diademWeatherEndTime = Date.now() + DIADEM_WEATHER_COUNTDOWN_TOTAL
+    } else {
+      status.normalWeatherStartTime = Date.now()
+    }
   }
 })
 

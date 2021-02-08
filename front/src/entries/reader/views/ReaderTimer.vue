@@ -17,8 +17,7 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" v-if="isOceanFishing">
-        <div>幻海流</div>
-        {{ isOceanFishing }}
+        <div>{{ weatherText }}</div>
         <v-progress-linear
           :value="spectralCurrentIntervalPercentage"
           color="info"
@@ -112,7 +111,8 @@ export default {
       return (this.interval / 1000).toFixed(1)
     },
     isOceanFishing() {
-      return this.zoneId === 3477
+      // return true
+      return this.zoneId === 3477 || this.weather === 145
     },
     isDiadem() {
       return this.zoneId === 1647

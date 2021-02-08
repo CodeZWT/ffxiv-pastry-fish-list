@@ -127,9 +127,6 @@ function initReader(mainWin) {
     //   log.info('Machina started!')
     // })
 
-    updateIfNeeded()
-    setInterval(updateIfNeeded, 600000)
-
     ipcMain.on('startUpdate', () => {
       quitAndSetup()
     })
