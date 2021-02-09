@@ -6347,12 +6347,12 @@ module.exports = {
     },
     '31129': {
       _id: 31129,
-      name_en: 'Petal Shell',
+      name_en: '梅花贝',
       icon: 29419,
     },
     '31134': {
       _id: 31134,
-      name_en: 'Allagan Hunter',
+      name_en: '亚拉戈猎手',
       icon: 29462,
     },
     '29994': {

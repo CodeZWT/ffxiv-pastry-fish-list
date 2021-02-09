@@ -832,7 +832,7 @@ export default {
   },
 
   PATCH_MAX: 5.35,
-  PATCH_AVAILABLE_MAX: 5.3,
+  PATCH_AVAILABLE_MAX: 5.35,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
   COMPLETE_FILTER_TYPES: COMPLETE_FILTER_TYPES,
