@@ -40,7 +40,8 @@
           </template>
         </v-progress-linear>
       </v-col>
-      <v-col cols="12" v-if="isTest">
+      <v-col cols="12" v-if="isTest" class="mt-4">
+        <div>Test Data</div>
         <div>{{ dataStatus }}</div>
         <div>{{ dataCurrentRecord }}</div>
       </v-col>
@@ -78,7 +79,7 @@ export default {
   computed: {
     ...mapGetters(['getWeather']),
     isTest() {
-      return DevelopmentModeUtil.isTest()
+      return true || DevelopmentModeUtil.isTest()
     },
     effects() {
       return (this.dataStatus?.effects ?? [])
