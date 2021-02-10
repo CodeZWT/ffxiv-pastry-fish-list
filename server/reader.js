@@ -466,8 +466,10 @@ function getString(uint8Array, offset, length) {
 
   return Buffer.from(uint8Array.slice(offset, offset + length)).toString();
 }
-onFFXIVEventWithFilter('unknown', null, null, 121,(packet) => {
-  // log.info(packet, packet.data)
+// onFFXIVEventWithFilter('unknown', null, null, null,(packet) => {
+//   log.info('wc?', packet.opcode, packet.data[0])
+// })
+onFFXIVEventWithFilter('unknown', null, null, 225,(packet) => {
   log.info('WeatherChange', packet.data[0])
   status.previousWeather = status.weather
   status.weather = +packet.data[0]
