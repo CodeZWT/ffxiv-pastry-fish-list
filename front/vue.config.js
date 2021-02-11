@@ -46,7 +46,7 @@ module.exports = {
           ? 'public/index.dev.html'
           : 'public/index.html',
       filename: 'reader.html',
-      title: '鱼捞',
+      title: '渔捞',
     },
     // 当使用只有入口的字符串格式时，
     // 模板会被推导为 `public/subpage.html`
