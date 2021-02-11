@@ -1,12 +1,26 @@
 <template>
   <v-app class="transparent">
-    <v-system-bar app v-if="showSystemBar">
+    <v-system-bar app v-if="showTimerBar">
+      <v-img :src="readerIcon" max-height="20" max-width="20" />
+      <span class="ml-1">渔捞</span>
+      <v-spacer />
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
+      <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
+        <v-icon>mdi-cog</v-icon>
+      </v-btn>
       <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-minus</v-icon>
       </v-btn>
+      <v-btn @click="close" x-small text style="-webkit-app-region: none">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-system-bar>
+    <v-system-bar app v-else-if="showSettingBar">
+      <v-img :src="readerIcon" max-height="20" max-width="20" />
+      <span class="ml-1">渔捞设置</span>
+      <v-spacer />
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -23,17 +37,21 @@ import '@thewakingsands/axis-font-icons'
 import EorzeaTime from '@/utils/Time'
 import DataUtil from '@/utils/DataUtil'
 import { mapMutations, mapState } from 'vuex'
+import READER_ICON from 'Assets/reader.png'
 
 export default {
   name: 'Reader',
   components: {},
   data: () => ({
     now: Date.now(),
+    readerIcon: READER_ICON,
   }),
   computed: {
-    showSystemBar() {
-      return true
-      // return this.$route.name !== 'ReaderTimer'
+    showTimerBar() {
+      return this.$route.name === 'ReaderTimer'
+    },
+    showSettingBar() {
+      return this.$route.name === 'ReaderSetting'
     },
     eorzeaTime() {
       return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
@@ -52,6 +70,9 @@ export default {
     this.setSounds(DataUtil.toMap(sounds, it => it.key))
   },
   methods: {
+    showSetting() {
+      window.electron?.ipcRenderer?.send('showSetting')
+    },
     minimize() {
       WindowUtil.minimizeWindow()
     },

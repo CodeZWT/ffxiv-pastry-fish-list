@@ -10,6 +10,15 @@ const routes = [
     name: 'ReaderTimer',
     component: ReaderTimer,
   },
+  {
+    path: '/setting',
+    name: 'ReaderSetting',
+    component: () =>
+      import(
+        /* webpackChunkName: "setting" */
+        '../views/ReaderSetting'
+      ),
+  },
 ]
 
 const router = new VueRouter({
