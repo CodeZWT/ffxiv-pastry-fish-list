@@ -12,6 +12,7 @@ import DATA_CN from 'Data/translation'
 import cloneDeep from 'lodash/cloneDeep'
 import { detect } from 'detect-browser'
 import { Howl } from 'howler'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -768,6 +769,19 @@ export default {
       })
     )
   },
+
+  setUserDataPart(state, { path, data }) {
+    const newUserData = _.cloneDeep(state.userData)
+    _.set(newUserData, path, data)
+    state.userData = newUserData
+    LocalStorageUtil.storeUserData(state.userData)
+  },
+
+  getUserDataPart(state) {
+    return path => {
+      return _.get(state.userData, path)
+    }
+  },
   // FUNCTION END
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
@@ -989,6 +1003,9 @@ export default {
       },
     },
     showChromeBugDialog: true,
+    reader: {
+      autoSetCompleted: true,
+    },
   },
 
   THEME_SETTING_MODES: THEME_SETTING_MODES,

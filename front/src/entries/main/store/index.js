@@ -8,6 +8,7 @@ import FishingData from 'Data/fishingData'
 import DataUtil from '@/utils/DataUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import userData from '@/utils/UserDataLoader'
 
 Vue.use(Vuex)
 
@@ -36,12 +37,7 @@ export default new Vuex.Store({
     sounds: {},
     showFishPageRightPane: false,
     loading: false,
-    userData: DataUtil.migrateOldVersionUserData(
-      DataUtil.mergeUserData(
-        _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
-        LocalStorageUtil.loadAndBackupUserData()
-      )
-    ),
+    userData: userData,
     // fish page filter
     baitFilterEnabled: false,
     baitFilterIds: [],
