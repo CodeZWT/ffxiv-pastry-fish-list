@@ -81,7 +81,7 @@ export default {
   computed: {
     ...mapGetters(['getWeather']),
     isTest() {
-      return DevelopmentModeUtil.isTest()
+      return true || DevelopmentModeUtil.isTest()
     },
     effects() {
       return (this.dataStatus?.effects ?? [])
@@ -114,8 +114,8 @@ export default {
       return (this.interval / 1000).toFixed(1)
     },
     isOceanFishing() {
-      // return true
-      return this.zoneId === 3477 || this.weather === 145
+      return true
+      // return this.zoneId === 3477 || this.weather === 145
     },
     isDiadem() {
       return this.zoneId === 1647
@@ -155,7 +155,7 @@ export default {
       //   name: DataUtil.getName(state.weatherTypes[id]),
       //     icon: DataUtil.iconIdToClass(state.weatherTypes[id].icon),
       // }
-      console.log(WEATHER_TYPES[this.weather])
+      // console.log(WEATHER_TYPES[this.weather])
       return this.weather && DataUtil.getName(WEATHER_TYPES[this.weather])
     },
     weather() {
@@ -193,6 +193,14 @@ export default {
     // },
   },
   created() {
+    const routeName = window.process.argv
+      .find(it => it.indexOf('--route-name') === 0)
+      ?.split('=')?.[1]
+    console.log('window.process.argv', routeName)
+
+    if (routeName !== this.$route.name) {
+      this.$router.push({ name: routeName })
+    }
     // const data = {} // DevelopmentModeUtil.isTest() ? DUMMY_DATA[2] :
     // this.dataStatus = data.status
     // this.dataCurrentRecord = data.currentRecord

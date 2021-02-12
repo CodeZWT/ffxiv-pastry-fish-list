@@ -67,10 +67,6 @@ function init() {
 }
 
 function createReaderSetting(readTimerWin) {
-  const readerSettingURL = isDev
-    ? `http://localhost:8080/reader/#/setting`
-    : `file://${__dirname}/front-electron-dist/reader.html/#/setting`
-
   readerSetting = new BrowserWindow({
     width: 500,
     height: 200,
@@ -81,6 +77,7 @@ function createReaderSetting(readTimerWin) {
       nodeIntegration: true,
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
+      additionalArguments: ['--route-name=ReaderSetting']
     },
     icon: path.join(__dirname, 'assets/setting.png'),
     show: false,
@@ -90,7 +87,7 @@ function createReaderSetting(readTimerWin) {
   readerSetting.setAlwaysOnTop(true)
   readerSetting.removeMenu()
   // setting.maximize()
-  readerSetting.loadURL(readerSettingURL).then(() => {
+  readerSetting.loadURL(readerURL).then(() => {
     readerSetting.webContents.on('new-window', function (e, url) {
       e.preventDefault()
       shell.openExternal(url)
@@ -137,7 +134,7 @@ function createMainWindow() {
   win.removeMenu()
   // win.maximize()
   win.loadURL(winURL).then(() => {
-    initReader(win)
+    createReader(win)
 
     win.webContents.on('new-window', function (e, url) {
       e.preventDefault()
@@ -158,7 +155,7 @@ function createMainWindow() {
   }
 }
 
-function initReader(mainWin) {
+function createReader() {
   reader = new BrowserWindow({
     width: 500,
     height: 200,
@@ -169,6 +166,7 @@ function initReader(mainWin) {
       nodeIntegration: true,
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
+      additionalArguments: ['--route-name=ReaderTimer']
     },
     icon: path.join(__dirname, 'assets/reader.png'),
     show: false
@@ -183,7 +181,7 @@ function initReader(mainWin) {
       shell.openExternal(url)
     })
 
-    createReaderSetting()
+    createReaderSetting(reader)
 
     // FishingDataReader.onUpdate((data) => {
     //   reader.webContents.send('fishingData', data)

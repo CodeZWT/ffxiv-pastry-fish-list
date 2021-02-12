@@ -488,7 +488,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="showCheckStartSetupDialog" max-width="600" persistent>
+    <v-dialog v-model="showCheckStartSetupDialog" max-width="600">
       <v-card>
         <v-card-title> 更新程序下载完成</v-card-title>
         <v-card-subtitle> 双击 PastryFishSetup.exe 直接更新</v-card-subtitle>
