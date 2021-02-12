@@ -11,6 +11,20 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.6.1</div>
+        <div class="text-h5 text-center my-1">
+          钓鱼计时 渔捞（桌面版功能）
+        </div>
+        <ul>
+          <li>桌面版增加钓鱼自动计时功能</li>
+          <li>支持幻海流计时</li>
+          <li>支持空岛天气计时</li>
+          <li>
+            支持自动更新，当未来版本更新时会自动更新。但是并不能保证开服时马上能够使用，会有相应的提示，请以提示为准。
+          </li>
+        </ul>
+        <v-divider />
+
         <div class="text-h6">Version 0.6.0</div>
         <div class="text-h5 text-center my-1">
           网站迁移
