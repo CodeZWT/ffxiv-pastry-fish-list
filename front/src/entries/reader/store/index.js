@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import DataUtil from '@/utils/DataUtil'
-import userData from '@/utils/UserDataLoader'
+import { loadUserData } from '@/utils/UserDataLoader'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     sounds: {},
-    userData: userData,
+    userData: loadUserData(),
   },
   getters: {
     readerSetting: state => {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    reloadUserData(state) {
+      state.userData = loadUserData()
+    },
     setSounds(state, sounds) {
       state.sounds = sounds
     },

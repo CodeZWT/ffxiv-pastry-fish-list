@@ -68,6 +68,9 @@ export default {
 
     const sounds = await this.loadingSounds()
     this.setSounds(DataUtil.toMap(sounds, it => it.key))
+    window.electron?.ipcRenderer?.on('reloadUserData', () => {
+      this.reloadUserData()
+    })
   },
   methods: {
     showSetting() {
@@ -82,7 +85,7 @@ export default {
     loadingSounds() {
       return DataUtil.loadingSounds(DataUtil.READER_SOUNDS)
     },
-    ...mapMutations(['setSounds']),
+    ...mapMutations(['setSounds', 'reloadUserData']),
   },
 }
 </script>

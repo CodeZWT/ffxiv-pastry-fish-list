@@ -43,7 +43,7 @@
       <v-col cols="12" v-if="isTest" class="mt-4">
         <div>Test Data</div>
         <div>{{ dataStatus }}</div>
-        <div>{{ dataCurrentRecord }}</div>
+        <div>{{ dataLastCatchRecord }}</div>
       </v-col>
     </v-row>
   </v-container>
@@ -67,6 +67,7 @@ export default {
         effects: [],
       },
       dataCurrentRecord: {},
+      dataLastCatchRecord: {},
       dataRecords: [],
       dataReadableRecords: [],
 
@@ -205,6 +206,7 @@ export default {
       this.dataCurrentRecord = data.currentRecord
       this.dataRecords = data.records
       this.dataReadableRecords = data.readableRecords
+      this.dataLastCatchRecord = data.lastCatchRecord
     })
   },
   methods: {

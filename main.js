@@ -53,6 +53,13 @@ function init() {
     .on('showSetting', () => {
       showReaderSetting(reader)
     })
+    .on('updateUserData', (event, data) => {
+      win.webContents.send('updateUserData', data)
+    })
+    .on('reloadUserData', () => {
+      reader.webContents.send('reloadUserData')
+    })
+
 
   globalShortcut.register('Alt+CommandOrControl+L', () => {
     showReader()
@@ -79,7 +86,7 @@ function createReaderSetting(readTimerWin) {
     show: false,
     parent: readTimerWin,
   })
-  readerSetting.setOpacity(0.8)
+  readerSetting.setOpacity(1)
   readerSetting.setAlwaysOnTop(true)
   readerSetting.removeMenu()
   // setting.maximize()
@@ -100,11 +107,11 @@ function createReaderSetting(readTimerWin) {
     //   quitAndSetup()
     // })
   })
-  if (isDev) {
-    readerSetting.webContents.openDevTools({
-      mode: 'undocked',
-    })
-  }
+  // if (isDev) {
+  //   readerSetting.webContents.openDevTools({
+  //     mode: 'undocked',
+  //   })
+  // }
 }
 
 function createMainWindow() {

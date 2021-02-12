@@ -8,7 +8,7 @@ import FishingData from 'Data/fishingData'
 import DataUtil from '@/utils/DataUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import userData from '@/utils/UserDataLoader'
+import { loadUserData } from '@/utils/UserDataLoader'
 
 Vue.use(Vuex)
 
@@ -37,7 +37,7 @@ export default new Vuex.Store({
     sounds: {},
     showFishPageRightPane: false,
     loading: false,
-    userData: userData,
+    userData: loadUserData(),
     // fish page filter
     baitFilterEnabled: false,
     baitFilterIds: [],
@@ -46,6 +46,9 @@ export default new Vuex.Store({
     baitIdsForNotification: [],
   },
   getters: {
+    readerSetting: state => {
+      return DataUtil.getUserDataPart(state)('reader')
+    },
     showChromeBugDialog: state => {
       return state.userData.showChromeBugDialog
     },
@@ -236,6 +239,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    updateUserData(state, data) {
+      DataUtil.setUserDataPart(state, data)
+    },
     updateRemainingBaitIdsWithoutCheck(state) {
       state.remainingBaitIds = getRemainingBaitIdsWithUserData(state.userData)
     },

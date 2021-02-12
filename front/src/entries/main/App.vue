@@ -136,7 +136,7 @@
           </template>
           <span>按<kbd>/</kbd>键直接搜索</span>
         </v-tooltip>
-
+        <div>{{ readerSetting }}</div>
         <v-menu offset-y>
           <template v-slot:activator="{ on: menu, attrs }">
             <v-tooltip bottom>
@@ -611,6 +611,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    lastCatchFishId: undefined,
     notificationRecords: {},
     isElectron: DevelopmentModeUtil.isElectron(),
     THEME_MODE_ICONS: ['mdi-weather-night', 'mdi-weather-sunny', 'mdi-brightness-auto'],
@@ -968,6 +969,7 @@ export default {
       'startLight',
       'getAchievementName',
       'getAchievementIconClass',
+      'readerSetting',
     ]),
   },
   watch: {
@@ -1046,7 +1048,13 @@ export default {
     if (DevelopmentModeUtil.isElectron()) {
       window.electron?.ipcRenderer
         ?.on('fishingData', (event, data) => {
-          console.log(JSON.stringify(data))
+          const fishId = data.lastCatchRecord?.fishId
+          if (fishId > 0 && this.lastCatchFishId !== fishId) {
+            this.lastCatchFishId = fishId
+            if (this.readerSetting.autoSetCompleted) {
+              this.setFishCompleted({ fishId: this.lastCatchFishId, completed: true })
+            }
+          }
           // this.dataStatus = {
           //   ...data.status,
           //   effects: Array.from(data.status && data.status.effects),
@@ -1060,6 +1068,10 @@ export default {
         })
         ?.on('checkStartSetup', () => {
           this.showCheckStartSetupDialog = true
+        })
+        ?.on('updateUserData', (event, data) => {
+          this.updateUserData(data)
+          window.electron?.ipcRenderer?.send('reloadUserData')
         })
     }
 
@@ -1694,6 +1706,8 @@ export default {
       this.toggleCollapse()
     },
     ...mapMutations([
+      'updateUserData',
+      'setFishCompleted',
       'toggleFilterPanel',
       'setShowSearchDialog',
       'setShowImportExportDialog',

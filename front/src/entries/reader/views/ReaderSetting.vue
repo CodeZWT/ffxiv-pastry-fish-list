@@ -29,7 +29,11 @@ export default {
   watch: {
     lazySetting: {
       handler(lazySetting) {
-        this.updateReaderSetting(lazySetting)
+        // this.updateReaderSetting(lazySetting)
+        window.electron?.ipcRenderer?.send('updateUserData', {
+          path: 'reader',
+          data: lazySetting,
+        })
       },
       deep: true,
     },

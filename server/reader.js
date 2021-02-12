@@ -160,6 +160,7 @@ function onFFXIVEventOfUnknown(opcode, callBack) {
         currentRecord,
         records,
         readableRecords,
+        lastCatchRecord
       })
     }
   })
@@ -180,6 +181,7 @@ function onFFXIVEventWithFilter(type, subType, category, opcode, callBack, skipU
           currentRecord,
           records,
           readableRecords,
+          lastCatchRecord
         })
       }
       // console.info(status)
@@ -287,6 +289,7 @@ function saveCurrentRecord() {
       currentRecord.baitId = status.prevFishId
     }
     status.prevFishId = currentRecord.fishId
+    lastCatchRecord = currentRecord
     records.push(currentRecord)
     readableRecords.push(toReadable(currentRecord))
   }
@@ -302,7 +305,7 @@ const EMPTY_RECORD = {
   size: 0,
 }
 
-let currentRecord
+let currentRecord, lastCatchRecord
 resetRecord()
 const records = []
 const readableRecords = []
@@ -485,9 +488,10 @@ onFFXIVEventWithFilter('unknown', null, null, 225,(packet) => {
   }
 })
 
-exports.data = {
-  status,
-  currentRecord,
-  records,
-  readableRecords
-};
+// exports.data = {
+//   status,
+//   currentRecord,
+//   records,
+//   readableRecords,
+//   lastCatchRecord
+// };
