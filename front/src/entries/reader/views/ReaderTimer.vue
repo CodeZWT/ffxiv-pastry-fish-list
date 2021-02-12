@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row no-gutters>
-      <v-col cols="12" class="d-flex">
+      <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div>咬钩计时</div>
         <v-spacer />
         <div class="d-flex align-center">
@@ -18,7 +18,7 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" v-if="isOceanFishing">
-        <div>{{ weatherText }}</div>
+        <div style="min-height: 32px">{{ weatherText }}</div>
         <v-progress-linear
           :value="spectralCurrentIntervalPercentage"
           color="info"
@@ -30,7 +30,7 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" v-if="isDiadem">
-        <div>{{ weatherText }}</div>
+        <div style="min-height: 32px">{{ weatherText }}</div>
         <v-progress-linear
           :value="diademWeatherIntervalPercentage"
           color="primary"
@@ -81,7 +81,7 @@ export default {
   computed: {
     ...mapGetters(['getWeather']),
     isTest() {
-      return true || DevelopmentModeUtil.isTest()
+      return DevelopmentModeUtil.isTest()
     },
     effects() {
       return (this.dataStatus?.effects ?? [])
