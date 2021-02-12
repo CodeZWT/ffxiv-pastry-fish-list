@@ -1,8 +1,9 @@
 <template>
   <v-container fluid>
     <v-row no-gutters>
-      <v-col cols="12">
-        <div>咬钩时间</div>
+      <v-col cols="12" class="d-flex">
+        <div>咬钩计时</div>
+        <v-spacer />
         <div class="d-flex align-center">
           <div v-for="effect in effects" :key="effect.ID">
             <div :class="effect.icon" :title="effect.name" />
