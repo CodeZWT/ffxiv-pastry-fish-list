@@ -85,46 +85,46 @@ Machina.on('any', (packet) => {
   }
 })
 
-Machina.on('any', (packet) => {
-  if (filterPacketSessionID(packet)) {
-    if (packet.type && packet.superType === 'message') {
-      log.info('msg self', getString(packet.data, 0x1A))
-      // log.info('msg other', getString(packet.data, 0x30))
-      return
-    }
-    switch (packet.type) {
-      case 'unknown':
-        log.info(packet.opcode)
-        log.info(packet)
-        log.info(JSON.stringify(packet.data))
-        log.info('msg self', getString(packet.data, 0x1A))
-        // log.info('msg other', getString(packet.data, 0x30))
-        break
-      case 'updatePositionInstance':
-        // log.info(packet.pos)
-        break
-      case 'updatePositionHandler':
-        // log.info(packet.pos)
-        break
-      case 'actorControlSelf':
-        break
-      // case 'prepareZoning':
-      //   log.info('prepareZoning')
-      //   log.info(packet)
-      //   break
-      // case 'initZone':
-      //   log.info('initZone')
-      //   log.info(packet)
-      //   break
-      case 'weatherChange':
-        log.info('weatherChange')
-        log.info(packet)
-        break
-      default:
-        log.info(packet.type)
-    }
-  }
-})
+// Machina.on('any', (packet) => {
+//   if (filterPacketSessionID(packet)) {
+//     if (packet.type && packet.superType === 'message') {
+//       log.info('msg self', getString(packet.data, 0x1A))
+//       // log.info('msg other', getString(packet.data, 0x30))
+//       return
+//     }
+//     switch (packet.type) {
+//       case 'unknown':
+//         log.info(packet.opcode)
+//         log.info(packet)
+//         log.info(JSON.stringify(packet.data))
+//         log.info('msg self', getString(packet.data, 0x1A))
+//         // log.info('msg other', getString(packet.data, 0x30))
+//         break
+//       case 'updatePositionInstance':
+//         // log.info(packet.pos)
+//         break
+//       case 'updatePositionHandler':
+//         // log.info(packet.pos)
+//         break
+//       case 'actorControlSelf':
+//         break
+//       // case 'prepareZoning':
+//       //   log.info('prepareZoning')
+//       //   log.info(packet)
+//       //   break
+//       // case 'initZone':
+//       //   log.info('initZone')
+//       //   log.info(packet)
+//       //   break
+//       case 'weatherChange':
+//         log.info('weatherChange')
+//         log.info(packet)
+//         break
+//       default:
+//         log.info(packet.type)
+//     }
+//   }
+// })
 
 // Machina.on('WeatherChange', (packet) => {
 //   log.info('WeatherChange', packet)
