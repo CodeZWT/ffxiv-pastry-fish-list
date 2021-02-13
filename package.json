@@ -30,7 +30,7 @@
     "is-elevated": "^3.0.0",
     "lodash": "^4.17.20",
     "luxon": "^1.25.0",
-    "node-machina-ffxiv": "^2.42.11"
+    "node-machina-ffxiv": "^2.42.12"
   },
   "build": {
     "appId": "ffxiv-pastry-fish",

@@ -81,7 +81,7 @@ export default {
   computed: {
     ...mapGetters(['getWeather']),
     isTest() {
-      return true || DevelopmentModeUtil.isTest()
+      return DevelopmentModeUtil.isTest()
     },
     effects() {
       return (this.dataStatus?.effects ?? [])
@@ -114,8 +114,8 @@ export default {
       return (this.interval / 1000).toFixed(1)
     },
     isOceanFishing() {
-      return true
-      // return this.zoneId === 3477 || this.weather === 145
+      // return true
+      return this.zoneId === 3477 || this.weather === 145
     },
     isDiadem() {
       return this.zoneId === 1647

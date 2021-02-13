@@ -19,7 +19,7 @@ const machinaOptions = isDev ? {
 } : {
   // logger: log.info,
     parseAlgorithm: 'PacketSpecific',
-    noData: true,
+    noData: false,
     monitorType: 'RawSocket',
     region: 'CN',
     machinaExePath: path.join(app.getAppPath(), '../../resources/MachinaWrapper/MachinaWrapper.exe'),
@@ -85,44 +85,48 @@ Machina.on('any', (packet) => {
   }
 })
 
-// Machina.on('any', (packet) => {
+// Machina.on('raw', (packet) => {
 //   if (filterPacketSessionID(packet)) {
-//     if (packet.type && packet.superType === 'message') {
-//       log.info('msg self', getString(packet.data, 0x1A))
-//       // log.info('msg other', getString(packet.data, 0x30))
-//       return
+//     if (packet.opcode === 225) {
+//       log.info(packet.type, packet.opcode)
 //     }
-//     switch (packet.type) {
-//       case 'unknown':
-//         log.info(packet.opcode)
-//         log.info(packet)
-//         log.info(JSON.stringify(packet.data))
-//         log.info('msg self', getString(packet.data, 0x1A))
-//         // log.info('msg other', getString(packet.data, 0x30))
-//         break
-//       case 'updatePositionInstance':
-//         // log.info(packet.pos)
-//         break
-//       case 'updatePositionHandler':
-//         // log.info(packet.pos)
-//         break
-//       case 'actorControlSelf':
-//         break
-//       // case 'prepareZoning':
-//       //   log.info('prepareZoning')
-//       //   log.info(packet)
-//       //   break
-//       // case 'initZone':
-//       //   log.info('initZone')
-//       //   log.info(packet)
-//       //   break
-//       case 'weatherChange':
-//         log.info('weatherChange')
-//         log.info(packet)
-//         break
-//       default:
-//         log.info(packet.type)
-//     }
+//
+//     // if (packet.type && packet.superType === 'message') {
+//     //   log.info('msg self', getString(packet.data, 0x1A))
+//     //   // log.info('msg other', getString(packet.data, 0x30))
+//     //   return
+//     // }
+//     // switch (packet.type) {
+//     //   case 'unknown':
+//     //     log.info(packet.opcode)
+//     //     // log.info(packet)
+//     //     // log.info(JSON.stringify(packet.data))
+//     //     // log.info('msg self', getString(packet.data, 0x1A))
+//     //     // log.info('msg other', getString(packet.data, 0x30))
+//     //     break
+//     //   case 'updatePositionInstance':
+//     //     // log.info(packet.pos)
+//     //     break
+//     //   case 'updatePositionHandler':
+//     //     // log.info(packet.pos)
+//     //     break
+//     //   case 'actorControlSelf':
+//     //     break
+//     //   // case 'prepareZoning':
+//     //   //   log.info('prepareZoning')
+//     //   //   log.info(packet)
+//     //   //   break
+//     //   // case 'initZone':
+//     //   //   log.info('initZone')
+//     //   //   log.info(packet)
+//     //   //   break
+//     //   case 'weatherChange':
+//     //     log.info('weatherChange')
+//     //     log.info(packet)
+//     //     break
+//     //   default:
+//     //     log.info(packet.type)
+//     // }
 //   }
 // })
 
@@ -471,12 +475,12 @@ function getString(uint8Array, offset, length) {
   return Buffer.from(uint8Array.slice(offset, offset + length)).toString();
 }
 // onFFXIVEventWithFilter('unknown', null, null, null,(packet) => {
-//   log.info('wc?', packet.opcode, packet.data[0])
+//   log.info('wc?', packet.opcode, packet.data)
 // })
 onFFXIVEventWithFilter('unknown', null, null, 225,(packet) => {
-  log.info('WeatherChange', packet.data[0])
   status.previousWeather = status.weather
-  status.weather = +packet.data[0]
+  status.weather = packet.data && +packet.data[0]
+  log.info('WeatherChange', status.weather)
 
   if (status.weather === SPECTRAL_CURRENT_WEATHER_ID) {
     status.spectralCurrentEndTime = Date.now() + getSpectralCurrentCountDownTotal()

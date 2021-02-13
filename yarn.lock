@@ -2172,10 +2172,10 @@ nice-try@^1.0.4:
   resolved "https://registry.npm.taobao.org/nice-try/download/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha1-ozeKdpbOfSI+iPybdkvX7xCJ42Y=
 
-node-machina-ffxiv@^2.42.11:
-  version "2.42.11"
-  resolved "https://registry.npm.taobao.org/node-machina-ffxiv/download/node-machina-ffxiv-2.42.11.tgz#cef8584a8a9e12fbe21ac27fe07370c336f8695a"
-  integrity sha1-zvhYSoqeEvviGsJ/4HNwwzb4aVo=
+node-machina-ffxiv@^2.42.12:
+  version "2.42.12"
+  resolved "https://registry.npm.taobao.org/node-machina-ffxiv/download/node-machina-ffxiv-2.42.12.tgz#4449755e6b39623c1834c745f94fc032a81c84fa"
+  integrity sha1-REl1Xms5YjwYNMdF+U/AMqgchPo=
   dependencies:
     jsbi "^3.1.1"
     request "^2.88.0"
