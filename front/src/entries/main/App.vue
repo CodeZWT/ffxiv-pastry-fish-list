@@ -1,5 +1,23 @@
 <template>
   <v-app :style="`opacity: ${opacity}`" :class="{ 'min-page': collapse }">
+    <v-system-bar app v-if="isElectron">
+      <!--      <v-img :src="readerIcon" max-height="20" max-width="20" />-->
+      <div>{{ $t('top.navBarTitle', { title, version }) }}</div>
+      <span class="ml-1"></span>
+      <v-spacer />
+      <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
+      <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
+      <v-spacer></v-spacer>
+      <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
+        <v-icon>mdi-cog</v-icon>
+      </v-btn>
+      <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
+        <v-icon>mdi-minus</v-icon>
+      </v-btn>
+      <v-btn @click="close" x-small text style="-webkit-app-region: none">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-system-bar>
     <v-app-bar
       height="56px"
       app
@@ -177,7 +195,7 @@
           </v-list>
         </v-menu>
 
-        <v-sheet class="d-flex flex-column ml-1 transparent">
+        <v-sheet class="d-flex flex-column ml-1 transparent" v-if="!isElectron">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
         </v-sheet>
@@ -293,7 +311,7 @@
                   </v-list-item-content>
                 </v-list-item>
               </click-helper>
-              <click-helper @click="showSettingDialog = true">
+              <click-helper @click="showSetting">
                 <v-list-item @click="noOp">
                   <v-list-item-icon>
                     <v-icon>mdi-tune</v-icon>
@@ -593,6 +611,7 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import ChromeTimeZoneBugDialog from '@/components/Dialog/ChromeTimeZoneBugDialog'
 import DesktopVersionDialog from '@/components/Dialog/DesktopVersionDialog'
 import MigrateToTravelEorzeaDialog from '@/components/Dialog/MigrateToTravelEorzeaDialog'
+import WindowUtil from '@/entries/reader/util/WindowUtil'
 
 export default {
   name: 'App',
@@ -1146,6 +1165,15 @@ export default {
     // }, 200)
   },
   methods: {
+    showSetting() {
+      this.showSettingDialog = true
+    },
+    minimize() {
+      WindowUtil.minimizeWindow()
+    },
+    close() {
+      WindowUtil.closeWindow()
+    },
     openReader() {
       window.electron?.ipcRenderer?.send('openReader')
     },
@@ -1837,5 +1865,9 @@ body {
 
 body {
   overscroll-behavior: none;
+}
+
+.v-system-bar {
+  -webkit-app-region: drag;
 }
 </style>
