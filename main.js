@@ -69,7 +69,7 @@ function init() {
 function createReaderSetting(readTimerWin) {
   readerSetting = new BrowserWindow({
     width: 500,
-    height: 200,
+    height: 160,
     frame: false,
     transparent: true,
     webPreferences: {
@@ -158,7 +158,7 @@ function createMainWindow() {
 function createReader() {
   reader = new BrowserWindow({
     width: 500,
-    height: 200,
+    height: 160,
     frame: false,
     transparent: true,
     webPreferences: {

@@ -227,10 +227,11 @@ onFFXIVEvent('effect', (packet) => {
 })
 
 onFFXIVEvent('prepareZoning', (packet) => {
-  // log.info('in effect', packet.type)
-  log.info('targetZone', packet.targetZone)
   if (packet.targetZone) {
     status.zoneId = TERRITORY_TYPES[packet.targetZone].placeName
+    log.info('targetZone', status.zoneId)
+  } else {
+    log.info('targetZone Zero')
   }
   status.weather = undefined
   status.spectralCurrentEndTime = undefined

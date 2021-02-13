@@ -18,7 +18,7 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" v-if="isOceanFishing">
-        <div style="min-height: 32px">{{ weatherText }}</div>
+        <div style="min-height: 32px" class="d-flex align-center">{{ weatherText }}</div>
         <v-progress-linear
           :value="spectralCurrentIntervalPercentage"
           color="info"
@@ -30,7 +30,7 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" v-if="isDiadem">
-        <div style="min-height: 32px">{{ weatherText }}</div>
+        <div style="min-height: 32px" class="d-flex align-center">{{ weatherText }}</div>
         <v-progress-linear
           :value="diademWeatherIntervalPercentage"
           color="primary"
@@ -54,10 +54,11 @@
 import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapState } from 'vuex'
 import SubUtil from '@/entries/reader/util/SubUtil'
-
-const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { WEATHER_TYPES } from 'Data/translation'
+
+const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
+const DIADEM_WEATHERS = [133, 134, 135, 136]
 
 export default {
   name: 'ReaderTimer',
@@ -118,7 +119,7 @@ export default {
       return this.zoneId === 3477 || this.weather === 145
     },
     isDiadem() {
-      return this.zoneId === 1647
+      return this.zoneId === 1647 || DIADEM_WEATHERS.includes(this.weather)
     },
     spectralCurrentCountDown() {
       return this.isOceanFishing &&
