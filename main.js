@@ -131,7 +131,7 @@ function createMainWindow() {
     win.show()
   })
   // win.setOpacity(0.9)
-  // win.setAlwaysOnTop(true)
+  win.setAlwaysOnTop(true)
   win.removeMenu()
   // win.maximize()
   win.loadURL(winURL).then(() => {

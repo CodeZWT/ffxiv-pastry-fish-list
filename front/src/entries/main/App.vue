@@ -1,6 +1,6 @@
 <template>
   <v-app :style="`opacity: ${opacity}`" :class="{ 'min-page': collapse }">
-    <v-system-bar app v-if="isElectron">
+    <v-system-bar app v-if="isElectron" v-show="!collapse">
       <!--      <v-img :src="readerIcon" max-height="20" max-width="20" />-->
       <div>{{ $t('top.navBarTitle', { title, version }) }}</div>
       <span class="ml-1"></span>
@@ -35,7 +35,9 @@
       </v-app-bar-nav-icon>
       <click-helper
         @click="onFishIconClicked"
-        :style="`margin-left: ${collapse || isMobile ? 0 : -12}px`"
+        :style="
+          `margin-left: ${collapse || isMobile ? 0 : -12}px; -webkit-app-region: none`
+        "
       >
         <v-tooltip bottom z-index="10">
           <template v-slot:activator="{ on, attrs }">
@@ -276,7 +278,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-divider />
+          <v-divider class="mx-2" />
           <v-list-item v-if="isElectron" @click="openReader" link>
             <v-list-item-icon>
               <v-badge color="error" overlap content="新">
@@ -1817,6 +1819,7 @@ body {
 .v-application .fish-app-bar.fish-app-bar--collapsed {
   background-color: #004d4066 !important;
   border: 2px solid;
+  -webkit-app-region: drag;
 }
 
 /* scroller setting start */
