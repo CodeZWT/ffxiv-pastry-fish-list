@@ -1035,7 +1035,7 @@ export default {
       window.electron?.ipcRenderer
         ?.on('fishingData', (event, data) => {
           const fishId = data.lastCatchRecord?.fishId
-          if (fishId > 0 && this.lastCatchFishId !== fishId) {
+          if (fishId > 0) {
             this.lastCatchFishId = fishId
             if (this.readerSetting.autoSetCompleted) {
               this.setFishCompleted({ fishId: this.lastCatchFishId, completed: true })
