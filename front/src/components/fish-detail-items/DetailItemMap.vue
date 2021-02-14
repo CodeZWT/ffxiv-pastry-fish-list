@@ -24,7 +24,7 @@
                         :name="spot.fishingSpotName"
                         mode="spot"
                         :spot-mode="fish.type"
-                        @click="showSpotMenu = false"
+                        @click="listLinkClicked($event)"
                         :disabled="showSpotLink"
                       >
                         <v-hover v-slot="{ hover }">
@@ -57,6 +57,7 @@
                 mode="spot"
                 :spot-mode="fish.type"
                 :disabled="showSpotLink"
+                @click="listLinkClicked($event)"
               >
                 <v-hover v-slot="{ hover }">
                   <div
@@ -183,6 +184,12 @@ export default {
     },
   },
   methods: {
+    listLinkClicked(inner) {
+      this.showSpotMenu = false
+      if (inner) {
+        this.$emit('close-dialog')
+      }
+    },
     goToFishingSpotAngelPage(anglerId, name) {
       DataUtil.goToFishingSpotAngelPage(
         anglerId,

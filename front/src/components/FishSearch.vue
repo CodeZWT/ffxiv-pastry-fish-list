@@ -44,7 +44,7 @@
       <template v-if="fish != null">
         <v-divider />
         <v-card-text>
-          <fish-detail :fish="fish" :now="now" />
+          <fish-detail :fish="fish" :now="now" @close-dialog="$emit('input', false)" />
         </v-card-text>
       </template>
       <v-divider />

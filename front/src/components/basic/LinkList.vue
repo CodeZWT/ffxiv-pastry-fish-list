@@ -150,11 +150,11 @@ export default {
       this.showConfigDialog = true
       this.emitClick()
     },
-    emitClick() {
-      this.$emit('click')
+    emitClick(inner) {
+      this.$emit('click', !!inner)
     },
     goToPage(link) {
-      this.emitClick()
+      this.emitClick(link.inner)
       if (link.inner) {
         this.$router.push(link.url)
       } else {

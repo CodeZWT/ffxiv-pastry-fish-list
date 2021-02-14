@@ -25,6 +25,7 @@
           :now="now"
           :forceShowComponents="forceShowComponents"
           :hide-map="hideMap"
+          @close-dialog="$emit('close-dialog')"
         ></fish-detail-content>
       </div>
     </template>

@@ -14,6 +14,7 @@
           :expanded="component.expanded"
           :now="component.name === 'DetailItemFishWindowTable' ? now : undefined"
           :show-fishing-range-helper="fish.type === 'normal'"
+          @close-dialog="$emit('close-dialog')"
         />
       </v-col>
     </template>
