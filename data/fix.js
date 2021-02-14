@@ -1234,6 +1234,9 @@ module.exports = {
       tug: 'light',
       bestCatchPath: [12706],
     },
+    15632: {
+      bestCatchPath: [12707, 12780],
+    }
   },
   COLLECTABLE_FISH_ITEM_ID: [
     12713,
