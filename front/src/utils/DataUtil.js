@@ -13,6 +13,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import { detect } from 'detect-browser'
 import { Howl } from 'howler'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import CONSTANTS from 'Data/constants'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -55,12 +56,12 @@ const READER_SOUNDS = [
   },
 ]
 
-const INTERVAL_SECOND = 1000
-const INTERVAL_MINUTE = 60000
-const INTERVAL_HOUR = 3600000
-const INTERVAL_DAY = 86400000
-
-const INTERVALS = [INTERVAL_DAY, INTERVAL_HOUR, INTERVAL_MINUTE, INTERVAL_SECOND]
+const INTERVALS = [
+  CONSTANTS.INTERVAL_DAY,
+  CONSTANTS.INTERVAL_HOUR,
+  CONSTANTS.INTERVAL_MINUTE,
+  CONSTANTS.INTERVAL_SECOND,
+]
 
 const COMPLETE_FILTER_TYPES = ['COMPLETED', 'UNCOMPLETED']
 const BIG_FISH_FILTER_TYPES = ['LIVING_LEGENDS', 'OLD_ONES', 'NORMAL']
@@ -588,7 +589,7 @@ export default {
   getMaxIntervalPartUnit(interval) {
     const index = INTERVALS.findIndex(it => it <= interval)
     let unit
-    if (index === -1) unit = INTERVAL_SECOND
+    if (index === -1) unit = CONSTANTS.INTERVAL_SECOND
     else unit = INTERVALS[index]
     // console.log(unit)
     return unit
@@ -786,10 +787,10 @@ export default {
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
 
-  INTERVAL_SECOND: INTERVAL_SECOND,
-  INTERVAL_MINUTE: INTERVAL_MINUTE,
-  INTERVAL_HOUR: INTERVAL_HOUR,
-  INTERVAL_DAY: INTERVAL_DAY,
+  INTERVAL_SECOND: CONSTANTS.INTERVAL_SECOND,
+  INTERVAL_MINUTE: CONSTANTS.INTERVAL_MINUTE,
+  INTERVAL_HOUR: CONSTANTS.INTERVAL_HOUR,
+  INTERVAL_DAY: CONSTANTS.INTERVAL_DAY,
 
   GIG_ICON: {
     small: 'bg-060671',

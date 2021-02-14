@@ -84,40 +84,6 @@
       </v-toolbar-title>
       <template v-if="!collapse">
         <v-spacer />
-        <!--        <v-tabs-->
-        <!--          v-if="isListPage && !isMobile"-->
-        <!--          :value="activeTabIndex"-->
-        <!--          @change="setActiveTab"-->
-        <!--          center-active-->
-        <!--          show-arrows-->
-        <!--          centered-->
-        <!--        >-->
-        <!--          <v-tab-->
-        <!--            v-for="(notification, index) in listFishCnt"-->
-        <!--            :key="index"-->
-        <!--            :class="{ 'primary&#45;&#45;text': activeTabIndex === index }"-->
-        <!--          >-->
-        <!--            <v-badge-->
-        <!--              color="error"-->
-        <!--              :value="notification.cnt"-->
-        <!--              :content="notification.cnt"-->
-        <!--              style="z-index: 10"-->
-        <!--            >-->
-        <!--              <div class="d-flex">-->
-        <!--                <v-icon-->
-        <!--                  left-->
-        <!--                  small-->
-        <!--                  :color="activeTabIndex === index ? 'primary-text' : ''"-->
-        <!--                >-->
-        <!--                  {{ TABS[index].icon }}-->
-        <!--                </v-icon>-->
-        <!--                <div v-if="!isMobile" style="font-size: 16px">-->
-        <!--                  {{ $t(TABS[index].title) }}-->
-        <!--                </div>-->
-        <!--              </div>-->
-        <!--            </v-badge>-->
-        <!--          </v-tab>-->
-        <!--        </v-tabs>-->
         <div v-if="inStartLight">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
@@ -196,7 +162,6 @@
             </v-list-item-group>
           </v-list>
         </v-menu>
-
         <v-sheet class="d-flex flex-column ml-1 transparent" v-if="!isElectron">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
@@ -508,17 +473,11 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="showCheckStartSetupDialog" max-width="600">
-      <v-card>
-        <v-card-title> 更新程序下载完成</v-card-title>
-        <v-card-subtitle> 双击 PastryFishSetup.exe 直接更新</v-card-subtitle>
-        <v-card-actions>
-          <v-btn @click="startUpdate" color="primary" block>
-            打开更新程序所在文件夹
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <update-dialog
+      v-model="showCheckStartSetupDialog"
+      @update="startUpdate"
+      @skip="skipUpdate"
+    />
     <import-export-dialog v-model="showImportExport" />
     <bait-dialog
       v-model="showBaitDialog"
@@ -614,10 +573,12 @@ import ChromeTimeZoneBugDialog from '@/components/Dialog/ChromeTimeZoneBugDialog
 import DesktopVersionDialog from '@/components/Dialog/DesktopVersionDialog'
 import MigrateToTravelEorzeaDialog from '@/components/Dialog/MigrateToTravelEorzeaDialog'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
+import UpdateDialog from '@/components/Dialog/UpdateDialog'
 
 export default {
   name: 'App',
   components: {
+    UpdateDialog,
     MigrateToTravelEorzeaDialog,
     DesktopVersionDialog,
     ChromeTimeZoneBugDialog,
@@ -1176,11 +1137,18 @@ export default {
     close() {
       WindowUtil.closeWindow()
     },
+    sendElectronEvent(channel) {
+      window.electron?.ipcRenderer?.send(channel)
+    },
     openReader() {
-      window.electron?.ipcRenderer?.send('openReader')
+      this.sendElectronEvent('openReader')
     },
     startUpdate() {
-      window.electron?.ipcRenderer?.send('startUpdate')
+      this.sendElectronEvent('startUpdate')
+    },
+    skipUpdate() {
+      this.sendElectronEvent('skipUpdate')
+      this.showCheckStartSetupDialog = false
     },
     onFishSelected({ fishId, firstSpotId }) {
       this.selectedFishId = fishId

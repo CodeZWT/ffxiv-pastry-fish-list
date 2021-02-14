@@ -6,6 +6,7 @@ const download = require('download')
 const fs = require('fs')
 const path = require('path')
 const throttle = require('lodash/throttle')
+const CONSTANTS = require("./data/constants");
 const exec = require('child_process').exec
 
 const COMMIT_HASH_DOWNLOAD_LINK =
@@ -25,7 +26,7 @@ const readerURL = isDev
 
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
-
+let skipUpdate = false
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
 
 function init() {
@@ -40,7 +41,7 @@ function init() {
   })
 
   updateIfNeeded()
-  setInterval(updateIfNeeded, 600000)
+  setInterval(updateIfNeeded, CONSTANTS.INTERVAL_MINUTE * 10)
 
   ipcMain
     .on('startUpdate', () => {
@@ -58,6 +59,11 @@ function init() {
     })
     .on('reloadUserData', () => {
       reader.webContents.send('reloadUserData')
+    })
+    .on('skipUpdate', () => {
+      skipUpdate = true
+      win.setProgressBar(0)
+      log.info('Update skipped')
     })
 
 
@@ -211,9 +217,12 @@ function showReaderSetting() {
 }
 
 function updateIfNeeded() {
-  if (isDev) return
+  if (skipUpdate) {
+    log.info('Update check skipped')
+    return
+  }
 
-  log.info('Check Update...')
+  log.info('Checking updates...')
   let LOCAL_COMMIT_HAST_PATH
   if (isDev) {
     LOCAL_COMMIT_HAST_PATH = __dirname + '/front-electron-dist/COMMITHASH'
