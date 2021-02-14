@@ -1033,13 +1033,13 @@ export default {
 
     if (DevelopmentModeUtil.isElectron()) {
       window.electron?.ipcRenderer
-        ?.on('fishingData', (event, data) => {
-          const fishId = data.lastCatchRecord?.fishId
-          if (fishId > 0) {
-            this.lastCatchFishId = fishId
-            if (this.readerSetting.autoSetCompleted) {
-              this.setFishCompleted({ fishId: this.lastCatchFishId, completed: true })
-            }
+        ?.on('fishCaught', (event, data) => {
+          const fishId = data?.fishId
+          if (this.readerSetting.autoSetCompleted && fishId > 0) {
+            // this.lastCatchFishId = fishId
+            this.setFishCompleted({ fishId: fishId, completed: true })
+          } else {
+            // this.lastCatchFishId = -1
           }
           // this.dataStatus = {
           //   ...data.status,

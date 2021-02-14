@@ -39,6 +39,9 @@ function init() {
   FishingDataReader.start(() => {
     log.info('Machina started!')
   })
+  FishingDataReader.onFishCaught(data => {
+    win.webContents.send('fishCaught', data)
+  })
 
   updateIfNeeded()
   setInterval(updateIfNeeded, CONSTANTS.INTERVAL_MINUTE * 10)
@@ -124,7 +127,7 @@ function createReaderSetting(readTimerWin) {
 
 function createMainWindow() {
   win = new BrowserWindow({
-    width: 1024,
+    width: 1080,
     height: 768,
     frame: false,
     show: false,

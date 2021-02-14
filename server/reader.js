@@ -44,6 +44,10 @@ exports.onUpdate = onUpdate
 exports.stop = (callBack) => {
   Machina.stop(callBack)
 }
+let fishCaughtCallBack
+exports.onFishCaught = callBack => {
+  fishCaughtCallBack = callBack
+}
 
 let updateCallBack = (data) => {
   log.info('sending data', data)
@@ -164,8 +168,7 @@ function onFFXIVEventOfUnknown(opcode, callBack) {
         status,
         currentRecord,
         records,
-        readableRecords,
-        lastCatchRecord
+        readableRecords
       })
     }
   })
@@ -185,8 +188,7 @@ function onFFXIVEventWithFilter(type, subType, category, opcode, callBack, skipU
           status,
           currentRecord,
           records,
-          readableRecords,
-          lastCatchRecord
+          readableRecords
         })
       }
       // console.info(status)
@@ -295,7 +297,6 @@ function saveCurrentRecord() {
       currentRecord.baitId = status.prevFishId
     }
     status.prevFishId = currentRecord.fishId
-    lastCatchRecord = currentRecord
     records.push(currentRecord)
     readableRecords.push(toReadable(currentRecord))
   }
@@ -311,7 +312,7 @@ const EMPTY_RECORD = {
   size: 0,
 }
 
-let currentRecord, lastCatchRecord
+let currentRecord
 resetRecord()
 const records = []
 const readableRecords = []
@@ -401,6 +402,7 @@ onFFXIVEventWithFilter('actorControlSelf', null, 320, null,(packet) => {
   // currentRecord.moochable = (packet.param3 & 0x0000000F) === 5
   prevRecord.size = packet.param2 >> 16
 
+  fishCaughtCallBack(prevRecord)
   readableRecords[readableRecords.length-1] = toReadable(prevRecord)
   saveCurrentRecord()
 })
@@ -493,11 +495,3 @@ onFFXIVEventWithFilter('unknown', null, null, 225,(packet) => {
     }
   }
 })
-
-// exports.data = {
-//   status,
-//   currentRecord,
-//   records,
-//   readableRecords,
-//   lastCatchRecord
-// };

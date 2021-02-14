@@ -18,7 +18,12 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" v-if="isOceanFishing">
-        <div style="min-height: 32px" class="d-flex align-center">{{ weatherText }}</div>
+        <div style="min-height: 32px" class="d-flex align-center">
+          <div>{{ weatherText }}</div>
+          <div v-if="isSpectralCurrent">
+            （钓场倒计时30s时，幻海流强制结束，请注意。）
+          </div>
+        </div>
         <v-progress-linear
           :value="spectralCurrentIntervalPercentage"
           color="info"
@@ -44,7 +49,6 @@
       <v-col cols="12" v-if="isTest" class="mt-4">
         <div>Test Data</div>
         <div>{{ dataStatus }}</div>
-        <div>{{ dataLastCatchRecord }}</div>
       </v-col>
     </v-row>
   </v-container>
@@ -59,6 +63,7 @@ import { WEATHER_TYPES } from 'Data/translation'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
+const SPECTRAL_CURRENT = 145
 
 export default {
   name: 'ReaderTimer',
@@ -69,7 +74,6 @@ export default {
         effects: [],
       },
       dataCurrentRecord: {},
-      dataLastCatchRecord: {},
       dataRecords: [],
       dataReadableRecords: [],
 
@@ -83,6 +87,9 @@ export default {
     ...mapGetters(['getWeather']),
     isTest() {
       return DevelopmentModeUtil.isTest()
+    },
+    isSpectralCurrent() {
+      return this.weather === SPECTRAL_CURRENT
     },
     effects() {
       return (this.dataStatus?.effects ?? [])
@@ -116,7 +123,7 @@ export default {
     },
     isOceanFishing() {
       // return true
-      return this.zoneId === 3477 || this.weather === 145
+      return this.zoneId === 3477 || this.weather === SPECTRAL_CURRENT
     },
     isDiadem() {
       return this.zoneId === 1647 || DIADEM_WEATHERS.includes(this.weather)
@@ -216,7 +223,6 @@ export default {
       this.dataCurrentRecord = data.currentRecord
       this.dataRecords = data.records
       this.dataReadableRecords = data.readableRecords
-      this.dataLastCatchRecord = data.lastCatchRecord
     })
   },
   methods: {
