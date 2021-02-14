@@ -1,7 +1,9 @@
 <template>
   <v-container
     fluid
-    :class="`detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`"
+    :class="
+      `detail-wrapper ${isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'}`
+    "
   >
     <v-row>
       <v-col cols="12">
@@ -94,6 +96,7 @@ import DataUtil from '@/utils/DataUtil'
 import DIADEM from 'Data/diadem'
 import ImgUtil from '@/utils/ImgUtil'
 import DiademFishList from '@/components/DiademFishList/DiademFishList'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 export default {
   name: 'DiademPage',
@@ -106,6 +109,7 @@ export default {
         ImgUtil.getImgUrl('diadem-tip-map-grade3.png'),
       ],
       versionIndex: 1,
+      isElectron: DevelopmentModeUtil.isElectron(),
     }
   },
   computed: {
@@ -217,11 +221,11 @@ export default {
   overflow-y: scroll
   overflow-x: hidden
 
-  &-mobile
+  &--web
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
 
-  &-pc
-    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+  &--electron
+    max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
 
 .red
   color: orangered !important

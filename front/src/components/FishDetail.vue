@@ -9,7 +9,13 @@
           @close="$emit('close')"
         />
       </div>
-      <div :class="{ 'detail-header': inPane }">
+      <div
+        :class="{
+          'detail-header': inPane,
+          'detail-header--web': inPane && !isElectron,
+          'detail-header--electron': inPane && isElectron,
+        }"
+      >
         <fish-detail-content
           ref="detailContent"
           :value="fish"
@@ -32,6 +38,7 @@
 import FishDetailContent from '@/components/FishDetailContent'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
 import DataUtil from '@/utils/DataUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 export default {
   name: 'FishDetail',
@@ -58,6 +65,11 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      isElectron: DevelopmentModeUtil.isElectron(),
+    }
+  },
   computed: {
     fishTimePart() {
       return (
@@ -83,7 +95,10 @@ export default {
 @import "~@/styles/RcVariables"
 
 .detail-header
-  height: calc(100vh - #{ $top-bars-padding + $footer-padding + $detail-header-height})
   overflow-scrolling: auto
   overflow-y: scroll
+  &--web
+    height: calc(100vh - #{ $top-bars-padding + $footer-padding + $detail-header-height})
+  &--electron
+    height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + $detail-header-height})
 </style>

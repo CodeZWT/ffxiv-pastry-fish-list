@@ -1,6 +1,7 @@
 <template>
   <div v-resize="onWindowResize">
     <splitpanes
+      :class="isElectron ? 'splitpanes--electron' : 'splitpanes--web'"
       ref="splitPanes"
       @resize="onResize"
       @splitter-click="resizing = true"
@@ -322,6 +323,7 @@ import NotificationUtil from '@/utils/NotificationUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import DataUtil from '@/utils/DataUtil'
 import FIX from 'Data/fix'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 export default {
   name: 'fish-page',
@@ -354,6 +356,7 @@ export default {
     'filteredFishIdSet',
   ],
   data: () => ({
+    isElectron: DevelopmentModeUtil.isElectron(),
     openPanelIndex: undefined,
     fishListOpenStatus: [0, 1],
     throttledResizeFn: undefined,
@@ -607,44 +610,19 @@ export default {
 .filter-wrapper
   z-index: 4
 
-//&:not(.show-filter)
-//  display: none
-
-//.main-area::v-deep
-  position: relative
-
-  //overflow-y: scroll
-  //margin-right: -8px
-
-  &.show-filter
-
-
-    top: 0
-
-
-
-  //&.show-filter .better-scroll
-  //  height: calc(100vh - #{$top-bars-padding + $filter-panel-height})
-
-  &:not(.show-filter)
-    top: 0
-
-//&:not(.show-filter) .better-scroll
-//  height: calc(100vh - #{$top-bars-padding})
-
 .splitpanes__pane
   background-color: unset !important
   overflow-scrolling: auto
   overflow-y: scroll
 
 .main-pane
-  //max-height: 834px
   width: 100%
 
-.splitpanes
+.splitpanes--web
   height: calc(100vh - #{ $top-bars-padding + $footer-padding })
-//overflow-scrolling: auto
-//overflow: scroll
+
+.splitpanes--electron
+  height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding })
 
 .theme--dark
   .splitpanes--vertical::v-deep
@@ -659,7 +637,6 @@ export default {
       background:  linear-gradient(90deg, #ccc, #111)
 
 .fish-detail-pane
-  //max-height: calc(100vh - #{$top-bars-padding})
   width: 100%
 
 .back-to-top-btn

@@ -385,7 +385,6 @@
     </v-footer>
 
     <fish-setting-dialog v-model="showSettingDialog" />
-
     <patch-note-dialog
       v-model="showPatchNoteDialog"
       :in-migration-page="inMigrationPage"
@@ -489,6 +488,7 @@
       :source="migrationSource"
     />
     <desktop-version-dialog v-model="showDownloadDialog" />
+
     <v-snackbar
       :timeout="2000"
       v-model="snackbar.show"

@@ -1,7 +1,9 @@
 <template>
   <v-container
     fluid
-    :class="`detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`"
+    :class="
+      `detail-wrapper ${isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'}`
+    "
   >
     <v-tabs v-model="pageSection" centered icons-and-text grow>
       <v-tabs-slider></v-tabs-slider>
@@ -98,6 +100,7 @@ import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishi
 import ImgUtil from '@/utils/ImgUtil'
 import OceanFishingVoyage from '@/components/OceanFishingVoyage/OceanFishingVoyage'
 import DATA_CN from 'Data/translation'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 // https://ngabbs.com/read.php?tid=20553241
 
@@ -120,6 +123,7 @@ export default {
       currentVoyageLastUpdate: 0,
       selectedVoyage: undefined,
       selectedTarget: undefined,
+      isElectron: DevelopmentModeUtil.isElectron(),
     }
   },
   computed: {
@@ -322,9 +326,9 @@ function shift2Icon(shift) {
   overflow-y: scroll
   overflow-x: hidden
 
-  &-mobile
+  &--web
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
 
-  &-pc
-    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+  &--electron
+    max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
 </style>

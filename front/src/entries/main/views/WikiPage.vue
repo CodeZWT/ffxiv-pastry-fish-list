@@ -4,8 +4,7 @@
       v-model="showMapMenu"
       bottom
       :fixed="isMobile"
-      width="20vw"
-      style="min-width: 250px"
+      :class="{ 'nav-bar--pc': !isMobile }"
     >
       <v-card>
         <v-sheet class="pa-1 primary">
@@ -52,7 +51,14 @@
             </v-btn>
           </v-btn-toggle>
         </div>
-        <v-card-text class="spot-list">
+        <v-card-text
+          :class="{
+            'spot-list': true,
+            'spot-list--pc-web': !isMobile && !isElectron,
+            'spot-list--mobile-web': isMobile && !isElectron,
+            'spot-list--electron': isElectron,
+          }"
+        >
           <v-treeview
             v-show="mode === 'normal'"
             ref="normalSpotMenu"
@@ -92,9 +98,13 @@
     </v-navigation-drawer>
     <div style="height: 100%; width: 100%">
       <div
-        :class="
-          `detail-wrapper ${isMobile ? 'detail-wrapper-mobile' : 'detail-wrapper-pc'}`
-        "
+        :class="{
+          'detail-wrapper': true,
+          'detail-wrapper--pc-web': !isMobile && !isElectron,
+          'detail-wrapper--pc-electron': !isMobile && isElectron,
+          'detail-wrapper--mobile-web': isMobile && !isElectron,
+          'detail-wrapper--mobile-electron': isMobile && isElectron,
+        }"
       >
         <div
           v-if="
@@ -315,6 +325,7 @@ import FishTugTable from '@/components/FishingTugTable'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import ItemIcon from '@/components/basic/ItemIcon'
 import LinkList from '@/components/basic/LinkList'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 export default {
   name: 'WikiPage',
@@ -372,6 +383,7 @@ export default {
     forceShowComponents: undefined,
     mode: 'normal',
     FISH_ID_TO_WIKI_IDS: DataUtil.generateFishId2WikiId(FIX.FISH),
+    isElectron: DevelopmentModeUtil.isElectron(),
   }),
   computed: {
     showSpotPredators() {
@@ -851,18 +863,6 @@ export default {
 <style lang="sass" scoped>
 @import "~@/styles/RcVariables"
 
-//.wiki-map
-//  width: 100%
-//  height: calc(100vh - #{ $top-bars-padding + $footer-padding})
-
-//.vue-grid-layout
-  //background: #eee
-
-
-//.vue-grid-item:not(.vue-grid-placeholder)
-//background: #ccc
-//border: 1px solid black
-
 .vue-grid-item .resizing
   opacity: 0.9
 
@@ -888,9 +888,15 @@ export default {
   margin: 0 0 4px 0
 
 .spot-list
-  height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56 + 56})
-  overflow-scrolling: auto
-  overflow-y: scroll
+  &--pc-web
+    overflow-scrolling: auto
+    overflow-y: scroll
+    height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56 + 56})
+  &--mobile-web
+    overflow-y: hidden
+    height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56 + 56})
+  &--electron
+    height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + 56 + 56})
 
 .detail-wrapper
   width: 100%
@@ -899,10 +905,22 @@ export default {
   overflow-y: scroll
   overflow-x: hidden
 
-  &-mobile
-    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding + 40})
+  &--mobile
     margin-top: 40px
+    &-web
+      max-height: calc(100vh - #{ $top-bars-padding + $footer-padding + 40})
+    &-electron
+      max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + 40})
 
-  &-pc
+  &--pc-web
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+
+  &--pc-electron
+    max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+
+.nav-bar
+  //overflow-y: hidden
+  &--pc
+    width: 20vw
+    min-width: 250px
 </style>
