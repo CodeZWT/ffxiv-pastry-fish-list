@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import { loadUserData } from '@/utils/UserDataLoader'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import CONSTANTS from 'Data/constants'
 
 Vue.use(Vuex)
 
@@ -9,6 +11,7 @@ export default new Vuex.Store({
   state: {
     sounds: {},
     userData: loadUserData(),
+    viewedFeatures: LocalStorageUtil.loadViewedFeatures(CONSTANTS.FEATURE_GROUP_READER),
   },
   getters: {
     readerSetting: state => {
@@ -16,6 +19,15 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setFeatureViewed(state, feature) {
+      if (!state.viewedFeatures.includes(feature)) {
+        state.viewedFeatures.push(feature)
+      }
+      LocalStorageUtil.storeViewedFeatures(
+        CONSTANTS.FEATURE_GROUP_READER,
+        state.viewedFeatures
+      )
+    },
     reloadUserData(state) {
       state.userData = loadUserData()
     },

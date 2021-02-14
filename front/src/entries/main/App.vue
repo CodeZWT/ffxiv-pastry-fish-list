@@ -232,11 +232,11 @@
               <v-list-item-title>{{ $t('top.diadem') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item v-if="!isElectron" @click="showDownloadDialog = true" link>
+          <v-list-item v-if="!isElectron" @click="showDownload" link>
             <v-list-item-icon>
-              <v-badge color="error" overlap content="新">
+              <new-feature-mark :id="DesktopDownloadFeatureId">
                 <v-icon>mdi-desktop-mac-dashboard</v-icon>
-              </v-badge>
+              </new-feature-mark>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.desktopVersion') }}</v-list-item-title>
@@ -246,9 +246,9 @@
           <v-divider class="mx-2" />
           <v-list-item v-if="isElectron" @click="openReader" link>
             <v-list-item-icon>
-              <v-badge color="error" overlap content="新">
+              <new-feature-mark :id="ReaderTimerFeatureId">
                 <v-icon>mdi-fish</v-icon>
-              </v-badge>
+              </new-feature-mark>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.fishReader') }}</v-list-item-title>
@@ -574,10 +574,13 @@ import DesktopVersionDialog from '@/components/Dialog/DesktopVersionDialog'
 import MigrateToTravelEorzeaDialog from '@/components/Dialog/MigrateToTravelEorzeaDialog'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import UpdateDialog from '@/components/Dialog/UpdateDialog'
+import NewFeatureMark from '@/components/basic/NewFeatureMark'
+import { MainFeatures } from 'Data/newFeatures'
 
 export default {
   name: 'App',
   components: {
+    NewFeatureMark,
     UpdateDialog,
     MigrateToTravelEorzeaDialog,
     DesktopVersionDialog,
@@ -640,6 +643,8 @@ export default {
     showCheckStartSetupDialog: false,
     showDownloadDialog: false,
     migrationSource: '',
+    ReaderTimerFeatureId: MainFeatures.ReaderTimer,
+    DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -1142,6 +1147,11 @@ export default {
     },
     openReader() {
       this.sendElectronEvent('openReader')
+      this.setFeatureViewed(this.ReaderTimerFeatureId)
+    },
+    showDownload() {
+      this.showDownloadDialog = true
+      this.setFeatureViewed(this.DesktopDownloadFeatureId)
     },
     startUpdate() {
       this.sendElectronEvent('startUpdate')
@@ -1703,6 +1713,7 @@ export default {
       this.toggleCollapse()
     },
     ...mapMutations([
+      'setFeatureViewed',
       'updateUserData',
       'setFishCompleted',
       'toggleFilterPanel',

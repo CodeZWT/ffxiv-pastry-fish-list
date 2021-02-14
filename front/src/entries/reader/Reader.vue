@@ -7,9 +7,11 @@
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
-      <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-cog</v-icon>
-      </v-btn>
+      <new-feature-mark :id="SettingFeatureId">
+        <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
+          <v-icon>mdi-cog</v-icon>
+        </v-btn>
+      </new-feature-mark>
       <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-minus</v-icon>
       </v-btn>
@@ -38,13 +40,16 @@ import EorzeaTime from '@/utils/Time'
 import DataUtil from '@/utils/DataUtil'
 import { mapMutations, mapState } from 'vuex'
 import READER_ICON from 'Assets/reader.png'
+import { ReaderFeatures } from 'Data/newFeatures'
+import NewFeatureMark from '@/components/basic/NewFeatureMark'
 
 export default {
   name: 'Reader',
-  components: {},
+  components: { NewFeatureMark },
   data: () => ({
     now: Date.now(),
     readerIcon: READER_ICON,
+    SettingFeatureId: ReaderFeatures.Setting,
   }),
   computed: {
     showTimerBar() {
@@ -75,6 +80,7 @@ export default {
   methods: {
     showSetting() {
       window.electron?.ipcRenderer?.send('showSetting')
+      this.setFeatureViewed(this.SettingFeatureId)
     },
     minimize() {
       WindowUtil.minimizeWindow()
@@ -85,7 +91,7 @@ export default {
     loadingSounds() {
       return DataUtil.loadingSounds(DataUtil.READER_SOUNDS)
     },
-    ...mapMutations(['setSounds', 'reloadUserData']),
+    ...mapMutations(['setSounds', 'reloadUserData', 'setFeatureViewed']),
   },
 }
 </script>

@@ -9,6 +9,7 @@ import DataUtil from '@/utils/DataUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { loadUserData } from '@/utils/UserDataLoader'
+import CONSTANTS from 'Data/constants'
 
 Vue.use(Vuex)
 
@@ -44,6 +45,7 @@ export default new Vuex.Store({
     // bait notification cache
     remainingBaitIds: initRemainingBaitIds(),
     baitIdsForNotification: [],
+    viewedFeatures: LocalStorageUtil.loadViewedFeatures(CONSTANTS.FEATURE_GROUP_MAIN),
   },
   getters: {
     readerSetting: state => {
@@ -239,6 +241,15 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setFeatureViewed(state, feature) {
+      if (!state.viewedFeatures.includes(feature)) {
+        state.viewedFeatures.push(feature)
+      }
+      LocalStorageUtil.storeViewedFeatures(
+        CONSTANTS.FEATURE_GROUP_MAIN,
+        state.viewedFeatures
+      )
+    },
     updateUserData(state, data) {
       DataUtil.setUserDataPart(state, data)
     },

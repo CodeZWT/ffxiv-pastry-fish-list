@@ -3,6 +3,10 @@ import store from 'store2'
 const USER_DATA_KEY = 'userData'
 // const USER_DATA_KEY_LOAD_BACKUP = USER_DATA_KEY + 'LoadBackup'
 // const USER_DATA_KEY_STORE_BACKUP = USER_DATA_KEY + 'StoreBackup'
+const VIEWED_FEATURES_KEYS = {
+  main: 'mainViewedFeatures',
+  reader: 'readerViewedFeatures',
+}
 
 export default {
   storeUserData(userData) {
@@ -28,5 +32,13 @@ export default {
     //   store.set(USER_DATA_KEY_STORE_BACKUP, oldUserData)
     // }
     store.set(USER_DATA_KEY, userData)
+  },
+
+  loadViewedFeatures(featureGroup) {
+    return store.get(VIEWED_FEATURES_KEYS[featureGroup]) || []
+  },
+
+  storeViewedFeatures(featureGroup, features) {
+    store.set(VIEWED_FEATURES_KEYS[featureGroup], features)
   },
 }
