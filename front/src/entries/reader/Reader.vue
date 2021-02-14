@@ -7,11 +7,11 @@
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
-      <new-feature-mark :id="SettingFeatureId">
-        <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
+      <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
+        <new-feature-mark :id="SettingFeatureId">
           <v-icon>mdi-cog</v-icon>
-        </v-btn>
-      </new-feature-mark>
+        </new-feature-mark>
+      </v-btn>
       <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-minus</v-icon>
       </v-btn>
