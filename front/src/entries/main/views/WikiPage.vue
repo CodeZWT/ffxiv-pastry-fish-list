@@ -270,7 +270,10 @@
           <!--          <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
         </div>
       </div>
-      <div v-if="isMobile" style="position: absolute; top: 4px; left: 0; right: 0">
+      <div
+        v-if="isMobile"
+        style="position: absolute; top: 4px; left: 0; right: 0; z-index: 1"
+      >
         <v-btn @click="showMapMenu = !showMapMenu" block color="primary" tile>
           点击选择地图
         </v-btn>
@@ -903,10 +906,11 @@ export default {
   height: 100%
 
   &--mobile
-    margin-top: 40px
     &-web
+      margin-top: 40px
       max-height: calc(100vh - #{ $top-bars-padding + $footer-padding + 40})
     &-electron
+      margin-top: 40px
       max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + 40})
 
   &--pc-web
