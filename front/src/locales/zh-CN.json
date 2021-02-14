@@ -202,6 +202,14 @@
     "completed": {
       "checked": "点击取消已完成",
       "unchecked": "点击标记已完成"
+    },
+    "pinTop": {
+      "checked": "点击取消固定",
+      "unchecked": "点击固定窗口在最上层"
+    },
+    "maximize": {
+      "restore": "向下还原",
+      "maximize": "最大化"
     }
   },
   "list": {

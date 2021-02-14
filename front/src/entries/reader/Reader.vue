@@ -13,10 +13,10 @@
         </new-feature-mark>
       </v-btn>
       <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-minus</v-icon>
+        <v-icon>mdi-window-minus</v-icon>
       </v-btn>
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-close</v-icon>
+        <v-icon>mdi-window-close</v-icon>
       </v-btn>
     </v-system-bar>
     <v-system-bar app v-else-if="showSettingBar">

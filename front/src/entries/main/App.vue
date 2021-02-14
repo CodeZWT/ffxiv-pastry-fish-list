@@ -11,11 +11,37 @@
       <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-cog</v-icon>
       </v-btn>
+      <toggle-button
+        :value="alwaysOnTop"
+        @input="toggleAlwaysOnTop"
+        checked-icon="mdi-pin"
+        unchecked-icon="mdi-pin-outline"
+        :checked-title="$t('actions.pinTop.checked')"
+        :unchecked-title="$t('actions.pinTop.unchecked')"
+        small
+        style="-webkit-app-region: none"
+      />
       <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-minus</v-icon>
+        <v-icon>mdi-window-minimize</v-icon>
       </v-btn>
+      <toggle-button
+        :value="maximized"
+        @input="maximizeOrRestore"
+        checked-icon="mdi-window-restore"
+        unchecked-icon="mdi-window-maximize"
+        :checked-title="$t('actions.maximize.restore')"
+        :unchecked-title="$t('actions.maximize.maximize')"
+        small
+        style="-webkit-app-region: none"
+      />
+      <!--      <v-btn @click="maximize" x-small text style="-webkit-app-region: none">-->
+      <!--        <v-icon>mdi-window-maximize</v-icon>-->
+      <!--      </v-btn>-->
+      <!--      <v-btn @click="unmaximize" x-small text style="-webkit-app-region: none">-->
+      <!--        <v-icon>mdi-window-maximize</v-icon>-->
+      <!--      </v-btn>-->
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-close</v-icon>
+        <v-icon>mdi-window-close</v-icon>
       </v-btn>
     </v-system-bar>
     <v-app-bar
@@ -576,10 +602,12 @@ import WindowUtil from '@/entries/reader/util/WindowUtil'
 import UpdateDialog from '@/components/Dialog/UpdateDialog'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import { MainFeatures } from 'Data/newFeatures'
+import ToggleButton from '@/components/basic/ToggleButton'
 
 export default {
   name: 'App',
   components: {
+    ToggleButton,
     NewFeatureMark,
     UpdateDialog,
     MigrateToTravelEorzeaDialog,
@@ -645,6 +673,8 @@ export default {
     migrationSource: '',
     ReaderTimerFeatureId: MainFeatures.ReaderTimer,
     DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
+    alwaysOnTop: false,
+    maximized: false,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute
@@ -1136,8 +1166,26 @@ export default {
     showSetting() {
       this.showSettingDialog = true
     },
+    toggleAlwaysOnTop() {
+      this.alwaysOnTop = !this.alwaysOnTop
+      WindowUtil.setAlwaysOnTop(this.alwaysOnTop)
+    },
     minimize() {
       WindowUtil.minimizeWindow()
+    },
+    maximizeOrRestore(maximize) {
+      if (maximize) {
+        WindowUtil.maximizeWindow()
+      } else {
+        WindowUtil.unmaximizeWindow()
+      }
+      this.maximized = maximize
+    },
+    maximize() {
+      WindowUtil.maximizeWindow()
+    },
+    unmaximize() {
+      WindowUtil.unmaximizeWindow()
     },
     close() {
       WindowUtil.closeWindow()

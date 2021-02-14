@@ -1,4 +1,11 @@
 export default {
+  setAlwaysOnTop(alwaysOnTop) {
+    const remote = window.require ? window.require('electron').remote : null
+    const WIN = remote.getCurrentWindow()
+    console.log('set top', alwaysOnTop)
+    WIN.setAlwaysOnTop(alwaysOnTop)
+  },
+
   closeWindow() {
     const remote = window.require ? window.require('electron').remote : null
     const WIN = remote.getCurrentWindow()
@@ -15,5 +22,16 @@ export default {
     const remote = window.require ? window.require('electron').remote : null
     const WIN = remote.getCurrentWindow()
     WIN.minimize()
+  },
+
+  maximizeWindow() {
+    const remote = window.require ? window.require('electron').remote : null
+    const WIN = remote.getCurrentWindow()
+    WIN.maximize()
+  },
+  unmaximizeWindow() {
+    const remote = window.require ? window.require('electron').remote : null
+    const WIN = remote.getCurrentWindow()
+    WIN.unmaximize()
   },
 }
