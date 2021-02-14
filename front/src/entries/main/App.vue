@@ -232,6 +232,7 @@
               <v-list-item-title>{{ $t('top.diadem') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-divider class="mx-2" />
           <v-list-item v-if="!isElectron" @click="showDownload" link>
             <v-list-item-icon>
               <new-feature-mark :id="DesktopDownloadFeatureId">
@@ -243,7 +244,6 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-divider class="mx-2" />
           <v-list-item v-if="isElectron" @click="openReader" link>
             <v-list-item-icon>
               <new-feature-mark :id="ReaderTimerFeatureId">

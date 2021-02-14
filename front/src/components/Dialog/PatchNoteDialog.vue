@@ -13,21 +13,54 @@
       <v-card-text style="max-height: 600px;">
         <div class="text-h6">Version 0.6.1</div>
         <div class="text-h5 text-center my-1">
-          钓鱼计时 渔捞（桌面版功能）
+          渔捞 - 钓鱼辅助
+        </div>
+        <div class="text-subtitle-1 text-center">
+          （点击桌面版左侧侧边栏<v-icon>mdi-fish</v-icon>开启）
+        </div>
+        <div class="text-subtitle-2 error--text">
+          为了确保最准确的倒计时，请在开始海钓前或空岛进图前开启桌面版程序。
         </div>
         <ul>
+          <li>
+            支持自动标记已完成（需要在渔捞右上<v-icon small>mdi-cog</v-icon>设置中开启）
+          </li>
+          <li>
+            支持自动更新，当未来版本更新时会自动更新。但并不能保证开服时马上能够使用，届时会有相应的提示，请以提示为准。
+          </li>
           <li>桌面版增加钓鱼自动计时功能</li>
           <li>支持杆型声音提示</li>
           <li>支持幻海流计时</li>
           <li>支持空岛天气计时</li>
           <li>支持显示当前状态（拍击水面、撒饵、专一垂钓、收藏品采集）</li>
+        </ul>
+        <v-divider />
+        <div class="text-h5 text-center my-1">
+          鱼糕桌面版
+        </div>
+        <ul>
           <li>
-            支持自动更新，当未来版本更新时会自动更新。但并不能保证开服时马上能够使用，届时会有相应的提示，请以提示为准。
+            支持透明并在游戏上层显示，支持悬浮窗模式。（透明度可在左下设置中调整）
           </li>
           <li>
-            桌面版更新，支持透明并在游戏上层显示，支持悬浮窗模式（透明度可在左下设置中调整）
+            可以跳过更新（跳过更新后，下次打开程序会再次检查更新）
           </li>
         </ul>
+        <p />
+        <v-divider />
+        <div class="text-h5 text-center my-1">
+          修正
+        </div>
+        <ul>
+          <li>更新部分鱼以及5.X攻略数据。</li>
+          <li>
+            在搜索框跳转时自动关闭搜索对话框。
+          </li>
+          <li>
+            修正手机网页版钓鱼笔记列表的显示问题。
+          </li>
+        </ul>
+        <p />
         <v-divider />
 
         <div class="text-h6">Version 0.6.0</div>
