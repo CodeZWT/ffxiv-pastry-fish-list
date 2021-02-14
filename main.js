@@ -70,6 +70,11 @@ function init() {
   globalShortcut.register('Alt+CommandOrControl+L', () => {
     showReader()
   })
+  globalShortcut.register('Alt+CommandOrControl+T', () => {
+    win && win.webContents.openDevTools({
+      mode: 'undocked',
+    })
+  })
 }
 
 function createReaderSetting(readTimerWin) {
