@@ -5,11 +5,11 @@
     <!--    </div>-->
     <v-card color="system">
       <v-card-text class="d-flex justify-center align-center" style="position:relative;">
-        <div class="d-flex mr-2">
+        <fish-bait-list :baits="fish.baits" :target="fish" />
+        <div class="d-flex ml-1">
           <div>{{ fish.biteTimeMin }}s</div>
           <div v-if="fish.biteTimeMax">-{{ fish.biteTimeMax }}s</div>
         </div>
-        <fish-bait-list :baits="fish.baits" :target="fish" />
         <div style="position: absolute; top: 0; left: 0">
           <v-chip label class="rounded-tr-0 rounded-br-lg rounded-bl-0">
             {{ fish.name }}
@@ -54,11 +54,11 @@
           class="d-flex justify-center align-center item-border"
           style="position: relative"
         >
-          <div class="d-flex mr-2">
+          <fish-bait-list :baits="predator.baits" :target="predator" />
+          <div class="d-flex ml-1">
             <div>{{ predator.biteTimeMin }}s</div>
             <div v-if="predator.biteTimeMax">-{{ predator.biteTimeMax }}s</div>
           </div>
-          <fish-bait-list :baits="predator.baits" :target="predator" />
           <div style="position: absolute; top: 0; left: 0">
             <v-chip label class="rounded-t-0 rounded-br-lg rounded-bl-0">
               {{ predator.name }}
