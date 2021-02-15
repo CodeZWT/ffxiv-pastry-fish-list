@@ -5,47 +5,61 @@ const isDev = require('electron-is-dev')
 const isElevated = require('is-elevated')
 const { exec } = require('child_process')
 const log = require('electron-log')
-const {TERRITORY_TYPES} = require('../data/fix')
+const { TERRITORY_TYPES } = require('../data/fix')
 // const DataUtil = require('../utils/DataUtil')
 const INTERVAL_MINUTE = 60000
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * INTERVAL_MINUTE
 // in dev load directly
 // in prod set the required files by set the packaged patch manually
-const machinaOptions = isDev ? {
-    monitorType: 'WinPCap',
-    parseAlgorithm: 'PacketSpecific',
-    region: 'CN',
-  // logger: log.info
-} : {
-  // logger: log.info,
-    parseAlgorithm: 'PacketSpecific',
-    noData: false,
-    monitorType: 'RawSocket',
-    region: 'CN',
-    machinaExePath: path.join(app.getAppPath(), '../../resources/MachinaWrapper/MachinaWrapper.exe'),
-    remoteDataPath: path.join(app.getAppPath(), '../../resources/remote-data'),
-    definitionsDir: path.join(app.getAppPath(), '../../resources/app.asar.unpacked/node_modules/node-machina-ffxiv/models/default')
-}
+const machinaOptions = isDev
+  ? {
+      monitorType: 'WinPCap',
+      parseAlgorithm: 'PacketSpecific',
+      region: 'CN',
+      port: 13347,
+      // logger: log.info
+    }
+  : {
+      // logger: log.info,
+      parseAlgorithm: 'PacketSpecific',
+      noData: false,
+      monitorType: 'RawSocket',
+      region: 'CN',
+      port: 13347,
+      machinaExePath: path.join(
+        app.getAppPath(),
+        '../../resources/MachinaWrapper/MachinaWrapper.exe'
+      ),
+      remoteDataPath: path.join(app.getAppPath(), '../../resources/remote-data'),
+      definitionsDir: path.join(
+        app.getAppPath(),
+        '../../resources/app.asar.unpacked/node_modules/node-machina-ffxiv/models/default'
+      ),
+    }
 const Machina = new MachinaFFXIV(machinaOptions)
 
-exports.start = callBack => {
-    return isElevated().then(elevated => {
-        if (elevated) {
-            if (!isDev) {
-                exec('netsh advfirewall firewall delete rule name="pastry-fish-reader - Machina"', () => {
-                    addMachinaFirewallRule();
-                });
+exports.start = (callBack) => {
+  return isElevated()
+    .then((elevated) => {
+      if (elevated) {
+        if (!isDev) {
+          exec(
+            'netsh advfirewall firewall delete rule name="pastry-fish-reader - Machina"',
+            () => {
+              addMachinaFirewallRule()
             }
+          )
         }
+      }
     })
-        .then(() => Machina.start(callBack))
+    .then(() => Machina.start(callBack))
 }
 exports.onUpdate = onUpdate
 exports.stop = (callBack) => {
   Machina.stop(callBack)
 }
 let fishCaughtCallBack
-exports.onFishCaught = callBack => {
+exports.onFishCaught = (callBack) => {
   fishCaughtCallBack = callBack
 }
 
@@ -159,22 +173,26 @@ function onFFXIVEventSubType(subType, callBack) {
 
 function onFFXIVEventOfUnknown(opcode, callBack) {
   ffxivEvent.on('ffxivEvent', (packet) => {
-    if (
-      packet.type === 'unknown' &&
-      packet.opcode === opcode
-    ) {
+    if (packet.type === 'unknown' && packet.opcode === opcode) {
       callBack(packet)
       updateCallBack({
         status,
         currentRecord,
         records,
-        readableRecords
+        readableRecords,
       })
     }
   })
 }
 
-function onFFXIVEventWithFilter(type, subType, category, opcode, callBack, skipUpdateEvent = false) {
+function onFFXIVEventWithFilter(
+  type,
+  subType,
+  category,
+  opcode,
+  callBack,
+  skipUpdateEvent = false
+) {
   ffxivEvent.on('ffxivEvent', (packet) => {
     if (
       (!type || packet.type === type) &&
@@ -188,7 +206,7 @@ function onFFXIVEventWithFilter(type, subType, category, opcode, callBack, skipU
           status,
           currentRecord,
           records,
-          readableRecords
+          readableRecords,
         })
       }
       // console.info(status)
@@ -208,7 +226,7 @@ const status = {
   mooch: false,
   prevFishId: undefined,
   weather: undefined,
-  zoneId: undefined
+  zoneId: undefined,
 }
 
 // update single status according to action/effect
@@ -228,32 +246,40 @@ onFFXIVEvent('effect', (packet) => {
   }
 })
 
-onFFXIVEvent('prepareZoning', (packet) => {
-  if (packet.targetZone) {
-    status.zoneId = TERRITORY_TYPES[packet.targetZone].placeName
-    log.info('targetZone', status.zoneId)
-  } else {
-    log.info('targetZone Zero')
-  }
-  status.weather = undefined
-  status.spectralCurrentEndTime = undefined
-  status.diademWeatherEndTime = undefined
-}, true)
+onFFXIVEvent(
+  'prepareZoning',
+  (packet) => {
+    if (packet.targetZone) {
+      status.zoneId = TERRITORY_TYPES[packet.targetZone].placeName
+      log.info('targetZone', status.zoneId)
+    } else {
+      log.info('targetZone Zero')
+    }
+    status.weather = undefined
+    status.spectralCurrentEndTime = undefined
+    status.diademWeatherEndTime = undefined
+  },
+  true
+)
 
-onFFXIVEvent('initZone', (packet) => {
-  if (packet.zoneID) {
-    status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
-    // status.weather = undefined
-    log.info('initZone', status.zoneId)
-  }
-}, true)
+onFFXIVEvent(
+  'initZone',
+  (packet) => {
+    if (packet.zoneID) {
+      status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
+      // status.weather = undefined
+      log.info('initZone', status.zoneId)
+    }
+  },
+  true
+)
 
-onFFXIVEventWithFilter('actorControl', null, 20, null,(packet) => {
+onFFXIVEventWithFilter('actorControl', null, 20, null, (packet) => {
   // log.info('actorControl', packet)
   status.effects.add(packet.param1)
 })
 
-onFFXIVEventWithFilter('actorControl', null, 21, null,(packet) => {
+onFFXIVEventWithFilter('actorControl', null, 21, null, (packet) => {
   status.effects.delete(packet.param1)
 })
 
@@ -327,7 +353,6 @@ onFFXIVEvent('eventPlay', (packet) => {
     switch (packet.scene) {
       case 1:
         status.isFishing = true
-        saveCurrentRecord()
         currentRecord.startTime = Date.now()
         break
       case 5:
@@ -335,8 +360,8 @@ onFFXIVEvent('eventPlay', (packet) => {
         currentRecord.tug = getTug(packet.param5)
         break
       case 2:
-          saveCurrentRecord()
-          break
+        saveCurrentRecord()
+        break
       default:
         log.info('other scene', packet.scene)
     }
@@ -393,9 +418,9 @@ function getHookset(hookset) {
 }
 
 // caught fish
-onFFXIVEventWithFilter('actorControlSelf', null, 320, null,(packet) => {
+onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
   if (records.length === 0) return
-  const prevRecord = records[records.length-1]
+  const prevRecord = records[records.length - 1]
   prevRecord.fishId = packet.param1
   prevRecord.hq = ((packet.param3 >> 4) & 1) === 1
   // not used
@@ -403,7 +428,7 @@ onFFXIVEventWithFilter('actorControlSelf', null, 320, null,(packet) => {
   prevRecord.size = packet.param2 >> 16
 
   fishCaughtCallBack(prevRecord)
-  readableRecords[readableRecords.length-1] = toReadable(prevRecord)
+  readableRecords[readableRecords.length - 1] = toReadable(prevRecord)
   saveCurrentRecord()
 })
 
@@ -427,25 +452,26 @@ onFFXIVEvent('someDirectorUnk4', (packet) => {
 })
 
 // mooch
-onFFXIVEvent("someDirectorUnk4", packet => {
+onFFXIVEvent('someDirectorUnk4', (packet) => {
   if (packet.actionTimeline === 257 || packet.actionTimeline === 3073) {
-    status.mooch = packet.param1 === 1121;
+    status.mooch = packet.param1 === 1121
     // log.info("mooch", status.mooch);
 
-    applyCurrentStatus(currentRecord, status);
+    applyCurrentStatus(currentRecord, status)
   }
-});
+})
 
 function getSpectralCurrentCountDownTotal() {
   return 2 * INTERVAL_MINUTE
 }
+
 const SPECTRAL_CURRENT_WEATHER_ID = 145
 const DIADEM_WEATHERS = [133, 134, 135, 136]
-
 
 function isOceanFishing() {
   return status.zoneId === 3477
 }
+
 function isDiadem() {
   return status.zoneId === 1647
 }
@@ -461,26 +487,30 @@ function getMessage(struct) {
 }
 
 function getString(uint8Array, offset, length) {
-  if (typeof offset === 'undefined') throw "Parameter 'offset' not provided.";
+  if (typeof offset === 'undefined') throw "Parameter 'offset' not provided."
   if (typeof length === 'undefined') {
-    length = uint8Array.length - offset;
+    length = uint8Array.length - offset
   }
 
   // Remove the suffix zeros and 255s
-  while (length > 0 && (uint8Array[offset + length - 1] === 0 || uint8Array[offset + length - 1] === 255)) {
-    --length;
+  while (
+    length > 0 &&
+    (uint8Array[offset + length - 1] === 0 || uint8Array[offset + length - 1] === 255)
+  ) {
+    --length
   }
 
   if (length === 0) {
-    return '';
+    return ''
   }
 
-  return Buffer.from(uint8Array.slice(offset, offset + length)).toString();
+  return Buffer.from(uint8Array.slice(offset, offset + length)).toString()
 }
+
 // onFFXIVEventWithFilter('unknown', null, null, null,(packet) => {
 //   log.info('wc?', packet.opcode, packet.data)
 // })
-onFFXIVEventWithFilter('unknown', null, null, 225,(packet) => {
+onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
   status.previousWeather = status.weather
   status.weather = packet.data && +packet.data[0]
   log.info('WeatherChange', status.weather)
