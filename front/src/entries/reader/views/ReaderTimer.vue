@@ -5,7 +5,7 @@
         <div>咬钩计时</div>
         <v-spacer />
         <div class="d-flex align-center">
-          <div v-for="effect in effects" :key="effect.ID">
+          <div v-for="effect in effects" :key="effect.id">
             <div :class="effect.icon" :title="effect.name" />
           </div>
         </div>
@@ -108,9 +108,9 @@ export default {
         .filter(it => it != null)
         .map(effect => {
           return {
-            id: effect.ID,
-            name: effect.Name,
-            icon: DataUtil.iconIdToClass(effect.IconID),
+            id: effect.id,
+            name: DataUtil.getName(effect),
+            icon: DataUtil.iconIdToClass(effect.icon),
           }
         })
     },
