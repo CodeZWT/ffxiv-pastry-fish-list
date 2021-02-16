@@ -44,14 +44,6 @@
                   :hint="$t('setting.dialog.opacity.hint')"
                   thumb-label
                 >
-                  <template v-slot:append>
-                    <v-text-field
-                      v-model="lazyOpacity"
-                      class="mt-0 pt-0"
-                      type="number"
-                      style="width: 60px"
-                    />
-                  </template>
                 </v-slider>
                 <v-divider />
               </v-col>
@@ -68,14 +60,6 @@
                     :label="$t('setting.dialog.notification.volume')"
                     thumb-label
                   >
-                    <template v-slot:append>
-                      <v-text-field
-                        v-model="lazyNotificationSetting.volume"
-                        class="mt-0 pt-0"
-                        type="number"
-                        style="width: 60px"
-                      />
-                    </template>
                   </v-slider>
                 </div>
                 <div

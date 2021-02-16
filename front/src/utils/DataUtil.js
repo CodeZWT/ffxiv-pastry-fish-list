@@ -1041,6 +1041,8 @@ export default {
     showChromeBugDialog: true,
     reader: {
       autoSetCompleted: true,
+      timerOpacity: 0.9,
+      historyOpacity: 0.9,
     },
   },
 

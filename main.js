@@ -62,8 +62,10 @@ function init() {
     .on('showSetting', () => {
       showReaderSetting(reader)
     })
-    .on('updateUserData', (event, data) => {
-      win.webContents.send('updateUserData', data)
+    .on('updateUserData', (event, updateData) => {
+      win.webContents.send('updateUserData', updateData)
+      reader.setOpacity(updateData.data.timerOpacity)
+      readerHistory.setOpacity(updateData.data.historyOpacity)
     })
     .on('reloadUserData', () => {
       reader.webContents.send('reloadUserData')
@@ -119,6 +121,12 @@ function createReaderSetting(readTimerWin) {
   readerSetting.on('closed', (e) => {
     closedWindows['readerSetting'] = readerSetting
   })
+
+  if (isDev) {
+    readerSetting.webContents.openDevTools({
+      mode: 'undocked',
+    })
+  }
 }
 
 function createReaderHistory(readTimerWin) {
@@ -152,11 +160,11 @@ function createReaderHistory(readTimerWin) {
   readerHistory.on('closed', (e) => {
     closedWindows['readerHistory'] = readerHistory
   })
-  if (isDev) {
-    readerHistory.webContents.openDevTools({
-      mode: 'undocked',
-    })
-  }
+  // if (isDev) {
+  //   readerHistory.webContents.openDevTools({
+  //     mode: 'undocked',
+  //   })
+  // }
 }
 
 function createMainWindow() {
