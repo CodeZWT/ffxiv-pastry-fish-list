@@ -32,6 +32,15 @@
         </v-list-item>
       </div>
     </v-list>
+    <v-btn
+      v-if="remainingCnt > 0"
+      block
+      color="primary"
+      class="rounded-t-0"
+      @click="loadingMore"
+    >
+      {{ $t('loadingMoreWithRemainingCnt', { remainingCnt }) }}
+    </v-btn>
   </div>
 </template>
 
@@ -52,6 +61,7 @@ export default {
   },
   data() {
     return {
+      loadingCnt: 100,
       rawRecords: [
         {
           startTime: 1613408915525,
@@ -64,6 +74,7 @@ export default {
           fishEyes: false,
           surfaceScale: false,
           identicalCast: false,
+          collectorGlove: true,
           baitId: 29717,
           mooch: false,
           spotId: 35,
@@ -116,7 +127,7 @@ export default {
           snagging: false,
           chum: false,
           fishEyes: false,
-          surfaceScale: false,
+          surfaceScale: true,
           identicalCast: false,
           baitId: 29717,
           mooch: false,
@@ -153,19 +164,40 @@ export default {
           chum: false,
           fishEyes: false,
           surfaceScale: false,
-          identicalCast: false,
+          identicalCast: true,
           baitId: 29717,
           mooch: false,
           spotId: 35,
           tug: 'medium',
           id: '98053e0b-25cd-4688-a3db-5f9b58054f3d',
         },
+        {
+          startTime: 1613407423413,
+          biteTime: 1613407434788,
+          hookset: 'normal',
+          fishId: 4874,
+          hq: false,
+          size: 97,
+          snagging: false,
+          chum: false,
+          fishEyes: false,
+          surfaceScale: false,
+          identicalCast: false,
+          baitId: 29717,
+          mooch: false,
+          spotId: 35,
+          tug: 'medium',
+          id: '98053e0b-25cd-4688-a3db-5f9b58054f3e',
+        },
       ],
     }
   },
   computed: {
+    remainingCnt() {
+      return this.rawRecords.length - this.loadingCnt
+    },
     records() {
-      const records = this.rawRecords.map(record => {
+      const records = this.rawRecords.slice(0, this.loadingCnt).map(record => {
         const biteInterval = +((record.biteTime - record.startTime) / 1000).toFixed(1)
         return {
           ...record,
@@ -183,8 +215,8 @@ export default {
           tug: {
             color: DataUtil.TUG_ICON_COLOR[DataUtil.TUG_ICON[record.tug]],
           },
-          effects: [record.chum ? COMMON.STATUS[763] : null]
-            .filter(it => !!it)
+          effects: Object.values(COMMON.STATUS)
+            .filter(status => record[status.key])
             .map(effect => {
               return {
                 icon: DataUtil.iconIdToClass(effect.icon),
@@ -218,6 +250,11 @@ export default {
       }
     })
   },
+  methods: {
+    loadingMore() {
+      this.loadingCnt += 50
+    },
+  },
 }
 </script>
 
@@ -227,4 +264,5 @@ export default {
 .wrapper
   height: calc(100vh - #{ $top-bars-padding-reader })
   overflow-y: scroll
+  padding-left: 6px
 </style>

@@ -382,6 +382,7 @@ function applyCurrentStatus(record, status) {
   record.fishEyes = status.effects.has(762)
   record.surfaceScale = status.effects.has(1803)
   record.identicalCast = status.effects.has(1804)
+  record.collectorGlove = status.effects.has(805)
   record.baitId = status.baitId
   record.mooch = status.mooch
   record.spotId = status.spotId
