@@ -1254,7 +1254,7 @@ module.exports = {
     data:
       '撒饵(18s；14s)<br>平钓(28s；29s)<br><span class="orangered">撒饵(15.1s；16.6s；16.5s)<br>平钓(28.8s；23.3s；28s；32s；42s)</span>',
     weatherTime: '12-16；阴云或扬沙转碧空',
-    trick: '残暴水蛭-(鱼王杆，强力)-叉舌鱼 拍皮皮拉皮拉鱼(中杆)',
+    trick: '残暴水蛭-(鱼王杆，强力)-叉舌鱼 拍三唇鲤(中杆)',
     comment:
       '拍咬钩时间较长的<span style="font-weight:bold">三唇鲤</span>(中杆)也是不错的选择。',
   },
