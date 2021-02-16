@@ -183,8 +183,8 @@ function onFFXIVEventOfUnknown(opcode, callback) {
       updateCallback({
         status,
         currentRecord,
-        records,
-        readableRecords,
+        // records,
+        // readableRecords,
       })
     }
   })
@@ -210,8 +210,8 @@ function onFFXIVEventWithFilter(
         updateCallback({
           status,
           currentRecord,
-          records,
-          readableRecords,
+          // records,
+          // readableRecords,
         })
       }
       // console.info(status)

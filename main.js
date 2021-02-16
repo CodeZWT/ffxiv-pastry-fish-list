@@ -36,6 +36,7 @@ function init() {
   FishingDataReader.onUpdate((data) => {
     win.webContents.send('fishingData', data)
     reader && reader.webContents.send('fishingData', data)
+    readerSpotStatistics && readerSpotStatistics.webContents.send('fishingData', data)
   })
   FishingDataReader.start(() => {
     log.info('Machina started!')
@@ -46,6 +47,7 @@ function init() {
   FishingDataReader.onNewRecord(data => {
     reader && reader.webContents.send('newRecord', data)
     readerHistory && readerHistory.webContents.send('newRecord', data)
+    readerSpotStatistics && readerSpotStatistics.webContents.send('newRecord', data)
   })
 
   updateIfNeeded()
@@ -127,7 +129,7 @@ function createReaderSetting(readTimerWin) {
 
   if (isDev) {
     readerSetting.webContents.openDevTools({
-      mode: 'undocked',
+      mode: 'bottom',
     })
   }
 }
@@ -201,11 +203,11 @@ function createReaderSpotStatistics(readTimerWin) {
   readerSpotStatistics.on('closed', (e) => {
     closedWindows['readerSpotStatistics'] = readerSpotStatistics
   })
-  // if (isDev) {
-  //   readerSpotStatistics.webContents.openDevTools({
-  //     mode: 'undocked',
-  //   })
-  // }
+  if (isDev) {
+    readerSpotStatistics.webContents.openDevTools({
+      mode: 'undocked',
+    })
+  }
 }
 
 function createMainWindow() {
@@ -223,7 +225,6 @@ function createMainWindow() {
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
-
   win.once('ready-to-show', () => {
     win.show()
   })
@@ -232,6 +233,7 @@ function createMainWindow() {
   win.removeMenu()
   // win.maximize()
   win.loadURL(winURL).then(() => {
+    // win.webContents.setZoomLevel(4)
     createReader()
 
     win.webContents.on('new-window', function (e, url) {

@@ -129,7 +129,6 @@ export default {
   },
   watch: {
     showUncaughtRecord(showUncaughtRecord) {
-      console.log('herere')
       this.loadRecord(0, this.loadingCnt, showUncaughtRecord).then(data => {
         this.rawRecords = data
       })
