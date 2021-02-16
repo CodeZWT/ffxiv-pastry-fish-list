@@ -6,6 +6,7 @@ const isElevated = require('is-elevated')
 const { exec } = require('child_process')
 const log = require('electron-log')
 const { TERRITORY_TYPES } = require('../data/fix')
+const { v4: uuid } = require('uuid');
 // const DataUtil = require('../utils/DataUtil')
 const INTERVAL_MINUTE = 60000
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * INTERVAL_MINUTE
@@ -38,7 +39,7 @@ const machinaOptions = isDev
     }
 const Machina = new MachinaFFXIV(machinaOptions)
 
-exports.start = (callBack) => {
+exports.start = callback => {
   return isElevated()
     .then((elevated) => {
       if (elevated) {
@@ -52,23 +53,27 @@ exports.start = (callBack) => {
         }
       }
     })
-    .then(() => Machina.start(callBack))
+    .then(() => Machina.start(callback))
 }
 exports.onUpdate = onUpdate
-exports.stop = (callBack) => {
-  Machina.stop(callBack)
+exports.stop = (callback) => {
+  Machina.stop(callback)
 }
-let fishCaughtCallBack
-exports.onFishCaught = (callBack) => {
-  fishCaughtCallBack = callBack
+let fishCaughtCallback
+exports.onFishCaught = (callback) => {
+  fishCaughtCallback = callback
+}
+let fishRecordCallback
+exports.onNewRecord = (callback) => {
+  fishRecordCallback = callback
 }
 
-let updateCallBack = (data) => {
+let updateCallback = (data) => {
   log.info('sending data', data)
 }
 
-function onUpdate(callBack) {
-  updateCallBack = callBack
+function onUpdate(callback) {
+  updateCallback = callback
 }
 
 // Add machina to firewall stuffs
@@ -159,23 +164,23 @@ function filterPacketSessionID(packet) {
   return packet.sourceActorSessionID === packet.targetActorSessionID
 }
 
-function onFFXIVEvent(type, callBack, skipUpdateEvent = false) {
-  onFFXIVEventWithFilter(type, null, null, null, callBack, skipUpdateEvent)
+function onFFXIVEvent(type, callback, skipUpdateEvent = false) {
+  onFFXIVEventWithFilter(type, null, null, null, callback, skipUpdateEvent)
 }
 
-function onFFXIVEvents(types, callBack) {
-  types.forEach((type) => onFFXIVEvent(type, callBack))
+function onFFXIVEvents(types, callback) {
+  types.forEach((type) => onFFXIVEvent(type, callback))
 }
 
-function onFFXIVEventSubType(subType, callBack) {
-  onFFXIVEventWithFilter(null, subType, null, null, callBack)
+function onFFXIVEventSubType(subType, callback) {
+  onFFXIVEventWithFilter(null, subType, null, null, callback)
 }
 
-function onFFXIVEventOfUnknown(opcode, callBack) {
+function onFFXIVEventOfUnknown(opcode, callback) {
   ffxivEvent.on('ffxivEvent', (packet) => {
     if (packet.type === 'unknown' && packet.opcode === opcode) {
-      callBack(packet)
-      updateCallBack({
+      callback(packet)
+      updateCallback({
         status,
         currentRecord,
         records,
@@ -190,7 +195,7 @@ function onFFXIVEventWithFilter(
   subType,
   category,
   opcode,
-  callBack,
+  callback,
   skipUpdateEvent = false
 ) {
   ffxivEvent.on('ffxivEvent', (packet) => {
@@ -200,9 +205,9 @@ function onFFXIVEventWithFilter(
       (!category || packet.category === category) &&
       (!opcode || packet.opcode === opcode)
     ) {
-      callBack(packet)
+      callback(packet)
       if (!skipUpdateEvent) {
-        updateCallBack({
+        updateCallback({
           status,
           currentRecord,
           records,
@@ -322,7 +327,8 @@ function saveCurrentRecord() {
     if (currentRecord.mooch) {
       currentRecord.baitId = status.prevFishId
     }
-    status.prevFishId = currentRecord.fishId
+    currentRecord.id = uuid()
+    fishRecordCallback(currentRecord)
     records.push(currentRecord)
     readableRecords.push(toReadable(currentRecord))
   }
@@ -427,7 +433,10 @@ onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
   // currentRecord.moochable = (packet.param3 & 0x0000000F) === 5
   prevRecord.size = packet.param2 >> 16
 
-  fishCaughtCallBack(prevRecord)
+  status.prevFishId = prevRecord.fishId
+
+  fishCaughtCallback(prevRecord)
+  fishRecordCallback(prevRecord)
   readableRecords[readableRecords.length - 1] = toReadable(prevRecord)
   saveCurrentRecord()
 })

@@ -46,6 +46,13 @@
           </template>
         </v-progress-linear>
       </v-col>
+      <v-col cols="12" class="mt-4 text-right">
+        <v-btn color="info" @click="showHistory">
+          <new-feature-mark :id="HistoryFeatureId">
+            <v-icon>mdi-history</v-icon>
+          </new-feature-mark>
+        </v-btn>
+      </v-col>
       <v-col cols="12" v-if="isTest" class="mt-4">
         <div>Test Data</div>
         <div>{{ dataStatus }}</div>
@@ -56,10 +63,12 @@
 
 <script>
 import DataUtil from '@/utils/DataUtil'
-import { mapGetters, mapState } from 'vuex'
-import SubUtil from '@/entries/reader/util/SubUtil'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { WEATHER_TYPES } from 'Data/translation'
+import { ReaderFeatures } from '../../../../../data/newFeatures'
+import NewFeatureMark from '@/components/basic/NewFeatureMark'
+import COMMON from 'Data/common'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -67,6 +76,7 @@ const SPECTRAL_CURRENT = 145
 
 export default {
   name: 'ReaderTimer',
+  components: { NewFeatureMark },
   props: ['now'],
   data() {
     return {
@@ -81,6 +91,7 @@ export default {
       // diademWeatherEndTime: undefined,
       // normalWeatherStartTime: undefined,
       spectralCurrentCountDownTotal: 2 * DataUtil.INTERVAL_MINUTE,
+      HistoryFeatureId: ReaderFeatures.History,
     }
   },
   computed: {
@@ -93,7 +104,7 @@ export default {
     },
     effects() {
       return (this.dataStatus?.effects ?? [])
-        .map(it => SubUtil.STATUS_DICT[it])
+        .map(it => COMMON.STATUS[it])
         .filter(it => it != null)
         .map(effect => {
           return {
@@ -201,9 +212,10 @@ export default {
     // },
   },
   created() {
-    const routeName = window.process.argv
-      .find(it => it.indexOf('--route-name') === 0)
-      ?.split('=')?.[1]
+    const routeName =
+      window.process?.argv
+        ?.find(it => it.indexOf('--route-name') === 0)
+        ?.split('=')?.[1] ?? 'ReaderTimer'
     console.log('window.process.argv', routeName)
 
     if (routeName !== this.$route.name) {
@@ -229,6 +241,11 @@ export default {
     ringBell(key) {
       this.sounds[key]?.player?.volume(1).play()
     },
+    showHistory() {
+      window.electron?.ipcRenderer?.send('showHistory')
+      this.setFeatureViewed(this.HistoryFeatureId)
+    },
+    ...mapMutations(['setFeatureViewed']),
   },
 }
 </script>

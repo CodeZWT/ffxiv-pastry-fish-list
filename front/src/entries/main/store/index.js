@@ -3,11 +3,8 @@ import Vuex from 'vuex'
 import _ from 'lodash'
 import DATA from 'Data/data'
 import DATA_CN from 'Data/translation'
-import FIX from 'Data/fix'
-import FishingData from 'Data/fishingData'
 import DataUtil from '@/utils/DataUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { loadUserData } from '@/utils/UserDataLoader'
 import CONSTANTS from 'Data/constants'
 
@@ -15,10 +12,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    fish: getCombinedFishData(),
+    fish: DataUtil.FISH_DATA,
     fishingSpots: _.merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
-    items: _.merge(DATA_CN.ITEMS, DevelopmentModeUtil.isTest() ? FIX.TEST_ITEMS : {}),
+    items: DataUtil.ITEMS,
     achievements: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS,
     weatherRates: DATA.WEATHER_RATES,
     weatherTypes: DATA_CN.WEATHER_TYPES,
@@ -66,17 +63,8 @@ export default new Vuex.Store({
       return DataUtil.iconIdToUrl(iconId)
       // }
     },
-    // combine icon file together
-    // https://css-tricks.com/css-sprites/
-    // https://www.toptal.com/developers/css/sprite-generator
-    getItemIconClass: state => id => {
-      const iconId = state.items[DataUtil.toItemId(id)]?.icon ?? 60034
-      // const localImg = require(`../assert/${iconId}.png`)
-      // if (localImg) {
-      //   return localImg
-      // } else {
-      return DataUtil.iconIdToClass(iconId)
-      // }
+    getItemIconClass: () => id => {
+      return DataUtil.getItemIconClass(id)
     },
     getAchievementIconClass: state => id => {
       const iconId = state.achievements[id]?.icon ?? 1100
@@ -85,8 +73,8 @@ export default new Vuex.Store({
     getAchievementName: state => id => {
       return DataUtil.getName(state.achievements[id])
     },
-    getItemName: state => id => {
-      return DataUtil.getName(state.items[DataUtil.toItemId(id)])
+    getItemName: () => id => {
+      return DataUtil.getItemName(id)
     },
     getZoneName: state => id => {
       const fishingSpot = state.fishingSpots[id]
@@ -495,22 +483,8 @@ function updateUserDataStateRecords(userData, type, keys, value) {
   return temp
 }
 
-function getCombinedFishData() {
-  return _.mapValues(
-    DataUtil.mergeByReplacingArray(
-      FishingData,
-      FIX.FISH,
-      FIX.SPEAR_FISH,
-      DevelopmentModeUtil.isTest() ? FIX.TEST_FISH : {}
-    ),
-    fish => {
-      return { ...fish, collectable: FIX.COLLECTABLE_FISH_ITEM_ID.includes(fish._id) }
-    }
-  )
-}
-
 function getRemainingBaitIds(completeTypes, bigFishTypes, completedFishIds) {
-  const fishList = Object.values(getCombinedFishData())
+  const fishList = Object.values(DataUtil.FISH_DATA)
   const baitFishItems = DataUtil.generateBaitFishItems(
     fishList,
     completeTypes,

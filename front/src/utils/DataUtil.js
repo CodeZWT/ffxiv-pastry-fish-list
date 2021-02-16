@@ -14,6 +14,9 @@ import { detect } from 'detect-browser'
 import { Howl } from 'howler'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import CONSTANTS from 'Data/constants'
+import FishingData from 'Data/fishingData'
+import FIX from 'Data/fix'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -141,6 +144,30 @@ function toInnerSpotLink({ id, mode }) {
 const TIP3_FISH_IDS = [16744, 17589]
 const TIP5_FISH_IDS = [17591, 12753, 12810]
 
+function getCombinedFishData() {
+  return _.mapValues(
+    mergeByReplacingArray(
+      FishingData,
+      FIX.FISH,
+      FIX.SPEAR_FISH,
+      DevelopmentModeUtil.isTest() ? FIX.TEST_FISH : {}
+    ),
+    fish => {
+      return { ...fish, collectable: FIX.COLLECTABLE_FISH_ITEM_ID.includes(fish._id) }
+    }
+  )
+}
+
+function mergeByReplacingArray(object, ...otherArgs) {
+  return _.mergeWith(object, ...otherArgs, mergeArray)
+}
+
+function mergeArray(objValue, srcValue) {
+  if (_.isArray(srcValue)) {
+    // force removing duplication here to fix old data
+    return _.uniq(srcValue).filter(it => it != null)
+  }
+}
 export default {
   LINKS: {
     PASTRY_FISH: {
@@ -355,7 +382,7 @@ export default {
     // =======================================================================
     // if need add new element in default value for settings,
     // another patch function is needed
-    let newUserData = _.mergeWith(defaultData, storedDate, this.mergeArray)
+    let newUserData = _.mergeWith(defaultData, storedDate, mergeArray)
     const defaultComponents = this.USER_DEFAULT_DATA.detailArrangement.components
     const currentArrangement = newUserData.detailArrangement
     const componentsDiff = defaultComponents.length - currentArrangement.components.length
@@ -370,16 +397,7 @@ export default {
     return newUserData
   },
 
-  mergeByReplacingArray(object, ...otherArgs) {
-    return _.mergeWith(object, ...otherArgs, this.mergeArray)
-  },
-
-  mergeArray(objValue, srcValue) {
-    if (_.isArray(srcValue)) {
-      // force removing duplication here to fix old data
-      return _.uniq(srcValue).filter(it => it != null)
-    }
-  },
+  mergeByReplacingArray: mergeByReplacingArray,
 
   toComparableVersion: toComparableVersion,
 
@@ -783,6 +801,23 @@ export default {
       return _.get(state.userData, path)
     }
   },
+
+  // combine icon file together
+  // https://css-tricks.com/css-sprites/
+  // https://www.toptal.com/developers/css/sprite-generator
+  getItemIconClass(id) {
+    const iconId = this.ITEMS[this.toItemId(id)]?.icon ?? 60034
+    // const localImg = require(`../assert/${iconId}.png`)
+    // if (localImg) {
+    //   return localImg
+    // } else {
+    return this.iconIdToClass(iconId)
+    // }
+  },
+
+  getItemName(id) {
+    return this.getName(this.ITEMS[this.toItemId(id)])
+  },
   // FUNCTION END
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
@@ -1046,4 +1081,7 @@ export default {
 
   NOTIFICATION_SOUNDS: NOTIFICATION_SOUNDS,
   READER_SOUNDS: READER_SOUNDS,
+
+  FISH_DATA: getCombinedFishData(),
+  ITEMS: _.merge(DATA_CN.ITEMS, DevelopmentModeUtil.isTest() ? FIX.TEST_ITEMS : {}),
 }

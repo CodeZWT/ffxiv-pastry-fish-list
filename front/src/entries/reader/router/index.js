@@ -19,6 +19,15 @@ const routes = [
         '../views/ReaderSetting'
       ),
   },
+  {
+    path: '/history',
+    name: 'ReaderHistory',
+    component: () =>
+      import(
+        /* webpackChunkName: "history" */
+        '../views/ReaderHistory'
+      ),
+  },
 ]
 
 const router = new VueRouter({

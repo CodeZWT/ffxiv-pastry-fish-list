@@ -15,7 +15,7 @@ const SETUP_EXE_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
 
-let win, reader, readerSetting
+let win, reader, readerSetting, readerHistory
 const winURL = isDev
   ? `http://localhost:8080`
   : `file://${__dirname}/front-electron-dist/index.html`
@@ -42,6 +42,9 @@ function init() {
   FishingDataReader.onFishCaught(data => {
     win.webContents.send('fishCaught', data)
   })
+  FishingDataReader.onNewRecord(data => {
+    readerHistory && readerHistory.webContents.send('newRecord', data)
+  })
 
   updateIfNeeded()
   setInterval(updateIfNeeded, CONSTANTS.INTERVAL_MINUTE * 10)
@@ -67,6 +70,9 @@ function init() {
       skipUpdate = true
       win.setProgressBar(0)
       log.info('Update skipped')
+    })
+    .on('showHistory', () => {
+      showReaderHistory(reader)
     })
 
 
@@ -100,29 +106,45 @@ function createReaderSetting(readTimerWin) {
   readerSetting.setOpacity(1)
   readerSetting.setAlwaysOnTop(true)
   readerSetting.removeMenu()
-  // setting.maximize()
   readerSetting.loadURL(readerURL).then(() => {
     readerSetting.webContents.on('new-window', function (e, url) {
       e.preventDefault()
       shell.openExternal(url)
     })
-
-    // FishingDataReader.onUpdate((data) => {
-    //   setting.webContents.send('fishingData', data)
-    // })
-    // FishingDataReader.start(() => {
-    //   log.info('Machina started!')
-    // })
-
-    // ipcMain.on('startUpdate', () => {
-    //   quitAndSetup()
-    // })
   })
-  // if (isDev) {
-  //   readerSetting.webContents.openDevTools({
-  //     mode: 'undocked',
-  //   })
-  // }
+}
+
+function createReaderHistory(readTimerWin) {
+  readerHistory = new BrowserWindow({
+    width: 500,
+    height: 800,
+    frame: false,
+    transparent: true,
+    webPreferences: {
+      contextIsolation: false,
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      preload: __dirname + '/preload.js',
+      additionalArguments: ['--route-name=ReaderHistory']
+    },
+    icon: path.join(__dirname, 'assets/reader.png'),
+    show: true,
+    parent: readTimerWin,
+  })
+  readerHistory.setOpacity(0.9)
+  readerHistory.setAlwaysOnTop(true)
+  readerHistory.removeMenu()
+  readerHistory.loadURL(readerURL).then(() => {
+    readerHistory.webContents.on('new-window', function (e, url) {
+      e.preventDefault()
+      shell.openExternal(url)
+    })
+  })
+  if (isDev) {
+    readerHistory.webContents.openDevTools({
+      mode: 'undocked',
+    })
+  }
 }
 
 function createMainWindow() {
@@ -165,7 +187,7 @@ function createMainWindow() {
 
   if (isDev) {
     win.webContents.openDevTools({
-      mode: 'undocked',
+      mode: 'right',
     })
   }
 }
@@ -197,6 +219,7 @@ function createReader() {
     })
 
     createReaderSetting(reader)
+    createReaderHistory(reader)
 
     // FishingDataReader.onUpdate((data) => {
     //   reader.webContents.send('fishingData', data)
@@ -211,7 +234,7 @@ function createReader() {
   })
   if (isDev) {
     reader.webContents.openDevTools({
-      mode: 'undocked',
+      mode: 'bottom',
     })
   }
 }
@@ -222,6 +245,10 @@ function showReader() {
 
 function showReaderSetting() {
   readerSetting && readerSetting.show()
+}
+
+function showReaderHistory() {
+  readerHistory && readerHistory.show()
 }
 
 function updateIfNeeded() {

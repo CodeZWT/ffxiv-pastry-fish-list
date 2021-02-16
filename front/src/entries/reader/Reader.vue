@@ -20,8 +20,16 @@
       </v-btn>
     </v-system-bar>
     <v-system-bar app v-else-if="showSettingBar">
-      <v-img :src="readerIcon" max-height="20" max-width="20" />
+      <v-img :src="settingIcon" max-height="20" max-width="20" />
       <span class="ml-1">渔捞设置</span>
+      <v-spacer />
+      <v-btn @click="close" x-small text style="-webkit-app-region: none">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-system-bar>
+    <v-system-bar app v-else-if="showHistoryBar">
+      <v-img :src="readerIcon" max-height="20" max-width="20" />
+      <span class="ml-1">历史记录</span>
       <v-spacer />
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-close</v-icon>
@@ -40,6 +48,7 @@ import EorzeaTime from '@/utils/Time'
 import DataUtil from '@/utils/DataUtil'
 import { mapMutations, mapState } from 'vuex'
 import READER_ICON from 'Assets/reader.png'
+import SETTING_ICON from 'Assets/setting.png'
 import { ReaderFeatures } from 'Data/newFeatures'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 
@@ -49,6 +58,7 @@ export default {
   data: () => ({
     now: Date.now(),
     readerIcon: READER_ICON,
+    settingIcon: SETTING_ICON,
     SettingFeatureId: ReaderFeatures.Setting,
   }),
   computed: {
@@ -57,6 +67,9 @@ export default {
     },
     showSettingBar() {
       return this.$route.name === 'ReaderSetting'
+    },
+    showHistoryBar() {
+      return this.$route.name === 'ReaderHistory'
     },
     eorzeaTime() {
       return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
@@ -111,6 +124,25 @@ export default {
 body::-webkit-scrollbar {
   display: none;
 }
+
+/* scroller setting start */
+/* Works on Chrome/Edge/Safari */
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ffffff66;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+/* scroller setting end */
 
 .v-system-bar {
   -webkit-app-region: drag;

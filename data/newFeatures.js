@@ -9,5 +9,6 @@ exports.MainFeatures = {
 // 0.6.1
 // setting
 exports.ReaderFeatures = {
-  Setting: 'Setting-V.0.6.1-1'
+  Setting: 'Setting-V.0.6.1-1',
+  History: 'History-V.0.6.2-1'
 }
