@@ -383,7 +383,7 @@ module.exports = {
     weatherTime: '17-19:30；薄雾，阴云',
     trick: '旋转亮片-(轻杆，精准)-杜父鱼-(鱼王杆，强力)-特拉玛豹鱼',
     comment:
-      '体感27s以后的鱼王杆大概率是鱼王，27s以前有很多的<span style="font-weight:bold">特拉玛豹鱼</span>。此外饿猫上的数据显示用<span style="font-weight:bold">复合亮片</span>也是一个不错的选择。',
+      '体感27s以后的鱼王杆大概率是鱼王，27s以前有很多的<span style="font-weight:bold">豹鱼</span>。此外饿猫上的数据显示用<span style="font-weight:bold">复合亮片</span>也是一个不错的选择。',
   },
   7906: {
     id: 7906,
