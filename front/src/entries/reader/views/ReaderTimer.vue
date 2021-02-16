@@ -46,13 +46,13 @@
           </template>
         </v-progress-linear>
       </v-col>
-      <v-col cols="12" class="mt-4 text-right">
-        <v-btn color="info" @click="showHistory">
-          <new-feature-mark :id="HistoryFeatureId">
-            <v-icon>mdi-history</v-icon>
-          </new-feature-mark>
-        </v-btn>
-      </v-col>
+      <!--      <v-col cols="12" class="mt-4 text-right">-->
+      <!--        <v-btn color="info" @click="showHistory">-->
+      <!--          <new-feature-mark :id="HistoryFeatureId">-->
+      <!--            <v-icon>mdi-history</v-icon>-->
+      <!--          </new-feature-mark>-->
+      <!--        </v-btn>-->
+      <!--      </v-col>-->
       <v-col cols="12" v-if="isTest" class="mt-4">
         <div>Test Data</div>
         <div>{{ dataStatus }}</div>
@@ -67,7 +67,7 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { WEATHER_TYPES } from 'Data/translation'
 import { ReaderFeatures } from '../../../../../data/newFeatures'
-import NewFeatureMark from '@/components/basic/NewFeatureMark'
+// import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import COMMON from 'Data/common'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
@@ -76,7 +76,7 @@ const SPECTRAL_CURRENT = 145
 
 export default {
   name: 'ReaderTimer',
-  components: { NewFeatureMark },
+  // components: { NewFeatureMark },
   props: ['now'],
   data() {
     return {

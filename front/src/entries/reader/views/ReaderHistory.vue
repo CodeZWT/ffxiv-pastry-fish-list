@@ -49,6 +49,7 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import DataUtil from '@/utils/DataUtil'
 import max from 'lodash/max'
 import COMMON from 'Data/common'
+// import TEST from 'Data/test'
 
 export default {
   name: 'ReaderHistory',
@@ -62,7 +63,7 @@ export default {
   data() {
     return {
       loadingCnt: 100,
-      rawRecords: [],
+      rawRecords: [], //TEST.READER_HISTORY_RECORDS,
     }
   },
   computed: {
