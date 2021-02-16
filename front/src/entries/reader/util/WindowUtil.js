@@ -3,7 +3,7 @@ export default {
     const remote = window.require ? window.require('electron').remote : null
     const WIN = remote.getCurrentWindow()
     console.log('set top', alwaysOnTop)
-    WIN.setAlwaysOnTop(alwaysOnTop)
+    WIN.setAlwaysOnTop(alwaysOnTop, 'screen-saver')
   },
 
   closeWindow() {

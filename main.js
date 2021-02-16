@@ -93,6 +93,7 @@ function createReaderSetting(readTimerWin) {
     height: 160,
     frame: false,
     transparent: true,
+    maximizable: false,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -106,7 +107,7 @@ function createReaderSetting(readTimerWin) {
   })
   closedWindows['readerSetting'] = null
   readerSetting.setOpacity(1)
-  readerSetting.setAlwaysOnTop(true)
+  setOnTop(readerSetting)
   readerSetting.removeMenu()
   readerSetting.loadURL(readerURL).then(() => {
     readerSetting.webContents.on('new-window', function (e, url) {
@@ -125,6 +126,7 @@ function createReaderHistory(readTimerWin) {
     height: 800,
     frame: false,
     transparent: true,
+    maximizable: false,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -138,7 +140,7 @@ function createReaderHistory(readTimerWin) {
   })
   closedWindows['readerHistory'] = null
   readerHistory.setOpacity(0.9)
-  readerHistory.setAlwaysOnTop(true)
+  setOnTop(readerHistory)
   readerHistory.removeMenu()
   readerHistory.loadURL(readerURL).then(() => {
     readerHistory.webContents.on('new-window', function (e, url) {
@@ -201,12 +203,17 @@ function createMainWindow() {
   }
 }
 
+function setOnTop(win) {
+  win.setAlwaysOnTop(true, 'screen-saver')
+}
+
 function createReader() {
   reader = new BrowserWindow({
     width: 500,
     height: 160,
     frame: false,
     transparent: true,
+    maximizable: false,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -219,7 +226,7 @@ function createReader() {
   })
   closedWindows['reader'] = null
   reader.setOpacity(0.8)
-  reader.setAlwaysOnTop(true)
+  setOnTop(reader)
   reader.removeMenu()
   // reader.maximize()
   reader
