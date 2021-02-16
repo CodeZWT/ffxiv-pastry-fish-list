@@ -11,6 +11,23 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.6.2</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕桌面版
+        </div>
+        <ul>
+          <li>
+            修复最小化按钮没有正常显示的问题。
+          </li>
+          <li>
+            修复游戏“窗口全屏模式”下无法置顶的问题。
+          </li>
+          <li>
+            修复直接通过WIN10任务栏关闭窗口后报错的问题。
+          </li>
+        </ul>
+        <p />
+
         <div class="text-h6">Version 0.6.1</div>
         <div class="text-h5 text-center my-1">
           渔捞 - 钓鱼辅助
