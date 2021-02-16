@@ -1,5 +1,11 @@
 <template>
   <div class="wrapper">
+    <v-row>
+      <v-col class="d-flex align-center" cols="12">
+        <div class="mr-2">显示未提钩记录</div>
+        <v-switch v-model="showUncaughtRecord" inset />
+      </v-col>
+    </v-row>
     <v-list>
       <div v-for="(record, index) in records" :key="index">
         <v-divider v-if="index > 0" />
@@ -8,7 +14,7 @@
             <v-row no-gutters class="d-flex align-center">
               <v-col class="d-flex align-center">
                 <item-icon :icon-class="record.fish.icon" small />
-                <span>{{ record.fish.name }}</span>
+                <span>{{ record.fish.name || '未提钩' }}</span>
               </v-col>
               <v-col class="d-flex align-center">
                 <div v-for="effect in record.effects" :key="effect.ID">
@@ -70,6 +76,7 @@ export default {
       rawRecords: [], //TEST.READER_HISTORY_RECORDS,
       dbRecordsCnt: 0,
       dbLoadedCnt: 0,
+      showUncaughtRecord: true,
     }
   },
   computed: {
@@ -120,13 +127,17 @@ export default {
       })
     },
   },
+  watch: {
+    showUncaughtRecord(showUncaughtRecord) {
+      console.log('herere')
+      this.loadRecord(0, this.loadingCnt, showUncaughtRecord).then(data => {
+        this.rawRecords = data
+      })
+    },
+  },
   async created() {
     this.dbRecordsCnt = await db.records.count()
-    this.rawRecords = await db.records
-      .orderBy('startTime')
-      .reverse()
-      .limit(INITIAL_LOADING_CNT)
-      .toArray()
+    this.rawRecords = await this.loadRecord(0, this.loadingCnt, this.showUncaughtRecord)
     this.dbLoadedCnt = this.rawRecords.length
     console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
 
@@ -143,15 +154,24 @@ export default {
     })
   },
   methods: {
+    async loadRecord(offset, limit, showUncaughtRecord) {
+      let table = db.records.orderBy('startTime').reverse()
+      if (!showUncaughtRecord) {
+        table = table.filter(record => record.fishId !== -1)
+      }
+      return table
+        .offset(offset)
+        .limit(limit)
+        .toArray()
+    },
     async loadingMore() {
       this.loadingCnt += LOAD_MORE_CNT
       if (this.loadingCnt > this.dbLoadedCnt && this.dbLoadedCnt < this.dbRecordsCnt) {
-        const newLoadedRecords = await db.records
-          .orderBy('startTime')
-          .reverse()
-          .offset(this.dbLoadedCnt)
-          .limit(LOAD_MORE_CNT)
-          .toArray()
+        const newLoadedRecords = await this.loadRecord(
+          this.dbLoadedCnt,
+          LOAD_MORE_CNT,
+          this.showUncaughtRecord
+        )
         console.log('newLoadedRecords', newLoadedRecords)
         this.dbLoadedCnt += newLoadedRecords.length
         this.rawRecords = this.rawRecords.concat(newLoadedRecords)
@@ -167,5 +187,6 @@ export default {
 .wrapper
   height: calc(100vh - #{ $top-bars-padding-reader })
   overflow-y: scroll
+  overflow-x: hidden
   padding-left: 6px
 </style>
