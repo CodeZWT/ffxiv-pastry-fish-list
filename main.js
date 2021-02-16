@@ -15,7 +15,7 @@ const SETUP_EXE_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
 
-let win, reader, readerSetting, readerHistory
+let win, reader, readerSetting, readerHistory, readerSpotStatistics
 const winURL = isDev
   ? `http://localhost:8080`
   : `file://${__dirname}/front-electron-dist/index.html`
@@ -76,7 +76,10 @@ function init() {
       log.info('Update skipped')
     })
     .on('toggleHistory', () => {
-      toggleReaderHistory(reader)
+      toggleReaderHistory()
+    })
+    .on('toggleSpotStatistics', () => {
+      toggleSpotStatistics()
     })
 
 
@@ -162,6 +165,44 @@ function createReaderHistory(readTimerWin) {
   })
   // if (isDev) {
   //   readerHistory.webContents.openDevTools({
+  //     mode: 'undocked',
+  //   })
+  // }
+}
+
+function createReaderSpotStatistics(readTimerWin) {
+  readerSpotStatistics = new BrowserWindow({
+    width: 500,
+    height: 800,
+    frame: false,
+    transparent: true,
+    maximizable: false,
+    webPreferences: {
+      contextIsolation: false,
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      preload: __dirname + '/preload.js',
+      additionalArguments: ['--route-name=ReaderSpotStatistics']
+    },
+    icon: path.join(__dirname, 'assets/reader.png'),
+    show: false,
+    parent: readTimerWin,
+  })
+  closedWindows['readerSpotStatistics'] = null
+  readerSpotStatistics.setOpacity(0.9)
+  setOnTop(readerSpotStatistics)
+  readerSpotStatistics.removeMenu()
+  readerSpotStatistics.loadURL(readerURL).then(() => {
+    readerSpotStatistics.webContents.on('new-window', function (e, url) {
+      e.preventDefault()
+      shell.openExternal(url)
+    })
+  })
+  readerSpotStatistics.on('closed', (e) => {
+    closedWindows['readerSpotStatistics'] = readerSpotStatistics
+  })
+  // if (isDev) {
+  //   readerSpotStatistics.webContents.openDevTools({
   //     mode: 'undocked',
   //   })
   // }
@@ -254,6 +295,7 @@ function createReader() {
 
     createReaderSetting(reader)
     createReaderHistory(reader)
+    createReaderSpotStatistics(reader)
 
     // FishingDataReader.onUpdate((data) => {
     //   reader.webContents.send('fishingData', data)
@@ -289,12 +331,23 @@ function showReaderSetting() {
 
 function toggleReaderHistory() {
   if (closedWindows['readerHistory']) {
-    createReaderHistory()
+    createReaderHistory(reader)
   }
   if (readerHistory.isVisible()) {
     readerHistory.hide()
   } else {
     readerHistory.show()
+  }
+}
+
+function toggleSpotStatistics() {
+  if (closedWindows['readerSpotStatistics']) {
+    createReaderSpotStatistics(reader)
+  }
+  if (readerSpotStatistics.isVisible()) {
+    readerSpotStatistics.hide()
+  } else {
+    readerSpotStatistics.show()
   }
 }
 

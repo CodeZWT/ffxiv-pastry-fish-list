@@ -47,12 +47,18 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" class="mt-4 text-right">
+        <v-btn color="info" @click="showSpotStatistics" class="mr-2">
+          <new-feature-mark :id="SpotStatisticsFeatureId">
+            <v-icon>mdi-chart-box</v-icon>
+          </new-feature-mark>
+        </v-btn>
         <v-btn color="info" @click="showHistory">
           <new-feature-mark :id="HistoryFeatureId">
             <v-icon>mdi-history</v-icon>
           </new-feature-mark>
         </v-btn>
       </v-col>
+
       <v-col cols="12" v-if="isTest" class="mt-4">
         <div>Test Data</div>
         <div>{{ dataStatus }}</div>
@@ -93,6 +99,7 @@ export default {
       // normalWeatherStartTime: undefined,
       spectralCurrentCountDownTotal: 2 * DataUtil.INTERVAL_MINUTE,
       HistoryFeatureId: ReaderFeatures.History,
+      SpotStatisticsFeatureId: ReaderFeatures.SpotStatistics,
     }
   },
   computed: {
@@ -248,6 +255,10 @@ export default {
     showHistory() {
       window.electron?.ipcRenderer?.send('toggleHistory')
       this.setFeatureViewed(this.HistoryFeatureId)
+    },
+    showSpotStatistics() {
+      window.electron?.ipcRenderer?.send('toggleSpotStatistics')
+      this.setFeatureViewed(this.SpotStatisticsFeatureId)
     },
     ...mapMutations(['setFeatureViewed']),
   },

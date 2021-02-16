@@ -35,6 +35,14 @@
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </v-system-bar>
+    <v-system-bar app v-else-if="showSpotStatisticsBar">
+      <v-img :src="readerIcon" max-height="20" max-width="20" />
+      <span class="ml-1">钓场统计</span>
+      <v-spacer />
+      <v-btn @click="close" x-small text style="-webkit-app-region: none">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-system-bar>
     <v-main>
       <router-view :now="now" />
     </v-main>
@@ -70,6 +78,9 @@ export default {
     },
     showHistoryBar() {
       return this.$route.name === 'ReaderHistory'
+    },
+    showSpotStatisticsBar() {
+      return this.$route.name === 'ReaderSpotStatistics'
     },
     eorzeaTime() {
       return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))

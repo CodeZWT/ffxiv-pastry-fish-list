@@ -28,6 +28,15 @@ const routes = [
         '../views/ReaderHistory'
       ),
   },
+  {
+    path: '/spotStatistics',
+    name: 'ReaderSpotStatistics',
+    component: () =>
+      import(
+        /* webpackChunkName: "spotStatistics" */
+        '../views/ReaderSpotStatistics'
+      ),
+  },
 ]
 
 const router = new VueRouter({
