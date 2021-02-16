@@ -266,21 +266,21 @@ function createReader() {
 
 function showReader() {
   if (closedWindows['reader']) {
-    reader = createReader()
+    createReader()
   }
   reader && reader.show()
 }
 
 function showReaderSetting() {
   if (closedWindows['readerSetting']) {
-    reader = createReaderSetting()
+    createReaderSetting()
   }
   readerSetting && readerSetting.show()
 }
 
 function showReaderHistory() {
   if (closedWindows['readerHistory']) {
-    reader = createReaderHistory()
+    createReaderHistory()
   }
   readerHistory && readerHistory.show()
 }
