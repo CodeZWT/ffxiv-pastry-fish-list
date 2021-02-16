@@ -65,9 +65,20 @@ function init() {
       showReaderSetting(reader)
     })
     .on('updateUserData', (event, updateData) => {
+      // log.info('updateUserData', updateData.data)
       win.webContents.send('updateUserData', updateData)
       reader.setOpacity(updateData.data.timerOpacity)
       readerHistory.setOpacity(updateData.data.historyOpacity)
+      readerSpotStatistics.setOpacity(updateData.data.spotStatisticsOpacity)
+      // if (reader.webContents.zoomFactor !== updateData.data.timerZoomFactor) {
+      //   reader.webContents.setZoomFactor(updateData.data.timerZoomFactor)
+      // }
+      // if (readerHistory.webContents.zoomFactor !== updateData.data.historyZoomFactor) {
+      //   readerHistory.webContents.setZoomFactor(updateData.data.historyZoomFactor)
+      // }
+      // if (readerSpotStatistics.webContents.zoomFactor !== updateData.data.spotStatisticsZoomFactor) {
+      //   readerSpotStatistics.webContents.setZoomFactor(updateData.data.spotStatisticsZoomFactor)
+      // }
     })
     .on('reloadUserData', () => {
       reader.webContents.send('reloadUserData')

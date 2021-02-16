@@ -1043,7 +1043,11 @@ export default {
     reader: {
       autoSetCompleted: true,
       timerOpacity: 0.9,
+      // timerZoomFactor: 1,
       historyOpacity: 0.9,
+      // historyZoomFactor: 1,
+      spotStatisticsOpacity: 0.9,
+      // spotStatisticsZoomFactor: 1,
     },
   },
 

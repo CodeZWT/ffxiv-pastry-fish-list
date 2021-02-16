@@ -8,26 +8,101 @@
           </div>
           <v-switch inset v-model="lazySetting.autoSetCompleted" />
         </v-col>
-        <v-col cols="12" class="d-flex align-center">
-          <v-slider
-            v-model="lazySetting.timerOpacity"
-            label="设置计时器透明度"
-            max="1"
-            min="0.1"
-            step="0.01"
-            thumb-label
-          />
-        </v-col>
-        <v-col cols="12" class="d-flex align-center">
-          <v-slider
-            v-model="lazySetting.historyOpacity"
-            label="设置历史记录透明度"
-            max="1"
-            min="0.1"
-            step="0.01"
-            thumb-label
-          />
-        </v-col>
+        <v-card outlined width="100%" class="my-1">
+          <div class="overline ml-2">
+            计时器
+          </div>
+          <v-card-text>
+            <div class="d-flex align-center">
+              <v-slider
+                v-model="lazySetting.timerOpacity"
+                label="透明度"
+                max="1"
+                min="0.1"
+                step="0.01"
+                thumb-label
+              />
+            </div>
+            <!--            <div class="d-flex align-center">-->
+            <!--              <v-slider-->
+            <!--                v-model="lazySetting.timerZoomFactor"-->
+            <!--                max="3"-->
+            <!--                min="0.3"-->
+            <!--                step="0.1"-->
+            <!--                label="缩放比例"-->
+            <!--                thumb-label-->
+            <!--              >-->
+            <!--                <template v-slot:thumb-label="{ value }">-->
+            <!--                  {{ Math.floor(value * 100) }}%-->
+            <!--                </template>-->
+            <!--              </v-slider>-->
+            <!--            </div>-->
+          </v-card-text>
+        </v-card>
+
+        <v-card outlined width="100%" class="my-1">
+          <div class="overline ml-2">
+            历史记录
+          </div>
+          <v-card-text>
+            <div class="d-flex align-center">
+              <v-slider
+                v-model="lazySetting.historyOpacity"
+                label="透明度"
+                max="1"
+                min="0.1"
+                step="0.01"
+                thumb-label
+              />
+            </div>
+            <!--            <div class="d-flex align-center">-->
+            <!--              <v-slider-->
+            <!--                v-model="lazySetting.historyZoomFactor"-->
+            <!--                max="3"-->
+            <!--                min="0.3"-->
+            <!--                step="0.1"-->
+            <!--                label="缩放比例"-->
+            <!--                thumb-label-->
+            <!--              >-->
+            <!--                <template v-slot:thumb-label="{ value }">-->
+            <!--                  {{ Math.floor(value * 100) }}%-->
+            <!--                </template>-->
+            <!--              </v-slider>-->
+            <!--            </div>-->
+          </v-card-text>
+        </v-card>
+
+        <v-card outlined width="100%" class="my-1">
+          <div class="overline ml-2">
+            钓场统计
+          </div>
+          <v-card-text>
+            <div class="d-flex align-center">
+              <v-slider
+                v-model="lazySetting.spotStatisticsOpacity"
+                label="透明度"
+                max="1"
+                min="0.1"
+                step="0.01"
+                thumb-label
+              />
+            </div>
+            <!--            <div class="d-flex align-center">-->
+            <!--              <v-slider-->
+            <!--                v-model="lazySetting.spotStatisticsZoomFactor"-->
+            <!--                max="3"-->
+            <!--                min="0.3"-->
+            <!--                step="0.1"-->
+            <!--                label="缩放比例"-->
+            <!--                thumb-label-->
+            <!--              >-->
+            <!--                <template v-slot:thumb-label="{ value }">-->
+            <!--                  {{ Math.floor(value * 100) }}%-->
+            <!--                </template>-->
+            <!--              </v-slider>-->
+            <!--            </div>-->
+          </v-card-text>
+        </v-card>
         <div v-if="isTest">{{ lazySetting }}</div>
       </v-row>
     </v-card-text>
