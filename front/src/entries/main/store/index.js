@@ -194,6 +194,9 @@ export default new Vuex.Store({
     opacity: state => {
       return state.userData.opacity
     },
+    zoomFactor: state => {
+      return state.userData.zoomFactor
+    },
     websiteVersion: state => {
       return state.userData.websiteVersion
     },
@@ -372,6 +375,10 @@ export default new Vuex.Store({
     },
     setOpacity(state, opacity) {
       state.userData = { ...state.userData, opacity }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
+    setZoomFactor(state, zoomFactor) {
+      state.userData = { ...state.userData, zoomFactor }
       LocalStorageUtil.storeUserData(state.userData)
     },
     setWebsiteVersion(state, websiteVersion) {

@@ -83,6 +83,10 @@ function init() {
     .on('toggleSpotStatistics', () => {
       toggleSpotStatistics()
     })
+    .on('zoomMainWindow', (event, zoomFactor) => {
+      log.info('zoom main window', zoomFactor)
+      win.webContents.setZoomFactor(zoomFactor)
+    })
 
 
   globalShortcut.register('Alt+CommandOrControl+L', () => {
@@ -233,7 +237,6 @@ function createMainWindow() {
   win.removeMenu()
   // win.maximize()
   win.loadURL(winURL).then(() => {
-    // win.webContents.setZoomLevel(4)
     createReader()
 
     win.webContents.on('new-window', function (e, url) {

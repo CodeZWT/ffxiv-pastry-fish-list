@@ -139,8 +139,11 @@
       },
       "opacity": {
         "title": "页面透明度",
-        "slider": "透明度",
-        "hint": "无法拖动请在ACT中锁定悬浮窗，也可直接点击或输入"
+        "slider": "透明度"
+      },
+      "zoom": {
+        "title": "页面缩放",
+        "slider": "缩放比例"
       },
       "notification": {
         "title": "闹钟",

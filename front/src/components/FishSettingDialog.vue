@@ -41,9 +41,26 @@
                   min="0.1"
                   step="0.01"
                   :label="$t('setting.dialog.opacity.slider')"
-                  :hint="$t('setting.dialog.opacity.hint')"
                   thumb-label
                 >
+                </v-slider>
+                <v-divider />
+              </v-col>
+              <v-col v-if="isElectron" cols="12">
+                <div class="text-subtitle-1">
+                  {{ $t('setting.dialog.zoom.title') }}
+                </div>
+                <v-slider
+                  v-model="lazyZoomFactor"
+                  max="3"
+                  min="0.3"
+                  step="0.1"
+                  :label="$t('setting.dialog.zoom.slider')"
+                  thumb-label
+                >
+                  <template v-slot:thumb-label="{ value }">
+                    {{ Math.floor(value * 100) }}%
+                  </template>
                 </v-slider>
                 <v-divider />
               </v-col>
@@ -250,6 +267,7 @@ import i18n from '@/i18n'
 import draggable from 'vuedraggable'
 import DetailItemSettingEntry from '@/components/DetailItemSettingEntry'
 import NotificationUtil from '@/utils/NotificationUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 setInteractionMode('eager')
 
@@ -283,8 +301,10 @@ export default {
     },
   },
   data: () => ({
+    isElectron: DevelopmentModeUtil.isElectron(),
     NOTIFICATION_SOUNDS: DataUtil.NOTIFICATION_SOUNDS,
     lazyOpacity: undefined,
+    lazyZoomFactor: undefined,
     lazyNotificationSetting: {},
     lazyEnabledDetailComponents: [],
     lazyDisabledDetailComponents: [],
@@ -308,6 +328,7 @@ export default {
     ...mapState(['sounds']),
     ...mapGetters([
       'opacity',
+      'zoomFactor',
       'notification',
       'detailComponents',
       'isSystemNotificationEnabled',
@@ -328,6 +349,7 @@ export default {
     init() {
       this.$refs.observer?.reset()
       this.lazyOpacity = this.opacity
+      this.lazyZoomFactor = this.zoomFactor
       this.lazyNotificationSetting = _.cloneDeep(this.notification)
       this.lazyEnabledDetailComponents = _.cloneDeep(
         this.detailComponents.filter(it => it.enabled)
@@ -354,6 +376,8 @@ export default {
     apply() {
       this.setShowFilter(this.lazyShowFilter)
       this.setOpacity(this.lazyOpacity)
+      this.setZoomFactor(this.lazyZoomFactor)
+      window.electron?.ipcRenderer?.send('zoomMainWindow', this.lazyZoomFactor)
       this.setNotificationSetting(_.cloneDeep(this.lazyNotificationSetting))
       this.setDetailArrangement(
         _.cloneDeep({
@@ -411,6 +435,7 @@ export default {
     },
     ...mapMutations([
       'setOpacity',
+      'setZoomFactor',
       'setNotification',
       'setDetailArrangement',
       'enableSystemNotification',

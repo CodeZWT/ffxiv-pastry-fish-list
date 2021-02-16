@@ -940,6 +940,7 @@ export default {
     showFilter: true,
     showBanner: true,
     opacity: 1,
+    zoomFactor: 1,
     rightPanePercentage: 30,
     notification: {
       volume: 0.5,
