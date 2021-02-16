@@ -49,7 +49,11 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import DataUtil from '@/utils/DataUtil'
 import max from 'lodash/max'
 import COMMON from 'Data/common'
+import db from '@/plugins/db'
 // import TEST from 'Data/test'
+
+const INITIAL_LOADING_CNT = 100
+const LOAD_MORE_CNT = 100
 
 export default {
   name: 'ReaderHistory',
@@ -62,13 +66,15 @@ export default {
   },
   data() {
     return {
-      loadingCnt: 100,
+      loadingCnt: INITIAL_LOADING_CNT,
       rawRecords: [], //TEST.READER_HISTORY_RECORDS,
+      dbRecordsCnt: 0,
+      dbLoadedCnt: 0,
     }
   },
   computed: {
     remainingCnt() {
-      return this.rawRecords.length - this.loadingCnt
+      return this.dbRecordsCnt - this.loadingCnt
     },
     records() {
       const records = this.rawRecords.slice(0, this.loadingCnt).map(record => {
@@ -114,19 +120,42 @@ export default {
       })
     },
   },
-  created() {
+  async created() {
+    this.dbRecordsCnt = await db.records.count()
+    this.rawRecords = await db.records
+      .orderBy('startTime')
+      .reverse()
+      .limit(INITIAL_LOADING_CNT)
+      .toArray()
+    this.dbLoadedCnt = this.rawRecords.length
+    console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
+
     window.electron?.ipcRenderer?.on('newRecord', (event, data) => {
-      console.log('data', JSON.stringify(data))
+      // console.log('data', JSON.stringify(data))
       if (this.rawRecords.length > 0 && this.rawRecords[0].id === data.id) {
         this.rawRecords.splice(0, 1, data)
       } else {
         this.rawRecords.splice(0, 0, data)
+        this.dbLoadedCnt++
+        this.dbRecordsCnt++
+        console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
       }
     })
   },
   methods: {
-    loadingMore() {
-      this.loadingCnt += 50
+    async loadingMore() {
+      this.loadingCnt += LOAD_MORE_CNT
+      if (this.loadingCnt > this.dbLoadedCnt && this.dbLoadedCnt < this.dbRecordsCnt) {
+        const newLoadedRecords = await db.records
+          .orderBy('startTime')
+          .reverse()
+          .offset(this.dbLoadedCnt)
+          .limit(LOAD_MORE_CNT)
+          .toArray()
+        console.log('newLoadedRecords', newLoadedRecords)
+        this.dbLoadedCnt += newLoadedRecords.length
+        this.rawRecords = this.rawRecords.concat(newLoadedRecords)
+      }
     },
   },
 }

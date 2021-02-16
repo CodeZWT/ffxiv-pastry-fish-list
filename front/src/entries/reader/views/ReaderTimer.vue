@@ -69,6 +69,7 @@ import { WEATHER_TYPES } from 'Data/translation'
 import { ReaderFeatures } from '../../../../../data/newFeatures'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import COMMON from 'Data/common'
+import db from '@/plugins/db'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -84,8 +85,8 @@ export default {
         effects: [],
       },
       dataCurrentRecord: {},
-      dataRecords: [],
-      dataReadableRecords: [],
+      // dataRecords: [],
+      // dataReadableRecords: [],
 
       // spectralCurrentEndTime: undefined,
       // diademWeatherEndTime: undefined,
@@ -226,16 +227,19 @@ export default {
     // this.dataCurrentRecord = data.currentRecord
     // this.dataRecords = data.records
     // this.dataReadableRecords = data.readableRecords
-    window.electron?.ipcRenderer?.on('fishingData', (event, data) => {
-      console.log(JSON.stringify(data))
-      this.dataStatus = {
-        ...data.status,
-        effects: Array.from(data.status && data.status.effects),
-      }
-      this.dataCurrentRecord = data.currentRecord
-      this.dataRecords = data.records
-      this.dataReadableRecords = data.readableRecords
-    })
+    window.electron?.ipcRenderer
+      ?.on('fishingData', (event, data) => {
+        this.dataStatus = {
+          ...data.status,
+          effects: Array.from(data.status && data.status.effects),
+        }
+        this.dataCurrentRecord = data.currentRecord
+        // this.dataRecords = data.records
+        // this.dataReadableRecords = data.readableRecords
+      })
+      ?.on('newRecord', (event, data) => {
+        db.records.put(data).catch(error => console.error('storeError', error))
+      })
   },
   methods: {
     ringBell(key) {

@@ -44,6 +44,7 @@ function init() {
     win.webContents.send('fishCaught', data)
   })
   FishingDataReader.onNewRecord(data => {
+    reader && reader.webContents.send('newRecord', data)
     readerHistory && readerHistory.webContents.send('newRecord', data)
   })
 
