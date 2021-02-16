@@ -28,6 +28,7 @@ const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
 let skipUpdate = false
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
+const closedWindows = {}
 
 function init() {
   createMainWindow()
@@ -103,6 +104,7 @@ function createReaderSetting(readTimerWin) {
     show: false,
     parent: readTimerWin,
   })
+  closedWindows['readerSetting'] = null
   readerSetting.setOpacity(1)
   readerSetting.setAlwaysOnTop(true)
   readerSetting.removeMenu()
@@ -111,6 +113,9 @@ function createReaderSetting(readTimerWin) {
       e.preventDefault()
       shell.openExternal(url)
     })
+  })
+  readerSetting.on('closed', (e) => {
+    closedWindows['readerSetting'] = readerSetting
   })
 }
 
@@ -128,9 +133,10 @@ function createReaderHistory(readTimerWin) {
       additionalArguments: ['--route-name=ReaderHistory']
     },
     icon: path.join(__dirname, 'assets/reader.png'),
-    show: true,
+    show: false,
     parent: readTimerWin,
   })
+  closedWindows['readerHistory'] = null
   readerHistory.setOpacity(0.9)
   readerHistory.setAlwaysOnTop(true)
   readerHistory.removeMenu()
@@ -139,6 +145,9 @@ function createReaderHistory(readTimerWin) {
       e.preventDefault()
       shell.openExternal(url)
     })
+  })
+  readerHistory.on('closed', (e) => {
+    closedWindows['readerHistory'] = readerHistory
   })
   if (isDev) {
     readerHistory.webContents.openDevTools({
@@ -171,7 +180,7 @@ function createMainWindow() {
   win.removeMenu()
   // win.maximize()
   win.loadURL(winURL).then(() => {
-    createReader(win)
+    createReader()
 
     win.webContents.on('new-window', function (e, url) {
       e.preventDefault()
@@ -208,10 +217,19 @@ function createReader() {
     icon: path.join(__dirname, 'assets/reader.png'),
     show: false
   })
+  closedWindows['reader'] = null
   reader.setOpacity(0.8)
   reader.setAlwaysOnTop(true)
   reader.removeMenu()
   // reader.maximize()
+  reader
+    .on('closed', (e) => {
+      closedWindows['reader'] = reader
+    })
+    .on('hide', (e) => {
+      readerSetting.hide()
+      readerHistory.hide()
+    })
   reader.loadURL(readerURL).then(() => {
     reader.webContents.on('new-window', function (e, url) {
       e.preventDefault()
@@ -240,14 +258,23 @@ function createReader() {
 }
 
 function showReader() {
+  if (closedWindows['reader']) {
+    reader = createReader()
+  }
   reader && reader.show()
 }
 
 function showReaderSetting() {
+  if (closedWindows['readerSetting']) {
+    reader = createReaderSetting()
+  }
   readerSetting && readerSetting.show()
 }
 
 function showReaderHistory() {
+  if (closedWindows['readerHistory']) {
+    reader = createReaderHistory()
+  }
   readerHistory && readerHistory.show()
 }
 
