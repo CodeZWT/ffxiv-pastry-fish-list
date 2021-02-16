@@ -73,8 +73,8 @@ function init() {
       win.setProgressBar(0)
       log.info('Update skipped')
     })
-    .on('showHistory', () => {
-      showReaderHistory(reader)
+    .on('toggleHistory', () => {
+      toggleReaderHistory(reader)
     })
 
 
@@ -279,11 +279,15 @@ function showReaderSetting() {
   readerSetting && readerSetting.show()
 }
 
-function showReaderHistory() {
+function toggleReaderHistory() {
   if (closedWindows['readerHistory']) {
     createReaderHistory()
   }
-  readerHistory && readerHistory.show()
+  if (readerHistory.isVisible()) {
+    readerHistory.hide()
+  } else {
+    readerHistory.show()
+  }
 }
 
 function updateIfNeeded() {

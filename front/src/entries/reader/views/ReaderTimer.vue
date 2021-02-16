@@ -246,7 +246,7 @@ export default {
       this.sounds[key]?.player?.volume(1).play()
     },
     showHistory() {
-      window.electron?.ipcRenderer?.send('showHistory')
+      window.electron?.ipcRenderer?.send('toggleHistory')
       this.setFeatureViewed(this.HistoryFeatureId)
     },
     ...mapMutations(['setFeatureViewed']),
