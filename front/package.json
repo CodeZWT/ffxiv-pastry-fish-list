@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve:electron": "vue-cli-service serve --mode electron",
     "inspect": "vue-cli-service inspect",
     "build:main": "vue-cli-service build --mode main --dest ../front-web-dist",
     "build:electron": "vue-cli-service build --mode electron --dest ../front-electron-dist",
