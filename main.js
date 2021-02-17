@@ -15,7 +15,7 @@ const SETUP_EXE_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
 
-let win, reader, readerSetting, readerHistory, readerSpotStatistics
+let main, reader, readerSetting, readerHistory, readerSpotStatistics
 const winURL = isDev
   ? `http://localhost:8080`
   : `file://${__dirname}/front-electron-dist/index.html`
@@ -34,7 +34,7 @@ function init() {
   createMainWindow()
 
   FishingDataReader.onUpdate((data) => {
-    win.webContents.send('fishingData', data)
+    main.webContents.send('fishingData', data)
     reader && reader.webContents.send('fishingData', data)
     readerSpotStatistics && readerSpotStatistics.webContents.send('fishingData', data)
   })
@@ -42,7 +42,7 @@ function init() {
     log.info('Machina started!')
   })
   FishingDataReader.onFishCaught((data) => {
-    win.webContents.send('fishCaught', data)
+    main.webContents.send('fishCaught', data)
   })
   FishingDataReader.onNewRecord((data) => {
     reader && reader.webContents.send('newRecord', data)
@@ -66,9 +66,9 @@ function init() {
     })
     .on('updateUserData', (event, updateData) => {
       log.info('updateUserData', updateData.data)
-      win.webContents.send('updateUserData', updateData)
+      main.webContents.send('updateUserData', updateData)
 
-      setWindow(win, updateData.data.main)
+      setWindow(main, updateData.data.main)
       setWindow(readerSetting, updateData.data.setting)
       setWindow(reader, updateData.data.timer)
       setWindow(readerHistory, updateData.data.history)
@@ -101,7 +101,7 @@ function init() {
     })
     .on('skipUpdate', () => {
       skipUpdate = true
-      win.setProgressBar(0)
+      main.setProgressBar(0)
       log.info('Update skipped')
     })
     .on('toggleHistory', () => {
@@ -112,15 +112,15 @@ function init() {
     })
     .on('zoomMainWindow', (event, zoomFactor) => {
       log.info('zoom main window', zoomFactor)
-      win.webContents.setZoomFactor(zoomFactor)
+      main.webContents.setZoomFactor(zoomFactor)
     })
 
   globalShortcut.register('Alt+CommandOrControl+L', () => {
     showReader()
   })
   globalShortcut.register('Alt+CommandOrControl+T', () => {
-    win &&
-      win.webContents.openDevTools({
+    main &&
+      main.webContents.openDevTools({
         mode: 'undocked',
       })
   })
@@ -174,15 +174,15 @@ function createReaderSetting(readTimerWin) {
       closedWindows['readerSetting'] = readerSetting
     })
     .on('moved', () => {
-      const [x, y] = win.getPosition()
-      win.webContents.send('updateUserData', {
+      const [x, y] = main.getPosition()
+      main.webContents.send('updateUserData', {
         path: 'reader.setting.pos',
         data: { x, y },
       })
     })
     .on('resized', () => {
-      const [w, h] = win.getSize()
-      win.webContents.send('updateUserData', {
+      const [w, h] = main.getSize()
+      main.webContents.send('updateUserData', {
         path: 'reader.setting.size',
         data: { w, h },
       })
@@ -228,15 +228,15 @@ function createReaderHistory(readTimerWin) {
       closedWindows['readerHistory'] = readerHistory
     })
     .on('moved', () => {
-      const [x, y] = win.getPosition()
-      win.webContents.send('updateUserData', {
+      const [x, y] = main.getPosition()
+      main.webContents.send('updateUserData', {
         path: 'reader.history.pos',
         data: { x, y },
       })
     })
     .on('resized', () => {
-      const [w, h] = win.getSize()
-      win.webContents.send('updateUserData', {
+      const [w, h] = main.getSize()
+      main.webContents.send('updateUserData', {
         path: 'reader.history.size',
         data: { w, h },
       })
@@ -281,15 +281,15 @@ function createReaderSpotStatistics(readTimerWin) {
       closedWindows['readerSpotStatistics'] = readerSpotStatistics
     })
     .on('moved', () => {
-      const [x, y] = win.getPosition()
-      win.webContents.send('updateUserData', {
+      const [x, y] = main.getPosition()
+      main.webContents.send('updateUserData', {
         path: 'reader.spotStatistics.pos',
         data: { x, y },
       })
     })
     .on('resized', () => {
-      const [w, h] = win.getSize()
-      win.webContents.send('updateUserData', {
+      const [w, h] = main.getSize()
+      main.webContents.send('updateUserData', {
         path: 'reader.spotStatistics.size',
         data: { w, h },
       })
@@ -302,7 +302,7 @@ function createReaderSpotStatistics(readTimerWin) {
 }
 
 function createMainWindow() {
-  win = new BrowserWindow({
+  main = new BrowserWindow({
     width: 1080,
     height: 768,
     frame: false,
@@ -316,30 +316,30 @@ function createMainWindow() {
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
-  win.once('ready-to-show', () => {
-    win.show()
+  main.once('ready-to-show', () => {
+    main.show()
   })
   // win.setOpacity(0.9)
   // win.setAlwaysOnTop(true)
-  win.removeMenu()
+  main.removeMenu()
   // win.maximize()
-  win.loadURL(winURL).then(() => {
+  main.loadURL(winURL).then(() => {
     createReader()
 
-    win.webContents.on('new-window', function (e, url) {
+    main.webContents.on('new-window', function (e, url) {
       e.preventDefault()
       shell.openExternal(url)
     })
   })
 
-  win
+  main
     .on('moved', () => {
-      const [x, y] = win.getPosition()
-      win.webContents.send('updateUserData', { path: 'reader.main.pos', data: { x, y } })
+      const [x, y] = main.getPosition()
+      main.webContents.send('updateUserData', { path: 'reader.main.pos', data: { x, y } })
     })
     .on('resized', () => {
-      const [w, h] = win.getSize()
-      win.webContents.send('updateUserData', { path: 'reader.main.size', data: { w, h } })
+      const [w, h] = main.getSize()
+      main.webContents.send('updateUserData', { path: 'reader.main.size', data: { w, h } })
     })
     .on('closed', () => {
       FishingDataReader.stop(() => {
@@ -349,7 +349,7 @@ function createMainWindow() {
     })
 
   if (isDev) {
-    win.webContents.openDevTools({
+    main.webContents.openDevTools({
       mode: 'right',
     })
   }
@@ -391,15 +391,15 @@ function createReader() {
       readerSpotStatistics.hide()
     })
     .on('moved', () => {
-      const [x, y] = win.getPosition()
-      win.webContents.send('updateUserData', {
+      const [x, y] = main.getPosition()
+      main.webContents.send('updateUserData', {
         path: 'reader.timer.pos',
         data: { x, y },
       })
     })
     .on('resized', () => {
-      const [w, h] = win.getSize()
-      win.webContents.send('updateUserData', {
+      const [w, h] = main.getSize()
+      main.webContents.send('updateUserData', {
         path: 'reader.timer.size',
         data: { w, h },
       })
@@ -495,16 +495,16 @@ function updateIfNeeded() {
     if (localCommitHash !== remoteCommitHash) {
       log.info('New Version Detected!')
       const throttled = throttle(
-        (progress) => win.webContents.send('setupDownload', progress),
+        (progress) => main.webContents.send('setupDownload', progress),
         500
       )
       download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH).on('downloadProgress', (progress) => {
         // Report download progress
         throttled(progress)
-        win.setProgressBar(progress.percent)
+        main.setProgressBar(progress.percent)
         if (progress.percent === 1) {
           // fs.writeFileSync(DOWNLOADED_COMMITHASH_PATH, remoteCommitHash, {encoding: FILE_ENCODING})
-          win.webContents.send('checkStartSetup')
+          main.webContents.send('checkStartSetup')
         }
       })
     } else {
@@ -538,9 +538,9 @@ if (!gotTheLock) {
   app.on('second-instance', (event, commandLine, workingDirectory) => {
     // Someone tried to run a second instance, we should focus our window.
     log.info('Focus main window when try to open 2nd instance')
-    if (win) {
-      if (win.isMinimized()) win.restore()
-      win.focus()
+    if (main) {
+      if (main.isMinimized()) main.restore()
+      main.focus()
     }
   })
 
