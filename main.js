@@ -65,36 +65,14 @@ function init() {
       showReaderSetting(reader)
     })
     .on('updateUserData', (event, updateData) => {
-      log.info('updateUserData', updateData.data)
-      main.webContents.send('updateUserData', updateData)
+      // log.info('updateUserData', updateData.data)
+      updateUserData(updateData)
 
       setWindow(main, updateData.data.main)
       setWindow(readerSetting, updateData.data.setting)
       setWindow(reader, updateData.data.timer)
       setWindow(readerHistory, updateData.data.history)
       setWindow(readerSpotStatistics, updateData.data.spotStatistics)
-
-      // reader.setOpacity(updateData.data.timerOpacity)
-      // readerHistory.setOpacity(updateData.data.historyOpacity)
-      // readerSpotStatistics.setOpacity(updateData.data.spotStatisticsOpacity)
-      // if (reader.webContents.zoomFactor !== updateData.data.timerZoomFactor) {
-      //   reader.webContents.setZoomFactor(updateData.data.timerZoomFactor)
-      // }
-      // if (readerHistory.webContents.zoomFactor !== updateData.data.historyZoomFactor) {
-      //   readerHistory.webContents.setZoomFactor(updateData.data.historyZoomFactor)
-      // }
-      // if (
-      //   readerSpotStatistics.webContents.zoomFactor !==
-      //   updateData.data.spotStatisticsZoomFactor
-      // ) {
-      //   readerSpotStatistics.webContents.setZoomFactor(
-      //     updateData.data.spotStatisticsZoomFactor
-      //   )
-      // }
-      // const mainPos = updateData.data.mainPos
-      // if (mainPos.x > 0 && mainPos.y > 0) {
-      //   win.setPosition(updateData.data.mainPos.x, updateData.data.mainPos.y)
-      // }
     })
     .on('reloadUserData', () => {
       reader.webContents.send('reloadUserData')
@@ -159,37 +137,38 @@ function createReaderSetting(readTimerWin) {
     show: false,
     parent: readTimerWin,
   })
+  const win = readerSetting
   closedWindows['readerSetting'] = null
-  readerSetting.setOpacity(1)
-  setOnTop(readerSetting)
-  readerSetting.removeMenu()
-  readerSetting.loadURL(readerURL).then(() => {
-    readerSetting.webContents.on('new-window', function (e, url) {
+  win.setOpacity(1)
+  setOnTop(win)
+  win.removeMenu()
+  win.loadURL(readerURL).then(() => {
+    win.webContents.on('new-window', function (e, url) {
       e.preventDefault()
       shell.openExternal(url)
     })
   })
-  readerSetting
+  win
     .on('closed', (e) => {
-      closedWindows['readerSetting'] = readerSetting
+      closedWindows['readerSetting'] = win
     })
     .on('moved', () => {
-      const [x, y] = main.getPosition()
-      main.webContents.send('updateUserData', {
+      const [x, y] = win.getPosition()
+      updateUserData({
         path: 'reader.setting.pos',
         data: { x, y },
       })
     })
     .on('resized', () => {
-      const [w, h] = main.getSize()
-      main.webContents.send('updateUserData', {
+      const [w, h] = win.getSize()
+      updateUserData({
         path: 'reader.setting.size',
         data: { w, h },
       })
     })
 
   if (isDev) {
-    readerSetting.webContents.openDevTools({
+    win.webContents.openDevTools({
       mode: 'bottom',
     })
   }
@@ -213,30 +192,31 @@ function createReaderHistory(readTimerWin) {
     show: false,
     parent: readTimerWin,
   })
+  const win = readerHistory
   closedWindows['readerHistory'] = null
-  readerHistory.setOpacity(0.9)
-  setOnTop(readerHistory)
-  readerHistory.removeMenu()
-  readerHistory.loadURL(readerURL).then(() => {
-    readerHistory.webContents.on('new-window', function (e, url) {
+  win.setOpacity(0.9)
+  setOnTop(win)
+  win.removeMenu()
+  win.loadURL(readerURL).then(() => {
+    win.webContents.on('new-window', function (e, url) {
       e.preventDefault()
       shell.openExternal(url)
     })
   })
-  readerHistory
+  win
     .on('closed', (e) => {
-      closedWindows['readerHistory'] = readerHistory
+      closedWindows['readerHistory'] = win
     })
     .on('moved', () => {
-      const [x, y] = main.getPosition()
-      main.webContents.send('updateUserData', {
+      const [x, y] = win.getPosition()
+      updateUserData({
         path: 'reader.history.pos',
         data: { x, y },
       })
     })
     .on('resized', () => {
-      const [w, h] = main.getSize()
-      main.webContents.send('updateUserData', {
+      const [w, h] = win.getSize()
+      updateUserData({
         path: 'reader.history.size',
         data: { w, h },
       })
@@ -266,36 +246,37 @@ function createReaderSpotStatistics(readTimerWin) {
     show: false,
     parent: readTimerWin,
   })
+  const win = readerSpotStatistics
   closedWindows['readerSpotStatistics'] = null
-  readerSpotStatistics.setOpacity(0.9)
-  setOnTop(readerSpotStatistics)
-  readerSpotStatistics.removeMenu()
-  readerSpotStatistics.loadURL(readerURL).then(() => {
-    readerSpotStatistics.webContents.on('new-window', function (e, url) {
+  win.setOpacity(0.9)
+  setOnTop(win)
+  win.removeMenu()
+  win.loadURL(readerURL).then(() => {
+    win.webContents.on('new-window', function (e, url) {
       e.preventDefault()
       shell.openExternal(url)
     })
   })
-  readerSpotStatistics
+  win
     .on('closed', (e) => {
-      closedWindows['readerSpotStatistics'] = readerSpotStatistics
+      closedWindows['readerSpotStatistics'] = win
     })
     .on('moved', () => {
-      const [x, y] = main.getPosition()
-      main.webContents.send('updateUserData', {
+      const [x, y] = win.getPosition()
+      updateUserData({
         path: 'reader.spotStatistics.pos',
         data: { x, y },
       })
     })
     .on('resized', () => {
-      const [w, h] = main.getSize()
-      main.webContents.send('updateUserData', {
+      const [w, h] = win.getSize()
+      updateUserData({
         path: 'reader.spotStatistics.size',
         data: { w, h },
       })
     })
   if (isDev) {
-    readerSpotStatistics.webContents.openDevTools({
+    win.webContents.openDevTools({
       mode: 'undocked',
     })
   }
@@ -316,30 +297,31 @@ function createMainWindow() {
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
-  main.once('ready-to-show', () => {
-    main.show()
+  const win = main
+  win.once('ready-to-show', () => {
+    win.show()
   })
   // win.setOpacity(0.9)
   // win.setAlwaysOnTop(true)
-  main.removeMenu()
+  win.removeMenu()
   // win.maximize()
-  main.loadURL(winURL).then(() => {
+  win.loadURL(winURL).then(() => {
     createReader()
 
-    main.webContents.on('new-window', function (e, url) {
+    win.webContents.on('new-window', function (e, url) {
       e.preventDefault()
       shell.openExternal(url)
     })
   })
 
-  main
+  win
     .on('moved', () => {
-      const [x, y] = main.getPosition()
-      main.webContents.send('updateUserData', { path: 'reader.main.pos', data: { x, y } })
+      const [x, y] = win.getPosition()
+      updateUserData({ path: 'reader.main.pos', data: { x, y } })
     })
     .on('resized', () => {
-      const [w, h] = main.getSize()
-      main.webContents.send('updateUserData', { path: 'reader.main.size', data: { w, h } })
+      const [w, h] = win.getSize()
+      updateUserData({ path: 'reader.main.size', data: { w, h } })
     })
     .on('closed', () => {
       FishingDataReader.stop(() => {
@@ -349,7 +331,7 @@ function createMainWindow() {
     })
 
   if (isDev) {
-    main.webContents.openDevTools({
+    win.webContents.openDevTools({
       mode: 'right',
     })
   }
@@ -376,14 +358,15 @@ function createReader() {
     icon: path.join(__dirname, 'assets/reader.png'),
     show: false,
   })
+  const win = reader
   closedWindows['reader'] = null
-  reader.setOpacity(0.9)
-  setOnTop(reader)
-  reader.removeMenu()
+  win.setOpacity(0.9)
+  setOnTop(win)
+  win.removeMenu()
   // reader.maximize()
-  reader
+  win
     .on('closed', (e) => {
-      closedWindows['reader'] = reader
+      closedWindows['reader'] = win
     })
     .on('hide', (e) => {
       readerSetting.hide()
@@ -391,29 +374,29 @@ function createReader() {
       readerSpotStatistics.hide()
     })
     .on('moved', () => {
-      const [x, y] = main.getPosition()
-      main.webContents.send('updateUserData', {
+      const [x, y] = win.getPosition()
+      updateUserData({
         path: 'reader.timer.pos',
         data: { x, y },
       })
     })
     .on('resized', () => {
-      const [w, h] = main.getSize()
-      main.webContents.send('updateUserData', {
+      const [w, h] = win.getSize()
+      updateUserData({
         path: 'reader.timer.size',
         data: { w, h },
       })
     })
 
-  reader.loadURL(readerURL).then(() => {
-    reader.webContents.on('new-window', function (e, url) {
+  win.loadURL(readerURL).then(() => {
+    win.webContents.on('new-window', function (e, url) {
       e.preventDefault()
       shell.openExternal(url)
     })
 
-    createReaderSetting(reader)
-    createReaderHistory(reader)
-    createReaderSpotStatistics(reader)
+    createReaderSetting(win)
+    createReaderHistory(win)
+    createReaderSpotStatistics(win)
 
     // FishingDataReader.onUpdate((data) => {
     //   reader.webContents.send('fishingData', data)
@@ -427,10 +410,14 @@ function createReader() {
     // })
   })
   if (isDev) {
-    reader.webContents.openDevTools({
+    win.webContents.openDevTools({
       mode: 'bottom',
     })
   }
+}
+
+function updateUserData(updateData) {
+  main.webContents.send('updateUserData', updateData)
 }
 
 function showReader() {
