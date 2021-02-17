@@ -11,6 +11,44 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.6.3</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕
+        </div>
+        <ul>
+          <li>
+            更新攻略内容的修正
+          </li>
+          <li>
+            增加滚动条宽度
+          </li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">
+          鱼糕桌面版
+        </div>
+        <ul>
+          <li>
+            增加页面缩放功能（对应浏览器的页面缩放功能，在主界面设置中配置）。
+          </li>
+          <li>
+            渔捞
+            <ul>
+              <li>
+                增加历史记录页面
+              </li>
+              <li>
+                增加钓场统计界面
+              </li>
+              <li>
+                增加透明度配置界面
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p />
+        <v-divider />
+
         <div class="text-h6">Version 0.6.2</div>
         <div class="text-h5 text-center my-1">
           鱼糕桌面版
@@ -27,6 +65,7 @@
           </li>
         </ul>
         <p />
+        <v-divider />
 
         <div class="text-h6">Version 0.6.1</div>
         <div class="text-h5 text-center my-1">
