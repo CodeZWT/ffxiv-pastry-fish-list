@@ -97,7 +97,8 @@ export default {
     },
     fishingSpot() {
       const spotId = this.dataStatus?.spotId
-      const spot = spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name: '未检测到钓场' }
+      const spot =
+        spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name_chs: '未检测到钓场' }
       return {
         ...spot,
         name: DataUtil.getName(spot),

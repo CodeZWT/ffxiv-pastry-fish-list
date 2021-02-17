@@ -6,7 +6,7 @@
         <v-switch v-model="showUncaughtRecord" inset />
       </v-col>
     </v-row>
-    <v-list>
+    <v-list v-if="records.length > 0">
       <div v-for="(record, index) in records" :key="index">
         <v-divider v-if="index > 0" />
         <v-list-item>
@@ -38,6 +38,9 @@
         </v-list-item>
       </div>
     </v-list>
+    <div v-else class="text-center">
+      没有历史记录
+    </div>
     <v-btn
       v-if="remainingCnt > 0"
       block
