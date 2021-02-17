@@ -1,23 +1,28 @@
 <template>
-  <v-row>
-    <v-col cols="12">
-      <v-select
-        v-model="currentChumForGraph"
-        :items="chumOptions"
-        item-text="name"
-        item-value="value"
-      >
-      </v-select>
-    </v-col>
-    <v-col cols="12">
-      <!--            <apexchart type="rangeBar"-->
-      <!--                       height="350"-->
-      <!--                       :options="chartOptions"-->
-      <!--                       :series="dataForChart"/>-->
-      <div>{{ dataForChart }}</div>
-      <fish-timeline-table :pointer="interval" :timelines="dataForChart" />
-    </v-col>
-  </v-row>
+  <v-card>
+    <v-card-title> </v-card-title>
+    <v-card-text>
+      <v-row>
+        <v-col cols="12">
+          <v-select
+            v-model="currentChumForGraph"
+            :items="chumOptions"
+            item-text="name"
+            item-value="value"
+          >
+          </v-select>
+        </v-col>
+        <v-col cols="12">
+          <div v-if="dataForChart.length === 0">
+            暂无数据，请在钓场抛竿后查看
+          </div>
+          <div v-else>
+            <fish-timeline-table :pointer="interval" :timelines="dataForChart" />
+          </div>
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -71,6 +76,7 @@ export default {
         }
       })
     },
+
     dataForChart() {
       const fishDict = this.currentSpotRecords
         .filter(record => record.fishId !== -1)

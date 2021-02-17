@@ -46,7 +46,15 @@
           </template>
         </v-progress-linear>
       </v-col>
-      <v-col cols="12" class="mt-4 text-right">
+      <v-col cols="12" class="mt-4 d-flex">
+        <div v-if="!bait.id">
+          未检测到鱼饵，请切换至任意鱼饵以读取鱼饵数据
+        </div>
+        <div v-else class="d-flex align-center">
+          <span class="mr-1">鱼饵</span>
+          <item-icon :icon-class="bait.icon" :title="bait.name" small />
+        </div>
+        <v-spacer />
         <v-btn color="info" @click="showSpotStatistics" class="mr-2">
           <new-feature-mark :id="SpotStatisticsFeatureId">
             <v-icon>mdi-chart-box</v-icon>
@@ -76,6 +84,7 @@ import { ReaderFeatures } from '../../../../../data/newFeatures'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import COMMON from 'Data/common'
 import db from '@/plugins/db'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -83,7 +92,7 @@ const SPECTRAL_CURRENT = 145
 
 export default {
   name: 'ReaderTimer',
-  components: { NewFeatureMark },
+  components: { ItemIcon, NewFeatureMark },
   props: ['now'],
   data() {
     return {
@@ -121,6 +130,16 @@ export default {
             icon: DataUtil.iconIdToClass(effect.icon),
           }
         })
+    },
+    bait() {
+      const baitId = this.dataStatus?.baitId
+      return this.dataStatus?.baitId > 0
+        ? {
+            id: baitId,
+            icon: DataUtil.getItemIconClass(baitId),
+            name: DataUtil.getItemName(baitId),
+          }
+        : {}
     },
     tug() {
       return this.dataCurrentRecord?.tug
