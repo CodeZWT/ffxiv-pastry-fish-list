@@ -9,7 +9,9 @@
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
       <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-cog</v-icon>
+        <new-feature-mark :id="SettingFeatureId">
+          <v-icon>mdi-cog</v-icon>
+        </new-feature-mark>
       </v-btn>
       <toggle-button
         :value="alwaysOnTop"
@@ -307,7 +309,9 @@
               <click-helper @click="showSetting">
                 <v-list-item @click="noOp">
                   <v-list-item-icon>
-                    <v-icon>mdi-tune</v-icon>
+                    <new-feature-mark :id="SettingFeatureId">
+                      <v-icon>mdi-tune</v-icon>
+                    </new-feature-mark>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>{{ $t('top.uiConfig') }}</v-list-item-title>
@@ -673,6 +677,7 @@ export default {
     migrationSource: '',
     ReaderTimerFeatureId: MainFeatures.ReaderTimer,
     DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
+    SettingFeatureId: MainFeatures.Setting,
     alwaysOnTop: false,
     maximized: false,
   }),
@@ -1165,6 +1170,7 @@ export default {
   methods: {
     showSetting() {
       this.showSettingDialog = true
+      this.setFeatureViewed(this.SettingFeatureId)
     },
     toggleAlwaysOnTop() {
       this.alwaysOnTop = !this.alwaysOnTop
