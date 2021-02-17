@@ -427,8 +427,25 @@ function streamToString(stream) {
   })
 }
 
-app.whenReady()
-  .then(init)
+
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+  log.info('Try open 2nd instance just quit')
+  app.quit()
+} else {
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // Someone tried to run a second instance, we should focus our window.
+    log.info('Focus main window when try to open 2nd instance')
+    if (win) {
+      if (win.isMinimized()) win.restore()
+      win.focus()
+    }
+  })
+
+  app.whenReady()
+    .then(init)
+}
 
 // app.on('window-all-closed', () => {
 //   if (process.platform !== 'darwin') {
