@@ -15,7 +15,7 @@
           <v-card-text>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.timerOpacity"
+                v-model="lazySetting.timer.opacity"
                 label="透明度"
                 max="1"
                 min="0.1"
@@ -25,7 +25,7 @@
             </div>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.timerZoomFactor"
+                v-model="lazySetting.timer.zoomFactor"
                 max="3"
                 min="0.3"
                 step="0.1"
@@ -47,7 +47,7 @@
           <v-card-text>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.historyOpacity"
+                v-model="lazySetting.history.opacity"
                 label="透明度"
                 max="1"
                 min="0.1"
@@ -57,7 +57,7 @@
             </div>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.historyZoomFactor"
+                v-model="lazySetting.history.zoomFactor"
                 max="3"
                 min="0.3"
                 step="0.1"
@@ -79,7 +79,7 @@
           <v-card-text>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.spotStatisticsOpacity"
+                v-model="lazySetting.spotStatistics.opacity"
                 label="透明度"
                 max="1"
                 min="0.1"
@@ -89,7 +89,7 @@
             </div>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.spotStatisticsZoomFactor"
+                v-model="lazySetting.spotStatistics.zoomFactor"
                 max="3"
                 min="0.3"
                 step="0.1"
@@ -153,7 +153,7 @@ export default {
       }
     },
   },
-  mounted() {
+  created() {
     this.lazySetting = this.readerSetting
   },
   methods: {
