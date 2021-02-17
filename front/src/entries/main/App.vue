@@ -447,6 +447,9 @@
       scrollable
     >
       <v-card>
+        <v-card-title>
+          关于
+        </v-card-title>
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
           <div>群：1153646847</div>
@@ -456,16 +459,18 @@
           </div>
           <div>感谢来自于各个开源作者的支持：</div>
           <ul>
-            <li>钓鱼数据：</li>
-            <ul>
-              <li>
-                <a @click="goTo('https://ff14fish.carbuncleplushy.com/')">
-                  FFX|V Fish Tracker App
-                </a>
-              </li>
-              <li><a @click="goTo('http://garlandtools.org/db/')">Garland Data</a></li>
-              <li><a @click="goTo('https://cn.ff14angler.com/')">饥饿的猫</a></li>
-            </ul>
+            <li>
+              钓鱼数据：
+              <ul>
+                <li>
+                  <a @click="goTo('https://ff14fish.carbuncleplushy.com/')">
+                    FFX|V Fish Tracker App
+                  </a>
+                </li>
+                <li><a @click="goTo('http://garlandtools.org/db/')">Garland Data</a></li>
+                <li><a @click="goTo('https://cn.ff14angler.com/')">饥饿的猫</a></li>
+              </ul>
+            </li>
             <li>
               游戏内相关数据(英文)：
               <a @click="goTo('https://xivapi.com/')">
