@@ -23,20 +23,20 @@
                 thumb-label
               />
             </div>
-            <!--            <div class="d-flex align-center">-->
-            <!--              <v-slider-->
-            <!--                v-model="lazySetting.timerZoomFactor"-->
-            <!--                max="3"-->
-            <!--                min="0.3"-->
-            <!--                step="0.1"-->
-            <!--                label="缩放比例"-->
-            <!--                thumb-label-->
-            <!--              >-->
-            <!--                <template v-slot:thumb-label="{ value }">-->
-            <!--                  {{ Math.floor(value * 100) }}%-->
-            <!--                </template>-->
-            <!--              </v-slider>-->
-            <!--            </div>-->
+            <div class="d-flex align-center">
+              <v-slider
+                v-model="lazySetting.timerZoomFactor"
+                max="3"
+                min="0.3"
+                step="0.1"
+                label="缩放比例"
+                thumb-label
+              >
+                <template v-slot:thumb-label="{ value }">
+                  {{ Math.floor(value * 100) }}%
+                </template>
+              </v-slider>
+            </div>
           </v-card-text>
         </v-card>
 
@@ -55,20 +55,20 @@
                 thumb-label
               />
             </div>
-            <!--            <div class="d-flex align-center">-->
-            <!--              <v-slider-->
-            <!--                v-model="lazySetting.historyZoomFactor"-->
-            <!--                max="3"-->
-            <!--                min="0.3"-->
-            <!--                step="0.1"-->
-            <!--                label="缩放比例"-->
-            <!--                thumb-label-->
-            <!--              >-->
-            <!--                <template v-slot:thumb-label="{ value }">-->
-            <!--                  {{ Math.floor(value * 100) }}%-->
-            <!--                </template>-->
-            <!--              </v-slider>-->
-            <!--            </div>-->
+            <div class="d-flex align-center">
+              <v-slider
+                v-model="lazySetting.historyZoomFactor"
+                max="3"
+                min="0.3"
+                step="0.1"
+                label="缩放比例"
+                thumb-label
+              >
+                <template v-slot:thumb-label="{ value }">
+                  {{ Math.floor(value * 100) }}%
+                </template>
+              </v-slider>
+            </div>
           </v-card-text>
         </v-card>
 
@@ -87,20 +87,20 @@
                 thumb-label
               />
             </div>
-            <!--            <div class="d-flex align-center">-->
-            <!--              <v-slider-->
-            <!--                v-model="lazySetting.spotStatisticsZoomFactor"-->
-            <!--                max="3"-->
-            <!--                min="0.3"-->
-            <!--                step="0.1"-->
-            <!--                label="缩放比例"-->
-            <!--                thumb-label-->
-            <!--              >-->
-            <!--                <template v-slot:thumb-label="{ value }">-->
-            <!--                  {{ Math.floor(value * 100) }}%-->
-            <!--                </template>-->
-            <!--              </v-slider>-->
-            <!--            </div>-->
+            <div class="d-flex align-center">
+              <v-slider
+                v-model="lazySetting.spotStatisticsZoomFactor"
+                max="3"
+                min="0.3"
+                step="0.1"
+                label="缩放比例"
+                thumb-label
+              >
+                <template v-slot:thumb-label="{ value }">
+                  {{ Math.floor(value * 100) }}%
+                </template>
+              </v-slider>
+            </div>
           </v-card-text>
         </v-card>
         <div v-if="isTest">{{ lazySetting }}</div>

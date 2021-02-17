@@ -70,15 +70,15 @@ function init() {
       reader.setOpacity(updateData.data.timerOpacity)
       readerHistory.setOpacity(updateData.data.historyOpacity)
       readerSpotStatistics.setOpacity(updateData.data.spotStatisticsOpacity)
-      // if (reader.webContents.zoomFactor !== updateData.data.timerZoomFactor) {
-      //   reader.webContents.setZoomFactor(updateData.data.timerZoomFactor)
-      // }
-      // if (readerHistory.webContents.zoomFactor !== updateData.data.historyZoomFactor) {
-      //   readerHistory.webContents.setZoomFactor(updateData.data.historyZoomFactor)
-      // }
-      // if (readerSpotStatistics.webContents.zoomFactor !== updateData.data.spotStatisticsZoomFactor) {
-      //   readerSpotStatistics.webContents.setZoomFactor(updateData.data.spotStatisticsZoomFactor)
-      // }
+      if (reader.webContents.zoomFactor !== updateData.data.timerZoomFactor) {
+        reader.webContents.setZoomFactor(updateData.data.timerZoomFactor)
+      }
+      if (readerHistory.webContents.zoomFactor !== updateData.data.historyZoomFactor) {
+        readerHistory.webContents.setZoomFactor(updateData.data.historyZoomFactor)
+      }
+      if (readerSpotStatistics.webContents.zoomFactor !== updateData.data.spotStatisticsZoomFactor) {
+        readerSpotStatistics.webContents.setZoomFactor(updateData.data.spotStatisticsZoomFactor)
+      }
     })
     .on('reloadUserData', () => {
       reader.webContents.send('reloadUserData')
@@ -291,7 +291,7 @@ function createReader() {
     show: false
   })
   closedWindows['reader'] = null
-  reader.setOpacity(0.8)
+  reader.setOpacity(0.9)
   setOnTop(reader)
   reader.removeMenu()
   // reader.maximize()
