@@ -13,7 +13,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     fish: DataUtil.FISH_DATA,
-    fishingSpots: _.merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
+    fishingSpots: DataUtil.FISHING_SPOTS,
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
     items: DataUtil.ITEMS,
     achievements: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS,

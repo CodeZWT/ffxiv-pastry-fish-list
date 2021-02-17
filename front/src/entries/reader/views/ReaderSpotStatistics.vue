@@ -1,6 +1,6 @@
 <template>
-  <v-card>
-    <v-card-title> </v-card-title>
+  <v-card class="fill-height">
+    <v-card-title> {{ fishingSpot.name }}</v-card-title>
     <v-card-text>
       <v-row>
         <v-col cols="12">
@@ -13,9 +13,7 @@
           </v-select>
         </v-col>
         <v-col cols="12">
-          <div v-if="dataForChart.length === 0">
-            暂无数据，请在钓场抛竿后查看
-          </div>
+          <div v-if="dataForChart.length === 0">暂无数据，请在钓场抛竿后查看</div>
           <div v-else>
             <fish-timeline-table :pointer="interval" :timelines="dataForChart" />
           </div>
@@ -76,7 +74,14 @@ export default {
         }
       })
     },
-
+    fishingSpot() {
+      const spotId = this.dataStatus?.spotId
+      const spot = spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : {}
+      return {
+        ...spot,
+        name: DataUtil.getName(spot),
+      }
+    },
     dataForChart() {
       const fishDict = this.currentSpotRecords
         .filter(record => record.fishId !== -1)

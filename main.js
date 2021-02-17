@@ -190,7 +190,7 @@ function createReaderHistory(readTimerWin) {
 function createReaderSpotStatistics(readTimerWin) {
   readerSpotStatistics = new BrowserWindow({
     width: 500,
-    height: 800,
+    height: 500,
     frame: false,
     transparent: true,
     maximizable: false,

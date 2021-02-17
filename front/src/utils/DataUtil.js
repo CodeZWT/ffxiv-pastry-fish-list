@@ -17,6 +17,7 @@ import CONSTANTS from 'Data/constants'
 import FishingData from 'Data/fishingData'
 import FIX from 'Data/fix'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import DATA from '../../../data/data'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -1091,4 +1092,5 @@ export default {
 
   FISH_DATA: getCombinedFishData(),
   ITEMS: _.merge(DATA_CN.ITEMS, DevelopmentModeUtil.isTest() ? FIX.TEST_ITEMS : {}),
+  FISHING_SPOTS: _.merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
 }
