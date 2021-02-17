@@ -302,6 +302,7 @@ function createReader() {
     .on('hide', (e) => {
       readerSetting.hide()
       readerHistory.hide()
+      readerSpotStatistics.hide()
     })
   reader.loadURL(readerURL).then(() => {
     reader.webContents.on('new-window', function (e, url) {
