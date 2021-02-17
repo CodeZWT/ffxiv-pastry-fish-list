@@ -15,7 +15,7 @@ const SETUP_EXE_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
 
-let main, reader, readerSetting, readerHistory, readerSpotStatistics
+let main, reader, readerSetting, readerHistory, readerSpotStatistics, loading
 const winURL = isDev
   ? `http://localhost:8080`
   : `file://${__dirname}/front-electron-dist/index.html`
@@ -30,7 +30,8 @@ let skipUpdate = false
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
 const closedWindows = {}
 
-function init() {
+async function init() {
+  await createAndShowLoadingWindow()
   createMainWindow()
 
   FishingDataReader.onUpdate((data) => {
@@ -73,6 +74,10 @@ function init() {
       setWindow(reader, updateData.data.timer)
       setWindow(readerHistory, updateData.data.history)
       setWindow(readerSpotStatistics, updateData.data.spotStatistics)
+      if (!loading.isDestroyed()) {
+        main.show()
+        loading.close()
+      }
     })
     .on('reloadUserData', () => {
       reader.webContents.send('reloadUserData')
@@ -98,9 +103,9 @@ function init() {
   })
   globalShortcut.register('Alt+CommandOrControl+T', () => {
     main &&
-      main.webContents.openDevTools({
-        mode: 'undocked',
-      })
+    main.webContents.openDevTools({
+      mode: 'undocked',
+    })
   })
 }
 
@@ -282,6 +287,33 @@ function createReaderSpotStatistics(readTimerWin) {
   }
 }
 
+function createAndShowLoadingWindow() {
+  loading = new BrowserWindow({
+    width: 300,
+    height: 300,
+    frame: false,
+    show: true,
+    transparent: true,
+    opacity: 0.9,
+    webPreferences: {
+      contextIsolation: false,
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      preload: __dirname + '/preload.js',
+    },
+    icon: path.join(__dirname, 'assets/icon256.png'),
+  })
+
+  loading.removeMenu()
+
+  loading.once('ready-to-show', () => {
+    loading.show()
+  })
+  return loading.loadURL(isDev
+    ? `http://localhost:8080/loading`
+    : `file://${__dirname}/front-electron-dist/loading.html`)
+}
+
 function createMainWindow() {
   main = new BrowserWindow({
     width: 1080,
@@ -298,9 +330,9 @@ function createMainWindow() {
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
   const win = main
-  win.once('ready-to-show', () => {
-    win.show()
-  })
+  // win.once('ready-to-show', () => {
+  //   win.show()
+  // })
   // win.setOpacity(0.9)
   // win.setAlwaysOnTop(true)
   win.removeMenu()
@@ -531,7 +563,7 @@ if (!gotTheLock) {
     }
   })
 
-  app.whenReady().then(init)
+  app.whenReady().then(() => init())
 }
 
 // app.on('window-all-closed', () => {
