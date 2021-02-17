@@ -23,5 +23,5 @@ export default {
 
 <style lang="sass" scoped>
 .timeline-row
-  margin: 4px 0
+  margin: 4px 8px
 </style>

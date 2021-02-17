@@ -9,12 +9,23 @@
             :items="chumOptions"
             item-text="name"
             item-value="value"
+            label="数据类别"
           >
           </v-select>
         </v-col>
         <v-col cols="12">
           <div v-if="dataForChart.length === 0">暂无数据，请在钓场抛竿后查看</div>
           <div v-else>
+            <v-slider
+              :value="timer"
+              max="60"
+              min="0"
+              ticks="always"
+              tick-size="4"
+              step="1"
+              :tick-labels="labels"
+              disabled
+            ></v-slider>
             <fish-timeline-table :pointer="interval" :timelines="dataForChart" />
           </div>
         </v-col>
@@ -50,10 +61,20 @@ export default {
     }
   },
   computed: {
+    labels() {
+      const labels = []
+      for (let i = 0; i <= 60; i++) {
+        labels.push(i % 5 === 0 ? i + '' : '')
+      }
+      return labels
+    },
     interval() {
       const startTime = this.dataCurrentRecord?.startTime ?? this.now
       const biteTime = this.dataCurrentRecord?.biteTime ?? this.now
       return (biteTime - startTime) / 1000
+    },
+    timer() {
+      return +(this.interval > 60 ? 60 : this.interval).toFixed(0)
     },
     intervalPercentage() {
       const percentage = this.interval / 60
@@ -76,7 +97,7 @@ export default {
     },
     fishingSpot() {
       const spotId = this.dataStatus?.spotId
-      const spot = spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : {}
+      const spot = spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name: '未检测到钓场' }
       return {
         ...spot,
         name: DataUtil.getName(spot),
