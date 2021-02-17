@@ -48,7 +48,7 @@
       </v-col>
       <v-col cols="12" class="mt-4 d-flex">
         <div v-if="!bait.id">
-          未检测到鱼饵，请切换至任意鱼饵以读取鱼饵数据
+          未检测到鱼饵，请切换至任意鱼饵以读取数据
         </div>
         <div v-else class="d-flex align-center">
           <span class="mr-1">鱼饵</span>
