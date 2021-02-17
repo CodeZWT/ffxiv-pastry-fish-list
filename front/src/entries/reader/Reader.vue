@@ -140,7 +140,7 @@ body::-webkit-scrollbar {
 /* Works on Chrome/Edge/Safari */
 
 *::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 *::-webkit-scrollbar-track {
