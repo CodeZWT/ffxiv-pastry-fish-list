@@ -546,26 +546,7 @@
       :in-migration-page="inMigrationPage"
       @confirm="onConfirmPatchNote"
     />
-    <v-dialog
-      v-model="showHelpDialog"
-      :fullscreen="isMobile"
-      max-width="1264px"
-      scrollable
-    >
-      <v-card>
-        <v-card-title>
-          {{ $t('top.help') }}
-        </v-card-title>
-        <v-card-text v-html="helpHTML" />
-        <v-card-actions>
-          <div class="d-flex flex-column flex-fill">
-            <click-helper @click="showHelpDialog = false">
-              <v-btn color="default" block text>{{ $t('general.dialog.close') }}</v-btn>
-            </click-helper>
-          </div>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <help-dialog v-model="showHelpDialog" />
     <v-dialog
       v-model="showAboutDialog"
       :fullscreen="isMobile"
@@ -573,9 +554,7 @@
       scrollable
     >
       <v-card>
-        <v-card-title>
-          关于
-        </v-card-title>
+        <v-card-title>关于</v-card-title>
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
           <div>群：1153646847</div>
@@ -708,7 +687,6 @@
 import EorzeaTime from '@/utils/Time'
 import '@thewakingsands/axis-font-icons'
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import helpHTML from 'Assets/doc/help.html'
 import { version } from '../../../package.json'
 import ResetButton from '@/components/ResetButton'
 import ClickHelper from '@/components/basic/ClickHelper'
@@ -738,10 +716,12 @@ import UpdateDialog from '@/components/Dialog/UpdateDialog'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import { MainFeatures } from 'Data/newFeatures'
 import ToggleButton from '@/components/basic/ToggleButton'
+import HelpDialog from '@/components/Dialog/HelpDialog'
 
 export default {
   name: 'App',
   components: {
+    HelpDialog,
     ToggleButton,
     NewFeatureMark,
     UpdateDialog,
@@ -769,7 +749,6 @@ export default {
     now: Date.now(),
     fisher: ImgUtil.getImgUrl('pastry-fish.png'),
     version,
-    helpHTML,
     noOp: DataUtil.noOp,
     showHelpDialog: false,
     showAboutDialog: false,
