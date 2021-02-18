@@ -11,6 +11,22 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.6.4</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕
+        </div>
+        <ul>
+          <li>
+            增加5.4版本鱼
+          </li>
+          <li>
+            增加5.4版本鱼眼功能支持
+            <span class="error--text">（请注意：国服当前版本尚未实装新鱼眼）</span>
+          </li>
+        </ul>
+        <v-divider />
+        <p />
+
         <div class="text-h6">Version 0.6.3</div>
         <div class="text-h5 text-center my-1">
           鱼糕
