@@ -97,6 +97,13 @@ async function init() {
       log.info('zoom main window', zoomFactor)
       main.webContents.setZoomFactor(zoomFactor)
     })
+    .on('setCollapse', (event, collapse)=> {
+      if (collapse) {
+        main.setSize(112, 88)
+      } else {
+        main.setSize(mainSize.w, mainSize.h)
+      }
+    })
 
   globalShortcut.register('Alt+CommandOrControl+L', () => {
     showReader()
@@ -108,7 +115,7 @@ async function init() {
     })
   })
 }
-
+let mainSize ={w:-1,h:-1}
 function setWindow(window, option) {
   if (option.opacity) {
     window.setOpacity(option.opacity)
@@ -121,6 +128,9 @@ function setWindow(window, option) {
   }
   if (option.size.w > 0 && option.size.h > 0) {
     window.setSize(option.size.w, option.size.h)
+  }
+  if (window === main) {
+    mainSize = {w: option.size.w, h: option.size.h}
   }
 }
 
@@ -364,7 +374,7 @@ function createMainWindow() {
 
   if (isDev) {
     win.webContents.openDevTools({
-      mode: 'right',
+      mode: 'undocked',
     })
   }
 }

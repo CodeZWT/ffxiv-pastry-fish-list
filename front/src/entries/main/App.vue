@@ -67,7 +67,7 @@
           `margin-left: ${collapse || isMobile ? 0 : -12}px; -webkit-app-region: none`
         "
       >
-        <v-tooltip bottom z-index="10">
+        <v-tooltip bottom z-index="10" :disabled="collapse">
           <template v-slot:activator="{ on, attrs }">
             <div class="d-flex">
               <v-avatar size="36" v-bind="attrs" v-on="on">
@@ -613,7 +613,8 @@
       </v-card>
     </v-dialog>
     <update-dialog
-      v-model="showCheckStartSetupDialog"
+      :value="showCheckStartSetupDialog && !collapse"
+      @input="showCheckStartSetupDialog = true"
       @update="startUpdate"
       @skip="skipUpdate"
     />
@@ -1311,8 +1312,8 @@ export default {
     close() {
       WindowUtil.closeWindow()
     },
-    sendElectronEvent(channel) {
-      window.electron?.ipcRenderer?.send(channel)
+    sendElectronEvent(channel, data) {
+      window.electron?.ipcRenderer?.send(channel, data)
     },
     openReader() {
       this.sendElectronEvent('openReader')
@@ -1843,6 +1844,7 @@ export default {
     },
     toggleCollapse() {
       this.collapse = !this.collapse
+      this.sendElectronEvent('setCollapse', this.collapse)
     },
     setActiveTabLater(index) {
       setTimeout(() => this.setActiveTab(index), 500)
