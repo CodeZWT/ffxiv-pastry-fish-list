@@ -24,6 +24,17 @@
             <span class="error--text">（请注意：国服当前版本尚未实装新鱼眼）</span>
           </li>
         </ul>
+        <div class="text-h5 text-center my-1">
+          鱼糕桌面版
+        </div>
+        <ul>
+          <li>
+            修复查看帮助后，最小化悬浮窗出现黑色底框的问题。
+          </li>
+          <li>
+            修复最小化悬浮窗后，透明窗体覆盖其他窗口的问题。
+          </li>
+        </ul>
         <v-divider />
         <p />
 

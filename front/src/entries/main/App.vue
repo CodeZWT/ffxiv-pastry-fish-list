@@ -146,16 +146,21 @@
                 @input="toggleFishEyesUsed"
                 checked-icon="mdi-eye"
                 unchecked-icon="mdi-eye-off"
-                checked-title="点击取消鱼眼模式"
+                checked-title="点击关闭鱼眼模式"
                 unchecked-title="点击开启鱼眼模式"
               />
             </div>
           </template>
           <div style="max-width: 300px">
+            <div class="error--text font-weight-bold text-center text-h5">
+              此技能国服仍未实装！
+            </div>
             <div class="mb-1">
               <item-icon icon-class="bg-001112" small class="float-left" />
               <div>
-                鱼眼技能在5.4版本的效果更新为，无视时间条件，持续时间60s，消耗GP550。
+                鱼眼技能在
+                <strong>5.4</strong>
+                版本的效果更新为，无视时间条件，持续时间60s，消耗GP550。
                 对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼无效。
               </div>
             </div>
@@ -290,16 +295,19 @@
                       :value="fishEyesUsed"
                       checked-icon="mdi-eye"
                       unchecked-icon="mdi-eye-off"
-                      checked-title="点击取消鱼眼模式"
+                      checked-title="点击关闭鱼眼模式"
                       unchecked-title="点击开启鱼眼模式"
                     />
                     <div>
-                      {{ fishEyesUsed ? '点击取消鱼眼模式' : '点击开启鱼眼模式' }}
+                      {{ fishEyesUsed ? '点击关闭鱼眼模式' : '点击开启鱼眼模式' }}
                     </div>
                   </div>
                 </template>
                 <div style="max-width: 300px">
                   <div class="mb-1">
+                    <div class="error--text font-weight-bold text-center text-h5">
+                      此技能国服仍未实装！
+                    </div>
                     <item-icon icon-class="bg-001112" small class="float-left" />
                     <div>
                       鱼眼技能在5.4版本的效果更新为，无视时间条件，持续时间60s，消耗GP550。
@@ -312,7 +320,6 @@
                 </div>
               </v-tooltip>
             </v-list-item>
-            <!--            </v-list-item-group>-->
           </v-list>
         </v-menu>
 
@@ -786,11 +793,12 @@ export default {
     showCheckStartSetupDialog: false,
     showDownloadDialog: false,
     migrationSource: '',
+    alwaysOnTop: false,
+    maximized: false,
     ReaderTimerFeatureId: MainFeatures.ReaderTimer,
     DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
     SettingFeatureId: MainFeatures.Setting,
-    alwaysOnTop: false,
-    maximized: false,
+    FishEyesFeatureId: MainFeatures.FishEyesButton,
   }),
   computed: {
     // TODO: CHECK different with real eorzea time of 1 minute

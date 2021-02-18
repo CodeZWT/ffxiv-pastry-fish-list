@@ -1,18 +1,26 @@
 <template>
   <click-helper @click.stop="toggleValue">
     <v-btn icon text :small="small" :title="value ? checkedTitle : uncheckedTitle">
-      <v-icon :small="small">{{ value ? checkedIcon : uncheckedIcon }}</v-icon>
+      <new-feature-mark :id="featureId">
+        <v-icon :small="small">{{ value ? checkedIcon : uncheckedIcon }}</v-icon>
+      </new-feature-mark>
     </v-btn>
   </click-helper>
 </template>
 
 <script>
 import ClickHelper from '@/components/basic/ClickHelper'
+import NewFeatureMark from '@/components/basic/NewFeatureMark'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'ToggleButton',
-  components: { ClickHelper },
+  components: { NewFeatureMark, ClickHelper },
   props: {
+    featureId: {
+      type: String,
+      default: undefined,
+    },
     value: {
       type: Boolean,
       default: false,
@@ -40,8 +48,12 @@ export default {
   },
   methods: {
     toggleValue() {
+      if (this.featureId) {
+        this.setFeatureViewed(this.featureId)
+      }
       this.$emit('input', !this.value)
     },
+    ...mapMutations(['setFeatureViewed']),
   },
 }
 </script>

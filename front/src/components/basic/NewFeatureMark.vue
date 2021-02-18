@@ -1,5 +1,5 @@
 <template>
-  <v-badge :color="viewed ? 'transparent' : 'error'" overlap dot>
+  <v-badge :color="!id || viewed ? 'transparent' : 'error'" overlap dot>
     <slot />
   </v-badge>
 </template>
