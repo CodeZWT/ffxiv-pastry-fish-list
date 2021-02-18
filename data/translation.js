@@ -6604,6 +6604,13 @@ module.exports = {
     '26809': { _id: 26809, icon: 26165, name_chs: '草木传承录·诺弗兰特篇' },
     '26810': { _id: 26810, icon: 26164, name_chs: '鱼类传承录·诺弗兰特篇' },
     '20528': { _id: 20528, icon: 29149, name_chs: '龙之孙' },
+    '32049':{_id: 32049, icon: 28486, name_chs:'Moonlight Guppy'},
+    '32050':{_id: 32050, icon: 28487, name_chs:'Steel Fan'},
+    '32051':{_id: 32051, icon: 29198, name_chs:'Henodus Grandis'},
+    '32052':{_id: 32052, icon: 28488, name_chs:'Sunken Tome'},
+    '32053':{_id: 32053, icon: 28489, name_chs:'Pearl Pipira'},
+    '32054':{_id: 32054, icon: 29199, name_chs:'The Ondotaker'},
+    '32055':{_id: 32055, icon: 29110, name_chs:'Tortoiseshell Crab'},
   },
   FISHING_SPOTS: {
     '0': {
@@ -11691,6 +11698,13 @@ module.exports = {
     30437,
     30438,
     30439,
+    32049,
+    32050,
+    32051,
+    32052,
+    32053,
+    32054,
+    32055,
   ],
   // 鱼皇
   LIVING_LEGENDS: [

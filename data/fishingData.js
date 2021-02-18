@@ -1,5 +1,5 @@
 module.exports = {
-  '4776': {
+  4776: {
     _id: 4776,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17,7 +17,7 @@ module.exports = {
     bestCatchPath: [2585],
     patch: 2,
   },
-  '4869': {
+  4869: {
     _id: 4869,
     previousWeatherSet: [],
     weatherSet: [],
@@ -39,7 +39,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4870': {
+  4870: {
     _id: 4870,
     previousWeatherSet: [],
     weatherSet: [],
@@ -57,7 +57,7 @@ module.exports = {
     bestCatchPath: [2585],
     patch: 2,
   },
-  '4871': {
+  4871: {
     _id: 4871,
     previousWeatherSet: [],
     weatherSet: [],
@@ -75,7 +75,7 @@ module.exports = {
     bestCatchPath: [2585],
     patch: 2,
   },
-  '4872': {
+  4872: {
     _id: 4872,
     previousWeatherSet: [],
     weatherSet: [],
@@ -97,7 +97,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4873': {
+  4873: {
     _id: 4873,
     previousWeatherSet: [],
     weatherSet: [],
@@ -115,7 +115,7 @@ module.exports = {
     bestCatchPath: [2589],
     patch: 2,
   },
-  '4874': {
+  4874: {
     _id: 4874,
     previousWeatherSet: [],
     weatherSet: [],
@@ -140,7 +140,7 @@ module.exports = {
       size: 1,
     },
   },
-  '4875': {
+  4875: {
     _id: 4875,
     previousWeatherSet: [],
     weatherSet: [],
@@ -158,7 +158,7 @@ module.exports = {
     bestCatchPath: [2606],
     patch: 2,
   },
-  '4876': {
+  4876: {
     _id: 4876,
     previousWeatherSet: [],
     weatherSet: [],
@@ -176,7 +176,7 @@ module.exports = {
     bestCatchPath: [2587],
     patch: 2,
   },
-  '4877': {
+  4877: {
     _id: 4877,
     previousWeatherSet: [],
     weatherSet: [],
@@ -194,7 +194,7 @@ module.exports = {
     bestCatchPath: [2628],
     patch: 2,
   },
-  '4878': {
+  4878: {
     _id: 4878,
     previousWeatherSet: [],
     weatherSet: [],
@@ -212,7 +212,7 @@ module.exports = {
     bestCatchPath: [2628],
     patch: 2,
   },
-  '4879': {
+  4879: {
     _id: 4879,
     previousWeatherSet: [],
     weatherSet: [],
@@ -230,7 +230,7 @@ module.exports = {
     bestCatchPath: [2591],
     patch: 2,
   },
-  '4880': {
+  4880: {
     _id: 4880,
     previousWeatherSet: [],
     weatherSet: [],
@@ -248,7 +248,7 @@ module.exports = {
     bestCatchPath: [2591],
     patch: 2,
   },
-  '4881': {
+  4881: {
     _id: 4881,
     previousWeatherSet: [],
     weatherSet: [],
@@ -266,7 +266,7 @@ module.exports = {
     bestCatchPath: [2591],
     patch: 2,
   },
-  '4882': {
+  4882: {
     _id: 4882,
     previousWeatherSet: [],
     weatherSet: [],
@@ -284,7 +284,7 @@ module.exports = {
     bestCatchPath: [2628],
     patch: 2,
   },
-  '4883': {
+  4883: {
     _id: 4883,
     previousWeatherSet: [],
     weatherSet: [],
@@ -302,7 +302,7 @@ module.exports = {
     bestCatchPath: [2616],
     patch: 2,
   },
-  '4884': {
+  4884: {
     _id: 4884,
     previousWeatherSet: [],
     weatherSet: [],
@@ -338,7 +338,7 @@ module.exports = {
   //   bestCatchPath: [2585, 4869],
   //   patch: 2,
   // },
-  '4886': {
+  4886: {
     _id: 4886,
     previousWeatherSet: [],
     weatherSet: [],
@@ -356,7 +356,7 @@ module.exports = {
     bestCatchPath: [2606],
     patch: 2,
   },
-  '4887': {
+  4887: {
     _id: 4887,
     previousWeatherSet: [],
     weatherSet: [],
@@ -374,7 +374,7 @@ module.exports = {
     bestCatchPath: [2619],
     patch: 2,
   },
-  '4888': {
+  4888: {
     _id: 4888,
     previousWeatherSet: [],
     weatherSet: [],
@@ -396,7 +396,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4889': {
+  4889: {
     _id: 4889,
     previousWeatherSet: [],
     weatherSet: [],
@@ -414,7 +414,7 @@ module.exports = {
     bestCatchPath: [2619],
     patch: 2,
   },
-  '4890': {
+  4890: {
     _id: 4890,
     previousWeatherSet: [],
     weatherSet: [],
@@ -432,7 +432,7 @@ module.exports = {
     bestCatchPath: [2613],
     patch: 2,
   },
-  '4891': {
+  4891: {
     _id: 4891,
     previousWeatherSet: [],
     weatherSet: [],
@@ -450,7 +450,7 @@ module.exports = {
     bestCatchPath: [2619],
     patch: 2,
   },
-  '4892': {
+  4892: {
     _id: 4892,
     previousWeatherSet: [],
     weatherSet: [],
@@ -468,7 +468,7 @@ module.exports = {
     bestCatchPath: [2598],
     patch: 2,
   },
-  '4893': {
+  4893: {
     _id: 4893,
     previousWeatherSet: [],
     weatherSet: [],
@@ -486,7 +486,7 @@ module.exports = {
     bestCatchPath: [2616],
     patch: 2,
   },
-  '4894': {
+  4894: {
     _id: 4894,
     previousWeatherSet: [],
     weatherSet: [],
@@ -504,7 +504,7 @@ module.exports = {
     bestCatchPath: [2598],
     patch: 2,
   },
-  '4895': {
+  4895: {
     _id: 4895,
     previousWeatherSet: [],
     weatherSet: [],
@@ -522,7 +522,7 @@ module.exports = {
     bestCatchPath: [2596],
     patch: 2,
   },
-  '4896': {
+  4896: {
     _id: 4896,
     previousWeatherSet: [],
     weatherSet: [],
@@ -540,7 +540,7 @@ module.exports = {
     bestCatchPath: [2596],
     patch: 2,
   },
-  '4897': {
+  4897: {
     _id: 4897,
     previousWeatherSet: [],
     weatherSet: [],
@@ -558,7 +558,7 @@ module.exports = {
     bestCatchPath: [2606],
     patch: 2,
   },
-  '4898': {
+  4898: {
     _id: 4898,
     previousWeatherSet: [],
     weatherSet: [],
@@ -583,7 +583,7 @@ module.exports = {
       size: 2,
     },
   },
-  '4899': {
+  4899: {
     _id: 4899,
     previousWeatherSet: [],
     weatherSet: [],
@@ -601,7 +601,7 @@ module.exports = {
     bestCatchPath: [2619],
     patch: 2,
   },
-  '4900': {
+  4900: {
     _id: 4900,
     previousWeatherSet: [],
     weatherSet: [],
@@ -619,7 +619,7 @@ module.exports = {
     bestCatchPath: [2598],
     patch: 2,
   },
-  '4901': {
+  4901: {
     _id: 4901,
     previousWeatherSet: [],
     weatherSet: [],
@@ -637,7 +637,7 @@ module.exports = {
     bestCatchPath: [2619],
     patch: 2,
   },
-  '4902': {
+  4902: {
     _id: 4902,
     previousWeatherSet: [],
     weatherSet: [],
@@ -673,7 +673,7 @@ module.exports = {
   //   bestCatchPath: [2585, 4869],
   //   patch: 2,
   // },
-  '4904': {
+  4904: {
     _id: 4904,
     previousWeatherSet: [],
     weatherSet: [],
@@ -695,7 +695,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4905': {
+  4905: {
     _id: 4905,
     previousWeatherSet: [],
     weatherSet: [7, 15],
@@ -720,7 +720,7 @@ module.exports = {
       size: 2,
     },
   },
-  '4906': {
+  4906: {
     _id: 4906,
     previousWeatherSet: [],
     weatherSet: [],
@@ -742,7 +742,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4907': {
+  4907: {
     _id: 4907,
     previousWeatherSet: [],
     weatherSet: [],
@@ -760,7 +760,7 @@ module.exports = {
     bestCatchPath: [2628],
     patch: 2,
   },
-  '4908': {
+  4908: {
     _id: 4908,
     previousWeatherSet: [],
     weatherSet: [],
@@ -778,7 +778,7 @@ module.exports = {
     bestCatchPath: [2628],
     patch: 2,
   },
-  '4909': {
+  4909: {
     _id: 4909,
     previousWeatherSet: [],
     weatherSet: [],
@@ -796,7 +796,7 @@ module.exports = {
     bestCatchPath: [2628],
     patch: 2,
   },
-  '4910': {
+  4910: {
     _id: 4910,
     previousWeatherSet: [],
     weatherSet: [],
@@ -814,7 +814,7 @@ module.exports = {
     bestCatchPath: [2628],
     patch: 2,
   },
-  '4911': {
+  4911: {
     _id: 4911,
     previousWeatherSet: [],
     weatherSet: [],
@@ -836,7 +836,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4912': {
+  4912: {
     _id: 4912,
     previousWeatherSet: [],
     weatherSet: [],
@@ -854,7 +854,7 @@ module.exports = {
     bestCatchPath: [2585, 4869, 4904],
     patch: 2,
   },
-  '4913': {
+  4913: {
     _id: 4913,
     previousWeatherSet: [],
     weatherSet: [7, 8],
@@ -876,7 +876,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4914': {
+  4914: {
     _id: 4914,
     previousWeatherSet: [],
     weatherSet: [],
@@ -894,7 +894,7 @@ module.exports = {
     bestCatchPath: [2606],
     patch: 2,
   },
-  '4915': {
+  4915: {
     _id: 4915,
     previousWeatherSet: [],
     weatherSet: [],
@@ -916,7 +916,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4916': {
+  4916: {
     _id: 4916,
     previousWeatherSet: [],
     weatherSet: [],
@@ -934,7 +934,7 @@ module.exports = {
     bestCatchPath: [2606],
     patch: 2,
   },
-  '4917': {
+  4917: {
     _id: 4917,
     previousWeatherSet: [],
     weatherSet: [],
@@ -952,7 +952,7 @@ module.exports = {
     bestCatchPath: [2587, 4874, 4888],
     patch: 2,
   },
-  '4918': {
+  4918: {
     _id: 4918,
     previousWeatherSet: [],
     weatherSet: [],
@@ -977,7 +977,7 @@ module.exports = {
       size: 3,
     },
   },
-  '4919': {
+  4919: {
     _id: 4919,
     previousWeatherSet: [],
     weatherSet: [],
@@ -999,7 +999,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4920': {
+  4920: {
     _id: 4920,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1017,7 +1017,7 @@ module.exports = {
     bestCatchPath: [2587, 4874, 4888],
     patch: 2,
   },
-  '4921': {
+  4921: {
     _id: 4921,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1035,7 +1035,7 @@ module.exports = {
     bestCatchPath: [2587, 4872],
     patch: 2,
   },
-  '4922': {
+  4922: {
     _id: 4922,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1053,7 +1053,7 @@ module.exports = {
     bestCatchPath: [2585, 4869, 4904],
     patch: 2,
   },
-  '4923': {
+  4923: {
     _id: 4923,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1071,7 +1071,7 @@ module.exports = {
     bestCatchPath: [2585, 4869, 4904],
     patch: 2,
   },
-  '4924': {
+  4924: {
     _id: 4924,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -1096,7 +1096,7 @@ module.exports = {
       size: 4,
     },
   },
-  '4925': {
+  4925: {
     _id: 4925,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1114,7 +1114,7 @@ module.exports = {
     bestCatchPath: [2586],
     patch: 2,
   },
-  '4926': {
+  4926: {
     _id: 4926,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1132,7 +1132,7 @@ module.exports = {
     bestCatchPath: [2586],
     patch: 2,
   },
-  '4927': {
+  4927: {
     _id: 4927,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1154,7 +1154,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4928': {
+  4928: {
     _id: 4928,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1172,7 +1172,7 @@ module.exports = {
     bestCatchPath: [2586],
     patch: 2,
   },
-  '4929': {
+  4929: {
     _id: 4929,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1190,7 +1190,7 @@ module.exports = {
     bestCatchPath: [2586],
     patch: 2,
   },
-  '4930': {
+  4930: {
     _id: 4930,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1208,7 +1208,7 @@ module.exports = {
     bestCatchPath: [2588],
     patch: 2,
   },
-  '4931': {
+  4931: {
     _id: 4931,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1226,7 +1226,7 @@ module.exports = {
     bestCatchPath: [2588],
     patch: 2,
   },
-  '4932': {
+  4932: {
     _id: 4932,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1244,7 +1244,7 @@ module.exports = {
     bestCatchPath: [2588],
     patch: 2,
   },
-  '4933': {
+  4933: {
     _id: 4933,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1262,7 +1262,7 @@ module.exports = {
     bestCatchPath: [2588],
     patch: 2,
   },
-  '4934': {
+  4934: {
     _id: 4934,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1280,7 +1280,7 @@ module.exports = {
     bestCatchPath: [2588],
     patch: 2,
   },
-  '4935': {
+  4935: {
     _id: 4935,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1298,7 +1298,7 @@ module.exports = {
     bestCatchPath: [2623],
     patch: 2,
   },
-  '4936': {
+  4936: {
     _id: 4936,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1338,7 +1338,7 @@ module.exports = {
   //   gig: null,
   //   aquarium: null,
   // },
-  '4938': {
+  4938: {
     _id: 4938,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1356,7 +1356,7 @@ module.exports = {
     bestCatchPath: [2597],
     patch: 2,
   },
-  '4939': {
+  4939: {
     _id: 4939,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1374,7 +1374,7 @@ module.exports = {
     bestCatchPath: [2592],
     patch: 2,
   },
-  '4940': {
+  4940: {
     _id: 4940,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1392,7 +1392,7 @@ module.exports = {
     bestCatchPath: [2618],
     patch: 2,
   },
-  '4941': {
+  4941: {
     _id: 4941,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1410,7 +1410,7 @@ module.exports = {
     bestCatchPath: [2590],
     patch: 2,
   },
-  '4942': {
+  4942: {
     _id: 4942,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1432,7 +1432,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4943': {
+  4943: {
     _id: 4943,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1450,7 +1450,7 @@ module.exports = {
     bestCatchPath: [2592],
     patch: 2,
   },
-  '4944': {
+  4944: {
     _id: 4944,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1468,7 +1468,7 @@ module.exports = {
     bestCatchPath: [2592],
     patch: 2,
   },
-  '4945': {
+  4945: {
     _id: 4945,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1486,7 +1486,7 @@ module.exports = {
     bestCatchPath: [2592],
     patch: 2,
   },
-  '4946': {
+  4946: {
     _id: 4946,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1504,7 +1504,7 @@ module.exports = {
     bestCatchPath: [2611],
     patch: 2,
   },
-  '4947': {
+  4947: {
     _id: 4947,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1522,7 +1522,7 @@ module.exports = {
     bestCatchPath: [2614],
     patch: 2,
   },
-  '4948': {
+  4948: {
     _id: 4948,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1547,7 +1547,7 @@ module.exports = {
       size: 1,
     },
   },
-  '4949': {
+  4949: {
     _id: 4949,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1565,7 +1565,7 @@ module.exports = {
     bestCatchPath: [2611],
     patch: 2,
   },
-  '4950': {
+  4950: {
     _id: 4950,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1583,7 +1583,7 @@ module.exports = {
     bestCatchPath: [2599],
     patch: 2,
   },
-  '4951': {
+  4951: {
     _id: 4951,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1619,7 +1619,7 @@ module.exports = {
   //   bestCatchPath: [2594, 4948],
   //   patch: 2,
   // },
-  '4953': {
+  4953: {
     _id: 4953,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1637,7 +1637,7 @@ module.exports = {
     bestCatchPath: [2594],
     patch: 2,
   },
-  '4954': {
+  4954: {
     _id: 4954,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1655,7 +1655,7 @@ module.exports = {
     bestCatchPath: [2594],
     patch: 2,
   },
-  '4955': {
+  4955: {
     _id: 4955,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1673,7 +1673,7 @@ module.exports = {
     bestCatchPath: [2614],
     patch: 2,
   },
-  '4956': {
+  4956: {
     _id: 4956,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1691,7 +1691,7 @@ module.exports = {
     bestCatchPath: [2610],
     patch: 2,
   },
-  '4957': {
+  4957: {
     _id: 4957,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1709,7 +1709,7 @@ module.exports = {
     bestCatchPath: [2626],
     patch: 2,
   },
-  '4958': {
+  4958: {
     _id: 4958,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1727,7 +1727,7 @@ module.exports = {
     bestCatchPath: [2594],
     patch: 2,
   },
-  '4959': {
+  4959: {
     _id: 4959,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1745,7 +1745,7 @@ module.exports = {
     bestCatchPath: [2614],
     patch: 2,
   },
-  '4960': {
+  4960: {
     _id: 4960,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1763,7 +1763,7 @@ module.exports = {
     bestCatchPath: [2595],
     patch: 2,
   },
-  '4961': {
+  4961: {
     _id: 4961,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1781,7 +1781,7 @@ module.exports = {
     bestCatchPath: [2611],
     patch: 2,
   },
-  '4962': {
+  4962: {
     _id: 4962,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1817,7 +1817,7 @@ module.exports = {
   //   bestCatchPath: [2586, 4927],
   //   patch: 2,
   // },
-  '4964': {
+  4964: {
     _id: 4964,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1835,7 +1835,7 @@ module.exports = {
     bestCatchPath: [2592, 4942],
     patch: 2,
   },
-  '4965': {
+  4965: {
     _id: 4965,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1853,7 +1853,7 @@ module.exports = {
     bestCatchPath: [2594, 4948],
     patch: 2,
   },
-  '4966': {
+  4966: {
     _id: 4966,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1871,7 +1871,7 @@ module.exports = {
     bestCatchPath: [2610],
     patch: 2,
   },
-  '4967': {
+  4967: {
     _id: 4967,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1889,7 +1889,7 @@ module.exports = {
     bestCatchPath: [2595],
     patch: 2,
   },
-  '4968': {
+  4968: {
     _id: 4968,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1907,7 +1907,7 @@ module.exports = {
     bestCatchPath: [2597],
     patch: 2,
   },
-  '4969': {
+  4969: {
     _id: 4969,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1925,7 +1925,7 @@ module.exports = {
     bestCatchPath: [2615],
     patch: 2,
   },
-  '4970': {
+  4970: {
     _id: 4970,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1943,7 +1943,7 @@ module.exports = {
     bestCatchPath: [2610],
     patch: 2,
   },
-  '4971': {
+  4971: {
     _id: 4971,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1961,7 +1961,7 @@ module.exports = {
     bestCatchPath: [2597],
     patch: 2,
   },
-  '4972': {
+  4972: {
     _id: 4972,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1979,7 +1979,7 @@ module.exports = {
     bestCatchPath: [2597],
     patch: 2,
   },
-  '4973': {
+  4973: {
     _id: 4973,
     previousWeatherSet: [],
     weatherSet: [],
@@ -1997,7 +1997,7 @@ module.exports = {
     bestCatchPath: [2627],
     patch: 2,
   },
-  '4974': {
+  4974: {
     _id: 4974,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2033,7 +2033,7 @@ module.exports = {
   //   bestCatchPath: [2592, 4942],
   //   patch: 2,
   // },
-  '4976': {
+  4976: {
     _id: 4976,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2051,7 +2051,7 @@ module.exports = {
     bestCatchPath: [2623],
     patch: 2,
   },
-  '4977': {
+  4977: {
     _id: 4977,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2069,7 +2069,7 @@ module.exports = {
     bestCatchPath: [27591],
     patch: 2,
   },
-  '4978': {
+  4978: {
     _id: 4978,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2091,7 +2091,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4979': {
+  4979: {
     _id: 4979,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2109,7 +2109,7 @@ module.exports = {
     bestCatchPath: [2599],
     patch: 2,
   },
-  '4980': {
+  4980: {
     _id: 4980,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2127,7 +2127,7 @@ module.exports = {
     bestCatchPath: [27591],
     patch: 2,
   },
-  '4981': {
+  4981: {
     _id: 4981,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2145,7 +2145,7 @@ module.exports = {
     bestCatchPath: [2599],
     patch: 2,
   },
-  '4982': {
+  4982: {
     _id: 4982,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2163,7 +2163,7 @@ module.exports = {
     bestCatchPath: [2627],
     patch: 2,
   },
-  '4983': {
+  4983: {
     _id: 4983,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2181,7 +2181,7 @@ module.exports = {
     bestCatchPath: [2599],
     patch: 2,
   },
-  '4984': {
+  4984: {
     _id: 4984,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2199,7 +2199,7 @@ module.exports = {
     bestCatchPath: [2599],
     patch: 2,
   },
-  '4985': {
+  4985: {
     _id: 4985,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2217,7 +2217,7 @@ module.exports = {
     bestCatchPath: [2599],
     patch: 2,
   },
-  '4986': {
+  4986: {
     _id: 4986,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2235,7 +2235,7 @@ module.exports = {
     bestCatchPath: [2620],
     patch: 2,
   },
-  '4987': {
+  4987: {
     _id: 4987,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2253,7 +2253,7 @@ module.exports = {
     bestCatchPath: [2599],
     patch: 2,
   },
-  '4988': {
+  4988: {
     _id: 4988,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2271,7 +2271,7 @@ module.exports = {
     bestCatchPath: [2626],
     patch: 2,
   },
-  '4989': {
+  4989: {
     _id: 4989,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2289,7 +2289,7 @@ module.exports = {
     bestCatchPath: [2601],
     patch: 2,
   },
-  '4990': {
+  4990: {
     _id: 4990,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2329,7 +2329,7 @@ module.exports = {
   //   gig: null,
   //   aquarium: null,
   // },
-  '4992': {
+  4992: {
     _id: 4992,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2347,7 +2347,7 @@ module.exports = {
     bestCatchPath: [2594, 4948],
     patch: 2,
   },
-  '4993': {
+  4993: {
     _id: 4993,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2365,7 +2365,7 @@ module.exports = {
     bestCatchPath: [2603],
     patch: 2,
   },
-  '4994': {
+  4994: {
     _id: 4994,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2383,7 +2383,7 @@ module.exports = {
     bestCatchPath: [2627],
     patch: 2,
   },
-  '4995': {
+  4995: {
     _id: 4995,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2405,7 +2405,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '4996': {
+  4996: {
     _id: 4996,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2423,7 +2423,7 @@ module.exports = {
     bestCatchPath: [2624],
     patch: 2,
   },
-  '4997': {
+  4997: {
     _id: 4997,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2441,7 +2441,7 @@ module.exports = {
     bestCatchPath: [2624],
     patch: 2,
   },
-  '4998': {
+  4998: {
     _id: 4998,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2459,7 +2459,7 @@ module.exports = {
     bestCatchPath: [2626],
     patch: 2,
   },
-  '4999': {
+  4999: {
     _id: 4999,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2477,7 +2477,7 @@ module.exports = {
     bestCatchPath: [2618],
     patch: 2,
   },
-  '5000': {
+  5000: {
     _id: 5000,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2495,7 +2495,7 @@ module.exports = {
     bestCatchPath: [2599, 4978],
     patch: 2,
   },
-  '5001': {
+  5001: {
     _id: 5001,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2513,7 +2513,7 @@ module.exports = {
     bestCatchPath: [2618],
     patch: 2,
   },
-  '5002': {
+  5002: {
     _id: 5002,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2535,7 +2535,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '5003': {
+  5003: {
     _id: 5003,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2553,7 +2553,7 @@ module.exports = {
     bestCatchPath: [2601],
     patch: 2,
   },
-  '5004': {
+  5004: {
     _id: 5004,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2589,7 +2589,7 @@ module.exports = {
   //   bestCatchPath: [2599, 4978],
   //   patch: 2,
   // },
-  '5006': {
+  5006: {
     _id: 5006,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2607,7 +2607,7 @@ module.exports = {
     bestCatchPath: [2624],
     patch: 2,
   },
-  '5007': {
+  5007: {
     _id: 5007,
     previousWeatherSet: [],
     weatherSet: [14, 2, 1],
@@ -2632,7 +2632,7 @@ module.exports = {
       size: 2,
     },
   },
-  '5008': {
+  5008: {
     _id: 5008,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2672,7 +2672,7 @@ module.exports = {
   //   bestCatchPath: [2586, 4927],
   //   patch: 2,
   // },
-  '5010': {
+  5010: {
     _id: 5010,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2690,7 +2690,7 @@ module.exports = {
     bestCatchPath: [12711, 4937],
     patch: 2,
   },
-  '5011': {
+  5011: {
     _id: 5011,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2715,7 +2715,7 @@ module.exports = {
       size: 2,
     },
   },
-  '5012': {
+  5012: {
     _id: 5012,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2733,7 +2733,7 @@ module.exports = {
     bestCatchPath: [2599, 4978],
     patch: 2,
   },
-  '5013': {
+  5013: {
     _id: 5013,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2751,7 +2751,7 @@ module.exports = {
     bestCatchPath: [2607],
     patch: 2,
   },
-  '5014': {
+  5014: {
     _id: 5014,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2769,7 +2769,7 @@ module.exports = {
     bestCatchPath: [2586, 4927],
     patch: 2,
   },
-  '5015': {
+  5015: {
     _id: 5015,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2787,7 +2787,7 @@ module.exports = {
     bestCatchPath: [2626, 4995],
     patch: 2,
   },
-  '5016': {
+  5016: {
     _id: 5016,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2809,7 +2809,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '5017': {
+  5017: {
     _id: 5017,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -2831,7 +2831,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '5018': {
+  5018: {
     _id: 5018,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2849,7 +2849,7 @@ module.exports = {
     bestCatchPath: [2626, 4995],
     patch: 2,
   },
-  '5019': {
+  5019: {
     _id: 5019,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2867,7 +2867,7 @@ module.exports = {
     bestCatchPath: [2599, 4978, 5011],
     patch: 2,
   },
-  '5020': {
+  5020: {
     _id: 5020,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2885,7 +2885,7 @@ module.exports = {
     bestCatchPath: [2599, 4978],
     patch: 2,
   },
-  '5021': {
+  5021: {
     _id: 5021,
     previousWeatherSet: [],
     weatherSet: [17],
@@ -2907,7 +2907,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '5022': {
+  5022: {
     _id: 5022,
     previousWeatherSet: [],
     weatherSet: [4, 3],
@@ -2929,7 +2929,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '5023': {
+  5023: {
     _id: 5023,
     previousWeatherSet: [],
     weatherSet: [9, 10],
@@ -2954,7 +2954,7 @@ module.exports = {
       size: 2,
     },
   },
-  '5024': {
+  5024: {
     _id: 5024,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2972,7 +2972,7 @@ module.exports = {
     bestCatchPath: [2599, 4978, 5011],
     patch: 2,
   },
-  '5025': {
+  5025: {
     _id: 5025,
     previousWeatherSet: [],
     weatherSet: [],
@@ -2990,7 +2990,7 @@ module.exports = {
     bestCatchPath: [12711, 4937],
     patch: 2,
   },
-  '5026': {
+  5026: {
     _id: 5026,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3008,7 +3008,7 @@ module.exports = {
     bestCatchPath: [2599, 4978, 5011],
     patch: 2,
   },
-  '5027': {
+  5027: {
     _id: 5027,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3030,7 +3030,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '5028': {
+  5028: {
     _id: 5028,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3048,7 +3048,7 @@ module.exports = {
     bestCatchPath: [2627],
     patch: 2,
   },
-  '5029': {
+  5029: {
     _id: 5029,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3066,7 +3066,7 @@ module.exports = {
     bestCatchPath: [2627],
     patch: 2,
   },
-  '5030': {
+  5030: {
     _id: 5030,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3084,7 +3084,7 @@ module.exports = {
     bestCatchPath: [2599, 4978, 5011],
     patch: 2,
   },
-  '5031': {
+  5031: {
     _id: 5031,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3106,7 +3106,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '5032': {
+  5032: {
     _id: 5032,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3124,7 +3124,7 @@ module.exports = {
     bestCatchPath: [2604],
     patch: 2,
   },
-  '5033': {
+  5033: {
     _id: 5033,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3142,7 +3142,7 @@ module.exports = {
     bestCatchPath: [2600],
     patch: 2,
   },
-  '5034': {
+  5034: {
     _id: 5034,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3160,7 +3160,7 @@ module.exports = {
     bestCatchPath: [2604],
     patch: 2,
   },
-  '5035': {
+  5035: {
     _id: 5035,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3182,7 +3182,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '5036': {
+  5036: {
     _id: 5036,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3200,7 +3200,7 @@ module.exports = {
     bestCatchPath: [2602],
     patch: 2,
   },
-  '5037': {
+  5037: {
     _id: 5037,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3218,7 +3218,7 @@ module.exports = {
     bestCatchPath: [2600, 5035],
     patch: 2,
   },
-  '5038': {
+  5038: {
     _id: 5038,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3236,7 +3236,7 @@ module.exports = {
     bestCatchPath: [2605],
     patch: 2,
   },
-  '5039': {
+  5039: {
     _id: 5039,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3254,7 +3254,7 @@ module.exports = {
     bestCatchPath: [2605],
     patch: 2,
   },
-  '5040': {
+  5040: {
     _id: 5040,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3276,7 +3276,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '5041': {
+  5041: {
     _id: 5041,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3294,7 +3294,7 @@ module.exports = {
     bestCatchPath: [2605, 5040],
     patch: 2,
   },
-  '5042': {
+  5042: {
     _id: 5042,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3312,7 +3312,7 @@ module.exports = {
     bestCatchPath: [2605],
     patch: 2,
   },
-  '5043': {
+  5043: {
     _id: 5043,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3330,7 +3330,7 @@ module.exports = {
     bestCatchPath: [27591, 4977],
     patch: 2,
   },
-  '5044': {
+  5044: {
     _id: 5044,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3348,7 +3348,7 @@ module.exports = {
     bestCatchPath: [2605, 5040],
     patch: 2,
   },
-  '5045': {
+  5045: {
     _id: 5045,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3366,7 +3366,7 @@ module.exports = {
     bestCatchPath: [2600, 5035],
     patch: 2,
   },
-  '5046': {
+  5046: {
     _id: 5046,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3384,7 +3384,7 @@ module.exports = {
     bestCatchPath: [2605, 5040, 5044],
     patch: 2,
   },
-  '5460': {
+  5460: {
     _id: 5460,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3402,7 +3402,7 @@ module.exports = {
     bestCatchPath: [2587],
     patch: 2,
   },
-  '5461': {
+  5461: {
     _id: 5461,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3420,7 +3420,7 @@ module.exports = {
     bestCatchPath: [2613],
     patch: 2,
   },
-  '5462': {
+  5462: {
     _id: 5462,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3438,7 +3438,7 @@ module.exports = {
     bestCatchPath: [2598],
     patch: 2,
   },
-  '5466': {
+  5466: {
     _id: 5466,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3456,7 +3456,7 @@ module.exports = {
     bestCatchPath: [2621],
     patch: 2,
   },
-  '5544': {
+  5544: {
     _id: 5544,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3478,7 +3478,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '6185': {
+  6185: {
     _id: 6185,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3496,7 +3496,7 @@ module.exports = {
     bestCatchPath: [2628],
     patch: 2.1,
   },
-  '6191': {
+  6191: {
     _id: 6191,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3514,7 +3514,7 @@ module.exports = {
     bestCatchPath: [2624],
     patch: 2.1,
   },
-  '7678': {
+  7678: {
     _id: 7678,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3536,7 +3536,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7679': {
+  7679: {
     _id: 7679,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3558,7 +3558,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7680': {
+  7680: {
     _id: 7680,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3580,7 +3580,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7681': {
+  7681: {
     _id: 7681,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3602,7 +3602,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7682': {
+  7682: {
     _id: 7682,
     previousWeatherSet: [],
     weatherSet: [4, 3],
@@ -3624,7 +3624,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7683': {
+  7683: {
     _id: 7683,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3646,7 +3646,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7684': {
+  7684: {
     _id: 7684,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3668,7 +3668,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7685': {
+  7685: {
     _id: 7685,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3693,7 +3693,7 @@ module.exports = {
       size: 2,
     },
   },
-  '7686': {
+  7686: {
     _id: 7686,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -3715,7 +3715,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7687': {
+  7687: {
     _id: 7687,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3737,7 +3737,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7688': {
+  7688: {
     _id: 7688,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3759,7 +3759,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7689': {
+  7689: {
     _id: 7689,
     previousWeatherSet: [],
     weatherSet: [4, 3, 11],
@@ -3781,7 +3781,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7690': {
+  7690: {
     _id: 7690,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3806,7 +3806,7 @@ module.exports = {
       size: 4,
     },
   },
-  '7691': {
+  7691: {
     _id: 7691,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3828,7 +3828,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7692': {
+  7692: {
     _id: 7692,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3850,7 +3850,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7693': {
+  7693: {
     _id: 7693,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -3875,7 +3875,7 @@ module.exports = {
       size: 2,
     },
   },
-  '7694': {
+  7694: {
     _id: 7694,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3897,7 +3897,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7695': {
+  7695: {
     _id: 7695,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3919,7 +3919,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7696': {
+  7696: {
     _id: 7696,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3941,7 +3941,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7697': {
+  7697: {
     _id: 7697,
     previousWeatherSet: [],
     weatherSet: [4, 3, 5],
@@ -3963,7 +3963,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7698': {
+  7698: {
     _id: 7698,
     previousWeatherSet: [],
     weatherSet: [],
@@ -3985,7 +3985,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7699': {
+  7699: {
     _id: 7699,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4010,7 +4010,7 @@ module.exports = {
       size: 2,
     },
   },
-  '7700': {
+  7700: {
     _id: 7700,
     previousWeatherSet: [],
     weatherSet: [7],
@@ -4032,7 +4032,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7701': {
+  7701: {
     _id: 7701,
     previousWeatherSet: [],
     weatherSet: [4, 3],
@@ -4054,7 +4054,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7702': {
+  7702: {
     _id: 7702,
     previousWeatherSet: [],
     weatherSet: [7, 8],
@@ -4076,7 +4076,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7703': {
+  7703: {
     _id: 7703,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4098,7 +4098,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7704': {
+  7704: {
     _id: 7704,
     previousWeatherSet: [],
     weatherSet: [7, 8],
@@ -4120,7 +4120,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7705': {
+  7705: {
     _id: 7705,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4142,7 +4142,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7706': {
+  7706: {
     _id: 7706,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4164,7 +4164,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7707': {
+  7707: {
     _id: 7707,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4186,7 +4186,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7708': {
+  7708: {
     _id: 7708,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4208,7 +4208,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7709': {
+  7709: {
     _id: 7709,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4233,7 +4233,7 @@ module.exports = {
       size: 2,
     },
   },
-  '7710': {
+  7710: {
     _id: 7710,
     previousWeatherSet: [],
     weatherSet: [7],
@@ -4255,7 +4255,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7711': {
+  7711: {
     _id: 7711,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4277,7 +4277,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7712': {
+  7712: {
     _id: 7712,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4299,7 +4299,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7713': {
+  7713: {
     _id: 7713,
     previousWeatherSet: [],
     weatherSet: [7, 15],
@@ -4321,7 +4321,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7714': {
+  7714: {
     _id: 7714,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -4343,7 +4343,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7902': {
+  7902: {
     _id: 7902,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4368,7 +4368,7 @@ module.exports = {
       size: 2,
     },
   },
-  '7903': {
+  7903: {
     _id: 7903,
     previousWeatherSet: [],
     weatherSet: [3, 5],
@@ -4390,7 +4390,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7904': {
+  7904: {
     _id: 7904,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4412,7 +4412,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7905': {
+  7905: {
     _id: 7905,
     previousWeatherSet: [],
     weatherSet: [4, 3],
@@ -4434,7 +4434,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7906': {
+  7906: {
     _id: 7906,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4456,7 +4456,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7907': {
+  7907: {
     _id: 7907,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4478,7 +4478,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7908': {
+  7908: {
     _id: 7908,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4500,7 +4500,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7909': {
+  7909: {
     _id: 7909,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4522,7 +4522,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7910': {
+  7910: {
     _id: 7910,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4544,7 +4544,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7911': {
+  7911: {
     _id: 7911,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -4566,7 +4566,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7912': {
+  7912: {
     _id: 7912,
     previousWeatherSet: [],
     weatherSet: [7],
@@ -4588,7 +4588,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7913': {
+  7913: {
     _id: 7913,
     previousWeatherSet: [],
     weatherSet: [4, 3],
@@ -4610,7 +4610,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7914': {
+  7914: {
     _id: 7914,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4632,7 +4632,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7915': {
+  7915: {
     _id: 7915,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -4654,7 +4654,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7916': {
+  7916: {
     _id: 7916,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4676,7 +4676,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7917': {
+  7917: {
     _id: 7917,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -4698,7 +4698,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7918': {
+  7918: {
     _id: 7918,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -4720,7 +4720,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7919': {
+  7919: {
     _id: 7919,
     previousWeatherSet: [],
     weatherSet: [4, 3],
@@ -4742,7 +4742,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7920': {
+  7920: {
     _id: 7920,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4764,7 +4764,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7921': {
+  7921: {
     _id: 7921,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -4786,7 +4786,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7922': {
+  7922: {
     _id: 7922,
     previousWeatherSet: [],
     weatherSet: [9, 10],
@@ -4808,7 +4808,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7923': {
+  7923: {
     _id: 7923,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -4830,7 +4830,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7924': {
+  7924: {
     _id: 7924,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -4855,7 +4855,7 @@ module.exports = {
       size: 3,
     },
   },
-  '7925': {
+  7925: {
     _id: 7925,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4877,7 +4877,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7926': {
+  7926: {
     _id: 7926,
     previousWeatherSet: [],
     weatherSet: [6],
@@ -4899,7 +4899,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7927': {
+  7927: {
     _id: 7927,
     previousWeatherSet: [],
     weatherSet: [],
@@ -4921,7 +4921,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7928': {
+  7928: {
     _id: 7928,
     previousWeatherSet: [],
     weatherSet: [14],
@@ -4943,7 +4943,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7929': {
+  7929: {
     _id: 7929,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -4965,7 +4965,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7930': {
+  7930: {
     _id: 7930,
     previousWeatherSet: [],
     weatherSet: [14],
@@ -4987,7 +4987,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7931': {
+  7931: {
     _id: 7931,
     previousWeatherSet: [],
     weatherSet: [14],
@@ -5009,7 +5009,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7932': {
+  7932: {
     _id: 7932,
     previousWeatherSet: [],
     weatherSet: [16],
@@ -5031,7 +5031,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7933': {
+  7933: {
     _id: 7933,
     previousWeatherSet: [],
     weatherSet: [],
@@ -5053,7 +5053,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7934': {
+  7934: {
     _id: 7934,
     previousWeatherSet: [],
     weatherSet: [],
@@ -5075,7 +5075,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7935': {
+  7935: {
     _id: 7935,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -5097,7 +5097,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7936': {
+  7936: {
     _id: 7936,
     previousWeatherSet: [],
     weatherSet: [10],
@@ -5119,7 +5119,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7937': {
+  7937: {
     _id: 7937,
     previousWeatherSet: [],
     weatherSet: [7],
@@ -5141,7 +5141,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7938': {
+  7938: {
     _id: 7938,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -5163,7 +5163,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7939': {
+  7939: {
     _id: 7939,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -5185,7 +5185,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7940': {
+  7940: {
     _id: 7940,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -5210,7 +5210,7 @@ module.exports = {
       size: 2,
     },
   },
-  '7941': {
+  7941: {
     _id: 7941,
     previousWeatherSet: [],
     weatherSet: [4, 3, 5],
@@ -5235,7 +5235,7 @@ module.exports = {
       size: 4,
     },
   },
-  '7942': {
+  7942: {
     _id: 7942,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -5257,7 +5257,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7943': {
+  7943: {
     _id: 7943,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -5282,7 +5282,7 @@ module.exports = {
       size: 3,
     },
   },
-  '7944': {
+  7944: {
     _id: 7944,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -5304,7 +5304,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7945': {
+  7945: {
     _id: 7945,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -5326,7 +5326,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7946': {
+  7946: {
     _id: 7946,
     previousWeatherSet: [],
     weatherSet: [],
@@ -5348,7 +5348,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7947': {
+  7947: {
     _id: 7947,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -5370,7 +5370,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7948': {
+  7948: {
     _id: 7948,
     previousWeatherSet: [],
     weatherSet: [],
@@ -5392,7 +5392,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7949': {
+  7949: {
     _id: 7949,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -5414,7 +5414,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7950': {
+  7950: {
     _id: 7950,
     previousWeatherSet: [],
     weatherSet: [4, 3, 5],
@@ -5436,7 +5436,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '7951': {
+  7951: {
     _id: 7951,
     previousWeatherSet: [],
     weatherSet: [17],
@@ -5458,14 +5458,14 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8752': {
+  8752: {
     _id: 8752,
     previousWeatherSet: [],
     weatherSet: [],
     startHour: 0,
     endHour: 24,
     predators: {
-      '5031': 3,
+      5031: 3,
     },
     fishEyes: false,
     snagging: false,
@@ -5482,7 +5482,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8753': {
+  8753: {
     _id: 8753,
     previousWeatherSet: [7, 8],
     weatherSet: [1],
@@ -5504,14 +5504,14 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8754': {
+  8754: {
     _id: 8754,
     previousWeatherSet: [],
     weatherSet: [7, 8],
     startHour: 0,
     endHour: 24,
     predators: {
-      '4913': 3,
+      4913: 3,
     },
     fishEyes: false,
     snagging: false,
@@ -5528,7 +5528,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8755': {
+  8755: {
     _id: 8755,
     previousWeatherSet: [],
     weatherSet: [4, 3, 5],
@@ -5550,7 +5550,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8756': {
+  8756: {
     _id: 8756,
     previousWeatherSet: [1, 2],
     weatherSet: [4, 3, 5],
@@ -5572,7 +5572,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8757': {
+  8757: {
     _id: 8757,
     previousWeatherSet: [1, 2],
     weatherSet: [1, 2],
@@ -5594,7 +5594,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8758': {
+  8758: {
     _id: 8758,
     previousWeatherSet: [17],
     weatherSet: [1, 2],
@@ -5616,7 +5616,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8759': {
+  8759: {
     _id: 8759,
     previousWeatherSet: [1, 2],
     weatherSet: [17],
@@ -5638,14 +5638,14 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8760': {
+  8760: {
     _id: 8760,
     previousWeatherSet: [],
     weatherSet: [],
     startHour: 0,
     endHour: 24,
     predators: {
-      '5008': 5,
+      5008: 5,
     },
     fishEyes: false,
     snagging: false,
@@ -5662,7 +5662,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8761': {
+  8761: {
     _id: 8761,
     previousWeatherSet: [],
     weatherSet: [17],
@@ -5684,7 +5684,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8762': {
+  8762: {
     _id: 8762,
     previousWeatherSet: [],
     weatherSet: [17],
@@ -5709,14 +5709,14 @@ module.exports = {
       size: 4,
     },
   },
-  '8763': {
+  8763: {
     _id: 8763,
     previousWeatherSet: [],
     weatherSet: [],
     startHour: 0,
     endHour: 24,
     predators: {
-      '8762': 1,
+      8762: 1,
     },
     fishEyes: false,
     snagging: false,
@@ -5733,14 +5733,14 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8764': {
+  8764: {
     _id: 8764,
     previousWeatherSet: [],
     weatherSet: [],
     startHour: 0,
     endHour: 24,
     predators: {
-      '4904': 6,
+      4904: 6,
     },
     fishEyes: false,
     snagging: false,
@@ -5757,7 +5757,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8765': {
+  8765: {
     _id: 8765,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -5779,7 +5779,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8766': {
+  8766: {
     _id: 8766,
     previousWeatherSet: [7],
     weatherSet: [4, 3, 1, 2],
@@ -5801,7 +5801,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8767': {
+  8767: {
     _id: 8767,
     previousWeatherSet: [1, 2],
     weatherSet: [4],
@@ -5823,7 +5823,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8768': {
+  8768: {
     _id: 8768,
     previousWeatherSet: [4, 3],
     weatherSet: [14],
@@ -5845,14 +5845,14 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8769': {
+  8769: {
     _id: 8769,
     previousWeatherSet: [],
     weatherSet: [16, 15],
     startHour: 19,
     endHour: 4,
     predators: {
-      '5544': 5,
+      5544: 5,
     },
     fishEyes: false,
     snagging: false,
@@ -5869,7 +5869,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8770': {
+  8770: {
     _id: 8770,
     previousWeatherSet: [16, 15],
     weatherSet: [1, 2],
@@ -5891,7 +5891,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8771': {
+  8771: {
     _id: 8771,
     previousWeatherSet: [1, 2],
     weatherSet: [16],
@@ -5913,7 +5913,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8772': {
+  8772: {
     _id: 8772,
     previousWeatherSet: [1, 2],
     weatherSet: [16],
@@ -5935,7 +5935,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8773': {
+  8773: {
     _id: 8773,
     previousWeatherSet: [7, 9],
     weatherSet: [4, 3],
@@ -5957,7 +5957,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8774': {
+  8774: {
     _id: 8774,
     previousWeatherSet: [],
     weatherSet: [9, 10],
@@ -5982,14 +5982,14 @@ module.exports = {
       size: 4,
     },
   },
-  '8775': {
+  8775: {
     _id: 8775,
     previousWeatherSet: [],
     weatherSet: [],
     startHour: 0,
     endHour: 24,
     predators: {
-      '8774': 1,
+      8774: 1,
     },
     fishEyes: false,
     snagging: false,
@@ -6006,7 +6006,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '8776': {
+  8776: {
     _id: 8776,
     previousWeatherSet: [1, 2],
     weatherSet: [4],
@@ -6031,7 +6031,7 @@ module.exports = {
       size: 3,
     },
   },
-  '10123': {
+  10123: {
     _id: 10123,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6053,7 +6053,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12713': {
+  12713: {
     _id: 12713,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6075,7 +6075,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12714': {
+  12714: {
     _id: 12714,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6093,7 +6093,7 @@ module.exports = {
     bestCatchPath: [2609],
     patch: 3,
   },
-  '12715': {
+  12715: {
     _id: 12715,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6115,7 +6115,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12716': {
+  12716: {
     _id: 12716,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6137,7 +6137,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12718': {
+  12718: {
     _id: 12718,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6155,7 +6155,7 @@ module.exports = {
     bestCatchPath: [12704],
     patch: 3,
   },
-  '12719': {
+  12719: {
     _id: 12719,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6173,7 +6173,7 @@ module.exports = {
     bestCatchPath: [12705, 12715],
     patch: 3,
   },
-  '12720': {
+  12720: {
     _id: 12720,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6191,7 +6191,7 @@ module.exports = {
     bestCatchPath: [12704],
     patch: 3,
   },
-  '12721': {
+  12721: {
     _id: 12721,
     previousWeatherSet: [],
     weatherSet: [3, 4, 11],
@@ -6216,7 +6216,7 @@ module.exports = {
       size: 3,
     },
   },
-  '12722': {
+  12722: {
     _id: 12722,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6238,7 +6238,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12723': {
+  12723: {
     _id: 12723,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -6260,7 +6260,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12724': {
+  12724: {
     _id: 12724,
     previousWeatherSet: [],
     weatherSet: [16, 15],
@@ -6282,7 +6282,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12725': {
+  12725: {
     _id: 12725,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6300,7 +6300,7 @@ module.exports = {
     bestCatchPath: [12704],
     patch: 3,
   },
-  '12726': {
+  12726: {
     _id: 12726,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6322,7 +6322,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12727': {
+  12727: {
     _id: 12727,
     previousWeatherSet: [],
     weatherSet: [15, 16],
@@ -6344,7 +6344,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12728': {
+  12728: {
     _id: 12728,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6362,7 +6362,7 @@ module.exports = {
     bestCatchPath: [12704],
     patch: 3,
   },
-  '12729': {
+  12729: {
     _id: 12729,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6380,7 +6380,7 @@ module.exports = {
     bestCatchPath: [12707],
     patch: 3,
   },
-  '12730': {
+  12730: {
     _id: 12730,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6402,7 +6402,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12731': {
+  12731: {
     _id: 12731,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6420,7 +6420,7 @@ module.exports = {
     bestCatchPath: [12704],
     patch: 3,
   },
-  '12732': {
+  12732: {
     _id: 12732,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6438,7 +6438,7 @@ module.exports = {
     bestCatchPath: [12708],
     patch: 3,
   },
-  '12733': {
+  12733: {
     _id: 12733,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6460,7 +6460,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12734': {
+  12734: {
     _id: 12734,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6478,7 +6478,7 @@ module.exports = {
     bestCatchPath: [12708],
     patch: 3,
   },
-  '12735': {
+  12735: {
     _id: 12735,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6496,7 +6496,7 @@ module.exports = {
     bestCatchPath: [12708],
     patch: 3,
   },
-  '12736': {
+  12736: {
     _id: 12736,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6514,7 +6514,7 @@ module.exports = {
     bestCatchPath: [12708],
     patch: 3,
   },
-  '12737': {
+  12737: {
     _id: 12737,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6532,7 +6532,7 @@ module.exports = {
     bestCatchPath: [12704],
     patch: 3,
   },
-  '12738': {
+  12738: {
     _id: 12738,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6550,7 +6550,7 @@ module.exports = {
     bestCatchPath: [12706],
     patch: 3,
   },
-  '12739': {
+  12739: {
     _id: 12739,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6575,7 +6575,7 @@ module.exports = {
       size: 1,
     },
   },
-  '12740': {
+  12740: {
     _id: 12740,
     previousWeatherSet: [],
     weatherSet: [11, 3, 4],
@@ -6597,7 +6597,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12741': {
+  12741: {
     _id: 12741,
     previousWeatherSet: [],
     weatherSet: [11, 4, 3],
@@ -6622,7 +6622,7 @@ module.exports = {
       size: 2,
     },
   },
-  '12742': {
+  12742: {
     _id: 12742,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6647,7 +6647,7 @@ module.exports = {
       size: 1,
     },
   },
-  '12743': {
+  12743: {
     _id: 12743,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6672,7 +6672,7 @@ module.exports = {
       size: 2,
     },
   },
-  '12744': {
+  12744: {
     _id: 12744,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6690,7 +6690,7 @@ module.exports = {
     bestCatchPath: [12708],
     patch: 3,
   },
-  '12745': {
+  12745: {
     _id: 12745,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6708,7 +6708,7 @@ module.exports = {
     bestCatchPath: [12709],
     patch: 3,
   },
-  '12746': {
+  12746: {
     _id: 12746,
     previousWeatherSet: [],
     weatherSet: [3, 4, 5],
@@ -6730,7 +6730,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12747': {
+  12747: {
     _id: 12747,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6748,7 +6748,7 @@ module.exports = {
     bestCatchPath: [12705],
     patch: 3,
   },
-  '12748': {
+  12748: {
     _id: 12748,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6766,7 +6766,7 @@ module.exports = {
     bestCatchPath: [12711, 4937],
     patch: 3,
   },
-  '12749': {
+  12749: {
     _id: 12749,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -6791,7 +6791,7 @@ module.exports = {
       size: 3,
     },
   },
-  '12750': {
+  12750: {
     _id: 12750,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6809,7 +6809,7 @@ module.exports = {
     bestCatchPath: [12705],
     patch: 3,
   },
-  '12751': {
+  12751: {
     _id: 12751,
     previousWeatherSet: [],
     weatherSet: [3],
@@ -6831,7 +6831,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12752': {
+  12752: {
     _id: 12752,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6849,7 +6849,7 @@ module.exports = {
     bestCatchPath: [12711],
     patch: 3,
   },
-  '12753': {
+  12753: {
     _id: 12753,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6871,7 +6871,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12754': {
+  12754: {
     _id: 12754,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6893,7 +6893,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12755': {
+  12755: {
     _id: 12755,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6911,7 +6911,7 @@ module.exports = {
     bestCatchPath: [12709],
     patch: 3,
   },
-  '12756': {
+  12756: {
     _id: 12756,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6929,7 +6929,7 @@ module.exports = {
     bestCatchPath: [12706],
     patch: 3,
   },
-  '12757': {
+  12757: {
     _id: 12757,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6951,7 +6951,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12758': {
+  12758: {
     _id: 12758,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6969,7 +6969,7 @@ module.exports = {
     bestCatchPath: [12706],
     patch: 3,
   },
-  '12759': {
+  12759: {
     _id: 12759,
     previousWeatherSet: [],
     weatherSet: [],
@@ -6987,7 +6987,7 @@ module.exports = {
     bestCatchPath: [12709],
     patch: 3,
   },
-  '12760': {
+  12760: {
     _id: 12760,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7005,7 +7005,7 @@ module.exports = {
     bestCatchPath: [12708],
     patch: 3,
   },
-  '12761': {
+  12761: {
     _id: 12761,
     previousWeatherSet: [],
     weatherSet: [11, 3, 4],
@@ -7027,7 +7027,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12762': {
+  12762: {
     _id: 12762,
     previousWeatherSet: [],
     weatherSet: [15, 16],
@@ -7049,7 +7049,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12763': {
+  12763: {
     _id: 12763,
     previousWeatherSet: [],
     weatherSet: [15, 16],
@@ -7071,7 +7071,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12764': {
+  12764: {
     _id: 12764,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7089,7 +7089,7 @@ module.exports = {
     bestCatchPath: [12706],
     patch: 3,
   },
-  '12765': {
+  12765: {
     _id: 12765,
     previousWeatherSet: [],
     weatherSet: [15, 16],
@@ -7111,7 +7111,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12766': {
+  12766: {
     _id: 12766,
     previousWeatherSet: [],
     weatherSet: [15, 16],
@@ -7133,7 +7133,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12767': {
+  12767: {
     _id: 12767,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7155,7 +7155,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12768': {
+  12768: {
     _id: 12768,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7180,7 +7180,7 @@ module.exports = {
       size: 2,
     },
   },
-  '12769': {
+  12769: {
     _id: 12769,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7198,7 +7198,7 @@ module.exports = {
     bestCatchPath: [12711],
     patch: 3,
   },
-  '12770': {
+  12770: {
     _id: 12770,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7216,7 +7216,7 @@ module.exports = {
     bestCatchPath: [12712],
     patch: 3,
   },
-  '12771': {
+  12771: {
     _id: 12771,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7234,7 +7234,7 @@ module.exports = {
     bestCatchPath: [12708],
     patch: 3,
   },
-  '12772': {
+  12772: {
     _id: 12772,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7252,7 +7252,7 @@ module.exports = {
     bestCatchPath: [12709],
     patch: 3,
   },
-  '12773': {
+  12773: {
     _id: 12773,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7270,7 +7270,7 @@ module.exports = {
     bestCatchPath: [12710],
     patch: 3,
   },
-  '12774': {
+  12774: {
     _id: 12774,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7292,7 +7292,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12775': {
+  12775: {
     _id: 12775,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7310,7 +7310,7 @@ module.exports = {
     bestCatchPath: [12710, 12776],
     patch: 3,
   },
-  '12776': {
+  12776: {
     _id: 12776,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7332,7 +7332,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12777': {
+  12777: {
     _id: 12777,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7354,7 +7354,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12778': {
+  12778: {
     _id: 12778,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7372,7 +7372,7 @@ module.exports = {
     bestCatchPath: [12710],
     patch: 3,
   },
-  '12779': {
+  12779: {
     _id: 12779,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7390,7 +7390,7 @@ module.exports = {
     bestCatchPath: [12707],
     patch: 3,
   },
-  '12780': {
+  12780: {
     _id: 12780,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7412,7 +7412,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12781': {
+  12781: {
     _id: 12781,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7430,7 +7430,7 @@ module.exports = {
     bestCatchPath: [12711],
     patch: 3,
   },
-  '12782': {
+  12782: {
     _id: 12782,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7448,7 +7448,7 @@ module.exports = {
     bestCatchPath: [12706],
     patch: 3,
   },
-  '12783': {
+  12783: {
     _id: 12783,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7466,7 +7466,7 @@ module.exports = {
     bestCatchPath: [12705],
     patch: 3,
   },
-  '12784': {
+  12784: {
     _id: 12784,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -7488,7 +7488,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12785': {
+  12785: {
     _id: 12785,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7506,7 +7506,7 @@ module.exports = {
     bestCatchPath: [12712],
     patch: 3,
   },
-  '12786': {
+  12786: {
     _id: 12786,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7528,7 +7528,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12787': {
+  12787: {
     _id: 12787,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7546,7 +7546,7 @@ module.exports = {
     bestCatchPath: [12709, 12754],
     patch: 3,
   },
-  '12788': {
+  12788: {
     _id: 12788,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7564,7 +7564,7 @@ module.exports = {
     bestCatchPath: [12710, 12776],
     patch: 3,
   },
-  '12789': {
+  12789: {
     _id: 12789,
     previousWeatherSet: [],
     weatherSet: [3],
@@ -7586,7 +7586,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12790': {
+  12790: {
     _id: 12790,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7604,7 +7604,7 @@ module.exports = {
     bestCatchPath: [12707],
     patch: 3,
   },
-  '12791': {
+  12791: {
     _id: 12791,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7622,7 +7622,7 @@ module.exports = {
     bestCatchPath: [12706],
     patch: 3,
   },
-  '12792': {
+  12792: {
     _id: 12792,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7644,7 +7644,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12793': {
+  12793: {
     _id: 12793,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7662,7 +7662,7 @@ module.exports = {
     bestCatchPath: [12712],
     patch: 3,
   },
-  '12794': {
+  12794: {
     _id: 12794,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7680,7 +7680,7 @@ module.exports = {
     bestCatchPath: [12708],
     patch: 3,
   },
-  '12795': {
+  12795: {
     _id: 12795,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7698,7 +7698,7 @@ module.exports = {
     bestCatchPath: [12708],
     patch: 3,
   },
-  '12796': {
+  12796: {
     _id: 12796,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7720,7 +7720,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12797': {
+  12797: {
     _id: 12797,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7738,7 +7738,7 @@ module.exports = {
     bestCatchPath: [12712],
     patch: 3,
   },
-  '12798': {
+  12798: {
     _id: 12798,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7756,7 +7756,7 @@ module.exports = {
     bestCatchPath: [12712],
     patch: 3,
   },
-  '12799': {
+  12799: {
     _id: 12799,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -7778,7 +7778,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12800': {
+  12800: {
     _id: 12800,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7800,7 +7800,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12801': {
+  12801: {
     _id: 12801,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7840,7 +7840,7 @@ module.exports = {
   //   gig: null,
   //   aquarium: null,
   // },
-  '12803': {
+  12803: {
     _id: 12803,
     previousWeatherSet: [],
     weatherSet: [3],
@@ -7865,7 +7865,7 @@ module.exports = {
       size: 4,
     },
   },
-  '12804': {
+  12804: {
     _id: 12804,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7887,7 +7887,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12805': {
+  12805: {
     _id: 12805,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7909,7 +7909,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12806': {
+  12806: {
     _id: 12806,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7927,7 +7927,7 @@ module.exports = {
     bestCatchPath: [12712],
     patch: 3,
   },
-  '12807': {
+  12807: {
     _id: 12807,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7945,7 +7945,7 @@ module.exports = {
     bestCatchPath: [12710],
     patch: 3,
   },
-  '12808': {
+  12808: {
     _id: 12808,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7963,7 +7963,7 @@ module.exports = {
     bestCatchPath: [12708],
     patch: 3,
   },
-  '12809': {
+  12809: {
     _id: 12809,
     previousWeatherSet: [],
     weatherSet: [],
@@ -7981,7 +7981,7 @@ module.exports = {
     bestCatchPath: [12705],
     patch: 3,
   },
-  '12810': {
+  12810: {
     _id: 12810,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8003,7 +8003,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12811': {
+  12811: {
     _id: 12811,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8021,7 +8021,7 @@ module.exports = {
     bestCatchPath: [12707],
     patch: 3,
   },
-  '12812': {
+  12812: {
     _id: 12812,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -8043,7 +8043,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12813': {
+  12813: {
     _id: 12813,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8061,7 +8061,7 @@ module.exports = {
     bestCatchPath: [12712],
     patch: 3,
   },
-  '12814': {
+  12814: {
     _id: 12814,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8083,7 +8083,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12815': {
+  12815: {
     _id: 12815,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -8105,7 +8105,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12816': {
+  12816: {
     _id: 12816,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8127,7 +8127,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12817': {
+  12817: {
     _id: 12817,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8145,7 +8145,7 @@ module.exports = {
     bestCatchPath: [12705, 12715],
     patch: 3,
   },
-  '12818': {
+  12818: {
     _id: 12818,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8163,7 +8163,7 @@ module.exports = {
     bestCatchPath: [12707],
     patch: 3,
   },
-  '12819': {
+  12819: {
     _id: 12819,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8181,7 +8181,7 @@ module.exports = {
     bestCatchPath: [12707],
     patch: 3,
   },
-  '12820': {
+  12820: {
     _id: 12820,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8199,7 +8199,7 @@ module.exports = {
     bestCatchPath: [12709, 12754],
     patch: 3,
   },
-  '12821': {
+  12821: {
     _id: 12821,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8221,7 +8221,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12822': {
+  12822: {
     _id: 12822,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8239,7 +8239,7 @@ module.exports = {
     bestCatchPath: [12712],
     patch: 3,
   },
-  '12823': {
+  12823: {
     _id: 12823,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8257,7 +8257,7 @@ module.exports = {
     bestCatchPath: [12711],
     patch: 3,
   },
-  '12824': {
+  12824: {
     _id: 12824,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8275,7 +8275,7 @@ module.exports = {
     bestCatchPath: [12707],
     patch: 3,
   },
-  '12825': {
+  12825: {
     _id: 12825,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8297,7 +8297,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12826': {
+  12826: {
     _id: 12826,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8319,7 +8319,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12827': {
+  12827: {
     _id: 12827,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -8341,7 +8341,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12828': {
+  12828: {
     _id: 12828,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8363,7 +8363,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12829': {
+  12829: {
     _id: 12829,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -8385,7 +8385,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12830': {
+  12830: {
     _id: 12830,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8407,7 +8407,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12831': {
+  12831: {
     _id: 12831,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8429,7 +8429,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12832': {
+  12832: {
     _id: 12832,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -8451,7 +8451,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12833': {
+  12833: {
     _id: 12833,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8473,7 +8473,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12834': {
+  12834: {
     _id: 12834,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8495,7 +8495,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12835': {
+  12835: {
     _id: 12835,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8517,7 +8517,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12836': {
+  12836: {
     _id: 12836,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -8539,7 +8539,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '12837': {
+  12837: {
     _id: 12837,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8561,7 +8561,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '13727': {
+  13727: {
     _id: 13727,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -8583,7 +8583,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '13728': {
+  13728: {
     _id: 13728,
     previousWeatherSet: [],
     weatherSet: [16],
@@ -8605,7 +8605,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '13729': {
+  13729: {
     _id: 13729,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8627,7 +8627,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '13730': {
+  13730: {
     _id: 13730,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -8649,7 +8649,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '13731': {
+  13731: {
     _id: 13731,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -8671,7 +8671,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '13732': {
+  13732: {
     _id: 13732,
     previousWeatherSet: [],
     weatherSet: [3, 4],
@@ -8693,7 +8693,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '14211': {
+  14211: {
     _id: 14211,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8715,7 +8715,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '14212': {
+  14212: {
     _id: 14212,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8737,7 +8737,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '14213': {
+  14213: {
     _id: 14213,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -8759,7 +8759,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '14214': {
+  14214: {
     _id: 14214,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8777,7 +8777,7 @@ module.exports = {
     bestCatchPath: [12712],
     patch: 3.15,
   },
-  '14215': {
+  14215: {
     _id: 14215,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -8799,7 +8799,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '14216': {
+  14216: {
     _id: 14216,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8821,7 +8821,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '14217': {
+  14217: {
     _id: 14217,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8843,7 +8843,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '14218': {
+  14218: {
     _id: 14218,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -8865,7 +8865,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '14219': {
+  14219: {
     _id: 14219,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8887,7 +8887,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '14220': {
+  14220: {
     _id: 14220,
     previousWeatherSet: [],
     weatherSet: [4, 3],
@@ -8909,7 +8909,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15439': {
+  15439: {
     _id: 15439,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8931,7 +8931,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15626': {
+  15626: {
     _id: 15626,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8953,7 +8953,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15627': {
+  15627: {
     _id: 15627,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8975,7 +8975,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15628': {
+  15628: {
     _id: 15628,
     previousWeatherSet: [],
     weatherSet: [],
@@ -8997,7 +8997,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15629': {
+  15629: {
     _id: 15629,
     previousWeatherSet: [],
     weatherSet: [11, 4, 3],
@@ -9019,7 +9019,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15630': {
+  15630: {
     _id: 15630,
     previousWeatherSet: [],
     weatherSet: [11, 4, 3],
@@ -9041,7 +9041,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15631': {
+  15631: {
     _id: 15631,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9063,7 +9063,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15632': {
+  15632: {
     _id: 15632,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9085,7 +9085,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15633': {
+  15633: {
     _id: 15633,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9107,7 +9107,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15634': {
+  15634: {
     _id: 15634,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -9129,7 +9129,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15635': {
+  15635: {
     _id: 15635,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9151,7 +9151,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15636': {
+  15636: {
     _id: 15636,
     previousWeatherSet: [],
     weatherSet: [5],
@@ -9173,7 +9173,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15637': {
+  15637: {
     _id: 15637,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9195,7 +9195,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '15638': {
+  15638: {
     _id: 15638,
     previousWeatherSet: [],
     weatherSet: [3],
@@ -9217,7 +9217,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16742': {
+  16742: {
     _id: 16742,
     previousWeatherSet: [1],
     weatherSet: [6],
@@ -9239,7 +9239,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16743': {
+  16743: {
     _id: 16743,
     previousWeatherSet: [4],
     weatherSet: [1],
@@ -9261,7 +9261,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16744': {
+  16744: {
     _id: 16744,
     previousWeatherSet: [3],
     weatherSet: [9],
@@ -9283,7 +9283,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16745': {
+  16745: {
     _id: 16745,
     previousWeatherSet: [15],
     weatherSet: [16],
@@ -9305,7 +9305,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16746': {
+  16746: {
     _id: 16746,
     previousWeatherSet: [],
     weatherSet: [16],
@@ -9327,7 +9327,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16747': {
+  16747: {
     _id: 16747,
     previousWeatherSet: [3, 11],
     weatherSet: [1],
@@ -9349,7 +9349,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16748': {
+  16748: {
     _id: 16748,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -9371,7 +9371,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16749': {
+  16749: {
     _id: 16749,
     previousWeatherSet: [6],
     weatherSet: [1],
@@ -9393,7 +9393,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16750': {
+  16750: {
     _id: 16750,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -9415,7 +9415,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16751': {
+  16751: {
     _id: 16751,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9437,7 +9437,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16752': {
+  16752: {
     _id: 16752,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9459,7 +9459,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16753': {
+  16753: {
     _id: 16753,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9481,7 +9481,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16754': {
+  16754: {
     _id: 16754,
     previousWeatherSet: [7],
     weatherSet: [8],
@@ -9503,7 +9503,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '16756': {
+  16756: {
     _id: 16756,
     previousWeatherSet: [15, 16],
     weatherSet: [16],
@@ -9525,7 +9525,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17562': {
+  17562: {
     _id: 17562,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9543,7 +9543,7 @@ module.exports = {
     bestCatchPath: [12704],
     patch: null,
   },
-  '17563': {
+  17563: {
     _id: 17563,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9561,7 +9561,7 @@ module.exports = {
     bestCatchPath: [12704],
     patch: null,
   },
-  '17564': {
+  17564: {
     _id: 17564,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9579,7 +9579,7 @@ module.exports = {
     bestCatchPath: [12707],
     patch: null,
   },
-  '17565': {
+  17565: {
     _id: 17565,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9597,7 +9597,7 @@ module.exports = {
     bestCatchPath: [12707],
     patch: null,
   },
-  '17566': {
+  17566: {
     _id: 17566,
     previousWeatherSet: [],
     weatherSet: [],
@@ -9615,7 +9615,7 @@ module.exports = {
     bestCatchPath: [12711],
     patch: null,
   },
-  '17577': {
+  17577: {
     _id: 17577,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -9637,7 +9637,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17578': {
+  17578: {
     _id: 17578,
     previousWeatherSet: [15],
     weatherSet: [16],
@@ -9659,7 +9659,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17579': {
+  17579: {
     _id: 17579,
     previousWeatherSet: [4],
     weatherSet: [1],
@@ -9684,7 +9684,7 @@ module.exports = {
       size: 4,
     },
   },
-  '17580': {
+  17580: {
     _id: 17580,
     previousWeatherSet: [3],
     weatherSet: [9],
@@ -9706,7 +9706,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17581': {
+  17581: {
     _id: 17581,
     previousWeatherSet: [2],
     weatherSet: [9],
@@ -9728,7 +9728,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17582': {
+  17582: {
     _id: 17582,
     previousWeatherSet: [11, 3, 4],
     weatherSet: [9],
@@ -9750,7 +9750,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17583': {
+  17583: {
     _id: 17583,
     previousWeatherSet: [1],
     weatherSet: [1],
@@ -9772,7 +9772,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17584': {
+  17584: {
     _id: 17584,
     previousWeatherSet: [4, 11, 3],
     weatherSet: [1, 2],
@@ -9794,7 +9794,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17585': {
+  17585: {
     _id: 17585,
     previousWeatherSet: [3, 4],
     weatherSet: [8],
@@ -9816,7 +9816,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17586': {
+  17586: {
     _id: 17586,
     previousWeatherSet: [3],
     weatherSet: [6],
@@ -9838,7 +9838,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17587': {
+  17587: {
     _id: 17587,
     previousWeatherSet: [1],
     weatherSet: [6],
@@ -9860,15 +9860,15 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17588': {
+  17588: {
     _id: 17588,
     previousWeatherSet: [],
     weatherSet: [1, 2],
     startHour: 10,
     endHour: 15,
     predators: {
-      '12754': 5,
-      '12800': 3,
+      12754: 5,
+      12800: 3,
     },
     fishEyes: false,
     snagging: false,
@@ -9885,14 +9885,14 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17589': {
+  17589: {
     _id: 17589,
     previousWeatherSet: [],
     weatherSet: [9],
     startHour: 0,
     endHour: 24,
     predators: {
-      '13727': 3,
+      13727: 3,
     },
     fishEyes: false,
     snagging: false,
@@ -9909,14 +9909,14 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17590': {
+  17590: {
     _id: 17590,
     previousWeatherSet: [],
     weatherSet: [1],
     startHour: 1,
     endHour: 4,
     predators: {
-      '12757': 6,
+      12757: 6,
     },
     fishEyes: false,
     snagging: false,
@@ -9936,15 +9936,15 @@ module.exports = {
       size: 1,
     },
   },
-  '17591': {
+  17591: {
     _id: 17591,
     previousWeatherSet: [],
     weatherSet: [1],
     startHour: 5,
     endHour: 7,
     predators: {
-      '12753': 3,
-      '12810': 3,
+      12753: 3,
+      12810: 3,
     },
     fishEyes: false,
     snagging: false,
@@ -9961,14 +9961,14 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17592': {
+  17592: {
     _id: 17592,
     previousWeatherSet: [],
     weatherSet: [16],
     startHour: 0,
     endHour: 3,
     predators: {
-      '12715': 5,
+      12715: 5,
     },
     fishEyes: false,
     snagging: false,
@@ -9985,14 +9985,14 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '17593': {
+  17593: {
     _id: 17593,
     previousWeatherSet: [],
     weatherSet: [6],
     startHour: 5,
     endHour: 8,
     predators: {
-      '12805': 5,
+      12805: 5,
     },
     fishEyes: false,
     snagging: false,
@@ -10009,7 +10009,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20018': {
+  20018: {
     _id: 20018,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -10034,7 +10034,7 @@ module.exports = {
       size: 4,
     },
   },
-  '20019': {
+  20019: {
     _id: 20019,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10052,7 +10052,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20020': {
+  20020: {
     _id: 20020,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10077,7 +10077,7 @@ module.exports = {
       size: 2,
     },
   },
-  '20021': {
+  20021: {
     _id: 20021,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10102,7 +10102,7 @@ module.exports = {
       size: 1,
     },
   },
-  '20022': {
+  20022: {
     _id: 20022,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10124,7 +10124,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20023': {
+  20023: {
     _id: 20023,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10142,7 +10142,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20024': {
+  20024: {
     _id: 20024,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10164,7 +10164,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20025': {
+  20025: {
     _id: 20025,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10186,7 +10186,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20026': {
+  20026: {
     _id: 20026,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10204,7 +10204,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20027': {
+  20027: {
     _id: 20027,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10226,7 +10226,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20028': {
+  20028: {
     _id: 20028,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10244,7 +10244,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20029': {
+  20029: {
     _id: 20029,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10262,7 +10262,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20030': {
+  20030: {
     _id: 20030,
     previousWeatherSet: [],
     weatherSet: [7],
@@ -10284,7 +10284,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20031': {
+  20031: {
     _id: 20031,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10302,7 +10302,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20032': {
+  20032: {
     _id: 20032,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10320,7 +10320,7 @@ module.exports = {
     bestCatchPath: [20618],
     patch: 4,
   },
-  '20033': {
+  20033: {
     _id: 20033,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10338,7 +10338,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20034': {
+  20034: {
     _id: 20034,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -10360,7 +10360,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20035': {
+  20035: {
     _id: 20035,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10400,7 +10400,7 @@ module.exports = {
   //   gig: null,
   //   aquarium: null,
   // },
-  '20037': {
+  20037: {
     _id: 20037,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10418,7 +10418,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4,
   },
-  '20038': {
+  20038: {
     _id: 20038,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10436,7 +10436,7 @@ module.exports = {
     bestCatchPath: [20617, 20112],
     patch: 4,
   },
-  '20039': {
+  20039: {
     _id: 20039,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10454,7 +10454,7 @@ module.exports = {
     bestCatchPath: [20616],
     patch: 4,
   },
-  '20040': {
+  20040: {
     _id: 20040,
     previousWeatherSet: [],
     weatherSet: [10],
@@ -10476,7 +10476,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20041': {
+  20041: {
     _id: 20041,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10494,7 +10494,7 @@ module.exports = {
     bestCatchPath: [20616, 20025],
     patch: 4,
   },
-  '20042': {
+  20042: {
     _id: 20042,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10512,7 +10512,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20043': {
+  20043: {
     _id: 20043,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -10534,7 +10534,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20044': {
+  20044: {
     _id: 20044,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10552,7 +10552,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20045': {
+  20045: {
     _id: 20045,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10570,7 +10570,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20046': {
+  20046: {
     _id: 20046,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10588,7 +10588,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20047': {
+  20047: {
     _id: 20047,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10606,7 +10606,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20048': {
+  20048: {
     _id: 20048,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10631,7 +10631,7 @@ module.exports = {
       size: 1,
     },
   },
-  '20049': {
+  20049: {
     _id: 20049,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10649,7 +10649,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20050': {
+  20050: {
     _id: 20050,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10667,7 +10667,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20051': {
+  20051: {
     _id: 20051,
     previousWeatherSet: [],
     weatherSet: [7],
@@ -10692,7 +10692,7 @@ module.exports = {
       size: 2,
     },
   },
-  '20052': {
+  20052: {
     _id: 20052,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10710,7 +10710,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20053': {
+  20053: {
     _id: 20053,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10728,7 +10728,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20054': {
+  20054: {
     _id: 20054,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10753,7 +10753,7 @@ module.exports = {
       size: 3,
     },
   },
-  '20055': {
+  20055: {
     _id: 20055,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10771,7 +10771,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20056': {
+  20056: {
     _id: 20056,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10833,7 +10833,7 @@ module.exports = {
   //   gig: null,
   //   aquarium: null,
   // },
-  '20059': {
+  20059: {
     _id: 20059,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10851,7 +10851,7 @@ module.exports = {
     bestCatchPath: [20615, 20056],
     patch: 4,
   },
-  '20060': {
+  20060: {
     _id: 20060,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10869,7 +10869,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20061': {
+  20061: {
     _id: 20061,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10887,7 +10887,7 @@ module.exports = {
     bestCatchPath: [20615, 20056],
     patch: 4,
   },
-  '20062': {
+  20062: {
     _id: 20062,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10905,7 +10905,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20063': {
+  20063: {
     _id: 20063,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10923,7 +10923,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20064': {
+  20064: {
     _id: 20064,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10945,7 +10945,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20065': {
+  20065: {
     _id: 20065,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10963,7 +10963,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20066': {
+  20066: {
     _id: 20066,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10981,7 +10981,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20067': {
+  20067: {
     _id: 20067,
     previousWeatherSet: [],
     weatherSet: [],
@@ -10999,7 +10999,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20068': {
+  20068: {
     _id: 20068,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11017,7 +11017,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20069': {
+  20069: {
     _id: 20069,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11035,7 +11035,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20070': {
+  20070: {
     _id: 20070,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11053,7 +11053,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20071': {
+  20071: {
     _id: 20071,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11071,7 +11071,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20072': {
+  20072: {
     _id: 20072,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11089,7 +11089,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20073': {
+  20073: {
     _id: 20073,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11107,7 +11107,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20074': {
+  20074: {
     _id: 20074,
     previousWeatherSet: [],
     weatherSet: [5],
@@ -11129,7 +11129,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20075': {
+  20075: {
     _id: 20075,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11147,7 +11147,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20076': {
+  20076: {
     _id: 20076,
     previousWeatherSet: [],
     weatherSet: [4, 5, 3, 11],
@@ -11169,7 +11169,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20077': {
+  20077: {
     _id: 20077,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11187,7 +11187,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20078': {
+  20078: {
     _id: 20078,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11205,7 +11205,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20079': {
+  20079: {
     _id: 20079,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11223,7 +11223,7 @@ module.exports = {
     bestCatchPath: [20675],
     patch: 4,
   },
-  '20080': {
+  20080: {
     _id: 20080,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11241,7 +11241,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20081': {
+  20081: {
     _id: 20081,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11259,7 +11259,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20082': {
+  20082: {
     _id: 20082,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11277,7 +11277,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20083': {
+  20083: {
     _id: 20083,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11295,7 +11295,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20084': {
+  20084: {
     _id: 20084,
     previousWeatherSet: [],
     weatherSet: [3, 4],
@@ -11317,7 +11317,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20085': {
+  20085: {
     _id: 20085,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11339,7 +11339,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20086': {
+  20086: {
     _id: 20086,
     previousWeatherSet: [],
     weatherSet: [3, 4],
@@ -11361,7 +11361,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20087': {
+  20087: {
     _id: 20087,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11379,7 +11379,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20088': {
+  20088: {
     _id: 20088,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11397,7 +11397,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20089': {
+  20089: {
     _id: 20089,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11415,7 +11415,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20090': {
+  20090: {
     _id: 20090,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11433,7 +11433,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20091': {
+  20091: {
     _id: 20091,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11451,7 +11451,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20092': {
+  20092: {
     _id: 20092,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11469,7 +11469,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4,
   },
-  '20093': {
+  20093: {
     _id: 20093,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11487,7 +11487,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4,
   },
-  '20094': {
+  20094: {
     _id: 20094,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11505,7 +11505,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4,
   },
-  '20095': {
+  20095: {
     _id: 20095,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11523,7 +11523,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4,
   },
-  '20096': {
+  20096: {
     _id: 20096,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11541,7 +11541,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4,
   },
-  '20097': {
+  20097: {
     _id: 20097,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11559,7 +11559,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4,
   },
-  '20098': {
+  20098: {
     _id: 20098,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11577,7 +11577,7 @@ module.exports = {
     bestCatchPath: [20676],
     patch: 4,
   },
-  '20099': {
+  20099: {
     _id: 20099,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11595,7 +11595,7 @@ module.exports = {
     bestCatchPath: [20617, 20112],
     patch: 4,
   },
-  '20100': {
+  20100: {
     _id: 20100,
     previousWeatherSet: [],
     weatherSet: [3, 5],
@@ -11620,7 +11620,7 @@ module.exports = {
       size: 2,
     },
   },
-  '20101': {
+  20101: {
     _id: 20101,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11638,7 +11638,7 @@ module.exports = {
     bestCatchPath: [20617, 20112],
     patch: 4,
   },
-  '20102': {
+  20102: {
     _id: 20102,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11656,7 +11656,7 @@ module.exports = {
     bestCatchPath: [20617, 20112],
     patch: 4,
   },
-  '20103': {
+  20103: {
     _id: 20103,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11674,7 +11674,7 @@ module.exports = {
     bestCatchPath: [20617, 20112],
     patch: 4,
   },
-  '20104': {
+  20104: {
     _id: 20104,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11696,7 +11696,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20105': {
+  20105: {
     _id: 20105,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11718,7 +11718,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20106': {
+  20106: {
     _id: 20106,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11736,7 +11736,7 @@ module.exports = {
     bestCatchPath: [20618],
     patch: 4,
   },
-  '20107': {
+  20107: {
     _id: 20107,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11754,7 +11754,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4,
   },
-  '20108': {
+  20108: {
     _id: 20108,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11772,7 +11772,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4,
   },
-  '20109': {
+  20109: {
     _id: 20109,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11790,7 +11790,7 @@ module.exports = {
     bestCatchPath: [20617, 20112],
     patch: 4,
   },
-  '20110': {
+  20110: {
     _id: 20110,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11808,7 +11808,7 @@ module.exports = {
     bestCatchPath: [20617, 20112],
     patch: 4,
   },
-  '20111': {
+  20111: {
     _id: 20111,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11826,7 +11826,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20112': {
+  20112: {
     _id: 20112,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11848,7 +11848,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20113': {
+  20113: {
     _id: 20113,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11866,7 +11866,7 @@ module.exports = {
     bestCatchPath: [20617, 20112],
     patch: 4,
   },
-  '20114': {
+  20114: {
     _id: 20114,
     previousWeatherSet: [],
     weatherSet: [7, 8],
@@ -11888,7 +11888,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20115': {
+  20115: {
     _id: 20115,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11906,7 +11906,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20116': {
+  20116: {
     _id: 20116,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11924,7 +11924,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20117': {
+  20117: {
     _id: 20117,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11942,7 +11942,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20118': {
+  20118: {
     _id: 20118,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11960,7 +11960,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20119': {
+  20119: {
     _id: 20119,
     previousWeatherSet: [],
     weatherSet: [],
@@ -11978,7 +11978,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20120': {
+  20120: {
     _id: 20120,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12000,7 +12000,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20121': {
+  20121: {
     _id: 20121,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12018,7 +12018,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20122': {
+  20122: {
     _id: 20122,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12040,7 +12040,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20123': {
+  20123: {
     _id: 20123,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12058,7 +12058,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20124': {
+  20124: {
     _id: 20124,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12076,7 +12076,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20125': {
+  20125: {
     _id: 20125,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12112,7 +12112,7 @@ module.exports = {
   //   bestCatchPath: [20614, 20127],
   //   patch: 4,
   // },
-  '20127': {
+  20127: {
     _id: 20127,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12134,7 +12134,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20128': {
+  20128: {
     _id: 20128,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12156,7 +12156,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20129': {
+  20129: {
     _id: 20129,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12174,7 +12174,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20130': {
+  20130: {
     _id: 20130,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12192,7 +12192,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20131': {
+  20131: {
     _id: 20131,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12228,7 +12228,7 @@ module.exports = {
   //   bestCatchPath: [20614, 20127],
   //   patch: 4,
   // },
-  '20133': {
+  20133: {
     _id: 20133,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12246,7 +12246,7 @@ module.exports = {
     bestCatchPath: [20614, 20127],
     patch: 4,
   },
-  '20134': {
+  20134: {
     _id: 20134,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12264,7 +12264,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20135': {
+  20135: {
     _id: 20135,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12282,7 +12282,7 @@ module.exports = {
     bestCatchPath: [20615],
     patch: 4,
   },
-  '20136': {
+  20136: {
     _id: 20136,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12300,7 +12300,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4,
   },
-  '20137': {
+  20137: {
     _id: 20137,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12318,7 +12318,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4,
   },
-  '20138': {
+  20138: {
     _id: 20138,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12336,7 +12336,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20140': {
+  20140: {
     _id: 20140,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12354,7 +12354,7 @@ module.exports = {
     bestCatchPath: [20619],
     patch: 4,
   },
-  '20141': {
+  20141: {
     _id: 20141,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -12376,7 +12376,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20142': {
+  20142: {
     _id: 20142,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -12398,7 +12398,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20143': {
+  20143: {
     _id: 20143,
     previousWeatherSet: [],
     weatherSet: [7, 8],
@@ -12420,7 +12420,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20524': {
+  20524: {
     _id: 20524,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12442,7 +12442,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20785': {
+  20785: {
     _id: 20785,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12464,7 +12464,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20786': {
+  20786: {
     _id: 20786,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12486,7 +12486,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20787': {
+  20787: {
     _id: 20787,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12508,7 +12508,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20788': {
+  20788: {
     _id: 20788,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12530,7 +12530,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '20789': {
+  20789: {
     _id: 20789,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12552,7 +12552,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '21174': {
+  21174: {
     _id: 21174,
     previousWeatherSet: [],
     weatherSet: [3, 4],
@@ -12574,7 +12574,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '21175': {
+  21175: {
     _id: 21175,
     previousWeatherSet: [],
     weatherSet: [3, 4, 5, 11],
@@ -12599,7 +12599,7 @@ module.exports = {
       size: 1,
     },
   },
-  '21176': {
+  21176: {
     _id: 21176,
     previousWeatherSet: [],
     weatherSet: [5],
@@ -12624,7 +12624,7 @@ module.exports = {
       size: 3,
     },
   },
-  '21177': {
+  21177: {
     _id: 21177,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12649,7 +12649,7 @@ module.exports = {
       size: 2,
     },
   },
-  '21178': {
+  21178: {
     _id: 21178,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -12674,7 +12674,7 @@ module.exports = {
       size: 1,
     },
   },
-  '22389': {
+  22389: {
     _id: 22389,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12699,7 +12699,7 @@ module.exports = {
       size: 3,
     },
   },
-  '22390': {
+  22390: {
     _id: 22390,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12721,7 +12721,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '22391': {
+  22391: {
     _id: 22391,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -12743,7 +12743,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '22392': {
+  22392: {
     _id: 22392,
     previousWeatherSet: [],
     weatherSet: [3, 4],
@@ -12765,7 +12765,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '22393': {
+  22393: {
     _id: 22393,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12787,7 +12787,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '22394': {
+  22394: {
     _id: 22394,
     previousWeatherSet: [],
     weatherSet: [3, 4],
@@ -12809,7 +12809,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '22395': {
+  22395: {
     _id: 22395,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12831,7 +12831,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '22396': {
+  22396: {
     _id: 22396,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12853,7 +12853,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '22397': {
+  22397: {
     _id: 22397,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12878,7 +12878,7 @@ module.exports = {
       size: 2,
     },
   },
-  '22398': {
+  22398: {
     _id: 22398,
     previousWeatherSet: [],
     weatherSet: [3, 4],
@@ -12903,7 +12903,7 @@ module.exports = {
       size: 2,
     },
   },
-  '23054': {
+  23054: {
     _id: 23054,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12921,7 +12921,7 @@ module.exports = {
     bestCatchPath: [20617, 20112],
     patch: 4.3,
   },
-  '23055': {
+  23055: {
     _id: 23055,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12943,7 +12943,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23056': {
+  23056: {
     _id: 23056,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12965,7 +12965,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23057': {
+  23057: {
     _id: 23057,
     previousWeatherSet: [],
     weatherSet: [],
@@ -12987,7 +12987,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23058': {
+  23058: {
     _id: 23058,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -13009,7 +13009,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23059': {
+  23059: {
     _id: 23059,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13034,7 +13034,7 @@ module.exports = {
       size: 2,
     },
   },
-  '23060': {
+  23060: {
     _id: 23060,
     previousWeatherSet: [],
     weatherSet: [11],
@@ -13056,7 +13056,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23061': {
+  23061: {
     _id: 23061,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13078,7 +13078,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23062': {
+  23062: {
     _id: 23062,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -13100,7 +13100,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23063': {
+  23063: {
     _id: 23063,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13122,7 +13122,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23064': {
+  23064: {
     _id: 23064,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13144,7 +13144,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23065': {
+  23065: {
     _id: 23065,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13166,7 +13166,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23066': {
+  23066: {
     _id: 23066,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -13188,7 +13188,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23067': {
+  23067: {
     _id: 23067,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13210,7 +13210,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23068': {
+  23068: {
     _id: 23068,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -13232,7 +13232,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23069': {
+  23069: {
     _id: 23069,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13254,7 +13254,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23070': {
+  23070: {
     _id: 23070,
     previousWeatherSet: [],
     weatherSet: [5],
@@ -13276,7 +13276,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '23071': {
+  23071: {
     _id: 23071,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13294,7 +13294,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4.3,
   },
-  '23072': {
+  23072: {
     _id: 23072,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13312,7 +13312,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4.3,
   },
-  '23074': {
+  23074: {
     _id: 23074,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13330,7 +13330,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4.3,
   },
-  '24203': {
+  24203: {
     _id: 24203,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13352,7 +13352,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24204': {
+  24204: {
     _id: 24204,
     previousWeatherSet: [2],
     weatherSet: [2, 1],
@@ -13374,7 +13374,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24205': {
+  24205: {
     _id: 24205,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -13396,7 +13396,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24206': {
+  24206: {
     _id: 24206,
     previousWeatherSet: [],
     weatherSet: [3],
@@ -13418,7 +13418,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24207': {
+  24207: {
     _id: 24207,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13440,7 +13440,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24208': {
+  24208: {
     _id: 24208,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -13462,7 +13462,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24209': {
+  24209: {
     _id: 24209,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -13484,7 +13484,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24210': {
+  24210: {
     _id: 24210,
     previousWeatherSet: [4],
     weatherSet: [2],
@@ -13506,7 +13506,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24211': {
+  24211: {
     _id: 24211,
     previousWeatherSet: [],
     weatherSet: [3],
@@ -13528,7 +13528,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24212': {
+  24212: {
     _id: 24212,
     previousWeatherSet: [3, 5, 4, 11],
     weatherSet: [1],
@@ -13550,7 +13550,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24213': {
+  24213: {
     _id: 24213,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13572,7 +13572,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24214': {
+  24214: {
     _id: 24214,
     previousWeatherSet: [9],
     weatherSet: [3],
@@ -13594,7 +13594,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24215': {
+  24215: {
     _id: 24215,
     previousWeatherSet: [],
     weatherSet: [5],
@@ -13616,7 +13616,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24216': {
+  24216: {
     _id: 24216,
     previousWeatherSet: [3],
     weatherSet: [2, 1],
@@ -13638,7 +13638,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24217': {
+  24217: {
     _id: 24217,
     previousWeatherSet: [7, 6],
     weatherSet: [3],
@@ -13660,7 +13660,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24218': {
+  24218: {
     _id: 24218,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -13682,7 +13682,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24557': {
+  24557: {
     _id: 24557,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13700,7 +13700,7 @@ module.exports = {
     bestCatchPath: [12704],
     patch: 4.5,
   },
-  '24558': {
+  24558: {
     _id: 24558,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13718,7 +13718,7 @@ module.exports = {
     bestCatchPath: [20617],
     patch: 4.5,
   },
-  '24559': {
+  24559: {
     _id: 24559,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13736,7 +13736,7 @@ module.exports = {
     bestCatchPath: [20613],
     patch: 4.5,
   },
-  '24560': {
+  24560: {
     _id: 24560,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13754,7 +13754,7 @@ module.exports = {
     bestCatchPath: [20618],
     patch: 4.5,
   },
-  '24561': {
+  24561: {
     _id: 24561,
     previousWeatherSet: [],
     weatherSet: [],
@@ -13772,7 +13772,7 @@ module.exports = {
     bestCatchPath: [20614],
     patch: 4.5,
   },
-  '24881': {
+  24881: {
     _id: 24881,
     previousWeatherSet: [1],
     weatherSet: [2],
@@ -13794,7 +13794,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24882': {
+  24882: {
     _id: 24882,
     previousWeatherSet: [],
     weatherSet: [9],
@@ -13816,7 +13816,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24883': {
+  24883: {
     _id: 24883,
     previousWeatherSet: [9],
     weatherSet: [2],
@@ -13838,7 +13838,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24884': {
+  24884: {
     _id: 24884,
     previousWeatherSet: [2, 1],
     weatherSet: [9],
@@ -13860,7 +13860,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24885': {
+  24885: {
     _id: 24885,
     previousWeatherSet: [],
     weatherSet: [7],
@@ -13882,7 +13882,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24886': {
+  24886: {
     _id: 24886,
     previousWeatherSet: [2],
     weatherSet: [1],
@@ -13904,7 +13904,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24887': {
+  24887: {
     _id: 24887,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -13926,7 +13926,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24888': {
+  24888: {
     _id: 24888,
     previousWeatherSet: [2],
     weatherSet: [8],
@@ -13948,7 +13948,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24889': {
+  24889: {
     _id: 24889,
     previousWeatherSet: [3],
     weatherSet: [2],
@@ -13970,7 +13970,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24890': {
+  24890: {
     _id: 24890,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -13992,7 +13992,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24891': {
+  24891: {
     _id: 24891,
     previousWeatherSet: [7],
     weatherSet: [2, 1],
@@ -14014,7 +14014,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24892': {
+  24892: {
     _id: 24892,
     previousWeatherSet: [2],
     weatherSet: [1],
@@ -14036,7 +14036,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24893': {
+  24893: {
     _id: 24893,
     previousWeatherSet: [2],
     weatherSet: [4],
@@ -14058,7 +14058,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24990': {
+  24990: {
     _id: 24990,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14083,14 +14083,14 @@ module.exports = {
       size: 4,
     },
   },
-  '24991': {
+  24991: {
     _id: 24991,
     previousWeatherSet: [],
     weatherSet: [11],
     startHour: 0,
     endHour: 24,
     predators: {
-      '23060': 2,
+      23060: 2,
     },
     fishEyes: false,
     snagging: false,
@@ -14107,14 +14107,14 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24992': {
+  24992: {
     _id: 24992,
     previousWeatherSet: [],
     weatherSet: [],
     startHour: 16,
     endHour: 18,
     predators: {
-      '20040': 2,
+      20040: 2,
     },
     fishEyes: false,
     snagging: false,
@@ -14131,7 +14131,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24993': {
+  24993: {
     _id: 24993,
     previousWeatherSet: [9],
     weatherSet: [3],
@@ -14153,16 +14153,16 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '24994': {
+  24994: {
     _id: 24994,
     previousWeatherSet: [],
     weatherSet: [],
     startHour: 0,
     endHour: 24,
     predators: {
-      '23056': 3,
-      '24203': 3,
-      '24204': 5,
+      23056: 3,
+      24203: 3,
+      24204: 5,
     },
     fishEyes: false,
     snagging: false,
@@ -14182,7 +14182,7 @@ module.exports = {
       size: 4,
     },
   },
-  '24995': {
+  24995: {
     _id: 24995,
     previousWeatherSet: [7],
     weatherSet: [1],
@@ -14207,7 +14207,7 @@ module.exports = {
       size: 1,
     },
   },
-  '26746': {
+  26746: {
     _id: 26746,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14229,7 +14229,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '26747': {
+  26747: {
     _id: 26747,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14251,7 +14251,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '26748': {
+  26748: {
     _id: 26748,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14273,7 +14273,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '26749': {
+  26749: {
     _id: 26749,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14295,7 +14295,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27410': {
+  27410: {
     _id: 27410,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14317,7 +14317,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27411': {
+  27411: {
     _id: 27411,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14339,7 +14339,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27412': {
+  27412: {
     _id: 27412,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14361,7 +14361,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27413': {
+  27413: {
     _id: 27413,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14383,7 +14383,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27414': {
+  27414: {
     _id: 27414,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14405,7 +14405,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27415': {
+  27415: {
     _id: 27415,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14430,7 +14430,7 @@ module.exports = {
       size: 2,
     },
   },
-  '27416': {
+  27416: {
     _id: 27416,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14452,7 +14452,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27417': {
+  27417: {
     _id: 27417,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14474,7 +14474,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27418': {
+  27418: {
     _id: 27418,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14496,7 +14496,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27419': {
+  27419: {
     _id: 27419,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14518,7 +14518,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27420': {
+  27420: {
     _id: 27420,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14540,7 +14540,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27421': {
+  27421: {
     _id: 27421,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14562,7 +14562,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27422': {
+  27422: {
     _id: 27422,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14584,7 +14584,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27423': {
+  27423: {
     _id: 27423,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14609,7 +14609,7 @@ module.exports = {
       size: 1,
     },
   },
-  '27424': {
+  27424: {
     _id: 27424,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14634,7 +14634,7 @@ module.exports = {
       size: 4,
     },
   },
-  '27425': {
+  27425: {
     _id: 27425,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14656,7 +14656,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27426': {
+  27426: {
     _id: 27426,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14678,7 +14678,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27427': {
+  27427: {
     _id: 27427,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14700,7 +14700,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27428': {
+  27428: {
     _id: 27428,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14722,7 +14722,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27429': {
+  27429: {
     _id: 27429,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14744,7 +14744,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27430': {
+  27430: {
     _id: 27430,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14769,7 +14769,7 @@ module.exports = {
       size: 2,
     },
   },
-  '27431': {
+  27431: {
     _id: 27431,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14791,7 +14791,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27432': {
+  27432: {
     _id: 27432,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -14813,7 +14813,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27433': {
+  27433: {
     _id: 27433,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14835,7 +14835,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27434': {
+  27434: {
     _id: 27434,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14857,7 +14857,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27435': {
+  27435: {
     _id: 27435,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14879,7 +14879,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27436': {
+  27436: {
     _id: 27436,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14901,7 +14901,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27437': {
+  27437: {
     _id: 27437,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14926,7 +14926,7 @@ module.exports = {
       size: 4,
     },
   },
-  '27438': {
+  27438: {
     _id: 27438,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14948,7 +14948,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27439': {
+  27439: {
     _id: 27439,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14970,7 +14970,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27440': {
+  27440: {
     _id: 27440,
     previousWeatherSet: [],
     weatherSet: [],
@@ -14992,7 +14992,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27441': {
+  27441: {
     _id: 27441,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15014,7 +15014,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27442': {
+  27442: {
     _id: 27442,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15036,7 +15036,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27443': {
+  27443: {
     _id: 27443,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15058,7 +15058,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27444': {
+  27444: {
     _id: 27444,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15080,7 +15080,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27445': {
+  27445: {
     _id: 27445,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15102,7 +15102,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27446': {
+  27446: {
     _id: 27446,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15124,7 +15124,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27447': {
+  27447: {
     _id: 27447,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15146,7 +15146,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27448': {
+  27448: {
     _id: 27448,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15168,7 +15168,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27449': {
+  27449: {
     _id: 27449,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15190,7 +15190,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27450': {
+  27450: {
     _id: 27450,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15212,7 +15212,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27451': {
+  27451: {
     _id: 27451,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15234,7 +15234,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27452': {
+  27452: {
     _id: 27452,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15256,7 +15256,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27453': {
+  27453: {
     _id: 27453,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15278,7 +15278,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27454': {
+  27454: {
     _id: 27454,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15303,7 +15303,7 @@ module.exports = {
       size: 2,
     },
   },
-  '27455': {
+  27455: {
     _id: 27455,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15325,7 +15325,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27456': {
+  27456: {
     _id: 27456,
     previousWeatherSet: [],
     weatherSet: [4, 3],
@@ -15347,7 +15347,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27457': {
+  27457: {
     _id: 27457,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15369,7 +15369,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27458': {
+  27458: {
     _id: 27458,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15391,7 +15391,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27459': {
+  27459: {
     _id: 27459,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15413,7 +15413,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27460': {
+  27460: {
     _id: 27460,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15435,7 +15435,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27461': {
+  27461: {
     _id: 27461,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15457,7 +15457,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27462': {
+  27462: {
     _id: 27462,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15479,7 +15479,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27463': {
+  27463: {
     _id: 27463,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15501,7 +15501,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27464': {
+  27464: {
     _id: 27464,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15523,7 +15523,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27465': {
+  27465: {
     _id: 27465,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15545,7 +15545,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27466': {
+  27466: {
     _id: 27466,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15567,7 +15567,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27467': {
+  27467: {
     _id: 27467,
     previousWeatherSet: [],
     weatherSet: [14, 1, 2],
@@ -15589,7 +15589,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27468': {
+  27468: {
     _id: 27468,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15611,7 +15611,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27469': {
+  27469: {
     _id: 27469,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15633,7 +15633,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27470': {
+  27470: {
     _id: 27470,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15655,7 +15655,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27471': {
+  27471: {
     _id: 27471,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15677,7 +15677,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27472': {
+  27472: {
     _id: 27472,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15699,7 +15699,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27473': {
+  27473: {
     _id: 27473,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15721,7 +15721,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27474': {
+  27474: {
     _id: 27474,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15746,7 +15746,7 @@ module.exports = {
       size: 2,
     },
   },
-  '27475': {
+  27475: {
     _id: 27475,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15768,7 +15768,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27476': {
+  27476: {
     _id: 27476,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15790,7 +15790,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27477': {
+  27477: {
     _id: 27477,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15812,7 +15812,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27478': {
+  27478: {
     _id: 27478,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15834,7 +15834,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27479': {
+  27479: {
     _id: 27479,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15856,7 +15856,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27480': {
+  27480: {
     _id: 27480,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15878,7 +15878,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27481': {
+  27481: {
     _id: 27481,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -15903,7 +15903,7 @@ module.exports = {
       size: 1,
     },
   },
-  '27482': {
+  27482: {
     _id: 27482,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15925,7 +15925,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27483': {
+  27483: {
     _id: 27483,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15947,7 +15947,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27484': {
+  27484: {
     _id: 27484,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15969,7 +15969,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27485': {
+  27485: {
     _id: 27485,
     previousWeatherSet: [],
     weatherSet: [],
@@ -15991,7 +15991,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27486': {
+  27486: {
     _id: 27486,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16013,7 +16013,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27487': {
+  27487: {
     _id: 27487,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16035,7 +16035,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27488': {
+  27488: {
     _id: 27488,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16057,7 +16057,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27489': {
+  27489: {
     _id: 27489,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16079,7 +16079,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27490': {
+  27490: {
     _id: 27490,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16104,7 +16104,7 @@ module.exports = {
       size: 2,
     },
   },
-  '27491': {
+  27491: {
     _id: 27491,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16126,7 +16126,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27492': {
+  27492: {
     _id: 27492,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16148,7 +16148,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27493': {
+  27493: {
     _id: 27493,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16170,7 +16170,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27494': {
+  27494: {
     _id: 27494,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -16195,7 +16195,7 @@ module.exports = {
       size: 1,
     },
   },
-  '27495': {
+  27495: {
     _id: 27495,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16217,7 +16217,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27496': {
+  27496: {
     _id: 27496,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16239,7 +16239,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27497': {
+  27497: {
     _id: 27497,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16261,7 +16261,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27498': {
+  27498: {
     _id: 27498,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16283,7 +16283,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27499': {
+  27499: {
     _id: 27499,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16305,7 +16305,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27500': {
+  27500: {
     _id: 27500,
     previousWeatherSet: [],
     weatherSet: [2],
@@ -16327,7 +16327,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27501': {
+  27501: {
     _id: 27501,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16349,7 +16349,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27502': {
+  27502: {
     _id: 27502,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16371,7 +16371,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27503': {
+  27503: {
     _id: 27503,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16396,7 +16396,7 @@ module.exports = {
       size: 4,
     },
   },
-  '27504': {
+  27504: {
     _id: 27504,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16418,7 +16418,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27505': {
+  27505: {
     _id: 27505,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16440,7 +16440,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27506': {
+  27506: {
     _id: 27506,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16462,7 +16462,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27507': {
+  27507: {
     _id: 27507,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16484,7 +16484,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27508': {
+  27508: {
     _id: 27508,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -16506,7 +16506,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27509': {
+  27509: {
     _id: 27509,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16528,7 +16528,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27510': {
+  27510: {
     _id: 27510,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16550,7 +16550,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27511': {
+  27511: {
     _id: 27511,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16572,7 +16572,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27512': {
+  27512: {
     _id: 27512,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16594,7 +16594,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27513': {
+  27513: {
     _id: 27513,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16616,7 +16616,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27514': {
+  27514: {
     _id: 27514,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16638,7 +16638,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '27515': {
+  27515: {
     _id: 27515,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16660,7 +16660,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28065': {
+  28065: {
     _id: 28065,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16682,7 +16682,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28066': {
+  28066: {
     _id: 28066,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -16704,7 +16704,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28067': {
+  28067: {
     _id: 28067,
     previousWeatherSet: [],
     weatherSet: [4],
@@ -16726,7 +16726,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28068': {
+  28068: {
     _id: 28068,
     previousWeatherSet: [],
     weatherSet: [7],
@@ -16748,7 +16748,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28069': {
+  28069: {
     _id: 28069,
     previousWeatherSet: [],
     weatherSet: [11],
@@ -16770,7 +16770,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28070': {
+  28070: {
     _id: 28070,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -16792,7 +16792,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28071': {
+  28071: {
     _id: 28071,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16814,7 +16814,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28072': {
+  28072: {
     _id: 28072,
     previousWeatherSet: [],
     weatherSet: [3],
@@ -16836,7 +16836,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28189': {
+  28189: {
     _id: 28189,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16858,7 +16858,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28190': {
+  28190: {
     _id: 28190,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16880,7 +16880,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28191': {
+  28191: {
     _id: 28191,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16902,7 +16902,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28192': {
+  28192: {
     _id: 28192,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16924,7 +16924,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28193': {
+  28193: {
     _id: 28193,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16946,7 +16946,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28719': {
+  28719: {
     _id: 28719,
     previousWeatherSet: [],
     weatherSet: [],
@@ -16968,7 +16968,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28925': {
+  28925: {
     _id: 28925,
     previousWeatherSet: [],
     weatherSet: [3],
@@ -16990,7 +16990,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28926': {
+  28926: {
     _id: 28926,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17012,7 +17012,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28927': {
+  28927: {
     _id: 28927,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -17034,7 +17034,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28928': {
+  28928: {
     _id: 28928,
     previousWeatherSet: [2, 1],
     weatherSet: [4],
@@ -17056,7 +17056,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28929': {
+  28929: {
     _id: 28929,
     previousWeatherSet: [3, 4],
     weatherSet: [2],
@@ -17078,7 +17078,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '28930': {
+  28930: {
     _id: 28930,
     previousWeatherSet: [],
     weatherSet: [2, 1],
@@ -17100,7 +17100,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '29673': {
+  29673: {
     _id: 29673,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17118,7 +17118,7 @@ module.exports = {
     bestCatchPath: [30136],
     patch: 0,
   },
-  '29678': {
+  29678: {
     _id: 29678,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17136,7 +17136,7 @@ module.exports = {
     bestCatchPath: [30136],
     patch: 0,
   },
-  '30432': {
+  30432: {
     _id: 30432,
     previousWeatherSet: [],
     weatherSet: [1, 2],
@@ -17158,7 +17158,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30433': {
+  30433: {
     _id: 30433,
     previousWeatherSet: [4],
     weatherSet: [1, 2],
@@ -17180,7 +17180,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30434': {
+  30434: {
     _id: 30434,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17202,7 +17202,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30435': {
+  30435: {
     _id: 30435,
     previousWeatherSet: [],
     weatherSet: [7],
@@ -17224,7 +17224,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30436': {
+  30436: {
     _id: 30436,
     previousWeatherSet: [1, 2],
     weatherSet: [1],
@@ -17246,7 +17246,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30437': {
+  30437: {
     _id: 30437,
     previousWeatherSet: [1, 2],
     weatherSet: [4],
@@ -17268,7 +17268,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30438': {
+  30438: {
     _id: 30438,
     previousWeatherSet: [3],
     weatherSet: [1],
@@ -17290,7 +17290,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30439': {
+  30439: {
     _id: 30439,
     previousWeatherSet: [],
     weatherSet: [1],
@@ -17312,7 +17312,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30487': {
+  30487: {
     _id: 30487,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17334,7 +17334,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30488': {
+  30488: {
     _id: 30488,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17359,7 +17359,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30489': {
+  30489: {
     _id: 30489,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17384,7 +17384,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30490': {
+  30490: {
     _id: 30490,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17409,7 +17409,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30491': {
+  30491: {
     _id: 30491,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17434,7 +17434,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30492': {
+  30492: {
     _id: 30492,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17459,7 +17459,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '30593': {
+  30593: {
     _id: 30593,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17481,7 +17481,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '31129': {
+  31129: {
     _id: 31129,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17506,7 +17506,7 @@ module.exports = {
     gig: null,
     aquarium: null,
   },
-  '31134': {
+  31134: {
     _id: 31134,
     previousWeatherSet: [],
     weatherSet: [],
@@ -17530,5 +17530,131 @@ module.exports = {
     collectable: false,
     gig: null,
     aquarium: null,
+  },
+  32049: {
+    _id: 32049,
+    previousWeatherSet: [1],
+    weatherSet: [2],
+    startHour: 6,
+    endHour: 8,
+    locations: [203],
+    bestCatchPath: [27589],
+    predators: {},
+    patch: 5.4,
+    anglerFishId: 3344,
+    folklore: 2507,
+    collectable: false,
+    fishEyes: false,
+    snagging: null,
+    hookset: 'Precision',
+    tug: 'heavy',
+    gig: null,
+    aquarium: null,
+    dataMissing: null,
+  },
+  32050: {
+    _id: 32050,
+    previousWeatherSet: [3],
+    weatherSet: [4],
+    startHour: 0,
+    endHour: 24,
+    locations: [208],
+    bestCatchPath: [27585],
+    predators: {},
+    patch: 5.4,
+    anglerFishId: 3345,
+    folklore: 2507,
+    collectable: false,
+    fishEyes: false,
+    snagging: null,
+    hookset: 'Precision',
+    tug: 'heavy',
+    gig: null,
+    aquarium: null,
+    dataMissing: null,
+  },
+  32051: {
+    _id: 32051,
+    previousWeatherSet: [],
+    weatherSet: [3],
+    startHour: 22,
+    endHour: 24,
+    locations: [213],
+    bestCatchPath: [27588, 27457],
+    predators: {},
+    patch: 5.4,
+    anglerFishId: 3346,
+    folklore: 2507,
+    collectable: false,
+    fishEyes: false,
+    snagging: null,
+    hookset: 'Powerful',
+    tug: 'heavy',
+    gig: null,
+    aquarium: null,
+    dataMissing: null,
+  },
+  32052: {
+    _id: 32052,
+    previousWeatherSet: [2],
+    weatherSet: [10],
+    startHour: 12,
+    endHour: 16,
+    locations: [220],
+    bestCatchPath: [27585],
+    predators: {},
+    patch: 5.4,
+    anglerFishId: 3347,
+    folklore: 2507,
+    collectable: false,
+    fishEyes: false,
+    snagging: null,
+    hookset: 'Precision',
+    tug: 'heavy',
+    gig: null,
+    aquarium: null,
+    dataMissing: null,
+  },
+  32053: {
+    _id: 32053,
+    previousWeatherSet: [],
+    weatherSet: [4],
+    startHour: 16,
+    endHour: 20,
+    locations: [226],
+    bestCatchPath: [27587, 27492],
+    predators: {},
+    patch: 5.4,
+    anglerFishId: 3348,
+    folklore: 2507,
+    collectable: false,
+    fishEyes: false,
+    snagging: null,
+    hookset: 'Powerful',
+    tug: 'heavy',
+    gig: null,
+    aquarium: null,
+    dataMissing: null,
+  },
+  32054: {
+    _id: 32054,
+    previousWeatherSet: [1],
+    weatherSet: [3],
+    startHour: 8,
+    endHour: 11,
+    locations: [231],
+    bestCatchPath: [27590],
+    predators: {},
+    patch: 5.4,
+    anglerFishId: 3349,
+    folklore: 2507,
+    collectable: false,
+    fishEyes: false,
+    snagging: null,
+    hookset: 'Powerful',
+    tug: 'heavy',
+    gig: null,
+    aquarium: null,
+    dataMissing: null,
   },
 }
