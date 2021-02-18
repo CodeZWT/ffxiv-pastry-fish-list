@@ -620,8 +620,8 @@
       </v-card>
     </v-dialog>
     <update-dialog
-      :value="showCheckStartSetupDialog && !collapse"
-      @input="showCheckStartSetupDialog = true"
+      v-if="!collapse"
+      v-model="showCheckStartSetupDialog"
       @update="startUpdate"
       @skip="skipUpdate"
     />
