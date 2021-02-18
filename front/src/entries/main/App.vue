@@ -133,6 +133,10 @@
           </v-tooltip>
         </div>
 
+        <v-btn icon text v-if="isListPage" @click="toggleFilterPanel">
+          <v-icon>mdi-filter</v-icon>
+        </v-btn>
+
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
@@ -159,10 +163,12 @@
           </div>
         </v-tooltip>
 
-        <v-btn icon text v-if="isListPage" @click="toggleFilterPanel">
-          <v-icon>mdi-filter</v-icon>
-        </v-btn>
-        <v-btn icon text v-if="isListPage || isWikiPage" @click="showBaitDialog = true">
+        <v-btn
+          icon
+          text
+          v-if="(isListPage || isWikiPage) && !isMobile"
+          @click="showBaitDialog = true"
+        >
           <v-icon>mdi-hook</v-icon>
         </v-btn>
 
@@ -176,7 +182,8 @@
           </template>
           <span>按<kbd>/</kbd>键直接搜索</span>
         </v-tooltip>
-        <v-menu offset-y>
+
+        <v-menu offset-y v-if="!isMobile">
           <template v-slot:activator="{ on: menu, attrs }">
             <v-tooltip bottom>
               <template v-slot:activator="{ on: tooltip }">
@@ -216,6 +223,99 @@
             </v-list-item-group>
           </v-list>
         </v-menu>
+        <v-menu v-if="isMobile" offset-y left>
+          <template v-slot:activator="{ on: menu, attrs }">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on: tooltip }">
+                <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
+                  <v-icon>mdi-dots-vertical</v-icon>
+                </v-btn>
+              </template>
+              <div>更多</div>
+            </v-tooltip>
+          </template>
+          <v-list>
+            <v-list-item @click="showBaitDialog = true">
+              <v-btn icon text v-if="isListPage || isWikiPage">
+                <v-icon>mdi-hook</v-icon>
+              </v-btn>
+              <div>打开鱼饵筛选</div>
+            </v-list-item>
+            <v-list-item>
+              <v-menu offset-x left top>
+                <template v-slot:activator="{ on: menu, attrs }">
+                  <div v-bind="attrs" v-on="{ ...menu }" class="d-flex align-center">
+                    <v-btn text icon>
+                      <v-icon>mdi-theme-light-dark</v-icon>
+                    </v-btn>
+                    <div>设置颜色模式</div>
+                  </div>
+                </template>
+                <v-list>
+                  <v-list-item-group color="primary" :value="themeModeIndex">
+                    <v-tooltip
+                      v-for="(mode, index) in THEME_SETTING_MODES"
+                      :key="index"
+                      bottom
+                      :disabled="mode !== 'AUTO'"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <div v-bind="attrs" v-on="on">
+                          <v-list-item @click="selectThemeMode(index)">
+                            <v-list-item-icon>
+                              <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                              <v-list-item-title>
+                                <div class="d-flex align-center">
+                                  <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
+                                </div>
+                              </v-list-item-title>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </div>
+                      </template>
+                      <div>WINDOWS10: 设置 -> 颜色 -> 选择颜色</div>
+                    </v-tooltip>
+                  </v-list-item-group>
+                </v-list>
+              </v-menu>
+            </v-list-item>
+            <v-list-item @click="toggleFishEyesUsed">
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <div v-bind="attrs" v-on="on" class="d-flex align-center">
+                    <toggle-button
+                      v-if="isListPage || isWikiPage"
+                      :value="fishEyesUsed"
+                      checked-icon="mdi-eye"
+                      unchecked-icon="mdi-eye-off"
+                      checked-title="点击取消鱼眼模式"
+                      unchecked-title="点击开启鱼眼模式"
+                    />
+                    <div>
+                      {{ fishEyesUsed ? '点击取消鱼眼模式' : '点击开启鱼眼模式' }}
+                    </div>
+                  </div>
+                </template>
+                <div style="max-width: 300px">
+                  <div class="mb-1">
+                    <item-icon icon-class="bg-001112" small class="float-left" />
+                    <div>
+                      鱼眼技能在5.4版本的效果更新为，无视时间条件，持续时间60s，消耗GP550。
+                      对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼无效。
+                    </div>
+                  </div>
+                  <div>
+                    鱼糕在开启鱼眼功能后，对可用范围内的鱼会无视时间要求进行计算。
+                  </div>
+                </div>
+              </v-tooltip>
+            </v-list-item>
+            <!--            </v-list-item-group>-->
+          </v-list>
+        </v-menu>
+
         <v-sheet class="d-flex flex-column ml-1 transparent" v-if="!isElectron">
           <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
           <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
