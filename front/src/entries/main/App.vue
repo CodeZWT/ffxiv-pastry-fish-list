@@ -71,7 +71,7 @@
           <template v-slot:activator="{ on, attrs }">
             <div class="d-flex">
               <v-avatar size="36" v-bind="attrs" v-on="on">
-                <img :src="fisher" />
+                <v-img :src="fisher" />
               </v-avatar>
               <div class="d-flex flex-column" v-if="collapse">
                 <v-chip
@@ -132,6 +132,32 @@
             </div>
           </v-tooltip>
         </div>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <div v-bind="attrs" v-on="on">
+              <toggle-button
+                v-if="isListPage || isWikiPage"
+                :value="fishEyesUsed"
+                @input="toggleFishEyesUsed"
+                checked-icon="mdi-eye"
+                unchecked-icon="mdi-eye-off"
+                checked-title="点击取消鱼眼模式"
+                unchecked-title="点击开启鱼眼模式"
+              />
+            </div>
+          </template>
+          <div style="max-width: 300px">
+            <div class="mb-1">
+              <item-icon icon-class="bg-001112" small class="float-left" />
+              <div>
+                鱼眼技能在5.4版本的效果更新为，无视时间条件，持续时间60s，消耗GP550。
+                对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼无效。
+              </div>
+            </div>
+            <div>鱼糕在开启鱼眼功能后，对可用范围内的鱼会无视时间要求进行计算。</div>
+          </div>
+        </v-tooltip>
 
         <v-btn icon text v-if="isListPage" @click="toggleFilterPanel">
           <v-icon>mdi-filter</v-icon>
@@ -970,6 +996,7 @@ export default {
       'baitIdsForNotification',
     ]),
     ...mapGetters([
+      'fishEyesUsed',
       'showChromeBugDialog',
       'opacity',
       'websiteVersion',
@@ -1173,6 +1200,10 @@ export default {
     // }, 200)
   },
   methods: {
+    toggleFishEyesUsed() {
+      this.updateUserData({ path: 'fishEyesUsed', data: !this.fishEyesUsed })
+      this.$nextTick(() => window.location.reload())
+    },
     showSetting() {
       this.showSettingDialog = true
       this.setFeatureViewed(this.SettingFeatureId)
@@ -1303,7 +1334,7 @@ export default {
       this.fishListWeatherChangePart = this.lazySourceImportantFishList.reduce(
         (fish2WeatherPart, fish) => {
           fish2WeatherPart[fish._id] = {
-            fishWindows: this.getFishWindow(fish, now),
+            fishWindows: this.getFishWindowOf(fish, now),
           }
           return fish2WeatherPart
         },
@@ -1667,12 +1698,7 @@ export default {
 
         let fishWindowsComputed
         if (missingFishWindowN > 0) {
-          fishWindowsComputed = DataUtil.getFishWindow(
-            fish,
-            now,
-            this.allFish,
-            this.fishingSpots
-          )
+          fishWindowsComputed = this.getFishWindowOf(fish, now)
         } else {
           fishWindowsComputed = remainingFishWindows
         }
@@ -1720,8 +1746,14 @@ export default {
         return { type: DataUtil.ALL_AVAILABLE }
       }
     },
-    getFishWindow(fish, now) {
-      return DataUtil.getFishWindow(fish, now, this.allFish, this.fishingSpots)
+    getFishWindowOf(fish, now) {
+      return DataUtil.getFishWindow(
+        fish,
+        now,
+        this.allFish,
+        this.fishingSpots,
+        this.fishEyesUsed
+      )
     },
     goTo(href) {
       window.open(href)

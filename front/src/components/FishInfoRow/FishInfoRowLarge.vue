@@ -203,8 +203,25 @@
               `${timeAndWeatherColClass} d-flex flex-column justify-center align-center`
             "
           >
-            <div v-if="fish.hasTimeConstraint">
-              {{ fish.startHourText }} - {{ fish.endHourText }}
+            <div v-if="fish.hasTimeConstraint" class="d-flex align-center">
+              <div
+                :class="{
+                  'text-decoration-line-through': isTimeCheckSkipped,
+                  'mr-1': isTimeCheckSkipped,
+                }"
+              >
+                {{ fish.startHourText }} - {{ fish.endHourText }}
+              </div>
+              <v-tooltip v-if="isTimeCheckSkipped" bottom color="secondary">
+                <template v-slot:activator="{ on, attrs }">
+                  <div v-bind="attrs" v-on="on">
+                    <div class="bg-011103"></div>
+                  </div>
+                </template>
+                <div>
+                  时间条件在鱼眼模式下忽略
+                </div>
+              </v-tooltip>
             </div>
             <div class="d-flex" v-if="fish.hasWeatherConstraint">
               <div style="display: flex">

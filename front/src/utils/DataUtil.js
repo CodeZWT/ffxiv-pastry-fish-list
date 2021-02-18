@@ -18,6 +18,7 @@ import FishingData from 'Data/fishingData'
 import FIX from 'Data/fix'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import DATA from '../../../data/data'
+import { LIVING_LEGENDS } from '../../../data/translation'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -494,12 +495,19 @@ export default {
       fish1.endHour === fish2.endHour
     )
   },
-  getFishWindow(fish, now, allFish, fishingSpots, n = FishWindow.FISH_WINDOW_FORECAST_N) {
+  getFishWindow(
+    fish,
+    now,
+    allFish,
+    fishingSpots,
+    fishEyesUsed,
+    n = FishWindow.FISH_WINDOW_FORECAST_N
+  ) {
     // if (fish._id === 999999) {
     //   console.log(Object.keys(fish.predators))
     // }
     if (Object.keys(fish.predators).length === 0) {
-      return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
+      return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
     } else {
       const predators = Object.keys(fish.predators).map(predatorId => {
         return allFish[predatorId]
@@ -513,77 +521,94 @@ export default {
         //   DATA_CN.ITEMS[fish._id].name_chs,
         //   'predators are all available or same constrains'
         // )
-        return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
+        return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
       } else if (predators.length === 1) {
         if (this.isAllAvailableFish(fish)) {
           // console.debug(
           //   DATA_CN.ITEMS[fish._id].name_chs,
           //   'fish is all available so just look its only predator'
           // )
-          return this.getFishWindowOfSingleFish(predators[0], now, fishingSpots, n)
+          return this.getFishWindowOfSingleFish(
+            predators[0],
+            now,
+            fishingSpots,
+            fishEyesUsed,
+            n
+          )
         } else if (fish._id === 24992) {
           // console.debug(DATA_CN.ITEMS[fish._id].name_chs, 'special case 1')
-          return this.getFishWindowOfSingleFish(predators[0], now, fishingSpots, n).map(
-            fishWindow => {
-              const startEorzeaTime = new EorzeaTime(
-                EorzeaTime.toEorzeaTime(fishWindow[0])
-              )
-              return [
-                startEorzeaTime.timeOfHours(fish.startHour).toEarthTime(),
-                startEorzeaTime.timeOfHours(fish.endHour).toEarthTime(),
-              ]
-            }
-          )
+          return this.getFishWindowOfSingleFish(
+            predators[0],
+            now,
+            fishingSpots,
+            fishEyesUsed,
+            n
+          ).map(fishWindow => {
+            const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
+            return [
+              startEorzeaTime.timeOfHours(fish.startHour).toEarthTime(),
+              startEorzeaTime.timeOfHours(fish.endHour).toEarthTime(),
+            ]
+          })
         } else {
           console.error('Unsupported fish!', fish._id, 'need write new rules for it!')
-          return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
+          return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
         }
       } else {
         // Special Case 2: 'Warden of the Seven Hues' i.e. "七彩天主"
         if (fish._id === 24994) {
           // console.debug(DATA_CN.ITEMS[fish._id].name_chs, 'special case 2')
           // just return the 'Green Prismfish' i.e. "绿彩鱼" fish windows
-          return this.getFishWindowOfSingleFish(allFish[24204], now, fishingSpots, n).map(
-            fishWindow => {
-              // if start of fish window > 0, i.e. its window is shrunk by the weather
-              // change it back to 0, since other 2 predators are always available in [0,8]
-              const startEorzeaTime = new EorzeaTime(
-                EorzeaTime.toEorzeaTime(fishWindow[0])
-              )
-              if (startEorzeaTime.getHours() > 0) {
-                return [startEorzeaTime.timeOfHours(0).toEarthTime(), fishWindow[1]]
-              } else {
-                return fishWindow
-              }
+          return this.getFishWindowOfSingleFish(
+            allFish[24204],
+            now,
+            fishingSpots,
+            fishEyesUsed,
+            n
+          ).map(fishWindow => {
+            // if start of fish window > 0, i.e. its window is shrunk by the weather
+            // change it back to 0, since other 2 predators are always available in [0,8]
+            const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
+            if (startEorzeaTime.getHours() > 0) {
+              return [startEorzeaTime.timeOfHours(0).toEarthTime(), fishWindow[1]]
+            } else {
+              return fishWindow
             }
-          )
+          })
         } else {
           console.error('Unsupported fish!', fish._id, 'need write new rules for it!')
-          return this.getFishWindowOfSingleFish(fish, now, fishingSpots, n)
+          return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
         }
       }
     }
   },
-
+  skipTimeCheckOf(fish, fishEyesUsed) {
+    return (
+      fishEyesUsed &&
+      (fish.startHour !== 0 || fish.endHour !== 24) &&
+      fish.patch < 4 &&
+      !LIVING_LEGENDS.includes(fish._id)
+    )
+  },
   getFishWindowOfSingleFish(
     fish,
     now,
     fishingSpots,
+    fishEyesUsed,
     n = FishWindow.FISH_WINDOW_FORECAST_N
   ) {
+    const skipTimeCheck = this.skipTimeCheckOf(fish, fishEyesUsed)
+    // [NOTE]
+    // Only check the 1st location
+    // If fish with multi spot has weather constraints
+    // will miss other location fish window
+    // but all fish is split to multi fish in that case
     return FishWindow.getNextNFishWindows(
-      // [NOTE]
-      // Only check the 1st location
-      // If fish with multi spot has weather constraints
-      // will miss other location fish window
-      // but there is no such case currently...
-      // so just take the 1st one
-      // e.g. 温泉王
       fish._id,
       fishingSpots?.[fish.locations[0]]?.territory_id,
       new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
-      fish.startHour,
-      fish.endHour,
+      skipTimeCheck ? 0 : fish.startHour,
+      skipTimeCheck ? 24 : fish.endHour,
       fish.previousWeatherSet,
       fish.weatherSet,
       n
@@ -1041,6 +1066,7 @@ export default {
       },
     },
     showChromeBugDialog: true,
+    fishEyesUsed: false,
     reader: {
       autoSetCompleted: true,
       main: {
@@ -1069,14 +1095,6 @@ export default {
         opacity: 0.9,
         zoomFactor: 1,
       },
-      // timerOpacity: 0.9,
-      // timerZoomFactor: 1,
-      // historyOpacity: 0.9,
-      // historyZoomFactor: 1,
-      // spotStatisticsOpacity: 0.9,
-      // spotStatisticsZoomFactor: 1,
-      // mainPos: { x: -1, y: -1 },
-      // mainSize: { w: 1080, h: 768 },
     },
   },
 

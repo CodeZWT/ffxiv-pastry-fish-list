@@ -37,6 +37,9 @@ export default {
     },
   },
   computed: {
+    isTimeCheckSkipped() {
+      return DataUtil.skipTimeCheckOf(this.fish, this.fishEyesUsed)
+    },
     isSpearFish() {
       return this.fish.type === 'spear'
     },
@@ -92,6 +95,7 @@ export default {
     },
     ...mapState(['showFishPageRightPane']),
     ...mapGetters([
+      'fishEyesUsed',
       'getWeather',
       'getItemIconClass',
       'getItemName',

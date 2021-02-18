@@ -30,8 +30,25 @@
     <v-col cols="6">
       <div class="d-flex justify-center">{{ $t('detail.requirements.time') }}</div>
       <div class="d-flex justify-center">
-        <div v-if="fish.hasTimeConstraint">
-          {{ fish.startHourText }} - {{ fish.endHourText }}
+        <div v-if="fish.hasTimeConstraint" class="d-flex align-center">
+          <div
+            :class="{
+              'text-decoration-line-through': isTimeCheckSkipped,
+              'mr-1': isTimeCheckSkipped,
+            }"
+          >
+            {{ fish.startHourText }} - {{ fish.endHourText }}
+          </div>
+          <v-tooltip v-if="isTimeCheckSkipped" bottom color="secondary">
+            <template v-slot:activator="{ on, attrs }">
+              <div v-bind="attrs" v-on="on">
+                <div class="bg-011103"></div>
+              </div>
+            </template>
+            <div>
+              时间条件在鱼眼模式下忽略
+            </div>
+          </v-tooltip>
         </div>
         <div v-else>
           {{ $t('none') }}
@@ -42,6 +59,9 @@
 </template>
 
 <script>
+import DataUtil from '@/utils/DataUtil'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'DetailItemRequirements',
   props: {
@@ -49,6 +69,13 @@ export default {
       type: Object,
       default: undefined,
     },
+  },
+  computed: {
+    isTimeCheckSkipped() {
+      console.log(this.fish)
+      return DataUtil.skipTimeCheckOf(this.fish, this.fishEyesUsed)
+    },
+    ...mapGetters(['fishEyesUsed']),
   },
 }
 </script>

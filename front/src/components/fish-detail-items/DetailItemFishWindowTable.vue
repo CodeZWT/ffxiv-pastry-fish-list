@@ -45,7 +45,7 @@
 <script>
 import FishWindow from '@/utils/FishWindow'
 import DataUtil from '@/utils/DataUtil'
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'DetailItemFishWindowTable',
@@ -107,6 +107,7 @@ export default {
               now,
               this.allFish,
               this.fishingSpots,
+              this.fishEyesUsed,
               this.recordsCntToShow
             ),
             this.recordsCntToShow,
@@ -118,14 +119,6 @@ export default {
     },
   },
   computed: {
-    // detailedFishWeatherChangePart() {
-    //   const existedCnt = this.fishWindows.length
-    //   if (existedCnt >= this.recordsCntToShow) {
-    //     return this.fishWindows
-    //   } else {
-    //     return DataUtil.getFishWindowOfSingleFish(this.allFish[this.fish.id], this.now, this.fishingSpots)
-    //   }
-    // },
     fishWindowsProvided() {
       return this.transformFishWindows(
         this.fishWeatherChangePart.fishWindows,
@@ -137,6 +130,7 @@ export default {
       allFish: 'fish',
       fishingSpots: 'fishingSpots',
     }),
+    ...mapGetters(['fishEyesUsed']),
   },
   methods: {
     transformFishWindows(original, n, now) {

@@ -92,6 +92,7 @@ export default {
       const bestCatchPathExtra = this.value.bestCatchPathExtra ?? []
       const isSpear = this.value.gig != null
       return {
+        ...this.value,
         id: this.value._id,
         type: isSpear ? 'spear' : 'normal',
         startHourText:
