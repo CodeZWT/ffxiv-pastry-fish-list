@@ -11,7 +11,7 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
-        <div class="text-h6">Version 0.6.4</div>
+        <div class="text-h6">Version 0.6.5</div>
         <div class="text-h5 text-center my-1">
           鱼糕
         </div>

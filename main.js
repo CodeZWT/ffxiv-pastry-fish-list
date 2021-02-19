@@ -105,12 +105,12 @@ async function init() {
       }
     })
     .on('startLoading', () => {
-      return createAndShowLoadingWindow().then(win => loadingForReloadingPage = win)
+      // return createAndShowLoadingWindow().then(win => loadingForReloadingPage = win)
     })
     .on('finishLoading', () => {
-      if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
-        return loadingForReloadingPage.close()
-      }
+      // if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
+      //   return loadingForReloadingPage.close()
+      // }
     })
 
   globalShortcut.register('Alt+CommandOrControl+L', () => {
