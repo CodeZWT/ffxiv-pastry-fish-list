@@ -797,12 +797,12 @@ export default {
     baitFilteredFishIdSet() {
       const list = Array.from(this.filteredFishIdSet)
       const idSet = new Set()
-      const baitIds = this.baitFilterIds
+      const baitIds = this.baitFilter.baitIds
       list
         .filter(fishId => {
           const fish = this.allFish[fishId]
           return (
-            !this.baitFilterEnabled ||
+            !this.baitFilter.enabled ||
             (fish.bestCatchPath != null && baitIds.includes(fish.bestCatchPath[0]))
           )
         })
@@ -1032,11 +1032,10 @@ export default {
       'newPatchFish',
       'folklore',
       'weatherRates',
-      'baitFilterEnabled',
-      'baitFilterIds',
       'baitIdsForNotification',
     ]),
     ...mapGetters([
+      'baitFilter',
       'fishEyesUsed',
       'showChromeBugDialog',
       'opacity',

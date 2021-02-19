@@ -963,6 +963,10 @@ export default {
       sorterType: 'COUNTDOWN',
       fishConstraintTypes: FISH_CONSTRAINT_FILTER_TYPES,
     },
+    baitFilter: {
+      enabled: false,
+      baitIds: [],
+    },
     // page settings
     listSetting: {
       normal: {

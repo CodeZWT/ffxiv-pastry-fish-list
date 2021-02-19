@@ -5,7 +5,7 @@ import DATA from 'Data/data'
 import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import { loadUserData } from '@/utils/UserDataLoader'
+import { loadBaitFilterUserData, loadUserData } from '@/utils/UserDataLoader'
 import CONSTANTS from 'Data/constants'
 
 Vue.use(Vuex)
@@ -37,14 +37,18 @@ export default new Vuex.Store({
     loading: false,
     userData: loadUserData(),
     // fish page filter
-    baitFilterEnabled: false,
-    baitFilterIds: [],
+    // baitFilterEnabled: false,
+    // baitFilterIds: [],
+    baitFilter: loadBaitFilterUserData(),
     // bait notification cache
     remainingBaitIds: initRemainingBaitIds(),
     baitIdsForNotification: [],
     viewedFeatures: LocalStorageUtil.loadViewedFeatures(CONSTANTS.FEATURE_GROUP_MAIN),
   },
   getters: {
+    baitFilter: state => {
+      return state.baitFilter
+    },
     listSetting: state => {
       return DataUtil.getUserDataPart(state)('listSetting')
     },
@@ -250,6 +254,12 @@ export default new Vuex.Store({
     updateUserData(state, data) {
       DataUtil.setUserDataPart(state, data)
     },
+    updateUserBaitFilterData(state, { path, data }) {
+      const newBaitFilter = _.cloneDeep(state.baitFilter)
+      _.set(newBaitFilter, path, data)
+      state.baitFilter = newBaitFilter
+      LocalStorageUtil.storeBaitFilter(state.baitFilter)
+    },
     updateRemainingBaitIdsWithoutCheck(state) {
       state.remainingBaitIds = getRemainingBaitIdsWithUserData(state.userData)
     },
@@ -265,12 +275,12 @@ export default new Vuex.Store({
       state.userData = cloneUserData
       LocalStorageUtil.storeUserData(state.userData)
     },
-    setBaitFilterEnabled(state, enabled) {
-      state.baitFilterEnabled = enabled
-    },
-    setBaitFilterIds(state, ids) {
-      state.baitFilterIds = ids
-    },
+    // setBaitFilterEnabled(state, enabled) {
+    //   state.baitFilterEnabled = enabled
+    // },
+    // setBaitFilterIds(state, ids) {
+    //   DataUtil.setUserDataPart(state, {path: 'baitFiler.baitIds', data: ids})
+    // },
     initialUserData(state) {
       // state.userData = DataUtil.mergeUserData(
       //   _.cloneDeep(DataUtil.USER_DEFAULT_DATA),

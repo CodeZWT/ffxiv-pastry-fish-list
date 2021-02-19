@@ -402,10 +402,21 @@ export default {
     },
     baitFilterEnabledComputed: {
       get() {
-        return this.baitFilterEnabled
+        return this.baitFilter.enabled
       },
       set(enabled) {
-        this.setBaitFilterEnabled(enabled)
+        this.updateUserBaitFilterData({ path: 'enabled', data: enabled })
+      },
+    },
+    baitFilterIds: {
+      get() {
+        return this.baitFilter.baitIds
+      },
+      set(ids) {
+        this.updateUserBaitFilterData({
+          path: 'baitIds',
+          data: ids,
+        })
       },
     },
     // baitFilterIdsComputed: {
@@ -484,8 +495,8 @@ export default {
       activeTabIndex: 'activeTabIndex',
       sounds: 'sounds',
       showFishPageRightPane: 'showFishPageRightPane',
-      baitFilterEnabled: 'baitFilterEnabled',
-      baitFilterIds: 'baitFilterIds',
+      // baitFilterEnabled: 'baitFilterEnabled',
+      // baitFilterIds: 'baitFilterIds',
     }),
     ...mapGetters([
       'getFishCompleted',
@@ -505,26 +516,46 @@ export default {
       'getItemIconUrl',
       'isSystemNotificationEnabled',
       'listSetting',
+      'baitFilter',
     ]),
   },
   watch: {
-    baitFilterEnabledComputed(enabled) {
-      if (enabled) {
-        this.$nextTick(() => this.selectAllBaits())
-      }
-    },
+    // baitFilterEnabledComputed(enabled) {
+    //   if (enabled) {
+    //     this.$nextTick(() => this.selectAllBaits())
+    //   }
+    //   // else {
+    //   //   this.$nextTick(() => this.clearAllBaits())
+    //   // }
+    // },
     bait2Fish: {
-      handler(bait2Fish) {
-        if (this.baitFilterInputted) {
-          this.$nextTick(() => {
-            const indices = []
-            Object.keys(bait2Fish).forEach((baitId, index) => {
+      handler(bait2Fish, old) {
+        // console.log(
+        //   Object.keys(bait2Fish),
+        //   Object.keys(old ?? {}),
+        //   Object.keys(old ?? {}).map(it => +it),
+        //   this.baitFilterIds,
+        //   _.difference(
+        //     Object.keys(old ?? {}).map(it => +it),
+        //     this.baitFilterIds
+        //   )
+        // )
+
+        const allSelected =
+          (old == null && this.baitFilterIds.length === 0) ||
+          (old != null &&
+            Object.keys(old).every(oldBaitId => this.baitFilterIds.includes(+oldBaitId)))
+
+        if (!allSelected) {
+          const indices = []
+          Object.keys(bait2Fish)
+            .sort()
+            .forEach((baitId, index) => {
               if (this.baitFilterIds.includes(+baitId)) {
                 indices.push(index)
               }
             })
-            this.selectedBaitIdIndices = indices
-          })
+          this.selectedBaitIdIndices = indices
         } else {
           this.$nextTick(() => this.selectAllBaits(bait2Fish))
         }
@@ -532,11 +563,10 @@ export default {
       immediate: true,
     },
     selectedBaitIdIndices(indices) {
-      this.setBaitFilterIds(
-        Object.keys(this.bait2Fish)
-          .filter((_, index) => indices.includes(index))
-          .map(it => +it)
-      )
+      this.baitFilterIds = Object.keys(this.bait2Fish)
+        .sort()
+        .filter((_, index) => indices.includes(index))
+        .map(it => +it)
     },
   },
   created() {
@@ -613,6 +643,7 @@ export default {
       }, 500)
     },
     ...mapMutations([
+      'updateUserBaitFilterData',
       'updateUserData',
       'setFilters',
       'setShowSearchDialog',
@@ -621,8 +652,6 @@ export default {
       'clearToBeNotified',
       'setShowFishPageRightPane',
       'showSnackbar',
-      'setBaitFilterEnabled',
-      'setBaitFilterIds',
     ]),
   },
 }
