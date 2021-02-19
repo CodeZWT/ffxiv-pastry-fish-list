@@ -70,8 +70,8 @@
                         </v-tooltip>
                       </div>
                       <v-chip-group v-model="selectedBaitIdIndices" column multiple>
-                        <template v-for="(fishIds, baitId) in bait2Fish">
-                          <v-menu open-on-hover right offset-x offset-y :key="baitId">
+                        <template v-for="(fishIds, baitId, index) in bait2Fish">
+                          <v-menu open-on-hover right offset-x offset-y :key="index">
                             <template v-slot:activator="{ on }">
                               <v-chip
                                 active-class="primary--text"
