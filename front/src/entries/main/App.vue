@@ -1042,7 +1042,7 @@ export default {
       set(startLight) {
         this.setStartLight(startLight)
         this.showJumpingOverlay = true
-        this.$nextTick(() => window.location.reload())
+        this.startReloadPage()
       },
     },
     inMigrationPage() {
@@ -1233,6 +1233,7 @@ export default {
       }
       event.preventDefault()
     })
+    this.finishReloadPage()
   },
   async mounted() {
     // setTimeout(async () => {
@@ -1288,9 +1289,16 @@ export default {
     // }, 200)
   },
   methods: {
+    startReloadPage() {
+      this.sendElectronEvent('startLoading')
+      window.location.reload()
+    },
+    finishReloadPage() {
+      this.sendElectronEvent('finishLoading')
+    },
     toggleFishEyesUsed() {
       this.updateUserData({ path: 'fishEyesUsed', data: !this.fishEyesUsed })
-      this.$nextTick(() => window.location.reload())
+      this.startReloadPage()
     },
     showSetting() {
       this.showSettingDialog = true
