@@ -45,6 +45,9 @@ export default new Vuex.Store({
     viewedFeatures: LocalStorageUtil.loadViewedFeatures(CONSTANTS.FEATURE_GROUP_MAIN),
   },
   getters: {
+    listSetting: state => {
+      return DataUtil.getUserDataPart(state)('listSetting')
+    },
     fishEyesUsed: state => {
       return DataUtil.getUserDataPart(state)('fishEyesUsed')
     },

@@ -964,6 +964,14 @@ export default {
       fishConstraintTypes: FISH_CONSTRAINT_FILTER_TYPES,
     },
     // page settings
+    listSetting: {
+      normal: {
+        expanded: true,
+      },
+      pinned: {
+        expanded: true,
+      },
+    },
     showFilter: true,
     showBanner: true,
     opacity: 1,

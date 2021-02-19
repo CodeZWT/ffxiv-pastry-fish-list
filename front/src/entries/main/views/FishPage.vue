@@ -170,7 +170,11 @@
                       :transition="false"
                       :reverse-transition="false"
                     >
-                      <v-expansion-panels :value="0" accordion class="my-2 rounded-lg">
+                      <v-expansion-panels
+                        v-model="pinnedListExpansion"
+                        accordion
+                        class="my-2 rounded-lg"
+                      >
                         <v-expansion-panel>
                           <v-expansion-panel-header>固定列表</v-expansion-panel-header>
                           <v-expansion-panel-content>
@@ -192,7 +196,11 @@
                         </v-expansion-panel>
                       </v-expansion-panels>
 
-                      <v-expansion-panels :value="0" accordion class="my-2 rounded-lg">
+                      <v-expansion-panels
+                        v-model="normalListExpansion"
+                        accordion
+                        class="my-2 rounded-lg"
+                      >
                         <v-expansion-panel>
                           <v-expansion-panel-header>默认列表</v-expansion-panel-header>
                           <v-expansion-panel-content>
@@ -370,6 +378,22 @@ export default {
     baitFilterInputted: false,
   }),
   computed: {
+    normalListExpansion: {
+      get() {
+        return this.listSetting.normal.expanded ? 0 : undefined
+      },
+      set(index) {
+        this.setListExpandedStatus('normal', index === 0)
+      },
+    },
+    pinnedListExpansion: {
+      get() {
+        return this.listSetting.pinned.expanded ? 0 : undefined
+      },
+      set(index) {
+        this.setListExpandedStatus('pinned', index === 0)
+      },
+    },
     rightPercentage() {
       return this.rightPaneSizeOfCurrentWindowSize
     },
@@ -480,6 +504,7 @@ export default {
       'notification',
       'getItemIconUrl',
       'isSystemNotificationEnabled',
+      'listSetting',
     ]),
   },
   watch: {
@@ -542,6 +567,9 @@ export default {
     this.onWindowResize()
   },
   methods: {
+    setListExpandedStatus(list, expanded) {
+      this.updateUserData({ path: `listSetting.${list}.expanded`, data: expanded })
+    },
     onScroll(e) {
       this.offsetTop = e.target.scrollTop
     },
@@ -585,6 +613,7 @@ export default {
       }, 500)
     },
     ...mapMutations([
+      'updateUserData',
       'setFilters',
       'setShowSearchDialog',
       'setNotShowBanner',
