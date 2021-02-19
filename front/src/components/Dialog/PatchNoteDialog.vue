@@ -17,6 +17,31 @@
         </div>
         <ul>
           <li>
+            修复无法导入的问题
+          </li>
+          <li>
+            修复右上按钮显示不全的问题
+          </li>
+          <li>
+            修复鱼饵筛选选择错位的问题
+          </li>
+          <li>
+            增加存储默认与固定列表的展开状态的功能
+          </li>
+          <li>
+            增加存储鱼饵筛选状态的功能
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
+        <div class="text-h6">Version 0.6.4</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕
+        </div>
+        <ul>
+          <li>
             增加5.4版本鱼
           </li>
           <li>
@@ -35,8 +60,9 @@
             修复最小化悬浮窗后，透明窗体覆盖其他窗口的问题。
           </li>
         </ul>
-        <v-divider />
         <p />
+
+        <v-divider />
 
         <div class="text-h6">Version 0.6.3</div>
         <div class="text-h5 text-center my-1">
