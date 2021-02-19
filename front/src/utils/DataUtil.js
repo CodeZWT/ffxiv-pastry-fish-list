@@ -673,9 +673,10 @@ export default {
   },
 
   validateImportData(data, sample) {
-    const importKeys = Object.keys(flatten(data, { safe: true })).sort()
-    const sampleKeys = Object.keys(flatten(sample, { safe: true })).sort()
-    // console.debug(importKeys, sampleKeys)
+    const importKeys = _.keys(flatten(data, { safe: true })).sort()
+    const sampleKeys = _.keys(flatten(sample, { safe: true })).sort()
+    console.debug(_.difference(importKeys, sampleKeys))
+    console.debug(_.difference(sampleKeys, importKeys))
     return importKeys.every(it => sampleKeys.includes(it))
   },
 
@@ -1070,27 +1071,27 @@ export default {
     reader: {
       autoSetCompleted: true,
       main: {
-        pos: { x: undefined, y: undefined },
+        pos: { x: null, y: null },
         size: { w: 1080, h: 768 },
       },
       setting: {
-        pos: { x: undefined, y: undefined },
+        pos: { x: null, y: null },
         size: { w: 500, h: 500 },
       },
       timer: {
-        pos: { x: undefined, y: undefined },
+        pos: { x: null, y: null },
         size: { w: 500, h: 160 },
         opacity: 0.9,
         zoomFactor: 1,
       },
       history: {
-        pos: { x: undefined, y: undefined },
+        pos: { x: null, y: null },
         size: { w: 500, h: 800 },
         opacity: 0.9,
         zoomFactor: 1,
       },
       spotStatistics: {
-        pos: { x: undefined, y: undefined },
+        pos: { x: null, y: null },
         size: { w: 500, h: 500 },
         opacity: 0.9,
         zoomFactor: 1,
