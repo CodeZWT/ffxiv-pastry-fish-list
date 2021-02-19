@@ -137,36 +137,11 @@
           <v-icon>mdi-filter</v-icon>
         </v-btn>
 
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
-            <div v-bind="attrs" v-on="on">
-              <toggle-button
-                v-if="isListPage || isWikiPage"
-                :value="fishEyesUsed"
-                @input="toggleFishEyesUsed"
-                checked-icon="mdi-eye"
-                unchecked-icon="mdi-eye-off"
-                checked-title="点击关闭鱼眼模式"
-                unchecked-title="点击开启鱼眼模式"
-              />
-            </div>
-          </template>
-          <div style="max-width: 300px">
-            <div class="error--text font-weight-bold text-center text-h5">
-              此技能国服仍未实装！
-            </div>
-            <div class="mb-1">
-              <item-icon icon-class="bg-001112" small class="float-left" />
-              <div>
-                鱼眼技能在
-                <strong>5.4</strong>
-                版本的效果更新为，无视时间条件，持续时间60s，消耗GP550。
-                对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼无效。
-              </div>
-            </div>
-            <div>鱼糕在开启鱼眼功能后，对可用范围内的鱼会无视时间要求进行计算。</div>
-          </div>
-        </v-tooltip>
+        <fish-eyes-toggle-button
+          v-if="!isMobile && (isListPage || isWikiPage)"
+          :value="fishEyesUsed"
+          @input="toggleFishEyesUsed"
+        />
 
         <v-btn
           icon
@@ -179,13 +154,15 @@
 
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <click-helper @click="setShowSearchDialog(true)">
-              <v-btn icon text v-bind="attrs" v-on="on">
+            <div v-bind="attrs" v-on="on">
+              <v-btn icon text @click="setShowSearchDialog(true)">
                 <v-icon>mdi-magnify</v-icon>
               </v-btn>
-            </click-helper>
+            </div>
           </template>
-          <span>按<kbd>/</kbd>键直接搜索</span>
+          <div>
+            按<kbd>/</kbd>键直接搜索
+          </div>
         </v-tooltip>
 
         <v-menu offset-y v-if="!isMobile">
@@ -287,38 +264,12 @@
               </v-menu>
             </v-list-item>
             <v-list-item @click="toggleFishEyesUsed">
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                  <div v-bind="attrs" v-on="on" class="d-flex align-center">
-                    <toggle-button
-                      v-if="isListPage || isWikiPage"
-                      :value="fishEyesUsed"
-                      checked-icon="mdi-eye"
-                      unchecked-icon="mdi-eye-off"
-                      checked-title="点击关闭鱼眼模式"
-                      unchecked-title="点击开启鱼眼模式"
-                    />
-                    <div>
-                      {{ fishEyesUsed ? '点击关闭鱼眼模式' : '点击开启鱼眼模式' }}
-                    </div>
-                  </div>
-                </template>
-                <div style="max-width: 300px">
-                  <div class="mb-1">
-                    <div class="error--text font-weight-bold text-center text-h5">
-                      此技能国服仍未实装！
-                    </div>
-                    <item-icon icon-class="bg-001112" small class="float-left" />
-                    <div>
-                      鱼眼技能在5.4版本的效果更新为，无视时间条件，持续时间60s，消耗GP550。
-                      对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼无效。
-                    </div>
-                  </div>
-                  <div>
-                    鱼糕在开启鱼眼功能后，对可用范围内的鱼会无视时间要求进行计算。
-                  </div>
-                </div>
-              </v-tooltip>
+              <fish-eyes-toggle-button
+                v-if="isListPage || isWikiPage"
+                :value="fishEyesUsed"
+                show-title
+                @input="toggleFishEyesUsed"
+              />
             </v-list-item>
           </v-list>
         </v-menu>
@@ -725,10 +676,12 @@ import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import { MainFeatures } from 'Data/newFeatures'
 import ToggleButton from '@/components/basic/ToggleButton'
 import HelpDialog from '@/components/Dialog/HelpDialog'
+import FishEyesToggleButton from '@/components/FishEyesToggleButton'
 
 export default {
   name: 'App',
   components: {
+    FishEyesToggleButton,
     HelpDialog,
     ToggleButton,
     NewFeatureMark,
@@ -1297,8 +1250,14 @@ export default {
       this.sendElectronEvent('finishLoading')
     },
     toggleFishEyesUsed() {
+      this.showSnackbar({
+        text: '设置成功，即将重新加载页面，请稍后...',
+        color: 'success',
+      })
       this.updateUserData({ path: 'fishEyesUsed', data: !this.fishEyesUsed })
-      this.startReloadPage()
+      setTimeout(() => {
+        this.startReloadPage()
+      }, 2000)
     },
     showSetting() {
       this.showSettingDialog = true
