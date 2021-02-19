@@ -251,6 +251,10 @@ export default {
         if (DataUtil.validateImportData(data, DataUtil.USER_DEFAULT_DATA)) {
           this.setUserData(data)
           this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
+          setTimeout(() => {
+            window.electron?.ipcRenderer?.send('startLoading')
+            window.location.reload()
+          }, 2000)
         } else {
           this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
         }
@@ -269,6 +273,10 @@ export default {
         ) {
           this.setUserData(data)
           this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
+          setTimeout(() => {
+            window.electron?.ipcRenderer?.send('startLoading')
+            window.location.reload()
+          }, 2000)
         } else {
           this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
         }

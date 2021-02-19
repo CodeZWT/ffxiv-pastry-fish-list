@@ -101,8 +101,8 @@
       "close": "关闭",
       "message": {
         "copySuccess": "复制成功",
-        "importSuccess": "导入成功",
-        "resetSuccess": "配置重置成功",
+        "importSuccess": "导入成功，页面将会重新载入，请稍等...",
+        "resetSuccess": "配置重置成功，页面将会重新载入，请稍等...",
         "importError": "导入失败，请检查导入文件格式！"
       },
       "self": {
