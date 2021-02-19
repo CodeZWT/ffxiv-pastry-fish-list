@@ -1018,6 +1018,7 @@ export default {
       return DataUtil.THEME_SETTING_MODES.indexOf(this.themeMode)
     },
     ...mapState([
+      'baitFilter',
       'loading',
       'snackbar',
       'activeTabIndex',
@@ -1035,7 +1036,6 @@ export default {
       'baitIdsForNotification',
     ]),
     ...mapGetters([
-      'baitFilter',
       'fishEyesUsed',
       'showChromeBugDialog',
       'opacity',

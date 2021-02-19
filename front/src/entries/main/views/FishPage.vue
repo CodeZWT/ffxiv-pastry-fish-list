@@ -495,6 +495,7 @@ export default {
       activeTabIndex: 'activeTabIndex',
       sounds: 'sounds',
       showFishPageRightPane: 'showFishPageRightPane',
+      baitFilter: 'baitFilter',
       // baitFilterEnabled: 'baitFilterEnabled',
       // baitFilterIds: 'baitFilterIds',
     }),
@@ -516,7 +517,6 @@ export default {
       'getItemIconUrl',
       'isSystemNotificationEnabled',
       'listSetting',
-      'baitFilter',
     ]),
   },
   watch: {

@@ -46,9 +46,9 @@ export default new Vuex.Store({
     viewedFeatures: LocalStorageUtil.loadViewedFeatures(CONSTANTS.FEATURE_GROUP_MAIN),
   },
   getters: {
-    baitFilter: state => {
-      return state.baitFilter
-    },
+    // baitFilter: state => {
+    //   return state.baitFilter
+    // },
     listSetting: state => {
       return DataUtil.getUserDataPart(state)('listSetting')
     },
@@ -255,9 +255,13 @@ export default new Vuex.Store({
       DataUtil.setUserDataPart(state, data)
     },
     updateUserBaitFilterData(state, { path, data }) {
-      const newBaitFilter = _.cloneDeep(state.baitFilter)
-      _.set(newBaitFilter, path, data)
-      state.baitFilter = newBaitFilter
+      if (path) {
+        const newBaitFilter = _.cloneDeep(state.baitFilter)
+        _.set(newBaitFilter, path, data)
+        state.baitFilter = newBaitFilter
+      } else {
+        state.baitFilter = _.cloneDeep(data)
+      }
       LocalStorageUtil.storeBaitFilter(state.baitFilter)
     },
     updateRemainingBaitIdsWithoutCheck(state) {
@@ -297,7 +301,9 @@ export default new Vuex.Store({
     },
     setUserDataToDefault(state) {
       state.userData = _.cloneDeep(DataUtil.USER_DEFAULT_DATA)
+      state.baitFilter = _.cloneDeep(DataUtil.USER_DEFAULT_DATA.baitFilter)
       LocalStorageUtil.storeUserData(state.userData)
+      LocalStorageUtil.storeBaitFilter(state.baitFilter)
     },
     batchSetFishCompleted(state, { fishIds, completed }) {
       const simpleFishIds = fishIds.map(fishId => DataUtil.toItemId(fishId))

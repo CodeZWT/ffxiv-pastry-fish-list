@@ -177,14 +177,17 @@ export default {
         return this.$emit('input', showDialog)
       },
     },
-    ...mapState(['userData']),
+    ...mapState(['userData', 'baitFilter']),
   },
   watch: {
     dialog(show) {
       if (show) {
         this.selfTab = null
         this.fishTrackerTab = null
-        this.selfTextToExport = JSON.stringify(this.userData)
+        this.selfTextToExport = JSON.stringify({
+          ...this.userData,
+          baitFilter: this.baitFilter,
+        })
         this.selfDataToImport = null
         this.fishTrackerTextToExport = this.toFishTrackerVersion(this.userData)
         this.fishTrackerTextToImport = null
@@ -250,6 +253,7 @@ export default {
         const data = JSON.parse(this.selfDataToImport)
         if (DataUtil.validateImportData(data, DataUtil.USER_DEFAULT_DATA)) {
           this.setUserData(data)
+          this.updateUserBaitFilterData({ data: data.baitFilter })
           this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
           setTimeout(() => {
             window.electron?.ipcRenderer?.send('startLoading')
@@ -292,7 +296,11 @@ export default {
         color,
       }
     },
-    ...mapMutations(['setUserData', 'setShowImportExportDialog', 'setUserDataToDefault']),
+    ...mapMutations([
+      'setUserData',
+      'setShowImportExportDialog',
+      'updateUserBaitFilterData',
+    ]),
   },
 }
 
