@@ -598,7 +598,8 @@ export default {
   },
   methods: {
     setListExpandedStatus(list, expanded) {
-      this.updateUserData({ path: `listSetting.${list}.expanded`, data: expanded })
+      this.updateListExpanded({ listType: list, expanded })
+      // this.updateUserData({ path: `listSetting.${list}.expanded`, data: expanded })
     },
     onScroll(e) {
       this.offsetTop = e.target.scrollTop
@@ -643,6 +644,7 @@ export default {
       }, 500)
     },
     ...mapMutations([
+      'updateListExpanded',
       'updateUserBaitFilterData',
       'updateUserData',
       'setFilters',

@@ -254,6 +254,10 @@ export default new Vuex.Store({
     updateUserData(state, data) {
       DataUtil.setUserDataPart(state, data)
     },
+    updateListExpanded(state, { listType, expanded }) {
+      state.userData.listSetting[listType].expanded = expanded
+      LocalStorageUtil.storeUserData(state.userData)
+    },
     updateUserBaitFilterData(state, { path, data }) {
       if (path) {
         const newBaitFilter = _.cloneDeep(state.baitFilter)
