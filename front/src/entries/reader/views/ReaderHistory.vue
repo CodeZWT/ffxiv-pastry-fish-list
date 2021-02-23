@@ -14,7 +14,9 @@
             <v-row no-gutters class="d-flex align-center">
               <v-col class="d-flex align-center">
                 <item-icon :icon-class="record.fish.icon" small />
-                <span>{{ record.fish.name || '未提钩' }}</span>
+                <span v-if="record.missed">{{ '脱钩' }}</span>
+                <span v-else-if="record.cancelled">{{ '未提钩' }}</span>
+                <span v-else>{{ record.fish.name || '未提钩' }}</span>
               </v-col>
               <v-col class="d-flex align-center">
                 <div v-for="effect in record.effects" :key="effect.ID">
