@@ -876,6 +876,7 @@ export default {
   },
 
   HOOKSET_ICON: {
+    Normal: '001103',
     Powerful: '001115',
     Precision: '001116',
   },

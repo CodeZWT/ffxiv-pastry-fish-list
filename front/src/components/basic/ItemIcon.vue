@@ -70,10 +70,26 @@ export default {
   },
   computed: {
     coverClass() {
-      return this.type === 'item' ? 'item-cover-48' : 'achievement-cover-48'
+      switch (this.type) {
+        case 'item':
+          return 'item-cover-48'
+        case 'action':
+          return ''
+        default:
+          return 'achievement-cover-48'
+      }
+      // return this.type === 'item' ? 'item-cover-48' : 'achievement-cover-48'
     },
     iconPositionClass() {
-      return this.type === 'item' ? 'item-icon-48' : 'achievement-icon-48'
+      switch (this.type) {
+        case 'item':
+          return 'item-icon-48'
+        case 'action':
+          return 'item-icon-48'
+        default:
+          return 'achievement-icon-48'
+      }
+      // return this.type === 'item' ? 'item-icon-48' : 'achievement-icon-48'
     },
     cover() {
       return this.type === 'item' ? this.itemCover48 : this.achievementFrame48

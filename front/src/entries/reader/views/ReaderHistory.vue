@@ -39,6 +39,7 @@
               </v-col>
             </v-row>
           </v-list-item-content>
+          <item-icon :icon-class="record.hookset.icon" small type="action" />
           <item-icon :icon-class="record.bait.icon" small />
         </v-list-item>
       </div>
@@ -64,6 +65,7 @@ import DataUtil from '@/utils/DataUtil'
 import max from 'lodash/max'
 import COMMON from 'Data/common'
 import db from '@/plugins/db'
+import capitalize from 'lodash/capitalize'
 // import TEST from 'Data/test'
 
 const INITIAL_LOADING_CNT = 100
@@ -109,6 +111,11 @@ export default {
           },
           tug: {
             color: DataUtil.TUG_ICON_COLOR[DataUtil.TUG_ICON[record.tug]],
+          },
+          hookset: {
+            icon: DataUtil.iconIdToClass(
+              DataUtil.HOOKSET_ICON[capitalize(record.hookset)]
+            ),
           },
           effects: Object.values(COMMON.STATUS)
             .filter(status => record[status.key])
