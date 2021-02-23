@@ -3,7 +3,7 @@
     <v-row>
       <v-col class="d-flex align-center" cols="12">
         <div class="mr-2">显示未提钩记录</div>
-        <v-switch v-model="showUncaughtRecord" inset />
+        <v-switch v-model="showIgnoredRecord" inset />
       </v-col>
     </v-row>
     <v-list v-if="records.length > 0">
@@ -86,7 +86,7 @@ export default {
       rawRecords: [], //TEST.READER_HISTORY_RECORDS,
       dbRecordsCnt: 0,
       dbLoadedCnt: 0,
-      showUncaughtRecord: true,
+      showIgnoredRecord: true,
     }
   },
   computed: {
@@ -143,15 +143,15 @@ export default {
     },
   },
   watch: {
-    showUncaughtRecord(showUncaughtRecord) {
-      this.loadRecord(0, this.loadingCnt, showUncaughtRecord).then(data => {
+    showIgnoredRecord(showIgnoredRecord) {
+      this.loadRecord(0, this.loadingCnt, showIgnoredRecord).then(data => {
         this.rawRecords = data
       })
     },
   },
   async created() {
     this.dbRecordsCnt = await db.records.count()
-    this.rawRecords = await this.loadRecord(0, this.loadingCnt, this.showUncaughtRecord)
+    this.rawRecords = await this.loadRecord(0, this.loadingCnt, this.showIgnoredRecord)
     this.dbLoadedCnt = this.rawRecords.length
     console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
 
@@ -168,10 +168,10 @@ export default {
     })
   },
   methods: {
-    async loadRecord(offset, limit, showUncaughtRecord) {
+    async loadRecord(offset, limit, showIgnoredRecord) {
       let table = db.records.orderBy('startTime').reverse()
-      if (!showUncaughtRecord) {
-        table = table.filter(record => record.fishId !== -1)
+      if (!showIgnoredRecord) {
+        table = table.filter(record => record.fishId !== -1 || record.missed === true)
       }
       return table
         .offset(offset)
@@ -184,7 +184,7 @@ export default {
         const newLoadedRecords = await this.loadRecord(
           this.dbLoadedCnt,
           LOAD_MORE_CNT,
-          this.showUncaughtRecord
+          this.showIgnoredRecord
         )
         console.log('newLoadedRecords', newLoadedRecords)
         this.dbLoadedCnt += newLoadedRecords.length
