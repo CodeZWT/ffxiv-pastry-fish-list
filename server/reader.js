@@ -108,50 +108,50 @@ Machina.on('any', (packet) => {
   }
 })
 
-Machina.on('raw', (packet) => {
-  if (filterPacketSessionID(packet)) {
-    // if (packet.opcode === 619) {
-    //   log.debug(packet.type,packet.opcode, packet.data)
-    // }
-
-    // if (packet.type && packet.superType === 'message') {
-    //   log.debug('msg self', getString(packet.data, 0x1A))
-    //   // log.debug('msg other', getString(packet.data, 0x30))
-    //   return
-    // }
-    // switch (packet.type) {
-    //   case 'unknown':
-    //     log.debug(packet.opcode)
-    //     // log.debug(packet)
-    //     // log.debug(JSON.stringify(packet.data))
-    //     // log.debug('msg self', getString(packet.data, 0x1A))
-    //     // log.debug('msg other', getString(packet.data, 0x30))
-    //     break
-    //   case 'updatePositionInstance':
-    //     // log.debug(packet.pos)
-    //     break
-    //   case 'updatePositionHandler':
-    //     // log.debug(packet.pos)
-    //     break
-    //   case 'actorControlSelf':
-    //     break
-    //   // case 'prepareZoning':
-    //   //   log.debug('prepareZoning')
-    //   //   log.debug(packet)
-    //   //   break
-    //   // case 'initZone':
-    //   //   log.debug('initZone')
-    //   //   log.debug(packet)
-    //   //   break
-    //   case 'weatherChange':
-    //     log.debug('weatherChange')
-    //     log.debug(packet)
-    //     break
-    //   default:
-    //     log.debug(packet.type)
-    // }
-  }
-})
+// Machina.on('raw', (packet) => {
+//   if (filterPacketSessionID(packet)) {
+//     // if (packet.opcode === 619) {
+//     //   log.debug(packet.type,packet.opcode, packet.data)
+//     // }
+//
+//     // if (packet.type && packet.superType === 'message') {
+//     //   log.debug('msg self', getString(packet.data, 0x1A))
+//     //   // log.debug('msg other', getString(packet.data, 0x30))
+//     //   return
+//     // }
+//     // switch (packet.type) {
+//     //   case 'unknown':
+//     //     log.debug(packet.opcode)
+//     //     // log.debug(packet)
+//     //     // log.debug(JSON.stringify(packet.data))
+//     //     // log.debug('msg self', getString(packet.data, 0x1A))
+//     //     // log.debug('msg other', getString(packet.data, 0x30))
+//     //     break
+//     //   case 'updatePositionInstance':
+//     //     // log.debug(packet.pos)
+//     //     break
+//     //   case 'updatePositionHandler':
+//     //     // log.debug(packet.pos)
+//     //     break
+//     //   case 'actorControlSelf':
+//     //     break
+//     //   // case 'prepareZoning':
+//     //   //   log.debug('prepareZoning')
+//     //   //   log.debug(packet)
+//     //   //   break
+//     //   // case 'initZone':
+//     //   //   log.debug('initZone')
+//     //   //   log.debug(packet)
+//     //   //   break
+//     //   case 'weatherChange':
+//     //     log.debug('weatherChange')
+//     //     log.debug(packet)
+//     //     break
+//     //   default:
+//     //     log.debug(packet.type)
+//     // }
+//   }
+// })
 
 // Machina.on('WeatherChange', (packet) => {
 //   log.debug('WeatherChange', packet)
