@@ -6,7 +6,7 @@ const isElevated = require('is-elevated')
 const { exec } = require('child_process')
 const log = require('electron-log')
 const { TERRITORY_TYPES } = require('../data/fix')
-const { v4: uuid } = require('uuid');
+const { v4: uuid } = require('uuid')
 // const DataUtil = require('../utils/DataUtil')
 const INTERVAL_MINUTE = 60000
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * INTERVAL_MINUTE
@@ -18,10 +18,10 @@ const machinaOptions = isDev
       parseAlgorithm: 'PacketSpecific',
       region: 'CN',
       port: 13347,
-      // logger: log.info
+      // logger: log.debug
     }
   : {
-      // logger: log.info,
+      // logger: log.debug,
       parseAlgorithm: 'PacketSpecific',
       noData: false,
       monitorType: 'RawSocket',
@@ -39,7 +39,7 @@ const machinaOptions = isDev
     }
 const Machina = new MachinaFFXIV(machinaOptions)
 
-exports.start = callback => {
+exports.start = (callback) => {
   return isElevated()
     .then((elevated) => {
       if (elevated) {
@@ -69,7 +69,7 @@ exports.onNewRecord = (callback) => {
 }
 
 let updateCallback = (data) => {
-  log.info('sending data', data)
+  log.debug('sending data', data)
 }
 
 function onUpdate(callback) {
@@ -97,64 +97,64 @@ const ffxivEvent = new Events.EventEmitter()
 ffxivEvent.setMaxListeners(0)
 //
 // Machina.start(() => {
-//     log.info("Machina started!");
+//     log.debug("Machina started!");
 // });
 Machina.setMaxListeners(0)
 
 Machina.on('any', (packet) => {
-  // log.info(packet)
+  // log.debug(packet)
   if (filterPacketSessionID(packet)) {
     ffxivEvent.emit('ffxivEvent', packet)
   }
 })
 
-// Machina.on('raw', (packet) => {
-//   if (filterPacketSessionID(packet)) {
-//     if (packet.opcode === 225) {
-//       log.info(packet.type, packet.opcode)
-//     }
-//
-//     // if (packet.type && packet.superType === 'message') {
-//     //   log.info('msg self', getString(packet.data, 0x1A))
-//     //   // log.info('msg other', getString(packet.data, 0x30))
-//     //   return
-//     // }
-//     // switch (packet.type) {
-//     //   case 'unknown':
-//     //     log.info(packet.opcode)
-//     //     // log.info(packet)
-//     //     // log.info(JSON.stringify(packet.data))
-//     //     // log.info('msg self', getString(packet.data, 0x1A))
-//     //     // log.info('msg other', getString(packet.data, 0x30))
-//     //     break
-//     //   case 'updatePositionInstance':
-//     //     // log.info(packet.pos)
-//     //     break
-//     //   case 'updatePositionHandler':
-//     //     // log.info(packet.pos)
-//     //     break
-//     //   case 'actorControlSelf':
-//     //     break
-//     //   // case 'prepareZoning':
-//     //   //   log.info('prepareZoning')
-//     //   //   log.info(packet)
-//     //   //   break
-//     //   // case 'initZone':
-//     //   //   log.info('initZone')
-//     //   //   log.info(packet)
-//     //   //   break
-//     //   case 'weatherChange':
-//     //     log.info('weatherChange')
-//     //     log.info(packet)
-//     //     break
-//     //   default:
-//     //     log.info(packet.type)
-//     // }
-//   }
-// })
+Machina.on('raw', (packet) => {
+  if (filterPacketSessionID(packet)) {
+    // if (packet.opcode === 619) {
+    //   log.debug(packet.type,packet.opcode, packet.data)
+    // }
+
+    // if (packet.type && packet.superType === 'message') {
+    //   log.debug('msg self', getString(packet.data, 0x1A))
+    //   // log.debug('msg other', getString(packet.data, 0x30))
+    //   return
+    // }
+    // switch (packet.type) {
+    //   case 'unknown':
+    //     log.debug(packet.opcode)
+    //     // log.debug(packet)
+    //     // log.debug(JSON.stringify(packet.data))
+    //     // log.debug('msg self', getString(packet.data, 0x1A))
+    //     // log.debug('msg other', getString(packet.data, 0x30))
+    //     break
+    //   case 'updatePositionInstance':
+    //     // log.debug(packet.pos)
+    //     break
+    //   case 'updatePositionHandler':
+    //     // log.debug(packet.pos)
+    //     break
+    //   case 'actorControlSelf':
+    //     break
+    //   // case 'prepareZoning':
+    //   //   log.debug('prepareZoning')
+    //   //   log.debug(packet)
+    //   //   break
+    //   // case 'initZone':
+    //   //   log.debug('initZone')
+    //   //   log.debug(packet)
+    //   //   break
+    //   case 'weatherChange':
+    //     log.debug('weatherChange')
+    //     log.debug(packet)
+    //     break
+    //   default:
+    //     log.debug(packet.type)
+    // }
+  }
+})
 
 // Machina.on('WeatherChange', (packet) => {
-//   log.info('WeatherChange', packet)
+//   log.debug('WeatherChange', packet)
 // })
 
 function filterPacketSessionID(packet) {
@@ -214,11 +214,11 @@ function onFFXIVEventWithFilter(
           // readableRecords,
         })
       }
-      // console.info(status)
-      // console.info(currentRecord)
-      // console.info(records)
-      // console.info(readableRecords)
-      // log.info('----------------------------------------------------')
+      // log.debug(status)
+      // log.debug(currentRecord)
+      // log.debug(records)
+      // log.debug(readableRecords)
+      // log.debug('----------------------------------------------------')
     }
   })
 }
@@ -244,7 +244,7 @@ const action2Effect = {
   4596: 1804, // Identical Cast
 }
 onFFXIVEvent('effect', (packet) => {
-  // log.info('in effect', packet.type)
+  log.debug('in effect', packet.type)
   const effectId = action2Effect[packet.actionId]
   if (effectId) {
     status.effects.add(effectId)
@@ -256,9 +256,9 @@ onFFXIVEvent(
   (packet) => {
     if (packet.targetZone) {
       status.zoneId = TERRITORY_TYPES[packet.targetZone].placeName
-      log.info('targetZone', status.zoneId)
+      log.debug('targetZone', status.zoneId)
     } else {
-      log.info('targetZone Zero')
+      log.debug('targetZone Zero')
     }
     status.weather = undefined
     status.spectralCurrentEndTime = undefined
@@ -273,14 +273,14 @@ onFFXIVEvent(
     if (packet.zoneID) {
       status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
       // status.weather = undefined
-      log.info('initZone', status.zoneId)
+      log.debug('initZone', status.zoneId)
     }
   },
   true
 )
 
 onFFXIVEventWithFilter('actorControl', null, 20, null, (packet) => {
-  // log.info('actorControl', packet)
+  // log.debug('actorControl', packet)
   status.effects.add(packet.param1)
 })
 
@@ -299,7 +299,7 @@ const effectToDetect = new Set([
 
 // update all status according to statusEffectList
 onFFXIVEvent('statusEffectList', (packet) => {
-  // log.info('statusEffectList', packet)
+  // log.debug('statusEffectList', packet)
   packet.effects
     .map((it) => it.unknown1)
     .filter((effectId) => effectToDetect.has(effectId))
@@ -311,13 +311,19 @@ onFFXIVEventSubType('fishingBaitMsg', (packet) => {
   status.baitId = packet.baitID
 })
 
+
+onFFXIVEventSubType('actionStart', (packet) => {
+  // actorControlSelf
+  log.debug('actionStart', packet.actionID, packet.actionCooldown, packet)
+})
+
 const FISHING_EVENT = 0x150001
 onFFXIVEvents(['eventStart', 'eventFinish'], (packet) => {
-  // log.info('fevent', packet.type, packet.eventId)
+  // log.debug('fevent', packet.type, packet.eventId)
   if (packet.eventId === FISHING_EVENT) {
     status.isFishing = packet.type === 'eventStart'
     if (!status.isFishing) {
-      saveCurrentRecord()
+      // saveCurrentRecord()
     }
   }
 })
@@ -329,6 +335,11 @@ function saveCurrentRecord() {
     }
     currentRecord.id = uuid()
     fishRecordCallback(currentRecord)
+    if (currentRecord.missed) {
+      log.info('fish missed', currentRecord)
+    } else if (currentRecord.cancelled){
+      log.info('fish ignored', currentRecord)
+    }
     records.push(currentRecord)
     readableRecords.push(toReadable(currentRecord))
   }
@@ -350,12 +361,13 @@ const records = []
 const readableRecords = []
 
 function resetRecord() {
+  log.info('reset')
   currentRecord = cloneDeep(EMPTY_RECORD)
 }
 
 onFFXIVEvent('eventPlay', (packet) => {
   if (packet.eventId === FISHING_EVENT) {
-    // log.info('eventPlay', packet.scene)
+    log.debug('eventPlay', actionTimeline[packet.param5], packet)
     switch (packet.scene) {
       case 1:
         status.isFishing = true
@@ -366,17 +378,18 @@ onFFXIVEvent('eventPlay', (packet) => {
         currentRecord.tug = getTug(packet.param5)
         break
       case 2:
+        currentRecord.cancelled = !!actionTimeline[packet.param5] && actionTimeline[packet.param5].subType === 'cancel'
         saveCurrentRecord()
         break
       default:
-        log.info('other scene', packet.scene)
+        log.debug('other scene', packet.scene)
     }
   }
 })
 
 function applyCurrentStatus(record, status) {
-  // log.info('apply status')
-  // log.info(status)
+  // log.debug('apply status')
+  // log.debug(status)
   record.snagging = status.effects.has(761)
   record.chum = status.effects.has(763)
   record.fishEyes = status.effects.has(762)
@@ -402,10 +415,112 @@ function getTug(value) {
   }
 }
 
+// onFFXIVEvent('updateInventorySlot', (packet) => {
+//   log.debug('updateInventorySlot ', packet)
+// })
+
+// onFFXIVEvent('eventPlay8', (packet) => {
+//   log.debug(
+//     'eventPlay8',
+//     actionTimeline[packet.param1],
+//     actionTimeline[packet.param2],
+//     actionTimeline[packet.param3],
+//     actionTimeline[packet.param4],
+//     packet
+//   )
+// })
+
+// onFFXIVEvent('eventPlay32', (packet) => {
+//   log.debug(
+//     'eventPlay32',
+//     actionTimeline[packet.param1],
+//     actionTimeline[packet.param2],
+//     actionTimeline[packet.param3],
+//     actionTimeline[packet.param4],
+//     packet
+//   )
+// })
+
 onFFXIVEvent('eventPlay4', (packet) => {
   currentRecord.hookset = getHookset(packet.param1)
+  currentRecord.missed = !actionTimeline[packet.param2].subType.includes('landing')
+  // log.debug(
+  //   'eventPlay4',
+  //   actionTimeline[packet.param1],
+  //   actionTimeline[packet.param2],
+  //   actionTimeline[packet.param3],
+  //   actionTimeline[packet.param4],
+  //   packet
+  // )
 })
-
+const actionTimeline = {
+  271: { id: 271, type: 'fishing', subType: 'idle' }, // 持竿
+  272: { id: 272, type: 'fishing', subType: 'item' },
+  273: { id: 273, type: 'fishing', subType: 'end' }, // 收杆 收回了鱼线。
+  274: { id: 274, type: 'fishing', subType: 'cast_normal' }, // 抛竿普通 甩出了鱼线开始钓鱼。
+  275: { id: 275, type: 'fishing', subType: 'cast_side' }, // 抛竿 拟饵 甩出了鱼线开始钓鱼。
+  276: { id: 276, type: 'fishing', subType: 'cast_fly' }, // 甩出了鱼线开始钓鱼。
+  277: { id: 277, type: 'fishing', subType: 'retrieve_idle' },
+  278: { id: 278, type: 'fishing', subType: 'reeling_idle' },
+  279: { id: 279, type: 'fishing', subType: 'reeling_fast' },
+  280: { id: 280, type: 'fishing', subType: 'reeling_slow' },
+  281: { id: 281, type: 'fishing', subType: 'wobble_action' },
+  282: { id: 282, type: 'fishing', subType: 'jerk_and_fall' },
+  283: { id: 283, type: 'fishing', subType: 'cancel' }, // 提前提竿 OR 脱钩(上钩的鱼逃走了……)
+  284: { id: 284, type: 'fishing', subType: 'hooking' }, // 提钩（包括双提）
+  285: { id: 285, type: 'fishing', subType: 'short_landing_nq' }, // 提钩拉扯动作
+  286: { id: 286, type: 'fishing', subType: 'short_landing_hq' },
+  287: { id: 287, type: 'fishing', subType: 'normal_landing_nq' },
+  288: { id: 288, type: 'fishing', subType: 'normal_landing_hq' },
+  289: { id: 289, type: 'fishing', subType: 'long_landing_nq' },
+  290: { id: 290, type: 'fishing', subType: 'long_landing_hq' },
+  291: { id: 291, type: 'fishing', subType: 'landing_failure' },
+  292: { id: 292, type: 'fishing', subType: 'hit_excite' }, // 轻杆
+  293: { id: 293, type: 'fishing', subType: 'hit_strike' }, // 中杆
+  294: { id: 294, type: 'fishing', subType: 'hit_bite' }, // 鱼王竿
+  3143: { id: 3143, type: 'fishing_chair', subType: 'idle' },
+  3144: { id: 3144, type: 'fishing_chair', subType: 'end' },
+  3145: { id: 3145, type: 'fishing_chair', subType: 'cast_normal' },
+  3146: { id: 3146, type: 'fishing_chair', subType: 'cast_side' },
+  3147: { id: 3147, type: 'fishing_chair', subType: 'cast_fly' },
+  3148: { id: 3148, type: 'fishing_chair', subType: 'retrieve_idle' },
+  3149: { id: 3149, type: 'fishing_chair', subType: 'reeling_idle' },
+  3150: { id: 3150, type: 'fishing_chair', subType: 'reeling_fast' },
+  3151: { id: 3151, type: 'fishing_chair', subType: 'reeling_slow' },
+  3152: { id: 3152, type: 'fishing_chair', subType: 'wobble_action' },
+  3153: { id: 3153, type: 'fishing_chair', subType: 'jerk_and_fall' },
+  3154: { id: 3154, type: 'fishing_chair', subType: 'cancel' },
+  3155: { id: 3155, type: 'fishing_chair', subType: 'hooking' },
+  3156: { id: 3156, type: 'fishing_chair', subType: 'short_landing_nq' },
+  3157: { id: 3157, type: 'fishing_chair', subType: 'short_landing_hq' },
+  3158: { id: 3158, type: 'fishing_chair', subType: 'normal_landing_nq' },
+  3159: { id: 3159, type: 'fishing_chair', subType: 'normal_landing_hq' },
+  3160: { id: 3160, type: 'fishing_chair', subType: 'long_landing_nq' },
+  3161: { id: 3161, type: 'fishing_chair', subType: 'long_landing_hq' },
+  3162: { id: 3162, type: 'fishing_chair', subType: 'landing_failure' },
+  3163: { id: 3163, type: 'fishing_chair', subType: 'sitdown' },
+  3164: { id: 3164, type: 'fishing_chair', subType: 'standup' },
+  3170: { id: 3170, type: 'fishing_chair', subType: 'hooking_big' },
+  3171: { id: 3171, type: 'fishing_chair', subType: 'long_landing_nq_new' },
+  3172: { id: 3172, type: 'fishing_chair', subType: 'long_landing_hq_new' },
+  3173: { id: 3173, type: 'fishing_chair', subType: 'long_landing_sitdown' },
+  3189: { id: 3189, type: 'fishing', subType: 'catch_and_release' },
+  3190: { id: 3190, type: 'fishing_chair', subType: 'catch_and_release' },
+  4659: { id: 4659, type: 'fishing', subType: 'strong_hooking' }, // 强力提钩
+  4660: { id: 4660, type: 'fishing', subType: 'precision_hooking' },
+  4661: { id: 4661, type: 'fishing', subType: 'makie' },
+  4662: { id: 4662, type: 'fishing', subType: 'sonar' },
+  4663: { id: 4663, type: 'fishing_chair', subType: 'strong_hooking' },
+  4664: { id: 4664, type: 'fishing_chair', subType: 'strong_hooking_big' },
+  4665: { id: 4665, type: 'fishing_chair', subType: 'precision_hooking' },
+  4666: { id: 4666, type: 'fishing_chair', subType: 'precision_hooking_big' },
+  4667: { id: 4667, type: 'fishing_chair', subType: 'makie' },
+  4824: { id: 4824, type: 'fishing_chair', subType: 'item' },
+  7360: { id: 7360, type: 'fishing', subType: 'bakucho_landing_nq' }, // 幻海流
+  7361: { id: 7361, type: 'fishing', subType: 'bakucho_landing_hq' },
+  7362: { id: 7362, type: 'fishing_chair', subType: 'bakucho_landing_nq' },
+  7363: { id: 7363, type: 'fishing_chair', subType: 'bakucho_landing_hq' },
+}
 function getHookset(hookset) {
   switch (hookset) {
     case 284:
@@ -419,7 +534,7 @@ function getHookset(hookset) {
     case 4664:
       return 'powerful'
     default:
-      // log.info('actionTimeline', hookset)
+      // log.debug('actionTimeline', hookset)
       return 'normal'
   }
 }
@@ -436,13 +551,19 @@ onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
 
   status.prevFishId = prevRecord.fishId
 
+  log.info('fish caught', prevRecord)
   fishCaughtCallback(prevRecord)
   fishRecordCallback(prevRecord)
   readableRecords[readableRecords.length - 1] = toReadable(prevRecord)
-  saveCurrentRecord()
+  // saveCurrentRecord()
 })
 
 onFFXIVEvent('someDirectorUnk4', (packet) => {
+  // log.debug(
+  //   'someDirectorUnk4',
+  //   actionTimeline[packet.actionTimeline],
+  //   packet
+  // )
   if (
     packet.actionTimeline === 0 &&
     Math.abs(currentRecord.biteTime - Date.now()) < 10000
@@ -465,7 +586,7 @@ onFFXIVEvent('someDirectorUnk4', (packet) => {
 onFFXIVEvent('someDirectorUnk4', (packet) => {
   if (packet.actionTimeline === 257 || packet.actionTimeline === 3073) {
     status.mooch = packet.param1 === 1121
-    // log.info("mooch", status.mooch);
+    // log.debug("mooch", status.mooch);
 
     applyCurrentStatus(currentRecord, status)
   }
@@ -518,12 +639,12 @@ function getString(uint8Array, offset, length) {
 }
 
 // onFFXIVEventWithFilter('unknown', null, null, null,(packet) => {
-//   log.info('wc?', packet.opcode, packet.data)
+//   log.debug('wc?', packet.opcode, packet.data)
 // })
 onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
   status.previousWeather = status.weather
   status.weather = packet.data && +packet.data[0]
-  log.info('WeatherChange', status.weather)
+  // log.debug('WeatherChange', status.weather)
 
   if (status.weather === SPECTRAL_CURRENT_WEATHER_ID) {
     status.spectralCurrentEndTime = Date.now() + getSpectralCurrentCountDownTotal()
