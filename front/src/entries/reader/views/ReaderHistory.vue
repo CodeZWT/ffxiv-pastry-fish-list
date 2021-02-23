@@ -16,7 +16,10 @@
                 <item-icon :icon-class="record.fish.icon" small />
                 <span v-if="record.missed">{{ '脱钩' }}</span>
                 <span v-else-if="record.cancelled">{{ '未提钩' }}</span>
-                <span v-else>{{ record.fish.name || '未提钩' }}</span>
+                <span v-else>
+                  {{ record.fish.name || '未提钩' }}
+                  <i class="xiv hq" v-if="record.hq"></i>
+                </span>
               </v-col>
               <v-col class="d-flex align-center">
                 <div v-for="effect in record.effects" :key="effect.ID">
