@@ -288,6 +288,7 @@ onFFXIVEventWithFilter('actorControl', null, 21, null, (packet) => {
   status.effects.delete(packet.param1)
 })
 
+// status.csv
 const effectToDetect = new Set([
   761, // SNAGGING
   805, // COLLECTOR_GLOVE
@@ -295,6 +296,10 @@ const effectToDetect = new Set([
   762, // FISH_EYES
   1803, // Surface Slap
   1804, // Identical Cast
+  850, // Gathering Fortune Up -> Patient I&II
+  764, // Inefficient Hooking -> Patient I&II
+  765, // Catch and Release -> Patient II
+  568, // Fisher's Intuition
 ])
 
 // update all status according to statusEffectList
@@ -310,7 +315,6 @@ onFFXIVEventSubType('fishingBaitMsg', (packet) => {
   // actorControlSelf
   status.baitId = packet.baitID
 })
-
 
 onFFXIVEventSubType('actionStart', (packet) => {
   // actorControlSelf
@@ -337,7 +341,7 @@ function saveCurrentRecord() {
     fishRecordCallback(currentRecord)
     if (currentRecord.missed) {
       log.info('fish missed', currentRecord)
-    } else if (currentRecord.cancelled){
+    } else if (currentRecord.cancelled) {
       log.info('fish ignored', currentRecord)
     }
     records.push(currentRecord)
@@ -378,7 +382,9 @@ onFFXIVEvent('eventPlay', (packet) => {
         currentRecord.tug = getTug(packet.param5)
         break
       case 2:
-        currentRecord.cancelled = !!actionTimeline[packet.param5] && actionTimeline[packet.param5].subType === 'cancel'
+        currentRecord.cancelled =
+          !!actionTimeline[packet.param5] &&
+          actionTimeline[packet.param5].subType === 'cancel'
         saveCurrentRecord()
         break
       default:
@@ -387,7 +393,7 @@ onFFXIVEvent('eventPlay', (packet) => {
   }
 })
 
-function applyCurrentStatus(record, status) {
+function applyCurrentStatusOnStart(record, status) {
   // log.debug('apply status')
   // log.debug(status)
   record.snagging = status.effects.has(761)
@@ -396,10 +402,21 @@ function applyCurrentStatus(record, status) {
   record.surfaceScale = status.effects.has(1803)
   record.identicalCast = status.effects.has(1804)
   record.collectorGlove = status.effects.has(805)
+  record.gatheringFortuneUp = status.effects.has(850)
+  record.catchAndRelease = status.effects.has(765)
+  record.fishersIntuition = status.effects.has(568)
   record.baitId = status.baitId
   record.mooch = status.mooch
   record.spotId = status.spotId
   status.mooch = false
+}
+
+function applyCurrentStatusOnLanding(record, status) {
+  if (status.isFisher) {
+    record.gathering = status.gathering
+    record.perception = status.perception
+    record.gp = status.gp
+  }
 }
 
 function getTug(value) {
@@ -444,6 +461,7 @@ function getTug(value) {
 onFFXIVEvent('eventPlay4', (packet) => {
   currentRecord.hookset = getHookset(packet.param1)
   currentRecord.missed = !actionTimeline[packet.param2].subType.includes('landing')
+  applyCurrentStatusOnLanding(currentRecord, status)
   // log.debug(
   //   'eventPlay4',
   //   actionTimeline[packet.param1],
@@ -588,7 +606,7 @@ onFFXIVEvent('someDirectorUnk4', (packet) => {
     status.mooch = packet.param1 === 1121
     // log.debug("mooch", status.mooch);
 
-    applyCurrentStatus(currentRecord, status)
+    applyCurrentStatusOnStart(currentRecord, status)
   }
 })
 
@@ -655,4 +673,16 @@ onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
       status.normalWeatherStartTime = Date.now()
     }
   }
+})
+
+onFFXIVEvent('updateClassInfo', (packet) => {
+  log.debug('updateClassInfo', packet)
+  status.isFisher = packet.classId === 18
+})
+
+onFFXIVEvent('playerStats', (packet) => {
+  log.debug('playerStats', packet)
+  status.gathering = packet.gathering
+  status.perception = packet.perception
+  status.gp = packet.gp
 })

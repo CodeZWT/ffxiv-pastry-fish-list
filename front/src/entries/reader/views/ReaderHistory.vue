@@ -14,12 +14,17 @@
             <v-row no-gutters class="d-flex align-center">
               <v-col class="d-flex align-center">
                 <item-icon :icon-class="record.fish.icon" small />
-                <span v-if="record.missed">{{ '脱钩' }}</span>
-                <span v-else-if="record.cancelled">{{ '未提钩' }}</span>
-                <span v-else>
-                  {{ record.fish.name || '未提钩' }}
-                  <i class="xiv hq" v-if="record.hq"></i>
-                </span>
+                <div>
+                  <span v-if="record.missed">{{ '脱钩' }}</span>
+                  <span v-else-if="record.cancelled">{{ '未提钩' }}</span>
+                  <span v-else>
+                    {{ record.fish.name || '未收录数据' }}
+                    <i class="xiv hq" v-if="record.hq"></i>
+                  </span>
+                  <div class="text-subtitle-2" title="获得力/鉴别力">
+                    {{ record.playerStatus.text }}
+                  </div>
+                </div>
               </v-col>
               <v-col class="d-flex align-center">
                 <div v-for="effect in record.effects" :key="effect.ID">
@@ -125,6 +130,9 @@ export default {
                 name: DataUtil.getName(effect),
               }
             }),
+          playerStatus: {
+            text: record.gathering ? `${record.gathering}/${record.perception}` : '',
+          },
         }
       })
 

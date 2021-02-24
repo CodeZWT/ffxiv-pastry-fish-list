@@ -4,6 +4,9 @@
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div>咬钩计时</div>
         <v-spacer />
+        <div class="mr-1">
+          {{ playerStatus.text }}
+        </div>
         <div class="d-flex align-center">
           <div v-for="effect in effects" :key="effect.id">
             <div :class="effect.icon" :title="effect.name" />
@@ -130,6 +133,16 @@ export default {
             icon: DataUtil.iconIdToClass(effect.icon),
           }
         })
+    },
+    playerStatus() {
+      return {
+        gathering: this.dataStatus?.gathering,
+        perception: this.dataStatus?.perception,
+        gp: this.dataStatus?.gp,
+        text: this.dataStatus?.gathering
+          ? `${this.dataStatus?.gathering}/${this.dataStatus?.perception}/${this.dataStatus?.gp}`
+          : '请切换至其他职业再切回捕鱼人以获取获得力相关信息',
+      }
     },
     bait() {
       const baitId = this.dataStatus?.baitId

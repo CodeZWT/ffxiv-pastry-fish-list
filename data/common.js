@@ -36,5 +36,23 @@ module.exports = {
       name_chs: '专一垂钓',
       key: 'identicalCast',
     },
+    850: {
+      id: 850,
+      icon: 16004,
+      name_chs: '采集优质获得率提升（耐心I）',
+      key: 'gatheringFortuneUp',
+    },
+    765: {
+      id: 765,
+      icon: 11106,
+      name_chs: '捉放（耐心II）',
+      key: 'catchAndRelease',
+    },
+    568: {
+      id: 568,
+      icon: 11101,
+      name_chs: '捕鱼人之识',
+      key: 'fishersIntuition',
+    },
   },
 }
