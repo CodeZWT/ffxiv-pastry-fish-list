@@ -676,12 +676,12 @@ onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
 })
 
 onFFXIVEvent('updateClassInfo', (packet) => {
-  log.debug('updateClassInfo', packet)
+  // log.debug('updateClassInfo', packet)
   status.isFisher = packet.classId === 18
 })
 
 onFFXIVEvent('playerStats', (packet) => {
-  log.debug('playerStats', packet)
+  // log.debug('playerStats', packet)
   status.gathering = packet.gathering
   status.perception = packet.perception
   status.gp = packet.gp

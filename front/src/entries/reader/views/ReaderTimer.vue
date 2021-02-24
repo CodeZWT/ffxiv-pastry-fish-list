@@ -4,7 +4,7 @@
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div>咬钩计时</div>
         <v-spacer />
-        <div class="mr-1">
+        <div class="mr-1" title="获得力/鉴别力/采集力">
           {{ playerStatus.text }}
         </div>
         <div class="d-flex align-center">

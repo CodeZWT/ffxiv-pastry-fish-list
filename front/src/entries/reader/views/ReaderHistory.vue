@@ -1,9 +1,23 @@
 <template>
   <div class="wrapper">
-    <v-row>
-      <v-col class="d-flex align-center" cols="12">
+    <v-row no-gutters>
+      <v-col class="d-flex align-center">
         <div class="mr-2">显示未提钩记录</div>
         <v-switch v-model="showIgnoredRecord" inset />
+      </v-col>
+      <v-col class="d-flex align-center">
+        <div class="mr-2">显示耐心状态</div>
+        <v-switch v-model="showPatient" inset />
+      </v-col>
+    </v-row>
+    <v-row no-gutters>
+      <v-col class="d-flex align-center">
+        <div class="mr-2">显示获得力&鉴别力</div>
+        <v-switch v-model="showPlayerStatus" inset />
+      </v-col>
+      <v-col class="d-flex align-center">
+        <div class="mr-2">显示提钩类别</div>
+        <v-switch v-model="showHookset" inset />
       </v-col>
     </v-row>
     <v-list v-if="records.length > 0">
@@ -12,7 +26,7 @@
         <v-list-item>
           <v-list-item-content>
             <v-row no-gutters class="d-flex align-center">
-              <v-col class="d-flex align-center">
+              <v-col cols="5" class="d-flex align-center">
                 <item-icon :icon-class="record.fish.icon" small />
                 <div>
                   <span v-if="record.missed">{{ '脱钩' }}</span>
@@ -21,17 +35,21 @@
                     {{ record.fish.name || '未收录数据' }}
                     <i class="xiv hq" v-if="record.hq"></i>
                   </span>
-                  <div class="text-subtitle-2" title="获得力/鉴别力">
+                  <div
+                    v-if="showPlayerStatus"
+                    class="text-subtitle-2"
+                    title="获得力/鉴别力"
+                  >
                     {{ record.playerStatus.text }}
                   </div>
                 </div>
               </v-col>
-              <v-col class="d-flex align-center">
+              <v-col cols="3" class="d-flex align-center flex-wrap">
                 <div v-for="effect in record.effects" :key="effect.ID">
                   <div :class="effect.icon" :title="effect.name" />
                 </div>
               </v-col>
-              <v-col>
+              <v-col cols="4">
                 <v-progress-linear
                   :value="record.biteIntervalPercentage"
                   :color="record.tug.color"
@@ -44,7 +62,12 @@
               </v-col>
             </v-row>
           </v-list-item-content>
-          <item-icon :icon-class="record.hookset.icon" small type="action" />
+          <item-icon
+            v-if="showHookset"
+            :icon-class="record.hookset.icon"
+            small
+            type="action"
+          />
           <item-icon :icon-class="record.bait.icon" small />
         </v-list-item>
       </div>
@@ -92,6 +115,9 @@ export default {
       dbRecordsCnt: 0,
       dbLoadedCnt: 0,
       showIgnoredRecord: true,
+      showPatient: false,
+      showPlayerStatus: false,
+      showHookset: false,
     }
   },
   computed: {
@@ -124,6 +150,11 @@ export default {
           },
           effects: Object.values(COMMON.STATUS)
             .filter(status => record[status.key])
+            .filter(
+              status =>
+                this.showPatient ||
+                !['gatheringFortuneUp', 'catchAndRelease'].includes(status.key)
+            )
             .map(effect => {
               return {
                 icon: DataUtil.iconIdToClass(effect.icon),
