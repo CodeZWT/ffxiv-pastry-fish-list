@@ -15,7 +15,13 @@ const SETUP_EXE_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
 
-let main, reader, readerSetting, readerHistory, readerSpotStatistics, loading, loadingForReloadingPage
+let main,
+  reader,
+  readerSetting,
+  readerHistory,
+  readerSpotStatistics,
+  loading,
+  loadingForReloadingPage
 const winURL = isDev
   ? `http://localhost:8080`
   : `file://${__dirname}/front-electron-dist/index.html`
@@ -31,7 +37,7 @@ let skipUpdate = false
 const closedWindows = {}
 
 async function init() {
-  await createAndShowLoadingWindow().then(win => loading = win)
+  await createAndShowLoadingWindow().then((win) => (loading = win))
   createMainWindow()
 
   FishingDataReader.onUpdate((data) => {
@@ -97,11 +103,18 @@ async function init() {
       log.info('zoom main window', zoomFactor)
       main.webContents.setZoomFactor(zoomFactor)
     })
-    .on('setCollapse', (event, collapse)=> {
+    .on('setCollapse', (event, collapse) => {
       if (collapse) {
         main.setSize(112, 88)
       } else {
         main.setSize(mainSize.w, mainSize.h)
+      }
+    })
+    .on('setReaderMiniMode', (event, mini) => {
+      if (mini) {
+        reader.setSize(readerSize.w, 52)
+      } else {
+        reader.setSize(readerSize.w, readerSize.h)
       }
     })
     .on('startLoading', () => {
@@ -118,12 +131,13 @@ async function init() {
   })
   globalShortcut.register('Alt+CommandOrControl+T', () => {
     main &&
-    main.webContents.openDevTools({
-      mode: 'undocked',
-    })
+      main.webContents.openDevTools({
+        mode: 'undocked',
+      })
   })
 }
-let mainSize ={w:-1,h:-1}
+let mainSize = { w: -1, h: -1 }
+let readerSize = { w: -1, h: -1 }
 function setWindow(window, option) {
   if (option.opacity) {
     window.setOpacity(option.opacity)
@@ -138,7 +152,9 @@ function setWindow(window, option) {
     window.setSize(option.size.w, option.size.h)
   }
   if (window === main) {
-    mainSize = {w: option.size.w, h: option.size.h}
+    mainSize = { w: option.size.w, h: option.size.h }
+  } else if (window === reader) {
+    readerSize = { w: option.size.w, h: option.size.h }
   }
 }
 
@@ -298,11 +314,11 @@ function createReaderSpotStatistics(readTimerWin) {
         data: { w, h },
       })
     })
-  if (isDev) {
-    win.webContents.openDevTools({
-      mode: 'undocked',
-    })
-  }
+  // if (isDev) {
+  //   win.webContents.openDevTools({
+  //     mode: 'undocked',
+  //   })
+  // }
 }
 
 function createAndShowLoadingWindow() {
@@ -327,9 +343,12 @@ function createAndShowLoadingWindow() {
   win.once('ready-to-show', () => {
     win.show()
   })
-  return win.loadURL(isDev
-    ? `http://localhost:8080/loading`
-    : `file://${__dirname}/front-electron-dist/loading.html`)
+  return win
+    .loadURL(
+      isDev
+        ? `http://localhost:8080/loading`
+        : `file://${__dirname}/front-electron-dist/loading.html`
+    )
     .then(() => win)
 }
 
@@ -372,6 +391,7 @@ function createMainWindow() {
     })
     .on('resized', () => {
       const [w, h] = win.getSize()
+      mainSize = { w, h }
       updateUserData({ path: 'reader.main.size', data: { w, h } })
     })
     .on('closed', () => {
@@ -381,11 +401,11 @@ function createMainWindow() {
       })
     })
 
-  if (isDev) {
-    win.webContents.openDevTools({
-      mode: 'undocked',
-    })
-  }
+  // if (isDev) {
+  //   win.webContents.openDevTools({
+  //     mode: 'undocked',
+  //   })
+  // }
 }
 
 function setOnTop(win) {
@@ -433,6 +453,7 @@ function createReader() {
     })
     .on('resized', () => {
       const [w, h] = win.getSize()
+      readerSize = { w, h }
       updateUserData({
         path: 'reader.timer.size',
         data: { w, h },
@@ -462,7 +483,7 @@ function createReader() {
   })
   if (isDev) {
     win.webContents.openDevTools({
-      mode: 'bottom',
+      mode: 'undocked',
     })
   }
 }

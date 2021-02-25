@@ -12,6 +12,7 @@ export default new Vuex.Store({
     sounds: {},
     userData: loadUserData(),
     viewedFeatures: LocalStorageUtil.loadViewedFeatures(CONSTANTS.FEATURE_GROUP_READER),
+    readerTimerMiniMode: false,
   },
   getters: {
     readerSetting: state => {
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     updateReaderSetting(state, setting) {
       DataUtil.setUserDataPart(state, { path: 'reader', data: setting })
+    },
+    updateReaderTimerMiniMode(state, mini) {
+      state.readerTimerMiniMode = mini
     },
   },
   actions: {},

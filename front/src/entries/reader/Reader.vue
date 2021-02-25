@@ -1,6 +1,7 @@
 <template>
-  <v-app class="transparent">
-    <v-system-bar app v-if="showTimerBar">
+  <v-app :class="{ transparent: true, 'mini-mode': hideBar }">
+    <template v-if="hideBar"></template>
+    <v-system-bar app v-else-if="showTimerBar">
       <v-img :src="readerIcon" max-height="20" max-width="20" />
       <span class="ml-1">渔捞</span>
       <v-spacer />
@@ -82,13 +83,16 @@ export default {
     showSpotStatisticsBar() {
       return this.$route.name === 'ReaderSpotStatistics'
     },
+    hideBar() {
+      return this.readerTimerMiniMode
+    },
     eorzeaTime() {
       return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
     },
     earthTime() {
       return DataUtil.formatDateTime(this.now, 'HH:mm')
     },
-    ...mapState(['sounds']),
+    ...mapState(['sounds', 'readerTimerMiniMode']),
   },
   async created() {
     setInterval(() => {
@@ -159,7 +163,7 @@ body::-webkit-scrollbar {
   -webkit-app-region: drag;
 }
 
-.v-application {
-  /*background-color: #ffffff00 !important;*/
+.v-application.mini-mode {
+  background-color: #ffffff00 !important;
 }
 </style>

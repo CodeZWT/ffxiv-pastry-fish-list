@@ -1,8 +1,13 @@
 <template>
   <v-container fluid>
-    <v-row no-gutters>
+    <v-row no-gutters v-if="!readerTimerMiniMode">
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
-        <div>咬钩计时</div>
+        <div>
+          咬钩计时
+          <v-btn small text icon @click="toggleMiniMode(true)">
+            <v-icon small>mdi-dock-window</v-icon>
+          </v-btn>
+        </div>
         <v-spacer />
         <div class="mr-1" title="获得力/鉴别力/采集力">
           {{ playerStatus.text }}
@@ -75,6 +80,24 @@
       <v-col cols="12" v-if="isTest" class="mt-4">
         <div>Test Data</div>
         <div>{{ dataStatus }}</div>
+      </v-col>
+    </v-row>
+    <v-row no-gutters v-else>
+      <v-col class="d-flex align-center">
+        <v-progress-linear
+          :value="intervalPercentage"
+          :color="color"
+          height="25"
+          rounded
+          style="-webkit-app-region: drag;"
+        >
+          <template>
+            <strong>{{ intervalText }}</strong>
+          </template>
+        </v-progress-linear>
+        <v-btn small icon text @click="toggleMiniMode(false)">
+          <v-icon small>mdi-arrow-expand</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -172,7 +195,7 @@ export default {
       return (percentage > 1 ? 1 : percentage) * 100
     },
     intervalText() {
-      return (this.interval / 1000).toFixed(1)
+      return this.interval ? (this.interval / 1000).toFixed(1) : ''
     },
     isOceanFishing() {
       // return true
@@ -192,7 +215,9 @@ export default {
       return (this.spectralCurrentCountDown / this.spectralCurrentCountDownTotal) * 100
     },
     spectralCurrentIntervalText() {
-      return (this.spectralCurrentCountDown / 1000).toFixed(0)
+      return this.spectralCurrentCountDown
+        ? (this.spectralCurrentCountDown / 1000).toFixed(0)
+        : ''
     },
 
     diademWeatherCountDown() {
@@ -206,7 +231,9 @@ export default {
       return (this.diademWeatherCountDown / DIADEM_WEATHER_COUNTDOWN_TOTAL) * 100
     },
     diademWeatherCountdownText() {
-      return (this.diademWeatherCountDown / 1000).toFixed(0)
+      return this.diademWeatherCountDown
+        ? (this.diademWeatherCountDown / 1000).toFixed(0)
+        : ''
     },
     previousWeather() {
       return this.dataStatus?.previousWeather
@@ -234,7 +261,7 @@ export default {
     normalWeatherStartTime() {
       return this.dataStatus?.normalWeatherStartTime
     },
-    ...mapState(['sounds']),
+    ...mapState(['sounds', 'readerTimerMiniMode']),
   },
   watch: {
     tug(tug) {
@@ -283,6 +310,10 @@ export default {
       })
   },
   methods: {
+    toggleMiniMode(mini) {
+      this.updateReaderTimerMiniMode(mini)
+      window.electron?.ipcRenderer?.send('setReaderMiniMode', mini)
+    },
     ringBell(key) {
       this.sounds[key]?.player?.volume(1).play()
     },
@@ -294,7 +325,7 @@ export default {
       window.electron?.ipcRenderer?.send('toggleSpotStatistics')
       this.setFeatureViewed(this.SpotStatisticsFeatureId)
     },
-    ...mapMutations(['setFeatureViewed']),
+    ...mapMutations(['setFeatureViewed', 'updateReaderTimerMiniMode']),
   },
 }
 </script>
