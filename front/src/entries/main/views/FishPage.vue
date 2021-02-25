@@ -548,13 +548,11 @@ export default {
 
         if (!allSelected) {
           const indices = []
-          Object.keys(bait2Fish)
-            .sort()
-            .forEach((baitId, index) => {
-              if (this.baitFilterIds.includes(+baitId)) {
-                indices.push(index)
-              }
-            })
+          Object.keys(bait2Fish).forEach((baitId, index) => {
+            if (this.baitFilterIds.includes(+baitId)) {
+              indices.push(index)
+            }
+          })
           this.selectedBaitIdIndices = indices
         } else {
           this.$nextTick(() => this.selectAllBaits(bait2Fish))
@@ -564,7 +562,6 @@ export default {
     },
     selectedBaitIdIndices(indices) {
       this.baitFilterIds = Object.keys(this.bait2Fish)
-        .sort()
         .filter((_, index) => indices.includes(index))
         .map(it => +it)
     },
