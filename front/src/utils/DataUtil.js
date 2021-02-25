@@ -845,6 +845,10 @@ export default {
   getItemName(id) {
     return this.getName(this.ITEMS[this.toItemId(id)])
   },
+
+  isFishId(id) {
+    return !!this.FISH_DATA[id]
+  },
   // FUNCTION END
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],

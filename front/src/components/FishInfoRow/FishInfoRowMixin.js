@@ -124,8 +124,8 @@ export default {
     setToBeNotified(toBeNotified) {
       this.setFishToBeNotified({ fishId: this.fish.id, toBeNotified })
     },
-    onFishClicked(components) {
-      this.$emit('click', { fishId: this.fish.id, components })
+    onFishClicked(components, fishId) {
+      this.$emit('click', { fishId: fishId ?? this.fish.id, components })
     },
     goToFishingSpotAngelPage() {
       DataUtil.goToFishingSpotAngelPage(

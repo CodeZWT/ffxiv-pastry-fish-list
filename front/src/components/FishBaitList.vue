@@ -12,6 +12,7 @@
         <div
           :data-ck-item-id="toItemIdIfExisted(bait.baitId, bait.baitName)"
           style="height: 36px; width: 36px"
+          @click="onBaitOrFishClicked($event, bait.baitId)"
         >
           <item-icon
             :icon-class="bait.baitIcon"
@@ -78,6 +79,12 @@ export default {
   }),
   methods: {
     toItemIdIfExisted: DataUtil.toItemIdIfExisted,
+    onBaitOrFishClicked(event, itemId) {
+      if (DataUtil.isFishId(itemId)) {
+        this.$emit('fish-clicked', itemId)
+        event.stopPropagation()
+      }
+    },
   },
 }
 </script>
