@@ -12,6 +12,12 @@ export default {
     WIN.close()
   },
 
+  isWindowHidden() {
+    const remote = window.require ? window.require('electron').remote : null
+    const WIN = remote.getCurrentWindow()
+    return !WIN.isVisible()
+  },
+
   hideWindow() {
     const remote = window.require ? window.require('electron').remote : null
     const WIN = remote.getCurrentWindow()

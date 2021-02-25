@@ -113,6 +113,7 @@ import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import COMMON from 'Data/common'
 import db from '@/plugins/db'
 import ItemIcon from '@/components/basic/ItemIcon'
+import WindowUtil from '@/entries/reader/util/WindowUtil'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -265,7 +266,7 @@ export default {
   },
   watch: {
     tug(tug) {
-      if (tug) {
+      if (tug && !WindowUtil.isWindowHidden()) {
         this.ringBell(tug)
       }
     },
