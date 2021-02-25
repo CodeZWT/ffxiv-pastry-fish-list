@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="meter" style="display: flex">
+    <div class="meter rounded" style="display: flex">
       <div
         :class="`range-block ${color}`"
         :style="`left: ${left}%; width: ${length}%;`"

@@ -54,6 +54,7 @@
                   :value="record.biteIntervalPercentage"
                   :color="record.tug.color"
                   height="25"
+                  rounded
                 >
                   <template>
                     <strong>{{ record.biteInterval }}</strong>

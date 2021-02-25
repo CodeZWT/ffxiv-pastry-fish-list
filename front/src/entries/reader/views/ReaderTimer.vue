@@ -14,7 +14,7 @@
         </div>
       </v-col>
       <v-col cols="12">
-        <v-progress-linear :value="intervalPercentage" :color="color" height="25">
+        <v-progress-linear :value="intervalPercentage" :color="color" height="25" rounded>
           <template>
             <strong>{{ intervalText }}</strong>
           </template>
@@ -31,6 +31,7 @@
           :value="spectralCurrentIntervalPercentage"
           color="info"
           height="25"
+          rounded
         >
           <template>
             <strong>{{ spectralCurrentIntervalText }}</strong>
@@ -43,6 +44,7 @@
           :value="diademWeatherIntervalPercentage"
           color="primary"
           height="25"
+          rounded
         >
           <template>
             <strong>{{ diademWeatherCountdownText }}</strong>
