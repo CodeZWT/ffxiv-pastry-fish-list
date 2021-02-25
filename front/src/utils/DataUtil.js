@@ -832,8 +832,8 @@ export default {
   // combine icon file together
   // https://css-tricks.com/css-sprites/
   // https://www.toptal.com/developers/css/sprite-generator
-  getItemIconClass(id) {
-    const iconId = this.ITEMS[this.toItemId(id)]?.icon ?? 60034
+  getItemIconClass(id, defaultIcon = 60034) {
+    const iconId = this.ITEMS[this.toItemId(id)]?.icon ?? defaultIcon
     // const localImg = require(`../assert/${iconId}.png`)
     // if (localImg) {
     //   return localImg

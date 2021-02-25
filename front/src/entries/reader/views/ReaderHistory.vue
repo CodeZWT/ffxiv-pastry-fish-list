@@ -32,7 +32,7 @@
                   <span v-if="record.missed">{{ '脱钩' }}</span>
                   <span v-else-if="record.cancelled">{{ '未提钩' }}</span>
                   <span v-else>
-                    {{ record.fish.name || '未收录数据' }}
+                    {{ record.fish.name || '未提钩' }}
                     <i class="xiv hq" v-if="record.hq"></i>
                   </span>
                   <div
@@ -132,12 +132,16 @@ export default {
           biteInterval: biteInterval,
           fish: {
             ...DataUtil.FISH_DATA[record.fishId],
-            icon: DataUtil.getItemIconClass(record.fishId),
+            icon: record.missed
+              ? 'bg-060034'
+              : record.cancelled
+              ? 'bg-060027'
+              : DataUtil.getItemIconClass(record.fishId, 60027),
             name: DataUtil.getItemName(record.fishId),
           },
           bait: {
             id: record.baitId,
-            icon: DataUtil.getItemIconClass(record.baitId),
+            icon: DataUtil.getItemIconClass(record.baitId, 60051),
             name: DataUtil.getItemName(record.baitId),
           },
           tug: {
