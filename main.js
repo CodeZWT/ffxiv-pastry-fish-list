@@ -9,6 +9,7 @@ const throttle = require('lodash/throttle')
 const CONSTANTS = require('./data/constants')
 const exec = require('child_process').exec
 const ObjectsToCsv = require('objects-to-csv')
+const iconv = require('iconv-lite')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -137,8 +138,10 @@ async function init() {
         .then((result) => {
           if (!result.canceled) {
             const csv = new ObjectsToCsv(data)
-            return csv.toDisk(result.filePath, { bom: true })
-            // fs.writeFileSync(result.filePath, data);
+            // return csv.toDisk(result.filePath, { bom: true })
+            return csv.toString().then((str) => {
+              fs.writeFileSync(result.filePath, iconv.encode(str, 'gb2312'))
+            })
           }
           log.info(result)
         })
