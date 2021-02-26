@@ -44,7 +44,6 @@ export default {
 
   weatherAtSpot(spotId, et) {
     const zoneId = DATA.FISHING_SPOTS[spotId] && DATA.FISHING_SPOTS[spotId].territory_id
-    console.log(spotId, zoneId)
     return this.weatherAt(zoneId, et)
   },
   prevWeatherAtSpot(spotId, et) {

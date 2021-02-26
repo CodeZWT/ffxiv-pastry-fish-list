@@ -1,102 +1,152 @@
 <template>
   <div class="wrapper">
-    <v-row no-gutters>
-      <v-btn :loading="exporting" @click="exportHistory">
-        <v-icon>mdi-file-table</v-icon>导出记录
-      </v-btn>
-    </v-row>
-    <v-row no-gutters>
-      <v-col class="d-flex align-center">
-        <div class="mr-2">显示未提钩记录</div>
-        <v-switch v-model="showIgnoredRecord" inset />
-      </v-col>
-      <v-col class="d-flex align-center">
-        <div class="mr-2">显示耐心状态</div>
-        <v-switch v-model="showPatient" inset />
-      </v-col>
-    </v-row>
-    <v-row no-gutters>
-      <v-col class="d-flex align-center">
-        <div class="mr-2">显示获得力&鉴别力</div>
-        <v-switch v-model="showPlayerStatus" inset />
-      </v-col>
-      <v-col class="d-flex align-center">
-        <div class="mr-2">显示提钩类别</div>
-        <v-switch v-model="showHookset" inset />
-      </v-col>
-    </v-row>
-    <v-list v-if="records.length > 0">
-      <div v-for="(record, index) in records" :key="index">
-        <v-divider v-if="index > 0" />
-        <v-list-item>
-          <v-list-item-content>
-            <v-row no-gutters class="d-flex align-center">
-              <v-col cols="5" class="d-flex align-center">
-                <item-icon :icon-class="record.fish.icon" small />
-                <div>
-                  <span v-if="record.missed">{{ '脱钩' }}</span>
-                  <span v-else-if="record.cancelled">{{ '未提钩' }}</span>
-                  <span v-else>
-                    {{ record.fish.name || '未提钩' }}
-                    <i class="xiv hq" v-if="record.hq"></i>
-                  </span>
-                  <div class="text-subtitle-2 d-flex">
-                    <div
-                      v-if="record.size > 0"
-                      class="mr-2"
-                      title="星寸：人族男性士兵的大拇指宽度、成熟的罗兰莓的长度"
-                    >
-                      {{ record.fish.size }}
+    <v-card>
+      <v-card-text>
+        <v-row no-gutters>
+          <v-btn
+            :loading="exporting"
+            :disabled="deleting"
+            @click="exportHistory"
+            color="primary"
+          >
+            <v-icon>mdi-file-table</v-icon>导出至文件
+          </v-btn>
+          <v-spacer />
+          <v-btn
+            :loading="deleting"
+            :disabled="exporting"
+            @click="showClearConfirmDialog = true"
+            color="error"
+          >
+            <v-icon>mdi-file-remove</v-icon>清空记录
+          </v-btn>
+        </v-row>
+        <v-row no-gutters>
+          <v-col class="d-flex align-center">
+            <div class="mr-2">显示未提钩记录</div>
+            <v-switch v-model="showIgnoredRecord" inset />
+          </v-col>
+          <v-col class="d-flex align-center">
+            <div class="mr-2">显示耐心状态</div>
+            <v-switch v-model="showPatient" inset />
+          </v-col>
+        </v-row>
+        <v-row no-gutters>
+          <v-col class="d-flex align-center">
+            <div class="mr-2">显示获得力&鉴别力</div>
+            <v-switch v-model="showPlayerStatus" inset />
+          </v-col>
+          <v-col class="d-flex align-center">
+            <div class="mr-2">显示提钩类别</div>
+            <v-switch v-model="showHookset" inset />
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+
+    <div class="my-2">
+      <div v-if="records.length > 0">
+        <v-list>
+          <div v-for="(record, index) in records" :key="index">
+            <v-divider v-if="index > 0" />
+            <v-list-item>
+              <v-list-item-content>
+                <v-row no-gutters class="d-flex align-center">
+                  <v-col cols="5" class="d-flex align-center">
+                    <item-icon :icon-class="record.fish.icon" small />
+                    <div>
+                      <span v-if="record.missed">{{ '脱钩' }}</span>
+                      <span v-else-if="record.cancelled">{{ '未提钩' }}</span>
+                      <span v-else>
+                        {{ record.fish.name || '未提钩' }}
+                        <i class="xiv hq" v-if="record.hq"></i>
+                      </span>
+                      <div class="text-subtitle-2 d-flex">
+                        <div
+                          v-if="record.size > 0"
+                          class="mr-2"
+                          title="星寸：人族男性士兵的大拇指宽度、成熟的罗兰莓的长度"
+                        >
+                          {{ record.fish.size }}
+                        </div>
+                        <div
+                          v-if="showPlayerStatus"
+                          class="text-subtitle-2"
+                          title="获得力/鉴别力"
+                        >
+                          {{ record.playerStatus.text }}
+                        </div>
+                      </div>
                     </div>
-                    <div
-                      v-if="showPlayerStatus"
-                      class="text-subtitle-2"
-                      title="获得力/鉴别力"
-                    >
-                      {{ record.playerStatus.text }}
+                  </v-col>
+                  <v-col cols="3" class="d-flex align-center flex-wrap">
+                    <div v-for="effect in record.effects" :key="effect.ID">
+                      <div :class="effect.icon" :title="effect.name" />
                     </div>
-                  </div>
-                </div>
-              </v-col>
-              <v-col cols="3" class="d-flex align-center flex-wrap">
-                <div v-for="effect in record.effects" :key="effect.ID">
-                  <div :class="effect.icon" :title="effect.name" />
-                </div>
-              </v-col>
-              <v-col cols="4">
-                <v-progress-linear
-                  :value="record.biteIntervalPercentage"
-                  :color="record.tug.color"
-                  height="25"
-                  rounded
-                >
-                  <template>
-                    <strong>{{ record.biteInterval }}</strong>
-                  </template>
-                </v-progress-linear>
-              </v-col>
-            </v-row>
-          </v-list-item-content>
-          <item-icon
-            v-if="showHookset"
-            :icon-class="record.hookset.icon"
-            small
-            type="action"
-          />
-          <item-icon :icon-class="record.bait.icon" small />
-        </v-list-item>
+                  </v-col>
+                  <v-col cols="4">
+                    <v-progress-linear
+                      :value="record.biteIntervalPercentage"
+                      :color="record.tug.color"
+                      height="25"
+                      rounded
+                    >
+                      <template>
+                        <strong>{{ record.biteInterval }}</strong>
+                      </template>
+                    </v-progress-linear>
+                  </v-col>
+                </v-row>
+              </v-list-item-content>
+              <item-icon
+                v-if="showHookset"
+                :icon-class="record.hookset.icon"
+                small
+                type="action"
+              />
+              <item-icon :icon-class="record.bait.icon" small />
+            </v-list-item>
+          </div>
+        </v-list>
+        <v-btn
+          v-if="remainingCnt > 0"
+          block
+          color="primary"
+          class="rounded-t-0"
+          @click="loadingMore"
+        >
+          {{ $t('loadingMoreWithRemainingCnt', { remainingCnt }) }}
+        </v-btn>
       </div>
-    </v-list>
-    <div v-else class="text-center">没有历史记录</div>
-    <v-btn
-      v-if="remainingCnt > 0"
-      block
-      color="primary"
-      class="rounded-t-0"
-      @click="loadingMore"
-    >
-      {{ $t('loadingMoreWithRemainingCnt', { remainingCnt }) }}
-    </v-btn>
+      <div v-else>
+        <v-card>
+          <v-card-text>
+            <div class="text-h6 text-center">
+              无历史记录
+            </div>
+          </v-card-text>
+        </v-card>
+      </div>
+    </div>
+    <v-dialog v-model="showClearConfirmDialog">
+      <v-card>
+        <v-card-title>
+          确认清空所有记录吗？
+        </v-card-title>
+        <v-card-text>
+          此操作无法恢复！<br />
+          导出的CSV文件无法用来恢复记录！
+        </v-card-text>
+        <v-card-actions class="d-flex justify-end">
+          <v-btn @click="showClearConfirmDialog = false">
+            取消
+          </v-btn>
+          <v-btn color="error" @click="clearHistory">
+            清空
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -134,6 +184,8 @@ export default {
       showPlayerStatus: false,
       showHookset: false,
       exporting: false,
+      deleting: false,
+      showClearConfirmDialog: false,
     }
   },
   computed: {
@@ -210,10 +262,9 @@ export default {
     },
   },
   async created() {
-    this.dbRecordsCnt = await db.records.count()
-    this.rawRecords = await this.loadRecord(0, this.loadingCnt, this.showIgnoredRecord)
-    this.dbLoadedCnt = this.rawRecords.length
-    console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
+    // const bk = []
+    // await db.records.bulkPut(bk)
+    await this.init()
 
     window.electron?.ipcRenderer
       ?.on('newRecord', (event, data) => {
@@ -232,6 +283,12 @@ export default {
       })
   },
   methods: {
+    async init() {
+      this.dbRecordsCnt = await db.records.count()
+      this.rawRecords = await this.loadRecord(0, this.loadingCnt, this.showIgnoredRecord)
+      this.dbLoadedCnt = this.rawRecords.length
+      console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
+    },
     async loadRecord(offset, limit, showIgnoredRecord) {
       let table = db.records.orderBy('startTime').reverse()
       if (!showIgnoredRecord) {
@@ -255,6 +312,16 @@ export default {
         this.rawRecords = this.rawRecords.concat(newLoadedRecords)
       }
     },
+    clearHistory() {
+      this.deleting = true
+      this.showClearConfirmDialog = false
+      db.records
+        .clear()
+        .then(() => {
+          this.init()
+        })
+        .then(() => (this.deleting = false))
+    },
     exportHistory() {
       if (!this.exporting) {
         this.exporting = true
@@ -274,6 +341,7 @@ export default {
       return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
     },
     toExportData(records) {
+      // console.log(JSON.stringify(records))
       return records.map(record => {
         const date = new Date(record.startTime)
         const spotId = record.spotId
