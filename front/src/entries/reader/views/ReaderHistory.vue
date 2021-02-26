@@ -35,12 +35,21 @@
                     {{ record.fish.name || '未提钩' }}
                     <i class="xiv hq" v-if="record.hq"></i>
                   </span>
-                  <div
-                    v-if="showPlayerStatus"
-                    class="text-subtitle-2"
-                    title="获得力/鉴别力"
-                  >
-                    {{ record.playerStatus.text }}
+                  <div class="text-subtitle-2 d-flex">
+                    <div
+                      v-if="record.size > 0"
+                      class="mr-2"
+                      title="星寸：人族男性士兵的大拇指宽度、成熟的罗兰莓的长度"
+                    >
+                      {{ record.fish.size }}
+                    </div>
+                    <div
+                      v-if="showPlayerStatus"
+                      class="text-subtitle-2"
+                      title="获得力/鉴别力"
+                    >
+                      {{ record.playerStatus.text }}
+                    </div>
                   </div>
                 </div>
               </v-col>
@@ -139,6 +148,7 @@ export default {
               ? 'bg-060027'
               : DataUtil.getItemIconClass(record.fishId, 60027),
             name: DataUtil.getItemName(record.fishId),
+            size: (record.size / 10).toFixed(1) + 'Im',
           },
           bait: {
             id: record.baitId,
