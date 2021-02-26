@@ -1,6 +1,11 @@
 <template>
   <div class="wrapper">
     <v-row no-gutters>
+      <v-btn :loading="exporting" @click="exportHistory">
+        <v-icon>mdi-file-table</v-icon>导出记录
+      </v-btn>
+    </v-row>
+    <v-row no-gutters>
       <v-col class="d-flex align-center">
         <div class="mr-2">显示未提钩记录</div>
         <v-switch v-model="showIgnoredRecord" inset />
@@ -82,9 +87,7 @@
         </v-list-item>
       </div>
     </v-list>
-    <div v-else class="text-center">
-      没有历史记录
-    </div>
+    <div v-else class="text-center">没有历史记录</div>
     <v-btn
       v-if="remainingCnt > 0"
       block
@@ -104,6 +107,8 @@ import max from 'lodash/max'
 import COMMON from 'Data/common'
 import db from '@/plugins/db'
 import capitalize from 'lodash/capitalize'
+import EorzeaTime from '@/utils/Time'
+import Weather from '@/utils/Weather'
 // import TEST from 'Data/test'
 
 const INITIAL_LOADING_CNT = 100
@@ -128,6 +133,7 @@ export default {
       showPatient: false,
       showPlayerStatus: false,
       showHookset: false,
+      exporting: false,
     }
   },
   computed: {
@@ -209,17 +215,21 @@ export default {
     this.dbLoadedCnt = this.rawRecords.length
     console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
 
-    window.electron?.ipcRenderer?.on('newRecord', (event, data) => {
-      // console.log('data', JSON.stringify(data))
-      if (this.rawRecords.length > 0 && this.rawRecords[0].id === data.id) {
-        this.rawRecords.splice(0, 1, data)
-      } else {
-        this.rawRecords.splice(0, 0, data)
-        this.dbLoadedCnt++
-        this.dbRecordsCnt++
-        console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
-      }
-    })
+    window.electron?.ipcRenderer
+      ?.on('newRecord', (event, data) => {
+        // console.log('data', JSON.stringify(data))
+        if (this.rawRecords.length > 0 && this.rawRecords[0].id === data.id) {
+          this.rawRecords.splice(0, 1, data)
+        } else {
+          this.rawRecords.splice(0, 0, data)
+          this.dbLoadedCnt++
+          this.dbRecordsCnt++
+          console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
+        }
+      })
+      ?.on('exportHistoryFinished', () => {
+        this.exporting = false
+      })
   },
   methods: {
     async loadRecord(offset, limit, showIgnoredRecord) {
@@ -245,6 +255,74 @@ export default {
         this.rawRecords = this.rawRecords.concat(newLoadedRecords)
       }
     },
+    exportHistory() {
+      if (!this.exporting) {
+        this.exporting = true
+        db.records
+          .orderBy('startTime')
+          .reverse()
+          .toArray()
+          .then(data => {
+            window.electron?.ipcRenderer?.send('exportHistory', this.toExportData(data))
+          })
+      }
+    },
+    isDiademSpot(id) {
+      return id > 10000
+    },
+    isOceanFishingSpot(id) {
+      return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
+    },
+    toExportData(records) {
+      return records.map(record => {
+        const date = new Date(record.startTime)
+        const spotId = record.spotId
+        const et = new EorzeaTime(EorzeaTime.toEorzeaTime(record.startTime))
+        return {
+          日期: date.toLocaleDateString('zh-CN'),
+          时间: date.toLocaleTimeString('zh-CN', { hour12: false }),
+          ET: et.toString(),
+          前置天气: Weather.weatherTextOf(
+            spotId > 0 && !this.isOceanFishingSpot(spotId) && !this.isDiademSpot(spotId)
+              ? Weather.prevWeatherAtSpot(spotId, et)
+              : undefined
+          ),
+          天气: Weather.weatherTextOf(
+            spotId > 0
+              ? this.isOceanFishingSpot(spotId) || this.isDiademSpot(spotId)
+                ? record.weatherDetected
+                : Weather.weatherAtSpot(spotId, et)
+              : undefined
+          ),
+          钓场: DataUtil.getName(
+            spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name_chs: '未检测到钓场' }
+          ),
+          鱼: DataUtil.getItemName(record.fishId) ?? '未知',
+          HQ: record.hq ? '是' : '否',
+          '长度（星寸）': record.size > 0 ? (record.size / 10).toFixed(1) : '',
+          脱钩: record.missed ? '是' : '否',
+          未提钩: record.cancelled ? '是' : '否',
+          鱼饵: DataUtil.getItemName(record.baitId),
+          '咬钩时长（秒）': ((record.biteTime - record.startTime) / 1000).toFixed(1),
+          撒饵: record.chum ? '是' : '否',
+          提钩: DataUtil.HOOKSET_SKILL_NAME_DICT[capitalize(record.hookset)] ?? '提钩',
+          获得力: record.gathering,
+          鉴别力: record.perception,
+          采集力: record.gp,
+          钓组: record.snagging ? '是' : '否',
+          拍击水面: record.surfaceScale ? '是' : '否',
+          拍击的鱼: record.surfaceScale
+            ? DataUtil.getItemName(record.surfaceScaleFishId) ?? '未记录'
+            : '',
+          专一垂钓: record.identicalCast ? '是' : '否',
+          耐心: record.gatheringFortuneUp && !record.catchAndRelease ? '是' : '否',
+          耐心II: record.catchAndRelease ? '是' : '否',
+          鱼眼: record.fishEyes ? '是' : '否',
+          捕鱼人之识: record.fishersIntuition ? '是' : '否',
+          版本: record.patch ?? 5.35,
+        }
+      })
+    },
   },
 }
 </script>
@@ -257,4 +335,5 @@ export default {
   overflow-y: scroll
   overflow-x: hidden
   padding-left: 6px
+  padding-top: 8px
 </style>

@@ -31,6 +31,7 @@
     "lodash": "^4.17.20",
     "luxon": "^1.25.0",
     "node-machina-ffxiv": "^2.42.12",
+    "objects-to-csv": "^1.3.6",
     "uuid": "^8.3.2"
   },
   "build": {

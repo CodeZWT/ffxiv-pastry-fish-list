@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell, globalShortcut } = require('electron')
+const { app, BrowserWindow, ipcMain, shell, globalShortcut, dialog } = require('electron')
 const isDev = require('electron-is-dev')
 const FishingDataReader = require('./server/reader')
 const log = require('electron-log')
@@ -8,6 +8,7 @@ const path = require('path')
 const throttle = require('lodash/throttle')
 const CONSTANTS = require('./data/constants')
 const exec = require('child_process').exec
+const ObjectsToCsv = require('objects-to-csv')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -125,6 +126,29 @@ async function init() {
       //   return loadingForReloadingPage.close()
       // }
     })
+    .on('exportHistory', (event, data) => {
+      dialog
+        .showSaveDialog({
+          title: '导出',
+          defaultPath: '鱼糕钓鱼记录.csv',
+          buttonLabel: '保存',
+          filters: [{ name: 'CSV', extensions: ['csv'] }],
+        })
+        .then((result) => {
+          if (!result.canceled) {
+            const csv = new ObjectsToCsv(data)
+            return csv.toDisk(result.filePath, { bom: true })
+            // fs.writeFileSync(result.filePath, data);
+          }
+          log.info(result)
+        })
+        .catch((err) => {
+          log.info(err)
+        })
+        .finally(() => {
+          readerHistory.webContents.send('exportHistoryFinished')
+        })
+    })
 
   globalShortcut.register('Alt+CommandOrControl+L', () => {
     showReader()
@@ -136,8 +160,10 @@ async function init() {
       })
   })
 }
+
 let mainSize = { w: -1, h: -1 }
 let readerSize = { w: -1, h: -1 }
+
 function setWindow(window, option) {
   if (option.opacity) {
     window.setOpacity(option.opacity)
@@ -260,11 +286,11 @@ function createReaderHistory(readTimerWin) {
         data: { w, h },
       })
     })
-  // if (isDev) {
-  //   readerHistory.webContents.openDevTools({
-  //     mode: 'undocked',
-  //   })
-  // }
+  if (isDev) {
+    readerHistory.webContents.openDevTools({
+      mode: 'undocked',
+    })
+  }
 }
 
 function createReaderSpotStatistics(readTimerWin) {

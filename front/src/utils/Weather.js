@@ -1,5 +1,6 @@
 import DATA from 'Data/data'
 import FIX from 'Data/fix'
+import { WEATHER_TYPES } from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
@@ -37,6 +38,21 @@ function calculateForecastTarget(m) {
 }
 
 export default {
+  weatherTextOf(weatherId) {
+    return weatherId > 0 ? WEATHER_TYPES[weatherId].name_chs : ''
+  },
+
+  weatherAtSpot(spotId, et) {
+    const zoneId = DATA.FISHING_SPOTS[spotId] && DATA.FISHING_SPOTS[spotId].territory_id
+    console.log(spotId, zoneId)
+    return this.weatherAt(zoneId, et)
+  },
+  prevWeatherAtSpot(spotId, et) {
+    return this.weatherAtSpot(
+      spotId,
+      et.toWeatherCheckPoint().toPreviousWeatherInterval()
+    )
+  },
   weatherAt(zone, eorzeaTime) {
     const earthTime = eorzeaTime.toEarthTime()
     if (

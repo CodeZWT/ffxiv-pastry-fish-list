@@ -231,7 +231,7 @@ const status = {
   baitId: undefined,
   spotId: undefined,
   mooch: false,
-  prevFishId: undefined,
+  prevFishId: -1,
   weather: undefined,
   zoneId: undefined,
 }
@@ -330,6 +330,7 @@ onFFXIVEvents(['eventStart', 'eventFinish'], (packet) => {
     status.isFishing = packet.type === 'eventStart'
     if (!status.isFishing) {
       // saveCurrentRecord()
+      status.prevFishId = -1
     }
   }
 })
@@ -413,6 +414,9 @@ function applyCurrentStatusOnStart(record, status) {
   record.pastryFishVersion = PASTRY_FISH_VERSION
   record.patch = CURRENT_PATCH_VERSION
   record.region = 'CN'
+  record.weatherDetected = status.weather
+  record.surfaceScaleFishId = record.surfaceScale ? status.prevFishId : -1
+
   status.mooch = false
 }
 
