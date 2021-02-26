@@ -17,8 +17,9 @@ import CONSTANTS from 'Data/constants'
 import FishingData from 'Data/fishingData'
 import FIX from 'Data/fix'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import DATA from '../../../data/data'
-import { LIVING_LEGENDS } from '../../../data/translation'
+import DATA from 'Data/data'
+import { LIVING_LEGENDS } from 'Data/translation'
+import { CURRENT_PATCH_VERSION } from 'Data/constants'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -914,7 +915,7 @@ export default {
   },
 
   PATCH_MAX: 5.4,
-  PATCH_AVAILABLE_MAX: 5.35,
+  PATCH_AVAILABLE_MAX: CURRENT_PATCH_VERSION,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
   COMPLETE_FILTER_TYPES: COMPLETE_FILTER_TYPES,

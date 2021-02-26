@@ -5,5 +5,7 @@ module.exports = {
   INTERVAL_DAY: 86400000,
 
   FEATURE_GROUP_MAIN: 'main',
-  FEATURE_GROUP_READER: 'reader'
+  FEATURE_GROUP_READER: 'reader',
+
+  CURRENT_PATCH_VERSION: 5.35
 }

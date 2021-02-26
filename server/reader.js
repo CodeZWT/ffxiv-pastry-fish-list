@@ -7,6 +7,8 @@ const { exec } = require('child_process')
 const log = require('electron-log')
 const { TERRITORY_TYPES } = require('../data/fix')
 const { v4: uuid } = require('uuid')
+const { version: PASTRY_FISH_VERSION } = require('../package.json')
+const { CURRENT_PATCH_VERSION } = require("../data/constants")
 // const DataUtil = require('../utils/DataUtil')
 const INTERVAL_MINUTE = 60000
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * INTERVAL_MINUTE
@@ -408,6 +410,9 @@ function applyCurrentStatusOnStart(record, status) {
   record.baitId = status.baitId
   record.mooch = status.mooch
   record.spotId = status.spotId
+  record.pastryFishVersion = PASTRY_FISH_VERSION
+  record.patch = CURRENT_PATCH_VERSION
+  record.region = 'CN'
   status.mooch = false
 }
 
