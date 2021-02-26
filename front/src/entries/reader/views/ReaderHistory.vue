@@ -147,6 +147,9 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-snackbar v-model="showExportError" centered color="error">
+      导出失败，文件已打开。
+    </v-snackbar>
   </div>
 </template>
 
@@ -186,6 +189,7 @@ export default {
       exporting: false,
       deleting: false,
       showClearConfirmDialog: false,
+      showExportError: false,
     }
   },
   computed: {
@@ -279,6 +283,10 @@ export default {
         }
       })
       ?.on('exportHistoryFinished', () => {
+        this.exporting = false
+      })
+      ?.on('exportHistoryFailedWithBusyFile', () => {
+        this.showExportError = true
         this.exporting = false
       })
   },

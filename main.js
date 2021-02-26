@@ -143,6 +143,9 @@ async function init() {
           log.info(result)
         })
         .catch((err) => {
+          if (err.code === 'EBUSY') {
+            readerHistory.webContents.send('exportHistoryFailedWithBusyFile')
+          }
           log.info(err)
         })
         .finally(() => {
