@@ -11,6 +11,15 @@
           >
             <v-icon>mdi-file-table</v-icon>导出至文件
           </v-btn>
+          <v-btn
+            icon
+            text
+            @click="openHelp"
+            class="ml-1"
+            title="点击查看如何使用导出文件"
+          >
+            <v-icon>mdi-help-circle</v-icon>
+          </v-btn>
           <v-spacer />
           <v-btn
             :loading="deleting"
@@ -287,6 +296,11 @@ export default {
       })
   },
   methods: {
+    openHelp() {
+      window.open(
+        'https://ricecake302.coding.net/s/eb3a7844-db84-4792-90db-7805f6a941c1/2'
+      )
+    },
     async init() {
       this.dbRecordsCnt = await db.records.count()
       this.rawRecords = await this.loadRecord(0, this.loadingCnt, this.showIgnoredRecord)
