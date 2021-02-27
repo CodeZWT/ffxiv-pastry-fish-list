@@ -1217,10 +1217,6 @@ module.exports = {
     12810: {
       bestCatchPath: [28634],
     },
-    23055: {
-      startHour: 0,
-      endHour: 24,
-    },
     12798: {
       tug: 'medium',
     },
@@ -1236,6 +1232,12 @@ module.exports = {
     },
     15632: {
       bestCatchPath: [12707, 12780],
+    },
+    4930: {
+      tug: 'light'
+    },
+    12760: {
+      tug: 'medium'
     }
   },
   COLLECTABLE_FISH_ITEM_ID: [
