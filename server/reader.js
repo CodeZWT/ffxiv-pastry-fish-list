@@ -575,13 +575,14 @@ function getHookset(hookset) {
 // caught fish
 onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
   const caughtFishId = packet.param1
+  const hq = ((packet.param3 >> 4) & 1) === 1
   if (status.isFishing) {
     log.info('fish caught', caughtFishId)
-    fishCaughtCallback({fishId: caughtFishId})
+    fishCaughtCallback({fishId: caughtFishId, hq})
     if (records.length === 0) return
     const prevRecord = records[records.length - 1]
     prevRecord.fishId = caughtFishId
-    prevRecord.hq = ((packet.param3 >> 4) & 1) === 1
+    prevRecord.hq = hq
     // not used
     // currentRecord.moochable = (packet.param3 & 0x0000000F) === 5
     prevRecord.size = packet.param2 >> 16
@@ -595,7 +596,7 @@ onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
     // saveCurrentRecord()
   } else {
     log.info('spear fish caught', caughtFishId)
-    fishCaughtCallback({fishId: caughtFishId})
+    fishCaughtCallback({fishId: caughtFishId, hq})
   }
 
 

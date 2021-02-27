@@ -1143,7 +1143,12 @@ export default {
         ?.on('fishCaught', (event, data) => {
           // Be care of spear fish!
           const fishId = data?.fishId
-          if (this.readerSetting.autoSetCompleted && fishId > 0) {
+          const hq = data?.hq
+          if (
+            this.readerSetting.autoSetCompleted &&
+            fishId > 0 &&
+            (!this.readerSetting.autoSetCompletedOnlyHQ || hq)
+          ) {
             // this.lastCatchFishId = fishId
             this.setFishCompleted({ fishId: fishId, completed: true })
           } else {

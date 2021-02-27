@@ -1106,6 +1106,7 @@ export default {
     fishEyesUsed: false,
     reader: {
       autoSetCompleted: true,
+      autoSetCompletedOnlyHQ: false,
       main: {
         pos: { x: null, y: null },
         size: { w: 1080, h: 768 },

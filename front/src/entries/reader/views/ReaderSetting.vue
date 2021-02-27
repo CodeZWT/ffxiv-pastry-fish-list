@@ -8,6 +8,12 @@
           </div>
           <v-switch inset v-model="lazySetting.autoSetCompleted" />
         </v-col>
+        <v-col cols="12" class="d-flex align-center">
+          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+            仅HQ时标记已完成
+          </div>
+          <v-switch inset v-model="lazySetting.autoSetCompletedOnlyHQ" />
+        </v-col>
         <v-card outlined width="100%" class="my-1">
           <div class="overline ml-2">
             计时器
