@@ -6,7 +6,7 @@
       :fixed="isMobile"
       :class="{ 'nav-bar--pc': !isMobile }"
     >
-      <v-card>
+      <div>
         <v-sheet class="pa-1 primary">
           <div class="d-flex align-center">
             <v-text-field
@@ -111,7 +111,7 @@
             @update:active="onMenuItemActive"
           />
         </v-card-text>
-      </v-card>
+      </div>
     </v-navigation-drawer>
     <div style="height: 100%; width: 100%">
       <div
