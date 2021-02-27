@@ -17,9 +17,6 @@
               hide-details
               clearable
             ></v-text-field>
-            <v-btn icon text class="ml-1" @click="collapseAll">
-              <v-icon>mdi-arrow-collapse-vertical</v-icon>
-            </v-btn>
             <!-- expand all button -->
             <!--            <v-btn icon text class="ml-1" @click="expandAll">-->
             <!--              <v-icon>mdi-arrow-expand-vertical</v-icon>-->
@@ -30,13 +27,31 @@
             <!--            </v-btn>-->
           </div>
         </v-sheet>
-        <div class="d-flex justify-center">
+        <div class="d-flex align-center px-1">
+          <v-btn
+            small
+            icon
+            text
+            class="ml-1"
+            @click="showBulkCompleteCheckbox = !showBulkCompleteCheckbox"
+            :title="showBulkCompleteCheckbox ? '关闭批量模式' : '开启批量模式'"
+          >
+            <v-icon v-if="!showBulkCompleteCheckbox" small>
+              mdi-checkbox-multiple-blank-outline
+            </v-icon>
+            <v-icon v-else small>mdi-checkbox-multiple-marked</v-icon>
+          </v-btn>
+          <v-btn small icon text class="ml-2" @click="collapseAll">
+            <v-icon small>mdi-arrow-collapse-vertical</v-icon>
+          </v-btn>
+          <v-spacer />
           <v-btn-toggle
             v-model="mode"
             color="primary"
             class="my-1"
             mandatory
             background-color="transparent"
+            dense
           >
             <v-btn
               :value="mode.value"
@@ -45,8 +60,8 @@
               @click="clearCurrentStatus(mode)"
             >
               <div class="d-flex align-center">
-                <item-icon :icon-class="mode.icon" />
-                <span>{{ mode.title }}</span>
+                <div :class="mode.icon"></div>
+                <!--                <span>{{ mode.title }}</span>-->
               </div>
             </v-btn>
           </v-btn-toggle>
@@ -68,7 +83,7 @@
             hoverable
             dense
             activatable
-            selectable
+            :selectable="showBulkCompleteCheckbox"
             :search="searchText"
             :filter="spotMenuSearchFn"
             :open.sync="openedItems"
@@ -85,7 +100,7 @@
             hoverable
             dense
             activatable
-            selectable
+            :selectable="showBulkCompleteCheckbox"
             :search="searchText"
             :filter="spotMenuSearchFn"
             :open.sync="spearOpenedItems"
@@ -326,7 +341,6 @@ import FIX from 'Data/fix'
 import FishGigTable from '@/components/FishingGigTable'
 import FishTugTable from '@/components/FishingTugTable'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
-import ItemIcon from '@/components/basic/ItemIcon'
 import LinkList from '@/components/basic/LinkList'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
@@ -334,7 +348,6 @@ export default {
   name: 'WikiPage',
   components: {
     LinkList,
-    ItemIcon,
     DetailItemMap,
     FishTugTable,
     FishGigTable,
@@ -356,9 +369,10 @@ export default {
     'lazyTransformedFishList',
   ],
   data: vm => ({
+    showBulkCompleteCheckbox: false,
     modes: [
-      { title: vm.$t('wiki.mode.normal'), icon: 'bg-060027', value: 'normal' },
-      { title: vm.$t('wiki.mode.spear'), icon: 'bg-060037', value: 'spear' },
+      { title: vm.$t('wiki.mode.normal'), icon: 'fishing-icon', value: 'normal' },
+      { title: vm.$t('wiki.mode.spear'), icon: 'spear-icon', value: 'spear' },
     ],
     type: undefined,
     currentTerritoryId: -1,
@@ -865,6 +879,17 @@ export default {
 
 <style lang="sass" scoped>
 @import "~@/styles/RcVariables"
+
+.spear-icon
+  width: 20px
+  height: 20px
+  background: url('~Assets/cdn/misc/fishing-notebook.png') -64px -28px
+
+.fishing-icon
+  width: 20px
+  height: 20px
+  background: url('~Assets/cdn/misc/fishing-notebook.png') -84px -28px
+
 
 .vue-grid-item .resizing
   opacity: 0.9

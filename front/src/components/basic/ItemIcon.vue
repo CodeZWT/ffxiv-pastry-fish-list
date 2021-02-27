@@ -74,6 +74,7 @@ export default {
         case 'item':
           return 'item-cover-48'
         case 'action':
+        case 'icon':
           return ''
         default:
           return 'achievement-cover-48'
@@ -85,6 +86,7 @@ export default {
         case 'item':
           return 'item-icon-48'
         case 'action':
+        case 'icon':
           return 'item-icon-48'
         default:
           return 'achievement-icon-48'
