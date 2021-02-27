@@ -65,6 +65,11 @@
           <item-icon :icon-class="bait.icon" :title="bait.name" small />
         </div>
         <v-spacer />
+        <v-btn v-if="showJumpBtn" color="info" @click="showSpotPage" class="mr-2">
+          <!--          <new-feature-mark :id="SpotStatisticsFeatureId">-->
+          <v-icon>mdi-notebook</v-icon>
+          <!--          </new-feature-mark>-->
+        </v-btn>
         <v-btn color="info" @click="showSpotStatistics" class="mr-2">
           <new-feature-mark :id="SpotStatisticsFeatureId">
             <v-icon>mdi-chart-box</v-icon>
@@ -142,6 +147,16 @@ export default {
   },
   computed: {
     ...mapGetters(['getWeather']),
+    spotId() {
+      return this.dataCurrentRecord?.spotId
+    },
+    showJumpBtn() {
+      return (
+        this.spotId > 0 &&
+        !DataUtil.isOceanFishingSpot(this.spotId) &&
+        !DataUtil.isDiademSpot(this.spotId)
+      )
+    },
     isTest() {
       return DevelopmentModeUtil.isTest()
     },
@@ -311,6 +326,9 @@ export default {
       })
   },
   methods: {
+    showSpotPage() {
+      window.electron?.ipcRenderer?.send('showSpotPage', this.spotId)
+    },
     toggleMiniMode(mini) {
       this.updateReaderTimerMiniMode(mini)
       window.electron?.ipcRenderer?.send('setReaderMiniMode', mini)

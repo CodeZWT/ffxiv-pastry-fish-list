@@ -338,12 +338,8 @@ export default {
           })
       }
     },
-    isDiademSpot(id) {
-      return id > 10000
-    },
-    isOceanFishingSpot(id) {
-      return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
-    },
+    isDiademSpot: DataUtil.isDiademSpot,
+    isOceanFishingSpot: DataUtil.isOceanFishingSpot,
     toExportData(records) {
       // console.log(JSON.stringify(records))
       return records.map(record => {

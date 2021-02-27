@@ -177,7 +177,7 @@ export default {
   LINKS: {
     PASTRY_FISH: {
       id: 'PASTRY_FISH',
-      icon: 'https://pic.imgdb.cn/item/5fdb51b33ffa7d37b3a8cd57',
+      icon: 'https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/pastry-fish.png',
       title: '钓鱼笔记',
       inner: true,
       spotFn: toInnerSpotLink,
@@ -867,6 +867,26 @@ export default {
       OCEAN_FISHING_FISH[fishId]?.patch ||
       DIADEM_FISH[fishId]?.patch
     )
+  },
+
+  getFishType(fishId) {
+    const normalOrSpearFish = this.FISH_DATA[fishId]
+    if (normalOrSpearFish) {
+      return normalOrSpearFish.gig == null ? 'spear' : 'normal'
+    } else {
+      return OCEAN_FISHING_FISH[fishId]
+        ? 'ocean'
+        : DIADEM_FISH[fishId]
+        ? 'diadem'
+        : 'normal'
+    }
+  },
+
+  isDiademSpot(id) {
+    return id > 10000
+  },
+  isOceanFishingSpot(id) {
+    return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
   },
   // FUNCTION END
 

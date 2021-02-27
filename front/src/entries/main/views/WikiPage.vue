@@ -426,7 +426,7 @@ export default {
       return this.currentTerritoryId >= 3444 && this.currentTerritoryId <= 3447
     },
     isOceanFishingSpot() {
-      return this.currentSpotId >= 237 && this.currentSpotId <= 244
+      return DataUtil.isOceanFishingSpot(this.currentSpotId)
     },
     // [TODO-TREE-PATH-AUTO-OPEN]
     // expandAllInSearching() {
@@ -566,9 +566,10 @@ export default {
     '$route.query': {
       handler(query) {
         console.debug('watch query', query)
-        this.mode = query.mode ?? 'normal'
-        this.currentSpotId = +(query.spotId ?? -1)
-        this.type = this.currentSpotId !== -1 ? 'spot' : undefined
+        this.showSpot(query.spotId, query.mode)
+        // this.mode = query.mode ?? 'normal'
+        // this.currentSpotId = +(query.spotId ?? -1)
+        // this.type = this.currentSpotId !== -1 ? 'spot' : undefined
       },
       immediate: true,
     },
@@ -585,8 +586,21 @@ export default {
       this.updateOpenItems(t, this.lazySearchText)
       this.lazySearchText = t
     }, 500)
+
+    window.electron?.ipcRenderer?.on('showSpotPage', (event, spotId) => {
+      this.showSpot(spotId, 'normal')
+    })
   },
   methods: {
+    showSpot(spotId, mode) {
+      if (DataUtil.isDiademSpot(spotId)) {
+        return
+      } else if (spotId > 0) {
+        this.mode = mode ?? 'normal'
+        this.currentSpotId = +(spotId ?? -1)
+        this.type = this.currentSpotId !== -1 ? 'spot' : undefined
+      }
+    },
     clearCurrentStatus(mode) {
       if (mode !== this.mode) {
         this.type = undefined

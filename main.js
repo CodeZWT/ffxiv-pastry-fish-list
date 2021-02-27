@@ -155,6 +155,9 @@ async function init() {
           readerHistory.webContents.send('exportHistoryFinished')
         })
     })
+    .on('showSpotPage', ((event, spotId) => {
+      main.webContents.send('showSpotPage', spotId)
+    }))
 
   globalShortcut.register('Alt+CommandOrControl+L', () => {
     showReader()

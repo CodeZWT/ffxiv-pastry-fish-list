@@ -1172,6 +1172,11 @@ export default {
           this.updateUserData(data)
           window.electron?.ipcRenderer?.send('reloadUserData')
         })
+        ?.on('showSpotPage', (event, spotId) => {
+          if (this.$route.query.name !== 'WikiPage') {
+            this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
+          }
+        })
     }
 
     this.startLoading()
