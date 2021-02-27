@@ -897,12 +897,12 @@ export default {
 .spear-icon
   width: 20px
   height: 20px
-  background: url('~Assets/cdn/misc/fishing-notebook.png') -64px -28px
+  background: url('https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/fishing-notebook.png') -64px -28px
 
 .fishing-icon
   width: 20px
   height: 20px
-  background: url('~Assets/cdn/misc/fishing-notebook.png') -84px -28px
+  background: url('https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/fishing-notebook.png') -84px -28px
 
 
 .vue-grid-item .resizing
