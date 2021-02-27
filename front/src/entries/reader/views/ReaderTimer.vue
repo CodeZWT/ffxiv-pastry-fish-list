@@ -4,7 +4,7 @@
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div>
           咬钩计时
-          <v-btn small text icon @click="toggleMiniMode(true)">
+          <v-btn small text icon @click="toggleMiniMode(true)" title="迷你模式">
             <v-icon small>mdi-dock-window</v-icon>
           </v-btn>
         </div>
@@ -106,7 +106,7 @@
             <strong>{{ intervalText }}</strong>
           </template>
         </v-progress-linear>
-        <v-btn small icon text @click="toggleMiniMode(false)">
+        <v-btn small icon text @click="toggleMiniMode(false)" title="退出迷你模式">
           <v-icon small>mdi-arrow-expand</v-icon>
         </v-btn>
       </v-col>
