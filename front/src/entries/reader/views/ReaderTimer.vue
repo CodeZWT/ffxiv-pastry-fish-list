@@ -65,7 +65,13 @@
           <item-icon :icon-class="bait.icon" :title="bait.name" small />
         </div>
         <v-spacer />
-        <v-btn v-if="showJumpBtn" color="info" @click="showSpotPage" class="mr-2">
+        <v-btn
+          v-if="showJumpBtn"
+          color="info"
+          @click="showSpotPage"
+          class="mr-2"
+          title="鱼糕显示对应钓场页面"
+        >
           <!--          <new-feature-mark :id="SpotStatisticsFeatureId">-->
           <v-icon>mdi-notebook</v-icon>
           <!--          </new-feature-mark>-->
@@ -148,7 +154,7 @@ export default {
   computed: {
     ...mapGetters(['getWeather']),
     spotId() {
-      return this.dataCurrentRecord?.spotId
+      return this.dataStatus?.spotId
     },
     showJumpBtn() {
       return (

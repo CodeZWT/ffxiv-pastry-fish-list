@@ -1137,7 +1137,6 @@ export default {
     }
 
     console.debug(process.env.commit_hash)
-
     if (DevelopmentModeUtil.isElectron()) {
       window.electron?.ipcRenderer
         ?.on('fishCaught', (event, data) => {
@@ -1173,7 +1172,10 @@ export default {
           window.electron?.ipcRenderer?.send('reloadUserData')
         })
         ?.on('showSpotPage', (event, spotId) => {
-          if (this.$route.query.name !== 'WikiPage') {
+          if (this.collapse) {
+            this.toggleCollapse()
+          }
+          if (!window.location.hash.startsWith('#/wiki')) {
             this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
           }
         })
