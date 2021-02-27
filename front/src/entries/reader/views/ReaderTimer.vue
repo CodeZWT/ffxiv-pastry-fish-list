@@ -5,7 +5,9 @@
         <div>
           咬钩计时
           <v-btn small text icon @click="toggleMiniMode(true)" title="迷你模式">
-            <v-icon small>mdi-dock-window</v-icon>
+            <new-feature-mark id="MiniMode-V.0.6.6-1">
+              <v-icon small>mdi-dock-window</v-icon>
+            </new-feature-mark>
           </v-btn>
         </div>
         <v-spacer />
@@ -72,9 +74,9 @@
           class="mr-2"
           title="鱼糕显示对应钓场页面"
         >
-          <!--          <new-feature-mark :id="SpotStatisticsFeatureId">-->
-          <v-icon>mdi-notebook</v-icon>
-          <!--          </new-feature-mark>-->
+          <new-feature-mark id="JumpWiki-V.0.6.6-1">
+            <v-icon>mdi-notebook</v-icon>
+          </new-feature-mark>
         </v-btn>
         <v-btn color="info" @click="showSpotStatistics" class="mr-2">
           <new-feature-mark :id="SpotStatisticsFeatureId">
@@ -107,7 +109,9 @@
           </template>
         </v-progress-linear>
         <v-btn small icon text @click="toggleMiniMode(false)" title="退出迷你模式">
-          <v-icon small>mdi-arrow-expand</v-icon>
+          <new-feature-mark id="MiniModeRestore-V.0.6.6-1">
+            <v-icon small>mdi-arrow-expand</v-icon>
+          </new-feature-mark>
         </v-btn>
       </v-col>
     </v-row>

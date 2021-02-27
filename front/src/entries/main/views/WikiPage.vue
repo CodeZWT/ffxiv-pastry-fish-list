@@ -36,10 +36,12 @@
             @click="showBulkCompleteCheckbox = !showBulkCompleteCheckbox"
             :title="showBulkCompleteCheckbox ? '关闭批量模式' : '开启批量模式'"
           >
-            <v-icon v-if="!showBulkCompleteCheckbox" small>
-              mdi-checkbox-multiple-blank-outline
-            </v-icon>
-            <v-icon v-else small>mdi-checkbox-multiple-marked</v-icon>
+            <new-feature-mark id="WikiBulkButton-V.0.6.6-1">
+              <v-icon v-if="!showBulkCompleteCheckbox" small>
+                mdi-checkbox-multiple-blank-outline
+              </v-icon>
+              <v-icon v-else small>mdi-checkbox-multiple-marked</v-icon>
+            </new-feature-mark>
           </v-btn>
           <v-btn small icon text class="ml-2" @click="collapseAll">
             <v-icon small>mdi-arrow-collapse-vertical</v-icon>
@@ -343,10 +345,12 @@ import FishTugTable from '@/components/FishingTugTable'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import LinkList from '@/components/basic/LinkList'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import NewFeatureMark from '@/components/basic/NewFeatureMark'
 
 export default {
   name: 'WikiPage',
   components: {
+    NewFeatureMark,
     LinkList,
     DetailItemMap,
     FishTugTable,

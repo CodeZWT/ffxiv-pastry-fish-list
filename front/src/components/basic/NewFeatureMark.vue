@@ -1,11 +1,13 @@
 <template>
-  <v-badge :color="!id || viewed ? 'transparent' : 'error'" overlap dot>
-    <slot />
-  </v-badge>
+  <div @click="setFeatureViewed(id)">
+    <v-badge :color="!id || viewed ? 'transparent' : 'error'" overlap dot>
+      <slot />
+    </v-badge>
+  </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'NewFeatureMark',
@@ -20,6 +22,9 @@ export default {
       return this.viewedFeatures.includes(this.id)
     },
     ...mapState(['viewedFeatures']),
+  },
+  methods: {
+    ...mapMutations(['setFeatureViewed']),
   },
 }
 </script>

@@ -9,7 +9,9 @@
             @click="exportHistory"
             color="primary"
           >
-            <v-icon>mdi-file-table</v-icon>导出至文件
+            <new-feature-mark id="ExportCSV-V.0.6.6-1">
+              <v-icon>mdi-file-table</v-icon>导出至文件
+            </new-feature-mark>
           </v-btn>
           <v-btn
             icon
@@ -18,7 +20,9 @@
             class="ml-1"
             title="点击查看如何使用导出文件"
           >
-            <v-icon>mdi-help-circle</v-icon>
+            <new-feature-mark id="ExportHelp-V.0.6.6-1">
+              <v-icon>mdi-help-circle</v-icon>
+            </new-feature-mark>
           </v-btn>
           <v-spacer />
           <v-btn
@@ -166,6 +170,7 @@ import Weather from '@/utils/Weather'
 import DATA from 'Data/data'
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
 import PLACE_NAMES from 'Data/placeNames'
+import NewFeatureMark from '@/components/basic/NewFeatureMark'
 
 // import TEST from 'Data/test'
 
@@ -174,7 +179,7 @@ const LOAD_MORE_CNT = 100
 
 export default {
   name: 'ReaderHistory',
-  components: { ItemIcon },
+  components: { NewFeatureMark, ItemIcon },
   props: {
     now: {
       type: Number,
