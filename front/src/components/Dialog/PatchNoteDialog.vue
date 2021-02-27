@@ -11,6 +11,84 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.6.6</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕
+        </div>
+        <ul>
+          <li>
+            再次修复鱼饵筛选选择错位的问题 (是的，上次修出新的问题了。。。）
+          </li>
+          <li>
+            修复列表展开过慢的问题
+          </li>
+          <li>
+            支持在列表上点击鱼饵列中的鱼（即鱼饵列中以小钓大中的鱼）显示对应鱼信息
+          </li>
+          <li>
+            钓鱼笔记中的批量选择框变为默认不显示，点击批量处理按钮以显示原先的选择框。（防止误操作）
+          </li>
+          <li>
+            更新部分鱼数据，以及5.X鱼攻略。
+          </li>
+        </ul>
+        <div class="text-h5 text-center my-1">
+          鱼糕桌面版
+        </div>
+        <v-subheader>计时器</v-subheader>
+        <ul>
+          <li>
+            修复未打开计时器仍会发出提钩提示音的问题
+          </li>
+          <li>
+            修复刺鱼造成的记录错误
+          </li>
+          <li>
+            增加迷你模式
+          </li>
+          <li>
+            增加主界面跳转到对应钓场的功能
+          </li>
+          <li>
+            增加配置仅在钓上HQ鱼时才标记为已完成的功能
+          </li>
+          <li>
+            增加显示当前获得力、鉴别力、采集力
+          </li>
+        </ul>
+        <v-subheader>历史记录</v-subheader>
+        <ul>
+          <li>
+            历史记录增加显示
+            <ul>
+              <li>
+                hq，长度，获得力，鉴别力，提钩类别
+              </li>
+              <li>
+                状态增加：捕鱼人之识，耐心，耐心II
+              </li>
+            </ul>
+          </li>
+          <li>
+            增加新的筛选
+          </li>
+          <li>
+            增加导出文件功能
+          </li>
+          <li>
+            增加清除历史记录功能
+          </li>
+          <li>
+            增加对于脱钩的支持
+          </li>
+          <li>
+            更新图标，计时条
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.6.5</div>
         <div class="text-h5 text-center my-1">
           鱼糕
