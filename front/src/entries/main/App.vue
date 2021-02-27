@@ -774,6 +774,9 @@ export default {
       const idSet = new Set()
       this.lazyTransformedFishList
         .filter(fish => {
+          if (!this.allFish[fish.id]) {
+            return false
+          }
           const fishCompleted = this.getFishCompleted(fish.id)
           const isBigFish = this.bigFish.includes(fish.id)
           const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fish.id)
