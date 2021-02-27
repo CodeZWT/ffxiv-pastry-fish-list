@@ -104,7 +104,7 @@
                 small
                 type="action"
               />
-              <item-icon :icon-class="record.bait.icon" small />
+              <item-icon :icon-class="record.bait.icon" small :title="record.bait.name" />
             </v-list-item>
           </div>
         </v-list>
@@ -211,7 +211,7 @@ export default {
           bait: {
             id: record.baitId,
             icon: DataUtil.getItemIconClass(record.baitId, 60051),
-            name: DataUtil.getItemName(record.baitId),
+            name: DataUtil.getItemName(record.baitId) ?? '未检测到鱼饵',
           },
           tug: {
             color: DataUtil.TUG_ICON_COLOR[DataUtil.TUG_ICON[record.tug]],
