@@ -21,6 +21,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '29995': {
       id_version: '29995-2',
@@ -43,6 +44,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '29996': {
       id_version: '29996-2',
@@ -65,6 +67,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '29997': {
       id_version: '29997-2',
@@ -87,6 +90,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '29998': {
       id_version: '29998-2',
@@ -109,6 +113,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '29999': {
       id_version: '29999-2',
@@ -131,6 +136,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '30000': {
       id_version: '30000-2',
@@ -153,6 +159,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '30001': {
       id_version: '30001-2',
@@ -175,6 +182,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '30002': {
       id_version: '30002-2',
@@ -197,6 +205,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 2,
+      patch: 5.21,
     },
     '30003': {
       id_version: '30003-2',
@@ -219,6 +228,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '30004': {
       id_version: '30004-2',
@@ -241,6 +251,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '30005': {
       id_version: '30005-2',
@@ -263,6 +274,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '30006': {
       id_version: '30006-2',
@@ -294,6 +306,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '30007': {
       id_version: '30007-2',
@@ -325,6 +338,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 2,
+      patch: 5.21,
     },
     '30008': {
       id_version: '30008-2',
@@ -347,6 +361,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '30009': {
       id_version: '30009-2',
@@ -369,6 +384,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 2,
+      patch: 5.21,
     },
     '30010': {
       id_version: '30010-2',
@@ -391,6 +407,7 @@ module.exports = {
       tug: 'heavy',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '30011': {
       id_version: '30011-2',
@@ -413,6 +430,7 @@ module.exports = {
       tug: 'heavy',
       hookset: 'Precision',
       version: 2,
+      patch: 5.21,
     },
     '30012': {
       id_version: '30012-2',
@@ -435,6 +453,7 @@ module.exports = {
       tug: 'heavy',
       hookset: 'Powerful',
       version: 2,
+      patch: 5.21,
     },
     '30013': {
       id_version: '30013-2',
@@ -457,6 +476,7 @@ module.exports = {
       tug: 'heavy',
       hookset: 'Precision',
       version: 2,
+      patch: 5.21,
     },
     '31578': {
       id_version: '31578-3',
@@ -479,6 +499,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 3,
+      patch: 5.31,
     },
     '31579': {
       id_version: '31579-3',
@@ -501,6 +522,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31580': {
       id_version: '31580-3',
@@ -523,6 +545,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31581': {
       id_version: '31581-3',
@@ -545,6 +568,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31582': {
       id_version: '31582-3',
@@ -567,6 +591,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 3,
+      patch: 5.31,
     },
     '31583': {
       id_version: '31583-3',
@@ -589,6 +614,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 3,
+      patch: 5.31,
     },
     '31584': {
       id_version: '31584-3',
@@ -611,6 +637,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31585': {
       id_version: '31585-3',
@@ -633,6 +660,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31586': {
       id_version: '31586-3',
@@ -655,6 +683,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 3,
+      patch: 5.31,
     },
     '31587': {
       id_version: '31587-3',
@@ -677,6 +706,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 3,
+      patch: 5.31,
     },
     '31588': {
       id_version: '31588-3',
@@ -699,6 +729,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31589': {
       id_version: '31589-3',
@@ -721,6 +752,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 3,
+      patch: 5.31,
     },
     '31590': {
       id_version: '31590-3',
@@ -743,6 +775,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 3,
+      patch: 5.31,
     },
     '31591': {
       id_version: '31591-3',
@@ -765,6 +798,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31592': {
       id_version: '31592-3',
@@ -787,6 +821,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31593': {
       id_version: '31593-3',
@@ -809,6 +844,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31594': {
       id_version: '31594-3',
@@ -831,6 +867,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31595': {
       id_version: '31595-3',
@@ -853,6 +890,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31596': {
       id_version: '31596-3',
@@ -875,6 +913,7 @@ module.exports = {
       tug: 'light',
       hookset: 'Precision',
       version: 3,
+      patch: 5.31,
     },
     '31597': {
       id_version: '31597-3',
@@ -897,6 +936,7 @@ module.exports = {
       tug: 'medium',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31598': {
       id_version: '31598-3',
@@ -919,6 +959,7 @@ module.exports = {
       tug: 'heavy',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31599': {
       id_version: '31599-3',
@@ -941,6 +982,7 @@ module.exports = {
       tug: 'heavy',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31600': {
       id_version: '31600-3',
@@ -963,6 +1005,7 @@ module.exports = {
       tug: 'heavy',
       hookset: 'Precision',
       version: 3,
+      patch: 5.31,
     },
     '31601': {
       id_version: '31601-3',
@@ -985,6 +1028,7 @@ module.exports = {
       tug: 'heavy',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31602': {
       id_version: '31602-3',
@@ -1007,6 +1051,7 @@ module.exports = {
       tug: 'heavy',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
     '31603': {
       id_version: '31603-3',
@@ -1029,6 +1074,7 @@ module.exports = {
       tug: 'heavy',
       hookset: 'Powerful',
       version: 3,
+      patch: 5.31,
     },
   },
   SIMPLE_TIPS: [

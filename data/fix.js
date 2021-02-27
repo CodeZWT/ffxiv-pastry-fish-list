@@ -1349,6 +1349,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [237],
+      patch: 5.2,
     },
     28938: {
       _id: 28938,
@@ -1370,6 +1371,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [237],
+patch: 5.2,
     },
     28939: {
       _id: 28939,
@@ -1391,6 +1393,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [237],
+      patch: 5.2,
     },
     28940: {
       _id: 28940,
@@ -1412,6 +1415,7 @@ module.exports = {
       notAvailableWeatherSet: [3, 4],
       time: 0,
       locations: [243],
+      patch: 5.2,
     },
     28941: {
       _id: 28941,
@@ -1433,6 +1437,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [239],
+      patch: 5.2,
     },
     28942: {
       _id: 28942,
@@ -1454,6 +1459,7 @@ module.exports = {
       notAvailableWeatherSet: [8],
       time: 0,
       locations: [237],
+      patch: 5.2,
     },
     29718: {
       _id: 29718,
@@ -1475,6 +1481,7 @@ module.exports = {
       notAvailableWeatherSet: [16],
       time: 0,
       locations: [243],
+      patch: 5.2,
     },
     29719: {
       _id: 29719,
@@ -1496,6 +1503,7 @@ module.exports = {
       notAvailableWeatherSet: [3, 4],
       time: 0,
       locations: [237],
+      patch: 5.2,
     },
     29720: {
       _id: 29720,
@@ -1517,6 +1525,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [243],
+      patch: 5.2,
     },
     29721: {
       _id: 29721,
@@ -1538,6 +1547,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [237],
+      patch: 5.2,
     },
     29722: {
       _id: 29722,
@@ -1559,6 +1569,7 @@ module.exports = {
       notAvailableWeatherSet: [5, 6],
       time: 0,
       locations: [239],
+      patch: 5.2,
     },
     29723: {
       _id: 29723,
@@ -1580,6 +1591,7 @@ module.exports = {
       notAvailableWeatherSet: [7, 8],
       time: 0,
       locations: [237],
+      patch: 5.2,
     },
     29724: {
       _id: 29724,
@@ -1601,6 +1613,7 @@ module.exports = {
       notAvailableWeatherSet: [6],
       time: 0,
       locations: [239],
+      patch: 5.2,
     },
     29725: {
       _id: 29725,
@@ -1622,6 +1635,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [239],
+      patch: 5.2,
     },
     29726: {
       _id: 29726,
@@ -1643,6 +1657,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [239],
+      patch: 5.2,
     },
     29727: {
       _id: 29727,
@@ -1664,6 +1679,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [239],
+      patch: 5.2,
     },
     29728: {
       _id: 29728,
@@ -1685,6 +1701,7 @@ module.exports = {
       notAvailableWeatherSet: [14],
       time: 0,
       locations: [241],
+      patch: 5.2,
     },
     29729: {
       _id: 29729,
@@ -1706,6 +1723,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [241],
+      patch: 5.2,
     },
     29730: {
       _id: 29730,
@@ -1727,6 +1745,7 @@ module.exports = {
       notAvailableWeatherSet: [11, 14],
       time: 0,
       locations: [241],
+      patch: 5.2,
     },
     29731: {
       _id: 29731,
@@ -1748,6 +1767,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [241],
+      patch: 5.2,
     },
     29732: {
       _id: 29732,
@@ -1769,6 +1789,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [241],
+patch: 5.2,
     },
     29733: {
       _id: 29733,
@@ -1790,6 +1811,7 @@ module.exports = {
       notAvailableWeatherSet: [3, 4],
       time: 0,
       locations: [241],
+      patch: 5.2,
     },
     29734: {
       _id: 29734,
@@ -1811,6 +1833,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [237],
+      patch: 5.2,
     },
     29735: {
       _id: 29735,
@@ -1832,6 +1855,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [241],
+      patch: 5.2,
     },
     29736: {
       _id: 29736,
@@ -1853,6 +1877,7 @@ module.exports = {
       notAvailableWeatherSet: [15, 16],
       time: 0,
       locations: [243],
+      patch: 5.2,
     },
     29737: {
       _id: 29737,
@@ -1874,6 +1899,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [243],
+      patch: 5.2,
     },
     29738: {
       _id: 29738,
@@ -1895,6 +1921,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [243],
+      patch: 5.2,
     },
     29739: {
       _id: 29739,
@@ -1916,6 +1943,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [239],
+      patch: 5.2,
     },
     29740: {
       _id: 29740,
@@ -1937,6 +1965,7 @@ module.exports = {
       notAvailableWeatherSet: [3, 4],
       time: 0,
       locations: [239],
+      patch: 5.2,
     },
     29741: {
       _id: 29741,
@@ -1958,6 +1987,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [243],
+      patch: 5.2,
     },
     29742: {
       _id: 29742,
@@ -1979,6 +2009,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [241],
+      patch: 5.2,
     },
     29743: {
       _id: 29743,
@@ -2000,6 +2031,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [243],
+      patch: 5.2,
     },
     29744: {
       _id: 29744,
@@ -2023,6 +2055,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [237],
+      patch: 5.2,
     },
     29745: {
       _id: 29745,
@@ -2046,6 +2079,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [239],
+      patch: 5.2,
     },
     29746: {
       _id: 29746,
@@ -2069,6 +2103,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [241],
+      patch: 5.2,
     },
     29747: {
       _id: 29747,
@@ -2092,6 +2127,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [243],
+      patch: 5.2,
     },
     29748: {
       _id: 29748,
@@ -2113,6 +2149,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [244],
+      patch: 5.2,
     },
     29749: {
       _id: 29749,
@@ -2134,6 +2171,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [238],
+      patch: 5.2,
     },
     29750: {
       _id: 29750,
@@ -2155,6 +2193,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [238],
+      patch: 5.2,
     },
     29751: {
       _id: 29751,
@@ -2176,6 +2215,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 2,
       locations: [238],
+      patch: 5.2,
     },
     29752: {
       _id: 29752,
@@ -2197,6 +2237,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [238],
+ patch: 5.2,
     },
     29753: {
       _id: 29753,
@@ -2218,6 +2259,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 1,
       locations: [238],
+patch: 5.2,
     },
     29754: {
       _id: 29754,
@@ -2239,6 +2281,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [238],
+      patch: 5.2,
     },
     29755: {
       _id: 29755,
@@ -2260,6 +2303,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 1,
       locations: [240],
+      patch: 5.2,
     },
     29756: {
       _id: 29756,
@@ -2281,6 +2325,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 1,
       locations: [238],
+      patch: 5.2,
     },
     29757: {
       _id: 29757,
@@ -2302,6 +2347,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 2,
       locations: [240],
+      patch: 5.2,
     },
     29758: {
       _id: 29758,
@@ -2323,6 +2369,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [240],
+patch: 5.2,
     },
     29759: {
       _id: 29759,
@@ -2344,6 +2391,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [240],
+patch: 5.2,
     },
     29760: {
       _id: 29760,
@@ -2365,6 +2413,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [240],
+      patch: 5.2,
     },
     29761: {
       _id: 29761,
@@ -2386,6 +2435,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [240],
+      patch: 5.2,
     },
     29762: {
       _id: 29762,
@@ -2407,6 +2457,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 3,
       locations: [242],
+      patch: 5.2,
     },
     29763: {
       _id: 29763,
@@ -2428,6 +2479,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 3,
       locations: [240],
+      patch: 5.2,
     },
     29764: {
       _id: 29764,
@@ -2449,6 +2501,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 2,
       locations: [244],
+      patch: 5.2,
     },
     29765: {
       _id: 29765,
@@ -2470,6 +2523,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 2,
       locations: [240],
+      patch: 5.2,
     },
     29766: {
       _id: 29766,
@@ -2491,6 +2545,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [238],
+      patch: 5.2,
     },
     29767: {
       _id: 29767,
@@ -2512,6 +2567,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 1,
       locations: [242],
+ patch: 5.2,
     },
     29768: {
       _id: 29768,
@@ -2533,6 +2589,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [242],
+      patch: 5.2,
     },
     29769: {
       _id: 29769,
@@ -2554,6 +2611,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [242],
+      patch: 5.2,
     },
     29770: {
       _id: 29770,
@@ -2575,6 +2633,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 1,
       locations: [242],
+      patch: 5.2,
     },
     29771: {
       _id: 29771,
@@ -2596,6 +2655,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [244],
+      patch: 5.2,
     },
     29772: {
       _id: 29772,
@@ -2617,6 +2677,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [242],
+ patch: 5.2,
     },
     29773: {
       _id: 29773,
@@ -2638,6 +2699,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 3,
       locations: [244],
+      patch: 5.2,
     },
     29774: {
       _id: 29774,
@@ -2659,6 +2721,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 3,
       locations: [242],
+      patch: 5.2,
     },
     29775: {
       _id: 29775,
@@ -2680,6 +2743,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [242],
+      patch: 5.2,
     },
     29776: {
       _id: 29776,
@@ -2701,6 +2765,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [244],
+      patch: 5.2,
     },
     29777: {
       _id: 29777,
@@ -2722,6 +2787,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 3,
       locations: [244],
+patch: 5.2,
     },
     29778: {
       _id: 29778,
@@ -2743,6 +2809,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [244],
+      patch: 5.2,
     },
     29779: {
       _id: 29779,
@@ -2764,6 +2831,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [240],
+      patch: 5.2,
     },
     29780: {
       _id: 29780,
@@ -2785,6 +2853,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [242],
+ patch: 5.2,
     },
     29781: {
       _id: 29781,
@@ -2806,6 +2875,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 0,
       locations: [244],
+      patch: 5.2,
     },
     29782: {
       _id: 29782,
@@ -2827,6 +2897,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 2,
       locations: [238],
+      patch: 5.2,
     },
     29783: {
       _id: 29783,
@@ -2848,6 +2919,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 2,
       locations: [244],
+      patch: 5.2,
     },
     29784: {
       _id: 29784,
@@ -2869,6 +2941,7 @@ module.exports = {
       notAvailableWeatherSet: [1],
       time: 0,
       locations: [237],
+      patch: 5.2,
     },
     29785: {
       _id: 29785,
@@ -2890,6 +2963,7 @@ module.exports = {
       notAvailableWeatherSet: [1],
       time: 0,
       locations: [239],
+      patch: 5.2,
     },
     29786: {
       _id: 29786,
@@ -2911,6 +2985,7 @@ module.exports = {
       notAvailableWeatherSet: [1],
       time: 0,
       locations: [243],
+      patch: 5.2,
     },
     29787: {
       _id: 29787,
@@ -2932,6 +3007,7 @@ module.exports = {
       notAvailableWeatherSet: [1],
       time: 0,
       locations: [241],
+      patch: 5.2,
     },
     29788: {
       _id: 29788,
@@ -2956,6 +3032,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 3,
       locations: [238],
+      patch: 5.2,
     },
     29789: {
       _id: 29789,
@@ -2979,6 +3056,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 3,
       locations: [240],
+      patch: 5.2,
     },
     29790: {
       _id: 29790,
@@ -3003,6 +3081,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 2,
       locations: [242],
+      patch: 5.2,
     },
     29791: {
       _id: 29791,
@@ -3026,6 +3105,7 @@ module.exports = {
       notAvailableWeatherSet: [],
       time: 1,
       locations: [244],
+      patch: 5.2,
     },
   },
   OCEAN_FISHING_BONUS: {

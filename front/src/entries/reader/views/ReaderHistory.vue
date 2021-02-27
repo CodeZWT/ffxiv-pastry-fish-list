@@ -121,29 +121,21 @@
       <div v-else>
         <v-card>
           <v-card-text>
-            <div class="text-h6 text-center">
-              无历史记录
-            </div>
+            <div class="text-h6 text-center">无历史记录</div>
           </v-card-text>
         </v-card>
       </div>
     </div>
     <v-dialog v-model="showClearConfirmDialog">
       <v-card>
-        <v-card-title>
-          确认清空所有记录吗？
-        </v-card-title>
+        <v-card-title> 确认清空所有记录吗？ </v-card-title>
         <v-card-text>
           此操作无法恢复！<br />
           导出的CSV文件无法用来恢复记录！
         </v-card-text>
         <v-card-actions class="d-flex justify-end">
-          <v-btn @click="showClearConfirmDialog = false">
-            取消
-          </v-btn>
-          <v-btn color="error" @click="clearHistory">
-            清空
-          </v-btn>
+          <v-btn @click="showClearConfirmDialog = false"> 取消 </v-btn>
+          <v-btn color="error" @click="clearHistory"> 清空 </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -162,6 +154,10 @@ import db from '@/plugins/db'
 import capitalize from 'lodash/capitalize'
 import EorzeaTime from '@/utils/Time'
 import Weather from '@/utils/Weather'
+import DATA from 'Data/data'
+import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
+import PLACE_NAMES from 'Data/placeNames'
+
 // import TEST from 'Data/test'
 
 const INITIAL_LOADING_CNT = 100
@@ -359,8 +355,10 @@ export default {
           时间: date.toLocaleTimeString('zh-CN', { hour12: false }),
           ET: et.toString(),
           前置天气: Weather.weatherTextOf(
-            spotId > 0 && !this.isOceanFishingSpot(spotId) && !this.isDiademSpot(spotId)
-              ? Weather.prevWeatherAtSpot(spotId, et)
+            spotId > 0
+              ? this.isOceanFishingSpot(spotId) || this.isDiademSpot(spotId)
+                ? record.prevWeatherDetected
+                : Weather.prevWeatherAtSpot(spotId, et)
               : undefined
           ),
           天气: Weather.weatherTextOf(
@@ -371,11 +369,24 @@ export default {
               : undefined
           ),
           钓场: DataUtil.getName(
-            spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name_chs: '未检测到钓场' }
+            spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name_chs: '' }
           ),
+          地区:
+            spotId > 0
+              ? PLACE_NAMES[
+                  DATA.WEATHER_RATES[DataUtil.FISHING_SPOTS[spotId]?.territory_id]
+                    ?.zone_id ??
+                    (this.isDiademSpot(spotId)
+                      ? DIADEM_ZONE
+                      : this.isOceanFishingSpot(spotId)
+                      ? OCEAN_FISHING_ZONE
+                      : 0)
+                ]
+              : '',
           鱼: DataUtil.getItemName(record.fishId) ?? '未知',
           HQ: record.hq ? '是' : '否',
           '长度（星寸）': record.size > 0 ? (record.size / 10).toFixed(1) : '',
+          鱼版本: DataUtil.toPatchText(DataUtil.getFishPatch(record.fishId)),
           脱钩: record.missed ? '是' : '否',
           未提钩: record.cancelled ? '是' : '否',
           鱼饵: DataUtil.getItemName(record.baitId),
@@ -395,7 +406,7 @@ export default {
           耐心II: record.catchAndRelease ? '是' : '否',
           鱼眼: record.fishEyes ? '是' : '否',
           捕鱼人之识: record.fishersIntuition ? '是' : '否',
-          版本: record.patch ?? 5.35,
+          记录版本: DataUtil.toPatchText(record.patch ?? 5.35),
         }
       })
     },

@@ -1141,6 +1141,7 @@ export default {
     if (DevelopmentModeUtil.isElectron()) {
       window.electron?.ipcRenderer
         ?.on('fishCaught', (event, data) => {
+          // Be care of spear fish!
           const fishId = data?.fishId
           if (this.readerSetting.autoSetCompleted && fishId > 0) {
             // this.lastCatchFishId = fishId
@@ -1622,10 +1623,7 @@ export default {
         previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
         weatherSetDetail: this.getWeather(fish.weatherSet),
         patch: fish.patch,
-        patchText:
-          fish.patch.toString().indexOf('.') !== -1
-            ? fish.patch.toString()
-            : fish.patch.toFixed(1),
+        patchText: DataUtil.toPatchText(fish.patch),
         folklore: null,
         collectable: fish.collectable,
         isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,

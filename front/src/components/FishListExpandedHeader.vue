@@ -129,10 +129,7 @@ export default {
         icon: this.getItemIconClass(this.value._id),
         name: this.getItemName(this.value._id),
         patch: this.value.patch,
-        patchText:
-          this.value.patch.toString().indexOf('.') !== -1
-            ? this.value.patch.toString()
-            : this.value.patch.toFixed(1),
+        patchText: DataUtil.toPatchText(this.value.patch),
         isFuturePatch: this.value.patch > DataUtil.PATCH_AVAILABLE_MAX,
         folklore: folklore && {
           id: folklore._id,

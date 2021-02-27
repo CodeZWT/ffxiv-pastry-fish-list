@@ -20,6 +20,8 @@ import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import DATA from 'Data/data'
 import { LIVING_LEGENDS } from 'Data/translation'
 import { CURRENT_PATCH_VERSION } from 'Data/constants'
+import { OCEAN_FISHING_FISH } from 'Data/fix'
+import { FISH as DIADEM_FISH } from 'Data/diadem'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -849,6 +851,22 @@ export default {
 
   isFishId(id) {
     return !!this.FISH_DATA[id]
+  },
+
+  toPatchText(patch) {
+    return patch
+      ? patch.toString().indexOf('.') !== -1
+        ? patch.toString()
+        : patch.toFixed(1)
+      : ''
+  },
+
+  getFishPatch(fishId) {
+    return (
+      this.FISH_DATA[fishId]?.patch ||
+      OCEAN_FISHING_FISH[fishId]?.patch ||
+      DIADEM_FISH[fishId]?.patch
+    )
   },
   // FUNCTION END
 

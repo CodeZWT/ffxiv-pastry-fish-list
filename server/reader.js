@@ -14,6 +14,8 @@ const INTERVAL_MINUTE = 60000
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * INTERVAL_MINUTE
 // in dev load directly
 // in prod set the required files by set the packaged patch manually
+// log.transports.file.level = 'info'
+
 const machinaOptions = isDev
   ? {
       monitorType: 'WinPCap',
@@ -374,7 +376,7 @@ function resetRecord() {
 
 onFFXIVEvent('eventPlay', (packet) => {
   if (packet.eventId === FISHING_EVENT) {
-    log.debug('eventPlay', actionTimeline[packet.param5], packet)
+    // log.debug('eventPlay', actionTimeline[packet.param5], packet)
     switch (packet.scene) {
       case 1:
         status.isFishing = true
@@ -415,6 +417,7 @@ function applyCurrentStatusOnStart(record, status) {
   record.patch = CURRENT_PATCH_VERSION
   record.region = 'CN'
   record.weatherDetected = status.weather
+  record.prevWeatherDetected = status.previousWeather
   record.surfaceScaleFishId = record.surfaceScale ? status.prevFishId : -1
 
   status.mooch = false
@@ -468,17 +471,20 @@ function getTug(value) {
 // })
 
 onFFXIVEvent('eventPlay4', (packet) => {
-  currentRecord.hookset = getHookset(packet.param1)
-  currentRecord.missed = !actionTimeline[packet.param2].subType.includes('landing')
-  applyCurrentStatusOnLanding(currentRecord, status)
-  // log.debug(
-  //   'eventPlay4',
-  //   actionTimeline[packet.param1],
-  //   actionTimeline[packet.param2],
-  //   actionTimeline[packet.param3],
-  //   actionTimeline[packet.param4],
-  //   packet
-  // )
+  if (actionTimeline[packet.param1] != null) {
+    currentRecord.hookset = getHookset(packet.param1)
+    currentRecord.missed = actionTimeline[packet.param2] != null &&
+      !actionTimeline[packet.param2].subType.includes('landing')
+    applyCurrentStatusOnLanding(currentRecord, status)
+    // log.debug(
+    //   'eventPlay4',
+    //   actionTimeline[packet.param1],
+    //   actionTimeline[packet.param2],
+    //   actionTimeline[packet.param3],
+    //   actionTimeline[packet.param4],
+    //   packet
+    // )
+  }
 })
 const actionTimeline = {
   271: { id: 271, type: 'fishing', subType: 'idle' }, // 持竿
@@ -568,21 +574,31 @@ function getHookset(hookset) {
 
 // caught fish
 onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
-  if (records.length === 0) return
-  const prevRecord = records[records.length - 1]
-  prevRecord.fishId = packet.param1
-  prevRecord.hq = ((packet.param3 >> 4) & 1) === 1
-  // not used
-  // currentRecord.moochable = (packet.param3 & 0x0000000F) === 5
-  prevRecord.size = packet.param2 >> 16
+  const caughtFishId = packet.param1
+  if (status.isFishing) {
+    log.info('fish caught', caughtFishId)
+    fishCaughtCallback({fishId: caughtFishId})
+    if (records.length === 0) return
+    const prevRecord = records[records.length - 1]
+    prevRecord.fishId = caughtFishId
+    prevRecord.hq = ((packet.param3 >> 4) & 1) === 1
+    // not used
+    // currentRecord.moochable = (packet.param3 & 0x0000000F) === 5
+    prevRecord.size = packet.param2 >> 16
 
-  status.prevFishId = prevRecord.fishId
+    status.prevFishId = prevRecord.fishId
 
-  log.info('fish caught', prevRecord)
-  fishCaughtCallback(prevRecord)
-  fishRecordCallback(prevRecord)
-  readableRecords[readableRecords.length - 1] = toReadable(prevRecord)
-  // saveCurrentRecord()
+    log.info('fish caught record', prevRecord)
+    // fishCaughtCallback(prevRecord)
+    fishRecordCallback(prevRecord)
+    readableRecords[readableRecords.length - 1] = toReadable(prevRecord)
+    // saveCurrentRecord()
+  } else {
+    log.info('spear fish caught', caughtFishId)
+    fishCaughtCallback({fishId: caughtFishId})
+  }
+
+
 })
 
 onFFXIVEvent('someDirectorUnk4', (packet) => {
@@ -671,7 +687,7 @@ function getString(uint8Array, offset, length) {
 onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
   status.previousWeather = status.weather
   status.weather = packet.data && +packet.data[0]
-  // log.debug('WeatherChange', status.weather)
+  log.debug('WeatherChange', status.weather)
 
   if (status.weather === SPECTRAL_CURRENT_WEATHER_ID) {
     status.spectralCurrentEndTime = Date.now() + getSpectralCurrentCountDownTotal()
