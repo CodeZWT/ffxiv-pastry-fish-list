@@ -306,9 +306,9 @@ onFFXIVEvent(
 onFFXIVEvent(
   'initZone',
   (packet) => {
+    status.effects = new Set()
     if (packet.zoneID) {
       status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
-      // status.weather = undefined
       log.debug('initZone', status.zoneId)
     }
   },
