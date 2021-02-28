@@ -1107,7 +1107,8 @@ export default {
       handler: function(fishListTimePart) {
         const newSortedFishIds = _.sortBy(fishListTimePart, [
           'countDown.type',
-          'countDown.time',
+          'countDown.timePoint',
+          'id',
         ]).map(it => it.id)
         if (!_.isEqual(this.sortedFishIds, newSortedFishIds)) {
           this.sortedFishIds = newSortedFishIds
