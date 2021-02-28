@@ -36,7 +36,7 @@
         </v-row>
         <v-row no-gutters>
           <v-col class="d-flex align-center">
-            <div class="mr-2">显示未提钩记录</div>
+            <div class="mr-2">显示未知鱼记录</div>
             <v-switch v-model="showIgnoredRecord" inset />
           </v-col>
           <v-col class="d-flex align-center">
@@ -69,9 +69,9 @@
                     <item-icon :icon-class="record.fish.icon" small />
                     <div>
                       <span v-if="record.missed">{{ '脱钩' }}</span>
-                      <span v-else-if="record.cancelled">{{ '未提钩' }}</span>
+                      <span v-else-if="record.cancelled">{{ '未知鱼' }}</span>
                       <span v-else>
-                        {{ record.fish.name || '未提钩' }}
+                        {{ record.fish.name || '未知鱼' }}
                         <i class="xiv hq" v-if="record.hq"></i>
                       </span>
                       <div class="text-subtitle-2 d-flex">
