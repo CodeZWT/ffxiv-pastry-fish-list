@@ -4,6 +4,19 @@
       <v-row no-gutters>
         <v-col cols="12" class="d-flex align-center">
           <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+            区服
+          </div>
+          <v-btn-toggle v-model="region" rounded dense mandatory active-class="primary">
+            <v-btn small>
+              国服
+            </v-btn>
+            <v-btn small>
+              国际服
+            </v-btn>
+          </v-btn-toggle>
+        </v-col>
+        <v-col cols="12" class="d-flex align-center">
+          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
             自动标记已完成
           </div>
           <v-switch inset v-model="lazySetting.autoSetCompleted" />
@@ -119,6 +132,7 @@
 import { mapGetters, mapMutations } from 'vuex'
 import isEqual from 'lodash/isEqual'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import { REGIONS } from 'Data/constants'
 
 export default {
   name: 'ReaderSetting',
@@ -139,6 +153,18 @@ export default {
     },
     themeClass() {
       return this.$vuetify.theme.dark ? 'theme--dark' : 'theme--light'
+    },
+    region: {
+      get() {
+        return REGIONS.indexOf(this.lazySetting.region)
+      },
+      set(regionIndex) {
+        const region = REGIONS[regionIndex]
+        this.lazySetting.region = region
+        window.electron?.ipcRenderer?.send('restartReader', {
+          region,
+        })
+      },
     },
     ...mapGetters(['readerSetting']),
   },

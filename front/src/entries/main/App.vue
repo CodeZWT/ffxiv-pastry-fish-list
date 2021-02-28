@@ -1048,6 +1048,7 @@ export default {
       'baitIdsForNotification',
     ]),
     ...mapGetters([
+      'readerRegion',
       'fishEyesUsed',
       'showChromeBugDialog',
       'opacity',
@@ -1212,6 +1213,8 @@ export default {
       event.preventDefault()
     })
     this.finishReloadPage()
+
+    this.sendElectronEvent('restartReader', { region: this.readerRegion })
   },
   async mounted() {
     // setTimeout(async () => {

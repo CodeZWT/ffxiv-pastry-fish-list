@@ -47,9 +47,6 @@ async function init() {
     reader && reader.webContents.send('fishingData', data)
     readerSpotStatistics && readerSpotStatistics.webContents.send('fishingData', data)
   })
-  FishingDataReader.start(() => {
-    log.info('Machina started!')
-  })
   FishingDataReader.onFishCaught((data) => {
     main.webContents.send('fishCaught', data)
   })
@@ -63,6 +60,16 @@ async function init() {
   setInterval(updateIfNeeded, CONSTANTS.INTERVAL_MINUTE * 10)
 
   ipcMain
+    .on('startReader', (event, options) => {
+      FishingDataReader.start(options, () => {
+        log.info('Machina started!', options)
+      })
+    })
+    .on('restartReader', (event, options) => {
+      FishingDataReader.restart(options, () => {
+        log.info('Machina restarted!', options)
+      })
+    })
     .on('startUpdate', () => {
       quitAndSetup()
     })

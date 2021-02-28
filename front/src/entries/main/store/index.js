@@ -46,6 +46,9 @@ export default new Vuex.Store({
     viewedFeatures: LocalStorageUtil.loadViewedFeatures(CONSTANTS.FEATURE_GROUP_MAIN),
   },
   getters: {
+    readerRegion: state => {
+      return state.userData.reader.region
+    },
     // baitFilter: state => {
     //   return state.baitFilter
     // },

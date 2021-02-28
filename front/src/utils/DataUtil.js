@@ -19,7 +19,7 @@ import FIX from 'Data/fix'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import DATA from 'Data/data'
 import { LIVING_LEGENDS } from 'Data/translation'
-import { CURRENT_PATCH_VERSION } from 'Data/constants'
+import { CN_PATCH_VERSION } from 'Data/constants'
 import { OCEAN_FISHING_FISH } from 'Data/fix'
 import { FISH as DIADEM_FISH } from 'Data/diadem'
 
@@ -953,7 +953,7 @@ export default {
   },
 
   PATCH_MAX: 5.4,
-  PATCH_AVAILABLE_MAX: CURRENT_PATCH_VERSION,
+  PATCH_AVAILABLE_MAX: CN_PATCH_VERSION,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
   COMPLETE_FILTER_TYPES: COMPLETE_FILTER_TYPES,
@@ -1125,6 +1125,7 @@ export default {
     showChromeBugDialog: true,
     fishEyesUsed: false,
     reader: {
+      region: 'CN',
       autoSetCompleted: true,
       autoSetCompletedOnlyHQ: false,
       main: {

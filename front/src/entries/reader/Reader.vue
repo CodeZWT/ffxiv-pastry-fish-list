@@ -3,7 +3,9 @@
     <template v-if="hideBar"></template>
     <v-system-bar app v-else-if="showTimerBar">
       <v-img :src="readerIcon" max-height="20" max-width="20" />
-      <span class="ml-1">渔捞</span>
+      <span class="mx-1">渔捞</span>
+      <span v-if="readerRegion === 'CN'">国服{{ CN_PATCH_VERSION }}</span>
+      <span v-else>国际服{{ GLOBAL_PATCH_VERSION }}</span>
       <v-spacer />
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
@@ -55,11 +57,12 @@ import WindowUtil from './util/WindowUtil'
 import '@thewakingsands/axis-font-icons'
 import EorzeaTime from '@/utils/Time'
 import DataUtil from '@/utils/DataUtil'
-import { mapMutations, mapState } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import READER_ICON from 'Assets/reader.png'
 import SETTING_ICON from 'Assets/setting.png'
 import { ReaderFeatures } from 'Data/newFeatures'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
+import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 
 export default {
   name: 'Reader',
@@ -69,6 +72,8 @@ export default {
     readerIcon: READER_ICON,
     settingIcon: SETTING_ICON,
     SettingFeatureId: ReaderFeatures.Setting,
+    CN_PATCH_VERSION: CN_PATCH_VERSION,
+    GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
   }),
   computed: {
     showTimerBar() {
@@ -93,6 +98,7 @@ export default {
       return DataUtil.formatDateTime(this.now, 'HH:mm')
     },
     ...mapState(['sounds', 'readerTimerMiniMode']),
+    ...mapGetters(['readerRegion']),
   },
   async created() {
     setInterval(() => {
