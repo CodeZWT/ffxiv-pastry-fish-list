@@ -42,6 +42,15 @@ const routes = [
       ),
   },
   {
+    path: '/aquarium',
+    name: 'AquariumPage',
+    component: () =>
+      import(
+        /* webpackChunkName: "aquarium" */
+        '../views/AquariumPage'
+      ),
+  },
+  {
     path: '/migration',
     name: 'MigrationPage',
     component: MigrationPage,

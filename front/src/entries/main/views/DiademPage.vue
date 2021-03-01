@@ -215,7 +215,6 @@ export default {
 
 .detail-wrapper
   width: 100%
-
   height: 100%
   overflow-scrolling: auto
   overflow-y: scroll
