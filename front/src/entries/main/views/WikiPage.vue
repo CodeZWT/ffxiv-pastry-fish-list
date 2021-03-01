@@ -403,7 +403,6 @@ export default {
     searchResults: { text: '', nodeIds: [] },
     forceShowComponents: undefined,
     mode: 'normal',
-    FISH_ID_TO_WIKI_IDS: DataUtil.generateFishId2WikiId(FIX.FISH),
     isElectron: DevelopmentModeUtil.isElectron(),
   }),
   computed: {
@@ -619,7 +618,7 @@ export default {
     },
     getSpotsOfType(type) {
       return this.allCompletedFish.flatMap(fishId => {
-        const wikiIds = this.FISH_ID_TO_WIKI_IDS[fishId]
+        const wikiIds = DataUtil.FISH_ID_TO_WIKI_IDS[fishId]
         if (wikiIds) {
           const spotFishId = wikiIds[0].split('-')[3]
           const fishType = this.lazyTransformedFishDict[spotFishId].type

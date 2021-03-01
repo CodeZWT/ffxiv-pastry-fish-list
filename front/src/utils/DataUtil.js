@@ -173,6 +173,23 @@ function mergeArray(objValue, srcValue) {
     return _.uniq(srcValue).filter(it => it != null)
   }
 }
+
+function generateFishId2WikiId(fishDict) {
+  const dict = {}
+  Object.keys(fishDict)
+    .filter(id => id > 1000000)
+    .forEach(spotFishId => {
+      const itemId = toItemId(spotFishId)
+      dict[itemId] = [
+        ...(dict[itemId] ?? []),
+        ...fishDict[spotFishId].locations.map(
+          spotId => `spot-${spotId}-fish-${spotFishId}`
+        ),
+      ]
+    })
+  return dict
+}
+
 export default {
   LINKS: {
     PASTRY_FISH: {
@@ -731,22 +748,6 @@ export default {
   TIP3_FISH_IDS: TIP3_FISH_IDS,
   TIP5_FISH_IDS: TIP5_FISH_IDS,
 
-  generateFishId2WikiId(fishDict) {
-    const dict = {}
-    Object.keys(fishDict)
-      .filter(id => id > 1000000)
-      .forEach(spotFishId => {
-        const itemId = toItemId(spotFishId)
-        dict[itemId] = [
-          ...(dict[itemId] ?? []),
-          ...fishDict[spotFishId].locations.map(
-            spotId => `spot-${spotId}-fish-${spotFishId}`
-          ),
-        ]
-      })
-    return dict
-  },
-
   generateBaitFishItems(fishList, completeTypes, bigFishTypes, completedFishIds) {
     const completedFishIdSet = new Set(completedFishIds)
     return fishList
@@ -1198,4 +1199,5 @@ export default {
   FISH_DATA: getCombinedFishData(),
   ITEMS: _.merge(DATA_CN.ITEMS, DevelopmentModeUtil.isTest() ? FIX.TEST_ITEMS : {}),
   FISHING_SPOTS: _.merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
+  FISH_ID_TO_WIKI_IDS: generateFishId2WikiId(FIX.FISH),
 }
