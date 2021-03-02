@@ -14,7 +14,7 @@
           min-height="240"
           transition="fade-transition"
         >
-          <v-card class="rounded-xl" elevation="8">
+          <v-card class="rounded-xl" elevation="8" style="overflow: hidden">
             <v-card-text>
               <div class="d-flex align-center">
                 <item-icon :icon-class="fish.icon" />
@@ -39,16 +39,7 @@
                 </div>
               </div>
             </v-card-text>
-            <v-img :src="fish.imageUrl">
-              <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-progress-circular
-                    indeterminate
-                    color="grey lighten-5"
-                  ></v-progress-circular>
-                </v-row>
-              </template>
-            </v-img>
+            <gif-loader :src="fish.gif" :cover-src="fish.cover" />
           </v-card>
         </v-lazy>
       </v-col>
@@ -63,10 +54,11 @@ import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import { OCEAN_FISHING_FISH } from 'Data/fix'
+import GifLoader from '@/components/basic/GifLoader'
 
 export default {
   name: 'AquariumPage',
-  components: { ItemIcon },
+  components: { GifLoader, ItemIcon },
   data() {
     return {
       isElectron: DevelopmentModeUtil.isElectron(),
@@ -88,10 +80,8 @@ export default {
           patch: DataUtil.toPatchText(fishData?.patch),
           water: DataUtil.getName(AQUARIUM_WATER[aquarium.aquariumWater]),
           size: AQUARIUM_FISH_SIZE[aquarium.size].size,
-          // TODO: remove test code
-          imageUrl:
-            'https://cdn.jsdelivr.net/gh/ricecake404/images@main/aquarium/12739.gif' ||
-            ImgUtil.getAquariumImgUrl(aquarium.id),
+          gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}.gif`),
+          cover: ImgUtil.getAquariumImgUrl(`${aquarium.id}-cover.jpg`),
           available: aquarium.available,
         }
       })

@@ -694,6 +694,7 @@ import { MainFeatures } from 'Data/newFeatures'
 import ToggleButton from '@/components/basic/ToggleButton'
 import HelpDialog from '@/components/Dialog/HelpDialog'
 import FishEyesToggleButton from '@/components/FishEyesToggleButton'
+import isEqual from 'lodash/isEqual'
 
 export default {
   name: 'App',
@@ -1125,8 +1126,10 @@ export default {
       },
       deep: true,
     },
-    listFishCnt(listFishCnt) {
-      this.$emit('fishCntUpdated', listFishCnt)
+    listFishCnt(listFishCnt, oldValue) {
+      if (!isEqual(listFishCnt, oldValue)) {
+        this.$emit('fishCntUpdated', listFishCnt)
+      }
     },
     // weatherChangeTrigger() {
     // this.updateWeatherChangePart(this.now)
