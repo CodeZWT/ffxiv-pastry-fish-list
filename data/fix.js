@@ -10272,7 +10272,35 @@ module.exports = {
       placeName: 0,
     },
   },
-  fishAquarium: {
+  AQUARIUM_WATER: {
+    1: {
+      id: 1,
+      name_chs: '淡水',
+    },
+    2: {
+      id: 2,
+      name_chs: '海水',
+    },
+  },
+  AQUARIUM_FISH_SIZE: {
+    1: {
+      id: 1,
+      size: 'S',
+    },
+    2: {
+      id: 2,
+      size: 'M',
+    },
+    3: {
+      id: 3,
+      size: 'L',
+    },
+    4: {
+      id: 4,
+      size: 'XL',
+    },
+  },
+  AQUARIUMS: {
     4874: {
       id: 4874,
       aquariumWater: 2,
