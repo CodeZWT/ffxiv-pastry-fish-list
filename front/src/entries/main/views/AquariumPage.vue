@@ -18,11 +18,17 @@
             <v-card-text>
               <div class="d-flex align-center">
                 <item-icon :icon-class="fish.icon" />
-                <div class="d-flex">
-                  <div>
+                <div>
+                  <div class="d-flex">
                     <div>{{ fish.name }}</div>
-                    <v-badge :content="fish.patch" inline></v-badge>
+                    <v-badge
+                      v-if="!fish.available"
+                      color="error"
+                      inline
+                      content="未实装"
+                    ></v-badge>
                   </div>
+                  <v-badge :content="fish.patch" inline></v-badge>
                 </div>
                 <v-spacer />
                 <div>
@@ -82,7 +88,11 @@ export default {
           patch: DataUtil.toPatchText(fishData?.patch),
           water: DataUtil.getName(AQUARIUM_WATER[aquarium.aquariumWater]),
           size: AQUARIUM_FISH_SIZE[aquarium.size].size,
-          imageUrl: ImgUtil.getAquariumImgUrl(aquarium.id),
+          // TODO: remove test code
+          imageUrl:
+            'https://cdn.jsdelivr.net/gh/ricecake404/images@main/aquarium/12739.gif' ||
+            ImgUtil.getAquariumImgUrl(aquarium.id),
+          available: aquarium.available,
         }
       })
     },
