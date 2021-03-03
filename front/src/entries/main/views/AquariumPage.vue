@@ -22,7 +22,13 @@
                   <div class="d-flex">
                     <div>{{ fish.name }}</div>
                     <v-badge
-                      v-if="!fish.available"
+                      v-if="fish.isNew"
+                      color="primary"
+                      inline
+                      content="新"
+                    ></v-badge>
+                    <v-badge
+                      v-if="fish.isFuture"
                       color="error"
                       inline
                       content="未实装"
@@ -70,9 +76,6 @@ export default {
         const spotFishId =
           DataUtil.FISH_ID_TO_WIKI_IDS[aquarium.id]?.[0]?.split('-')?.[3] ?? aquarium.id
         const fishData = DataUtil.FISH_DATA[spotFishId] ?? OCEAN_FISHING_FISH[aquarium.id]
-        if (!fishData) {
-          console.log('aquarium.id, spotFishId')
-        }
         return {
           id: aquarium.id,
           name: DataUtil.getItemName(aquarium.id),
@@ -82,7 +85,8 @@ export default {
           size: AQUARIUM_FISH_SIZE[aquarium.size].size,
           gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}.gif`),
           cover: ImgUtil.getAquariumImgUrl(`${aquarium.id}-cover.jpg`),
-          available: aquarium.available,
+          isNew: aquarium.patch === DataUtil.PATCH_AVAILABLE_MAX,
+          isFuture: aquarium.patch > DataUtil.PATCH_AVAILABLE_MAX,
         }
       })
     },
