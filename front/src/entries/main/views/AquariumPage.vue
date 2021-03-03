@@ -7,6 +7,104 @@
   >
     <v-row>
       <v-card style="width: 100%" class="mx-2">
+        <v-expansion-panels hover flat>
+          <v-expansion-panel class="system">
+            <v-expansion-panel-header class="system">
+              <div style="display: flex; justify-content: center">
+                <div>
+                  <v-icon>mdi-information</v-icon>
+                  说明
+                </div>
+              </div>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-row>
+                <v-col :cols="isMobile ? 12 : 10">
+                  <div style="text-align: center" class="text-subtitle-1">
+                    此页面所有鱼图片均由
+                    <span class="font-weight-bold">轩辕十四@沃仙曦染</span>
+                    提供，感谢大佬的支持！
+                  </div>
+                  <div>
+                    <div>水族箱可切换环境，分为淡水与海水2种，分别对应淡水与海水鱼。</div>
+                    <div>水族箱以尺寸分共有1、2、3、4级水族箱4种。</div>
+                    <div>
+                      各级水族箱分别可容纳不同个数的鱼，且鱼占用的容量总和也有限制。
+                    </div>
+                    <v-simple-table>
+                      <colgroup>
+                        <col span="1" style="width: 12%;" />
+                        <col span="1" style="width: 22%;" />
+                        <col span="1" style="width: 22%;" />
+                        <col span="1" style="width: 22%;" />
+                        <col span="1" style="width: 22%;" />
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>1级水族箱</th>
+                          <th>2级水族箱</th>
+                          <th>3级水族箱</th>
+                          <th>4级水族箱</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>容纳鱼个数</td>
+                          <td>1</td>
+                          <td>2</td>
+                          <td>3</td>
+                          <td>4</td>
+                        </tr>
+                        <tr>
+                          <th>总容量</th>
+                          <td>1</td>
+                          <td>2</td>
+                          <td>4</td>
+                          <td>7</td>
+                        </tr>
+                      </tbody>
+                    </v-simple-table>
+                    <div>
+                      观赏鱼以尺寸分为S、M、L、XL四种，分别占用水族箱容量1，2，4，7格
+                    </div>
+
+                    <v-simple-table>
+                      <colgroup>
+                        <col span="1" style="width: 12%;" />
+                        <col span="1" style="width: 22%;" />
+                        <col span="1" style="width: 22%;" />
+                        <col span="1" style="width: 22%;" />
+                        <col span="1" style="width: 22%;" />
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>S</th>
+                          <th>M</th>
+                          <th>L</th>
+                          <th>XL</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>占用容量</th>
+                          <td>1</td>
+                          <td>2</td>
+                          <td>4</td>
+                          <td>7</td>
+                        </tr>
+                      </tbody>
+                    </v-simple-table>
+                  </div>
+                </v-col>
+                <v-col :cols="isMobile ? 12 : 2">
+                  <v-img :src="aquariumSettingImg" />
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
         <v-card-text>
           <v-row>
             <v-col>
@@ -162,6 +260,7 @@ export default {
   components: { GifLoader, ItemIcon },
   data() {
     return {
+      aquariumSettingImg: ImgUtil.getImgUrl('aquarium-setting.jpg'),
       isElectron: DevelopmentModeUtil.isElectron(),
       sizeIndicesToShow: Object.keys(AQUARIUM_FISH_SIZE).map(it => it - 1),
       waterIndicesToShow: Object.keys(AQUARIUM_WATER).map(it => it - 1),
