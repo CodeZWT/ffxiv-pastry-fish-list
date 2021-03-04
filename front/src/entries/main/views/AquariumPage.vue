@@ -33,11 +33,11 @@
                     </div>
                     <v-simple-table>
                       <colgroup>
-                        <col span="1" style="width: 12%;" />
-                        <col span="1" style="width: 22%;" />
-                        <col span="1" style="width: 22%;" />
-                        <col span="1" style="width: 22%;" />
-                        <col span="1" style="width: 22%;" />
+                        <col span="1" style="width: 12%" />
+                        <col span="1" style="width: 22%" />
+                        <col span="1" style="width: 22%" />
+                        <col span="1" style="width: 22%" />
+                        <col span="1" style="width: 22%" />
                       </colgroup>
                       <thead>
                         <tr>
@@ -71,11 +71,11 @@
 
                     <v-simple-table>
                       <colgroup>
-                        <col span="1" style="width: 12%;" />
-                        <col span="1" style="width: 22%;" />
-                        <col span="1" style="width: 22%;" />
-                        <col span="1" style="width: 22%;" />
-                        <col span="1" style="width: 22%;" />
+                        <col span="1" style="width: 12%" />
+                        <col span="1" style="width: 22%" />
+                        <col span="1" style="width: 22%" />
+                        <col span="1" style="width: 22%" />
+                        <col span="1" style="width: 22%" />
                       </colgroup>
                       <thead>
                         <tr>
@@ -206,39 +206,7 @@
           min-height="240"
           transition="fade-transition"
         >
-          <v-card class="rounded-xl" elevation="8" style="overflow: hidden">
-            <v-card-text>
-              <div class="d-flex align-center">
-                <item-icon :icon-class="fish.icon" />
-                <div>
-                  <div class="d-flex">
-                    <div>{{ fish.name }}</div>
-                    <v-badge
-                      v-if="fish.available === 1"
-                      color="primary"
-                      inline
-                      content="新"
-                    ></v-badge>
-                    <v-badge
-                      v-if="fish.available === 2"
-                      color="error"
-                      inline
-                      content="未实装"
-                    ></v-badge>
-                  </div>
-                  <v-badge :content="fish.patch" inline></v-badge>
-                </div>
-                <v-spacer />
-                <div>
-                  <div class="d-flex flex-column align-end">
-                    <div>{{ fish.size }}</div>
-                    <div>{{ fish.water }}</div>
-                  </div>
-                </div>
-              </div>
-            </v-card-text>
-            <gif-loader :src="fish.gif" :cover-src="fish.cover" />
-          </v-card>
+          <fish-aquarium :fish="fish" />
         </v-lazy>
       </v-col>
     </v-row>
@@ -247,17 +215,21 @@
 
 <script>
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import { AQUARIUMS, AQUARIUM_FISH_SIZE, AQUARIUM_WATER } from 'Data/fix'
+import {
+  AQUARIUM_FISH_SIZE,
+  AQUARIUM_WATER,
+  AQUARIUMS,
+  OCEAN_FISHING_FISH,
+} from 'Data/fix'
 import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
-import ItemIcon from '@/components/basic/ItemIcon'
-import { OCEAN_FISHING_FISH } from 'Data/fix'
-import GifLoader from '@/components/basic/GifLoader'
 import PinyinMatch from 'pinyin-match'
+import FishAquarium from '@/components/FishAquarium'
+
 const PATCHES_MIN = [2, 3, 4, 5]
 export default {
   name: 'AquariumPage',
-  components: { GifLoader, ItemIcon },
+  components: { FishAquarium },
   data() {
     return {
       aquariumSettingImg: ImgUtil.getImgUrl('aquarium-setting.jpg'),
@@ -285,24 +257,7 @@ export default {
         const spotFishId =
           DataUtil.FISH_ID_TO_WIKI_IDS[aquarium.id]?.[0]?.split('-')?.[3] ?? aquarium.id
         const fishData = DataUtil.FISH_DATA[spotFishId] ?? OCEAN_FISHING_FISH[aquarium.id]
-        return {
-          id: aquarium.id,
-          name: DataUtil.getItemName(aquarium.id),
-          icon: DataUtil.getItemIconClass(aquarium.id),
-          patch: DataUtil.toPatchText(fishData?.patch),
-          water: DataUtil.getName(AQUARIUM_WATER[aquarium.aquariumWater]),
-          waterId: aquarium.aquariumWater,
-          sizeId: aquarium.size,
-          size: AQUARIUM_FISH_SIZE[aquarium.size].size,
-          gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}.gif`),
-          cover: ImgUtil.getAquariumImgUrl(`${aquarium.id}-cover.jpg`),
-          available:
-            aquarium.patch === DataUtil.toFishFilterPatch(DataUtil.PATCH_AVAILABLE_MAX)
-              ? 1
-              : aquarium.patch > DataUtil.PATCH_AVAILABLE_MAX
-              ? 2
-              : 0,
-        }
+        return DataUtil.assembleAquarium(aquarium, fishData)
       })
     },
     filteredList() {

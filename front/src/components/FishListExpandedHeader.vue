@@ -128,7 +128,7 @@ export default {
     fish() {
       const fish = this.value
       const folklore = fish.folklore && this.folklore[fish.folklore]
-      const aquariumFish = FIX.AQUARIUMS[fish._id]
+      const aquariumFish = FIX.AQUARIUMS[DataUtil.toItemId(fish._id)]
       return {
         id: fish._id,
         completed: this.getFishCompleted(fish._id),

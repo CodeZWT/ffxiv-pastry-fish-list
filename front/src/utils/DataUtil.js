@@ -15,13 +15,14 @@ import { Howl } from 'howler'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import CONSTANTS from 'Data/constants'
 import FishingData from 'Data/fishingData'
-import FIX from 'Data/fix'
+import FIX, { AQUARIUM_FISH_SIZE, AQUARIUM_WATER } from 'Data/fix'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import DATA from 'Data/data'
 import { LIVING_LEGENDS } from 'Data/translation'
 import { CN_PATCH_VERSION } from 'Data/constants'
 import { OCEAN_FISHING_FISH } from 'Data/fix'
 import { FISH as DIADEM_FISH } from 'Data/diadem'
+import ImgUtil from '@/utils/ImgUtil'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -889,6 +890,26 @@ export default {
   isOceanFishingSpot(id) {
     return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
   },
+  assembleAquarium(aquarium, fishData) {
+    return {
+      id: aquarium.id,
+      name: this.getItemName(aquarium.id),
+      icon: this.getItemIconClass(aquarium.id),
+      patch: this.toPatchText(fishData?.patch),
+      water: this.getName(AQUARIUM_WATER[aquarium.aquariumWater]),
+      waterId: aquarium.aquariumWater,
+      sizeId: aquarium.size,
+      size: AQUARIUM_FISH_SIZE[aquarium.size].size,
+      gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}.gif`),
+      cover: ImgUtil.getAquariumImgUrl(`${aquarium.id}-cover.jpg`),
+      available:
+        aquarium.patch === this.toFishFilterPatch(this.PATCH_AVAILABLE_MAX)
+          ? 1
+          : aquarium.patch > this.PATCH_AVAILABLE_MAX
+          ? 2
+          : 0,
+    }
+  },
   // FUNCTION END
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
@@ -1092,6 +1113,13 @@ export default {
           expanded: true,
           enabled: true,
           order: 6,
+        },
+        {
+          name: 'DetailItemAquarium',
+          expandedEnabled: true,
+          expanded: true,
+          enabled: true,
+          order: 7,
         },
       ],
     },

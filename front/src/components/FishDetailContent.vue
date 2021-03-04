@@ -31,6 +31,7 @@ import DetailItemRequirements from '@/components/fish-detail-items/DetailItemReq
 import DetailItemBuffAndBaits from '@/components/fish-detail-items/DetailItemBuffAndBaits'
 import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItemFishWindowTable'
 import DetailItemTips from '@/components/fish-detail-items/DetailItemTips/DetailItemTips'
+import DetailItemAquarium from '@/components/fish-detail-items/DetailItemAquarium'
 import _ from 'lodash'
 import FIX from 'Data/fix'
 import placeNames from 'Data/placeNames'
@@ -45,6 +46,7 @@ export default {
     DetailItemMap,
     DetailItemPredators,
     DetailItemTips,
+    DetailItemAquarium,
   },
   props: {
     value: {
@@ -87,32 +89,32 @@ export default {
   data: () => ({}),
   computed: {
     fish() {
-      // const fishingSpot = this.getFishingSpot(this.value.location)
-      const hasPredators = Object.keys(this.value.predators).length > 0
-      const bestCatchPathExtra = this.value.bestCatchPathExtra ?? []
-      const isSpear = this.value.gig != null
+      const fish = this.value
+      const hasPredators = Object.keys(fish.predators).length > 0
+      const bestCatchPathExtra = fish.bestCatchPathExtra ?? []
+      const isSpear = fish.gig != null
+      const aquariumFish = FIX.AQUARIUMS[DataUtil.toItemId(fish._id)]
       return {
-        ...this.value,
-        id: this.value._id,
+        ...fish,
+        id: fish._id,
         type: isSpear ? 'spear' : 'normal',
-        startHourText:
-          this.value.startHourText ?? DataUtil.formatET(this.value.startHour),
-        endHourText: this.value.endHourText ?? DataUtil.formatET(this.value.endHour),
-        hasTimeConstraint: this.value.startHour !== 0 || this.value.endHour !== 24,
+        startHourText: fish.startHourText ?? DataUtil.formatET(fish.startHour),
+        endHourText: fish.endHourText ?? DataUtil.formatET(fish.endHour),
+        hasTimeConstraint: fish.startHour !== 0 || fish.endHour !== 24,
         hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
-        hasFishEyes: !!this.value.fishEyes,
+        hasFishEyes: !!fish.fishEyes,
         fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
-        fishEyesText: DataUtil.secondsToFishEyesString(this.value.fishEyes),
-        fishEyesSeconds: this.value.fishEyes,
+        fishEyesText: DataUtil.secondsToFishEyesString(fish.fishEyes),
+        fishEyesSeconds: fish.fishEyes,
         hasPredators: hasPredators,
         predators: this.predators,
         predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
-        hasSnagging: !!this.value.snagging,
+        hasSnagging: !!fish.snagging,
         snaggingIcon: DataUtil.iconIdToClass(DataUtil.ICON_SNAGGING),
-        zone: this.getZoneName(this.value.location),
-        hasFishingSpot: this.value.locations.length > 0,
+        zone: this.getZoneName(fish.location),
+        hasFishingSpot: fish.locations.length > 0,
         fishingSpots: isSpear
-          ? this.value.locations.map(location => {
+          ? fish.locations.map(location => {
               const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[location]
               return {
                 zone: placeNames[gatheringPoint.territoryPlaceNameId],
@@ -123,16 +125,16 @@ export default {
               }
             })
           : DataUtil.toSpotsOfPredator(
-              this.getFishingSpots(this.value.locations),
-              this.value.parts.firstSpotId
+              this.getFishingSpots(fish.locations),
+              fish.parts.firstSpotId
             ),
-        anglerFishId: this.value.anglerFishId,
-        weatherSet: this.value.weatherSet,
-        weatherSetDetail: this.getWeather(this.value.weatherSet),
+        anglerFishId: fish.anglerFishId,
+        weatherSet: fish.weatherSet,
+        weatherSetDetail: this.getWeather(fish.weatherSet),
         hasWeatherConstraint:
-          this.value.previousWeatherSet.length > 0 || this.value.weatherSet.length > 0,
-        previousWeatherSet: this.value.previousWeatherSet,
-        previousWeatherSetDetail: this.getWeather(this.value.previousWeatherSet),
+          fish.previousWeatherSet.length > 0 || fish.weatherSet.length > 0,
+        previousWeatherSet: fish.previousWeatherSet,
+        previousWeatherSetDetail: this.getWeather(fish.previousWeatherSet),
         countDownType: this.fishTimePart.countDown.type,
         countDownTypeName: DataUtil.getCountDownTypeName(
           this.fishTimePart.countDown.type
@@ -150,21 +152,20 @@ export default {
           100,
         isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
         baitsExtra:
-          bestCatchPathExtra.length > 0
-            ? this.getBaits(this.value, bestCatchPathExtra)
-            : [],
-        baits: this.getBaits(this.value),
-        isCompleted: this.getFishCompleted(this.value._id),
-        addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(this.value),
-        hasTips: DataUtil.hasTips(this.value._id),
-        gig: this.value.gig
+          bestCatchPathExtra.length > 0 ? this.getBaits(fish, bestCatchPathExtra) : [],
+        baits: this.getBaits(fish),
+        isCompleted: this.getFishCompleted(fish._id),
+        addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(fish),
+        hasTips: DataUtil.hasTips(fish._id),
+        gig: fish.gig
           ? {
-              id: this.value.gig,
-              type: DataUtil.GIG_DICT[this.value.gig],
-              icon: DataUtil.GIG_ICON[DataUtil.GIG_DICT[this.value.gig]],
-              text: this.$t('gig.' + DataUtil.GIG_DICT[this.value.gig]),
+              id: fish.gig,
+              type: DataUtil.GIG_DICT[fish.gig],
+              icon: DataUtil.GIG_ICON[DataUtil.GIG_DICT[fish.gig]],
+              text: this.$t('gig.' + DataUtil.GIG_DICT[fish.gig]),
             }
           : {},
+        aquarium: !!aquariumFish && DataUtil.assembleAquarium(aquariumFish, fish),
       }
     },
     sortedDetailComponents() {

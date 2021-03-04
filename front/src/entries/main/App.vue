@@ -1704,7 +1704,7 @@ export default {
         const rate = this.lazyFishWindowRates[fish._id]
         const bestCatchPathExtra = fish.bestCatchPathExtra ?? []
         const folklore = fish.folklore && this.folklore[fish.folklore]
-        const aquariumFish = FIX.AQUARIUMS[fish._id]
+        const aquariumFish = FIX.AQUARIUMS[DataUtil.toItemId(fish._id)]
         return {
           // TODO remove _id
           _id: fish._id,
