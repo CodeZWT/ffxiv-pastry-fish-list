@@ -97,10 +97,17 @@
                     :data-ck-item-id="
                       toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)
                     "
-                    class="mr-2"
+                    class="mr-1"
                   >
                     <v-icon small :title="fish.folklore.name"
                       >mdi-book-open-variant</v-icon
+                    >
+                  </div>
+                  <div v-if="fish.aquarium" class="mr-1">
+                    <v-icon
+                      small
+                      :title="`[${fish.aquarium.size}] ${fish.aquarium.water}`"
+                      >mdi-fishbowl</v-icon
                     >
                   </div>
                   <div v-if="fish.collectable">

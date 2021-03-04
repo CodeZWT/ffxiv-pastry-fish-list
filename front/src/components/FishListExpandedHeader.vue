@@ -60,9 +60,14 @@
         <div
           v-if="fish.folklore"
           :data-ck-item-id="toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)"
-          class="mr-2"
+          class="mr-1"
         >
           <v-icon :title="fish.folklore.name">mdi-book-open-variant</v-icon>
+        </div>
+        <div v-if="fish.aquarium" class="mr-1">
+          <v-icon :title="`[${fish.aquarium.size}] ${fish.aquarium.water}`">
+            mdi-fishbowl
+          </v-icon>
         </div>
         <div v-if="fish.collectable">
           <i class="xiv collectables" title="收藏品" />
@@ -93,6 +98,7 @@ import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import LinkList from '@/components/basic/LinkList'
+import FIX from '../../../data/fix'
 
 export default {
   name: 'FishListExpandedHeader',
@@ -120,26 +126,32 @@ export default {
   }),
   computed: {
     fish() {
-      const folklore = this.value.folklore && this.folklore[this.value.folklore]
+      const fish = this.value
+      const folklore = fish.folklore && this.folklore[fish.folklore]
+      const aquariumFish = FIX.AQUARIUMS[fish._id]
       return {
-        id: this.value._id,
-        completed: this.getFishCompleted(this.value._id),
-        pinned: this.getFishPinned(this.value._id),
-        toBeNotified: this.getFishToBeNotified(this.value._id),
-        icon: this.getItemIconClass(this.value._id),
-        name: this.getItemName(this.value._id),
-        patch: this.value.patch,
-        patchText: DataUtil.toPatchText(this.value.patch),
-        isFuturePatch: this.value.patch > DataUtil.PATCH_AVAILABLE_MAX,
+        id: fish._id,
+        completed: this.getFishCompleted(fish._id),
+        pinned: this.getFishPinned(fish._id),
+        toBeNotified: this.getFishToBeNotified(fish._id),
+        icon: this.getItemIconClass(fish._id),
+        name: this.getItemName(fish._id),
+        patch: fish.patch,
+        patchText: DataUtil.toPatchText(fish.patch),
+        isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
         folklore: folklore && {
           id: folklore._id,
           itemId: folklore.itemId,
           name: this.getItemName(folklore.itemId),
           icon: this.getItemIconClass(folklore.itemId),
         },
-        collectable: this.value.collectable,
-        anglerFishId: this.value.anglerFishId,
+        collectable: fish.collectable,
+        anglerFishId: fish.anglerFishId,
         setNotificationAvailable: DataUtil.hasCountDown(this.fishTimePart?.countDown),
+        aquarium: !!aquariumFish && {
+          size: FIX.AQUARIUM_FISH_SIZE[aquariumFish.size].size,
+          water: DataUtil.getName(FIX.AQUARIUM_WATER[aquariumFish.aquariumWater]),
+        },
       }
     },
     isMobile() {

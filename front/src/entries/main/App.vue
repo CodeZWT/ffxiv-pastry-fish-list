@@ -160,9 +160,7 @@
               </v-btn>
             </div>
           </template>
-          <div>
-            按<kbd>/</kbd>键直接搜索
-          </div>
+          <div>按<kbd>/</kbd>键直接搜索</div>
         </v-tooltip>
 
         <v-menu offset-y v-if="!isMobile">
@@ -1706,6 +1704,7 @@ export default {
         const rate = this.lazyFishWindowRates[fish._id]
         const bestCatchPathExtra = fish.bestCatchPathExtra ?? []
         const folklore = fish.folklore && this.folklore[fish.folklore]
+        const aquariumFish = FIX.AQUARIUMS[fish._id]
         return {
           // TODO remove _id
           _id: fish._id,
@@ -1772,6 +1771,10 @@ export default {
           anglerFishId: fish.anglerFishId,
           hasTips: DataUtil.hasTips(fish._id),
           predators: this.assembleFish(DataUtil.getPredators(fish, this.allFish), true),
+          aquarium: !!aquariumFish && {
+            size: FIX.AQUARIUM_FISH_SIZE[aquariumFish.size].size,
+            water: DataUtil.getName(FIX.AQUARIUM_WATER[aquariumFish.aquariumWater]),
+          },
         }
       })
     },
