@@ -180,7 +180,8 @@
           "DetailItemBuffAndBaits": "需要状态及鱼饵",
           "DetailItemFishWindowTable": "窗口期详情表",
           "DetailItemPredators": "前置鱼列表",
-          "DetailItemTips": "攻略"
+          "DetailItemTips": "攻略",
+          "DetailItemAquarium": "水族箱"
         }
       }
     },

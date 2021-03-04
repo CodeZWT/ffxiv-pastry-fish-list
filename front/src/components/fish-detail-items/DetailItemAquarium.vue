@@ -5,12 +5,12 @@
         <div style="display: flex; justify-content: center">
           <div>
             <v-icon>mdi-fishbowl</v-icon>
-            水族箱
+            {{ $t('setting.dialog.detailArrangement.itemNames.DetailItemAquarium') }}
           </div>
         </div>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
-        <fish-aquarium :fish="fish.aquarium" />
+        <fish-aquarium :fish="fish.aquarium" class="mt-2" />
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
