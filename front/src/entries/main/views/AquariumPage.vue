@@ -198,7 +198,7 @@
       </v-card>
     </v-row>
     <v-row>
-      <v-col :cols="cols" v-for="fish in filteredList" :key="fish.id">
+      <v-col :cols="cols" v-for="fish in searchFilteredList" :key="fish.id">
         <v-lazy
           :options="{
             threshold: 0.5,
@@ -276,9 +276,11 @@ export default {
         .filter(fish => {
           return this.availableIndicesFilter.includes(fish.available)
         })
-        .filter(fish => {
-          return this.fishId == null || fish.id === this.fishId
-        })
+    },
+    searchFilteredList() {
+      return this.filteredList.filter(fish => {
+        return this.fishId == null || fish.id === this.fishId
+      })
     },
   },
   methods: {
