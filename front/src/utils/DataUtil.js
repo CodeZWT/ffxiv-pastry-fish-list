@@ -1196,6 +1196,7 @@ export default {
     DetailItemFishWindowTable: 'hasCountDown',
     DetailItemPredators: 'hasPredators',
     DetailItemTips: 'hasTips',
+    DetailItemAquarium: 'aquarium',
   },
 
   // fish tracker [js/app/viewmodel.js]
