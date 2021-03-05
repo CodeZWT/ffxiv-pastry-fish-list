@@ -1,6 +1,6 @@
 <template>
   <div v-if="!showGif">
-    <v-hover v-slot="{ hover }" open-delay="300" close-deplay="300">
+    <v-hover v-slot="{ hover }" open-delay="200" close-deplay="300">
       <div style="position: relative" @click="showGif = true">
         <v-overlay v-if="hover" absolute>
           <div class="fill-height d-flex align-center">
@@ -21,13 +21,20 @@
     </v-hover>
   </div>
 
-  <v-img v-else :src="src">
-    <template v-slot:placeholder>
-      <v-row class="fill-height ma-0" align="center" justify="center">
-        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-      </v-row>
-    </template>
-  </v-img>
+  <div
+    v-else
+    class="system d-flex justify-center align-center"
+    style="min-width: 100px; min-height: 100px"
+  >
+    <div style="position: absolute; text-align: center">加载中...</div>
+    <v-img :src="src">
+      <template v-slot:placeholder>
+        <v-row class="fill-height ma-0" align="center" justify="center">
+          <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+        </v-row>
+      </template>
+    </v-img>
+  </div>
 </template>
 
 <script>
