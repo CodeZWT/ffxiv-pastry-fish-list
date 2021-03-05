@@ -20,6 +20,28 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.6.7</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕
+        </div>
+        <ul>
+          <li>增加水族馆<v-icon>mdi-fishbowl</v-icon></li>
+          <li>增加列表页面水族馆支持</li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">
+          渔捞
+        </div>
+        <ul>
+          <li>国际服支持</li>
+          <li>
+            国际服海钓增加了补偿机制，暂未支持，目前仍为固定的2分钟，请暂时自行判断是否延长幻海流时间（预计在下版本加入支持）。
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.6.6</div>
         <div class="text-h5 text-center my-1">
           鱼糕
