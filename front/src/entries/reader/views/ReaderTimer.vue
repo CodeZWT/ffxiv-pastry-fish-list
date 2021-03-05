@@ -30,6 +30,9 @@
       <v-col cols="12" v-if="isOceanFishing">
         <div style="min-height: 32px" class="d-flex align-center">
           <div>{{ weatherText }}</div>
+          <div v-if="isSpectralCurrent && readerRegion === 'Global'">
+            国际服幻海流的补偿机制暂未支持。
+          </div>
           <div v-if="isSpectralCurrent">
             （钓场倒计时30s时，幻海流强制结束，请注意。）
           </div>
@@ -156,7 +159,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getWeather']),
+    ...mapGetters(['getWeather', 'readerRegion']),
     spotId() {
       return this.dataStatus?.spotId
     },
