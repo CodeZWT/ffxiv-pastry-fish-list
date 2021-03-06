@@ -1,4 +1,13 @@
-const { app, BrowserWindow, ipcMain, shell, globalShortcut, dialog } = require('electron')
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  shell,
+  globalShortcut,
+  dialog,
+  Menu,
+  Tray,
+} = require('electron')
 const isDev = require('electron-is-dev')
 const FishingDataReader = require('./server/reader')
 const log = require('electron-log')
@@ -16,7 +25,8 @@ const SETUP_EXE_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
 
-let main,
+let tray,
+  main,
   reader,
   readerSetting,
   readerHistory,
@@ -178,6 +188,12 @@ async function init() {
         mode: 'undocked',
       })
   })
+
+  tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
+  const contextMenu = Menu.buildFromTemplate([{ label: '退出', click: quit }])
+  tray.setToolTip('鱼糕')
+  tray.setContextMenu(contextMenu)
+  tray.on('click', showAndFocusMain)
 }
 
 let mainSize = { w: -1, h: -1 }
@@ -440,10 +456,7 @@ function createMainWindow() {
       updateUserData({ path: 'reader.main.size', data: { w, h } })
     })
     .on('closed', () => {
-      FishingDataReader.stop(() => {
-        log.info('quit by close')
-        app.quit()
-      })
+      quit()
     })
 
   // if (isDev) {
@@ -624,10 +637,15 @@ function quitAndSetup() {
       : path.join(__dirname, '../../setup/PastryFishSetup.exe')
     log.info('try open path', installerPath)
     shell.showItemInFolder(installerPath)
-    FishingDataReader.stop(() => {
-      log.info('quit by close')
-      app.quit()
-    })
+    log.info('quit before update')
+    app.quit()
+  })
+}
+
+function quit() {
+  FishingDataReader.stop(() => {
+    log.info('quit by close')
+    app.quit()
   })
 }
 
@@ -649,13 +667,17 @@ if (!gotTheLock) {
   app.on('second-instance', (event, commandLine, workingDirectory) => {
     // Someone tried to run a second instance, we should focus our window.
     log.info('Focus main window when try to open 2nd instance')
-    if (main) {
-      if (main.isMinimized()) main.restore()
-      main.focus()
-    }
+      showAndFocusMain()
   })
 
   app.whenReady().then(() => init())
+}
+
+function showAndFocusMain() {
+  if (main) {
+    if (main.isMinimized()) main.restore()
+    main.focus()
+  }
 }
 
 // app.on('window-all-closed', () => {
