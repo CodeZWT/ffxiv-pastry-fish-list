@@ -16,19 +16,16 @@
         <validation-observer ref="observer" v-slot="">
           <form>
             <v-row>
-              <v-col cols="12">
-                <div class="text-subtitle-1">
-                  {{ $t('setting.dialog.showFilter.title') }}
-                </div>
+              <v-col cols="12" v-if="isElectron">
                 <div>
-                  <v-switch
-                    v-model="lazyShowFilter"
-                    :label="
-                      lazyShowFilter
-                        ? $t('setting.dialog.showFilter.show')
-                        : $t('setting.dialog.showFilter.hide')
-                    "
-                  ></v-switch>
+                  <v-radio-group
+                    v-model="lazyMainWindowCloseMode"
+                    label="关闭主窗口时"
+                    row
+                  >
+                    <v-radio label="退出程序" value="CLOSE"></v-radio>
+                    <v-radio label="最小化到托盘，不退出程序" value="TRAY"></v-radio>
+                  </v-radio-group>
                 </div>
               </v-col>
               <v-col cols="12">
@@ -187,6 +184,21 @@
               </v-col>
               <v-col cols="12">
                 <div class="text-subtitle-1">
+                  {{ $t('setting.dialog.showFilter.title') }}
+                </div>
+                <div>
+                  <v-switch
+                    v-model="lazyShowFilter"
+                    :label="
+                      lazyShowFilter
+                        ? $t('setting.dialog.showFilter.show')
+                        : $t('setting.dialog.showFilter.hide')
+                    "
+                  ></v-switch>
+                </div>
+              </v-col>
+              <v-col cols="12">
+                <div class="text-subtitle-1">
                   {{ $t('setting.dialog.detailArrangement.title') }}
                 </div>
                 <v-row>
@@ -312,6 +324,7 @@ export default {
     notificationStatus: NotificationUtil.NOTIFICATION_PERMISSIONS.DEFAULT,
     isNotificationSupported: NotificationUtil.isNotificationSupported(),
     lazyShowFilter: true,
+    lazyMainWindowCloseMode: undefined,
   }),
   computed: {
     showSettingDialog: {
@@ -333,6 +346,7 @@ export default {
       'detailComponents',
       'isSystemNotificationEnabled',
       'showFilter',
+      'mainWindowCloseMode',
     ]),
   },
   watch: {
@@ -361,6 +375,7 @@ export default {
       this.isSystemNotificationGranted = NotificationUtil.isNotificationGranted()
       this.notificationStatus = NotificationUtil.notificationStatus()
       this.lazyShowFilter = this.showFilter
+      this.lazyMainWindowCloseMode = this.mainWindowCloseMode
     },
     playSound(key) {
       this.sounds[key]?.player?.volume(this.lazyNotificationSetting.volume).play()
@@ -374,6 +389,7 @@ export default {
       })
     },
     apply() {
+      this.setMainWindowCloseMode(this.lazyMainWindowCloseMode)
       this.setShowFilter(this.lazyShowFilter)
       this.setOpacity(this.lazyOpacity)
       this.setZoomFactor(this.lazyZoomFactor)
@@ -434,6 +450,7 @@ export default {
       }
     },
     ...mapMutations([
+      'setMainWindowCloseMode',
       'setOpacity',
       'setZoomFactor',
       'setNotification',

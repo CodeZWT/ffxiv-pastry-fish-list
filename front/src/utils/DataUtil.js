@@ -1153,6 +1153,9 @@ export default {
     },
     showChromeBugDialog: true,
     fishEyesUsed: false,
+    mainWindow: {
+      closeMode: 'CLOSE',
+    },
     reader: {
       region: 'CN',
       autoSetCompleted: true,

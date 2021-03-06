@@ -1055,6 +1055,7 @@ export default {
       'baitIdsForNotification',
     ]),
     ...mapGetters([
+      'mainWindowCloseMode',
       'readerRegion',
       'fishEyesUsed',
       'showChromeBugDialog',
@@ -1322,7 +1323,11 @@ export default {
       WindowUtil.unmaximizeWindow()
     },
     close() {
-      WindowUtil.closeWindow()
+      if (this.mainWindowCloseMode === 'TRAY') {
+        WindowUtil.hideWindow()
+      } else {
+        WindowUtil.closeWindow()
+      }
     },
     sendElectronEvent(channel, data) {
       window.electron?.ipcRenderer?.send(channel, data)

@@ -190,8 +190,8 @@ async function init() {
   })
 
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
-  const contextMenu = Menu.buildFromTemplate([{ label: '退出', click: quit }])
-  tray.setToolTip('鱼糕')
+  const contextMenu = Menu.buildFromTemplate([{ label: '退出鱼糕程序', click: quit }])
+  tray.setToolTip('点击显示鱼糕')
   tray.setContextMenu(contextMenu)
   tray.on('click', showAndFocusMain)
 }
@@ -667,7 +667,7 @@ if (!gotTheLock) {
   app.on('second-instance', (event, commandLine, workingDirectory) => {
     // Someone tried to run a second instance, we should focus our window.
     log.info('Focus main window when try to open 2nd instance')
-      showAndFocusMain()
+    showAndFocusMain()
   })
 
   app.whenReady().then(() => init())
@@ -676,6 +676,7 @@ if (!gotTheLock) {
 function showAndFocusMain() {
   if (main) {
     if (main.isMinimized()) main.restore()
+    if (!main.isVisible()) main.show()
     main.focus()
   }
 }

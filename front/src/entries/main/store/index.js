@@ -46,12 +46,15 @@ export default new Vuex.Store({
     viewedFeatures: LocalStorageUtil.loadViewedFeatures(CONSTANTS.FEATURE_GROUP_MAIN),
   },
   getters: {
-    readerRegion: state => {
-      return state.userData.reader.region
+    mainWindowCloseMode: state => {
+      return state.userData.mainWindow.closeMode
     },
     // baitFilter: state => {
     //   return state.baitFilter
     // },
+    readerRegion: state => {
+      return state.userData.reader.region
+    },
     listSetting: state => {
       return DataUtil.getUserDataPart(state)('listSetting')
     },
@@ -157,12 +160,6 @@ export default new Vuex.Store({
         })
       }
     },
-    // getWeatherAt: state => id => {
-    //   const fishingSpot = this.fishingSpots[id]
-    //   if (fishingSpot) {
-    //     return DataUtil.getName(state.weatherTypes[EorzeaWeather.weatherAt(fishingSpot.territory_id, new EorzeaTime())])
-    //   }
-    // },
     getZoneId: state => id => {
       const fishingSpot = state.fishingSpots[id]
       if (fishingSpot) {
@@ -245,6 +242,13 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setMainWindowCloseMode(state, mode) {
+      state.userData = {
+        ...state.userData,
+        mainWindow: { ...state.userData.mainWindow, closeMode: mode },
+      }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
     setFeatureViewed(state, feature) {
       if (!state.viewedFeatures.includes(feature)) {
         state.viewedFeatures.push(feature)
