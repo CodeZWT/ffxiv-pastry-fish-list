@@ -7,7 +7,6 @@ const fs = require('fs')
 const path = require('path')
 const throttle = require('lodash/throttle')
 const CONSTANTS = require('./data/constants')
-const exec = require('child_process').exec
 const ObjectsToCsv = require('objects-to-csv')
 const iconv = require('iconv-lite')
 
@@ -620,8 +619,15 @@ function updateIfNeeded() {
 
 function quitAndSetup() {
   FishingDataReader.stop(() => {
-    log.info('try install')
-    exec('start "" "setup"', () => app.quit())
+    const installerPath = isDev
+      ? path.join(__dirname, 'setup/PastryFishSetup.exe')
+      : path.join(__dirname, '../../setup/PastryFishSetup.exe')
+    log.info('try open path', installerPath)
+    shell.showItemInFolder(installerPath)
+    FishingDataReader.stop(() => {
+      log.info('quit by close')
+      app.quit()
+    })
   })
 }
 
