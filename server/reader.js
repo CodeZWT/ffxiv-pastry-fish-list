@@ -436,7 +436,6 @@ function applyCurrentStatusOnStart(record, status) {
   record.fishEyes = status.effects.has(762)
   record.surfaceScale = status.effects.has(1803)
   record.identicalCast = status.effects.has(1804)
-  record.collectorGlove = status.effects.has(805)
   record.gatheringFortuneUp = status.effects.has(850)
   record.catchAndRelease = status.effects.has(765)
   record.fishersIntuition = status.effects.has(568)
@@ -455,6 +454,7 @@ function applyCurrentStatusOnStart(record, status) {
 
 function applyCurrentStatusOnLanding(record, status) {
   if (status.isFisher) {
+    record.collectorGlove = status.effects.has(805)
     record.gathering = status.gathering
     record.perception = status.perception
     record.gp = status.gp
