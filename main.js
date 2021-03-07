@@ -235,10 +235,21 @@ async function init() {
   })
 
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
-  const contextMenu = Menu.buildFromTemplate([{ label: '退出鱼糕程序', click: quit }])
+  const contextMenu = Menu.buildFromTemplate([
+    { label: '打开渔捞鼠标穿透', click: () => setMouseThrough(true) },
+    { label: '关闭渔捞鼠标穿透', click: () => setMouseThrough(false) },
+    { label: '退出鱼糕程序', click: quit },
+  ])
   tray.setToolTip('点击显示鱼糕')
   tray.setContextMenu(contextMenu)
   tray.on('click', showAndFocusMain)
+}
+
+function setMouseThrough(enable) {
+  reader && reader.setIgnoreMouseEvents(enable, { forward: true })
+  readerHistory && readerHistory.setIgnoreMouseEvents(enable, { forward: true })
+  readerSpotStatistics &&
+    readerSpotStatistics.setIgnoreMouseEvents(enable, { forward: true })
 }
 
 let mainSize = { w: -1, h: -1 }
