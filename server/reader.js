@@ -11,8 +11,8 @@ const { version: PASTRY_FISH_VERSION } = require('../package.json')
 const { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } = require('../data/constants')
 const merge = require('lodash/merge')
 const cloneDeep = require('lodash/cloneDeep')
-const FISHING_SPOTS_DICT = require('./fishingSpotsPlaceNameIdDict')
 const Events = require('events')
+const { FISHING_SPOTS } = require("../data/translation");
 const { toReadable } = require('./toReadable')
 
 const INTERVAL_MINUTE = 60000
@@ -652,7 +652,7 @@ onFFXIVEvent('someDirectorUnk4', (packet) => {
 
 // fishing spot
 onFFXIVEvent('someDirectorUnk4', (packet) => {
-  const spot = FISHING_SPOTS_DICT[packet.param3]
+  const spot = FISHING_SPOTS[packet.param3]
   if (spot) {
     status.spotId = spot.id
   }
