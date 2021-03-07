@@ -910,6 +910,12 @@ export default {
           : 0,
     }
   },
+
+  ringBell(soundSetting, tugType, sounds) {
+    const setting = soundSetting[tugType]
+    const key = setting.source === 'DEFAULT' ? tugType : `${tugType}-custom`
+    sounds[key]?.player?.volume(setting.volume).play()
+  },
   // FUNCTION END
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
@@ -927,6 +933,8 @@ export default {
   },
 
   GIG_DICT: ['', 'small', 'normal', 'large', 'all'],
+
+  TUG_TYPES: ['light', 'medium', 'heavy'],
 
   TUG_ICON: {
     light: '!',
@@ -1173,6 +1181,23 @@ export default {
         size: { w: 500, h: 160 },
         opacity: 0.9,
         zoomFactor: 1,
+        sound: {
+          light: {
+            source: 'DEFAULT',
+            customPath: undefined,
+            volume: 0.5,
+          },
+          medium: {
+            source: 'DEFAULT',
+            customPath: undefined,
+            volume: 0.5,
+          },
+          heavy: {
+            source: 'DEFAULT',
+            customPath: undefined,
+            volume: 0.5,
+          },
+        },
       },
       history: {
         pos: { x: null, y: null },

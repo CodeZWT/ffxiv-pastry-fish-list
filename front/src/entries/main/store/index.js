@@ -434,6 +434,7 @@ export default new Vuex.Store({
       LocalStorageUtil.storeUserData(state.userData)
     },
     setSounds(state, sounds) {
+      console.log('update sounds', sounds)
       state.sounds = sounds
     },
     clearToBeNotified(state) {

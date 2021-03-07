@@ -3,22 +3,14 @@
     <v-card-text>
       <v-row no-gutters>
         <v-col cols="12" class="d-flex align-center">
-          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-            区服
-          </div>
+          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">区服</div>
           <v-btn-toggle v-model="region" rounded dense mandatory active-class="primary">
-            <v-btn small>
-              国服
-            </v-btn>
-            <v-btn small>
-              国际服
-            </v-btn>
+            <v-btn small>国服</v-btn>
+            <v-btn small>国际服</v-btn>
           </v-btn-toggle>
         </v-col>
         <v-col cols="12" class="d-flex align-center">
-          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-            自动标记已完成
-          </div>
+          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">自动标记已完成</div>
           <v-switch inset v-model="lazySetting.autoSetCompleted" />
         </v-col>
         <v-col cols="12" class="d-flex align-center">
@@ -28,9 +20,7 @@
           <v-switch inset v-model="lazySetting.autoSetCompletedOnlyHQ" />
         </v-col>
         <v-card outlined width="100%" class="my-1">
-          <div class="overline ml-2">
-            计时器
-          </div>
+          <div class="overline ml-2">计时器</div>
           <v-card-text>
             <div class="d-flex align-center">
               <v-slider
@@ -56,13 +46,54 @@
                 </template>
               </v-slider>
             </div>
+            <div v-for="tug in TUG_TYPES" class="d-flex flex-column" :key="tug">
+              <v-radio-group
+                v-model="lazySetting.timer.sound[tug].source"
+                :label="$t('tug.' + tug) + '提示音'"
+                column
+              >
+                <v-radio label="内置" value="DEFAULT"></v-radio>
+                <v-radio value="CUSTOMIZED">
+                  <template v-slot:label>
+                    <div class="d-flex align-center">
+                      <div>自定义</div>
+                      <v-btn
+                        text
+                        @click="showFileViewer(tug)"
+                        :title="lazySetting.timer.sound[tug].customPath"
+                      >
+                        <v-icon>mdi-file-music-outline</v-icon>
+                        <div class="text-truncate" style="max-width: 170px">
+                          {{
+                            toDisplayFileName(lazySetting.timer.sound[tug].customPath) ||
+                              '未选择文件'
+                          }}
+                        </div>
+                      </v-btn>
+                    </div>
+                  </template>
+                </v-radio>
+              </v-radio-group>
+              <div class="d-flex">
+                <v-slider
+                  v-model="lazySetting.timer.sound[tug].volume"
+                  max="1"
+                  min="0"
+                  step="0.01"
+                  :label="$t('setting.dialog.notification.volume')"
+                  thumb-label
+                >
+                </v-slider>
+                <v-btn icon text @click="ringBell(tug)">
+                  <v-icon>mdi-play</v-icon>
+                </v-btn>
+              </div>
+            </div>
           </v-card-text>
         </v-card>
 
         <v-card outlined width="100%" class="my-1">
-          <div class="overline ml-2">
-            历史记录
-          </div>
+          <div class="overline ml-2">历史记录</div>
           <v-card-text>
             <div class="d-flex align-center">
               <v-slider
@@ -92,9 +123,7 @@
         </v-card>
 
         <v-card outlined width="100%" class="my-1">
-          <div class="overline ml-2">
-            钓场统计
-          </div>
+          <div class="overline ml-2">钓场统计</div>
           <v-card-text>
             <div class="d-flex align-center">
               <v-slider
@@ -129,10 +158,14 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import isEqual from 'lodash/isEqual'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { REGIONS } from 'Data/constants'
+import set from 'lodash/set'
+import last from 'lodash/last'
+import db from '@/plugins/db'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'ReaderSetting',
@@ -145,6 +178,7 @@ export default {
   data() {
     return {
       lazySetting: {},
+      TUG_TYPES: DataUtil.TUG_TYPES,
     }
   },
   computed: {
@@ -166,6 +200,7 @@ export default {
         })
       },
     },
+    ...mapState(['sounds']),
     ...mapGetters(['readerSetting']),
   },
   watch: {
@@ -189,6 +224,29 @@ export default {
     this.lazySetting = this.readerSetting
   },
   methods: {
+    toDisplayFileName(path) {
+      return path && last(path.split('\\'))
+    },
+    showFileViewer(type) {
+      window.electron?.ipcRenderer?.invoke('showOpenSoundFileDialog').then(result => {
+        console.info(result)
+        if (!result.cancelled) {
+          db.sounds
+            .put({
+              id: `${type}-custom`,
+              base64: result.base64,
+              filePath: result.filePath,
+            })
+            .then(() => {
+              set(this.lazySetting, `timer.sound.${type}.customPath`, result.filePath)
+            })
+            .catch(error => console.error('storeError', error))
+        }
+      })
+    },
+    ringBell(tugType) {
+      DataUtil.ringBell(this.lazySetting.timer.sound, tugType, this.sounds)
+    },
     ...mapMutations(['updateReaderSetting']),
   },
 }

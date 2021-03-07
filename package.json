@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@thewakingsands/axis-font-icons": "^0.2.1",
+    "datauri": "^3.0.0",
     "download": "^8.0.0",
     "electron-is-dev": "^1.2.0",
     "electron-log": "^4.3.1",

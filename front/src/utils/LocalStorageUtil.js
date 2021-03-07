@@ -50,4 +50,8 @@ export default {
   storeViewedFeatures(featureGroup, features) {
     store.set(VIEWED_FEATURES_KEYS[featureGroup], features)
   },
+
+  loadSounds() {
+    return store.get(BAIT_FILTER_KEY)
+  },
 }

@@ -63,6 +63,8 @@ import SETTING_ICON from 'Assets/setting.png'
 import { ReaderFeatures } from 'Data/newFeatures'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
+import db from '@/plugins/db'
+import { Howl } from 'howler'
 
 export default {
   name: 'Reader',
@@ -105,10 +107,12 @@ export default {
       this.now = Date.now()
     }, 100)
 
-    const sounds = await this.loadingSounds()
-    this.setSounds(DataUtil.toMap(sounds, it => it.key))
     window.electron?.ipcRenderer?.on('reloadUserData', () => {
       this.reloadUserData()
+      console.info('loading sounds')
+      this.loadingSounds().then(sounds =>
+        this.setSounds(DataUtil.toMap(sounds, it => it.key))
+      )
     })
   },
   methods: {
@@ -123,7 +127,21 @@ export default {
       WindowUtil.hideWindow()
     },
     loadingSounds() {
-      return DataUtil.loadingSounds(DataUtil.READER_SOUNDS)
+      return Promise.all([
+        db.sounds
+          .bulkGet(['light-custom', 'medium-custom', 'heavy-custom'])
+          .then(sounds => {
+            return sounds
+              .filter(it => it)
+              .map(sound => {
+                return {
+                  key: sound.id,
+                  player: new Howl({ src: sound.base64, preload: true }),
+                }
+              })
+          }),
+        DataUtil.loadingSounds(DataUtil.READER_SOUNDS),
+      ]).then(it => it.flatMap(sounds => sounds))
     },
     ...mapMutations(['setSounds', 'reloadUserData', 'setFeatureViewed']),
   },

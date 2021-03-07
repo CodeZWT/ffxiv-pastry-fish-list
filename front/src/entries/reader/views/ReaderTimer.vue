@@ -290,7 +290,7 @@ export default {
     normalWeatherStartTime() {
       return this.dataStatus?.normalWeatherStartTime
     },
-    ...mapState(['sounds', 'readerTimerMiniMode']),
+    ...mapState(['sounds', 'readerTimerMiniMode', 'userData']),
   },
   watch: {
     tug(tug) {
@@ -346,8 +346,8 @@ export default {
       this.updateReaderTimerMiniMode(mini)
       window.electron?.ipcRenderer?.send('setReaderMiniMode', mini)
     },
-    ringBell(key) {
-      this.sounds[key]?.player?.volume(1).play()
+    ringBell(tugType) {
+      DataUtil.ringBell(this.userData.reader.timer.sound, tugType, this.sounds)
     },
     showHistory() {
       window.electron?.ipcRenderer?.send('toggleHistory')

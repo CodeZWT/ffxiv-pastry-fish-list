@@ -35,6 +35,9 @@ export default new Vuex.Store({
     reloadUserData(state) {
       state.userData = loadUserData()
     },
+    reloadSounds(state) {
+      state.sounds = loadUserData()
+    },
     setSounds(state, sounds) {
       state.sounds = sounds
     },

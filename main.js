@@ -18,6 +18,7 @@ const throttle = require('lodash/throttle')
 const CONSTANTS = require('./data/constants')
 const ObjectsToCsv = require('objects-to-csv')
 const iconv = require('iconv-lite')
+const datauri = require('datauri')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -105,6 +106,7 @@ async function init() {
     })
     .on('reloadUserData', () => {
       reader.webContents.send('reloadUserData')
+      readerSetting.webContents.send('reloadUserData')
     })
     .on('skipUpdate', () => {
       skipUpdate = true
@@ -177,6 +179,49 @@ async function init() {
         main.restore()
       }
       main.focus()
+    })
+    // .on('playSound', (event, playInfo) => {
+    //   new Howl({ src: playInfo.path, preload: true })
+    //     .volume(playInfo.volume)
+    //     .play()
+    // })
+    .handle('showOpenSoundFileDialog', () => {
+      return dialog
+        .showOpenDialog({
+          title: '选择音频文件',
+          buttonLabel: '选择',
+          filters: [
+            {
+              name: '音频文件',
+              extensions: [
+                'mp3',
+                'mpeg',
+                'opus',
+                'ogg',
+                'oga',
+                'wav',
+                'aac',
+                'caf',
+                'm4a',
+                'm4b',
+                'mp4',
+                'weba',
+                'webm',
+                'dolby',
+                'flac',
+              ],
+            },
+          ],
+        })
+        .then((result) => {
+          return datauri(result.filePaths[0]).then((content) => {
+            return {
+              cancelled: result.cancelled,
+              filePath: result.filePaths[0],
+              base64: content,
+            }
+          })
+        })
     })
 
   globalShortcut.register('Alt+CommandOrControl+L', () => {
@@ -269,7 +314,7 @@ function createReaderSetting(readTimerWin) {
 
   if (isDev) {
     win.webContents.openDevTools({
-      mode: 'bottom',
+      mode: 'undocked',
     })
   }
 }
@@ -321,11 +366,11 @@ function createReaderHistory(readTimerWin) {
         data: { w, h },
       })
     })
-  if (isDev) {
-    readerHistory.webContents.openDevTools({
-      mode: 'undocked',
-    })
-  }
+  // if (isDev) {
+  //   readerHistory.webContents.openDevTools({
+  //     mode: 'undocked',
+  //   })
+  // }
 }
 
 function createReaderSpotStatistics(readTimerWin) {
