@@ -7,7 +7,7 @@ import EorzeaTime from '@/utils/Time'
 import tip1Data from 'Data/tip1'
 import tip2Data from 'Data/tip2'
 import flatten from 'flat'
-import Tip4 from 'Data/Tip4'
+import tip4 from 'Data/tip4'
 import DATA_CN from 'Data/translation'
 import cloneDeep from 'lodash/cloneDeep'
 import { detect } from 'detect-browser'
@@ -688,7 +688,7 @@ export default {
       !!tip1Data[fishId] ||
       !!tip2Data[fishId] ||
       TIP3_FISH_IDS.includes(fishId) ||
-      !!Tip4.TIPS[fishId] ||
+      !!tip4.TIPS[fishId] ||
       TIP5_FISH_IDS.includes(fishId)
     )
   },

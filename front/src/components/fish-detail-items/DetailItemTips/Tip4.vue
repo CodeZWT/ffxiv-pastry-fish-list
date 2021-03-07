@@ -40,20 +40,20 @@
   </div>
 </template>
 <script>
-import Tip4 from 'Data/Tip4'
+import tip4 from 'Data/tip4'
 
 export default {
-  name: 'Tip4',
+  name: 'tip4',
   props: ['id'],
   data: () => ({
     explanationDialog: false,
   }),
   computed: {
     meta() {
-      return Tip4
+      return tip4
     },
     tip() {
-      return Tip4.TIPS[this.id]
+      return tip4.TIPS[this.id]
     },
   },
 }
