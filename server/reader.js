@@ -28,7 +28,7 @@ const EMPTY_RECORD = {
   hq: false,
   size: 0,
 }
-let status, currentRecord
+let status, currentRecord, spectralCurrentBuffTime = 0
 const records = []
 const readableRecords = []
 resetStatus()
@@ -297,6 +297,7 @@ onFFXIVEvent(
     status.weather = undefined
     status.spectralCurrentEndTime = undefined
     status.diademWeatherEndTime = undefined
+    spectralCurrentBuffTime = 0
   },
   true
 )
@@ -938,7 +939,7 @@ onFFXIVEvent('someDirectorUnk4', (packet) => {
 })
 
 function getSpectralCurrentCountDownTotal() {
-  return 2 * INTERVAL_MINUTE
+  return 2 * INTERVAL_MINUTE + spectralCurrentBuffTime
 }
 
 const SPECTRAL_CURRENT_WEATHER_ID = 145
@@ -1002,6 +1003,10 @@ onFFXIVEvent('weatherChange', (packet) => {
   }
 })
 
+function isOceanFishingSpot(id) {
+  return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
+}
+
 function onWeatherChange(packet) {
   status.previousWeather = status.weather
   status.weather = packet.data && +packet.data[0]
@@ -1009,11 +1014,18 @@ function onWeatherChange(packet) {
 
   if (status.weather === SPECTRAL_CURRENT_WEATHER_ID) {
     status.spectralCurrentEndTime = Date.now() + getSpectralCurrentCountDownTotal()
-  } else if (status.previousWeather) {
-    if (isDiadem()) {
-      status.diademWeatherEndTime = Date.now() + DIADEM_WEATHER_COUNTDOWN_TOTAL
-    } else {
-      status.normalWeatherStartTime = Date.now()
+  } else {
+    if (isOceanFishing() || isOceanFishingSpot(status.spotId)) {
+      const spectralActualEndTime = Date.now()
+      let remainingTime = status.spectralCurrentEndTime - spectralActualEndTime
+      spectralCurrentBuffTime = remainingTime > 0 ? Math.min(remainingTime, INTERVAL_MINUTE) : 0
+    }
+    if (status.previousWeather) {
+      if (isDiadem()) {
+        status.diademWeatherEndTime = Date.now() + DIADEM_WEATHER_COUNTDOWN_TOTAL
+      } else {
+        status.normalWeatherStartTime = Date.now()
+      }
     }
   }
 }
