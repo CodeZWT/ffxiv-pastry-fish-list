@@ -15,10 +15,10 @@
             <v-row>
               <v-col class="col-12 col-md-8">
                 <div>
-                  <v-tabs v-model="versionIndex">
-                    <v-tab>第二期重建</v-tab>
-                    <v-tab>第三期重建</v-tab>
-                  </v-tabs>
+                  <!--                  <v-tabs v-model="versionIndex">-->
+                  <!--                    <v-tab>第二期重建</v-tab>-->
+                  <!--                    <v-tab>第三期重建</v-tab>-->
+                  <!--                  </v-tabs>-->
                   <v-card color="system">
                     <v-card-title>{{ simpleTip.title }}</v-card-title>
                     <v-card-text>
