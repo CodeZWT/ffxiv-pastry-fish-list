@@ -638,6 +638,7 @@ function quitAndSetup() {
     log.info('try open path', installerPath)
     shell.showItemInFolder(installerPath)
     log.info('quit before update')
+    tray.destroy()
     app.quit()
   })
 }
@@ -645,6 +646,7 @@ function quitAndSetup() {
 function quit() {
   FishingDataReader.stop(() => {
     log.info('quit by close')
+    tray.destroy()
     app.quit()
   })
 }
