@@ -507,6 +507,7 @@ onFFXIVEvent('eventPlay4', (packet) => {
     currentRecord.hookset = getHookset(packet.param1)
     currentRecord.missed =
       actionTimeline[packet.param2] != null &&
+      actionTimeline[packet.param1].subType.includes('hooking') &&
       !actionTimeline[packet.param2].subType.includes('landing')
     applyCurrentStatusOnLanding(currentRecord, status)
     // log.debug(
