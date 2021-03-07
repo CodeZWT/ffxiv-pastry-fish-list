@@ -361,14 +361,17 @@ onFFXIVEvents(['eventStart', 'eventFinish'], (packet) => {
   if (packet.eventId === FISHING_EVENT) {
     status.isFishing = packet.type === 'eventStart'
     if (!status.isFishing) {
-      // saveCurrentRecord()
       status.prevFishId = -1
     }
   }
 })
 
 function saveCurrentRecord() {
-  if (currentRecord.startTime != null && currentRecord.biteTime != null) {
+  if (
+    currentRecord.startTime != null &&
+    currentRecord.biteTime != null &&
+    currentRecord.startTime < currentRecord.biteTime
+  ) {
     if (currentRecord.mooch) {
       currentRecord.baitId = status.prevFishId
     }
@@ -411,6 +414,7 @@ onFFXIVEvent('eventPlay', (packet) => {
       case 1:
         status.isFishing = true
         currentRecord.startTime = Date.now()
+        currentRecord.biteTime = undefined
         break
       case 5:
         currentRecord.biteTime = Date.now()
