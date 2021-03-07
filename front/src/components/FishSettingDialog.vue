@@ -172,6 +172,7 @@
                       />
                       <v-btn
                         icon
+                        text
                         @click="playSound(setting.sound)"
                         :disabled="!sounds[setting.sound].player"
                       >
