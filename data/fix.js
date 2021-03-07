@@ -1239,6 +1239,20 @@ module.exports = {
     12760: {
       tug: 'medium',
     },
+    4887: {
+      tug: 'medium'
+    },
+    4935: {
+      tug: 'light'
+    },
+    32050: {
+      previousWeatherSet: [3, 4],
+      weatherSet: [4],
+    },
+    32054: {
+      startHour: 8,
+      endHour: 10,
+    }
   },
   COLLECTABLE_FISH_ITEM_ID: [
     12713,
