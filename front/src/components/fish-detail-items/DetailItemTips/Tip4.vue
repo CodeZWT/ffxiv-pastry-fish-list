@@ -1,5 +1,5 @@
 <template>
-  <div class="fishing-tip3">
+  <div class="fishing-tip4">
     <v-card v-if="tip" outlined>
       <v-card-subtitle>
         <div class="text-subtitle-1">
