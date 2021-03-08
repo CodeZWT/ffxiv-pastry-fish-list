@@ -284,7 +284,7 @@ function createReaderSetting(readTimerWin) {
     width: 500,
     height: 500,
     frame: false,
-    transparent: true,
+    transparent: false,
     maximizable: false,
     webPreferences: {
       contextIsolation: false,
@@ -339,7 +339,7 @@ function createReaderHistory(readTimerWin) {
     width: 500,
     height: 800,
     frame: false,
-    transparent: true,
+    transparent: false,
     maximizable: false,
     webPreferences: {
       contextIsolation: false,
@@ -393,7 +393,7 @@ function createReaderSpotStatistics(readTimerWin) {
     width: 500,
     height: 500,
     frame: false,
-    transparent: true,
+    transparent: false,
     maximizable: false,
     webPreferences: {
       contextIsolation: false,
@@ -444,12 +444,11 @@ function createReaderSpotStatistics(readTimerWin) {
 
 function createAndShowLoadingWindow() {
   const win = new BrowserWindow({
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 250,
     frame: false,
     show: true,
     transparent: true,
-    opacity: 0.9,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -535,7 +534,7 @@ function createReader() {
     width: 500,
     height: 160,
     frame: false,
-    transparent: true,
+    transparent: false,
     maximizable: false,
     webPreferences: {
       contextIsolation: false,

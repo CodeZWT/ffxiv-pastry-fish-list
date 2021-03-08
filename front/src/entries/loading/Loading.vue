@@ -1,9 +1,12 @@
 <template>
-  <v-app class="transparent">
+  <v-app>
     <v-main>
       <div class="d-flex align-center justify-center fill-height">
-        <v-card class="pa-2" outlined>
-          <v-card-text class="d-flex justify-center align-center flex-column">
+        <v-card
+          outlined
+          class="d-flex justify-center align-center flex-column pa-4 elevation-24"
+        >
+          <div class="d-flex flex-column align-center">
             <v-avatar>
               <v-img :src="fisher" />
             </v-avatar>
@@ -12,7 +15,7 @@
               <div class="mr-2">鱼糕烹饪中</div>
               <v-progress-circular indeterminate size="24" />
             </div>
-          </v-card-text>
+          </div>
         </v-card>
       </div>
     </v-main>
