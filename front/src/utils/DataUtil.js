@@ -8,6 +8,7 @@ import tip1Data from 'Data/tip1'
 import tip2Data from 'Data/tip2'
 import flatten from 'flat'
 import tip4 from 'Data/tip4'
+import tip6 from 'Data/tip6'
 import DATA_CN from 'Data/translation'
 import cloneDeep from 'lodash/cloneDeep'
 import { detect } from 'detect-browser'
@@ -689,7 +690,8 @@ export default {
       !!tip2Data[fishId] ||
       TIP3_FISH_IDS.includes(fishId) ||
       !!tip4.TIPS[fishId] ||
-      TIP5_FISH_IDS.includes(fishId)
+      TIP5_FISH_IDS.includes(fishId) ||
+      !!tip6.TIPS[fishId]
     )
   },
 
