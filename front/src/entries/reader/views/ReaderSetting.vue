@@ -1,6 +1,6 @@
 <template>
-  <v-card class="fill-height">
-    <v-card-text>
+  <v-card>
+    <v-card-text class="wrapper">
       <v-row no-gutters>
         <v-col cols="12" class="d-flex align-center">
           <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">区服</div>
@@ -151,15 +151,19 @@
             </div>
           </v-card-text>
         </v-card>
-        <div v-if="isTest">{{ lazySetting }}</div>
+        <!--        <div v-if="isTest">{{ lazySetting }}</div>-->
       </v-row>
     </v-card-text>
+    <v-divider />
+    <v-card-actions>
+      <v-btn @click="saveSetting" block color="primary">应用设置</v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import isEqual from 'lodash/isEqual'
+// import isEqual from 'lodash/isEqual'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { REGIONS } from 'Data/constants'
 import set from 'lodash/set'
@@ -204,26 +208,33 @@ export default {
     ...mapGetters(['readerSetting']),
   },
   watch: {
-    lazySetting: {
-      handler(lazySetting) {
-        console.debug('update setting', lazySetting)
-        window.electron?.ipcRenderer?.send('updateUserData', {
-          path: 'reader',
-          data: lazySetting,
-        })
-      },
-      deep: true,
-    },
-    readerSetting(readerSetting) {
-      if (!isEqual(readerSetting, this.lazySetting)) {
-        this.lazySetting = readerSetting
-      }
-    },
+    // lazySetting: {
+    //   handler(lazySetting) {
+    //     console.debug('update setting', lazySetting)
+    //     window.electron?.ipcRenderer?.send('updateUserData', {
+    //       path: 'reader',
+    //       data: lazySetting,
+    //     })
+    //   },
+    //   deep: true,
+    // },
+    // readerSetting(readerSetting) {
+    //   if (!isEqual(readerSetting, this.lazySetting)) {
+    //     this.lazySetting = readerSetting
+    //   }
+    // },
   },
   created() {
     this.lazySetting = this.readerSetting
   },
   methods: {
+    saveSetting() {
+      console.debug('update setting', this.lazySetting)
+      window.electron?.ipcRenderer?.send('updateUserData', {
+        path: 'reader',
+        data: this.lazySetting,
+      })
+    },
     toDisplayFileName(path) {
       return path && last(path.split('\\'))
     },
@@ -252,4 +263,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+@import "~@/styles/RcVariables"
+.wrapper
+  height: calc(100vh - #{ $top-bars-padding-reader } - 52px)
+  overflow-y: scroll
+  overflow-x: hidden
+</style>
