@@ -230,8 +230,12 @@ async function init() {
   globalShortcut.register('Alt+CommandOrControl+T', () => {
     main &&
       main.webContents.openDevTools({
-        mode: 'undocked',
+        mode: 'right',
       })
+    reader &&
+    reader.webContents.openDevTools({
+      mode: 'undocked',
+    })
   })
 
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
