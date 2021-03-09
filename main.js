@@ -30,7 +30,6 @@ log.transports.console.level = 'silly'
 
 const WINDOWS = {}
 let tray,
-  readerSetting,
   readerHistory,
   readerSpotStatistics,
   loading,
@@ -150,7 +149,7 @@ async function init() {
     })
     .on('reloadUserData', () => {
       WINDOWS.readerTimer.webContents.send('reloadUserData')
-      readerSetting.webContents.send('reloadUserData')
+      WINDOWS.readerSetting.webContents.send('reloadUserData')
     })
     .on('skipUpdate', () => {
       skipUpdate = true
@@ -338,7 +337,7 @@ function setWindow(window, option) {
 }
 
 function createReaderSetting(readTimerWin) {
-  readerSetting = new BrowserWindow({
+  WINDOWS.readerSetting = new BrowserWindow({
     width: windowSetting.setting.size.w,
     height: windowSetting.setting.size.h,
     x: windowSetting.setting.pos.x,
@@ -359,7 +358,7 @@ function createReaderSetting(readTimerWin) {
     show: false,
     parent: readTimerWin,
   })
-  const win = readerSetting
+  const win = WINDOWS.readerSetting
   closedWindows['readerSetting'] = null
   win.setOpacity(1)
   setOnTop(win)
@@ -604,7 +603,7 @@ function createReader() {
       closedWindows['reader'] = win
     })
     .on('hide', (e) => {
-      readerSetting.hide()
+      WINDOWS.readerSetting.hide()
       readerHistory.hide()
       readerSpotStatistics.hide()
     })
@@ -660,7 +659,7 @@ function showReaderSetting() {
   if (closedWindows['readerSetting']) {
     createReaderSetting()
   }
-  readerSetting && readerSetting.show()
+  WINDOWS.readerSetting && WINDOWS.readerSetting.show()
 }
 
 function toggleReaderHistory() {
