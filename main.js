@@ -28,8 +28,8 @@ const SETUP_EXE_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
 
+const WINDOWS = {}
 let tray,
-  main,
   reader,
   readerSetting,
   readerHistory,
@@ -102,12 +102,12 @@ async function init() {
   createMainWindow()
 
   FishingDataReader.onUpdate((data) => {
-    main.webContents.send('fishingData', data)
+    WINDOWS.main.webContents.send('fishingData', data)
     reader && reader.webContents.send('fishingData', data)
     readerSpotStatistics && readerSpotStatistics.webContents.send('fishingData', data)
   })
   FishingDataReader.onFishCaught((data) => {
-    main.webContents.send('fishCaught', data)
+    WINDOWS.main.webContents.send('fishCaught', data)
   })
   FishingDataReader.onNewRecord((data) => {
     reader && reader.webContents.send('newRecord', data)
@@ -155,7 +155,7 @@ async function init() {
     })
     .on('skipUpdate', () => {
       skipUpdate = true
-      main.setProgressBar(0)
+      WINDOWS.main.setProgressBar(0)
       log.info('Update skipped')
     })
     .on('toggleHistory', () => {
@@ -166,13 +166,13 @@ async function init() {
     })
     .on('zoomMainWindow', (event, zoomFactor) => {
       log.info('zoom main window', zoomFactor)
-      main.webContents.setZoomFactor(zoomFactor)
+      WINDOWS.main.webContents.setZoomFactor(zoomFactor)
     })
     .on('setCollapse', (event, collapse) => {
       if (collapse) {
-        main.setSize(112, 88)
+        WINDOWS.main.setSize(112, 88)
       } else {
-        main.setSize(mainSize.w, mainSize.h)
+        WINDOWS.main.setSize(mainSize.w, mainSize.h)
       }
     })
     .on('setReaderMiniMode', (event, mini) => {
@@ -190,7 +190,7 @@ async function init() {
       //   return loadingForReloadingPage.close()
       // }
       if (!loading.isDestroyed()) {
-        main.show()
+        WINDOWS.main.show()
         loading.close()
       }
     })
@@ -223,11 +223,11 @@ async function init() {
         })
     })
     .on('showSpotPage', (event, spotId) => {
-      main.webContents.send('showSpotPage', spotId)
-      if (main.isMinimized()) {
-        main.restore()
+      WINDOWS.main.webContents.send('showSpotPage', spotId)
+      if (WINDOWS.main.isMinimized()) {
+        WINDOWS.main.restore()
       }
-      main.focus()
+      WINDOWS.main.focus()
     })
     .on('updateWindowSetting', (event, newWindSetting) => {
       ;['setting', 'timer', 'history', 'spotStatistics'].forEach((winName) => {
@@ -287,8 +287,8 @@ async function init() {
     showReader()
   })
   globalShortcut.register('Alt+CommandOrControl+T', () => {
-    main &&
-      main.webContents.openDevTools({
+    WINDOWS.main &&
+      WINDOWS.main.webContents.openDevTools({
         mode: 'right',
       })
     reader &&
@@ -331,7 +331,7 @@ function setWindow(window, option) {
   if (option.size.w > 0 && option.size.h > 0) {
     window.setSize(option.size.w, option.size.h)
   }
-  if (window === main) {
+  if (window === WINDOWS.main) {
     mainSize = { w: option.size.w, h: option.size.h }
   } else if (window === reader) {
     readerSize = { w: option.size.w, h: option.size.h }
@@ -526,7 +526,7 @@ function createAndShowLoadingWindow() {
 }
 
 function createMainWindow() {
-  main = new BrowserWindow({
+  WINDOWS.main = new BrowserWindow({
     width: windowSetting.main.size.w,
     height: windowSetting.main.size.h,
     x: windowSetting.main.pos.x,
@@ -544,7 +544,7 @@ function createMainWindow() {
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
-  const win = main
+  const win = WINDOWS.main
   win.removeMenu()
   win.loadURL(winURL).then(() => {
     createReader()
@@ -647,7 +647,7 @@ function createReader() {
 }
 
 function updateUserData(updateData) {
-  main.webContents.send('updateUserData', updateData)
+  WINDOWS.main.webContents.send('updateUserData', updateData)
 }
 
 function showReader() {
@@ -712,16 +712,16 @@ function updateIfNeeded() {
     if (localCommitHash !== remoteCommitHash) {
       log.info('New Version Detected!')
       const throttled = throttle(
-        (progress) => main.webContents.send('setupDownload', progress),
+        (progress) => WINDOWS.main.webContents.send('setupDownload', progress),
         500
       )
       download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH).on('downloadProgress', (progress) => {
         // Report download progress
         throttled(progress)
-        main.setProgressBar(progress.percent)
+        WINDOWS.main.setProgressBar(progress.percent)
         if (progress.percent === 1) {
           // fs.writeFileSync(DOWNLOADED_COMMITHASH_PATH, remoteCommitHash, {encoding: FILE_ENCODING})
-          main.webContents.send('checkStartSetup')
+          WINDOWS.main.webContents.send('checkStartSetup')
         }
       })
     } else {
@@ -776,10 +776,10 @@ if (!gotTheLock) {
 }
 
 function showAndFocusMain() {
-  if (main) {
-    if (main.isMinimized()) main.restore()
-    if (!main.isVisible()) main.show()
-    main.focus()
+  if (WINDOWS.main) {
+    if (WINDOWS.main.isMinimized()) WINDOWS.main.restore()
+    if (!WINDOWS.main.isVisible()) WINDOWS.main.show()
+    WINDOWS.main.focus()
   }
 }
 
