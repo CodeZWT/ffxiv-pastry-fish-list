@@ -140,6 +140,7 @@ async function init() {
 
       const newRegion = updateData.data.region
       if (region !== newRegion) {
+        region = newRegion
         const options = { region: newRegion }
         FishingDataReader.restart(options, () => {
           log.info('Machina restarted!', options)
