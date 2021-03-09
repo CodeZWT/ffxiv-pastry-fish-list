@@ -30,7 +30,6 @@ log.transports.console.level = 'silly'
 
 const WINDOWS = {}
 let tray,
-  reader,
   readerSetting,
   readerHistory,
   readerSpotStatistics,
@@ -103,14 +102,14 @@ async function init() {
 
   FishingDataReader.onUpdate((data) => {
     WINDOWS.main.webContents.send('fishingData', data)
-    reader && reader.webContents.send('fishingData', data)
+    WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('fishingData', data)
     readerSpotStatistics && readerSpotStatistics.webContents.send('fishingData', data)
   })
   FishingDataReader.onFishCaught((data) => {
     WINDOWS.main.webContents.send('fishCaught', data)
   })
   FishingDataReader.onNewRecord((data) => {
-    reader && reader.webContents.send('newRecord', data)
+    WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('newRecord', data)
     readerHistory && readerHistory.webContents.send('newRecord', data)
     readerSpotStatistics && readerSpotStatistics.webContents.send('newRecord', data)
   })
@@ -137,7 +136,7 @@ async function init() {
       showReader()
     })
     .on('showSetting', () => {
-      showReaderSetting(reader)
+      showReaderSetting(WINDOWS.readerTimer)
     })
     .on('updateUserData', (event, updateData) => {
       // log.info('updateUserData', updateData.data)
@@ -150,7 +149,7 @@ async function init() {
       // setWindow(readerSpotStatistics, updateData.data.spotStatistics)
     })
     .on('reloadUserData', () => {
-      reader.webContents.send('reloadUserData')
+      WINDOWS.readerTimer.webContents.send('reloadUserData')
       readerSetting.webContents.send('reloadUserData')
     })
     .on('skipUpdate', () => {
@@ -177,9 +176,9 @@ async function init() {
     })
     .on('setReaderMiniMode', (event, mini) => {
       if (mini) {
-        reader.setSize(readerSize.w, 52)
+        WINDOWS.readerTimer.setSize(readerSize.w, 52)
       } else {
-        reader.setSize(readerSize.w, readerSize.h)
+        WINDOWS.readerTimer.setSize(readerSize.w, readerSize.h)
       }
     })
     .on('startLoading', () => {
@@ -291,8 +290,8 @@ async function init() {
       WINDOWS.main.webContents.openDevTools({
         mode: 'right',
       })
-    reader &&
-      reader.webContents.openDevTools({
+    WINDOWS.readerTimer &&
+      WINDOWS.readerTimer.webContents.openDevTools({
         mode: 'undocked',
       })
   })
@@ -309,7 +308,7 @@ async function init() {
 }
 
 function setMouseThrough(enable) {
-  reader && reader.setIgnoreMouseEvents(enable, { forward: true })
+  WINDOWS.readerTimer && WINDOWS.readerTimer.setIgnoreMouseEvents(enable, { forward: true })
   readerHistory && readerHistory.setIgnoreMouseEvents(enable, { forward: true })
   readerSpotStatistics &&
     readerSpotStatistics.setIgnoreMouseEvents(enable, { forward: true })
@@ -333,7 +332,7 @@ function setWindow(window, option) {
   }
   if (window === WINDOWS.main) {
     mainSize = { w: option.size.w, h: option.size.h }
-  } else if (window === reader) {
+  } else if (window === WINDOWS.readerTimer) {
     readerSize = { w: option.size.w, h: option.size.h }
   }
 }
@@ -574,7 +573,7 @@ function setOnTop(win) {
 }
 
 function createReader() {
-  reader = new BrowserWindow({
+  WINDOWS.readerTimer = new BrowserWindow({
     width: windowSetting.timer.size.w,
     height: windowSetting.timer.size.h,
     x: windowSetting.timer.pos.x,
@@ -594,7 +593,7 @@ function createReader() {
     icon: path.join(__dirname, 'assets/reader.png'),
     show: false,
   })
-  const win = reader
+  const win = WINDOWS.readerTimer
   closedWindows['reader'] = null
   win.setOpacity(0.9)
   setOnTop(win)
@@ -654,7 +653,7 @@ function showReader() {
   if (closedWindows['reader']) {
     createReader()
   }
-  reader && reader.show()
+  WINDOWS.readerTimer && WINDOWS.readerTimer.show()
 }
 
 function showReaderSetting() {
@@ -666,7 +665,7 @@ function showReaderSetting() {
 
 function toggleReaderHistory() {
   if (closedWindows['readerHistory']) {
-    createReaderHistory(reader)
+    createReaderHistory(WINDOWS.readerTimer)
   }
   if (readerHistory.isVisible()) {
     readerHistory.hide()
@@ -677,7 +676,7 @@ function toggleReaderHistory() {
 
 function toggleSpotStatistics() {
   if (closedWindows['readerSpotStatistics']) {
-    createReaderSpotStatistics(reader)
+    createReaderSpotStatistics(WINDOWS.readerTimer)
   }
   if (readerSpotStatistics.isVisible()) {
     readerSpotStatistics.hide()
