@@ -1224,7 +1224,7 @@ export default {
     })
     // this.finishReloadPage()
 
-    this.sendElectronEvent('restartReader', { region: this.readerRegion })
+    this.sendElectronEvent('startReader', { region: this.readerRegion })
   },
   async mounted() {
     // setTimeout(async () => {

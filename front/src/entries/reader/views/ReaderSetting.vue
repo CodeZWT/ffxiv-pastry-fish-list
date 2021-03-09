@@ -183,6 +183,7 @@ export default {
     return {
       lazySetting: {},
       lazyWindowSetting: {
+        region: undefined,
         timer: {},
         history: {},
         spotStatistics: {},
@@ -199,14 +200,10 @@ export default {
     },
     region: {
       get() {
-        return REGIONS.indexOf(this.lazySetting.region)
+        return REGIONS.indexOf(this.lazyWindowSetting.region)
       },
       set(regionIndex) {
-        const region = REGIONS[regionIndex]
-        this.lazySetting.region = region
-        window.electron?.ipcRenderer?.send('restartReader', {
-          region,
-        })
+        this.lazySetting.region = REGIONS[regionIndex]
       },
     },
     ...mapState(['sounds']),

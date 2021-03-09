@@ -29,11 +29,7 @@ const SETUP_EXE_DOWNLOAD_LINK =
 log.transports.console.level = 'silly'
 
 const WINDOWS = {}
-let tray,
-  loading,
-  loadingForReloadingPage,
-  configStore,
-  windowSetting
+let tray, loading, loadingForReloadingPage, configStore, windowSetting, region
 const winURL = isDev
   ? `http://localhost:8080`
   : `file://${__dirname}/front-electron-dist/index.html`
@@ -100,7 +96,8 @@ async function init() {
   FishingDataReader.onUpdate((data) => {
     WINDOWS.main.webContents.send('fishingData', data)
     WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('fishingData', data)
-    WINDOWS.readerSpotStatistics && WINDOWS.readerSpotStatistics.webContents.send('fishingData', data)
+    WINDOWS.readerSpotStatistics &&
+      WINDOWS.readerSpotStatistics.webContents.send('fishingData', data)
   })
   FishingDataReader.onFishCaught((data) => {
     WINDOWS.main.webContents.send('fishCaught', data)
@@ -108,7 +105,8 @@ async function init() {
   FishingDataReader.onNewRecord((data) => {
     WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('newRecord', data)
     WINDOWS.readerHistory && WINDOWS.readerHistory.webContents.send('newRecord', data)
-    WINDOWS.readerSpotStatistics && WINDOWS.readerSpotStatistics.webContents.send('newRecord', data)
+    WINDOWS.readerSpotStatistics &&
+      WINDOWS.readerSpotStatistics.webContents.send('newRecord', data)
   })
 
   updateIfNeeded()
@@ -116,15 +114,16 @@ async function init() {
 
   ipcMain
     .on('startReader', (event, options) => {
-      FishingDataReader.start(options, () => {
+      region = options.region
+      FishingDataReader.restart(options, () => {
         log.info('Machina started!', options)
       })
     })
-    .on('restartReader', (event, options) => {
-      FishingDataReader.restart(options, () => {
-        log.info('Machina restarted!', options)
-      })
-    })
+    // .on('restartReader', (event, options) => {
+    //   FishingDataReader.restart(options, () => {
+    //     log.info('Machina restarted!', options)
+    //   })
+    // })
     .on('startUpdate', () => {
       quitAndSetup()
     })
@@ -139,6 +138,13 @@ async function init() {
       // log.info('updateUserData', updateData.data)
       updateUserData(updateData)
 
+      const newRegion = updateData.data.region
+      if (region !== newRegion) {
+        const options = { region: newRegion }
+        FishingDataReader.restart(options, () => {
+          log.info('Machina restarted!', options)
+        })
+      }
       // setWindow(main, updateData.data.main)
       // setWindow(readerSetting, updateData.data.setting)
       // setWindow(reader, updateData.data.timer)
@@ -225,10 +231,10 @@ async function init() {
       }
       WINDOWS.main.focus()
     })
-    .on('updateWindowSetting', (event, newWindSetting) => {
+    .on('updateWindowSetting', (event, newWindowSetting) => {
       ;['setting', 'timer', 'history', 'spotStatistics'].forEach((winName) => {
-        saveWindowSetting(winName + '.opacity', newWindSetting[winName].opacity)
-        saveWindowSetting(winName + '.zoomFactor', newWindSetting[winName].zoomFactor)
+        saveWindowSetting(winName + '.opacity', newWindowSetting[winName].opacity)
+        saveWindowSetting(winName + '.zoomFactor', newWindowSetting[winName].zoomFactor)
       })
     })
   // .on('playSound', (event, playInfo) => {
@@ -305,34 +311,36 @@ async function init() {
 }
 
 function setMouseThrough(enable) {
-  WINDOWS.readerTimer && WINDOWS.readerTimer.setIgnoreMouseEvents(enable, { forward: true })
-  WINDOWS.readerHistory && WINDOWS.readerHistory.setIgnoreMouseEvents(enable, { forward: true })
+  WINDOWS.readerTimer &&
+    WINDOWS.readerTimer.setIgnoreMouseEvents(enable, { forward: true })
+  WINDOWS.readerHistory &&
+    WINDOWS.readerHistory.setIgnoreMouseEvents(enable, { forward: true })
   WINDOWS.readerSpotStatistics &&
     WINDOWS.readerSpotStatistics.setIgnoreMouseEvents(enable, { forward: true })
 }
 
-let mainSize = { w: -1, h: -1 }
-let readerSize = { w: -1, h: -1 }
-
-function setWindow(window, option) {
-  if (option.opacity) {
-    window.setOpacity(option.opacity)
-  }
-  if (option.zoomFactor && window.webContents.zoomFactor !== option.zoomFactor) {
-    window.webContents.setZoomFactor(option.zoomFactor)
-  }
-  if (option.pos != null && option.pos.x != null && option.pos.y != null) {
-    window.setPosition(option.pos.x, option.pos.y)
-  }
-  if (option.size.w > 0 && option.size.h > 0) {
-    window.setSize(option.size.w, option.size.h)
-  }
-  if (window === WINDOWS.main) {
-    mainSize = { w: option.size.w, h: option.size.h }
-  } else if (window === WINDOWS.readerTimer) {
-    readerSize = { w: option.size.w, h: option.size.h }
-  }
-}
+// let mainSize = { w: -1, h: -1 }
+// let readerSize = { w: -1, h: -1 }
+//
+// function setWindow(window, option) {
+//   if (option.opacity) {
+//     window.setOpacity(option.opacity)
+//   }
+//   if (option.zoomFactor && window.webContents.zoomFactor !== option.zoomFactor) {
+//     window.webContents.setZoomFactor(option.zoomFactor)
+//   }
+//   if (option.pos != null && option.pos.x != null && option.pos.y != null) {
+//     window.setPosition(option.pos.x, option.pos.y)
+//   }
+//   if (option.size.w > 0 && option.size.h > 0) {
+//     window.setSize(option.size.w, option.size.h)
+//   }
+//   if (window === WINDOWS.main) {
+//     mainSize = { w: option.size.w, h: option.size.h }
+//   } else if (window === WINDOWS.readerTimer) {
+//     readerSize = { w: option.size.w, h: option.size.h }
+//   }
+// }
 
 function createReaderSetting(readTimerWin) {
   WINDOWS.readerSetting = new BrowserWindow({
