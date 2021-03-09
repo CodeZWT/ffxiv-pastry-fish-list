@@ -30,7 +30,6 @@ log.transports.console.level = 'silly'
 
 const WINDOWS = {}
 let tray,
-  readerSpotStatistics,
   loading,
   loadingForReloadingPage,
   configStore,
@@ -101,7 +100,7 @@ async function init() {
   FishingDataReader.onUpdate((data) => {
     WINDOWS.main.webContents.send('fishingData', data)
     WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('fishingData', data)
-    readerSpotStatistics && readerSpotStatistics.webContents.send('fishingData', data)
+    WINDOWS.readerSpotStatistics && WINDOWS.readerSpotStatistics.webContents.send('fishingData', data)
   })
   FishingDataReader.onFishCaught((data) => {
     WINDOWS.main.webContents.send('fishCaught', data)
@@ -109,7 +108,7 @@ async function init() {
   FishingDataReader.onNewRecord((data) => {
     WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('newRecord', data)
     WINDOWS.readerHistory && WINDOWS.readerHistory.webContents.send('newRecord', data)
-    readerSpotStatistics && readerSpotStatistics.webContents.send('newRecord', data)
+    WINDOWS.readerSpotStatistics && WINDOWS.readerSpotStatistics.webContents.send('newRecord', data)
   })
 
   updateIfNeeded()
@@ -308,8 +307,8 @@ async function init() {
 function setMouseThrough(enable) {
   WINDOWS.readerTimer && WINDOWS.readerTimer.setIgnoreMouseEvents(enable, { forward: true })
   WINDOWS.readerHistory && WINDOWS.readerHistory.setIgnoreMouseEvents(enable, { forward: true })
-  readerSpotStatistics &&
-    readerSpotStatistics.setIgnoreMouseEvents(enable, { forward: true })
+  WINDOWS.readerSpotStatistics &&
+    WINDOWS.readerSpotStatistics.setIgnoreMouseEvents(enable, { forward: true })
 }
 
 let mainSize = { w: -1, h: -1 }
@@ -441,7 +440,7 @@ function createReaderHistory(readTimerWin) {
 }
 
 function createReaderSpotStatistics(readTimerWin) {
-  readerSpotStatistics = new BrowserWindow({
+  WINDOWS.readerSpotStatistics = new BrowserWindow({
     width: windowSetting.spotStatistics.size.w,
     height: windowSetting.spotStatistics.size.h,
     x: windowSetting.spotStatistics.pos.x,
@@ -462,7 +461,7 @@ function createReaderSpotStatistics(readTimerWin) {
     show: false,
     parent: readTimerWin,
   })
-  const win = readerSpotStatistics
+  const win = WINDOWS.readerSpotStatistics
   closedWindows['readerSpotStatistics'] = null
   win.setOpacity(0.9)
   setOnTop(win)
@@ -604,7 +603,7 @@ function createReader() {
     .on('hide', (e) => {
       WINDOWS.readerSetting.hide()
       WINDOWS.readerHistory.hide()
-      readerSpotStatistics.hide()
+      WINDOWS.readerSpotStatistics.hide()
     })
     .on('moved', () => {
       const [x, y] = win.getPosition()
@@ -676,10 +675,10 @@ function toggleSpotStatistics() {
   if (closedWindows['readerSpotStatistics']) {
     createReaderSpotStatistics(WINDOWS.readerTimer)
   }
-  if (readerSpotStatistics.isVisible()) {
-    readerSpotStatistics.hide()
+  if (WINDOWS.readerSpotStatistics.isVisible()) {
+    WINDOWS.readerSpotStatistics.hide()
   } else {
-    readerSpotStatistics.show()
+    WINDOWS.readerSpotStatistics.show()
   }
 }
 
