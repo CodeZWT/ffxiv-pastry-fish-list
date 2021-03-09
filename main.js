@@ -145,11 +145,6 @@ async function init() {
           log.info('Machina restarted!', options)
         })
       }
-      // setWindow(main, updateData.data.main)
-      // setWindow(readerSetting, updateData.data.setting)
-      // setWindow(reader, updateData.data.timer)
-      // setWindow(readerHistory, updateData.data.history)
-      // setWindow(readerSpotStatistics, updateData.data.spotStatistics)
     })
     .on('reloadUserData', () => {
       WINDOWS.readerTimer.webContents.send('reloadUserData')
@@ -272,13 +267,17 @@ async function init() {
         ],
       })
       .then((result) => {
-        return datauri(result.filePaths[0]).then((content) => {
-          return {
-            cancelled: result.cancelled,
-            filePath: result.filePaths[0],
-            base64: content,
-          }
-        })
+        if (result.canceled) {
+          return { canceled: true }
+        } else {
+          return datauri(result.filePaths[0]).then((content) => {
+            return {
+              canceled: result.canceled,
+              filePath: result.filePaths[0],
+              base64: content,
+            }
+          })
+        }
       })
   })
   ipcMain.handle('getWindowSetting', () => {
