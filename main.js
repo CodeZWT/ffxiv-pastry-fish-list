@@ -19,6 +19,8 @@ const CONSTANTS = require('./data/constants')
 const ObjectsToCsv = require('objects-to-csv')
 const iconv = require('iconv-lite')
 const datauri = require('datauri')
+const Store = require('electron-store')
+const set = require('lodash/set')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -33,7 +35,9 @@ let tray,
   readerHistory,
   readerSpotStatistics,
   loading,
-  loadingForReloadingPage
+  loadingForReloadingPage,
+  configStore,
+  windowSetting
 const winURL = isDev
   ? `http://localhost:8080`
   : `file://${__dirname}/front-electron-dist/index.html`
@@ -47,9 +51,54 @@ const SETUP_PATH = 'setup'
 let skipUpdate = false
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
 const closedWindows = {}
+function initWindowSetting(configStore) {
+  if (!configStore.get('windowSetting')) {
+    configStore.set('windowSetting', {
+      main: {
+        pos: { x: null, y: null },
+        size: { w: 1080, h: 768 },
+        opacity: 0.9,
+        zoomFactor: 1,
+      },
+      setting: {
+        pos: { x: null, y: null },
+        size: { w: 500, h: 500 },
+        opacity: 0.9,
+        zoomFactor: 1,
+      },
+      timer: {
+        pos: { x: null, y: null },
+        size: { w: 500, h: 160 },
+        opacity: 0.9,
+        zoomFactor: 1,
+      },
+      history: {
+        pos: { x: null, y: null },
+        size: { w: 500, h: 800 },
+        opacity: 0.9,
+        zoomFactor: 1,
+      },
+      spotStatistics: {
+        pos: { x: null, y: null },
+        size: { w: 500, h: 500 },
+        opacity: 0.9,
+        zoomFactor: 1,
+      },
+    })
+    log.info('Initialize user config in', app.getPath('userData'))
+  }
+}
+
+function saveWindowSetting(path, value) {
+  set(windowSetting, path, value)
+  configStore.set('windowSetting', windowSetting)
+}
 
 async function init() {
   await createAndShowLoadingWindow().then((win) => (loading = win))
+  configStore = new Store()
+  initWindowSetting(configStore)
+  windowSetting = configStore.get('windowSetting')
   createMainWindow()
 
   FishingDataReader.onUpdate((data) => {
@@ -94,15 +143,11 @@ async function init() {
       // log.info('updateUserData', updateData.data)
       updateUserData(updateData)
 
-      setWindow(main, updateData.data.main)
-      setWindow(readerSetting, updateData.data.setting)
-      setWindow(reader, updateData.data.timer)
-      setWindow(readerHistory, updateData.data.history)
-      setWindow(readerSpotStatistics, updateData.data.spotStatistics)
-      if (!loading.isDestroyed()) {
-        main.show()
-        loading.close()
-      }
+      // setWindow(main, updateData.data.main)
+      // setWindow(readerSetting, updateData.data.setting)
+      // setWindow(reader, updateData.data.timer)
+      // setWindow(readerHistory, updateData.data.history)
+      // setWindow(readerSpotStatistics, updateData.data.spotStatistics)
     })
     .on('reloadUserData', () => {
       reader.webContents.send('reloadUserData')
@@ -144,6 +189,10 @@ async function init() {
       // if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
       //   return loadingForReloadingPage.close()
       // }
+      if (!loading.isDestroyed()) {
+        main.show()
+        loading.close()
+      }
     })
     .on('exportHistory', (event, data) => {
       dialog
@@ -180,49 +229,59 @@ async function init() {
       }
       main.focus()
     })
-    // .on('playSound', (event, playInfo) => {
-    //   new Howl({ src: playInfo.path, preload: true })
-    //     .volume(playInfo.volume)
-    //     .play()
-    // })
-    .handle('showOpenSoundFileDialog', () => {
-      return dialog
-        .showOpenDialog({
-          title: '选择音频文件',
-          buttonLabel: '选择',
-          filters: [
-            {
-              name: '音频文件',
-              extensions: [
-                'mp3',
-                'mpeg',
-                'opus',
-                'ogg',
-                'oga',
-                'wav',
-                'aac',
-                'caf',
-                'm4a',
-                'm4b',
-                'mp4',
-                'weba',
-                'webm',
-                'dolby',
-                'flac',
-              ],
-            },
-          ],
-        })
-        .then((result) => {
-          return datauri(result.filePaths[0]).then((content) => {
-            return {
-              cancelled: result.cancelled,
-              filePath: result.filePaths[0],
-              base64: content,
-            }
-          })
-        })
+    .on('updateWindowSetting', (event, newWindSetting) => {
+      ;['setting', 'timer', 'history', 'spotStatistics'].forEach((winName) => {
+        saveWindowSetting(winName + '.opacity', newWindSetting[winName].opacity)
+        saveWindowSetting(winName + '.zoomFactor', newWindSetting[winName].zoomFactor)
+      })
     })
+  // .on('playSound', (event, playInfo) => {
+  //   new Howl({ src: playInfo.path, preload: true })
+  //     .volume(playInfo.volume)
+  //     .play()
+  // })
+
+  ipcMain.handle('showOpenSoundFileDialog', () => {
+    return dialog
+      .showOpenDialog({
+        title: '选择音频文件',
+        buttonLabel: '选择',
+        filters: [
+          {
+            name: '音频文件',
+            extensions: [
+              'mp3',
+              'mpeg',
+              'opus',
+              'ogg',
+              'oga',
+              'wav',
+              'aac',
+              'caf',
+              'm4a',
+              'm4b',
+              'mp4',
+              'weba',
+              'webm',
+              'dolby',
+              'flac',
+            ],
+          },
+        ],
+      })
+      .then((result) => {
+        return datauri(result.filePaths[0]).then((content) => {
+          return {
+            cancelled: result.cancelled,
+            filePath: result.filePaths[0],
+            base64: content,
+          }
+        })
+      })
+  })
+  ipcMain.handle('getWindowSetting', () => {
+    return windowSetting
+  })
 
   globalShortcut.register('Alt+CommandOrControl+L', () => {
     showReader()
@@ -233,9 +292,9 @@ async function init() {
         mode: 'right',
       })
     reader &&
-    reader.webContents.openDevTools({
-      mode: 'undocked',
-    })
+      reader.webContents.openDevTools({
+        mode: 'undocked',
+      })
   })
 
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
@@ -281,8 +340,11 @@ function setWindow(window, option) {
 
 function createReaderSetting(readTimerWin) {
   readerSetting = new BrowserWindow({
-    width: 500,
-    height: 500,
+    width: windowSetting.setting.size.w,
+    height: windowSetting.setting.size.h,
+    x: windowSetting.setting.pos.x,
+    y: windowSetting.setting.pos.y,
+    opacity: windowSetting.setting.opacity,
     frame: false,
     transparent: false,
     maximizable: false,
@@ -292,6 +354,7 @@ function createReaderSetting(readTimerWin) {
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
       additionalArguments: ['--route-name=ReaderSetting'],
+      zoomFactor: windowSetting.setting.zoomFactor,
     },
     icon: path.join(__dirname, 'assets/setting.png'),
     show: false,
@@ -314,17 +377,11 @@ function createReaderSetting(readTimerWin) {
     })
     .on('moved', () => {
       const [x, y] = win.getPosition()
-      updateUserData({
-        path: 'reader.setting.pos',
-        data: { x, y },
-      })
+      saveWindowSetting('setting.pos', { x, y })
     })
     .on('resized', () => {
       const [w, h] = win.getSize()
-      updateUserData({
-        path: 'reader.setting.size',
-        data: { w, h },
-      })
+      saveWindowSetting('setting.size', { w, h })
     })
 
   if (isDev) {
@@ -336,8 +393,11 @@ function createReaderSetting(readTimerWin) {
 
 function createReaderHistory(readTimerWin) {
   readerHistory = new BrowserWindow({
-    width: 500,
-    height: 800,
+    width: windowSetting.history.size.w,
+    height: windowSetting.history.size.h,
+    x: windowSetting.history.pos.x,
+    y: windowSetting.history.pos.y,
+    opacity: windowSetting.history.opacity,
     frame: false,
     transparent: false,
     maximizable: false,
@@ -347,6 +407,7 @@ function createReaderHistory(readTimerWin) {
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
       additionalArguments: ['--route-name=ReaderHistory'],
+      zoomFactor: windowSetting.history.zoomFactor,
     },
     icon: path.join(__dirname, 'assets/reader.png'),
     show: false,
@@ -369,17 +430,11 @@ function createReaderHistory(readTimerWin) {
     })
     .on('moved', () => {
       const [x, y] = win.getPosition()
-      updateUserData({
-        path: 'reader.history.pos',
-        data: { x, y },
-      })
+      saveWindowSetting('history.pos', { x, y })
     })
     .on('resized', () => {
       const [w, h] = win.getSize()
-      updateUserData({
-        path: 'reader.history.size',
-        data: { w, h },
-      })
+      saveWindowSetting('history.size', { w, h })
     })
   // if (isDev) {
   //   readerHistory.webContents.openDevTools({
@@ -390,8 +445,11 @@ function createReaderHistory(readTimerWin) {
 
 function createReaderSpotStatistics(readTimerWin) {
   readerSpotStatistics = new BrowserWindow({
-    width: 500,
-    height: 500,
+    width: windowSetting.spotStatistics.size.w,
+    height: windowSetting.spotStatistics.size.h,
+    x: windowSetting.spotStatistics.pos.x,
+    y: windowSetting.spotStatistics.pos.y,
+    opacity: windowSetting.spotStatistics.opacity,
     frame: false,
     transparent: false,
     maximizable: false,
@@ -401,6 +459,7 @@ function createReaderSpotStatistics(readTimerWin) {
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
       additionalArguments: ['--route-name=ReaderSpotStatistics'],
+      zoomFactor: windowSetting.spotStatistics.zoomFactor,
     },
     icon: path.join(__dirname, 'assets/reader.png'),
     show: false,
@@ -423,17 +482,11 @@ function createReaderSpotStatistics(readTimerWin) {
     })
     .on('moved', () => {
       const [x, y] = win.getPosition()
-      updateUserData({
-        path: 'reader.spotStatistics.pos',
-        data: { x, y },
-      })
+      saveWindowSetting('spotStatistics.po', { x, y })
     })
     .on('resized', () => {
       const [w, h] = win.getSize()
-      updateUserData({
-        path: 'reader.spotStatistics.size',
-        data: { w, h },
-      })
+      saveWindowSetting('spotStatistics.size', { w, h })
     })
   // if (isDev) {
   //   win.webContents.openDevTools({
@@ -474,27 +527,25 @@ function createAndShowLoadingWindow() {
 
 function createMainWindow() {
   main = new BrowserWindow({
-    width: 1080,
-    height: 768,
+    width: windowSetting.main.size.w,
+    height: windowSetting.main.size.h,
+    x: windowSetting.main.pos.x,
+    y: windowSetting.main.pos.y,
+    opacity: windowSetting.main.opacity,
     frame: false,
     show: false,
-    transparent: true,
+    transparent: false,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
+      zoomFactor: windowSetting.main.zoomFactor,
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
   const win = main
-  // win.once('ready-to-show', () => {
-  //   win.show()
-  // })
-  // win.setOpacity(0.9)
-  // win.setAlwaysOnTop(true)
   win.removeMenu()
-  // win.maximize()
   win.loadURL(winURL).then(() => {
     createReader()
 
@@ -507,22 +558,15 @@ function createMainWindow() {
   win
     .on('moved', () => {
       const [x, y] = win.getPosition()
-      updateUserData({ path: 'reader.main.pos', data: { x, y } })
+      saveWindowSetting('main.pos', { x, y })
     })
     .on('resized', () => {
       const [w, h] = win.getSize()
-      mainSize = { w, h }
-      updateUserData({ path: 'reader.main.size', data: { w, h } })
+      saveWindowSetting('main.size', { w, h })
     })
     .on('closed', () => {
       quit()
     })
-
-  // if (isDev) {
-  //   win.webContents.openDevTools({
-  //     mode: 'undocked',
-  //   })
-  // }
 }
 
 function setOnTop(win) {
@@ -531,8 +575,11 @@ function setOnTop(win) {
 
 function createReader() {
   reader = new BrowserWindow({
-    width: 500,
-    height: 160,
+    width: windowSetting.timer.size.w,
+    height: windowSetting.timer.size.h,
+    x: windowSetting.timer.pos.x,
+    y: windowSetting.timer.pos.y,
+    opacity: windowSetting.timer.opacity,
     frame: false,
     transparent: false,
     maximizable: false,
@@ -542,6 +589,7 @@ function createReader() {
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
       additionalArguments: ['--route-name=ReaderTimer'],
+      zoomFactor: windowSetting.timer.zoomFactor,
     },
     icon: path.join(__dirname, 'assets/reader.png'),
     show: false,
@@ -563,18 +611,11 @@ function createReader() {
     })
     .on('moved', () => {
       const [x, y] = win.getPosition()
-      updateUserData({
-        path: 'reader.timer.pos',
-        data: { x, y },
-      })
+      saveWindowSetting('timer.pos', { x, y })
     })
     .on('resized', () => {
       const [w, h] = win.getSize()
-      readerSize = { w, h }
-      updateUserData({
-        path: 'reader.timer.size',
-        data: { w, h },
-      })
+      saveWindowSetting('timer.size', { w, h })
     })
 
   win.loadURL(readerURL).then(() => {

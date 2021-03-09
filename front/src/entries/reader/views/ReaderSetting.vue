@@ -24,7 +24,7 @@
           <v-card-text>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.timer.opacity"
+                v-model="lazyWindowSetting.timer.opacity"
                 label="透明度"
                 max="1"
                 min="0.1"
@@ -34,7 +34,7 @@
             </div>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.timer.zoomFactor"
+                v-model="lazyWindowSetting.timer.zoomFactor"
                 max="3"
                 min="0.3"
                 step="0.1"
@@ -97,7 +97,7 @@
           <v-card-text>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.history.opacity"
+                v-model="lazyWindowSetting.history.opacity"
                 label="透明度"
                 max="1"
                 min="0.1"
@@ -107,7 +107,7 @@
             </div>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.history.zoomFactor"
+                v-model="lazyWindowSetting.history.zoomFactor"
                 max="3"
                 min="0.3"
                 step="0.1"
@@ -127,7 +127,7 @@
           <v-card-text>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.spotStatistics.opacity"
+                v-model="lazyWindowSetting.spotStatistics.opacity"
                 label="透明度"
                 max="1"
                 min="0.1"
@@ -137,7 +137,7 @@
             </div>
             <div class="d-flex align-center">
               <v-slider
-                v-model="lazySetting.spotStatistics.zoomFactor"
+                v-model="lazyWindowSetting.spotStatistics.zoomFactor"
                 max="3"
                 min="0.3"
                 step="0.1"
@@ -182,6 +182,11 @@ export default {
   data() {
     return {
       lazySetting: {},
+      lazyWindowSetting: {
+        timer: {},
+        history: {},
+        spotStatistics: {},
+      },
       TUG_TYPES: DataUtil.TUG_TYPES,
     }
   },
@@ -224,16 +229,23 @@ export default {
     //   }
     // },
   },
-  created() {
+  async created() {
     this.lazySetting = this.readerSetting
+    this.lazyWindowSetting = await this.getWindowSetting()
   },
   methods: {
+    getWindowSetting() {
+      return window.electron?.ipcRenderer
+        ?.invoke('getWindowSetting')
+        ?.then(setting => (this.lazyWindowSetting = setting))
+    },
     saveSetting() {
       console.debug('update setting', this.lazySetting)
       window.electron?.ipcRenderer?.send('updateUserData', {
         path: 'reader',
         data: this.lazySetting,
       })
+      window.electron?.ipcRenderer?.send('updateWindowSetting', this.lazyWindowSetting)
     },
     toDisplayFileName(path) {
       return path && last(path.split('\\'))

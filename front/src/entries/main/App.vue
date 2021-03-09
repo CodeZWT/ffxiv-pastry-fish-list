@@ -1222,7 +1222,7 @@ export default {
       }
       event.preventDefault()
     })
-    this.finishReloadPage()
+    // this.finishReloadPage()
 
     this.sendElectronEvent('restartReader', { region: this.readerRegion })
   },
@@ -1270,6 +1270,7 @@ export default {
       this.checkNotification(now)
       if (this.loading) {
         this.finishLoading()
+        this.finishReloadPage()
       }
     }, 1000)
 
