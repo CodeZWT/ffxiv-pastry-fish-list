@@ -30,7 +30,6 @@ log.transports.console.level = 'silly'
 
 const WINDOWS = {}
 let tray,
-  readerHistory,
   readerSpotStatistics,
   loading,
   loadingForReloadingPage,
@@ -109,7 +108,7 @@ async function init() {
   })
   FishingDataReader.onNewRecord((data) => {
     WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('newRecord', data)
-    readerHistory && readerHistory.webContents.send('newRecord', data)
+    WINDOWS.readerHistory && WINDOWS.readerHistory.webContents.send('newRecord', data)
     readerSpotStatistics && readerSpotStatistics.webContents.send('newRecord', data)
   })
 
@@ -212,12 +211,12 @@ async function init() {
         })
         .catch((err) => {
           if (err.code === 'EBUSY') {
-            readerHistory.webContents.send('exportHistoryFailedWithBusyFile')
+            WINDOWS.readerHistory.webContents.send('exportHistoryFailedWithBusyFile')
           }
           log.info(err)
         })
         .finally(() => {
-          readerHistory.webContents.send('exportHistoryFinished')
+          WINDOWS.readerHistory.webContents.send('exportHistoryFinished')
         })
     })
     .on('showSpotPage', (event, spotId) => {
@@ -308,7 +307,7 @@ async function init() {
 
 function setMouseThrough(enable) {
   WINDOWS.readerTimer && WINDOWS.readerTimer.setIgnoreMouseEvents(enable, { forward: true })
-  readerHistory && readerHistory.setIgnoreMouseEvents(enable, { forward: true })
+  WINDOWS.readerHistory && WINDOWS.readerHistory.setIgnoreMouseEvents(enable, { forward: true })
   readerSpotStatistics &&
     readerSpotStatistics.setIgnoreMouseEvents(enable, { forward: true })
 }
@@ -390,7 +389,7 @@ function createReaderSetting(readTimerWin) {
 }
 
 function createReaderHistory(readTimerWin) {
-  readerHistory = new BrowserWindow({
+  WINDOWS.readerHistory = new BrowserWindow({
     width: windowSetting.history.size.w,
     height: windowSetting.history.size.h,
     x: windowSetting.history.pos.x,
@@ -411,7 +410,7 @@ function createReaderHistory(readTimerWin) {
     show: false,
     parent: readTimerWin,
   })
-  const win = readerHistory
+  const win = WINDOWS.readerHistory
   closedWindows['readerHistory'] = null
   win.setOpacity(0.9)
   setOnTop(win)
@@ -604,7 +603,7 @@ function createReader() {
     })
     .on('hide', (e) => {
       WINDOWS.readerSetting.hide()
-      readerHistory.hide()
+      WINDOWS.readerHistory.hide()
       readerSpotStatistics.hide()
     })
     .on('moved', () => {
@@ -666,10 +665,10 @@ function toggleReaderHistory() {
   if (closedWindows['readerHistory']) {
     createReaderHistory(WINDOWS.readerTimer)
   }
-  if (readerHistory.isVisible()) {
-    readerHistory.hide()
+  if (WINDOWS.readerHistory.isVisible()) {
+    WINDOWS.readerHistory.hide()
   } else {
-    readerHistory.show()
+    WINDOWS.readerHistory.show()
   }
 }
 
