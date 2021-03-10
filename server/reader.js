@@ -128,8 +128,13 @@ function init() {
 
   Machina.on('any', (packet) => {
     // log.debug(packet)
-    if (filterPacketSessionID(packet)) {
-      ffxivEvent.emit('ffxivEvent', packet)
+    try {
+      if (packet && filterPacketSessionID(packet)) {
+        // console.log('type:', packet.type)
+        ffxivEvent.emit('ffxivEvent', packet)
+      }
+    } catch (e) {
+      log.error('in any', e)
     }
   })
 
@@ -222,17 +227,21 @@ function onFFXIVEventSubType(subType, callback) {
 }
 
 function onFFXIVEventOfUnknown(opcode, callback) {
-  ffxivEvent.on('ffxivEvent', (packet) => {
-    if (packet.type === 'unknown' && packet.opcode === opcode) {
-      callback(packet)
-      updateCallback({
-        status,
-        currentRecord,
-        // records,
-        // readableRecords,
-      })
-    }
-  })
+  try {
+    ffxivEvent.on('ffxivEvent', (packet) => {
+      if (packet && packet.type === 'unknown' && packet.opcode === opcode) {
+        callback(packet)
+        updateCallback({
+          status,
+          currentRecord,
+          // records,
+          // readableRecords,
+        })
+      }
+    })
+  } catch (e) {
+    log.error('in onFFXIVEventOfUnknown', e)
+  }
 }
 
 function onFFXIVEventWithFilter(
@@ -244,27 +253,32 @@ function onFFXIVEventWithFilter(
   skipUpdateEvent = false
 ) {
   ffxivEvent.on('ffxivEvent', (packet) => {
-    if (
-      (!type || packet.type === type) &&
-      (!subType || packet.subType === subType) &&
-      (!category || packet.category === category) &&
-      (!opcode || packet.opcode === opcode)
-    ) {
-      callback(packet)
-      if (!skipUpdateEvent) {
-        updateCallback({
-          status,
-          currentRecord,
-          // records,
-          // readableRecords,
-        })
+    try {
+      if (
+        packet &&
+        (!type || packet.type === type) &&
+        (!subType || packet.subType === subType) &&
+        (!category || packet.category === category) &&
+        (!opcode || packet.opcode === opcode)
+      ) {
+        callback(packet)
+        if (!skipUpdateEvent) {
+          updateCallback({
+            status,
+            currentRecord,
+            // records,
+            // readableRecords,
+          })
+        }
+        // log.debug(status)
+        // log.debug(currentRecord)
+        // log.debug(records)
+        // log.debug(readableRecords)
+        // log.debug('----------------------------------------------------')
       }
-      // log.debug(status)
-      // log.debug(currentRecord)
-      // log.debug(records)
-      // log.debug(readableRecords)
-      // log.debug('----------------------------------------------------')
-    }
+      } catch (e) {
+        log.error('in onFFXIVEventWithFilter', e)
+      }
   })
 }
 
