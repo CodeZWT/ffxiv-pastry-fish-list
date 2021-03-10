@@ -132,7 +132,7 @@ export default {
           .bulkGet(['light-custom', 'medium-custom', 'heavy-custom'])
           .then(sounds => {
             return sounds
-              .filter(it => it)
+              .filter(it => it && it.base64)
               .map(sound => {
                 return {
                   key: sound.id,

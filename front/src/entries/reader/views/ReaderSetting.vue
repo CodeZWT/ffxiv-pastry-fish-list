@@ -28,7 +28,8 @@
                 label="透明度"
                 max="1"
                 min="0.1"
-                step="0.01"
+                step="0.05"
+                ticks
                 thumb-label
               />
             </div>
@@ -36,8 +37,9 @@
               <v-slider
                 v-model="lazyWindowSetting.timer.zoomFactor"
                 max="3"
-                min="0.3"
+                min="0.4"
                 step="0.1"
+                ticks
                 label="缩放比例"
                 thumb-label
               >
@@ -101,7 +103,8 @@
                 label="透明度"
                 max="1"
                 min="0.1"
-                step="0.01"
+                step="0.05"
+                ticks
                 thumb-label
               />
             </div>
@@ -109,8 +112,9 @@
               <v-slider
                 v-model="lazyWindowSetting.history.zoomFactor"
                 max="3"
-                min="0.3"
+                min="0.4"
                 step="0.1"
+                ticks
                 label="缩放比例"
                 thumb-label
               >
@@ -131,7 +135,8 @@
                 label="透明度"
                 max="1"
                 min="0.1"
-                step="0.01"
+                step="0.05"
+                ticks
                 thumb-label
               />
             </div>
@@ -139,8 +144,9 @@
               <v-slider
                 v-model="lazyWindowSetting.spotStatistics.zoomFactor"
                 max="3"
-                min="0.3"
+                min="0.4"
                 step="0.1"
+                ticks
                 label="缩放比例"
                 thumb-label
               >
@@ -154,10 +160,10 @@
         <!--        <div v-if="isTest">{{ lazySetting }}</div>-->
       </v-row>
     </v-card-text>
-    <v-divider />
-    <v-card-actions>
-      <v-btn @click="saveSetting" block color="primary">应用设置</v-btn>
-    </v-card-actions>
+    <!--    <v-divider />-->
+    <!--    <v-card-actions>-->
+    <!--      <v-btn @click="saveSetting" block color="primary">应用设置</v-btn>-->
+    <!--    </v-card-actions>-->
   </v-card>
 </template>
 
@@ -183,7 +189,6 @@ export default {
     return {
       lazySetting: {},
       lazyWindowSetting: {
-        region: undefined,
         timer: {},
         history: {},
         spotStatistics: {},
@@ -210,16 +215,26 @@ export default {
     ...mapGetters(['readerSetting']),
   },
   watch: {
-    // lazySetting: {
-    //   handler(lazySetting) {
-    //     console.debug('update setting', lazySetting)
-    //     window.electron?.ipcRenderer?.send('updateUserData', {
-    //       path: 'reader',
-    //       data: lazySetting,
-    //     })
-    //   },
-    //   deep: true,
-    // },
+    lazySetting: {
+      handler(lazySetting) {
+        console.debug('update setting', lazySetting)
+        window.electron?.ipcRenderer?.send('updateUserData', {
+          path: 'reader',
+          data: lazySetting,
+        })
+        // this.saveSetting()
+      },
+      deep: true,
+    },
+    lazyWindowSetting: {
+      handler(lazyWindowSetting) {
+        console.debug('update window setting', lazyWindowSetting)
+        if (lazyWindowSetting.setting) {
+          window.electron?.ipcRenderer?.send('updateWindowSetting', lazyWindowSetting)
+        }
+      },
+      deep: true,
+    },
     // readerSetting(readerSetting) {
     //   if (!isEqual(readerSetting, this.lazySetting)) {
     //     this.lazySetting = readerSetting
@@ -236,14 +251,14 @@ export default {
         ?.invoke('getWindowSetting')
         ?.then(setting => (this.lazyWindowSetting = setting))
     },
-    saveSetting() {
-      console.debug('update setting', this.lazySetting)
-      window.electron?.ipcRenderer?.send('updateUserData', {
-        path: 'reader',
-        data: this.lazySetting,
-      })
-      window.electron?.ipcRenderer?.send('updateWindowSetting', this.lazyWindowSetting)
-    },
+    // saveSetting() {
+    //   console.debug('update setting', this.lazySetting)
+    //   window.electron?.ipcRenderer?.send('updateUserData', {
+    //     path: 'reader',
+    //     data: this.lazySetting,
+    //   })
+    //   window.electron?.ipcRenderer?.send('updateWindowSetting', this.lazyWindowSetting)
+    // },
     toDisplayFileName(path) {
       return path && last(path.split('\\'))
     },
@@ -275,7 +290,7 @@ export default {
 <style lang="sass" scoped>
 @import "~@/styles/RcVariables"
 .wrapper
-  height: calc(100vh - #{ $top-bars-padding-reader } - 52px)
+  height: calc(100vh - #{ $top-bars-padding-reader }) // - 52px
   overflow-y: scroll
   overflow-x: hidden
 </style>

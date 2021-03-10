@@ -21,6 +21,7 @@ const iconv = require('iconv-lite')
 const datauri = require('datauri')
 const Store = require('electron-store')
 const set = require('lodash/set')
+const capitalize = require('lodash/capitalize')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -228,9 +229,15 @@ async function init() {
       WINDOWS.main.focus()
     })
     .on('updateWindowSetting', (event, newWindowSetting) => {
-      ;['setting', 'timer', 'history', 'spotStatistics'].forEach((winName) => {
-        saveWindowSetting(winName + '.opacity', newWindowSetting[winName].opacity)
-        saveWindowSetting(winName + '.zoomFactor', newWindowSetting[winName].zoomFactor)
+      ;['timer', 'history', 'spotStatistics'].forEach((winName) => {
+        if (newWindowSetting[winName] && WINDOWS['reader' + capitalize(winName)] && newWindowSetting[winName].zoomFactor > 0.3) {
+          saveWindowSetting(winName + '.opacity', newWindowSetting[winName].opacity)
+          WINDOWS['reader' + capitalize(winName)].setOpacity(
+            newWindowSetting[winName].opacity
+          )
+          saveWindowSetting(winName + '.zoomFactor', newWindowSetting[winName].zoomFactor)
+          WINDOWS['reader' + capitalize(winName)].webContents.setZoomFactor(newWindowSetting[winName].zoomFactor)
+        }
       })
     })
   // .on('playSound', (event, playInfo) => {
@@ -366,7 +373,6 @@ function createReaderSetting(readTimerWin) {
   })
   const win = WINDOWS.readerSetting
   closedWindows['readerSetting'] = null
-  win.setOpacity(1)
   setOnTop(win)
   win.removeMenu()
   win.loadURL(readerURL).then(() => {
@@ -419,7 +425,6 @@ function createReaderHistory(readTimerWin) {
   })
   const win = WINDOWS.readerHistory
   closedWindows['readerHistory'] = null
-  win.setOpacity(0.9)
   setOnTop(win)
   win.removeMenu()
   win.loadURL(readerURL).then(() => {
@@ -471,7 +476,6 @@ function createReaderSpotStatistics(readTimerWin) {
   })
   const win = WINDOWS.readerSpotStatistics
   closedWindows['readerSpotStatistics'] = null
-  win.setOpacity(0.9)
   setOnTop(win)
   win.removeMenu()
   win.loadURL(readerURL).then(() => {
@@ -486,7 +490,7 @@ function createReaderSpotStatistics(readTimerWin) {
     })
     .on('moved', () => {
       const [x, y] = win.getPosition()
-      saveWindowSetting('spotStatistics.po', { x, y })
+      saveWindowSetting('spotStatistics.pos', { x, y })
     })
     .on('resized', () => {
       const [w, h] = win.getSize()
@@ -600,7 +604,6 @@ function createReader() {
   })
   const win = WINDOWS.readerTimer
   closedWindows['reader'] = null
-  win.setOpacity(0.9)
   setOnTop(win)
   win.removeMenu()
   // reader.maximize()
