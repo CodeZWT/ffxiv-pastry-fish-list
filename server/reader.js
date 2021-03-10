@@ -128,14 +128,14 @@ function init() {
 
   Machina.on('any', (packet) => {
     // log.debug(packet)
-    try {
+    // try {
       if (packet && filterPacketSessionID(packet)) {
         // console.log('type:', packet.type)
         ffxivEvent.emit('ffxivEvent', packet)
       }
-    } catch (e) {
-      log.error('in any', e)
-    }
+    // } catch (e) {
+    //   log.error('in any', e)
+    // }
   })
 
   // Machina.on('raw', (packet) => {
@@ -227,7 +227,7 @@ function onFFXIVEventSubType(subType, callback) {
 }
 
 function onFFXIVEventOfUnknown(opcode, callback) {
-  try {
+  // try {
     ffxivEvent.on('ffxivEvent', (packet) => {
       if (packet && packet.type === 'unknown' && packet.opcode === opcode) {
         callback(packet)
@@ -239,9 +239,9 @@ function onFFXIVEventOfUnknown(opcode, callback) {
         })
       }
     })
-  } catch (e) {
-    log.error('in onFFXIVEventOfUnknown', e)
-  }
+  // } catch (e) {
+  //   log.error('in onFFXIVEventOfUnknown', e)
+  // }
 }
 
 function onFFXIVEventWithFilter(
@@ -253,7 +253,7 @@ function onFFXIVEventWithFilter(
   skipUpdateEvent = false
 ) {
   ffxivEvent.on('ffxivEvent', (packet) => {
-    try {
+    // try {
       if (
         packet &&
         (!type || packet.type === type) &&
@@ -276,9 +276,9 @@ function onFFXIVEventWithFilter(
         // log.debug(readableRecords)
         // log.debug('----------------------------------------------------')
       }
-      } catch (e) {
-        log.error('in onFFXIVEventWithFilter', e)
-      }
+      // } catch (e) {
+      //   log.error('in onFFXIVEventWithFilter', e)
+      // }
   })
 }
 

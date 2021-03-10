@@ -22,6 +22,7 @@ const datauri = require('datauri')
 const Store = require('electron-store')
 const set = require('lodash/set')
 const capitalize = require('lodash/capitalize')
+const unhandled = require('electron-unhandled')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -44,6 +45,14 @@ const SETUP_PATH = 'setup'
 let skipUpdate = false
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
 const closedWindows = {}
+
+unhandled({
+  logger: log.error,
+  reportButton: (error) => {
+    shell.showItemInFolder(path.join(app.getPath('userData'), 'logs/main.log'))
+  },
+})
+
 function initWindowSetting(configStore) {
   if (!configStore.get('windowSetting')) {
     configStore.set('windowSetting', {
@@ -233,14 +242,25 @@ async function init() {
     })
     .on('updateWindowSetting', (event, newWindowSetting) => {
       ;['timer', 'history', 'spotStatistics'].forEach((settingName) => {
-        const windowName = 'reader' + capitalize(settingName[0])+settingName.substring(1)
-        if (newWindowSetting[settingName] && WINDOWS[windowName] && newWindowSetting[settingName].zoomFactor > 0.3) {
-          saveWindowSetting(settingName + '.opacity', newWindowSetting[settingName].opacity)
-          WINDOWS[windowName].setOpacity(
+        const windowName =
+          'reader' + capitalize(settingName[0]) + settingName.substring(1)
+        if (
+          newWindowSetting[settingName] &&
+          WINDOWS[windowName] &&
+          newWindowSetting[settingName].zoomFactor > 0.3
+        ) {
+          saveWindowSetting(
+            settingName + '.opacity',
             newWindowSetting[settingName].opacity
           )
-          saveWindowSetting(settingName + '.zoomFactor', newWindowSetting[settingName].zoomFactor)
-          WINDOWS[windowName].webContents.setZoomFactor(newWindowSetting[settingName].zoomFactor)
+          WINDOWS[windowName].setOpacity(newWindowSetting[settingName].opacity)
+          saveWindowSetting(
+            settingName + '.zoomFactor',
+            newWindowSetting[settingName].zoomFactor
+          )
+          WINDOWS[windowName].webContents.setZoomFactor(
+            newWindowSetting[settingName].zoomFactor
+          )
         }
       })
     })
