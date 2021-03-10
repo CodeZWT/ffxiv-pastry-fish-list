@@ -163,9 +163,12 @@ async function init() {
     .on('toggleSpotStatistics', () => {
       toggleSpotStatistics()
     })
-    .on('zoomMainWindow', (event, zoomFactor) => {
-      log.info('zoom main window', zoomFactor)
-      WINDOWS.main.webContents.setZoomFactor(zoomFactor)
+    .on('updateMainWindowSetting', (event, setting) => {
+      log.info('update main window setting', setting)
+      saveWindowSetting('main.opacity', setting.opacity)
+      saveWindowSetting('main.zoomFactor', setting.zoomFactor)
+      WINDOWS.main.setOpacity(setting.opacity)
+      WINDOWS.main.webContents.setZoomFactor(setting.zoomFactor)
     })
     .on('setCollapse', (event, collapse) => {
       if (collapse) {
@@ -229,14 +232,15 @@ async function init() {
       WINDOWS.main.focus()
     })
     .on('updateWindowSetting', (event, newWindowSetting) => {
-      ;['timer', 'history', 'spotStatistics'].forEach((winName) => {
-        if (newWindowSetting[winName] && WINDOWS['reader' + capitalize(winName)] && newWindowSetting[winName].zoomFactor > 0.3) {
-          saveWindowSetting(winName + '.opacity', newWindowSetting[winName].opacity)
-          WINDOWS['reader' + capitalize(winName)].setOpacity(
-            newWindowSetting[winName].opacity
+      ;['timer', 'history', 'spotStatistics'].forEach((settingName) => {
+        const windowName = 'reader' + capitalize(settingName[0])+settingName.substring(1)
+        if (newWindowSetting[settingName] && WINDOWS[windowName] && newWindowSetting[settingName].zoomFactor > 0.3) {
+          saveWindowSetting(settingName + '.opacity', newWindowSetting[settingName].opacity)
+          WINDOWS[windowName].setOpacity(
+            newWindowSetting[settingName].opacity
           )
-          saveWindowSetting(winName + '.zoomFactor', newWindowSetting[winName].zoomFactor)
-          WINDOWS['reader' + capitalize(winName)].webContents.setZoomFactor(newWindowSetting[winName].zoomFactor)
+          saveWindowSetting(settingName + '.zoomFactor', newWindowSetting[settingName].zoomFactor)
+          WINDOWS[windowName].webContents.setZoomFactor(newWindowSetting[settingName].zoomFactor)
         }
       })
     })
@@ -646,11 +650,11 @@ function createReader() {
     //   quitAndSetup()
     // })
   })
-  if (isDev) {
-    win.webContents.openDevTools({
-      mode: 'undocked',
-    })
-  }
+  // if (isDev) {
+  //   win.webContents.openDevTools({
+  //     mode: 'undocked',
+  //   })
+  // }
 }
 
 function updateUserData(updateData) {

@@ -1,5 +1,5 @@
 <template>
-  <v-app :style="`opacity: ${opacity}`" :class="{ 'min-page': collapse }">
+  <v-app :class="{ 'min-page': collapse }">
     <v-system-bar app v-if="isElectron" v-show="!collapse">
       <!--      <v-img :src="readerIcon" max-height="20" max-width="20" />-->
       <div>{{ $t('top.navBarTitle', { title, version }) }}</div>
@@ -1134,7 +1134,7 @@ export default {
     // this.updateWeatherChangePart(this.now)
     // },
   },
-  created() {
+  async created() {
     switch (window.location.host) {
       case 'fish.ricecake302.com':
         this.migrationSource = 'main'
@@ -1224,6 +1224,9 @@ export default {
     })
     // this.finishReloadPage()
 
+    const windowSetting = await this.getWindowSetting()
+    this.setOpacity(windowSetting.main.opacity)
+    this.setZoomFactor(windowSetting.main.zoomFactor)
     this.sendElectronEvent('startReader', { region: this.readerRegion })
   },
   async mounted() {
@@ -1281,6 +1284,11 @@ export default {
     // }, 200)
   },
   methods: {
+    getWindowSetting() {
+      return window.electron?.ipcRenderer
+        ?.invoke('getWindowSetting')
+        ?.then(setting => (this.lazyWindowSetting = setting))
+    },
     startReloadPage() {
       this.sendElectronEvent('startLoading')
       window.location.reload()
@@ -1905,6 +1913,8 @@ export default {
       this.toggleCollapse()
     },
     ...mapMutations([
+      'setOpacity',
+      'setZoomFactor',
       'setFeatureViewed',
       'updateUserData',
       'setFishCompleted',

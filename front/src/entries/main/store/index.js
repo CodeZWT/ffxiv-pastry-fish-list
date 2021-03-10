@@ -44,6 +44,10 @@ export default new Vuex.Store({
     remainingBaitIds: initRemainingBaitIds(),
     baitIdsForNotification: [],
     viewedFeatures: LocalStorageUtil.loadViewedFeatures(CONSTANTS.FEATURE_GROUP_MAIN),
+    windowSetting: {
+      opacity: 0.9,
+      zoomFactor: 1,
+    },
   },
   getters: {
     mainWindowCloseMode: state => {
@@ -202,10 +206,10 @@ export default new Vuex.Store({
       return state.userData.showBanner
     },
     opacity: state => {
-      return state.userData.opacity
+      return state.windowSetting.opacity
     },
     zoomFactor: state => {
-      return state.userData.zoomFactor
+      return state.windowSetting.zoomFactor
     },
     websiteVersion: state => {
       return state.userData.websiteVersion
@@ -407,12 +411,14 @@ export default new Vuex.Store({
       LocalStorageUtil.storeUserData(state.userData)
     },
     setOpacity(state, opacity) {
-      state.userData = { ...state.userData, opacity }
-      LocalStorageUtil.storeUserData(state.userData)
+      // state.windowSetting.opacity = opacity
+      state.windowSetting = { ...state.windowSetting, opacity }
+      // LocalStorageUtil.storeUserData(state.userData)
     },
     setZoomFactor(state, zoomFactor) {
-      state.userData = { ...state.userData, zoomFactor }
-      LocalStorageUtil.storeUserData(state.userData)
+      state.windowSetting = { ...state.windowSetting, zoomFactor }
+      // state.userData = { ...state.userData, zoomFactor }
+      // LocalStorageUtil.storeUserData(state.userData)
     },
     setWebsiteVersion(state, websiteVersion) {
       state.userData = { ...state.userData, websiteVersion }

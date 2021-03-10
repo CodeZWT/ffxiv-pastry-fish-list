@@ -36,7 +36,8 @@
                   v-model="lazyOpacity"
                   max="1"
                   min="0.1"
-                  step="0.01"
+                  step="0.05"
+                  ticks
                   :label="$t('setting.dialog.opacity.slider')"
                   thumb-label
                 >
@@ -50,8 +51,9 @@
                 <v-slider
                   v-model="lazyZoomFactor"
                   max="3"
-                  min="0.3"
+                  min="0.4"
                   step="0.1"
+                  ticks
                   :label="$t('setting.dialog.zoom.slider')"
                   thumb-label
                 >
@@ -364,6 +366,7 @@ export default {
     init() {
       this.$refs.observer?.reset()
       this.lazyOpacity = this.opacity
+      console.info(this.opacity)
       this.lazyZoomFactor = this.zoomFactor
       this.lazyNotificationSetting = _.cloneDeep(this.notification)
       this.lazyEnabledDetailComponents = _.cloneDeep(
@@ -394,7 +397,10 @@ export default {
       this.setShowFilter(this.lazyShowFilter)
       this.setOpacity(this.lazyOpacity)
       this.setZoomFactor(this.lazyZoomFactor)
-      window.electron?.ipcRenderer?.send('zoomMainWindow', this.lazyZoomFactor)
+      window.electron?.ipcRenderer?.send('updateMainWindowSetting', {
+        opacity: this.lazyOpacity,
+        zoomFactor: this.lazyZoomFactor,
+      })
       this.setNotificationSetting(_.cloneDeep(this.lazyNotificationSetting))
       this.setDetailArrangement(
         _.cloneDeep({
