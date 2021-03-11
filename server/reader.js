@@ -28,7 +28,9 @@ const EMPTY_RECORD = {
   hq: false,
   size: 0,
 }
-let status, currentRecord, spectralCurrentBuffTime = 0
+let status,
+  currentRecord,
+  spectralCurrentBuffTime = 0
 const records = []
 const readableRecords = []
 resetStatus()
@@ -127,15 +129,10 @@ function init() {
   Machina.setMaxListeners(0)
 
   Machina.on('any', (packet) => {
-    // log.debug(packet)
-    // try {
-      if (packet && filterPacketSessionID(packet)) {
-        // console.log('type:', packet.type)
-        ffxivEvent.emit('ffxivEvent', packet)
-      }
-    // } catch (e) {
-    //   log.error('in any', e)
-    // }
+    if (packet && filterPacketSessionID(packet)) {
+      // console.log('type:', packet.type)
+      ffxivEvent.emit('ffxivEvent', packet)
+    }
   })
 
   // Machina.on('raw', (packet) => {
@@ -182,10 +179,6 @@ function init() {
   //     // }
   //   }
   // })
-
-  // Machina.on('WeatherChange', (packet) => {
-  //   log.debug('WeatherChange', packet)
-  // })
 }
 
 function onUpdate(callback) {
@@ -227,21 +220,17 @@ function onFFXIVEventSubType(subType, callback) {
 }
 
 function onFFXIVEventOfUnknown(opcode, callback) {
-  // try {
-    ffxivEvent.on('ffxivEvent', (packet) => {
-      if (packet && packet.type === 'unknown' && packet.opcode === opcode) {
-        callback(packet)
-        updateCallback({
-          status,
-          currentRecord,
-          // records,
-          // readableRecords,
-        })
-      }
-    })
-  // } catch (e) {
-  //   log.error('in onFFXIVEventOfUnknown', e)
-  // }
+  ffxivEvent.on('ffxivEvent', (packet) => {
+    if (packet && packet.type === 'unknown' && packet.opcode === opcode) {
+      callback(packet)
+      updateCallback({
+        status,
+        currentRecord,
+        // records,
+        // readableRecords,
+      })
+    }
+  })
 }
 
 function onFFXIVEventWithFilter(
@@ -253,32 +242,28 @@ function onFFXIVEventWithFilter(
   skipUpdateEvent = false
 ) {
   ffxivEvent.on('ffxivEvent', (packet) => {
-    // try {
-      if (
-        packet &&
-        (!type || packet.type === type) &&
-        (!subType || packet.subType === subType) &&
-        (!category || packet.category === category) &&
-        (!opcode || packet.opcode === opcode)
-      ) {
-        callback(packet)
-        if (!skipUpdateEvent) {
-          updateCallback({
-            status,
-            currentRecord,
-            // records,
-            // readableRecords,
-          })
-        }
-        // log.debug(status)
-        // log.debug(currentRecord)
-        // log.debug(records)
-        // log.debug(readableRecords)
-        // log.debug('----------------------------------------------------')
+    if (
+      packet &&
+      (!type || packet.type === type) &&
+      (!subType || packet.subType === subType) &&
+      (!category || packet.category === category) &&
+      (!opcode || packet.opcode === opcode)
+    ) {
+      callback(packet)
+      if (!skipUpdateEvent) {
+        updateCallback({
+          status,
+          currentRecord,
+          // records,
+          // readableRecords,
+        })
       }
-      // } catch (e) {
-      //   log.error('in onFFXIVEventWithFilter', e)
-      // }
+      // log.debug(status)
+      // log.debug(currentRecord)
+      // log.debug(records)
+      // log.debug(readableRecords)
+      // log.debug('----------------------------------------------------')
+    }
   })
 }
 
@@ -1032,7 +1017,8 @@ function onWeatherChange(packet) {
     if (isOceanFishing() || isOceanFishingSpot(status.spotId)) {
       const spectralActualEndTime = Date.now()
       let remainingTime = status.spectralCurrentEndTime - spectralActualEndTime
-      spectralCurrentBuffTime = remainingTime > 0 ? Math.min(remainingTime, INTERVAL_MINUTE) : 0
+      spectralCurrentBuffTime =
+        remainingTime > 0 ? Math.min(remainingTime, INTERVAL_MINUTE) : 0
     }
     if (status.previousWeather) {
       if (isDiadem()) {
