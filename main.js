@@ -367,9 +367,10 @@ function setMouseThrough(enable) {
 
 function createReaderSetting(readTimerWin) {
   const settingName = 'setting'
+  const windowName = 'readerSetting'
   closedWindows[settingName] = null
   const win = createWindow(
-    'readerSetting',
+    windowName,
     settingName,
     'assets/setting.png',
     readerURL,
@@ -379,110 +380,46 @@ function createReaderSetting(readTimerWin) {
     true,
     readTimerWin
   ).on('closed', (e) => {
-    closedWindows['readerSetting'] = win
+    closedWindows[windowName] = win
   })
 }
 
 function createReaderHistory(readTimerWin) {
-  WINDOWS.readerHistory = new BrowserWindow({
-    width: windowSetting.history.size.w,
-    height: windowSetting.history.size.h,
-    x: windowSetting.history.pos.x,
-    y: windowSetting.history.pos.y,
-    opacity: windowSetting.history.opacity,
-    frame: false,
-    transparent: false,
-    maximizable: false,
-    webPreferences: {
-      contextIsolation: false,
-      nodeIntegration: true,
-      enableRemoteModule: true,
-      preload: __dirname + '/preload.js',
-      additionalArguments: ['--route-name=ReaderHistory'],
-      zoomFactor: windowSetting.history.zoomFactor,
-    },
-    icon: path.join(__dirname, 'assets/reader.png'),
-    show: false,
-    parent: readTimerWin,
+  const settingName = 'history'
+  const windowName = 'readerHistory'
+  closedWindows[settingName] = null
+  const win = createWindow(
+    windowName,
+    settingName,
+    'assets/reader.png',
+    readerURL,
+    () => {},
+    ['--route-name=ReaderHistory'],
+    false,
+    true,
+    readTimerWin
+  ).on('closed', (e) => {
+    closedWindows[windowName] = win
   })
-  const win = WINDOWS.readerHistory
-  closedWindows['readerHistory'] = null
-  setOnTop(win)
-  win.removeMenu()
-  win.loadURL(readerURL).then(() => {
-    win.webContents.on('new-window', function (e, url) {
-      e.preventDefault()
-      shell.openExternal(url)
-    })
-  })
-  win
-    .on('closed', (e) => {
-      closedWindows['readerHistory'] = win
-    })
-    .on('moved', () => {
-      const [x, y] = win.getPosition()
-      saveWindowSetting('history.pos', { x, y })
-    })
-    .on('resized', () => {
-      const [w, h] = win.getSize()
-      saveWindowSetting('history.size', { w, h })
-    })
-  // if (isDev) {
-  //   readerHistory.webContents.openDevTools({
-  //     mode: 'undocked',
-  //   })
-  // }
 }
 
 function createReaderSpotStatistics(readTimerWin) {
-  WINDOWS.readerSpotStatistics = new BrowserWindow({
-    width: windowSetting.spotStatistics.size.w,
-    height: windowSetting.spotStatistics.size.h,
-    x: windowSetting.spotStatistics.pos.x,
-    y: windowSetting.spotStatistics.pos.y,
-    opacity: windowSetting.spotStatistics.opacity,
-    frame: false,
-    transparent: false,
-    maximizable: false,
-    webPreferences: {
-      contextIsolation: false,
-      nodeIntegration: true,
-      enableRemoteModule: true,
-      preload: __dirname + '/preload.js',
-      additionalArguments: ['--route-name=ReaderSpotStatistics'],
-      zoomFactor: windowSetting.spotStatistics.zoomFactor,
-    },
-    icon: path.join(__dirname, 'assets/reader.png'),
-    show: false,
-    parent: readTimerWin,
+  const settingName = 'spotStatistics'
+  const windowName = 'readerSpotStatistics'
+  closedWindows[settingName] = null
+  const win = createWindow(
+    windowName,
+    settingName,
+    'assets/reader.png',
+    readerURL,
+    () => {},
+    ['--route-name=ReaderSpotStatistics'],
+    false,
+    true,
+    readTimerWin
+  ).on('closed', (e) => {
+    closedWindows[windowName] = win
   })
-  const win = WINDOWS.readerSpotStatistics
-  closedWindows['readerSpotStatistics'] = null
-  setOnTop(win)
-  win.removeMenu()
-  win.loadURL(readerURL).then(() => {
-    win.webContents.on('new-window', function (e, url) {
-      e.preventDefault()
-      shell.openExternal(url)
-    })
-  })
-  win
-    .on('closed', (e) => {
-      closedWindows['readerSpotStatistics'] = win
-    })
-    .on('moved', () => {
-      const [x, y] = win.getPosition()
-      saveWindowSetting('spotStatistics.pos', { x, y })
-    })
-    .on('resized', () => {
-      const [w, h] = win.getSize()
-      saveWindowSetting('spotStatistics.size', { w, h })
-    })
-  // if (isDev) {
-  //   win.webContents.openDevTools({
-  //     mode: 'undocked',
-  //   })
-  // }
 }
 
 function createAndShowLoadingWindow() {
