@@ -33,10 +33,8 @@ log.transports.console.level = 'silly'
 
 const WINDOWS = {}
 let tray, loading, loadingForReloadingPage, configStore, windowSetting, region
-let readerMini = false, mainMini
-const winURL = isDev
-  ? `http://localhost:8080`
-  : `file://${__dirname}/front-electron-dist/index.html`
+let readerMini = false,
+  mainMini
 
 const readerURL = isDev
   ? `http://localhost:8080/reader`
@@ -195,7 +193,6 @@ async function init() {
         WINDOWS.main.setSize(112, 88)
         WINDOWS.main.setResizable(false)
         WINDOWS.main.setOpacity(1)
-
       } else {
         WINDOWS.main.setSize(mainSize.w, mainSize.h)
         WINDOWS.main.setResizable(true)
@@ -575,48 +572,67 @@ function createAndShowLoadingWindow() {
     .then(() => win)
 }
 
-function createMainWindow() {
-  WINDOWS.main = new BrowserWindow({
-    width: windowSetting.main.size.w,
-    height: windowSetting.main.size.h,
-    x: windowSetting.main.pos.x,
-    y: windowSetting.main.pos.y,
-    opacity: windowSetting.main.opacity,
+function createWindow(
+  windowName,
+  settingName,
+  iconPath,
+  winURL,
+  loadedCallback = () => {},
+  additionalArguments = null,
+  maximizable = true
+) {
+  const setting = windowSetting[settingName]
+  WINDOWS[windowName] = new BrowserWindow({
+    width: setting.size.w,
+    height: setting.size.h,
+    x: setting.pos.x,
+    y: setting.pos.y,
+    opacity: setting.opacity,
     frame: false,
     show: false,
     transparent: false,
+    maximizable: maximizable,
+    icon: path.join(__dirname, iconPath),
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
-      zoomFactor: windowSetting.main.zoomFactor,
+      zoomFactor: setting.zoomFactor,
+      additionalArguments: additionalArguments,
     },
-    icon: path.join(__dirname, 'assets/icon256.png'),
   })
-  const win = WINDOWS.main
+  const win = WINDOWS[windowName]
   win.removeMenu()
-  win.loadURL(winURL).then(() => {
-    createReader()
-
-    win.webContents.on('new-window', function (e, url) {
-      e.preventDefault()
-      shell.openExternal(url)
-    })
+  win.webContents.on('new-window', (e, url) => {
+    e.preventDefault()
+    shell.openExternal(url)
   })
+  win.loadURL(winURL).then(loadedCallback)
 
-  win
+  return win
     .on('moved', () => {
       const [x, y] = win.getPosition()
-      saveWindowSetting('main.pos', { x, y })
+      saveWindowSetting(settingName + '.pos', { x, y })
     })
     .on('resized', () => {
       const [w, h] = win.getSize()
-      saveWindowSetting('main.size', { w, h })
+      saveWindowSetting(settingName + '.size', { w, h })
     })
-    .on('closed', () => {
-      quit()
-    })
+}
+
+function createMainWindow() {
+  return createWindow(
+    'main',
+    'main',
+    'assets/icon256.png',
+    isDev
+      ? `http://localhost:8080`
+      : `file://${__dirname}/front-electron-dist/index.html`,
+    createReader
+  ).on('closed', () => {
+    quit()
+  })
 }
 
 function setOnTop(win) {
@@ -631,8 +647,10 @@ function createReader() {
     y: windowSetting.timer.pos.y,
     opacity: windowSetting.timer.opacity,
     frame: false,
+    show: false,
     transparent: false,
     maximizable: false,
+    icon: path.join(__dirname, 'assets/reader.png'),
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -641,13 +659,11 @@ function createReader() {
       additionalArguments: ['--route-name=ReaderTimer'],
       zoomFactor: windowSetting.timer.zoomFactor,
     },
-    icon: path.join(__dirname, 'assets/reader.png'),
-    show: false,
   })
   const win = WINDOWS.readerTimer
+  win.removeMenu()
   closedWindows['reader'] = null
   setOnTop(win)
-  win.removeMenu()
   // reader.maximize()
   win
     .on('closed', (e) => {
@@ -680,23 +696,7 @@ function createReader() {
     createReaderSetting(win)
     createReaderHistory(win)
     createReaderSpotStatistics(win)
-
-    // FishingDataReader.onUpdate((data) => {
-    //   reader.webContents.send('fishingData', data)
-    // })
-    // FishingDataReader.start(() => {
-    //   log.info('Machina started!')
-    // })
-
-    // ipcMain.on('startUpdate', () => {
-    //   quitAndSetup()
-    // })
   })
-  // if (isDev) {
-  //   win.webContents.openDevTools({
-  //     mode: 'undocked',
-  //   })
-  // }
 }
 
 function updateUserData(updateData) {
