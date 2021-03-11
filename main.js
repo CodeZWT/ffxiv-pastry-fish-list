@@ -365,79 +365,22 @@ function setMouseThrough(enable) {
     WINDOWS.readerSpotStatistics.setIgnoreMouseEvents(enable, { forward: true })
 }
 
-// let mainSize = { w: -1, h: -1 }
-// let readerSize = { w: -1, h: -1 }
-//
-// function setWindow(window, option) {
-//   if (option.opacity) {
-//     window.setOpacity(option.opacity)
-//   }
-//   if (option.zoomFactor && window.webContents.zoomFactor !== option.zoomFactor) {
-//     window.webContents.setZoomFactor(option.zoomFactor)
-//   }
-//   if (option.pos != null && option.pos.x != null && option.pos.y != null) {
-//     window.setPosition(option.pos.x, option.pos.y)
-//   }
-//   if (option.size.w > 0 && option.size.h > 0) {
-//     window.setSize(option.size.w, option.size.h)
-//   }
-//   if (window === WINDOWS.main) {
-//     mainSize = { w: option.size.w, h: option.size.h }
-//   } else if (window === WINDOWS.readerTimer) {
-//     readerSize = { w: option.size.w, h: option.size.h }
-//   }
-// }
-
 function createReaderSetting(readTimerWin) {
-  WINDOWS.readerSetting = new BrowserWindow({
-    width: windowSetting.setting.size.w,
-    height: windowSetting.setting.size.h,
-    x: windowSetting.setting.pos.x,
-    y: windowSetting.setting.pos.y,
-    opacity: windowSetting.setting.opacity,
-    frame: false,
-    transparent: false,
-    maximizable: false,
-    webPreferences: {
-      contextIsolation: false,
-      nodeIntegration: true,
-      enableRemoteModule: true,
-      preload: __dirname + '/preload.js',
-      additionalArguments: ['--route-name=ReaderSetting'],
-      zoomFactor: windowSetting.setting.zoomFactor,
-    },
-    icon: path.join(__dirname, 'assets/setting.png'),
-    show: false,
-    parent: readTimerWin,
+  const settingName = 'setting'
+  closedWindows[settingName] = null
+  const win = createWindow(
+    'readerSetting',
+    settingName,
+    'assets/setting.png',
+    readerURL,
+    () => {},
+    ['--route-name=ReaderSetting'],
+    false,
+    true,
+    readTimerWin
+  ).on('closed', (e) => {
+    closedWindows['readerSetting'] = win
   })
-  const win = WINDOWS.readerSetting
-  closedWindows['readerSetting'] = null
-  setOnTop(win)
-  win.removeMenu()
-  win.loadURL(readerURL).then(() => {
-    win.webContents.on('new-window', function (e, url) {
-      e.preventDefault()
-      shell.openExternal(url)
-    })
-  })
-  win
-    .on('closed', (e) => {
-      closedWindows['readerSetting'] = win
-    })
-    .on('moved', () => {
-      const [x, y] = win.getPosition()
-      saveWindowSetting('setting.pos', { x, y })
-    })
-    .on('resized', () => {
-      const [w, h] = win.getSize()
-      saveWindowSetting('setting.size', { w, h })
-    })
-
-  if (isDev) {
-    win.webContents.openDevTools({
-      mode: 'undocked',
-    })
-  }
 }
 
 function createReaderHistory(readTimerWin) {
@@ -580,7 +523,8 @@ function createWindow(
   loadedCallback = () => {},
   additionalArguments = null,
   maximizable = true,
-  keepOnTop = false
+  keepOnTop = false,
+  parent = null
 ) {
   const setting = windowSetting[settingName]
   WINDOWS[windowName] = new BrowserWindow({
@@ -594,6 +538,7 @@ function createWindow(
     transparent: false,
     maximizable: maximizable,
     icon: path.join(__dirname, iconPath),
+    parent: parent,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -649,9 +594,7 @@ function createReader() {
     'readerTimer',
     settingName,
     'assets/reader.png',
-    isDev
-      ? `http://localhost:8080/reader`
-      : `file://${__dirname}/front-electron-dist/reader.html`,
+    readerURL,
     () => {
       createReaderSetting(win)
       createReaderHistory(win)
