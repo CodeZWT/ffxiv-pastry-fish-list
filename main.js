@@ -180,6 +180,7 @@ async function init() {
       WINDOWS.main.webContents.setZoomFactor(setting.zoomFactor)
     })
     .on('setCollapse', (event, collapse) => {
+      const mainSize = windowSetting.main.size
       if (collapse) {
         WINDOWS.main.setSize(112, 88)
       } else {
@@ -187,6 +188,7 @@ async function init() {
       }
     })
     .on('setReaderMiniMode', (event, mini) => {
+      const readerSize = windowSetting.timer.size
       if (mini) {
         WINDOWS.readerTimer.setSize(readerSize.w, 52)
       } else {
