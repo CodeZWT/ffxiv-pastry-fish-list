@@ -42,7 +42,7 @@ const readerURL = isDev
 
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
-let skipUpdate = false
+let skipUpdate = isDev || false
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
 const closedWindows = {}
 
@@ -579,7 +579,8 @@ function createWindow(
   winURL,
   loadedCallback = () => {},
   additionalArguments = null,
-  maximizable = true
+  maximizable = true,
+  keepOnTop = false
 ) {
   const setting = windowSetting[settingName]
   WINDOWS[windowName] = new BrowserWindow({
@@ -609,6 +610,8 @@ function createWindow(
     shell.openExternal(url)
   })
   win.loadURL(winURL).then(loadedCallback)
+
+  if (keepOnTop) setOnTop(win)
 
   return win
     .on('moved', () => {
@@ -640,44 +643,24 @@ function setOnTop(win) {
 }
 
 function createReader() {
-  WINDOWS.readerTimer = new BrowserWindow({
-    width: windowSetting.timer.size.w,
-    height: windowSetting.timer.size.h,
-    x: windowSetting.timer.pos.x,
-    y: windowSetting.timer.pos.y,
-    opacity: windowSetting.timer.opacity,
-    frame: false,
-    show: false,
-    transparent: false,
-    maximizable: false,
-    icon: path.join(__dirname, 'assets/reader.png'),
-    webPreferences: {
-      contextIsolation: false,
-      nodeIntegration: true,
-      enableRemoteModule: true,
-      preload: __dirname + '/preload.js',
-      additionalArguments: ['--route-name=ReaderTimer'],
-      zoomFactor: windowSetting.timer.zoomFactor,
+  const settingName = 'timer'
+  closedWindows[settingName] = null
+  const win = createWindow(
+    'readerTimer',
+    settingName,
+    'assets/reader.png',
+    isDev
+      ? `http://localhost:8080/reader`
+      : `file://${__dirname}/front-electron-dist/reader.html`,
+    () => {
+      createReaderSetting(win)
+      createReaderHistory(win)
+      createReaderSpotStatistics(win)
     },
-  })
-  const win = WINDOWS.readerTimer
-  win.removeMenu()
-  closedWindows['reader'] = null
-  setOnTop(win)
-  // reader.maximize()
-  win
-    .on('closed', (e) => {
-      closedWindows['reader'] = win
-    })
-    .on('hide', (e) => {
-      WINDOWS.readerSetting.hide()
-      WINDOWS.readerHistory.hide()
-      WINDOWS.readerSpotStatistics.hide()
-    })
-    .on('moved', () => {
-      const [x, y] = win.getPosition()
-      saveWindowSetting('timer.pos', { x, y })
-    })
+    ['--route-name=ReaderTimer'],
+    false,
+    true
+  )
     .on('resized', () => {
       const [w, h] = win.getSize()
       if (readerMini) {
@@ -686,17 +669,14 @@ function createReader() {
         saveWindowSetting('timer.size', { w, h })
       }
     })
-
-  win.loadURL(readerURL).then(() => {
-    win.webContents.on('new-window', function (e, url) {
-      e.preventDefault()
-      shell.openExternal(url)
+    .on('closed', (e) => {
+      closedWindows[settingName] = win
     })
-
-    createReaderSetting(win)
-    createReaderHistory(win)
-    createReaderSpotStatistics(win)
-  })
+    .on('hide', (e) => {
+      WINDOWS.readerSetting.hide()
+      WINDOWS.readerHistory.hide()
+      WINDOWS.readerSpotStatistics.hide()
+    })
 }
 
 function updateUserData(updateData) {
@@ -704,7 +684,7 @@ function updateUserData(updateData) {
 }
 
 function showReader() {
-  if (closedWindows['reader']) {
+  if (closedWindows['timer']) {
     createReader()
   }
   WINDOWS.readerTimer && WINDOWS.readerTimer.show()
