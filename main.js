@@ -22,6 +22,7 @@ const datauri = require('datauri')
 const Store = require('electron-store')
 const set = require('lodash/set')
 const capitalize = require('lodash/capitalize')
+const merge = require('lodash/merge')
 const unhandled = require('electron-unhandled')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
@@ -32,6 +33,7 @@ log.transports.console.level = 'silly'
 
 const WINDOWS = {}
 let tray, loading, loadingForReloadingPage, configStore, windowSetting, region
+let readerMini = false, mainMini
 const winURL = isDev
   ? `http://localhost:8080`
   : `file://${__dirname}/front-electron-dist/index.html`
@@ -52,42 +54,49 @@ unhandled({
     shell.showItemInFolder(path.join(app.getPath('userData'), 'logs/main.log'))
   },
 })
-
+const DEFAULT_WINDOW_SETTING = {
+  main: {
+    pos: { x: null, y: null },
+    size: { w: 1080, h: 768 },
+    opacity: 0.9,
+    zoomFactor: 1,
+  },
+  setting: {
+    pos: { x: null, y: null },
+    size: { w: 500, h: 500 },
+    opacity: 0.9,
+    zoomFactor: 1,
+  },
+  timer: {
+    pos: { x: null, y: null },
+    size: { w: 500, h: 160 },
+    opacity: 0.9,
+    zoomFactor: 1,
+  },
+  timerMini: {
+    size: { w: 500, h: 120 },
+  },
+  history: {
+    pos: { x: null, y: null },
+    size: { w: 500, h: 800 },
+    opacity: 0.9,
+    zoomFactor: 1,
+  },
+  spotStatistics: {
+    pos: { x: null, y: null },
+    size: { w: 500, h: 500 },
+    opacity: 0.9,
+    zoomFactor: 1,
+  },
+}
 function initWindowSetting(configStore) {
-  if (!configStore.get('windowSetting')) {
-    configStore.set('windowSetting', {
-      main: {
-        pos: { x: null, y: null },
-        size: { w: 1080, h: 768 },
-        opacity: 0.9,
-        zoomFactor: 1,
-      },
-      setting: {
-        pos: { x: null, y: null },
-        size: { w: 500, h: 500 },
-        opacity: 0.9,
-        zoomFactor: 1,
-      },
-      timer: {
-        pos: { x: null, y: null },
-        size: { w: 500, h: 160 },
-        opacity: 0.9,
-        zoomFactor: 1,
-      },
-      history: {
-        pos: { x: null, y: null },
-        size: { w: 500, h: 800 },
-        opacity: 0.9,
-        zoomFactor: 1,
-      },
-      spotStatistics: {
-        pos: { x: null, y: null },
-        size: { w: 500, h: 500 },
-        opacity: 0.9,
-        zoomFactor: 1,
-      },
-    })
+  const setting = configStore.get('windowSetting')
+  if (!setting) {
+    configStore.set('windowSetting', DEFAULT_WINDOW_SETTING)
     log.info('Initialize user config in', app.getPath('userData'))
+  } else {
+    configStore.set('windowSetting', merge(DEFAULT_WINDOW_SETTING, setting))
+    log.debug('Config Read', configStore.get('windowSetting'))
   }
 }
 
@@ -180,17 +189,24 @@ async function init() {
       WINDOWS.main.webContents.setZoomFactor(setting.zoomFactor)
     })
     .on('setCollapse', (event, collapse) => {
+      mainMini = collapse
       const mainSize = windowSetting.main.size
       if (collapse) {
         WINDOWS.main.setSize(112, 88)
+        WINDOWS.main.setResizable(false)
+        WINDOWS.main.setOpacity(1)
+
       } else {
         WINDOWS.main.setSize(mainSize.w, mainSize.h)
+        WINDOWS.main.setResizable(true)
       }
     })
     .on('setReaderMiniMode', (event, mini) => {
+      readerMini = mini
       const readerSize = windowSetting.timer.size
+      const readerMiniSize = windowSetting.timerMini.size
       if (mini) {
-        WINDOWS.readerTimer.setSize(readerSize.w, 52)
+        WINDOWS.readerTimer.setSize(readerMiniSize.w, readerMiniSize.h)
       } else {
         WINDOWS.readerTimer.setSize(readerSize.w, readerSize.h)
       }
@@ -648,7 +664,11 @@ function createReader() {
     })
     .on('resized', () => {
       const [w, h] = win.getSize()
-      saveWindowSetting('timer.size', { w, h })
+      if (readerMini) {
+        saveWindowSetting('timerMini.size', { w, h })
+      } else {
+        saveWindowSetting('timer.size', { w, h })
+      }
     })
 
   win.loadURL(readerURL).then(() => {
