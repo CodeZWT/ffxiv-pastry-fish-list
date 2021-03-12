@@ -1,7 +1,6 @@
 <template>
-  <v-app :class="{ 'min-page': collapse }">
-    <v-system-bar app v-if="isElectron" v-show="!collapse">
-      <!--      <v-img :src="readerIcon" max-height="20" max-width="20" />-->
+  <v-app>
+    <v-system-bar app v-if="isElectron">
       <div>{{ $t('top.navBarTitle', { title, version }) }}</div>
       <span class="ml-1"></span>
       <v-spacer />
@@ -46,61 +45,18 @@
         <v-icon>mdi-window-close</v-icon>
       </v-btn>
     </v-system-bar>
-    <v-app-bar
-      height="56px"
-      app
-      :collapse="collapse"
-      :class="{
-        'fish-app-bar': true,
-        'rounded-pill': collapse,
-        'fish-app-bar--collapsed': collapse,
-      }"
-      dense
-      color="system"
-    >
-      <v-app-bar-nav-icon v-if="isMobile && !collapse" @click.stop="showNavi">
+    <v-app-bar height="56px" app class="fish-app-bar" dense color="system">
+      <v-app-bar-nav-icon v-if="isMobile" @click.stop="showNavi">
         <v-img v-if="!isMobile" :src="fisher" height="42" width="42" />
       </v-app-bar-nav-icon>
-      <click-helper
+
+      <v-avatar
+        size="36"
         @click="onFishIconClicked"
-        :style="
-          `margin-left: ${collapse || isMobile ? 0 : -12}px; -webkit-app-region: none`
-        "
+        :style="`margin-left: ${isMobile ? 0 : -12}px; -webkit-app-region: none`"
       >
-        <v-tooltip bottom z-index="10" :disabled="collapse">
-          <template v-slot:activator="{ on, attrs }">
-            <div class="d-flex">
-              <v-avatar size="36" v-bind="attrs" v-on="on">
-                <v-img :src="fisher" />
-              </v-avatar>
-              <div class="d-flex flex-column" v-if="collapse">
-                <v-chip
-                  v-for="(notification, index) in listFishCntForMini"
-                  :key="index"
-                  x-small
-                  color="transparent"
-                  @click="setActiveTabLater(index)"
-                >
-                  <v-tooltip right>
-                    <template v-slot:activator="{ on, attrs }">
-                      <click-helper v-on="on" v-bind="attrs">
-                        <div>
-                          <v-icon left small disabled>
-                            {{ TABS[index].icon }}
-                          </v-icon>
-                          {{ notification.cnt }}
-                        </div>
-                      </click-helper>
-                    </template>
-                    <span>{{ $t(TABS[index].title) }}</span>
-                  </v-tooltip>
-                </v-chip>
-              </div>
-            </div>
-          </template>
-          <span>{{ $t('top.collapseHint') }}</span>
-        </v-tooltip>
-      </click-helper>
+        <v-img :src="fisher" />
+      </v-avatar>
       <v-toolbar-title
         v-if="!isMobile"
         style="min-width: 85px !important"
@@ -110,178 +66,176 @@
         <span>{{ title }}</span>
         <v-badge :content="version" class="px-1" />
       </v-toolbar-title>
-      <template v-if="!collapse">
-        <v-spacer />
-        <div v-if="inStartLight">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <div v-bind="attrs" v-on="on">
-                <v-switch
-                  v-model="showHatCover"
-                  inset
-                  class="theme-switch"
-                  color="pink darken-3"
-                />
-              </div>
-            </template>
-            <div>
-              点击切换星芒节天气模式<br />
-              在星芒节期间，三大主城以及四个住宅区的天气固定为小雪。<br />
-              此开关开启时，将会以星芒节的小雪作为窗口期天气计算的条件。<br />
-              关闭时，以地图区域的默认天气转换进行计算。
-            </div>
-          </v-tooltip>
-        </div>
 
-        <v-btn icon text v-if="isListPage" @click="toggleFilterPanel">
-          <v-icon>mdi-filter</v-icon>
-        </v-btn>
-
-        <fish-eyes-toggle-button
-          v-if="!isMobile && (isListPage || isWikiPage)"
-          :value="fishEyesUsed"
-          @input="toggleFishEyesUsed"
-        />
-
-        <v-btn
-          icon
-          text
-          v-if="(isListPage || isWikiPage) && !isMobile"
-          @click="showBaitDialog = true"
-        >
-          <v-icon>mdi-hook</v-icon>
-        </v-btn>
-
+      <v-spacer />
+      <div v-if="inStartLight">
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
-              <v-btn icon text @click="setShowSearchDialog(true)">
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn>
+              <v-switch
+                v-model="showHatCover"
+                inset
+                class="theme-switch"
+                color="pink darken-3"
+              />
             </div>
           </template>
-          <div>按<kbd>/</kbd>键直接搜索</div>
+          <div>
+            点击切换星芒节天气模式<br />
+            在星芒节期间，三大主城以及四个住宅区的天气固定为小雪。<br />
+            此开关开启时，将会以星芒节的小雪作为窗口期天气计算的条件。<br />
+            关闭时，以地图区域的默认天气转换进行计算。
+          </div>
         </v-tooltip>
+      </div>
 
-        <v-menu offset-y v-if="!isMobile">
-          <template v-slot:activator="{ on: menu, attrs }">
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on: tooltip }">
-                <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                  <v-icon> mdi-theme-light-dark</v-icon>
-                </v-btn>
-              </template>
-              <div>设置颜色模式</div>
-            </v-tooltip>
-          </template>
-          <v-list>
-            <v-list-item-group color="primary" :value="themeModeIndex">
-              <v-tooltip
-                v-for="(mode, index) in THEME_SETTING_MODES"
-                :key="index"
-                bottom
-                :disabled="mode !== 'AUTO'"
-              >
-                <template v-slot:activator="{ on, attrs }">
-                  <div v-bind="attrs" v-on="on">
-                    <v-list-item @click="selectThemeMode(index)">
-                      <v-list-item-icon>
-                        <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
-                      </v-list-item-icon>
-                      <v-list-item-content>
-                        <v-list-item-title>
-                          <div class="d-flex align-center">
-                            <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
-                          </div>
-                        </v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </div>
-                </template>
-                <div>WINDOWS10: 设置 -> 颜色 -> 选择颜色</div>
-              </v-tooltip>
-            </v-list-item-group>
-          </v-list>
-        </v-menu>
-        <v-menu v-if="isMobile" offset-y left>
-          <template v-slot:activator="{ on: menu, attrs }">
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on: tooltip }">
-                <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                  <v-icon>mdi-dots-vertical</v-icon>
-                </v-btn>
-              </template>
-              <div>更多</div>
-            </v-tooltip>
-          </template>
-          <v-list>
-            <v-list-item @click="showBaitDialog = true">
-              <v-btn icon text v-if="isListPage || isWikiPage">
-                <v-icon>mdi-hook</v-icon>
+      <v-btn icon text v-if="isListPage" @click="toggleFilterPanel">
+        <v-icon>mdi-filter</v-icon>
+      </v-btn>
+
+      <fish-eyes-toggle-button
+        v-if="!isMobile && (isListPage || isWikiPage)"
+        :value="fishEyesUsed"
+        @input="toggleFishEyesUsed"
+      />
+
+      <v-btn
+        icon
+        text
+        v-if="(isListPage || isWikiPage) && !isMobile"
+        @click="showBaitDialog = true"
+      >
+        <v-icon>mdi-hook</v-icon>
+      </v-btn>
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <div v-bind="attrs" v-on="on">
+            <v-btn icon text @click="setShowSearchDialog(true)">
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+          </div>
+        </template>
+        <div>按<kbd>/</kbd>键直接搜索</div>
+      </v-tooltip>
+
+      <v-menu offset-y v-if="!isMobile">
+        <template v-slot:activator="{ on: menu, attrs }">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on: tooltip }">
+              <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
+                <v-icon> mdi-theme-light-dark</v-icon>
               </v-btn>
-              <div>打开鱼饵筛选</div>
-            </v-list-item>
-            <v-list-item>
-              <v-menu offset-x left top>
-                <template v-slot:activator="{ on: menu, attrs }">
-                  <div v-bind="attrs" v-on="{ ...menu }" class="d-flex align-center">
-                    <v-btn text icon>
-                      <v-icon>mdi-theme-light-dark</v-icon>
-                    </v-btn>
-                    <div>设置颜色模式</div>
-                  </div>
-                </template>
-                <v-list>
-                  <v-list-item-group color="primary" :value="themeModeIndex">
-                    <v-tooltip
-                      v-for="(mode, index) in THEME_SETTING_MODES"
-                      :key="index"
-                      bottom
-                      :disabled="mode !== 'AUTO'"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <div v-bind="attrs" v-on="on">
-                          <v-list-item @click="selectThemeMode(index)">
-                            <v-list-item-icon>
-                              <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                              <v-list-item-title>
-                                <div class="d-flex align-center">
-                                  <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
-                                </div>
-                              </v-list-item-title>
-                            </v-list-item-content>
-                          </v-list-item>
+            </template>
+            <div>设置颜色模式</div>
+          </v-tooltip>
+        </template>
+        <v-list>
+          <v-list-item-group color="primary" :value="themeModeIndex">
+            <v-tooltip
+              v-for="(mode, index) in THEME_SETTING_MODES"
+              :key="index"
+              bottom
+              :disabled="mode !== 'AUTO'"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on">
+                  <v-list-item @click="selectThemeMode(index)">
+                    <v-list-item-icon>
+                      <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <div class="d-flex align-center">
+                          <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
                         </div>
-                      </template>
-                      <div>WINDOWS10: 设置 -> 颜色 -> 选择颜色</div>
-                    </v-tooltip>
-                  </v-list-item-group>
-                </v-list>
-              </v-menu>
-            </v-list-item>
-            <v-list-item @click="toggleFishEyesUsed">
-              <fish-eyes-toggle-button
-                v-if="isListPage || isWikiPage"
-                :value="fishEyesUsed"
-                show-title
-                @input="toggleFishEyesUsed"
-              />
-            </v-list-item>
-          </v-list>
-        </v-menu>
+                      </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </div>
+              </template>
+              <div>WINDOWS10: 设置 -> 颜色 -> 选择颜色</div>
+            </v-tooltip>
+          </v-list-item-group>
+        </v-list>
+      </v-menu>
+      <v-menu v-if="isMobile" offset-y left>
+        <template v-slot:activator="{ on: menu, attrs }">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on: tooltip }">
+              <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
+                <v-icon>mdi-dots-vertical</v-icon>
+              </v-btn>
+            </template>
+            <div>更多</div>
+          </v-tooltip>
+        </template>
+        <v-list>
+          <v-list-item @click="showBaitDialog = true">
+            <v-btn icon text v-if="isListPage || isWikiPage">
+              <v-icon>mdi-hook</v-icon>
+            </v-btn>
+            <div>打开鱼饵筛选</div>
+          </v-list-item>
+          <v-list-item>
+            <v-menu offset-x left top>
+              <template v-slot:activator="{ on: menu, attrs }">
+                <div v-bind="attrs" v-on="{ ...menu }" class="d-flex align-center">
+                  <v-btn text icon>
+                    <v-icon>mdi-theme-light-dark</v-icon>
+                  </v-btn>
+                  <div>设置颜色模式</div>
+                </div>
+              </template>
+              <v-list>
+                <v-list-item-group color="primary" :value="themeModeIndex">
+                  <v-tooltip
+                    v-for="(mode, index) in THEME_SETTING_MODES"
+                    :key="index"
+                    bottom
+                    :disabled="mode !== 'AUTO'"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <div v-bind="attrs" v-on="on">
+                        <v-list-item @click="selectThemeMode(index)">
+                          <v-list-item-icon>
+                            <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
+                          </v-list-item-icon>
+                          <v-list-item-content>
+                            <v-list-item-title>
+                              <div class="d-flex align-center">
+                                <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
+                              </div>
+                            </v-list-item-title>
+                          </v-list-item-content>
+                        </v-list-item>
+                      </div>
+                    </template>
+                    <div>WINDOWS10: 设置 -> 颜色 -> 选择颜色</div>
+                  </v-tooltip>
+                </v-list-item-group>
+              </v-list>
+            </v-menu>
+          </v-list-item>
+          <v-list-item @click="toggleFishEyesUsed">
+            <fish-eyes-toggle-button
+              v-if="isListPage || isWikiPage"
+              :value="fishEyesUsed"
+              show-title
+              @input="toggleFishEyesUsed"
+            />
+          </v-list-item>
+        </v-list>
+      </v-menu>
 
-        <v-sheet class="d-flex flex-column ml-1 transparent" v-if="!isElectron">
-          <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
-          <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
-        </v-sheet>
-      </template>
+      <v-sheet class="d-flex flex-column ml-1 transparent" v-if="!isElectron">
+        <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
+        <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
+      </v-sheet>
     </v-app-bar>
 
     <v-main>
       <v-navigation-drawer
-        v-if="!collapse"
         v-model="drawer"
         :mini-variant.sync="mini"
         :bottom="isMobile"
@@ -443,11 +397,7 @@
           </v-list>
         </template>
       </v-navigation-drawer>
-      <div
-        :class="{ 'py-0': true, 'ml-14': !isMobile }"
-        style="height: 100%"
-        v-show="!collapse"
-      >
+      <div :class="{ 'py-0': true, 'ml-14': !isMobile }" style="height: 100%">
         <v-overlay :value="loading || showJumpingOverlay" opacity="0.9" z-index="9999">
           <div class="d-flex flex-column align-center">
             <v-progress-circular indeterminate size="64" />
@@ -480,7 +430,7 @@
         />
         <!--                @fishCntUpdated="listFishCnt = $event"     -->
       </div>
-      <!--      <v-container class="py-0" v-if="!collapse">-->
+      <!--      <v-container class="py-0">-->
       <!--        <v-row>-->
       <!--          <v-col class="d-flex flex-row justify-end">-->
       <!--            <span>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</span>-->
@@ -500,7 +450,7 @@
       @change="searchedFishId = $event"
     />
 
-    <v-footer app style="font-size: small; max-height: 31px" v-if="!collapse">
+    <v-footer app style="font-size: small; max-height: 31px">
       <div class="d-flex" style="width: 100%">
         <div class="text-truncate mr-2" :title="$t('footer.contact')">
           {{ $t('footer.contact') }}
@@ -586,7 +536,6 @@
       </v-card>
     </v-dialog>
     <update-dialog
-      v-if="!collapse"
       v-model="showCheckStartSetupDialog"
       @update="startUpdate"
       @skip="skipUpdate"
@@ -732,7 +681,6 @@ export default {
     showSettingDialog: false,
     showPatchNoteDialog: false,
     showMigrationDialog: false,
-    collapse: false,
     // listFishCnt: [{ cnt: 0 }, { cnt: 0 }, { cnt: 0 }],
     TABS: DataUtil.TABS,
     title:
@@ -1982,22 +1930,6 @@ body {
 .min-page {
   background: rgba(255, 255, 255, 0) !important;
   /*height: 64px;*/
-}
-
-#write {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/*.fish-app-bar.v-toolbar.v-toolbar--collapsed {*/
-
-/*  max-width: 64px !important;*/
-/*}*/
-
-.v-application .fish-app-bar.fish-app-bar--collapsed {
-  background-color: #004d4066 !important;
-  border: 2px solid;
-  -webkit-app-region: drag;
 }
 
 /* scroller setting start */
