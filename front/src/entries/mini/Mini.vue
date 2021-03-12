@@ -1,9 +1,14 @@
 <template>
   <v-app>
     <v-main>
-      <div class="fish-app-bar--collapsed rounded-pill d-flex elevation-5 px-1">
+      <div class="fish-app-bar--collapsed rounded-pill d-flex elevation-5 px-1 ma-2">
         <div class="mr-1">
-          <v-img :src="fisher" width="48" />
+          <v-img
+            :src="fisher"
+            width="48"
+            @click="exitMini"
+            style="-webkit-app-region: none"
+          />
         </div>
         <div class="d-flex flex-column justify-center">
           <div v-for="(notification, index) in listFishCntForMini" :key="index">
@@ -13,7 +18,7 @@
                   <v-icon left small disabled>
                     {{ TABS[index].icon }}
                   </v-icon>
-                  <div style="font-size: small; color: hsla(0,0%,100%,.5)">
+                  <div style="font-size: small; color: hsla(0, 0%, 100%, 0.5)">
                     {{ notification.cnt }}
                   </div>
                 </div>
@@ -54,6 +59,14 @@ export default {
   computed: {
     listFishCntForMini() {
       return this.listFishCnt.slice(0, 2)
+    },
+  },
+  methods: {
+    exitMini() {
+      this.sendElectronEvent('miniMode', false)
+    },
+    sendElectronEvent(channel, data) {
+      window.electron?.ipcRenderer?.send(channel, data)
     },
   },
 }

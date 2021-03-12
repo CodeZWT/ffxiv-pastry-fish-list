@@ -1196,9 +1196,7 @@ export default {
           window.electron?.ipcRenderer?.send('reloadUserData')
         })
         ?.on('showSpotPage', (event, spotId) => {
-          if (this.collapse) {
-            this.toggleCollapse()
-          }
+          this.setMiniMode(false)
           if (!window.location.hash.startsWith('#/wiki')) {
             this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
           }
@@ -1870,9 +1868,8 @@ export default {
       this.setWebsiteVersion(version)
       this.showPatchNoteDialog = false
     },
-    toggleCollapse() {
-      this.collapse = !this.collapse
-      this.sendElectronEvent('setCollapse', this.collapse)
+    setMiniMode(mini) {
+      this.sendElectronEvent('miniMode', mini)
     },
     setActiveTabLater(index) {
       setTimeout(() => this.setActiveTab(index), 500)
@@ -1910,7 +1907,7 @@ export default {
       }
     },
     onFishIconClicked() {
-      this.toggleCollapse()
+      this.setMiniMode(true)
     },
     ...mapMutations([
       'setOpacity',

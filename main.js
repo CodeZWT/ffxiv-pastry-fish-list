@@ -33,8 +33,7 @@ log.transports.console.level = 'silly'
 
 const WINDOWS = {}
 let tray, loadingForReloadingPage, configStore, windowSetting, region
-let readerMini = false,
-  mainMini
+let readerMini = false
 
 const readerURL = isDev
   ? `http://localhost:8080/reader`
@@ -187,16 +186,17 @@ async function init() {
       WINDOWS.main.setOpacity(setting.opacity)
       WINDOWS.main.webContents.setZoomFactor(setting.zoomFactor)
     })
-    .on('setCollapse', (event, collapse) => {
-      mainMini = collapse
-      const mainSize = windowSetting.main.size
-      if (collapse) {
-        WINDOWS.main.setSize(112, 88)
-        WINDOWS.main.setResizable(false)
-        WINDOWS.main.setOpacity(1)
+    .on('miniMode', (event, mainMini) => {
+      if (mainMini) {
+        WINDOWS.mini.setPosition(
+          windowSetting.main.pos.x,
+          windowSetting.main.pos.y + MINI_POS_OFFSET
+        )
+        WINDOWS.mini.show()
+        WINDOWS.main.hide()
       } else {
-        WINDOWS.main.setSize(mainSize.w, mainSize.h)
-        WINDOWS.main.setResizable(true)
+        WINDOWS.mini.hide()
+        WINDOWS.main.show()
       }
     })
     .on('setReaderMiniMode', (event, mini) => {
@@ -428,8 +428,10 @@ function createTransparentWin(windowName, winURL, width, height, show) {
     width: width,
     height: height,
     frame: false,
-    show: show,
+    show: false,
     transparent: true,
+    resizable: false,
+    maximizable: false,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -442,21 +444,27 @@ function createTransparentWin(windowName, winURL, width, height, show) {
   win.removeMenu()
   setOnTop(win)
   win.once('ready-to-show', () => {
-    win.show()
+    if (show) win.show()
   })
   return win.loadURL(winURL).then(() => win)
 }
-
+const MINI_POS_OFFSET = 20
 function createMiniWin() {
   return createTransparentWin(
     'mini',
     isDev
       ? `http://localhost:8080/mini`
       : `file://${__dirname}/front-electron-dist/mini.html`,
-    120,
-    64,
+    150,
+    100,
     false
-  )
+  ).then((win) => {
+    return win.on('moved', () => {
+      const [x, y] = win.getPosition()
+      WINDOWS.main.setPosition(x, y - MINI_POS_OFFSET)
+      saveWindowSetting('main.pos', { x, y: y - MINI_POS_OFFSET })
+    })
+  })
 }
 
 function createAndShowLoadingWindow() {
