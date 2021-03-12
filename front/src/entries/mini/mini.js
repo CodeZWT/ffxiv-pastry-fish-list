@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Loading from './Loading.vue'
+import Mini from './Mini.vue'
 import i18n from '@/i18n'
 import vuetify from '@/plugins/vuetify'
 import { Settings } from 'luxon'
@@ -11,5 +11,5 @@ Vue.config.productionTip = false
 new Vue({
   i18n,
   vuetify,
-  render: h => h(Loading),
+  render: h => h(Mini),
 }).$mount('#app')

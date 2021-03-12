@@ -57,6 +57,15 @@ module.exports = {
       filename: 'loading.html',
       title: '加载中',
     },
+    mini: {
+      entry: 'src/entries/mini/mini.js',
+      template:
+        process.env.NODE_ENV === 'development'
+          ? 'public/index.dev.html'
+          : 'public/index.html',
+      filename: 'mini.html',
+      title: '迷你鱼糕',
+    },
     // 当使用只有入口的字符串格式时，
     // 模板会被推导为 `public/subpage.html`
     // 并且如果找不到的话，就回退到 `public/index.html`。
