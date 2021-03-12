@@ -46,11 +46,11 @@ export default {
       listFishCnt: [
         {
           type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
-          cnt: 20,
+          cnt: 0,
         },
         {
           type: DataUtil.COUNT_DOWN_TYPE[DataUtil.WAITING],
-          cnt: 10,
+          cnt: 0,
         },
       ],
       TABS: DataUtil.TABS,
@@ -60,6 +60,11 @@ export default {
     listFishCntForMini() {
       return this.listFishCnt.slice(0, 2)
     },
+  },
+  created() {
+    window.electron?.ipcRenderer?.on('listCntUpdated', (event, listCnt) => {
+      this.listFishCnt = listCnt
+    })
   },
   methods: {
     exitMini() {

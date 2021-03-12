@@ -428,7 +428,6 @@
           :filteredFishIdSet="filteredFishIdSet"
           @fish-selected="onFishSelected"
         />
-        <!--                @fishCntUpdated="listFishCnt = $event"     -->
       </div>
       <!--      <v-container class="py-0">-->
       <!--        <v-row>-->
@@ -1075,7 +1074,7 @@ export default {
     },
     listFishCnt(listFishCnt, oldValue) {
       if (!isEqual(listFishCnt, oldValue)) {
-        this.$emit('fishCntUpdated', listFishCnt)
+        this.sendElectronEvent('listCntUpdated', listFishCnt)
       }
     },
     // weatherChangeTrigger() {

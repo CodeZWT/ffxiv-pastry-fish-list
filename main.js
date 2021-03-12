@@ -280,11 +280,9 @@ async function init() {
         }
       })
     })
-  // .on('playSound', (event, playInfo) => {
-  //   new Howl({ src: playInfo.path, preload: true })
-  //     .volume(playInfo.volume)
-  //     .play()
-  // })
+  .on('listCntUpdated', (event, listCnt) => {
+    WINDOWS.mini.send('listCntUpdated', listCnt)
+  })
 
   ipcMain.handle('showOpenSoundFileDialog', () => {
     return dialog
