@@ -32,7 +32,7 @@ const SETUP_EXE_DOWNLOAD_LINK =
 log.transports.console.level = 'silly'
 
 const WINDOWS = {}
-let tray, loading, loadingForReloadingPage, configStore, windowSetting, region
+let tray, loadingForReloadingPage, configStore, windowSetting, region
 let readerMini = false,
   mainMini
 
@@ -104,7 +104,8 @@ function saveWindowSetting(path, value) {
 }
 
 async function init() {
-  await createAndShowLoadingWindow().then((win) => (loading = win))
+  await createAndShowLoadingWindow()
+  await createMiniWin()
   configStore = new Store()
   initWindowSetting(configStore)
   windowSetting = configStore.get('windowSetting')
@@ -215,9 +216,9 @@ async function init() {
       // if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
       //   return loadingForReloadingPage.close()
       // }
-      if (!loading.isDestroyed()) {
+      if (!WINDOWS.loading.isDestroyed()) {
         WINDOWS.main.show()
-        loading.close()
+        WINDOWS.loading.close()
       }
     })
     .on('exportHistory', (event, data) => {
@@ -422,12 +423,12 @@ function createReaderSpotStatistics(readTimerWin) {
   })
 }
 
-function createAndShowLoadingWindow() {
-  const win = new BrowserWindow({
-    width: 250,
-    height: 250,
+function createTransparentWin(windowName, winURL, width, height, show) {
+  WINDOWS[windowName] = new BrowserWindow({
+    width: width,
+    height: height,
     frame: false,
-    show: true,
+    show: show,
     transparent: true,
     webPreferences: {
       contextIsolation: false,
@@ -437,19 +438,37 @@ function createAndShowLoadingWindow() {
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
-
+  const win = WINDOWS[windowName]
   win.removeMenu()
-
+  setOnTop(win)
   win.once('ready-to-show', () => {
     win.show()
   })
-  return win
-    .loadURL(
-      isDev
-        ? `http://localhost:8080/loading`
-        : `file://${__dirname}/front-electron-dist/loading.html`
-    )
-    .then(() => win)
+  return win.loadURL(winURL).then(() => win)
+}
+
+function createMiniWin() {
+  return createTransparentWin(
+    'mini',
+    isDev
+      ? `http://localhost:8080/mini`
+      : `file://${__dirname}/front-electron-dist/mini.html`,
+    120,
+    64,
+    false
+  )
+}
+
+function createAndShowLoadingWindow() {
+  return createTransparentWin(
+    'loading',
+    isDev
+      ? `http://localhost:8080/loading`
+      : `file://${__dirname}/front-electron-dist/loading.html`,
+    250,
+    250,
+    true
+  )
 }
 
 function createWindow(
