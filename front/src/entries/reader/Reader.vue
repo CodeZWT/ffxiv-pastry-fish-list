@@ -47,7 +47,8 @@
       </v-btn>
     </v-system-bar>
     <v-main>
-      <router-view :now="now" />
+      <router-view :now="now" class="reader-wrapper" />
+      <resize-indicator />
     </v-main>
   </v-app>
 </template>
@@ -65,10 +66,11 @@ import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import db from '@/plugins/db'
 import { Howl } from 'howler'
+import ResizeIndicator from '@/components/basic/ResizeIndicator'
 
 export default {
   name: 'Reader',
-  components: { NewFeatureMark },
+  components: { ResizeIndicator, NewFeatureMark },
   data: () => ({
     now: Date.now(),
     readerIcon: READER_ICON,
@@ -190,4 +192,12 @@ body::-webkit-scrollbar {
 .v-application.mini-mode {
   background-color: #ffffff00 !important;
 }
+</style>
+
+<style lang="sass">
+@import "~@/styles/RcVariables"
+
+.reader-wrapper
+  overflow-y: scroll
+  height: calc(100vh - #{ $top-bars-padding-reader})
 </style>
