@@ -174,19 +174,13 @@ export default {
         effects: [],
       },
       dataCurrentRecord: {},
-      // dataRecords: [],
-      // dataReadableRecords: [],
-
-      // spectralCurrentEndTime: undefined,
-      // diademWeatherEndTime: undefined,
-      // normalWeatherStartTime: undefined,
       spectralCurrentCountDownTotal: 2 * DataUtil.INTERVAL_MINUTE,
       HistoryFeatureId: ReaderFeatures.History,
       SpotStatisticsFeatureId: ReaderFeatures.SpotStatistics,
     }
   },
   computed: {
-    ...mapGetters(['getWeather', 'readerRegion']),
+    ...mapGetters(['readerRegion']),
     spotId() {
       return this.dataStatus?.spotId
     },
@@ -337,26 +331,11 @@ export default {
     // },
   },
   created() {
-    const routeName =
-      window.process?.argv
-        ?.find(it => it.indexOf('--route-name') === 0)
-        ?.split('=')?.[1] ?? 'ReaderTimer'
-    if (routeName === 'ReaderTimer') {
-      this.mode =
-        window.process?.argv?.find(it => it.indexOf('--mode') === 0)?.split('=')?.[1] ??
-        'normal'
-    }
-    console.log('window.process.argv', routeName, this.mode)
+    this.mode =
+      window.process?.argv?.find(it => it.indexOf('--mode') === 0)?.split('=')?.[1] ??
+      'normal'
     this.updateReaderTimerMiniMode(this.mode === 'mini')
 
-    if (routeName !== this.$route.name) {
-      this.$router.push({ name: routeName })
-    }
-    // const data = {} // DevelopmentModeUtil.isTest() ? DUMMY_DATA[2] :
-    // this.dataStatus = data.status
-    // this.dataCurrentRecord = data.currentRecord
-    // this.dataRecords = data.records
-    // this.dataReadableRecords = data.readableRecords
     window.electron?.ipcRenderer
       ?.on('fishingData', (event, data) => {
         this.dataStatus = {
@@ -364,8 +343,6 @@ export default {
           effects: Array.from(data.status && data.status.effects),
         }
         this.dataCurrentRecord = data.currentRecord
-        // this.dataRecords = data.records
-        // this.dataReadableRecords = data.readableRecords
       })
       ?.on('newRecord', (event, data) => {
         db.records.put(data).catch(error => console.error('storeError', error))

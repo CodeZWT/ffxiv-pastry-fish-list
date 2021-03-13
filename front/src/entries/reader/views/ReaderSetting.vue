@@ -48,6 +48,32 @@
                 </template>
               </v-slider>
             </div>
+            <!--            <div class="d-flex align-center">-->
+            <!--              <v-slider-->
+            <!--                v-model="lazyWindowSetting.timerMini.opacity"-->
+            <!--                label="迷你模式透明度"-->
+            <!--                max="1"-->
+            <!--                min="0.1"-->
+            <!--                step="0.05"-->
+            <!--                ticks-->
+            <!--                thumb-label-->
+            <!--              />-->
+            <!--            </div>-->
+            <div class="d-flex align-center">
+              <v-slider
+                v-model="lazyWindowSetting.timerMini.zoomFactor"
+                max="3"
+                min="0.4"
+                step="0.1"
+                ticks
+                label="迷你模式缩放比例"
+                thumb-label
+              >
+                <template v-slot:thumb-label="{ value }">
+                  {{ Math.floor(value * 100) }}%
+                </template>
+              </v-slider>
+            </div>
             <div v-for="tug in TUG_TYPES" class="d-flex flex-column" :key="tug">
               <v-radio-group
                 v-model="lazySetting.timer.sound[tug].source"

@@ -11,6 +11,11 @@ const routes = [
     component: ReaderTimer,
   },
   {
+    path: '/timerMini',
+    name: 'ReaderTimerMini',
+    component: ReaderTimer,
+  },
+  {
     path: '/setting',
     name: 'ReaderSetting',
     component: () =>

@@ -21,9 +21,9 @@ const iconv = require('iconv-lite')
 const datauri = require('datauri')
 const Store = require('electron-store')
 const set = require('lodash/set')
-const capitalize = require('lodash/capitalize')
 const merge = require('lodash/merge')
 const unhandled = require('electron-unhandled')
+const contextMenu = require('electron-context-menu')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -34,10 +34,6 @@ log.transports.console.level = 'silly'
 const WINDOWS = {}
 let tray, loadingForReloadingPage, configStore, windowSetting, region
 let readerMini = false
-
-const readerURL = isDev
-  ? `http://localhost:8080/reader`
-  : `file://${__dirname}/front-electron-dist/reader.html`
 
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
@@ -51,6 +47,7 @@ unhandled({
     shell.showItemInFolder(path.join(app.getPath('userData'), 'logs/main.log'))
   },
 })
+contextMenu()
 const DEFAULT_WINDOW_SETTING = {
   main: {
     pos: { x: null, y: null },
@@ -72,6 +69,8 @@ const DEFAULT_WINDOW_SETTING = {
   },
   timerMini: {
     size: { w: 500, h: 120 },
+    opacity: 0.9,
+    zoomFactor: 1,
   },
   history: {
     pos: { x: null, y: null },
@@ -101,8 +100,20 @@ function saveWindowSetting(path, value) {
   set(windowSetting, path, value)
   configStore.set('windowSetting', windowSetting)
 }
-
+let settingVisible = false,
+  historyVisible = false,
+  spotStatisticsVisible = false
 async function init() {
+  if (isDev) {
+    const {
+      default: installExtension,
+      VUEJS_DEVTOOLS,
+    } = require('electron-devtools-installer')
+    installExtension(VUEJS_DEVTOOLS)
+      .then((name) => console.log(`Added Extension:  ${name}`))
+      .catch((err) => console.log('An error occurred: ', err))
+  }
+
   await createAndShowLoadingWindow()
   await createMiniWin()
   configStore = new Store()
@@ -201,13 +212,19 @@ async function init() {
     })
     .on('timerMiniMode', (event, mini) => {
       if (mini) {
+        settingVisible = WINDOWS.readerSetting.isVisible()
+        historyVisible = WINDOWS.readerHistory.isVisible()
+        spotStatisticsVisible = WINDOWS.readerSpotStatistics.isVisible()
+        WINDOWS.readerTimer.hide()
         WINDOWS.timerMini.setPosition(
           windowSetting.timer.pos.x,
           windowSetting.timer.pos.y + READER_MINI_POS_OFFSET
         )
         WINDOWS.timerMini.show()
-        WINDOWS.readerTimer.hide()
       } else {
+        settingVisible = false
+        historyVisible = false
+        spotStatisticsVisible = false
         WINDOWS.timerMini.hide()
         WINDOWS.readerTimer.show()
       }
@@ -260,19 +277,24 @@ async function init() {
       WINDOWS.main.focus()
     })
     .on('updateWindowSetting', (event, newWindowSetting) => {
-      ;['timer', 'history', 'spotStatistics'].forEach((settingName) => {
-        const windowName =
-          'reader' + capitalize(settingName[0]) + settingName.substring(1)
+      Object.entries({
+        timer: 'readerTimer',
+        timerMini: 'timerMini',
+        history: 'readerHistory',
+        spotStatistics: 'readerSpotStatistics',
+      }).forEach(([settingName, windowName]) => {
         if (
           newWindowSetting[settingName] &&
           WINDOWS[windowName] &&
           newWindowSetting[settingName].zoomFactor > 0.3
         ) {
-          saveWindowSetting(
-            settingName + '.opacity',
-            newWindowSetting[settingName].opacity
-          )
-          WINDOWS[windowName].setOpacity(newWindowSetting[settingName].opacity)
+          if (settingName !== 'timerMini') {
+            saveWindowSetting(
+              settingName + '.opacity',
+              newWindowSetting[settingName].opacity
+            )
+            WINDOWS[windowName].setOpacity(newWindowSetting[settingName].opacity)
+          }
           saveWindowSetting(
             settingName + '.zoomFactor',
             newWindowSetting[settingName].zoomFactor
@@ -345,6 +367,10 @@ async function init() {
       WINDOWS.readerTimer.webContents.openDevTools({
         mode: 'undocked',
       })
+    // WINDOWS.timerMini &&
+    //   WINDOWS.timerMini.webContents.openDevTools({
+    //     mode: 'undocked',
+    //   })
   })
 
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
@@ -375,7 +401,8 @@ function createReaderSetting(readTimerWin) {
     windowName,
     settingName,
     'assets/setting.png',
-    readerURL,
+    'reader',
+    'setting',
     () => {},
     ['--route-name=ReaderSetting'],
     false,
@@ -394,13 +421,15 @@ function createReaderHistory(readTimerWin) {
     windowName,
     settingName,
     'assets/reader.png',
-    readerURL,
+    'reader',
+    'history',
     () => {},
-    ['--route-name=ReaderHistory'],
+    null,
     false,
     true,
     readTimerWin
-  ).on('closed', (e) => {
+  )
+  win.on('closed', (e) => {
     closedWindows[windowName] = win
   })
 }
@@ -413,7 +442,8 @@ function createReaderSpotStatistics(readTimerWin) {
     windowName,
     settingName,
     'assets/reader.png',
-    readerURL,
+    'reader',
+    'spotStatistics',
     () => {},
     ['--route-name=ReaderSpotStatistics'],
     false,
@@ -426,11 +456,11 @@ function createReaderSpotStatistics(readTimerWin) {
 
 function createTransparentWin(
   windowName,
-  winURL,
+  page,
+  hash,
   width,
   height,
   show,
-  resizable = false,
   additionalArguments = null
 ) {
   WINDOWS[windowName] = new BrowserWindow({
@@ -439,7 +469,7 @@ function createTransparentWin(
     frame: false,
     show: false,
     transparent: true,
-    resizable: resizable,
+    resizable: false,
     maximizable: false,
     webPreferences: {
       contextIsolation: false,
@@ -456,15 +486,24 @@ function createTransparentWin(
   win.once('ready-to-show', () => {
     if (show) win.show()
   })
-  return win.loadURL(winURL).then(() => win)
+  let loadedPromise
+  if (isDev) {
+    loadedPromise = win
+      .loadURL(`http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`)
+  } else {
+    loadedPromise = win
+      .loadFile(path.join(__dirname, `/front-electron-dist/${page}.html`), {
+        hash: hash && '/' + hash,
+      })
+  }
+  return loadedPromise.then(() => win)
 }
 const MINI_POS_OFFSET = 20
 function createMiniWin() {
   return createTransparentWin(
     'mini',
-    isDev
-      ? `http://localhost:8080/mini`
-      : `file://${__dirname}/front-electron-dist/mini.html`,
+    'mini',
+    null,
     150,
     100,
     false
@@ -480,9 +519,8 @@ function createMiniWin() {
 function createAndShowLoadingWindow() {
   return createTransparentWin(
     'loading',
-    isDev
-      ? `http://localhost:8080/loading`
-      : `file://${__dirname}/front-electron-dist/loading.html`,
+    'loading',
+    null,
     250,
     250,
     true
@@ -490,18 +528,18 @@ function createAndShowLoadingWindow() {
 }
 
 const READER_MINI_POS_OFFSET = 56
-function createTimerMiniWin() {
+function createTimerMiniWin(parent) {
   return createTransparentWin(
     'timerMini',
-    isDev
-      ? `http://localhost:8080/reader`
-      : `file://${__dirname}/front-electron-dist/reader.html`,
+    'reader',
+    'timerMini',
     windowSetting.timerMini.size.w,
     windowSetting.timerMini.size.h,
     false,
-    true,
     ['--route-name=ReaderTimer', '--mode=mini']
   ).then((win) => {
+    win.setParentWindow(parent)
+    win.setResizable(true)
     return win
       .on('moved', () => {
         const [x, y] = win.getPosition()
@@ -519,7 +557,8 @@ function createWindow(
   windowName,
   settingName,
   iconPath,
-  winURL,
+  page,
+  hash,
   loadedCallback = () => {},
   additionalArguments = null,
   maximizable = true,
@@ -554,7 +593,17 @@ function createWindow(
     e.preventDefault()
     shell.openExternal(url)
   })
-  win.loadURL(winURL).then(loadedCallback)
+  if (isDev) {
+    win
+      .loadURL(`http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`)
+      .then(loadedCallback)
+  } else {
+    win
+      .loadFile(path.join(__dirname, `/front-electron-dist/${page}.html`), {
+        hash: hash && '/' + hash,
+      })
+      .then(loadedCallback)
+  }
 
   if (keepOnTop) setOnTop(win)
 
@@ -574,9 +623,8 @@ function createMainWindow() {
     'main',
     'main',
     'assets/icon256.png',
-    isDev
-      ? `http://localhost:8080`
-      : `file://${__dirname}/front-electron-dist/index.html`,
+    'index',
+    null,
     createReader
   ).on('closed', () => {
     quit()
@@ -594,9 +642,10 @@ function createReader() {
     'readerTimer',
     settingName,
     'assets/reader.png',
-    readerURL,
+    'reader',
+    null,
     () => {
-      createTimerMiniWin()
+      createTimerMiniWin(win)
       createReaderSetting(win)
       createReaderHistory(win)
       createReaderSpotStatistics(win)
@@ -617,9 +666,9 @@ function createReader() {
       closedWindows[settingName] = win
     })
     .on('hide', (e) => {
-      WINDOWS.readerSetting.hide()
-      WINDOWS.readerHistory.hide()
-      WINDOWS.readerSpotStatistics.hide()
+      settingVisible || WINDOWS.readerSetting.hide()
+      historyVisible || WINDOWS.readerHistory.hide()
+      spotStatisticsVisible || WINDOWS.readerSpotStatistics.hide()
     })
 }
 
