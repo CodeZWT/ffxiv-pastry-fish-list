@@ -1111,6 +1111,12 @@ export default {
 
     console.debug(process.env.commit_hash)
     if (DevelopmentModeUtil.isElectron()) {
+      const windowSetting = await this.getWindowSetting()
+      if (windowSetting) {
+        this.setOpacity(windowSetting.main.opacity)
+        this.setZoomFactor(windowSetting.main.zoomFactor)
+      }
+
       window.electron?.ipcRenderer
         ?.on('fishCaught', (event, data) => {
           // Be care of spear fish!
@@ -1171,9 +1177,6 @@ export default {
     })
     // this.finishReloadPage()
 
-    const windowSetting = await this.getWindowSetting()
-    this.setOpacity(windowSetting.main.opacity)
-    this.setZoomFactor(windowSetting.main.zoomFactor)
     this.sendElectronEvent('startReader', { region: this.readerRegion })
   },
   async mounted() {

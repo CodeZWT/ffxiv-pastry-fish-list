@@ -28,7 +28,7 @@
                   </v-radio-group>
                 </div>
               </v-col>
-              <v-col cols="12">
+              <v-col v-if="isElectron" cols="12">
                 <div class="text-subtitle-1">
                   {{ $t('setting.dialog.opacity.title') }}
                 </div>
