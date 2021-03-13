@@ -2,7 +2,7 @@
   <v-container fluid style="overflow-y: hidden; height: 100vh">
     <v-row no-gutters v-if="!readerTimerMiniMode">
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
-        <div>
+        <div style="min-width: 100px">
           咬钩计时
           <v-btn small text icon @click="toggleMiniMode(true)" title="迷你模式">
             <new-feature-mark id="MiniMode-V.0.6.6-1">
