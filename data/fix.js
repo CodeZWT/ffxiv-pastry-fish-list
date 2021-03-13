@@ -2677,7 +2677,7 @@ module.exports = {
       _id: 29772,
       name_chs: '尖吻鲈',
       icon: 29546,
-      tug: 'light',
+      tug: 'medium',
       hookset: null,
       biteTimeMin: 3,
       biteTimeMax: 6,
