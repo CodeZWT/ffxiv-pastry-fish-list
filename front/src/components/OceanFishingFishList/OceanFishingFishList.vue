@@ -31,7 +31,7 @@
           <item-icon
             :icon-class="item.icon"
             :title="item.name"
-            style="min-width: 36px"
+            style="min-width: 48px"
             :small="dense"
           />
           <div :title="`${item.name}#${item.id}`">{{ item.name }}</div>
