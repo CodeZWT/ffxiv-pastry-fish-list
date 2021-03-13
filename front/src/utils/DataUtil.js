@@ -902,8 +902,20 @@ export default {
       waterId: aquarium.aquariumWater,
       sizeId: aquarium.size,
       size: AQUARIUM_FISH_SIZE[aquarium.size].size,
-      gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}.gif`),
-      cover: ImgUtil.getAquariumImgUrl(`${aquarium.id}-cover.jpg`),
+      images: [
+        ...(aquarium.size === 1
+          ? [
+              {
+                gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}-s.gif`),
+                cover: ImgUtil.getAquariumImgUrl(`${aquarium.id}-s-cover.jpg`),
+              },
+            ]
+          : []),
+        {
+          gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}.gif`),
+          cover: ImgUtil.getAquariumImgUrl(`${aquarium.id}-cover.jpg`),
+        },
+      ],
       available:
         aquarium.patch === this.toFishFilterPatch(this.PATCH_AVAILABLE_MAX)
           ? 1

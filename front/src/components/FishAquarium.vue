@@ -32,22 +32,47 @@
             </div>
           </div>
         </v-card-text>
-        <gif-loader :src="fish.gif" :cover-src="fish.cover" />
+        <v-carousel
+          v-if="fish.sizeId === 1"
+          hide-delimiter-background
+          show-arrows-on-hover
+          v-model="currentIndex"
+          height="175"
+        >
+          <v-carousel-item v-for="(image, i) in fish.images" :key="i">
+            <gif-loader :src="image.gif" :cover-src="image.cover" :height="175" />
+          </v-carousel-item>
+        </v-carousel>
+        <gif-loader
+          v-else
+          :src="fish.images[0].gif"
+          :cover-src="fish.images[0].cover"
+          :height="175"
+        />
+
         <div style="position: absolute; right: 0; bottom: 0" v-if="hover && !isMobile">
           <v-chip
             class="rounded-tl-xl rounded-bl-0 rounded-r-0"
             @click="showExpandedDialog = true"
             style="z-index: 5"
           >
-            <v-icon>
-              mdi-arrow-expand-all
-            </v-icon>
+            <v-icon> mdi-arrow-expand-all </v-icon>
           </v-chip>
         </div>
       </v-card>
     </v-hover>
-    <v-dialog v-model="showExpandedDialog" max-width="800">
-      <gif-loader :src="fish.gif" :cover-src="fish.cover" />
+    <v-dialog
+      v-model="showExpandedDialog"
+      max-width="800"
+      :height="400"
+      :width="fish.sizeId === 1 && currentIndex === 0 ? 400 : undefined"
+    >
+      <div class="rounded-xl overflow-hidden">
+        <gif-loader
+          :src="fish.images[fish.sizeId === 1 ? currentIndex : 0].gif"
+          :cover-src="fish.images[fish.sizeId === 1 ? currentIndex : 0].cover"
+        />
+      </div>
     </v-dialog>
   </div>
 </template>
@@ -55,6 +80,7 @@
 <script>
 import ItemIcon from '@/components/basic/ItemIcon'
 import GifLoader from '@/components/basic/GifLoader'
+
 export default {
   name: 'FishAquarium',
   components: { ItemIcon, GifLoader },
@@ -66,6 +92,7 @@ export default {
   },
   data() {
     return {
+      currentIndex: 0,
       showExpandedDialog: false,
     }
   },

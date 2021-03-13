@@ -7,7 +7,7 @@
             <v-icon x-large>mdi-play-circle</v-icon>
           </div>
         </v-overlay>
-        <v-img :src="coverSrc">
+        <v-img :src="coverSrc" :height="height" :width="width">
           <template v-slot:placeholder>
             <v-row class="fill-height ma-0" align="center" justify="center">
               <v-progress-circular
@@ -27,7 +27,7 @@
     style="min-width: 100px; min-height: 100px"
   >
     <div style="position: absolute; text-align: center">加载中...</div>
-    <v-img :src="src">
+    <v-img :src="src" :height="height" :width="width">
       <template v-slot:placeholder>
         <v-row class="fill-height ma-0" align="center" justify="center">
           <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -47,6 +47,14 @@ export default {
     },
     src: {
       type: String,
+      default: undefined,
+    },
+    height: {
+      type: Number,
+      default: undefined,
+    },
+    width: {
+      type: Number,
       default: undefined,
     },
   },
