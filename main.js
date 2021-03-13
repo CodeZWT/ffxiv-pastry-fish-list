@@ -430,6 +430,7 @@ function createTransparentWin(
   width,
   height,
   show,
+  resizable = false,
   additionalArguments = null
 ) {
   WINDOWS[windowName] = new BrowserWindow({
@@ -438,7 +439,7 @@ function createTransparentWin(
     frame: false,
     show: false,
     transparent: true,
-    resizable: false,
+    resizable: resizable,
     maximizable: false,
     webPreferences: {
       contextIsolation: false,
@@ -498,6 +499,7 @@ function createTimerMiniWin() {
     windowSetting.timerMini.size.w,
     windowSetting.timerMini.size.h,
     false,
+    true,
     ['--route-name=ReaderTimer', '--mode=mini']
   ).then((win) => {
     return win

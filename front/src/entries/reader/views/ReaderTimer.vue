@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid style="overflow-y: hidden; height: 100vh">
     <v-row no-gutters v-if="!readerTimerMiniMode">
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div>
@@ -142,6 +142,7 @@
         </v-progress-linear>
       </v-col>
     </v-row>
+    <resize-indicator />
   </v-container>
 </template>
 
@@ -156,6 +157,7 @@ import COMMON from 'Data/common'
 import db from '@/plugins/db'
 import ItemIcon from '@/components/basic/ItemIcon'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
+import ResizeIndicator from '@/components/basic/ResizeIndicator'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -163,7 +165,7 @@ const SPECTRAL_CURRENT = 145
 
 export default {
   name: 'ReaderTimer',
-  components: { ItemIcon, NewFeatureMark },
+  components: { ResizeIndicator, ItemIcon, NewFeatureMark },
   props: ['now'],
   data() {
     return {

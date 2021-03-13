@@ -459,7 +459,7 @@
           {{ $t('footer.ffRights') }}
         </div>
       </div>
-      <div class="resize-indicator" />
+      <resize-indicator />
     </v-footer>
 
     <fish-setting-dialog v-model="showSettingDialog" />
@@ -641,10 +641,12 @@ import ToggleButton from '@/components/basic/ToggleButton'
 import HelpDialog from '@/components/Dialog/HelpDialog'
 import FishEyesToggleButton from '@/components/FishEyesToggleButton'
 import isEqual from 'lodash/isEqual'
+import ResizeIndicator from '@/components/basic/ResizeIndicator'
 
 export default {
   name: 'App',
   components: {
+    ResizeIndicator,
     FishEyesToggleButton,
     HelpDialog,
     ToggleButton,
@@ -1909,16 +1911,6 @@ body {
 
 .bscroll-vertical-scrollbar {
   z-index: 9998;
-}
-
-.resize-indicator {
-  width: 0;
-  height: 0;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  border-bottom: 8px solid #ffffff;
-  border-left: 8px solid transparent;
 }
 
 .v-expansion-panel-header {
