@@ -62,9 +62,7 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" class="mt-4 d-flex">
-        <div v-if="!bait.id">
-          未检测到鱼饵，请切换至任意鱼饵以读取数据
-        </div>
+        <div v-if="!bait.id">未检测到鱼饵，请切换至任意鱼饵以读取数据</div>
         <div v-else class="d-flex align-center">
           <span class="mr-1">鱼饵</span>
           <item-icon :icon-class="bait.icon" :title="bait.name" small />
@@ -99,13 +97,13 @@
       </v-col>
     </v-row>
     <v-row no-gutters v-else>
-      <v-col class="d-flex align-center">
+      <v-col class="d-flex align-center mb-1">
         <v-progress-linear
           :value="intervalPercentage"
           :color="color"
           height="25"
           rounded
-          style="-webkit-app-region: drag;"
+          style="-webkit-app-region: drag"
         >
           <template>
             <strong>{{ intervalText }}</strong>
@@ -113,9 +111,35 @@
         </v-progress-linear>
         <v-btn small icon text @click="toggleMiniMode(false)" title="退出迷你模式">
           <new-feature-mark id="MiniModeRestore-V.0.6.6-1">
-            <v-icon small>mdi-arrow-expand</v-icon>
+            <v-icon small color="grey">mdi-arrow-expand</v-icon>
           </new-feature-mark>
         </v-btn>
+      </v-col>
+      <v-col cols="12" v-if="isOceanFishing" class="pr-7">
+        <v-progress-linear
+          :value="spectralCurrentIntervalPercentage"
+          color="info"
+          height="25"
+          rounded
+          style="-webkit-app-region: drag"
+        >
+          <template v-if="spectralCurrentCountDown">
+            <strong>{{ weatherText }}: {{ spectralCurrentIntervalText }}</strong>
+          </template>
+        </v-progress-linear>
+      </v-col>
+      <v-col cols="12" v-if="isDiadem" class="pr-7">
+        <v-progress-linear
+          :value="diademWeatherIntervalPercentage"
+          color="primary"
+          height="25"
+          rounded
+          style="-webkit-app-region: drag"
+        >
+          <template v-if="diademWeatherCountDown">
+            <strong>{{ weatherText }}: {{ diademWeatherCountdownText }}</strong>
+          </template>
+        </v-progress-linear>
       </v-col>
     </v-row>
   </v-container>
@@ -143,6 +167,7 @@ export default {
   props: ['now'],
   data() {
     return {
+      mode: 'normal',
       dataStatus: {
         effects: [],
       },
@@ -314,7 +339,13 @@ export default {
       window.process?.argv
         ?.find(it => it.indexOf('--route-name') === 0)
         ?.split('=')?.[1] ?? 'ReaderTimer'
-    console.log('window.process.argv', routeName)
+    if (routeName === 'ReaderTimer') {
+      this.mode =
+        window.process?.argv?.find(it => it.indexOf('--mode') === 0)?.split('=')?.[1] ??
+        'normal'
+    }
+    console.log('window.process.argv', routeName, this.mode)
+    this.updateReaderTimerMiniMode(this.mode === 'mini')
 
     if (routeName !== this.$route.name) {
       this.$router.push({ name: routeName })
@@ -343,8 +374,7 @@ export default {
       window.electron?.ipcRenderer?.send('showSpotPage', this.spotId)
     },
     toggleMiniMode(mini) {
-      this.updateReaderTimerMiniMode(mini)
-      window.electron?.ipcRenderer?.send('setReaderMiniMode', mini)
+      window.electron?.ipcRenderer?.send('timerMiniMode', mini)
     },
     ringBell(tugType) {
       DataUtil.ringBell(this.userData.reader.timer.sound, tugType, this.sounds)

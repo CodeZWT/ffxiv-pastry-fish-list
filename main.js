@@ -199,14 +199,17 @@ async function init() {
         WINDOWS.main.show()
       }
     })
-    .on('setReaderMiniMode', (event, mini) => {
-      readerMini = mini
-      const readerSize = windowSetting.timer.size
-      const readerMiniSize = windowSetting.timerMini.size
+    .on('timerMiniMode', (event, mini) => {
       if (mini) {
-        WINDOWS.readerTimer.setSize(readerMiniSize.w, readerMiniSize.h)
+        WINDOWS.timerMini.setPosition(
+          windowSetting.timer.pos.x,
+          windowSetting.timer.pos.y + READER_MINI_POS_OFFSET
+        )
+        WINDOWS.timerMini.show()
+        WINDOWS.readerTimer.hide()
       } else {
-        WINDOWS.readerTimer.setSize(readerSize.w, readerSize.h)
+        WINDOWS.timerMini.hide()
+        WINDOWS.readerTimer.show()
       }
     })
     .on('startLoading', () => {
@@ -280,9 +283,9 @@ async function init() {
         }
       })
     })
-  .on('listCntUpdated', (event, listCnt) => {
-    WINDOWS.mini.send('listCntUpdated', listCnt)
-  })
+    .on('listCntUpdated', (event, listCnt) => {
+      WINDOWS.mini.send('listCntUpdated', listCnt)
+    })
 
   ipcMain.handle('showOpenSoundFileDialog', () => {
     return dialog
@@ -421,7 +424,14 @@ function createReaderSpotStatistics(readTimerWin) {
   })
 }
 
-function createTransparentWin(windowName, winURL, width, height, show) {
+function createTransparentWin(
+  windowName,
+  winURL,
+  width,
+  height,
+  show,
+  additionalArguments = null
+) {
   WINDOWS[windowName] = new BrowserWindow({
     width: width,
     height: height,
@@ -435,6 +445,7 @@ function createTransparentWin(windowName, winURL, width, height, show) {
       nodeIntegration: true,
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
+      additionalArguments: additionalArguments,
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
@@ -475,6 +486,31 @@ function createAndShowLoadingWindow() {
     250,
     true
   )
+}
+
+const READER_MINI_POS_OFFSET = 56
+function createTimerMiniWin() {
+  return createTransparentWin(
+    'timerMini',
+    isDev
+      ? `http://localhost:8080/reader`
+      : `file://${__dirname}/front-electron-dist/reader.html`,
+    windowSetting.timerMini.size.w,
+    windowSetting.timerMini.size.h,
+    false,
+    ['--route-name=ReaderTimer', '--mode=mini']
+  ).then((win) => {
+    return win
+      .on('moved', () => {
+        const [x, y] = win.getPosition()
+        WINDOWS.readerTimer.setPosition(x, y - READER_MINI_POS_OFFSET)
+        saveWindowSetting('timer.pos', { x, y: y - READER_MINI_POS_OFFSET })
+      })
+      .on('resized', () => {
+        const [w, h] = win.getSize()
+        saveWindowSetting('timerMini.size', { w, h })
+      })
+  })
 }
 
 function createWindow(
@@ -558,11 +594,12 @@ function createReader() {
     'assets/reader.png',
     readerURL,
     () => {
+      createTimerMiniWin()
       createReaderSetting(win)
       createReaderHistory(win)
       createReaderSpotStatistics(win)
     },
-    ['--route-name=ReaderTimer'],
+    ['--route-name=ReaderTimer', '--mode=normal'],
     false,
     true
   )
