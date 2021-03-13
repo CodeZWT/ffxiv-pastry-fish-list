@@ -470,7 +470,7 @@ function createTransparentWin(
     width: width,
     height: height,
     frame: false,
-    show: false,
+    show: true,
     transparent: true,
     resizable: false,
     maximizable: false,
@@ -486,6 +486,7 @@ function createTransparentWin(
   const win = WINDOWS[windowName]
   win.removeMenu()
   setOnTop(win)
+  win.hide()
   win.once('ready-to-show', () => {
     if (show) win.show()
   })
