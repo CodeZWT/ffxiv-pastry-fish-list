@@ -633,6 +633,7 @@ function createMainWindow() {
 
 function setOnTop(win) {
   win.setAlwaysOnTop(true, 'screen-saver')
+  win.setMinimizable(false)
 }
 
 function createReader() {

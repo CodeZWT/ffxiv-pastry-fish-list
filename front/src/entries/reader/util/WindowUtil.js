@@ -4,6 +4,7 @@ export default {
     const WIN = remote.getCurrentWindow()
     console.log('set top', alwaysOnTop)
     WIN.setAlwaysOnTop(alwaysOnTop, 'screen-saver')
+    WIN.setMinimizable(!alwaysOnTop)
   },
 
   closeWindow() {

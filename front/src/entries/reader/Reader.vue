@@ -15,9 +15,9 @@
           <v-icon>mdi-cog</v-icon>
         </new-feature-mark>
       </v-btn>
-      <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-window-minimize</v-icon>
-      </v-btn>
+      <!--      <v-btn @click="minimize" x-small text style="-webkit-app-region: none">-->
+      <!--        <v-icon>mdi-window-minimize</v-icon>-->
+      <!--      </v-btn>-->
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-window-close</v-icon>
       </v-btn>
