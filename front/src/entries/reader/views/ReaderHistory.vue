@@ -62,63 +62,81 @@
         <v-list>
           <div v-for="(record, index) in records" :key="index">
             <v-divider v-if="index > 0" />
-            <v-list-item>
-              <v-list-item-content>
-                <v-row no-gutters class="d-flex align-center">
-                  <v-col cols="5" class="d-flex align-center">
-                    <item-icon :icon-class="record.fish.icon" small />
-                    <div>
-                      <span v-if="record.missed">{{ '脱钩' }}</span>
-                      <span v-else-if="record.cancelled">{{ '未知鱼' }}</span>
-                      <span v-else>
-                        {{ record.fish.name || '未知鱼' }}
-                        <i class="xiv hq" v-if="record.hq"></i>
-                      </span>
-                      <div class="text-subtitle-2 d-flex">
-                        <div
-                          v-if="record.size > 0"
-                          class="mr-2"
-                          title="星寸：人族男性士兵的大拇指宽度、成熟的罗兰莓的长度"
-                        >
-                          {{ record.fish.size }}
-                        </div>
-                        <div
-                          v-if="showPlayerStatus"
-                          class="text-subtitle-2"
-                          title="获得力/鉴别力"
-                        >
-                          {{ record.playerStatus.text }}
+            <v-hover v-slot="{ hover }" open-delay="300" close-deplay="300">
+              <v-list-item>
+                <v-list-item-content>
+                  <v-row no-gutters class="d-flex align-center">
+                    <v-col cols="5" class="d-flex align-center">
+                      <item-icon :icon-class="record.fish.icon" small />
+                      <div>
+                        <span v-if="record.missed">{{ '脱钩' }}</span>
+                        <span v-else-if="record.cancelled">{{ '未知鱼' }}</span>
+                        <span v-else>
+                          {{ record.fish.name || '未知鱼' }}
+                          <i class="xiv hq" v-if="record.hq"></i>
+                        </span>
+                        <div class="text-subtitle-2 d-flex">
+                          <div
+                            v-if="record.size > 0"
+                            class="mr-2"
+                            title="星寸：人族男性士兵的大拇指宽度、成熟的罗兰莓的长度"
+                          >
+                            {{ record.fish.size }}
+                          </div>
+                          <div
+                            v-if="showPlayerStatus"
+                            class="text-subtitle-2"
+                            title="获得力/鉴别力"
+                          >
+                            {{ record.playerStatus.text }}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </v-col>
-                  <v-col cols="3" class="d-flex align-center flex-wrap">
-                    <div v-for="effect in record.effects" :key="effect.ID">
-                      <div :class="effect.icon" :title="effect.name" />
-                    </div>
-                  </v-col>
-                  <v-col cols="4">
-                    <v-progress-linear
-                      :value="record.biteIntervalPercentage"
-                      :color="record.tug.color"
-                      height="25"
-                      rounded
+                    </v-col>
+                    <v-col cols="3" class="d-flex align-center flex-wrap">
+                      <div v-for="effect in record.effects" :key="effect.ID">
+                        <div :class="effect.icon" :title="effect.name" />
+                      </div>
+                    </v-col>
+                    <v-col cols="4">
+                      <v-progress-linear
+                        :value="record.biteIntervalPercentage"
+                        :color="record.tug.color"
+                        height="25"
+                        rounded
+                      >
+                        <template>
+                          <strong>{{ record.biteInterval }}</strong>
+                        </template>
+                      </v-progress-linear>
+                    </v-col>
+
+                    <v-chip
+                      v-if="hover"
+                      style="position: absolute; right: 0; top: 0"
+                      class="rounded-r-0 rounded-bl-xl rounded-tl-0"
+                      x-small
+                      color="error"
+                      v-ripple
+                      @click="removeRecord(record)"
                     >
-                      <template>
-                        <strong>{{ record.biteInterval }}</strong>
-                      </template>
-                    </v-progress-linear>
-                  </v-col>
-                </v-row>
-              </v-list-item-content>
-              <item-icon
-                v-if="showHookset"
-                :icon-class="record.hookset.icon"
-                small
-                type="action"
-              />
-              <item-icon :icon-class="record.bait.icon" small :title="record.bait.name" />
-            </v-list-item>
+                      <v-icon x-small>mdi-close</v-icon>
+                    </v-chip>
+                  </v-row>
+                </v-list-item-content>
+                <item-icon
+                  v-if="showHookset"
+                  :icon-class="record.hookset.icon"
+                  small
+                  type="action"
+                />
+                <item-icon
+                  :icon-class="record.bait.icon"
+                  small
+                  :title="record.bait.name"
+                />
+              </v-list-item>
+            </v-hover>
           </div>
         </v-list>
         <v-btn
@@ -174,8 +192,8 @@ import NewFeatureMark from '@/components/basic/NewFeatureMark'
 
 // import TEST from 'Data/test'
 
-const INITIAL_LOADING_CNT = 100
-const LOAD_MORE_CNT = 100
+const INITIAL_LOADING_CNT = 5
+const LOAD_MORE_CNT = 5
 
 export default {
   name: 'ReaderHistory',
@@ -191,7 +209,6 @@ export default {
       loadingCnt: INITIAL_LOADING_CNT,
       rawRecords: [], //TEST.READER_HISTORY_RECORDS,
       dbRecordsCnt: 0,
-      dbLoadedCnt: 0,
       showIgnoredRecord: true,
       showPatient: false,
       showPlayerStatus: false,
@@ -203,6 +220,9 @@ export default {
     }
   },
   computed: {
+    dbLoadedCnt() {
+      return this.rawRecords.length
+    },
     remainingCnt() {
       return this.dbRecordsCnt - this.loadingCnt
     },
@@ -287,9 +307,14 @@ export default {
           this.rawRecords.splice(0, 1, data)
         } else {
           this.rawRecords.splice(0, 0, data)
-          this.dbLoadedCnt++
+          // this.dbLoadedCnt++
           this.dbRecordsCnt++
-          console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
+          console.debug(
+            'Records Total',
+            this.dbRecordsCnt,
+            'Loaded',
+            this.rawRecords.length
+          )
         }
       })
       ?.on('exportHistoryFinished', () => {
@@ -301,6 +326,15 @@ export default {
       })
   },
   methods: {
+    removeRecord(record) {
+      const index = this.rawRecords.findIndex(it => it.id === record.id)
+      if (index > -1) {
+        this.rawRecords.splice(index, 1)
+        db.records.delete(record.id)
+        this.dbRecordsCnt--
+        this.sendElectronEvent('reloadRecords')
+      }
+    },
     openHelp() {
       window.open(
         'https://ricecake302.coding.net/s/eb3a7844-db84-4792-90db-7805f6a941c1/2'
@@ -309,8 +343,8 @@ export default {
     async init() {
       this.dbRecordsCnt = await db.records.count()
       this.rawRecords = await this.loadRecord(0, this.loadingCnt, this.showIgnoredRecord)
-      this.dbLoadedCnt = this.rawRecords.length
-      console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.dbLoadedCnt)
+      // this.dbLoadedCnt = this.rawRecords.length
+      console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.rawRecords.length)
     },
     async loadRecord(offset, limit, showIgnoredRecord) {
       let table = db.records.orderBy('startTime').reverse()
@@ -331,7 +365,7 @@ export default {
           this.showIgnoredRecord
         )
         console.log('newLoadedRecords', newLoadedRecords)
-        this.dbLoadedCnt += newLoadedRecords.length
+        // this.dbLoadedCnt += newLoadedRecords.length
         this.rawRecords = this.rawRecords.concat(newLoadedRecords)
       }
     },
@@ -343,7 +377,13 @@ export default {
         .then(() => {
           this.init()
         })
-        .then(() => (this.deleting = false))
+        .then(() => {
+          this.sendElectronEvent('reloadRecords')
+          this.deleting = false
+        })
+    },
+    sendElectronEvent(channel, data) {
+      window.electron?.ipcRenderer?.send(channel, data)
     },
     exportHistory() {
       if (!this.exporting) {

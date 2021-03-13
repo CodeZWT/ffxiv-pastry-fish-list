@@ -308,6 +308,9 @@ async function init() {
     .on('listCntUpdated', (event, listCnt) => {
       WINDOWS.mini.send('listCntUpdated', listCnt)
     })
+    .on('reloadRecords', () => {
+      WINDOWS.readerSpotStatistics.send('reloadRecords')
+    })
 
   ipcMain.handle('showOpenSoundFileDialog', () => {
     return dialog

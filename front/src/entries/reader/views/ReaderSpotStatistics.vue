@@ -50,7 +50,7 @@ export default {
   },
   data() {
     return {
-      dataStatus: {},
+      dataStatus: { spotId: 35 },
       dataCurrentRecord: {},
       currentChumForGraph: 'normal',
       chumOptions: [
@@ -138,14 +138,7 @@ export default {
   watch: {
     selectedSpotId: {
       handler(spotId) {
-        if (spotId > -1) {
-          this.loadRecord(spotId).then(records => {
-            console.debug(records.length, 'data loaded')
-            return (this.rawRecords = records)
-          })
-        } else {
-          this.rawRecords = []
-        }
+        this.loadRecord(spotId)
       },
       immediate: true,
     },
@@ -167,13 +160,20 @@ export default {
           this.rawRecords.splice(0, 0, data)
         }
       })
+      ?.on('reloadRecords', () => {
+        this.loadRecord(this.selectedSpotId)
+      })
   },
   methods: {
     async loadRecord(spotId) {
-      return db.records
-        .where('spotId')
-        .equals(spotId)
-        .toArray()
+      if (spotId > -1) {
+        this.rawRecords = await db.records
+          .where('spotId')
+          .equals(spotId)
+          .toArray()
+      } else {
+        this.rawRecords = []
+      }
     },
   },
 }
