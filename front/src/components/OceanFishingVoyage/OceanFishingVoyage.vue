@@ -112,6 +112,46 @@
                 <v-card-text>
                   <fish-tip :fish="currentTipBlueFishList[index]" />
                 </v-card-text>
+                <v-divider />
+                <v-card-text>
+                  <div
+                    v-html="
+                      blueFishTip.fishTipDict[currentTipBlueFishList[index]._id].content
+                    "
+                  />
+                  <div></div>
+                </v-card-text>
+                <v-card-subtitle>
+                  <div class="d-flex">
+                    <v-dialog width="500">
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-btn v-bind="attrs" v-on="on" text icon>
+                          <v-icon>mdi-information</v-icon>
+                        </v-btn>
+                      </template>
+                      <v-card>
+                        <v-card-title>
+                          其他说明
+                        </v-card-title>
+                        <v-card-text>
+                          <div v-html="blueFishTip.extra"></div>
+                        </v-card-text>
+                      </v-card>
+                    </v-dialog>
+                    <div class="d-flex flex-column align-end">
+                      <a
+                        :href="oceanFishTipReference.link"
+                        target="_blank"
+                        style="color: white"
+                      >
+                        {{ oceanFishTipReference.title }}
+                      </a>
+                      <div>
+                        {{ oceanFishTipReference.author }}
+                      </div>
+                    </div>
+                  </div>
+                </v-card-subtitle>
               </v-card>
             </v-col>
           </v-row>
@@ -189,6 +229,7 @@ import FishTip from '@/components/OceanFishingVoyage/FishTip'
 import PointTip from '@/components/OceanFishingVoyage/PointTip'
 import AchievementTip from '@/components/OceanFishingVoyage/AchievementTip'
 import ClickHelper from '@/components/basic/ClickHelper'
+import { OCEAN_FISHING_TIPS } from 'Data/fix'
 
 export default {
   name: 'OceanFishingVoyage',
@@ -270,6 +311,8 @@ export default {
           '/p 石沙蚕[!!!]精准提钩→幻光海马 触发幻海流，幻海流中双提5s以上的[!]→珊瑚海龙*4\n' +
           '/p 推荐连招：双重提钩-专一垂钓-双重提钩',
       },
+      blueFishTip: OCEAN_FISHING_TIPS.tip2,
+      oceanFishTipReference: OCEAN_FISHING_TIPS.tip2,
     }
   },
   computed: {
