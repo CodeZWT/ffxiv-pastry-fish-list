@@ -115,7 +115,7 @@
         </v-progress-linear>
         <v-btn small icon text @click="toggleMiniMode(false)" title="退出迷你模式">
           <new-feature-mark id="MiniModeRestore-V.0.6.6-1">
-            <v-icon small color="grey">mdi-arrow-expand</v-icon>
+            <v-icon small>mdi-arrow-expand</v-icon>
           </new-feature-mark>
         </v-btn>
       </v-col>
