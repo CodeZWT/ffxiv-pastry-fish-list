@@ -134,8 +134,12 @@ exports.onNewRecord = (callback) => {
 
 function weatherChangeOf(weatherId) {
   return {
+    // Global
     type: 'weatherChange',
     opcode: 359,
+    // CN
+    // type: 'unknown',
+    // opcode: 225,
     region: 'Global',
     connection: '',
     operation: 'receive',
