@@ -29,12 +29,15 @@
       </v-col>
       <v-col cols="12" v-if="isOceanFishing">
         <div style="min-height: 32px" class="d-flex align-center">
-          <div>{{ weatherText }}</div>
-          <div v-if="isSpectralCurrent && readerRegion === 'Global'">
-            国际服幻海流的补偿机制暂未支持。
-          </div>
-          <div v-if="isSpectralCurrent">
-            （钓场倒计时30s时，幻海流强制结束，请注意。）
+          <div style="min-width: 60px">{{ weatherText }}</div>
+          <v-spacer />
+          <div class="text-right">
+            <div v-if="isSpectralCurrent && readerRegion === 'Global'">
+              国际服幻海流测试中。
+            </div>
+            <div v-if="isSpectralCurrent">
+              钓场倒计时30s时，幻海流强制结束，请注意。
+            </div>
           </div>
         </div>
         <v-progress-linear
@@ -92,12 +95,10 @@
       </v-col>
 
       <v-col cols="12" v-if="isTest" class="mt-4">
+        <v-btn @click="nextTestEvent" class="mr-1" color="info">next</v-btn>
+        <v-btn @click="resetTest" color="error">reset</v-btn>
         <div>Test Data</div>
         <div>{{ dataStatus }}</div>
-      </v-col>
-      <v-col cols="12">
-        <v-btn @click="nextTestEvent">next</v-btn>
-        <v-btn @click="resetTest">reset</v-btn>
       </v-col>
     </v-row>
     <v-row no-gutters v-else>
