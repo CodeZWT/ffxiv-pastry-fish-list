@@ -1252,6 +1252,9 @@ module.exports = {
     32054: {
       startHour: 8,
       endHour: 10,
+    },
+    12747: {
+      tug: 'medium'
     }
   },
   COLLECTABLE_FISH_ITEM_ID: [
