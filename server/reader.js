@@ -71,17 +71,17 @@ let Machina,
   machinaStatus = 'stopped',
   region = 'CN'
 function startMachina(options, callback = () => {}) {
-  return isElevated()
+  isElevated()
     .then((elevated) => {
       if (elevated) {
-        if (!isDev) {
+        // if (!isDev) {
           exec(
             'netsh advfirewall firewall delete rule name="pastry-fish-reader - Machina"',
             () => {
               addMachinaFirewallRule()
             }
           )
-        }
+        // }
       }
     })
     .then(() => {
@@ -110,11 +110,12 @@ function stopMachina(callback = () => {}) {
 
 exports.restart = (options, callback = () => {}) => {
   if (machinaStatus === 'running') {
-    stopMachina()
+    stopMachina(() => startMachina(options, callback))
+  } else {
+    startMachina(options, callback)
   }
   // TEST
   // return startMachina({ region: 'Global' }, callback)
-  return startMachina(options, callback)
 }
 
 let fishCaughtCallback
@@ -141,6 +142,7 @@ function weatherChangeOf(weatherId) {
     serverID: 4,
     timestamp: 1615705349,
     weatherID: weatherId,
+    data: [weatherId],
     delay: 20,
   }
 }
@@ -400,7 +402,7 @@ onFFXIVEvent(
   (packet) => {
     if (packet.targetZone) {
       status.zoneId = TERRITORY_TYPES[packet.targetZone].placeName
-      log.debug('targetZone', status.zoneId)
+      log.debug('targetZone', packet.targetZone, 'placeName', status.zoneId)
     } else {
       log.debug('targetZone Zero')
     }
@@ -1096,7 +1098,7 @@ function getString(uint8Array, offset, length) {
 // })
 onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
   if (region === 'CN') {
-    onWeatherChange(packet.data && +packet.data[0])
+    onWeatherChange(packet)
   } else {
     log.debug('skip unknown weather change in Global region')
   }
@@ -1104,7 +1106,7 @@ onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
 
 onFFXIVEvent('weatherChange', (packet) => {
   if (region === 'Global') {
-    onWeatherChange(packet.weatherID)
+    onWeatherChange(packet)
   } else {
     log.debug('enter weatherChange in CN region ???')
   }
@@ -1114,9 +1116,9 @@ function isOceanFishingSpot(id) {
   return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
 }
 
-function onWeatherChange(weather) {
+function onWeatherChange(packet) {
   status.previousWeather = status.weather
-  status.weather = weather
+  status.weather = packet.data && +packet.data[0]
   log.debug('WeatherChange', status.weather)
 
   if (status.weather === SPECTRAL_CURRENT_WEATHER_ID) {
