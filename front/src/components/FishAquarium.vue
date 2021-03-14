@@ -40,7 +40,12 @@
           height="175"
         >
           <v-carousel-item v-for="(image, i) in fish.images" :key="i">
-            <gif-loader :src="image.gif" :cover-src="image.cover" :height="175" />
+            <gif-loader
+              :src="image.gif"
+              :cover-src="image.cover"
+              :height="175"
+              :contain="i === 0"
+            />
           </v-carousel-item>
         </v-carousel>
         <gif-loader
@@ -61,19 +66,36 @@
         </div>
       </v-card>
     </v-hover>
-    <v-dialog
-      v-model="showExpandedDialog"
-      max-width="800"
-      :height="400"
-      :width="fish.sizeId === 1 && currentIndex === 0 ? 400 : undefined"
-    >
-      <div class="rounded-xl overflow-hidden">
+    <template v-if="fish.sizeId === 1">
+      <v-dialog
+        v-model="showExpandedDialog"
+        content-class="rounded-xl"
+        :width="currentIndex === 0 ? imageSizeS.w : imageSizeNormal.w"
+        :height="currentIndex === 0 ? imageSizeS.h : imageSizeNormal.h"
+      >
         <gif-loader
-          :src="fish.images[fish.sizeId === 1 ? currentIndex : 0].gif"
-          :cover-src="fish.images[fish.sizeId === 1 ? currentIndex : 0].cover"
+          :src="fish.images[currentIndex].gif"
+          :cover-src="fish.images[currentIndex].cover"
+          :width="currentIndex === 0 ? imageSizeS.w : imageSizeNormal.w"
+          :height="currentIndex === 0 ? imageSizeS.h : imageSizeNormal.h"
         />
-      </div>
-    </v-dialog>
+      </v-dialog>
+    </template>
+    <template v-else>
+      <v-dialog
+        v-model="showExpandedDialog"
+        content-class="rounded-xl"
+        :width="imageSizeNormal.w"
+        :height="imageSizeNormal.h"
+      >
+        <gif-loader
+          :src="fish.images[0].gif"
+          :cover-src="fish.images[0].cover"
+          :width="imageSizeNormal.w"
+          :height="imageSizeNormal.h"
+        />
+      </v-dialog>
+    </template>
   </div>
 </template>
 
@@ -94,6 +116,8 @@ export default {
     return {
       currentIndex: 0,
       showExpandedDialog: false,
+      imageSizeNormal: { w: 892, h: 363 },
+      imageSizeS: { w: 645, h: 490 },
     }
   },
   computed: {
