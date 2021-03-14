@@ -493,7 +493,9 @@ function createTransparentWin(
   const win = WINDOWS[windowName]
   win.removeMenu()
   setOnTop(win)
-  win.hide()
+  if (!show) {
+    win.hide()
+  }
   win.once('ready-to-show', () => {
     if (show) win.show()
   })
@@ -743,6 +745,9 @@ function updateIfNeeded() {
         500
       )
       download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH).on('downloadProgress', (progress) => {
+        if (WINDOWS.main.isDestroyed()) {
+          return
+        }
         // Report download progress
         throttled(progress)
         WINDOWS.main.setProgressBar(progress.percent)
