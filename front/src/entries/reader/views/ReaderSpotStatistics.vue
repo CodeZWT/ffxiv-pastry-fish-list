@@ -50,7 +50,7 @@ export default {
   },
   data() {
     return {
-      dataStatus: { spotId: 35 },
+      dataStatus: {}, // spotId: 35
       dataCurrentRecord: {},
       currentChumForGraph: 'normal',
       chumOptions: [
