@@ -95,6 +95,10 @@
         <div>Test Data</div>
         <div>{{ dataStatus }}</div>
       </v-col>
+      <v-col cols="12">
+        <v-btn @click="nextTestEvent">next</v-btn>
+        <v-btn @click="resetTest">reset</v-btn>
+      </v-col>
     </v-row>
     <v-row no-gutters v-else>
       <v-col class="d-flex align-center mb-1">
@@ -347,21 +351,30 @@ export default {
       })
   },
   methods: {
+    nextTestEvent() {
+      this.sendElectronEvent('nextTestEvent')
+    },
+    resetTest() {
+      this.sendElectronEvent('resetTest')
+    },
+    sendElectronEvent(channel, data) {
+      window.electron?.ipcRenderer?.send(channel, data)
+    },
     showSpotPage() {
-      window.electron?.ipcRenderer?.send('showSpotPage', this.spotId)
+      this.sendElectronEvent('showSpotPage', this.spotId)
     },
     toggleMiniMode(mini) {
-      window.electron?.ipcRenderer?.send('timerMiniMode', mini)
+      this.sendElectronEvent('timerMiniMode', mini)
     },
     ringBell(tugType) {
       DataUtil.ringBell(this.userData.reader.timer.sound, tugType, this.sounds)
     },
     showHistory() {
-      window.electron?.ipcRenderer?.send('toggleHistory')
+      this.sendElectronEvent('toggleHistory')
       this.setFeatureViewed(this.HistoryFeatureId)
     },
     showSpotStatistics() {
-      window.electron?.ipcRenderer?.send('toggleSpotStatistics')
+      this.sendElectronEvent('toggleSpotStatistics')
       this.setFeatureViewed(this.SpotStatisticsFeatureId)
     },
     ...mapMutations(['setFeatureViewed', 'updateReaderTimerMiniMode']),

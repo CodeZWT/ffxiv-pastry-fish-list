@@ -112,6 +112,13 @@ async function init() {
     installExtension(VUEJS_DEVTOOLS)
       .then((name) => console.log(`Added Extension:  ${name}`))
       .catch((err) => console.log('An error occurred: ', err))
+    ipcMain
+      .on('nextTestEvent', () => {
+        FishingDataReader.nextTestEvent()
+      })
+      .on('resetTest', () => {
+        FishingDataReader.resetTest()
+      })
   }
 
   await createAndShowLoadingWindow()
@@ -492,26 +499,22 @@ function createTransparentWin(
   })
   let loadedPromise
   if (isDev) {
-    loadedPromise = win
-      .loadURL(`http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`)
+    loadedPromise = win.loadURL(
+      `http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`
+    )
   } else {
-    loadedPromise = win
-      .loadFile(path.join(__dirname, `/front-electron-dist/${page}.html`), {
+    loadedPromise = win.loadFile(
+      path.join(__dirname, `/front-electron-dist/${page}.html`),
+      {
         hash: hash && '/' + hash,
-      })
+      }
+    )
   }
   return loadedPromise.then(() => win)
 }
 const MINI_POS_OFFSET = 20
 function createMiniWin() {
-  return createTransparentWin(
-    'mini',
-    'mini',
-    null,
-    150,
-    100,
-    false
-  ).then((win) => {
+  return createTransparentWin('mini', 'mini', null, 150, 100, false).then((win) => {
     return win.on('moved', () => {
       const [x, y] = win.getPosition()
       WINDOWS.main.setPosition(x, y - MINI_POS_OFFSET)
@@ -521,14 +524,7 @@ function createMiniWin() {
 }
 
 function createAndShowLoadingWindow() {
-  return createTransparentWin(
-    'loading',
-    'loading',
-    null,
-    250,
-    250,
-    true
-  )
+  return createTransparentWin('loading', 'loading', null, 250, 250, true)
 }
 
 const READER_MINI_POS_OFFSET = 56

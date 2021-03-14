@@ -16,6 +16,9 @@ const { toReadable } = require('./toReadable')
 
 const INTERVAL_MINUTE = 60000
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * INTERVAL_MINUTE
+const SPECTRAL_CURRENT_WEATHER_ID = 145
+const DIADEM_WEATHERS = [133, 134, 135, 136]
+
 // in dev load directly
 // in prod set the required files by set the packaged patch manually
 // log.transports.file.level = 'info'
@@ -109,6 +112,8 @@ exports.restart = (options, callback = () => {}) => {
   if (machinaStatus === 'running') {
     stopMachina()
   }
+  // TEST
+  // return startMachina({ region: 'Global' }, callback)
   return startMachina(options, callback)
 }
 
@@ -121,6 +126,110 @@ exports.onNewRecord = (callback) => {
   fishRecordCallback = callback
 }
 
+function weatherChangeOf(weatherId) {
+  return {
+    type: 'weatherChange',
+    opcode: 359,
+    region: 'Global',
+    connection: '',
+    operation: 'receive',
+    epoch: 1615705349631,
+    packetSize: 40,
+    segmentType: 3,
+    sourceActorSessionID: 0,
+    targetActorSessionID: 0,
+    serverID: 4,
+    timestamp: 1615705349,
+    weatherID: weatherId,
+    delay: 20,
+  }
+}
+
+function initZoneOf(zoneId) {
+  return {
+    type: 'initZone',
+    opcode: 563,
+    region: 'Global',
+    connection: '',
+    operation: 'receive',
+    epoch: 1615705349631,
+    packetSize: 128,
+    segmentType: 3,
+    sourceActorSessionID: 0,
+    targetActorSessionID: 0,
+    serverID: 4,
+    timestamp: 1615705349,
+    zoneID: zoneId,
+    unknown1: 0,
+    contentfinderConditionID: 0,
+    weatherID: 0,
+    bitmask: 0,
+    bitmask1: 0,
+    unknown5: 0,
+    unknown8: 4170478,
+    festivalID: 26881,
+    additionalFestivalID: 0,
+    unknown9: 16570282,
+    unknown10: 99,
+    unknown11: 1091141632,
+    unknown12: [1065353216, 0, 0, 0],
+    pos: { x: 0, y: 0, z: 0 },
+    unknown13: 0,
+  }
+}
+
+function prepareZoningOf(targetZone) {
+  return {
+    type: 'prepareZoning',
+    opcode: 494,
+    region: 'Global',
+    connection: '',
+    operation: 'receive',
+    epoch: 1615705610191,
+    packetSize: 48,
+    segmentType: 3,
+    sourceActorSessionID: 0,
+    targetActorSessionID: 0,
+    serverID: 4,
+    timestamp: 1615705610,
+    logMessage: 0,
+    targetZone: targetZone,
+    animation: 112,
+    hideChar: 0,
+    fadeOut: 0,
+    fadeOutTime: 14,
+  }
+}
+
+const mockEvents = [
+  prepareZoningOf(900),
+  initZoneOf(900),
+  weatherChangeOf(2),
+  weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
+  weatherChangeOf(1),
+
+  weatherChangeOf(3),
+  weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
+  weatherChangeOf(1),
+
+  weatherChangeOf(5),
+  weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
+  weatherChangeOf(1),
+]
+let mockIndex = 0
+exports.nextTestEvent = () => {
+  if (mockIndex < mockEvents.length) {
+    ffxivEvent.emit('ffxivEvent', mockEvents[mockIndex++])
+  } else {
+    log.info('no more test event')
+  }
+}
+exports.resetTest = () => {
+  mockIndex = 0
+  resetStatus()
+  resetRecord()
+}
+
 let updateCallback = (data) => {
   log.debug('sending data', data)
 }
@@ -130,7 +239,9 @@ function init() {
 
   Machina.on('any', (packet) => {
     if (packet && filterPacketSessionID(packet)) {
-      // console.log('type:', packet.type)
+      // if (['prepareZoning', 'weatherChange', 'initZone'].includes(packet.type)) {
+      //   log.debug('type', packet.type, packet)
+      // }
       ffxivEvent.emit('ffxivEvent', packet)
     }
   })
@@ -941,9 +1052,6 @@ function getSpectralCurrentCountDownTotal() {
   return 2 * INTERVAL_MINUTE + spectralCurrentBuffTime
 }
 
-const SPECTRAL_CURRENT_WEATHER_ID = 145
-const DIADEM_WEATHERS = [133, 134, 135, 136]
-
 function isOceanFishing() {
   return status.zoneId === 3477
 }
@@ -988,7 +1096,7 @@ function getString(uint8Array, offset, length) {
 // })
 onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
   if (region === 'CN') {
-    onWeatherChange(packet)
+    onWeatherChange(packet.data && +packet.data[0])
   } else {
     log.debug('skip unknown weather change in Global region')
   }
@@ -996,7 +1104,7 @@ onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
 
 onFFXIVEvent('weatherChange', (packet) => {
   if (region === 'Global') {
-    onWeatherChange(packet)
+    onWeatherChange(packet.weatherID)
   } else {
     log.debug('enter weatherChange in CN region ???')
   }
@@ -1006,19 +1114,23 @@ function isOceanFishingSpot(id) {
   return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
 }
 
-function onWeatherChange(packet) {
+function onWeatherChange(weather) {
   status.previousWeather = status.weather
-  status.weather = packet.data && +packet.data[0]
+  status.weather = weather
   log.debug('WeatherChange', status.weather)
 
   if (status.weather === SPECTRAL_CURRENT_WEATHER_ID) {
     status.spectralCurrentEndTime = Date.now() + getSpectralCurrentCountDownTotal()
+    log.info('current end in', (status.spectralCurrentEndTime - Date.now()) / 1000, 's')
   } else {
     if (isOceanFishing() || isOceanFishingSpot(status.spotId)) {
-      const spectralActualEndTime = Date.now()
-      let remainingTime = status.spectralCurrentEndTime - spectralActualEndTime
-      spectralCurrentBuffTime =
-        remainingTime > 0 ? Math.min(remainingTime, INTERVAL_MINUTE) : 0
+      if (status.spectralCurrentEndTime) {
+        const spectralActualEndTime = Date.now()
+        let remainingTime = status.spectralCurrentEndTime - spectralActualEndTime
+        spectralCurrentBuffTime =
+          remainingTime > 0 ? Math.min(remainingTime, INTERVAL_MINUTE) : 0
+        status.spectralCurrentEndTime = undefined
+      }
     }
     if (status.previousWeather) {
       if (isDiadem()) {
@@ -1028,6 +1140,7 @@ function onWeatherChange(packet) {
       }
     }
   }
+  log.info('time buff', spectralCurrentBuffTime / 1000, 's')
 }
 
 onFFXIVEvent('updateClassInfo', (packet) => {
