@@ -17,6 +17,7 @@ const { toReadable } = require('./toReadable')
 const INTERVAL_MINUTE = 60000
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * INTERVAL_MINUTE
 const SPECTRAL_CURRENT_WEATHER_ID = 145
+const SPECTRAL_CURRENT_FINISHED_WEATHER_ID = 1
 const DIADEM_WEATHERS = [133, 134, 135, 136]
 
 // in dev load directly
@@ -33,7 +34,8 @@ const EMPTY_RECORD = {
 }
 let status,
   currentRecord,
-  spectralCurrentBuffTime = 0
+  spectralCurrentBuffTime = 0,
+  oceanFishingRouteIndex = 0
 const records = []
 const readableRecords = []
 resetStatus()
@@ -75,12 +77,12 @@ function startMachina(options, callback = () => {}) {
     .then((elevated) => {
       if (elevated) {
         // if (!isDev) {
-          exec(
-            'netsh advfirewall firewall delete rule name="pastry-fish-reader - Machina"',
-            () => {
-              addMachinaFirewallRule()
-            }
-          )
+        exec(
+          'netsh advfirewall firewall delete rule name="pastry-fish-reader - Machina"',
+          () => {
+            addMachinaFirewallRule()
+          }
+        )
         // }
       }
     })
@@ -110,7 +112,10 @@ function stopMachina(callback = () => {}) {
 
 exports.restart = (options, callback = () => {}) => {
   if (machinaStatus === 'running') {
-    stopMachina(() => startMachina(options, callback))
+    stopMachina(() => {
+      log.debug('machina stopped')
+      startMachina(options, callback)
+    })
   } else {
     startMachina(options, callback)
   }
@@ -207,8 +212,8 @@ const mockEvents = [
   prepareZoningOf(900),
   initZoneOf(900),
   weatherChangeOf(2),
-  weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
-  weatherChangeOf(1),
+  // weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
+  // weatherChangeOf(1),
 
   weatherChangeOf(3),
   weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
@@ -410,6 +415,7 @@ onFFXIVEvent(
     status.spectralCurrentEndTime = undefined
     status.diademWeatherEndTime = undefined
     spectralCurrentBuffTime = 0
+    oceanFishingRouteIndex = 0
   },
   true
 )
@@ -1051,7 +1057,7 @@ onFFXIVEvent('someDirectorUnk4', (packet) => {
 })
 
 function getSpectralCurrentCountDownTotal() {
-  return 2 * INTERVAL_MINUTE + spectralCurrentBuffTime
+  return 2 * INTERVAL_MINUTE + (region === 'Global' ? spectralCurrentBuffTime : 0)
 }
 
 function isOceanFishing() {
@@ -1126,6 +1132,15 @@ function onWeatherChange(packet) {
     log.info('current end in', (status.spectralCurrentEndTime - Date.now()) / 1000, 's')
   } else {
     if (isOceanFishing() || isOceanFishingSpot(status.spotId)) {
+      if (status.weather !== SPECTRAL_CURRENT_FINISHED_WEATHER_ID) {
+        log.info('OceanFishingRoute', oceanFishingRouteIndex)
+        if (oceanFishingRouteIndex > 0) {
+          if (status.previousWeather !== SPECTRAL_CURRENT_FINISHED_WEATHER_ID) {
+            spectralCurrentBuffTime = INTERVAL_MINUTE
+          }
+        }
+        oceanFishingRouteIndex = (oceanFishingRouteIndex + 1) % 3
+      }
       if (status.spectralCurrentEndTime) {
         const spectralActualEndTime = Date.now()
         let remainingTime = status.spectralCurrentEndTime - spectralActualEndTime
