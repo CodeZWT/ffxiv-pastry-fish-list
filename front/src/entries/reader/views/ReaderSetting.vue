@@ -231,7 +231,7 @@ export default {
     },
     region: {
       get() {
-        return REGIONS.indexOf(this.lazyWindowSetting.region)
+        return REGIONS.indexOf(this.lazySetting.region)
       },
       set(regionIndex) {
         this.lazySetting.region = REGIONS[regionIndex]
