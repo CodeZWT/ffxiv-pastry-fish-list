@@ -20,6 +20,94 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.6.8</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕
+        </div>
+        <v-alert outlined type="success" border="left">
+          <ul>
+            <li>
+              增加了海钓蓝鱼攻略，感谢
+              <span class="font-weight-bold">鱼太公@摩杜纳</span> 的大力支持!
+            </li>
+            <li>
+              增加5.X鱼王攻略，感谢
+              <span class="font-weight-bold">克图格亚w@神意之地</span> 的大力支持!
+            </li>
+          </ul>
+        </v-alert>
+        <ul>
+          <li>水族馆S尺寸鱼，增加了新图（高清版本在未来更新）</li>
+          <li>去除第二期空岛的过期信息</li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">
+          渔捞
+        </div>
+        <v-alert outlined type="error" border="left">
+          若使用渔捞报错，请检查是否使用了防火墙相关的软件。若是，请将鱼糕安装目录加入信任区。
+          <a
+            href="https://ricecake302.coding.net/s/eb3a7844-db84-4792-90db-7805f6a941c1/3"
+            target="_blank"
+          >
+            具体做法请见此处
+          </a>
+        </v-alert>
+        <v-alert outlined type="warning" border="left">
+          <ul>
+            <li>
+              本次更新后，渔捞部分设置（窗口大小、位置、透明度、缩放）重置，需要重新配置。
+            </li>
+            <li>
+              国际服海钓幻海流补偿机制仍在测试中，欢迎反馈。
+            </li>
+          </ul>
+        </v-alert>
+        <ul>
+          <li>
+            增加自定义咬钩提示音
+          </li>
+          <li>
+            增加自定义计时器迷你模式的缩放比例
+          </li>
+          <li>
+            支持删除单条历史记录
+          </li>
+          <li>
+            修复部分脱钩判断错误的问题
+          </li>
+          <li>
+            修复5.4海钓钓场判断错误
+          </li>
+          <li>
+            修复收藏品状态的判断问题
+          </li>
+        </ul>
+        <div class="text-h5 text-center my-1">
+          桌面版
+        </div>
+        <ul>
+          <li>
+            增加系统托盘支持
+          </li>
+          <li>
+            增加鼠标穿透支持
+          </li>
+          <li>
+            修复<kbd>WIN</kbd>+<kbd>D</kbd>导致渔捞和悬浮窗最小化的问题
+          </li>
+          <li>
+            修复更新时打开安装文件夹报错的问题
+          </li>
+          <li>
+            修复WINDOWS 8.1无法显示渔捞界面的问题
+          </li>
+        </ul>
+
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.6.7</div>
         <div class="text-h5 text-center my-1">
           鱼糕
