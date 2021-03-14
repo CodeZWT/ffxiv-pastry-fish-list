@@ -63,7 +63,7 @@ const DEFAULT_WINDOW_SETTING = {
   },
   timer: {
     pos: { x: null, y: null },
-    size: { w: 500, h: 160 },
+    size: { w: 500, h: 250 },
     opacity: 0.9,
     zoomFactor: 1,
   },
