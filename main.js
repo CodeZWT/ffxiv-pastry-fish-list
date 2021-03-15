@@ -383,10 +383,8 @@ function setMouseThrough(enable) {
 
 function switchMiniMode(mini) {
   if (mini) {
-    WINDOWS.mini.setPosition(
-      windowSetting.main.pos.x,
-      windowSetting.main.pos.y + MINI_POS_OFFSET
-    )
+    const [x, y] = WINDOWS.main.getPosition()
+    WINDOWS.mini.setPosition(x, y + MINI_POS_OFFSET)
     WINDOWS.mini.show()
     WINDOWS.main.hide()
   } else {
@@ -397,14 +395,12 @@ function switchMiniMode(mini) {
 
 function switchReaderMiniMode(mini) {
   if (mini) {
+    const [x, y] = WINDOWS.readerTimer.getPosition()
     settingVisible = WINDOWS.readerSetting.isVisible()
     historyVisible = WINDOWS.readerHistory.isVisible()
     spotStatisticsVisible = WINDOWS.readerSpotStatistics.isVisible()
     WINDOWS.readerTimer.hide()
-    WINDOWS.timerMini.setPosition(
-      windowSetting.timer.pos.x,
-      windowSetting.timer.pos.y + READER_MINI_POS_OFFSET
-    )
+    WINDOWS.timerMini.setPosition(x, y + READER_MINI_POS_OFFSET)
     WINDOWS.timerMini.show()
   } else {
     settingVisible = false
@@ -431,10 +427,9 @@ function createReaderSetting(readTimerWin) {
     true,
     readTimerWin
   )
-  win
-    .on('closed', () => {
-      closedWindows[windowName] = win
-    })
+  win.on('closed', () => {
+    closedWindows[windowName] = win
+  })
 }
 
 function createReaderHistory(readTimerWin) {
@@ -453,10 +448,9 @@ function createReaderHistory(readTimerWin) {
     true,
     readTimerWin
   )
-  win
-    .on('closed', (e) => {
-      closedWindows[windowName] = win
-    })
+  win.on('closed', (e) => {
+    closedWindows[windowName] = win
+  })
 }
 
 function createReaderSpotStatistics(readTimerWin) {
@@ -475,10 +469,9 @@ function createReaderSpotStatistics(readTimerWin) {
     true,
     readTimerWin
   )
-  win
-    .on('closed', (e) => {
-      closedWindows[windowName] = win
-    })
+  win.on('closed', (e) => {
+    closedWindows[windowName] = win
+  })
 }
 
 function createTransparentWin(
@@ -535,12 +528,11 @@ const MINI_POS_OFFSET = 20
 function createMiniWin(parent) {
   return createTransparentWin('mini', 'mini', null, 150, 100, false).then((win) => {
     win.setParentWindow(parent)
-    return win
-      .on('moved', () => {
-        const [x, y] = win.getPosition()
-        WINDOWS.main.setPosition(x, y - MINI_POS_OFFSET)
-        saveWindowSetting('main.pos', { x, y: y - MINI_POS_OFFSET })
-      })
+    return win.on('moved', () => {
+      const [x, y] = win.getPosition()
+      WINDOWS.main.setPosition(x, y - MINI_POS_OFFSET)
+      saveWindowSetting('main.pos', { x, y: y - MINI_POS_OFFSET })
+    })
   })
 }
 
