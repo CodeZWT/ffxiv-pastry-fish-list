@@ -131,6 +131,7 @@ async function init() {
   FishingDataReader.onUpdate((data) => {
     WINDOWS.main.webContents.send('fishingData', data)
     WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('fishingData', data)
+    WINDOWS.timerMini && WINDOWS.timerMini.webContents.send('fishingData', data)
     WINDOWS.readerSpotStatistics &&
       WINDOWS.readerSpotStatistics.webContents.send('fishingData', data)
   })
