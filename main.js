@@ -121,13 +121,6 @@ async function init() {
       })
   }
 
-  await createAndShowLoadingWindow()
-  configStore = new Store()
-  initWindowSetting(configStore)
-  windowSetting = configStore.get('windowSetting')
-  createMainWindow()
-  await createMiniWin(WINDOWS.main)
-
   FishingDataReader.onUpdate((data) => {
     WINDOWS.main.webContents.send('fishingData', data)
     WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('fishingData', data)
@@ -144,9 +137,6 @@ async function init() {
     WINDOWS.readerSpotStatistics &&
       WINDOWS.readerSpotStatistics.webContents.send('newRecord', data)
   })
-
-  updateIfNeeded()
-  setInterval(updateIfNeeded, CONSTANTS.INTERVAL_MINUTE * 10)
 
   ipcMain
     .on('startReader', (event, options) => {
@@ -219,8 +209,10 @@ async function init() {
       // if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
       //   return loadingForReloadingPage.close()
       // }
+      log.info('in finishLoading')
+      WINDOWS.main.show()
       if (!WINDOWS.loading.isDestroyed()) {
-        WINDOWS.main.show()
+        log.info('try close loading window')
         WINDOWS.loading.close()
       }
     })
@@ -358,6 +350,15 @@ async function init() {
     //     mode: 'undocked',
     //   })
   })
+
+  await createAndShowLoadingWindow()
+  configStore = new Store()
+  initWindowSetting(configStore)
+  windowSetting = configStore.get('windowSetting')
+  createMainWindow()
+  await createMiniWin(WINDOWS.main)
+  updateIfNeeded()
+  setInterval(updateIfNeeded, CONSTANTS.INTERVAL_MINUTE * 10)
 
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
   const contextMenu = Menu.buildFromTemplate([
