@@ -185,6 +185,7 @@ async function init() {
     })
     .on('reloadUserData', () => {
       WINDOWS.readerTimer.webContents.send('reloadUserData')
+      WINDOWS.timerMini.webContents.send('reloadUserData')
       WINDOWS.readerSetting.webContents.send('reloadUserData')
     })
     .on('skipUpdate', () => {
@@ -398,6 +399,7 @@ async function init() {
 function setMouseThrough(enable) {
   WINDOWS.readerTimer &&
     WINDOWS.readerTimer.setIgnoreMouseEvents(enable, { forward: true })
+  WINDOWS.timerMini && WINDOWS.timerMini.setIgnoreMouseEvents(enable, { forward: true })
   WINDOWS.readerHistory &&
     WINDOWS.readerHistory.setIgnoreMouseEvents(enable, { forward: true })
   WINDOWS.readerSpotStatistics &&
