@@ -2352,7 +2352,7 @@ module.exports = {
       icon: 29434,
       tug: 'light',
       hookset: null,
-      biteTimeMin: 5,
+      biteTimeMin: 6,
       biteTimeMax: 8,
       points: 156,
       doubleHook: [4],
