@@ -20,6 +20,24 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <v-alert outlined type="warning" border="left">
+          3/15
+          更新了多次版本，但是没有更新版本号。由于主要是后台代码更新，所以看上去像是出了无限更新的BUG...因此之后版本更新都会更新版本号，并加入更新时间。
+        </v-alert>
+        <div class="text-h6">Version 0.6.9</div>
+        <div class="text-subtitle-1">更新时间: 2021/03/16 01:11</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕桌面版
+        </div>
+        <ul>
+          <li>
+            修复切换迷你模式的报错
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.6.8</div>
         <div class="text-h5 text-center my-1">
           鱼糕
