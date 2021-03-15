@@ -122,11 +122,11 @@ async function init() {
   }
 
   await createAndShowLoadingWindow()
-  await createMiniWin()
   configStore = new Store()
   initWindowSetting(configStore)
   windowSetting = configStore.get('windowSetting')
   createMainWindow()
+  await createMiniWin(WINDOWS.main)
 
   FishingDataReader.onUpdate((data) => {
     WINDOWS.main.webContents.send('fishingData', data)
@@ -207,36 +207,10 @@ async function init() {
       WINDOWS.main.webContents.setZoomFactor(setting.zoomFactor)
     })
     .on('miniMode', (event, mainMini) => {
-      if (mainMini) {
-        WINDOWS.mini.setPosition(
-          windowSetting.main.pos.x,
-          windowSetting.main.pos.y + MINI_POS_OFFSET
-        )
-        WINDOWS.mini.show()
-        WINDOWS.main.hide()
-      } else {
-        WINDOWS.mini.hide()
-        WINDOWS.main.show()
-      }
+      switchMiniMode(mainMini)
     })
     .on('timerMiniMode', (event, mini) => {
-      if (mini) {
-        settingVisible = WINDOWS.readerSetting.isVisible()
-        historyVisible = WINDOWS.readerHistory.isVisible()
-        spotStatisticsVisible = WINDOWS.readerSpotStatistics.isVisible()
-        WINDOWS.readerTimer.hide()
-        WINDOWS.timerMini.setPosition(
-          windowSetting.timer.pos.x,
-          windowSetting.timer.pos.y + READER_MINI_POS_OFFSET
-        )
-        WINDOWS.timerMini.show()
-      } else {
-        settingVisible = false
-        historyVisible = false
-        spotStatisticsVisible = false
-        WINDOWS.timerMini.hide()
-        WINDOWS.readerTimer.show()
-      }
+      switchReaderMiniMode(mini)
     })
     .on('startLoading', () => {
       // return createAndShowLoadingWindow().then(win => loadingForReloadingPage = win)
@@ -406,6 +380,40 @@ function setMouseThrough(enable) {
     WINDOWS.readerSpotStatistics.setIgnoreMouseEvents(enable, { forward: true })
 }
 
+function switchMiniMode(mini) {
+  if (mini) {
+    WINDOWS.mini.setPosition(
+      windowSetting.main.pos.x,
+      windowSetting.main.pos.y + MINI_POS_OFFSET
+    )
+    WINDOWS.mini.show()
+    WINDOWS.main.hide()
+  } else {
+    WINDOWS.mini.hide()
+    WINDOWS.main.show()
+  }
+}
+
+function switchReaderMiniMode(mini) {
+  if (mini) {
+    settingVisible = WINDOWS.readerSetting.isVisible()
+    historyVisible = WINDOWS.readerHistory.isVisible()
+    spotStatisticsVisible = WINDOWS.readerSpotStatistics.isVisible()
+    WINDOWS.readerTimer.hide()
+    WINDOWS.timerMini.setPosition(
+      windowSetting.timer.pos.x,
+      windowSetting.timer.pos.y + READER_MINI_POS_OFFSET
+    )
+    WINDOWS.timerMini.show()
+  } else {
+    settingVisible = false
+    historyVisible = false
+    spotStatisticsVisible = false
+    WINDOWS.timerMini.hide()
+    WINDOWS.readerTimer.show()
+  }
+}
+
 function createReaderSetting(readTimerWin) {
   const settingName = 'setting'
   const windowName = 'readerSetting'
@@ -421,9 +429,11 @@ function createReaderSetting(readTimerWin) {
     false,
     true,
     readTimerWin
-  ).on('closed', (e) => {
-    closedWindows[windowName] = win
-  })
+  )
+  win
+    .on('closed', () => {
+      closedWindows[windowName] = win
+    })
 }
 
 function createReaderHistory(readTimerWin) {
@@ -442,9 +452,10 @@ function createReaderHistory(readTimerWin) {
     true,
     readTimerWin
   )
-  win.on('closed', (e) => {
-    closedWindows[windowName] = win
-  })
+  win
+    .on('closed', (e) => {
+      closedWindows[windowName] = win
+    })
 }
 
 function createReaderSpotStatistics(readTimerWin) {
@@ -462,9 +473,11 @@ function createReaderSpotStatistics(readTimerWin) {
     false,
     true,
     readTimerWin
-  ).on('closed', (e) => {
-    closedWindows[windowName] = win
-  })
+  )
+  win
+    .on('closed', (e) => {
+      closedWindows[windowName] = win
+    })
 }
 
 function createTransparentWin(
@@ -518,13 +531,15 @@ function createTransparentWin(
   return loadedPromise.then(() => win)
 }
 const MINI_POS_OFFSET = 20
-function createMiniWin() {
+function createMiniWin(parent) {
   return createTransparentWin('mini', 'mini', null, 150, 100, false).then((win) => {
-    return win.on('moved', () => {
-      const [x, y] = win.getPosition()
-      WINDOWS.main.setPosition(x, y - MINI_POS_OFFSET)
-      saveWindowSetting('main.pos', { x, y: y - MINI_POS_OFFSET })
-    })
+    win.setParentWindow(parent)
+    return win
+      .on('moved', () => {
+        const [x, y] = win.getPosition()
+        WINDOWS.main.setPosition(x, y - MINI_POS_OFFSET)
+        saveWindowSetting('main.pos', { x, y: y - MINI_POS_OFFSET })
+      })
   })
 }
 
@@ -660,6 +675,7 @@ function createReader() {
     false,
     true
   )
+  win
     .on('resized', () => {
       const [w, h] = win.getSize()
       if (readerMini) {
