@@ -38,7 +38,7 @@ let intervalHandle
 
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
-let skipUpdate = isDev || false
+let skipUpdate = isDev
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
 const closedWindows = {}
 
@@ -782,7 +782,7 @@ async function updateIfNeeded(intervalHandle) {
   log.info('Checking updates...')
   let LOCAL_COMMIT_HAST_PATH
   if (isDev) {
-    LOCAL_COMMIT_HAST_PATH = __dirname + '/front-electron-dist/VERSION' //COMMITHASH
+    LOCAL_COMMIT_HAST_PATH = __dirname + '/front-electron-dist/COMMITHASH' // VERSION
   } else {
     LOCAL_COMMIT_HAST_PATH = path.join(app.getAppPath(), '../../resources/COMMITHASH')
   }
