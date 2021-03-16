@@ -21,7 +21,7 @@
       <v-divider />
       <v-card-text style="max-height: 600px;">
         <div class="text-h6">Version 0.6.10</div>
-        <div class="text-subtitle-1">更新时间: 2021/03/17 23:40</div>
+        <div class="text-subtitle-1">更新时间: 2021/03/16 23:40</div>
         <div class="text-h5 text-center my-1">
           鱼糕桌面版
         </div>
