@@ -34,6 +34,7 @@ log.transports.console.level = 'silly'
 const WINDOWS = {}
 let tray, loadingForReloadingPage, configStore, windowSetting, region
 let readerMini = false
+let intervalHandle
 
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
@@ -92,7 +93,7 @@ function initWindowSetting(configStore) {
     log.info('Initialize user config in', app.getPath('userData'))
   } else {
     configStore.set('windowSetting', merge(DEFAULT_WINDOW_SETTING, setting))
-    log.debug('Config Read', configStore.get('windowSetting'))
+    log.debug('Config Read', JSON.stringify(configStore.get('windowSetting')))
   }
 }
 
@@ -110,8 +111,8 @@ async function init() {
       VUEJS_DEVTOOLS,
     } = require('electron-devtools-installer')
     installExtension(VUEJS_DEVTOOLS)
-      .then((name) => console.log(`Added Extension:  ${name}`))
-      .catch((err) => console.log('An error occurred: ', err))
+      .then((name) => log.info(`Added Extension:  ${name}`))
+      .catch((err) => log.info('An error occurred: ', err))
     ipcMain
       .on('nextTestEvent', () => {
         FishingDataReader.nextTestEvent()
@@ -358,7 +359,10 @@ async function init() {
   createMainWindow()
   await createMiniWin(WINDOWS.main)
   updateIfNeeded()
-  setInterval(updateIfNeeded, CONSTANTS.INTERVAL_MINUTE * 10)
+  intervalHandle = setInterval(
+    () => updateIfNeeded(intervalHandle),
+    CONSTANTS.INTERVAL_MINUTE * 10
+  )
 
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
   const contextMenu = Menu.buildFromTemplate([
@@ -526,18 +530,26 @@ function createTransparentWin(
 }
 const MINI_POS_OFFSET = 20
 function createMiniWin(parent) {
-  return createTransparentWin('mini', 'mini', null, 150, 100, false).then((win) => {
-    win.setParentWindow(parent)
-    return win.on('moved', () => {
-      const [x, y] = win.getPosition()
-      WINDOWS.main.setPosition(x, y - MINI_POS_OFFSET)
-      saveWindowSetting('main.pos', { x, y: y - MINI_POS_OFFSET })
+  return createTransparentWin('mini', 'mini', null, 150, 100, false)
+    .then((win) => {
+      win.setParentWindow(parent)
+      return win.on('moved', () => {
+        const [x, y] = win.getPosition()
+        WINDOWS.main.setPosition(x, y - MINI_POS_OFFSET)
+        saveWindowSetting('main.pos', { x, y: y - MINI_POS_OFFSET })
+      })
     })
-  })
+    .catch((error) => {
+      log.info('caught error in create main mini', error)
+    })
 }
 
 function createAndShowLoadingWindow() {
-  return createTransparentWin('loading', 'loading', null, 250, 250, true)
+  return createTransparentWin('loading', 'loading', null, 250, 250, true).catch(
+    (error) => {
+      log.info('caught error in create loading', error)
+    }
+  )
 }
 
 const READER_MINI_POS_OFFSET = 56
@@ -550,20 +562,24 @@ function createTimerMiniWin(parent) {
     windowSetting.timerMini.size.h,
     false,
     ['--route-name=ReaderTimer', '--mode=mini']
-  ).then((win) => {
-    win.setParentWindow(parent)
-    win.setResizable(true)
-    return win
-      .on('moved', () => {
-        const [x, y] = win.getPosition()
-        WINDOWS.readerTimer.setPosition(x, y - READER_MINI_POS_OFFSET)
-        saveWindowSetting('timer.pos', { x, y: y - READER_MINI_POS_OFFSET })
-      })
-      .on('resized', () => {
-        const [w, h] = win.getSize()
-        saveWindowSetting('timerMini.size', { w, h })
-      })
-  })
+  )
+    .then((win) => {
+      win.setParentWindow(parent)
+      win.setResizable(true)
+      return win
+        .on('moved', () => {
+          const [x, y] = win.getPosition()
+          WINDOWS.readerTimer.setPosition(x, y - READER_MINI_POS_OFFSET)
+          saveWindowSetting('timer.pos', { x, y: y - READER_MINI_POS_OFFSET })
+        })
+        .on('resized', () => {
+          const [w, h] = win.getSize()
+          saveWindowSetting('timerMini.size', { w, h })
+        })
+    })
+    .catch((error) => {
+      log.info('caught error in create timer mini', error)
+    })
 }
 
 function createWindow(
@@ -727,7 +743,37 @@ function toggleSpotStatistics() {
   }
 }
 
-function updateIfNeeded() {
+async function downloadCommitHash() {
+  return download(COMMIT_HASH_DOWNLOAD_LINK)
+    .on('error', (err) => log.error('Error in download commit hash:', err))
+    .then((data) => {
+      return data.toString(FILE_ENCODING)
+    })
+    .catch(() => {
+      // do nothing
+    })
+}
+
+async function downloadSetupFile(onDownloadProgress, onFinished) {
+  return download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH)
+    .on('downloadProgress', (progress) => {
+      try {
+        // Report download progress
+        onDownloadProgress(progress)
+      } catch (e) {
+        log.error('In downloadProgress.', e)
+      }
+    })
+    .on('error', (err) => log.error('Error in download setup:', err))
+    .then(() => {
+      onFinished()
+    })
+    .catch(() => {
+      // do nothing
+    })
+}
+
+async function updateIfNeeded(intervalHandle) {
   if (skipUpdate) {
     log.info('Update check skipped')
     return
@@ -736,45 +782,43 @@ function updateIfNeeded() {
   log.info('Checking updates...')
   let LOCAL_COMMIT_HAST_PATH
   if (isDev) {
-    LOCAL_COMMIT_HAST_PATH = __dirname + '/front-electron-dist/COMMITHASH'
+    LOCAL_COMMIT_HAST_PATH = __dirname + '/front-electron-dist/VERSION' //COMMITHASH
   } else {
     LOCAL_COMMIT_HAST_PATH = path.join(app.getAppPath(), '../../resources/COMMITHASH')
   }
   const localCommitHash = fs.readFileSync(LOCAL_COMMIT_HAST_PATH).toString(FILE_ENCODING)
-  // let downloadedCommitHash
-  // if (fs.existsSync(DOWNLOADED_COMMITHASH_PATH)) {
-  //   downloadedCommitHash = fs.readFileSync(DOWNLOADED_COMMITHASH_PATH).toString(FILE_ENCODING)
-  // }
-  // if (downloadedCommitHash === localCommitHash)
-
   log.info('Local commit hash', localCommitHash)
-  streamToString(download(COMMIT_HASH_DOWNLOAD_LINK)).then((remoteCommitHash) => {
-    log.info('Remote commit hash:', remoteCommitHash)
-    if (localCommitHash !== remoteCommitHash) {
-      log.info('New Version Detected!')
-      const throttled = throttle(
-        (progress) => WINDOWS.main.webContents.send('setupDownload', progress),
-        500
-      )
-      download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH).on('downloadProgress', (progress) => {
-        if (WINDOWS.main.isDestroyed()) {
-          return
+  const remoteCommitHash = await downloadCommitHash()
+  log.info('Remote commit hash:', remoteCommitHash)
+  if (localCommitHash !== remoteCommitHash && remoteCommitHash != null) {
+    clearInterval(intervalHandle)
+    log.info('New Version Detected!')
+    const throttled = throttle((progress) => {
+      try {
+        log.info('progress', progress)
+        if (!WINDOWS.main.isDestroyed()) {
+          WINDOWS.main.webContents.send('setupDownload', progress)
+          WINDOWS.main.setProgressBar(progress.percent)
         }
-        // Report download progress
-        throttled(progress)
-        WINDOWS.main.setProgressBar(progress.percent)
-        if (progress.percent === 1) {
-          // fs.writeFileSync(DOWNLOADED_COMMITHASH_PATH, remoteCommitHash, {encoding: FILE_ENCODING})
-          WINDOWS.main.webContents.send('checkStartSetup')
-        }
-      })
-    } else {
-      log.info('No Update. Wait 10 minutes to check...')
-    }
-  })
+      } catch (e) {
+        log.error('Try set download progress failed.', e)
+      }
+    }, 500)
+    await downloadSetupFile(throttled, () => {
+      try {
+        log.info('download setup finished')
+        WINDOWS.main.webContents.send('checkStartSetup')
+      } catch (e) {
+        log.error('Try open update dialog failed.', e)
+      }
+    })
+  } else {
+    log.info('No Update. Wait 10 minutes to check...')
+  }
 }
 
 function quitAndSetup() {
+  clearInterval(intervalHandle)
   FishingDataReader.stop(() => {
     const installerPath = isDev
       ? path.join(__dirname, 'setup/PastryFishSetup.exe')
@@ -788,6 +832,7 @@ function quitAndSetup() {
 }
 
 function quit() {
+  clearInterval(intervalHandle)
   FishingDataReader.stop(() => {
     log.info('quit by close')
     tray.destroy()
@@ -816,7 +861,12 @@ if (!gotTheLock) {
     showAndFocusMain()
   })
 
-  app.whenReady().then(() => init())
+  app
+    .whenReady()
+    .then(() => init())
+    .catch((error) => {
+      log.error('error in init', error)
+    })
 }
 
 function showAndFocusMain() {
