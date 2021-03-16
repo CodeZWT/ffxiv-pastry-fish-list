@@ -793,17 +793,21 @@ async function updateIfNeeded(intervalHandle) {
   if (localCommitHash !== remoteCommitHash && remoteCommitHash != null) {
     clearInterval(intervalHandle)
     log.info('New Version Detected!')
-    const throttled = throttle((progress) => {
-      try {
-        log.info('progress', progress)
-        if (!WINDOWS.main.isDestroyed()) {
-          WINDOWS.main.webContents.send('setupDownload', progress)
-          WINDOWS.main.setProgressBar(progress.percent)
+    const throttled = throttle(
+      (progress) => {
+        try {
+          log.info('progress', progress.percent)
+          if (!WINDOWS.main.isDestroyed()) {
+            WINDOWS.main.webContents.send('setupDownload', progress)
+            WINDOWS.main.setProgressBar(progress.percent)
+          }
+        } catch (e) {
+          log.error('Try set download progress failed.', e)
         }
-      } catch (e) {
-        log.error('Try set download progress failed.', e)
-      }
-    }, 500)
+      },
+      500,
+      { leading: true, trailing: false }
+    )
     await downloadSetupFile(throttled, () => {
       try {
         log.info('download setup finished')
@@ -818,26 +822,34 @@ async function updateIfNeeded(intervalHandle) {
 }
 
 function quitAndSetup() {
-  clearInterval(intervalHandle)
-  FishingDataReader.stop(() => {
-    const installerPath = isDev
-      ? path.join(__dirname, 'setup/PastryFishSetup.exe')
-      : path.join(__dirname, '../../setup/PastryFishSetup.exe')
-    log.info('try open path', installerPath)
-    shell.showItemInFolder(installerPath)
-    log.info('quit before update')
-    tray.destroy()
-    app.quit()
-  })
+  try {
+    clearInterval(intervalHandle)
+    FishingDataReader.stop(() => {
+      const installerPath = isDev
+        ? path.join(__dirname, 'setup/PastryFishSetup.exe')
+        : path.join(__dirname, '../../setup/PastryFishSetup.exe')
+      log.info('try open path', installerPath)
+      shell.showItemInFolder(installerPath)
+      log.info('quit before update')
+      tray.destroy()
+      app.quit()
+    })
+  } catch (e) {
+    console.error('Error in quitAndSetup', e)
+  }
 }
 
 function quit() {
-  clearInterval(intervalHandle)
-  FishingDataReader.stop(() => {
-    log.info('quit by close')
-    tray.destroy()
-    app.quit()
-  })
+  try {
+    clearInterval(intervalHandle)
+    FishingDataReader.stop(() => {
+      log.info('quit by close')
+      tray.destroy()
+      app.quit()
+    })
+  } catch (e) {
+    console.error('Error in quit', e)
+  }
 }
 
 function streamToString(stream) {
