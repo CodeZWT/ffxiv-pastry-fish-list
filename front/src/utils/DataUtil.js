@@ -106,7 +106,7 @@ function toItemId(fishLocationId) {
 function toComparableVersion(version) {
   return version
     .split('.')
-    .map(it => it.padStart('0', 5))
+    .map(it => it.padStart(5, '0'))
     .join('')
 }
 
