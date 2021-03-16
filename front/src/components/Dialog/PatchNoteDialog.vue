@@ -20,6 +20,23 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.6.10</div>
+        <div class="text-subtitle-1">更新时间: 2021/03/17 23:40</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕桌面版
+        </div>
+        <ul>
+          <li>
+            尝试修复关闭鱼糕时的报错，如还有问题欢迎反馈。
+          </li>
+          <li>
+            修复无网络时更新报错的问题。
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <v-alert outlined type="warning" border="left">
           3/15
           更新了多次版本，但是没有更新版本号。由于主要是后台代码更新，所以看上去像是出了无限更新的BUG...因此之后版本更新都会更新版本号，并加入更新时间。
