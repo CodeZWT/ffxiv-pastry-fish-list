@@ -122,6 +122,10 @@ async function init() {
       })
   }
 
+  configStore = new Store()
+  initWindowSetting(configStore)
+  windowSetting = configStore.get('windowSetting')
+
   FishingDataReader.onUpdate((data) => {
     WINDOWS.main.webContents.send('fishingData', data)
     WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('fishingData', data)
@@ -352,11 +356,9 @@ async function init() {
     //   })
   })
 
-  await createAndShowLoadingWindow()
-  configStore = new Store()
-  initWindowSetting(configStore)
-  windowSetting = configStore.get('windowSetting')
+
   createMainWindow()
+  await createAndShowLoadingWindow(WINDOWS.main)
   await createMiniWin(WINDOWS.main)
   updateIfNeeded()
   intervalHandle = setInterval(
@@ -491,7 +493,7 @@ function createTransparentWin(
     width: width,
     height: height,
     frame: false,
-    show: true,
+    show: false,
     transparent: true,
     resizable: false,
     maximizable: false,
@@ -507,9 +509,9 @@ function createTransparentWin(
   const win = WINDOWS[windowName]
   win.removeMenu()
   setOnTop(win)
-  if (!show) {
-    win.hide()
-  }
+  // if (!show) {
+  //   win.hide()
+  // }
   win.once('ready-to-show', () => {
     if (show) win.show()
   })
@@ -544,12 +546,14 @@ function createMiniWin(parent) {
     })
 }
 
-function createAndShowLoadingWindow() {
-  return createTransparentWin('loading', 'loading', null, 250, 250, true).catch(
-    (error) => {
+function createAndShowLoadingWindow(parent) {
+  return createTransparentWin('loading', 'loading', null, 250, 250, true)
+    .then((win) => {
+      win.setParentWindow(parent)
+    })
+    .catch((error) => {
       log.info('caught error in create loading', error)
-    }
-  )
+    })
 }
 
 const READER_MINI_POS_OFFSET = 56
@@ -625,13 +629,13 @@ function createWindow(
   if (isDev) {
     win
       .loadURL(`http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`)
-      .then(loadedCallback)
+      .then(() => loadedCallback(win))
   } else {
     win
       .loadFile(path.join(__dirname, `/front-electron-dist/${page}.html`), {
         hash: hash && '/' + hash,
       })
-      .then(loadedCallback)
+      .then(() => loadedCallback(win))
   }
 
   if (keepOnTop) setOnTop(win)
@@ -648,13 +652,8 @@ function createWindow(
 }
 
 function createMainWindow() {
-  return createWindow(
-    'main',
-    'main',
-    'assets/icon256.png',
-    'index',
-    null,
-    createReader
+  return createWindow('main', 'main', 'assets/icon256.png', 'index', null, (mainWin) =>
+    createReader(mainWin)
   ).on('closed', () => {
     quit()
   })
@@ -665,7 +664,7 @@ function setOnTop(win) {
   win.setMinimizable(false)
 }
 
-function createReader() {
+function createReader(parent) {
   const settingName = 'timer'
   closedWindows[settingName] = null
   const win = createWindow(
@@ -675,14 +674,15 @@ function createReader() {
     'reader',
     null,
     () => {
-      createTimerMiniWin(win)
-      createReaderSetting(win)
-      createReaderHistory(win)
-      createReaderSpotStatistics(win)
+      createTimerMiniWin(parent)
+      createReaderSetting(parent)
+      createReaderHistory(parent)
+      createReaderSpotStatistics(parent)
     },
     ['--route-name=ReaderTimer', '--mode=normal'],
     false,
-    true
+    true,
+    parent
   )
   win
     .on('resized', () => {
