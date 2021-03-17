@@ -53,7 +53,7 @@ const DEFAULT_WINDOW_SETTING = {
   main: {
     pos: { x: null, y: null },
     size: { w: 1080, h: 768 },
-    opacity: 0.9,
+    opacity: 0.95,
     zoomFactor: 1,
   },
   setting: {
