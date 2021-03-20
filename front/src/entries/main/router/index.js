@@ -33,6 +33,15 @@ const routes = [
       ),
   },
   {
+    path: '/oceanFishing54',
+    name: 'OceanFishingPage54',
+    component: () =>
+      import(
+        /* webpackChunkName: "oceanFishing54" */
+        '../views/OceanFishingPage54'
+      ),
+  },
+  {
     path: '/diadem',
     name: 'DiademPage',
     component: () =>
