@@ -250,57 +250,9 @@ function init() {
 
   Machina.on('any', (packet) => {
     if (packet && filterPacketSessionID(packet)) {
-      // if (['prepareZoning', 'weatherChange', 'initZone'].includes(packet.type)) {
-      //   log.debug('type', packet.type, packet)
-      // }
       ffxivEvent.emit('ffxivEvent', packet)
     }
   })
-
-  // Machina.on('raw', (packet) => {
-  //   if (filterPacketSessionID(packet)) {
-  //     // if (packet.opcode === 619) {
-  //     //   log.debug(packet.type,packet.opcode, packet.data)
-  //     // }
-  //
-  //     // if (packet.type && packet.superType === 'message') {
-  //     //   log.debug('msg self', getString(packet.data, 0x1A))
-  //     //   // log.debug('msg other', getString(packet.data, 0x30))
-  //     //   return
-  //     // }
-  //     // switch (packet.type) {
-  //     //   case 'unknown':
-  //     //     log.debug(packet.opcode)
-  //     //     // log.debug(packet)
-  //     //     // log.debug(JSON.stringify(packet.data))
-  //     //     // log.debug('msg self', getString(packet.data, 0x1A))
-  //     //     // log.debug('msg other', getString(packet.data, 0x30))
-  //     //     break
-  //     //   case 'updatePositionInstance':
-  //     //     // log.debug(packet.pos)
-  //     //     break
-  //     //   case 'updatePositionHandler':
-  //     //     // log.debug(packet.pos)
-  //     //     break
-  //     //   case 'actorControlSelf':
-  //     //     break
-  //     //   // case 'prepareZoning':
-  //     //   //   log.debug('prepareZoning')
-  //     //   //   log.debug(packet)
-  //     //   //   break
-  //     //   // case 'initZone':
-  //     //   //   log.debug('initZone')
-  //     //   //   log.debug(packet)
-  //     //   //   break
-  //     //   case 'weatherChange':
-  //     //     log.debug('weatherChange')
-  //     //     log.debug(packet)
-  //     //     break
-  //     //   default:
-  //     //     log.debug(packet.type)
-  //     // }
-  //   }
-  // })
 }
 
 function onUpdate(callback) {
@@ -323,9 +275,6 @@ exports.addMachinaFirewallRule = addMachinaFirewallRule
 ffxivEvent.setMaxListeners(0)
 
 function filterPacketSessionID(packet) {
-  // if (packet.sourceActorSessionID == null || packet.targetActorSessionID == null) {
-  //     console.warn('packet no session id', packet)
-  // }
   return packet.sourceActorSessionID === packet.targetActorSessionID
 }
 
@@ -348,8 +297,6 @@ function onFFXIVEventOfUnknown(opcode, callback) {
       updateCallback({
         status,
         currentRecord,
-        // records,
-        // readableRecords,
       })
     }
   })
@@ -409,7 +356,7 @@ onFFXIVEvent('effect', (packet) => {
 onFFXIVEvent(
   'prepareZoning',
   (packet) => {
-    if (packet.targetZone) {
+    if (packet.targetZone && TERRITORY_TYPES[packet.targetZone]) {
       status.zoneId = TERRITORY_TYPES[packet.targetZone].placeName
       log.debug('targetZone', packet.targetZone, 'placeName', status.zoneId)
     } else {
@@ -428,7 +375,7 @@ onFFXIVEvent(
   'initZone',
   (packet) => {
     status.effects = new Set()
-    if (packet.zoneID) {
+    if (packet.zoneID && TERRITORY_TYPES[packet.zoneID]) {
       status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
       log.debug('initZone', status.zoneId)
     }
@@ -601,48 +548,14 @@ function getTug(value) {
   }
 }
 
-// onFFXIVEvent('updateInventorySlot', (packet) => {
-//   log.debug('updateInventorySlot ', packet)
-// })
-
-// onFFXIVEvent('eventPlay8', (packet) => {
-//   log.debug(
-//     'eventPlay8',
-//     actionTimeline[packet.param1],
-//     actionTimeline[packet.param2],
-//     actionTimeline[packet.param3],
-//     actionTimeline[packet.param4],
-//     packet
-//   )
-// })
-
-// onFFXIVEvent('eventPlay32', (packet) => {
-//   log.debug(
-//     'eventPlay32',
-//     actionTimeline[packet.param1],
-//     actionTimeline[packet.param2],
-//     actionTimeline[packet.param3],
-//     actionTimeline[packet.param4],
-//     packet
-//   )
-// })
-
 onFFXIVEvent('eventPlay4', (packet) => {
   if (actionTimeline[packet.param1] != null) {
-    currentRecord.hookset = getHookset(packet.param1)
+    // currentRecord.hookset = getHookset(packet.param1)
     currentRecord.missed =
       actionTimeline[packet.param2] != null &&
       actionTimeline[packet.param1].subType.includes('hooking') &&
       !actionTimeline[packet.param2].subType.includes('landing')
     applyCurrentStatusOnLanding(currentRecord, status)
-    // log.debug(
-    //   'eventPlay4',
-    //   actionTimeline[packet.param1],
-    //   actionTimeline[packet.param2],
-    //   actionTimeline[packet.param3],
-    //   actionTimeline[packet.param4],
-    //   packet
-    // )
   }
 })
 const actionTimeline = {
@@ -731,28 +644,35 @@ function getHookset(hookset) {
   }
 }
 
+function isFlatSet(param, i) {
+  return ((param >> i) & 1) === 1
+}
+
 // caught fish
 onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
+  // log.info(packet.param2.toString(2))
+  // log.info(packet.param2.toString(16))
+  // log.info(packet.param3.toString(2))
+  // log.info(packet.param3.toString(16))
   const caughtFishId = packet.param1
-  const hq = ((packet.param3 >> 4) & 1) === 1
-  if (status.isFishing) {
+  const hq = isFlatSet(packet.param3, 4)
+  const isSpearFish = isFlatSet(packet.param3, 6)
+  const quantity = packet.param2 & 0xFF
+  if (!isSpearFish) {
     log.info('fish caught', caughtFishId)
     fishCaughtCallback({ fishId: caughtFishId, hq })
     if (records.length === 0) return
     const prevRecord = records[records.length - 1]
     prevRecord.fishId = caughtFishId
     prevRecord.hq = hq
-    // not used
-    // currentRecord.moochable = (packet.param3 & 0x0000000F) === 5
+    prevRecord.moochable = isFlatSet(packet.param3, 0)
     prevRecord.size = packet.param2 >> 16
-
+    prevRecord.quantity = quantity
     status.prevFishId = prevRecord.fishId
 
-    log.info('fish caught record', prevRecord)
-    // fishCaughtCallback(prevRecord)
+    // log.info('fish caught record', prevRecord)
     fishRecordCallback(prevRecord)
     readableRecords[readableRecords.length - 1] = toReadable(prevRecord)
-    // saveCurrentRecord()
   } else {
     log.info('spear fish caught', caughtFishId)
     fishCaughtCallback({ fishId: caughtFishId, hq })
@@ -760,11 +680,6 @@ onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
 })
 
 onFFXIVEvent('someDirectorUnk4', (packet) => {
-  // log.debug(
-  //   'someDirectorUnk4',
-  //   actionTimeline[packet.actionTimeline],
-  //   packet
-  // )
   if (
     packet.actionTimeline === 0 &&
     Math.abs(currentRecord.biteTime - Date.now()) < 10000
@@ -1114,6 +1029,10 @@ onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
   }
 })
 
+onFFXIVEvent('playerSetup', (packet) => {
+    log.info(packet)
+})
+
 onFFXIVEvent('weatherChange', (packet) => {
   if (region === 'Global') {
     onWeatherChange(packet)
@@ -1175,3 +1094,23 @@ onFFXIVEvent('playerStats', (packet) => {
   status.perception = packet.perception
   status.gp = packet.gp
 })
+
+onFFXIVEvent('clientTrigger', (packet) => {
+  if (packet.commandID === 701) {
+    // normal 2
+    // double hook 16
+    // mooch II 15
+    // currentRecord.doubleHook = packet.param1 === 16
+    currentRecord.hookset = getHooksetFromParam1(packet.param1)
+  }
+})
+
+function getHooksetFromParam1(param1) {
+  switch (param1) {
+    case 16: return 'double'
+    case 2: return 'normal'
+    case 10: return 'precision'
+    case 11: return 'precision'
+    default: return 'normal'
+  }
+}

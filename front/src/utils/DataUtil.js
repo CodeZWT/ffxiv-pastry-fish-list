@@ -966,11 +966,14 @@ export default {
     Normal: '001103',
     Powerful: '001115',
     Precision: '001116',
+    Double: '001118',
   },
 
   HOOKSET_SKILL_NAME_DICT: {
     Powerful: '强力提钩',
     Precision: '精准提钩',
+    Normal: '提钩',
+    Double: '双重提钩',
   },
 
   COUNT_DOWN_TYPE: ['fishing', 'waiting', 'allAvailable'],

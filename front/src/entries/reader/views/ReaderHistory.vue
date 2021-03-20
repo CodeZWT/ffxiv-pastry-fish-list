@@ -67,7 +67,16 @@
                 <v-list-item-content>
                   <v-row no-gutters class="d-flex align-center">
                     <v-col cols="5" class="d-flex align-center">
-                      <item-icon :icon-class="record.fish.icon" small />
+                      <v-badge
+                        v-if="record.fish.quantity > 1"
+                        :content="record.fish.quantity"
+                        overlap
+                        bottom
+                        bordered
+                      >
+                        <item-icon :icon-class="record.fish.icon" small />
+                      </v-badge>
+                      <item-icon v-else :icon-class="record.fish.icon" small />
                       <div>
                         <span v-if="record.missed">{{ '脱钩' }}</span>
                         <span v-else-if="record.cancelled">{{ '未知鱼' }}</span>
@@ -78,7 +87,7 @@
                         <div class="text-subtitle-2 d-flex">
                           <div
                             v-if="record.size > 0"
-                            class="mr-2"
+                            :class="['mr-2', record.fish.quantity > 1 ? 'ml-2' : '']"
                             title="星寸：人族男性士兵的大拇指宽度、成熟的罗兰莓的长度"
                           >
                             {{ record.fish.size }}
@@ -192,8 +201,8 @@ import NewFeatureMark from '@/components/basic/NewFeatureMark'
 
 // import TEST from 'Data/test'
 
-const INITIAL_LOADING_CNT = 5
-const LOAD_MORE_CNT = 5
+const INITIAL_LOADING_CNT = 100
+const LOAD_MORE_CNT = 100
 
 export default {
   name: 'ReaderHistory',
@@ -241,6 +250,7 @@ export default {
               : DataUtil.getItemIconClass(record.fishId, 60027),
             name: DataUtil.getItemName(record.fishId),
             size: (record.size / 10).toFixed(1) + 'Im',
+            quantity: record.quantity,
           },
           bait: {
             id: record.baitId,
