@@ -458,6 +458,7 @@ export default {
           '咬钩时长（秒）': ((record.biteTime - record.startTime) / 1000).toFixed(1),
           撒饵: record.chum ? '是' : '否',
           提钩: DataUtil.HOOKSET_SKILL_NAME_DICT[capitalize(record.hookset)] ?? '提钩',
+          个数: record.quantity,
           获得力: record.gathering,
           鉴别力: record.perception,
           采集力: record.gp,
