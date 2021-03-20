@@ -39,7 +39,11 @@ function calculateForecastTarget(m) {
 
 export default {
   weatherTextOf(weatherId) {
-    return weatherId > 0 ? WEATHER_TYPES[weatherId].name_chs : ''
+    if (weatherId > 0 && WEATHER_TYPES[weatherId]) {
+      return WEATHER_TYPES[weatherId].name_chs
+    } else {
+      return ''
+    }
   },
 
   weatherAtSpot(spotId, et) {
