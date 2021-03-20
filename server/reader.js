@@ -1109,7 +1109,7 @@ function getHooksetFromParam1(param1) {
   switch (param1) {
     case 16: return 'double'
     case 2: return 'normal'
-    case 10: return 'precision'
+    case 10: return 'powerful'
     case 11: return 'precision'
     default: return 'normal'
   }
