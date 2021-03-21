@@ -188,7 +188,7 @@ export default {
               '石沙蚕，3s-！，Garum Jug(双4)；鳞虾，3-5s！！，Pearl Bombfish(双4)；刺螠，3s+！！，Panoptes(双4)',
           },
           1: {
-            fishList: [32114, 32107],
+            fishList: [32114],
             tipContent:
               '石沙蚕，2-5s！Rothlyt Mussel--！，Trollfish→石沙蚕，2-4s！Rothlyt Mussel--！！！，Placodus',
           },
