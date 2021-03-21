@@ -112,46 +112,50 @@
                 <v-card-text>
                   <fish-tip :fish="currentTipBlueFishList[index]" />
                 </v-card-text>
-                <v-divider />
-                <v-card-text>
-                  <div
-                    v-html="
-                      blueFishTip.fishTipDict[currentTipBlueFishList[index]._id].content
-                    "
-                  />
-                  <div></div>
-                </v-card-text>
-                <v-card-subtitle>
-                  <div class="d-flex">
-                    <v-dialog width="500">
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn v-bind="attrs" v-on="on" text icon>
-                          <v-icon>mdi-information</v-icon>
-                        </v-btn>
-                      </template>
-                      <v-card>
-                        <v-card-title>
-                          其他说明
-                        </v-card-title>
-                        <v-card-text>
-                          <div v-html="blueFishTip.extra"></div>
-                        </v-card-text>
-                      </v-card>
-                    </v-dialog>
-                    <div class="d-flex flex-column align-end">
-                      <a
-                        :href="oceanFishTipReference.link"
-                        target="_blank"
-                        style="color: white"
-                      >
-                        {{ oceanFishTipReference.title }}
-                      </a>
-                      <div>
-                        {{ oceanFishTipReference.author }}
+                <template
+                  v-if="blueFishTip.fishTipDict[currentTipBlueFishList[index]._id]"
+                >
+                  <v-divider />
+                  <v-card-text>
+                    <div
+                      v-html="
+                        blueFishTip.fishTipDict[currentTipBlueFishList[index]._id].content
+                      "
+                    />
+                    <div></div>
+                  </v-card-text>
+                  <v-card-subtitle>
+                    <div class="d-flex">
+                      <v-dialog width="500">
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn v-bind="attrs" v-on="on" text icon>
+                            <v-icon>mdi-information</v-icon>
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          <v-card-title>
+                            其他说明
+                          </v-card-title>
+                          <v-card-text>
+                            <div v-html="blueFishTip.extra"></div>
+                          </v-card-text>
+                        </v-card>
+                      </v-dialog>
+                      <div class="d-flex flex-column align-end">
+                        <a
+                          :href="oceanFishTipReference.link"
+                          target="_blank"
+                          style="color: white"
+                        >
+                          {{ oceanFishTipReference.title }}
+                        </a>
+                        <div>
+                          {{ oceanFishTipReference.author }}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </v-card-subtitle>
+                  </v-card-subtitle>
+                </template>
               </v-card>
             </v-col>
           </v-row>
@@ -420,8 +424,10 @@ export default {
           ?.fishList?.map(fishId => this.fishDict[fishId])
           ?.filter(fish => fish.fishTipType === 3)
           ?.map(fish => {
-            return !fish.time ||
-              fish.time === this.currentLocations[locationIndex].shift + 1
+            return !fish.timeSet[0].time ||
+              fish.timeSet.find(
+                time => time.time === this.currentLocations[locationIndex].shift + 1
+              )
               ? fish
               : null
           })
@@ -443,7 +449,10 @@ export default {
           ?.filter(
             fish =>
               fish.bonusId === this.currentTip.bonus &&
-              (!fish.time || fish.time === this.currentLocations[locationIndex].shift + 1)
+              (!fish.timeSet[0].time ||
+                fish.timeSet.find(
+                  time => time === this.currentLocations[locationIndex].shift + 1
+                ))
           )
       )
     },
