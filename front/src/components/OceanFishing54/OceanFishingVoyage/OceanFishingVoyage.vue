@@ -112,49 +112,15 @@
                 <v-card-text>
                   <fish-tip :fish="currentTipBlueFishList[index]" />
                 </v-card-text>
-                <template
-                  v-if="blueFishTip.fishTipDict[currentTipBlueFishList[index]._id]"
-                >
-                  <v-divider />
-                  <v-card-text>
-                    <div
-                      v-html="
-                        blueFishTip.fishTipDict[currentTipBlueFishList[index]._id].content
-                      "
-                    />
-                    <div></div>
-                  </v-card-text>
-                  <v-card-subtitle>
-                    <div class="d-flex">
-                      <v-dialog width="500">
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-btn v-bind="attrs" v-on="on" text icon>
-                            <v-icon>mdi-information</v-icon>
-                          </v-btn>
-                        </template>
-                        <v-card>
-                          <v-card-title>
-                            其他说明
-                          </v-card-title>
-                          <v-card-text>
-                            <div v-html="blueFishTip.extra"></div>
-                          </v-card-text>
-                        </v-card>
-                      </v-dialog>
-                      <div class="d-flex flex-column align-end">
-                        <a
-                          :href="oceanFishTipReference.link"
-                          target="_blank"
-                          style="color: white"
-                        >
-                          {{ oceanFishTipReference.title }}
-                        </a>
-                        <div>
-                          {{ oceanFishTipReference.author }}
-                        </div>
-                      </div>
-                    </div>
-                  </v-card-subtitle>
+                <template v-if="currentTipBlueFishList[index]._id">
+                  <ocean-fishing-blue-fish-tip
+                    :fish-id="currentTipBlueFishList[index]._id"
+                    :tip="blueFishTip2"
+                  />
+                  <ocean-fishing-blue-fish-tip
+                    :fish-id="currentTipBlueFishList[index]._id"
+                    :tip="blueFishTip3"
+                  />
                 </template>
               </v-card>
             </v-col>
@@ -163,7 +129,7 @@
         </v-col>
       </v-row>
     </div>
-    <div v-else-if="currentTip.id === 2562">
+    <div v-else-if="currentTip.id === 'point-tip'">
       <v-row>
         <v-col
           v-for="(location, index) in currentLocations"
@@ -229,15 +195,18 @@ import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishing
 import regionTerritorySpots from 'Data/fishingSpots'
 import { mapGetters } from 'vuex'
 import ItemIcon from '@/components/basic/ItemIcon'
-import FishTip from '@/components/OceanFishingVoyage/FishTip'
-import PointTip from '@/components/OceanFishingVoyage/PointTip'
-import AchievementTip from '@/components/OceanFishingVoyage/AchievementTip'
+import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
+import PointTip from '@/components/OceanFishing54/OceanFishingVoyage/PointTip'
+import AchievementTip from '@/components/OceanFishing54/OceanFishingVoyage/AchievementTip'
+import OceanFishingBlueFishTip from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingBlueFishTip'
 import ClickHelper from '@/components/basic/ClickHelper'
 import { OCEAN_FISHING_TIPS } from 'Data/fix'
+import ImgUtil from '@/utils/ImgUtil'
 
 export default {
   name: 'OceanFishingVoyage',
   components: {
+    OceanFishingBlueFishTip,
     ClickHelper,
     AchievementTip,
     PointTip,
@@ -315,8 +284,8 @@ export default {
           '/p 石沙蚕[!!!]精准提钩→幻光海马 触发幻海流，幻海流中双提5s以上的[!]→珊瑚海龙*4\n' +
           '/p 推荐连招：双重提钩-专一垂钓-双重提钩',
       },
-      blueFishTip: OCEAN_FISHING_TIPS.tip2,
-      oceanFishTipReference: OCEAN_FISHING_TIPS.tip2,
+      blueFishTip2: OCEAN_FISHING_TIPS.tip2,
+      blueFishTip3: OCEAN_FISHING_TIPS.tip3,
     }
   },
   computed: {
@@ -333,6 +302,12 @@ export default {
           id: 'fish-tip',
           icon: 'bg-060034',
           name: '幻光鱼/绿鱼/蓝鱼',
+        },
+        {
+          type: 'item',
+          id: 'point-tip',
+          iconUrl: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
+          name: '高分鱼',
         },
         ...(this.voyage?.targets
           ?.filter(target => target.type === 'achievement')
@@ -426,7 +401,7 @@ export default {
           ?.map(fish => {
             return !fish.timeSet[0].time ||
               fish.timeSet.find(
-                time => time.time === this.currentLocations[locationIndex].shift + 1
+                it => it.time === this.currentLocations[locationIndex].shift + 1
               )
               ? fish
               : null
@@ -451,7 +426,7 @@ export default {
               fish.bonusId === this.currentTip.bonus &&
               (!fish.timeSet[0].time ||
                 fish.timeSet.find(
-                  time => time === this.currentLocations[locationIndex].shift + 1
+                  it => it.time === this.currentLocations[locationIndex].shift + 1
                 ))
           )
       )
