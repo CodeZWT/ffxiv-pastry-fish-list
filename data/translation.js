@@ -9451,7 +9451,7 @@ module.exports = {
     246: {
       _id: 246,
       name_chs: 'The Cieldalaes',
-       map: 604,
+      map: 604,
       size_factor: 400,
       x: 1025,
       y: 1025,
@@ -9462,7 +9462,7 @@ module.exports = {
     247: {
       _id: 247,
       name_chs: 'The Cieldalaes',
-       map: 604,
+      map: 604,
       size_factor: 400,
       x: 1025,
       y: 1025,
@@ -9473,7 +9473,7 @@ module.exports = {
     248: {
       _id: 248,
       name_chs: 'The Bloodbrine Sea',
-       map: 604,
+      map: 604,
       size_factor: 400,
       x: 1025,
       y: 1025,
@@ -9484,7 +9484,7 @@ module.exports = {
     249: {
       _id: 249,
       name_chs: 'The Bloodbrine Sea',
-       map: 604,
+      map: 604,
       size_factor: 400,
       x: 1025,
       y: 1025,
@@ -9495,7 +9495,7 @@ module.exports = {
     250: {
       _id: 250,
       name_chs: 'The Rothlyt Sound',
-       map: 604,
+      map: 604,
       size_factor: 400,
       x: 1025,
       y: 1025,
@@ -9506,7 +9506,7 @@ module.exports = {
     251: {
       _id: 251,
       name_chs: 'The Rothlyt Sound',
-       map: 604,
+      map: 604,
       size_factor: 400,
       x: 1025,
       y: 1025,
@@ -12095,6 +12095,28 @@ module.exports = {
       description: '在出海垂钓中达成龙马惊神。',
       icon: 29040,
       bonus: 16,
+    },
+    2754: {
+      id: 2754,
+      name_chs: 'What Did Balloons Do to You?',
+      description: 'Earn the “Balloon Catchers” bonus during an ocean fishing voyage.',
+      icon: 29118,
+      bonus: 20,
+    },
+    2755: {
+      id: 2755,
+      name_chs: 'What Did Crabs Do to You?',
+      description: 'Earn the “Crab Boat Crew” bonus during an ocean fishing voyage.',
+      icon: 29110,
+      bonus: 21,
+    },
+    2756: {
+      id: 2756,
+      name_chs: 'What Did Mantas Do to You?',
+      description:
+        'Earn the “Sticking it to the Manta” bonus during an ocean fishing voyage.',
+      icon: 29130,
+      bonus: 22,
     },
   },
   FOLKLORE: {

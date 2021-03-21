@@ -92,13 +92,13 @@
 </template>
 
 <script>
-import OceanFishingUtil from '@/utils/OceanFishingUtil'
+import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
 import DataUtil from '@/utils/DataUtil'
 import { DateTime, FixedOffsetZone } from 'luxon'
 import { mapGetters, mapMutations } from 'vuex'
-import OceanFishingTimeTable from '@/components/OceanFishingTimeTable/OceanFishingTimeTable'
+import OceanFishingTimeTable from '@/components/OceanFishing54/OceanFishingTimeTable/OceanFishingTimeTable'
 import ImgUtil from '@/utils/ImgUtil'
-import OceanFishingVoyage from '@/components/OceanFishingVoyage/OceanFishingVoyage'
+import OceanFishingVoyage from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingVoyage'
 import DATA_CN from 'Data/translation'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
@@ -254,7 +254,7 @@ export default {
             .filter(it => it)
           return {
             showDay,
-            simpleName: voyageWithTip.voyageSimpleName,
+            // simpleName: voyageWithTip.voyageSimpleName,
             milliseconds: voyageWithTip.time,
             day: DataUtil.formatDateTime(voyageWithTip.time, 'MM-dd'),
             time: DataUtil.formatDateTime(voyageWithTip.time, 'HH:mm'),
@@ -265,9 +265,9 @@ export default {
               id: it.fishingSpots.normal,
               spectralCurrentId: it.fishingSpots.spectralCurrent,
               weatherSet: it.weatherSet,
-              shift: it.locationShift,
+              shift: it.shift,
               name: it.locationName,
-              icon: shift2Icon(it.locationShift),
+              icon: shift2Icon(it.shift),
               hint: it.locationHint,
             })),
           }
@@ -288,14 +288,10 @@ export default {
       return (
         achievementId && {
           id: achievementId,
-          name:
-            achievementId === 2562
-              ? '游钓大洋1-3(冲分)'
-              : this.getAchievementName(achievementId),
+          name: this.getAchievementName(achievementId),
           icon: this.getAchievementIconClass(achievementId),
           bonus: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS[achievementId].bonus,
-          // 2562 游钓大洋3
-          iconUrl: achievementId === 2562 ? this.achievementScore40 : null,
+          iconUrl: null,
           type: 'achievement',
         }
       )
