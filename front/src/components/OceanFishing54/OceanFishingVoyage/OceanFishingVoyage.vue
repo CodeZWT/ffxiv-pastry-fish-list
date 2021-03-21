@@ -380,7 +380,7 @@ export default {
     oceanFishingSpots() {
       return regionTerritorySpots
         .find(it => it.id === 3443)
-        ?.territories?.filter(it => it.id >= 3444 && it.id <= 3447)
+        ?.territories //?.filter(it => it.id >= 3444 && it.id <= 3447)
         ?.flatMap(territory => territory.spots)
     },
     currentFishList() {

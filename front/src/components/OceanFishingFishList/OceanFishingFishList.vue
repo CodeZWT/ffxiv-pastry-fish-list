@@ -212,7 +212,7 @@ export default {
           (!this.shiftFilter ||
             this.currentShift == null ||
             fish.timeSet[0].time === 0 ||
-            fish.timeSet.includes(this.currentShift + 1))
+            fish.timeSet.find(time => time.time === this.currentShift + 1))
       )
     },
     oceanFishingHeaders() {

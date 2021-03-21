@@ -1515,6 +1515,10 @@ export default {
       const hasPredators = fish.predators && Object.keys(fish.predators).length > 0
       const bonus = FIX.OCEAN_FISHING_BONUS[fish.bonus]
       const realNotAvailableWeatherSet = this.getRealNotAvailableWeatherSet(fish._id)
+      const biteTimeMin =
+        fish.biteTimeMin ?? FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[0]
+      const biteTimeMax =
+        fish.biteTimeMax ?? FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[1]
       return {
         ...fish,
         id: fish._id,
@@ -1540,7 +1544,9 @@ export default {
         baits: this.getBaits(fish, undefined, FIX.OCEAN_FISHING_FISH),
         tug: fish.tug,
         tugIcon: DataUtil.TUG_ICON[fish.tug],
-        biteTimeForSort: fish.biteTimeMin * 100 + (fish.biteTimeMax ?? 0),
+        biteTimeMin: biteTimeMin,
+        biteTimeMax: biteTimeMax,
+        biteTimeForSort: biteTimeMin * 100 + (biteTimeMax ?? 0),
         hasWeatherConstraint: fish.notAvailableWeatherSet.length > 0,
         hasRealWeatherConstraint:
           realNotAvailableWeatherSet.length > fish.notAvailableWeatherSet.length,
