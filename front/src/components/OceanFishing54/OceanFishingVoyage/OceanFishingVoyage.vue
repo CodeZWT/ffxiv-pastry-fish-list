@@ -141,6 +141,7 @@
             :location="location"
             :fish-dict="fishDict"
             :spectral-trigger-fish="currentTipSpectralFishList[index]"
+            :normal-big-fish="currentTipNormalBigFishList[index]"
           />
         </v-col>
       </v-row>
@@ -304,7 +305,7 @@ export default {
           name: '幻光鱼/绿鱼/蓝鱼',
         },
         {
-          type: 'item',
+          type: 'achievement',
           id: 'point-tip',
           iconUrl: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
           name: '高分鱼',
