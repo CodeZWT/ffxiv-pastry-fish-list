@@ -102,9 +102,7 @@
           <div v-if="!item.hasWeatherConstraint && !item.hasRealWeatherConstraint">
             无要求
           </div>
-          <div v-else>
-            在
-          </div>
+          <div v-else>在</div>
           <div
             v-for="(weather, index) in item.notAvailableWeatherSetDetail"
             :key="index"
@@ -114,19 +112,19 @@
             <div :class="weather.icon" :title="weather.name" />
             <!--          <div class="ml-1">{{ weather.name }}</div>-->
           </div>
-          <div v-if="item.hasWeatherConstraint">
-            不出现
-          </div>
-          <div v-else-if="item.hasRealWeatherConstraint" title="条件无法满足">
-            不可钓
-          </div>
+          <div v-if="item.hasWeatherConstraint">不出现</div>
+          <div v-else-if="item.hasRealWeatherConstraint" title="条件无法满足">不可钓</div>
         </div>
       </template>
 
-      <template v-slot:item.time="{ item }">
+      <template v-slot:item.timeForSort="{ item }">
         <div class="d-flex align-center justify-center">
-          <div v-if="item.time === 0">{{ item.timeText }}</div>
-          <v-icon v-else :title="item.timeText">{{ item.timeIcon }}</v-icon>
+          <div v-if="item.timeForSort === 0">{{ item.timeSet[0].timeText }}</div>
+          <template v-else>
+            <v-icon v-for="time in item.timeSet" :title="time.timeText" :key="time.time">
+              {{ time.timeIcon }}
+            </v-icon>
+          </template>
         </div>
       </template>
 
@@ -213,8 +211,8 @@ export default {
             !fish.notAvailableWeatherSet.includes(this.currentWeather)) &&
           (!this.shiftFilter ||
             this.currentShift == null ||
-            fish.time === 0 ||
-            fish.time === this.currentShift + 1)
+            fish.timeSet[0].time === 0 ||
+            fish.timeSet.includes(this.currentShift + 1))
       )
     },
     oceanFishingHeaders() {
@@ -275,6 +273,7 @@ export default {
       return this.filteredFishList.map(fish => {
         return {
           completed: this.getFishCompleted(fish.id),
+          timeForSort: fish.timeSet[0].time,
           ...fish,
         }
       })
@@ -288,7 +287,7 @@ export default {
             text: '时间',
             align: 'center',
             sortable: true,
-            value: 'time',
+            value: 'timeForSort',
             width: '15%',
           }
         : {

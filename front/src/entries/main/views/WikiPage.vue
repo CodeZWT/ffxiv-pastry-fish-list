@@ -426,7 +426,7 @@ export default {
       return this.loadWikiDataOfType('spear')
     },
     isOceanFishingTerritory() {
-      return this.currentTerritoryId >= 3444 && this.currentTerritoryId <= 3447
+      return [3444, 3445, 3446, 3447, 3641, 3642, 3643].includes(this.currentTerritoryId)
     },
     isOceanFishingSpot() {
       return DataUtil.isOceanFishingSpot(this.currentSpotId)
