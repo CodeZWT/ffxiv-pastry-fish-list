@@ -117,7 +117,7 @@ export default {
       currentIndex: 0,
       showExpandedDialog: false,
       imageSizeNormal: { w: 892, h: 363 },
-      imageSizeS: { w: 645, h: 490 },
+      imageSizeS: { w: 548, h: 435 },
     }
   },
   computed: {
