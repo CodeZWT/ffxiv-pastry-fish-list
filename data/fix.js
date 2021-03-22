@@ -1263,7 +1263,7 @@ module.exports = {
       bestCatchPathExtra: [20675, 22397],
     },
     17585: {
-      bestCatchPath: [12705],
+      bestCatchPath: [12705, 12757],
     },
     6191: {
       hookset: 'Powerful',
