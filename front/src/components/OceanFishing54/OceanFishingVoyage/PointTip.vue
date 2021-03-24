@@ -23,16 +23,30 @@
           :tug-mission="tugMission"
         />
         <template v-if="normalMissionFishList.length > 0">
-          <v-subheader>任务</v-subheader>
-          <div v-for="fish in normalMissionFishList" :key="fish._id">
-            <fish-tip
-              :fish="fish"
-              show-mission-tip
-              :type-mission="typeMission"
-              :star-mission="starMission"
-              :tug-mission="tugMission"
-            />
-          </div>
+          <v-expansion-panels accordion>
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                <div class="d-flex align-center">
+                  <span>任务鱼</span>
+                  <v-spacer />
+                  <div v-for="fish in normalMissionFishList" :key="fish._id">
+                    <item-icon small :icon-class="fish.icon" />
+                  </div>
+                </div>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <div v-for="fish in normalMissionFishList" :key="fish._id">
+                  <fish-tip
+                    :fish="fish"
+                    show-mission-tip
+                    :type-mission="typeMission"
+                    :star-mission="starMission"
+                    :tug-mission="tugMission"
+                  />
+                </div>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </template>
       </v-card-text>
     </v-card>
@@ -56,16 +70,30 @@
           />
         </div>
         <template v-if="scMissionFishList.length > 0">
-          <v-subheader>任务</v-subheader>
-          <div v-for="fish in scMissionFishList" :key="fish._id">
-            <fish-tip
-              :fish="fish"
-              show-mission-tip
-              :type-mission="typeMission"
-              :star-mission="starMission"
-              :tug-mission="tugMission"
-            />
-          </div>
+          <v-expansion-panels accordion>
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                <div class="d-flex align-center">
+                  <span>任务鱼</span>
+                  <v-spacer />
+                  <div v-for="fish in scMissionFishList" :key="fish._id">
+                    <item-icon small :icon-class="fish.icon" />
+                  </div>
+                </div>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <div v-for="fish in scMissionFishList" :key="fish._id">
+                  <fish-tip
+                    :fish="fish"
+                    show-mission-tip
+                    :type-mission="typeMission"
+                    :star-mission="starMission"
+                    :tug-mission="tugMission"
+                  />
+                </div>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </template>
       </v-card-text>
     </v-card>
@@ -91,9 +119,10 @@
 <script>
 import FishTip from '@/components/OceanFishingVoyage/FishTip'
 import { OCEAN_FISHING_TIPS } from 'Data/fix'
+import ItemIcon from '@/components/basic/ItemIcon'
 export default {
   name: 'PointTip',
-  components: { FishTip },
+  components: { ItemIcon, FishTip },
   props: {
     location: {
       type: Object,
@@ -139,10 +168,12 @@ export default {
   },
   computed: {
     normalMissionFishList() {
+      console.log(this.normalBigFish.predators)
       return this.normalFishList
         .filter(
           fish =>
             this.normalBigFish._id !== fish._id &&
+            this.normalBigFish.predators.every(it => it._id !== fish._id) &&
             this.spectralTriggerFish._id !== fish._id
         )
         .filter(

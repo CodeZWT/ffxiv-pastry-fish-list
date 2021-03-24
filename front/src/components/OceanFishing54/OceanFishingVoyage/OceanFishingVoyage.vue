@@ -150,7 +150,7 @@
                 <v-col cols="12" class="my-1">
                   <v-chip
                     @click="enableStarMission = !enableStarMission"
-                    :color="enableStarMission ? 'primary' : ''"
+                    :color="enableStarMission ? 'info' : ''"
                     :outlined="!enableStarMission"
                     small
                   >
