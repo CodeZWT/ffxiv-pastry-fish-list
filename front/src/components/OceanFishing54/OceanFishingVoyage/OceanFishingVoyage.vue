@@ -134,7 +134,6 @@
           <v-card>
             <v-card-title>任务列表</v-card-title>
             <v-card-subtitle>点击以显示任务提示</v-card-subtitle>
-
             <v-card-text>
               <v-row no-gutters>
                 <v-col cols="12" class="my-1">
@@ -183,6 +182,25 @@
               </v-row>
             </v-card-text>
           </v-card>
+        </v-col>
+
+        <v-col cols="12">
+          <v-expansion-panels accordion>
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                <div class="d-flex align-center">
+                  任务经验分享
+                </div>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-card outlined class="mt-2">
+                  <v-card-subtitle>{{ blueFishTip3.missionTip.extra }}</v-card-subtitle>
+                  <v-card-text v-html="blueFishTip3.missionTip[currentLocations[2].id]">
+                  </v-card-text>
+                </v-card>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </v-col>
         <v-col
           v-for="(location, index) in currentLocations"
