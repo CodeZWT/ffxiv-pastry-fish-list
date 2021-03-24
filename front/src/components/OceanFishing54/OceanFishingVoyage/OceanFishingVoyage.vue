@@ -96,6 +96,19 @@
                       <fish-tip :fish="currentTipNormalBigFishList[index]" />
                     </div>
                   </div>
+                  <div
+                    v-for="fish in currentTipNormalFishLists[index]"
+                    :key="'weather-fish-' + fish._id"
+                  >
+                    <fish-tip
+                      v-if="
+                        fish.notAvailableWeatherSet.length > 0 &&
+                          currentTipSpectralFishList[index]._id !== fish._id &&
+                          currentTipNormalBigFishList[index]._id !== fish._id
+                      "
+                      :fish="fish"
+                    />
+                  </div>
                 </v-card-text>
               </v-card>
             </v-col>
@@ -384,7 +397,7 @@ export default {
           type: 'item',
           id: 'fish-tip',
           icon: 'bg-060034',
-          name: '幻光鱼/绿鱼/蓝鱼',
+          name: '稀有鱼',
         },
         {
           type: 'achievement',
