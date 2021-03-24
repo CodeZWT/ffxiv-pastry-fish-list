@@ -1,107 +1,281 @@
 const MINUTE = 60 * 1000
 const HOUR = 60 * MINUTE
+const missions = {
+  1: {
+    id: 1,
+    quantity: 7,
+    description: 'Catch jellyfish or crabs',
+    types: [15, 21],
+    star: null,
+    tug: null,
+  },
+  2: {
+    id: 2,
+    quantity: 5,
+    description: 'Catch fish rated ★★★ or higher',
+    types: [],
+    star: 3,
+    tug: null,
+  },
+  4: {
+    id: 4,
+    quantity: 34,
+    description: 'Catch fish with a weak bite (!)',
+    types: [],
+    star: null,
+    tug: 'light',
+  },
+  5: {
+    id: 5,
+    quantity: 18,
+    description: 'Catch fish with a strong bite (!!)',
+    types: [],
+    star: null,
+    tug: 'medium',
+  },
+  6: {
+    id: 6,
+    quantity: 6,
+    description: 'Catch fish with a ferocious bite (!!!)',
+    types: [],
+    star: null,
+    tug: 'heavy',
+  },
+  7: {
+    id: 7,
+    quantity: 5,
+    description: 'Catch sharks',
+    types: [14],
+    star: null,
+    tug: null,
+  },
+  8: {
+    id: 8,
+    quantity: 5,
+    description: 'Catch fish rated ★★★ or higher',
+    types: [],
+    star: 3,
+    tug: null,
+  },
+  10: {
+    id: 10,
+    quantity: 34,
+    description: 'Catch fish with a weak bite (!)',
+    types: [],
+    star: null,
+    tug: 'light',
+  },
+  11: {
+    id: 11,
+    quantity: 11,
+    description: 'Catch fish with a strong bite (!!)',
+    types: [],
+    star: null,
+    tug: 'medium',
+  },
+  12: {
+    id: 12,
+    quantity: 13,
+    description: 'Catch fish with a ferocious bite (!!!)',
+    types: [],
+    star: null,
+    tug: 'heavy',
+  },
+  13: {
+    id: 13,
+    quantity: 13,
+    description: 'Catch crabs',
+    types: [21],
+    star: null,
+    tug: null,
+  },
+  14: {
+    id: 14,
+    quantity: 5,
+    description: 'Catch fish rated ★★★ or higher',
+    types: [],
+    star: 3,
+    tug: null,
+  },
+  16: {
+    id: 16,
+    quantity: 31,
+    description: 'Catch fish with a weak bite (!)',
+    types: [],
+    star: null,
+    tug: 'light',
+  },
+  17: {
+    id: 17,
+    quantity: 27,
+    description: 'Catch fish with a strong bite (!!)',
+    types: [],
+    star: null,
+    tug: 'medium',
+  },
+  18: {
+    id: 18,
+    quantity: 5,
+    description: 'Catch fish with a ferocious bite (!!!)',
+    types: [],
+    star: null,
+    tug: 'heavy',
+  },
+  19: {
+    id: 19,
+    quantity: 13,
+    description: 'Catch fugu',
+    types: [20],
+    star: null,
+    tug: null,
+  },
+  20: {
+    id: 20,
+    quantity: 5,
+    description: 'Catch fish rated ★★★ or higher',
+    types: [],
+    star: 3,
+    tug: null,
+  },
+  22: {
+    id: 22,
+    quantity: 39,
+    description: 'Catch fish with a weak bite (!)',
+    types: [],
+    star: null,
+    tug: 'light',
+  },
+  23: {
+    id: 23,
+    quantity: 18,
+    description: 'Catch fish with a strong bite (!!)',
+    types: [],
+    star: null,
+    tug: 'medium',
+  },
+  24: {
+    id: 24,
+    quantity: 8,
+    description: 'Catch fish with a ferocious bite (!!!)',
+    types: [],
+    star: null,
+    tug: 'heavy',
+  },
+}
 
 const routes = {
-  '1': {
-    id: 1,
+  1: {
+    routeId: 1,
     name_chs: '梅尔托尔海峡北航线',
     spotList: [2, 1, 3],
     timeList: [1, 2, 3],
     achievements: [2563],
     blueFish: [],
+    missions: [1, 2, 4, 5, 6],
   },
-  '2': {
-    id: 2,
+  2: {
+    routeId: 2,
     name_chs: '梅尔托尔海峡北航线',
     spotList: [2, 1, 3],
     timeList: [2, 3, 1],
     achievements: [],
     blueFish: [0, 29788, 29791],
+    missions: [1, 2, 4, 5, 6],
   },
-  '3': {
-    id: 3,
+  3: {
+    routeId: 3,
     name_chs: '梅尔托尔海峡北航线',
     spotList: [2, 1, 3],
     timeList: [3, 1, 2],
     achievements: [2566],
     blueFish: [29789, 0, 0],
+    missions: [1, 2, 4, 5, 6],
   },
-  '4': {
-    id: 4,
+  4: {
+    routeId: 4,
     name_chs: '罗塔诺海航线',
     spotList: [1, 2, 4],
     timeList: [1, 2, 3],
     achievements: [2565],
     blueFish: [],
+    missions: [7, 8, 10, 11, 12],
   },
-  '5': {
-    id: 5,
+  5: {
+    routeId: 5,
     name_chs: '罗塔诺海航线',
     spotList: [1, 2, 4],
     timeList: [2, 3, 1],
     achievements: [2564],
     blueFish: [0, 29789, 0],
+    missions: [7, 8, 10, 11, 12],
   },
-  '6': {
-    id: 6,
+  6: {
+    routeId: 6,
     name_chs: '罗塔诺海航线',
     spotList: [1, 2, 4],
     timeList: [3, 1, 2],
     achievements: [],
     blueFish: [29788, 0, 29790],
+    missions: [7, 8, 10, 11, 12],
   },
-  '7': {
-    id: 7,
+  7: {
+    routeId: 7,
     name_chs: 'Bloodbrine Sea',
     spotList: [5, 3, 6],
     timeList: [1, 2, 3],
     achievements: [2756],
     blueFish: [],
+    missions: [13, 14, 16, 17, 18],
   },
-  '8': {
-    id: 8,
+  8: {
+    routeId: 8,
     name_chs: 'Bloodbrine Sea',
     spotList: [5, 3, 6],
     timeList: [2, 3, 1],
     achievements: [2755],
     blueFish: [0, 0, 32094],
+    missions: [13, 14, 16, 17, 18],
   },
-  '9': {
-    id: 9,
+  9: {
+    routeId: 9,
     name_chs: 'Bloodbrine Sea',
     spotList: [5, 3, 6],
     timeList: [3, 1, 2],
     achievements: [],
     blueFish: [32074, 29791, 0],
+    missions: [13, 14, 16, 17, 18],
   },
-  '10': {
-    id: 10,
+  10: {
+    routeId: 10,
     name_chs: 'Rothlyt Sound',
     spotList: [5, 4, 7],
     timeList: [1, 2, 3],
     achievements: [2754],
     blueFish: [0, 29790, 0],
+    missions: [19, 20, 22, 23, 24],
   },
-  '11': {
-    id: 11,
+  11: {
+    routeId: 11,
     name_chs: 'Rothlyt Sound',
     spotList: [5, 4, 7],
     timeList: [2, 3, 1],
     achievements: [2754, 2756],
     blueFish: [0, 0, 0],
+    missions: [19, 20, 22, 23, 24],
   },
-  '12': {
-    id: 12,
+  12: {
+    routeId: 12,
     name_chs: 'Rothlyt Sound',
     spotList: [5, 4, 7],
     timeList: [3, 1, 2],
     achievements: [],
     blueFish: [32074, 0, 32114],
+    missions: [19, 20, 22, 23, 24],
   },
 }
-// const routeList = Object.values(routes)
+
 const spots = {
-  '1': {
+  1: {
     id: 1,
     spotMain: 237,
     spotSub: 238,
@@ -113,7 +287,7 @@ const spots = {
     spotSubNameText: '加拉迪翁湾外海幻海流',
     weatherSet: [2, 3, 4, 7, 8, 1],
   },
-  '2': {
+  2: {
     id: 2,
     spotMain: 239,
     spotSub: 240,
@@ -125,7 +299,7 @@ const spots = {
     spotSubNameText: '梅尔托尔海峡南幻海流',
     weatherSet: [2, 3, 4, 5, 6, 1],
   },
-  '3': {
+  3: {
     id: 3,
     spotMain: 243,
     spotSub: 244,
@@ -137,7 +311,7 @@ const spots = {
     spotSubNameText: '梅尔托尔海峡北幻海流',
     weatherSet: [2, 3, 4, 11, 14, 1],
   },
-  '4': {
+  4: {
     id: 4,
     spotMain: 241,
     spotSub: 242,
@@ -149,7 +323,7 @@ const spots = {
     spotSubNameText: '罗塔诺海海面幻海流',
     weatherSet: [2, 3, 4, 15, 16, 1],
   },
-  '5': {
+  5: {
     id: 5,
     spotMain: 246,
     spotSub: 247,
@@ -161,7 +335,7 @@ const spots = {
     spotSubNameText: 'Cieldalaes Spectral Current',
     weatherSet: [2, 3, 4, 9, 10, 1],
   },
-  '6': {
+  6: {
     id: 6,
     spotMain: 248,
     spotSub: 249,
@@ -173,7 +347,7 @@ const spots = {
     spotSubNameText: 'Bloodbrine Spectral Current',
     weatherSet: [2, 3, 4, 7, 8, 1],
   },
-  '7': {
+  7: {
     id: 7,
     spotMain: 250,
     spotSub: 251,
@@ -498,6 +672,7 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPE
         blueFish: route.blueFish[i] ? route.blueFish[i] : null,
       }
     })
+    const routeMissions = route.missions.map(missionId => missions[missionId])
     return {
       ...voyage,
       // ...Fish_Tracker_CN_TIPS[voyage.voyageType],
@@ -507,6 +682,9 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPE
         type: timeList[0] - 1,
         name: route.name_chs,
       },
+      typeMission: routeMissions.find(mission => mission.types.length > 0),
+      starMission: routeMissions.find(mission => mission.star),
+      tugMission: routeMissions.filter(mission => mission.tug),
     }
   })
 }

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--    <pre>{{ voyage }}</pre>-->
     <div>
       <v-radio-group v-model="tipIndex" row>
         <v-radio v-for="(tip, index) in tips" :value="index" :key="index">
@@ -131,6 +130,60 @@
     </div>
     <div v-else-if="currentTip.id === 'point-tip'">
       <v-row>
+        <v-col cols="12">
+          <v-card>
+            <v-card-title>任务列表</v-card-title>
+            <v-card-subtitle>点击以显示任务提示</v-card-subtitle>
+
+            <v-card-text>
+              <v-row no-gutters>
+                <v-col cols="12" class="my-1">
+                  <v-chip
+                    @click="enableTypeMission = !enableTypeMission"
+                    :color="enableTypeMission ? 'primary' : ''"
+                    :outlined="!enableTypeMission"
+                    small
+                  >
+                    {{ voyage.typeMission.description }}:
+                    {{ voyage.typeMission.quantity }}
+                  </v-chip>
+                </v-col>
+                <v-col cols="12" class="my-1">
+                  <v-chip
+                    @click="enableStarMission = !enableStarMission"
+                    :color="enableStarMission ? 'primary' : ''"
+                    :outlined="!enableStarMission"
+                    small
+                  >
+                    {{ voyage.starMission.description }}:
+                    {{ voyage.starMission.quantity }}
+                  </v-chip>
+                </v-col>
+                <v-col cols="12">
+                  <div>
+                    <v-chip-group
+                      v-model="selectedTugMissionId"
+                      active-class="error"
+                      column
+                      dense
+                    >
+                      <v-chip
+                        class="my-0"
+                        v-for="(mission, index) in voyage.tugMission"
+                        :key="index"
+                        :value="mission.id"
+                        :outlined="selectedTugMissionId !== mission.id"
+                        small
+                      >
+                        {{ mission.description }}: {{ mission.quantity }}
+                      </v-chip>
+                    </v-chip-group>
+                  </div>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
+        </v-col>
         <v-col
           v-for="(location, index) in currentLocations"
           :key="location.id"
@@ -142,6 +195,11 @@
             :fish-dict="fishDict"
             :spectral-trigger-fish="currentTipSpectralFishList[index]"
             :normal-big-fish="currentTipNormalBigFishList[index]"
+            :type-mission="enableTypeMission ? voyage.typeMission : undefined"
+            :star-mission="enableStarMission ? voyage.starMission : undefined"
+            :tug-mission="selectedTugMission"
+            :normal-fish-list="currentTipNormalFishLists[index]"
+            :sc-fish-list="currentTipSpectralCurrentFishLists[index]"
           />
         </v-col>
       </v-row>
@@ -162,31 +220,31 @@
           />
         </v-col>
       </v-row>
-      <v-row>
-        <v-col>
-          <v-expansion-panels accordion>
-            <v-expansion-panel>
-              <v-expansion-panel-header>
-                <div class="d-flex align-center">
-                  {{ currentTip.name }}宏
-                  <click-helper @click.stop :copy-text="achievementMacro[currentTip.id]">
-                    <v-btn text icon small :title="$t('list.item.copyHint')">
-                      <v-icon small>mdi-content-copy</v-icon>
-                    </v-btn>
-                  </click-helper>
-                </div>
-              </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <v-card outlined class="mt-2">
-                  <v-card-text>
-                    <pre class="tip-macro">{{ achievementMacro[currentTip.id] }}</pre>
-                  </v-card-text>
-                </v-card>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
-        </v-col>
-      </v-row>
+      <!--      <v-row>-->
+      <!--        <v-col>-->
+      <!--          <v-expansion-panels accordion>-->
+      <!--            <v-expansion-panel>-->
+      <!--              <v-expansion-panel-header>-->
+      <!--                <div class="d-flex align-center">-->
+      <!--                  {{ currentTip.name }}宏-->
+      <!--                  <click-helper @click.stop :copy-text="achievementMacro[currentTip.id]">-->
+      <!--                    <v-btn text icon small :title="$t('list.item.copyHint')">-->
+      <!--                      <v-icon small>mdi-content-copy</v-icon>-->
+      <!--                    </v-btn>-->
+      <!--                  </click-helper>-->
+      <!--                </div>-->
+      <!--              </v-expansion-panel-header>-->
+      <!--              <v-expansion-panel-content>-->
+      <!--                <v-card outlined class="mt-2">-->
+      <!--                  <v-card-text>-->
+      <!--                    <pre class="tip-macro">{{ achievementMacro[currentTip.id] }}</pre>-->
+      <!--                  </v-card-text>-->
+      <!--                </v-card>-->
+      <!--              </v-expansion-panel-content>-->
+      <!--            </v-expansion-panel>-->
+      <!--          </v-expansion-panels>-->
+      <!--        </v-col>-->
+      <!--      </v-row>-->
     </div>
   </div>
 </template>
@@ -200,7 +258,6 @@ import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
 import PointTip from '@/components/OceanFishing54/OceanFishingVoyage/PointTip'
 import AchievementTip from '@/components/OceanFishing54/OceanFishingVoyage/AchievementTip'
 import OceanFishingBlueFishTip from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingBlueFishTip'
-import ClickHelper from '@/components/basic/ClickHelper'
 import { OCEAN_FISHING_TIPS } from 'Data/fix'
 import ImgUtil from '@/utils/ImgUtil'
 
@@ -208,7 +265,6 @@ export default {
   name: 'OceanFishingVoyage',
   components: {
     OceanFishingBlueFishTip,
-    ClickHelper,
     AchievementTip,
     PointTip,
     FishTip,
@@ -231,6 +287,9 @@ export default {
   },
   data() {
     return {
+      enableTypeMission: true,
+      enableStarMission: false,
+      selectedTugMissionId: undefined,
       currentLocationIndex: 0,
       shiftFilterEnabled: true,
       tipIndex: 0,
@@ -290,6 +349,11 @@ export default {
     }
   },
   computed: {
+    selectedTugMission() {
+      return this.voyage.tugMission.find(
+        mission => mission.id === this.selectedTugMissionId
+      )
+    },
     tips() {
       return [
         {
@@ -383,6 +447,20 @@ export default {
           ?.find(it => it.id === spotId)
           ?.fishList?.map(fishId => this.fishDict[fishId])
           ?.filter(fish => fish.fishTipType === 1)
+      )
+    },
+    currentTipSpectralCurrentFishLists() {
+      return this.spectralCurrentFishingSpotIds.map(spotId =>
+        this.oceanFishingSpots
+          ?.find(it => it.id === spotId)
+          ?.fishList?.map(fishId => this.fishDict[fishId])
+      )
+    },
+    currentTipNormalFishLists() {
+      return this.normalFishingSpotIds.map(spotId =>
+        this.oceanFishingSpots
+          ?.find(it => it.id === spotId)
+          ?.fishList?.map(fishId => this.fishDict[fishId])
       )
     },
     currentTipNormalBigFishList() {

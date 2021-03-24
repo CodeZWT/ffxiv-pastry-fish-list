@@ -649,6 +649,7 @@ import ToggleButton from '@/components/basic/ToggleButton'
 import HelpDialog from '@/components/Dialog/HelpDialog'
 import FishEyesToggleButton from '@/components/FishEyesToggleButton'
 import isEqual from 'lodash/isEqual'
+import repeat from 'lodash/repeat'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
 
 export default {
@@ -1562,8 +1563,13 @@ export default {
         predators: hasPredators ? this.getOceanFishPredators(fish.predators) : [],
         bonusId: fish.bonus,
         bonus: {
+          id: bonus._id,
           name: bonus.objective,
           icon: DataUtil.iconIdToClass(bonus.icon),
+        },
+        star: {
+          quantity: fish.star,
+          text: repeat('★', fish.star),
         },
       }
     },

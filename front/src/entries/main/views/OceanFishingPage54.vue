@@ -261,6 +261,9 @@ export default {
             shiftIcon: shift2Icon(voyageWithTip.shift.type),
             name: voyageWithTip.shift.name,
             targets: targets,
+            typeMission: voyageWithTip.typeMission,
+            starMission: voyageWithTip.starMission,
+            tugMission: voyageWithTip.tugMission,
             voyageLocations: voyageWithTip.locationTips.map(it => ({
               id: it.fishingSpots.normal,
               spectralCurrentId: it.fishingSpots.spectralCurrent,

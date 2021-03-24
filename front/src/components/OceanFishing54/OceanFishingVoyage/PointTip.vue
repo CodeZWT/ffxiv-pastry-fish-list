@@ -8,10 +8,32 @@
         </div>
       </v-card-title>
       <v-card-text>
-        <fish-tip :fish="spectralTriggerFish" />
-      </v-card-text>
-      <v-card-text>
-        <fish-tip :fish="normalBigFish" />
+        <fish-tip
+          :fish="spectralTriggerFish"
+          show-mission-tip
+          :type-mission="typeMission"
+          :star-mission="starMission"
+          :tug-mission="tugMission"
+        />
+        <fish-tip
+          :fish="normalBigFish"
+          show-mission-tip
+          :type-mission="typeMission"
+          :star-mission="starMission"
+          :tug-mission="tugMission"
+        />
+        <template v-if="normalMissionFishList.length > 0">
+          <v-subheader>任务</v-subheader>
+          <div v-for="fish in normalMissionFishList" :key="fish._id">
+            <fish-tip
+              :fish="fish"
+              show-mission-tip
+              :type-mission="typeMission"
+              :star-mission="starMission"
+              :tug-mission="tugMission"
+            />
+          </div>
+        </template>
       </v-card-text>
     </v-card>
 
@@ -23,13 +45,28 @@
         </div>
       </v-card-title>
       <v-card-text>
-        <div
-          v-for="(fishId, index) in tip[location.spectralCurrentId][location.shift]
-            .fishList"
-          :key="index"
-        >
-          <fish-tip :fish="fishDict[fishId]" show-point-tip />
+        <div v-for="(fishId, index) in scPointFishIds" :key="index">
+          <fish-tip
+            :fish="fishDict[fishId]"
+            show-point-tip
+            show-mission-tip
+            :type-mission="typeMission"
+            :star-mission="starMission"
+            :tug-mission="tugMission"
+          />
         </div>
+        <template v-if="scMissionFishList.length > 0">
+          <v-subheader>任务</v-subheader>
+          <div v-for="fish in scMissionFishList" :key="fish._id">
+            <fish-tip
+              :fish="fish"
+              show-mission-tip
+              :type-mission="typeMission"
+              :star-mission="starMission"
+              :tug-mission="tugMission"
+            />
+          </div>
+        </template>
       </v-card-text>
     </v-card>
 
@@ -71,6 +108,26 @@ export default {
       default: undefined,
     },
     fishDict: {
+      type: Object,
+      default: undefined,
+    },
+    typeMission: {
+      type: Object,
+      default: undefined,
+    },
+    starMission: {
+      type: Object,
+      default: undefined,
+    },
+    normalFishList: {
+      type: Array,
+      default: () => [],
+    },
+    scFishList: {
+      type: Array,
+      default: () => [],
+    },
+    tugMission: {
       type: Object,
       default: undefined,
     },
@@ -230,6 +287,41 @@ export default {
         // '244-2': { fishList: [29773], tipContent: '磷虾，双提5s+[!!](幻纱披风4*198)' },
       },
     }
+  },
+  computed: {
+    normalMissionFishList() {
+      return this.normalFishList
+        .filter(
+          fish =>
+            this.normalBigFish._id !== fish._id &&
+            this.spectralTriggerFish._id !== fish._id
+        )
+        .filter(
+          fish =>
+            this.isTypeMissionTarget(fish) ||
+            this.isStarMissionTarget(fish) ||
+            this.isTugMissionTarget(fish)
+        )
+    },
+    scMissionFishList() {
+      return this.scFishList
+        .filter(fish => !this.scPointFishIds.includes(fish._id))
+        .filter(fish => this.isTypeMissionTarget(fish))
+    },
+    scPointFishIds() {
+      return this.tip[this.location.spectralCurrentId][this.location.shift].fishList
+    },
+  },
+  methods: {
+    isTypeMissionTarget(fish) {
+      return this.typeMission != null && this.typeMission.types.includes(fish.bonus.id)
+    },
+    isStarMissionTarget(fish) {
+      return this.starMission != null && fish.star.quantity >= 3
+    },
+    isTugMissionTarget(fish) {
+      return this.tugMission != null && fish.tug === this.tugMission.tug
+    },
   },
 }
 </script>
