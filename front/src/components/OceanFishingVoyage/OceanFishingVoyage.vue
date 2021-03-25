@@ -328,7 +328,7 @@ export default {
           type: 'item',
           id: 'fish-tip',
           icon: 'bg-060034',
-          name: '稀有鱼',
+          name: '幻光鱼/绿鱼/蓝鱼',
         },
         ...(this.voyage?.targets
           ?.filter(target => target.type === 'achievement')

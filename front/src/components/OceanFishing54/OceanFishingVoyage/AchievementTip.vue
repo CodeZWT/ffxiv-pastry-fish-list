@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import FishTip from '@/components/OceanFishingVoyage/FishTip'
+import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
 import FIX from 'Data/fix'
 
 export default {
