@@ -34,7 +34,10 @@
             style="min-width: 48px"
             :small="dense"
           />
-          <div :title="`${item.name}#${item.id}`">{{ item.name }}</div>
+          <div>
+            <div :title="`${item.name}#${item.id}`">{{ item.name }}</div>
+            <div>{{ item.star.text }}</div>
+          </div>
         </div>
       </template>
       <template v-slot:item.baitId="{ item }">
@@ -321,4 +324,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+.v-data-table::v-deep
+  td
+    padding: 0 !important
+</style>

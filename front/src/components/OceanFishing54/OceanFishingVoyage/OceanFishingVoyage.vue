@@ -13,7 +13,6 @@
     <div v-if="currentTip.id === 'fish-list'">
       <v-tabs v-model="currentLocationIndex" centered icons-and-text grow show-arrows>
         <v-tabs-slider></v-tabs-slider>
-
         <v-tab v-for="(location, index) in currentLocations" :key="index">
           {{ location.name }}
           <v-icon>{{ location.icon }}</v-icon>
@@ -35,6 +34,7 @@
               :fish-list="currentFishList"
               weather-filter
               :weather-set="currentWeatherSet"
+              dense
             />
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -65,6 +65,7 @@
               :fish-list="currentSpectralCurrentFishList"
               :shift-filter="shiftFilterEnabled"
               :shift="currentShift"
+              dense
             />
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -201,9 +202,7 @@
           <v-expansion-panels accordion>
             <v-expansion-panel>
               <v-expansion-panel-header>
-                <div class="d-flex align-center">
-                  任务经验分享
-                </div>
+                <div class="d-flex align-center">任务经验分享</div>
               </v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-card outlined class="mt-2">
@@ -326,7 +325,7 @@ export default {
       tipIndex: 0,
       achievementMacro: {
         // 八爪旅人
-        '2563':
+        2563:
           '/p ---钓场一：梅尔托尔海峡南-白天---\n' +
           '/p 保存GP，随便钓\n' +
           '/p ——————————————————————————————\n' +
@@ -339,7 +338,7 @@ export default {
           '/p 幻海流中用磷虾，双提5s+[!!]→幻纱披风*4\n' +
           '/p 推荐连招：双重提钩-专一垂钓-双重提钩',
         // 捕鲨人
-        '2564':
+        2564:
           '/p ---钓场一：加拉迪翁湾外海-黄昏---\n' +
           '/p 暴雨天气直接跳船。\n' +
           '/p 刺螠[!!!]→暗淡鲨，满GP可以开个专一，可能会歪到幻光巨齿鲨。满了还没遇到鲨鱼可以适当撒饵。\n' +
@@ -353,7 +352,7 @@ export default {
           '/p 幻海流中用刺螠，双提[!!!]→处刑者*4，平提[!!]→清道夫\n' +
           '/p 推荐连招：双重提钩-专一垂钓-双重提钩',
         // 水母狂魔
-        '2565':
+        2565:
           '/p 石沙蚕，认准4s[!]→拉诺西亚水母，自信双提\n' +
           '/p 建议使用宏：\n' +
           '/p /ac 抛竿\n' +
@@ -362,7 +361,7 @@ export default {
           '/p /ac 提钩\n' +
           '/p 第一个点钓完报数，不够就跳',
         // 龙马惊神
-        '2566':
+        2566:
           '/p ---钓场一：梅尔托尔海峡南-夜晚---\n' +
           '/p 薄雾、阴云天气直接跳船。\n' +
           '/p 石沙蚕，8s-16s的[!]→蓬松海龙，12s以上可以酌情双提\n' +
