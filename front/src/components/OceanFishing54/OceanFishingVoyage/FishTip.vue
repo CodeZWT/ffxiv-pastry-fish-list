@@ -60,7 +60,7 @@
           </v-chip>
         </div>
         <div
-          v-if="!showPointTip && showMissionTip"
+          v-if="!showPointTip && showMissionTip && fish.doubleHook[0] > 1"
           style="position: absolute; top: 0; right: 0"
           title="双提个数"
         >
