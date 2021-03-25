@@ -10,6 +10,7 @@
       <v-card-text>
         <fish-tip
           :fish="spectralTriggerFish"
+          :simple="enableSimpleMode"
           show-mission-tip
           :type-mission="typeMission"
           :star-mission="starMission"
@@ -17,6 +18,7 @@
         />
         <fish-tip
           :fish="normalBigFish"
+          :simple="enableSimpleMode"
           show-mission-tip
           :type-mission="typeMission"
           :star-mission="starMission"
@@ -38,6 +40,7 @@
                 <div v-for="fish in normalMissionFishList" :key="fish._id">
                   <fish-tip
                     :fish="fish"
+                    :simple="enableSimpleMode"
                     show-mission-tip
                     :type-mission="typeMission"
                     :star-mission="starMission"
@@ -62,6 +65,7 @@
         <div v-for="(fishId, index) in scPointFishIds" :key="index">
           <fish-tip
             :fish="fishDict[fishId]"
+            :simple="enableSimpleMode"
             show-point-tip
             show-mission-tip
             :type-mission="typeMission"
@@ -85,6 +89,7 @@
                 <div v-for="fish in scMissionFishList" :key="fish._id">
                   <fish-tip
                     :fish="fish"
+                    :simple="enableSimpleMode"
                     show-mission-tip
                     :type-mission="typeMission"
                     :star-mission="starMission"
@@ -160,6 +165,10 @@ export default {
       type: Object,
       default: undefined,
     },
+    enableSimpleMode: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -168,7 +177,6 @@ export default {
   },
   computed: {
     normalMissionFishList() {
-      console.log(this.normalBigFish.predators)
       return this.normalFishList
         .filter(
           fish =>

@@ -5,8 +5,8 @@
     <!--    </div>-->
     <v-card color="system">
       <v-card-text class="d-flex justify-center align-center" style="position: relative">
-        <fish-bait-list :baits="fish.baits" :target="fish" />
-        <div class="ml-1 d-flex flex-column justify-center">
+        <fish-bait-list :baits="fish.baits" :target="fish" :simple="simple" />
+        <div v-if="!simple" class="ml-1 d-flex flex-column justify-center">
           <div>
             <span>{{ fish.biteTimeMin }}s</span>
             <span v-if="fish.biteTimeMax">-{{ fish.biteTimeMax }}s</span>
@@ -35,18 +35,21 @@
             />
           </div>
         </div>
-        <div style="position: absolute; top: 0; left: 0">
+        <div v-if="!simple" style="position: absolute; top: 0; left: 0">
           <v-chip label class="rounded-tr-0 rounded-br-lg rounded-bl-0" outlined>
             {{ fish.name }}
           </v-chip>
         </div>
-        <div v-if="showMissionTip" style="position: absolute; bottom: 0; left: 0">
+        <div
+          v-if="!simple && showMissionTip"
+          style="position: absolute; bottom: 0; left: 0"
+        >
           <v-chip label class="rounded-br-0 rounded-tr-lg rounded-tl-0" outlined>
             {{ fish.star.text }}
           </v-chip>
         </div>
         <div
-          v-if="showPointTip"
+          v-if="!simple && showPointTip"
           style="position: absolute; top: 0; right: 0"
           title="渔分 x 双提个数"
         >
@@ -60,7 +63,7 @@
           </v-chip>
         </div>
         <div
-          v-if="!showPointTip && showMissionTip && fish.doubleHook[0] > 1"
+          v-if="!simple && !showPointTip && showMissionTip && fish.doubleHook[0] > 1"
           style="position: absolute; top: 0; right: 0"
           title="双提个数"
         >
@@ -74,7 +77,7 @@
           </v-chip>
         </div>
         <div
-          v-else-if="showAchievementTip"
+          v-else-if="!simple && showAchievementTip"
           style="position: absolute; top: 0; right: 0"
           title="双提个数"
         >
@@ -88,7 +91,10 @@
           </v-chip>
         </div>
         <div
-          v-if="fish.hasWeatherConstraint || fish.hasRealWeatherConstraint"
+          v-if="
+            !hideClearWeather(fish) &&
+              (fish.hasWeatherConstraint || fish.hasRealWeatherConstraint)
+          "
           style="position: absolute; right: 0; bottom: 0"
         >
           <v-chip
@@ -113,8 +119,8 @@
           class="d-flex justify-center align-center item-border"
           style="position: relative"
         >
-          <fish-bait-list :baits="predator.baits" :target="predator" />
-          <div class="ml-1 d-flex flex-column justify-center">
+          <fish-bait-list :baits="predator.baits" :target="predator" :simple="simple" />
+          <div v-if="!simple" class="ml-1 d-flex flex-column justify-center">
             <div>
               <span>{{ predator.biteTimeMin }}s</span>
               <span v-if="predator.biteTimeMax">-{{ predator.biteTimeMax }}s</span>
@@ -143,24 +149,32 @@
               />
             </div>
           </div>
-          <div style="position: absolute; top: 0; left: 0">
+          <div v-if="!simple" style="position: absolute; top: 0; left: 0">
             <v-chip label class="rounded-t-0 rounded-br-lg rounded-bl-0" outlined>
               {{ predator.name }}
             </v-chip>
           </div>
-          <div v-if="showMissionTip" style="position: absolute; bottom: 0; left: 0">
+          <div
+            v-if="!simple && showMissionTip"
+            style="position: absolute; bottom: 0; left: 0"
+          >
             <v-chip label class="rounded-br-0 rounded-tr-lg rounded-tl-0" outlined>
               {{ predator.star.text }}
             </v-chip>
           </div>
-          <div
-            v-if="predator.hasWeatherConstraint || predator.hasRealWeatherConstraint"
-            style="position: absolute; right: 0; bottom: 0"
-          >
-            <!--            <v-chip label class="rounded-bl-0 rounded-tl-lg rounded-tr-0" color="error">-->
-            <!--              <fish-weather-not-available :item="predator" dense />-->
-            <!--            </v-chip>-->
-          </div>
+          <!--          <div-->
+          <!--            v-if="predator.hasWeatherConstraint || predator.hasRealWeatherConstraint"-->
+          <!--            style="position: absolute; right: 0; bottom: 0"-->
+          <!--          >-->
+          <!--            <v-chip-->
+          <!--              label-->
+          <!--              class="rounded-bl-0 rounded-tl-lg rounded-tr-0"-->
+          <!--              color="error"-->
+          <!--              outlined-->
+          <!--            >-->
+          <!--              <fish-weather-not-available :item="predator" dense />-->
+          <!--            </v-chip>-->
+          <!--          </div>-->
         </v-card-text>
       </div>
     </v-card>
@@ -210,6 +224,10 @@ export default {
       type: Object,
       default: undefined,
     },
+    simple: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     isTypeMissionTarget(fish) {
@@ -225,6 +243,13 @@ export default {
     isTugMissionTarget(fish) {
       return (
         this.showMissionTip && this.tugMission != null && fish.tug === this.tugMission.tug
+      )
+    },
+    hideClearWeather(fish) {
+      return (
+        this.simple &&
+        fish.notAvailableWeatherSet.length === 1 &&
+        fish.notAvailableWeatherSet[0] === 1
       )
     },
   },

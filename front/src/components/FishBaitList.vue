@@ -6,7 +6,7 @@
     <div v-for="(bait, baitInx) in baits" :key="baitInx">
       <div class="d-flex align-center">
         <!--        <span v-if="bait.optional" style="font-size: x-large">(</span>-->
-        <div v-if="baitInx !== 0" style="display: flex; align-items: center">
+        <div v-if="baitInx !== 0 && !simple" style="display: flex; align-items: center">
           <v-icon small>mdi-arrow-right</v-icon>
         </div>
         <div
@@ -30,7 +30,7 @@
             />
           </v-col>
           <!--  :data-ck-action-name="bait.hooksetSkillName"  -->
-          <v-col cols="12" style="height: 16px">
+          <v-col v-if="!simple || bait.tug === 'heavy'" cols="12" style="height: 16px">
             <div
               v-show="bait.hookset != null"
               :class="[bait.hooksetIcon, 'hookset-icon']"
@@ -41,7 +41,7 @@
       </div>
     </div>
     <template v-if="target">
-      <v-icon small>mdi-arrow-right</v-icon>
+      <v-icon v-if="!simple" small>mdi-arrow-right</v-icon>
       <item-icon :icon-class="target.icon" :title="target.name" />
       <template v-if="target.requiredCnt">
         <span class="mx-1">X</span>
@@ -72,6 +72,10 @@ export default {
     target: {
       type: Object,
       default: undefined,
+    },
+    simple: {
+      type: Boolean,
+      default: false,
     },
   },
   data: () => ({

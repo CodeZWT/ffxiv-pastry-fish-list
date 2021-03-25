@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="d-flex align-center">
       <v-radio-group v-model="tipIndex" row>
         <v-radio v-for="(tip, index) in tips" :value="index" :key="index">
           <template v-slot:label>
@@ -9,6 +9,8 @@
           </template>
         </v-radio>
       </v-radio-group>
+      <v-spacer />
+      <v-switch v-model="enableSimpleMode" label="简化模式" inset />
     </div>
     <div v-if="currentTip.id === 'fish-list'">
       <v-tabs v-model="currentLocationIndex" centered icons-and-text grow show-arrows>
@@ -90,11 +92,17 @@
                 </v-card-title>
                 <v-card-text>
                   <div v-if="currentTipSpectralFishList[index]">
-                    <fish-tip :fish="currentTipSpectralFishList[index]" />
+                    <fish-tip
+                      :fish="currentTipSpectralFishList[index]"
+                      :simple="enableSimpleMode"
+                    />
                   </div>
                   <div v-if="currentTipNormalBigFishList[index]">
                     <div class="d-flex flex-column">
-                      <fish-tip :fish="currentTipNormalBigFishList[index]" />
+                      <fish-tip
+                        :fish="currentTipNormalBigFishList[index]"
+                        :simple="enableSimpleMode"
+                      />
                     </div>
                   </div>
                   <div
@@ -108,6 +116,7 @@
                           currentTipNormalBigFishList[index]._id !== fish._id
                       "
                       :fish="fish"
+                      :simple="enableSimpleMode"
                     />
                   </div>
                 </v-card-text>
@@ -123,7 +132,10 @@
                   </div>
                 </v-card-title>
                 <v-card-text>
-                  <fish-tip :fish="currentTipBlueFishList[index]" />
+                  <fish-tip
+                    :fish="currentTipBlueFishList[index]"
+                    :simple="enableSimpleMode"
+                  />
                 </v-card-text>
                 <template v-if="currentTipBlueFishList[index]._id">
                   <ocean-fishing-blue-fish-tip
@@ -145,68 +157,69 @@
     <div v-else-if="currentTip.id === 'point-tip'">
       <v-row>
         <v-col cols="12">
-          <v-card>
-            <v-card-title>任务列表</v-card-title>
-            <v-card-subtitle>点击以显示任务提示</v-card-subtitle>
-            <v-card-text>
-              <v-row no-gutters>
-                <v-col cols="12" class="my-1">
-                  <v-chip
-                    @click="enableTypeMission = !enableTypeMission"
-                    :color="enableTypeMission ? 'primary' : ''"
-                    :outlined="!enableTypeMission"
-                    small
-                  >
-                    {{ voyage.typeMission.description }}:
-                    {{ voyage.typeMission.quantity }}
-                  </v-chip>
-                </v-col>
-                <v-col cols="12" class="my-1">
-                  <v-chip
-                    @click="enableStarMission = !enableStarMission"
-                    :color="enableStarMission ? 'info' : ''"
-                    :outlined="!enableStarMission"
-                    small
-                  >
-                    {{ voyage.starMission.description }}:
-                    {{ voyage.starMission.quantity }}
-                  </v-chip>
-                </v-col>
-                <v-col cols="12">
-                  <div>
-                    <v-chip-group
-                      v-model="selectedTugMissionId"
-                      active-class="error"
-                      column
-                      dense
+          <v-expansion-panels accordion v-model="missionOpenStatus" multiple>
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                <div class="d-flex align-center">任务列表</div>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-subheader class="pa-0">点击以显示任务提示</v-subheader>
+                <v-row no-gutters>
+                  <v-col cols="12" class="my-1">
+                    <v-chip
+                      @click="enableTypeMission = !enableTypeMission"
+                      :color="enableTypeMission ? 'primary' : ''"
+                      :outlined="!enableTypeMission"
+                      small
                     >
-                      <v-chip
-                        class="my-0"
-                        v-for="(mission, index) in voyage.tugMission"
-                        :key="index"
-                        :value="mission.id"
-                        :outlined="selectedTugMissionId !== mission.id"
-                        small
+                      {{ voyage.typeMission.description }}:
+                      {{ voyage.typeMission.quantity }}
+                    </v-chip>
+                  </v-col>
+                  <v-col cols="12" class="my-1">
+                    <v-chip
+                      @click="enableStarMission = !enableStarMission"
+                      :color="enableStarMission ? 'info' : ''"
+                      :outlined="!enableStarMission"
+                      small
+                    >
+                      {{ voyage.starMission.description }}:
+                      {{ voyage.starMission.quantity }}
+                    </v-chip>
+                  </v-col>
+                  <v-col cols="12">
+                    <div>
+                      <v-chip-group
+                        v-model="selectedTugMissionId"
+                        active-class="error"
+                        column
+                        dense
                       >
-                        {{ mission.description }}: {{ mission.quantity }}
-                      </v-chip>
-                    </v-chip-group>
-                  </div>
-                </v-col>
-              </v-row>
-            </v-card-text>
-          </v-card>
-        </v-col>
-
-        <v-col cols="12">
-          <v-expansion-panels accordion>
+                        <v-chip
+                          class="my-0"
+                          v-for="(mission, index) in voyage.tugMission"
+                          :key="index"
+                          :value="mission.id"
+                          :outlined="selectedTugMissionId !== mission.id"
+                          small
+                        >
+                          {{ mission.description }}: {{ mission.quantity }}
+                        </v-chip>
+                      </v-chip-group>
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
             <v-expansion-panel>
               <v-expansion-panel-header>
                 <div class="d-flex align-center">任务经验分享</div>
               </v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-card outlined class="mt-2">
-                  <v-card-subtitle>{{ blueFishTip3.missionTip.extra }}</v-card-subtitle>
+                  <v-card-subtitle>
+                    {{ blueFishTip3.missionTip.extra }}
+                  </v-card-subtitle>
                   <v-card-text v-html="blueFishTip3.missionTip[currentLocations[2].id]">
                   </v-card-text>
                 </v-card>
@@ -230,6 +243,7 @@
             :tug-mission="selectedTugMission"
             :normal-fish-list="currentTipNormalFishLists[index]"
             :sc-fish-list="currentTipSpectralCurrentFishLists[index]"
+            :enable-simple-mode="enableSimpleMode"
           />
         </v-col>
       </v-row>
@@ -317,6 +331,8 @@ export default {
   },
   data() {
     return {
+      missionOpenStatus: [0],
+      enableSimpleMode: false,
       enableTypeMission: true,
       enableStarMission: false,
       selectedTugMissionId: undefined,
