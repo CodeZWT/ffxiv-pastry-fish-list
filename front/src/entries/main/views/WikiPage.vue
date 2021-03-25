@@ -282,7 +282,7 @@
             </v-col>
           </v-row>
         </div>
-        <div v-else-if="isOceanFishingSpot">
+        <div v-else-if="isOceanFishingSpot" class="grid-content">
           <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
           <!--          <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
         </div>
