@@ -5,7 +5,12 @@
     <!--    </div>-->
     <v-card color="system">
       <v-card-text class="d-flex justify-center align-center" style="position: relative">
-        <fish-bait-list :baits="fish.baits" :target="fish" :simple="simple" />
+        <fish-bait-list
+          :baits="fish.baits"
+          :target="fish"
+          :simple="simple"
+          :first-bait-unique="fish.isBaitUnique"
+        />
         <div v-if="!simple" class="ml-1 d-flex flex-column justify-center">
           <div>
             <span>{{ fish.biteTimeMin }}s</span>
@@ -93,7 +98,7 @@
         <div
           v-if="
             !hideClearWeather(fish) &&
-              (fish.hasWeatherConstraint || fish.hasRealWeatherConstraint)
+            (fish.hasWeatherConstraint || fish.hasRealWeatherConstraint)
           "
           style="position: absolute; right: 0; bottom: 0"
         >
@@ -119,7 +124,12 @@
           class="d-flex justify-center align-center item-border"
           style="position: relative"
         >
-          <fish-bait-list :baits="predator.baits" :target="predator" :simple="simple" />
+          <fish-bait-list
+            :baits="predator.baits"
+            :target="predator"
+            :simple="simple"
+            :first-bait-unique="predator.isBaitUnique"
+          />
           <div v-if="!simple" class="ml-1 d-flex flex-column justify-center">
             <div>
               <span>{{ predator.biteTimeMin }}s</span>

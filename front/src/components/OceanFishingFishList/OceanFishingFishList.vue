@@ -62,7 +62,23 @@
             <div :class="item.predatorsIcon" style="margin-left: 2px" />
           </template>
 
+          <v-badge
+            v-if="item.isBaitUnique"
+            color="primary"
+            icon="mdi-lock"
+            offset-x="12"
+            offset-y="12"
+            title="只能用该鱼饵"
+          >
+            <item-icon
+              :data-ck-item-id="toItemIdIfExisted(item.bait.id, item.bait.name)"
+              :icon-class="item.bait.icon"
+              :title="item.bait.name"
+              :small="dense"
+            />
+          </v-badge>
           <item-icon
+            v-else
             :data-ck-item-id="toItemIdIfExisted(item.bait.id, item.bait.name)"
             :icon-class="item.bait.icon"
             :title="item.bait.name"

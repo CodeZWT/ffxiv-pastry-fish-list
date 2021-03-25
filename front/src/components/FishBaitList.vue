@@ -14,7 +14,23 @@
           style="height: 36px; width: 36px"
           @click="onBaitOrFishClicked($event, bait.baitId)"
         >
+          <v-badge
+            v-if="firstBaitUnique"
+            color="primary"
+            icon="mdi-lock"
+            offset-x="12"
+            offset-y="12"
+            left
+            title="只能用该鱼饵"
+          >
+            <item-icon
+              :icon-class="bait.baitIcon"
+              :title="bait.baitName + '#' + bait.baitId"
+              small
+            />
+          </v-badge>
           <item-icon
+            v-else
             :icon-class="bait.baitIcon"
             :title="bait.baitName + '#' + bait.baitId"
             small
@@ -76,6 +92,10 @@ export default {
     simple: {
       type: Boolean,
       default: false,
+    },
+    firstBaitUnique: {
+      type: Boolean,
+      default: true,
     },
   },
   data: () => ({
