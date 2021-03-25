@@ -59,30 +59,30 @@ const DEFAULT_WINDOW_SETTING = {
   setting: {
     pos: { x: null, y: null },
     size: { w: 500, h: 500 },
-    opacity: 0.9,
+    opacity: 0.95,
     zoomFactor: 1,
   },
   timer: {
     pos: { x: null, y: null },
     size: { w: 500, h: 250 },
-    opacity: 0.9,
+    opacity: 0.95,
     zoomFactor: 1,
   },
   timerMini: {
     size: { w: 500, h: 120 },
-    opacity: 0.9,
+    opacity: 0.95,
     zoomFactor: 1,
   },
   history: {
     pos: { x: null, y: null },
     size: { w: 500, h: 800 },
-    opacity: 0.9,
+    opacity: 0.95,
     zoomFactor: 1,
   },
   spotStatistics: {
     pos: { x: null, y: null },
     size: { w: 500, h: 500 },
-    opacity: 0.9,
+    opacity: 0.95,
     zoomFactor: 1,
   },
 }
