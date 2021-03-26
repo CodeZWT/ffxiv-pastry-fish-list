@@ -20,7 +20,7 @@
         <div>
           <v-btn color="info" @click="showUpdateDialog = true">
             <v-icon left>mdi-information</v-icon>
-            5.4海钓说明
+            5.4 版本更新说明
           </v-btn>
         </div>
       </v-card-title>
@@ -89,7 +89,7 @@
           <v-subheader>
             游戏内容更新说明
           </v-subheader>
-          <v-alert outlined type="primary" border="left" icon="mdi-ferry">
+          <v-alert outlined type="success" border="left" icon="mdi-ferry">
             <ul>
               <li>
                 新增钓场：The Cieldalaes、The Bloodbrine Sea、The Rothlyt Sound
@@ -118,13 +118,13 @@
           <v-alert outlined type="error" border="left">
             中途退出后，不再能够申请进入本轮出海垂钓。
           </v-alert>
-          <v-alert outlined type="primary" border="left" icon="mdi-format-list-checks">
+          <v-alert outlined type="success" border="left" icon="mdi-format-list-checks">
             新增“任务”系统，完成任务会获得额外分数加成（5%/10%/20%）
           </v-alert>
           <v-subheader>
             鱼糕页面更新说明
           </v-subheader>
-          <v-alert outlined type="default " border="left">
+          <v-alert outlined border="left">
             <ul>
               <li>
                 此页面为5.4海钓内容，将与原版海钓共存一段时间。（直至国服版本更新）
