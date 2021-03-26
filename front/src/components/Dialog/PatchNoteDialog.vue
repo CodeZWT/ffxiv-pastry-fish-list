@@ -20,6 +20,20 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.7.1</div>
+        <div class="text-subtitle-1">更新时间: 2021/03/26 23:55</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕
+        </div>
+        <ul>
+          <li>
+            修正“只能用该鱼饵”在普通列表中显示的问题
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.7.0</div>
         <div class="text-subtitle-1">更新时间: 2021/03/26 22:40</div>
         <div class="text-h5 text-center my-1">

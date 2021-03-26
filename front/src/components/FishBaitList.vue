@@ -95,7 +95,7 @@ export default {
     },
     firstBaitUnique: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   data: () => ({

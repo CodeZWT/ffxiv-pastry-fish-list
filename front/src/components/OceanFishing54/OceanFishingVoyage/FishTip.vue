@@ -98,7 +98,7 @@
         <div
           v-if="
             !hideClearWeather(fish) &&
-            (fish.hasWeatherConstraint || fish.hasRealWeatherConstraint)
+              (fish.hasWeatherConstraint || fish.hasRealWeatherConstraint)
           "
           style="position: absolute; right: 0; bottom: 0"
         >
