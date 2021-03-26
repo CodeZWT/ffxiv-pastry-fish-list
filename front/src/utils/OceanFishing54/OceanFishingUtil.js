@@ -4,8 +4,8 @@ function getLS2Voyage() {
   return _.chain(
     Object.values(CORE.ROUTES).flatMap(route =>
       route.spotList.map((spotId, index) => ({
-        voyage: route,
-        locationShit: locationShiftIndexOf(spotId, route.timeList[index] - 1),
+        voyage: route.routeId,
+        locationShift: locationShiftIndexOf(spotId, route.timeList[index] - 1),
       }))
     )
   )
@@ -27,7 +27,7 @@ function allTargets() {
       .flatMap(route =>
         route.spotList.map((spotId, index) => {
           return {
-            locationShift: locationShiftIndexOf(spotId, route.timeList[index]),
+            locationShift: locationShiftIndexOf(spotId, route.timeList[index] - 1),
             blueFish: route.blueFish[index],
           }
         })
@@ -39,7 +39,7 @@ function allTargets() {
     routeList.flatMap(route =>
       route.achievements.map(achievement => ({
         achievement,
-        voyage: route.id,
+        voyage: route.routeId,
       }))
     )
   )
