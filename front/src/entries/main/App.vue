@@ -289,7 +289,9 @@
               <v-icon>mdi-ferry</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title> {{ $t('top.oceanFishing') }} @ 5.4 </v-list-item-title>
+              <v-list-item-title>
+                {{ $t('top.oceanFishing') }} [ 5.4 ]
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item @click="toPage('DiademPage')" link>
