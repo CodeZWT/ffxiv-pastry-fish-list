@@ -21,7 +21,13 @@
         </v-tab>
       </v-tabs>
 
-      <v-expansion-panels :value="0" accordion class="my-2 rounded-lg">
+      <v-expansion-panels
+        :value="[0, 1]"
+        multiple
+        accordion
+        class="my-2 rounded-b-lg rounded-t-0"
+        flat
+      >
         <v-expansion-panel>
           <v-expansion-panel-header>
             <div class="d-flex my-4" style="width: 100%">
@@ -40,13 +46,6 @@
             />
           </v-expansion-panel-content>
         </v-expansion-panel>
-      </v-expansion-panels>
-      <!--      <ocean-fishing-fish-list-->
-      <!--        :fish-list="currentFishList"-->
-      <!--        weather-filter-->
-      <!--        :weather-set="currentWeatherSet"-->
-      <!--      />-->
-      <v-expansion-panels :value="0" accordion class="my-2 rounded-lg">
         <v-expansion-panel>
           <v-expansion-panel-header>
             <div class="d-flex my-4" style="width: 100%">
