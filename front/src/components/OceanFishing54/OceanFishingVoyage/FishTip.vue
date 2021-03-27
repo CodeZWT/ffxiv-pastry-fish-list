@@ -172,6 +172,20 @@
               {{ predator.star.text }}
             </v-chip>
           </div>
+          <div
+            v-if="!simple && predator.doubleHook[0] > 1"
+            style="position: absolute; top: 0; right: 0"
+            title="双提个数"
+          >
+            <v-chip
+              label
+              class="rounded-tl-0 rounded-bl-lg rounded-br-0"
+              color="primary"
+              outlined
+            >
+              {{ predator.doubleHook.join(',') }}
+            </v-chip>
+          </div>
           <!--          <div-->
           <!--            v-if="predator.hasWeatherConstraint || predator.hasRealWeatherConstraint"-->
           <!--            style="position: absolute; right: 0; bottom: 0"-->
