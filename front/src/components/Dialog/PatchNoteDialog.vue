@@ -20,6 +20,29 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <div class="text-h6">Version 0.7.2</div>
+        <div class="text-subtitle-1">更新时间: 2021/03/27 20:06</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕
+        </div>
+        <ul>
+          <li>
+            修正珊瑚海龙限定鱼饵
+          </li>
+          <li>
+            显示前置鱼双提个数
+          </li>
+          <li>
+            显示幻海流提钩任务的鱼
+          </li>
+          <li>
+            去除幻海流任务列表中不符合时间限制的鱼
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.7.1</div>
         <div class="text-subtitle-1">更新时间: 2021/03/26 23:55</div>
         <div class="text-h5 text-center my-1">
