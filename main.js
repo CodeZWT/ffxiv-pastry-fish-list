@@ -431,6 +431,7 @@ function createReaderSetting(readTimerWin) {
     ['--route-name=ReaderSetting'],
     false,
     true,
+    true,
     readTimerWin
   )
   win.on('closed', () => {
@@ -452,6 +453,7 @@ function createReaderHistory(readTimerWin) {
     null,
     false,
     true,
+    true,
     readTimerWin
   )
   win.on('closed', (e) => {
@@ -472,6 +474,7 @@ function createReaderSpotStatistics(readTimerWin) {
     () => {},
     ['--route-name=ReaderSpotStatistics'],
     false,
+    true,
     true,
     readTimerWin
   )
@@ -596,6 +599,7 @@ function createWindow(
   additionalArguments = null,
   maximizable = true,
   keepOnTop = false,
+  skipTaskbar = false,
   parent = null
 ) {
   const setting = windowSetting[settingName]
@@ -611,6 +615,7 @@ function createWindow(
     maximizable: maximizable,
     icon: path.join(__dirname, iconPath),
     parent: parent,
+    skipTaskbar: skipTaskbar,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -664,7 +669,7 @@ function setOnTop(win) {
   win.setMinimizable(false)
 }
 
-function createReader(parent) {
+function createReader() {
   const settingName = 'timer'
   closedWindows[settingName] = null
   const win = createWindow(
@@ -674,15 +679,16 @@ function createReader(parent) {
     'reader',
     null,
     () => {
-      createTimerMiniWin(parent)
-      createReaderSetting(parent)
-      createReaderHistory(parent)
-      createReaderSpotStatistics(parent)
+      createTimerMiniWin(win)
+      createReaderSetting(win)
+      createReaderHistory(win)
+      createReaderSpotStatistics(win)
     },
     ['--route-name=ReaderTimer', '--mode=normal'],
     false,
     true,
-    parent
+    true,
+    null
   )
   win
     .on('resized', () => {
