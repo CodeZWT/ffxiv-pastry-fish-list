@@ -194,7 +194,7 @@ export default {
     scMissionFishList() {
       return this.scFishList
         .filter(fish => !this.scPointFishIds.includes(fish._id))
-        .filter(fish => this.isTypeMissionTarget(fish))
+        .filter(fish => this.isTypeMissionTarget(fish) || this.isTugMissionTarget(fish))
     },
     scPointFishIds() {
       return this.tip.pointTip[this.location.id][this.location.shift].fishList
