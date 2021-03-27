@@ -495,10 +495,13 @@ export default {
       )
     },
     currentTipSpectralCurrentFishLists() {
-      return this.spectralCurrentFishingSpotIds.map(spotId =>
+      return this.spectralCurrentFishingSpotIds.map((spotId, index) =>
         this.oceanFishingSpots
           ?.find(it => it.id === spotId)
           ?.fishList?.map(fishId => this.fishDict[fishId])
+          ?.filter(fish =>
+            fish.timeSet.find(it => it.time === this.voyage?.voyageLocations[index].shift)
+          )
       )
     },
     currentTipNormalFishLists() {
