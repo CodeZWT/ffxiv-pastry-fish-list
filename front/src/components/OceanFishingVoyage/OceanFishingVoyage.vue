@@ -130,9 +130,7 @@
                         </v-btn>
                       </template>
                       <v-card>
-                        <v-card-title>
-                          其他说明
-                        </v-card-title>
+                        <v-card-title> 其他说明 </v-card-title>
                         <v-card-text>
                           <div v-html="blueFishTip.extra"></div>
                         </v-card-text>
@@ -262,7 +260,7 @@ export default {
       tipIndex: 0,
       achievementMacro: {
         // 八爪旅人
-        '2563':
+        2563:
           '/p ---钓场一：梅尔托尔海峡南-白天---\n' +
           '/p 保存GP，随便钓\n' +
           '/p ——————————————————————————————\n' +
@@ -275,7 +273,7 @@ export default {
           '/p 幻海流中用磷虾，双提5s+[!!]→幻纱披风*4\n' +
           '/p 推荐连招：双重提钩-专一垂钓-双重提钩',
         // 捕鲨人
-        '2564':
+        2564:
           '/p ---钓场一：加拉迪翁湾外海-黄昏---\n' +
           '/p 暴雨天气直接跳船。\n' +
           '/p 刺螠[!!!]→暗淡鲨，满GP可以开个专一，可能会歪到幻光巨齿鲨。满了还没遇到鲨鱼可以适当撒饵。\n' +
@@ -289,7 +287,7 @@ export default {
           '/p 幻海流中用刺螠，双提[!!!]→处刑者*4，平提[!!]→清道夫\n' +
           '/p 推荐连招：双重提钩-专一垂钓-双重提钩',
         // 水母狂魔
-        '2565':
+        2565:
           '/p 石沙蚕，认准4s[!]→拉诺西亚水母，自信双提\n' +
           '/p 建议使用宏：\n' +
           '/p /ac 抛竿\n' +
@@ -298,7 +296,7 @@ export default {
           '/p /ac 提钩\n' +
           '/p 第一个点钓完报数，不够就跳',
         // 龙马惊神
-        '2566':
+        2566:
           '/p ---钓场一：梅尔托尔海峡南-夜晚---\n' +
           '/p 薄雾、阴云天气直接跳船。\n' +
           '/p 石沙蚕，8s-16s的[!]→蓬松海龙，12s以上可以酌情双提\n' +
@@ -414,18 +412,26 @@ export default {
       )
     },
     currentTipBlueFishList() {
-      return this.spectralCurrentFishingSpotIds.flatMap((spotId, locationIndex) =>
-        this.oceanFishingSpots
+      return this.spectralCurrentFishingSpotIds.flatMap((spotId, locationIndex) => {
+        console.log(
+          this.oceanFishingSpots
+            ?.find(it => it.id === spotId)
+            ?.fishList?.map(fishId => this.fishDict[fishId])
+            ?.filter(fish => fish.fishTipType === 3)
+        )
+        return this.oceanFishingSpots
           ?.find(it => it.id === spotId)
           ?.fishList?.map(fishId => this.fishDict[fishId])
           ?.filter(fish => fish.fishTipType === 3)
           ?.map(fish => {
-            return !fish.time ||
-              fish.time === this.currentLocations[locationIndex].shift + 1
+            return !fish.timeSet[0].time ||
+              fish.timeSet.find(
+                it => it.time === this.currentLocations[locationIndex].shift + 1
+              )
               ? fish
               : null
           })
-      )
+      })
     },
     currentTipFish() {
       return this.normalFishingSpotIds.map(spotId =>

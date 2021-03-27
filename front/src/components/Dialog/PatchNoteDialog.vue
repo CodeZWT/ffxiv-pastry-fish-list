@@ -25,7 +25,7 @@
         </v-alert>
 
         <div class="text-h6">Version 0.7.2</div>
-        <div class="text-subtitle-1">更新时间: 2021/03/27 20:06</div>
+        <div class="text-subtitle-1">更新时间: 2021/03/27 20:32</div>
         <div class="text-h5 text-center my-1">
           鱼糕
         </div>
@@ -41,6 +41,9 @@
           </li>
           <li>
             去除幻海流任务列表中不符合时间限制的鱼
+          </li>
+          <li>
+            修复5.3海钓页面蓝鱼没有被正确筛选的问题
           </li>
         </ul>
         <p />
