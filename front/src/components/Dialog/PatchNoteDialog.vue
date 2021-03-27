@@ -20,6 +20,10 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px;">
+        <v-alert outlined type="warning" border="left">
+          预先告知：国服预计将在近期更新5.4版本，届时渔捞相关检测功能会失效一段时间，等待自动更新即可。更新时间预计在游戏正式更新后几天内，请耐心等待。
+        </v-alert>
+
         <div class="text-h6">Version 0.7.2</div>
         <div class="text-subtitle-1">更新时间: 2021/03/27 20:06</div>
         <div class="text-h5 text-center my-1">
@@ -30,7 +34,7 @@
             修正珊瑚海龙限定鱼饵
           </li>
           <li>
-            显示前置鱼双提个数
+            显示海钓前置鱼双提个数
           </li>
           <li>
             显示幻海流提钩任务的鱼
@@ -88,9 +92,14 @@
             修复退出副本时的报错，如还有问题欢迎反馈。
           </li>
         </ul>
-        <v-alert outlined type="warning" border="left">
-          预先告知：国服预计将在近期更新5.4版本，届时渔捞相关检测功能会失效一段时间，等待自动更新即可。更新时间预计在游戏正式更新后几天内，请耐心等待。
-        </v-alert>
+        <div class="text-h5 text-center my-1">
+          渔捞
+        </div>
+        <ul>
+          <li>
+            增加双提的支持（双提技能，个数，导出文件中双提相关内容）
+          </li>
+        </ul>
         <p />
 
         <v-divider />
