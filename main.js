@@ -127,20 +127,28 @@ async function init() {
   windowSetting = configStore.get('windowSetting')
 
   FishingDataReader.onUpdate((data) => {
-    WINDOWS.main.webContents.send('fishingData', data)
-    WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('fishingData', data)
-    WINDOWS.timerMini && WINDOWS.timerMini.webContents.send('fishingData', data)
-    WINDOWS.readerSpotStatistics &&
-      WINDOWS.readerSpotStatistics.webContents.send('fishingData', data)
+    callWindowSafe(WINDOWS.main, (win) => {
+      win.webContents.send('fishingData', data)
+    })
+    callWindowSafe(WINDOWS.readerTimer, (win) =>
+      win.webContents.send('fishingData', data)
+    )
+    callWindowSafe(WINDOWS.timerMini, (win) => win.webContents.send('fishingData', data))
+    callWindowSafe(WINDOWS.readerSpotStatistics, (win) =>
+      win.webContents.send('fishingData', data)
+    )
   })
   FishingDataReader.onFishCaught((data) => {
-    WINDOWS.main.webContents.send('fishCaught', data)
+    callWindowSafe(WINDOWS.main, (win) => win.webContents.send('fishCaught', data))
   })
   FishingDataReader.onNewRecord((data) => {
-    WINDOWS.readerTimer && WINDOWS.readerTimer.webContents.send('newRecord', data)
-    WINDOWS.readerHistory && WINDOWS.readerHistory.webContents.send('newRecord', data)
-    WINDOWS.readerSpotStatistics &&
-      WINDOWS.readerSpotStatistics.webContents.send('newRecord', data)
+    callWindowSafe(WINDOWS.readerTimer, (win) => win.webContents.send('newRecord', data))
+    callWindowSafe(WINDOWS.readerHistory, (win) =>
+      win.webContents.send('newRecord', data)
+    )
+    callWindowSafe(WINDOWS.readerSpotStatistics, (win) =>
+      win.webContents.send('newRecord', data)
+    )
   })
 
   ipcMain
@@ -179,13 +187,15 @@ async function init() {
       }
     })
     .on('reloadUserData', () => {
-      WINDOWS.readerTimer.webContents.send('reloadUserData')
-      WINDOWS.timerMini.webContents.send('reloadUserData')
-      WINDOWS.readerSetting.webContents.send('reloadUserData')
+      callWindowSafe(WINDOWS.readerTimer, (win) => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.timerMini, (win) => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.readerSetting, (win) =>
+        win.webContents.send('reloadUserData')
+      )
     })
     .on('skipUpdate', () => {
       skipUpdate = true
-      WINDOWS.main.setProgressBar(0)
+      callWindowSafe(WINDOWS.main, (win) => win.setProgressBar(0))
       log.info('Update skipped')
     })
     .on('toggleHistory', () => {
@@ -198,8 +208,10 @@ async function init() {
       log.info('update main window setting', setting)
       saveWindowSetting('main.opacity', setting.opacity)
       saveWindowSetting('main.zoomFactor', setting.zoomFactor)
-      WINDOWS.main.setOpacity(setting.opacity)
-      WINDOWS.main.webContents.setZoomFactor(setting.zoomFactor)
+      callWindowSafe(WINDOWS.main, (win) => {
+        win.setOpacity(setting.opacity)
+        win.webContents.setZoomFactor(setting.zoomFactor)
+      })
     })
     .on('miniMode', (event, mainMini) => {
       switchMiniMode(mainMini)
@@ -215,11 +227,13 @@ async function init() {
       //   return loadingForReloadingPage.close()
       // }
       log.info('in finishLoading')
-      WINDOWS.main.show()
-      if (!WINDOWS.loading.isDestroyed()) {
+      callWindowSafe(WINDOWS.main, (win) => {
+        win.show()
+      })
+      callWindowSafe(WINDOWS.loading, win => {
         log.info('try close loading window')
-        WINDOWS.loading.close()
-      }
+        win.close()
+      })
     })
     .on('exportHistory', (event, data) => {
       dialog
@@ -241,20 +255,26 @@ async function init() {
         })
         .catch((err) => {
           if (err.code === 'EBUSY') {
-            WINDOWS.readerHistory.webContents.send('exportHistoryFailedWithBusyFile')
+            callWindowSafe(WINDOWS.readerHistory, (win) =>
+              win.webContents.send('exportHistoryFailedWithBusyFile')
+            )
           }
           log.info(err)
         })
         .finally(() => {
-          WINDOWS.readerHistory.webContents.send('exportHistoryFinished')
+          callWindowSafe(WINDOWS.readerHistory, (win) =>
+            win.webContents.send('exportHistoryFinished')
+          )
         })
     })
     .on('showSpotPage', (event, spotId) => {
-      WINDOWS.main.webContents.send('showSpotPage', spotId)
-      if (WINDOWS.main.isMinimized()) {
-        WINDOWS.main.restore()
-      }
-      WINDOWS.main.focus()
+      callWindowSafe(WINDOWS.main, (win) => {
+        win.webContents.send('showSpotPage', spotId)
+        if (win.isMinimized()) {
+          win.restore()
+        }
+        win.focus()
+      })
     })
     .on('updateWindowSetting', (event, newWindowSetting) => {
       Object.entries({
@@ -266,6 +286,7 @@ async function init() {
         if (
           newWindowSetting[settingName] &&
           WINDOWS[windowName] &&
+          !WINDOWS[windowName].isDestroyed() &&
           newWindowSetting[settingName].zoomFactor > 0.3
         ) {
           if (settingName !== 'timerMini') {
@@ -286,10 +307,10 @@ async function init() {
       })
     })
     .on('listCntUpdated', (event, listCnt) => {
-      WINDOWS.mini.send('listCntUpdated', listCnt)
+      callWindowSafe(WINDOWS.mini, (win) => win.send('listCntUpdated', listCnt))
     })
     .on('reloadRecords', () => {
-      WINDOWS.readerSpotStatistics.send('reloadRecords')
+      callWindowSafe(WINDOWS.readerSpotStatistics, (win) => win.send('reloadRecords'))
     })
 
   ipcMain.handle('showOpenSoundFileDialog', () => {
@@ -342,20 +363,17 @@ async function init() {
     showReader()
   })
   globalShortcut.register('Alt+CommandOrControl+T', () => {
-    WINDOWS.main &&
-      WINDOWS.main.webContents.openDevTools({
+    callWindowSafe(WINDOWS.main, (win) =>
+      win.webContents.openDevTools({
         mode: 'right',
       })
-    WINDOWS.readerTimer &&
-      WINDOWS.readerTimer.webContents.openDevTools({
+    )
+    callWindowSafe(WINDOWS.readerTimer, (win) =>
+      win.webContents.openDevTools({
         mode: 'undocked',
       })
-    // WINDOWS.timerMini &&
-    //   WINDOWS.timerMini.webContents.openDevTools({
-    //     mode: 'undocked',
-    //   })
+    )
   })
-
 
   createMainWindow()
   await createAndShowLoadingWindow(WINDOWS.main)
@@ -378,43 +396,61 @@ async function init() {
 }
 
 function setMouseThrough(enable) {
-  WINDOWS.readerTimer &&
-    WINDOWS.readerTimer.setIgnoreMouseEvents(enable, { forward: true })
-  WINDOWS.timerMini && WINDOWS.timerMini.setIgnoreMouseEvents(enable, { forward: true })
-  WINDOWS.readerHistory &&
-    WINDOWS.readerHistory.setIgnoreMouseEvents(enable, { forward: true })
-  WINDOWS.readerSpotStatistics &&
-    WINDOWS.readerSpotStatistics.setIgnoreMouseEvents(enable, { forward: true })
+  callWindowSafe(WINDOWS.readerTimer, (win) =>
+    win.setIgnoreMouseEvents(enable, { forward: true })
+  )
+  callWindowSafe(WINDOWS.timerMini, (win) =>
+    win.setIgnoreMouseEvents(enable, { forward: true })
+  )
+  callWindowSafe(WINDOWS.readerHistory, (win) =>
+    win.setIgnoreMouseEvents(enable, { forward: true })
+  )
+  callWindowSafe(WINDOWS.readerSpotStatistics, (win) =>
+    win.setIgnoreMouseEvents(enable, { forward: true })
+  )
 }
 
 function switchMiniMode(mini) {
-  if (mini) {
-    const [x, y] = WINDOWS.main.getPosition()
-    WINDOWS.mini.setPosition(x, y + MINI_POS_OFFSET)
-    WINDOWS.mini.show()
-    WINDOWS.main.hide()
-  } else {
-    WINDOWS.mini.hide()
-    WINDOWS.main.show()
-  }
+  callWindowsSafe([WINDOWS.mini, WINDOWS.main], () => {
+    if (mini) {
+      const [x, y] = WINDOWS.main.getPosition()
+      WINDOWS.mini.setPosition(x, y + MINI_POS_OFFSET)
+      WINDOWS.mini.show()
+      WINDOWS.main.hide()
+    } else {
+      WINDOWS.mini.hide()
+      WINDOWS.main.show()
+    }
+  })
 }
 
 function switchReaderMiniMode(mini) {
-  if (mini) {
-    const [x, y] = WINDOWS.readerTimer.getPosition()
-    settingVisible = WINDOWS.readerSetting.isVisible()
-    historyVisible = WINDOWS.readerHistory.isVisible()
-    spotStatisticsVisible = WINDOWS.readerSpotStatistics.isVisible()
-    WINDOWS.readerTimer.hide()
-    WINDOWS.timerMini.setPosition(x, y + READER_MINI_POS_OFFSET)
-    WINDOWS.timerMini.show()
-  } else {
-    settingVisible = false
-    historyVisible = false
-    spotStatisticsVisible = false
-    WINDOWS.timerMini.hide()
-    WINDOWS.readerTimer.show()
-  }
+  callWindowsSafe(
+    [
+      WINDOWS.readerTimer,
+      WINDOWS.readerSetting,
+      WINDOWS.readerHistory,
+      WINDOWS.readerSpotStatistics,
+      WINDOWS.timerMini,
+    ],
+    () => {
+      if (mini) {
+        const [x, y] = WINDOWS.readerTimer.getPosition()
+        settingVisible = WINDOWS.readerSetting.isVisible()
+        historyVisible = WINDOWS.readerHistory.isVisible()
+        spotStatisticsVisible = WINDOWS.readerSpotStatistics.isVisible()
+        WINDOWS.readerTimer.hide()
+        WINDOWS.timerMini.setPosition(x, y + READER_MINI_POS_OFFSET)
+        WINDOWS.timerMini.show()
+      } else {
+        settingVisible = false
+        historyVisible = false
+        spotStatisticsVisible = false
+        WINDOWS.timerMini.hide()
+        WINDOWS.readerTimer.show()
+      }
+    }
+  )
 }
 
 function createReaderSetting(readTimerWin) {
@@ -703,50 +739,57 @@ function createReader() {
       closedWindows[settingName] = win
     })
     .on('hide', (e) => {
-      settingVisible || WINDOWS.readerSetting.hide()
-      historyVisible || WINDOWS.readerHistory.hide()
-      spotStatisticsVisible || WINDOWS.readerSpotStatistics.hide()
+      settingVisible || callWindowSafe(WINDOWS.readerSetting, (win) => win.hide())
+      historyVisible || callWindowSafe(WINDOWS.readerHistory, (win) => win.hide())
+      spotStatisticsVisible ||
+        callWindowSafe(WINDOWS.readerSpotStatistics, (win) => win.hide())
     })
 }
 
 function updateUserData(updateData) {
-  WINDOWS.main.webContents.send('updateUserData', updateData)
+  callWindowSafe(WINDOWS.main, (win) =>
+    win.webContents.send('updateUserData', updateData)
+  )
 }
 
 function showReader() {
   if (closedWindows['timer']) {
     createReader()
   }
-  WINDOWS.readerTimer && WINDOWS.readerTimer.show()
+  callWindowSafe(WINDOWS.readerTimer, (win) => win.show())
 }
 
 function showReaderSetting() {
   if (closedWindows['readerSetting']) {
     createReaderSetting()
   }
-  WINDOWS.readerSetting && WINDOWS.readerSetting.show()
+  callWindowSafe(WINDOWS.readerSetting, (win) => win.show())
 }
 
 function toggleReaderHistory() {
   if (closedWindows['readerHistory']) {
     createReaderHistory(WINDOWS.readerTimer)
   }
-  if (WINDOWS.readerHistory.isVisible()) {
-    WINDOWS.readerHistory.hide()
-  } else {
-    WINDOWS.readerHistory.show()
-  }
+  callWindowSafe(WINDOWS.readerHistory, (win) => {
+    if (win.isVisible()) {
+      win.hide()
+    } else {
+      win.show()
+    }
+  })
 }
 
 function toggleSpotStatistics() {
   if (closedWindows['readerSpotStatistics']) {
     createReaderSpotStatistics(WINDOWS.readerTimer)
   }
-  if (WINDOWS.readerSpotStatistics.isVisible()) {
-    WINDOWS.readerSpotStatistics.hide()
-  } else {
-    WINDOWS.readerSpotStatistics.show()
-  }
+  callWindowSafe(WINDOWS.readerSpotStatistics, (win) => {
+    if (win.isVisible()) {
+      win.hide()
+    } else {
+      win.show()
+    }
+  })
 }
 
 async function downloadCommitHash() {
@@ -803,10 +846,10 @@ async function updateIfNeeded(intervalHandle) {
       (progress) => {
         try {
           log.info('progress', progress.percent)
-          if (!WINDOWS.main.isDestroyed()) {
-            WINDOWS.main.webContents.send('setupDownload', progress)
-            WINDOWS.main.setProgressBar(progress.percent)
-          }
+          callWindowSafe(WINDOWS.main, (win) => {
+            win.webContents.send('setupDownload', progress)
+            win.setProgressBar(progress.percent)
+          })
         } catch (e) {
           log.error('Try set download progress failed.', e)
         }
@@ -817,7 +860,7 @@ async function updateIfNeeded(intervalHandle) {
     await downloadSetupFile(throttled, () => {
       try {
         log.info('download setup finished')
-        WINDOWS.main.webContents.send('checkStartSetup')
+        callWindowSafe(WINDOWS.main, (win) => win.webContents.send('checkStartSetup'))
       } catch (e) {
         log.error('Try open update dialog failed.', e)
       }
@@ -888,10 +931,21 @@ if (!gotTheLock) {
 }
 
 function showAndFocusMain() {
-  if (WINDOWS.main) {
-    if (WINDOWS.main.isMinimized()) WINDOWS.main.restore()
-    if (!WINDOWS.main.isVisible()) WINDOWS.main.show()
-    WINDOWS.main.focus()
+  callWindowSafe(WINDOWS.main, win => {
+    if (win.isMinimized()) win.restore()
+    if (!win.isVisible()) win.show()
+    win.focus()
+  })
+}
+
+function callWindowSafe(win, winCallback) {
+  if (win && !win.isDestroyed()) {
+    winCallback(win)
+  }
+}
+function callWindowsSafe(wins, winCallback) {
+  if (wins.every((it) => it) && wins.every((it) => !it.isDestroyed())) {
+    winCallback(wins)
   }
 }
 
