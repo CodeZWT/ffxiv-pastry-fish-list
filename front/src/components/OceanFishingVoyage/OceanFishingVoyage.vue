@@ -413,12 +413,6 @@ export default {
     },
     currentTipBlueFishList() {
       return this.spectralCurrentFishingSpotIds.flatMap((spotId, locationIndex) => {
-        console.log(
-          this.oceanFishingSpots
-            ?.find(it => it.id === spotId)
-            ?.fishList?.map(fishId => this.fishDict[fishId])
-            ?.filter(fish => fish.fishTipType === 3)
-        )
         return this.oceanFishingSpots
           ?.find(it => it.id === spotId)
           ?.fishList?.map(fishId => this.fishDict[fishId])
