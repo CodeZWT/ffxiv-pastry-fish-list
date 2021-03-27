@@ -2628,7 +2628,7 @@ module.exports = {
       star: 4,
       doubleHook: [4],
       bait: 29714,
-      isBaitUnique: false,
+      isBaitUnique: true,
       baitExtra: null,
       bestCatchPath: [29714],
       bestCatchPathExtra: [],
