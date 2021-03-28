@@ -500,7 +500,7 @@ export default {
           ?.find(it => it.id === spotId)
           ?.fishList?.map(fishId => this.fishDict[fishId])
           ?.filter(fish =>
-            fish.timeSet.find(it => it.time === this.voyage?.voyageLocations[index].shift)
+            this.isFishAvailableAtShift(fish, this.voyage?.voyageLocations[index].shift)
           )
       )
     },
@@ -526,10 +526,10 @@ export default {
           ?.fishList?.map(fishId => this.fishDict[fishId])
           ?.filter(fish => fish.fishTipType === 3)
           ?.map(fish => {
-            return !fish.timeSet[0].time ||
-              fish.timeSet.find(
-                it => it.time === this.currentLocations[locationIndex].shift + 1
-              )
+            return this.isFishAvailableAtShift(
+              fish,
+              this.currentLocations[locationIndex].shift
+            )
               ? fish
               : null
           })
@@ -551,10 +551,10 @@ export default {
           ?.filter(
             fish =>
               fish.bonusId === this.currentTip.bonus &&
-              (!fish.timeSet[0].time ||
-                fish.timeSet.find(
-                  it => it.time === this.currentLocations[locationIndex].shift + 1
-                ))
+              this.isFishAvailableAtShift(
+                fish,
+                this.currentLocations[locationIndex].shift
+              )
           )
       )
     },
@@ -579,6 +579,11 @@ export default {
   methods: {
     toggleShiftFilter() {
       this.shiftFilterEnabled = !this.shiftFilterEnabled
+    },
+    isFishAvailableAtShift(fish, shift) {
+      return (
+        fish.timeSet?.[0]?.time === 0 || !!fish.timeSet.find(it => it.time === shift + 1)
+      )
     },
   },
 }
