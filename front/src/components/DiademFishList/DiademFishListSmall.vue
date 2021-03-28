@@ -63,6 +63,32 @@
               <div>
                 <div class="d-flex flex-column">
                   <div class="d-flex align-center">
+                    <template v-if="fish.hasPredators" class="d-flex">
+                      <div
+                        v-for="(fish, index) in fish.predators"
+                        :key="index"
+                        class="d-flex align-center ml-1"
+                      >
+                        <item-icon
+                          :icon-class="fish.icon"
+                          small
+                          :title="`${fish.name}#${fish.id}`"
+                        />
+                        <span>X</span>
+                        <v-badge
+                          :content="fish.requiredCnt"
+                          color="predatorCnt black--text"
+                          inline
+                          bottom
+                          bordered
+                        >
+                        </v-badge>
+                      </div>
+                      <div
+                        :class="fish.predatorsIcon"
+                        style="margin-left: 2px; margin-right: 2px"
+                      />
+                    </template>
                     <i
                       class="xiv square-a"
                       v-if="fish.baitsExtra.length > 0"
@@ -125,9 +151,9 @@ export default {
   methods: {
     toSimpleName(name) {
       if (DataUtil.hasChineseCharacter(name)) {
-        return `${name.slice(7)}`
+        return name.slice(7)
       } else {
-        return `${name.slice(21)}`
+        return name.replace('Grade 4 ', '').replace("Skybuilders' ", '')
       }
     },
     versionColorOf(version) {

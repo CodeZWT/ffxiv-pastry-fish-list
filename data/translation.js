@@ -9681,7 +9681,7 @@ module.exports = {
     },
     10015: {
       _id: 10015,
-      name_chs: '息风云海（第二期渔场）',
+      name_chs: '息风云海（往期渔场）',
       map: 356,
       size_factor: 100,
       x: 1325,
@@ -9692,7 +9692,7 @@ module.exports = {
     },
     10016: {
       _id: 10016,
-      name_chs: '狂风云海（第二期渔场）',
+      name_chs: '狂风云海（往期渔场）',
       map: 356,
       size_factor: 100,
       x: 1700,

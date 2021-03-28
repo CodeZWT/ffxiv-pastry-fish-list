@@ -15,10 +15,11 @@
             <v-row>
               <v-col class="col-12 col-md-8">
                 <div>
-                  <!--                  <v-tabs v-model="versionIndex">-->
-                  <!--                    <v-tab>第二期重建</v-tab>-->
-                  <!--                    <v-tab>第三期重建</v-tab>-->
-                  <!--                  </v-tabs>-->
+                  <v-tabs v-model="tabIndex">
+                    <!--                    <v-tab>第二期重建</v-tab>-->
+                    <v-tab>第三期重建</v-tab>
+                    <v-tab>第四期重建</v-tab>
+                  </v-tabs>
                   <v-card color="system">
                     <v-card-title>{{ simpleTip.title }}</v-card-title>
                     <v-card-text>
@@ -37,35 +38,22 @@
                       </div>
                     </v-card-text>
                     <v-divider />
-                    <v-card-text>
-                      <div>关于鱼饵的一些说明</div>
-                      <div>
-                        云冠群岛的可以使用的鱼饵有：万能拟饵，云冠大蚊，云冠浮游虫，云冠红气球虫，云冠气球虫。<br />
-                        下方标记万能拟饵的鱼实际可用所有5种鱼饵。<br />
-                        非以小钓大的特供白鱼实际可用2种鱼饵：飞蝠鲼可用：云冠红气球虫，云冠浮游虫；白丽鱼可用：云冠大蚊，云冠气球虫。（*注1）<br />
-                        非以小钓大的特供绿鱼实际可用1种鱼饵：云鲨可用：云冠红气球虫；始祖鸟可用：云冠大蚊（*注1）<br />
-                        <span style="font-size: small">
-                          *注1：部分鱼也有万能拟饵的咬钩记录，可以自行尝试。
-                        </span>
-                      </div>
-                    </v-card-text>
+                    <v-card-text v-if="simpleTip.baitTip" v-html="simpleTip.baitTip" />
                     <v-divider />
-                    <v-card-text>
-                      <div>关于钓场的一些说明</div>
-                      <div>
-                        3个钓场有第三期的普通鱼<br />
-                        4个钓场有第三期的特供鱼<br />
-                        2个钓场有第二期的特供鱼
-                        <span class="error--text">
-                          （其中一个钓场【狂风云海】与第三期特供鱼钓场同名请注意看地图分辨！）
-                        </span>
-                      </div>
-                    </v-card-text>
+                    <v-card-text v-html="simpleTip.spotTip" />
                   </v-card>
                 </div>
               </v-col>
               <v-col class="col-12 col-md-4">
-                <v-img :src="tipMap" />
+                <v-img v-if="tipMap" :src="tipMap" />
+                <template v-else>
+                  <eorzea-simple-map
+                    :id="currentVersionMapData.mapFileId"
+                    :size-factor="currentVersionMapData.size_factor"
+                    :fishing-spots="currentVersionMapData.fishingSpots"
+                    show-fishing-range-helper
+                  />
+                </template>
               </v-col>
             </v-row>
           </v-card-text>
@@ -74,8 +62,8 @@
       <v-col>
         <v-expansion-panels focusable :value="spotPanels" multiple>
           <v-expansion-panel v-for="(item, i) in diademSpots" :key="i">
-            <v-expansion-panel-header
-              >{{ item.fishingSpotName }}
+            <v-expansion-panel-header>
+              {{ item.fishingSpotName }}
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               <!-- <div>{{ JSON.stringify(item, null, 2) }}</div> -->
@@ -97,22 +85,37 @@ import DIADEM from 'Data/diadem'
 import ImgUtil from '@/utils/ImgUtil'
 import DiademFishList from '@/components/DiademFishList/DiademFishList'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 
 export default {
   name: 'DiademPage',
-  components: { DiademFishList },
+  components: { EorzeaSimpleMap, DiademFishList },
   data() {
     return {
       regionTerritorySpots: regionTerritorySpots,
       tipMaps: [
         ImgUtil.getImgUrl('diadem-tip-map-grade2.png'),
         ImgUtil.getImgUrl('diadem-tip-map-grade3.png'),
+        undefined,
       ],
-      versionIndex: 1,
+      tabIndex: 0,
       isElectron: DevelopmentModeUtil.isElectron(),
     }
   },
   computed: {
+    currentVersionMapData() {
+      return {
+        mapFileId: this.diademSpots[0].fishingSpot.mapFileId,
+        size_factor: this.diademSpots[0].fishingSpot.size_factor,
+        fishingSpots: this.diademSpots.map(it => ({
+          ...it.fishingSpot,
+          name: it.fishingSpotName,
+        })),
+      }
+    },
+    versionIndex() {
+      return this.tabIndex + 1
+    },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
@@ -135,7 +138,7 @@ export default {
         case 3:
           return [10008, 10009, 10010, 10011, 10012, 10013, 10014, 10015, 10016]
         default:
-          return []
+          return [10017, 10018, 10019, 10020, 10021, 10022, 10023, 10024, 10025]
       }
     },
     diademSpots() {
@@ -176,6 +179,16 @@ export default {
                   ? this.getBaits(fish, bestCatchPathExtra, DIADEM.FISH)
                   : [],
               biteTimeText: this.toBiteTimeText(fish.biteMin, fish.biteMax),
+              hasPredators: fish.predators && Object.keys(fish.predators).length > 0,
+              predators: Object.entries(fish.predators).map(([itemId, cnt]) => {
+                return {
+                  id: itemId,
+                  icon: this.getItemIconClass(itemId),
+                  name: this.getItemName(itemId),
+                  requiredCnt: cnt,
+                }
+              }),
+              predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
             }
           }),
         }
