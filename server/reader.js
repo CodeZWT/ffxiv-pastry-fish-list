@@ -74,7 +74,7 @@ let Machina,
   region = 'CN'
 function startMachina(options, callback = () => {}) {
   isElevated()
-    .then((elevated) => {
+    .then(elevated => {
       if (elevated) {
         // if (!isDev) {
         exec(
@@ -124,11 +124,11 @@ exports.restart = (options, callback = () => {}) => {
 }
 
 let fishCaughtCallback
-exports.onFishCaught = (callback) => {
+exports.onFishCaught = callback => {
   fishCaughtCallback = callback
 }
 let fishRecordCallback
-exports.onNewRecord = (callback) => {
+exports.onNewRecord = callback => {
   fishRecordCallback = callback
 }
 
@@ -241,14 +241,14 @@ exports.resetTest = () => {
   resetRecord()
 }
 
-let updateCallback = (data) => {
+let updateCallback = data => {
   log.debug('sending data', data)
 }
 
 function init() {
   Machina.setMaxListeners(0)
 
-  Machina.on('any', (packet) => {
+  Machina.on('any', packet => {
     if (packet && filterPacketSessionID(packet)) {
       ffxivEvent.emit('ffxivEvent', packet)
     }
@@ -283,7 +283,7 @@ function onFFXIVEvent(type, callback, skipUpdateEvent = false) {
 }
 
 function onFFXIVEvents(types, callback) {
-  types.forEach((type) => onFFXIVEvent(type, callback))
+  types.forEach(type => onFFXIVEvent(type, callback))
 }
 
 function onFFXIVEventSubType(subType, callback) {
@@ -291,7 +291,7 @@ function onFFXIVEventSubType(subType, callback) {
 }
 
 function onFFXIVEventOfUnknown(opcode, callback) {
-  ffxivEvent.on('ffxivEvent', (packet) => {
+  ffxivEvent.on('ffxivEvent', packet => {
     if (packet && packet.type === 'unknown' && packet.opcode === opcode) {
       callback(packet)
       updateCallback({
@@ -310,7 +310,7 @@ function onFFXIVEventWithFilter(
   callback,
   skipUpdateEvent = false
 ) {
-  ffxivEvent.on('ffxivEvent', (packet) => {
+  ffxivEvent.on('ffxivEvent', packet => {
     if (
       packet &&
       (!type || packet.type === type) &&
@@ -345,7 +345,7 @@ const action2Effect = {
   4595: 1803, // Surface Slap
   4596: 1804, // Identical Cast
 }
-onFFXIVEvent('effect', (packet) => {
+onFFXIVEvent('effect', packet => {
   log.debug('in effect', packet.type)
   const effectId = action2Effect[packet.actionId]
   if (effectId) {
@@ -355,7 +355,7 @@ onFFXIVEvent('effect', (packet) => {
 
 onFFXIVEvent(
   'prepareZoning',
-  (packet) => {
+  packet => {
     if (packet.targetZone && TERRITORY_TYPES[packet.targetZone]) {
       status.zoneId = TERRITORY_TYPES[packet.targetZone].placeName
       log.debug('targetZone', packet.targetZone, 'placeName', status.zoneId)
@@ -373,7 +373,7 @@ onFFXIVEvent(
 
 onFFXIVEvent(
   'initZone',
-  (packet) => {
+  packet => {
     status.effects = new Set()
     if (packet.zoneID && TERRITORY_TYPES[packet.zoneID]) {
       status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
@@ -383,12 +383,12 @@ onFFXIVEvent(
   true
 )
 
-onFFXIVEventWithFilter('actorControl', null, 20, null, (packet) => {
+onFFXIVEventWithFilter('actorControl', null, 20, null, packet => {
   // log.debug('actorControl', packet)
   status.effects.add(packet.param1)
 })
 
-onFFXIVEventWithFilter('actorControl', null, 21, null, (packet) => {
+onFFXIVEventWithFilter('actorControl', null, 21, null, packet => {
   status.effects.delete(packet.param1)
 })
 
@@ -407,26 +407,26 @@ const effectToDetect = new Set([
 ])
 
 // update all status according to statusEffectList
-onFFXIVEvent('statusEffectList', (packet) => {
+onFFXIVEvent('statusEffectList', packet => {
   // log.debug('statusEffectList', packet)
   packet.effects
-    .map((it) => it.unknown1)
-    .filter((effectId) => effectToDetect.has(effectId))
-    .forEach((effectId) => status.effects.add(effectId))
+    .map(it => it.unknown1)
+    .filter(effectId => effectToDetect.has(effectId))
+    .forEach(effectId => status.effects.add(effectId))
 })
 
-onFFXIVEventSubType('fishingBaitMsg', (packet) => {
+onFFXIVEventSubType('fishingBaitMsg', packet => {
   // actorControlSelf
   status.baitId = packet.baitID
 })
 
-onFFXIVEventSubType('actionStart', (packet) => {
+onFFXIVEventSubType('actionStart', packet => {
   // actorControlSelf
   log.debug('actionStart', packet.actionID, packet.actionCooldown, packet)
 })
 
 const FISHING_EVENT = 0x150001
-onFFXIVEvents(['eventStart', 'eventFinish'], (packet) => {
+onFFXIVEvents(['eventStart', 'eventFinish'], packet => {
   // log.debug('fevent', packet.type, packet.eventId)
   if (packet.eventId === FISHING_EVENT) {
     status.isFishing = packet.type === 'eventStart'
@@ -477,7 +477,7 @@ function resetRecord() {
   currentRecord = cloneDeep(EMPTY_RECORD)
 }
 
-onFFXIVEvent('eventPlay', (packet) => {
+onFFXIVEvent('eventPlay', packet => {
   if (packet.eventId === FISHING_EVENT) {
     // log.debug('eventPlay', actionTimeline[packet.param5], packet)
     switch (packet.scene) {
@@ -548,7 +548,7 @@ function getTug(value) {
   }
 }
 
-onFFXIVEvent('eventPlay4', (packet) => {
+onFFXIVEvent('eventPlay4', packet => {
   if (actionTimeline[packet.param1] != null) {
     // currentRecord.hookset = getHookset(packet.param1)
     currentRecord.missed =
@@ -649,7 +649,7 @@ function isFlatSet(param, i) {
 }
 
 // caught fish
-onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
+onFFXIVEventWithFilter('actorControlSelf', null, 320, null, packet => {
   // log.info(packet.param2.toString(2))
   // log.info(packet.param2.toString(16))
   // log.info(packet.param3.toString(2))
@@ -657,7 +657,7 @@ onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
   const caughtFishId = packet.param1
   const hq = isFlatSet(packet.param3, 4)
   const isSpearFish = isFlatSet(packet.param3, 6)
-  const quantity = packet.param2 & 0xFF
+  const quantity = packet.param2 & 0xff
   if (!isSpearFish) {
     log.info('fish caught', caughtFishId)
     fishCaughtCallback({ fishId: caughtFishId, hq })
@@ -679,7 +679,7 @@ onFFXIVEventWithFilter('actorControlSelf', null, 320, null, (packet) => {
   }
 })
 
-onFFXIVEvent('someDirectorUnk4', (packet) => {
+onFFXIVEvent('someDirectorUnk4', packet => {
   if (
     packet.actionTimeline === 0 &&
     Math.abs(currentRecord.biteTime - Date.now()) < 10000
@@ -949,7 +949,7 @@ const placeName2Spots = {
 }
 
 // fishing spot
-onFFXIVEvent('someDirectorUnk4', (packet) => {
+onFFXIVEvent('someDirectorUnk4', packet => {
   // for spot data param3 is place name id
   // and for diadem place name id is referred by multi spot id (which belongs to different grades 1~4)
   if (packet.param3 > 0) {
@@ -966,7 +966,7 @@ onFFXIVEvent('someDirectorUnk4', (packet) => {
 })
 
 // mooch
-onFFXIVEvent('someDirectorUnk4', (packet) => {
+onFFXIVEvent('someDirectorUnk4', packet => {
   if (packet.actionTimeline === 257 || packet.actionTimeline === 3073) {
     status.mooch = packet.param1 === 1121
     // log.debug("mooch", status.mooch);
@@ -1021,7 +1021,7 @@ function getString(uint8Array, offset, length) {
 // onFFXIVEventWithFilter('unknown', null, null, null,(packet) => {
 //   log.debug('wc?', packet.opcode, packet.data)
 // })
-onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
+onFFXIVEventWithFilter('unknown', null, null, 225, packet => {
   if (region === 'CN') {
     onWeatherChange(packet)
   } else {
@@ -1029,11 +1029,11 @@ onFFXIVEventWithFilter('unknown', null, null, 225, (packet) => {
   }
 })
 
-onFFXIVEvent('playerSetup', (packet) => {
-    log.info(packet)
+onFFXIVEvent('playerSetup', packet => {
+  log.info(packet)
 })
 
-onFFXIVEvent('weatherChange', (packet) => {
+onFFXIVEvent('weatherChange', packet => {
   if (region === 'Global') {
     onWeatherChange(packet)
   } else {
@@ -1083,19 +1083,19 @@ function onWeatherChange(packet) {
   log.info('time buff', spectralCurrentBuffTime / 1000, 's')
 }
 
-onFFXIVEvent('updateClassInfo', (packet) => {
+onFFXIVEvent('updateClassInfo', packet => {
   // log.debug('updateClassInfo', packet)
   status.isFisher = packet.classId === 18
 })
 
-onFFXIVEvent('playerStats', (packet) => {
+onFFXIVEvent('playerStats', packet => {
   // log.debug('playerStats', packet)
   status.gathering = packet.gathering
   status.perception = packet.perception
   status.gp = packet.gp
 })
 
-onFFXIVEvent('clientTrigger', (packet) => {
+onFFXIVEvent('clientTrigger', packet => {
   if (packet.commandID === 701) {
     // normal 2
     // double hook 16
@@ -1107,10 +1107,15 @@ onFFXIVEvent('clientTrigger', (packet) => {
 
 function getHooksetFromParam1(param1) {
   switch (param1) {
-    case 16: return 'double'
-    case 2: return 'normal'
-    case 10: return 'powerful'
-    case 11: return 'precision'
-    default: return 'normal'
+    case 16:
+      return 'double'
+    case 2:
+      return 'normal'
+    case 10:
+      return 'powerful'
+    case 11:
+      return 'precision'
+    default:
+      return 'normal'
   }
 }

@@ -44,7 +44,7 @@ const closedWindows = {}
 
 unhandled({
   logger: log.error,
-  reportButton: (error) => {
+  reportButton: error => {
     shell.showItemInFolder(path.join(app.getPath('userData'), 'logs/main.log'))
   },
 })
@@ -111,8 +111,8 @@ async function init() {
       VUEJS_DEVTOOLS,
     } = require('electron-devtools-installer')
     installExtension(VUEJS_DEVTOOLS)
-      .then((name) => log.info(`Added Extension:  ${name}`))
-      .catch((err) => log.info('An error occurred: ', err))
+      .then(name => log.info(`Added Extension:  ${name}`))
+      .catch(err => log.info('An error occurred: ', err))
     ipcMain
       .on('nextTestEvent', () => {
         FishingDataReader.nextTestEvent()
@@ -126,27 +126,23 @@ async function init() {
   initWindowSetting(configStore)
   windowSetting = configStore.get('windowSetting')
 
-  FishingDataReader.onUpdate((data) => {
-    callWindowSafe(WINDOWS.main, (win) => {
+  FishingDataReader.onUpdate(data => {
+    callWindowSafe(WINDOWS.main, win => {
       win.webContents.send('fishingData', data)
     })
-    callWindowSafe(WINDOWS.readerTimer, (win) =>
-      win.webContents.send('fishingData', data)
-    )
-    callWindowSafe(WINDOWS.timerMini, (win) => win.webContents.send('fishingData', data))
-    callWindowSafe(WINDOWS.readerSpotStatistics, (win) =>
+    callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('fishingData', data))
+    callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('fishingData', data))
+    callWindowSafe(WINDOWS.readerSpotStatistics, win =>
       win.webContents.send('fishingData', data)
     )
   })
-  FishingDataReader.onFishCaught((data) => {
-    callWindowSafe(WINDOWS.main, (win) => win.webContents.send('fishCaught', data))
+  FishingDataReader.onFishCaught(data => {
+    callWindowSafe(WINDOWS.main, win => win.webContents.send('fishCaught', data))
   })
-  FishingDataReader.onNewRecord((data) => {
-    callWindowSafe(WINDOWS.readerTimer, (win) => win.webContents.send('newRecord', data))
-    callWindowSafe(WINDOWS.readerHistory, (win) =>
-      win.webContents.send('newRecord', data)
-    )
-    callWindowSafe(WINDOWS.readerSpotStatistics, (win) =>
+  FishingDataReader.onNewRecord(data => {
+    callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('newRecord', data))
+    callWindowSafe(WINDOWS.readerHistory, win => win.webContents.send('newRecord', data))
+    callWindowSafe(WINDOWS.readerSpotStatistics, win =>
       win.webContents.send('newRecord', data)
     )
   })
@@ -187,15 +183,13 @@ async function init() {
       }
     })
     .on('reloadUserData', () => {
-      callWindowSafe(WINDOWS.readerTimer, (win) => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.timerMini, (win) => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.readerSetting, (win) =>
-        win.webContents.send('reloadUserData')
-      )
+      callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.readerSetting, win => win.webContents.send('reloadUserData'))
     })
     .on('skipUpdate', () => {
       skipUpdate = true
-      callWindowSafe(WINDOWS.main, (win) => win.setProgressBar(0))
+      callWindowSafe(WINDOWS.main, win => win.setProgressBar(0))
       log.info('Update skipped')
     })
     .on('toggleHistory', () => {
@@ -208,7 +202,7 @@ async function init() {
       log.info('update main window setting', setting)
       saveWindowSetting('main.opacity', setting.opacity)
       saveWindowSetting('main.zoomFactor', setting.zoomFactor)
-      callWindowSafe(WINDOWS.main, (win) => {
+      callWindowSafe(WINDOWS.main, win => {
         win.setOpacity(setting.opacity)
         win.webContents.setZoomFactor(setting.zoomFactor)
       })
@@ -227,7 +221,7 @@ async function init() {
       //   return loadingForReloadingPage.close()
       // }
       log.info('in finishLoading')
-      callWindowSafe(WINDOWS.main, (win) => {
+      callWindowSafe(WINDOWS.main, win => {
         win.show()
       })
       callWindowSafe(WINDOWS.loading, win => {
@@ -243,32 +237,32 @@ async function init() {
           buttonLabel: '保存',
           filters: [{ name: 'CSV', extensions: ['csv'] }],
         })
-        .then((result) => {
+        .then(result => {
           if (!result.canceled) {
             const csv = new ObjectsToCsv(data)
             // return csv.toDisk(result.filePath, { bom: true })
-            return csv.toString().then((str) => {
+            return csv.toString().then(str => {
               fs.writeFileSync(result.filePath, iconv.encode(str, 'gb2312'))
             })
           }
           log.info(result)
         })
-        .catch((err) => {
+        .catch(err => {
           if (err.code === 'EBUSY') {
-            callWindowSafe(WINDOWS.readerHistory, (win) =>
+            callWindowSafe(WINDOWS.readerHistory, win =>
               win.webContents.send('exportHistoryFailedWithBusyFile')
             )
           }
           log.info(err)
         })
         .finally(() => {
-          callWindowSafe(WINDOWS.readerHistory, (win) =>
+          callWindowSafe(WINDOWS.readerHistory, win =>
             win.webContents.send('exportHistoryFinished')
           )
         })
     })
     .on('showSpotPage', (event, spotId) => {
-      callWindowSafe(WINDOWS.main, (win) => {
+      callWindowSafe(WINDOWS.main, win => {
         win.webContents.send('showSpotPage', spotId)
         if (win.isMinimized()) {
           win.restore()
@@ -307,10 +301,10 @@ async function init() {
       })
     })
     .on('listCntUpdated', (event, listCnt) => {
-      callWindowSafe(WINDOWS.mini, (win) => win.send('listCntUpdated', listCnt))
+      callWindowSafe(WINDOWS.mini, win => win.send('listCntUpdated', listCnt))
     })
     .on('reloadRecords', () => {
-      callWindowSafe(WINDOWS.readerSpotStatistics, (win) => win.send('reloadRecords'))
+      callWindowSafe(WINDOWS.readerSpotStatistics, win => win.send('reloadRecords'))
     })
 
   ipcMain.handle('showOpenSoundFileDialog', () => {
@@ -341,11 +335,11 @@ async function init() {
           },
         ],
       })
-      .then((result) => {
+      .then(result => {
         if (result.canceled) {
           return { canceled: true }
         } else {
-          return datauri(result.filePaths[0]).then((content) => {
+          return datauri(result.filePaths[0]).then(content => {
             return {
               canceled: result.canceled,
               filePath: result.filePaths[0],
@@ -363,12 +357,12 @@ async function init() {
     showReader()
   })
   globalShortcut.register('Alt+CommandOrControl+T', () => {
-    callWindowSafe(WINDOWS.main, (win) =>
+    callWindowSafe(WINDOWS.main, win =>
       win.webContents.openDevTools({
         mode: 'right',
       })
     )
-    callWindowSafe(WINDOWS.readerTimer, (win) =>
+    callWindowSafe(WINDOWS.readerTimer, win =>
       win.webContents.openDevTools({
         mode: 'undocked',
       })
@@ -396,16 +390,16 @@ async function init() {
 }
 
 function setMouseThrough(enable) {
-  callWindowSafe(WINDOWS.readerTimer, (win) =>
+  callWindowSafe(WINDOWS.readerTimer, win =>
     win.setIgnoreMouseEvents(enable, { forward: true })
   )
-  callWindowSafe(WINDOWS.timerMini, (win) =>
+  callWindowSafe(WINDOWS.timerMini, win =>
     win.setIgnoreMouseEvents(enable, { forward: true })
   )
-  callWindowSafe(WINDOWS.readerHistory, (win) =>
+  callWindowSafe(WINDOWS.readerHistory, win =>
     win.setIgnoreMouseEvents(enable, { forward: true })
   )
-  callWindowSafe(WINDOWS.readerSpotStatistics, (win) =>
+  callWindowSafe(WINDOWS.readerSpotStatistics, win =>
     win.setIgnoreMouseEvents(enable, { forward: true })
   )
 }
@@ -492,7 +486,7 @@ function createReaderHistory(readTimerWin) {
     true,
     readTimerWin
   )
-  win.on('closed', (e) => {
+  win.on('closed', e => {
     closedWindows[windowName] = win
   })
 }
@@ -514,7 +508,7 @@ function createReaderSpotStatistics(readTimerWin) {
     true,
     readTimerWin
   )
-  win.on('closed', (e) => {
+  win.on('closed', e => {
     closedWindows[windowName] = win
   })
 }
@@ -572,7 +566,7 @@ function createTransparentWin(
 const MINI_POS_OFFSET = 20
 function createMiniWin(parent) {
   return createTransparentWin('mini', 'mini', null, 150, 100, false)
-    .then((win) => {
+    .then(win => {
       win.setParentWindow(parent)
       return win.on('moved', () => {
         const [x, y] = win.getPosition()
@@ -580,17 +574,17 @@ function createMiniWin(parent) {
         saveWindowSetting('main.pos', { x, y: y - MINI_POS_OFFSET })
       })
     })
-    .catch((error) => {
+    .catch(error => {
       log.info('caught error in create main mini', error)
     })
 }
 
 function createAndShowLoadingWindow(parent) {
   return createTransparentWin('loading', 'loading', null, 250, 250, true)
-    .then((win) => {
+    .then(win => {
       win.setParentWindow(parent)
     })
-    .catch((error) => {
+    .catch(error => {
       log.info('caught error in create loading', error)
     })
 }
@@ -606,7 +600,7 @@ function createTimerMiniWin(parent) {
     false,
     ['--route-name=ReaderTimer', '--mode=mini']
   )
-    .then((win) => {
+    .then(win => {
       win.setParentWindow(parent)
       win.setResizable(true)
       return win
@@ -620,7 +614,7 @@ function createTimerMiniWin(parent) {
           saveWindowSetting('timerMini.size', { w, h })
         })
     })
-    .catch((error) => {
+    .catch(error => {
       log.info('caught error in create timer mini', error)
     })
 }
@@ -693,7 +687,7 @@ function createWindow(
 }
 
 function createMainWindow() {
-  return createWindow('main', 'main', 'assets/icon256.png', 'index', null, (mainWin) =>
+  return createWindow('main', 'main', 'assets/icon256.png', 'index', null, mainWin =>
     createReader(mainWin)
   ).on('closed', () => {
     quit()
@@ -735,42 +729,40 @@ function createReader() {
         saveWindowSetting('timer.size', { w, h })
       }
     })
-    .on('closed', (e) => {
+    .on('closed', e => {
       closedWindows[settingName] = win
     })
-    .on('hide', (e) => {
-      settingVisible || callWindowSafe(WINDOWS.readerSetting, (win) => win.hide())
-      historyVisible || callWindowSafe(WINDOWS.readerHistory, (win) => win.hide())
+    .on('hide', e => {
+      settingVisible || callWindowSafe(WINDOWS.readerSetting, win => win.hide())
+      historyVisible || callWindowSafe(WINDOWS.readerHistory, win => win.hide())
       spotStatisticsVisible ||
-        callWindowSafe(WINDOWS.readerSpotStatistics, (win) => win.hide())
+        callWindowSafe(WINDOWS.readerSpotStatistics, win => win.hide())
     })
 }
 
 function updateUserData(updateData) {
-  callWindowSafe(WINDOWS.main, (win) =>
-    win.webContents.send('updateUserData', updateData)
-  )
+  callWindowSafe(WINDOWS.main, win => win.webContents.send('updateUserData', updateData))
 }
 
 function showReader() {
   if (closedWindows['timer']) {
     createReader()
   }
-  callWindowSafe(WINDOWS.readerTimer, (win) => win.show())
+  callWindowSafe(WINDOWS.readerTimer, win => win.show())
 }
 
 function showReaderSetting() {
   if (closedWindows['readerSetting']) {
     createReaderSetting()
   }
-  callWindowSafe(WINDOWS.readerSetting, (win) => win.show())
+  callWindowSafe(WINDOWS.readerSetting, win => win.show())
 }
 
 function toggleReaderHistory() {
   if (closedWindows['readerHistory']) {
     createReaderHistory(WINDOWS.readerTimer)
   }
-  callWindowSafe(WINDOWS.readerHistory, (win) => {
+  callWindowSafe(WINDOWS.readerHistory, win => {
     if (win.isVisible()) {
       win.hide()
     } else {
@@ -783,7 +775,7 @@ function toggleSpotStatistics() {
   if (closedWindows['readerSpotStatistics']) {
     createReaderSpotStatistics(WINDOWS.readerTimer)
   }
-  callWindowSafe(WINDOWS.readerSpotStatistics, (win) => {
+  callWindowSafe(WINDOWS.readerSpotStatistics, win => {
     if (win.isVisible()) {
       win.hide()
     } else {
@@ -794,8 +786,8 @@ function toggleSpotStatistics() {
 
 async function downloadCommitHash() {
   return download(COMMIT_HASH_DOWNLOAD_LINK)
-    .on('error', (err) => log.error('Error in download commit hash:', err))
-    .then((data) => {
+    .on('error', err => log.error('Error in download commit hash:', err))
+    .then(data => {
       return data.toString(FILE_ENCODING)
     })
     .catch(() => {
@@ -805,7 +797,7 @@ async function downloadCommitHash() {
 
 async function downloadSetupFile(onDownloadProgress, onFinished) {
   return download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH)
-    .on('downloadProgress', (progress) => {
+    .on('downloadProgress', progress => {
       try {
         // Report download progress
         onDownloadProgress(progress)
@@ -813,7 +805,7 @@ async function downloadSetupFile(onDownloadProgress, onFinished) {
         log.error('In downloadProgress.', e)
       }
     })
-    .on('error', (err) => log.error('Error in download setup:', err))
+    .on('error', err => log.error('Error in download setup:', err))
     .then(() => {
       onFinished()
     })
@@ -843,10 +835,10 @@ async function updateIfNeeded(intervalHandle) {
     clearInterval(intervalHandle)
     log.info('New Version Detected!')
     const throttled = throttle(
-      (progress) => {
+      progress => {
         try {
           log.info('progress', progress.percent)
-          callWindowSafe(WINDOWS.main, (win) => {
+          callWindowSafe(WINDOWS.main, win => {
             win.webContents.send('setupDownload', progress)
             win.setProgressBar(progress.percent)
           })
@@ -860,7 +852,7 @@ async function updateIfNeeded(intervalHandle) {
     await downloadSetupFile(throttled, () => {
       try {
         log.info('download setup finished')
-        callWindowSafe(WINDOWS.main, (win) => win.webContents.send('checkStartSetup'))
+        callWindowSafe(WINDOWS.main, win => win.webContents.send('checkStartSetup'))
       } catch (e) {
         log.error('Try open update dialog failed.', e)
       }
@@ -904,7 +896,7 @@ function quit() {
 function streamToString(stream) {
   const chunks = []
   return new Promise((resolve, reject) => {
-    stream.on('data', (chunk) => chunks.push(chunk))
+    stream.on('data', chunk => chunks.push(chunk))
     stream.on('error', reject)
     stream.on('end', () => resolve(Buffer.concat(chunks).toString(FILE_ENCODING)))
   })
@@ -925,7 +917,7 @@ if (!gotTheLock) {
   app
     .whenReady()
     .then(() => init())
-    .catch((error) => {
+    .catch(error => {
       log.error('error in init', error)
     })
 }
@@ -944,7 +936,7 @@ function callWindowSafe(win, winCallback) {
   }
 }
 function callWindowsSafe(wins, winCallback) {
-  if (wins.every((it) => it) && wins.every((it) => !it.isDestroyed())) {
+  if (wins.every(it => it) && wins.every(it => !it.isDestroyed())) {
     winCallback(wins)
   }
 }
