@@ -2108,7 +2108,7 @@ module.exports = {
       _id: 29743,
       name_chs: '古老恐鱼',
       icon: 29019,
-      tug: 'light',
+      tug: 'medium',
       hookset: null,
       biteTimeMin: 9,
       biteTimeMax: 16,

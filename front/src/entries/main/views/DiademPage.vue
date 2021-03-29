@@ -23,24 +23,68 @@
                   <v-card color="system">
                     <v-card-title>{{ simpleTip.title }}</v-card-title>
                     <v-card-text>
-                      <div v-html="simpleTip.content" />
-                    </v-card-text>
-                    <v-divider />
-                    <v-card-text>
-                      <div>攻略及下方资料参考：</div>
-                      <div class="text-subtitle-1">
-                        <a :href="simpleTip.reference.link" target="_blank">
-                          {{ simpleTip.reference.title }}
-                        </a>
-                      </div>
-                      <div>
-                        {{ simpleTip.reference.author }}
+                      <div v-if="simpleTip.content" v-html="simpleTip.content" />
+                      <div v-else>
+                        <div class="d-flex align-center">
+                          （冲分无双提获得力要求，冲成就可去狂风云海，2300获得力双提3条）
+                        </div>
+                        <div class="d-flex align-center">
+                          <v-subheader>旋风云海</v-subheader>
+                          <item-icon icon-class="bg-027051" small />
+                          <span class="d-flex flex-column">
+                            <v-badge inline content="!" color="success"></v-badge>
+                            <v-badge inline content="< 10s" color="transparent"></v-badge>
+                          </span>
+                          <v-icon small>mdi-chevron-right</v-icon>
+                          <span><item-icon icon-class="bg-029716" small/></span>
+                          <span class="d-flex flex-column">
+                            <v-badge inline content="!!" color="error"></v-badge>
+                            <v-badge inline content="> 20s" color="transparent"></v-badge>
+                          </span>
+                          <v-icon small>mdi-chevron-right</v-icon>
+                          <span><item-icon icon-class="bg-029054"/></span>
+                          911 <v-icon>mdi-plus-circle</v-icon>
+                        </div>
+
+                        <div class="d-flex align-center">
+                          <v-subheader>摇风云海</v-subheader>
+                          <item-icon icon-class="bg-027051" small />
+                          <span class="d-flex flex-column">
+                            <v-badge inline content="!" color="success"></v-badge>
+                            <v-badge inline content="< 10s" color="transparent"></v-badge>
+                          </span>
+                          <v-icon small>mdi-chevron-right</v-icon>
+                          <span><item-icon icon-class="bg-029716" small/></span>
+                          <span class="d-flex flex-column">
+                            <v-badge inline content="!!!" color="warning"></v-badge>
+                          </span>
+                          <v-icon small>mdi-chevron-right</v-icon>
+                          <span><item-icon icon-class="bg-028459"/></span>
+                          996 <v-icon>mdi-plus-circle</v-icon>
+                        </div>
                       </div>
                     </v-card-text>
                     <v-divider />
                     <v-card-text v-if="simpleTip.baitTip" v-html="simpleTip.baitTip" />
                     <v-divider />
                     <v-card-text v-html="simpleTip.spotTip" />
+                    <v-divider />
+                    <v-card-text v-if="simpleTip.references">
+                      <div>参考资料：</div>
+                      <div
+                        v-for="(reference, index) in simpleTip.references"
+                        :key="index"
+                      >
+                        <div class="text-subtitle-1">
+                          <a :href="reference.link" target="_blank">
+                            {{ reference.title }}
+                          </a>
+                        </div>
+                        <div>
+                          {{ reference.author }}
+                        </div>
+                      </div>
+                    </v-card-text>
                   </v-card>
                 </div>
               </v-col>
@@ -86,19 +130,20 @@ import ImgUtil from '@/utils/ImgUtil'
 import DiademFishList from '@/components/DiademFishList/DiademFishList'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'DiademPage',
-  components: { EorzeaSimpleMap, DiademFishList },
+  components: { ItemIcon, EorzeaSimpleMap, DiademFishList },
   data() {
     return {
       regionTerritorySpots: regionTerritorySpots,
       tipMaps: [
         ImgUtil.getImgUrl('diadem-tip-map-grade2.png'),
         ImgUtil.getImgUrl('diadem-tip-map-grade3.png'),
-        undefined,
+        ImgUtil.getImgUrl('diadem-tip-map-grade4.png'),
       ],
-      tabIndex: 0,
+      tabIndex: 1,
       isElectron: DevelopmentModeUtil.isElectron(),
     }
   },

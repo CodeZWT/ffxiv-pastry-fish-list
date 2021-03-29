@@ -2699,13 +2699,9 @@ module.exports = {
         '</div>',
     },
     {
-      title: '4 tip',
-      content: '',
-      reference: {
-        title: '[5_31][伊修加德重建3期][云冠群岛] 5.31版本空岛捕鱼人资料整理',
-        author: '高咲侑@红玉海',
-        link: 'https://ngabbs.com/read.php?tid=24984938',
-      },
+      title: '第四期冲分选择',
+      content: null,
+      reference: null,
       baitTip: null,
       spotTip:
         '<div>关于钓场的一些说明</div>\n' +
