@@ -143,7 +143,7 @@ export default {
         ImgUtil.getImgUrl('diadem-tip-map-grade3.png'),
         ImgUtil.getImgUrl('diadem-tip-map-grade4.png'),
       ],
-      tabIndex: 1,
+      tabIndex: 0,
       isElectron: DevelopmentModeUtil.isElectron(),
     }
   },
