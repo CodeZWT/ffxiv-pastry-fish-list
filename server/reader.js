@@ -45,7 +45,7 @@ const ffxivEvent = new Events.EventEmitter()
 
 const machinaOptions = isDev
   ? {
-      monitorType: 'RawSocket', //'WinPCap',
+      monitorType: 'WinPCap',
       parseAlgorithm: 'PacketSpecific',
       region: 'CN',
       port: 13347,
