@@ -1741,6 +1741,7 @@ module.exports = {
   24217: {
     id: 24217,
     name: '暮辉鱼',
+    data: '平钓(23s；24s；27s；22s)<br><span class="orangered">平钓(18s；23s；24.6s；28.4s)</span>',
     weatherTime: '8-16；小雨或强风转阴云',
     trick: '肥蚯蚓-(轻杆，精准)-嘎牙子-(鱼王杆，强力)-暮辉鱼',
     comment: '窗口期非常非常少！！！有时候甚至要等上二十多天！！！(数据包括脱钩的)',
