@@ -24,6 +24,34 @@
           预先告知：国服预计将在近期更新5.4版本，届时渔捞相关检测功能会失效一段时间，等待自动更新即可。更新时间预计在游戏正式更新后几天内，请耐心等待。
         </v-alert>
 
+        <div class="text-h6">Version 0.7.3</div>
+        <div class="text-subtitle-1">更新时间: 2021/03/29 21:00</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕
+        </div>
+        <ul>
+          <li>
+            增加第四期空岛内容
+          </li>
+        </ul>
+        <div class="text-h5 text-center my-1">
+          鱼糕桌面版
+        </div>
+        <ul>
+          <li>
+            修复最小化时同时最小化渔捞的问题
+          </li>
+          <li>
+            修复点击渔捞激活主界面的问题
+          </li>
+          <li>
+            修复海钓数据
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.7.2</div>
         <div class="text-subtitle-1">更新时间: 2021/03/27 20:32</div>
         <div class="text-h5 text-center my-1">
@@ -685,17 +713,17 @@
           <div>
             页面中攻略与资料参考：
             <div class="text-subtitle-1">
-              <a :href="diademTips[0].reference.link" target="_blank">
-                {{ diademTips[0].reference.title }}
+              <a :href="diademTips[0].references[0].link" target="_blank">
+                {{ diademTips[0].references[0].title }}
               </a>
             </div>
             <div class="text-subtitle-1">
-              <a :href="diademTips[1].reference.link" target="_blank">
-                {{ diademTips[1].reference.title }}
+              <a :href="diademTips[1].references[0].link" target="_blank">
+                {{ diademTips[1].references[0].title }}
               </a>
             </div>
             <div>
-              {{ diademTips[0].reference.author }}
+              {{ diademTips[0].references[0].author }}
             </div>
             <p />
             <div>

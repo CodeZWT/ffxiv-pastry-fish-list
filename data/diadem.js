@@ -2629,12 +2629,12 @@ module.exports = {
         以上两种鱼推荐先用NQ飞鱼以小钓大II，以小钓大II进入CD后用耐心提HQ飞鱼，等耐心消失后，用钓到的HQ飞鱼以小钓大，再双提特定鱼<br />
         4种绿鱼需要对应天气，分不高(对于千分鱼来说)，建议冲分后再钓，不计入烟波成就数量，但是存在单独的数量成就(无称号奖励)<br />
       `,
-      reference: {
+      references: [{
         title:
           '[5.21][空岛][捕鱼人][第二次伊修加德复兴](已更新钓场地图)谁敢向我挑衅，我将终结他的生命！捕鱼人空岛垂钓符文已配备',
         author: '高咲侑@红玉海',
         link: 'https://ngabbs.com/read.php?tid=23009886',
-      },
+      }],
     },
     {
       title: '冲榜\\冲分的简易攻略',
@@ -2671,11 +2671,11 @@ module.exports = {
   </li>
 </ul>3.个人推荐获得力堆2300以上，根据天气不时变换钓场，从自身情况灵活更换钓场
         `,
-      reference: {
+      references: [{
         title: '[5_31][伊修加德重建3期][云冠群岛] 5.31版本空岛捕鱼人资料整理',
         author: '高咲侑@红玉海',
         link: 'https://ngabbs.com/read.php?tid=24984938',
-      },
+      }],
       baitTip:
         '<div>关于鱼饵的一些说明</div>\n' +
         '<div>\n' +
@@ -2701,7 +2701,16 @@ module.exports = {
     {
       title: '第四期冲分选择',
       content: null,
-      reference: null,
+      references: [{
+        title: '[5.41][伊修加德重建][捕鱼人]第四期重建空岛捕鱼相关资料整理&简易攻略',
+        author: '高咲侑@红玉海',
+        link: 'https://ngabbs.com/read.php?tid=25129957',
+      },
+        {
+          title: '[5.41][伊修加德重建四期] 渔民就是要住在空岛-四期捕鱼冲分攻略',
+          author: '耳机团',
+          link: 'https://ngabbs.com/read.php?tid=25091906',
+        }],
       baitTip: null,
       spotTip:
         '<div>关于钓场的一些说明</div>\n' +
