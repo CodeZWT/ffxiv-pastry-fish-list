@@ -1268,6 +1268,12 @@ module.exports = {
     6191: {
       hookset: 'Powerful',
     },
+    12800: {
+      bestCatchPath: [12709],
+    },
+    12754: {
+      bestCatchPath: [28634],
+    }
   },
   COLLECTABLE_FISH_ITEM_ID: [
     12713,

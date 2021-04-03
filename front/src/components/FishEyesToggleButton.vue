@@ -16,16 +16,14 @@
       </div>
     </template>
     <div style="max-width: 300px">
-      <div class="error--text font-weight-bold text-center text-h5">
-        此技能国服仍未实装！
-      </div>
       <div class="mb-1">
         <item-icon icon-class="bg-001112" small class="float-left" />
         <div>
           鱼眼技能在
           <strong>5.4</strong>
           版本的效果更新为，无视时间条件，持续时间60s，消耗GP550。
-          对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼无效。
+          对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼
+          <span class="font-weight-bold">无效</span>。
         </div>
       </div>
       <div>鱼糕在开启鱼眼功能后，对可用范围内的鱼会无视时间要求进行计算。</div>
@@ -36,6 +34,7 @@
 <script>
 import ItemIcon from '@/components/basic/ItemIcon'
 import ToggleButton from '@/components/basic/ToggleButton'
+
 export default {
   name: 'FishEyesToggleButton',
   components: { ToggleButton, ItemIcon },
