@@ -420,7 +420,7 @@ export default {
           name: '高分鱼',
         },
         ...(this.voyage?.targets
-          ?.filter(target => target.type === 'achievement')
+          ?.filter(target => target.type === 'achievement' && !target.nonTipOptions)
           ?.map(achievement => {
             return {
               type: 'achievement',
@@ -569,7 +569,7 @@ export default {
         this.tipIndex = 0
       } else if (defaultTarget.type === 'item') {
         this.tipIndex = 1
-      } else if (defaultTarget.id === 2562) {
+      } else if (defaultTarget.id === 2759) {
         this.tipIndex = 2
       } else {
         this.tipIndex = this.tips.length - 1

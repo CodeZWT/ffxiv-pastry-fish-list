@@ -60,11 +60,13 @@ function allTargets() {
     },
     {
       type: '成就',
-      options: Array.from(achievementSet).map(it => ({
-        type: 'achievement',
-        id: it,
-        voyageTypes: achievementId2Voyages[it],
-      })),
+      options: Array.from(achievementSet)
+        .map(it => ({
+          type: 'achievement',
+          id: it,
+          voyageTypes: achievementId2Voyages[it],
+        }))
+        .sort((a, b) => a.id - b.id),
     },
     ...Object.values(CORE.SPOTS).map(spot => {
       return {

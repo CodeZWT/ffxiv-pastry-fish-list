@@ -12118,6 +12118,13 @@ module.exports = {
       icon: 29130,
       bonus: 22,
     },
+    2759: {
+      id: 2759,
+      name_chs: '推荐冲分',
+      description: '在1次出海垂钓中获得20,000以上渔分。',
+      iconLocal: 'ocean-fishing-score-achievement-40x40.png',
+      nonTipOptions: true,
+    },
   },
   FOLKLORE: {
     2500: { _id: 2500, itemId: 12701 },

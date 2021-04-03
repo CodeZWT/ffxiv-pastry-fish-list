@@ -51,6 +51,17 @@
       <v-card>
         <v-card-title>海钓航班时间表 5.4</v-card-title>
         <v-card-subtitle>努力号航运表</v-card-subtitle>
+        <v-card-text>
+          <div>
+            时间表中标记冲分路线为推荐航线，其他（除双蓝）航线也可冲分，请查看“高分鱼”界面内容并参考攻略
+          </div>
+          <v-sheet outlined class="pa-2">
+            <div class="d-flex flex-column">
+              <a :href="tip.link">{{ tip.title }}</a>
+              <span>{{ tip.author }}</span>
+            </div>
+          </v-sheet>
+        </v-card-text>
         <div>
           <ocean-fishing-time-table
             :voyages="voyages"
@@ -136,7 +147,7 @@
                 原“游钓大洋1-3(冲分)”变更为高分鱼，在所有航线都会显示
               </li>
               <li>
-                原“冲分”航线目标去除，新海钓由于有任务加成，理论上可以在任何航线冲分，请查看“高分鱼”界面内容并参考攻略
+                时间表中标记冲分路线为推荐航线，其他（除双蓝）航线也可冲分，请查看“高分鱼”界面内容并参考攻略
               </li>
               <li>
                 增加任务系统的支持，仅在“高分鱼”界面出现
@@ -164,6 +175,7 @@ import ImgUtil from '@/utils/ImgUtil'
 import OceanFishingVoyage from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingVoyage'
 import DATA_CN from 'Data/translation'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import { OCEAN_FISHING_TIPS } from '../../../../../data/fix'
 
 // https://ngabbs.com/read.php?tid=20553241
 
@@ -187,6 +199,7 @@ export default {
       selectedVoyage: undefined,
       selectedTarget: undefined,
       isElectron: DevelopmentModeUtil.isElectron(),
+      tip: OCEAN_FISHING_TIPS.tip3,
     }
   },
   computed: {
@@ -351,16 +364,17 @@ export default {
       )
     },
     assembleAchievement(achievementId) {
-      return (
-        achievementId && {
-          id: achievementId,
-          name: this.getAchievementName(achievementId),
-          icon: this.getAchievementIconClass(achievementId),
-          bonus: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS[achievementId].bonus,
-          iconUrl: null,
-          type: 'achievement',
-        }
-      )
+      if (!achievementId) return null
+      const achievement = DATA_CN.OCEAN_FISHING_ACHIEVEMENTS[achievementId]
+      return {
+        id: achievementId,
+        name: this.getAchievementName(achievementId),
+        icon: this.getAchievementIconClass(achievementId),
+        bonus: achievement.bonus,
+        iconUrl: achievement.iconLocal && ImgUtil.getImgUrl(achievement.iconLocal),
+        nonTipOptions: achievement.nonTipOptions,
+        type: 'achievement',
+      }
     },
     filterChanged(filter) {
       this.filter = filter
