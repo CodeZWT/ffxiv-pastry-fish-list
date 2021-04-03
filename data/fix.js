@@ -1273,7 +1273,10 @@ module.exports = {
     },
     12754: {
       bestCatchPath: [28634],
-    }
+    },
+    16754: {
+      bestCatchPath: [12706, 12780],
+    },
   },
   COLLECTABLE_FISH_ITEM_ID: [
     12713,
