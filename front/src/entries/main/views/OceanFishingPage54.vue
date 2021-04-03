@@ -49,7 +49,7 @@
 
     <template v-else>
       <v-card>
-        <v-card-title>海钓航班时间表 5.4</v-card-title>
+        <v-card-title>海钓航班时间表</v-card-title>
         <v-card-subtitle>努力号航运表</v-card-subtitle>
         <v-card-text>
           <div>
@@ -109,25 +109,25 @@
                 新增线路：Bloodbrine Sea、Rothlyt Sound
               </li>
               <li>
-                航线共12种，每种航线每天出现一次。
+                航线共12种，每种航线每天出现一次
               </li>
             </ul>
           </v-alert>
           <v-alert outlined type="info" border="left">
             <ul>
               <li>
-                未触发幻海流时，下一个地点触发幻海流的几率会提升。
+                未触发幻海流时，下一个地点触发幻海流的几率会提升
               </li>
               <li>
-                未触发幻海流或幻海流进行中状态下进入下一个钓场时，下一个地点的幻海流时间会延长。
+                未触发幻海流或幻海流进行中状态下进入下一个钓场时，下一个地点的幻海流时间会延长
               </li>
             </ul>
           </v-alert>
           <v-alert outlined type="info" border="left" icon="mdi-fish">
-            “沉寂者”、“剪碎手巴塞洛缪”的双提个数变为4。（鱼糕将在5.4更新后更新）
+            “沉寂者”、“剪碎手巴塞洛缪”的双提个数变为4
           </v-alert>
           <v-alert outlined type="error" border="left">
-            中途退出后，不再能够申请进入本轮出海垂钓。
+            中途退出后，不再能够申请进入本轮出海垂钓
           </v-alert>
           <v-alert outlined type="success" border="left" icon="mdi-format-list-checks">
             新增“任务”系统，完成任务会获得额外分数加成（5%/10%/20%）
