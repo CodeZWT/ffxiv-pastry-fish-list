@@ -24,6 +24,20 @@
           预先告知：国服预计将在近期更新5.4版本，届时渔捞相关检测功能会失效一段时间，等待自动更新即可。更新时间预计在游戏正式更新后几天内，请耐心等待。
         </v-alert>
 
+        <div class="text-h6">Version 0.7.4</div>
+        <div class="text-subtitle-1">更新时间: 2021/04/03 14:03</div>
+        <div class="text-h5 text-center my-1">
+          鱼糕
+        </div>
+        <ul>
+          <li>
+            增加海钓冲分推荐
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.7.3</div>
         <div class="text-subtitle-1">更新时间: 2021/03/29 21:00</div>
         <div class="text-h5 text-center my-1">
