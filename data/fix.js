@@ -9211,7 +9211,7 @@ module.exports = {
     480: {
       _id: 480,
       placeNameId: 3627,
-      name_chs: 'The Eastern Ruby Sea',
+      name_chs: '红玉海底东部',
       anglerLocationId: 100191,
       x: 1961,
       y: 433,
@@ -9225,7 +9225,7 @@ module.exports = {
     481: {
       _id: 481,
       placeNameId: 3629,
-      name_chs: "The Sunken Junk's South Side",
+      name_chs: '沉没江船南侧',
       anglerLocationId: 100291,
       x: 501,
       y: 1839,
@@ -9239,7 +9239,7 @@ module.exports = {
     482: {
       _id: 482,
       placeNameId: 3630,
-      name_chs: 'Azim Khaat Southern Lakebed',
+      name_chs: '太阳湖底南部',
       anglerLocationId: 100391,
       x: 1034,
       y: 1211,
@@ -9253,7 +9253,7 @@ module.exports = {
     483: {
       _id: 483,
       placeNameId: 3631,
-      name_chs: 'Loch Seld Deep Lakebed',
+      name_chs: '盐湖湖底深部',
       anglerLocationId: 90491,
       x: 1061,
       y: 1194,
@@ -9267,7 +9267,7 @@ module.exports = {
     530: {
       _id: 530,
       placeNameId: 3628,
-      name_chs: "Kobayashi Maru's Northern Wake",
+      name_chs: '小林丸北侧',
       anglerLocationId: 100192,
       x: 1911,
       y: 89,
@@ -9421,7 +9421,7 @@ module.exports = {
     645: {
       _id: 645,
       placeNameId: 3632,
-      name_chs: 'Eastern Isle of Ken',
+      name_chs: '贤岛东侧',
       anglerLocationId: 120391,
       x: 560,
       y: 1757,
@@ -9435,7 +9435,7 @@ module.exports = {
     646: {
       _id: 646,
       placeNameId: 3633,
-      name_chs: 'East Longmirror Lake',
+      name_chs: '身镜湖东部',
       anglerLocationId: 120691,
       x: 1450,
       y: 1183,
@@ -9449,7 +9449,7 @@ module.exports = {
     647: {
       _id: 647,
       placeNameId: 3634,
-      name_chs: "Deep Lake Tusi Mek'ta",
+      name_chs: '蛇水湖湖底深部',
       anglerLocationId: 120791,
       x: 234,
       y: 1403,
