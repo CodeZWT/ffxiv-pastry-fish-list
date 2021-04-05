@@ -225,6 +225,7 @@ import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
 import PinyinMatch from 'pinyin-match'
 import FishAquarium from '@/components/FishAquarium'
+import { CN_PATCH_VERSION } from 'Data/constants'
 
 const PATCHES_MIN = [2, 3, 4, 5]
 export default {
@@ -240,7 +241,7 @@ export default {
       fishPatchIndicesToShow: PATCHES_MIN.map((_, index) => index),
       allSizes: AQUARIUM_FISH_SIZE,
       allWater: AQUARIUM_WATER,
-      AVAILABLE_TYPES: ['普通', '版本新鱼', '未来版本'],
+      AVAILABLE_TYPES: ['普通', CN_PATCH_VERSION + '新增', '未来版本'],
       availableIndicesFilter: [0, 1, 2],
       fishId: undefined,
     }
