@@ -3542,7 +3542,7 @@ module.exports = {
     },
     32065: {
       _id: 32065,
-      name_chs: 'Titanshell Crab',
+      name_chs: '泰坦硬甲蟹',
       icon: 28023,
       tug: 'medium',
       hookset: null,
@@ -3566,7 +3566,7 @@ module.exports = {
     },
     32066: {
       _id: 32066,
-      name_chs: 'Mythril Boxfish',
+      name_chs: '秘银箱',
       icon: 28020,
       tug: 'light',
       hookset: null,
@@ -3590,7 +3590,7 @@ module.exports = {
     },
     32067: {
       _id: 32067,
-      name_chs: "Mistbeard's Cup",
+      name_chs: "雾须酒杯",
       icon: 29079,
       tug: 'medium',
       hookset: null,
@@ -3638,7 +3638,7 @@ module.exports = {
     },
     32069: {
       _id: 32069,
-      name_chs: 'Flaming Eel',
+      name_chs: '火烈鳗',
       icon: 28024,
       tug: 'medium',
       hookset: null,
@@ -3662,7 +3662,7 @@ module.exports = {
     },
     32070: {
       _id: 32070,
-      name_chs: 'Jetborne Manta',
+      name_chs: '喷射蝠鲼',
       icon: 29663,
       tug: 'heavy',
       hookset: 'Powerful',
@@ -3758,7 +3758,7 @@ module.exports = {
     },
     32074: {
       _id: 32074,
-      name_chs: 'Hafgufa',
+      name_chs: '哈弗古法',
       icon: 28030,
       tug: 'heavy',
       hookset: 'Powerful',
@@ -3881,7 +3881,7 @@ module.exports = {
     },
     32079: {
       _id: 32079,
-      name_chs: 'Bloodpolish Crab',
+      name_chs: '染血抛光蟹',
       icon: 28013,
       tug: 'light',
       hookset: null,
@@ -4027,7 +4027,7 @@ module.exports = {
     },
     32085: {
       _id: 32085,
-      name_chs: 'Oracular Crab',
+      name_chs: '神谕蟹',
       icon: 28025,
       tug: 'light',
       hookset: null,
@@ -4075,7 +4075,7 @@ module.exports = {
     },
     32087: {
       _id: 32087,
-      name_chs: 'Skaldminni',
+      name_chs: '余韵',
       icon: 28022,
       tug: 'medium',
       hookset: null,
@@ -4123,7 +4123,7 @@ module.exports = {
     },
     32089: {
       _id: 32089,
-      name_chs: 'Beatific Vision',
+      name_chs: '幸福愿景',
       icon: 29098,
       tug: 'medium',
       hookset: null,
@@ -4147,7 +4147,7 @@ module.exports = {
     },
     32090: {
       _id: 32090,
-      name_chs: 'Exterminator',
+      name_chs: '歼灭者',
       icon: 29347,
       tug: 'light',
       hookset: null,
@@ -4219,7 +4219,7 @@ module.exports = {
     },
     32093: {
       _id: 32093,
-      name_chs: 'Quartz Hammerhead',
+      name_chs: '石英锤头鲨',
       icon: 28026,
       tug: 'heavy',
       hookset: 'Powerful',
@@ -4243,7 +4243,7 @@ module.exports = {
     },
     32094: {
       _id: 32094,
-      name_chs: 'Seafaring Toad',
+      name_chs: '海洋蟾蜍',
       icon: 28032,
       tug: 'heavy',
       hookset: 'Precision',
@@ -4293,7 +4293,7 @@ module.exports = {
     },
     32096: {
       _id: 32096,
-      name_chs: 'Rothlyt Kelp',
+      name_chs: '罗斯利特海带',
       icon: 29063,
       tug: 'light',
       hookset: null,
@@ -4341,7 +4341,7 @@ module.exports = {
     },
     32098: {
       _id: 32098,
-      name_chs: 'Honeycomb Fish',
+      name_chs: '蜂巢鱼',
       icon: 29582,
       tug: 'light',
       hookset: null,
@@ -4511,7 +4511,7 @@ module.exports = {
     },
     32105: {
       _id: 32105,
-      name_chs: 'Garum Jug',
+      name_chs: '鱼酱罐',
       icon: 29365,
       tug: 'light',
       hookset: null,
@@ -4559,7 +4559,7 @@ module.exports = {
     },
     32107: {
       _id: 32107,
-      name_chs: 'Rothlyt Mussel',
+      name_chs: '罗斯利特贝',
       icon: 28019,
       tug: 'light',
       hookset: null,
@@ -4607,7 +4607,7 @@ module.exports = {
     },
     32109: {
       _id: 32109,
-      name_chs: 'Pearl Bombfish',
+      name_chs: '珍珠爆弹',
       icon: 29087,
       tug: 'medium',
       hookset: null,
@@ -4631,7 +4631,7 @@ module.exports = {
     },
     32110: {
       _id: 32110,
-      name_chs: 'Trollfish',
+      name_chs: '巨魔鱼',
       icon: 29439,
       tug: 'light',
       hookset: null,
@@ -4655,7 +4655,7 @@ module.exports = {
     },
     32111: {
       _id: 32111,
-      name_chs: 'Panoptes',
+      name_chs: '潘诺普忒斯',
       icon: 29340,
       tug: 'medium',
       hookset: null,
@@ -4703,7 +4703,7 @@ module.exports = {
     },
     32113: {
       _id: 32113,
-      name_chs: 'Knifejaw',
+      name_chs: '刀颚鱼',
       icon: 28018,
       tug: 'medium',
       hookset: null,
@@ -4727,7 +4727,7 @@ module.exports = {
     },
     32114: {
       _id: 32114,
-      name_chs: 'Placodus',
+      name_chs: '盾齿龙',
       icon: 28031,
       tug: 'heavy',
       hookset: 'Powerful',
@@ -6083,21 +6083,21 @@ module.exports = {
             '沉寂者为大于3s的轻杆，深海鳗为长中杆(甚至能到9s+)，建议全提并酌情拍水<br />\n' +
             '沟鼠尾巴存在长杆可能导致鱼识内仅能抛一杆，请尽可能的拍掉触发鱼识的那个门票鱼来获取更高的抛两杆的概率',
         },
-        // Hafgufa
+        // 哈弗古法
         32074: {
           content:
-            "Mistbeard's Cup为3-5s的中杆，超过5s可直接断杆，Jetborne Manta3s内可自信双提，若门票只差这条可选择断杆",
+            "雾须酒杯为3-5s的中杆，超过5s可直接断杆，喷射蝠鲼3s内可自信双提，若门票只差这条可选择断杆",
         },
-        // Seafaring Toad
+        // 海洋蟾蜍
         32094: {
           content:
-            'Beatific Vision可对3s内的中杆自信双提，蓝鱼如果开了耐心的话疑似是精准提',
+            '幸福愿景可对3s内的中杆自信双提，蓝鱼如果开了耐心的话疑似是精准提',
         },
-        // Placodus
+        // 盾齿龙
         32114: {
           content:
             '我愿称之为最难蓝鱼，鱼识持续45s<br />\n' +
-            '石沙蚕2-5s轻杆提Rothlyt Mussel以小钓大唯一轻杆提Trollfish，进鱼识后仍用石沙蚕钓Rothlyt Mussel，鱼识相对其他6条更长，但是实际以小钓大有效杆数最多也就2杆，鱼识内钓Rothlyt Mussel的时候建议频繁拍水，过了5s直接收杆',
+            '石沙蚕2-5s轻杆提罗斯利特贝以小钓大唯一轻杆提巨魔鱼，进鱼识后仍用石沙蚕钓罗斯利特贝，鱼识相对其他6条更长，但是实际以小钓大有效杆数最多也就2杆，鱼识内钓罗斯利特贝的时候建议频繁拍水，过了5s直接收杆',
         },
       },
       extra:
@@ -6122,18 +6122,18 @@ module.exports = {
           '！！！暗淡鲨(单)(暴雨不出现)，漏斗鲨[午]；莫莫拉·莫拉(单)，无赖龙(单)[午]；铬铁锤头鲨，处刑者[日]<br />\n',
         248:
           '种类任务：螃蟹X13<br />\n' +
-          'Titanshell Crab；剪碎手巴塞洛缪[夜]；Bloodpolish Crab，Oracular Crab[日]、Exterminator[日]<br />\n' +
+          '泰坦硬甲蟹；剪碎手巴塞洛缪[夜]；染血抛光蟹，神谕蟹[日]、歼灭者[日]<br />\n' +
           '数量任务：！31，！！27，！！！5<br />\n' +
-          '！Mythril Boxfish；珊瑚海龙[午] 、剪碎手巴塞洛缪[夜]；Bloodpolish Crab，Oracular Crab[日]、Exterminator[日]<br />\n' +
-          '！！Titanshell Crab；幻纱披风[夜]；Beatific Vision、Skaldminni[夜]<br />\n' +
-          '！！！Jetborne Manta；守领鳍龙；Quartz Hammerhead<br />\n',
+          '！秘银箱；珊瑚海龙[午] 、剪碎手巴塞洛缪[夜]；染血抛光蟹，神谕蟹[日]、歼灭者[日]<br />\n' +
+          '！！泰坦硬甲蟹；幻纱披风[夜]；幸福愿景、余韵[夜]<br />\n' +
+          '！！！喷射蝠鲼；守领鳍龙；石英锤头鲨<br />\n',
         250:
           '种类任务：鲀X13<br />\n' +
-          'Mythril Boxfish；沉寂者；Honeycomb Fish ，Garum Jug[日夜]、Pearl Bombfish[日夜]<br />\n' +
+          '秘银箱；沉寂者；蜂巢鱼 ，鱼酱罐[日夜]、珍珠爆弹[日夜]<br />\n' +
           '数量任务：！39，！！18，！！！8<br />\n' +
-          '！Mythril Boxfish；沉寂者，浮游碟鱼[夜]；Rothlyt Kelp、Honeycomb Fish，Garum Jug[日夜]<br />\n' +
-          '！！Titanshell Crab；Pearl Bombfish[日夜]；Panoptes[日]<br />\n' +
-          '！！！Jetborne Manta；铬铁锤头鲨，处刑者[日]<br />\n',
+          '！秘银箱；沉寂者，浮游碟鱼[夜]；罗斯利特海带、蜂巢鱼，鱼酱罐[日夜]<br />\n' +
+          '！！泰坦硬甲蟹；珍珠爆弹[日夜]；潘诺普忒斯[日]<br />\n' +
+          '！！！喷射蝠鲼；铬铁锤头鲨，处刑者[日]<br />\n',
       },
       pointTip: {
         // 加拉迪翁湾
@@ -6204,17 +6204,17 @@ module.exports = {
           0: {
             fishList: [32071, 32072],
             tipContent:
-              "鳞虾，5s+！！，Devil's Sting(双2)；刺螠，3s+！！！，Callichthyid(双2)",
+              "鳞虾，5s+！！，恶魔刺(双2)；刺螠，3s+！！！，美鲶(双2)",
           },
           1: {
             fishList: [32069, 32073],
             tipContent:
-              '鳞虾，5s+！！，Flaming Eel(双2)；刺螠，6s+！！，Meandering Mora(双2)',
+              '鳞虾，5s+！！，火烈鳗(双2)；刺螠，6s+！！，浮游翻车鱼(双2)',
           },
           2: {
             fishList: [32074],
             tipContent:
-              "(刺螠，3s-！！！，Jetborne MantaX2)+(鳞虾，3-5s！！，Mistbeard's Cup)→乌贼丝，！！！，Hafgufa",
+              "(刺螠，3s-！！！，喷射蝠鲼X2)+(鳞虾，3-5s！！，雾须酒杯)→乌贼丝，！！！，哈弗古法",
           },
         },
         // 绯汐海
@@ -6222,40 +6222,40 @@ module.exports = {
           0: {
             fishList: [32085, 32090, 32093, 32094],
             tipContent:
-              '石沙蚕，3s-！，Oracular Crab(双4)；石沙蚕，4s+！，Exterminator(双4)<br />\n' +
-              '常驻高分鱼，刺螠，7s+！！！，Quartz Hammerhead(双2)<br />\n' +
-              '鳞虾，3s-！！，Beatific VisionX3→潮虫，！！！，Seafaring Toad，精准提钩<br />',
+              '石沙蚕，3s-！，神谕蟹(双4)；石沙蚕，4s+！，歼灭者(双4)<br />\n' +
+              '常驻高分鱼，刺螠，7s+！！！，石英锤头鲨(双2)<br />\n' +
+              '鳞虾，3s-！！，幸福愿景X3→潮虫，！！！，海洋蟾蜍，精准提钩<br />',
           },
           1: {
             fishList: [32093],
-            tipContent: '常驻高分鱼，刺螠，7s+！！！，Quartz Hammerhead(双2)',
+            tipContent: '常驻高分鱼，刺螠，7s+！！！，石英锤头鲨(双2)',
           },
           2: {
             fishList: [32087, 32093],
             tipContent:
-              '鳞虾，3-7s！！，Skaldminni(双4)<br />\n' +
-              '常驻高分鱼，刺螠，7s+！！！，Quartz Hammerhead(双2)',
+              '鳞虾，3-7s！！，余韵(双4)<br />\n' +
+              '常驻高分鱼，刺螠，7s+！！！，石英锤头鲨(双2)',
           },
         },
         // 罗斯利特湾
         250: {
           0: {
-            fishList: [32105, 32109, 32111],
+            fishList: [32105, 32109, 32111, 32113],
             tipContent:
-              '石沙蚕，3s-！，Garum Jug(双4)；鳞虾，3-5s！！，Pearl Bombfish(双4)；刺螠，3s+！！，Panoptes(双4)<br />\n' +
-              '常驻高分鱼，鳞虾，6s+！！！，Knifejaw(双2)',
+              '石沙蚕，3s-！，鱼酱罐(双4)；鳞虾，3-5s！！，珍珠爆弹(双4)；刺螠，3s+！！，潘诺普忒斯(双4)<br />\n' +
+              '常驻高分鱼，鳞虾，6s+！！！，刀颚鱼(双2)',
           },
           1: {
-            fishList: [32114],
+            fishList: [32114, 32113],
             tipContent:
-              '石沙蚕，2-5s！Rothlyt Mussel--！，Trollfish→石沙蚕，2-4s！Rothlyt Mussel--！！！，Placodus<br />\n' +
-              '常驻高分鱼，鳞虾，6s+！！！，Knifejaw(双2)',
+              '石沙蚕，2-5s！罗斯利特贝--！，巨魔鱼→石沙蚕，2-4s！罗斯利特贝--！！！，盾齿龙<br />\n' +
+              '常驻高分鱼，鳞虾，6s+！！！，刀颚鱼(双2)',
           },
           2: {
-            fishList: [32105, 32109],
+            fishList: [32105, 32109, 32113],
             tipContent:
-              '石沙蚕，3s-！，Garum Jug(双4)；鳞虾，3-5s！！，Pearl Bombfis(双4)<br />\n' +
-              '常驻高分鱼，鳞虾，6s+！！！，Knifejaw(双2)',
+              '石沙蚕，3s-！，鱼酱罐(双4)；鳞虾，3-5s！！，珍珠爆弹(双4)<br />\n' +
+              '常驻高分鱼，鳞虾，6s+！！！，刀颚鱼(双2)',
           },
         },
         // // 加拉迪翁湾外海
