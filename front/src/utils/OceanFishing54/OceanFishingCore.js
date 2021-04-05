@@ -4,7 +4,7 @@ const missions = {
   1: {
     id: 1,
     quantity: 7,
-    description: 'Catch jellyfish or crabs',
+    description: '钓到水母或螃蟹',
     types: [15, 21],
     star: null,
     tug: null,
@@ -12,7 +12,7 @@ const missions = {
   2: {
     id: 2,
     quantity: 5,
-    description: 'Catch fish rated ★★★ or higher',
+    description: '钓到★★★以上的鱼',
     types: [],
     star: 3,
     tug: null,
@@ -20,7 +20,7 @@ const missions = {
   4: {
     id: 4,
     quantity: 34,
-    description: 'Catch fish with a weak bite (!)',
+    description: '钓到咬钩强度低（！）的鱼',
     types: [],
     star: null,
     tug: 'light',
@@ -28,7 +28,7 @@ const missions = {
   5: {
     id: 5,
     quantity: 18,
-    description: 'Catch fish with a strong bite (!!)',
+    description: '钓到咬钩强度高（！！）的鱼',
     types: [],
     star: null,
     tug: 'medium',
@@ -36,7 +36,7 @@ const missions = {
   6: {
     id: 6,
     quantity: 6,
-    description: 'Catch fish with a ferocious bite (!!!)',
+    description: '钓到咬钩强度非常高（！！！）的鱼',
     types: [],
     star: null,
     tug: 'heavy',
@@ -44,7 +44,7 @@ const missions = {
   7: {
     id: 7,
     quantity: 5,
-    description: 'Catch sharks',
+    description: '钓到鲨鱼',
     types: [14],
     star: null,
     tug: null,
@@ -52,7 +52,7 @@ const missions = {
   8: {
     id: 8,
     quantity: 5,
-    description: 'Catch fish rated ★★★ or higher',
+    description: '钓到★★★以上的鱼',
     types: [],
     star: 3,
     tug: null,
@@ -60,7 +60,7 @@ const missions = {
   10: {
     id: 10,
     quantity: 34,
-    description: 'Catch fish with a weak bite (!)',
+    description: '钓到咬钩强度低（！）的鱼',
     types: [],
     star: null,
     tug: 'light',
@@ -68,7 +68,7 @@ const missions = {
   11: {
     id: 11,
     quantity: 11,
-    description: 'Catch fish with a strong bite (!!)',
+    description: '钓到咬钩强度高（！！）的鱼',
     types: [],
     star: null,
     tug: 'medium',
@@ -76,7 +76,7 @@ const missions = {
   12: {
     id: 12,
     quantity: 13,
-    description: 'Catch fish with a ferocious bite (!!!)',
+    description: '钓到咬钩强度非常高（！！！）的鱼',
     types: [],
     star: null,
     tug: 'heavy',
@@ -84,7 +84,7 @@ const missions = {
   13: {
     id: 13,
     quantity: 13,
-    description: 'Catch crabs',
+    description: '钓到螃蟹',
     types: [21],
     star: null,
     tug: null,
@@ -92,7 +92,7 @@ const missions = {
   14: {
     id: 14,
     quantity: 5,
-    description: 'Catch fish rated ★★★ or higher',
+    description: '钓到★★★以上的鱼',
     types: [],
     star: 3,
     tug: null,
@@ -100,7 +100,7 @@ const missions = {
   16: {
     id: 16,
     quantity: 31,
-    description: 'Catch fish with a weak bite (!)',
+    description: '钓到咬钩强度低（！）的鱼',
     types: [],
     star: null,
     tug: 'light',
@@ -108,7 +108,7 @@ const missions = {
   17: {
     id: 17,
     quantity: 27,
-    description: 'Catch fish with a strong bite (!!)',
+    description: '钓到咬钩强度高（！！）的鱼',
     types: [],
     star: null,
     tug: 'medium',
@@ -116,7 +116,7 @@ const missions = {
   18: {
     id: 18,
     quantity: 5,
-    description: 'Catch fish with a ferocious bite (!!!)',
+    description: '钓到咬钩强度非常高（！！！）的鱼',
     types: [],
     star: null,
     tug: 'heavy',
@@ -124,7 +124,7 @@ const missions = {
   19: {
     id: 19,
     quantity: 13,
-    description: 'Catch fugu',
+    description: '钓到鲀类',
     types: [20],
     star: null,
     tug: null,
@@ -132,7 +132,7 @@ const missions = {
   20: {
     id: 20,
     quantity: 5,
-    description: 'Catch fish rated ★★★ or higher',
+    description: '钓到★★★以上的鱼',
     types: [],
     star: 3,
     tug: null,
@@ -140,7 +140,7 @@ const missions = {
   22: {
     id: 22,
     quantity: 39,
-    description: 'Catch fish with a weak bite (!)',
+    description: '钓到咬钩强度低（！）的鱼',
     types: [],
     star: null,
     tug: 'light',
@@ -148,7 +148,7 @@ const missions = {
   23: {
     id: 23,
     quantity: 18,
-    description: 'Catch fish with a strong bite (!!)',
+    description: '钓到咬钩强度高（！！）的鱼',
     types: [],
     star: null,
     tug: 'medium',
@@ -156,7 +156,7 @@ const missions = {
   24: {
     id: 24,
     quantity: 8,
-    description: 'Catch fish with a ferocious bite (!!!)',
+    description: '钓到咬钩强度非常高（！！！）的鱼',
     types: [],
     star: null,
     tug: 'heavy',
@@ -220,7 +220,7 @@ const routes = {
   },
   7: {
     routeId: 7,
-    name_chs: 'Bloodbrine Sea',
+    name_chs: '绯汐海航线',
     spotList: [5, 3, 6],
     timeList: [1, 2, 3],
     achievements: [2756],
@@ -229,7 +229,7 @@ const routes = {
   },
   8: {
     routeId: 8,
-    name_chs: 'Bloodbrine Sea',
+    name_chs: '绯汐海航线',
     spotList: [5, 3, 6],
     timeList: [2, 3, 1],
     achievements: [2755],
@@ -238,7 +238,7 @@ const routes = {
   },
   9: {
     routeId: 9,
-    name_chs: 'Bloodbrine Sea',
+    name_chs: '绯汐海航线',
     spotList: [5, 3, 6],
     timeList: [3, 1, 2],
     achievements: [],
@@ -247,7 +247,7 @@ const routes = {
   },
   10: {
     routeId: 10,
-    name_chs: 'Rothlyt Sound',
+    name_chs: '罗斯利特湾航线',
     spotList: [5, 4, 7],
     timeList: [1, 2, 3],
     achievements: [2754],
@@ -256,7 +256,7 @@ const routes = {
   },
   11: {
     routeId: 11,
-    name_chs: 'Rothlyt Sound',
+    name_chs: '罗斯利特湾航线',
     spotList: [5, 4, 7],
     timeList: [2, 3, 1],
     achievements: [2754, 2756],
@@ -265,7 +265,7 @@ const routes = {
   },
   12: {
     routeId: 12,
-    name_chs: 'Rothlyt Sound',
+    name_chs: '罗斯利特湾航线',
     spotList: [5, 4, 7],
     timeList: [3, 1, 2],
     achievements: [],
@@ -330,9 +330,9 @@ const spots = {
     placeName: 3641,
     spotMainPlaceName: 3621,
     spotSubPlaceName: 3622,
-    spotNameText: 'The Cieldalaes',
-    spotMainNameText: 'Cieldalaes Margin',
-    spotSubNameText: 'Cieldalaes Spectral Current',
+    spotNameText: '谢尔达莱群岛',
+    spotMainNameText: '谢尔达莱群岛近海',
+    spotSubNameText: '谢尔达莱群岛近海幻海流',
     weatherSet: [2, 3, 4, 9, 10, 1],
   },
   6: {
@@ -342,9 +342,9 @@ const spots = {
     placeName: 3642,
     spotMainPlaceName: 3623,
     spotSubPlaceName: 3624,
-    spotNameText: 'The Bloodbrine Sea',
-    spotMainNameText: 'Open Bloodbrine Sea',
-    spotSubNameText: 'Bloodbrine Spectral Current',
+    spotNameText: '绯汐海',
+    spotMainNameText: '绯汐海近海',
+    spotSubNameText: '绯汐海近海幻海流',
     weatherSet: [2, 3, 4, 7, 8, 1],
   },
   7: {
@@ -354,9 +354,9 @@ const spots = {
     placeName: 3643,
     spotMainPlaceName: 3625,
     spotSubPlaceName: 3626,
-    spotNameText: 'The Rothlyt Sound',
-    spotMainNameText: 'Outer Rothlyt Sound',
-    spotSubNameText: 'Rothlyt Spectral Current',
+    spotNameText: '罗斯利特湾',
+    spotMainNameText: '罗斯利特湾近海',
+    spotSubNameText: '罗斯利特湾近海幻海流',
     weatherSet: [2, 3, 4, 9, 10, 1],
   },
 }

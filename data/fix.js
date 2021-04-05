@@ -4874,179 +4874,176 @@ module.exports = {
     },
     17: {
       _id: 17,
-      objective: 'Ocean Fishing Amateur',
-      requirement: 'Requirement: Complete one mission during an ocean fishing voyage.',
+      objective: '初级海钓师',
+      requirement: '达成条件：完成1种船上任务。',
       icon: 65923,
       order: 1,
     },
     18: {
       _id: 18,
-      objective: 'Ocean Fishing Enthusiast',
-      requirement: 'Requirement: Complete two missions during an ocean fishing voyage.',
+      objective: '中级海钓师',
+      requirement: '达成条件：完成2种船上任务。',
       icon: 65924,
       order: 2,
     },
     19: {
       _id: 19,
-      objective: 'Ocean Fishing Fanatic',
-      requirement: 'Requirement: Complete three missions during an ocean fishing voyage.',
+      objective: '上级海钓师',
+      requirement: '达成条件：完成3种船上任务。',
       icon: 65925,
       order: 3,
     },
     20: {
       _id: 20,
-      objective: 'Balloon Catchers',
-      requirement: 'Requirement: As a party, catch 250 or more fugu.',
+      objective: '气鲀四海',
+      requirement: '达成条件：小队全体合计钓到250只以上的鲀类。',
       icon: 65917,
       order: 37,
     },
     21: {
       _id: 21,
-      objective: 'Crab Boat Crew',
-      requirement: 'Requirement: As a party, catch 250 or more crabs.',
+      objective: '横路不通',
+      requirement: '达成条件：小队全体合计钓到250只以上的蟹类。',
       icon: 65918,
       order: 38,
     },
     22: {
       _id: 22,
-      objective: 'Sticking it to the Manta',
-      requirement: 'Requirement: As an individual, catch 25 or more mantas.',
+      objective: '只有我最鳐摆',
+      requirement: '达成条件：个人合计钓到25只以上的鳐鱼。',
       icon: 65919,
       order: 39,
     },
     23: {
       _id: 23,
-      objective: 'Bream Team: Galadion Bay',
+      objective: '丰渔：加拉迪翁湾',
       requirement:
-        'Requirement: As a party, catch 9 or more different fish in Galadion Bay. (Target number adjusted for party size.)',
+        '达成条件：小队全体在加拉迪翁湾合计钓到9种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65907,
       order: 11,
     },
     24: {
       _id: 24,
-      objective: 'Bream Team: Galadion Bay',
+      objective: '丰渔：加拉迪翁湾',
       requirement:
-        'Requirement: As a party, catch 8 or more different fish in Galadion Bay. (Target number adjusted for party size.)',
+        '达成条件：小队全体在加拉迪翁湾合计钓到8种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65907,
       order: 12,
     },
     25: {
       _id: 25,
-      objective: 'Bream Team: Southern Strait of Merlthor',
+      objective: '丰渔：梅尔托尔海峡南',
       requirement:
-        'Requirement: As a party, catch 9 or more different fish in the southern Strait of Merlthor. (Target number adjusted for party size.)',
+        '达成条件：小队全体在梅尔托尔海峡南合计钓到9种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65908,
       order: 14,
     },
     26: {
       _id: 26,
-      objective: 'Bream Team: Southern Strait of Merlthor',
+      objective: '丰渔：梅尔托尔海峡南',
       requirement:
-        'Requirement: As a party, catch 8 or more different fish in the southern Strait of Merlthor. (Target number adjusted for party size.)',
+        '达成条件：小队全体在梅尔托尔海峡南合计钓到8种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65908,
       order: 15,
     },
     27: {
       _id: 27,
-      objective: 'Bream Team: Northern Strait of Merlthor',
+      objective: '丰渔：梅尔托尔海峡北',
       requirement:
-        'Requirement: As a party, catch 9 or more different fish in the northern Strait of Merlthor. (Target number adjusted for party size.)',
+        '达成条件：小队全体在梅尔托尔海峡北合计钓到9种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65909,
       order: 20,
     },
     28: {
       _id: 28,
-      objective: 'Bream Team: Northern Strait of Merlthor',
+      objective: '丰渔：梅尔托尔海峡北',
       requirement:
-        'Requirement: As a party, catch 8 or more different fish in the northern Strait of Merlthor. (Target number adjusted for party size.)',
+        '达成条件：小队全体在梅尔托尔海峡北合计钓到8种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65909,
       order: 21,
     },
     29: {
       _id: 29,
-      objective: 'Bream Team: Rhotano Sea',
+      objective: '丰渔：罗塔诺海',
       requirement:
-        'Requirement: As a party, catch 9 or more different fish in the Rhotano Sea. (Target number adjusted for party size.)',
+        '达成条件：小队全体在罗塔诺海合计钓到9种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65910,
       order: 23,
     },
     30: {
       _id: 30,
-      objective: 'Bream Team: Rhotano Sea',
+      objective: '丰渔：罗塔诺海',
       requirement:
-        'Requirement: As a party, catch 8 or more different fish in the Rhotano Sea. (Target number adjusted for party size.)',
+        '达成条件：小队全体在罗塔诺海合计钓到8种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65910,
       order: 24,
     },
     31: {
       _id: 31,
-      objective: 'Bream Team: Cieldalaes',
-      requirement:
-        'Requirement: As a party, catch 10 or more different fish in the Cieldalaes.',
+      objective: '丰渔：谢尔达莱群岛',
+      requirement: '达成条件：小队全体在谢尔达莱群岛合计钓到10种以上的鱼类。',
       icon: 65920,
       order: 16,
     },
     32: {
       _id: 32,
-      objective: 'Bream Team: Cieldalaes',
+      objective: '丰渔：谢尔达莱群岛',
       requirement:
-        'Requirement: As a party, catch 9 or more different fish in the Cieldalaes. (Target number adjusted for party size.)',
+        '达成条件：小队全体在谢尔达莱群岛合计钓到9种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65920,
       order: 17,
     },
     33: {
       _id: 33,
-      objective: 'Bream Team: Cieldalaes',
+      objective: '丰渔：谢尔达莱群岛',
       requirement:
-        'Requirement: As a party, catch 8 or more different fish in the Cieldalaes. (Target number adjusted for party size.)',
+        '达成条件：小队全体在谢尔达莱群岛合计钓到8种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65920,
       order: 18,
     },
     34: {
       _id: 34,
-      objective: 'Bream Team: Bloodbrine Sea',
-      requirement:
-        'Requirement: As a party, catch 10 or more different fish in the Bloodbrine Sea.',
+      objective: '丰渔：绯汐海',
+      requirement: '达成条件：小队全体在绯汐海合计钓到10种以上的鱼类。',
       icon: 65921,
       order: 25,
     },
     35: {
       _id: 35,
-      objective: 'Bream Team: Bloodbrine Sea',
+      objective: '丰渔：绯汐海',
       requirement:
-        'Requirement: As a party, catch 9 or more different fish in the Bloodbrine Sea. (Target number adjusted for party size.)',
+        '达成条件：小队全体在绯汐海合计钓到9种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65921,
       order: 26,
     },
     36: {
       _id: 36,
-      objective: 'Bream Team: Bloodbrine Sea',
+      objective: '丰渔：绯汐海',
       requirement:
-        'Requirement: As a party, catch 8 or more different fish in the Bloodbrine Sea. (Target number adjusted for party size.)',
+        '达成条件：小队全体在绯汐海合计钓到8种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65921,
       order: 27,
     },
     37: {
       _id: 37,
-      objective: 'Bream Team: Rothlyt Sound',
-      requirement:
-        'Requirement: As a party, catch 10 or more different fish in Rothlyt Sound.',
+      objective: '丰渔：罗斯利特湾',
+      requirement: '达成条件：小队全体在罗斯利特湾合计钓到10种以上的鱼类。',
       icon: 65922,
       order: 28,
     },
     38: {
       _id: 38,
-      objective: 'Bream Team: Rothlyt Sound',
+      objective: '丰渔：罗斯利特湾',
       requirement:
-        'Requirement: As a party, catch 9 or more different fish in Rothlyt Sound. (Target number adjusted for party size.)',
+        '达成条件：小队全体在罗斯利特湾合计钓到9种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65922,
       order: 29,
     },
     39: {
       _id: 39,
-      objective: 'Bream Team: Rothlyt Sound',
+      objective: '丰渔：罗斯利特湾',
       requirement:
-        'Requirement: As a party, catch 8 or more different fish in Rothlyt Sound. (Target number adjusted for party size.)',
+        '达成条件：小队全体在罗斯利特湾合计钓到8种以上的鱼类。（已根据小队人数进行调整）',
       icon: 65922,
       order: 30,
     },
@@ -6202,7 +6199,7 @@ module.exports = {
             tipContent: '鳞虾，6s+！，浮游碟鱼(双4)；石沙蚕，2-6s！，蜗牛鱼(双2)',
           },
         },
-        // The Cieldalaes
+        // 谢尔达莱群岛
         246: {
           0: {
             fishList: [32071, 32072],
@@ -6220,7 +6217,7 @@ module.exports = {
               "(刺螠，3s-！！！，Jetborne MantaX2)+(鳞虾，3-5s！！，Mistbeard's Cup)→乌贼丝，！！！，Hafgufa",
           },
         },
-        // The Bloodbrine Sea
+        // 绯汐海
         248: {
           0: {
             fishList: [32085, 32090, 32093, 32094],
@@ -6240,7 +6237,7 @@ module.exports = {
               '常驻高分鱼，刺螠，7s+！！！，Quartz Hammerhead(双2)',
           },
         },
-        // The Rothlyt Sound
+        // 罗斯利特湾
         250: {
           0: {
             fishList: [32105, 32109, 32111],

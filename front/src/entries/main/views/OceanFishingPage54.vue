@@ -103,7 +103,7 @@
           <v-alert outlined type="success" border="left" icon="mdi-ferry">
             <ul>
               <li>
-                新增钓场：The Cieldalaes、The Bloodbrine Sea、The Rothlyt Sound
+                新增钓场：谢尔达莱群岛、绯汐海、罗斯利特湾
               </li>
               <li>
                 新增线路：Bloodbrine Sea、Rothlyt Sound
