@@ -1,6 +1,9 @@
 <template>
   <v-container fluid>
     <v-row no-gutters v-if="!readerTimerMiniMode">
+      <v-alert v-if="readerRegion !== 'Global'" outlined type="warning" border="left">
+        5.4更新后，渔捞将失效一段时间，请耐心等待自动更新。
+      </v-alert>
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div style="min-width: 100px">
           咬钩计时
@@ -32,9 +35,6 @@
           <div style="min-width: 60px">{{ weatherText }}</div>
           <v-spacer />
           <div class="text-right">
-            <div v-if="isSpectralCurrent && readerRegion === 'Global'">
-              国际服幻海流测试中。
-            </div>
             <div v-if="isSpectralCurrent">
               钓场倒计时30s时，幻海流强制结束，请注意。
             </div>

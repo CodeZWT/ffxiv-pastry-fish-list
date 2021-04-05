@@ -976,7 +976,7 @@ onFFXIVEvent('someDirectorUnk4', packet => {
 })
 
 function getSpectralCurrentCountDownTotal() {
-  return 2 * INTERVAL_MINUTE + (region === 'Global' ? spectralCurrentBuffTime : 0)
+  return 2 * INTERVAL_MINUTE + spectralCurrentBuffTime
 }
 
 function isOceanFishing() {
