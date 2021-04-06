@@ -104,11 +104,6 @@ exports.start = startMachina
 exports.onUpdate = onUpdate
 exports.stop = stopMachina
 function stopMachina(callback = () => {}) {
-  if (!region || region === 'CN') {
-    log.info('SKIPPED stop CN waiting updates')
-    callback()
-    return
-  }
   Machina.stop(() => {
     machinaStatus = 'stopped'
     callback()
@@ -116,10 +111,6 @@ function stopMachina(callback = () => {}) {
 }
 
 exports.restart = (options, callback = () => {}) => {
-  if (!options.region || options.region === 'CN') {
-    log.info('SKIPPED restart CN waiting updates')
-    return
-  }
   if (machinaStatus === 'running') {
     stopMachina(() => {
       log.debug('machina stopped')
@@ -1030,7 +1021,7 @@ function getString(uint8Array, offset, length) {
 // onFFXIVEventWithFilter('unknown', null, null, null,(packet) => {
 //   log.debug('wc?', packet.opcode, packet.data)
 // })
-onFFXIVEventWithFilter('unknown', null, null, 225, packet => {
+onFFXIVEventWithFilter('unknown', null, null, 604, packet => {
   if (region === 'CN') {
     onWeatherChange(packet)
   } else {
