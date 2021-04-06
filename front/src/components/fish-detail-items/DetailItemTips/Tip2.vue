@@ -11,7 +11,7 @@
           <div>
             <div>谈清若风柔@神拳痕</div>
             <div>
-              更新时间：2021/02/17
+              更新时间：2021/04/06
             </div>
           </div>
           <v-spacer />
@@ -114,7 +114,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12">
+          <v-col cols="12" v-if="tip.comment">
             <div class="text-subtitle-2" style="font-weight: bold">其他</div>
             <div class="text--primary" v-html="tip.comment"></div>
           </v-col>

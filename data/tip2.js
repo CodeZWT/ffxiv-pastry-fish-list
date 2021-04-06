@@ -1167,7 +1167,7 @@ module.exports = {
     data:
       '撒饵(18s；17s；18s)<br>平钓(30s；28s；35s)<br><span class="orangered">撒饵(19s；15.3s；16s；18.1s)<br>平钓(37.8s；25.9s)</span>',
     weatherTime: '14-16；所有天气',
-    trick: '(6分钟鱼眼)残暴水蛭-(鱼王杆，强力)-水墨鱼 拍凸眼金鱼(中杆)',
+    trick: '残暴水蛭-(鱼王杆，强力)-水墨鱼 拍凸眼金鱼(中杆)',
     comment: '窗口期不长，但舔钩率可观。',
   },
   15636: {
@@ -1205,8 +1205,8 @@ module.exports = {
     data:
       '平钓(27s；24s；26s)<br><span class="orangered">平钓(24.4s；19.3s；21.7s；31s；19.9s)</span>',
     weatherTime: '全天；碧空转强风',
-    trick: '(2分20秒鱼眼)巨型大蚊-(中杆，强力)-高天鱼-(鱼王杆，强力)-双型齿翼龙',
-    comment: '鱼王杆有杂鱼干扰，如果没有开鱼眼那就都是杂鱼。',
+    trick: '巨型大蚊-(中杆，强力)-高天鱼-(鱼王杆，强力)-双型齿翼龙',
+    comment: '鱼王杆有杂鱼干扰。',
   },
   16743: {
     id: 16743,
@@ -1235,8 +1235,7 @@ module.exports = {
     weatherTime: '全天；小雪转暴雪',
     trick: '红气球虫-(轻杆，精准)-冰川核-(鱼王杆，精准)-吞冰水母',
     trickWithStar: true,
-    comment:
-      '<span style="font-weight:bold">巨型大蚊</span>在此钓场只有<span style="font-weight:bold">冰川核</span>与<span style="font-weight:bold">天虫</span>两种挂钩，而且在对应天气下不开启鱼眼时候<span style="font-weight:bold">天虫</span>以小钓大只会起<span style="font-weight:bold">冰川核</span>，所以更优化的钓法是使用<span style="font-weight:bold">巨型大蚊</span>，形成<span style="font-weight:bold">巨型大蚊</span>-(<span style="font-weight:bold">天虫</span>-)<span style="font-weight:bold">冰川核</span>-<span style="font-weight:bold">吞冰水母</span>。',
+    comment: null,
   },
   16746: {
     id: 16746,
@@ -1292,8 +1291,8 @@ module.exports = {
     data:
       '撒饵(14s；14s)<br>平钓(31s)<br><span class="orangered">撒饵(无数据)<br>平钓(33.4s；24s)</span>',
     weatherTime: '2-6；所有天气',
-    trick: '(2分20秒鱼眼)熔岩蠕虫-(鱼王杆，精准)-圣龙泪 拍花岗蟹(轻杆)',
-    comment: '注意2分钟的鱼眼不是该鱼王。',
+    trick: '熔岩蠕虫-(鱼王杆，精准)-圣龙泪 拍花岗蟹(轻杆)',
+    comment: null,
   },
   16752: {
     id: 16752,
@@ -1301,7 +1300,7 @@ module.exports = {
     data:
       '平钓(31s；30s；34s)<br><span class="orangered">平钓(29.8s；35s；31.8s；35s；37s)</span>',
     weatherTime: '常驻',
-    trick: '(2分20秒鱼眼)恶魔蠕虫-(轻杆，精准)-白金鱼-(鱼王杆，精准)-魔科学物质666',
+    trick: '恶魔蠕虫-(轻杆，精准)-白金鱼-(鱼王杆，精准)-魔科学物质666',
     comment: '舔钩率较低，做好长期作战的准备。',
   },
   16753: {
@@ -1327,8 +1326,8 @@ module.exports = {
     name: '冰之巫女',
     data: '平钓(31s；33s)<br><span class="orangered">平钓(29s；31.5s；26.1s)</span>',
     weatherTime: '全天；小雪或暴雪转暴雪',
-    trick: '(2分20秒鱼眼)石蚕-(轻杆，精准)-冰战神-(鱼王杆，强力)-冰之巫女',
-    comment: '非常简单的鱼眼鱼王。',
+    trick: '石蚕-(轻杆，精准)-冰战神-(鱼王杆，强力)-冰之巫女',
+    comment: '比较简单的鱼王。',
   },
   17577: {
     id: 17577,
@@ -1336,9 +1335,8 @@ module.exports = {
     data:
       '撒饵(12s；12s)<br>平钓(27s；27s；27s)<br><span class="orangered">撒饵(无数据)<br>平钓(25s；26.2s；25.6s；24.7s)</span>',
     weatherTime: '10-14；碧空',
-    trick: '(3分钟鱼眼)残暴水蛭-(鱼王杆，强力)-大祭司鱼 拍冰战神(轻杆)',
-    comment:
-      '三鱼眼钓场，鱼王鱼眼是3分钟(3转2)，如果开出鱼眼是4分钟(4转3)的或者是2分30秒的，恭喜你被吞掉了350gp。',
+    trick: '残暴水蛭-(鱼王杆，强力)-大祭司鱼 拍冰战神(轻杆)',
+    comment: null,
   },
   17578: {
     id: 17578,
@@ -1366,7 +1364,7 @@ module.exports = {
     data:
       '撒饵(17s)<br>平钓(25s；28s)<br><span class="orangered">撒饵(16.8s；12.1s)<br>平钓(28s；25s；28.2s；31.2s)</span>',
     weatherTime: '18-22；阴云转打雷',
-    trick: '(3分钟鱼眼)恶魔蠕虫-(鱼王杆，精准)-赛缇 拍白金鱼(轻杆)',
+    trick: '恶魔蠕虫-(鱼王杆，精准)-赛缇 拍白金鱼(轻杆)',
     comment: '入门级鱼王，舔钩率尚可。',
   },
   17581: {
@@ -1375,7 +1373,7 @@ module.exports = {
     data:
       '平钓(26s；30s；29s)<br><span class="orangered">平钓(23.8s；22.3s；24.8s；33.5s；31s；33.3s；26.1s)</span>',
     weatherTime: '全天；晴朗转打雷',
-    trick: '(3分钟鱼眼)巨型大蚊-(中杆，强力)-高天鱼-(鱼王杆，强力)-水晶飞鸽',
+    trick: '巨型大蚊-(中杆，强力)-高天鱼-(鱼王杆，强力)-水晶飞鸽',
     comment: '鱼王杆有两种杂鱼干扰，建议全部提。',
   },
   17582: {
@@ -1393,7 +1391,7 @@ module.exports = {
     data:
       '平钓(23s；23s；25s)<br><span class="orangered">平钓(22.9s；26.6s；23.3s)</span>',
     weatherTime: '8-16；碧空转碧空',
-    trick: '(5分钟鱼眼)熔岩蠕虫-(轻杆，精准)-花岗蟹-(鱼王杆，强力)-里德尔',
+    trick: '熔岩蠕虫-(轻杆，精准)-花岗蟹-(鱼王杆，强力)-里德尔',
     comment: '入门级鱼王。',
   },
   17584: {
@@ -1402,8 +1400,8 @@ module.exports = {
     data:
       '平钓(20s；24s；25s)<br><span class="orangered">平钓(28.2s；20.4s；18s；21.4s)</span>',
     weatherTime: '8-16；薄雾或扬沙或阴云转晴朗或碧空',
-    trick: '(5分钟鱼眼)熔岩蠕虫-(轻杆，精准)-花岗蟹-(鱼王杆，强力)-熔岩帝王',
-    comment: '三鱼眼钓场，懂得都懂。',
+    trick: '熔岩蠕虫-(轻杆，精准)-花岗蟹-(鱼王杆，强力)-熔岩帝王',
+    comment: null,
   },
   17585: {
     id: 17585,
@@ -1421,7 +1419,7 @@ module.exports = {
     data:
       '撒饵(无数据)<br>平钓(23s；21s；22s；19s)<br><span class="orangered">撒饵(10s；12.7s)<br>平钓(20s；17s；19.5s)</span>',
     weatherTime: '全天；阴云转强风',
-    trick: '(4分钟鱼眼)残暴水蛭-(鱼王杆，强力)-千鳍 拍百鳍(中杆)',
+    trick: '残暴水蛭-(鱼王杆，强力)-千鳍 拍百鳍(中杆)',
     comment: '窗口期非常少，难度不高。',
   },
   17587: {
@@ -1430,7 +1428,7 @@ module.exports = {
     data:
       '撒饵(7s)<br>平钓(11s；11s；11s；12s)<br><span class="orangered">撒饵(无数据)<br>平钓(11.8s；11.4s；11.6s)</span>',
     weatherTime: '全天；碧空转强风',
-    trick: '(1分20秒鱼眼)巨型大蚊-(鱼王杆，强力)-风暴血骑士 拍风暴骑士(鱼王杆)',
+    trick: '巨型大蚊-(鱼王杆，强力)-风暴血骑士 拍风暴骑士(鱼王杆)',
     comment:
       '<span style="font-weight:bold">风暴骑士</span>是很快的鱼王杆.jpg。20s以上的鱼王杆大概率是<span style="font-weight:bold">夜翼鱼龙</span>。',
   },
@@ -1440,9 +1438,9 @@ module.exports = {
     data: '平钓(31s；32s；31s)<br><span class="orangered">平钓(25.2s；31.1s；30s)</span>',
     weatherTime: '10-15；晴朗，碧空',
     trick:
-      '(常驻)熔岩蠕虫-(轻杆，精准)-花岗蟹(钓起5只)<br>(常驻)(3分钟鱼眼)熔岩蠕虫-(轻杆，精准)-花岗蟹-(中杆，强力)-化石骨舌鱼(钓起3只)<br>(鱼识)熔岩蠕虫-(轻杆，精准)-花岗蟹-(鱼王杆，强力)-莫名熔岩鱼',
+      '(常驻)熔岩蠕虫-(轻杆，精准)-花岗蟹(钓起5只)<br>(常驻)熔岩蠕虫-(中杆，强力)-化石骨舌鱼(钓起3只)<br>(鱼识)熔岩蠕虫-(轻杆，精准)-花岗蟹-(鱼王杆，强力)-莫名熔岩鱼',
     comment:
-      '三鱼眼钓场，懂得都懂。<span style="font-weight:bold">化石骨舌鱼</span>可以双提4只(<span style="font-weight:bold">陨龟</span>警告)参考钓法：提前10分钟到场，先双提找<span style="font-weight:bold">化石骨舌鱼</span>，<span style="font-weight:bold">化石骨舌鱼</span>钓齐以后留一条<span style="font-weight:bold">花岗蟹</span>等窗口期到来。如果<span style="font-weight:bold">化石骨舌鱼</span>一直没来，请去附近的钓场抛一杆重置门票。(数据包括脱钩的)',
+      '<span style="font-weight:bold">化石骨舌鱼</span>可以双提4只(<span style="font-weight:bold">陨龟</span>警告)参考钓法：提前10分钟到场，先双提找<span style="font-weight:bold">化石骨舌鱼</span>，<span style="font-weight:bold">化石骨舌鱼</span>钓齐以后留一条<span style="font-weight:bold">花岗蟹</span>等窗口期到来。如果<span style="font-weight:bold">化石骨舌鱼</span>一直没来，请去附近的钓场抛一杆重置门票。(数据包括脱钩的)',
   },
   17589: {
     id: 17589,
@@ -1450,9 +1448,9 @@ module.exports = {
     data: '平钓(27s；27s)<br><span class="orangered">平钓(26.2s；27.9s)</span>',
     weatherTime: '全天；打雷',
     trick:
-      '(全天；打雷)(2分钟鱼眼)恶魔蠕虫-(中杆，强力)-欧洛浦肯 (钓起3只触发鱼识)<br>(鱼识)恶魔蠕虫-(轻杆，精准)-白金鱼-(鱼王杆，精准)-欧巴宾海蝎',
+      '(全天；打雷)恶魔蠕虫-(中杆，强力)-欧洛浦肯 (钓起3只触发鱼识)<br>(鱼识)恶魔蠕虫-(轻杆，精准)-白金鱼-(鱼王杆，精准)-欧巴宾海蝎',
     comment:
-      '钓场高度很高，记得往上飞。双鱼眼钓场，请注意2分钟的鱼眼才是！(2分30秒鱼眼是杂鱼)如果错开<span style="font-weight:bold">宝石水母</span>(20-3)，<span style="font-weight:bold">欧洛浦肯</span>的舔钩几率会得到一个幅度的提高(虽然还是很低)，大胆双提4只进鱼识。这条鱼曾经把我打自闭过(全是杂鱼鱼眼，鱼识外不上<span style="font-weight:bold">欧洛浦肯</span>，鱼识内不上<span style="font-weight:bold">白金鱼</span>)，鱼识很短(1分30秒)，做好长期作战准备。',
+      '钓场高度很高，记得往上飞。如果错开<span style="font-weight:bold">宝石水母</span>(20-3)，<span style="font-weight:bold">欧洛浦肯</span>的舔钩几率会得到一个幅度的提高(虽然还是很低)，大胆双提4只进鱼识。这条鱼曾经把我打自闭过，做好长期作战准备。',
   },
   17590: {
     id: 17590,
@@ -1554,7 +1552,7 @@ module.exports = {
     name: '钻石眼',
     data: '平钓(26s；27s)<br><span class="orangered">平钓(28s；27s；23.8s)</span>',
     weatherTime: '全天；碧空',
-    trick: '(4分钟鱼眼)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-钻石眼',
+    trick: '蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-钻石眼',
     comment: '小心<span style="font-weight:bold">珍珠眼</span>。',
   },
   23063: {
@@ -1607,7 +1605,7 @@ module.exports = {
     data:
       '撒饵(14s)<br>平钓(25s；24s；24s)<br><span class="orangered">撒饵(无数据)<br>平钓(27.1s；27.5s；25.8s；35s)</span>',
     weatherTime: '全天；薄雾',
-    trick: '(4分钟鱼眼)嗡嗡石蝇-(鱼王杆，强力)-天女鲤 拍东洲巨骨舌鱼(中杆)',
+    trick: '嗡嗡石蝇-(鱼王杆，强力)-天女鲤 拍东洲巨骨舌鱼(中杆)',
     comment: '咬钩率尚可，但脱钩率也不低。',
   },
   23069: {
@@ -1741,7 +1739,8 @@ module.exports = {
   24217: {
     id: 24217,
     name: '暮辉鱼',
-    data: '平钓(23s；24s；27s；22s)<br><span class="orangered">平钓(18s；23s；24.6s；28.4s)</span>',
+    data:
+      '平钓(23s；24s；27s；22s)<br><span class="orangered">平钓(18s；23s；24.6s；28.4s)</span>',
     weatherTime: '8-16；小雨或强风转阴云',
     trick: '肥蚯蚓-(轻杆，精准)-嘎牙子-(鱼王杆，强力)-暮辉鱼',
     comment: '窗口期非常非常少！！！有时候甚至要等上二十多天！！！(数据包括脱钩的)',
@@ -1797,8 +1796,8 @@ module.exports = {
     data:
       '撒饵(15s)<br>平钓(23s；22s；29s)<br><span class="orangered">撒饵(14.8s)<br>平钓(29s；25.4s；28.8s)</span>',
     weatherTime: '全天；小雨',
-    trick: '(4分钟鱼眼)肥蚯蚓-(鱼王杆，强力)-石榴海 拍多玛鳟(中杆)',
-    comment: '别走错钓场，记得开鱼眼。舔钩率中等偏低。',
+    trick: '肥蚯蚓-(鱼王杆，强力)-石榴海 拍多玛鳟(中杆)',
+    comment: '别走错钓场。舔钩率中等偏低。',
   },
   24886: {
     id: 24886,
@@ -1902,9 +1901,9 @@ module.exports = {
       '平钓(19s；20s)<br><span class="orangered">平钓(26.6s；16s；16s；14.9s；22s；19s)</span>',
     weatherTime: '16-18；所有天气',
     trick:
-      '(12-18；雷雨)(4分钟鱼眼)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-雕塑家(钓起2只触发鱼识)<br>(鱼识)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-胸脊鲨',
+      '(12-18；雷雨)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-雕塑家(钓起2只触发鱼识)<br>(鱼识)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-胸脊鲨',
     comment:
-      '四幻神之鲨。难点不在本身，而在于根本没有<span style="font-weight:bold">雕塑家</span>。参考钓法：提前在ET10到场，提前打开收藏品，钓起一只<span style="font-weight:bold">岩盐咸鱼</span>后专一等待ET12后开启鱼眼，并双提鱼王杆，如果非常幸运地提到了<span style="font-weight:bold">雕塑家</span>，在ET16时候在点击“否”直接触发鱼识开始追梦。鱼识很长，慢慢钓。(<span style="font-weight:bold">珍珠眼</span>：妹妹没gp了吧，我来辣！)',
+      '四幻神之鲨。难点不在本身，而在于根本没有<span style="font-weight:bold">雕塑家</span>。参考钓法：提前在ET10到场，提前打开收藏品，钓起一只<span style="font-weight:bold">岩盐咸鱼</span>后，专一等待ET12，双提鱼王杆，如果非常幸运地提到了<span style="font-weight:bold">雕塑家</span>，在ET16时候在点击“否”直接触发鱼识开始追梦。鱼识很长，慢慢钓。(<span style="font-weight:bold">珍珠眼</span>：妹妹没gp了吧，我来辣！)',
   },
   24993: {
     id: 24993,
