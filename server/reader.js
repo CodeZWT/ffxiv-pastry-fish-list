@@ -105,7 +105,8 @@ exports.onUpdate = onUpdate
 exports.stop = stopMachina
 function stopMachina(callback = () => {}) {
   if (!region || region === 'CN') {
-    log.info('SKIPPED restart CN waiting updates')
+    log.info('SKIPPED stop CN waiting updates')
+    callback()
     return
   }
   Machina.stop(() => {
