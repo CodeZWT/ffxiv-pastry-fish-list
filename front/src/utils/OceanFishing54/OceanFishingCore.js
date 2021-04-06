@@ -309,7 +309,7 @@ const spots = {
     spotNameText: '梅尔托尔海峡北',
     spotMainNameText: '梅尔托尔海峡北',
     spotSubNameText: '梅尔托尔海峡北幻海流',
-    weatherSet: [2, 3, 4, 11, 14, 1],
+    weatherSet: [2, 3, 4, 15, 16, 1],
   },
   4: {
     id: 4,
@@ -321,7 +321,7 @@ const spots = {
     spotNameText: '罗塔诺海',
     spotMainNameText: '罗塔诺海海面',
     spotSubNameText: '罗塔诺海海面幻海流',
-    weatherSet: [2, 3, 4, 15, 16, 1],
+    weatherSet: [2, 3, 4, 11, 14, 1],
   },
   5: {
     id: 5,
