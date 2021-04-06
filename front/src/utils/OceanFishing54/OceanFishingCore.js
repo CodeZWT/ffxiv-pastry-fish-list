@@ -380,7 +380,7 @@ const VOYAGE_SEQ = [  //IKDRouteTable
 ]
 
 function shiftTimeForCheckInLimit(time) {
-  return shiftTimeForLimit(time, 15 * MINUTE)
+  return shiftTimeForLimit(time, 60 * MINUTE)
 }
 
 function shiftTimeForLimit(time, limit) {
