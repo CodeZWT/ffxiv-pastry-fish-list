@@ -23,17 +23,9 @@ const routes = [
         '../views/WikiPage'
       ),
   },
+  { path: '/oceanFishing54', redirect: { name: 'OceanFishingPage54' } },
   {
     path: '/oceanFishing',
-    name: 'OceanFishingPage',
-    component: () =>
-      import(
-        /* webpackChunkName: "oceanFishing" */
-        '../views/OceanFishingPage'
-      ),
-  },
-  {
-    path: '/oceanFishing54',
     name: 'OceanFishingPage54',
     component: () =>
       import(
