@@ -19,30 +19,28 @@
         </div>
       </v-card-title>
       <v-divider />
-      <v-card-text style="max-height: 600px;">
-        <v-alert outlined type="success" border="left">
-          渔捞已支持国服5.4
-        </v-alert>
+      <v-card-text style="max-height: 600px">
+        <v-alert outlined type="success" border="left">渔捞已支持国服5.4</v-alert>
 
-        <div class="text-h6">Version 0.7.6</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/06 21:00</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h6">Version 0.7.7</div>
+        <div class="text-subtitle-1">更新时间: 2021/04/07 21:20</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            修正海钓天气筛选
-          </li>
+          <li>修正部分海钓攻略数据</li>
         </ul>
         <p />
 
-        <div class="text-h5 text-center my-1">
-          渔捞
-        </div>
+        <div class="text-h6">Version 0.7.6</div>
+        <div class="text-subtitle-1">更新时间: 2021/04/06 21:00</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            渔捞检测已更新，支持国服5.4
-          </li>
+          <li>修正海钓天气筛选</li>
+        </ul>
+        <p />
+
+        <div class="text-h5 text-center my-1">渔捞</div>
+        <ul>
+          <li>渔捞检测已更新，支持国服5.4</li>
         </ul>
         <p />
 
@@ -50,28 +48,14 @@
 
         <div class="text-h6">Version 0.7.5</div>
         <div class="text-subtitle-1">更新时间: 2021/04/06 10:00</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            5.4中文翻译更新
-          </li>
-          <li>
-            删除旧版海钓页面
-          </li>
-          <li>
-            更新鱼眼说明
-          </li>
-          <li>
-            更新鱼影说明
-          </li>
-          <li>
-            更新水族馆说明
-          </li>
-          <li>
-            更新“[烟波钓徒][我本烟波一钓徒][5.x]烟波204鱼王心得攻略”关于鱼眼的更新
-          </li>
+          <li>5.4中文翻译更新</li>
+          <li>删除旧版海钓页面</li>
+          <li>更新鱼眼说明</li>
+          <li>更新鱼影说明</li>
+          <li>更新水族馆说明</li>
+          <li>更新“[烟波钓徒][我本烟波一钓徒][5.x]烟波204鱼王心得攻略”关于鱼眼的更新</li>
         </ul>
         <p />
 
@@ -79,13 +63,9 @@
 
         <div class="text-h6">Version 0.7.4</div>
         <div class="text-subtitle-1">更新时间: 2021/04/03 14:03</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            增加海钓冲分推荐
-          </li>
+          <li>增加海钓冲分推荐</li>
         </ul>
         <p />
 
@@ -93,27 +73,15 @@
 
         <div class="text-h6">Version 0.7.3</div>
         <div class="text-subtitle-1">更新时间: 2021/03/29 21:00</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            增加第四期空岛内容
-          </li>
+          <li>增加第四期空岛内容</li>
         </ul>
-        <div class="text-h5 text-center my-1">
-          鱼糕桌面版
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
         <ul>
-          <li>
-            修复最小化时同时最小化渔捞的问题
-          </li>
-          <li>
-            修复点击渔捞激活主界面的问题
-          </li>
-          <li>
-            修复海钓数据
-          </li>
+          <li>修复最小化时同时最小化渔捞的问题</li>
+          <li>修复点击渔捞激活主界面的问题</li>
+          <li>修复海钓数据</li>
         </ul>
         <p />
 
@@ -121,25 +89,13 @@
 
         <div class="text-h6">Version 0.7.2</div>
         <div class="text-subtitle-1">更新时间: 2021/03/27 20:32</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            修正珊瑚海龙限定鱼饵
-          </li>
-          <li>
-            显示海钓前置鱼双提个数
-          </li>
-          <li>
-            显示幻海流提钩任务的鱼
-          </li>
-          <li>
-            去除幻海流任务列表中不符合时间限制的鱼
-          </li>
-          <li>
-            修复5.3海钓页面蓝鱼没有被正确筛选的问题
-          </li>
+          <li>修正珊瑚海龙限定鱼饵</li>
+          <li>显示海钓前置鱼双提个数</li>
+          <li>显示幻海流提钩任务的鱼</li>
+          <li>去除幻海流任务列表中不符合时间限制的鱼</li>
+          <li>修复5.3海钓页面蓝鱼没有被正确筛选的问题</li>
         </ul>
         <p />
 
@@ -147,13 +103,9 @@
 
         <div class="text-h6">Version 0.7.1</div>
         <div class="text-subtitle-1">更新时间: 2021/03/26 23:55</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            修正“只能用该鱼饵”在普通列表中显示的问题
-          </li>
+          <li>修正“只能用该鱼饵”在普通列表中显示的问题</li>
         </ul>
         <p />
 
@@ -161,20 +113,12 @@
 
         <div class="text-h6">Version 0.7.0</div>
         <div class="text-subtitle-1">更新时间: 2021/03/26 22:40</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <v-alert outlined type="success" border="left" icon="mdi-ferry">
           <ul>
-            <li>
-              增加了5.4海钓新页面，游戏正式更新后，旧海钓页面将会删除
-            </li>
-            <li>
-              更新海钓页面部分内容的排版
-            </li>
-            <li>
-              增加海钓任务的支持
-            </li>
+            <li>增加了5.4海钓新页面，游戏正式更新后，旧海钓页面将会删除</li>
+            <li>更新海钓页面部分内容的排版</li>
+            <li>增加海钓任务的支持</li>
             <li>
               增加5.4海钓攻略，感谢
               <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 的大力支持!
@@ -182,21 +126,13 @@
           </ul>
         </v-alert>
 
-        <div class="text-h5 text-center my-1">
-          鱼糕桌面版
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
         <ul>
-          <li>
-            修复退出副本时的报错，如还有问题欢迎反馈。
-          </li>
+          <li>修复退出副本时的报错，如还有问题欢迎反馈。</li>
         </ul>
-        <div class="text-h5 text-center my-1">
-          渔捞
-        </div>
+        <div class="text-h5 text-center my-1">渔捞</div>
         <ul>
-          <li>
-            增加双提的支持（双提技能，个数，导出文件中双提相关内容）
-          </li>
+          <li>增加双提的支持（双提技能，个数，导出文件中双提相关内容）</li>
         </ul>
         <p />
 
@@ -204,16 +140,10 @@
 
         <div class="text-h6">Version 0.6.10</div>
         <div class="text-subtitle-1">更新时间: 2021/03/16 23:40</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕桌面版
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
         <ul>
-          <li>
-            尝试修复关闭鱼糕时的报错，如还有问题欢迎反馈。
-          </li>
-          <li>
-            修复无网络时更新报错的问题。
-          </li>
+          <li>尝试修复关闭鱼糕时的报错，如还有问题欢迎反馈。</li>
+          <li>修复无网络时更新报错的问题。</li>
         </ul>
         <p />
 
@@ -225,22 +155,16 @@
         </v-alert>
         <div class="text-h6">Version 0.6.9</div>
         <div class="text-subtitle-1">更新时间: 2021/03/16 01:11</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕桌面版
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
         <ul>
-          <li>
-            修复切换迷你模式的报错
-          </li>
+          <li>修复切换迷你模式的报错</li>
         </ul>
         <p />
 
         <v-divider />
 
         <div class="text-h6">Version 0.6.8</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <v-alert outlined type="success" border="left">
           <ul>
             <li>
@@ -258,9 +182,7 @@
           <li>去除第二期空岛的过期信息</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">
-          渔捞
-        </div>
+        <div class="text-h5 text-center my-1">渔捞</div>
         <v-alert outlined type="error" border="left">
           若使用渔捞报错，请检查是否使用了防火墙相关的软件。若是，请将鱼糕安装目录加入信任区。
           <a
@@ -275,50 +197,24 @@
             <li>
               本次更新后，渔捞部分设置（窗口大小、位置、透明度、缩放）重置，需要重新配置。
             </li>
-            <li>
-              国际服海钓幻海流补偿机制仍在测试中，欢迎反馈。
-            </li>
+            <li>国际服海钓幻海流补偿机制仍在测试中，欢迎反馈。</li>
           </ul>
         </v-alert>
         <ul>
-          <li>
-            增加自定义咬钩提示音
-          </li>
-          <li>
-            增加自定义计时器迷你模式的缩放比例
-          </li>
-          <li>
-            支持删除单条历史记录
-          </li>
-          <li>
-            修复部分脱钩判断错误的问题
-          </li>
-          <li>
-            修复5.4海钓钓场判断错误
-          </li>
-          <li>
-            修复收藏品状态的判断问题
-          </li>
+          <li>增加自定义咬钩提示音</li>
+          <li>增加自定义计时器迷你模式的缩放比例</li>
+          <li>支持删除单条历史记录</li>
+          <li>修复部分脱钩判断错误的问题</li>
+          <li>修复5.4海钓钓场判断错误</li>
+          <li>修复收藏品状态的判断问题</li>
         </ul>
-        <div class="text-h5 text-center my-1">
-          桌面版
-        </div>
+        <div class="text-h5 text-center my-1">桌面版</div>
         <ul>
-          <li>
-            增加系统托盘支持
-          </li>
-          <li>
-            增加鼠标穿透支持
-          </li>
-          <li>
-            修复<kbd>WIN</kbd>+<kbd>D</kbd>导致渔捞和悬浮窗最小化的问题
-          </li>
-          <li>
-            修复更新时打开安装文件夹报错的问题
-          </li>
-          <li>
-            修复WINDOWS 8.1无法显示渔捞界面的问题
-          </li>
+          <li>增加系统托盘支持</li>
+          <li>增加鼠标穿透支持</li>
+          <li>修复<kbd>WIN</kbd>+<kbd>D</kbd>导致渔捞和悬浮窗最小化的问题</li>
+          <li>修复更新时打开安装文件夹报错的问题</li>
+          <li>修复WINDOWS 8.1无法显示渔捞界面的问题</li>
         </ul>
 
         <p />
@@ -326,17 +222,13 @@
         <v-divider />
 
         <div class="text-h6">Version 0.6.7</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
           <li>增加水族馆<v-icon>mdi-fishbowl</v-icon></li>
           <li>增加列表页面水族馆支持</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">
-          渔捞
-        </div>
+        <div class="text-h5 text-center my-1">渔捞</div>
         <ul>
           <li>国际服支持</li>
           <li>
@@ -348,177 +240,95 @@
         <v-divider />
 
         <div class="text-h6">Version 0.6.6</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            再次修复鱼饵筛选选择错位的问题 (是的，上次修出新的问题了。。。）
-          </li>
-          <li>
-            修复列表展开过慢的问题
-          </li>
-          <li>
-            支持在列表上点击鱼饵列中的鱼（即鱼饵列中以小钓大中的鱼）显示对应鱼信息
-          </li>
+          <li>再次修复鱼饵筛选选择错位的问题 (是的，上次修出新的问题了。。。）</li>
+          <li>修复列表展开过慢的问题</li>
+          <li>支持在列表上点击鱼饵列中的鱼（即鱼饵列中以小钓大中的鱼）显示对应鱼信息</li>
           <li>
             钓鱼笔记中的批量选择框变为默认不显示，点击批量处理按钮以显示原先的选择框。（防止误操作）
           </li>
-          <li>
-            更新部分鱼数据，以及5.X鱼攻略。
-          </li>
+          <li>更新部分鱼数据，以及5.X鱼攻略。</li>
         </ul>
-        <div class="text-h5 text-center my-1">
-          鱼糕桌面版
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
         <v-subheader>计时器</v-subheader>
         <ul>
-          <li>
-            修复未打开计时器仍会发出提钩提示音的问题
-          </li>
-          <li>
-            修复刺鱼造成的记录错误
-          </li>
-          <li>
-            增加迷你模式
-          </li>
-          <li>
-            增加主界面跳转到对应钓场的功能
-          </li>
-          <li>
-            增加配置仅在钓上HQ鱼时才标记为已完成的功能
-          </li>
-          <li>
-            增加显示当前获得力、鉴别力、采集力
-          </li>
+          <li>修复未打开计时器仍会发出提钩提示音的问题</li>
+          <li>修复刺鱼造成的记录错误</li>
+          <li>增加迷你模式</li>
+          <li>增加主界面跳转到对应钓场的功能</li>
+          <li>增加配置仅在钓上HQ鱼时才标记为已完成的功能</li>
+          <li>增加显示当前获得力、鉴别力、采集力</li>
         </ul>
         <v-subheader>历史记录</v-subheader>
         <ul>
           <li>
             历史记录增加显示
             <ul>
-              <li>
-                hq，长度，获得力，鉴别力，提钩类别
-              </li>
-              <li>
-                状态增加：捕鱼人之识，耐心，耐心II
-              </li>
+              <li>hq，长度，获得力，鉴别力，提钩类别</li>
+              <li>状态增加：捕鱼人之识，耐心，耐心II</li>
             </ul>
           </li>
-          <li>
-            增加新的筛选
-          </li>
-          <li>
-            增加导出文件功能
-          </li>
-          <li>
-            增加清除历史记录功能
-          </li>
-          <li>
-            增加对于脱钩记录的支持
-          </li>
-          <li>
-            更新图标，计时条
-          </li>
+          <li>增加新的筛选</li>
+          <li>增加导出文件功能</li>
+          <li>增加清除历史记录功能</li>
+          <li>增加对于脱钩记录的支持</li>
+          <li>更新图标，计时条</li>
         </ul>
         <p />
 
         <v-divider />
 
         <div class="text-h6">Version 0.6.5</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            修复无法导入的问题
-          </li>
-          <li>
-            修复右上按钮显示不全的问题
-          </li>
-          <li>
-            修复鱼饵筛选选择错位的问题
-          </li>
-          <li>
-            增加存储默认与固定列表的展开状态的功能
-          </li>
-          <li>
-            增加存储鱼饵筛选状态的功能
-          </li>
+          <li>修复无法导入的问题</li>
+          <li>修复右上按钮显示不全的问题</li>
+          <li>修复鱼饵筛选选择错位的问题</li>
+          <li>增加存储默认与固定列表的展开状态的功能</li>
+          <li>增加存储鱼饵筛选状态的功能</li>
         </ul>
         <p />
 
         <v-divider />
 
         <div class="text-h6">Version 0.6.4</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            增加5.4版本鱼
-          </li>
+          <li>增加5.4版本鱼</li>
           <li>
             增加5.4版本鱼眼功能支持
             <span class="error--text">（请注意：国服当前版本尚未实装新鱼眼）</span>
           </li>
         </ul>
-        <div class="text-h5 text-center my-1">
-          鱼糕桌面版
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
         <ul>
-          <li>
-            修复查看帮助后，最小化悬浮窗出现黑色底框的问题。
-          </li>
-          <li>
-            修复最小化悬浮窗后，透明窗体覆盖其他窗口的问题。
-          </li>
+          <li>修复查看帮助后，最小化悬浮窗出现黑色底框的问题。</li>
+          <li>修复最小化悬浮窗后，透明窗体覆盖其他窗口的问题。</li>
         </ul>
         <p />
 
         <v-divider />
 
         <div class="text-h6">Version 0.6.3</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>
-            更新攻略内容的修正
-          </li>
-          <li>
-            增加滚动条宽度
-          </li>
+          <li>更新攻略内容的修正</li>
+          <li>增加滚动条宽度</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">
-          鱼糕桌面版
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
         <ul>
-          <li>
-            增加页面缩放功能（对应浏览器的页面缩放功能，在主界面设置中配置）。
-          </li>
-          <li>
-            支持保存窗口位置与大小
-          </li>
+          <li>增加页面缩放功能（对应浏览器的页面缩放功能，在主界面设置中配置）。</li>
+          <li>支持保存窗口位置与大小</li>
           <li>
             渔捞
             <ul>
-              <li>
-                增加初始加载页面
-              </li>
-              <li>
-                增加历史记录页面
-              </li>
-              <li>
-                增加钓场统计界面
-              </li>
-              <li>
-                增加透明度与缩放配置界面
-              </li>
-              <li>
-                支持保存窗口位置与大小
-              </li>
+              <li>增加初始加载页面</li>
+              <li>增加历史记录页面</li>
+              <li>增加钓场统计界面</li>
+              <li>增加透明度与缩放配置界面</li>
+              <li>支持保存窗口位置与大小</li>
             </ul>
           </li>
         </ul>
@@ -526,27 +336,17 @@
         <v-divider />
 
         <div class="text-h6">Version 0.6.2</div>
-        <div class="text-h5 text-center my-1">
-          鱼糕桌面版
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
         <ul>
-          <li>
-            修复最小化按钮没有正常显示的问题。
-          </li>
-          <li>
-            修复游戏“窗口全屏模式”下无法置顶的问题。
-          </li>
-          <li>
-            修复直接通过WIN10任务栏关闭窗口后报错的问题。
-          </li>
+          <li>修复最小化按钮没有正常显示的问题。</li>
+          <li>修复游戏“窗口全屏模式”下无法置顶的问题。</li>
+          <li>修复直接通过WIN10任务栏关闭窗口后报错的问题。</li>
         </ul>
         <p />
         <v-divider />
 
         <div class="text-h6">Version 0.6.1</div>
-        <div class="text-h5 text-center my-1">
-          渔捞 - 钓鱼辅助
-        </div>
+        <div class="text-h5 text-center my-1">渔捞 - 钓鱼辅助</div>
         <div class="text-subtitle-1 text-center">
           （点击桌面版左侧侧边栏<v-icon>mdi-fish</v-icon>开启）
         </div>
@@ -569,186 +369,110 @@
           <li>支持显示当前状态（拍击水面、撒饵、专一垂钓、收藏品采集）</li>
         </ul>
         <v-divider />
-        <div class="text-h5 text-center my-1">
-          鱼糕桌面版
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
         <ul>
-          <li>
-            支持透明并在游戏上层显示，支持悬浮窗模式。（透明度可在左下设置中调整）
-          </li>
-          <li>
-            可以跳过更新（跳过更新后，下次打开程序会再次检查更新）
-          </li>
+          <li>支持透明并在游戏上层显示，支持悬浮窗模式。（透明度可在左下设置中调整）</li>
+          <li>可以跳过更新（跳过更新后，下次打开程序会再次检查更新）</li>
         </ul>
         <p />
         <v-divider />
-        <div class="text-h5 text-center my-1">
-          修正
-        </div>
+        <div class="text-h5 text-center my-1">修正</div>
         <ul>
           <li>更新部分鱼以及5.X攻略数据。</li>
-          <li>
-            在搜索框跳转时自动关闭搜索对话框。
-          </li>
-          <li>
-            修正手机网页版钓鱼笔记列表的显示问题。
-          </li>
+          <li>在搜索框跳转时自动关闭搜索对话框。</li>
+          <li>修正手机网页版钓鱼笔记列表的显示问题。</li>
         </ul>
         <p />
         <v-divider />
 
         <div class="text-h6">Version 0.6.0</div>
-        <div class="text-h5 text-center my-1">
-          网站迁移
-        </div>
+        <div class="text-h5 text-center my-1">网站迁移</div>
         <ul>
           <li>如果你看到这行字，说明已经在新版页面了。</li>
           <li>请更新收藏夹中的地址：https://ricecake.traveleorzea.com</li>
-          <li>
-            桌面版是自动更新的，无需任何操作
-          </li>
+          <li>桌面版是自动更新的，无需任何操作</li>
         </ul>
-        <div class="text-h5 text-center my-1">
-          鱼糕桌面版
-        </div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
         <ul>
           <li>点击左侧 <v-icon>mdi-desktop-mac-dashboard</v-icon> 下载桌面版</li>
-          <li>
-            支持自动更新
-          </li>
+          <li>支持自动更新</li>
         </ul>
         <p />
         <v-divider />
         <div class="text-h6">Version 0.5.3</div>
-        <div class="text-h5 text-center my-1">
-          鱼饵相关功能
-        </div>
+        <div class="text-h5 text-center my-1">鱼饵相关功能</div>
         <ul>
-          <li>
-            增加鱼饵筛选功能，在筛选界面中可以开启鱼饵筛选。
-          </li>
+          <li>增加鱼饵筛选功能，在筛选界面中可以开启鱼饵筛选。</li>
           <li>
             增加鱼饵查询小工具，点击右上角 <v-icon>mdi-hook</v-icon>按钮即可使用。
             <ul>
-              <li>
-                可以筛选，查找鱼饵，以查看鱼饵的使用情况。
-              </li>
+              <li>可以筛选，查找鱼饵，以查看鱼饵的使用情况。</li>
               <li>
                 可以设置鱼饵使用完毕的提醒功能（默认开启），在鱼饵对应鱼全部标记已完成时将会跳出提示。
               </li>
             </ul>
           </li>
         </ul>
-        <div class="subtitle-1 text-center">
-          其他功能更新
-        </div>
+        <div class="subtitle-1 text-center">其他功能更新</div>
         <ul>
-          <li>
-            筛选功能更新，所有选项变为多选，可以支持更多的条件。
-          </li>
-          <li>
-            去除了显示个数的配置，增加了加载更多的按钮。
-          </li>
+          <li>筛选功能更新，所有选项变为多选，可以支持更多的条件。</li>
+          <li>去除了显示个数的配置，增加了加载更多的按钮。</li>
           <li>
             增加随系统主题（Windows 10: 设置 -> 颜色 -> 选择颜色）自动设置深浅模式的功能。
           </li>
-          <li>
-            增加链接跳转的设置功能，支持鱼和钓场的多网站跳转。
-          </li>
-          <li>
-            增加跳转至顶的按钮。
-          </li>
+          <li>增加链接跳转的设置功能，支持鱼和钓场的多网站跳转。</li>
+          <li>增加跳转至顶的按钮。</li>
 
-          <li>
-            增加关于天钢之球的说明。
-          </li>
+          <li>增加关于天钢之球的说明。</li>
           <li>
             增加5.x的鱼王心得，感谢
             <span class="font-weight-bold">颜君行@琥珀原</span> 和
             <span class="font-weight-bold">Aki秋山@摩杜纳</span> 的支持！
           </li>
-          <li>
-            增加空岛钓场的范围提示。
-          </li>
+          <li>增加空岛钓场的范围提示。</li>
         </ul>
-        <div class="subtitle-1 text-center">
-          错误修正
-        </div>
+        <div class="subtitle-1 text-center">错误修正</div>
         <ul>
-          <li>
-            修正多钓场鱼不能在笔记中正常标记的问题。
-          </li>
-          <li>
-            计算逻辑更新，列表将更加流畅。
-          </li>
+          <li>修正多钓场鱼不能在笔记中正常标记的问题。</li>
+          <li>计算逻辑更新，列表将更加流畅。</li>
           <li>
             海钓双提数据修正为国服数据：<br />
             <ul>
-              <li>
-                沉寂者 双提个数 4 -> 2
-              </li>
-              <li>
-                剪碎手巴塞洛缪 双提个数 4 -> 2
-              </li>
+              <li>沉寂者 双提个数 4 -> 2</li>
+              <li>剪碎手巴塞洛缪 双提个数 4 -> 2</li>
             </ul>
           </li>
-          <li>
-            鱼数据修正。
-          </li>
+          <li>鱼数据修正。</li>
         </ul>
         <p />
         <v-divider />
 
         <div class="text-h6">Version 0.5.2</div>
-        <div class="text-h5 text-center">
-          刺鱼笔记
-        </div>
+        <div class="text-h5 text-center">刺鱼笔记</div>
         <ul>
-          <li>
-            增加钓鱼笔记中刺鱼相关内容。
-          </li>
-          <li>
-            增加默认列表中刺鱼内容的支持。
-          </li>
-          <li>
-            增加搜索中刺鱼内容的支持。
-          </li>
-          <li>
-            修正窗口期计算的问题。
-          </li>
-          <li>
-            调整钓鱼笔记的顺序，与游戏中对应。
-          </li>
-          <li>
-            调整出海垂钓钓鱼笔记的结构，与游戏中对应。
-          </li>
+          <li>增加钓鱼笔记中刺鱼相关内容。</li>
+          <li>增加默认列表中刺鱼内容的支持。</li>
+          <li>增加搜索中刺鱼内容的支持。</li>
+          <li>修正窗口期计算的问题。</li>
+          <li>调整钓鱼笔记的顺序，与游戏中对应。</li>
+          <li>调整出海垂钓钓鱼笔记的结构，与游戏中对应。</li>
         </ul>
         <p />
         <v-divider />
 
         <div class="text-h6">Version 0.5.1</div>
         <ul>
-          <li>
-            固定列表鱼默认列表合并，显示在同一页面中。
-          </li>
-          <li>
-            列表中增加传承录，收藏品信息。
-          </li>
-          <li>
-            修正多条鱼数据。
-          </li>
+          <li>固定列表鱼默认列表合并，显示在同一页面中。</li>
+          <li>列表中增加传承录，收藏品信息。</li>
+          <li>修正多条鱼数据。</li>
         </ul>
         <p />
         <v-divider />
 
         <div class="text-h6">Version 0.5.0</div>
         <div>
-          <div class="text-h5 text-center">
-            新增出海垂钓攻略支持
-          </div>
-          <div class="text-h6 text-center">
-            钓鱼图鉴也已同步更新
-          </div>
+          <div class="text-h5 text-center">新增出海垂钓攻略支持</div>
+          <div class="text-h6 text-center">钓鱼图鉴也已同步更新</div>
           <div>
             页面中攻略与资料参考：
             <div class="d-flex align-center">
@@ -771,12 +495,8 @@
 
         <div class="text-h6">Version 0.4.3</div>
         <div>
-          <div class="text-h5 text-center">
-            新增云冠群岛支持
-          </div>
-          <div class="text-h6 text-center">
-            包括第二期以及即将更新的第三期重建
-          </div>
+          <div class="text-h5 text-center">新增云冠群岛支持</div>
+          <div class="text-h6 text-center">包括第二期以及即将更新的第三期重建</div>
           <div>
             页面中攻略与资料参考：
             <div class="text-subtitle-1">
@@ -805,9 +525,7 @@
 
         <div class="text-h6">Version 0.4.2</div>
         <div>
-          <div class="text-h5 text-center">
-            星芒节快乐！
-          </div>
+          <div class="text-h5 text-center">星芒节快乐！</div>
           <div>
             在星芒节期间，三大主城以及四个住宅区的天气变为了
             <span style="font-weight: bold">小雪</span>。<br />
@@ -829,15 +547,9 @@
 
         <div class="text-h6">Version 0.4.1</div>
         <ul>
-          <li>
-            更新列表中所有按钮的位置，增加操作栏，所有按钮移动至操作栏中。
-          </li>
-          <li>
-            列表中增加版本号，未实装的鱼的版本底色为灰色。
-          </li>
-          <li>
-            修正多条鱼数据。
-          </li>
+          <li>更新列表中所有按钮的位置，增加操作栏，所有按钮移动至操作栏中。</li>
+          <li>列表中增加版本号，未实装的鱼的版本底色为灰色。</li>
+          <li>修正多条鱼数据。</li>
         </ul>
         <p />
         <v-divider />
@@ -850,9 +562,7 @@
             即可查看。
             <div>之后会增加更多海钓相关功能，敬请期待~</div>
           </li>
-          <li>
-            修正多条鱼数据。
-          </li>
+          <li>修正多条鱼数据。</li>
         </ul>
         <p />
         <v-divider />
@@ -889,12 +599,8 @@
               </li>
             </ul>
           </li>
-          <li>
-            修正多条鱼数据。
-          </li>
-          <li>
-            修正界面问题。
-          </li>
+          <li>修正多条鱼数据。</li>
+          <li>修正界面问题。</li>
         </ul>
         <p />
         <v-divider />
@@ -943,9 +649,7 @@
               </li>
             </ul>
           </li>
-          <li>
-            界面各部分都有所调整。
-          </li>
+          <li>界面各部分都有所调整。</li>
           <li>修复部分鱼的窗口期计算的错误。</li>
           <li>修复部分鱼倒计时没有及时更新的错误。</li>
         </ul>
@@ -978,24 +682,12 @@
           <li>
             更新地图控件，现在可以点击“锁”图标自由拖动放大地图，以及切换显示文本以及钓场提示。
           </li>
-          <li>
-            更新时间文本，增加“今天”，“明天”，“周一”等的文本。
-          </li>
-          <li>
-            更新列表中的前置鱼，隐去了“固定”和“完成”的勾选按钮，详细界面中不变。
-          </li>
-          <li>
-            更新详细界面的倒计时，现在会显示2个时间单位，如“10分09秒”。
-          </li>
-          <li>
-            更新图标。
-          </li>
-          <li>
-            修复“复制道具名”按钮。
-          </li>
-          <li>
-            修复详细页面的前置鱼图标。
-          </li>
+          <li>更新时间文本，增加“今天”，“明天”，“周一”等的文本。</li>
+          <li>更新列表中的前置鱼，隐去了“固定”和“完成”的勾选按钮，详细界面中不变。</li>
+          <li>更新详细界面的倒计时，现在会显示2个时间单位，如“10分09秒”。</li>
+          <li>更新图标。</li>
+          <li>修复“复制道具名”按钮。</li>
+          <li>修复详细页面的前置鱼图标。</li>
         </ul>
         <p />
         <v-divider />
