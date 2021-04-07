@@ -14,7 +14,9 @@
         <div v-if="!simple" class="ml-1 d-flex flex-column justify-center">
           <div>
             <span>{{ fish.biteTimeMin }}s</span>
-            <span v-if="fish.biteTimeMax">-{{ fish.biteTimeMax }}s</span>
+            <span v-if="fish.biteTimeMax && fish.biteTimeMax !== fish.biteTimeMin">
+              -{{ fish.biteTimeMax }}s
+            </span>
           </div>
           <div class="d-flex">
             <v-badge
@@ -133,7 +135,13 @@
           <div v-if="!simple" class="ml-1 d-flex flex-column justify-center">
             <div>
               <span>{{ predator.biteTimeMin }}s</span>
-              <span v-if="predator.biteTimeMax">-{{ predator.biteTimeMax }}s</span>
+              <span
+                v-if="
+                  predator.biteTimeMax && predator.biteTimeMax !== predator.biteTimeMin
+                "
+              >
+                -{{ predator.biteTimeMax }}s
+              </span>
             </div>
             <div class="d-flex">
               <v-badge
