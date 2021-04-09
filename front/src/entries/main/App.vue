@@ -653,6 +653,7 @@ import FishEyesToggleButton from '@/components/FishEyesToggleButton'
 import isEqual from 'lodash/isEqual'
 import repeat from 'lodash/repeat'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
+// let totalCnt = 0
 
 export default {
   name: 'App',
@@ -1518,10 +1519,34 @@ export default {
       const hasPredators = fish.predators && Object.keys(fish.predators).length > 0
       const bonus = FIX.OCEAN_FISHING_BONUS[fish.bonus]
       const realNotAvailableWeatherSet = this.getRealNotAvailableWeatherSet(fish._id)
-      const biteTimeMin =
-        fish.biteTimeMin ?? FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[0]
-      const biteTimeMax =
-        fish.biteTimeMax ?? FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[1]
+
+      const collectedBiteData = FIX.OCEAN_FISHING_BITE_TIME_COLLECTED.find(
+        it => it.fishId === fish._id && fish.bait === it.baitId
+      )
+      if (!collectedBiteData) {
+        console.log(this.getItemName(fish._id), 'miss data')
+      }
+      // else if (collectedBiteData.count < 10) {
+      //   // console.log(collectedBiteData.fish, 'data not enough', collectedBiteData.count)
+      // } else {
+      //   // console.log(collectedBiteData.fish, 'used data cnt', collectedBiteData.count)
+      //   // totalCnt += collectedBiteData.count
+      // }
+
+      const biteTimeMin = Math.min(
+        collectedBiteData?.biteTimeMin ?? 999,
+        collectedBiteData?.count >= 10
+          ? collectedBiteData?.biteTimeMin
+          : fish.biteTimeMin ?? FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[0]
+      )
+      // console.log(biteTimeMin, collectedBiteData?.biteTimeMin)
+
+      const biteTimeMax = Math.max(
+        collectedBiteData?.biteTimeMax ?? 0,
+        collectedBiteData?.count >= 10
+          ? collectedBiteData?.biteTimeMax
+          : fish.biteTimeMax ?? FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[1]
+      )
       return {
         ...fish,
         id: fish._id,
