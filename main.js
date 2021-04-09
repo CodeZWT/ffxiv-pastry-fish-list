@@ -384,9 +384,10 @@ async function init() {
     { label: '关闭渔捞鼠标穿透', click: () => setMouseThrough(false) },
     { label: '退出鱼糕程序', click: quit },
   ])
-  tray.setToolTip('点击显示鱼糕')
-  tray.setContextMenu(contextMenu)
-  tray.on('click', showAndFocusMain)
+
+  callTargetSafe(tray, it => it.setToolTip('点击显示鱼糕'))
+  callTargetSafe(tray, it => it.setContextMenu(contextMenu))
+  callTargetSafe(tray, it => it.on('click', showAndFocusMain))
 }
 
 function setMouseThrough(enable) {
@@ -872,7 +873,7 @@ function quitAndSetup() {
       log.info('try open path', installerPath)
       shell.showItemInFolder(installerPath)
       log.info('quit before update')
-      tray.destroy()
+      callTargetSafe(tray, it => it.destroy())
       app.quit()
     })
   } catch (e) {
@@ -885,7 +886,7 @@ function quit() {
     clearInterval(intervalHandle)
     FishingDataReader.stop(() => {
       log.info('quit by close')
-      tray.destroy()
+      callTargetSafe(tray, it => it.destroy())
       app.quit()
     })
   } catch (e) {
@@ -938,6 +939,14 @@ function callWindowSafe(win, winCallback) {
 function callWindowsSafe(wins, winCallback) {
   if (wins.every(it => it) && wins.every(it => !it.isDestroyed())) {
     winCallback(wins)
+  }
+}
+
+function callTargetSafe(target, targetCallback) {
+  if (target) {
+    targetCallback(target)
+  } else {
+    log.error('call target when it is undefined')
   }
 }
 
