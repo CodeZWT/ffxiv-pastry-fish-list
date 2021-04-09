@@ -420,10 +420,10 @@ onFFXIVEventSubType('fishingBaitMsg', packet => {
   status.baitId = packet.baitID
 })
 
-onFFXIVEventSubType('actionStart', packet => {
-  // actorControlSelf
-  log.debug('actionStart', packet.actionID, packet.actionCooldown, packet)
-})
+// onFFXIVEventSubType('actionStart', packet => {
+//   // actorControlSelf
+//   log.debug('actionStart', packet.actionID, packet.actionCooldown, packet)
+// })
 
 const FISHING_EVENT = 0x150001
 onFFXIVEvents(['eventStart', 'eventFinish'], packet => {
@@ -448,9 +448,9 @@ function saveCurrentRecord() {
     currentRecord.id = uuid()
     fishRecordCallback(currentRecord)
     if (currentRecord.missed) {
-      log.info('fish missed', currentRecord)
+      log.info('fish missed')
     } else if (currentRecord.cancelled) {
-      log.info('fish ignored', currentRecord)
+      log.info('fish ignored')
     }
     records.push(currentRecord)
     readableRecords.push(toReadable(currentRecord))
