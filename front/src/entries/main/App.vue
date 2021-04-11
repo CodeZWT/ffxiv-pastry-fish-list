@@ -1592,6 +1592,10 @@ export default {
         baits: this.getBaits(fish, undefined, FIX.OCEAN_FISHING_FISH),
         tug: fish.tug,
         tugIcon: DataUtil.TUG_ICON[fish.tug],
+        hooksetIcon:
+          fish.tug === 'heavy'
+            ? DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[fish.hookset])
+            : undefined,
         biteTimeMin: biteTimeMin,
         biteTimeMax: biteTimeMax,
         biteTimeForSort: biteTimeMin * 100 + (biteTimeMax ?? 0),

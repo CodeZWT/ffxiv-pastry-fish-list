@@ -105,6 +105,7 @@
             :content="item.tugIcon"
             inline
           />
+          <item-icon v-if="item.hooksetIcon" :icon-class="item.hooksetIcon" small />
         </div>
       </template>
       <template v-slot:item.biteTimeForSort="{ item }">
