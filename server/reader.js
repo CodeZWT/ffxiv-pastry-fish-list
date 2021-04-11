@@ -1085,6 +1085,7 @@ function setTimeBuffIfNeeded() {
       spectralCurrentBuffTime = INTERVAL_MINUTE
     }
   }
+  oceanFishingRouteIndex = (oceanFishingRouteIndex + 1) % 3
 }
 
 function onWeatherChange(packet) {
@@ -1100,7 +1101,6 @@ function onWeatherChange(packet) {
       if (status.weather !== SPECTRAL_CURRENT_FINISHED_WEATHER_ID) {
         log.info('OceanFishingRoute', oceanFishingRouteIndex)
         setTimeBuffIfNeeded()
-        oceanFishingRouteIndex = (oceanFishingRouteIndex + 1) % 3
       }
       if (status.spectralCurrentEndTime) {
         const spectralActualEndTime = Date.now()
