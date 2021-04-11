@@ -241,6 +241,9 @@ export default new Vuex.Store({
     showOFUpdateDialog: state => {
       return state.userData.oceanFishing.showUpdateDialog
     },
+    showOFBiteTimeDialog: state => {
+      return state.userData.oceanFishing.showBiteTimeDialog
+    },
     enableBaitNotification: state => {
       return state.userData.bait.enableNotification
     },
@@ -509,6 +512,10 @@ export default new Vuex.Store({
     },
     setShowOFUpdateDialog(state, show) {
       _.set(state.userData, 'oceanFishing.showUpdateDialog', show)
+      LocalStorageUtil.storeUserData(state.userData)
+    },
+    setShowOFBiteTimeDialog(state, show) {
+      _.set(state.userData, 'oceanFishing.showBiteTimeDialog', show)
       LocalStorageUtil.storeUserData(state.userData)
     },
     setNotShowChromeBugDialog(state) {

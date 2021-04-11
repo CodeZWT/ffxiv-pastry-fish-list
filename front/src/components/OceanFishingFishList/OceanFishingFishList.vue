@@ -108,13 +108,35 @@
         </div>
       </template>
       <template v-slot:item.biteTimeForSort="{ item }">
-        <div class="d-flex align-center justify-center">
-          <span>{{ item.biteTimeMin }}</span>
-          <template v-if="item.biteTimeMax">
-            <span class="mx-1">-</span>
-            <span>{{ item.biteTimeMax }}</span>
+        <v-menu right offset-x open-on-hover>
+          <template v-slot:activator="{ on, attrs }">
+            <div class="d-flex align-center justify-center" v-bind="attrs" v-on="on">
+              <span>{{ item.biteTimeMin }}</span>
+              <template v-if="item.biteTimeMax">
+                <span class="mx-1">-</span>
+                <span>{{ item.biteTimeMax }}</span>
+              </template>
+            </div>
           </template>
-        </div>
+
+          <v-sheet max-width="300px">
+            <v-list>
+              <v-list-item v-for="(item, index) in item.biteTimeOfBaits" :key="index">
+                <v-list-item-avatar>
+                  <div :class="item.icon" />
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title
+                    >{{ item.baitName }}（{{ item.count }}条记录）</v-list-item-title
+                  >
+                  <v-list-item-subtitle>
+                    {{ item.biteTimeMin }} - {{ item.biteTimeMax }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-sheet>
+        </v-menu>
       </template>
       <template v-slot:item.notAvailableWeatherSet="{ item }">
         <div class="d-flex align-center justify-center">

@@ -1515,13 +1515,36 @@ export default {
       const fishList = Object.values(FIX.OCEAN_FISHING_FISH)
       return fishList.map(fish => this.assembleOceanFish(fish))
     },
+    midRounding(num) {
+      const decimal = Math.floor(num)
+      const fraction = num * 10 - decimal * 10
+
+      if (fraction >= 3 && fraction <= 7) {
+        return decimal + 0.5
+      } else if (fraction < 3) {
+        return decimal
+      } else {
+        return decimal + 1
+      }
+    },
     assembleOceanFish(fish) {
       const hasPredators = fish.predators && Object.keys(fish.predators).length > 0
       const bonus = FIX.OCEAN_FISHING_BONUS[fish.bonus]
       const realNotAvailableWeatherSet = this.getRealNotAvailableWeatherSet(fish._id)
 
-      const collectedBiteData = FIX.OCEAN_FISHING_BITE_TIME_COLLECTED.find(
-        it => it.fishId === fish._id && fish.bait === it.baitId
+      const fishCollectedDataOfAllBaits = FIX.OCEAN_FISHING_BITE_TIME_COLLECTED.filter(
+        it => it.fishId === fish._id
+      ).map(it => ({
+        baitId: it.baitId,
+        baitName: it.bait,
+        icon: this.getItemIconClass(it.baitId),
+        biteTimeMin: this.midRounding(it.biteTimeMin),
+        biteTimeMax: this.midRounding(it.biteTimeMax),
+        count: it.count,
+      }))
+
+      const collectedBiteData = fishCollectedDataOfAllBaits.find(
+        it => fish.bait === it.baitId
       )
       if (!collectedBiteData) {
         console.log(this.getItemName(fish._id), 'miss data')
@@ -1533,20 +1556,16 @@ export default {
       //   // totalCnt += collectedBiteData.count
       // }
 
-      const biteTimeMin = Math.min(
-        collectedBiteData?.biteTimeMin ?? 999,
-        collectedBiteData?.count >= 10
-          ? collectedBiteData?.biteTimeMin
-          : fish.biteTimeMin ?? FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[0]
-      )
-      // console.log(biteTimeMin, collectedBiteData?.biteTimeMin)
+      const biteTimeMin =
+        collectedBiteData?.biteTimeMin ??
+        fish.biteTimeMin ??
+        FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[0]
 
-      const biteTimeMax = Math.max(
-        collectedBiteData?.biteTimeMax ?? 0,
-        collectedBiteData?.count >= 10
-          ? collectedBiteData?.biteTimeMax
-          : fish.biteTimeMax ?? FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[1]
-      )
+      const biteTimeMax =
+        collectedBiteData?.biteTimeMax ??
+        fish.biteTimeMax ??
+        FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[1]
+
       return {
         ...fish,
         id: fish._id,
@@ -1555,6 +1574,7 @@ export default {
         icon: this.getItemIconClass(fish._id),
         hasFishingSpot: fish.locations.length !== 0,
         fishingSpots: this.getFishingSpots(fish.locations),
+        biteTimeOfBaits: fishCollectedDataOfAllBaits,
         baitId: fish.bait,
         bait: {
           id: fish.bait,

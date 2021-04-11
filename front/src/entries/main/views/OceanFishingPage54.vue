@@ -18,6 +18,10 @@
         <div>当前航班</div>
         <v-spacer />
         <div>
+          <v-btn color="primary" @click="showBiteTimeDialog = true" class="mr-1">
+            <v-icon left>mdi-information</v-icon>
+            咬钩时间说明
+          </v-btn>
           <v-btn color="info" @click="showUpdateDialog = true">
             <v-icon left>mdi-information</v-icon>
             5.4 版本更新说明
@@ -162,6 +166,45 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-dialog v-model="showBiteTimeDialog" width="500" persistent scrollable>
+      <v-card>
+        <v-card-title>
+          咬钩时间说明
+        </v-card-title>
+        <v-card-text>
+          <ul>
+            <li>
+              咬钩时间现已经改版，依据鱼糕桌面版收集的时间，并做了一定的近似处理。（例：1.2
+              -> 1； 1.6 -> 1.5； 1.9 -> 2）
+            </li>
+            <li>
+              鱼默认显示的咬钩时间是使用推荐鱼饵时的数据。
+            </li>
+            <li>
+              部分鱼咬钩时间在使用
+              <span class="error--text">不同鱼饵</span>的情况下
+              <span class="error--text">差别很大</span>
+              ，请注意！
+            </li>
+            <li>
+              鼠标悬停咬钩时间可以查看所有鱼饵的咬钩时间
+            </li>
+            <li>
+              查看原始数据与上传数据请看
+              <a href="https://docs.qq.com/sheet/DUGNNQWlaUlNudk95" target="_blank">
+                【腾讯文档】5.4数据收集
+              </a>
+            </li>
+          </ul>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn block color="primary" @click="showBiteTimeDialog = false">
+            确认
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -209,6 +252,14 @@ export default {
       },
       set(show) {
         return this.setShowOFUpdateDialog(show)
+      },
+    },
+    showBiteTimeDialog: {
+      get() {
+        return this.showOFBiteTimeDialog
+      },
+      set(show) {
+        return this.setShowOFBiteTimeDialog(show)
       },
     },
     isMobile() {
@@ -275,6 +326,7 @@ export default {
       'getAchievementName',
       'getAchievementIconClass',
       'showOFUpdateDialog',
+      'showOFBiteTimeDialog',
     ]),
   },
   watch: {
@@ -379,7 +431,7 @@ export default {
     filterChanged(filter) {
       this.filter = filter
     },
-    ...mapMutations(['setShowOFUpdateDialog']),
+    ...mapMutations(['setShowOFUpdateDialog', 'setShowOFBiteTimeDialog']),
   },
 }
 

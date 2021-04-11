@@ -1157,7 +1157,8 @@ export default {
     },
     oceanFishing: {
       showWarningDialog: true,
-      showUpdateDialog: true,
+      showUpdateDialog: false,
+      showBiteTimeDialog: true,
     },
     link: {
       default: {
