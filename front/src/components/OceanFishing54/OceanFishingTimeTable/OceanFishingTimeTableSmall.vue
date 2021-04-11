@@ -92,7 +92,11 @@
                   })
                 "
                 style="cursor: pointer"
-                :class="currentVoyageIndex === index ? 'primary' : ''"
+                :class="
+                  showCurrentRouteIndicator && currentVoyageIndex === index
+                    ? 'primary'
+                    : ''
+                "
               >
                 <td>
                   <div class="d-flex justify-end">

@@ -72,6 +72,7 @@
             :targetOptions="targetOptions"
             @filterChanged="filterChanged"
             @voyage-selected="onVoyageSelected"
+            show-current-route-indicator
           />
         </div>
       </v-card>

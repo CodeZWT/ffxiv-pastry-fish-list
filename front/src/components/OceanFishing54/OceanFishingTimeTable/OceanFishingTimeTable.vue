@@ -9,6 +9,7 @@
       :hide-filters="hideFilters"
       @filterChanged="filterChanged"
       @voyage-selected="onVoyageSelected"
+      :show-current-route-indicator="showCurrentRouteIndicator"
     />
   </div>
 </template>
@@ -37,6 +38,10 @@ export default {
       default: () => [],
     },
     hideFilters: {
+      type: Boolean,
+      default: false,
+    },
+    showCurrentRouteIndicator: {
       type: Boolean,
       default: false,
     },

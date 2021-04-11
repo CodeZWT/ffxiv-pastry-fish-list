@@ -17,6 +17,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showCurrentRouteIndicator: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     voyageNLazy: 10,
