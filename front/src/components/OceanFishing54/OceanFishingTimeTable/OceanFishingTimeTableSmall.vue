@@ -92,6 +92,7 @@
                   })
                 "
                 style="cursor: pointer"
+                :class="currentVoyageIndex === index ? 'primary' : ''"
               >
                 <td>
                   <div class="d-flex justify-end">
@@ -147,7 +148,7 @@
 
 <script>
 import ItemIcon from '@/components/basic/ItemIcon'
-import OceanFishingTimeTableMixin from '@/components/OceanFishingTimeTable/OceanFishingTimeTableMixin'
+import OceanFishingTimeTableMixin from '@/components/OceanFishing54/OceanFishingTimeTable/OceanFishingTimeTableMixin'
 export default {
   name: 'OceanFishingTimeTableSmall',
   components: { ItemIcon },

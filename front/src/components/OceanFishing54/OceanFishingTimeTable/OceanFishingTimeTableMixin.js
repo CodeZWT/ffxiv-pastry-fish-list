@@ -21,6 +21,7 @@ export default {
   data: () => ({
     voyageNLazy: 10,
     targets: [],
+    currentVoyageIndex: 0,
   }),
   computed: {
     selectionOptions() {
@@ -66,6 +67,7 @@ export default {
       })
     },
     onVoyageSelected(voyage) {
+      this.currentVoyageIndex = voyage.index
       this.$emit('voyage-selected', voyage)
     },
   },
