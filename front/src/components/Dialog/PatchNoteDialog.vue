@@ -20,13 +20,22 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px">
-        <v-alert outlined type="success" border="left">渔捞已支持国服5.4</v-alert>
+        <v-alert outlined type="warning" border="left">
+          预先告知：国际服更新更新5.5后，渔捞相关检测功能会失效一段时间，等待自动更新即可。更新时间预计在游戏正式更新后几天内，请耐心等待。
+        </v-alert>
 
         <div class="text-h6">Version 0.7.7</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/07 21:20</div>
+        <div class="text-subtitle-1">更新时间: 2021/04/11 21:00</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
           <li>修正部分海钓攻略数据</li>
+          <li>依照统计数据显示咬钩数据</li>
+          <li>
+            查看原始数据与上传数据请看
+            <a href="https://docs.qq.com/sheet/DUGNNQWlaUlNudk95" target="_blank">
+              【腾讯文档】5.4数据收集
+            </a>
+          </li>
         </ul>
         <p />
 
