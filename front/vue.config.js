@@ -110,6 +110,7 @@ module.exports = {
     config.resolve.alias
       .set('Data', path.join(__dirname, '../data'))
       .set('Assets', path.join(__dirname, '../assets'))
+      .set('Utils', path.join(__dirname, '../utils'))
   },
   configureWebpack: {
     plugins: [

@@ -890,7 +890,13 @@ export default {
     return id > 10000
   },
   isOceanFishingSpot(id) {
-    return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
+    return this.isOceanFishingNormalSpot(id) || this.isOceanFishingCurrentSpot(id)
+  },
+  isOceanFishingNormalSpot(id) {
+    return [237, 239, 241, 243, 246, 248, 250].includes(id)
+  },
+  isOceanFishingCurrentSpot(id) {
+    return [238, 240, 242, 244, 247, 249, 251].includes(id)
   },
   assembleAquarium(aquarium, fishData) {
     return {

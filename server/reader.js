@@ -6,6 +6,7 @@ const isElevated = require('is-elevated')
 const { exec } = require('child_process')
 const log = require('electron-log')
 const { TERRITORY_TYPES } = require('../data/fix')
+const { voyagesWithTipOf } = require('../utils/OceanFishingCore')
 const { v4: uuid } = require('uuid')
 const { version: PASTRY_FISH_VERSION } = require('../package.json')
 const { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } = require('../data/constants')
@@ -156,6 +157,29 @@ function weatherChangeOf(weatherId) {
   }
 }
 
+function someDirectorUnk4Of(spotId) {
+  return {
+    // Global
+    type: 'someDirectorUnk4',
+    opcode: 359,
+    // CN
+    // type: 'unknown',
+    // opcode: 225,
+    region: 'Global',
+    connection: '',
+    operation: 'receive',
+    epoch: 1615705349631,
+    packetSize: 40,
+    segmentType: 3,
+    sourceActorSessionID: 0,
+    targetActorSessionID: 0,
+    serverID: 4,
+    timestamp: 1615705349,
+    param3: spotId,
+    delay: 20,
+  }
+}
+
 function initZoneOf(zoneId) {
   return {
     type: 'initZone',
@@ -218,8 +242,9 @@ const mockEvents = [
   weatherChangeOf(2),
   // weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
   // weatherChangeOf(1),
+  someDirectorUnk4Of(3448),
 
-  weatherChangeOf(3),
+  someDirectorUnk4Of(3450),
   weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
   weatherChangeOf(1),
 
@@ -955,11 +980,20 @@ onFFXIVEvent('someDirectorUnk4', packet => {
   if (packet.param3 > 0) {
     const spotIds = placeName2Spots[packet.param3]
     if (spotIds) {
+      const prevSpotId = status.spotId
       const spotCnt = spotIds.length
       if (spotCnt === 1) {
         status.spotId = spotIds[0]
       } else if (spotCnt > 1) {
         status.spotId = spotIds[spotCnt - (region === 'CN' ? 2 : 1)]
+      }
+      if (prevSpotId !== status.spotId && isOceanFishingSpot(status.spotId)) {
+        const spotList = voyagesWithTipOf(Date.now(), 1)[0].locationTips.map(it => it.fishingSpots)
+        const oceanFishingRouteIndexDetected = spotList.findIndex(spot => spot.normal === status.spotId || spot.spectralCurrent === status.spotId)
+        if (oceanFishingRouteIndexDetected !== oceanFishingRouteIndex && oceanFishingRouteIndexDetected > -1) {
+          oceanFishingRouteIndex = oceanFishingRouteIndexDetected
+          setTimeBuffIfNeeded()
+        }
       }
     }
   }
@@ -1029,9 +1063,9 @@ onFFXIVEventWithFilter('unknown', null, null, 604, packet => {
   }
 })
 
-onFFXIVEvent('playerSetup', packet => {
-  log.info(packet)
-})
+// onFFXIVEvent('playerSetup', packet => {
+//   log.info(packet)
+// })
 
 onFFXIVEvent('weatherChange', packet => {
   if (region === 'Global') {
@@ -1043,6 +1077,14 @@ onFFXIVEvent('weatherChange', packet => {
 
 function isOceanFishingSpot(id) {
   return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
+}
+
+function setTimeBuffIfNeeded() {
+  if (oceanFishingRouteIndex > 0) {
+    if (status.previousWeather !== SPECTRAL_CURRENT_FINISHED_WEATHER_ID) {
+      spectralCurrentBuffTime = INTERVAL_MINUTE
+    }
+  }
 }
 
 function onWeatherChange(packet) {
@@ -1057,18 +1099,14 @@ function onWeatherChange(packet) {
     if (isOceanFishing() || isOceanFishingSpot(status.spotId)) {
       if (status.weather !== SPECTRAL_CURRENT_FINISHED_WEATHER_ID) {
         log.info('OceanFishingRoute', oceanFishingRouteIndex)
-        if (oceanFishingRouteIndex > 0) {
-          if (status.previousWeather !== SPECTRAL_CURRENT_FINISHED_WEATHER_ID) {
-            spectralCurrentBuffTime = INTERVAL_MINUTE
-          }
-        }
+        setTimeBuffIfNeeded()
         oceanFishingRouteIndex = (oceanFishingRouteIndex + 1) % 3
       }
       if (status.spectralCurrentEndTime) {
         const spectralActualEndTime = Date.now()
         let remainingTime = status.spectralCurrentEndTime - spectralActualEndTime
         spectralCurrentBuffTime =
-          remainingTime > 0 ? Math.min(remainingTime, INTERVAL_MINUTE) : 0
+          remainingTime > 0 ? remainingTime : 0
         status.spectralCurrentEndTime = undefined
       }
     }

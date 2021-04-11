@@ -673,8 +673,7 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPE
       }
     })
     const routeMissions = route.missions.map(missionId => missions[missionId])
-    return {
-      ...voyage,
+    return Object.assign({}, voyage, {
       // ...Fish_Tracker_CN_TIPS[voyage.voyageType],
       voyageTip: { achievements: route.achievements },
       locationTips: locationTips,
@@ -685,7 +684,7 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPE
       typeMission: routeMissions.find(mission => mission.types.length > 0),
       starMission: routeMissions.find(mission => mission.star),
       tugMission: routeMissions.filter(mission => mission.tug),
-    }
+    })
   })
 }
 
@@ -716,7 +715,7 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPE
 // console.log(simpleTipsOf(shiftTimeForCheckInLimit(Date.now())))
 // console.log(new Date(shiftTimeForCheckInLimit(Date.now())))
 
-export default {
+module.exports = {
   voyagesWithTipOf,
   // simpleTipsOf,
   shiftTimeForCheckInLimit,

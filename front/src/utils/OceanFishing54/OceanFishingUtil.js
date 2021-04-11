@@ -90,7 +90,7 @@ function locationShiftIndexOf(spotId, timeId) {
   return `${spotId}-${timeId}`
 }
 
-import CORE from './OceanFishingCore'
+import CORE from 'Utils/OceanFishingCore'
 
 export default {
   ...CORE,
