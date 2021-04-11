@@ -13,10 +13,7 @@
         />
         <div v-if="!simple" class="ml-1 d-flex flex-column justify-center">
           <div>
-            <span>{{ fish.biteTimeMin }}s</span>
-            <span v-if="fish.biteTimeMax && fish.biteTimeMax !== fish.biteTimeMin">
-              -{{ fish.biteTimeMax }}s
-            </span>
+            <fish-bite-time-list :item="fish" />
           </div>
           <div class="d-flex">
             <v-badge
@@ -134,14 +131,7 @@
           />
           <div v-if="!simple" class="ml-1 d-flex flex-column justify-center">
             <div>
-              <span>{{ predator.biteTimeMin }}s</span>
-              <span
-                v-if="
-                  predator.biteTimeMax && predator.biteTimeMax !== predator.biteTimeMin
-                "
-              >
-                -{{ predator.biteTimeMax }}s
-              </span>
+              <fish-bite-time-list :item="predator" />
             </div>
             <div class="d-flex">
               <v-badge
@@ -216,9 +206,10 @@
 <script>
 import FishBaitList from '@/components/FishBaitList'
 import FishWeatherNotAvailable from '@/components/OceanFishingFishList/FishWeatherNotAvailable'
+import FishBiteTimeList from '@/components/FishBiteTimeList'
 export default {
   name: 'FishTip',
-  components: { FishWeatherNotAvailable, FishBaitList },
+  components: { FishBiteTimeList, FishWeatherNotAvailable, FishBaitList },
   props: {
     fish: {
       type: Object,
