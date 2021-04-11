@@ -23,6 +23,15 @@
         <v-alert outlined type="warning" border="left">
           预先告知：国际服更新更新5.5后，渔捞相关检测功能会失效一段时间，等待自动更新即可。更新时间预计在游戏正式更新后几天内，请耐心等待。
         </v-alert>
+        <div class="text-h6">Version 0.7.8</div>
+        <div class="text-subtitle-1">更新时间: 2021/04/11 22:05</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>修复导出功能</li>
+        </ul>
+        <p />
+
+        <v-divider />
 
         <div class="text-h6">Version 0.7.7</div>
         <div class="text-subtitle-1">更新时间: 2021/04/11 21:00</div>

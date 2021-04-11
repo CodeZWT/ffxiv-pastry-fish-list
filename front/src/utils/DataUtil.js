@@ -192,6 +192,14 @@ function generateFishId2WikiId(fishDict) {
   return dict
 }
 
+function isOceanFishingNormalSpot(id) {
+  return [237, 239, 241, 243, 246, 248, 250].includes(id)
+}
+
+function isOceanFishingCurrentSpot(id) {
+  return [238, 240, 242, 244, 247, 249, 251].includes(id)
+}
+
 export default {
   LINKS: {
     PASTRY_FISH: {
@@ -890,13 +898,7 @@ export default {
     return id > 10000
   },
   isOceanFishingSpot(id) {
-    return this.isOceanFishingNormalSpot(id) || this.isOceanFishingCurrentSpot(id)
-  },
-  isOceanFishingNormalSpot(id) {
-    return [237, 239, 241, 243, 246, 248, 250].includes(id)
-  },
-  isOceanFishingCurrentSpot(id) {
-    return [238, 240, 242, 244, 247, 249, 251].includes(id)
+    return isOceanFishingNormalSpot(id) || isOceanFishingCurrentSpot(id)
   },
   assembleAquarium(aquarium, fishData) {
     return {
