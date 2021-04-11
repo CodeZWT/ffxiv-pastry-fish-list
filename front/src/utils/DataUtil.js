@@ -1051,6 +1051,7 @@ export default {
         5.1,
         5.2,
         5.3,
+        5.4,
       ],
       completeType: 'UNCOMPLETED', // before 0.5.3
       bigFishType: 'BIG_FISH', // before 0.5.3
