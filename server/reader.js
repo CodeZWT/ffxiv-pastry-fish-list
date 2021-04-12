@@ -33,10 +33,7 @@ const EMPTY_RECORD = {
   hq: false,
   size: 0,
 }
-let status,
-  currentRecord,
-  spectralCurrentBuffTime = 0,
-  oceanFishingRouteIndex = 0
+let status, currentRecord
 const records = []
 const readableRecords = []
 resetStatus()
@@ -242,15 +239,30 @@ const mockEvents = [
   weatherChangeOf(2),
   // weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
   // weatherChangeOf(1),
-  someDirectorUnk4Of(3448),
+  someDirectorUnk4Of(3621),
+  someDirectorUnk4Of(3621),
+  someDirectorUnk4Of(3621),
 
-  someDirectorUnk4Of(3450),
+  someDirectorUnk4Of(3454),
+  someDirectorUnk4Of(3454),
+  someDirectorUnk4Of(3454),
   weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
+  someDirectorUnk4Of(3455),
+  someDirectorUnk4Of(3455),
   weatherChangeOf(1),
+  someDirectorUnk4Of(3454),
+  someDirectorUnk4Of(3454),
 
   weatherChangeOf(5),
+  someDirectorUnk4Of(3625),
+  someDirectorUnk4Of(3625),
+
   weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
+  someDirectorUnk4Of(3626),
+  someDirectorUnk4Of(3626),
   weatherChangeOf(1),
+  someDirectorUnk4Of(3625),
+  someDirectorUnk4Of(3625),
 ]
 let mockIndex = 0
 exports.nextTestEvent = () => {
@@ -390,8 +402,9 @@ onFFXIVEvent(
     status.weather = undefined
     status.spectralCurrentEndTime = undefined
     status.diademWeatherEndTime = undefined
-    spectralCurrentBuffTime = 0
-    oceanFishingRouteIndex = 0
+    status.spectralCurrentBuffTime = 0
+    status.oceanFishingRouteIndex = -1
+    status.spotCurrents = [false, false, false]
   },
   true
 )
@@ -494,6 +507,9 @@ function resetStatus() {
     prevFishId: -1,
     weather: undefined,
     zoneId: undefined,
+    spectralCurrentBuffTime: 0,
+    oceanFishingRouteIndex: -1,
+    spotCurrents: [false, false, false]
   }
 }
 
@@ -988,10 +1004,18 @@ onFFXIVEvent('someDirectorUnk4', packet => {
         status.spotId = spotIds[spotCnt - (region === 'CN' ? 2 : 1)]
       }
       if (prevSpotId !== status.spotId && isOceanFishingSpot(status.spotId)) {
-        const spotList = voyagesWithTipOf(Date.now(), 1)[0].locationTips.map(it => it.fishingSpots)
-        const oceanFishingRouteIndexDetected = spotList.findIndex(spot => spot.normal === status.spotId || spot.spectralCurrent === status.spotId)
-        if (oceanFishingRouteIndexDetected !== oceanFishingRouteIndex && oceanFishingRouteIndexDetected > -1) {
-          oceanFishingRouteIndex = oceanFishingRouteIndexDetected
+        const spotList = voyagesWithTipOf(isDev ? new Date("2021-04-12 02:00:00").getTime() : Date.now(), 1)[0].locationTips.map(
+        // const spotList = voyagesWithTipOf(Date.now(), 1)[0].locationTips.map(
+          it => it.fishingSpots
+        )
+        const oceanFishingRouteIndexDetected = spotList.findIndex(
+          spot => spot.normal === status.spotId || spot.spectralCurrent === status.spotId
+        )
+        if (
+          oceanFishingRouteIndexDetected !== status.oceanFishingRouteIndex &&
+          oceanFishingRouteIndexDetected > -1
+        ) {
+          status.oceanFishingRouteIndex = oceanFishingRouteIndexDetected
           setTimeBuffIfNeeded()
         }
       }
@@ -1010,7 +1034,7 @@ onFFXIVEvent('someDirectorUnk4', packet => {
 })
 
 function getSpectralCurrentCountDownTotal() {
-  return 2 * INTERVAL_MINUTE + spectralCurrentBuffTime
+  return 2 * INTERVAL_MINUTE + status.spectralCurrentBuffTime
 }
 
 function isOceanFishing() {
@@ -1080,12 +1104,19 @@ function isOceanFishingSpot(id) {
 }
 
 function setTimeBuffIfNeeded() {
-  if (oceanFishingRouteIndex > 0) {
-    if (status.previousWeather !== SPECTRAL_CURRENT_FINISHED_WEATHER_ID) {
-      spectralCurrentBuffTime = INTERVAL_MINUTE
+  log.debug(
+    'in setTimeBuffIfNeeded',
+    status.oceanFishingRouteIndex,
+    status.previousWeather,
+    status.weather,
+    status.spectralCurrentBuffTime
+  )
+  if (status.oceanFishingRouteIndex > 0) {
+    if (!status.spotCurrents[status.oceanFishingRouteIndex-1]) {
+      status.spectralCurrentBuffTime = INTERVAL_MINUTE
+      log.debug('in setTimeBuffIfNeeded buffTime update', status.spectralCurrentBuffTime)
     }
   }
-  oceanFishingRouteIndex = (oceanFishingRouteIndex + 1) % 3
 }
 
 function onWeatherChange(packet) {
@@ -1095,19 +1126,27 @@ function onWeatherChange(packet) {
 
   if (status.weather === SPECTRAL_CURRENT_WEATHER_ID) {
     status.spectralCurrentEndTime = Date.now() + getSpectralCurrentCountDownTotal()
+    status.spotCurrents[status.oceanFishingRouteIndex] = true
     log.info('current end in', (status.spectralCurrentEndTime - Date.now()) / 1000, 's')
   } else {
     if (isOceanFishing() || isOceanFishingSpot(status.spotId)) {
       if (status.weather !== SPECTRAL_CURRENT_FINISHED_WEATHER_ID) {
-        log.info('OceanFishingRoute', oceanFishingRouteIndex)
+        status.oceanFishingRouteIndex = (status.oceanFishingRouteIndex + 1) % 3
+        log.info('OceanFishingRoute', status.oceanFishingRouteIndex)
         setTimeBuffIfNeeded()
       }
       if (status.spectralCurrentEndTime) {
         const spectralActualEndTime = Date.now()
         let remainingTime = status.spectralCurrentEndTime - spectralActualEndTime
-        spectralCurrentBuffTime =
-          remainingTime > 0 ? remainingTime : 0
+        status.spectralCurrentBuffTime = remainingTime > 0 ? remainingTime : 0
         status.spectralCurrentEndTime = undefined
+        log.debug(
+          'in weatherChange',
+          status.oceanFishingRouteIndex,
+          status.previousWeather,
+          status.weather,
+          status.spectralCurrentBuffTime
+        )
       }
     }
     if (status.previousWeather) {
@@ -1118,7 +1157,7 @@ function onWeatherChange(packet) {
       }
     }
   }
-  log.info('time buff', spectralCurrentBuffTime / 1000, 's')
+  log.info('time buff', status.spectralCurrentBuffTime / 1000, 's')
 }
 
 onFFXIVEvent('updateClassInfo', packet => {
