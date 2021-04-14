@@ -6322,7 +6322,7 @@ module.exports = {
     },
     30489: {
       _id: 30489,
-      name_chs: '钓勾鱼',
+      name_chs: '钓钩鱼',
       icon: 29009,
     },
     30490: {
