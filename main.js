@@ -146,6 +146,11 @@ async function init() {
       win.webContents.send('newRecord', data)
     )
   })
+  FishingDataReader.onPlayerSetup(data => {
+    callWindowSafe(WINDOWS.main, win => {
+      win.webContents.send('playerSetup', data)
+    })
+  })
 
   ipcMain
     .on('startReader', (event, options) => {

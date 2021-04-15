@@ -326,6 +326,14 @@ export default new Vuex.Store({
       LocalStorageUtil.storeUserData(state.userData)
       LocalStorageUtil.storeBaitFilter(state.baitFilter)
     },
+    resetFishCompleted(state, fishIds) {
+      if (fishIds) {
+        state.userData = {
+          ...state.userData,
+          completed: _.uniq(fishIds),
+        }
+      }
+    },
     batchSetFishCompleted(state, { fishIds, completed }) {
       const simpleFishIds = fishIds.map(fishId => DataUtil.toItemId(fishId))
       state.userData = updateUserDataStateRecords(
@@ -523,7 +531,13 @@ export default new Vuex.Store({
       LocalStorageUtil.storeUserData(state.userData)
     },
   },
-  actions: {},
+  actions: {
+    syncFishCompleted(context, fishIds) {
+      context.commit('resetFishCompleted', fishIds)
+      context.commit('batchSetFishCompleted', { fishIds, completed: true })
+      return
+    },
+  },
   modules: {},
 })
 

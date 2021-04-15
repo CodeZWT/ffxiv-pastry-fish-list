@@ -13,6 +13,7 @@ const { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } = require('../data/constants')
 const merge = require('lodash/merge')
 const cloneDeep = require('lodash/cloneDeep')
 const Events = require('events')
+const playerSetupOf = require('./customDataReader/playerSetup')
 const { toReadable } = require('./toReadable')
 
 const INTERVAL_MINUTE = 60000
@@ -101,6 +102,7 @@ function startMachina(options, callback = () => {}) {
 exports.start = startMachina
 exports.onUpdate = onUpdate
 exports.stop = stopMachina
+
 function stopMachina(callback = () => {}) {
   Machina.stop(() => {
     machinaStatus = 'stopped'
@@ -129,6 +131,14 @@ let fishRecordCallback
 exports.onNewRecord = callback => {
   fishRecordCallback = callback
 }
+
+let playerSetupCallback = data => {
+  log.debug('sending player setup data', data)
+}
+exports.onPlayerSetup = callback => {
+  playerSetupCallback = callback
+}
+
 
 function weatherChangeOf(weatherId) {
   return {
@@ -1087,9 +1097,11 @@ onFFXIVEventWithFilter('unknown', null, null, 604, packet => {
   }
 })
 
-// onFFXIVEvent('playerSetup', packet => {
-//   log.info(packet)
-// })
+onFFXIVEvent('playerSetup', packet => {
+  playerSetupOf(packet)
+  log.info('playerSetup in reader', packet)
+  playerSetupCallback(packet)
+})
 
 onFFXIVEvent('weatherChange', packet => {
   if (region === 'Global') {

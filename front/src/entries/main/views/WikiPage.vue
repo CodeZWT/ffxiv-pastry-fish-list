@@ -129,10 +129,24 @@
               type === 'region' ||
               (type === 'territory' && isOceanFishingTerritory)
           "
-          class="d-flex justify-center align-center fill-height"
+          class="fill-height"
+          style="position: relative"
         >
           <!--  show empty / region view  -->
-          <v-icon size="200">mdi-book-open-page-variant</v-icon>
+          <div>
+            <v-sheet outlined class="pa-4">
+              <v-btn color="primary" @click="showSyncDialog = true" block>
+                <v-icon left>mdi-sync</v-icon>
+                同步游戏数据
+              </v-btn>
+            </v-sheet>
+          </div>
+          <div
+            class="d-flex justify-center align-center fill-height"
+            style="position: absolute; width: 100%"
+          >
+            <v-icon size="200">mdi-book-open-page-variant</v-icon>
+          </div>
         </div>
         <div v-else-if="type === 'territory'" style="width: 100%; height: 100%">
           <!--  show territory view  -->
@@ -320,13 +334,65 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="showSyncDialog" max-width="300" :fullscreen="isMobile" scrollable>
+      <v-card>
+        <v-card-title>
+          数据同步
+        </v-card-title>
+        <v-card-subtitle v-if="!isElectron">
+          数据同步为鱼糕桌面版功能
+        </v-card-subtitle>
+        <v-card-text>
+          <item-icon icon-class="bg-000024" class="float-left" />
+          <div>
+            同步游戏内钓鱼笔记数据，当前已完成数据将会被
+            <span class="font-weight-bold error--text">
+              完全覆盖
+            </span>
+            ，请注意！
+          </div>
+          <div>※固定列表不受影响</div>
+          <div>※已完成的鱼将会从闹钟列表中移除</div>
+        </v-card-text>
+        <v-card-text v-if="syncStatus === 'waiting'">
+          <v-progress-circular indeterminate /><span class="ml-2">
+            开始同步，请重新登录游戏
+          </span>
+        </v-card-text>
+        <v-card-text v-if="syncStatus === 'finished'">
+          <v-icon>mdi-check-circle</v-icon>
+          <span class="ml-2">
+            同步完成
+          </span>
+        </v-card-text>
+        <v-card-actions class="d-flex justify-end">
+          <!--          <div class="d-flex flex-column flex-fill">-->
+          <v-btn
+            :disabled="syncStatus !== 'not-start' && isElectron"
+            class="mt-2"
+            color="primary"
+            @click="syncStatus = 'waiting'"
+          >
+            {{ syncStatus === 'not-start' ? '开始同步' : '同步中' }}
+          </v-btn>
+          <v-btn class="mt-2" color="default" @click="onSyncClose">
+            {{
+              syncStatus === 'finished'
+                ? $t('general.dialog.close')
+                : $t('general.dialog.cancel')
+            }}
+          </v-btn>
+          <!--          </div>-->
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
 <script>
 import normSpots from 'Data/fishingSpots'
 import placeNames from 'Data/placeNames'
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import _ from 'lodash'
 import PinyinMatch from 'pinyin-match'
@@ -343,10 +409,12 @@ import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import LinkList from '@/components/basic/LinkList'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'WikiPage',
   components: {
+    ItemIcon,
     NewFeatureMark,
     LinkList,
     DetailItemMap,
@@ -401,6 +469,8 @@ export default {
     forceShowComponents: undefined,
     mode: 'normal',
     isElectron: DevelopmentModeUtil.isElectron(),
+    showSyncDialog: false,
+    syncStatus: 'not-start',
   }),
   computed: {
     showSpotPredators() {
@@ -587,9 +657,16 @@ export default {
       this.lazySearchText = t
     }, 500)
 
-    window.electron?.ipcRenderer?.on('showSpotPage', (event, spotId) => {
-      this.showSpot(spotId, 'normal')
-    })
+    window.electron?.ipcRenderer
+      ?.on('showSpotPage', (event, spotId) => {
+        this.showSpot(spotId, 'normal')
+      })
+      ?.on('playerSetup', (event, data) => {
+        if (this.syncStatus === 'waiting') {
+          this.syncFishCompleted(data.caughtFishList)
+          this.syncStatus = 'finished'
+        }
+      })
   },
   methods: {
     showSpot(spotId, mode) {
@@ -886,7 +963,12 @@ export default {
         }
       }
     },
+    onSyncClose() {
+      this.syncStatus = 'not-start'
+      this.showSyncDialog = false
+    },
     ...mapMutations(['setFishCompleted', 'batchSetFishCompleted', 'showSnackbar']),
+    ...mapActions(['syncFishCompleted']),
   },
 }
 </script>
