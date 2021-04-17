@@ -115,7 +115,10 @@
           </div>
         </div>
       </v-card-subtitle>
-      <v-card-text v-html="tip.pointTip[location.id][location.shift].tipContent">
+      <v-card-text>
+        <div v-html="tip.pointTip[location.id].all" />
+        <v-divider class="my-1" />
+        <div v-html="tip.pointTip[location.id][location.shift].tipContent" />
       </v-card-text>
     </v-card>
   </div>
