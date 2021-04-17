@@ -20,11 +20,10 @@
         <div>
           <v-btn color="primary" @click="showBiteTimeDialog = true" class="mr-1">
             <v-icon left>mdi-information</v-icon>
-            咬钩时间说明
+            关于咬钩时间
           </v-btn>
           <v-btn color="info" @click="showUpdateDialog = true">
-            <v-icon left>mdi-information</v-icon>
-            5.4 版本更新说明
+            关于5.4更新
           </v-btn>
         </div>
       </v-card-title>
