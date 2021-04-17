@@ -7604,8 +7604,8 @@ module.exports = {
       baitId: 29715,
       bait: '磷虾',
       biteTimeMin: 2.0,
-      biteTimeMax: 3.5,
-      count: 230,
+      biteTimeMax: 3.2,
+      count: 229,
     },
     {
       spotId: 244,
@@ -7766,17 +7766,6 @@ module.exports = {
       spot: '谢尔达莱群岛近海',
       fishId: 32055,
       fish: '龟甲蟹',
-      baitId: 27590,
-      bait: '乌贼丝',
-      biteTimeMin: 11.7,
-      biteTimeMax: 11.8,
-      count: 2,
-    },
-    {
-      spotId: 246,
-      spot: '谢尔达莱群岛近海',
-      fishId: 32055,
-      fish: '龟甲蟹',
       baitId: 29714,
       bait: '石沙蚕',
       biteTimeMin: 6.5,
@@ -7847,17 +7836,6 @@ module.exports = {
       bait: '万能拟饵',
       biteTimeMin: 24.9,
       biteTimeMax: 24.9,
-      count: 1,
-    },
-    {
-      spotId: 246,
-      spot: '谢尔达莱群岛近海',
-      fishId: 32057,
-      fish: '金属箱',
-      baitId: 27590,
-      bait: '乌贼丝',
-      biteTimeMin: 6.9,
-      biteTimeMax: 6.9,
       count: 1,
     },
     {
@@ -7946,17 +7924,6 @@ module.exports = {
       bait: '万能拟饵',
       biteTimeMin: 21.7,
       biteTimeMax: 21.7,
-      count: 1,
-    },
-    {
-      spotId: 246,
-      spot: '谢尔达莱群岛近海',
-      fishId: 32059,
-      fish: '海瓦魔蛾',
-      baitId: 27590,
-      bait: '乌贼丝',
-      biteTimeMin: 15.5,
-      biteTimeMax: 15.5,
       count: 1,
     },
     {
@@ -8891,8 +8858,8 @@ module.exports = {
       baitId: 29716,
       bait: '刺螠',
       biteTimeMin: 2.1,
-      biteTimeMax: 4.0,
-      count: 104,
+      biteTimeMax: 3.1,
+      count: 102,
     },
     {
       spotId: 249,
@@ -9209,9 +9176,9 @@ module.exports = {
       fish: '雇佣兵',
       baitId: 29714,
       bait: '石沙蚕',
-      biteTimeMin: 10.5,
+      biteTimeMin: 15.3,
       biteTimeMax: 24.2,
-      count: 55,
+      count: 52,
     },
     {
       spotId: 250,
@@ -9375,8 +9342,8 @@ module.exports = {
       baitId: 29716,
       bait: '刺螠',
       biteTimeMin: 2.1,
-      biteTimeMax: 4.7,
-      count: 31,
+      biteTimeMax: 3.1,
+      count: 30,
     },
     {
       spotId: 251,
@@ -10736,7 +10703,8 @@ module.exports = {
         },
         // 罗斯利特湾
         250: {
-          all: '触发幻海：刺螠，14s+！！！，幻光鱼龙，强力<br />\n' +
+          all:
+            '触发幻海：刺螠，14s+！！！，幻光鱼龙，强力<br />\n' +
             '石沙蚕，4-10s！，罗斯利特海带X3→石沙蚕，！！！，银杏鱼，精准<br />\n',
           0: {
             fishList: [32105, 32109, 32111, 32113],
