@@ -12,6 +12,9 @@
       <v-expansion-panel-content>
         <v-row no-gutters>
           <v-col cols="12">
+            <tip7 :id="fish.id" />
+          </v-col>
+          <v-col cols="12">
             <tip5 :id="fish.id" />
           </v-col>
           <v-col cols="12">
@@ -42,10 +45,11 @@ import Tip3 from '@/components/fish-detail-items/DetailItemTips/Tip3'
 import Tip4 from '@/components/fish-detail-items/DetailItemTips/Tip4'
 import Tip5 from '@/components/fish-detail-items/DetailItemTips/Tip5'
 import Tip6 from '@/components/fish-detail-items/DetailItemTips/Tip6'
+import Tip7 from '@/components/fish-detail-items/DetailItemTips/Tip7'
 
 export default {
   name: 'DetailItemTips',
-  components: { Tip1, Tip2, Tip3, Tip4, Tip5, Tip6 },
+  components: { Tip1, Tip2, Tip3, Tip4, Tip5, Tip6, Tip7 },
   props: {
     fish: {
       type: Object,
