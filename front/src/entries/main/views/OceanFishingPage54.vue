@@ -61,7 +61,7 @@
           </div>
           <v-sheet outlined class="pa-2">
             <div class="d-flex flex-column">
-              <a :href="tip.link">{{ tip.title }}</a>
+              <a :href="tip.link" target="_blank">{{ tip.title }}</a>
               <span>{{ tip.author }}</span>
             </div>
           </v-sheet>
