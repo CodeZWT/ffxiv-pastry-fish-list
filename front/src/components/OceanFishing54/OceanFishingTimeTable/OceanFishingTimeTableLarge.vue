@@ -96,7 +96,7 @@
             <tbody>
               <tr
                 v-for="(voyage, index) in voyages"
-                :key="index"
+                :key="`${voyage.day}-${voyage.time}`"
                 @click="onVoyageSelected({ index })"
                 style="cursor: pointer"
                 :class="

@@ -268,7 +268,7 @@ export default {
     },
     voyages() {
       return this.assembleVoyages(
-        OceanFishingUtil.shiftTimeForCheckInLimit(this.lazyNow),
+        OceanFishingUtil.shiftTimeForCheckInLimit(Date.now()),
         this.filter.voyageN,
         this.filter.voyageTypes
       )
