@@ -9,6 +9,11 @@
       <div>
         <v-sheet class="pa-1 primary">
           <div class="d-flex align-center">
+            <v-btn text icon @click="type = undefined">
+              <v-icon>
+                mdi-home
+              </v-icon>
+            </v-btn>
             <v-text-field
               v-model="searchText"
               :label="$t('wiki.searchTitle')"
@@ -92,7 +97,13 @@
             selected-color="primary"
             color="select"
             @update:active="onMenuItemActive"
-          />
+          >
+            <template v-if="!showBulkCompleteCheckbox" v-slot:prepend="{ selected }">
+              <v-icon>
+                {{ selected ? 'mdi-check' : '' }}
+              </v-icon>
+            </template>
+          </v-treeview>
           <v-treeview
             v-show="mode === 'spear'"
             ref="spearSpotMenu"
@@ -109,7 +120,13 @@
             selected-color="primary"
             color="select"
             @update:active="onMenuItemActive"
-          />
+          >
+            <template v-if="!showBulkCompleteCheckbox" v-slot:prepend="{ selected }">
+              <v-icon>
+                {{ selected ? 'mdi-check' : '' }}
+              </v-icon>
+            </template>
+          </v-treeview>
         </v-card-text>
       </div>
     </v-navigation-drawer>
@@ -129,21 +146,52 @@
               type === 'region' ||
               (type === 'territory' && isOceanFishingTerritory)
           "
-          class="fill-height"
-          style="position: relative"
+          class="fill-height d-flex flex-column align-content-space-between"
         >
           <!--  show empty / region view  -->
           <div>
             <v-sheet outlined class="pa-4">
-              <v-btn color="primary" @click="showSyncDialog = true" block>
+              专研钓鱼笔记
+              <v-row>
+                <v-col>
+                  <achievement-progress
+                    :value="counts.iCatchThat.record"
+                    :total="counts.iCatchThat.total"
+                    :ticks="counts.iCatchThat.ticks"
+                  />
+                </v-col>
+              </v-row>
+              愿者上钩
+              <v-row>
+                <v-col>
+                  <achievement-progress
+                    :value="counts.goBigOrGoHome.record"
+                    :total="counts.goBigOrGoHome.total"
+                    :ticks="counts.goBigOrGoHome.ticks"
+                  />
+                </v-col>
+              </v-row>
+
+              净界太公
+              <v-row>
+                <v-col>
+                  <achievement-progress
+                    :value="counts.goBigFarFromHome.record"
+                    :total="counts.goBigFarFromHome.total"
+                    :ticks="counts.goBigFarFromHome.ticks"
+                  />
+                </v-col>
+              </v-row>
+
+              <v-btn color="primary" @click="showSyncDialog = true" block class="mt-2">
                 <v-icon left>mdi-sync</v-icon>
                 同步游戏数据
               </v-btn>
             </v-sheet>
           </div>
           <div
-            class="d-flex justify-center align-center fill-height"
-            style="position: absolute; width: 100%"
+            class="d-flex justify-center align-center"
+            style="width: 100%; height: 100%"
           >
             <v-icon size="200">mdi-book-open-page-variant</v-icon>
           </div>
@@ -334,21 +382,17 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="showSyncDialog" max-width="300" :fullscreen="isMobile" scrollable>
+    <v-dialog v-model="showSyncDialog" max-width="320" :fullscreen="isMobile" scrollable>
       <v-card>
-        <v-card-title>
-          数据同步
-        </v-card-title>
+        <v-card-title> 数据同步（目前仅支持国服） </v-card-title>
         <v-card-subtitle v-if="!isElectron">
-          数据同步为鱼糕桌面版功能
+          数据同步为鱼糕桌面版功能，左侧可下载桌面版。
         </v-card-subtitle>
         <v-card-text>
           <item-icon icon-class="bg-000024" class="float-left" />
           <div>
             同步游戏内钓鱼笔记数据，当前已完成数据将会被
-            <span class="font-weight-bold error--text">
-              完全覆盖
-            </span>
+            <span class="font-weight-bold error--text"> 完全覆盖 </span>
             ，请注意！
           </div>
           <div>※固定列表不受影响</div>
@@ -361,9 +405,7 @@
         </v-card-text>
         <v-card-text v-if="syncStatus === 'finished'">
           <v-icon>mdi-check-circle</v-icon>
-          <span class="ml-2">
-            同步完成
-          </span>
+          <span class="ml-2"> 同步完成 </span>
         </v-card-text>
         <v-card-actions class="d-flex justify-end">
           <!--          <div class="d-flex flex-column flex-fill">-->
@@ -410,10 +452,15 @@ import LinkList from '@/components/basic/LinkList'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import ItemIcon from '@/components/basic/ItemIcon'
+import { GLOBAL_PATCH_VERSION, CN_PATCH_VERSION } from 'Data/constants'
+import DATA_CN from 'Data/translation'
+import AchievementProgress from '@/components/AchievementProgress'
+import ImgUtil from '@/utils/ImgUtil'
 
 export default {
   name: 'WikiPage',
   components: {
+    AchievementProgress,
     ItemIcon,
     NewFeatureMark,
     LinkList,
@@ -579,6 +626,131 @@ export default {
     },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
+    },
+    fishCaughtCnt() {
+      return this.allCompletedFish.length
+    },
+    // total
+    // | normal fish                                                                                   | spear fish                |
+    // | normal fish                     | ocean fish                    |                             | normal fish | fish shadow |
+    // | normal fish | big fish | legend | normal sea fish               | current fish                |                           |
+    // |                                 | normal fish | intuition fish  | normal big fish | blue fish |                           |
+
+    // spearFishTotal() {
+    //
+    // },
+    // normalFishTotal() {
+    //   return _.uniq(Object.keys(this.allFish).map(id => DataUtil.toItemId(id))).length +
+    //     Object.keys(FIX.OCEAN_FISHING_FISH).length -
+    //     (DevelopmentModeUtil.isTest() ? 2 : 0)
+    // },
+    region() {
+      return 'CN'
+    },
+    patch() {
+      return this.region === 'CN' ? CN_PATCH_VERSION : GLOBAL_PATCH_VERSION
+    },
+    counts() {
+      // const globalNormalFish = 15
+      // const globalBigFish = 11
+      const podSpearFish = _.chain(
+        Object.values(this.allFish).map(it => ({ ...it, _id: DataUtil.toItemId(it._id) }))
+      )
+        .groupBy(it => it._id)
+        .mapValues(it => it[0])
+        .filter(it => it.type !== 'test')
+        .value()
+
+      const oceanFish = Object.values(FIX.OCEAN_FISHING_FISH)
+
+      // let podNormalFish =[], podNormalFish =[],  podNormalFish =[], spearFish = [], podFish = []
+      const iCatchThat = {
+        record: this.allCompletedFish.length,
+        // ticks: [
+        //   // { title: '捕鱼大师戒指', cnt:  160   , itemId: 6137         },
+        //   { title: '赐福渔灯钓竿', cnt: 460, itemId: 16968 },
+        //   { title: '赐福渔采钓竿', cnt: 780, itemId: 24831 },
+        //   { title: '5.5璀璨钓竿', cnt: 1140, itemId: 33358 },
+        // ],
+        ticks: [1731, 2176, 2832].map(achievementId => {
+          const achievement = FIX.ACHIEVEMENT[achievementId]
+          return {
+            ...achievement,
+            item: achievement.item
+              ? {
+                  id: achievement.item,
+                  title: achievement.itemTitle,
+                  iconUrl: ImgUtil.getIconUrl(achievement.itemIcon),
+                }
+              : undefined,
+          }
+        }),
+        total: podSpearFish.length + oceanFish.length, // + globalNormalFish + globalBigFish,
+      }
+      // const tickLabels = []
+      // for (let i = 0; i < iCatchThat.total; i++) {
+      //   tickLabels.push(null)
+      // }
+      // iCatchThat.ticks.forEach(it => {
+      //   tickLabels[it.cnt] = it.cnt
+      // })
+      // iCatchThat.tickLabels = tickLabels
+
+      const goBigOrGoHomeFishIds = podSpearFish
+        .filter(it => DATA_CN.BIG_FISH.includes(it._id) && it.patch < 5)
+        .map(it => it._id)
+      const goBigOrGoHome = {
+        record: this.allCompletedFish.filter(it => goBigOrGoHomeFishIds.includes(it))
+          .length,
+        // 鱼太公 烟波钓徒
+        ticks: [1033, 2245].map(achievementId => FIX.ACHIEVEMENT[achievementId]),
+        total: goBigOrGoHomeFishIds.length,
+      }
+      const goBigFarFromHomeFishIds = podSpearFish
+        .filter(it => DATA_CN.BIG_FISH.includes(it._id) && it.patch >= 5)
+        .map(it => it._id)
+      const goBigFarFromHome = {
+        record: this.allCompletedFish.filter(it => goBigFarFromHomeFishIds.includes(it))
+          .length,
+        ticks: [
+          // {title: '鱼太公', cnt: 100},
+          // {title: '烟波钓徒', cnt: 204},
+        ],
+        total: goBigFarFromHomeFishIds.length, //+ globalBigFish,
+      }
+      return _.mapValues(
+        {
+          iCatchThat,
+          goBigOrGoHome,
+          goBigFarFromHome,
+        },
+        it => ({ ...it, percentage: ((it.record / it.total) * 100).toFixed(0) })
+      )
+      //
+      // Object.values(podSpearTestFish).forEach(fish => {
+      //   if (fish.type !== 'test') {
+      //     if (fish.tug == null) {
+      //       spearFish.push({ ...fish, _id: DataUtil.toItemId(fish._id) })
+      //     } else {
+      //       podFish.push({ ...fish, _id: DataUtil.toItemId(fish._id) })
+      //     }
+      //   }
+      // })
+      // podFish = Object.values(_.mapValues(_.groupBy(podFish, '_id'), it => it[0]))
+      // // const fishCompleted = this.getFishCompleted(fish.id)
+      // const achievement204 = {record: }
+      // podFish.forEach(podFishId => {
+      //   const isBigFish = DATA_CN.BIG_FISH.includes(fish.id)
+      //   const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fish.id)
+      //   if (isBigFish)
+      // })
+    },
+    fishTotal() {
+      return (
+        _.uniq(Object.keys(this.allFish).map(id => DataUtil.toItemId(id))).length +
+        Object.keys(FIX.OCEAN_FISHING_FISH).length -
+        (DevelopmentModeUtil.isTest() ? 2 : 0)
+      )
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters([

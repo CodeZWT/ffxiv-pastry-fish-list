@@ -1098,9 +1098,13 @@ onFFXIVEventWithFilter('unknown', null, null, 604, packet => {
 })
 
 onFFXIVEvent('playerSetup', packet => {
-  playerSetupOf(packet)
-  log.info('playerSetup in reader', packet)
-  playerSetupCallback(packet)
+  if (region === 'CN') {
+    playerSetupOf(packet)
+    log.info('playerSetup in reader', packet)
+    playerSetupCallback(packet)
+  } else {
+    log.debug('skip playSetup in Global region')
+  }
 })
 
 onFFXIVEvent('weatherChange', packet => {

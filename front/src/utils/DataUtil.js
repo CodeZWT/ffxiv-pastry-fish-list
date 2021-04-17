@@ -245,12 +245,7 @@ export default {
     const path = icon.substring(0, 3) + '000'
     return `${this.XIV_API_HOST}/i/${path}/${icon}.png`
   },
-  iconIdToClass(iconId) {
-    if (iconId == null) return ''
-    const iconIdStr = iconId + ''
-    const icon = iconIdStr.padStart(6, '0')
-    return `bg-${icon}`
-  },
+  iconIdToClass: ImgUtil.iconIdToClass,
   getName(multiLanguageItem, locale = 'chs') {
     return (
       multiLanguageItem &&
