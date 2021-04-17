@@ -325,10 +325,6 @@ module.exports = {
       startHourText: '4:30',
       endHourText: '11:30',
     },
-    12786: {
-      startHour: 18,
-      endHour: 6,
-    },
     12796: {
       startHour: 8,
       endHour: 18,
@@ -342,11 +338,6 @@ module.exports = {
       startHour: 22,
       endHour: 3.3333333333333335,
       endHourText: '3:20',
-    },
-    12832: {
-      weatherSet: [2, 1],
-      startHour: 9,
-      endHour: 17,
     },
     13728: {
       weatherSet: [16],
@@ -1273,11 +1264,121 @@ module.exports = {
     12800: {
       bestCatchPath: [12709],
     },
-    12754: {
-      bestCatchPath: [28634],
-    },
     16754: {
       bestCatchPath: [12706, 12780],
+    },
+    12832: {
+      weatherSet: [2, 1],
+      startHour: 9,
+      endHour: 17,
+      bestCatchPath: [28634, 124012754],
+    },
+    17584: {
+      bestCatchPath: [28634, 124012754],
+    },
+    17588: {
+      predators: {
+        124012754: 5,
+        12800: 3,
+      },
+      bestCatchPath: [28634, 124012754],
+    },
+
+    // 12787: {
+    //   bestCatchPath: [12709, 121012754],
+    // },
+    12820: {
+      bestCatchPath: [12709, 121012754],
+    },
+    12826: {
+      bestCatchPath: [12709, 121012754],
+    },
+    15631: {
+      bestCatchPath: [12709, 121012754],
+    },
+    17583: {
+      bestCatchPath: [12709, 121012754],
+    },
+    12786: {
+      startHour: 18,
+      endHour: 6,
+      bestCatchPath: [12709, 121012754],
+    },
+    121012754: {
+      _id: 121012754,
+      previousWeatherSet: [],
+      weatherSet: [],
+      startHour: 0,
+      endHour: 24,
+      predators: {},
+      fishEyes: false,
+      snagging: false,
+      hookset: 'Precision',
+      tug: 'light',
+      dataMissing: true,
+      anglerFishId: 354,
+      locations: [121, 122, 123],
+      bestCatchPath: [12709],
+      patch: 3,
+      folklore: null,
+      collectable: false,
+      gig: null,
+      aquarium: null,
+    },
+    124012754: {
+      _id: 124012754,
+      previousWeatherSet: [],
+      weatherSet: [],
+      startHour: 0,
+      endHour: 24,
+      predators: {},
+      fishEyes: false,
+      snagging: false,
+      hookset: 'Precision',
+      tug: 'light',
+      dataMissing: true,
+      anglerFishId: 354,
+      locations: [124],
+      bestCatchPath: [28634],
+      patch: 3,
+      folklore: null,
+      collectable: false,
+      gig: null,
+      aquarium: null,
+    },
+    121012787: {
+      _id: 121012787,
+      previousWeatherSet: [],
+      weatherSet: [],
+      startHour: 0,
+      endHour: 24,
+      predators: {},
+      fishEyes: false,
+      snagging: false,
+      hookset: 'Powerfull',
+      tug: 'medium',
+      dataMissing: false,
+      anglerFishId: 387,
+      locations: [121, 123],
+      bestCatchPath:  [12709, 121012754],
+      patch: 3,
+    },
+    124012787: {
+      _id: 124012787,
+      previousWeatherSet: [],
+      weatherSet: [],
+      startHour: 0,
+      endHour: 24,
+      predators: {},
+      fishEyes: false,
+      snagging: false,
+      hookset: 'Powerfull',
+      tug: 'medium',
+      dataMissing: false,
+      anglerFishId: 387,
+      locations: [124],
+      bestCatchPath: [28634, 124012754],
+      patch: 3,
     },
   },
   COLLECTABLE_FISH_ITEM_ID: [
@@ -10585,7 +10686,7 @@ module.exports = {
         237: {
           all:
             '触发幻海：刺螠，！！！，幻光巨齿鲨，强力<br />\n' +
-            '鳞虾5-10s！加拉迪翁鳀鱼X3→直感内鳞虾，！！！，醉鱼，强力<br />\n',
+            '磷虾5-10s！加拉迪翁鳀鱼X3→直感内磷虾，！！！，醉鱼，强力<br />\n',
           0: {
             fishList: [29753, 29756],
             tipContent: '石沙蚕，5s+！，钉牡蛎(双2)、灵敏舞者(双2)',
@@ -10597,17 +10698,17 @@ module.exports = {
           2: {
             fishList: [29788],
             tipContent:
-              '(石沙蚕，3s-！，天堂之匙X2)+(鳞虾，3-5s！，海神印)→火萤，！！！，索蒂斯',
+              '(石沙蚕，3s-！，天堂之匙X2)+(磷虾，3-5s！，海神印)→火萤，！！！，索蒂斯',
           },
         },
         // 梅尔托尔海峡南
         239: {
           all:
-            '触发幻海：鳞虾，20+！！！，幻光盘丽鱼，精准<br />\n' +
-            '(微风强风不出现)鳞虾，！！尸鬼梭鱼--！！步兵剑→直感内刺螠，！！！，小利维亚桑，强力<br />\n',
+            '触发幻海：磷虾，20+！！！，幻光盘丽鱼，精准<br />\n' +
+            '(微风强风不出现)磷虾，！！尸鬼梭鱼--！！步兵剑→直感内刺螠，！！！，小利维亚桑，强力<br />\n',
           0: {
             fishList: [29755],
-            tipContent: '鳞虾，4s+！！，秘银君(双2)',
+            tipContent: '磷虾，4s+！！，秘银君(双2)',
           },
           1: {
             fishList: [29757, 29765],
@@ -10632,19 +10733,19 @@ module.exports = {
           },
           1: {
             fishList: [29764, 29783],
-            tipContent: '石沙蚕，6s+！，珊瑚海龙(双4)；鳞虾，6s+！！，坠天鱼(双2)',
+            tipContent: '石沙蚕，6s+！，珊瑚海龙(双4)；磷虾，6s+！！，坠天鱼(双2)',
           },
           2: {
             fishList: [29777, 29773],
             tipContent:
-              '石沙蚕，5-6s！，剪碎手巴塞洛缪(双4)；鳞虾，5s+！！，幻纱披风(双4)',
+              '石沙蚕，5-6s！，剪碎手巴塞洛缪(双4)；磷虾，5s+！！，幻纱披风(双4)',
           },
         },
         // 罗塔诺海
         241: {
           all:
             '触发幻海：刺螠，21s+！！！，幻光鲈，强力<br />\n' +
-            '鳞虾，7-14s！！，深红钓鮟鱇X2→直感内鳞虾，！！！，海铠靴，强力<br />\n',
+            '磷虾，7-14s！！，深红钓鮟鱇X2→直感内磷虾，！！！，海铠靴，强力<br />\n',
           0: {
             fishList: [29767, 29770],
             tipContent: '刺螠，4s+！！，清道夫(双2)；刺螠，！！！，处刑者(双4)',
@@ -10656,39 +10757,39 @@ module.exports = {
           },
           2: {
             fishList: [29762, 29774],
-            tipContent: '鳞虾，6s+！，浮游碟鱼(双4)；石沙蚕，3s+！，蜗牛鱼(双2)',
+            tipContent: '磷虾，6s+！，浮游碟鱼(双4)；石沙蚕，3s+！，蜗牛鱼(双2)',
           },
         },
         // 谢尔达莱群岛
         246: {
           all:
             '触发幻海：石沙蚕，11-17s！！！，幻光蝴蝶鱼，精准<br />\n' +
-            '石沙蚕，5-9s！，金属箱X3→直感内鳞虾，！！！，谢尔达莱结晶，强力<br />\n',
+            '石沙蚕，5-9s！，金属箱X3→直感内磷虾，！！！，谢尔达莱结晶，强力<br />\n',
           0: {
             fishList: [32071, 32072],
-            tipContent: '鳞虾，5s+！！，恶魔刺(双2)；刺螠，3s+！！！，美鲶(双2)',
+            tipContent: '磷虾，5s+！！，恶魔刺(双2)；刺螠，3s+！！！，美鲶(双2)',
           },
           1: {
             fishList: [32069, 32073],
-            tipContent: '鳞虾，5s+！！，火烈鳗(双2)；刺螠，6s+！！，浮游翻车鱼(双2)',
+            tipContent: '磷虾，5s+！！，火烈鳗(双2)；刺螠，6s+！！，浮游翻车鱼(双2)',
           },
           2: {
             fishList: [32074],
             tipContent:
-              '(刺螠，3s-！！！，喷射蝠鲼X2)+(鳞虾，3-5s！！，雾须酒杯)→乌贼丝，！！！，哈弗古法',
+              '(刺螠，3s-！！！，喷射蝠鲼X2)+(磷虾，3-5s！！，雾须酒杯)→乌贼丝，！！！，哈弗古法',
           },
         },
         // 绯汐海
         248: {
           all:
-            '触发幻海：鳞虾，！！！，幻光鳗，强力<br />\n' +
-            '石沙蚕，！！！，落水面具→直感内鳞虾，！！！，素面，强力<br />\n',
+            '触发幻海：磷虾，！！！，幻光鳗，强力<br />\n' +
+            '石沙蚕，！！！，落水面具→直感内磷虾，！！！，素面，强力<br />\n',
           0: {
             fishList: [32085, 32090, 32093, 32094],
             tipContent:
               '石沙蚕，3s-！，神谕蟹(双4)；石沙蚕，4s+！，歼灭者(双4)<br />\n' +
               '常驻高分鱼，刺螠，7s+！！！，石英锤头鲨(双2)<br />\n' +
-              '鳞虾，3s-！！，幸福愿景X3→潮虫，！！！，海洋蟾蜍，精准提钩',
+              '磷虾，3s-！！，幸福愿景X3→潮虫，！！！，海洋蟾蜍，精准提钩',
           },
           1: {
             fishList: [32093],
@@ -10697,7 +10798,7 @@ module.exports = {
           2: {
             fishList: [32087, 32093],
             tipContent:
-              '鳞虾，3s+！！，余韵(双4)<br />\n' +
+              '磷虾，3s+！！，余韵(双4)<br />\n' +
               '常驻高分鱼，刺螠，7s+！！！，石英锤头鲨(双2)',
           },
         },
@@ -10709,20 +10810,20 @@ module.exports = {
           0: {
             fishList: [32105, 32109, 32111, 32113],
             tipContent:
-              '石沙蚕，3s-！，鱼酱罐(双4)；鳞虾，4-6s！！，珍珠爆弹(双4)；刺螠，3s+！！，潘诺普忒斯(双4)<br />\n' +
-              '常驻高分鱼，鳞虾，6s+！！，刀颚鱼(双2)',
+              '石沙蚕，3s-！，鱼酱罐(双4)；磷虾，5-6s！！，珍珠爆弹(双4)；刺螠，3s+！！，潘诺普忒斯(双4)<br />\n' +
+              '常驻高分鱼，磷虾，6s+！！，刀颚鱼(双2)',
           },
           1: {
             fishList: [32114, 32113],
             tipContent:
               '石沙蚕，3-5s！罗斯利特贝--！，巨魔鱼→石沙蚕，3-4s！罗斯利特贝--！！！，盾齿龙<br />\n' +
-              '常驻高分鱼，鳞虾，6s+！！，刀颚鱼(双2)',
+              '常驻高分鱼，磷虾，6s+！！，刀颚鱼(双2)',
           },
           2: {
             fishList: [32105, 32109, 32113],
             tipContent:
-              '石沙蚕，3s-！，鱼酱罐(双4)；鳞虾，5-6s！！，珍珠爆弹(双4)<br />\n' +
-              '常驻高分鱼，鳞虾，6s+！！，刀颚鱼(双2)',
+              '石沙蚕，3s-！，鱼酱罐(双4)；磷虾，5-6s！！，珍珠爆弹(双4)<br />\n' +
+              '常驻高分鱼，磷虾，6s+！！，刀颚鱼(双2)',
           },
         },
         // // 加拉迪翁湾外海
