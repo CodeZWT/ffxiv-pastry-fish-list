@@ -21,13 +21,67 @@
       <v-divider />
       <v-card-text style="max-height: 600px">
         <v-alert outlined type="warning" border="left">
-          预先告知：国际服更新更新5.5后，渔捞相关检测功能会失效一段时间，等待自动更新即可。更新时间预计在游戏正式更新后几天内，请耐心等待。
+          国际服渔捞可用，新鱼数据暂未导入。
         </v-alert>
-        <div class="text-h6">Version 0.7.8</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/11 22:05</div>
+
+        <div class="text-h6">Version 0.7.9</div>
+        <div class="text-subtitle-1">更新时间: 2021/04/18 20:50</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
-          <li>修复导出功能</li>
+          <li>
+            钓鱼图鉴增加显示钓鱼总数，烟波钓徒计数，净界太公计数，（桌面版可直接同步游戏内数据）
+          </li>
+          <li>
+            增加鱼眼变化后相关鱼攻略，感谢 梦洄子时@红玉海 的大力支持！
+          </li>
+          <li>
+            更新5.x鱼王心得攻略，增加5.4鱼，更新部分数据与文本，感谢 颜君行@琥珀原 &
+            Aki秋山@摩杜纳 & 轩辕十四@沃仙曦染 的大力支持！
+          </li>
+          <li>
+            更新海钓额外奖励表
+          </li>
+          <li>
+            更新成就的达成条件
+          </li>
+          <li>
+            更新海钓攻略与统计数据
+          </li>
+          <li>
+            更新海钓时间表
+            <ul>
+              <li>
+                点击某一航班后会跳转至下方具体内容
+              </li>
+              <li>
+                当处于时间表页面时，不会主动刷新时间表，以保证海钓过程中不会改变打开的内容。
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <ul>
+          <li>
+            增加同步游戏内钓鱼笔记的功能，同步后原先的钓鱼以及刺鱼记录会被完全覆盖，请注意！
+          </li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">渔捞</div>
+        <ul>
+          <li>
+            修复幻海流计时器延长计算出错的问题
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
+        <div class="text-h6">Version 0.7.8</div>
+        <div class="text-subtitle-1">更新时间: 2021/04/11 22:05</div>
+        <div class="text-h5 text-center my-1">渔捞</div>
+        <ul>
+          <li>修复渔捞记录导出功能</li>
         </ul>
         <p />
 
