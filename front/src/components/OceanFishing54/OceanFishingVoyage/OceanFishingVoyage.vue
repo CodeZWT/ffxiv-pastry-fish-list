@@ -4,8 +4,13 @@
       <v-radio-group v-model="tipIndex" row>
         <v-radio v-for="(tip, index) in tips" :value="index" :key="index">
           <template v-slot:label>
-            <item-icon :icon-class="tip.icon" :icon-url="tip.iconUrl" :type="tip.type" />
-            <div>{{ tip.name }}</div>
+            <item-icon
+              :icon-class="tip.icon"
+              :icon-url="tip.iconUrl"
+              :type="tip.type"
+              :title="tip.bonusRequirement"
+            />
+            <div :title="tip.bonusRequirement">{{ tip.name }}</div>
           </template>
         </v-radio>
       </v-radio-group>
@@ -429,6 +434,7 @@ export default {
               name: achievement.name,
               iconUrl: achievement.iconUrl,
               bonus: achievement.bonus,
+              bonusRequirement: achievement.bonusRequirement,
             }
           }) ?? []),
       ]

@@ -18,13 +18,15 @@
         <div>当前航班</div>
         <v-spacer />
         <div>
+          <v-btn color="primary" @click="showIKDBonusDialog = true" class="mr-1">
+            <v-icon left>mdi-table</v-icon>
+            额外奖励表
+          </v-btn>
           <v-btn color="primary" @click="showBiteTimeDialog = true" class="mr-1">
             <v-icon left>mdi-information</v-icon>
             关于咬钩时间
           </v-btn>
-          <v-btn color="info" @click="showUpdateDialog = true">
-            关于5.4更新
-          </v-btn>
+          <v-btn color="info" @click="showUpdateDialog = true"> 5.4更新 </v-btn>
         </div>
       </v-card-title>
       <v-card-text>
@@ -83,9 +85,7 @@
             <v-icon>{{ selectedVoyage.shiftIcon }}</v-icon>
           </div>
         </v-card-title>
-        <v-card-subtitle>
-          点击上方时间表以显示对应航线
-        </v-card-subtitle>
+        <v-card-subtitle> 点击上方时间表以显示对应航线 </v-card-subtitle>
         <v-card-text>
           <ocean-fishing-voyage
             :voyage="selectedVoyage"
@@ -97,31 +97,19 @@
     </template>
     <v-dialog v-model="showUpdateDialog" width="500" persistent scrollable>
       <v-card>
-        <v-card-title>
-          5.4 版本更新说明
-        </v-card-title>
+        <v-card-title> 5.4 版本更新说明 </v-card-title>
         <v-card-text>
-          <v-subheader>
-            游戏内容更新说明
-          </v-subheader>
+          <v-subheader> 游戏内容更新说明 </v-subheader>
           <v-alert outlined type="success" border="left" icon="mdi-ferry">
             <ul>
-              <li>
-                新增钓场：谢尔达莱群岛、绯汐海、罗斯利特湾
-              </li>
-              <li>
-                新增线路：Bloodbrine Sea、Rothlyt Sound
-              </li>
-              <li>
-                航线共12种，每种航线每天出现一次
-              </li>
+              <li>新增钓场：谢尔达莱群岛、绯汐海、罗斯利特湾</li>
+              <li>新增线路：Bloodbrine Sea、Rothlyt Sound</li>
+              <li>航线共12种，每种航线每天出现一次</li>
             </ul>
           </v-alert>
           <v-alert outlined type="info" border="left">
             <ul>
-              <li>
-                未触发幻海流时，下一个地点触发幻海流的几率会提升
-              </li>
+              <li>未触发幻海流时，下一个地点触发幻海流的几率会提升</li>
               <li>
                 未触发幻海流或幻海流进行中状态下进入下一个钓场时，下一个地点的幻海流时间会延长
               </li>
@@ -136,60 +124,42 @@
           <v-alert outlined type="success" border="left" icon="mdi-format-list-checks">
             新增“任务”系统，完成任务会获得额外分数加成（5%/10%/20%）
           </v-alert>
-          <v-subheader>
-            鱼糕页面更新说明
-          </v-subheader>
+          <v-subheader> 鱼糕页面更新说明 </v-subheader>
           <v-alert outlined border="left">
             <ul>
-              <li>
-                此页面为5.4海钓内容，将与原版海钓共存一段时间。（直至国服版本更新）
-              </li>
-              <li>
-                原“幻光鱼/绿鱼/蓝鱼”变更为“稀有鱼”，增加天气鱼
-              </li>
-              <li>
-                原“游钓大洋1-3(冲分)”变更为高分鱼，在所有航线都会显示
-              </li>
+              <li>此页面为5.4海钓内容，将与原版海钓共存一段时间。（直至国服版本更新）</li>
+              <li>原“幻光鱼/绿鱼/蓝鱼”变更为“稀有鱼”，增加天气鱼</li>
+              <li>原“游钓大洋1-3(冲分)”变更为高分鱼，在所有航线都会显示</li>
               <li>
                 时间表中标记冲分路线为推荐航线，其他（除双蓝）航线也可冲分，请查看“高分鱼”界面内容并参考攻略
               </li>
-              <li>
-                增加任务系统的支持，仅在“高分鱼”界面出现
-              </li>
+              <li>增加任务系统的支持，仅在“高分鱼”界面出现</li>
             </ul>
           </v-alert>
         </v-card-text>
         <v-card-actions>
-          <v-btn block color="primary" @click="showUpdateDialog = false">
-            确认
-          </v-btn>
+          <v-btn block color="primary" @click="showUpdateDialog = false"> 确认 </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
 
     <v-dialog v-model="showBiteTimeDialog" width="500" persistent scrollable>
       <v-card>
-        <v-card-title>
-          咬钩时间说明
-        </v-card-title>
+        <v-card-title> 咬钩时间说明 </v-card-title>
         <v-card-text>
           <ul>
             <li>
               咬钩时间现已经改版，依据鱼糕桌面版收集的时间，并做了一定的近似处理。（例：1.2
               -> 1； 1.6 -> 1.5； 1.9 -> 2）
             </li>
-            <li>
-              鱼默认显示的咬钩时间是使用推荐鱼饵时的数据。
-            </li>
+            <li>鱼默认显示的咬钩时间是使用推荐鱼饵时的数据。</li>
             <li>
               部分鱼咬钩时间在使用
               <span class="error--text">不同鱼饵</span>的情况下
               <span class="error--text">差别很大</span>
               ，请注意！
             </li>
-            <li>
-              鼠标悬停咬钩时间可以查看所有鱼饵的咬钩时间
-            </li>
+            <li>鼠标悬停咬钩时间可以查看所有鱼饵的咬钩时间</li>
             <li>
               查看原始数据与上传数据请看
               <a href="https://docs.qq.com/sheet/DUGNNQWlaUlNudk95" target="_blank">
@@ -199,9 +169,53 @@
           </ul>
         </v-card-text>
         <v-card-actions>
-          <v-btn block color="primary" @click="showBiteTimeDialog = false">
-            确认
-          </v-btn>
+          <v-btn block color="primary" @click="showBiteTimeDialog = false"> 确认 </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="showIKDBonusDialog" scrollable max-width="1080">
+      <v-card>
+        <v-card-title> 额外奖励表 </v-card-title>
+        <v-card-text>
+          <v-simple-table dense class="system">
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">加成名称</th>
+                  <th class="text-left">达成条件</th>
+                  <th class="text-left">渔分加成比例</th>
+                  <th class="text-left">备注</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(bonus, index) in ikdBonus" :key="index">
+                  <td class="text-left d-flex align-center">
+                    <item-icon :icon-class="bonus.icon" small />
+                    {{ bonus.objective }}
+                  </td>
+                  <td class="text-left">
+                    {{ bonus.requirement }}
+                  </td>
+                  <td class="text-left">{{ bonus.percentage }}%</td>
+                  <td class="text-left">
+                    <v-tooltip bottom v-if="bonus.comment">
+                      <template v-slot:activator="{ on, attrs }">
+                        <div v-bind="attrs" v-on="on">
+                          <v-icon> mdi-information </v-icon>
+                        </div>
+                      </template>
+                      <div>
+                        {{ bonus.comment }}
+                      </div>
+                    </v-tooltip>
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn block color="primary" @click="showIKDBonusDialog = false"> 确认 </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -218,7 +232,8 @@ import ImgUtil from '@/utils/ImgUtil'
 import OceanFishingVoyage from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingVoyage'
 import DATA_CN from 'Data/translation'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import { OCEAN_FISHING_TIPS } from '../../../../../data/fix'
+import { OCEAN_FISHING_TIPS, OCEAN_FISHING_BONUS } from 'Data/fix'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 // https://ngabbs.com/read.php?tid=20553241
 
@@ -226,7 +241,7 @@ const MINUTE = 60000
 
 export default {
   name: 'OceanFishingPage54',
-  components: { OceanFishingVoyage, OceanFishingTimeTable },
+  components: { ItemIcon, OceanFishingVoyage, OceanFishingTimeTable },
   props: ['now', 'lazyTransformedFishDict'],
   data() {
     return {
@@ -243,6 +258,18 @@ export default {
       selectedTarget: undefined,
       isElectron: DevelopmentModeUtil.isElectron(),
       tip: OCEAN_FISHING_TIPS.tip3,
+      showIKDBonusDialog: false,
+      ikdBonus: Object.values(OCEAN_FISHING_BONUS)
+        .filter(it => !it.skip)
+        .map(it => {
+          return {
+            ...it,
+            requirement: it.requirement && it.requirement.substring(5),
+            percentage: it.bonus - 100,
+            icon: DataUtil.iconIdToClass(it.icon),
+          }
+        })
+        .sort((a, b) => a.order - b.order),
     }
   },
   computed: {
@@ -423,6 +450,7 @@ export default {
         name: this.getAchievementName(achievementId),
         icon: this.getAchievementIconClass(achievementId),
         bonus: achievement.bonus,
+        bonusRequirement: OCEAN_FISHING_BONUS[achievement.bonus]?.requirement,
         iconUrl: achievement.iconLocal && ImgUtil.getImgUrl(achievement.iconLocal),
         nonTipOptions: achievement.nonTipOptions,
         type: 'achievement',
