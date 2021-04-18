@@ -78,7 +78,7 @@
         </div>
       </v-card>
 
-      <v-card v-if="selectedVoyage" class="my-4">
+      <v-card v-if="selectedVoyage" class="my-4" id="selected-ikd-timetable">
         <v-card-title>
           <div class="d-flex justify-center">
             {{ selectedVoyage.name }}

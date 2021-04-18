@@ -73,6 +73,9 @@ export default {
     onVoyageSelected(voyage) {
       this.currentVoyageIndex = voyage.index
       this.$emit('voyage-selected', voyage)
+      document
+        .getElementById('selected-ikd-timetable')
+        .scrollIntoView({ behavior: 'smooth' })
     },
   },
 }
