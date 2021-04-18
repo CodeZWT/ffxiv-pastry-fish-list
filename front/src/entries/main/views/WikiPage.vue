@@ -411,7 +411,7 @@
         </v-card-text>
         <v-card-text v-if="syncStatus === 'finished'">
           <v-icon>mdi-check-circle</v-icon>
-          <span class="ml-2"> 同步完成 </span>
+          <span class="ml-2"> 同步完成，请点击关闭退出同步对话框。 </span>
         </v-card-text>
         <v-card-actions class="d-flex justify-end">
           <!--          <div class="d-flex flex-column flex-fill">-->
