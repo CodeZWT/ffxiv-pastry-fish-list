@@ -387,12 +387,21 @@ async function init() {
   const contextMenu = Menu.buildFromTemplate([
     { label: '打开渔捞鼠标穿透', click: () => setMouseThrough(true) },
     { label: '关闭渔捞鼠标穿透', click: () => setMouseThrough(false) },
+    { label: '重置窗口位置', click: () => resetWindowPos() },
     { label: '退出鱼糕程序', click: quit },
   ])
 
   callTargetSafe(tray, it => it.setToolTip('点击显示鱼糕'))
   callTargetSafe(tray, it => it.setContextMenu(contextMenu))
   callTargetSafe(tray, it => it.on('click', showAndFocusMain))
+}
+function resetWindowPos() {
+  Object.values(WINDOWS).forEach(win => {
+    callWindowSafe(win, win => win.setPosition(100, 100))
+  })
+  Object.keys(DEFAULT_WINDOW_SETTING).forEach(settingName =>
+    saveWindowSetting(settingName + '.pos', { x: 100, y: 100 })
+  )
 }
 
 function setMouseThrough(enable) {
