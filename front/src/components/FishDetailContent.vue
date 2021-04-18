@@ -124,10 +124,7 @@ export default {
                 fishSpotPositionText: DataUtil.toPositionText(gatheringPoint),
               }
             })
-          : DataUtil.toSpotsOfPredator(
-              this.getFishingSpots(fish.locations),
-              fish.parts.firstSpotId
-            ),
+          : this.getFishingSpots(fish.locations),
         anglerFishId: fish.anglerFishId,
         weatherSet: fish.weatherSet,
         weatherSetDetail: this.getWeather(fish.weatherSet),

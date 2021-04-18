@@ -130,7 +130,8 @@ export default {
                   ...predator,
                   fishingSpots: DataUtil.toSpotsOfPredator(
                     predator.fishingSpots,
-                    fish.fishingSpots?.[0]?.fishingSpotId
+                    fish.fishingSpots?.[0]?.fishingSpotId,
+                    predator.gig != null
                   ),
                 }
               })),

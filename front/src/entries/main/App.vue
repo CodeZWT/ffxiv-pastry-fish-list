@@ -1671,16 +1671,19 @@ export default {
         showHatCover: false,
         name: this.getItemName(fish._id),
         hasFishingSpot: true,
-        fishingSpots: fish.locations.map(location => {
-          const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[location]
-          return {
-            zone: placeNames[gatheringPoint.territoryPlaceNameId],
-            fishingSpot: gatheringPoint,
-            fishingSpotName: DataUtil.getName(gatheringPoint),
-            fishingSpotId: location,
-            fishSpotPositionText: DataUtil.toPositionText(gatheringPoint),
-          }
-        }),
+        fishingSpots: fish.locations
+          .map(location => {
+            const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[location]
+            return {
+              locationId: location,
+              zone: placeNames[gatheringPoint.territoryPlaceNameId],
+              fishingSpot: gatheringPoint,
+              fishingSpotName: DataUtil.getName(gatheringPoint),
+              fishingSpotId: location,
+              fishSpotPositionText: DataUtil.toPositionText(gatheringPoint),
+            }
+          })
+          .sort((a, b) => a.locationId - b.locationId),
         baitsExtra: [],
         baits: [],
         availableBaitList: [],

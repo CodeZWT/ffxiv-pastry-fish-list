@@ -793,12 +793,12 @@ export default {
       })
   },
 
-  toSpotsOfPredator(fishingSpots, firstSpotId) {
+  toSpotsOfPredator(fishingSpots, firstSpotId, isSpear = false) {
     if (!firstSpotId) return fishingSpots
     const spots = cloneDeep(fishingSpots)
     const predatorSpotIndex = spots.findIndex(spot => spot.fishingSpotId === firstSpotId)
     const predatorSpot = spots.splice(predatorSpotIndex, 1)
-    return [...predatorSpot, ...spots]
+    return isSpear ? [...spots, ...predatorSpot] : [...predatorSpot, ...spots]
   },
 
   isBugChromeTimeZone() {
