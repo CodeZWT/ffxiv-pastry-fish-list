@@ -216,55 +216,61 @@
               <v-expansion-panels hover flat tile :value="0">
                 <v-expansion-panel class="systemSecondary">
                   <v-expansion-panel-header class="systemSecondary">
-                    <div
-                      style="display: flex; align-items: center; justify-content: center"
-                    >
-                      <link-list
-                        :id="currentMapInfo.id"
-                        :angler-id="currentMapInfo.anglerLocationId"
-                        :name="currentMapInfo.name"
-                        mode="spot"
-                        :spot-mode="mode"
+                    <div>
+                      <div
+                        style="display: flex; align-items: center; justify-content: center"
                       >
-                        <v-hover v-slot="{ hover }">
-                          <div
-                            :class="
-                              `text-subtitle-1 ${
-                                hover ? 'info--text text-decoration-underline' : ''
-                              }`
-                            "
-                          >
-                            {{ currentMapInfo.name }}
-                          </div>
-                        </v-hover>
-                      </link-list>
-                      <!--                      <div-->
-                      <!--                        class="text-subtitle-1"-->
-                      <!--                        :title="currentMapInfo.name + '#' + currentMapInfo.id"-->
-                      <!--                      >-->
-                      <!--                        {{ currentMapInfo.name }}-->
-                      <!--                      </div>-->
-                      <div class="text-subtitle-1 ml-2">
-                        ({{ currentMapInfo.fishSpotPositionText }})
+                        <link-list
+                          :id="currentMapInfo.id"
+                          :angler-id="currentMapInfo.anglerLocationId"
+                          :name="currentMapInfo.name"
+                          mode="spot"
+                          :spot-mode="mode"
+                        >
+                          <v-hover v-slot="{ hover }">
+                            <div
+                              :class="
+                                `text-subtitle-1 ${
+                                  hover ? 'info--text text-decoration-underline' : ''
+                                }`
+                              "
+                            >
+                              {{ currentMapInfo.name }}
+                            </div>
+                          </v-hover>
+                        </link-list>
+                        <!--                      <div-->
+                        <!--                        class="text-subtitle-1"-->
+                        <!--                        :title="currentMapInfo.name + '#' + currentMapInfo.id"-->
+                        <!--                      >-->
+                        <!--                        {{ currentMapInfo.name }}-->
+                        <!--                      </div>-->
+                        <div class="text-subtitle-1 ml-2">
+                          ({{ currentMapInfo.fishSpotPositionText }})
+                        </div>
+                        <click-helper @click.stop :copy-text="currentMapInfo.name">
+                          <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
+                            <v-icon>mdi-content-copy</v-icon>
+                          </v-btn>
+                        </click-helper>
+                        <click-helper
+                          @click.stop="
+                            goToFishingSpotAngelPage(
+                              currentMapInfo.anglerLocationId,
+                              currentMapInfo.name
+                            )
+                          "
+                        >
+                          <v-btn class="my-2" text icon :title="$t('list.item.linkHint')">
+                            <v-icon>mdi-link-variant</v-icon>
+                          </v-btn>
+                        </click-helper>
+                        <!--                    {{ currentMapInfo }}-->
                       </div>
-                      <click-helper @click.stop :copy-text="currentMapInfo.name">
-                        <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
-                          <v-icon>mdi-content-copy</v-icon>
-                        </v-btn>
-                      </click-helper>
-                      <click-helper
-                        @click.stop="
-                          goToFishingSpotAngelPage(
-                            currentMapInfo.anglerLocationId,
-                            currentMapInfo.name
-                          )
-                        "
-                      >
-                        <v-btn class="my-2" text icon :title="$t('list.item.linkHint')">
-                          <v-icon>mdi-link-variant</v-icon>
-                        </v-btn>
-                      </click-helper>
-                      <!--                    {{ currentMapInfo }}-->
+
+                      <div v-if="showSpotPredators" class="text-center">
+                        此处为鱼影，需要刺前置鱼触发，详情见地图下方说明。
+                      </div>
                     </div>
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
