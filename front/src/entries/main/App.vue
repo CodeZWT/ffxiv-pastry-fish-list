@@ -1590,6 +1590,7 @@ export default {
             }
           : null,
         baits: this.getBaits(fish, undefined, FIX.OCEAN_FISHING_FISH),
+        availableBaitList: [],
         tug: fish.tug,
         tugIcon: DataUtil.TUG_ICON[fish.tug],
         hooksetIcon:
@@ -1682,6 +1683,7 @@ export default {
         }),
         baitsExtra: [],
         baits: [],
+        availableBaitList: [],
         hasFishEyes: false,
         hasPredators: hasPredators,
         hasSnagging: false,
@@ -1767,6 +1769,9 @@ export default {
           // }),
           baitsExtra:
             bestCatchPathExtra.length > 0 ? this.getBaits(fish, bestCatchPathExtra) : [],
+          availableBaitList: fish.catchPathList
+            ? fish.catchPathList.map(it => this.getBaits(fish, it))
+            : [],
           baits: this.getBaits(fish),
           hasFishEyes: fish.fishEyes !== false,
           fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),

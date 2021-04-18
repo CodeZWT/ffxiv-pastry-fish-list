@@ -562,10 +562,6 @@ module.exports = {
     17566: {
       patch: 3.5,
     },
-    22393: {
-      bestCatchPath: [20617],
-      bestCatchPathExtra: [20617, 20112],
-    },
     12764: {
       hookset: 'Precision',
       tug: 'light',
@@ -1196,18 +1192,11 @@ module.exports = {
     27494: {
       fishEyes: 240,
     },
-    12784: {
-      bestCatchPath: [12708, 12753],
-      bestCatchPathExtra: [12708, 12805],
-    },
     28065: {
       startHour: 18,
       endHour: 22,
     },
     12753: {
-      bestCatchPath: [28634],
-    },
-    12810: {
       bestCatchPath: [28634],
     },
     12798: {
@@ -1249,12 +1238,6 @@ module.exports = {
     12747: {
       tug: 'medium',
     },
-    23055: {
-      startHour: 0,
-      endHour: 8,
-      bestCatchPath: [20675, 21177],
-      bestCatchPathExtra: [20675, 22397],
-    },
     17585: {
       bestCatchPath: [12705, 12757],
     },
@@ -1263,9 +1246,6 @@ module.exports = {
     },
     12800: {
       bestCatchPath: [12709],
-    },
-    16754: {
-      bestCatchPath: [12706, 12780],
     },
     12832: {
       weatherSet: [2, 1],
@@ -1379,6 +1359,113 @@ module.exports = {
       locations: [124],
       bestCatchPath: [28634, 124012754],
       patch: 3,
+    },
+    16754: {
+      bestCatchPath: [12706, 12780],
+      catchPathList: [
+        [12706, 12780],
+        [12705, 12757],
+      ]
+    },
+    7686: {
+      bestCatchPath: [2585, 4869],
+      catchPathList: [
+        [2585, 4869],
+        [2587, 4874],
+        [2587, 4874, 4888]
+      ]
+    },
+    7684: {
+      bestCatchPath: [2585, 4869, 4904],
+      catchPathList: [
+        [2585, 4869],
+        [2585, 4869, 4904],
+      ]
+    },
+    8754: {
+      bestCatchPath: [2606],
+      catchPathList: [
+        [2606],
+        [2585, 4869],
+        [2585, 4869, 4904],
+        [2585, 4869, 4904, 4919],
+      ]
+    },
+    8764: {
+      bestCatchPath: [2585, 4869, 4904],
+      catchPathList: [
+        [2585, 4869],
+        [2585, 4869, 4904],
+      ]
+    },
+    7707: {
+      bestCatchPath: [2585, 4869],
+      catchPathList: [
+        [2585, 4869],
+        [2587, 4874]
+      ]
+    },
+    8765: {
+      bestCatchPath: [2599, 4978, 5002],
+      catchPathList: [
+        [2599, 4978],
+        [2599, 4978, 5002],
+      ],
+    },
+    5002: {
+      biteSelf: true
+    },
+    16756: {
+      bestCatchPath: [12705, 12715],
+      catchPathList: [
+        [12711],
+        [12705, 12715],
+      ]
+    },
+    24214: {
+      biteSelf: true
+    },
+    12757: {
+      bestCatchPath: [12705],
+    },
+    22393: {
+      bestCatchPath: [20617],
+      catchPathList: [
+        [20617],
+        [20617, 20112],
+      ],
+    },
+    12784: {
+      bestCatchPath: [12708, 12753],
+      catchPathList: [
+        [12708, 12753],
+        [12708, 12805],
+      ],
+    },
+    23055: {
+      startHour: 0,
+      endHour: 8,
+      bestCatchPath: [20675, 21177],
+      catchPathList: [
+        [20675, 21177],
+        [20675, 22397]
+      ],
+    },
+    12780: {
+      biteSelf: true
+    },
+    27492: {
+      biteSelf: true
+    },
+    27460: {
+      biteSelf: true
+    },
+    12810: {
+      bestCatchPath: [28634],
+      catchPathList: [
+        [28634],
+        [28634, 12753],
+      ],
     },
   },
   COLLECTABLE_FISH_ITEM_ID: [

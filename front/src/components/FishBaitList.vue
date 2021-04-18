@@ -35,6 +35,9 @@
             :title="bait.baitName + '#' + bait.baitId"
             small
           />
+          <div style="width: 36px" class="d-flex justify-center" title="可套娃">
+            <v-icon v-if="bait.biteSelf" small>mdi-refresh</v-icon>
+          </div>
         </div>
         <v-row no-gutters class="d-flex" style="max-width: 27px">
           <v-col cols="12">
@@ -56,10 +59,10 @@
         <!--        <span v-if="bait.optional" style="font-size: x-large">)</span>-->
       </div>
     </div>
-    <template v-if="target">
+    <template v-if="target && !hideTarget">
       <v-icon v-if="!simple" small>mdi-arrow-right</v-icon>
       <item-icon :icon-class="target.icon" :title="target.name" />
-      <template v-if="target.requiredCnt">
+      <template v-if="!hideQuantity && target.requiredCnt">
         <span class="mx-1">X</span>
         <v-badge
           :content="target.requiredCnt"
@@ -70,6 +73,40 @@
         />
       </template>
     </template>
+    <v-menu
+      v-if="!hideBaitList && target && target.availableBaitList.length > 0"
+      max-width="400"
+      open-on-hover
+      left
+    >
+      <template v-slot:activator="{ on }">
+        <v-btn text icon v-on="on">
+          <v-icon>
+            mdi-dots-vertical-circle-outline
+          </v-icon>
+        </v-btn>
+      </template>
+      <v-card>
+        <v-card-title>
+          可行钓法
+        </v-card-title>
+        <v-card-text>
+          <div
+            v-for="(catchPath, index) in target.availableBaitList"
+            :key="index"
+            class="my-1"
+          >
+            <fish-bait-list
+              :baits="catchPath"
+              @fish-clicked="onBaitOrFishClicked(undefined, $event)"
+              :target="target"
+              hide-bait-list
+              hide-quantity
+            />
+          </div>
+        </v-card-text>
+      </v-card>
+    </v-menu>
   </div>
 </template>
 
@@ -97,6 +134,18 @@ export default {
       type: Boolean,
       default: false,
     },
+    hideTarget: {
+      type: Boolean,
+      default: false,
+    },
+    hideBaitList: {
+      type: Boolean,
+      default: false,
+    },
+    hideQuantity: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
@@ -106,7 +155,7 @@ export default {
     onBaitOrFishClicked(event, itemId) {
       if (DataUtil.isFishId(itemId)) {
         this.$emit('fish-clicked', itemId)
-        event.stopPropagation()
+        event?.stopPropagation()
       }
     },
   },

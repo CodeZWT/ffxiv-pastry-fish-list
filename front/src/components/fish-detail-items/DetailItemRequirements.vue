@@ -72,7 +72,6 @@ export default {
   },
   computed: {
     isTimeCheckSkipped() {
-      console.log(this.fish)
       return DataUtil.skipTimeCheckOf(this.fish, this.fishEyesUsed)
     },
     ...mapGetters(['fishEyesUsed']),

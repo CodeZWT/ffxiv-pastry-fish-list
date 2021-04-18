@@ -278,7 +278,7 @@
                 </div>
               </div>
             </div>
-            <div v-else class="d-flex">
+            <div v-else class="d-flex align-center">
               <div class="d-flex align-center">
                 <i
                   class="xiv square-a"
@@ -288,6 +288,8 @@
                 <fish-bait-list
                   :baits="fish.baits"
                   @fish-clicked="onFishClicked(undefined, $event)"
+                  :target="fish"
+                  hide-target
                 />
               </div>
               <template v-if="fish.baitsExtra.length > 0">
