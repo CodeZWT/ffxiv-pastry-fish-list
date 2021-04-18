@@ -72,6 +72,7 @@ const DEFAULT_WINDOW_SETTING = {
     size: { w: 500, h: 120 },
     opacity: 0.95,
     zoomFactor: 1,
+    enabled: false,
   },
   history: {
     pos: { x: null, y: null },
@@ -451,12 +452,14 @@ function switchReaderMiniMode(mini) {
         WINDOWS.readerTimer.hide()
         WINDOWS.timerMini.setPosition(x, y + READER_MINI_POS_OFFSET)
         WINDOWS.timerMini.show()
+        saveWindowSetting('timerMini.enabled', true)
       } else {
         settingVisible = false
         historyVisible = false
         spotStatisticsVisible = false
         WINDOWS.timerMini.hide()
         WINDOWS.readerTimer.show()
+        saveWindowSetting('timerMini.enabled', false)
       }
     }
   )
@@ -763,7 +766,11 @@ function showReader() {
   if (closedWindows['timer']) {
     createReader()
   }
-  callWindowSafe(WINDOWS.readerTimer, win => win.show())
+  if (!windowSetting.timerMini.enabled) {
+    callWindowSafe(WINDOWS.readerTimer, win => win.show())
+  } else {
+    callWindowSafe(WINDOWS.timerMini, win => win.show())
+  }
 }
 
 function showReaderSetting() {
