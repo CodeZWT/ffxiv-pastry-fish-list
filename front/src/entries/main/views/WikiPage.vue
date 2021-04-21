@@ -682,19 +682,27 @@ export default {
         //   { title: '赐福渔采钓竿', cnt: 780, itemId: 24831 },
         //   { title: '5.5璀璨钓竿', cnt: 1140, itemId: 33358 },
         // ],
-        ticks: [1731, 2176, 2832].map(achievementId => {
-          const achievement = FIX.ACHIEVEMENT[achievementId]
-          return {
-            ...achievement,
-            item: achievement.item
-              ? {
-                  id: achievement.item,
-                  title: achievement.itemTitle,
-                  iconUrl: ImgUtil.getIconUrl(achievement.itemIcon),
-                }
-              : undefined,
-          }
-        }),
+        ticks: [1731, 2176, 2832]
+          .map(achievementId => {
+            const achievement = FIX.ACHIEVEMENT[achievementId]
+            return {
+              ...achievement,
+              item: achievement.item
+                ? {
+                    id: achievement.item,
+                    title: achievement.itemTitle,
+                    iconUrl: ImgUtil.getIconUrl(achievement.itemIcon),
+                  }
+                : undefined,
+            }
+          })
+          .concat({
+            data: [1157],
+            name_chs: '国服4.5版本最大值',
+            description: '国服4.5版本共有1157条鱼属于成就记录范围。',
+            type: 'maxTip',
+            nextLine: true,
+          }),
         total: podSpearFish.length + oceanFish.length, // + globalNormalFish + globalBigFish,
       }
 
@@ -717,7 +725,13 @@ export default {
         ticks: [
           // {title: '鱼太公', cnt: 100},
           // {title: '烟波钓徒', cnt: 204},
-        ],
+        ].concat({
+          data: [28],
+          name_chs: '国服4.5版本最大值',
+          description: '国服4.5版本共有28条鱼属于成就记录范围。',
+          type: 'maxTip',
+          nextLine: false,
+        }),
         total: goBigFarFromHomeFishIds.length, //+ globalBigFish,
       }
       return _.mapValues(

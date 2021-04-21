@@ -29,7 +29,11 @@
             <div v-bind="attrs" v-on="on">
               <div
                 class="tick-text"
-                :style="`position: absolute; right: ${100 - posOfTick(tick.data[0])}%`"
+                :style="
+                  `position: absolute; right: ${100 - posOfTick(tick.data[0])}%; top: ${
+                    tick.nextLine ? '16px' : 0
+                  }`
+                "
               >
                 {{ tick.data[0] }}
               </div>
@@ -55,7 +59,6 @@
                   <span>{{ tick.item.title }}</span>
                 </div>
               </template>
-
               <div v-if="tick.title">
                 <v-subheader class="pl-0">
                   获得称号
