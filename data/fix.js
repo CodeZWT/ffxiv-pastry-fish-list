@@ -1446,9 +1446,6 @@ module.exports = {
     27492: {
       biteSelf: true,
     },
-    27460: {
-      biteSelf: true,
-    },
     12810: {
       bestCatchPath: [28634],
       catchPathList: [[28634], [28634, 12753]],
@@ -1456,7 +1453,10 @@ module.exports = {
     27464: {
       biteSelf: true,
     },
-
+    27460: {
+      biteSelf: true,
+      bestCatchPath: [27586],
+    },
     33219: {
       _id: 33219,
       previousWeatherSet: [],
@@ -1661,6 +1661,10 @@ module.exports = {
       endHour: 10,
       locations: [217],
       bestCatchPath: [27586, 27464],
+      catchPathList: [
+        [27586, 27464],
+        [27586, 27460, 27464],
+      ],
       predators: {},
       patch: 5.5,
       folklore: 2507,
