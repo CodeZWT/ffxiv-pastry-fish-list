@@ -98,6 +98,7 @@ export default {
         ...fish,
         id: fish._id,
         type: isSpear ? 'spear' : 'normal',
+        icon: this.getItemIconClass(fish._id),
         startHourText: fish.startHourText ?? DataUtil.formatET(fish.startHour),
         endHourText: fish.endHourText ?? DataUtil.formatET(fish.endHour),
         hasTimeConstraint: fish.startHour !== 0 || fish.endHour !== 24,
@@ -150,6 +151,9 @@ export default {
         isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
         baitsExtra:
           bestCatchPathExtra.length > 0 ? this.getBaits(fish, bestCatchPathExtra) : [],
+        availableBaitList: fish.catchPathList
+          ? fish.catchPathList.map(it => this.getBaits(fish, it))
+          : [],
         baits: this.getBaits(fish),
         isCompleted: this.getFishCompleted(fish._id),
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(fish),
@@ -201,6 +205,7 @@ export default {
       'getFishCompleted',
       'detailComponents',
       'getFishingSpots',
+      'getItemIconClass',
     ]),
   },
   methods: {
