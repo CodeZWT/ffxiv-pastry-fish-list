@@ -189,15 +189,15 @@
               </thead>
               <tbody>
                 <tr v-for="(bonus, index) in ikdBonus" :key="index">
-                  <td class="text-left d-flex align-center">
+                  <td style="height: 40px" class="text-left d-flex align-center">
                     <item-icon :icon-class="bonus.icon" small />
                     {{ bonus.objective }}
                   </td>
-                  <td class="text-left">
+                  <td style="height: 40px" class="text-left">
                     {{ bonus.requirement }}
                   </td>
-                  <td class="text-left">{{ bonus.percentage }}%</td>
-                  <td class="text-left">
+                  <td style="height: 40px" class="text-left">{{ bonus.percentage }}%</td>
+                  <td style="height: 40px" class="text-left">
                     <v-tooltip bottom v-if="bonus.comment">
                       <template v-slot:activator="{ on, attrs }">
                         <div v-bind="attrs" v-on="on">

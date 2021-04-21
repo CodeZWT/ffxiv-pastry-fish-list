@@ -5451,7 +5451,7 @@ module.exports = {
       order: 32,
       skip: false,
       spot: null,
-      comment: null,
+      comment: '多次触发幻海不累计叠加，最多10%。',
     },
     13: {
       _id: 13,
