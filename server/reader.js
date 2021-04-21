@@ -249,23 +249,27 @@ const mockEvents = [
   weatherChangeOf(2),
   // weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
   // weatherChangeOf(1),
-  someDirectorUnk4Of(3621),
-  someDirectorUnk4Of(3621),
-  someDirectorUnk4Of(3621),
-
-  someDirectorUnk4Of(3454),
-  someDirectorUnk4Of(3454),
-  someDirectorUnk4Of(3454),
+  // someDirectorUnk4Of(3621),
+  // someDirectorUnk4Of(3621),
+  // someDirectorUnk4Of(3621),
   weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
-  someDirectorUnk4Of(3455),
-  someDirectorUnk4Of(3455),
   weatherChangeOf(1),
-  someDirectorUnk4Of(3454),
-  someDirectorUnk4Of(3454),
+  // someDirectorUnk4Of(3454),
+  // someDirectorUnk4Of(3454),
+  // someDirectorUnk4Of(3454),
+  weatherChangeOf(2),
 
   weatherChangeOf(5),
-  someDirectorUnk4Of(3625),
-  someDirectorUnk4Of(3625),
+
+  weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
+  // someDirectorUnk4Of(3455),
+  // someDirectorUnk4Of(3455),
+  weatherChangeOf(1),
+  // someDirectorUnk4Of(3454),
+  // someDirectorUnk4Of(3454),
+// 1
+  // someDirectorUnk4Of(3625),
+  // someDirectorUnk4Of(3625),
 
   weatherChangeOf(SPECTRAL_CURRENT_WEATHER_ID),
   someDirectorUnk4Of(3626),
@@ -1100,7 +1104,7 @@ onFFXIVEventWithFilter('unknown', null, null, 604, packet => {
 onFFXIVEvent('playerSetup', packet => {
   if (region === 'CN') {
     playerSetupOf(packet)
-    log.info('playerSetup in reader', packet)
+    log.info('playerSetup in reader')
     playerSetupCallback(packet)
   } else {
     log.debug('skip playSetup in Global region')
