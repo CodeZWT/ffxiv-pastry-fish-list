@@ -100,11 +100,7 @@
               >
                 <td>
                   <div class="d-flex justify-end">
-                    <div
-                      :style="
-                        voyage.showDay || targets.length > 0 ? '' : 'visibility: hidden'
-                      "
-                    >
+                    <div :style="voyage.showDay ? '' : 'visibility: hidden'">
                       {{ voyage.day }}
                     </div>
                     <div class="ml-1">{{ voyage.time }}</div>

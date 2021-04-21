@@ -391,8 +391,10 @@ export default {
     },
     assembleVoyages(time, n, types) {
       return OceanFishingUtil.voyagesWithTipOf(time, n, types).map(
-        (voyageWithTip, index) => {
-          const showDay = index === 0 || getCNTime(voyageWithTip.time).hour === 0
+        (voyageWithTip, index, arr) => {
+          const showDay =
+            index === 0 ||
+            getCNTime(voyageWithTip.time).day !== getCNTime(arr[index - 1].time).day
           const targets = voyageWithTip.voyageTip.achievements
             .map(it => this.assembleAchievement(it))
             .concat(
