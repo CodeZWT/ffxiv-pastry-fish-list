@@ -75,7 +75,7 @@ export default {
       this.$emit('voyage-selected', voyage)
       document
         .getElementById('selected-ikd-timetable')
-        .scrollIntoView({ behavior: 'smooth' })
+        ?.scrollIntoView({ behavior: 'smooth' })
     },
   },
 }
