@@ -657,7 +657,7 @@ export default {
       return this.region === 'CN' ? CN_PATCH_VERSION : GLOBAL_PATCH_VERSION
     },
     counts() {
-      // const globalNormalFish = 15
+      // const globalNormalFish = 16
       // const globalBigFish = 11
       const podSpearFish = _.chain(
         Object.values(this.allFish).map(it => ({ ...it, _id: DataUtil.toItemId(it._id) }))
@@ -671,7 +671,11 @@ export default {
 
       // let podNormalFish =[], podNormalFish =[],  podNormalFish =[], spearFish = [], podFish = []
       const iCatchThat = {
-        record: this.allCompletedFish.length,
+        record: this.allCompletedFish.filter(
+          it =>
+            FIX.FISH_PARAMETER.find(param => param.Item === it)?.IsInLog ||
+            FIX.SPEAR_FISHING_ITEM.find(param => param.Item === it)?.IsVisible
+        ).length,
         // ticks: [
         //   // { title: '捕鱼大师戒指', cnt:  160   , itemId: 6137         },
         //   { title: '赐福渔灯钓竿', cnt: 460, itemId: 16968 },
@@ -693,14 +697,6 @@ export default {
         }),
         total: podSpearFish.length + oceanFish.length, // + globalNormalFish + globalBigFish,
       }
-      // const tickLabels = []
-      // for (let i = 0; i < iCatchThat.total; i++) {
-      //   tickLabels.push(null)
-      // }
-      // iCatchThat.ticks.forEach(it => {
-      //   tickLabels[it.cnt] = it.cnt
-      // })
-      // iCatchThat.tickLabels = tickLabels
 
       const goBigOrGoHomeFishIds = podSpearFish
         .filter(it => DATA_CN.BIG_FISH.includes(it._id) && it.patch < 5)
