@@ -23,7 +23,7 @@
       <v-col cols="12">
         <v-progress-linear :value="intervalPercentage" :color="color" height="25" rounded>
           <template>
-            <strong>{{ intervalText }}</strong>
+            <strong>{{ intervalText }} {{ tugText }}</strong>
           </template>
         </v-progress-linear>
       </v-col>
@@ -108,7 +108,7 @@
           style="-webkit-app-region: drag"
         >
           <template>
-            <strong>{{ intervalText }}</strong>
+            <strong>{{ intervalText }} {{ tugText }}</strong>
           </template>
         </v-progress-linear>
         <v-btn small icon text @click="toggleMiniMode(false)" title="退出迷你模式">
@@ -233,7 +233,7 @@ export default {
       return this.dataCurrentRecord?.tug
     },
     color() {
-      return this.readerSetting.timer.color[DataUtil.TUG_ICON[this.tug] ?? 'default']
+      return this.readerSetting.timer.color[this.tug ?? 'default']
     },
     interval() {
       const startTime = this.dataCurrentRecord?.startTime ?? this.now
@@ -246,6 +246,11 @@ export default {
     },
     intervalText() {
       return this.interval ? (this.interval / 1000).toFixed(1) : ''
+    },
+    tugText() {
+      return this.tug
+        ? this.$t('tug.' + this.tug) + ' ' + DataUtil.TUG_ICON[this.tug]
+        : ''
     },
     isOceanFishing() {
       // return true
