@@ -414,11 +414,8 @@ onFFXIVEvent(
       log.debug('targetZone Zero')
     }
     status.weather = undefined
-    status.spectralCurrentEndTime = undefined
     status.diademWeatherEndTime = undefined
-    status.spectralCurrentBuffTime = 0
-    status.oceanFishingRouteIndex = -1
-    status.spotCurrents = [false, false, false]
+    resetIKDStatus()
   },
   true
 )
@@ -430,10 +427,19 @@ onFFXIVEvent(
     if (packet.zoneID && TERRITORY_TYPES[packet.zoneID]) {
       status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
       log.debug('initZone', status.zoneId)
+      resetIKDStatus()
     }
   },
   true
 )
+
+function resetIKDStatus() {
+  log.info('reset ikd status')
+  status.spectralCurrentEndTime = undefined
+  status.spectralCurrentBuffTime = 0
+  status.oceanFishingRouteIndex = -1
+  status.spotCurrents = [false, false, false]
+}
 
 onFFXIVEventWithFilter('actorControl', null, 20, null, packet => {
   // log.debug('actorControl', packet)
@@ -1109,6 +1115,9 @@ onFFXIVEvent('playerSetup', packet => {
   } else {
     log.debug('skip playSetup in Global region')
   }
+  log.info('reset status in playerSetup')
+  resetStatus()
+  resetRecord()
 })
 
 onFFXIVEvent('weatherChange', packet => {
