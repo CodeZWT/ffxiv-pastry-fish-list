@@ -9,6 +9,9 @@
             <v-btn small>国际服</v-btn>
           </v-btn-toggle>
         </v-col>
+        <v-col :class="`${themeClass} v-label text-subtitle-1 mt-2`">
+          若要设置鼠标穿透，请在右下角系统托盘处右键鱼糕图标选择“打开渔捞鼠标穿透”。
+        </v-col>
         <v-col cols="12" class="d-flex align-center">
           <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">自动标记已完成</div>
           <v-switch inset v-model="lazySetting.autoSetCompleted" />
