@@ -1223,6 +1223,12 @@ export default {
             volume: 0.5,
           },
         },
+        color: {
+          default: '#607d8bff',
+          light: '#2a9d8fff',
+          medium: '#c14953ff',
+          heavy: '#b68738ff',
+        },
       },
       history: {
         pos: { x: null, y: null },

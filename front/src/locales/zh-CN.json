@@ -301,6 +301,7 @@
     "tomorrow": "明天"
   },
   "tug": {
+    "default": "未知杆",
     "light": "轻杆",
     "medium": "中杆",
     "heavy": "重杆"

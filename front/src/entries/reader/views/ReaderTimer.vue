@@ -180,7 +180,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['readerRegion']),
+    ...mapGetters(['readerRegion', 'readerSetting']),
     spotId() {
       return this.dataStatus?.spotId
     },
@@ -233,7 +233,7 @@ export default {
       return this.dataCurrentRecord?.tug
     },
     color() {
-      return DataUtil.TUG_ICON_COLOR[DataUtil.TUG_ICON[this.tug]] ?? 'blue-grey'
+      return this.readerSetting.timer.color[DataUtil.TUG_ICON[this.tug] ?? 'default']
     },
     interval() {
       const startTime = this.dataCurrentRecord?.startTime ?? this.now

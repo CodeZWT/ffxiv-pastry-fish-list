@@ -74,6 +74,18 @@
                 </template>
               </v-slider>
             </div>
+            <div v-for="tug in tugSettingTypes" class="d-flex flex-column" :key="tug">
+              <v-subheader class="pl-0">
+                {{ $t('tug.' + tug) + '颜色' }}
+              </v-subheader>
+              <v-color-picker
+                v-model="lazySetting.timer.color[tug]"
+                mode="hexa"
+                swatches-max-height="196"
+                hide-canvas
+              ></v-color-picker>
+            </div>
+
             <div v-for="tug in TUG_TYPES" class="d-flex flex-column" :key="tug">
               <v-radio-group
                 v-model="lazySetting.timer.sound[tug].source"
@@ -220,6 +232,7 @@ export default {
         spotStatistics: {},
       },
       TUG_TYPES: DataUtil.TUG_TYPES,
+      tugSettingTypes: ['default', ...DataUtil.TUG_TYPES],
     }
   },
   computed: {
