@@ -394,7 +394,7 @@
         <v-card-subtitle v-if="!isElectron">
           数据同步为鱼糕桌面版功能，左侧可下载桌面版。
         </v-card-subtitle>
-        <v-card-text>
+        <v-card-text v-if="syncStatus === 'not-start'">
           <item-icon icon-class="bg-000024" class="float-left" />
           <div>
             同步游戏内钓鱼笔记数据，当前已完成数据将会被
@@ -404,10 +404,27 @@
           <div>※固定列表不受影响</div>
           <div>※已完成的鱼将会从闹钟列表中移除</div>
         </v-card-text>
-        <v-card-text v-if="syncStatus === 'waiting'">
-          <v-progress-circular indeterminate /><span class="ml-2">
-            开始同步，请重新登录游戏
+        <v-card-text v-if="syncStatus === 'waiting'" class="d-flex align-center">
+          <v-progress-circular indeterminate />
+          <span class="ml-2 text-h6">
+            开始同步，请重新进入大厅登录角色（小退）
           </span>
+        </v-card-text>
+        <v-card-text v-if="syncStatus === 'waiting'" class="v-label">
+          <v-expansion-panels :value="undefined" accordion class="my-2 rounded-lg">
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                若登录游戏后仍未同步成功
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <div>
+                  若登录游戏后仍未同步成功，请打开左侧<v-icon small>mdi-fish</v-icon
+                  >渔捞，点击右上角<v-icon small>mdi-cog</v-icon
+                  >进入设置，按照黄字提示操作。
+                </div>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </v-card-text>
         <v-card-text v-if="syncStatus === 'finished'">
           <v-icon>mdi-check-circle</v-icon>
