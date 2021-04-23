@@ -55,6 +55,10 @@
       {
         "from": "./front-electron-dist/COMMITHASH",
         "to": "COMMITHASH"
+      },
+      {
+        "from": "./npcap/npcap-1.31.exe",
+        "to": "MachinaWrapper/npcap-1.31.exe"
       }
     ],
     "files": [

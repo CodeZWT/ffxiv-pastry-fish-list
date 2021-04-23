@@ -2,14 +2,56 @@
   <v-card>
     <v-card-text class="wrapper">
       <v-row no-gutters>
-        <v-col cols="12" class="d-flex align-center">
+        <v-alert outlined type="warning" border="left">
+          若渔捞以及自动同步图鉴功能没有效果，可按照以下步骤排查。
+          <ul>
+            <li>
+              切换下方的检测方式为Npcap，注意第一次需要安装额外的软件，并且在国际服使用加速器时很可能无效。
+            </li>
+            <li>
+              检查是否安装了额外的杀毒软件，防火墙。建议先关闭后尝试，若可行再尝试加入信任区。
+            </li>
+          </ul>
+        </v-alert>
+        <v-col cols="12" class="d-flex align-center my-1">
           <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">区服</div>
           <v-btn-toggle v-model="region" rounded dense mandatory active-class="primary">
             <v-btn small>国服</v-btn>
             <v-btn small>国际服</v-btn>
           </v-btn-toggle>
         </v-col>
-        <v-col :class="`${themeClass} v-label text-subtitle-1 mt-2`">
+        <v-col cols="12" class="d-flex align-center my-1">
+          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">检测方式</div>
+          <v-btn-toggle
+            v-model="monitorType"
+            rounded
+            dense
+            mandatory
+            active-class="primary"
+          >
+            <v-btn small>RawSocket</v-btn>
+            <v-btn small>Npcap</v-btn>
+          </v-btn-toggle>
+        </v-col>
+        <v-col cols="12">
+          <ul>
+            <li>
+              RawSocket：不稳定，受防火墙影响，但支持加速器
+            </li>
+            <li>
+              Npcap：较稳定，但可能不支持国际服加速器
+              <ul>
+                <li>
+                  第一次开启，需要安装Npcap，点击上方按钮后会弹窗安装
+                </li>
+                <li>
+                  安装后建议重启鱼糕
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </v-col>
+        <v-col cols="12" :class="`${themeClass} v-label text-subtitle-1 mt-2`">
           若要设置鼠标穿透，请在右下角系统托盘处右键鱼糕图标选择“打开渔捞鼠标穿透”。
         </v-col>
         <v-col cols="12" class="d-flex align-center">
@@ -25,6 +67,12 @@
         <v-card outlined width="100%" class="my-1">
           <div class="overline ml-2">计时器</div>
           <v-card-text>
+            <!--            <div class="d-flex align-center">-->
+            <!--              <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">-->
+            <!--                仅在钓鱼时显示抛竿计时器-->
+            <!--              </div>-->
+            <!--              <v-switch inset v-model="lazySetting.showReaderOnlyIfFishing" />-->
+            <!--            </div>-->
             <div class="d-flex align-center">
               <v-slider
                 v-model="lazyWindowSetting.timer.opacity"
@@ -205,6 +253,26 @@
     <!--    <v-card-actions>-->
     <!--      <v-btn @click="saveSetting" block color="primary">应用设置</v-btn>-->
     <!--    </v-card-actions>-->
+    <v-dialog v-model="showInstallNpcapPrompt" max-width="300">
+      <v-card>
+        <v-card-title>安装Npcap支持</v-card-title>
+        <v-card-text v-if="!installing">
+          <div>点击安装后会开始Npcap安装流程。</div>
+          <div>建议安装后重新启动鱼糕。</div>
+          <div>若杀毒软件出现弹窗，请选择允许。</div>
+        </v-card-text>
+        <v-card-text v-else>
+          <div>安装中...按照默认配置安装即可</div>
+          <div>若杀毒软件出现弹窗，请允许</div>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="installNpcap()" color="primary" :disabled="installing">
+            安装
+          </v-btn>
+          <v-btn @click="cancelInstall()">取消</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -212,7 +280,7 @@
 import { mapGetters, mapMutations, mapState } from 'vuex'
 // import isEqual from 'lodash/isEqual'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import { REGIONS } from 'Data/constants'
+import { MONITOR_TYPES, REGIONS } from 'Data/constants'
 import set from 'lodash/set'
 import last from 'lodash/last'
 import db from '@/plugins/db'
@@ -236,6 +304,8 @@ export default {
       },
       TUG_TYPES: DataUtil.TUG_TYPES,
       tugSettingTypes: ['default', ...DataUtil.TUG_TYPES],
+      showInstallNpcapPrompt: false,
+      installing: false,
     }
   },
   computed: {
@@ -251,6 +321,14 @@ export default {
       },
       set(regionIndex) {
         this.lazySetting.region = REGIONS[regionIndex]
+      },
+    },
+    monitorType: {
+      get() {
+        return MONITOR_TYPES.indexOf(this.lazySetting.monitorType)
+      },
+      set(monitorTypeIndex) {
+        this.lazySetting.monitorType = MONITOR_TYPES[monitorTypeIndex]
       },
     },
     ...mapState(['sounds']),
@@ -286,8 +364,25 @@ export default {
   async created() {
     this.lazySetting = this.readerSetting
     this.lazyWindowSetting = await this.getWindowSetting()
+    window.electron?.ipcRenderer
+      ?.on('installNpcapPrompt', () => {
+        this.showInstallNpcapPrompt = true
+      })
+      ?.on('installNpcapFishined', () => {
+        this.installing = false
+        this.showInstallNpcapPrompt = false
+      })
   },
   methods: {
+    installNpcap() {
+      this.installing = true
+      return window.electron?.ipcRenderer.send('installNpcap')
+    },
+    cancelInstall() {
+      this.installing = false
+      this.showInstallNpcapPrompt = false
+      this.monitorType = 0
+    },
     getWindowSetting() {
       return window.electron?.ipcRenderer
         ?.invoke('getWindowSetting')

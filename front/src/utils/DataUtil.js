@@ -1191,8 +1191,10 @@ export default {
     },
     reader: {
       region: 'CN',
+      monitorType: 'RawSocket',
       autoSetCompleted: true,
       autoSetCompletedOnlyHQ: false,
+      // showReaderOnlyIfFishing: false,
       main: {
         pos: { x: null, y: null },
         size: { w: 1080, h: 768 },

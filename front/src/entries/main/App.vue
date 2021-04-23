@@ -1018,6 +1018,7 @@ export default {
     ...mapGetters([
       'mainWindowCloseMode',
       'readerRegion',
+      'readerMonitorType',
       'fishEyesUsed',
       'showChromeBugDialog',
       'opacity',
@@ -1189,7 +1190,10 @@ export default {
     })
     // this.finishReloadPage()
 
-    this.sendElectronEvent('startReader', { region: this.readerRegion })
+    this.sendElectronEvent('startReader', {
+      region: this.readerRegion,
+      monitorType: this.readerMonitorType,
+    })
   },
   async mounted() {
     // setTimeout(async () => {

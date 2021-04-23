@@ -59,6 +59,9 @@ export default new Vuex.Store({
     readerRegion: state => {
       return state.userData.reader.region
     },
+    readerMonitorType: state => {
+      return state.userData.reader.monitorType
+    },
     listSetting: state => {
       return DataUtil.getUserDataPart(state)('listSetting')
     },

@@ -48,6 +48,7 @@ const machinaOptions = isDev
       parseAlgorithm: 'PacketSpecific',
       region: 'CN',
       port: 13347,
+      // pid: 24120,
       // logger: log.debug
     }
   : {
@@ -105,8 +106,11 @@ exports.stop = stopMachina
 
 function stopMachina(callback = () => {}) {
   Machina.stop(() => {
-    machinaStatus = 'stopped'
-    callback()
+    Machina.kill(() => {
+      machinaStatus = 'stopped'
+      callback()
+      }
+    )
   })
 }
 

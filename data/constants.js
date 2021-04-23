@@ -13,5 +13,6 @@ module.exports = {
   DIADEM_ZONE: 1647,
   OCEAN_FISHING_ZONE: 3443,
 
-  REGIONS: ['CN', 'Global']
+  REGIONS: ['CN', 'Global'],
+  MONITOR_TYPES: ['RawSocket', 'WinPCap'],
 }

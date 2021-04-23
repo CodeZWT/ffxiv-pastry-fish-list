@@ -8,6 +8,7 @@ const {
   Menu,
   Tray,
 } = require('electron')
+const { exec } = require('child_process')
 const isDev = require('electron-is-dev')
 const FishingDataReader = require('./server/reader')
 const log = require('electron-log')
@@ -32,7 +33,7 @@ const SETUP_EXE_DOWNLOAD_LINK =
 log.transports.console.level = 'silly'
 
 const WINDOWS = {}
-let tray, loadingForReloadingPage, configStore, windowSetting, region
+let tray, loadingForReloadingPage, configStore, windowSetting, region, monitorType
 let readerMini = false
 let intervalHandle
 
@@ -156,6 +157,7 @@ async function init() {
   ipcMain
     .on('startReader', (event, options) => {
       region = options.region
+      monitorType = options.monitorType
       FishingDataReader.restart(options, () => {
         log.info('Machina started!', options)
       })
@@ -179,13 +181,78 @@ async function init() {
       // log.info('updateUserData', updateData.data)
       updateUserData(updateData)
 
-      const newRegion = updateData.data.region
-      if (region !== newRegion) {
+      const newRegion = updateData.data.region || 'CN'
+      const newMonitorType = updateData.data.monitorType || 'RawSocket'
+      if (region !== newRegion || monitorType !== newMonitorType) {
         region = newRegion
-        const options = { region: newRegion }
+        monitorType = newMonitorType
+
+        if (newMonitorType === 'WinPCap') {
+          exec('Get-Service -Name Npcap', { shell: 'powershell.exe' }, err => {
+            if (err) {
+              callWindowSafe(WINDOWS.readerSetting, win =>
+                win.webContents.send('installNpcapPrompt')
+              )
+              // WINDOWS.main.win.webContents.send('installNpcapPrompt');
+            } else {
+              const options = { region: newRegion, monitorType: newMonitorType }
+              FishingDataReader.restart(options, () => {
+                log.info('Machina restarted!', options)
+              })
+            }
+          })
+        } else {
+          const options = { region: newRegion, monitorType: newMonitorType }
+          FishingDataReader.restart(options, () => {
+            log.info('Machina restarted!', options)
+          })
+        }
+      }
+    })
+    .on('installNpcap', () => {
+      ;[
+        WINDOWS.readerTimer,
+        WINDOWS.timerMini,
+        WINDOWS.readerSetting,
+        WINDOWS.readerHistory,
+        WINDOWS.readerSpotStatistics,
+      ].forEach(it =>
+        callWindowSafe(it, win => {
+          setOnTop(win, false)
+        })
+      )
+      if (isDev) {
+        exec(`"${path.join(__dirname, './npcap/npcap-1.31.exe')}"`, postInstallCallback)
+      } else {
+        const installPath = path.join(
+          app.getAppPath(),
+          '../../resources/MachinaWrapper/',
+          'npcap-1.31.exe'
+        )
+        log.info('Try install at', installPath)
+        exec(`"${installPath}"`, postInstallCallback)
+      }
+
+      function postInstallCallback(error) {
+        // after install npcap
+        const options = { region, monitorType }
         FishingDataReader.restart(options, () => {
           log.info('Machina restarted!', options)
         })
+        callWindowSafe(WINDOWS.readerSetting, win =>
+          win.webContents.send('installNpcapFishined')
+        )
+        ;[
+          WINDOWS.readerTimer,
+          WINDOWS.timerMini,
+          WINDOWS.readerSetting,
+          WINDOWS.readerHistory,
+          WINDOWS.readerSpotStatistics,
+        ].forEach(it =>
+          callWindowSafe(it, win => {
+            setOnTop(win, true)
+          })
+        )
       }
     })
     .on('reloadUserData', () => {
@@ -712,9 +779,9 @@ function createMainWindow() {
   })
 }
 
-function setOnTop(win) {
-  win.setAlwaysOnTop(true, 'screen-saver')
-  win.setMinimizable(false)
+function setOnTop(win, alwaysOnTop = true) {
+  win.setAlwaysOnTop(alwaysOnTop, 'screen-saver')
+  win.setMinimizable(!alwaysOnTop)
 }
 
 function createReader() {
