@@ -2708,7 +2708,7 @@ module.exports = {
       },
         {
           title: '[5.41][伊修加德重建四期] 渔民就是要住在空岛-四期捕鱼冲分攻略',
-          author: '耳机团',
+          author: '耳机团@静语庄园',
           link: 'https://ngabbs.com/read.php?tid=25091906',
         }],
       baitTip: null,
