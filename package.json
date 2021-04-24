@@ -71,6 +71,10 @@
       "requestedExecutionLevel": "highestAvailable",
       "icon": "./assets/icon256.png",
       "asar": true
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     }
   }
 }
