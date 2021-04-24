@@ -42,15 +42,21 @@ let tray,
   hotkeySetting,
   region,
   monitorType
-let readerMini = false
 let intervalHandle
 let enableMouseThrough = false
+let showReaderOnlyIfFishing = false
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
 let skipUpdate = isDev
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
 const closedWindows = {}
 
+let settingVisible = false,
+  historyVisible = false,
+  spotStatisticsVisible = false
+let hideBySwitch = false,
+  hideByFishingTrigger = false
+let isFishing = false
 unhandled({
   logger: log.error,
   reportButton: error => {
@@ -128,9 +134,7 @@ function saveHotkeySetting(path, value) {
     setMouseThrough(!enableMouseThrough)
   })
 }
-let settingVisible = false,
-  historyVisible = false,
-  spotStatisticsVisible = false
+
 async function init() {
   if (isDev) {
     const {
@@ -156,6 +160,22 @@ async function init() {
   hotkeySetting = configStore.get('hotkeySetting')
 
   FishingDataReader.onUpdate(data => {
+    if (showReaderOnlyIfFishing) {
+      const timerTarget = windowSetting.timerMini.enabled ? WINDOWS.timerMini : WINDOWS.readerTimer
+      if (data.status.isFishing !== isFishing) {
+        isFishing = data.status.isFishing
+        if (data.status.isFishing) {
+          callWindowSafe(timerTarget, win => {
+            win.showInactive()
+          })
+        } else {
+          callWindowSafe(timerTarget, win => {
+            hideByFishingTrigger = true
+            win.hide()
+          })
+        }
+      }
+    }
     callWindowSafe(WINDOWS.main, win => {
       win.webContents.send('fishingData', data)
     })
@@ -207,6 +227,7 @@ async function init() {
     .on('updateUserData', (event, updateData) => {
       // log.info('updateUserData', updateData.data)
       updateUserData(updateData)
+      showReaderOnlyIfFishing = updateData.data.showReaderOnlyIfFishing
 
       saveHotkeySetting('mouseThrough', updateData.data.hotkey.mouseThrough || 'L')
 
@@ -518,19 +539,14 @@ function switchReaderMiniMode(mini) {
       WINDOWS.timerMini,
     ],
     () => {
+      hideBySwitch = true
       if (mini) {
         const [x, y] = WINDOWS.readerTimer.getPosition()
-        settingVisible = WINDOWS.readerSetting.isVisible()
-        historyVisible = WINDOWS.readerHistory.isVisible()
-        spotStatisticsVisible = WINDOWS.readerSpotStatistics.isVisible()
         WINDOWS.readerTimer.hide()
         WINDOWS.timerMini.setPosition(x, y + READER_MINI_POS_OFFSET)
         WINDOWS.timerMini.show()
         saveWindowSetting('timerMini.enabled', true)
       } else {
-        settingVisible = false
-        historyVisible = false
-        spotStatisticsVisible = false
         WINDOWS.timerMini.hide()
         WINDOWS.readerTimer.show()
         saveWindowSetting('timerMini.enabled', false)
@@ -709,6 +725,12 @@ function createTimerMiniWin(parent) {
           const [w, h] = win.getSize()
           saveWindowSetting('timerMini.size', { w, h })
         })
+        .on('hide', e => {
+          hideReaderWindows()
+        })
+        .on('show', () => {
+          showReaderWindows()
+        })
     })
     .catch(error => {
       log.info('caught error in create timer mini', error)
@@ -819,7 +841,7 @@ function createReader() {
   win
     .on('resized', () => {
       const [w, h] = win.getSize()
-      if (readerMini) {
+      if (windowSetting.timerMini.enabled) {
         saveWindowSetting('timerMini.size', { w, h })
       } else {
         saveWindowSetting('timer.size', { w, h })
@@ -829,11 +851,41 @@ function createReader() {
       closedWindows[settingName] = win
     })
     .on('hide', e => {
-      settingVisible || callWindowSafe(WINDOWS.readerSetting, win => win.hide())
-      historyVisible || callWindowSafe(WINDOWS.readerHistory, win => win.hide())
-      spotStatisticsVisible ||
-        callWindowSafe(WINDOWS.readerSpotStatistics, win => win.hide())
+      hideReaderWindows()
     })
+    .on('show', () => {
+      showReaderWindows()
+    })
+}
+
+function showReaderWindows() {
+  settingVisible && callWindowSafe(WINDOWS.readerSetting, win => win.showInactive())
+  historyVisible && callWindowSafe(WINDOWS.readerHistory, win => win.showInactive())
+  spotStatisticsVisible &&
+  callWindowSafe(WINDOWS.readerSpotStatistics, win => win.showInactive())
+}
+
+function hideReaderWindows() {
+  if (hideBySwitch) {
+    // do nothing
+    hideBySwitch = false
+    return
+  } else if (hideByFishingTrigger) {
+    hideByFishingTrigger = false
+    // save other window status
+    settingVisible = WINDOWS.readerSetting.isVisible()
+    historyVisible = WINDOWS.readerHistory.isVisible()
+    spotStatisticsVisible = WINDOWS.readerSpotStatistics.isVisible()
+  } else {
+    // hide together
+    settingVisible = false
+    historyVisible = false
+    spotStatisticsVisible = false
+  }
+
+  callWindowSafe(WINDOWS.readerSetting, win => win.hide())
+  callWindowSafe(WINDOWS.readerHistory, win => win.hide())
+  callWindowSafe(WINDOWS.readerSpotStatistics, win => win.hide())
 }
 
 function updateUserData(updateData) {

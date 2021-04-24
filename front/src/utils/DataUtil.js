@@ -1194,7 +1194,7 @@ export default {
       monitorType: 'RawSocket',
       autoSetCompleted: true,
       autoSetCompletedOnlyHQ: false,
-      // showReaderOnlyIfFishing: false,
+      showReaderOnlyIfFishing: false,
       hotkey: {
         mouseThrough: 'L',
       },

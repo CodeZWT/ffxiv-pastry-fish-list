@@ -35,18 +35,12 @@
         </v-col>
         <v-col cols="12">
           <ul>
-            <li>
-              RawSocket：不稳定，受防火墙影响，但支持加速器
-            </li>
+            <li>RawSocket：不稳定，受防火墙影响，但支持加速器</li>
             <li>
               Npcap：较稳定，但可能不支持国际服加速器
               <ul>
-                <li>
-                  第一次开启，需要安装Npcap，点击上方按钮后会弹窗安装
-                </li>
-                <li>
-                  安装后建议重启鱼糕
-                </li>
+                <li>第一次开启，需要安装Npcap，点击上方按钮后会弹窗安装</li>
+                <li>安装后建议重启鱼糕</li>
               </ul>
             </li>
           </ul>
@@ -54,15 +48,21 @@
         <v-col cols="12" :class="`${themeClass} v-label text-subtitle-1 mt-2`">
           若要设置鼠标穿透，请在右下角系统托盘处右键鱼糕图标选择“打开渔捞鼠标穿透”。
         </v-col>
-        <v-col cols="12" class="d-flex align-center">
+        <v-col cols="6" class="d-flex align-center">
           <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">自动标记已完成</div>
           <v-switch inset v-model="lazySetting.autoSetCompleted" />
         </v-col>
-        <v-col cols="12" class="d-flex align-center">
+        <v-col cols="6" class="d-flex align-center">
           <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
             仅HQ时标记已完成
           </div>
           <v-switch inset v-model="lazySetting.autoSetCompletedOnlyHQ" />
+        </v-col>
+        <v-col class="d-flex align-center">
+          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+            仅在钓鱼时显示渔捞
+          </div>
+          <v-switch inset v-model="lazySetting.showReaderOnlyIfFishing" />
         </v-col>
         <v-card outlined width="100%" class="my-1">
           <div class="overline ml-2">快捷键</div>
@@ -89,12 +89,6 @@
         <v-card outlined width="100%" class="my-1">
           <div class="overline ml-2">计时器</div>
           <v-card-text>
-            <!--            <div class="d-flex align-center">-->
-            <!--              <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">-->
-            <!--                仅在钓鱼时显示抛竿计时器-->
-            <!--              </div>-->
-            <!--              <v-switch inset v-model="lazySetting.showReaderOnlyIfFishing" />-->
-            <!--            </div>-->
             <div class="d-flex align-center">
               <v-slider
                 v-model="lazyWindowSetting.timer.opacity"
