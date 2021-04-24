@@ -70,6 +70,7 @@ const DEFAULT_WINDOW_SETTING = {
     zoomFactor: 1,
   },
   timerMini: {
+    pos: { x: null, y: null },
     size: { w: 500, h: 120 },
     opacity: 0.95,
     zoomFactor: 1,
@@ -190,9 +191,9 @@ async function init() {
         if (newMonitorType === 'WinPCap') {
           exec('Get-Service -Name Npcap', { shell: 'powershell.exe' }, err => {
             // if (err) {
-              callWindowSafe(WINDOWS.readerSetting, win =>
-                win.webContents.send('installNpcapPrompt')
-              )
+            callWindowSafe(WINDOWS.readerSetting, win =>
+              win.webContents.send('installNpcapPrompt')
+            )
             // } else {
             //   const options = { region: newRegion, monitorType: newMonitorType }
             //   FishingDataReader.restart(options, () => {
@@ -663,6 +664,9 @@ function createTimerMiniWin(parent) {
     ['--route-name=ReaderTimer', '--mode=mini']
   )
     .then(win => {
+      if (windowSetting.timerMini.pos.x && windowSetting.timerMini.pos.y) {
+        win.setPosition(windowSetting.timerMini.pos.x, windowSetting.timerMini.pos.y)
+      }
       win.setParentWindow(parent)
       win.setResizable(true)
       return win
@@ -670,6 +674,7 @@ function createTimerMiniWin(parent) {
           const [x, y] = win.getPosition()
           WINDOWS.readerTimer.setPosition(x, y - READER_MINI_POS_OFFSET)
           saveWindowSetting('timer.pos', { x, y: y - READER_MINI_POS_OFFSET })
+          saveWindowSetting('timerMini.pos', { x, y })
         })
         .on('resized', () => {
           const [w, h] = win.getSize()
