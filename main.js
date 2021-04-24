@@ -208,7 +208,7 @@ async function init() {
       // log.info('updateUserData', updateData.data)
       updateUserData(updateData)
 
-      saveHotkeySetting('mouseThrough',updateData.data.hotkey.mouseThrough || 'L')
+      saveHotkeySetting('mouseThrough', updateData.data.hotkey.mouseThrough || 'L')
 
       const newRegion = updateData.data.region || 'CN'
       const newMonitorType = updateData.data.monitorType || 'RawSocket'
@@ -218,16 +218,16 @@ async function init() {
 
         if (newMonitorType === 'WinPCap') {
           exec('Get-Service -Name Npcap', { shell: 'powershell.exe' }, err => {
-            // if (err) {
-            callWindowSafe(WINDOWS.readerSetting, win =>
-              win.webContents.send('installNpcapPrompt')
-            )
-            // } else {
-            //   const options = { region: newRegion, monitorType: newMonitorType }
-            //   FishingDataReader.restart(options, () => {
-            //     log.info('Machina restarted!', options)
-            //   })
-            // }
+            if (err) {
+              callWindowSafe(WINDOWS.readerSetting, win =>
+                win.webContents.send('installNpcapPrompt')
+              )
+            } else {
+              const options = { region: newRegion, monitorType: newMonitorType }
+              FishingDataReader.restart(options, () => {
+                log.info('Machina restarted!', options)
+              })
+            }
           })
         } else {
           const options = { region: newRegion, monitorType: newMonitorType }
