@@ -1195,6 +1195,9 @@ export default {
       autoSetCompleted: true,
       autoSetCompletedOnlyHQ: false,
       // showReaderOnlyIfFishing: false,
+      hotkey: {
+        mouseThrough: 'L',
+      },
       main: {
         pos: { x: null, y: null },
         size: { w: 1080, h: 768 },

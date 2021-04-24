@@ -22,9 +22,11 @@ const iconv = require('iconv-lite')
 const datauri = require('datauri')
 const Store = require('electron-store')
 const set = require('lodash/set')
+const get = require('lodash/get')
 const merge = require('lodash/merge')
 const unhandled = require('electron-unhandled')
 const contextMenu = require('electron-context-menu')
+const cloneDeep = require('lodash/cloneDeep')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -33,10 +35,16 @@ const SETUP_EXE_DOWNLOAD_LINK =
 log.transports.console.level = 'silly'
 
 const WINDOWS = {}
-let tray, loadingForReloadingPage, configStore, windowSetting, region, monitorType
+let tray,
+  loadingForReloadingPage,
+  configStore,
+  windowSetting,
+  hotkeySetting,
+  region,
+  monitorType
 let readerMini = false
 let intervalHandle
-
+let enableMouseThrough = false
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
 let skipUpdate = isDev
@@ -50,6 +58,9 @@ unhandled({
   },
 })
 contextMenu()
+const DEFAULT_HOTKEY_SETTING = {
+  mouseThrough: 'L',
+}
 const DEFAULT_WINDOW_SETTING = {
   main: {
     pos: { x: null, y: null },
@@ -89,20 +100,33 @@ const DEFAULT_WINDOW_SETTING = {
     zoomFactor: 1,
   },
 }
-function initWindowSetting(configStore) {
-  const setting = configStore.get('windowSetting')
+function initSetting(configStore, key, defaultVal) {
+  const setting = configStore.get(key)
   if (!setting) {
-    configStore.set('windowSetting', DEFAULT_WINDOW_SETTING)
-    log.info('Initialize user config in', app.getPath('userData'))
+    configStore.set(key, defaultVal)
+    log.info('Initialize user config in', app.getPath('userData'), 'of', key)
   } else {
-    configStore.set('windowSetting', merge(DEFAULT_WINDOW_SETTING, setting))
-    log.debug('Config Read', JSON.stringify(configStore.get('windowSetting')))
+    configStore.set(key, merge(cloneDeep(defaultVal), setting))
+    log.debug(`Config [${key}] Read`, JSON.stringify(configStore.get(key)))
   }
 }
 
 function saveWindowSetting(path, value) {
   set(windowSetting, path, value)
   configStore.set('windowSetting', windowSetting)
+}
+function saveHotkeySetting(path, value) {
+  const old = get(hotkeySetting, path)
+  if (old) {
+    console.log('unregister hotkey', path, 'key', old)
+    globalShortcut.unregister('Alt+Shift+' + old)
+  }
+  set(hotkeySetting, path, value)
+  configStore.set('hotkeySetting', hotkeySetting)
+  globalShortcut.register('Alt+Shift+' + hotkeySetting.mouseThrough, () => {
+    console.log('register hotkey', path, 'key', old)
+    setMouseThrough(!enableMouseThrough)
+  })
 }
 let settingVisible = false,
   historyVisible = false,
@@ -126,8 +150,10 @@ async function init() {
   }
 
   configStore = new Store()
-  initWindowSetting(configStore)
+  initSetting(configStore, 'windowSetting', DEFAULT_WINDOW_SETTING)
   windowSetting = configStore.get('windowSetting')
+  initSetting(configStore, 'hotkeySetting', DEFAULT_HOTKEY_SETTING)
+  hotkeySetting = configStore.get('hotkeySetting')
 
   FishingDataReader.onUpdate(data => {
     callWindowSafe(WINDOWS.main, win => {
@@ -181,6 +207,8 @@ async function init() {
     .on('updateUserData', (event, updateData) => {
       // log.info('updateUserData', updateData.data)
       updateUserData(updateData)
+
+      saveHotkeySetting('mouseThrough',updateData.data.hotkey.mouseThrough || 'L')
 
       const newRegion = updateData.data.region || 'CN'
       const newMonitorType = updateData.data.monitorType || 'RawSocket'
@@ -404,10 +432,10 @@ async function init() {
     return windowSetting
   })
 
-  globalShortcut.register('Alt+CommandOrControl+L', () => {
+  globalShortcut.register('Alt+CommandOrControl+]', () => {
     showReader()
   })
-  globalShortcut.register('Alt+CommandOrControl+T', () => {
+  globalShortcut.register('Alt+CommandOrControl+[', () => {
     callWindowSafe(WINDOWS.main, win =>
       win.webContents.openDevTools({
         mode: 'right',
@@ -451,6 +479,7 @@ function resetWindowPos() {
 }
 
 function setMouseThrough(enable) {
+  enableMouseThrough = enable
   callWindowSafe(WINDOWS.readerTimer, win =>
     win.setIgnoreMouseEvents(enable, { forward: true })
   )

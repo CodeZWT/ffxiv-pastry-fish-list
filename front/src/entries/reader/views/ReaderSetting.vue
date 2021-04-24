@@ -65,6 +65,28 @@
           <v-switch inset v-model="lazySetting.autoSetCompletedOnlyHQ" />
         </v-col>
         <v-card outlined width="100%" class="my-1">
+          <div class="overline ml-2">快捷键</div>
+          <v-card-text class="d-flex align-center">
+            <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+              切换鱼糕鼠标穿透
+            </div>
+            <div class="mr-2">
+              <kbd class="text-subtitle-1">Alt</kbd>+
+              <kbd class="text-subtitle-1">Shift</kbd>+
+            </div>
+            <v-text-field
+              readonly
+              :value="lazySetting.hotkey.mouseThrough"
+              @keydown="setHotkey('mouseThrough', $event)"
+              style="max-width: 36px"
+              placeholder="]"
+              outlined
+              dense
+              hide-details
+            ></v-text-field>
+          </v-card-text>
+        </v-card>
+        <v-card outlined width="100%" class="my-1">
           <div class="overline ml-2">计时器</div>
           <v-card-text>
             <!--            <div class="d-flex align-center">-->
@@ -125,7 +147,11 @@
                 </template>
               </v-slider>
             </div>
-            <div v-for="tug in tugSettingTypes" class="d-flex flex-column" :key="tug">
+            <div
+              v-for="tug in tugSettingTypes"
+              class="d-flex flex-column"
+              :key="`color-${tug}`"
+            >
               <v-subheader class="pl-0">
                 {{ $t('tug.' + tug) + '颜色' }}
               </v-subheader>
@@ -374,6 +400,19 @@ export default {
       })
   },
   methods: {
+    setHotkey(hotkey, event) {
+      console.log(event)
+      if (event.code.indexOf('Key') === 0) {
+        this.lazySetting.hotkey[hotkey] = this.keyCodeToKey(event.code)
+      }
+    },
+    keyCodeToKey(code) {
+      if (code.indexOf('Key') === 0) {
+        return code.substring('Key'.length)
+      } else {
+        return code
+      }
+    },
     installNpcap() {
       this.installing = true
       return window.electron?.ipcRenderer.send('installNpcap')
