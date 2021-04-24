@@ -189,17 +189,16 @@ async function init() {
 
         if (newMonitorType === 'WinPCap') {
           exec('Get-Service -Name Npcap', { shell: 'powershell.exe' }, err => {
-            if (err) {
+            // if (err) {
               callWindowSafe(WINDOWS.readerSetting, win =>
                 win.webContents.send('installNpcapPrompt')
               )
-              // WINDOWS.main.win.webContents.send('installNpcapPrompt');
-            } else {
-              const options = { region: newRegion, monitorType: newMonitorType }
-              FishingDataReader.restart(options, () => {
-                log.info('Machina restarted!', options)
-              })
-            }
+            // } else {
+            //   const options = { region: newRegion, monitorType: newMonitorType }
+            //   FishingDataReader.restart(options, () => {
+            //     log.info('Machina restarted!', options)
+            //   })
+            // }
           })
         } else {
           const options = { region: newRegion, monitorType: newMonitorType }
@@ -231,28 +230,6 @@ async function init() {
         )
         log.info('Try install at', installPath)
         exec(`"${installPath}"`, postInstallCallback)
-      }
-
-      function postInstallCallback(error) {
-        // after install npcap
-        const options = { region, monitorType }
-        FishingDataReader.restart(options, () => {
-          log.info('Machina restarted!', options)
-        })
-        callWindowSafe(WINDOWS.readerSetting, win =>
-          win.webContents.send('installNpcapFishined')
-        )
-        ;[
-          WINDOWS.readerTimer,
-          WINDOWS.timerMini,
-          WINDOWS.readerSetting,
-          WINDOWS.readerHistory,
-          WINDOWS.readerSpotStatistics,
-        ].forEach(it =>
-          callWindowSafe(it, win => {
-            setOnTop(win, true)
-          })
-        )
       }
     })
     .on('reloadUserData', () => {
@@ -989,6 +966,28 @@ function streamToString(stream) {
     stream.on('error', reject)
     stream.on('end', () => resolve(Buffer.concat(chunks).toString(FILE_ENCODING)))
   })
+}
+
+function postInstallCallback(error) {
+  // after install npcap
+  const options = { region, monitorType }
+  FishingDataReader.restart(options, () => {
+    log.info('Machina restarted!', options)
+  })
+  callWindowSafe(WINDOWS.readerSetting, win =>
+    win.webContents.send('installNpcapFishined')
+  )
+  ;[
+    WINDOWS.readerTimer,
+    WINDOWS.timerMini,
+    WINDOWS.readerSetting,
+    WINDOWS.readerHistory,
+    WINDOWS.readerSpotStatistics,
+  ].forEach(it =>
+    callWindowSafe(it, win => {
+      setOnTop(win, true)
+    })
+  )
 }
 
 const gotTheLock = app.requestSingleInstanceLock()
