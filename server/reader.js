@@ -1111,25 +1111,21 @@ onFFXIVEventWithFilter('unknown', null, null, 604, packet => {
   }
 })
 
-onFFXIVEvent('playerSetup', packet => {
-  if (region === 'CN') {
-    playerSetupOf(packet)
-    log.info('playerSetup in reader')
-    playerSetupCallback(packet)
-  } else {
-    log.debug('skip playSetup in Global region')
-  }
-  log.info('reset status in playerSetup')
-  resetStatus()
-  resetRecord()
-})
-
-onFFXIVEvent('weatherChange', packet => {
+onFFXIVEventWithFilter('unknown', null, null, 559, packet => {
   if (region === 'Global') {
     onWeatherChange(packet)
   } else {
     log.debug('enter weatherChange in CN region ???')
   }
+})
+
+onFFXIVEvent('playerSetup', packet => {
+  log.info('playerSetup in reader, region:', region)
+  playerSetupOf(packet, region)
+  playerSetupCallback(packet)
+  log.info('reset status in playerSetup')
+  resetStatus()
+  resetRecord()
 })
 
 function isOceanFishingSpot(id) {

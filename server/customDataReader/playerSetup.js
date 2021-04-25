@@ -26,13 +26,11 @@ function playerSetupOf(struct, region = 'CN') {
   // [PatchUpdate]
   const CN_FISH_RECORD_OFFSET = 1431
   const CN_SPEAR_RECORD_OFFSET = 1591
-  const length = 148
 
-  const GLOBAL_FISH_RECORD_OFFSET = undefined
-  const GLOBAL_SPEAR_RECORD_OFFSET = undefined
+  const GLOBAL_FISH_RECORD_OFFSET = 1451
+  const GLOBAL_SPEAR_RECORD_OFFSET = 1611
   const fishRecordsOffset = region === 'CN' ? CN_FISH_RECORD_OFFSET : GLOBAL_FISH_RECORD_OFFSET
   const spearRecordsOffset = region === 'CN' ? CN_SPEAR_RECORD_OFFSET : GLOBAL_SPEAR_RECORD_OFFSET
-  const end = fishRecordsOffset + length -1
 
   const caughtFishId = []
   for (const param of FISH_PARAMETER) {
