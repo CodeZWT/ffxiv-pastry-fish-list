@@ -1424,13 +1424,6 @@ module.exports = {
       bestCatchPath: [20617],
       catchPathList: [[20617], [20617, 20112]],
     },
-    12784: {
-      bestCatchPath: [12708, 12753],
-      catchPathList: [
-        [12708, 12753],
-        [12708, 12805],
-      ],
-    },
     23055: {
       startHour: 0,
       endHour: 8,
@@ -1824,6 +1817,14 @@ module.exports = {
         timeRestricted: true,
       },
       anglerFishId: 3448,
+    },
+    12784: {
+      bestCatchPath: [12708, 12753],
+      catchPathList: [
+        [12708],
+        [12708, 12753],
+        [12708, 12805],
+      ],
     },
   },
   COLLECTABLE_FISH_ITEM_ID: [
