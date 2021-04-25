@@ -1555,7 +1555,7 @@ module.exports = {
       previousWeatherSet: [1],
       weatherSet: [1],
       startHour: 22,
-      endHour: 23,
+      endHour: 24,
       locations: [199],
       bestCatchPath: [27585],
       predators: {},
