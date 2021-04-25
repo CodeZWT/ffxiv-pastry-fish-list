@@ -170,7 +170,7 @@ module.exports = {
       bait: '活虾→红玉虾以小钓大',
       trick: '入门级鱼王，开个耐心2吧，钓个HQ。',
       comment:
-        '本钓场的鱼眼鱼<span class="tomato">扇贝海蛇</span>(阴云/薄雾)和<span class="tomato">剑旗鱼</span>(阴云/微风ET8-16)加入钓场。经过微小测试，<span style="font-weight:bold">红玉虾</span>是有一定几率会钓到<span class="tomato">剑旗鱼</span>，但是几率低，大多数都是<span style="font-weight:bold">琉璃鲽鱼</span>(吃红玉虾的中杆)，算是稍微提升了这条鱼的难度',
+        '本钓场的鱼眼鱼<span class="tomato">扇贝海蛇</span>(阴云/薄雾)和<span class="tomato">剑旗鱼</span>(阴云/微风ET8-16)加入钓场。经过微小测试，<span style="font-weight:bold">红玉虾</span>非常大几率会钓到<span class="tomato">剑旗鱼</span>(鱼王杆)，<span style="font-weight:bold">琉璃鲽鱼</span>(吃红玉虾的中杆)和<span class="tomato">剑旗鱼</span>55开了，这是大大增加了难度。',
     },
     24883: {
       id: 24883,
