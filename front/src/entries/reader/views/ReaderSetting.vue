@@ -46,7 +46,7 @@
           </ul>
         </v-col>
         <v-col cols="12" :class="`${themeClass} v-label text-subtitle-1 mt-2`">
-          若要设置鼠标穿透，请在右下角系统托盘处右键鱼糕图标选择“打开渔捞鼠标穿透”。
+          若要设置鼠标穿透，请在右下角系统托盘处右键鱼糕图标选择“打开渔捞鼠标穿透”，或使用下方设置的快捷键。
         </v-col>
         <v-col cols="6" class="d-flex align-center">
           <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">自动标记已完成</div>
