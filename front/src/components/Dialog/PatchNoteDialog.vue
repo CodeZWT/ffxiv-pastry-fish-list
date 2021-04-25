@@ -20,9 +20,61 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px">
-        <v-alert outlined type="warning" border="left">
-          国际服渔捞可用，新鱼数据暂未导入。
-        </v-alert>
+        <div class="text-h6">Version 0.8.0</div>
+        <div class="text-subtitle-1">更新时间: 2021/04/25 22:40</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>
+            增加5.5鱼数据，由于国际服仍在开荒期，数据随时可能更新。
+          </li>
+          <li>
+            图鉴增加5.5计数
+          </li>
+          <li>
+            修复了将空岛鱼的实时数据记入图鉴的问题
+          </li>
+          <li>
+            修复了海钓航班表在筛选时不显示日期的问题
+          </li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <ul>
+          <li>
+            支持国际服同步图鉴，请在渔捞处切换国服/国际服
+          </li>
+          <li>
+            支持自定义安装路径，更新时选择新路径即可切换安装路径，历史数据仍会保留
+          </li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">渔捞</div>
+        <ul>
+          <li>
+            增加新的检测方式，国服用户可以尝试切换使用更稳定的Npcap作为检测方式。（第一次切换请按照提示安装Npcap）
+          </li>
+          <li>
+            支持自定义咬钩颜色
+          </li>
+          <li>
+            支持抛竿显示渔捞
+          </li>
+          <li>
+            增加咬钩提示文字
+          </li>
+          <li>
+            增加鼠标穿透快捷键设置
+          </li>
+          <li>
+            修复迷你模式计时器的位置记录问题
+          </li>
+          <li>
+            再次修复幻海流计时器延长计算出错的问题
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
 
         <div class="text-h6">Version 0.7.9</div>
         <div class="text-subtitle-1">更新时间: 2021/04/18 20:50</div>
