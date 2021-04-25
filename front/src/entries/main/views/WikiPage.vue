@@ -10,9 +10,7 @@
         <v-sheet class="pa-1 primary">
           <div class="d-flex align-center">
             <v-btn text icon @click="type = undefined">
-              <v-icon>
-                mdi-home
-              </v-icon>
+              <v-icon> mdi-home </v-icon>
             </v-btn>
             <v-text-field
               v-model="searchText"
@@ -151,7 +149,10 @@
           <!--  show empty / region view  -->
           <div>
             <v-sheet outlined class="pa-4">
-              专研钓鱼笔记
+              <div class="text-h6">成就计数</div>
+              <div class="text-subtitle-1">鼠标悬停成就数字可查看说明</div>
+              <v-divider />
+              <v-subheader>专研钓鱼笔记（5.4最大值1157，5.5最大值1173）</v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
@@ -161,7 +162,7 @@
                   />
                 </v-col>
               </v-row>
-              愿者上钩
+              <v-subheader>愿者上钩</v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
@@ -171,8 +172,7 @@
                   />
                 </v-col>
               </v-row>
-
-              净界太公
+              <v-subheader>净界太公（5.4最大值28，5.5最大值39）</v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
@@ -218,7 +218,11 @@
                   <v-expansion-panel-header class="systemSecondary">
                     <div>
                       <div
-                        style="display: flex; align-items: center; justify-content: center"
+                        style="
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
                       >
                         <link-list
                           :id="currentMapInfo.id"
@@ -390,7 +394,7 @@
     </v-dialog>
     <v-dialog v-model="showSyncDialog" max-width="320" :fullscreen="isMobile" scrollable>
       <v-card>
-        <v-card-title> 数据同步（目前仅支持国服） </v-card-title>
+        <v-card-title>数据同步</v-card-title>
         <v-card-subtitle v-if="!isElectron">
           数据同步为鱼糕桌面版功能，左侧可下载桌面版。
         </v-card-subtitle>
@@ -401,14 +405,18 @@
             <span class="font-weight-bold error--text"> 完全覆盖 </span>
             ，请注意！
           </div>
+          <div>
+            ※ <span class="text-subtitle-1 font-weight-bold">国际服</span>
+            用户请在
+            <span class="text-subtitle-1 font-weight-bold">渔捞</span>
+            切换至国际服模式
+          </div>
           <div>※固定列表不受影响</div>
           <div>※已完成的鱼将会从闹钟列表中移除</div>
         </v-card-text>
         <v-card-text v-if="syncStatus === 'waiting'" class="d-flex align-center">
           <v-progress-circular indeterminate />
-          <span class="ml-2 text-h6">
-            开始同步，请重新进入大厅登录角色（小退）
-          </span>
+          <span class="ml-2 text-h6"> 开始同步，请重新进入大厅登录角色（小退） </span>
         </v-card-text>
         <v-card-text v-if="syncStatus === 'waiting'" class="v-label">
           <v-expansion-panels :value="undefined" accordion class="my-2 rounded-lg">
