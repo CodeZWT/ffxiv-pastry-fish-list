@@ -723,8 +723,8 @@ export default {
           })
           .concat({
             data: [1157],
-            name_chs: '国服4.5版本最大值',
-            description: '国服4.5版本共有1157条鱼属于成就记录范围。',
+            name_chs: '国服5.4版本最大值',
+            description: '国服5.4版本共有1157条鱼属于成就记录范围。',
             type: 'maxTip',
             nextLine: true,
           }),
