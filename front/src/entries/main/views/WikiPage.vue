@@ -152,7 +152,7 @@
               <div class="text-h6">成就计数</div>
               <div class="text-subtitle-1">鼠标悬停成就数字可查看说明</div>
               <v-divider />
-              <v-subheader>专研钓鱼笔记（5.4最大值1157，5.5最大值1173）</v-subheader>
+              <v-subheader>专研钓鱼笔记（5.4最大值1157，5.5最大值1175）</v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
