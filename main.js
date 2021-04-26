@@ -36,7 +36,6 @@ log.transports.console.level = 'silly'
 
 const WINDOWS = {}
 let tray,
-  loadingForReloadingPage,
   configStore,
   windowSetting,
   hotkeySetting,
@@ -129,8 +128,8 @@ function saveHotkeySetting(path, value) {
   }
   set(hotkeySetting, path, value)
   configStore.set('hotkeySetting', hotkeySetting)
+  console.log('register hotkey', path, 'key', value)
   globalShortcut.register('Alt+Shift+' + hotkeySetting.mouseThrough, () => {
-    console.log('register hotkey', path, 'key', old)
     setMouseThrough(!enableMouseThrough)
   })
 }
@@ -161,7 +160,9 @@ async function init() {
 
   FishingDataReader.onUpdate(data => {
     if (showReaderOnlyIfFishing) {
-      const timerTarget = windowSetting.timerMini.enabled ? WINDOWS.timerMini : WINDOWS.readerTimer
+      const timerTarget = windowSetting.timerMini.enabled
+        ? WINDOWS.timerMini
+        : WINDOWS.readerTimer
       if (data.status.isFishing !== isFishing) {
         isFishing = data.status.isFishing
         if (data.status.isFishing) {
@@ -669,6 +670,9 @@ function createTransparentWin(
       }
     )
   }
+  win.on('closed', () => {
+    WINDOWS[windowName] = null
+  })
   return loadedPromise.then(() => win)
 }
 const MINI_POS_OFFSET = 20
@@ -802,6 +806,9 @@ function createWindow(
       const [w, h] = win.getSize()
       saveWindowSetting(settingName + '.size', { w, h })
     })
+    .on('closed', () => {
+      WINDOWS[windowName] = null
+    })
 }
 
 function createMainWindow() {
@@ -862,7 +869,7 @@ function showReaderWindows() {
   settingVisible && callWindowSafe(WINDOWS.readerSetting, win => win.showInactive())
   historyVisible && callWindowSafe(WINDOWS.readerHistory, win => win.showInactive())
   spotStatisticsVisible &&
-  callWindowSafe(WINDOWS.readerSpotStatistics, win => win.showInactive())
+    callWindowSafe(WINDOWS.readerSpotStatistics, win => win.showInactive())
 }
 
 function hideReaderWindows() {
