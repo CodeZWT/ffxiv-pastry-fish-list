@@ -106,17 +106,8 @@ exports.stop = stopMachina
 
 function stopMachina(callback = () => {}) {
   Machina.stop(() => {
-    try {
-      Machina.kill(() => {
-          machinaStatus = 'stopped'
-          callback()
-        }
-      )
-    } catch (e) {
-      console.log('kill machina error', e)
-      machinaStatus = 'stopped'
-      callback()
-    }
+    machinaStatus = 'stopped'
+    callback()
   })
 }
 
