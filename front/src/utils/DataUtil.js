@@ -161,7 +161,10 @@ function getCombinedFishData() {
       DevelopmentModeUtil.isTest() ? FIX.TEST_FISH : {}
     ),
     fish => {
-      return { ...fish, collectable: FIX.COLLECTABLE_FISH_ITEM_ID.includes(fish._id) }
+      return {
+        ...fish,
+        collectable: FIX.COLLECTABLE_FISH_ITEM_ID.includes(toItemId(fish._id)),
+      }
     }
   )
 }
