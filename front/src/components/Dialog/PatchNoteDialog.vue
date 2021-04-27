@@ -20,6 +20,31 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px">
+        <div class="text-h6">Version 0.8.1</div>
+        <div class="text-subtitle-1">更新时间: 2021/04/28 00:00</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>
+            更正修复图鉴说明
+          </li>
+          <li>
+            增加5.45鱼
+          </li>
+          <li>
+            修正收藏品
+          </li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <ul>
+          <li>
+            修复关闭时报错
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.8.0</div>
         <div class="text-subtitle-1">更新时间: 2021/04/25 22:40</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
