@@ -107,6 +107,7 @@ exports.stop = stopMachina
 function stopMachina(callback = () => {}) {
   Machina.stop(() => {
     machinaStatus = 'stopped'
+    Machina = undefined
     callback()
   })
 }
