@@ -1176,7 +1176,7 @@ function onWeatherChange(packet) {
       if (status.spectralCurrentEndTime) {
         const spectralActualEndTime = Date.now()
         let remainingTime = status.spectralCurrentEndTime - spectralActualEndTime
-        status.spectralCurrentBuffTime = remainingTime > 0 ? remainingTime : 0
+        status.spectralCurrentBuffTime = remainingTime > 0 ? Math.min(INTERVAL_MINUTE, remainingTime) : 0
         status.spectralCurrentEndTime = undefined
         log.debug(
           'in weatherChange',
