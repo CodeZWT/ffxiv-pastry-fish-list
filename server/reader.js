@@ -303,10 +303,20 @@ function init() {
 
   Machina.on('any', packet => {
     if (packet && filterPacketSessionID(packet)) {
+      if(isDev) {
+        testOpcode(packet)
+      }
       ffxivEvent.emit('ffxivEvent', packet)
     }
   })
 }
+
+function testOpcode(packet) {
+  if (packet.type === 'unknown' && packet.data[0] === 2 && packet.data.length === 8) {
+    console.log('weatherChange opcode:', packet.opcode)
+  }
+}
+
 
 function onUpdate(callback) {
   updateCallback = callback
@@ -425,6 +435,7 @@ onFFXIVEvent(
 onFFXIVEvent(
   'initZone',
   packet => {
+    console.debug('server id', packet.serverID)
     status.effects = new Set()
     if (packet.zoneID && TERRITORY_TYPES[packet.zoneID]) {
       status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
@@ -1109,7 +1120,7 @@ onFFXIVEventWithFilter('unknown', null, null, 604, packet => {
   }
 })
 
-onFFXIVEventWithFilter('unknown', null, null, 559, packet => {
+onFFXIVEventWithFilter('unknown', null, null, 704, packet => {
   if (region === 'Global') {
     onWeatherChange(packet)
   } else {
