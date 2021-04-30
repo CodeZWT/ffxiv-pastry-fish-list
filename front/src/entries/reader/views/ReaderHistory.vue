@@ -473,6 +473,7 @@ export default {
           鱼眼: record.fishEyes ? '是' : '否',
           捕鱼人之识: record.fishersIntuition ? '是' : '否',
           记录版本: DataUtil.toPatchText(record.patch ?? 5.35),
+          杆型: this.$t('tug.' + record.tug),
         }
       })
     },
