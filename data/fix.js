@@ -19461,6 +19461,12 @@ module.exports = {
       size: 1,
       patch: 5.2,
     },
+    27486: {
+      id: 27486,
+      aquariumWater: 1,
+      size: 2,
+      patch: 5.5,
+    },
     27490: {
       id: 27490,
       aquariumWater: 1,
@@ -19478,6 +19484,12 @@ module.exports = {
       aquariumWater: 2,
       size: 4,
       patch: 5.2,
+    },
+    27525: {
+      id: 27525,
+      aquariumWater: 1,
+      size: 2,
+      patch: 5.5,
     },
     27530: {
       id: 27530,
@@ -19533,17 +19545,47 @@ module.exports = {
       size: 3,
       patch: 5.3,
     },
+    27563: {
+      id: 27563,
+      aquariumWater: 1,
+      size: 2,
+      patch: 5.5,
+    },
+    27566: {
+      id: 27566,
+      aquariumWater: 1,
+      size: 2,
+      patch: 5.5,
+    },
     27579: {
       id: 27579,
       aquariumWater: 1,
       size: 3,
       patch: 5.4,
     },
+    28065: {
+      id: 28065,
+      aquariumWater: 1,
+      size: 1,
+      patch: 5.5,
+    },
+    28940: {
+      id: 28940,
+      aquariumWater: 2,
+      size: 2,
+      patch: 5.5,
+    },
     29719: {
       id: 29719,
       aquariumWater: 2,
       size: 2,
       patch: 5.4,
+    },
+    29782: {
+      id: 29782,
+      aquariumWater: 2,
+      size: 4,
+      patch: 5.5,
     },
     29784: {
       id: 29784,
@@ -19568,6 +19610,24 @@ module.exports = {
       aquariumWater: 2,
       size: 4,
       patch: 5.3,
+    },
+    30434: {
+      id: 30434,
+      aquariumWater: 1,
+      size: 3,
+      patch: 5.5,
+    },
+    32052: {
+      id: 32052,
+      aquariumWater: 1,
+      size: 1,
+      patch: 5.5,
+    },
+    32063: {
+      id: 32063,
+      aquariumWater: 2,
+      size: 1,
+      patch: 5.5,
     },
   },
   ACHIEVEMENT: {

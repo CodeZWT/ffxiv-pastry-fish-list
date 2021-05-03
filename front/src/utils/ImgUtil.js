@@ -3,7 +3,7 @@ export default {
     return `https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/${filename}`
   },
   getAquariumImgUrl(filename) {
-    return `https://cdn.jsdelivr.net/gh/ricecake404/images@archive/aquarium/${filename}`
+    return `https://ricecake302.coding.net/p/pastry-fish/d/pastry-fish-static-files/git/raw/main/aquarium/${filename}`
   },
   getIconUrl(iconId, hr = false) {
     return `https://cdn.jsdelivr.net/gh/ricecake404/images@main/icon/${toRealIconId(
