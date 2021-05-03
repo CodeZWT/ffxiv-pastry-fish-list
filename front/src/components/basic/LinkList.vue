@@ -133,7 +133,7 @@ export default {
             ...link,
             url: link[fnName]({
               anglerId: this.anglerId,
-              id: this.id,
+              id: DataUtil.toItemId(this.id),
               name: this.name,
               mode: this.spotMode,
             }),
