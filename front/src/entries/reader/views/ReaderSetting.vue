@@ -35,9 +35,9 @@
         </v-col>
         <v-col cols="12">
           <ul>
-            <li>RawSocket：不稳定，受防火墙影响，但支持加速器</li>
+            <li>RawSocket：受防火墙影响，支持加速器</li>
             <li>
-              Npcap：较稳定，但可能不支持国际服加速器
+              Npcap：不支持国际服加速器
               <ul>
                 <li>第一次开启，需要安装Npcap，点击上方按钮后会弹窗安装</li>
                 <li>安装后建议重启鱼糕</li>
