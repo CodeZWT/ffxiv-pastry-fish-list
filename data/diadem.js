@@ -1095,7 +1095,16 @@ module.exports = {
       bait: 31590,
       bestCatchPath: [29717, 31590],
       bestCatchPathExtra: [],
-      bestCatchPathGroup: null,
+      bestCatchPathGroup: {
+        10013: {
+          bestCatchPath: [29717, 31590],
+          bestCatchPathExtra: [],
+        },
+        10025: {
+          bestCatchPath: [29717, 32894],
+          bestCatchPathExtra: [],
+        },
+      },
       version: 3,
       available: true,
       patch: 5.31,
@@ -1143,7 +1152,16 @@ module.exports = {
       bait: 31590,
       bestCatchPath: [29717, 31590],
       bestCatchPathExtra: [],
-      bestCatchPathGroup: null,
+      bestCatchPathGroup: {
+        10014: {
+          bestCatchPath: [29717, 31590],
+          bestCatchPathExtra: [],
+        },
+        10025: {
+          bestCatchPath: [29717, 32894],
+          bestCatchPathExtra: [],
+        },
+      },
       version: 3,
       available: true,
       patch: 5.31,
