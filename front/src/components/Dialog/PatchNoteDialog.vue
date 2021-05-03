@@ -20,6 +20,43 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px">
+        <div class="text-h6">Version 0.8.2</div>
+        <div class="text-subtitle-1">更新时间: 2021/05/03 20:00</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>
+            更新5.5水族馆内容
+          </li>
+          <li>
+            增加了闹钟的提示文本，除默认文本外一些鱼会有特定的文本（一些鱼有多个版本的文本，随机显示）
+          </li>
+          <li>
+            修正第四期空岛部分数据
+          </li>
+          <li>
+            更新海钓数据
+          </li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">桌面版</div>
+        <ul>
+          <li>
+            导出文件中增加杆型列
+          </li>
+        </ul>
+        <div class="text-h5 text-center my-1">渔捞</div>
+        <ul>
+          <li>
+            修复国际服幻海流、空岛计时
+          </li>
+          <li>
+            修正幻海补偿最大值为60秒
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.8.1</div>
         <div class="text-subtitle-1">更新时间: 2021/04/28 00:00</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
