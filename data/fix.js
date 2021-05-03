@@ -1827,6 +1827,9 @@ module.exports = {
       startHour: 0,
       endHour: 24,
     },
+    27508: {
+      bestCatchPath: [27590, 27506],
+    }
   },
   COLLECTABLE_FISH_ITEM_ID: [
     12713,
