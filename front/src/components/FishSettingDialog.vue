@@ -366,7 +366,6 @@ export default {
     init() {
       this.$refs.observer?.reset()
       this.lazyOpacity = this.opacity
-      console.info(this.opacity)
       this.lazyZoomFactor = this.zoomFactor
       this.lazyNotificationSetting = _.cloneDeep(this.notification)
       this.lazyEnabledDetailComponents = _.cloneDeep(

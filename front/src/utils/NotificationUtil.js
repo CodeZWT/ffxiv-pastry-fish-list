@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import i18n from '@/i18n'
+import { FISH_NOTIFICATION } from 'Data/fix'
 
 export default {
   NOTIFICATION_PERMISSIONS: {
@@ -37,7 +38,13 @@ export default {
     const fishNotificationByKey = _.groupBy(fishNotifications, 'setting.key')
     const firstFish = (fishNotificationByKey['fishing'] ??
       fishNotificationByKey['waiting'])?.[0]?.fish
+    const notificationCandidates = FISH_NOTIFICATION[firstFish.id].text ?? [
+      '有鱼准备脱钩了！',
+    ]
+    const text =
+      notificationCandidates[Math.floor(Math.random() * notificationCandidates.length)]
     const title = i18n.t('notification.fishAlarm.title', {
+      text: text,
       count: fishNotifications.length,
     })
     const body = Object.entries(fishNotificationByKey)

@@ -290,7 +290,7 @@
   },
   "notification": {
     "fishAlarm": {
-      "title": "有鱼准备脱钩了！(共{count}条)",
+      "title": "{text}(共{count}条)",
       "body": "{type}({count}): {fishList}",
       "fishing": "进入CD",
       "waiting": "距开始还有{minutes}分钟"
