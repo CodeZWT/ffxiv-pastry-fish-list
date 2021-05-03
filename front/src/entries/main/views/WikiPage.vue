@@ -752,8 +752,8 @@ export default {
           // {title: '烟波钓徒', cnt: 204},
         ].concat({
           data: [28],
-          name_chs: '国服4.5版本最大值',
-          description: '国服4.5版本共有28条鱼属于成就记录范围。',
+          name_chs: '国服5.4版本最大值',
+          description: '国服5.4版本共有28条鱼属于成就记录范围。',
           type: 'maxTip',
           nextLine: false,
         }),
