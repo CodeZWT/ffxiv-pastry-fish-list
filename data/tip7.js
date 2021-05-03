@@ -42,7 +42,7 @@ module.exports = {
       bait: '恶魔蠕虫→轻杆白金鱼以小钓大',
       trick: '除了咬钩率巨低，其他倒是中规中矩。',
       comment:
-        '这鱼在4.0时期简直是噩梦，你开了鱼眼后就没多少GP开耐心2了，往往要喝一瓶强心剂，这是我为数不多用强心剂的鱼。尽管鱼眼被删除，他依旧以极高的咬钩率闻名，其他俩白鱼，<span style="font-weight:bold">原型洛浦肯</span>和<span style="font-weight:bold">魔科学物质123</span>会疯狂吃你的<span style="font-weight:bold">白金鱼</span>，相比之前算是好钓了不少。',
+        '这鱼在4.0时期简直是噩梦，你开了鱼眼后就没多少GP开耐心2了，往往要喝一瓶强心剂，这是我为数不多用强心剂的鱼。尽管鱼眼被删除，他依旧以极低的咬钩率闻名，其他俩白鱼，<span style="font-weight:bold">原型洛浦肯</span>和<span style="font-weight:bold">魔科学物质123</span>会疯狂吃你的<span style="font-weight:bold">白金鱼</span>，相比之前算是好钓了不少。',
     },
     16754: {
       id: 16754,
