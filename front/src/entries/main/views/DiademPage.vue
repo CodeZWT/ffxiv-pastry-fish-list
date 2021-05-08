@@ -25,11 +25,38 @@
                     <v-card-text>
                       <div v-if="simpleTip.content" v-html="simpleTip.content" />
                       <div v-else>
+                        <v-subheader class="px-0">摇风云海</v-subheader>
                         <div class="d-flex align-center">
-                          （冲分无双提获得力要求，冲成就可去狂风云海，2300获得力双提3条）
+                          <item-icon icon-class="bg-027051" small />
+                          <span class="d-flex flex-column">
+                            <v-badge inline content="!" color="success"></v-badge>
+                            <v-badge inline content="< 10s" color="transparent"></v-badge>
+                          </span>
+                          <v-icon small>mdi-chevron-right</v-icon>
+                          <span><item-icon icon-class="bg-029716" small/></span>
+                          <span class="d-flex flex-column" style="margin: 0 10px">
+                            <v-badge inline content="!!!" color="warning"></v-badge>
+                          </span>
+                          <v-icon small>mdi-chevron-right</v-icon>
+                          <span><item-icon icon-class="bg-028459"/></span>
+                          996 <v-icon>mdi-plus-circle</v-icon>
                         </div>
+
                         <div class="d-flex align-center">
-                          <v-subheader>旋风云海</v-subheader>
+                          <div class="bg-060290" title="灵飞电" />
+                          <span style="margin: 0 35px 0 4px">时也可</span>
+                          <v-icon>mdi-subdirectory-arrow-right</v-icon>
+                          <span class="d-flex flex-column">
+                            <v-badge inline content="!!!" color="warning"></v-badge>
+                            <v-badge inline content="> 30s" color="transparent"></v-badge>
+                          </span>
+                          <v-icon small>mdi-chevron-right</v-icon>
+                          <span><item-icon icon-class="bg-029749"/></span>
+                          1078 <v-icon>mdi-plus-circle</v-icon>
+                        </div>
+
+                        <v-subheader class="px-0">旋风云海</v-subheader>
+                        <div class="d-flex align-center">
                           <item-icon icon-class="bg-027051" small />
                           <span class="d-flex flex-column">
                             <v-badge inline content="!" color="success"></v-badge>
@@ -45,25 +72,25 @@
                           <span><item-icon icon-class="bg-029054"/></span>
                           911 <v-icon>mdi-plus-circle</v-icon>
                         </div>
-
                         <div class="d-flex align-center">
-                          <v-subheader>摇风云海</v-subheader>
-                          <item-icon icon-class="bg-027051" small />
-                          <span class="d-flex flex-column">
-                            <v-badge inline content="!" color="success"></v-badge>
-                            <v-badge inline content="< 10s" color="transparent"></v-badge>
-                          </span>
-                          <v-icon small>mdi-chevron-right</v-icon>
-                          <span><item-icon icon-class="bg-029716" small/></span>
+                          <div class="bg-060291" title="灵罡风" />
+                          <span style="margin: 0 35px 0 4px">时也可</span>
+                          <v-icon>mdi-subdirectory-arrow-right</v-icon>
                           <span class="d-flex flex-column">
                             <v-badge inline content="!!!" color="warning"></v-badge>
+                            <v-badge inline content="> 30s" color="transparent"></v-badge>
                           </span>
                           <v-icon small>mdi-chevron-right</v-icon>
-                          <span><item-icon icon-class="bg-028459"/></span>
-                          996 <v-icon>mdi-plus-circle</v-icon>
+                          <span><item-icon icon-class="bg-029747"/></span>
+                          982 <v-icon>mdi-plus-circle</v-icon>
                         </div>
+                        <v-subheader class="px-0">注：</v-subheader>
+                        <div>
+                          冲分无双提获得力要求，冲成就可去狂风云海，2300获得力双提3条
+                        </div>
+
                         <div class="d-flex align-center">
-                          <span> 注：此处以及云冠群岛页面中所有标注 </span>
+                          <span> 此处以及云冠群岛页面中所有标注 </span>
                           <div data-ck-item-id="29717">
                             <item-icon icon-class="bg-027051" small />
                           </div>
