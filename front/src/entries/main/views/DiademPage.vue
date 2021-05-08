@@ -62,6 +62,26 @@
                           <span><item-icon icon-class="bg-028459"/></span>
                           996 <v-icon>mdi-plus-circle</v-icon>
                         </div>
+                        <div class="d-flex align-center">
+                          <span> 注：此处以及云冠群岛页面中所有标注 </span>
+                          <div data-ck-item-id="29717">
+                            <item-icon icon-class="bg-027051" small />
+                          </div>
+
+                          <span> 的鱼均可使用其他任意云冠鱼饵</span>
+                          <div data-ck-item-id="30278">
+                            <item-icon icon-class="bg-027020" small />
+                          </div>
+                          <div data-ck-item-id="30279">
+                            <item-icon icon-class="bg-027025" small />
+                          </div>
+                          <div data-ck-item-id="30280">
+                            <item-icon icon-class="bg-027002" small />
+                          </div>
+                          <div data-ck-item-id="30281">
+                            <item-icon icon-class="bg-027022" small />
+                          </div>
+                        </div>
                       </div>
                     </v-card-text>
                     <v-divider />
