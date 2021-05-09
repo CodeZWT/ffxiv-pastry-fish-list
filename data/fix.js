@@ -5252,7 +5252,7 @@ module.exports = {
       star: 4,
       doubleHook: [4],
       bait: 29716,
-      isBaitUnique: false,
+      isBaitUnique: true,
       baitExtra: 32107,
       bestCatchPath: [29716],
       bestCatchPathExtra: [29714, 32107],

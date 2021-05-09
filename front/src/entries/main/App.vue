@@ -1595,6 +1595,11 @@ export default {
           : null,
         baits: this.getBaits(fish, undefined, FIX.OCEAN_FISHING_FISH),
         availableBaitList: [],
+        baitUniqueType: fish.isBaitUnique
+          ? fish.baitExtra
+            ? 'UNIQUE_WITHOUT_MOOCH'
+            : 'UNIQUE'
+          : 'NOT_UNIQUE',
         tug: fish.tug,
         tugIcon: DataUtil.TUG_ICON[fish.tug],
         hooksetIcon:

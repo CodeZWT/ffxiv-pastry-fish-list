@@ -16,12 +16,14 @@
         >
           <v-badge
             v-if="firstBaitUnique"
-            color="primary"
+            :color="baitUniqueType === 'UNIQUE' ? 'primary' : 'grey'"
             icon="mdi-lock"
             offset-x="12"
             offset-y="12"
             left
-            title="只能用该鱼饵"
+            :title="
+              baitUniqueType === 'UNIQUE' ? '只能用该鱼饵' : '除以小钓大外只能用该鱼饵'
+            "
           >
             <item-icon
               :icon-class="bait.baitIcon"
@@ -130,9 +132,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    firstBaitUnique: {
-      type: Boolean,
-      default: false,
+    baitUniqueType: {
+      type: String,
+      default: 'NOT_UNIQUE',
     },
     hideTarget: {
       type: Boolean,
@@ -150,6 +152,11 @@ export default {
   data: () => ({
     TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
   }),
+  computed: {
+    firstBaitUnique() {
+      return this.baitUniqueType !== 'NOT_UNIQUE'
+    },
+  },
   methods: {
     toItemIdIfExisted: DataUtil.toItemIdIfExisted,
     onBaitOrFishClicked(event, itemId) {

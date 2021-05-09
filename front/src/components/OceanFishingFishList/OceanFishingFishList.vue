@@ -64,11 +64,15 @@
 
           <v-badge
             v-if="item.isBaitUnique"
-            color="primary"
+            :color="item.baitUniqueType === 'UNIQUE' ? 'primary' : 'grey'"
             icon="mdi-lock"
             offset-x="12"
             offset-y="12"
-            title="只能用该鱼饵"
+            :title="
+              item.baitUniqueType === 'UNIQUE'
+                ? '只能用该鱼饵'
+                : '除以小钓大外只能用改鱼饵'
+            "
           >
             <item-icon
               :data-ck-item-id="toItemIdIfExisted(item.bait.id, item.bait.name)"

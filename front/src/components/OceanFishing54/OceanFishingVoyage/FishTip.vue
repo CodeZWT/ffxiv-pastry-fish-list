@@ -9,7 +9,7 @@
           :baits="fish.baits"
           :target="fish"
           :simple="simple"
-          :first-bait-unique="fish.isBaitUnique"
+          :bait-unique-type="fish.baitUniqueType"
         />
         <div v-if="!simple" class="ml-1 d-flex flex-column justify-center">
           <div>
