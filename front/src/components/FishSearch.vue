@@ -18,7 +18,6 @@
           clearable
           solo
           :filter="filterOptions"
-          :hint="$t('search.dialog.hint')"
         >
           <template v-slot:item="data">
             <click-helper>
