@@ -274,27 +274,6 @@ export default {
   printCountDownTime(time, showCnt = 1, paddingZero = true) {
     return TimeFormatter.millisecondsToText(time, showCnt, true, paddingZero)
   },
-  goToFishAngelPage(anglerId, name, isMobile, showSnackBarFn) {
-    if (!isMobile) {
-      showSnackBarFn({
-        text: '跳转功能已整合至鱼名称，请点击“' + name + '”直接跳转。',
-        color: 'warning',
-      })
-    } else {
-      window.open(toFishAngelFishLink({ anglerId }))
-    }
-  },
-
-  goToFishingSpotAngelPage(anglerId, name, isMobile, showSnackBarFn) {
-    if (!isMobile) {
-      showSnackBarFn({
-        text: '跳转功能已整合至钓场名称，请点击“' + name + '”直接跳转。',
-        color: 'warning',
-      })
-    } else {
-      window.open(toFishAngelSpotLink({ anglerId }))
-    }
-  },
 
   toFishAngelFishLink: toFishAngelFishLink,
   toFishAngelSpotLink: toFishAngelSpotLink,

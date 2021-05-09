@@ -26,9 +26,6 @@ export default {
         fishingSpots: [fishingSpot],
       }
     },
-    goToFishAngelPage(angelId, name) {
-      DataUtil.goToFishAngelPage(angelId, name, this.isMobile, this.showSnackbar)
-    },
     toItemTitle: DataUtil.toItemTitle,
     ...mapMutations(['showSnackbar']),
   },

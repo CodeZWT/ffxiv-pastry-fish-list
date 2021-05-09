@@ -109,9 +109,6 @@ export default {
   },
   methods: {
     printCountDownTime: DataUtil.printCountDownTime,
-    goToFishAngelPage(angelId, name) {
-      DataUtil.goToFishAngelPage(angelId, name, this.isMobile, this.showSnackbar)
-    },
     toItemTitle: DataUtil.toItemTitle,
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
@@ -126,14 +123,6 @@ export default {
     },
     onFishClicked(components, fishId) {
       this.$emit('click', { fishId: fishId ?? this.fish.id, components })
-    },
-    goToFishingSpotAngelPage() {
-      DataUtil.goToFishingSpotAngelPage(
-        this.fish.fishingSpots[0].fishingSpot.anglerLocationId,
-        this.fish.fishingSpots[0].fishingSpotName,
-        this.isMobile,
-        this.showSnackbar
-      )
     },
     toItemIdIfExisted: DataUtil.toItemIdIfExisted,
     ...mapMutations([

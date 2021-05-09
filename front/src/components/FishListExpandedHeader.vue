@@ -52,11 +52,6 @@
             <v-icon>mdi-content-copy</v-icon>
           </v-btn>
         </click-helper>
-        <click-helper @click.stop="goToFishAngelPage(fish.anglerFishId, fish.name)">
-          <v-btn text icon :title="$t('list.item.linkHint')">
-            <v-icon>mdi-link-variant</v-icon>
-          </v-btn>
-        </click-helper>
         <div v-if="fish.hasTasks" class="mr-1">
           <v-icon title="含有任务及其他信息（默认在此窗口最下方）">
             mdi-alert-circle-outline
@@ -176,9 +171,6 @@ export default {
   },
   methods: {
     toItemTitle: DataUtil.toItemTitle,
-    goToFishAngelPage(angelId, name) {
-      DataUtil.goToFishAngelPage(angelId, name, this.isMobile, this.showSnackbar)
-    },
     copyToClipboard() {
       // const clipboard = document.getElementById('clipboard')
       // clipboard.value = text
