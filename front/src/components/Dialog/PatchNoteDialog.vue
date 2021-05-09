@@ -20,6 +20,28 @@
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px">
+        <v-alert outlined type="warning" border="left">
+          更新国服5.41后，渔捞与同步功能不可用，请耐心等待自动更新。
+        </v-alert>
+
+        <div class="text-h6">Version 0.8.3</div>
+        <div class="text-subtitle-1">更新时间: 2021/05/10 08:00</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>
+            更新部分鱼数据
+          </li>
+          <li>
+            增加任务相关信息支持：海川鱼神、爆钓艾欧泽亚、天钢系列任务。在相关鱼会有
+            <v-icon> mdi-alert-circle-outline </v-icon>
+            标记，点击可在详细页面显示任务信息。
+          </li>
+          <li>更新第四期伊修加德重建页面部分内容，中文手稍后更新。</li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.8.2</div>
         <div class="text-subtitle-1">更新时间: 2021/05/03 20:00</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
