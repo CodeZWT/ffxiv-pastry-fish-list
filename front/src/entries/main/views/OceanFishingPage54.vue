@@ -22,11 +22,11 @@
             <v-icon left>mdi-table</v-icon>
             额外奖励表
           </v-btn>
-          <v-btn color="primary" @click="showBiteTimeDialog = true" class="mr-1">
+          <v-btn color="info" @click="showBiteTimeDialog = true" class="mr-1">
             <v-icon left>mdi-information</v-icon>
             关于咬钩时间
           </v-btn>
-          <v-btn color="info" @click="showUpdateDialog = true"> 5.4更新 </v-btn>
+          <!--          <v-btn color="info" @click="showUpdateDialog = true"> 5.4更新 </v-btn>-->
         </div>
       </v-card-title>
       <v-card-text>
@@ -95,53 +95,53 @@
         </v-card-text>
       </v-card>
     </template>
-    <v-dialog v-model="showUpdateDialog" width="500" persistent scrollable>
-      <v-card>
-        <v-card-title> 5.4 版本更新说明 </v-card-title>
-        <v-card-text>
-          <v-subheader> 游戏内容更新说明 </v-subheader>
-          <v-alert outlined type="success" border="left" icon="mdi-ferry">
-            <ul>
-              <li>新增钓场：谢尔达莱群岛、绯汐海、罗斯利特湾</li>
-              <li>新增线路：Bloodbrine Sea、Rothlyt Sound</li>
-              <li>航线共12种，每种航线每天出现一次</li>
-            </ul>
-          </v-alert>
-          <v-alert outlined type="info" border="left">
-            <ul>
-              <li>未触发幻海流时，下一个地点触发幻海流的几率会提升</li>
-              <li>
-                未触发幻海流或幻海流进行中状态下进入下一个钓场时，下一个地点的幻海流时间会延长
-              </li>
-            </ul>
-          </v-alert>
-          <v-alert outlined type="info" border="left" icon="mdi-fish">
-            “沉寂者”、“剪碎手巴塞洛缪”的双提个数变为4
-          </v-alert>
-          <v-alert outlined type="error" border="left">
-            中途退出后，不再能够申请进入本轮出海垂钓
-          </v-alert>
-          <v-alert outlined type="success" border="left" icon="mdi-format-list-checks">
-            新增“任务”系统，完成任务会获得额外分数加成（5%/10%/20%）
-          </v-alert>
-          <v-subheader> 鱼糕页面更新说明 </v-subheader>
-          <v-alert outlined border="left">
-            <ul>
-              <li>此页面为5.4海钓内容，将与原版海钓共存一段时间。（直至国服版本更新）</li>
-              <li>原“幻光鱼/绿鱼/蓝鱼”变更为“稀有鱼”，增加天气鱼</li>
-              <li>原“游钓大洋1-3(冲分)”变更为高分鱼，在所有航线都会显示</li>
-              <li>
-                时间表中标记冲分路线为推荐航线，其他（除双蓝）航线也可冲分，请查看“高分鱼”界面内容并参考攻略
-              </li>
-              <li>增加任务系统的支持，仅在“高分鱼”界面出现</li>
-            </ul>
-          </v-alert>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn block color="primary" @click="showUpdateDialog = false"> 确认 </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <!--    <v-dialog v-model="showUpdateDialog" width="500" persistent scrollable>-->
+    <!--      <v-card>-->
+    <!--        <v-card-title> 5.4 版本更新说明 </v-card-title>-->
+    <!--        <v-card-text>-->
+    <!--          <v-subheader> 游戏内容更新说明 </v-subheader>-->
+    <!--          <v-alert outlined type="success" border="left" icon="mdi-ferry">-->
+    <!--            <ul>-->
+    <!--              <li>新增钓场：谢尔达莱群岛、绯汐海、罗斯利特湾</li>-->
+    <!--              <li>新增线路：Bloodbrine Sea、Rothlyt Sound</li>-->
+    <!--              <li>航线共12种，每种航线每天出现一次</li>-->
+    <!--            </ul>-->
+    <!--          </v-alert>-->
+    <!--          <v-alert outlined type="info" border="left">-->
+    <!--            <ul>-->
+    <!--              <li>未触发幻海流时，下一个地点触发幻海流的几率会提升</li>-->
+    <!--              <li>-->
+    <!--                未触发幻海流或幻海流进行中状态下进入下一个钓场时，下一个地点的幻海流时间会延长-->
+    <!--              </li>-->
+    <!--            </ul>-->
+    <!--          </v-alert>-->
+    <!--          <v-alert outlined type="info" border="left" icon="mdi-fish">-->
+    <!--            “沉寂者”、“剪碎手巴塞洛缪”的双提个数变为4-->
+    <!--          </v-alert>-->
+    <!--          <v-alert outlined type="error" border="left">-->
+    <!--            中途退出后，不再能够申请进入本轮出海垂钓-->
+    <!--          </v-alert>-->
+    <!--          <v-alert outlined type="success" border="left" icon="mdi-format-list-checks">-->
+    <!--            新增“任务”系统，完成任务会获得额外分数加成（5%/10%/20%）-->
+    <!--          </v-alert>-->
+    <!--          <v-subheader> 鱼糕页面更新说明 </v-subheader>-->
+    <!--          <v-alert outlined border="left">-->
+    <!--            <ul>-->
+    <!--              <li>此页面为5.4海钓内容，将与原版海钓共存一段时间。（直至国服版本更新）</li>-->
+    <!--              <li>原“幻光鱼/绿鱼/蓝鱼”变更为“稀有鱼”，增加天气鱼</li>-->
+    <!--              <li>原“游钓大洋1-3(冲分)”变更为高分鱼，在所有航线都会显示</li>-->
+    <!--              <li>-->
+    <!--                时间表中标记冲分路线为推荐航线，其他（除双蓝）航线也可冲分，请查看“高分鱼”界面内容并参考攻略-->
+    <!--              </li>-->
+    <!--              <li>增加任务系统的支持，仅在“高分鱼”界面出现</li>-->
+    <!--            </ul>-->
+    <!--          </v-alert>-->
+    <!--        </v-card-text>-->
+    <!--        <v-card-actions>-->
+    <!--          <v-btn block color="primary" @click="showUpdateDialog = false"> 确认 </v-btn>-->
+    <!--        </v-card-actions>-->
+    <!--      </v-card>-->
+    <!--    </v-dialog>-->
 
     <v-dialog v-model="showBiteTimeDialog" width="500" persistent scrollable>
       <v-card>
