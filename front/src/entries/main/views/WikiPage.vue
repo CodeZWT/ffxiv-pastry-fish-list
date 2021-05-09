@@ -2,7 +2,7 @@
   <div style="height: 100%" class="d-flex">
     <v-navigation-drawer
       v-model="showMapMenu"
-      bottom
+      :floating="isMobile"
       :fixed="isMobile"
       :class="{ 'nav-bar--pc': !isMobile }"
     >
