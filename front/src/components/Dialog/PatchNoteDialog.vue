@@ -143,7 +143,7 @@
         <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
           <li>
-            钓鱼图鉴增加显示钓鱼总数，烟波钓徒计数，净界太公计数，（桌面版可直接同步游戏内数据）
+            钓鱼笔记增加显示钓鱼总数，烟波钓徒计数，净界太公计数，（桌面版可直接同步游戏内数据）
           </li>
           <li>
             增加鱼眼变化后相关鱼攻略，感谢 梦洄子时@红玉海 的大力支持！
@@ -661,7 +661,7 @@
         <div class="text-h6">Version 0.5.0</div>
         <div>
           <div class="text-h5 text-center">新增出海垂钓攻略支持</div>
-          <div class="text-h6 text-center">钓鱼图鉴也已同步更新</div>
+          <div class="text-h6 text-center">钓鱼笔记也已同步更新</div>
           <div>
             页面中攻略与资料参考：
             <div class="d-flex align-center">
