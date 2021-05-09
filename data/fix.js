@@ -1830,6 +1830,15 @@ module.exports = {
     27508: {
       bestCatchPath: [27590, 27506],
     },
+    5462: {
+      tug: 'light',
+    },
+    5032: {
+      tug: 'medium',
+    },
+    7682: {
+      weatherSet: [3, 4, 5],
+    },
   },
   COLLECTABLE_FISH_ITEM_ID: [
     12713,
