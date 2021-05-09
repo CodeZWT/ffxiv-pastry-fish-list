@@ -98,7 +98,7 @@
                 clearable
                 solo
                 :filter="filterOptions"
-                :hint="$t('baitSearch.dialog.hint')"
+                :hint="$t('baitSearch.dialog.hint2')"
               >
                 <template v-slot:item="data">
                   <click-helper>

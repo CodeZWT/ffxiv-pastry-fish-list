@@ -66,7 +66,10 @@
                               mdi-help-circle-outline
                             </v-icon>
                           </template>
-                          <span>{{ $t('baitSearch.dialog.hint') }}</span>
+                          <div>
+                            <div>{{ $t('baitSearch.dialog.hint1') }}</div>
+                            <div>{{ $t('baitSearch.dialog.hint2') }}</div>
+                          </div>
                         </v-tooltip>
                       </div>
                       <v-chip-group v-model="selectedBaitIdIndices" column multiple>
