@@ -633,7 +633,7 @@ import FishWindow from '@/utils/FishWindow'
 import FishSearch from '@/components/FishSearch'
 import ImportExportDialog from '@/components/ImportExportDialog'
 import ImgUtil from '@/utils/ImgUtil'
-import FIX from 'Data/fix'
+import FIX, { SATISFACTION_SUPPLY_FISH } from 'Data/fix'
 import placeNames from 'Data/placeNames'
 import regionTerritorySpots from 'Data/fishingSpots'
 import DATA_CN from 'Data/translation'
@@ -1761,6 +1761,7 @@ export default {
           _id: fish._id,
           id: fish._id,
           type: 'normal',
+          isCustomDeliveriesTarget: SATISFACTION_SUPPLY_FISH.includes(fish._id),
           icon: this.getItemIconClass(fish._id),
           iconRemoteUrl: this.getItemIconUrl(fish._id),
           showHatCover:
