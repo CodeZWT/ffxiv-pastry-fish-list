@@ -43,8 +43,10 @@
                         </div>
 
                         <div class="d-flex align-center">
-                          <div class="bg-060290" title="灵飞电" />
-                          <span style="margin: 0 35px 0 4px">时也可</span>
+                          <div style="min-width: 113px" class="d-flex align-center">
+                            <div class="bg-060290" title="灵飞电" />
+                            <span style="margin: 0 35px 0 4px">时也可</span>
+                          </div>
                           <v-icon>mdi-subdirectory-arrow-right</v-icon>
                           <span class="d-flex flex-column">
                             <v-badge inline content="!!!" color="warning"></v-badge>
@@ -73,8 +75,10 @@
                           911 <v-icon>mdi-plus-circle</v-icon>
                         </div>
                         <div class="d-flex align-center">
-                          <div class="bg-060291" title="灵罡风" />
-                          <span style="margin: 0 35px 0 4px">时也可</span>
+                          <div style="min-width: 113px" class="d-flex align-center">
+                            <div class="bg-060291" title="灵罡风" />
+                            <span style="margin: 0 35px 0 4px">时也可</span>
+                          </div>
                           <v-icon>mdi-subdirectory-arrow-right</v-icon>
                           <span class="d-flex flex-column">
                             <v-badge inline content="!!!" color="warning"></v-badge>
@@ -89,7 +93,7 @@
                           冲分无双提获得力要求，冲成就可去狂风云海，2300获得力双提3条
                         </div>
 
-                        <div class="d-flex align-center">
+                        <div class="d-flex align-center flex-wrap">
                           <span> 此处以及云冠群岛页面中所有标注 </span>
                           <div data-ck-item-id="29717">
                             <item-icon icon-class="bg-027051" small />
