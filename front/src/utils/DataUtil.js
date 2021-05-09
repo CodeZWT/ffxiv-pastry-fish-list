@@ -117,6 +117,10 @@ function toFishAngelFishLink({ anglerId }) {
   return `${FISH_ANGEL_BASE_URL}/fish/${anglerId}`
 }
 
+function toHuijiWikiQuestLink({ name }) {
+  return `https://ff14.huijiwiki.com/wiki/%E4%BB%BB%E5%8A%A1:${encodeURI(name)}`
+}
+
 function toFishAngelSpotLink({ anglerId }) {
   return `${FISH_ANGEL_BASE_URL}/spot/${anglerId}`
 }
@@ -938,6 +942,8 @@ export default {
     const key = setting.source === 'DEFAULT' ? tugType : `${tugType}-custom`
     sounds[key]?.player?.volume(setting.volume).play()
   },
+
+  toHuijiWikiQuestLink: toHuijiWikiQuestLink,
   // FUNCTION END
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
@@ -1155,6 +1161,12 @@ export default {
           enabled: true,
           order: 7,
         },
+        {
+          name: 'DetailItemQuest',
+          expandedEnabled: false,
+          enabled: true,
+          order: 8,
+        },
       ],
     },
     theme: {
@@ -1264,6 +1276,7 @@ export default {
     DetailItemPredators: 'hasPredators',
     DetailItemTips: 'hasTips',
     DetailItemAquarium: 'aquarium',
+    DetailItemQuest: 'hasTasks',
   },
 
   // fish tracker [js/app/viewmodel.js]

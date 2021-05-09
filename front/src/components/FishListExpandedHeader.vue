@@ -57,6 +57,11 @@
             <v-icon>mdi-link-variant</v-icon>
           </v-btn>
         </click-helper>
+        <div v-if="fish.hasTasks" class="mr-1">
+          <v-icon title="含有任务及其他信息（默认在此窗口最下方）">
+            mdi-alert-circle-outline
+          </v-icon>
+        </div>
         <div
           v-if="fish.folklore"
           :data-ck-item-id="toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)"
@@ -152,6 +157,9 @@ export default {
           size: FIX.AQUARIUM_FISH_SIZE[aquariumFish.size].size,
           water: DataUtil.getName(FIX.AQUARIUM_WATER[aquariumFish.aquariumWater]),
         },
+        hasTasks:
+          Object.values(FIX.QUEST).filter(task => task.items.includes(fish._id)).length >
+          0,
       }
     },
     isMobile() {

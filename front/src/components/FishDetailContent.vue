@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import DetailItemPredators from '@/components/DetailItemPredators'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
@@ -32,6 +32,7 @@ import DetailItemBuffAndBaits from '@/components/fish-detail-items/DetailItemBuf
 import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItemFishWindowTable'
 import DetailItemTips from '@/components/fish-detail-items/DetailItemTips/DetailItemTips'
 import DetailItemAquarium from '@/components/fish-detail-items/DetailItemAquarium'
+import DetailItemQuest from '@/components/fish-detail-items/DetailItemQuest'
 import _ from 'lodash'
 import FIX from 'Data/fix'
 import placeNames from 'Data/placeNames'
@@ -47,6 +48,7 @@ export default {
     DetailItemPredators,
     DetailItemTips,
     DetailItemAquarium,
+    DetailItemQuest,
   },
   props: {
     value: {
@@ -94,6 +96,21 @@ export default {
       const bestCatchPathExtra = fish.bestCatchPathExtra ?? []
       const isSpear = fish.gig != null
       const aquariumFish = FIX.AQUARIUMS[DataUtil.toItemId(fish._id)]
+      const tasks = Object.values(FIX.QUEST)
+        .filter(task => task.items.includes(fish._id))
+        .map(task => {
+          return {
+            ...task,
+            items: task.items.map(itemId => {
+              return {
+                id: itemId,
+                icon: this.getItemIconClass(itemId),
+                name: this.getItemName(itemId),
+                anglerFishId: this.allFish[itemId].anglerFishId,
+              }
+            }),
+          }
+        })
       return {
         ...fish,
         id: fish._id,
@@ -167,6 +184,8 @@ export default {
             }
           : {},
         aquarium: !!aquariumFish && DataUtil.assembleAquarium(aquariumFish, fish),
+        tasks: tasks,
+        hasTasks: tasks.length > 0,
       }
     },
     sortedDetailComponents() {
@@ -195,6 +214,7 @@ export default {
         }))
       }
     },
+    ...mapState({ allFish: 'fish' }),
     ...mapGetters([
       'getWeather',
       'getFishingSpot',

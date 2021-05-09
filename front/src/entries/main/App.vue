@@ -1756,6 +1756,9 @@ export default {
         const bestCatchPathExtra = fish.bestCatchPathExtra ?? []
         const folklore = fish.folklore && this.folklore[fish.folklore]
         const aquariumFish = FIX.AQUARIUMS[DataUtil.toItemId(fish._id)]
+        const tasks = Object.values(FIX.QUEST).filter(task =>
+          task.items.includes(fish._id)
+        )
         return {
           // TODO remove _id
           _id: fish._id,
@@ -1830,6 +1833,8 @@ export default {
             size: FIX.AQUARIUM_FISH_SIZE[aquariumFish.size].size,
             water: DataUtil.getName(FIX.AQUARIUM_WATER[aquariumFish.aquariumWater]),
           },
+          tasks: tasks,
+          hasTasks: tasks.length > 0,
         }
       })
     },

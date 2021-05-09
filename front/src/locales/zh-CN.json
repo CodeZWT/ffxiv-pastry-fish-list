@@ -181,7 +181,8 @@
           "DetailItemFishWindowTable": "窗口期详情表",
           "DetailItemPredators": "前置鱼列表",
           "DetailItemTips": "攻略",
-          "DetailItemAquarium": "水族箱"
+          "DetailItemAquarium": "水族箱",
+          "DetailItemQuest": "任务及其他信息"
         }
       }
     },

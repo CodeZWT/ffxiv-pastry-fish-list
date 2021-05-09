@@ -92,6 +92,15 @@
                     :title="fish.isFuturePatch ? '未实装' : ''"
                     class="mr-1"
                   ></v-badge>
+                  <div v-if="fish.hasTasks" class="mr-1">
+                    <v-icon
+                      small
+                      title="点击查看任务及其他信息"
+                      @click.stop="onFishClicked(['DetailItemQuest'], fish._id)"
+                    >
+                      mdi-alert-circle-outline
+                    </v-icon>
+                  </div>
                   <div
                     v-if="fish.folklore"
                     :data-ck-item-id="
