@@ -1861,6 +1861,22 @@ module.exports = {
       previousWeatherSet: [15, 16],
       weatherSet: [16],
     },
+    20110: {
+      bestCatchPath: [20676],
+      catchPathList: [[20676], [20617], [20617, 20112]],
+    },
+    20113: {
+      bestCatchPath: [20676],
+      catchPathList: [[20676], [20617, 20112]],
+    },
+    20022: {
+      bestCatchPath: [20676],
+      catchPathList: [[20676], [20617, 20112]],
+    },
+    20100: {
+      bestCatchPath: [20676],
+      catchPathList: [[20676], [20617, 20112]],
+    },
   },
   COLLECTABLE_FISH_ITEM_ID: [
     12713,
