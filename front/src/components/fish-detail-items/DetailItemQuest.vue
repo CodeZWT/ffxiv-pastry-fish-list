@@ -13,7 +13,7 @@
       color="secondary"
     >
       <div class="d-flex align-center my-1">
-        <span>任务：{{ task.name_chs }}</span>
+        <span>任务：{{ task.name }}</span>
         <v-spacer />
         <v-btn text outlined @click="goTo(task)">
           查看任务详细
@@ -23,7 +23,13 @@
 
       <div v-if="task.title" class="my-1">称号：{{ task.title }}</div>
       <div v-if="task.comment" class="my-1">备注：{{ task.comment }}</div>
-      <div class="my-1">所有需求鱼：</div>
+      <div class="my-1">
+        所有需求鱼
+        <template v-if="task.requireCollectable">
+          (<i title="收藏品" class="xiv collectables" />收藏品)
+        </template>
+        <span>：</span>
+      </div>
       <div class="d-flex align-center my-1 flex-wrap">
         <div v-for="item in task.items" :key="item.id" class="d-flex align-center">
           <item-icon :icon-class="item.icon" :title="item.name" />
@@ -86,7 +92,8 @@ export default {
   }),
   methods: {
     goTo(task) {
-      window.open(DataUtil.toHuijiWikiQuestLink({ name: task.name_chs }))
+      const link = task.link ?? DataUtil.toHuijiWikiQuestLink({ name: task.name_chs })
+      window.open(link)
     },
   },
 }

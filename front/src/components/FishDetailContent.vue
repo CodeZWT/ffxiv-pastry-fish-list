@@ -101,6 +101,7 @@ export default {
         .map(task => {
           return {
             ...task,
+            name: DataUtil.getName(task),
             items: task.items.map(itemId => {
               return {
                 id: itemId,

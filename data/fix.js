@@ -28639,5 +28639,13 @@ module.exports = {
       items: [31134],
       comment: '需要承接此任务，并装备「改良型龙诗钓竿」才能钓上',
     },
+    69519: {
+      id: 69430,
+      link: 'https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/a779436da04/',
+      name_en: 'The Pinnacle of Possibility',
+      items: [31770, 31771],
+      requireCollectable: true,
+      comment: '需要承接此任务，并装备「天诗钓竿」才能钓上',
+    },
   },
 }
