@@ -24,19 +24,26 @@
     </div>
     <div class="d-flex justify-center" style="height: 25px; position: relative">
       <template v-for="(tick, index) in ticks">
-        <v-menu :key="index" open-on-hover open-delay="300" close-deplay="300" bottom>
+        <v-menu
+          :key="index"
+          open-on-hover
+          open-delay="300"
+          close-deplay="300"
+          bottom
+          offset-y
+        >
           <template v-slot:activator="{ on, attrs }">
-            <div v-bind="attrs" v-on="on">
-              <div
-                class="tick-text"
-                :style="
-                  `position: absolute; right: ${100 - posOfTick(tick.data[0])}%; top: ${
-                    tick.nextLine ? '16px' : 0
-                  }`
-                "
-              >
-                {{ tick.data[0] }}
-              </div>
+            <div
+              v-bind="attrs"
+              v-on="on"
+              class="tick-text"
+              :style="
+                `position: absolute; right: ${100 - posOfTick(tick.data[0])}%; top: ${
+                  tick.nextLine ? '16px' : 0
+                }`
+              "
+            >
+              {{ tick.data[0] }}
             </div>
           </template>
           <v-card max-width="300">
