@@ -412,9 +412,6 @@ module.exports = {
     7946: {
       bestCatchPath: [12711, 31004937],
     },
-    16745: {
-      bestCatchPath: [12712, 12716, 12724],
-    },
     4893: {
       tug: 'medium',
     },
@@ -1859,6 +1856,11 @@ module.exports = {
     24559: { bestCatchPath: [28634], catchPathList: [[28634], [20613]] },
     24560: { bestCatchPath: [28634], catchPathList: [[28634], [20618]] },
     24561: { bestCatchPath: [28634], catchPathList: [[28634], [20614]] },
+    16745: {
+      bestCatchPath: [12712, 12716, 12724],
+      previousWeatherSet: [15, 16],
+      weatherSet: [16],
+    },
   },
   COLLECTABLE_FISH_ITEM_ID: [
     12713,
