@@ -1169,7 +1169,7 @@ module.exports = {
     32882: {
       _id: 32882,
       icon: 29310,
-      name_chs: "Grade 4 Skybuilders' Zagas Khaal",
+      name_chs: '第四期重建用的嘎牙子',
       anglerFishId: 3410,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1193,7 +1193,7 @@ module.exports = {
     32883: {
       _id: 32883,
       icon: 29420,
-      name_chs: "Grade 4 Skybuilders' Goldsmith Crab",
+      name_chs: '第四期重建用的雕金蟹',
       anglerFishId: 3411,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1217,7 +1217,7 @@ module.exports = {
     32884: {
       _id: 32884,
       icon: 29467,
-      name_chs: "Grade 4 Skybuilders' Common Bitterling",
+      name_chs: '第四期重建用的斜方鱊',
       anglerFishId: 3412,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1241,7 +1241,7 @@ module.exports = {
     32885: {
       _id: 32885,
       icon: 29501,
-      name_chs: "Grade 4 Skybuilders' Skyloach",
+      name_chs: '第四期重建用的苍穹鳅',
       anglerFishId: 3413,
       doubleHook: 2,
       doubleHookTip: null,
@@ -1265,7 +1265,7 @@ module.exports = {
     32886: {
       _id: 32886,
       icon: 29706,
-      name_chs: "Grade 4 Skybuilders' Glacier Core",
+      name_chs: '第四期重建用的冰川核',
       anglerFishId: 3414,
       doubleHook: 2,
       doubleHookTip: null,
@@ -1289,7 +1289,7 @@ module.exports = {
     32887: {
       _id: 32887,
       icon: 29410,
-      name_chs: "Grade 4 Skybuilders' Kissing Fish",
+      name_chs: '第四期重建用的亲吻鱼',
       anglerFishId: 3415,
       doubleHook: 2,
       doubleHookTip: null,
@@ -1313,7 +1313,7 @@ module.exports = {
     32888: {
       _id: 32888,
       icon: 29514,
-      name_chs: "Grade 4 Skybuilders' Cavalry Catfish",
+      name_chs: '第四期重建用的斩马鱼',
       anglerFishId: 3416,
       doubleHook: 2,
       doubleHookTip: null,
@@ -1337,7 +1337,7 @@ module.exports = {
     32889: {
       _id: 32889,
       icon: 29704,
-      name_chs: "Grade 4 Skybuilders' Manasail",
+      name_chs: '第四期重建用的魔帆',
       anglerFishId: 3417,
       doubleHook: 2,
       doubleHookTip: null,
@@ -1361,7 +1361,7 @@ module.exports = {
     32890: {
       _id: 32890,
       icon: 29715,
-      name_chs: "Grade 4 Skybuilders' Starflower",
+      name_chs: '第四期重建用的星花',
       anglerFishId: 3418,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1385,7 +1385,7 @@ module.exports = {
     32891: {
       _id: 32891,
       icon: 28463,
-      name_chs: "Grade 4 Skybuilders' Cyan Crab",
+      name_chs: '第四期重建用的青色螃蟹',
       anglerFishId: 3419,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1409,7 +1409,7 @@ module.exports = {
     32892: {
       _id: 32892,
       icon: 29129,
-      name_chs: "Grade 4 Skybuilders' Fickle Krait",
+      name_chs: '第四期重建用的不忠蛇',
       anglerFishId: 3420,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1433,7 +1433,7 @@ module.exports = {
     32893: {
       _id: 32893,
       icon: 29758,
-      name_chs: "Grade 4 Skybuilders' Proto-hropken",
+      name_chs: '第四期重建用的欧洛浦肯',
       anglerFishId: 3421,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1457,7 +1457,7 @@ module.exports = {
     32894: {
       _id: 32894,
       icon: 29716,
-      name_chs: "Grade 4 Skybuilders' Ghost Faeries",
+      name_chs: '第四期重建用的清澈冰战神',
       anglerFishId: 3422,
       doubleHook: 2,
       doubleHookTip: null,
@@ -1481,7 +1481,7 @@ module.exports = {
     32895: {
       _id: 32895,
       icon: 29915,
-      name_chs: "Grade 4 Skybuilders' Ashfish",
+      name_chs: '第四期重建用的不死鱼',
       anglerFishId: 3423,
       doubleHook: 2,
       doubleHookTip: null,
@@ -1505,12 +1505,12 @@ module.exports = {
     32896: {
       _id: 32896,
       icon: 29906,
-      name_chs: "Grade 4 Skybuilders' Whitehorse",
+      name_chs: '第四期重建用的白马',
       anglerFishId: 3424,
       doubleHook: 2,
       doubleHookTip: null,
-      tug: 'medium',
-      hookset: 'Powerful',
+      tug: 'light',
+      hookset: 'Precision',
       points: [0, 0, 8],
       scrips: [0, 0, 10],
       biteMin: 10,
@@ -1529,12 +1529,12 @@ module.exports = {
     32897: {
       _id: 32897,
       icon: 29005,
-      name_chs: "Grade 4 Skybuilders' Ocean Cloud",
+      name_chs: '第四期重建用的海云水母',
       anglerFishId: 3425,
       doubleHook: 0,
       doubleHookTip: null,
-      tug: 'medium',
-      hookset: 'Powerful',
+      tug: 'light',
+      hookset: 'Precision',
       points: [0, 0, 4],
       scrips: [0, 0, 6],
       biteMin: 10,
@@ -1553,7 +1553,7 @@ module.exports = {
     32898: {
       _id: 32898,
       icon: 29105,
-      name_chs: "Grade 4 Skybuilders' Black Fanfish",
+      name_chs: '第四期重建用的黑头巾',
       anglerFishId: 3426,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1577,7 +1577,7 @@ module.exports = {
     32899: {
       _id: 32899,
       icon: 29021,
-      name_chs: "Grade 4 Skybuilders' Sunfish",
+      name_chs: '第四期重建用的翻车鱼',
       anglerFishId: 3427,
       doubleHook: 2,
       doubleHookTip: null,
@@ -1601,12 +1601,12 @@ module.exports = {
     32900: {
       _id: 32900,
       icon: 29447,
-      name_chs: "Grade 4 Skybuilders' Artisanal Sweatfish",
+      name_chs: '第四期重建用的特供汗鱼',
       anglerFishId: 3428,
       doubleHook: 3,
       doubleHookTip: '双提3条需要2300获得力',
-      tug: 'medium',
-      hookset: 'Powerful',
+      tug: 'light',
+      hookset: 'Precision',
       points: [0, 0, 106],
       scrips: [0, 0, 17],
       biteMin: 14,
@@ -1625,7 +1625,7 @@ module.exports = {
     32901: {
       _id: 32901,
       icon: 29922,
-      name_chs: "Grade 4 Skybuilders' Artisanal Sculptor",
+      name_chs: '第四期重建用的特供雕塑家',
       anglerFishId: 3429,
       doubleHook: 3,
       doubleHookTip: '双提3条需要2300获得力',
@@ -1651,7 +1651,7 @@ module.exports = {
     32902: {
       _id: 32902,
       icon: 29054,
-      name_chs: "Grade 4 Skybuilders' Artisanal Little Thalaos",
+      name_chs: '第四期重建用的特供小撒拉奥斯',
       anglerFishId: 3430,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1675,7 +1675,7 @@ module.exports = {
     32903: {
       _id: 32903,
       icon: 28459,
-      name_chs: "Grade 4 Skybuilders' Artisanal Lightning Chaser",
+      name_chs: '第四期重建用的特供蓝色风暴',
       anglerFishId: 3431,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1699,7 +1699,7 @@ module.exports = {
     32904: {
       _id: 32904,
       icon: 29748,
-      name_chs: "Grade 4 Skybuilders' Artisanal Marrella",
+      name_chs: '第四期重建用的特供马尔三叶虫',
       anglerFishId: 3432,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1723,7 +1723,7 @@ module.exports = {
     32905: {
       _id: 32905,
       icon: 29950,
-      name_chs: "Grade 4 Skybuilders' Artisanal Crimson Namitaro",
+      name_chs: '第四期重建用的特供红波太郎',
       anglerFishId: 3433,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1747,7 +1747,7 @@ module.exports = {
     32906: {
       _id: 32906,
       icon: 29747,
-      name_chs: "Grade 4 Skybuilders' Artisanal Griffin",
+      name_chs: '第四期重建用的特供狮鹫',
       anglerFishId: 3434,
       doubleHook: 0,
       doubleHookTip: null,
@@ -1771,7 +1771,7 @@ module.exports = {
     32907: {
       _id: 32907,
       icon: 29749,
-      name_chs: "Grade 4 Skybuilders' Artisanal Meganeura",
+      name_chs: '第四期重建用的特供巨脉蜻蜓',
       anglerFishId: 3435,
       doubleHook: 0,
       doubleHookTip: null,
