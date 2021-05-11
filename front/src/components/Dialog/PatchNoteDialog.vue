@@ -37,7 +37,7 @@
             <v-icon> mdi-alert-circle-outline </v-icon>
             标记，点击可在详细页面显示任务信息。
           </li>
-          <li>更新第四期伊修加德重建页面部分内容，中文手稍后更新。</li>
+          <li>更新第四期伊修加德重建页面部分内容。</li>
         </ul>
         <div class="text-h5 text-center my-1">渔捞</div>
         <ul>
