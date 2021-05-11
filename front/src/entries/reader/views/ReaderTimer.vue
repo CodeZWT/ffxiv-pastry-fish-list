@@ -1,9 +1,10 @@
 <template>
   <v-container fluid>
     <v-row no-gutters v-if="!readerTimerMiniMode">
-      <v-alert outlined type="warning" border="left">
-        更新国服5.41后，渔捞与同步功能不可用，请耐心等待自动更新。
-      </v-alert>
+      <!-- patch update wait note -->
+      <!--      <v-alert outlined type="warning" border="left">-->
+      <!--        更新国服5.41后，渔捞与同步功能不可用，请耐心等待自动更新。-->
+      <!--      </v-alert>-->
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div style="min-width: 100px">
           咬钩计时
