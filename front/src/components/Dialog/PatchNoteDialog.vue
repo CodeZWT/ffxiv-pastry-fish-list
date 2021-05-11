@@ -26,7 +26,7 @@
         <!--        </v-alert>-->
 
         <div class="text-h6">Version 0.8.3</div>
-        <div class="text-subtitle-1">更新时间: 2021/05/10 08:00</div>
+        <div class="text-subtitle-1">更新时间: 2021/05/11 22:20</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
           <li>
@@ -38,6 +38,10 @@
             标记，点击可在详细页面显示任务信息。
           </li>
           <li>更新第四期伊修加德重建页面部分内容，中文手稍后更新。</li>
+        </ul>
+        <div class="text-h5 text-center my-1">渔捞</div>
+        <ul>
+          <li>更新渔捞以及图鉴同步以支持5.41</li>
         </ul>
         <p />
 
