@@ -1112,7 +1112,7 @@ function getString(uint8Array, offset, length) {
 // onFFXIVEventWithFilter('unknown', null, null, null,(packet) => {
 //   log.debug('wc?', packet.opcode, packet.data)
 // })
-onFFXIVEventWithFilter('unknown', null, null, 604, packet => {
+onFFXIVEventWithFilter('unknown', null, null, 566, packet => {
   if (region === 'CN') {
     onWeatherChange(packet)
   } else {
