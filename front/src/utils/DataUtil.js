@@ -840,6 +840,11 @@ export default {
     // }
   },
 
+  getDiademItemIconUrl(id) {
+    console.log(id, id === 29717 ? ImgUtil.getImgUrl('diadem-any-bait.png') : null)
+    return id === 29717 ? ImgUtil.getImgUrl('diadem-any-bait.png') : null
+  },
+
   getItemName(id) {
     return this.getName(this.ITEMS[this.toItemId(id)])
   },

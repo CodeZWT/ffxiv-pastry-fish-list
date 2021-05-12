@@ -89,6 +89,9 @@ export default new Vuex.Store({
     getItemIconClass: () => id => {
       return DataUtil.getItemIconClass(id)
     },
+    getDiademItemIconUrl: () => id => {
+      return DataUtil.getDiademItemIconUrl(id)
+    },
     getAchievementIconClass: state => id => {
       const iconId = state.achievements[id]?.icon ?? 1100
       return DataUtil.iconIdToClass(iconId)
@@ -127,7 +130,12 @@ export default new Vuex.Store({
           fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
         }
       }),
-    getBaits: (state, getters) => (fish, customizedBestCatchPath, customizeFishDict) => {
+    getBaits: (state, getters) => (
+      fish,
+      customizedBestCatchPath,
+      customizeFishDict,
+      diademAnyBait = false
+    ) => {
       const bestCatchPath = customizedBestCatchPath ?? fish.bestCatchPath
       if (bestCatchPath == null || bestCatchPath.length < 1) return []
       const fishDict = customizeFishDict ?? state.fish
@@ -144,6 +152,7 @@ export default new Vuex.Store({
         baitName: getters.getItemName(baitId),
         baitIcon: getters.getItemIconClass(baitId),
         biteSelf: fishDict[baitId]?.biteSelf,
+        diademAnyBait: diademAnyBait && baitId === 29717,
       }
       if (bestCatchPath.length === 1) {
         return [lastBait]
@@ -164,6 +173,7 @@ export default new Vuex.Store({
               baitIcon: getters.getItemIconClass(baitId),
               optional: optionalIndices.includes(index),
               biteSelf: fishDict[baitId]?.biteSelf,
+              diademAnyBait: diademAnyBait && baitId === 29717,
             }
           }
         })

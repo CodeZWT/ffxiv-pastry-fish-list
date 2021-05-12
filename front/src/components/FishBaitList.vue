@@ -10,7 +10,9 @@
           <v-icon small>mdi-arrow-right</v-icon>
         </div>
         <div
-          :data-ck-item-id="toItemIdIfExisted(bait.baitId, bait.baitName)"
+          :data-ck-item-id="
+            !bait.diademAnyBait && toItemIdIfExisted(bait.baitId, bait.baitName)
+          "
           style="height: 36px; width: 36px"
           @click="onBaitOrFishClicked($event, bait.baitId)"
         >
@@ -26,15 +28,17 @@
             "
           >
             <item-icon
+              :icon-url="bait.diademAnyBait ? diademAnyBaitIcon : null"
               :icon-class="bait.baitIcon"
-              :title="bait.baitName + '#' + bait.baitId"
+              :title="toItemTitle(bait.baitName, bait.baitId, bait.diademAnyBait)"
               small
             />
           </v-badge>
           <item-icon
             v-else
+            :icon-url="bait.diademAnyBait ? diademAnyBaitIcon : null"
             :icon-class="bait.baitIcon"
-            :title="bait.baitName + '#' + bait.baitId"
+            :title="toItemTitle(bait.baitName, bait.baitId, bait.diademAnyBait)"
             small
           />
           <div style="width: 36px" class="d-flex justify-center" title="可套娃">
@@ -115,6 +119,7 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
+import ImgUtil from '@/utils/ImgUtil'
 
 export default {
   name: 'FishBaitList',
@@ -156,6 +161,9 @@ export default {
     firstBaitUnique() {
       return this.baitUniqueType !== 'NOT_UNIQUE'
     },
+    diademAnyBaitIcon() {
+      return ImgUtil.getImgUrl('diadem-any-bait.png')
+    },
   },
   methods: {
     toItemIdIfExisted: DataUtil.toItemIdIfExisted,
@@ -164,6 +172,11 @@ export default {
         this.$emit('fish-clicked', itemId)
         event?.stopPropagation()
       }
+    },
+    toItemTitle(itemName, itemId, diademAnyBait = false) {
+      return diademAnyBait
+        ? '云冠气球虫、云冠红气球虫、云冠大蚊、云冠浮游虫和万能拟饵皆可'
+        : DataUtil.toItemTitle({ name: itemName, id: itemId })
     },
   },
 }

@@ -89,30 +89,47 @@
                           982 <v-icon>mdi-plus-circle</v-icon>
                         </div>
                         <v-subheader class="px-0">注：</v-subheader>
-                        <div>
-                          冲分无双提获得力要求，冲成就可去狂风云海，2300获得力双提3条
-                        </div>
-
-                        <div class="d-flex align-center flex-wrap">
-                          <span> 此处以及云冠群岛页面中所有标注 </span>
-                          <div data-ck-item-id="29717">
-                            <item-icon icon-class="bg-027051" small />
-                          </div>
-
-                          <span> 的鱼均可使用其他任意云冠鱼饵</span>
-                          <div data-ck-item-id="30278">
-                            <item-icon icon-class="bg-027020" small />
-                          </div>
-                          <div data-ck-item-id="30279">
-                            <item-icon icon-class="bg-027025" small />
-                          </div>
-                          <div data-ck-item-id="30280">
-                            <item-icon icon-class="bg-027002" small />
-                          </div>
-                          <div data-ck-item-id="30281">
-                            <item-icon icon-class="bg-027022" small />
-                          </div>
-                        </div>
+                        <ul>
+                          <li>
+                            冲分无双提获得力要求，冲成就可去狂风云海，2300获得力双提3条
+                          </li>
+                          <li>
+                            万能拟饵上钩时间相对较长。
+                            <div class="text--secondary">
+                              “鱼对拟饵的警惕性比活饵要高，所以上钩的时间可能会相对长一些。”----新手指南
+                            </div>
+                          </li>
+                          <li>
+                            <div class="d-flex align-center flex-wrap">
+                              <span> 此处以及云冠群岛页面中所有标注 </span>
+                              <div>
+                                <item-icon
+                                  :icon-url="diademAnyBaitIcon"
+                                  small
+                                  title="云冠气球虫、云冠红气球虫、云冠大蚊、云冠浮游虫和万能拟饵皆可"
+                                />
+                              </div>
+                              <span> 的鱼均可使用任意云冠鱼饵以及万能拟饵</span>
+                            </div>
+                            <div class="d-flex align-center">
+                              <div data-ck-item-id="30278">
+                                <item-icon icon-class="bg-027020" small />
+                              </div>
+                              <div data-ck-item-id="30279">
+                                <item-icon icon-class="bg-027025" small />
+                              </div>
+                              <div data-ck-item-id="30280">
+                                <item-icon icon-class="bg-027002" small />
+                              </div>
+                              <div data-ck-item-id="30281">
+                                <item-icon icon-class="bg-027022" small />
+                              </div>
+                              <div data-ck-item-id="29717">
+                                <item-icon icon-class="bg-027051" small />
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
                     </v-card-text>
                     <v-divider />
@@ -199,6 +216,9 @@ export default {
     }
   },
   computed: {
+    diademAnyBaitIcon() {
+      return ImgUtil.getImgUrl('diadem-any-bait.png')
+    },
     currentVersionMapData() {
       return {
         mapFileId: this.diademSpots[0].fishingSpot.mapFileId,
@@ -269,10 +289,10 @@ export default {
               scrips: fish.scrips[this.versionIndex],
               hasWeatherConstraint: weatherSet.length > 0,
               weatherSetDetail: this.getWeather(weatherSet),
-              baits: this.getBaits(fish, bestCatchPath, DIADEM.FISH),
+              baits: this.getBaits(fish, bestCatchPath, DIADEM.FISH, true),
               baitsExtra:
                 bestCatchPathExtra.length > 0
-                  ? this.getBaits(fish, bestCatchPathExtra, DIADEM.FISH)
+                  ? this.getBaits(fish, bestCatchPathExtra, DIADEM.FISH, true)
                   : [],
               biteTimeText: this.toBiteTimeText(fish.biteMin, fish.biteMax),
               hasPredators: fish.predators && Object.keys(fish.predators).length > 0,

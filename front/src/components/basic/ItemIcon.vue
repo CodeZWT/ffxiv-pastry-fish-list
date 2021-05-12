@@ -5,11 +5,7 @@
     @click="onClicked"
   >
     <div v-if="!iconUrl" :class="`${iconClass} ${iconPositionClass}`" />
-    <div
-      v-else
-      :class="iconPositionClass"
-      :style="`background: url('${iconUrl}') no-repeat;`"
-    />
+    <v-img v-else :class="iconPositionClass" :src="iconUrl" />
     <div
       v-if="cover && !checked"
       :class="coverClass"
