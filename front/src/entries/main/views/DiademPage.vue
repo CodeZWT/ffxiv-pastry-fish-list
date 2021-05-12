@@ -27,7 +27,11 @@
                       <div v-else>
                         <v-subheader class="px-0">摇风云海</v-subheader>
                         <div class="d-flex align-center">
-                          <item-icon icon-class="bg-027051" small />
+                          <item-icon
+                            :icon-url="diademAnyBaitIcon"
+                            small
+                            title="云冠气球虫、云冠红气球虫、云冠大蚊、云冠浮游虫和万能拟饵皆可"
+                          />
                           <span class="d-flex flex-column">
                             <v-badge inline content="!" color="success"></v-badge>
                             <v-badge inline content="< 10s" color="transparent"></v-badge>
@@ -59,7 +63,11 @@
 
                         <v-subheader class="px-0">旋风云海</v-subheader>
                         <div class="d-flex align-center">
-                          <item-icon icon-class="bg-027051" small />
+                          <item-icon
+                            :icon-url="diademAnyBaitIcon"
+                            small
+                            title="云冠气球虫、云冠红气球虫、云冠大蚊、云冠浮游虫和万能拟饵皆可"
+                          />
                           <span class="d-flex flex-column">
                             <v-badge inline content="!" color="success"></v-badge>
                             <v-badge inline content="< 10s" color="transparent"></v-badge>
