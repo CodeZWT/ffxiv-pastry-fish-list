@@ -9365,9 +9365,9 @@ module.exports = {
       fish: '余韵',
       baitId: 29715,
       bait: '磷虾',
-      biteTimeMin: 3.7,
+      biteTimeMin: 4.3,
       biteTimeMax: 7.5,
-      count: 214,
+      count: 213,
     },
     {
       spotId: 249,
