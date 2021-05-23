@@ -1101,7 +1101,7 @@ module.exports = {
     data:
       '撒饵(12s)<br>平钓(25s；28s；28s)<br><span class="orangered">撒饵(11s；12s)<br>平钓(19.5s；20.4s；29.8s；28.6s；18s)</span>',
     weatherTime: '常驻',
-    trick: '残暴水蛭-(鱼王杆，强力)-拉·雷亚尔 拍利齿蛤蜊(轻杆)',
+    trick: '残暴水蛭-(鱼王杆，强力)-拉·雷亚尔 拍利齿蛤蜊(中杆)',
     comment:
       '较短的鱼王杆(体感大概10-15s)是<span style="font-weight:bold">战舰鱼</span>，如果不想判断鱼王杆的话，拍<span style="font-weight:bold">战舰鱼</span>也是不错的选择。',
   },
