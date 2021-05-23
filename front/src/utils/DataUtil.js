@@ -841,7 +841,7 @@ export default {
   },
 
   getDiademItemIconUrl(id) {
-    console.log(id, id === 29717 ? ImgUtil.getImgUrl('diadem-any-bait.png') : null)
+    // console.log(id, id === 29717 ? ImgUtil.getImgUrl('diadem-any-bait.png') : null)
     return id === 29717 ? ImgUtil.getImgUrl('diadem-any-bait.png') : null
   },
 
@@ -1184,6 +1184,7 @@ export default {
       },
     },
     showChromeBugDialog: true,
+    showCompetitionDialog: true,
     fishEyesUsed: false,
     mainWindow: {
       closeMode: 'CLOSE',

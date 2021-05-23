@@ -11,6 +11,9 @@ export default {
       hr
     )}.png`
   },
+  getCompetitionImgUrl(filename) {
+    return `https://ricecake500.gitee.io/pastry-fish-static-files/img/${filename}`
+  },
   iconIdToClass: iconIdToClass,
 }
 

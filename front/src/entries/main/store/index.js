@@ -50,6 +50,9 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    showCompetitionDialog: state => {
+      return state.userData.showCompetitionDialog
+    },
     mainWindowCloseMode: state => {
       return state.userData.mainWindow.closeMode
     },
@@ -267,6 +270,10 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setShowCompetitionDialog(state, show) {
+      state.userData.showCompetitionDialog = show
+      LocalStorageUtil.storeUserData(state.userData)
+    },
     setMainWindowCloseMode(state, mode) {
       state.userData = {
         ...state.userData,

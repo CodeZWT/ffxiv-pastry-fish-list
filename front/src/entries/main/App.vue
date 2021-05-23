@@ -336,6 +336,17 @@
               <v-list-item-title>{{ $t('top.fishReader') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
+          <v-list-item v-if="isElectron" @click="showCompetition" link>
+            <v-list-item-icon>
+              <new-feature-mark id="Competition-V.0.8.3-1">
+                <v-icon>mdi-trophy-award</v-icon>
+              </new-feature-mark>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
 
         <template v-slot:append>
@@ -561,6 +572,8 @@
     />
     <desktop-version-dialog v-model="showDownloadDialog" />
 
+    <competition-dialog v-model="showCompetitionDialogComputed" />
+
     <v-snackbar
       :timeout="2000"
       v-model="snackbar.show"
@@ -653,11 +666,13 @@ import FishEyesToggleButton from '@/components/FishEyesToggleButton'
 import isEqual from 'lodash/isEqual'
 import repeat from 'lodash/repeat'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
+import CompetitionDialog from '@/components/CompetitionDialog'
 // let totalCnt = 0
 
 export default {
   name: 'App',
   components: {
+    CompetitionDialog,
     ResizeIndicator,
     FishEyesToggleButton,
     HelpDialog,
@@ -997,6 +1012,14 @@ export default {
     themeModeIndex() {
       return DataUtil.THEME_SETTING_MODES.indexOf(this.themeMode)
     },
+    showCompetitionDialogComputed: {
+      get() {
+        return this.showCompetitionDialog
+      },
+      set(show) {
+        this.setShowCompetitionDialog(show)
+      },
+    },
     ...mapState([
       'baitFilter',
       'loading',
@@ -1046,6 +1069,7 @@ export default {
       'getAchievementName',
       'getAchievementIconClass',
       'readerSetting',
+      'showCompetitionDialog',
     ]),
   },
   watch: {
@@ -1250,6 +1274,9 @@ export default {
     // }, 200)
   },
   methods: {
+    showCompetition() {
+      this.showCompetitionDialogComputed = true
+    },
     getWindowSetting() {
       return window.electron?.ipcRenderer
         ?.invoke('getWindowSetting')
@@ -1975,6 +2002,7 @@ export default {
       'finishLoading',
       'setStartLight',
       'initialUserData',
+      'setShowCompetitionDialog',
     ]),
   },
 }
