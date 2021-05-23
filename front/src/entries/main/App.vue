@@ -1276,6 +1276,7 @@ export default {
   methods: {
     showCompetition() {
       this.showCompetitionDialogComputed = true
+      this.setFeatureViewed('Competition-V.0.8.3-1')
     },
     getWindowSetting() {
       return window.electron?.ipcRenderer

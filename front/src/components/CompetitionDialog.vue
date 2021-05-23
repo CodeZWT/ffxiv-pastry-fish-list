@@ -101,7 +101,6 @@ export default {
   methods: {
     handleClose() {
       this.dialog = false
-      this.setFeatureViewed('Competition-V.0.8.3-1')
     },
     ...mapMutations(['setFeatureViewed']),
   },
