@@ -59,7 +59,7 @@
         </v-row>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="dialog = false" block>关闭</v-btn>
+        <v-btn @click="handleClose" block>关闭</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -67,6 +67,7 @@
 
 <script>
 import ImgUtil from '@/utils/ImgUtil'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'CompetitionDialog',
@@ -97,7 +98,13 @@ export default {
       return this.$vuetify.breakpoint.mobile
     },
   },
-  methods: {},
+  methods: {
+    handleClose() {
+      this.dialog = false
+      this.setFeatureViewed('Competition-V.0.8.3-1')
+    },
+    ...mapMutations(['setFeatureViewed']),
+  },
 }
 </script>
 
