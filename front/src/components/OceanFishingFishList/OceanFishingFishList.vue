@@ -71,7 +71,7 @@
             :title="
               item.baitUniqueType === 'UNIQUE'
                 ? '只能用该鱼饵'
-                : '除以小钓大外只能用改鱼饵'
+                : '除以小钓大外只能用该鱼饵'
             "
           >
             <item-icon
