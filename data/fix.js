@@ -375,6 +375,8 @@ module.exports = {
       weatherSet: [1],
       startHour: 10,
       endHour: 18,
+      bestCatchPath: [20676],
+      catchPathList: [[20676], [20617, 20112]],
     },
     20085: {
       startHour: 16,
@@ -1858,6 +1860,7 @@ module.exports = {
     24561: { bestCatchPath: [28634], catchPathList: [[28634], [20614]] },
     16745: {
       bestCatchPath: [12712, 12716, 12724],
+      catchPathList: [[12712, 12724], [12712, 12716, 12724]],
       previousWeatherSet: [15, 16],
       weatherSet: [16],
     },
@@ -1876,6 +1879,18 @@ module.exports = {
     20100: {
       bestCatchPath: [20676],
       catchPathList: [[20676], [20617, 20112]],
+    },
+    20099: {
+      bestCatchPath: [20676],
+      catchPathList: [[20676], [20617], [20617, 20112]],
+    },
+    12724: {
+      bestCatchPath: [12712, 12716],
+      catchPathList: [[12712], [12712, 12716]],
+    },
+    12766: {
+      bestCatchPath: [12712, 12716, 12724],
+      catchPathList: [[12712, 12724], [12712, 12716, 12724]],
     },
   },
   COLLECTABLE_FISH_ITEM_ID: [
