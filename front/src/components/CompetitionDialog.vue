@@ -8,7 +8,7 @@
       </v-card-title>
       <v-card-text class="pb-0">
         <v-row class="d-flex">
-          <v-col cols="7" class="py-0">
+          <v-col :cols="isMobile ? 12 : 7" class="py-0">
             <v-carousel
               hide-delimiter-background
               show-arrows-on-hover
@@ -20,7 +20,7 @@
               </v-carousel-item>
             </v-carousel>
           </v-col>
-          <v-col cols="5" class="pa-0">
+          <v-col :cols="isMobile ? 12 : 5" :class="isMobile ? '' : 'pa-0'">
             <div class="d-flex flex-column justify-space-around fill-height">
               <div>
                 <div>什么是真正的渔夫？是幸运的宠儿，还是敢于拼搏的猛士？</div>
@@ -92,6 +92,9 @@ export default {
       set(showDialog) {
         return this.$emit('input', showDialog)
       },
+    },
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile
     },
   },
   methods: {},
