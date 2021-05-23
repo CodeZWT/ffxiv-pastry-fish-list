@@ -337,7 +337,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item v-if="isElectron" @click="showCompetition" link>
+          <v-list-item @click="showCompetition" link>
             <v-list-item-icon>
               <new-feature-mark id="Competition-V.0.8.3-1">
                 <v-icon>mdi-trophy-award</v-icon>
