@@ -24,6 +24,19 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.41后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
+        <div class="text-h6">Version 0.8.4</div>
+        <div class="text-subtitle-1">更新时间: 2021/05/23 13:20</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>
+            增加“第三届光之渔夫钓鱼大赛”相关宣传，欢迎大家踊跃报名！
+          </li>
+          <li>
+            更新云冠群岛的部分说明。
+          </li>
+        </ul>
+
+        <v-divider />
 
         <div class="text-h6">Version 0.8.3</div>
         <div class="text-subtitle-1">更新时间: 2021/05/11 22:20</div>
