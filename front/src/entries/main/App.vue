@@ -471,10 +471,25 @@
     />
 
     <v-footer app style="font-size: small; max-height: 31px">
-      <div class="d-flex" style="width: 100%">
+      <div
+        class="d-flex"
+        style="width: 100%; cursor: pointer"
+        @click="showAboutDialog = true"
+      >
         <div class="text-truncate mr-2" :title="$t('footer.contact')">
-          {{ $t('footer.contact') }}
+          <i class="fa fa-qq" aria-hidden="true"></i>
+          1153646847 红豆年糕@海猫茶屋
         </div>
+        <template v-if="!isMobile">
+          <div>
+            <i class="fa fa-weibo" aria-hidden="true"></i>
+            红豆年糕找不到
+          </div>
+          <div class="ml-1">
+            联合：<i class="fa fa-weibo" aria-hidden="true"></i>
+            光之渔夫bot
+          </div>
+        </template>
         <v-spacer />
         <div class="text-truncate" :title="$t('footer.ffRights')">
           {{ $t('footer.ffRights') }}
@@ -500,7 +515,15 @@
         <v-card-title>关于</v-card-title>
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
-          <div>群：1153646847</div>
+          <div><i class="fa fa-qq" aria-hidden="true"></i> 群: 1153646847</div>
+          <div>
+            <i class="fa fa-weibo" aria-hidden="true"></i>
+            红豆年糕找不到
+          </div>
+          <div>
+            联合：<i class="fa fa-weibo" aria-hidden="true"></i>
+            光之渔夫bot
+          </div>
           <div>欢迎使用本站</div>
           <div>
             钓场的范围提示由 <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 提供
