@@ -477,21 +477,29 @@
         @click="showAboutDialog = true"
       >
         <div class="text-truncate mr-2" :title="$t('footer.contact')">
-          <i class="fa fa-qq" aria-hidden="true"></i>
-          1153646847 红豆年糕@海猫茶屋
+          <span v-if="!isMobile">
+            {{ $t('footer.author') }}
+          </span>
+          <span>
+            <i class="fa fa-qq" aria-hidden="true"></i>
+            1153646847
+          </span>
+          <span v-if="isMobile">
+            {{ $t('footer.author') }}
+          </span>
         </div>
         <template v-if="!isMobile">
           <div>
             <i class="fa fa-weibo" aria-hidden="true"></i>
             红豆年糕找不到
           </div>
-          <div class="ml-1">
+          <div class="ml-2">
             联合：<i class="fa fa-weibo" aria-hidden="true"></i>
             光之渔夫bot
           </div>
         </template>
         <v-spacer />
-        <div class="text-truncate" :title="$t('footer.ffRights')">
+        <div v-if="!isMobile" class="text-truncate" :title="$t('footer.ffRights')">
           {{ $t('footer.ffRights') }}
         </div>
       </div>
@@ -565,6 +573,9 @@
               </a>
             </li>
           </ul>
+          <div class="mt-10">
+            {{ $t('footer.ffRights') }}
+          </div>
         </v-card-text>
         <v-card-actions>
           <div class="d-flex flex-column flex-fill">
