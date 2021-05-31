@@ -123,7 +123,7 @@ export default {
         hasCountDown: DataUtil.hasCountDown(this.fishTimePart.countDown),
         hasFishEyes: !!fish.fishEyes,
         fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
-        fishEyesText: DataUtil.secondsToFishEyesString(fish.fishEyes),
+        fishEyesText: DataUtil.secondsToMinutesString(fish.fishEyes),
         fishEyesSeconds: fish.fishEyes,
         hasPredators: hasPredators,
         predators: this.predators,

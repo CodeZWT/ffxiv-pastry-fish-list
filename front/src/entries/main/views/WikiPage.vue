@@ -152,7 +152,7 @@
               <div class="text-h6">成就计数</div>
               <div class="text-subtitle-1">鼠标悬停成就数字可查看说明</div>
               <v-divider />
-              <v-subheader>专研钓鱼笔记（5.4最大值1157，5.5最大值1175）</v-subheader>
+              <v-subheader>专研钓鱼笔记（5.4最大值1157，5.55最大值1181）</v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
@@ -172,7 +172,7 @@
                   />
                 </v-col>
               </v-row>
-              <v-subheader>净界太公（5.4最大值28，5.5最大值39）</v-subheader>
+              <v-subheader>净界太公（5.4最大值28，5.55最大值45）</v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress

@@ -283,7 +283,7 @@ export default {
   toTeamcraftItemLink: toTeamcraftItemLink,
   toTeamcraftSpotLink: toTeamcraftSpotLink,
 
-  secondsToFishEyesString(seconds) {
+  secondsToMinutesString(seconds) {
     if (seconds === true) return ''
     return TimeFormatter.millisecondsToText(seconds * 1000, 2, false, false)
   },
@@ -562,6 +562,8 @@ export default {
               startEorzeaTime.timeOfHours(fish.endHour).toEarthTime(),
             ]
           })
+        } else if (fish._id === 33244) {
+          return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
         } else {
           console.error('Unsupported fish!', fish._id, 'need write new rules for it!')
           return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
@@ -587,6 +589,16 @@ export default {
               return fishWindow
             }
           })
+        } else if (fish._id === 33240) {
+          // Special Case 3: 'Aquamaton'
+          // 2 predators and one has no restraints
+          return this.getFishWindowOfSingleFish(
+            { ...allFish[33319], endHour: 16 },
+            now,
+            fishingSpots,
+            fishEyesUsed,
+            n
+          )
         } else {
           console.error('Unsupported fish!', fish._id, 'need write new rules for it!')
           return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
@@ -997,7 +1009,7 @@ export default {
     WAITING: ['#2d2d32', '#272727'],
   },
 
-  PATCH_MAX: 5.5,
+  PATCH_MAX: 5.55,
   PATCH_AVAILABLE_MAX: CN_PATCH_VERSION,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 

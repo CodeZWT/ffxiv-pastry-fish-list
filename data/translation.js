@@ -6728,6 +6728,12 @@ module.exports = {
     33324: { id: 33324, name_chs: 'Golden Pipira', icon: 28492 },
     33325: { id: 33325, name_chs: 'Mora Tecta', icon: 28035 },
     33326: { id: 33326, name_chs: 'Maru Crab', icon: 28034 },
+    33239: { id: 33239, name_chs: 'Listracanthus', icon: 28497 },
+    33240: { id: 33240, name_chs: 'Aquamaton', icon: 28038 },
+    33241: { id: 33241, name_chs: 'Cinder Surprise', icon: 29622 },
+    33242: { id: 33242, name_chs: 'Ealad Skaan', icon: 28495 },
+    33243: { id: 33243, name_chs: 'Greater Serpent of Ronka', icon: 28499 },
+    33244: { id: 33244, name_chs: 'Lancetfish', icon: 28033 },
   },
   FISHING_SPOTS: {
     0: {
@@ -11965,6 +11971,12 @@ module.exports = {
     33324,
     33325,
     33326,
+    33239,
+    33240,
+    33241,
+    33242,
+    33243,
+    33244,
   ],
   // 鱼皇
   LIVING_LEGENDS: [
@@ -11986,6 +11998,12 @@ module.exports = {
     24992,
     24995,
     24990,
+    33239,
+    33240,
+    33241,
+    33242,
+    33243,
+    33244,
   ],
   NEW_PATCH_FISH: [
     30488,

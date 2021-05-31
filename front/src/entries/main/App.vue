@@ -1793,6 +1793,8 @@ export default {
               text: this.$t('gig.' + DataUtil.GIG_DICT[fish.gig]),
             }
           : {},
+        checking: !!fish.checkInfo,
+        checkInfo: fish.checkInfo ?? {},
       }
     },
     getSpearFishPredators(predators) {
@@ -1853,7 +1855,7 @@ export default {
           baits: this.getBaits(fish),
           hasFishEyes: fish.fishEyes !== false,
           fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
-          fishEyesText: DataUtil.secondsToFishEyesString(fish.fishEyes),
+          fishEyesText: DataUtil.secondsToMinutesString(fish.fishEyes),
           fishEyesSeconds: fish.fishEyes,
           hasPredators: hasPredators,
           predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
@@ -1897,6 +1899,9 @@ export default {
           },
           tasks: tasks,
           hasTasks: tasks.length > 0,
+          checking: !!fish.checkInfo,
+          checkInfo: fish.checkInfo ?? {},
+          intuitionLength: fish.intuitionLength,
         }
       })
     },

@@ -61,7 +61,8 @@
     "fishConstraint": {
       "title": "条件限制",
       "RESTRICTED": "时间/天气限制",
-      "NOT_RESTRICTED": "常驻"
+      "NOT_RESTRICTED": "常驻",
+      "CHECKING": "开荒中"
     },
     "showFirstNFish": {
       "title": "最多显示条数",

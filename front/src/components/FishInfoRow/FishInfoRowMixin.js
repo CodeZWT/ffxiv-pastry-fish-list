@@ -108,6 +108,7 @@ export default {
     ]),
   },
   methods: {
+    secondsToMinutesString: DataUtil.secondsToMinutesString,
     printCountDownTime: DataUtil.printCountDownTime,
     toItemTitle: DataUtil.toItemTitle,
     setCompleted(completed) {
