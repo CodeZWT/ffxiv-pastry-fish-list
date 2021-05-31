@@ -86,33 +86,54 @@
           <fishing-spot-column :fishing-spots="fish.fishingSpots" small />
         </div>
         <div v-if="!transformedFishTimePart.hasCountDown" class="text-subtitle-2">
-          {{ $t(transformedFishTimePart.countDownType) }}
+          <div v-if="fish.checkInfo.timeRestricted">
+            有时间限制
+          </div>
+          <div v-if="fish.checkInfo.weatherRestricted">
+            有天气限制
+          </div>
+          <div
+            v-if="
+              !fish.hasTimeConstraint &&
+                !fish.hasWeatherConstraint &&
+                !fish.checkInfo.timeRestricted &&
+                !fish.checkInfo.weatherRestricted
+            "
+          >
+            {{ $t(transformedFishTimePart.countDownType) }}
+          </div>
         </div>
         <div v-else class="d-flex flex-column">
           <!--  1st: end / start count down  -->
           <div class="text-subtitle-1 d-flex">
-            <div>
-              <v-tooltip right color="secondary">
-                <template v-slot:activator="{ on, attrs }">
-                  <div v-bind="attrs" v-on="on">
-                    {{
-                      $t(transformedFishTimePart.countDownType, {
-                        interval: transformedFishTimePart.countDownTimeText,
-                      })
-                    }}
+            <template v-if="transformedFishTimePart.hasCountDown">
+              <div>
+                <v-tooltip right color="secondary">
+                  <template v-slot:activator="{ on, attrs }">
+                    <div v-bind="attrs" v-on="on">
+                      {{
+                        $t(transformedFishTimePart.countDownType, {
+                          interval: transformedFishTimePart.countDownTimeText,
+                        })
+                      }}
+                    </div>
+                  </template>
+                  <div class="d-flex flex-column">
+                    <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
                   </div>
-                </template>
-                <div class="d-flex flex-column">
-                  <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
-                </div>
-              </v-tooltip>
+                </v-tooltip>
+              </div>
+              <div
+                v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
+                :title="$t('list.item.countDown.fishShadowHint')"
+                :class="fish.predatorsIcon"
+                style="margin-left: 2px"
+              />
+            </template>
+            <div v-if="fish.checking" title="开荒中一切数据仅供参考" class="ml-1">
+              <v-icon small color="warning">mdi-alert-outline</v-icon>
+              <span class="warning--text">开荒中</span>
             </div>
-            <div
-              v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
-              :title="$t('list.item.countDown.fishShadowHint')"
-              :class="fish.predatorsIcon"
-              style="margin-left: 2px"
-            />
           </div>
           <!--  2nd: next count down / interval & fishing window rate -->
           <div v-if="transformedFishTimePart.hasCountDown" class="d-flex align-center">
@@ -152,8 +173,15 @@
         class="col-11 col-sm-3 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0"
       >
         <div v-if="fish.hasPredators || fish.hasSnagging" class="mr-1">
-          <div v-if="fish.hasPredators">
+          <div v-if="fish.hasPredators" class="d-flex flex-column align-center">
             <div :class="fish.predatorsIcon" />
+            <div
+              v-if="fish.intuitionLength"
+              :title="secondsToMinutesString(fish.intuitionLength)"
+              class="text-subtitle-2"
+            >
+              {{ fish.intuitionLength }}s
+            </div>
           </div>
           <div v-if="fish.hasSnagging">
             <div :class="fish.snaggingIcon" data-ck-action-name="钓组" />
