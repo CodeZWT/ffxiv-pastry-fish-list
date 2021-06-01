@@ -732,7 +732,7 @@ export default {
   },
 
   toItemIdIfExisted(id, name) {
-    if (hasChineseCharacter(name)) {
+    if (hasChineseCharacter(name) && id < 999900) {
       return toItemId(id)
     } else {
       return null
@@ -742,7 +742,7 @@ export default {
   toItemId: toItemId,
 
   toItemTitle(item) {
-    return item.name + '#' + toItemId(item.id)
+    return item.name + (item.id < 999990 ? '#' + toItemId(item.id) : '')
   },
 
   toSpotItemId(spotId, itemId) {

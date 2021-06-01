@@ -6734,6 +6734,7 @@ module.exports = {
     33242: { id: 33242, name_chs: 'Ealad Skaan', icon: 28495 },
     33243: { id: 33243, name_chs: 'Greater Serpent of Ronka', icon: 28499 },
     33244: { id: 33244, name_chs: 'Lancetfish', icon: 28033 },
+    999990: {id: 999990, name_chs: '未知鱼饵', icon:60051}
   },
   FISHING_SPOTS: {
     0: {

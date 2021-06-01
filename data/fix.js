@@ -1928,7 +1928,7 @@ module.exports = {
       startHour: 0,
       endHour: 24,
       locations: [215],
-      bestCatchPath: [],
+      bestCatchPath: [999990],
       predators: {
         27462: 10,
       },
@@ -1955,7 +1955,7 @@ module.exports = {
       startHour: 0,
       endHour: 24,
       locations: [219],
-      bestCatchPath: [],
+      bestCatchPath: [999990],
       predators: {},
       intuitionLength: null,
       patch: 5.55,
