@@ -1120,7 +1120,7 @@ onFFXIVEventWithFilter('unknown', null, null, 566, packet => {
   }
 })
 
-onFFXIVEventWithFilter('unknown', null, null, 704, packet => {
+onFFXIVEvent('weatherChange', packet => {
   if (region === 'Global') {
     onWeatherChange(packet)
   } else {
