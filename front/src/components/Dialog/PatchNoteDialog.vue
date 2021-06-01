@@ -24,6 +24,25 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.41后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
+        <div class="text-h6">Version 0.8.6</div>
+        <div class="text-subtitle-1">更新时间: 2021/06/01 00:00</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>
+            修复开荒鱼的鱼饵筛选与条件筛选
+          </li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">渔捞</div>
+        <ul>
+          <li>
+            修复天气检测（幻海流，空岛天气）
+          </li>
+        </ul>
+        <p />
+
+        <v-divider />
+
         <div class="text-h6">Version 0.8.5</div>
         <div class="text-subtitle-1">更新时间: 2021/05/31 23:40</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
