@@ -806,7 +806,10 @@ export default {
           const fishCompleted = this.getFishCompleted(fish.id)
           const isBigFish = DATA_CN.BIG_FISH.includes(fish.id)
           const isLivingLegend = DATA_CN.LIVING_LEGENDS.includes(fish.id)
-          const restricted = this.lazyFishConstraintDict[fish.id]
+          const restricted =
+            this.lazyFishConstraintDict[fish.id] ||
+            fish.checkInfo?.weatherRestricted ||
+            fish.checkInfo?.timeRestricted
           return (
             this.filters.patches.includes(DataUtil.toFishFilterPatch(fish.patch)) &&
             ((this.filters.completeTypes.includes('COMPLETED') && fishCompleted) ||
