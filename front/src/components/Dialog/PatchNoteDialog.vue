@@ -24,8 +24,29 @@
         <v-alert outlined type="warning" border="left">
           更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。
         </v-alert>
+
+        <div class="text-h6">Version 0.8.7</div>
+        <div class="text-subtitle-1">更新时间: 2021/06/07 22:20</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>
+            更新5.45翻译
+          </li>
+          <li>
+            更新5.45成就计数
+          </li>
+          <li>
+            增加5.55国际服成就
+          </li>
+          <li>
+            更新部分鱼数据
+          </li>
+        </ul>
+
+        <v-divider />
+
         <div class="text-h6">Version 0.8.6</div>
-        <div class="text-subtitle-1">更新时间: 2021/06/02 00:00</div>
+        <div class="text-subtitle-1">更新时间: 2021/06/03 00:00</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
           <li>
