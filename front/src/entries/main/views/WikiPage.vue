@@ -152,7 +152,7 @@
               <div class="text-h6">成就计数</div>
               <div class="text-subtitle-1">鼠标悬停成就数字可查看说明</div>
               <v-divider />
-              <v-subheader>专研钓鱼笔记（5.4最大值1157，5.55最大值1181）</v-subheader>
+              <v-subheader>专研钓鱼笔记（5.45最大值1159，5.55最大值1181）</v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
@@ -172,13 +172,24 @@
                   />
                 </v-col>
               </v-row>
-              <v-subheader>净界太公（5.4最大值28，5.55最大值45）</v-subheader>
+              <v-subheader>净界太公（5.45最大值28）</v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
                     :value="counts.goBigFarFromHome.record"
                     :total="counts.goBigFarFromHome.total"
                     :ticks="counts.goBigFarFromHome.ticks"
+                  />
+                </v-col>
+              </v-row>
+
+              <v-subheader>No River Wide Enough（5.45最大值232）</v-subheader>
+              <v-row>
+                <v-col>
+                  <achievement-progress
+                    :value="counts.noRiverWideEnough.record"
+                    :total="counts.noRiverWideEnough.total"
+                    :ticks="counts.noRiverWideEnough.ticks"
                   />
                 </v-col>
               </v-row>
@@ -383,9 +394,9 @@
     <v-dialog v-model="showSyncDialog" max-width="320" :fullscreen="isMobile" scrollable>
       <v-card>
         <!-- patch update wait note -->
-        <!--        <v-alert outlined type="warning" border="left">-->
-        <!--          更新国服5.41后，渔捞与同步功能不可用，请耐心等待自动更新。-->
-        <!--        </v-alert>-->
+        <v-alert outlined type="warning" border="left">
+          更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。
+        </v-alert>
         <v-card-title>数据同步</v-card-title>
         <v-card-subtitle v-if="!isElectron">
           数据同步为鱼糕桌面版功能，左侧可下载桌面版。
@@ -714,9 +725,9 @@ export default {
             }
           })
           .concat({
-            data: [1157],
-            name_chs: '国服5.4版本最大值',
-            description: '国服5.4版本共有1157条鱼属于成就记录范围。',
+            data: [1159],
+            name_chs: '国服5.45版本最大值',
+            description: '国服5.45版本共有1159条鱼属于成就记录范围。',
             type: 'maxTip',
             nextLine: true,
           }),
@@ -739,23 +750,31 @@ export default {
       const goBigFarFromHome = {
         record: this.allCompletedFish.filter(it => goBigFarFromHomeFishIds.includes(it))
           .length,
-        ticks: [
-          // {title: '鱼太公', cnt: 100},
-          // {title: '烟波钓徒', cnt: 204},
-        ].concat({
-          data: [28],
-          name_chs: '国服5.4版本最大值',
-          description: '国服5.4版本共有28条鱼属于成就记录范围。',
-          type: 'maxTip',
-          nextLine: false,
-        }),
+        ticks: [2833]
+          .map(achievementId => FIX.ACHIEVEMENT[achievementId])
+          .concat({
+            data: [28],
+            name_chs: '国服5.45版本最大值',
+            description: '国服5.45版本共有28条鱼属于成就记录范围。',
+            type: 'maxTip',
+            nextLine: false,
+          }),
         total: goBigFarFromHomeFishIds.length, //+ globalBigFish,
+      }
+
+      const noRiverWideEnough = {
+        record: this.allCompletedFish.filter(
+          it => goBigOrGoHomeFishIds.includes(it) || goBigFarFromHomeFishIds.includes(it)
+        ).length,
+        ticks: [2834].map(achievementId => FIX.ACHIEVEMENT[achievementId]),
+        total: goBigOrGoHomeFishIds.length + goBigFarFromHomeFishIds.length,
       }
       return _.mapValues(
         {
           iCatchThat,
           goBigOrGoHome,
           goBigFarFromHome,
+          noRiverWideEnough,
         },
         it => ({ ...it, percentage: ((it.record / it.total) * 100).toFixed(0) })
       )
