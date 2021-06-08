@@ -21,9 +21,19 @@
       <v-divider />
       <v-card-text style="max-height: 600px">
         <!-- patch update wait note -->
-        <v-alert outlined type="warning" border="left">
-          更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。
-        </v-alert>
+        <!--        <v-alert outlined type="warning" border="left">-->
+        <!--          更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。-->
+        <!--        </v-alert>-->
+        <div class="text-h6">Version 0.8.8</div>
+        <div class="text-subtitle-1">更新时间: 2021/06/08 23:20</div>
+        <div class="text-h5 text-center my-1">渔捞</div>
+        <ul>
+          <li>
+            更新5.45支持
+          </li>
+        </ul>
+
+        <v-divider />
 
         <div class="text-h6">Version 0.8.7</div>
         <div class="text-subtitle-1">更新时间: 2021/06/07 22:20</div>
