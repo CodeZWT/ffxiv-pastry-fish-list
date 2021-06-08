@@ -1112,7 +1112,7 @@ function getString(uint8Array, offset, length) {
 // onFFXIVEventWithFilter('unknown', null, null, null,(packet) => {
 //   log.debug('wc?', packet.opcode, packet.data)
 // })
-onFFXIVEventWithFilter('unknown', null, null, 566, packet => {
+onFFXIVEventWithFilter('unknown', null, null, 632, packet => {
   if (region === 'CN') {
     onWeatherChange(packet)
   } else {
@@ -1121,11 +1121,7 @@ onFFXIVEventWithFilter('unknown', null, null, 566, packet => {
 })
 
 onFFXIVEvent('weatherChange', packet => {
-  if (region === 'Global') {
-    onWeatherChange(packet)
-  } else {
-    log.debug('enter weatherChange in CN region ???')
-  }
+  onWeatherChange(packet)
 })
 
 onFFXIVEvent('playerSetup', packet => {
