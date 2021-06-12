@@ -494,7 +494,7 @@
             红豆年糕找不到
           </div>
           <div class="ml-2">
-            联合：<i class="fab fa-weibo" aria-hidden="true"></i>
+            合作：<i class="fab fa-weibo" aria-hidden="true"></i>
             光之渔夫bot
           </div>
         </template>
@@ -529,7 +529,7 @@
             红豆年糕找不到
           </div>
           <div>
-            联合：<i class="fab fa-weibo" aria-hidden="true"></i>
+            合作：<i class="fab fa-weibo" aria-hidden="true"></i>
             光之渔夫bot
           </div>
           <div>欢迎使用本站</div>
