@@ -45,8 +45,8 @@
                     </v-carousel>
                   </v-col>
                   <v-col :cols="isMobile ? 12 : 5" :class="isMobile ? '' : 'pa-0'">
-                    <v-row class="flex-column fill-height">
-                      <v-col class="d-flex flex-column align-center">
+                    <div class="flex-column fill-height">
+                      <div class="d-flex flex-column align-center">
                         <v-subheader>最终排名</v-subheader>
                         <div
                           class="d-flex align-center ma-4"
@@ -58,8 +58,8 @@
                             {{ rank.name }}
                           </div>
                         </div>
-                      </v-col>
-                      <v-col class="d-flex flex-column align-center">
+                      </div>
+                      <div class="d-flex flex-column align-center">
                         <v-subheader>工作人员</v-subheader>
                         <div>
                           <v-simple-table>
@@ -74,8 +74,8 @@
                             </tbody>
                           </v-simple-table>
                         </div>
-                      </v-col>
-                    </v-row>
+                      </div>
+                    </div>
                   </v-col>
                 </v-row>
               </v-card-text>
@@ -98,12 +98,6 @@ export default {
   mixins: [EnvMixin],
   data() {
     return {
-      competitions: competitions.reverse().map(competition => {
-        return {
-          ...competition,
-          ranks: this.transferRank(competition.ranks),
-        }
-      }),
       tab: null,
       competitionImageCrrIdx: competitions.map(() => 0),
     }
@@ -111,6 +105,14 @@ export default {
   computed: {
     IMG_HEIGHT() {
       return this.isMobile ? 400 : 800
+    },
+    competitions() {
+      return competitions.map(competition => {
+        return {
+          ...competition,
+          ranks: this.transferRank(competition.ranks),
+        }
+      })
     },
   },
   methods: {

@@ -606,7 +606,7 @@
     />
     <desktop-version-dialog v-model="showDownloadDialog" />
 
-    <competition-dialog v-model="showCompetitionDialogComputed" />
+    <!--    <competition-dialog v-model="showCompetitionDialogComputed" />-->
 
     <v-snackbar
       :timeout="2000"
@@ -700,13 +700,11 @@ import FishEyesToggleButton from '@/components/FishEyesToggleButton'
 import isEqual from 'lodash/isEqual'
 import repeat from 'lodash/repeat'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
-import CompetitionDialog from '@/components/CompetitionDialog'
 // let totalCnt = 0
 
 export default {
   name: 'App',
   components: {
-    CompetitionDialog,
     ResizeIndicator,
     FishEyesToggleButton,
     HelpDialog,
