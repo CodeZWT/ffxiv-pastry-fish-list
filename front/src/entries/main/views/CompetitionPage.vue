@@ -48,22 +48,14 @@
                     <v-row class="flex-column fill-height">
                       <v-col class="d-flex flex-column align-center">
                         <v-subheader>最终排名</v-subheader>
-                        <div class="d-flex align-center ma-4">
-                          <v-icon color="#C9B037" x-large>fa fa-medal</v-icon>
+                        <div
+                          class="d-flex align-center ma-4"
+                          v-for="rank in competition.ranks"
+                          :key="rank.name"
+                        >
+                          <v-icon :color="rank.color" x-large>fa fa-medal</v-icon>
                           <div class="ml-2" style="font-size: x-large">
-                            {{ competition.ranks[0] }}
-                          </div>
-                        </div>
-                        <div class="d-flex align-center ma-4">
-                          <v-icon color="#D7D7D7" x-large>fa fa-medal</v-icon>
-                          <div class="ml-2" style="font-size: x-large">
-                            {{ competition.ranks[1] }}
-                          </div>
-                        </div>
-                        <div class="d-flex align-center ma-4">
-                          <v-icon color="#AD8A56" x-large>fa fa-medal</v-icon>
-                          <div class="ml-2" style="font-size: x-large">
-                            {{ competition.ranks[2] }}
+                            {{ rank.name }}
                           </div>
                         </div>
                       </v-col>
@@ -106,11 +98,26 @@ export default {
   mixins: [EnvMixin],
   data() {
     return {
-      competitions: competitions.reverse(),
+      competitions: competitions.reverse().map(competition => {
+        return {
+          ...competition,
+          ranks: this.transferRank(competition.ranks),
+        }
+      }),
       tab: null,
       competitionImageCrrIdx: competitions.map(() => 0),
       IMG_HEIGHT: 800,
     }
+  },
+  methods: {
+    transferRank(names) {
+      return names.map((name, i) => {
+        return {
+          name: name,
+          color: ['#FCC201', '#D7D7D7', '#AD8A56'][i],
+        }
+      })
+    },
   },
 }
 </script>
