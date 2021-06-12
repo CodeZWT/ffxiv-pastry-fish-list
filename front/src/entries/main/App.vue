@@ -337,10 +337,10 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item @click="showCompetition" link>
+          <v-list-item @click="toCompetitionPage" link>
             <v-list-item-icon>
-              <new-feature-mark id="Competition-V.0.8.3-1">
-                <v-icon>mdi-trophy-award</v-icon>
+              <new-feature-mark id="Competition-V.0.8.3-2">
+                <v-icon>mdi-trophy</v-icon>
               </new-feature-mark>
             </v-list-item-icon>
             <v-list-item-content>
@@ -1311,9 +1311,13 @@ export default {
     // }, 200)
   },
   methods: {
+    toCompetitionPage() {
+      this.setFeatureViewed('Competition-V.0.8.3-2')
+      this.toPage('CompetitionPage')
+    },
     showCompetition() {
       this.showCompetitionDialogComputed = true
-      this.setFeatureViewed('Competition-V.0.8.3-1')
+      this.setFeatureViewed('Competition-V.0.8.3-2')
     },
     getWindowSetting() {
       return window.electron?.ipcRenderer

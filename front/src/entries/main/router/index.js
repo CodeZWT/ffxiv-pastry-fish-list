@@ -52,6 +52,15 @@ const routes = [
       ),
   },
   {
+    path: '/competition',
+    name: 'CompetitionPage',
+    component: () =>
+      import(
+        /* webpackChunkName: "competition" */
+        '../views/CompetitionPage'
+      ),
+  },
+  {
     path: '/migration',
     name: 'MigrationPage',
     component: MigrationPage,
