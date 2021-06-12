@@ -546,8 +546,16 @@
                     FFX|V Fish Tracker App
                   </a>
                 </li>
-                <li><a @click="goTo('http://garlandtools.org/db/')">Garland Data</a></li>
+                <li><a @click="goTo('https://garlandtools.org/db/')">Garland Data</a></li>
                 <li><a @click="goTo('https://cn.ff14angler.com/')">饥饿的猫</a></li>
+                <li>
+                  <a @click="goTo('https://ffxivteamcraft.com/')">FFXIV TEAMCRAFT</a>
+                </li>
+                <li>
+                  <a @click="goTo('https://ffxiv.pf-n.co/ocean-fishing/')"
+                    >Lulu's Tools - Ocean Fishing</a
+                  >
+                </li>
               </ul>
             </li>
             <li>
