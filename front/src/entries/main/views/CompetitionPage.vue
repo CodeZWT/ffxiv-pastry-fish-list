@@ -16,8 +16,8 @@
           <v-tab-item v-for="(competition, i) in competitions" :key="i">
             <v-card>
               <v-card-text>
-                <v-row style="width: 100%">
-                  <v-col :cols="isMobile ? 12 : 7" class="py-0">
+                <v-row style="width: 100%" no-gutters>
+                  <v-col :cols="isMobile ? 12 : 7" class="py-0 d-flex justify-center">
                     <img-viewer
                       v-if="competition.posters.length === 1"
                       :lazy-src="competition.posters[0].md"
@@ -106,8 +106,12 @@ export default {
       }),
       tab: null,
       competitionImageCrrIdx: competitions.map(() => 0),
-      IMG_HEIGHT: 800,
     }
+  },
+  computed: {
+    IMG_HEIGHT() {
+      return this.isMobile ? 400 : 800
+    },
   },
   methods: {
     transferRank(names) {
