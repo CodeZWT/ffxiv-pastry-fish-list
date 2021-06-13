@@ -455,7 +455,6 @@ function resetIKDStatus() {
 }
 
 onFFXIVEventWithFilter('actorControl', null, 20, null, packet => {
-  // log.debug('actorControl', packet)
   status.effects.add(packet.param1)
 })
 
@@ -479,7 +478,6 @@ const effectToDetect = new Set([
 
 // update all status according to statusEffectList
 onFFXIVEvent('statusEffectList', packet => {
-  // log.debug('statusEffectList', packet)
   packet.effects
     .map(it => it.unknown1)
     .filter(effectId => effectToDetect.has(effectId))
@@ -498,7 +496,6 @@ onFFXIVEventSubType('fishingBaitMsg', packet => {
 
 const FISHING_EVENT = 0x150001
 onFFXIVEvents(['eventStart', 'eventFinish'], packet => {
-  // log.debug('fevent', packet.type, packet.eventId)
   if (packet.eventId === FISHING_EVENT) {
     status.isFishing = packet.type === 'eventStart'
     if (!status.isFishing) {
@@ -1112,13 +1109,15 @@ function getString(uint8Array, offset, length) {
 // onFFXIVEventWithFilter('unknown', null, null, null,(packet) => {
 //   log.debug('wc?', packet.opcode, packet.data)
 // })
-onFFXIVEventWithFilter('unknown', null, null, 632, packet => {
-  if (region === 'CN') {
-    onWeatherChange(packet)
-  } else {
-    log.debug('skip unknown weather change in Global region')
-  }
-})
+
+// not used since we server weatherChange ourselves
+// onFFXIVEventWithFilter('unknown', null, null, 632, packet => {
+//   if (region === 'CN') {
+//     onWeatherChange(packet)
+//   } else {
+//     log.debug('skip unknown weather change in Global region')
+//   }
+// })
 
 onFFXIVEvent('weatherChange', packet => {
   onWeatherChange(packet)
