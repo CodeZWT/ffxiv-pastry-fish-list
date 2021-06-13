@@ -36,9 +36,7 @@
           <div style="min-width: 60px">{{ weatherText }}</div>
           <v-spacer />
           <div class="text-right">
-            <div v-if="isSpectralCurrent">
-              钓场倒计时30s时，幻海流强制结束，请注意。
-            </div>
+            <div v-if="isSpectralCurrent">钓场倒计时30s时，幻海流强制结束，请注意。</div>
           </div>
         </div>
         <v-progress-linear
@@ -53,7 +51,28 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" v-if="isDiadem">
-        <div style="min-height: 32px" class="d-flex align-center">{{ weatherText }}</div>
+        <v-tooltip top :disabled="disableTooltip">
+          <template v-slot:activator="{ on, attrs }">
+            <div
+              style="min-height: 32px"
+              class="d-flex align-center"
+              v-bind="attrs"
+              v-on="on"
+            >
+              <div class="mr-1">{{ serverName }}</div>
+              <div>{{ weatherText }}</div>
+            </div>
+          </template>
+          <div>
+            <div>
+              岛名@mm:ss，表示该云冠群岛副本将在每10分钟的mm:ss时刷新天气。[功能测试中]
+            </div>
+            <div>
+              例：暖水鳟岛@6:27，表示 暖水鳟岛
+              会在每个小时的6m:27s、16m:27s、26m:27s、36m:27s、46m:27s、56m:27s 刷新天气
+            </div>
+          </div>
+        </v-tooltip>
         <v-progress-linear
           :value="diademWeatherIntervalPercentage"
           color="primary"
@@ -156,12 +175,13 @@ import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { WEATHER_TYPES } from 'Data/translation'
-import { ReaderFeatures } from '../../../../../data/newFeatures'
+import { ReaderFeatures } from 'Data/newFeatures'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import COMMON from 'Data/common'
 import db from '@/plugins/db'
 import ItemIcon from '@/components/basic/ItemIcon'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
+import { SERVER_ID_NAMES } from 'Data/diadem'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -185,6 +205,9 @@ export default {
   },
   computed: {
     ...mapGetters(['readerRegion', 'readerSetting']),
+    disableTooltip() {
+      return this.dataStatus?.serverId === -1
+    },
     spotId() {
       return this.dataStatus?.spotId
     },
@@ -261,7 +284,11 @@ export default {
       return this.zoneId === 3477 || this.weather === SPECTRAL_CURRENT
     },
     isDiadem() {
-      return this.zoneId === 1647 || DIADEM_WEATHERS.includes(this.weather)
+      return (
+        this.zoneId === 1647 ||
+        DIADEM_WEATHERS.includes(this.weather) ||
+        this.dataStatus?.isDiadem
+      )
     },
     spectralCurrentCountDown() {
       return this.isOceanFishing &&
@@ -304,6 +331,23 @@ export default {
       // }
       // console.log(WEATHER_TYPES[this.weather])
       return this.weather && DataUtil.getName(WEATHER_TYPES[this.weather])
+    },
+    serverName() {
+      return (
+        `[${
+          this.dataStatus.serverId === -1
+            ? '请在打开鱼糕的状态下进入云冠空岛'
+            : SERVER_ID_NAMES[this.dataStatus.serverId % SERVER_ID_NAMES.length] + '岛'
+        }${this.serverDiadem10MinOffset >= 0 ? '@' + this.serverDiademMinute : ''}]` ?? ''
+      )
+    },
+    serverDiadem10MinOffset() {
+      return this.dataStatus?.diademServerDict[this.dataStatus.serverId]
+    },
+    serverDiademMinute() {
+      const seconds = Math.round(this.serverDiadem10MinOffset / 1000)
+      const INTERVAL_MINUTE = 60
+      return `${Math.floor(seconds / INTERVAL_MINUTE)}m:${seconds % INTERVAL_MINUTE}s`
     },
     weather() {
       return this.dataStatus?.weather

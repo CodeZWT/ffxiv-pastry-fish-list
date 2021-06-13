@@ -141,7 +141,6 @@ exports.onPlayerSetup = callback => {
   playerSetupCallback = callback
 }
 
-
 function weatherChangeOf(weatherId) {
   return {
     // Global
@@ -269,7 +268,7 @@ const mockEvents = [
   weatherChangeOf(1),
   // someDirectorUnk4Of(3454),
   // someDirectorUnk4Of(3454),
-// 1
+  // 1
   // someDirectorUnk4Of(3625),
   // someDirectorUnk4Of(3625),
 
@@ -303,7 +302,7 @@ function init() {
 
   Machina.on('any', packet => {
     if (packet && filterPacketSessionID(packet)) {
-      if(isDev) {
+      if (isDev) {
         testOpcode(packet)
       }
       ffxivEvent.emit('ffxivEvent', packet)
@@ -316,7 +315,6 @@ function testOpcode(packet) {
     console.log('weatherChange opcode:', packet.opcode)
   }
 }
-
 
 function onUpdate(callback) {
   updateCallback = callback
@@ -426,20 +424,37 @@ onFFXIVEvent(
       log.debug('targetZone Zero')
     }
     status.weather = undefined
-    status.diademWeatherEndTime = undefined
+    resetDiademStatus()
     resetIKDStatus()
   },
   true
 )
+function resetDiademStatus() {
+  status.diademWeatherEndTime = null
+  Object.keys(status.diademServerDict).forEach(serverId => {
+    if (status.diademServerDict[serverId] === -1) {
+      status.diademServerDict[serverId] = undefined
+    }
+  })
+}
 
+let initZoneLastTime = 0
 onFFXIVEvent(
   'initZone',
   packet => {
-    console.debug('server id', packet.serverID)
+    initZoneLastTime = Date.now()
+    log.debug('server id', packet.serverID)
+    status.serverId = packet.serverID
     status.effects = new Set()
     if (packet.zoneID && TERRITORY_TYPES[packet.zoneID]) {
       status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
       log.debug('initZone', status.zoneId)
+      if (checkIsDiadem()) {
+        if (status.diademServerDict[status.serverId] == null) {
+          console.log('skip 1st weather change of SERVER:', status.serverId)
+          status.diademServerDict[status.serverId] = -1
+        }
+      }
       resetIKDStatus()
     }
   },
@@ -539,7 +554,10 @@ function resetStatus() {
     zoneId: undefined,
     spectralCurrentBuffTime: 0,
     oceanFishingRouteIndex: -1,
-    spotCurrents: [false, false, false]
+    spotCurrents: [false, false, false],
+    serverId: -1,
+    diademWeatherEndTime: null,
+    diademServerDict: {},
   }
 }
 
@@ -1033,9 +1051,24 @@ onFFXIVEvent('someDirectorUnk4', packet => {
       } else if (spotCnt > 1) {
         status.spotId = spotIds[spotCnt - 1]
       }
+      checkIsDiadem()
+      // Diadem
+      // if (checkIsDiadem()) {
+        // if (status.serverId === -1) {
+          // console.log('set serverId by fishing')
+          // // status.serverId = 99999
+          // status.zoneId = 1647
+          // status.diademServerDict[status.serverId] = -1
+          // initZoneLastTime = Date.now()
+        // }
+      // }
+      // Ocean Fishing update route index
       if (prevSpotId !== status.spotId && isOceanFishingSpot(status.spotId)) {
-        const spotList = voyagesWithTipOf(isDev ? new Date("2021-04-12 02:00:00").getTime() : Date.now(), 1)[0].locationTips.map(
-        // const spotList = voyagesWithTipOf(Date.now(), 1)[0].locationTips.map(
+        const spotList = voyagesWithTipOf(
+          isDev ? new Date('2021-04-12 02:00:00').getTime() : Date.now(),
+          1
+        )[0].locationTips.map(
+          // const spotList = voyagesWithTipOf(Date.now(), 1)[0].locationTips.map(
           it => it.fishingSpots
         )
         const oceanFishingRouteIndexDetected = spotList.findIndex(
@@ -1071,8 +1104,9 @@ function isOceanFishing() {
   return status.zoneId === 3477
 }
 
-function isDiadem() {
-  return status.zoneId === 1647
+function checkIsDiadem() {
+  status.isDiadem = status.zoneId === 1647 || isDiademFishingSpot(status.spotId)
+  return status.isDiadem
 }
 
 function getMessage(struct) {
@@ -1132,6 +1166,10 @@ onFFXIVEvent('playerSetup', packet => {
   resetRecord()
 })
 
+function isDiademFishingSpot(id) {
+  return id >= 10000
+}
+
 function isOceanFishingSpot(id) {
   return (id >= 237 && id <= 244) || (id >= 246 && id <= 251)
 }
@@ -1145,13 +1183,15 @@ function setTimeBuffIfNeeded() {
     status.spectralCurrentBuffTime
   )
   if (status.oceanFishingRouteIndex > 0) {
-    if (!status.spotCurrents[status.oceanFishingRouteIndex-1]) {
+    if (!status.spotCurrents[status.oceanFishingRouteIndex - 1]) {
       status.spectralCurrentBuffTime = INTERVAL_MINUTE
       log.debug('in setTimeBuffIfNeeded buffTime update', status.spectralCurrentBuffTime)
     }
   }
 }
-
+function get10MinuteOffset(milliseconds) {
+  return Math.round((milliseconds % (INTERVAL_MINUTE * 10)) / 1000)*1000
+}
 function onWeatherChange(packet) {
   status.previousWeather = status.weather
   status.weather = packet.data && +packet.data[0]
@@ -1171,7 +1211,8 @@ function onWeatherChange(packet) {
       if (status.spectralCurrentEndTime) {
         const spectralActualEndTime = Date.now()
         let remainingTime = status.spectralCurrentEndTime - spectralActualEndTime
-        status.spectralCurrentBuffTime = remainingTime > 0 ? Math.min(INTERVAL_MINUTE, remainingTime) : 0
+        status.spectralCurrentBuffTime =
+          remainingTime > 0 ? Math.min(INTERVAL_MINUTE, remainingTime) : 0
         status.spectralCurrentEndTime = undefined
         log.debug(
           'in weatherChange',
@@ -1182,16 +1223,51 @@ function onWeatherChange(packet) {
         )
       }
     }
-    if (status.previousWeather) {
-      if (isDiadem()) {
-        status.diademWeatherEndTime = Date.now() + DIADEM_WEATHER_COUNTDOWN_TOTAL
-      } else {
-        status.normalWeatherStartTime = Date.now()
+    if (checkIsDiadem()) {
+      const now = Date.now()
+      const crr10MinOffset = get10MinuteOffset(now)
+      if (status.diademServerDict[status.serverId] == null) {
+        // console.log('skip 1st weather change of SERVER:', status.serverId)
+        // status.diademServerDict[status.serverId] = -1
+      } else if (
+        status.diademServerDict[status.serverId] === -1 &&
+        Math.abs(now - initZoneLastTime) > 1000
+      ) {
+        console.log('mark SERVER:', status.serverId, 'minute:', crr10MinOffset)
+        status.diademServerDict[status.serverId] = crr10MinOffset
+        // status.diademWeatherEndTime = now + DIADEM_WEATHER_COUNTDOWN_TOTAL
+      } else if (status.diademServerDict[status.serverId] > 0 && Math.abs(now - initZoneLastTime) > 1000) {
+        const oldMinute = status.diademServerDict[status.serverId]
+        if (oldMinute !== crr10MinOffset) {
+          console.log(
+            'mark SERVER:',
+            status.serverId,
+            'minute from',
+            oldMinute,
+            'to',
+            crr10MinOffset
+          )
+          status.diademServerDict[status.serverId] = crr10MinOffset
+        }
       }
     }
   }
   log.info('time buff', status.spectralCurrentBuffTime / 1000, 's')
 }
+
+function resetDiademWeatherEndTime(status) {
+  const serverDiadem10MinOffset = status.diademServerDict[status.serverId]
+  if (serverDiadem10MinOffset >= 0) {
+    const now = Date.now()
+    const crr10MinOffset = get10MinuteOffset(now)
+    status.diademWeatherEndTime =
+      now -
+      (now % (10 * INTERVAL_MINUTE)) +
+      serverDiadem10MinOffset +
+      (serverDiadem10MinOffset <= crr10MinOffset ? 10 * INTERVAL_MINUTE : 0)
+  }
+}
+setInterval(() => resetDiademWeatherEndTime(status), 1000)
 
 onFFXIVEvent('updateClassInfo', packet => {
   // log.debug('updateClassInfo', packet)
