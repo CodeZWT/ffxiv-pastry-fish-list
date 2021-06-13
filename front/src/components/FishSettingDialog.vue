@@ -393,6 +393,9 @@ export default {
     },
     apply() {
       this.setMainWindowCloseMode(this.lazyMainWindowCloseMode)
+      window.electron?.ipcRenderer?.send('updateMainConfig', {
+        closeMode: this.lazyMainWindowCloseMode,
+      })
       this.setShowFilter(this.lazyShowFilter)
       this.setOpacity(this.lazyOpacity)
       this.setZoomFactor(this.lazyZoomFactor)

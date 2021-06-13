@@ -833,6 +833,13 @@ export default {
     LocalStorageUtil.storeUserData(state.userData)
   },
 
+  setUserDataPartInLocalStorage(state, { path, data }) {
+    const newUserData = _.cloneDeep(state.userData)
+    _.set(newUserData, path, data)
+    // state.userData = newUserData
+    LocalStorageUtil.storeUserData(state.userData)
+  },
+
   getUserDataPart(state) {
     return path => {
       return _.get(state.userData, path)

@@ -38,7 +38,7 @@ const WINDOWS = {}
 let tray, configStore, windowSetting, hotkeySetting, region, monitorType
 let intervalHandle
 let enableMouseThrough = false
-let showReaderOnlyIfFishing = false
+// let showReaderOnlyIfFishing = false
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
 let skipUpdate = isDev
@@ -128,7 +128,8 @@ function saveHotkeySetting(path, value) {
     setMouseThrough(!enableMouseThrough)
   })
 }
-
+let readerConfig = {}
+let mainWindowConfig = {}
 async function init() {
   if (isDev) {
     const {
@@ -154,7 +155,7 @@ async function init() {
   hotkeySetting = configStore.get('hotkeySetting')
 
   FishingDataReader.onUpdate(data => {
-    if (showReaderOnlyIfFishing) {
+    if (readerConfig.showReaderOnlyIfFishing) {
       const timerTarget = windowSetting.timerMini.enabled
         ? WINDOWS.timerMini
         : WINDOWS.readerTimer
@@ -181,11 +182,32 @@ async function init() {
       win.webContents.send('fishingData', data)
     )
   })
+
+  function callFirstAvailableWin(windows, callBack) {
+    const firstNotNull = windows.find(it => it)
+    if (firstNotNull) {
+      callBack(firstNotNull)
+    }
+  }
+
   FishingDataReader.onFishCaught(data => {
-    callWindowSafe(WINDOWS.main, win => win.webContents.send('fishCaught', data))
+    // Be care of spear fish!
+    const fishId = data.fishId
+    const hq = data.hq
+    if (
+      readerConfig.autoSetCompleted &&
+      fishId > 0 &&
+      (!readerConfig.autoSetCompletedOnlyHQ || hq)
+    ) {
+      callFirstAvailableWin([WINDOWS.main, WINDOWS.readerTimer, WINDOWS.timerMini], win =>
+        win.webContents.send('fishCaught', data)
+      )
+    }
   })
   FishingDataReader.onNewRecord(data => {
-    callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('newRecord', data))
+    callFirstAvailableWin([WINDOWS.readerTimer, WINDOWS.timerMini, WINDOWS.main], win =>
+      win.webContents.send('newRecord', data)
+    )
     callWindowSafe(WINDOWS.readerHistory, win => win.webContents.send('newRecord', data))
     callWindowSafe(WINDOWS.readerSpotStatistics, win =>
       win.webContents.send('newRecord', data)
@@ -222,11 +244,14 @@ async function init() {
     })
     .on('updateUserData', (event, updateData) => {
       // log.info('updateUserData', updateData.data)
-      updateUserData(updateData)
-      showReaderOnlyIfFishing = updateData.data.showReaderOnlyIfFishing
+      // updateUserData(updateData)
+      // showReaderOnlyIfFishing = updateData.data.showReaderOnlyIfFishing
+      readerConfig = updateData.data
 
+      // set hotkey
       saveHotkeySetting('mouseThrough', updateData.data.hotkey.mouseThrough || 'L')
 
+      // restart machina
       const newRegion = updateData.data.region || 'CN'
       const newMonitorType = updateData.data.monitorType || 'RawSocket'
       if (region !== newRegion || monitorType !== newMonitorType) {
@@ -253,7 +278,15 @@ async function init() {
           })
         }
       }
+
+      callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
     })
+    // .on('reloadUserData', () => {
+    //   callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
+    //   callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
+    //   callWindowSafe(WINDOWS.readerSetting, win => win.webContents.send('reloadUserData'))
+    // })
     .on('installNpcap', () => {
       ;[
         WINDOWS.readerTimer,
@@ -277,11 +310,6 @@ async function init() {
         log.info('Try install at', installPath)
         exec(`"${installPath}"`, postInstallCallback)
       }
-    })
-    .on('reloadUserData', () => {
-      callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.readerSetting, win => win.webContents.send('reloadUserData'))
     })
     .on('skipUpdate', () => {
       skipUpdate = true
@@ -312,11 +340,22 @@ async function init() {
     .on('startLoading', () => {
       // return createAndShowLoadingWindow().then(win => loadingForReloadingPage = win)
     })
-    .on('finishLoading', () => {
+    .on('updateMainConfig', (event, config) => {
+      mainWindowConfig = config
+    })
+    .on('finishLoading', (event, userData) => {
       // if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
       //   return loadingForReloadingPage.close()
       // }
       log.info('in finishLoading')
+      readerConfig = userData.reader
+      mainWindowConfig = userData.mainWindow
+
+      startReaderOnce({
+        region: readerConfig.region,
+        monitorType: readerConfig.monitorType,
+      })
+
       callWindowSafe(WINDOWS.main, win => {
         win.show()
       })
@@ -358,13 +397,26 @@ async function init() {
         })
     })
     .on('showSpotPage', (event, spotId) => {
-      callWindowSafe(WINDOWS.main, win => {
-        win.webContents.send('showSpotPage', spotId)
-        if (win.isMinimized()) {
-          win.restore()
-        }
-        win.focus()
-      })
+      if (!WINDOWS.main) {
+        createMainWindow()
+        callWindowSafe(WINDOWS.main, win => {
+          win.once('ready-to-show', () => {
+            win.webContents.send('showSpotPage', spotId)
+            if (win.isMinimized()) {
+              win.restore()
+            }
+            win.focus()
+          })
+        })
+      } else {
+        callWindowSafe(WINDOWS.main, win => {
+          win.webContents.send('showSpotPage', spotId)
+          if (win.isMinimized()) {
+            win.restore()
+          }
+          win.focus()
+        })
+      }
     })
     .on('updateWindowSetting', (event, newWindowSetting) => {
       Object.entries({
@@ -517,7 +569,7 @@ function setMouseThrough(enable) {
 }
 
 function switchMiniMode(mini) {
-  callWindowSafe(WINDOWS.main,async () => {
+  callWindowSafe(WINDOWS.main, async () => {
     if (mini) {
       const [x, y] = WINDOWS.main.getPosition()
       WINDOWS.mini = await createMiniWin(WINDOWS.main)
@@ -526,7 +578,7 @@ function switchMiniMode(mini) {
 
       WINDOWS.main.hide()
     } else {
-      callWindowSafe(WINDOWS.mini, (win) => {
+      callWindowSafe(WINDOWS.mini, win => {
         win.close()
       })
       // WINDOWS.mini.hide()
@@ -811,7 +863,9 @@ function createMainWindow() {
   return createWindow('main', 'main', 'assets/icon256.png', 'index', null).on(
     'closed',
     () => {
-      // quit()
+      // if (mainWindowConfig.closeMode === 'CLOSE') {
+      //   quit()
+      // }
     }
   )
 }
@@ -1098,6 +1152,9 @@ if (!gotTheLock) {
 }
 
 function showAndFocusMain() {
+  if (!WINDOWS.main) {
+    createMainWindow()
+  }
   callWindowSafe(WINDOWS.main, win => {
     if (win.isMinimized()) win.restore()
     if (!win.isVisible()) win.show()
@@ -1127,15 +1184,18 @@ function callTargetSafe(target, targetCallback) {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     log.info('in all closed')
-    FishingDataReader.stop(() => {
-      log.info('call quit')
-      // if (toInstallUpdates) {
-      //   log.info('try install')
-      //   exec('./setup/PastryFishSetup.exe')
-      // } else {
-      app.quit()
-      // }
-    })
+    if (mainWindowConfig.closeMode === 'CLOSE') {
+      // FishingDataReader.stop(() => {
+      //   log.info('call quit')
+      //   // if (toInstallUpdates) {
+      //   //   log.info('try install')
+      //   //   exec('./setup/PastryFishSetup.exe')
+      //   // } else {
+      //   app.quit()
+      //   // }
+      // })
+      quit()
+    }
   }
 })
 
@@ -1144,3 +1204,15 @@ app.on('window-all-closed', () => {
 //     createMainWindow();
 //   }
 // });
+
+let machinaStarted = false
+function startReaderOnce(options) {
+  if (!machinaStarted) {
+    machinaStarted = true
+    region = options.region
+    monitorType = options.monitorType
+    FishingDataReader.restart(options, () => {
+      log.info('Machina started!', options)
+    })
+  }
+}

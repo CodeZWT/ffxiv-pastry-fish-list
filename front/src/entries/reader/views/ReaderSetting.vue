@@ -370,6 +370,7 @@ export default {
     lazySetting: {
       handler(lazySetting) {
         console.debug('update setting', lazySetting)
+        this.updateReaderSetting(lazySetting)
         window.electron?.ipcRenderer?.send('updateUserData', {
           path: 'reader',
           data: lazySetting,

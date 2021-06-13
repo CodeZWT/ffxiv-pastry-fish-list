@@ -1064,6 +1064,7 @@ export default {
       },
     },
     ...mapState([
+      'userData',
       'baitFilter',
       'loading',
       'snackbar',
@@ -1083,8 +1084,8 @@ export default {
     ]),
     ...mapGetters([
       'mainWindowCloseMode',
-      'readerRegion',
-      'readerMonitorType',
+      // 'readerRegion',
+      // 'readerMonitorType',
       'fishEyesUsed',
       'showChromeBugDialog',
       'opacity',
@@ -1201,26 +1202,8 @@ export default {
 
       window.electron?.ipcRenderer
         ?.on('fishCaught', (event, data) => {
-          // Be care of spear fish!
           const fishId = data?.fishId
-          const hq = data?.hq
-          if (
-            this.readerSetting.autoSetCompleted &&
-            fishId > 0 &&
-            (!this.readerSetting.autoSetCompletedOnlyHQ || hq)
-          ) {
-            // this.lastCatchFishId = fishId
-            this.setFishCompleted({ fishId: fishId, completed: true })
-          } else {
-            // this.lastCatchFishId = -1
-          }
-          // this.dataStatus = {
-          //   ...data.status,
-          //   effects: Array.from(data.status && data.status.effects),
-          // }
-          // this.dataCurrentRecord = data.currentRecord
-          // this.dataRecords = data.records
-          // this.dataReadableRecords = data.readableRecords
+          this.setFishCompleted({ fishId: fishId, completed: true })
         })
         ?.on('setupDownload', (event, data) => {
           console.log(data)
@@ -1228,10 +1211,10 @@ export default {
         ?.on('checkStartSetup', () => {
           this.showCheckStartSetupDialog = true
         })
-        ?.on('updateUserData', (event, data) => {
-          this.updateUserData(data)
-          window.electron?.ipcRenderer?.send('reloadUserData')
-        })
+        // ?.on('updateUserData', (event, data) => {
+        //   this.updateUserData(data)
+        //   window.electron?.ipcRenderer?.send('reloadUserData')
+        // })
         ?.on('showSpotPage', (event, spotId) => {
           this.setMiniMode(false)
           if (!window.location.hash.startsWith('#/wiki')) {
@@ -1262,10 +1245,10 @@ export default {
     })
     // this.finishReloadPage()
 
-    this.sendElectronEvent('startReader', {
-      region: this.readerRegion,
-      monitorType: this.readerMonitorType,
-    })
+    // this.sendElectronEvent('startReader', {
+    //   region: this.readerRegion,
+    //   monitorType: this.readerMonitorType,
+    // })
   },
   async mounted() {
     // setTimeout(async () => {
@@ -1340,7 +1323,7 @@ export default {
       window.location.reload()
     },
     finishReloadPage() {
-      this.sendElectronEvent('finishLoading')
+      this.sendElectronEvent('finishLoading', this.userData)
     },
     toggleFishEyesUsed() {
       this.showSnackbar({
@@ -1378,11 +1361,11 @@ export default {
       WindowUtil.unmaximizeWindow()
     },
     close() {
-      if (this.mainWindowCloseMode === 'TRAY') {
-        WindowUtil.hideWindow()
-      } else {
-        WindowUtil.closeWindow()
-      }
+      // if (this.mainWindowCloseMode === 'TRAY') {
+      //   WindowUtil.hideWindow()
+      // } else {
+      WindowUtil.closeWindow()
+      // }
     },
     sendElectronEvent(channel, data) {
       window.electron?.ipcRenderer?.send(channel, data)

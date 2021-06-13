@@ -56,15 +56,18 @@ export default new Vuex.Store({
     mainWindowCloseMode: state => {
       return state.userData.mainWindow.closeMode
     },
+    mainWindowConfig: state => {
+      return state.userData.mainWindow
+    },
     // baitFilter: state => {
     //   return state.baitFilter
     // },
-    readerRegion: state => {
-      return state.userData.reader.region
-    },
-    readerMonitorType: state => {
-      return state.userData.reader.monitorType
-    },
+    // readerRegion: state => {
+    //   return state.userData.reader.region
+    // },
+    // readerMonitorType: state => {
+    //   return state.userData.reader.monitorType
+    // },
     listSetting: state => {
       return DataUtil.getUserDataPart(state)('listSetting')
     },

@@ -18,9 +18,9 @@ export default new Vuex.Store({
     readerSetting: state => {
       return DataUtil.getUserDataPart(state)('reader')
     },
-    readerRegion: state => {
-      return state.userData.reader.region
-    },
+    // readerRegion: state => {
+    //   return state.userData.reader.region
+    // },
   },
   mutations: {
     setFeatureViewed(state, feature) {
@@ -42,10 +42,21 @@ export default new Vuex.Store({
       state.sounds = sounds
     },
     updateReaderSetting(state, setting) {
-      DataUtil.setUserDataPart(state, { path: 'reader', data: setting })
+      DataUtil.setUserDataPartInLocalStorage(state, { path: 'reader', data: setting })
     },
     updateReaderTimerMiniMode(state, mini) {
       state.readerTimerMiniMode = mini
+    },
+    setFishCompleted(state, { fishId, completed }) {
+      const completedFishId = state.userData.completed
+      if (completedFishId.includes(fishId) !== completed) {
+        if (completed) {
+          completedFishId.push(fishId)
+        } else {
+          completedFishId.filter(id => id !== fishId)
+        }
+      }
+      DataUtil.setUserDataPart(state, { path: 'completed', data: completedFishId })
     },
   },
   actions: {},

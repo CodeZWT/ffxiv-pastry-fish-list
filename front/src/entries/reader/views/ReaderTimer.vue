@@ -181,6 +181,7 @@ import COMMON from 'Data/common'
 import ItemIcon from '@/components/basic/ItemIcon'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import { SERVER_ID_NAMES } from 'Data/diadem'
+import db from '@/plugins/db'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -203,7 +204,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['readerRegion', 'readerSetting']),
+    ...mapGetters(['readerSetting']),
     disableTooltip() {
       return this.dataStatus?.serverId === -1
     },
@@ -388,16 +389,21 @@ export default {
       'normal'
     this.updateReaderTimerMiniMode(this.mode === 'mini')
 
-    window.electron?.ipcRenderer?.on('fishingData', (event, data) => {
-      this.dataStatus = {
-        ...data.status,
-        effects: Array.from(data.status && data.status.effects),
-      }
-      this.dataCurrentRecord = data.currentRecord
-    })
-    // ?.on('newRecord', (event, data) => {
-    //   db.records.put(data).catch(error => console.error('storeError', error))
-    // })
+    window.electron?.ipcRenderer
+      ?.on('fishingData', (event, data) => {
+        this.dataStatus = {
+          ...data.status,
+          effects: Array.from(data.status && data.status.effects),
+        }
+        this.dataCurrentRecord = data.currentRecord
+      })
+      ?.on('newRecord', (event, data) => {
+        db.records.put(data).catch(error => console.error('storeError', error))
+      })
+      ?.on('fishCaught', (event, data) => {
+        const fishId = data?.fishId
+        this.setFishCompleted({ fishId: fishId, completed: true })
+      })
   },
   methods: {
     nextTestEvent() {
@@ -426,7 +432,11 @@ export default {
       this.sendElectronEvent('toggleSpotStatistics')
       this.setFeatureViewed(this.SpotStatisticsFeatureId)
     },
-    ...mapMutations(['setFeatureViewed', 'updateReaderTimerMiniMode']),
+    ...mapMutations([
+      'setFeatureViewed',
+      'updateReaderTimerMiniMode',
+      'setFishCompleted',
+    ]),
   },
 }
 </script>
