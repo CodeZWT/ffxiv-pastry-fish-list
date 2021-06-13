@@ -178,7 +178,6 @@ import { WEATHER_TYPES } from 'Data/translation'
 import { ReaderFeatures } from 'Data/newFeatures'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import COMMON from 'Data/common'
-import db from '@/plugins/db'
 import ItemIcon from '@/components/basic/ItemIcon'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import { SERVER_ID_NAMES } from 'Data/diadem'
@@ -389,17 +388,16 @@ export default {
       'normal'
     this.updateReaderTimerMiniMode(this.mode === 'mini')
 
-    window.electron?.ipcRenderer
-      ?.on('fishingData', (event, data) => {
-        this.dataStatus = {
-          ...data.status,
-          effects: Array.from(data.status && data.status.effects),
-        }
-        this.dataCurrentRecord = data.currentRecord
-      })
-      ?.on('newRecord', (event, data) => {
-        db.records.put(data).catch(error => console.error('storeError', error))
-      })
+    window.electron?.ipcRenderer?.on('fishingData', (event, data) => {
+      this.dataStatus = {
+        ...data.status,
+        effects: Array.from(data.status && data.status.effects),
+      }
+      this.dataCurrentRecord = data.currentRecord
+    })
+    // ?.on('newRecord', (event, data) => {
+    //   db.records.put(data).catch(error => console.error('storeError', error))
+    // })
   },
   methods: {
     nextTestEvent() {

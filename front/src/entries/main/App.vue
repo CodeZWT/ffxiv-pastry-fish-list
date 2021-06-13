@@ -1191,6 +1191,8 @@ export default {
 
     console.debug(process.env.commit_hash)
     if (DevelopmentModeUtil.isElectron()) {
+      const db = (await import('@/plugins/db')).default
+
       const windowSetting = await this.getWindowSetting()
       if (windowSetting) {
         this.setOpacity(windowSetting.main.opacity)
@@ -1235,6 +1237,9 @@ export default {
           if (!window.location.hash.startsWith('#/wiki')) {
             this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
           }
+        })
+        ?.on('newRecord', (event, data) => {
+          db.records.put(data).catch(error => console.error('storeError', error))
         })
     }
 

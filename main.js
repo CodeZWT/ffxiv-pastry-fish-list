@@ -35,12 +35,7 @@ const SETUP_EXE_DOWNLOAD_LINK =
 log.transports.console.level = 'silly'
 
 const WINDOWS = {}
-let tray,
-  configStore,
-  windowSetting,
-  hotkeySetting,
-  region,
-  monitorType
+let tray, configStore, windowSetting, hotkeySetting, region, monitorType
 let intervalHandle
 let enableMouseThrough = false
 let showReaderOnlyIfFishing = false
@@ -48,7 +43,7 @@ const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
 let skipUpdate = isDev
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
-const closedWindows = {}
+// const closedWindows = {}
 
 let settingVisible = false,
   historyVisible = false,
@@ -469,10 +464,15 @@ async function init() {
       })
     )
   })
-
+  // const win = new BrowserWindow({
+  //   width: 800,
+  //   height: 600
+  // })
+  //
+  // win.loadFile('index.html')
   createMainWindow()
-  await createAndShowLoadingWindow(WINDOWS.main)
-  await createMiniWin(WINDOWS.main)
+  // await createAndShowLoadingWindow(WINDOWS.main)
+  // await createMiniWin(WINDOWS.main)
   updateIfNeeded()
   intervalHandle = setInterval(
     () => updateIfNeeded(intervalHandle),
@@ -517,14 +517,19 @@ function setMouseThrough(enable) {
 }
 
 function switchMiniMode(mini) {
-  callWindowsSafe([WINDOWS.mini, WINDOWS.main], () => {
+  callWindowSafe(WINDOWS.main,async () => {
     if (mini) {
       const [x, y] = WINDOWS.main.getPosition()
+      WINDOWS.mini = await createMiniWin(WINDOWS.main)
       WINDOWS.mini.setPosition(x, y + MINI_POS_OFFSET)
       WINDOWS.mini.show()
+
       WINDOWS.main.hide()
     } else {
-      WINDOWS.mini.hide()
+      callWindowSafe(WINDOWS.mini, (win) => {
+        win.close()
+      })
+      // WINDOWS.mini.hide()
       WINDOWS.main.show()
     }
   })
@@ -559,8 +564,8 @@ function switchReaderMiniMode(mini) {
 function createReaderSetting(readTimerWin) {
   const settingName = 'setting'
   const windowName = 'readerSetting'
-  closedWindows[settingName] = null
-  const win = createWindow(
+  // closedWindows[settingName] = null
+  return createWindow(
     windowName,
     settingName,
     'assets/setting.png',
@@ -573,16 +578,13 @@ function createReaderSetting(readTimerWin) {
     true,
     readTimerWin
   )
-  win.on('closed', () => {
-    closedWindows[windowName] = win
-  })
 }
 
 function createReaderHistory(readTimerWin) {
   const settingName = 'history'
   const windowName = 'readerHistory'
-  closedWindows[settingName] = null
-  const win = createWindow(
+  // closedWindows[settingName] = null
+  return createWindow(
     windowName,
     settingName,
     'assets/reader.png',
@@ -595,16 +597,13 @@ function createReaderHistory(readTimerWin) {
     true,
     readTimerWin
   )
-  win.on('closed', e => {
-    closedWindows[windowName] = win
-  })
 }
 
 function createReaderSpotStatistics(readTimerWin) {
   const settingName = 'spotStatistics'
   const windowName = 'readerSpotStatistics'
-  closedWindows[settingName] = null
-  const win = createWindow(
+  // closedWindows[settingName] = null
+  return createWindow(
     windowName,
     settingName,
     'assets/reader.png',
@@ -617,9 +616,6 @@ function createReaderSpotStatistics(readTimerWin) {
     true,
     readTimerWin
   )
-  win.on('closed', e => {
-    closedWindows[windowName] = win
-  })
 }
 
 function createTransparentWin(
@@ -812,11 +808,12 @@ function createWindow(
 }
 
 function createMainWindow() {
-  return createWindow('main', 'main', 'assets/icon256.png', 'index', null, mainWin =>
-    createReader(mainWin)
-  ).on('closed', () => {
-    quit()
-  })
+  return createWindow('main', 'main', 'assets/icon256.png', 'index', null).on(
+    'closed',
+    () => {
+      // quit()
+    }
+  )
 }
 
 function setOnTop(win, alwaysOnTop = true) {
@@ -826,7 +823,7 @@ function setOnTop(win, alwaysOnTop = true) {
 
 function createReader() {
   const settingName = 'timer'
-  closedWindows[settingName] = null
+  // closedWindows[settingName] = null
   const win = createWindow(
     'readerTimer',
     settingName,
@@ -835,9 +832,9 @@ function createReader() {
     null,
     () => {
       createTimerMiniWin(win)
-      createReaderSetting(win)
-      createReaderHistory(win)
-      createReaderSpotStatistics(win)
+      // createReaderSetting(win)
+      // createReaderHistory(win)
+      // createReaderSpotStatistics(win)
     },
     ['--route-name=ReaderTimer', '--mode=normal'],
     false,
@@ -845,7 +842,7 @@ function createReader() {
     true,
     null
   )
-  win
+  return win
     .on('resized', () => {
       const [w, h] = win.getSize()
       if (windowSetting.timerMini.enabled) {
@@ -853,9 +850,6 @@ function createReader() {
       } else {
         saveWindowSetting('timer.size', { w, h })
       }
-    })
-    .on('closed', e => {
-      closedWindows[settingName] = win
     })
     .on('hide', e => {
       hideReaderWindows()
@@ -900,8 +894,8 @@ function updateUserData(updateData) {
 }
 
 function showReader() {
-  if (closedWindows['timer']) {
-    createReader()
+  if (!WINDOWS.readerTimer) {
+    WINDOWS.readerTimer = createReader()
   }
   if (!windowSetting.timerMini.enabled) {
     callWindowSafe(WINDOWS.readerTimer, win => win.show())
@@ -911,15 +905,15 @@ function showReader() {
 }
 
 function showReaderSetting() {
-  if (closedWindows['readerSetting']) {
-    createReaderSetting()
+  if (!WINDOWS.readerSetting) {
+    WINDOWS.readerSetting = createReaderSetting(WINDOWS.readerTimer)
   }
   callWindowSafe(WINDOWS.readerSetting, win => win.show())
 }
 
 function toggleReaderHistory() {
-  if (closedWindows['readerHistory']) {
-    createReaderHistory(WINDOWS.readerTimer)
+  if (!WINDOWS.readerHistory) {
+    WINDOWS.readerHistory = createReaderHistory(WINDOWS.readerTimer)
   }
   callWindowSafe(WINDOWS.readerHistory, win => {
     if (win.isVisible()) {
@@ -931,8 +925,8 @@ function toggleReaderHistory() {
 }
 
 function toggleSpotStatistics() {
-  if (closedWindows['readerSpotStatistics']) {
-    createReaderSpotStatistics(WINDOWS.readerTimer)
+  if (!WINDOWS.readerSpotStatistics) {
+    WINDOWS.readerSpotStatistics = createReaderSpotStatistics(WINDOWS.readerTimer)
   }
   callWindowSafe(WINDOWS.readerSpotStatistics, win => {
     if (win.isVisible()) {
@@ -1130,20 +1124,20 @@ function callTargetSafe(target, targetCallback) {
   }
 }
 
-// app.on('window-all-closed', () => {
-//   if (process.platform !== 'darwin') {
-//     log.info('in all closed')
-//     FishingDataReader.stop(() => {
-//       log.info('call quit')
-//       // if (toInstallUpdates) {
-//       //   log.info('try install')
-//       //   exec('./setup/PastryFishSetup.exe')
-//       // } else {
-//       app.quit()
-//       // }
-//     })
-//   }
-// })
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    log.info('in all closed')
+    FishingDataReader.stop(() => {
+      log.info('call quit')
+      // if (toInstallUpdates) {
+      //   log.info('try install')
+      //   exec('./setup/PastryFishSetup.exe')
+      // } else {
+      app.quit()
+      // }
+    })
+  }
+})
 
 // app.on("activate", () => {
 //   if (BrowserWindow.getAllWindows().length === 0) {

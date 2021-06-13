@@ -126,7 +126,7 @@ export default {
       WindowUtil.minimizeWindow()
     },
     close() {
-      WindowUtil.hideWindow()
+      WindowUtil.closeWindow()
     },
     loadingSounds() {
       return Promise.all([
