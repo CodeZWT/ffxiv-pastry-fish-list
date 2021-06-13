@@ -398,15 +398,12 @@ async function init() {
     })
     .on('showSpotPage', (event, spotId) => {
       if (!WINDOWS.main) {
-        createMainWindow()
-        callWindowSafe(WINDOWS.main, win => {
-          win.once('ready-to-show', () => {
-            win.webContents.send('showSpotPage', spotId)
-            if (win.isMinimized()) {
-              win.restore()
-            }
-            win.focus()
-          })
+        createMainWindow((win) => {
+          win.webContents.send('showSpotPage', spotId)
+          if (win.isMinimized()) {
+            win.restore()
+          }
+          win.focus()
         })
       } else {
         callWindowSafe(WINDOWS.main, win => {
@@ -588,29 +585,49 @@ function switchMiniMode(mini) {
 }
 
 function switchReaderMiniMode(mini) {
-  callWindowsSafe(
-    [
-      WINDOWS.readerTimer,
-      WINDOWS.readerSetting,
-      WINDOWS.readerHistory,
-      WINDOWS.readerSpotStatistics,
-      WINDOWS.timerMini,
-    ],
-    () => {
-      hideBySwitch = true
-      if (mini) {
-        const [x, y] = WINDOWS.readerTimer.getPosition()
-        WINDOWS.readerTimer.hide()
-        WINDOWS.timerMini.setPosition(x, y + READER_MINI_POS_OFFSET)
-        WINDOWS.timerMini.show()
-        saveWindowSetting('timerMini.enabled', true)
-      } else {
-        WINDOWS.timerMini.hide()
-        WINDOWS.readerTimer.show()
-        saveWindowSetting('timerMini.enabled', false)
-      }
+  if (mini) {
+    const {x, y} = windowSetting.timer.pos
+    callWindowSafe(WINDOWS.readerTimer, win => win.close())
+    if (!WINDOWS.timerMini) {
+       createTimerMiniWin().then(win => {
+         win.setPosition(x, y + READER_MINI_POS_OFFSET)
+         win.show()
+         saveWindowSetting('timerMini.enabled', true)
+      })
     }
-  )
+  } else {
+    callWindowSafe(WINDOWS.timerMini, win => win.close())
+    if (!WINDOWS.readerTimer) {
+      createReader()
+      callWindowSafe(WINDOWS.readerTimer, win => win.show())
+      saveWindowSetting('timerMini.enabled', false)
+    }
+  }
+
+
+  // callWindowsSafe(
+  //   [
+  //     WINDOWS.readerTimer,
+  //     WINDOWS.readerSetting,
+  //     WINDOWS.readerHistory,
+  //     WINDOWS.readerSpotStatistics,
+  //     WINDOWS.timerMini,
+  //   ],
+  //   () => {
+  //     hideBySwitch = true
+  //     if (mini) {
+  //       const [x, y] = WINDOWS.readerTimer.getPosition()
+  //       WINDOWS.readerTimer.hide()
+  //       WINDOWS.timerMini.setPosition(x, y + READER_MINI_POS_OFFSET)
+  //       WINDOWS.timerMini.show()
+  //       saveWindowSetting('timerMini.enabled', true)
+  //     } else {
+  //       WINDOWS.timerMini.hide()
+  //       WINDOWS.readerTimer.show()
+  //       saveWindowSetting('timerMini.enabled', false)
+  //     }
+  //   }
+  // )
 }
 
 function createReaderSetting(readTimerWin) {
@@ -750,7 +767,7 @@ function createAndShowLoadingWindow(parent) {
 }
 
 const READER_MINI_POS_OFFSET = 56
-function createTimerMiniWin(parent) {
+function createTimerMiniWin() {
   return createTransparentWin(
     'timerMini',
     'reader',
@@ -764,12 +781,12 @@ function createTimerMiniWin(parent) {
       if (windowSetting.timerMini.pos.x && windowSetting.timerMini.pos.y) {
         win.setPosition(windowSetting.timerMini.pos.x, windowSetting.timerMini.pos.y)
       }
-      win.setParentWindow(parent)
+      // win.setParentWindow(parent)
       win.setResizable(true)
       return win
         .on('moved', () => {
           const [x, y] = win.getPosition()
-          WINDOWS.readerTimer.setPosition(x, y - READER_MINI_POS_OFFSET)
+          // WINDOWS.readerTimer.setPosition(x, y - READER_MINI_POS_OFFSET)
           saveWindowSetting('timer.pos', { x, y: y - READER_MINI_POS_OFFSET })
           saveWindowSetting('timerMini.pos', { x, y })
         })
@@ -804,6 +821,7 @@ function createWindow(
 ) {
   const setting = windowSetting[settingName]
   WINDOWS[windowName] = new BrowserWindow({
+    backgroundColor: '#33333d',
     width: setting.size.w,
     height: setting.size.h,
     x: setting.pos.x,
@@ -859,8 +877,8 @@ function createWindow(
     })
 }
 
-function createMainWindow() {
-  return createWindow('main', 'main', 'assets/icon256.png', 'index', null).on(
+function createMainWindow(loadedCallback) {
+  return createWindow('main', 'main', 'assets/icon256.png', 'index', null, loadedCallback).on(
     'closed',
     () => {
       // if (mainWindowConfig.closeMode === 'CLOSE') {
@@ -885,7 +903,7 @@ function createReader() {
     'reader',
     null,
     () => {
-      createTimerMiniWin(win)
+      // createTimerMiniWin(win)
       // createReaderSetting(win)
       // createReaderHistory(win)
       // createReaderSpotStatistics(win)
@@ -948,13 +966,18 @@ function updateUserData(updateData) {
 }
 
 function showReader() {
-  if (!WINDOWS.readerTimer) {
-    WINDOWS.readerTimer = createReader()
-  }
   if (!windowSetting.timerMini.enabled) {
+    if (!WINDOWS.readerTimer) {
+      WINDOWS.readerTimer = createReader()
+    }
     callWindowSafe(WINDOWS.readerTimer, win => win.show())
   } else {
-    callWindowSafe(WINDOWS.timerMini, win => win.show())
+    if (!WINDOWS.timerMini) {
+       createTimerMiniWin().then(win => {
+         WINDOWS.timerMini = win
+         callWindowSafe(WINDOWS.timerMini, win => win.show())
+       })
+    }
   }
 }
 

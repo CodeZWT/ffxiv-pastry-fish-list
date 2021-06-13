@@ -18,9 +18,9 @@ export default new Vuex.Store({
     readerSetting: state => {
       return DataUtil.getUserDataPart(state)('reader')
     },
-    // readerRegion: state => {
-    //   return state.userData.reader.region
-    // },
+    readerRegion: state => {
+      return state.userData.reader.region
+    },
   },
   mutations: {
     setFeatureViewed(state, feature) {
