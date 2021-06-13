@@ -1034,7 +1034,7 @@ onFFXIVEvent('someDirectorUnk4', packet => {
       if (spotCnt === 1) {
         status.spotId = spotIds[0]
       } else if (spotCnt > 1) {
-        status.spotId = spotIds[spotCnt - (region === 'CN' ? 2 : 1)]
+        status.spotId = spotIds[spotCnt - 1]
       }
       if (prevSpotId !== status.spotId && isOceanFishingSpot(status.spotId)) {
         const spotList = voyagesWithTipOf(isDev ? new Date("2021-04-12 02:00:00").getTime() : Date.now(), 1)[0].locationTips.map(

@@ -1869,6 +1869,7 @@ module.exports = {
       bestCatchPath: [27590],
     },
     33239: {
+      // Listracanthus
       _id: 33239,
       previousWeatherSet: [1, 2],
       weatherSet: [4],
@@ -1894,6 +1895,7 @@ module.exports = {
       },
     },
     33240: {
+      // Aquamaton
       _id: 33240,
       previousWeatherSet: [],
       weatherSet: [],
@@ -1922,6 +1924,7 @@ module.exports = {
       },
     },
     33241: {
+      // Cinder Surprise
       _id: 33241,
       previousWeatherSet: [11],
       weatherSet: [14],
@@ -1938,8 +1941,8 @@ module.exports = {
       collectable: false,
       fishEyes: false,
       snagging: null,
-      hookset: null,
-      tug: null,
+      hookset: 'Precision',
+      tug: 'heavy',
       gig: null,
       aquarium: null,
       fishAnglerId: 3456,
@@ -1949,10 +1952,11 @@ module.exports = {
       },
     },
     33242: {
+      // Ealad Skaan
       _id: 33242,
       previousWeatherSet: [10],
       weatherSet: [1],
-      startHour: 22,
+      startHour: 23.5,
       endHour: 24,
       locations: [219],
       bestCatchPath: [27589],
@@ -1963,8 +1967,8 @@ module.exports = {
       collectable: false,
       fishEyes: false,
       snagging: null,
-      hookset: null,
-      tug: null,
+      hookset: 'Precision',
+      tug: 'heavy',
       gig: null,
       aquarium: null,
       fishAnglerId: 3457,
@@ -1974,6 +1978,7 @@ module.exports = {
       },
     },
     33243: {
+      // Greater Serpent of Ronka
       _id: 33243,
       previousWeatherSet: [],
       weatherSet: [],
@@ -1999,6 +2004,7 @@ module.exports = {
       },
     },
     33244: {
+      // Lancetfish
       _id: 33244,
       previousWeatherSet: [2],
       weatherSet: [3],
