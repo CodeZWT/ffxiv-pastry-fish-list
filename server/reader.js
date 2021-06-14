@@ -1163,6 +1163,7 @@ onFFXIVEvent('playerSetup', packet => {
   playerSetupCallback(packet)
   log.info('reset status in playerSetup')
   resetStatus()
+  status.baitId = packet.useBaitCatalogID
   resetRecord()
 })
 
