@@ -1049,6 +1049,11 @@ async function downloadSetupFile(onDownloadProgress, onFinished) {
 async function updateIfNeeded(intervalHandle) {
   if (skipUpdate || updateDownloaded || updateDownloading) {
     log.info('Update check skipped')
+    if (skipUpdate) {
+      callWindowSafe(WINDOWS.main, win => {
+        win.setProgressBar(0)
+      })
+    }
     return
   }
 
