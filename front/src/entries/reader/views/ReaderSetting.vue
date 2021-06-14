@@ -331,6 +331,7 @@ export default {
       lazySetting: {},
       lazyWindowSetting: {
         timer: {},
+        timerMini: {},
         history: {},
         spotStatistics: {},
       },

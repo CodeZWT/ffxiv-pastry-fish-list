@@ -105,6 +105,10 @@ export default {
     ...mapGetters(['readerRegion']),
   },
   async created() {
+    this.loadingSounds().then(sounds =>
+      this.setSounds(DataUtil.toMap(sounds, it => it.key))
+    )
+
     setInterval(() => {
       this.now = Date.now()
     }, 100)
