@@ -21,8 +21,21 @@ export default new Vuex.Store({
     readerRegion: state => {
       return state.userData.reader.region
     },
+    showBanner: state => {
+      return state.userData.reader.showReaderBanner
+    },
   },
   mutations: {
+    setNotShowBanner(state) {
+      state.userData = {
+        ...state.userData,
+        reader: {
+          ...state.userData.reader,
+          showReaderBanner: false,
+        },
+      }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
     setFeatureViewed(state, feature) {
       if (!state.viewedFeatures.includes(feature)) {
         state.viewedFeatures.push(feature)

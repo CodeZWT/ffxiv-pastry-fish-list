@@ -1217,6 +1217,7 @@ export default {
       hotkey: {
         mouseThrough: 'L',
       },
+      showReaderBanner: true,
       main: {
         pos: { x: null, y: null },
         size: { w: 1080, h: 768 },

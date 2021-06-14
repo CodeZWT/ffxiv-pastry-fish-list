@@ -5,6 +5,28 @@
       <!--      <v-alert outlined type="warning" border="left">-->
       <!--        更新国服5.41后，渔捞与同步功能不可用，请耐心等待自动更新。-->
       <!--      </v-alert>-->
+      <v-banner v-if="showBanner" two-line>
+        <v-avatar slot="icon" color="warning" size="40">
+          <v-icon icon="mdi-lock" color="white">
+            mdi-alert
+          </v-icon>
+        </v-avatar>
+
+        <div>
+          <ul>
+            <li>窗口改为动态加载，因此会有约1秒的加载时间</li>
+            <li>可以在打开渔捞界面的状态下，关闭主界面</li>
+            <li>关闭主界面时，不会有闹钟提示，但是可以记录咬钩数据</li>
+            <li>程序将在所有窗口关闭时关闭</li>
+          </ul>
+        </div>
+
+        <template v-slot:actions>
+          <v-btn color="primary" @click="onDismiss">
+            关闭通知
+          </v-btn>
+        </template>
+      </v-banner>
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div style="min-width: 100px">
           咬钩计时
@@ -204,7 +226,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['readerSetting']),
+    ...mapGetters(['readerSetting', 'showBanner']),
     disableTooltip() {
       return this.dataStatus?.serverId === -1
     },
@@ -406,6 +428,9 @@ export default {
       })
   },
   methods: {
+    onDismiss() {
+      this.setNotShowBanner()
+    },
     nextTestEvent() {
       this.sendElectronEvent('nextTestEvent')
     },
@@ -436,6 +461,7 @@ export default {
       'setFeatureViewed',
       'updateReaderTimerMiniMode',
       'setFishCompleted',
+      'setNotShowBanner',
     ]),
   },
 }
