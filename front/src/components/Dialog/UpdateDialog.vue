@@ -1,6 +1,18 @@
 <template>
   <v-dialog :value="show" @input="$emit('input', $event)" max-width="300" persistent>
-    <v-card>
+    <v-card v-if="progress < 100">
+      <v-card-title>更新程序下载中</v-card-title>
+      <v-card-text>
+        <v-progress-linear :value="progress" height="25">
+          <strong>{{ Math.floor(progress) }}%</strong>
+        </v-progress-linear>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn block @click="$emit('input', false)">关闭</v-btn>
+      </v-card-actions>
+    </v-card>
+
+    <v-card v-else>
       <v-card-title>更新程序下载完成</v-card-title>
       <v-card-text>双击 PastryFishSetup.exe 直接更新</v-card-text>
       <v-card-actions>
@@ -23,6 +35,10 @@ export default {
     show: {
       type: Boolean,
       default: false,
+    },
+    progress: {
+      type: Number,
+      default: 0,
     },
   },
 }

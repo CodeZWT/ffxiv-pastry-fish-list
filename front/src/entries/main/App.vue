@@ -314,6 +314,18 @@
               <v-list-item-title>{{ $t('top.aquarium') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
+          <v-list-item @click="toCompetitionPage" link>
+            <v-list-item-icon>
+              <new-feature-mark id="Competition-V.0.8.3-2">
+                <v-icon>mdi-trophy</v-icon>
+              </new-feature-mark>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
           <v-divider class="mx-2" />
           <v-list-item v-if="!isElectron" @click="showDownload" link>
             <v-list-item-icon>
@@ -337,14 +349,26 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item @click="toCompetitionPage" link>
+          <v-list-item
+            v-if="isElectron && downloadProgress > 0"
+            link
+            @click="showUpdateDialog"
+          >
             <v-list-item-icon>
-              <new-feature-mark id="Competition-V.0.8.3-2">
-                <v-icon>mdi-trophy</v-icon>
-              </new-feature-mark>
+              <div>
+                <v-progress-circular rotate="-90" size="24" :value="downloadProgress">
+                  <div style="font-size: x-small">
+                    {{ downloadProgress === 100 ? '' : Math.floor(downloadProgress) }}
+                  </div>
+                </v-progress-circular>
+              </div>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>
+              <v-list-item-title>
+                {{
+                  downloadProgress === 100 ? $t('top.downloaded') : $t('top.downloading')
+                }}
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -599,6 +623,7 @@
     </v-dialog>
     <update-dialog
       v-model="showCheckStartSetupDialog"
+      :progress="downloadProgress"
       @update="startUpdate"
       @skip="skipUpdate"
     />
@@ -732,6 +757,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    downloadProgress: 0,
     lastCatchFishId: undefined,
     notificationRecords: {},
     isElectron: DevelopmentModeUtil.isElectron(),
@@ -1207,9 +1233,13 @@ export default {
         })
         ?.on('setupDownload', (event, data) => {
           console.log(data)
+          if (this.downloadProgress < 100) {
+            this.downloadProgress = data.percent * 100
+          }
         })
         ?.on('checkStartSetup', () => {
-          this.showCheckStartSetupDialog = true
+          this.downloadProgress = 100
+          this.showUpdateDialog()
         })
         // ?.on('updateUserData', (event, data) => {
         //   this.updateUserData(data)
@@ -1305,6 +1335,9 @@ export default {
     // }, 200)
   },
   methods: {
+    showUpdateDialog() {
+      this.showCheckStartSetupDialog = true
+    },
     toCompetitionPage() {
       this.setFeatureViewed('Competition-V.0.8.3-2')
       this.toPage('CompetitionPage')

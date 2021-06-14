@@ -42,6 +42,8 @@ let enableMouseThrough = false
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
 let skipUpdate = isDev
+let updateDownloaded = false
+let updateDownloading = false
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
 // const closedWindows = {}
 
@@ -525,7 +527,7 @@ async function init() {
   updateIfNeeded()
   intervalHandle = setInterval(
     () => updateIfNeeded(intervalHandle),
-    CONSTANTS.INTERVAL_MINUTE * 10
+    CONSTANTS.INTERVAL_MINUTE * 2
   )
 
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
@@ -1045,7 +1047,7 @@ async function downloadSetupFile(onDownloadProgress, onFinished) {
 }
 
 async function updateIfNeeded(intervalHandle) {
-  if (skipUpdate) {
+  if (skipUpdate || updateDownloaded || updateDownloading) {
     log.info('Update check skipped')
     return
   }
@@ -1064,6 +1066,7 @@ async function updateIfNeeded(intervalHandle) {
   if (localCommitHash !== remoteCommitHash && remoteCommitHash != null) {
     clearInterval(intervalHandle)
     log.info('New Version Detected!')
+    updateDownloading = true
     const throttled = throttle(
       progress => {
         try {
@@ -1082,6 +1085,8 @@ async function updateIfNeeded(intervalHandle) {
     await downloadSetupFile(throttled, () => {
       try {
         log.info('download setup finished')
+        updateDownloading = false
+        updateDownloaded = true
         callWindowSafe(WINDOWS.main, win => win.webContents.send('checkStartSetup'))
       } catch (e) {
         log.error('Try open update dialog failed.', e)
