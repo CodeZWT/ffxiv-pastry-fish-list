@@ -354,6 +354,7 @@ export default {
       this.dbRecordsCnt = await db.records.count()
       this.rawRecords = await this.loadRecord(0, this.loadingCnt, this.showIgnoredRecord)
       // this.dbLoadedCnt = this.rawRecords.length
+      // console.log(this.toUploadData(this.rawRecords))
       console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.rawRecords.length)
     },
     async loadRecord(offset, limit, showIgnoredRecord) {
@@ -409,6 +410,68 @@ export default {
     },
     isDiademSpot: DataUtil.isDiademSpot,
     isOceanFishingSpot: DataUtil.isOceanFishingSpot,
+    toUploadData(records) {
+      return records.map(record => {
+        const spotId = record.spotId
+        const et = new EorzeaTime(EorzeaTime.toEorzeaTime(record.startTime))
+        return {
+          userId: 'test-user',
+          id: record.id,
+          startTime: record.startTime,
+          etHour: et.getHours(),
+          etMinute: et.getMinutes(),
+          biteTime: record.biteTime,
+          prevWeather:
+            spotId > 0
+              ? this.isOceanFishingSpot(spotId) || this.isDiademSpot(spotId)
+                ? record.prevWeatherDetected
+                : Weather.prevWeatherAtSpot(spotId, et)
+              : undefined,
+          weather:
+            spotId > 0
+              ? this.isOceanFishingSpot(spotId) || this.isDiademSpot(spotId)
+                ? record.weatherDetected
+                : Weather.weatherAtSpot(spotId, et)
+              : undefined,
+          spot: spotId,
+          zone:
+            spotId > 0
+              ? DATA.WEATHER_RATES[DataUtil.FISHING_SPOTS[spotId]?.territory_id]
+                  ?.zone_id ??
+                (this.isDiademSpot(spotId)
+                  ? DIADEM_ZONE
+                  : this.isOceanFishingSpot(spotId)
+                  ? OCEAN_FISHING_ZONE
+                  : 0)
+              : spotId,
+          fish: record.fishId ?? -1,
+          hq: record.hq,
+          size: record.size > 0 ? +(record.size / 10).toFixed(1) : -1,
+          fishPatch: DataUtil.getFishPatch(record.fishId),
+          missed: record.missed,
+          cancelled: record.cancelled,
+          bait: record.baitId,
+          biteInterval: +((record.biteTime - record.startTime) / 1000).toFixed(1),
+          chum: record.chum,
+          hookset:
+            ['normal', 'precision', 'powerful', 'double'].indexOf(record.hookset) ?? 0,
+          quantity: record.quantity,
+          gathering: record.gathering,
+          perception: record.perception,
+          gp: record.gp,
+          snagging: record.snagging,
+          surfaceScale: record.surfaceScale,
+          surfaceScaleFish: record.surfaceScale ? record.surfaceScaleFishId ?? -1 : -1,
+          identicalCast: record.identicalCast,
+          gatheringFortuneUp: record.gatheringFortuneUp && !record.catchAndRelease,
+          catchAndRelease: record.catchAndRelease,
+          fishEyes: record.fishEyes,
+          fishersIntuition: record.fishersIntuition,
+          recordPatch: record.patch ?? 5.35,
+          tug: ['light', 'medium', 'heavy'].indexOf(record.tug),
+        }
+      })
+    },
     toExportData(records) {
       // console.log(JSON.stringify(records))
       return records.map(record => {

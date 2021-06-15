@@ -37,6 +37,10 @@ export default class EorzeaTime {
     return new Date(this.time).getUTCHours()
   }
 
+  getMinutes() {
+    return new Date(this.time).getUTCMinutes()
+  }
+
   timeOfHours(hours) {
     return new EorzeaTime(
       this.time - (this.time % ONE_DAY_INTERVAL) + hours * ONE_HOUR_INTERVAL
