@@ -67,6 +67,7 @@ import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import db from '@/plugins/db'
 import { Howl } from 'howler'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
+import UploadUtil from '@/utils/UploadUtil'
 
 export default {
   name: 'Reader',
@@ -113,15 +114,18 @@ export default {
       this.now = Date.now()
     }, 100)
 
-    window.electron?.ipcRenderer?.on('reloadUserData', () => {
-      this.reloadUserData()
-      console.info('loading sounds')
-      this.loadingSounds().then(sounds =>
-        this.setSounds(DataUtil.toMap(sounds, it => it.key))
-      )
-    })
+    window.electron?.ipcRenderer
+      ?.on('reloadUserData', () => {
+        this.reloadUserData()
+        console.info('loading sounds')
+        this.loadingSounds().then(sounds =>
+          this.setSounds(DataUtil.toMap(sounds, it => it.key))
+        )
+      })
+      ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
   },
   methods: {
+    toUploadData: UploadUtil.toUploadData,
     showSetting() {
       window.electron?.ipcRenderer?.send('showSetting')
       this.setFeatureViewed(this.SettingFeatureId)

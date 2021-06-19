@@ -350,7 +350,7 @@
           </v-list-item>
 
           <v-list-item
-            v-if="true || (isElectron && isRoseMode)"
+            v-if="isElectron && isRoseMode"
             @click="showRoseDialog = true"
             link
           >
@@ -747,6 +747,7 @@ import isEqual from 'lodash/isEqual'
 import repeat from 'lodash/repeat'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
 import RoseModeDialog from '@/components/Dialog/RoseModeDialog'
+import UploadUtil from '@/utils/UploadUtil'
 // let totalCnt = 0
 
 export default {
@@ -1244,6 +1245,7 @@ export default {
       }
 
       window.electron?.ipcRenderer
+        ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
         ?.on('fishCaught', (event, data) => {
           const fishId = data?.fishId
           this.setFishCompleted({ fishId: fishId, completed: true })

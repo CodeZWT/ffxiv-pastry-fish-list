@@ -1,5 +1,5 @@
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import * as Cookies from 'js-cookie'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
 const host = DevelopmentModeUtil.isTest()
   ? 'http://localhost:3100'
@@ -41,16 +41,16 @@ export default {
       }),
       headers: {
         'content-type': 'application/json',
-        Authorization: `Bearer ${Cookies.get(TEMP_RC_ACCESS_TOKEN_KEY)}`,
+        Authorization: `Bearer ${LocalStorageUtil.get(TEMP_RC_ACCESS_TOKEN_KEY)}`,
       },
       method: 'POST',
-    }).then(response => response.json())
+    }).then(response => response?.json())
   },
   resendConfirmEmail() {
     return fetch(host + '/auth/resendConfirmEmail', {
       headers: {
         'content-type': 'application/json',
-        Authorization: `Bearer ${Cookies.get(TEMP_RC_ACCESS_TOKEN_KEY)}`,
+        Authorization: `Bearer ${LocalStorageUtil.get(TEMP_RC_ACCESS_TOKEN_KEY)}`,
       },
       method: 'POST',
     }).then(response => response.json())

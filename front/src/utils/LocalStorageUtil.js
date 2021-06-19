@@ -54,4 +54,16 @@ export default {
   loadSounds() {
     return store.get(BAIT_FILTER_KEY)
   },
+
+  set(key, data) {
+    store.set(key, data)
+  },
+
+  get(key) {
+    return store.get(key)
+  },
+
+  remove(key) {
+    store.remove(key)
+  },
 }

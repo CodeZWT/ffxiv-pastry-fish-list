@@ -27,6 +27,7 @@ const merge = require('lodash/merge')
 const unhandled = require('electron-unhandled')
 const contextMenu = require('electron-context-menu')
 const cloneDeep = require('lodash/cloneDeep')
+const rcapiService = require('./server/rcapiService')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -37,6 +38,7 @@ log.transports.console.level = 'silly'
 const WINDOWS = {}
 let tray, configStore, windowSetting, hotkeySetting, region, monitorType
 let intervalHandle
+let uploadIntervalHandle
 let enableMouseThrough = false
 // let showReaderOnlyIfFishing = false
 const FILE_ENCODING = 'utf8'
@@ -130,8 +132,17 @@ function saveHotkeySetting(path, value) {
     setMouseThrough(!enableMouseThrough)
   })
 }
+
+function callFirstAvailableWin(windows, callBack) {
+  const firstNotNull = windows.find(it => it)
+  if (firstNotNull) {
+    callBack(firstNotNull)
+  }
+}
+
 let readerConfig = {}
 let mainWindowConfig = {}
+
 async function init() {
   if (isDev) {
     const {
@@ -184,13 +195,6 @@ async function init() {
       win.webContents.send('fishingData', data)
     )
   })
-
-  function callFirstAvailableWin(windows, callBack) {
-    const firstNotNull = windows.find(it => it)
-    if (firstNotNull) {
-      callBack(firstNotNull)
-    }
-  }
 
   FishingDataReader.onFishCaught(data => {
     // Be care of spear fish!
@@ -454,6 +458,10 @@ async function init() {
       callWindowSafe(WINDOWS.readerSpotStatistics, win => win.send('reloadRecords'))
     })
 
+  const upload = async (accessToken, records) => {
+    return rcapiService.uploadRecords(accessToken, records)
+  }
+
   ipcMain.handle('showOpenSoundFileDialog', () => {
     return dialog
       .showOpenDialog({
@@ -499,6 +507,21 @@ async function init() {
   ipcMain.handle('getWindowSetting', () => {
     return windowSetting
   })
+  ipcMain.handle('uploadRecords', async (event, { accessToken, records }) => {
+    const now = Date.now()
+    if (records.length === 200 || lastUploadTime + CONSTANTS.INTERVAL_MINUTE * 10 < now) {
+      try {
+        const response = await upload(accessToken, records)
+        console.log('Uploaded data CNT:', response.data.length)
+        lastUploadTime = now
+        return response.data
+      } catch (e) {
+        console.error('Upload error:', e)
+        lastUploadTime = now
+      }
+    }
+    return []
+  })
   globalShortcut.register('Alt+Shift+Y', () => {
     callWindowSafe(WINDOWS.main, win =>
       win.webContents.send('showRoseModeDialog')
@@ -533,7 +556,11 @@ async function init() {
     () => updateIfNeeded(intervalHandle),
     CONSTANTS.INTERVAL_MINUTE * 10
   )
-
+  // uploadIfNeeded()
+  uploadIntervalHandle = setInterval(
+    () => uploadIfNeeded(),
+    CONSTANTS.INTERVAL_MINUTE,
+  )
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
   const contextMenu = Menu.buildFromTemplate([
     { label: '打开渔捞鼠标穿透', click: () => setMouseThrough(true) },
@@ -1050,6 +1077,13 @@ async function downloadSetupFile(onDownloadProgress, onFinished) {
     })
 }
 
+let lastUploadTime = 0
+async function uploadIfNeeded() {
+  callFirstAvailableWin([WINDOWS.readerTimer, WINDOWS.timerMini, WINDOWS.main], win => {
+    win.webContents.send('getUploadRecords')
+  })
+}
+
 async function updateIfNeeded(intervalHandle) {
   if (skipUpdate || updateDownloaded || updateDownloading) {
     log.info('Update check skipped')
@@ -1109,6 +1143,7 @@ async function updateIfNeeded(intervalHandle) {
 function quitAndSetup() {
   try {
     clearInterval(intervalHandle)
+    clearInterval(uploadIntervalHandle)
     FishingDataReader.stop(() => {
       const installerPath = isDev
         ? path.join(__dirname, 'setup/PastryFishSetup.exe')
@@ -1127,6 +1162,7 @@ function quitAndSetup() {
 function quit() {
   try {
     clearInterval(intervalHandle)
+    clearInterval(uploadIntervalHandle)
     FishingDataReader.stop(() => {
       log.info('quit by close')
       callTargetSafe(tray, it => it.destroy())

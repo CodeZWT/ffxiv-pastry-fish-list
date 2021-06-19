@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@thewakingsands/axis-font-icons": "^0.2.1",
+    "axios": "^0.21.1",
     "datauri": "^3.0.0",
     "download": "^8.0.0",
     "electron-context-menu": "^2.5.0",

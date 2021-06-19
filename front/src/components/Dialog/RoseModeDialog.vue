@@ -185,11 +185,34 @@
         </validation-observer>
       </v-card-text>
       <v-card-text v-else-if="mode === 'LoginSuccess'">
-        <div>
-          <v-icon>mdi-check-circle</v-icon>
-          <span>登陆成功</span>
+        <div class="d-flex flex-column align-center">
+          <div class="my-2">
+            <v-icon>mdi-check-circle</v-icon>
+            <span class="ml-1 subtitle-1">登录成功</span>
+          </div>
+          <div>
+            <v-sheet outlined class="pa-5 d-flex flex-column align-center">
+              <div class="text-h6">已上传/全部</div>
+              <div class="text-h6">{{ uploadStatus }}</div>
+              <v-tooltip bottom color="secondary">
+                <template v-slot:activator="{ on, attrs }">
+                  <div v-bind="attrs" v-on="on">
+                    <v-btn @click="refreshUploadStatus">
+                      <v-icon>mdi-refresh</v-icon>
+                      刷新
+                    </v-btn>
+                  </div>
+                </template>
+                <div style="min-height: 32px" class="d-flex align-center">
+                  打开对话框时也会重新统计
+                </div>
+              </v-tooltip>
+            </v-sheet>
+          </div>
+          <div class="my-1">* 上传功能更新前的数据忽略</div>
         </div>
-        <v-btn block @click="logout">登出</v-btn>
+        <v-btn block @click="close" class="mt-4">关闭</v-btn>
+        <v-btn block @click="logout" class="mt-4" color="error">登出</v-btn>
       </v-card-text>
       <!--      <v-card-actions>-->
       <!--        <v-btn @click="exit">退出上传模式</v-btn>-->
@@ -200,18 +223,19 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import { required, email, max } from 'vee-validate/dist/rules'
+import { email, max, required } from 'vee-validate/dist/rules'
 import {
   extend,
+  setInteractionMode,
   ValidationObserver,
   ValidationProvider,
-  setInteractionMode,
 } from 'vee-validate'
 import rcapiService, {
   RC_ACCESS_TOKEN_KEY,
   TEMP_RC_ACCESS_TOKEN_KEY,
 } from '@/service/rcapiService'
-import * as Cookies from 'js-cookie'
+import UploadUtil from '@/utils/UploadUtil'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
 setInteractionMode('eager')
 
@@ -272,6 +296,7 @@ export default {
       confirmEmailToken: undefined,
       nextSendTime: 0,
       now: Date.now(),
+      uploadStatus: '-/-',
     }
   },
   computed: {
@@ -287,7 +312,10 @@ export default {
   watch: {
     show(show) {
       if (show) {
-        this.mode = Cookies.get(RC_ACCESS_TOKEN_KEY) ? 'LoginSuccess' : 'LoginSignup'
+        this.mode = LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)
+          ? 'LoginSuccess'
+          : 'LoginSignup'
+        this.refreshUploadStatus()
       }
     },
   },
@@ -295,6 +323,9 @@ export default {
     setInterval(() => (this.now = Date.now()), 500)
   },
   methods: {
+    close() {
+      this.$emit('input', false)
+    },
     check() {
       if (this.code === '野玫瑰') {
         this.setRoseMode(true)
@@ -338,12 +369,16 @@ export default {
           password: this.password,
         })
         if (result.accountStatus === 'CONFIRM_EMAIL') {
-          Cookies.set(TEMP_RC_ACCESS_TOKEN_KEY, result.access_token, { expires: 3650 })
+          LocalStorageUtil.set(TEMP_RC_ACCESS_TOKEN_KEY, result.access_token, {
+            expires: 3650,
+          })
           this.mode = 'ConfirmEmail'
           this.nextSendTime = Date.now() + DEFAULT_RESEND_TIME
         } else if (result.accountStatus === 'ACTIVE') {
-          Cookies.remove(TEMP_RC_ACCESS_TOKEN_KEY)
-          Cookies.set(RC_ACCESS_TOKEN_KEY, result.access_token, { expires: 3650 })
+          LocalStorageUtil.remove(TEMP_RC_ACCESS_TOKEN_KEY)
+          LocalStorageUtil.set(RC_ACCESS_TOKEN_KEY, result.access_token, {
+            expires: 3650,
+          })
           // this.mode = 'LoginSuccess'
           // setTimeout(() => this.$emit('input', false), 1000)
           this.showSnackbar({
@@ -352,6 +387,12 @@ export default {
             timeout: 1000,
           })
           this.$emit('input', false)
+        } else if (result.statusCode === 401) {
+          this.showSnackbar({
+            text: '用户名或密码错误',
+            color: 'error',
+            timeout: 1000,
+          })
         }
       } catch (e) {
         console.error(e)
@@ -365,7 +406,7 @@ export default {
       const response = await rcapiService.confirmEmail({
         token: this.confirmEmailToken,
       })
-      if (response.statusCode) {
+      if (response?.statusCode) {
         if (response.error === 'WrongToken') {
           this.$refs.confirmEmail.setErrors({
             confirmEmailToken: ['验证码错误'],
@@ -381,6 +422,14 @@ export default {
         // this.mode = 'LoginSuccess'
         // setTimeout(() => this.$emit('input', false), 1000)
         // this.mode = 'ConfirmEmail'
+        LocalStorageUtil.set(
+          RC_ACCESS_TOKEN_KEY,
+          LocalStorageUtil.get(TEMP_RC_ACCESS_TOKEN_KEY),
+          {
+            expires: 3650,
+          }
+        )
+        LocalStorageUtil.remove(TEMP_RC_ACCESS_TOKEN_KEY)
         this.showSnackbar({
           text: '邮箱验证成功',
           color: 'success',
@@ -402,13 +451,17 @@ export default {
       this.loading = false
     },
     logout() {
-      Cookies.remove(RC_ACCESS_TOKEN_KEY)
+      LocalStorageUtil.remove(RC_ACCESS_TOKEN_KEY)
       this.$emit('input', false)
       this.showSnackbar({
         text: '已登出',
         color: 'default',
         timeout: 1000,
       })
+    },
+    async refreshUploadStatus() {
+      const { total, uploaded } = await UploadUtil.getUploadStatus()
+      this.uploadStatus = `${uploaded} / ${total}`
     },
     ...mapMutations(['setRoseMode', 'showSnackbar']),
   },

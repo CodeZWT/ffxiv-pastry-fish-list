@@ -10,4 +10,9 @@ db.version(2).stores({
   sounds: 'id,base64,filePath',
 })
 
+db.version(3).stores({
+  records:
+    'id,baitId,biteTime,cancelled,catchAndRelease,chum,collectorGlove,fishEyes,fishId,fishersIntuition,gathering,gatheringFortuneUp,gp,hookset,hq,identicalCast,missed,mooch,pastryFishVersion,patch,perception,prevWeatherDetected,region,size,snagging,spotId,startTime,surfaceScale,surfaceScaleFishId,tug,weatherDetected,uploadEnabled,uploaded',
+})
+
 export default db

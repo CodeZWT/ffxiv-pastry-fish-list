@@ -33,6 +33,8 @@ const EMPTY_RECORD = {
   fishId: -1,
   hq: false,
   size: 0,
+  uploadEnabled: true,
+  uploaded: false
 }
 let status, currentRecord
 const records = []
