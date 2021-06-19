@@ -531,7 +531,7 @@ async function init() {
   updateIfNeeded()
   intervalHandle = setInterval(
     () => updateIfNeeded(intervalHandle),
-    CONSTANTS.INTERVAL_MINUTE * 2
+    CONSTANTS.INTERVAL_MINUTE * 10
   )
 
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
