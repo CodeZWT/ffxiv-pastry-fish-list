@@ -1208,6 +1208,7 @@ export default {
     mainWindow: {
       closeMode: 'CLOSE',
     },
+    isRoseMode: false,
     reader: {
       region: 'CN',
       monitorType: 'RawSocket',

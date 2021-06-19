@@ -350,6 +350,19 @@
           </v-list-item>
 
           <v-list-item
+            v-if="true || (isElectron && isRoseMode)"
+            @click="showRoseDialog = true"
+            link
+          >
+            <v-list-item-icon>
+              <v-icon>fas fa-user-secret</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item
             v-if="isElectron && downloadProgress > 0"
             link
             @click="showUpdateDialog"
@@ -638,11 +651,11 @@
       :source="migrationSource"
     />
     <desktop-version-dialog v-model="showDownloadDialog" />
-
+    <rose-mode-dialog v-model="showRoseDialog" />
     <!--    <competition-dialog v-model="showCompetitionDialogComputed" />-->
 
     <v-snackbar
-      :timeout="2000"
+      :timeout="snackbar.timeout"
       v-model="snackbar.show"
       :color="snackbar.color"
       centered
@@ -733,11 +746,13 @@ import FishEyesToggleButton from '@/components/FishEyesToggleButton'
 import isEqual from 'lodash/isEqual'
 import repeat from 'lodash/repeat'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
+import RoseModeDialog from '@/components/Dialog/RoseModeDialog'
 // let totalCnt = 0
 
 export default {
   name: 'App',
   components: {
+    RoseModeDialog,
     ResizeIndicator,
     FishEyesToggleButton,
     HelpDialog,
@@ -757,6 +772,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    showRoseDialog: false,
     downloadProgress: 0,
     lastCatchFishId: undefined,
     notificationRecords: {},
@@ -1109,6 +1125,7 @@ export default {
       'baitIdsForNotification',
     ]),
     ...mapGetters([
+      'isRoseMode',
       'mainWindowCloseMode',
       // 'readerRegion',
       // 'readerMonitorType',
@@ -1253,6 +1270,9 @@ export default {
         })
         ?.on('newRecord', (event, data) => {
           db.records.put(data).catch(error => console.error('storeError', error))
+        })
+        ?.on('showRoseModeDialog', () => {
+          this.showRoseDialog = true
         })
     }
 

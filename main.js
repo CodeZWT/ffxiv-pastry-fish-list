@@ -499,7 +499,11 @@ async function init() {
   ipcMain.handle('getWindowSetting', () => {
     return windowSetting
   })
-
+  globalShortcut.register('Alt+Shift+Y', () => {
+    callWindowSafe(WINDOWS.main, win =>
+      win.webContents.send('showRoseModeDialog')
+    )
+  })
   globalShortcut.register('Alt+CommandOrControl+]', () => {
     showReader()
   })

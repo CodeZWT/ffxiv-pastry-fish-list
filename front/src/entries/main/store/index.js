@@ -29,6 +29,7 @@ export default new Vuex.Store({
       show: false,
       text: '',
       color: '',
+      timeout: 2000,
     },
     activeTabIndex: DataUtil.TAB_INDEX_NORMAL,
     aetheryte: _.groupBy(DATA_CN.AETHERYTE, 'mapFileId'),
@@ -226,6 +227,9 @@ export default new Vuex.Store({
     showBanner: state => {
       return state.userData.showBanner
     },
+    isRoseMode: state => {
+      return state.userData.isRoseMode
+    },
     opacity: state => {
       return state.windowSetting.opacity
     },
@@ -273,6 +277,10 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setRoseMode(state, rose) {
+      state.userData = { ...state.userData, isRoseMode: rose }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
     setShowCompetitionDialog(state, show) {
       state.userData.showCompetitionDialog = show
       LocalStorageUtil.storeUserData(state.userData)
@@ -434,11 +442,12 @@ export default new Vuex.Store({
     setShowImportExportDialog(state, show) {
       state.showImportExportDialog = show
     },
-    showSnackbar(state, { text, color }) {
+    showSnackbar(state, { text, color, timeout }) {
       state.snackbar = {
         show: true,
         text,
         color,
+        timeout: timeout ?? 2000,
       }
     },
     setNotShowBanner(state) {
