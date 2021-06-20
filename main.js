@@ -524,11 +524,11 @@ async function init() {
     if (records.length === 200 || lastUploadTime + CONSTANTS.INTERVAL_MINUTE * 10 < now) {
       try {
         const response = await upload(accessToken, records)
-        console.log('Uploaded data CNT:', response.data.length)
+        log.info('Uploaded data CNT:', response.data.length)
         lastUploadTime = now
         return response.data
       } catch (e) {
-        console.error('Upload error:', e)
+        log.error('Upload error')
         lastUploadTime = now
       }
     }
