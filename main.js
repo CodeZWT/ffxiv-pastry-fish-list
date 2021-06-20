@@ -167,21 +167,33 @@ async function init() {
   initSetting(configStore, 'hotkeySetting', DEFAULT_HOTKEY_SETTING)
   hotkeySetting = configStore.get('hotkeySetting')
 
-  FishingDataReader.onUpdate(data => {
+  FishingDataReader.onUpdate(async data => {
     if (readerConfig.showReaderOnlyIfFishing) {
-      const timerTarget = windowSetting.timerMini.enabled
-        ? WINDOWS.timerMini
-        : WINDOWS.readerTimer
       if (data.status.isFishing !== isFishing) {
         isFishing = data.status.isFishing
         if (data.status.isFishing) {
+          let timerTarget
+          if (windowSetting.timerMini.enabled) {
+            if (!WINDOWS.timerMini) {
+              await createTimerMiniWin()
+              timerTarget = WINDOWS.timerMini
+            }
+          } else {
+            if (!WINDOWS.readerTimer) {
+              createReader()
+              timerTarget = WINDOWS.readerTimer
+            }
+          }
           callWindowSafe(timerTarget, win => {
             win.showInactive()
           })
         } else {
+          const timerTarget = windowSetting.timerMini.enabled
+            ? WINDOWS.timerMini
+            : WINDOWS.readerTimer
           callWindowSafe(timerTarget, win => {
             hideByFishingTrigger = true
-            win.hide()
+            win.close()
           })
         }
       }
@@ -625,6 +637,7 @@ function switchReaderMiniMode(mini) {
        createTimerMiniWin().then(win => {
          win.setPosition(x, y + READER_MINI_POS_OFFSET)
          win.show()
+         saveWindowSetting('timerMini.pos', { x, y: y + READER_MINI_POS_OFFSET })
          saveWindowSetting('timerMini.enabled', true)
       })
     }

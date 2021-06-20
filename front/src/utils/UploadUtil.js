@@ -68,7 +68,14 @@ const toUploadData = records => {
 }
 
 export default {
+  isLogin() {
+    return !!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)
+  },
   async sendUploadRecord() {
+    if (!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)) {
+      console.log('upload skipped')
+      return
+    }
     const recordsToUpload = await db.records
       .orderBy('startTime')
       .filter(record => {
