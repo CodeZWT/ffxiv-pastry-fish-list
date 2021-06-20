@@ -55,4 +55,18 @@ export default {
       method: 'POST',
     }).then(response => response.json())
   },
+  getRecords(sortBy, sortDesc, page, itemsPerPage) {
+    return fetch(
+      host +
+        `/records?${sortBy.map(it => 'sortBy=' + it).join('&')}&${sortDesc
+          .map(it => 'sortDesc=' + it)
+          .join('&')}&page=${page}&itemsPerPage=${itemsPerPage}`,
+      {
+        headers: {
+          'content-type': 'application/json',
+        },
+        method: 'GET',
+      }
+    ).then(response => response.json())
+  },
 }

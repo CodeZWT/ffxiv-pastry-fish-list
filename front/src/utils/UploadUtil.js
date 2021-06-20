@@ -6,6 +6,8 @@ import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
 import db from '@/plugins/db'
 import { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import { WEATHER_TYPES } from 'Data/translation'
+import PLACE_NAMES from 'Data/placeNames'
 
 const toUploadData = records => {
   return records.map(record => {
@@ -113,6 +115,47 @@ export default {
     return {
       total: recordsToUpload.length,
       uploaded: recordsToUpload.filter(({ uploaded }) => uploaded).length,
+    }
+  },
+  toReadableData(record) {
+    return {
+      ...record,
+      startTime: new Date(record.startTime),
+
+      fishId: record.fish,
+      fishName: DataUtil.getItemName(record.fish) ?? '未知',
+      fishIcon: record.missed
+        ? 'bg-060034'
+        : record.cancelled
+        ? 'bg-060027'
+        : DataUtil.getItemIconClass(record.fish, 60027),
+
+      baitId: record.bait ?? -1,
+      baitName: DataUtil.getItemName(record.bait) ?? '未知',
+      baitIcon: DataUtil.getItemIconClass(record.bait ?? -1, 60051),
+
+      prevWeather: WEATHER_TYPES[record.prevWeather],
+      prevWeatherId: record.prevWeather,
+      weather: WEATHER_TYPES[record.weather],
+      weatherId: record.weather,
+      spotId: record.spot,
+      spot: DataUtil.getName(
+        record.spot > 0 ? DataUtil.FISHING_SPOTS[record.spot] : { name_chs: '' }
+      ),
+      zone:
+        record.spot > 0
+          ? PLACE_NAMES[
+              DATA.WEATHER_RATES[DataUtil.FISHING_SPOTS[record.spot]?.territory_id]
+                ?.zone_id ??
+                (DataUtil.isDiademSpot(record.spot)
+                  ? DIADEM_ZONE
+                  : DataUtil.isOceanFishingSpot(record.spot)
+                  ? OCEAN_FISHING_ZONE
+                  : 0)
+            ]
+          : '',
+      hookset: ['normal', 'precision', 'powerful', 'double'][record.hookset],
+      tug: ['light', 'medium', 'heavy'][record.tug],
     }
   },
 }

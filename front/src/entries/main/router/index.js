@@ -61,6 +61,15 @@ const routes = [
       ),
   },
   {
+    path: '/record',
+    name: 'RecordPage',
+    component: () =>
+      import(
+        /* webpackChunkName: "record" */
+        '../views/RecordPage'
+      ),
+  },
+  {
     path: '/migration',
     name: 'MigrationPage',
     component: MigrationPage,
