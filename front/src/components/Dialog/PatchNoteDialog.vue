@@ -25,6 +25,17 @@
         <!--          更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
 
+        <div class="text-h6">Version 0.8.10</div>
+        <div class="text-subtitle-1">更新时间: 2021/06/20 17:40</div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <ul>
+          <li>
+            修复幻海流、空岛天气计时
+          </li>
+        </ul>
+
+        <v-divider />
+
         <div class="text-h6">Version 0.8.9</div>
         <div class="text-subtitle-1">更新时间: 2021/06/20 14:20</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
