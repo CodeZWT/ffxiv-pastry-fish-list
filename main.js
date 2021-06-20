@@ -1270,7 +1270,7 @@ function callTargetSafe(target, targetCallback) {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     log.info('in all closed')
-    if (mainWindowConfig.closeMode === 'CLOSE') {
+    if (mainWindowConfig.closeMode === 'CLOSE' && !readerConfig.showReaderOnlyIfFishing) {
       // FishingDataReader.stop(() => {
       //   log.info('call quit')
       //   // if (toInstallUpdates) {
