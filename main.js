@@ -561,7 +561,7 @@ async function init() {
   //
   // win.loadFile('index.html')
   createMainWindow()
-  await createAndShowLoadingWindow(WINDOWS.main)
+  await createAndShowLoadingWindow()
   // await createMiniWin(WINDOWS.main)
   updateIfNeeded()
   intervalHandle = setInterval(
