@@ -125,7 +125,6 @@ export default {
       ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
   },
   methods: {
-    toUploadData: UploadUtil.toUploadData,
     showSetting() {
       window.electron?.ipcRenderer?.send('showSetting')
       this.setFeatureViewed(this.SettingFeatureId)
