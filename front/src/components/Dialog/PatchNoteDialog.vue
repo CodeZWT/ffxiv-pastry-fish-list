@@ -24,6 +24,35 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
+
+        <div class="text-h6">Version 0.8.9</div>
+        <div class="text-subtitle-1">更新时间: 2021/06/20 14:20</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>更新5.55鱼皇数据</li>
+          <li>增加“光之渔夫钓鱼大赛”页面，包括往届信息以及最终排名</li>
+          <li>修复5.55鱼皇未计入钓鱼笔记计数的问题</li>
+        </ul>
+
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <ul>
+          <li>
+            优化内存占用
+            <ul>
+              <li>窗口改为动态加载，因此会有约1秒的加载时间</li>
+              <li>可以在打开渔捞界面的状态下，关闭主界面</li>
+              <li>点击系统托盘图标可再次打开主界面</li>
+              <li>关闭主界面时，不会有闹钟提示，但是可以记录咬钩数据</li>
+              <li>程序将在所有窗口关闭时关闭</li>
+            </ul>
+          </li>
+          <li>
+            增加更新界面入口
+          </li>
+        </ul>
+
+        <v-divider />
+
         <div class="text-h6">Version 0.8.8</div>
         <div class="text-subtitle-1">更新时间: 2021/06/08 23:20</div>
         <div class="text-h5 text-center my-1">渔捞</div>
