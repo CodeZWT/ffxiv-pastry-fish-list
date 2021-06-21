@@ -5,8 +5,11 @@
       `detail-wrapper ${isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'}`
     "
   >
-    <v-row no-gutters>
-      <v-col>
+    <v-row>
+      <v-col cols="12">
+        <v-btn @click="refresh"><v-icon>mdi-refresh</v-icon></v-btn>
+      </v-col>
+      <v-col cols="12">
         <v-data-table
           :headers="headers"
           :items="records"
@@ -53,6 +56,7 @@ import EnvMixin from '@/components/basic/EnvMixin'
 import rcapiService from '@/service/rcapiService'
 import UploadUtil from '@/utils/UploadUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
+import throttle from 'lodash/throttle'
 
 export default {
   name: 'RecordPage',
@@ -64,6 +68,7 @@ export default {
       loading: true,
       totalRecords: 0,
       records: [],
+      refresh: () => {},
       options: {
         sortBy: ['startTime'],
         sortDesc: [true],
@@ -107,10 +112,13 @@ export default {
     },
   },
   mounted() {
-    // this.getDataFromApi(this.options)
+    this.refresh = throttle(() => this.getDataFromApi(this.options), 5000, {
+      leading: true,
+    })
   },
   methods: {
     getDataFromApi(options) {
+      console.log('called')
       const { sortBy, sortDesc, page, itemsPerPage } = options
       this.loading = true
       rcapiService.getRecords(sortBy, sortDesc, page - 1, itemsPerPage).then(data => {
