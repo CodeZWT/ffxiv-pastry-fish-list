@@ -56,12 +56,14 @@ export default {
     }).then(response => response.json())
   },
   getRecords(sortBy, sortDesc, page, itemsPerPage) {
-    const paramStr = encodeQueryData({
-      sortBy: sortBy,
-      sortDesc: sortDesc,
-      page: page,
-      itemsPerPage: itemsPerPage,
-    })
+    const paramStr = [
+      { name: 'sortBy', value: sortBy },
+      { name: 'sortDesc', value: sortDesc },
+      { name: 'page', value: page },
+      { name: 'itemsPerPage', value: itemsPerPage },
+    ]
+      .map(({ name, value }) => toParamStr(name, value))
+      .join('&')
     return fetch(`${host}/records?${paramStr}`, {
       headers: {
         'content-type': 'application/json',
@@ -71,12 +73,14 @@ export default {
   },
 }
 
-function encodeQueryData(data) {
-  const ret = []
-  for (let d in data) {
-    if (Object.prototype.hasOwnProperty.call(data, d)) {
-      ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]))
+const toParamStr = (name, value) => {
+  if (typeof value === 'object') {
+    if (value.length === 0) {
+      return name + '='
+    } else {
+      return value.map(it => name + '=' + it).join('&')
     }
+  } else {
+    return name + '=' + value
   }
-  return ret.join('&')
 }
