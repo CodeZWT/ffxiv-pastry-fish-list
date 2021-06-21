@@ -56,17 +56,27 @@ export default {
     }).then(response => response.json())
   },
   getRecords(sortBy, sortDesc, page, itemsPerPage) {
-    return fetch(
-      host +
-        `/records?${sortBy.map(it => 'sortBy=' + it).join('&')}&${sortDesc
-          .map(it => 'sortDesc=' + it)
-          .join('&')}&page=${page}&itemsPerPage=${itemsPerPage}`,
-      {
-        headers: {
-          'content-type': 'application/json',
-        },
-        method: 'GET',
-      }
-    ).then(response => response.json())
+    const paramStr = encodeQueryData({
+      sortBy: sortBy,
+      sortDesc: sortDesc,
+      page: page,
+      itemsPerPage: itemsPerPage,
+    })
+    return fetch(`${host}/records?${paramStr}`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'GET',
+    }).then(response => response.json())
   },
+}
+
+function encodeQueryData(data) {
+  const ret = []
+  for (let d in data) {
+    if (Object.prototype.hasOwnProperty.call(data, d)) {
+      ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]))
+    }
+  }
+  return ret.join('&')
 }

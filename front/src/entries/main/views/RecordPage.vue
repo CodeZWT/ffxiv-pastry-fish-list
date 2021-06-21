@@ -11,13 +11,11 @@
           :headers="headers"
           :items="records"
           multi-sort
-          :sort-by="['startTime']"
-          :sort-desc="[true]"
-          :items-per-page="20"
           class="elevation-1"
           :loading="loading"
           :server-items-length="totalRecords"
           :options.sync="options"
+          :footer-props="{ itemsPerPageOptions: [20, 40, 60] }"
         >
           <template v-slot:item.startTime="{ item }">
             <div class="d-flex align-center">
@@ -27,13 +25,13 @@
               </div>
             </div>
           </template>
-          <template v-slot:item.id="{ item }">
+          <template v-slot:item.fish="{ item }">
             <div class="d-flex align-center">
               <item-icon :icon-class="item.fishIcon"></item-icon>
               <div>{{ item.fishName }}</div>
             </div>
           </template>
-          <template v-slot:item.baitId="{ item }">
+          <template v-slot:item.bait="{ item }">
             <div class="d-flex align-center">
               <item-icon :icon-class="item.baitIcon"></item-icon>
               <div>{{ item.baitName }}</div>
@@ -67,10 +65,10 @@ export default {
       totalRecords: 0,
       records: [],
       options: {
-        // sortBy: ['startTime'],
-        // sortDesc: [true],
-        // page: 0,
-        // itemsPerPage: 10,
+        sortBy: ['startTime'],
+        sortDesc: [true],
+        page: 1,
+        itemsPerPage: 20,
       },
       headers: [
         {
@@ -83,13 +81,13 @@ export default {
           text: '鱼',
           align: 'start',
           sortable: true,
-          value: 'id',
+          value: 'fish',
         },
         {
           text: '鱼饵',
           align: 'start',
           sortable: true,
-          value: 'baitId',
+          value: 'bait',
         },
         {
           text: '上传者',
