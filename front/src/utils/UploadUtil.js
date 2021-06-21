@@ -134,15 +134,17 @@ export default {
       baitName: DataUtil.getItemName(record.bait) ?? '未知',
       baitIcon: DataUtil.getItemIconClass(record.bait ?? -1, 60051),
 
+      tugColor: ['success', 'error', 'warning'][record.tug],
+      biteIntervalPercentage: Math.round((record.biteInterval / 60) * 100),
       prevWeather: WEATHER_TYPES[record.prevWeather],
       prevWeatherId: record.prevWeather,
       weather: WEATHER_TYPES[record.weather],
       weatherId: record.weather,
       spotId: record.spot,
-      spot: DataUtil.getName(
+      spotName: DataUtil.getName(
         record.spot > 0 ? DataUtil.FISHING_SPOTS[record.spot] : { name_chs: '' }
       ),
-      zone:
+      zoneName:
         record.spot > 0
           ? PLACE_NAMES[
               DATA.WEATHER_RATES[DataUtil.FISHING_SPOTS[record.spot]?.territory_id]
