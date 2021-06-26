@@ -1107,6 +1107,7 @@ export default {
       },
     },
     ...mapState([
+      'readerSetting',
       'userData',
       'baitFilter',
       'loading',
@@ -1377,7 +1378,10 @@ export default {
       window.location.reload()
     },
     finishReloadPage() {
-      this.sendElectronEvent('finishLoading', this.userData)
+      this.sendElectronEvent('finishLoading', {
+        userData: this.userData,
+        readerSetting: this.readerSetting,
+      })
     },
     toggleFishEyesUsed() {
       this.showSnackbar({

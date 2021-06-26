@@ -121,16 +121,16 @@ function saveWindowSetting(path, value) {
 }
 function saveHotkeySetting(path, value) {
   const old = get(hotkeySetting, path)
-  if (old) {
-    console.log('unregister hotkey', path, 'key', old)
-    globalShortcut.unregister('Alt+Shift+' + old)
+  if (value !== old) {
+    if (old) {
+      globalShortcut.unregister('Alt+Shift+' + old)
+    }
+    set(hotkeySetting, path, value)
+    configStore.set('hotkeySetting', hotkeySetting)
+    globalShortcut.register('Alt+Shift+' + hotkeySetting.mouseThrough, () => {
+      setMouseThrough(!enableMouseThrough)
+    })
   }
-  set(hotkeySetting, path, value)
-  configStore.set('hotkeySetting', hotkeySetting)
-  console.log('register hotkey', path, 'key', value)
-  globalShortcut.register('Alt+Shift+' + hotkeySetting.mouseThrough, () => {
-    setMouseThrough(!enableMouseThrough)
-  })
 }
 
 function callFirstAvailableWin(windows, callBack) {
@@ -361,13 +361,18 @@ async function init() {
     .on('updateMainConfig', (event, config) => {
       mainWindowConfig = config
     })
-    .on('finishLoading', (event, userData) => {
+    .on('finishLoading', (event, { userData, readerSetting }) => {
       // if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
       //   return loadingForReloadingPage.close()
       // }
       log.info('in finishLoading')
-      readerConfig = userData.reader
+      readerConfig = readerSetting
       mainWindowConfig = userData.mainWindow
+
+      // set hotkey
+      globalShortcut.register('Alt+Shift+' + hotkeySetting.mouseThrough, () => {
+        setMouseThrough(!enableMouseThrough)
+      })
 
       startReaderOnce({
         region: readerConfig.region,
@@ -416,7 +421,7 @@ async function init() {
     })
     .on('showSpotPage', (event, spotId) => {
       if (!WINDOWS.main) {
-        createMainWindow((win) => {
+        createMainWindow(win => {
           win.webContents.send('showSpotPage', spotId)
           if (win.isMinimized()) {
             win.restore()
@@ -535,9 +540,7 @@ async function init() {
     return []
   })
   globalShortcut.register('Alt+Shift+Y', () => {
-    callWindowSafe(WINDOWS.main, win =>
-      win.webContents.send('showRoseModeDialog')
-    )
+    callWindowSafe(WINDOWS.main, win => win.webContents.send('showRoseModeDialog'))
   })
   globalShortcut.register('Alt+CommandOrControl+]', () => {
     showReader()
@@ -569,10 +572,7 @@ async function init() {
     CONSTANTS.INTERVAL_MINUTE * 10
   )
   // uploadIfNeeded()
-  uploadIntervalHandle = setInterval(
-    () => uploadIfNeeded(),
-    CONSTANTS.INTERVAL_MINUTE,
-  )
+  uploadIntervalHandle = setInterval(() => uploadIfNeeded(), CONSTANTS.INTERVAL_MINUTE)
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
   const contextMenu = Menu.buildFromTemplate([
     { label: '打开渔捞鼠标穿透', click: () => setMouseThrough(true) },
@@ -631,14 +631,14 @@ function switchMiniMode(mini) {
 
 function switchReaderMiniMode(mini) {
   if (mini) {
-    const {x, y} = windowSetting.timer.pos
+    const { x, y } = windowSetting.timer.pos
     callWindowSafe(WINDOWS.readerTimer, win => win.close())
     if (!WINDOWS.timerMini) {
-       createTimerMiniWin().then(win => {
-         win.setPosition(x, y + READER_MINI_POS_OFFSET)
-         win.show()
-         saveWindowSetting('timerMini.pos', { x, y: y + READER_MINI_POS_OFFSET })
-         saveWindowSetting('timerMini.enabled', true)
+      createTimerMiniWin().then(win => {
+        win.setPosition(x, y + READER_MINI_POS_OFFSET)
+        win.show()
+        saveWindowSetting('timerMini.pos', { x, y: y + READER_MINI_POS_OFFSET })
+        saveWindowSetting('timerMini.enabled', true)
       })
     }
   } else {
@@ -649,7 +649,6 @@ function switchReaderMiniMode(mini) {
       saveWindowSetting('timerMini.enabled', false)
     }
   }
-
 
   // callWindowsSafe(
   //   [
@@ -909,6 +908,8 @@ function createWindow(
 
   if (keepOnTop) setOnTop(win)
 
+  setMouseThrough(enableMouseThrough)
+
   return win
     .on('moved', () => {
       const [x, y] = win.getPosition()
@@ -924,14 +925,18 @@ function createWindow(
 }
 
 function createMainWindow(loadedCallback) {
-  return createWindow('main', 'main', 'assets/icon256.png', 'index', null, loadedCallback).on(
-    'closed',
-    () => {
-      // if (mainWindowConfig.closeMode === 'CLOSE') {
-      //   quit()
-      // }
-    }
-  )
+  return createWindow(
+    'main',
+    'main',
+    'assets/icon256.png',
+    'index',
+    null,
+    loadedCallback
+  ).on('closed', () => {
+    // if (mainWindowConfig.closeMode === 'CLOSE') {
+    //   quit()
+    // }
+  })
 }
 
 function setOnTop(win, alwaysOnTop = true) {
@@ -1019,10 +1024,10 @@ function showReader() {
     callWindowSafe(WINDOWS.readerTimer, win => win.show())
   } else {
     if (!WINDOWS.timerMini) {
-       createTimerMiniWin().then(win => {
-         WINDOWS.timerMini = win
-         callWindowSafe(WINDOWS.timerMini, win => win.show())
-       })
+      createTimerMiniWin().then(win => {
+        WINDOWS.timerMini = win
+        callWindowSafe(WINDOWS.timerMini, win => win.show())
+      })
     }
   }
 }

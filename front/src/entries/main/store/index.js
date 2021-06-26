@@ -5,7 +5,11 @@ import DATA from 'Data/data'
 import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import { loadBaitFilterUserData, loadUserData } from '@/utils/UserDataLoader'
+import {
+  loadBaitFilterUserData,
+  loadReaderUserData,
+  loadUserData,
+} from '@/utils/UserDataLoader'
 import CONSTANTS from 'Data/constants'
 
 Vue.use(Vuex)
@@ -37,6 +41,7 @@ export default new Vuex.Store({
     showFishPageRightPane: false,
     loading: false,
     userData: loadUserData(),
+    readerSetting: loadReaderUserData(),
     // fish page filter
     // baitFilterEnabled: false,
     // baitFilterIds: [],
