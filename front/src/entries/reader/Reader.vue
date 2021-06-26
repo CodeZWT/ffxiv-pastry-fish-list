@@ -74,6 +74,7 @@ export default {
   components: { ResizeIndicator, NewFeatureMark },
   data: () => ({
     now: Date.now(),
+    closeMode: 'HIDE',
     readerIcon: READER_ICON,
     settingIcon: SETTING_ICON,
     SettingFeatureId: ReaderFeatures.Setting,
@@ -106,6 +107,11 @@ export default {
     ...mapGetters(['readerRegion']),
   },
   async created() {
+    this.closeMode =
+      window.process?.argv
+        ?.find(it => it.indexOf('--close-mode') === 0)
+        ?.split('=')?.[1] ?? 'HIDE'
+
     this.loadingSounds().then(sounds =>
       this.setSounds(DataUtil.toMap(sounds, it => it.key))
     )
@@ -133,7 +139,11 @@ export default {
       WindowUtil.minimizeWindow()
     },
     close() {
-      WindowUtil.closeWindow()
+      if (this.closeMode === 'CLOSE') {
+        WindowUtil.closeWindow()
+      } else {
+        WindowUtil.hideWindow()
+      }
     },
     loadingSounds() {
       return Promise.all([
