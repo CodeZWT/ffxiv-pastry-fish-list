@@ -174,11 +174,13 @@ async function init() {
         if (data.status.isFishing) {
           let timerTarget
           if (windowSetting.timerMini.enabled) {
+            timerTarget = WINDOWS.timerMini
             if (!WINDOWS.timerMini) {
               await createTimerMiniWin()
               timerTarget = WINDOWS.timerMini
             }
           } else {
+            timerTarget = WINDOWS.readerTimer
             if (!WINDOWS.readerTimer) {
               createReader()
               timerTarget = WINDOWS.readerTimer
@@ -193,7 +195,7 @@ async function init() {
             : WINDOWS.readerTimer
           callWindowSafe(timerTarget, win => {
             hideByFishingTrigger = true
-            win.close()
+            win.hide()
           })
         }
       }
@@ -631,6 +633,7 @@ function switchMiniMode(mini) {
 
 function switchReaderMiniMode(mini) {
   if (mini) {
+    // hideBySwitch = true
     const { x, y } = windowSetting.timer.pos
     callWindowSafe(WINDOWS.readerTimer, win => win.close())
     if (!WINDOWS.timerMini) {
@@ -686,7 +689,7 @@ function createReaderSetting(readTimerWin) {
     'reader',
     'setting',
     () => {},
-    ['--route-name=ReaderSetting'],
+    ['--route-name=ReaderSetting', '--close-mode=CLOSE'],
     false,
     true,
     true,
@@ -709,7 +712,7 @@ function createReaderHistory(readTimerWin) {
     false,
     true,
     true,
-    readTimerWin
+    null
   )
 }
 
@@ -728,7 +731,7 @@ function createReaderSpotStatistics(readTimerWin) {
     false,
     true,
     true,
-    readTimerWin
+    null
   )
 }
 
@@ -990,16 +993,18 @@ function showReaderWindows() {
 }
 
 function hideReaderWindows() {
-  if (hideBySwitch) {
-    // do nothing
-    hideBySwitch = false
-    return
-  } else if (hideByFishingTrigger) {
+  // Not used now since timer windows are closed when switching mini mode
+  // if (hideBySwitch) {
+  // //   do nothing
+    // hideBySwitch = false
+    // return
+  // } else
+  if (hideByFishingTrigger) {
     hideByFishingTrigger = false
     // save other window status
-    settingVisible = WINDOWS.readerSetting.isVisible()
-    historyVisible = WINDOWS.readerHistory.isVisible()
-    spotStatisticsVisible = WINDOWS.readerSpotStatistics.isVisible()
+    settingVisible = WINDOWS.readerSetting && WINDOWS.readerSetting.isVisible()
+    historyVisible = WINDOWS.readerHistory && WINDOWS.readerHistory.isVisible()
+    spotStatisticsVisible = WINDOWS.readerSpotStatistics && WINDOWS.readerSpotStatistics.isVisible()
   } else {
     // hide together
     settingVisible = false
