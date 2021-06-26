@@ -32,7 +32,7 @@
 
     <v-card outlined class="mt-2">
       <v-card-subtitle>
-        <div class="d-flex">
+        <div class="d-flex align-center">
           <a :href="oceanFishTipReference.link" target="_blank">
             {{ oceanFishTipReference.title }}
           </a>
@@ -43,7 +43,18 @@
         </div>
       </v-card-subtitle>
       <!-- <v-card-subtitle>{{ achievementId }}-{{ location.id }}</v-card-subtitle> -->
-      <v-card-text v-html="tip[achievementId][location.id]"></v-card-text>
+      <v-card-text>
+        <click-helper
+          @click.stop
+          :copy-text="toMacro(tip[achievementId][location.id])"
+          style="position: absolute; right: 8px"
+        >
+          <v-btn text icon small title="复制宏">
+            <v-icon small>mdi-content-copy</v-icon>
+          </v-btn>
+        </click-helper>
+        <pre class="tip-macro">{{ toText(tip[achievementId][location.id]) }}</pre>
+      </v-card-text>
     </v-card>
   </div>
 </template>
@@ -51,10 +62,11 @@
 <script>
 import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
 import FIX from 'Data/fix'
+import ClickHelper from '@/components/basic/ClickHelper'
 
 export default {
   name: 'AchievementTip',
-  components: { FishTip },
+  components: { ClickHelper, FishTip },
   props: {
     achievementId: {
       type: Number,
@@ -79,7 +91,23 @@ export default {
       tip: FIX.OCEAN_FISHING_TIPS.tip3.achievementTip,
     }
   },
+  methods: {
+    toText(textArray) {
+      return textArray.join('\n')
+    },
+    toMacro(textArray) {
+      const divider =
+        '- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -'
+      return [divider, ...textArray, divider].map(it => '/p ' + it).join('\n')
+    },
+  },
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+.tip-macro
+  white-space: pre-wrap       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap  /* Mozilla, since 1999 */
+  white-space: -o-pre-wrap    /* Opera 7 */
+  word-wrap: break-word       /* Internet Explorer 5.5+ */
+</style>
