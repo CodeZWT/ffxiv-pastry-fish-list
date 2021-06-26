@@ -8,6 +8,7 @@ const VIEWED_FEATURES_KEYS = {
   main: 'mainViewedFeatures',
   reader: 'readerViewedFeatures',
 }
+const READER_USER_DATA_KEY = 'readerUserData'
 
 export default {
   storeUserData(userData) {
@@ -18,29 +19,26 @@ export default {
     return store.get(USER_DATA_KEY)
   },
 
+  storeReaderUserData(userData) {
+    store.set(READER_USER_DATA_KEY, userData)
+  },
+
+  loadReaderUserData() {
+    // Deal with old version data which was stored in `userData`
+    let readerSetting = store.get(READER_USER_DATA_KEY)
+    if (readerSetting == null) {
+      readerSetting = store.get(USER_DATA_KEY).reader
+      store.set(READER_USER_DATA_KEY, readerSetting)
+    }
+    return readerSetting
+  },
+
   storeBaitFilter(baitFilter) {
     store.set(BAIT_FILTER_KEY, baitFilter)
   },
 
   loadBaitFilter() {
     return store.get(BAIT_FILTER_KEY)
-  },
-
-  // comment out to implement more useful backup and restore functions
-  loadAndBackupUserData() {
-    const userData = store.get(USER_DATA_KEY)
-    // if (userData) {
-    //   store.set(USER_DATA_KEY_LOAD_BACKUP, userData)
-    // }
-    return userData
-  },
-
-  storeAndBackupUserData(userData) {
-    // const oldUserData = store.get(USER_DATA_KEY)
-    // if (oldUserData) {
-    //   store.set(USER_DATA_KEY_STORE_BACKUP, oldUserData)
-    // }
-    store.set(USER_DATA_KEY, userData)
   },
 
   loadViewedFeatures(featureGroup) {

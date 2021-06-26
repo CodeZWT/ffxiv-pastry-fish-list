@@ -10,19 +10,16 @@ import flatten from 'flat'
 import tip4 from 'Data/tip4'
 import tip6 from 'Data/tip6'
 import tip7 from 'Data/tip7'
-import DATA_CN from 'Data/translation'
+import DATA_CN, { LIVING_LEGENDS } from 'Data/translation'
 import cloneDeep from 'lodash/cloneDeep'
 import { detect } from 'detect-browser'
 import { Howl } from 'howler'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import CONSTANTS from 'Data/constants'
+import CONSTANTS, { CN_PATCH_VERSION } from 'Data/constants'
 import FishingData from 'Data/fishingData'
-import FIX, { AQUARIUM_FISH_SIZE, AQUARIUM_WATER } from 'Data/fix'
+import FIX, { AQUARIUM_FISH_SIZE, AQUARIUM_WATER, OCEAN_FISHING_FISH } from 'Data/fix'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import DATA from 'Data/data'
-import { LIVING_LEGENDS } from 'Data/translation'
-import { CN_PATCH_VERSION } from 'Data/constants'
-import { OCEAN_FISHING_FISH } from 'Data/fix'
 import { FISH as DIADEM_FISH } from 'Data/diadem'
 import ImgUtil from '@/utils/ImgUtil'
 
@@ -409,6 +406,17 @@ export default {
       )
     }
     return newUserData
+  },
+
+  mergeReaderUserData(defaultData, storedDate) {
+    // [NOTE]
+    // _.merge will deep merge array which will cause problem
+    // e.g. filter.patches: merge([2.0, 3.0], [4.0]) = [4.0, 3.0]
+    // use mergeWith to replace the whole array instead of merge elements
+    // =======================================================================
+    // if need add new element in default value for settings,
+    // another patch function is needed
+    return _.mergeWith(defaultData, storedDate, mergeArray)
   },
 
   mergeByReplacingArray: mergeByReplacingArray,
@@ -833,12 +841,11 @@ export default {
     LocalStorageUtil.storeUserData(state.userData)
   },
 
-  setUserDataPartInLocalStorage(state, { path, data }) {
-    const newUserData = _.cloneDeep(state.userData)
-    _.set(newUserData, path, data)
-    // state.userData = newUserData
-    LocalStorageUtil.storeUserData(state.userData)
-  },
+  // setUserDataPartInLocalStorage(state, { path, data }) {
+  //   const newUserData = _.cloneDeep(state.userData)
+  //   _.set(newUserData, path, data)
+  //   LocalStorageUtil.storeUserData(state.userData)
+  // },
 
   getUserDataPart(state) {
     return path => {
@@ -1209,64 +1216,101 @@ export default {
       closeMode: 'CLOSE',
     },
     isRoseMode: false,
-    reader: {
-      region: 'CN',
-      monitorType: 'RawSocket',
-      autoSetCompleted: true,
-      autoSetCompletedOnlyHQ: false,
-      showReaderOnlyIfFishing: false,
-      hotkey: {
-        mouseThrough: 'L',
-      },
-      showReaderBanner: true,
-      main: {
-        pos: { x: null, y: null },
-        size: { w: 1080, h: 768 },
-      },
-      setting: {
-        pos: { x: null, y: null },
-        size: { w: 500, h: 500 },
-      },
-      timer: {
-        pos: { x: null, y: null },
-        size: { w: 500, h: 160 },
-        opacity: 0.9,
-        zoomFactor: 1,
-        sound: {
-          light: {
-            source: 'DEFAULT',
-            customPath: undefined,
-            volume: 0.5,
-          },
-          medium: {
-            source: 'DEFAULT',
-            customPath: undefined,
-            volume: 0.5,
-          },
-          heavy: {
-            source: 'DEFAULT',
-            customPath: undefined,
-            volume: 0.5,
-          },
+    // reader: {
+    //   region: 'CN',
+    //   monitorType: 'RawSocket',
+    //   autoSetCompleted: true,
+    //   autoSetCompletedOnlyHQ: false,
+    //   showReaderOnlyIfFishing: false,
+    //   hotkey: {
+    //     mouseThrough: 'L',
+    //   },
+    //   showReaderBanner: true,
+    //   main: {
+    //     pos: { x: null, y: null },
+    //     size: { w: 1080, h: 768 },
+    //   },
+    //   setting: {
+    //     pos: { x: null, y: null },
+    //     size: { w: 500, h: 500 },
+    //   },
+    //   timer: {
+    //     pos: { x: null, y: null },
+    //     size: { w: 500, h: 160 },
+    //     opacity: 0.9,
+    //     zoomFactor: 1,
+    //     sound: {
+    //       light: {
+    //         source: 'DEFAULT',
+    //         customPath: undefined,
+    //         volume: 0.5,
+    //       },
+    //       medium: {
+    //         source: 'DEFAULT',
+    //         customPath: undefined,
+    //         volume: 0.5,
+    //       },
+    //       heavy: {
+    //         source: 'DEFAULT',
+    //         customPath: undefined,
+    //         volume: 0.5,
+    //       },
+    //     },
+    //     color: {
+    //       default: '#607d8bff',
+    //       light: '#2a9d8fff',
+    //       medium: '#c14953ff',
+    //       heavy: '#b68738ff',
+    //     },
+    //   },
+    //   history: {
+    //     pos: { x: null, y: null },
+    //     size: { w: 500, h: 800 },
+    //     opacity: 0.9,
+    //     zoomFactor: 1,
+    //   },
+    //   spotStatistics: {
+    //     pos: { x: null, y: null },
+    //     size: { w: 500, h: 500 },
+    //     opacity: 0.9,
+    //     zoomFactor: 1,
+    //   },
+    // },
+  },
+
+  READER_DEFAULT_DATA: {
+    region: 'CN',
+    monitorType: 'RawSocket',
+    autoSetCompleted: true,
+    autoSetCompletedOnlyHQ: false,
+    showReaderOnlyIfFishing: false,
+    hotkey: {
+      mouseThrough: 'L',
+    },
+    showReaderBanner: true,
+    timer: {
+      sound: {
+        light: {
+          source: 'DEFAULT',
+          customPath: undefined,
+          volume: 0.5,
         },
-        color: {
-          default: '#607d8bff',
-          light: '#2a9d8fff',
-          medium: '#c14953ff',
-          heavy: '#b68738ff',
+        medium: {
+          source: 'DEFAULT',
+          customPath: undefined,
+          volume: 0.5,
+        },
+        heavy: {
+          source: 'DEFAULT',
+          customPath: undefined,
+          volume: 0.5,
         },
       },
-      history: {
-        pos: { x: null, y: null },
-        size: { w: 500, h: 800 },
-        opacity: 0.9,
-        zoomFactor: 1,
-      },
-      spotStatistics: {
-        pos: { x: null, y: null },
-        size: { w: 500, h: 500 },
-        opacity: 0.9,
-        zoomFactor: 1,
+      color: {
+        default: '#607d8bff',
+        light: '#2a9d8fff',
+        medium: '#c14953ff',
+        heavy: '#b68738ff',
       },
     },
   },

@@ -75,9 +75,6 @@ export default new Vuex.Store({
     fishEyesUsed: state => {
       return DataUtil.getUserDataPart(state)('fishEyesUsed')
     },
-    readerSetting: state => {
-      return DataUtil.getUserDataPart(state)('reader')
-    },
     showChromeBugDialog: state => {
       return state.userData.showChromeBugDialog
     },
@@ -342,16 +339,16 @@ export default new Vuex.Store({
     initialUserData(state) {
       // state.userData = DataUtil.mergeUserData(
       //   _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
-      //   LocalStorageUtil.loadAndBackupUserData()
+      //   LocalStorageUtil.loadUserData()
       // )
-      LocalStorageUtil.storeAndBackupUserData(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setUserData(state, data) {
       state.userData = DataUtil.migrateOldVersionUserData({
         ..._.cloneDeep(DataUtil.USER_DEFAULT_DATA),
         ...data,
       })
-      LocalStorageUtil.storeAndBackupUserData(state.userData)
+      LocalStorageUtil.storeUserData(state.userData)
     },
     setUserDataToDefault(state) {
       state.userData = _.cloneDeep(DataUtil.USER_DEFAULT_DATA)
@@ -612,6 +609,6 @@ function getRemainingBaitIdsWithUserData(userData) {
 }
 
 function initRemainingBaitIds() {
-  const userData = LocalStorageUtil.loadAndBackupUserData()
+  const userData = LocalStorageUtil.loadUserData()
   return getRemainingBaitIdsWithUserData(userData)
 }

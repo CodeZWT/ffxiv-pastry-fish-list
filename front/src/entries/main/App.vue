@@ -1156,7 +1156,6 @@ export default {
       'startLight',
       'getAchievementName',
       'getAchievementIconClass',
-      'readerSetting',
       'showCompetitionDialog',
     ]),
   },

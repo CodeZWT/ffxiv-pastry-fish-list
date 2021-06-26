@@ -8,11 +8,11 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 function getStartLight() {
   // const userData = DataUtil.mergeUserData(
   //   _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
-  //   LocalStorageUtil.loadAndBackupUserData()
+  //   LocalStorageUtil.loadUserData()
   // )
   const starLigtSettingPath = 'event.startLight'
   return _.get(
-    LocalStorageUtil.loadAndBackupUserData(),
+    LocalStorageUtil.loadUserData(),
     starLigtSettingPath,
     _.get(DataUtil.USER_DEFAULT_DATA, starLigtSettingPath)
   )
