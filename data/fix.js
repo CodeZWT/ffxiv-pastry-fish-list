@@ -1888,7 +1888,7 @@ module.exports = {
       tug: 'heavy',
       gig: null,
       aquarium: null,
-      fishAnglerId: 3454,
+      anglerFishId: 3454,
       checkInfo: {
         weatherRestricted: true,
         timeRestricted: true,
@@ -1917,7 +1917,7 @@ module.exports = {
       tug: 'heavy',
       gig: null,
       aquarium: null,
-      fishAnglerId: 3455,
+      anglerFishId: 3455,
       checkInfo: {
         weatherRestricted: false,
         timeRestricted: true,
@@ -1945,7 +1945,7 @@ module.exports = {
       tug: 'heavy',
       gig: null,
       aquarium: null,
-      fishAnglerId: 3456,
+      anglerFishId: 3456,
       checkInfo: {
         weatherRestricted: true,
         timeRestricted: true,
@@ -1971,7 +1971,7 @@ module.exports = {
       tug: 'heavy',
       gig: null,
       aquarium: null,
-      fishAnglerId: 3457,
+      anglerFishId: 3457,
       checkInfo: {
         weatherRestricted: true,
         timeRestricted: true,
@@ -1997,7 +1997,7 @@ module.exports = {
       tug: 'heavy',
       gig: null,
       aquarium: null,
-      fishAnglerId: 3458,
+      anglerFishId: 3458,
       checkInfo: {
         weatherRestricted: false,
         timeRestricted: true,
@@ -2025,7 +2025,7 @@ module.exports = {
       tug: 'heavy',
       gig: null,
       aquarium: null,
-      fishAnglerId: 3459,
+      anglerFishId: 3459,
       checkInfo: {
         weatherRestricted: true,
         timeRestricted: true,
@@ -24139,8 +24139,7 @@ module.exports = {
     },
     69519: {
       id: 69430,
-      link: 'https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/a779436da04/',
-      name_en: '日臻完善的匠人工具',
+      name_chs: '日臻完善的匠人工具',
       items: [31770, 31771],
       requireCollectable: true,
       comment: '需要承接此任务，并装备「天诗钓竿」才能钓上',
