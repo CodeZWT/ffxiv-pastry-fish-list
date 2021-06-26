@@ -933,9 +933,9 @@ function createMainWindow(loadedCallback) {
     null,
     loadedCallback
   ).on('closed', () => {
-    // if (mainWindowConfig.closeMode === 'CLOSE') {
-    //   quit()
-    // }
+    if (mainWindowConfig.closeMode === 'CLOSE') {
+      quit()
+    }
   })
 }
 
@@ -1275,7 +1275,7 @@ function callTargetSafe(target, targetCallback) {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     log.info('in all closed')
-    if (mainWindowConfig.closeMode === 'CLOSE' && !readerConfig.showReaderOnlyIfFishing) {
+    if (mainWindowConfig.closeMode === 'CLOSE') {
       // FishingDataReader.stop(() => {
       //   log.info('call quit')
       //   // if (toInstallUpdates) {

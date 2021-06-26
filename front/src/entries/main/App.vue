@@ -1419,11 +1419,11 @@ export default {
       WindowUtil.unmaximizeWindow()
     },
     close() {
-      // if (this.mainWindowCloseMode === 'TRAY') {
-      //   WindowUtil.hideWindow()
-      // } else {
-      WindowUtil.closeWindow()
-      // }
+      if (this.mainWindowCloseMode === 'TRAY') {
+        WindowUtil.hideWindow()
+      } else {
+        WindowUtil.closeWindow()
+      }
     },
     sendElectronEvent(channel, data) {
       window.electron?.ipcRenderer?.send(channel, data)
