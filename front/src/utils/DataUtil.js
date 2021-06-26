@@ -1023,7 +1023,7 @@ export default {
     WAITING: ['#2d2d32', '#272727'],
   },
 
-  PATCH_MAX: 5.55,
+  PATCH_MAX: 5.57,
   PATCH_AVAILABLE_MAX: CN_PATCH_VERSION,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
