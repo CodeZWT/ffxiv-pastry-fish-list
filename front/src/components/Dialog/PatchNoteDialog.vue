@@ -25,6 +25,32 @@
         <!--          更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
 
+        <div class="text-h6">Version 0.8.11</div>
+        <div class="text-subtitle-1">更新时间: 2021/06/27 21:20</div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <ul>
+          <li>
+            更新部分鱼数据
+          </li>
+          <li>
+            更新部分钓场范围提示
+          </li>
+          <li>
+            更新海钓攻略，添加宏的复制功能
+          </li>
+        </ul>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <ul>
+          <li>
+            修复上次动态加载界面后出现的一系列问题，现改为部分界面第一次打开时动态加载
+          </li>
+          <li>
+            修复设置无法保存的问题（如鼠标穿透，仅钓鱼时候显示渔捞等等）
+          </li>
+        </ul>
+
+        <v-divider />
+
         <div class="text-h6">Version 0.8.10</div>
         <div class="text-subtitle-1">更新时间: 2021/06/20 17:40</div>
         <div class="text-h5 text-center my-1">鱼糕桌面版</div>
