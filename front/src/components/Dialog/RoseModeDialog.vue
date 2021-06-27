@@ -214,9 +214,9 @@
         <v-btn block @click="close" class="mt-4">关闭</v-btn>
         <v-btn block @click="logout" class="mt-4" color="error">登出</v-btn>
       </v-card-text>
-      <!--      <v-card-actions>-->
-      <!--        <v-btn @click="exit">退出上传模式</v-btn>-->
-      <!--      </v-card-actions>-->
+      <v-card-actions v-if="isTest">
+        <v-btn @click="exit">退出上传模式</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -236,6 +236,7 @@ import rcapiService, {
 } from '@/service/rcapiService'
 import UploadUtil from '@/utils/UploadUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 setInteractionMode('eager')
 
@@ -297,6 +298,7 @@ export default {
       nextSendTime: 0,
       now: Date.now(),
       uploadStatus: '-/-',
+      isTest: DevelopmentModeUtil.isTest(),
     }
   },
   computed: {

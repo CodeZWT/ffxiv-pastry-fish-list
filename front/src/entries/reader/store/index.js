@@ -17,6 +17,9 @@ export default new Vuex.Store({
     readerTimerMiniMode: false,
   },
   getters: {
+    isRoseMode: state => {
+      return state.userData.isRoseMode
+    },
     isStrictMode: state => {
       return state.readerSetting.isStrictMode
     },

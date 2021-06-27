@@ -77,7 +77,7 @@
           <v-switch inset v-model="lazySetting.showReaderOnlyIfFishing" />
         </v-col>
 
-        <v-col cols="12">
+        <v-col cols="12" v-if="isRoseMode">
           <v-card outlined width="100%" class="my-1">
             <div class="overline ml-2">数据上传</div>
             <v-card-text class="d-flex flex-column">
@@ -391,7 +391,7 @@ export default {
       },
     },
     ...mapState(['sounds']),
-    ...mapGetters(['readerSetting']),
+    ...mapGetters(['readerSetting', 'isRoseMode']),
   },
   watch: {
     lazySetting: {
