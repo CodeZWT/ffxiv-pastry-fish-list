@@ -20,7 +20,7 @@
                 <div>
                   <v-radio-group
                     v-model="lazyMainWindowCloseMode"
-                    label="关闭所有窗口时"
+                    label="关闭主窗口时"
                     row
                   >
                     <v-radio label="退出程序" value="CLOSE"></v-radio>
