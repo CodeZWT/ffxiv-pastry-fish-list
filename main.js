@@ -622,8 +622,11 @@ function setMouseThrough(enable) {
   )
 }
 
+let switchingMiniMode = false
 function switchMiniMode(mini) {
   callWindowSafe(WINDOWS.main, async () => {
+    if (switchingMiniMode) return
+    switchingMiniMode = true
     if (mini) {
       const [x, y] = WINDOWS.main.getPosition()
       WINDOWS.mini = await createMiniWin(WINDOWS.main)
@@ -638,10 +641,15 @@ function switchMiniMode(mini) {
       // WINDOWS.mini.hide()
       WINDOWS.main.show()
     }
+    switchingMiniMode = false
   })
 }
 
+let switchReaderMini = false
+
 function switchReaderMiniMode(mini) {
+  if (switchReaderMini) return
+  switchingMiniMode = true
   if (mini) {
     // hideBySwitch = true
     const { x, y } = windowSetting.timer.pos
@@ -662,6 +670,7 @@ function switchReaderMiniMode(mini) {
       saveWindowSetting('timerMini.enabled', false)
     }
   }
+  switchingMiniMode = false
 
   // callWindowsSafe(
   //   [
