@@ -151,7 +151,6 @@ const sendFishingData = data => {
   callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('fishingData', data))
   callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('fishingData', data))
   callWindowSafe(WINDOWS.readerSpotStatistics, win => {
-    log.info('send to spot fishing data')
     win.webContents.send('fishingData', data)
   })
 }
@@ -485,7 +484,6 @@ async function init() {
       callWindowSafe(WINDOWS.readerSpotStatistics, win => win.send('reloadRecords'))
     })
     .on('getFishingData', () => {
-      console.log('receive get fishing data')
       sendFishingData(fishingData)
     })
 
