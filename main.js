@@ -142,6 +142,19 @@ function callFirstAvailableWin(windows, callBack) {
 
 let readerConfig = {}
 let mainWindowConfig = {}
+let fishingData = undefined
+
+const sendFishingData = data => {
+  callWindowSafe(WINDOWS.main, win => {
+    win.webContents.send('fishingData', data)
+  })
+  callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('fishingData', data))
+  callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('fishingData', data))
+  callWindowSafe(WINDOWS.readerSpotStatistics, win => {
+    log.info('send to spot fishing data')
+    win.webContents.send('fishingData', data)
+  })
+}
 
 async function init() {
   if (isDev) {
@@ -200,14 +213,8 @@ async function init() {
         }
       }
     }
-    callWindowSafe(WINDOWS.main, win => {
-      win.webContents.send('fishingData', data)
-    })
-    callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('fishingData', data))
-    callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('fishingData', data))
-    callWindowSafe(WINDOWS.readerSpotStatistics, win =>
-      win.webContents.send('fishingData', data)
-    )
+    fishingData = data
+    sendFishingData(data)
   })
 
   FishingDataReader.onFishCaught(data => {
@@ -475,6 +482,10 @@ async function init() {
     })
     .on('reloadRecords', () => {
       callWindowSafe(WINDOWS.readerSpotStatistics, win => win.send('reloadRecords'))
+    })
+    .on('getFishingData', () => {
+      console.log('receive get fishing data')
+      sendFishingData(fishingData)
     })
 
   const upload = async (accessToken, records) => {
@@ -914,6 +925,12 @@ function createWindow(
 
   setMouseThrough(enableMouseThrough)
 
+  win.once('ready-to-show', () => {
+    if (fishingData) {
+      sendFishingData(fishingData)
+    }
+  })
+
   return win
     .on('moved', () => {
       const [x, y] = win.getPosition()
@@ -997,15 +1014,16 @@ function hideReaderWindows() {
   // Not used now since timer windows are closed when switching mini mode
   // if (hideBySwitch) {
   // //   do nothing
-    // hideBySwitch = false
-    // return
+  // hideBySwitch = false
+  // return
   // } else
   if (hideByFishingTrigger) {
     hideByFishingTrigger = false
     // save other window status
     settingVisible = WINDOWS.readerSetting && WINDOWS.readerSetting.isVisible()
     historyVisible = WINDOWS.readerHistory && WINDOWS.readerHistory.isVisible()
-    spotStatisticsVisible = WINDOWS.readerSpotStatistics && WINDOWS.readerSpotStatistics.isVisible()
+    spotStatisticsVisible =
+      WINDOWS.readerSpotStatistics && WINDOWS.readerSpotStatistics.isVisible()
   } else {
     // hide together
     settingVisible = false

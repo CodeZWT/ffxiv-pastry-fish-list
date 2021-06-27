@@ -130,7 +130,14 @@ export default {
       })
       ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
   },
+  mounted() {
+    // trigger fishing data manually
+    setTimeout(() => this.sendElectronEvent('getFishingData'), 2000)
+  },
   methods: {
+    sendElectronEvent(channel, data) {
+      window.electron?.ipcRenderer?.send(channel, data)
+    },
     showSetting() {
       window.electron?.ipcRenderer?.send('showSetting')
       this.setFeatureViewed(this.SettingFeatureId)
