@@ -15,4 +15,9 @@ db.version(3).stores({
     'id,baitId,biteTime,cancelled,catchAndRelease,chum,collectorGlove,fishEyes,fishId,fishersIntuition,gathering,gatheringFortuneUp,gp,hookset,hq,identicalCast,missed,mooch,pastryFishVersion,patch,perception,prevWeatherDetected,region,size,snagging,spotId,startTime,surfaceScale,surfaceScaleFishId,tug,weatherDetected,uploadEnabled,uploaded',
 })
 
+db.version(4).stores({
+  records:
+    'id,baitId,biteTime,cancelled,catchAndRelease,chum,collectorGlove,fishEyes,fishId,fishersIntuition,gathering,gatheringFortuneUp,gp,hookset,hq,identicalCast,missed,mooch,pastryFishVersion,patch,perception,prevWeatherDetected,region,size,snagging,spotId,startTime,surfaceScale,surfaceScaleFishId,tug,weatherDetected,uploadEnabled,uploaded,isStrictMode',
+})
+
 export default db

@@ -1,7 +1,11 @@
 <template>
   <v-app :class="{ transparent: true, 'mini-mode': hideBar }">
     <template v-if="hideBar"></template>
-    <v-system-bar app v-else-if="showTimerBar">
+    <v-system-bar
+      app
+      v-else-if="showTimerBar"
+      :color="isUploadMode && isStrictMode ? 'deep-purple darken-1' : 'black'"
+    >
       <v-img :src="readerIcon" max-height="20" max-width="20" />
       <span class="mx-1">渔捞</span>
       <span v-if="readerRegion === 'CN'">国服{{ CN_PATCH_VERSION }}</span>
@@ -104,7 +108,7 @@ export default {
       return DataUtil.formatDateTime(this.now, 'HH:mm')
     },
     ...mapState(['sounds', 'readerTimerMiniMode']),
-    ...mapGetters(['readerRegion']),
+    ...mapGetters(['readerRegion', 'isStrictMode', 'isUploadMode']),
   },
   async created() {
     this.closeMode =

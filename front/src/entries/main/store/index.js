@@ -279,6 +279,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    reloadReaderUserData(state) {
+      state.readerSetting = loadReaderUserData()
+    },
     setRoseMode(state, rose) {
       state.userData = { ...state.userData, isRoseMode: rose }
       LocalStorageUtil.storeUserData(state.userData)

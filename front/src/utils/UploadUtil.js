@@ -65,6 +65,7 @@ const toUploadData = records => {
       fishersIntuition: record.fishersIntuition,
       recordPatch: record.patch ?? 5.35,
       tug: ['light', 'medium', 'heavy'].indexOf(record.tug),
+      isStrictMode: record.isStrictMode,
     }
   })
 }

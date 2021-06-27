@@ -1284,6 +1284,8 @@ export default {
     autoSetCompleted: true,
     autoSetCompletedOnlyHQ: false,
     showReaderOnlyIfFishing: false,
+    isUploadMode: true,
+    isStrictMode: false,
     hotkey: {
       mouseThrough: 'L',
     },

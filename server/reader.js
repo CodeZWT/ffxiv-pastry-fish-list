@@ -107,7 +107,7 @@ exports.onUpdate = onUpdate
 exports.stop = stopMachina
 
 function stopMachina(callback = () => {}) {
-  Machina.stop(() => {
+  Machina && Machina.stop(() => {
     machinaStatus = 'stopped'
     Machina = undefined
     callback()

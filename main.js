@@ -308,6 +308,7 @@ async function init() {
 
       callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
       callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
     })
     // .on('reloadUserData', () => {
     //   callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
@@ -546,7 +547,7 @@ async function init() {
         lastUploadTime = now
         return response.data
       } catch (e) {
-        log.error('Upload error')
+        log.error('Upload error', e)
         lastUploadTime = now
       }
     }

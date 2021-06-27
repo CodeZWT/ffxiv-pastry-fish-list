@@ -1264,6 +1264,9 @@ export default {
         //   this.updateUserData(data)
         //   window.electron?.ipcRenderer?.send('reloadUserData')
         // })
+        ?.on('reloadUserData', () => {
+          this.reloadReaderUserData()
+        })
         ?.on('showSpotPage', (event, spotId) => {
           this.setMiniMode(false)
           if (!window.location.hash.startsWith('#/wiki')) {
@@ -1271,6 +1274,9 @@ export default {
           }
         })
         ?.on('newRecord', (event, data) => {
+          data.uploadEnabled = this.readerSetting.isUploadMode
+          data.isStrictMode = this.readerSetting.isStrictMode
+          console.log('store data', data)
           db.records.put(data).catch(error => console.error('storeError', error))
         })
         ?.on('showRoseModeDialog', () => {
@@ -2084,6 +2090,7 @@ export default {
       this.setMiniMode(true)
     },
     ...mapMutations([
+      'reloadReaderUserData',
       'setOpacity',
       'setZoomFactor',
       'setFeatureViewed',

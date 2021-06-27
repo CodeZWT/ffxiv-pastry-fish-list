@@ -70,11 +70,37 @@
           </div>
           <v-switch inset v-model="lazySetting.autoSetCompletedOnlyHQ" />
         </v-col>
-        <v-col class="d-flex align-center">
+        <v-col cols="12" class="d-flex align-center">
           <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
             仅在钓鱼时显示渔捞
           </div>
           <v-switch inset v-model="lazySetting.showReaderOnlyIfFishing" />
+        </v-col>
+
+        <v-col cols="12">
+          <v-card outlined width="100%" class="my-1">
+            <div class="overline ml-2">数据上传</div>
+            <v-card-text class="d-flex flex-column">
+              <div class="d-flex align-center">
+                <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">上传模式</div>
+                <v-switch inset v-model="lazySetting.isUploadMode" />
+              </div>
+              <div>
+                开启此模式后，钓鱼数据将会上传至鱼糕服务器。无敏感数据，涵盖内容与导出文件中的范围一致。
+              </div>
+              <div class="d-flex align-center">
+                <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+                  严格数据收集模式
+                </div>
+                <v-switch inset v-model="lazySetting.isStrictMode" />
+              </div>
+
+              <div class="font-weight-bold subtitle-1">
+                <div>请测试人员在开始测试后开启此开关</div>
+                <div>不要使用非必要的技能（如撒饵，拍击水面）并提起所有咬钩的鱼。</div>
+              </div>
+            </v-card-text>
+          </v-card>
         </v-col>
         <v-card outlined width="100%" class="my-1">
           <div class="overline ml-2">快捷键</div>

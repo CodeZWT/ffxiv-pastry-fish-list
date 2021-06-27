@@ -108,7 +108,7 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" class="mt-4 d-flex">
-        <div v-if="!bait.id">未检测到鱼饵，请切换至任意鱼饵以读取数据</div>
+        <div v-if="!bait.id">切换任意鱼饵以读取数据</div>
         <div v-else class="d-flex align-center">
           <span class="mr-1">鱼饵</span>
           <item-icon :icon-class="bait.icon" :title="bait.name" small />
@@ -227,7 +227,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['readerSetting', 'showBanner']),
+    ...mapGetters(['readerSetting', 'showBanner', 'isUploadMode', 'isStrictMode']),
     disableTooltip() {
       return this.dataStatus?.serverId === -1
     },
@@ -266,7 +266,7 @@ export default {
         gp: this.dataStatus?.gp,
         text: this.dataStatus?.gathering
           ? `${this.dataStatus?.gathering}/${this.dataStatus?.perception}/${this.dataStatus?.gp}`
-          : '请切换至其他职业再切回捕鱼人以获取获得力相关信息',
+          : '切换职业以获取获得力相关信息',
       }
     },
     bait() {
@@ -421,6 +421,9 @@ export default {
         this.dataCurrentRecord = data.currentRecord
       })
       ?.on('newRecord', (event, data) => {
+        data.uploadEnabled = this.isUploadMode
+        data.isStrictMode = this.isStrictMode
+        console.log('store in reader', data)
         db.records.put(data).catch(error => console.error('storeError', error))
       })
       ?.on('fishCaught', (event, data) => {

@@ -17,6 +17,12 @@ export default new Vuex.Store({
     readerTimerMiniMode: false,
   },
   getters: {
+    isStrictMode: state => {
+      return state.readerSetting.isStrictMode
+    },
+    isUploadMode: state => {
+      return state.readerSetting.isUploadMode
+    },
     readerSetting: state => {
       return state.readerSetting
       // return DataUtil.getUserDataPart(state)('reader')
