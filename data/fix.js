@@ -2045,6 +2045,10 @@ module.exports = {
     24215: {
       previousWeatherSet: [1, 2],
     },
+    32053: {
+      startHour: 17,
+      endHour: 20,
+    }
   },
   COLLECTABLE_FISH_ITEM_ID: [
     12713,
