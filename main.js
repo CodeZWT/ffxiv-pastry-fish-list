@@ -752,6 +752,7 @@ function createTransparentWin(
     transparent: true,
     resizable: false,
     maximizable: false,
+    skipTaskbar: true,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
