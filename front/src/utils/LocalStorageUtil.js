@@ -1,4 +1,5 @@
 import store from 'store2'
+import DataUtil from '@/utils/DataUtil'
 
 const USER_DATA_KEY = 'userData'
 const BAIT_FILTER_KEY = 'baitFilter'
@@ -25,9 +26,10 @@ export default {
 
   loadReaderUserData() {
     // Deal with old version data which was stored in `userData`
-    let readerSetting = store.get(READER_USER_DATA_KEY)
+    let readerSetting =
+      store.get(READER_USER_DATA_KEY) ?? store.get(USER_DATA_KEY)?.reader
     if (readerSetting == null) {
-      readerSetting = store.get(USER_DATA_KEY).reader
+      readerSetting = DataUtil.READER_DEFAULT_DATA
       store.set(READER_USER_DATA_KEY, readerSetting)
     }
     return readerSetting
