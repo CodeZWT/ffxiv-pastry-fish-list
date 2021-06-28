@@ -71,6 +71,14 @@ export default {
       method: 'GET',
     }).then(response => response.json())
   },
+  getSpotRecords(spotId) {
+    return fetch(`${host}/spots/${spotId}/records`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'GET',
+    }).then(response => response.json())
+  },
 }
 
 const toParamStr = (name, value) => {

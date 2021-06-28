@@ -7,6 +7,66 @@
   >
     <v-row>
       <v-col cols="12">
+        <v-sheet>
+          <v-autocomplete
+            ref="search"
+            v-model="spotId"
+            :items="spotsForSearch"
+            item-value="id"
+            item-text="name"
+            label="请输入钓场"
+            clearable
+            solo
+            :filter="filterOptions"
+          >
+            <template v-slot:item="data">
+              <div class="d-flex">
+                <v-list-item-content>
+                  <v-list-item-title>
+                    <div>
+                      {{ data.item.name }}
+                    </div>
+                  </v-list-item-title>
+                </v-list-item-content>
+              </div>
+            </template>
+          </v-autocomplete>
+          <div class="d-flex">
+            <div style="width: 48px"></div>
+            <div v-for="fish in baitOfSpot.fishList" :key="fish.fishId">
+              <item-icon :icon-class="fish.fishIcon" />
+            </div>
+          </div>
+          <div
+            v-for="{ bait, fishCntList } in baitOfSpot.baitFishCntList"
+            :key="bait.baitId"
+            class="d-flex"
+          >
+            <item-icon
+              :icon-class="bait.baitIcon"
+              :title="bait.baitName + '#' + bait.baitId"
+            />
+            <div
+              v-for="{ fish, cnt, percentage, tugColor } in fishCntList"
+              :key="bait.baitId + '-' + fish.fishId"
+            >
+              <div v-if="cnt > 0" style="position: relative">
+                <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />
+                <v-progress-circular
+                  :value="percentage"
+                  rotate="-90"
+                  style="position: absolute; top: 6px; left: 8px"
+                  :color="tugColor + ' lighten-2'"
+                >
+                  {{ percentage === 100 ? '' : percentage.toFixed(0) }}
+                </v-progress-circular>
+              </div>
+              <div v-else style="width: 48px"></div>
+            </div>
+          </div>
+        </v-sheet>
+      </v-col>
+      <v-col cols="12">
         <v-btn @click="refresh"><v-icon>mdi-refresh</v-icon></v-btn>
       </v-col>
       <v-col cols="12">
@@ -115,17 +175,23 @@ import rcapiService from '@/service/rcapiService'
 import UploadUtil from '@/utils/UploadUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import throttle from 'lodash/throttle'
+import * as _ from 'lodash'
+import DataUtil from '@/utils/DataUtil'
+import SPOT_FISH_DICT from 'Data/spotFishDict'
+import PinyinMatch from 'pinyin-match'
 
 export default {
   name: 'RecordPage',
   components: { ItemIcon },
   mixins: [EnvMixin],
-  props: ['lazyTransformedFishDict'],
+  props: ['lazyTransformedFishDict', 'lazySourceFishList'],
   data() {
     return {
       loading: true,
+      spotId: undefined,
       totalRecords: 0,
       records: [],
+      spotRecords: [],
       refresh: () => {},
       options: {
         sortBy: ['startTime'],
@@ -180,15 +246,96 @@ export default {
       },
       deep: true,
     },
+    spotId(spotId) {
+      if (spotId > 0) {
+        rcapiService.getSpotRecords(spotId).then(records => {
+          this.spotRecords = records
+        })
+      }
+    },
   },
-  mounted() {
+  async mounted() {
     this.refresh = throttle(() => this.getDataFromApi(this.options), 5000, {
       leading: true,
     })
   },
+  computed: {
+    baitOfSpot() {
+      const tugColor = {
+        light: 'success',
+        medium: 'error',
+        heavy: 'warning',
+      }
+      const baitFishCnt = _(this.spotRecords[0])
+        .chain()
+        .filter(({ fish, bait }) => fish > 0 && bait > 0)
+        .groupBy(({ bait }) => bait)
+        .mapValues(records => {
+          return _(records)
+            .chain()
+            .groupBy(({ fish }) => fish)
+            .mapValues(baitRec => baitRec.length)
+            .value()
+        })
+        .value()
+      const fishIdList = UploadUtil.fishListOfSpot(this.spotId)
+      const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
+        const totalCnt = _.sum(Object.values(fishCntDict))
+        return {
+          bait: UploadUtil.toBait(bait),
+          fishCntList: fishIdList.map(fishId => {
+            const fishInfo =
+              this.lazyTransformedFishDict[fishId] ??
+              this.lazyTransformedFishDict[
+                Object.keys(this.lazyTransformedFishDict).find(
+                  id => DataUtil.toItemId(id) === fishId
+                )
+              ]
+            // console.log(
+            //   fishInfo,
+            //   fishId,
+            //   this.lazyTransformedFishDict[fishId],
+            //   fishLocationId
+            // )
+            const cnt = fishCntDict[fishId] ?? 0
+            return {
+              fish: UploadUtil.toFish(fishId),
+              cnt: cnt,
+              percentage: (cnt / totalCnt) * 100,
+              tugColor: tugColor[fishInfo?.baits?.[0]?.tug],
+            }
+          }),
+          totalCnt: totalCnt,
+        }
+      })
+
+      return {
+        fishList: fishIdList.map(fishId => UploadUtil.toFish(fishId)),
+        baitFishCntList: _.sortBy(baitFishCntList, ({ bait: { baitId } }) => {
+          // console.log(fishIdList, baitId, fishIdList.includes(baitId))
+          return baitId * (fishIdList.includes(+baitId) ? 1000000 : 1)
+        }),
+      }
+    },
+    spotsForSearch() {
+      return Object.keys(SPOT_FISH_DICT).map(spotId => {
+        const spot = UploadUtil.toSpot(spotId)
+        return {
+          id: spotId,
+          name: spot.spotName,
+        }
+      })
+    },
+  },
   methods: {
+    filterOptions(item, searchText, itemText) {
+      if (this.$i18n.locale === 'zh-CN') {
+        return PinyinMatch.match(itemText, searchText) !== false
+      } else {
+        return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+      }
+    },
     getDataFromApi(options) {
-      console.log('called')
       const { sortBy, sortDesc, page, itemsPerPage } = options
       this.loading = true
       rcapiService.getRecords(sortBy, sortDesc, page - 1, itemsPerPage).then(data => {

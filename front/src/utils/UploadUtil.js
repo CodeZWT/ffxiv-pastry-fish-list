@@ -8,6 +8,7 @@ import { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import { WEATHER_TYPES } from 'Data/translation'
 import PLACE_NAMES from 'Data/placeNames'
+import SPOT_FISH_DICT from 'Data/spotFishDict'
 
 const toUploadData = records => {
   return records.map(record => {
@@ -118,22 +119,42 @@ export default {
       uploaded: recordsToUpload.filter(({ uploaded }) => uploaded).length,
     }
   },
+  toBait(baitId) {
+    return {
+      baitId: baitId ?? -1,
+      baitName: DataUtil.getItemName(baitId) ?? '未知',
+      baitIcon: DataUtil.getItemIconClass(baitId ?? -1, 60051),
+    }
+  },
+  toFish(fishId, missed = false, cancelled = false) {
+    return {
+      fishId: fishId,
+      fishName: DataUtil.getItemName(fishId) ?? '未知',
+      fishIcon: missed
+        ? 'bg-060034'
+        : cancelled
+        ? 'bg-060027'
+        : DataUtil.getItemIconClass(fishId, 60027),
+    }
+  },
+  toSpot(spotId) {
+    return {
+      spotId: spotId,
+      spotName: DataUtil.getName(
+        spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name_chs: '' }
+      ),
+    }
+  },
+  fishListOfSpot(spot) {
+    return SPOT_FISH_DICT[spot]?.filter(fishId => fishId > 0) ?? []
+  },
   toReadableData(record) {
     return {
       ...record,
       startTime: new Date(record.startTime),
 
-      fishId: record.fish,
-      fishName: DataUtil.getItemName(record.fish) ?? '未知',
-      fishIcon: record.missed
-        ? 'bg-060034'
-        : record.cancelled
-        ? 'bg-060027'
-        : DataUtil.getItemIconClass(record.fish, 60027),
-
-      baitId: record.bait ?? -1,
-      baitName: DataUtil.getItemName(record.bait) ?? '未知',
-      baitIcon: DataUtil.getItemIconClass(record.bait ?? -1, 60051),
+      ...this.toFish(record.fish, record.missed, record.cancelled),
+      ...this.toBait(record.bait),
 
       tugColor: ['success', 'error', 'warning'][record.tug],
       biteIntervalPercentage: Math.round((record.biteInterval / 60) * 100),
@@ -141,10 +162,7 @@ export default {
       prevWeatherId: record.prevWeather,
       weather: WEATHER_TYPES[record.weather],
       weatherId: record.weather,
-      spotId: record.spot,
-      spotName: DataUtil.getName(
-        record.spot > 0 ? DataUtil.FISHING_SPOTS[record.spot] : { name_chs: '' }
-      ),
+      ...this.toSpot(record.spot),
       zoneName:
         record.spot > 0
           ? PLACE_NAMES[
