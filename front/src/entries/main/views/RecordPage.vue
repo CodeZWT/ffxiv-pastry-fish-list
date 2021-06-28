@@ -163,6 +163,11 @@
               {{ item.userNickname }}
             </div>
           </template>
+          <template v-slot:item.isStrictMode="{ item }">
+            <div class="d-flex align-center">
+              <v-icon v-if="item.isStrictMode">mdi-check</v-icon>
+            </div>
+          </template>
         </v-data-table>
       </v-col>
     </v-row>
@@ -235,6 +240,12 @@ export default {
           align: 'start',
           sortable: true,
           value: 'userId',
+        },
+        {
+          text: '严格模式',
+          align: 'start',
+          sortable: true,
+          value: 'isStrictMode',
         },
       ],
     }
