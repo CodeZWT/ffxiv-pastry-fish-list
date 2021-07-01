@@ -484,7 +484,9 @@ async function init() {
       callWindowSafe(WINDOWS.readerSpotStatistics, win => win.send('reloadRecords'))
     })
     .on('getFishingData', () => {
-      sendFishingData(fishingData)
+      if (fishingData) {
+        sendFishingData(fishingData)
+      }
     })
 
   const upload = async (accessToken, records) => {
