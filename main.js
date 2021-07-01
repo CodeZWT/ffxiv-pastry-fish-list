@@ -48,6 +48,7 @@ let updateDownloaded = false
 let updateDownloading = false
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
 // const closedWindows = {}
+let loadingFinished = false
 
 let settingVisible = false,
   historyVisible = false,
@@ -374,7 +375,9 @@ async function init() {
       // if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
       //   return loadingForReloadingPage.close()
       // }
+      if (loadingFinished) return
       log.info('in finishLoading')
+      loadingFinished = true
       readerConfig = readerSetting
       mainWindowConfig = userData.mainWindow
 
