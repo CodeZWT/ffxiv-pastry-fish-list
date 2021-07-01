@@ -361,7 +361,14 @@
               <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-
+          <v-list-item v-if="isElectron && isRoseMode" @click="toPage('RecordPage')" link>
+            <v-list-item-icon>
+              <v-icon>mdi-chart-bar</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.record') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
           <v-list-item
             v-if="isElectron && downloadProgress > 0"
             link
