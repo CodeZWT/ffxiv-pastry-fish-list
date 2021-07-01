@@ -313,7 +313,8 @@ export default {
               fish: UploadUtil.toFish(fishId),
               cnt: cnt,
               percentage: (cnt / totalCnt) * 100,
-              tugColor: tugColor[fishInfo?.baits?.[0]?.tug],
+              tugColor:
+                tugColor[fishInfo?.baits?.[fishInfo?.baits?.length - 1 ?? 0]?.tug],
             }
           }),
           totalCnt: totalCnt,
