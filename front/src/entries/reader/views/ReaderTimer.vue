@@ -451,7 +451,7 @@ export default {
       this.sendElectronEvent('timerMiniMode', mini)
     },
     ringBell(tugType) {
-      DataUtil.ringBell(this.userData.reader.timer.sound, tugType, this.sounds)
+      DataUtil.ringBell(this.readerSetting.timer.sound, tugType, this.sounds)
     },
     showHistory() {
       this.sendElectronEvent('toggleHistory')

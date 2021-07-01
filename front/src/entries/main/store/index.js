@@ -65,15 +65,6 @@ export default new Vuex.Store({
     mainWindowConfig: state => {
       return state.userData.mainWindow
     },
-    // baitFilter: state => {
-    //   return state.baitFilter
-    // },
-    // readerRegion: state => {
-    //   return state.userData.reader.region
-    // },
-    // readerMonitorType: state => {
-    //   return state.userData.reader.monitorType
-    // },
     listSetting: state => {
       return DataUtil.getUserDataPart(state)('listSetting')
     },
