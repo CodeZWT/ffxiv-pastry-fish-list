@@ -336,7 +336,6 @@
 
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
-// import isEqual from 'lodash/isEqual'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { MONITOR_TYPES, REGIONS } from 'Data/constants'
 import set from 'lodash/set'
@@ -484,6 +483,10 @@ export default {
             })
             .then(() => {
               set(this.lazySetting, `timer.sound.${type}.customPath`, result.filePath)
+              console.info('loading sounds in setting')
+              this.loadingSounds().then(sounds =>
+                this.setSounds(DataUtil.toMap(sounds, it => it.key))
+              )
             })
             .catch(error => console.error('storeError', error))
         }
@@ -492,7 +495,10 @@ export default {
     ringBell(tugType) {
       DataUtil.ringBell(this.lazySetting.timer.sound, tugType, this.sounds)
     },
-    ...mapMutations(['updateReaderSetting']),
+    loadingSounds() {
+      return DataUtil.loadingSounds(db)
+    },
+    ...mapMutations(['setSounds', 'updateReaderSetting']),
   },
 }
 </script>

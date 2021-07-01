@@ -818,8 +818,24 @@ export default {
     // console.debug(userAgent.toString())
     // console.debug(JSON.stringify(userAgent.data, null, 2))
   },
-
-  loadingSounds(soundInfos) {
+  loadingSounds(db) {
+    return Promise.all([
+      db.sounds
+        .bulkGet(['light-custom', 'medium-custom', 'heavy-custom'])
+        .then(sounds => {
+          return sounds
+            .filter(it => it && it.base64)
+            .map(sound => {
+              return {
+                key: sound.id,
+                player: new Howl({ src: sound.base64, preload: true }),
+              }
+            })
+        }),
+      this.loadingDefaultSounds(READER_SOUNDS),
+    ]).then(it => it.flatMap(sounds => sounds))
+  },
+  loadingDefaultSounds(soundInfos) {
     return Promise.all(
       soundInfos.map(sound => {
         if (sound.filename == null)

@@ -69,7 +69,6 @@ import { ReaderFeatures } from 'Data/newFeatures'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import db from '@/plugins/db'
-import { Howl } from 'howler'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
 import UploadUtil from '@/utils/UploadUtil'
 
@@ -157,21 +156,7 @@ export default {
       }
     },
     loadingSounds() {
-      return Promise.all([
-        db.sounds
-          .bulkGet(['light-custom', 'medium-custom', 'heavy-custom'])
-          .then(sounds => {
-            return sounds
-              .filter(it => it && it.base64)
-              .map(sound => {
-                return {
-                  key: sound.id,
-                  player: new Howl({ src: sound.base64, preload: true }),
-                }
-              })
-          }),
-        DataUtil.loadingSounds(DataUtil.READER_SOUNDS),
-      ]).then(it => it.flatMap(sounds => sounds))
+      return DataUtil.loadingSounds(db)
     },
     ...mapMutations(['setSounds', 'reloadUserData', 'setFeatureViewed']),
   },

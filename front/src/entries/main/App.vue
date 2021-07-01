@@ -1555,7 +1555,7 @@ export default {
       }
     },
     loadingSounds() {
-      return DataUtil.loadingSounds(DataUtil.NOTIFICATION_SOUNDS)
+      return DataUtil.loadingDefaultSounds(DataUtil.NOTIFICATION_SOUNDS)
     },
     updateFishListTimePart(now) {
       this.lazySourceImportantFishList.forEach(fish => {
