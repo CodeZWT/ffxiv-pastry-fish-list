@@ -24,6 +24,16 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
+        <div class="text-h6">Version 0.8.13</div>
+        <div class="text-subtitle-1">更新时间: 2021/07/01 22:00</div>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <ul>
+          <li>修复设置自定义咬钩提示音无法试听的问题</li>
+          <li>修复新用户咬钩提示音无法播放的问题</li>
+        </ul>
+
+        <v-divider />
+
         <div class="text-h6">Version 0.8.12</div>
         <div class="text-subtitle-1">更新时间: 2021/06/27 23:41</div>
         <div class="text-h5 text-center my-1">鱼糕桌面版</div>
