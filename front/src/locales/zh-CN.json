@@ -357,5 +357,11 @@
     }
   },
   "loadingMore": "加载更多",
-  "loadingMoreWithRemainingCnt": "加载更多（剩余{remainingCnt}条未显示）"
+  "loadingMoreWithRemainingCnt": "加载更多（剩余{remainingCnt}条未显示）",
+  "upload": {
+    "mode": {
+      "strict": "严格",
+      "normal": "普通"
+    }
+  }
 }

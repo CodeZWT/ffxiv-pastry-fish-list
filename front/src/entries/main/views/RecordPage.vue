@@ -17,7 +17,7 @@
             label="请输入钓场"
             clearable
             solo
-            :filter="filterOptions"
+            :filter="searchFilterOptions"
           >
             <template v-slot:item="data">
               <div class="d-flex">
@@ -31,45 +31,62 @@
               </div>
             </template>
           </v-autocomplete>
-          <div class="d-flex">
-            <div style="width: 48px"></div>
-            <div v-for="fish in baitOfSpot.fishList" :key="fish.fishId">
-              <item-icon :icon-class="fish.fishIcon" />
-            </div>
-          </div>
-          <div
-            v-for="{ bait, fishCntList, totalCnt } in baitOfSpot.baitFishCntList"
-            :key="bait.baitId"
-            class="d-flex"
-          >
-            <item-icon
-              :icon-class="bait.baitIcon"
-              :title="bait.baitName + '#' + bait.baitId"
-            />
-            <div
-              v-for="{ fish, cnt, percentage, tugColor } in fishCntList"
-              :key="bait.baitId + '-' + fish.fishId"
-            >
-              <div
-                v-if="cnt > 0"
-                style="position: relative"
-                :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
+          <template v-if="spotId > 0">
+            <div class="ma-4 d-flex align-center">
+              <v-subheader>模式筛选</v-subheader>
+              <v-btn-toggle
+                v-model="modeFilters"
+                rounded
+                dense
+                mandatory
+                multiple
+                active-class="primary"
               >
-                <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />
-                <v-progress-circular
-                  :value="percentage"
-                  rotate="-90"
-                  style="position: absolute; top: 6px; left: 8px"
-                  :color="tugColor + ' lighten-2'"
-                >
-                  <div :style="percentage === 100 ? 'font-size: x-small' : ''">
-                    {{ percentage.toFixed(0) }}
-                  </div>
-                </v-progress-circular>
-              </div>
-              <div v-else style="width: 48px"></div>
+                <v-btn small v-for="filter in modeFilterOptions" :key="filter">
+                  {{ $t('upload.mode.' + filter) }}
+                </v-btn>
+              </v-btn-toggle>
             </div>
-          </div>
+            <div class="d-flex">
+              <div style="width: 48px"></div>
+              <div v-for="fish in baitOfSpot.fishList" :key="fish.fishId">
+                <item-icon :icon-class="fish.fishIcon" />
+              </div>
+            </div>
+            <div
+              v-for="{ bait, fishCntList, totalCnt } in baitOfSpot.baitFishCntList"
+              :key="bait.baitId"
+              class="d-flex"
+            >
+              <item-icon
+                :icon-class="bait.baitIcon"
+                :title="bait.baitName + '#' + bait.baitId"
+              />
+              <div
+                v-for="{ fish, cnt, percentage, tugColor } in fishCntList"
+                :key="bait.baitId + '-' + fish.fishId"
+              >
+                <div
+                  v-if="cnt > 0"
+                  style="position: relative"
+                  :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
+                >
+                  <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />
+                  <v-progress-circular
+                    :value="percentage"
+                    rotate="-90"
+                    style="position: absolute; top: 6px; left: 8px"
+                    :color="tugColor + ' lighten-2'"
+                  >
+                    <div :style="percentage === 100 ? 'font-size: x-small' : ''">
+                      {{ percentage.toFixed(0) }}
+                    </div>
+                  </v-progress-circular>
+                </div>
+                <div v-else style="width: 48px"></div>
+              </div>
+            </div>
+          </template>
         </v-sheet>
       </v-col>
       <v-col cols="12">
@@ -198,8 +215,10 @@ export default {
   props: ['lazyTransformedFishDict', 'lazySourceFishList'],
   data() {
     return {
+      modeFilters: [0, 1],
+      modeFilterOptions: ['strict', 'normal'],
       loading: true,
-      spotId: undefined,
+      spotId: 122,
       totalRecords: 0,
       records: [],
       spotRecords: [],
@@ -283,9 +302,15 @@ export default {
         medium: 'error',
         heavy: 'warning',
       }
+      const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
+      const showStrict = filters.includes('strict')
+      const showNormal = filters.includes('normal')
       const baitFishCnt = _(this.spotRecords[0])
         .chain()
         .filter(({ fish, bait }) => fish > 0 && bait > 0)
+        .filter(({ isStrictMode }) => {
+          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        })
         .groupBy(({ bait }) => bait)
         .mapValues(records => {
           return _(records)
@@ -346,7 +371,7 @@ export default {
     },
   },
   methods: {
-    filterOptions(item, searchText, itemText) {
+    searchFilterOptions(item, searchText, itemText) {
       if (this.$i18n.locale === 'zh-CN') {
         return PinyinMatch.match(itemText, searchText) !== false
       } else {
