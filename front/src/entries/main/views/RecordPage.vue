@@ -38,7 +38,7 @@
             </div>
           </div>
           <div
-            v-for="{ bait, fishCntList } in baitOfSpot.baitFishCntList"
+            v-for="{ bait, fishCntList, totalCnt } in baitOfSpot.baitFishCntList"
             :key="bait.baitId"
             class="d-flex"
           >
@@ -50,7 +50,11 @@
               v-for="{ fish, cnt, percentage, tugColor } in fishCntList"
               :key="bait.baitId + '-' + fish.fishId"
             >
-              <div v-if="cnt > 0" style="position: relative">
+              <div
+                v-if="cnt > 0"
+                style="position: relative"
+                :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
+              >
                 <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />
                 <v-progress-circular
                   :value="percentage"
