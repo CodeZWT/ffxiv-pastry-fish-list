@@ -58,7 +58,9 @@
                   style="position: absolute; top: 6px; left: 8px"
                   :color="tugColor + ' lighten-2'"
                 >
-                  {{ percentage === 100 ? '' : percentage.toFixed(0) }}
+                  <div :style="percentage === 100 ? 'font-size: x-small' : ''">
+                    {{ percentage.toFixed(0) }}
+                  </div>
                 </v-progress-circular>
               </div>
               <div v-else style="width: 48px"></div>
