@@ -12,7 +12,7 @@
 
 <script>
 import reverse from 'lodash/reverse'
-import ECharts from 'vue-echarts'
+import { THEME_KEY } from 'vue-echarts'
 
 export default {
   name: 'BiteTimeChart',
@@ -22,7 +22,7 @@ export default {
     },
   },
   provide: {
-    [ECharts.THEME_KEY]: 'dark',
+    [THEME_KEY]: 'dark',
   },
   props: {
     fishList: {
