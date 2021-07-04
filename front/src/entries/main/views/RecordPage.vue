@@ -218,7 +218,7 @@ export default {
       modeFilters: [0, 1],
       modeFilterOptions: ['strict', 'normal'],
       loading: true,
-      spotId: 122,
+      spotId: -1,
       totalRecords: 0,
       records: [],
       spotRecords: [],
