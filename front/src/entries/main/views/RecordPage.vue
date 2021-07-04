@@ -101,10 +101,10 @@
           <v-card-text>
             <v-data-table
               :headers="userSpotStatsHeaders"
-              :items="spotStats"
+              :items="userSpotStats"
               multi-sort
               class="elevation-1"
-              :loading="spotStatsLoading"
+              :loading="loadingUserSpotStats"
             >
               <template v-slot:item.spot="{ item }">
                 <div class="d-flex align-center">
@@ -126,11 +126,26 @@
               </v-col>
               <v-col cols="12">
                 <v-data-table
+                  :headers="userSpotStatsHeaders"
+                  :items="totalSpotStats"
+                  multi-sort
+                  class="elevation-1"
+                  :loading="loadingTotalSpotStats"
+                >
+                  <template v-slot:item.spot="{ item }">
+                    <div class="d-flex align-center">
+                      <div>{{ item.spot.spotName }}</div>
+                    </div>
+                  </template>
+                </v-data-table>
+              </v-col>
+              <v-col cols="12">
+                <v-data-table
                   :headers="headers"
                   :items="records"
                   multi-sort
                   class="elevation-1"
-                  :loading="loading"
+                  :loading="loadingRecords"
                   :server-items-length="totalRecords"
                   :options.sync="options"
                   :footer-props="{ itemsPerPageOptions: [20, 40, 60] }"
@@ -254,12 +269,15 @@ export default {
       tabIndex: 1,
       modeFilters: [0, 1],
       modeFilterOptions: ['strict', 'normal'],
-      loading: true,
+      loadingRecords: true,
+      loadingTotalSpotStats: false,
+      loadingUserSpotStats: false,
       spotId: -1,
       totalRecords: 0,
       records: [],
       spotRecords: [],
-      spotStats: [],
+      userSpotStats: [],
+      totalSpotStats: [],
       refresh: () => {},
       options: {
         sortBy: ['startTime'],
@@ -338,7 +356,6 @@ export default {
           value: 'total',
         },
       ],
-      spotStatsLoading: false,
     }
   },
   watch: {
@@ -356,11 +373,12 @@ export default {
       }
     },
   },
-  async mounted() {
-    this.refresh = throttle(() => this.getRecords(this.options), 5000, {
+  mounted() {
+    this.refresh = throttle(() => this.getTotalTabData(), 5000, {
       leading: true,
     })
-    this.spotStats = await this.getUserSpotStats()
+    this.getTotalSpotStats()
+    this.getUserSpotStats()
   },
   computed: {
     baitOfSpot() {
@@ -445,9 +463,13 @@ export default {
         return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
       }
     },
+    getTotalTabData() {
+      this.getRecords(this.options)
+      this.getTotalSpotStats()
+    },
     getRecords(options) {
       const { sortBy, sortDesc, page, itemsPerPage } = options
-      this.loading = true
+      this.loadingRecords = true
       rcapiService.getRecords(sortBy, sortDesc, page - 1, itemsPerPage).then(data => {
         const [records, total] = data
         this.records = records
@@ -459,10 +481,11 @@ export default {
             }
           })
         this.totalRecords = total
-        this.loading = false
+        this.loadingRecords = false
       })
     },
     async getUserSpotStats() {
+      this.loadingUserSpotStats = true
       const spots = await rcapiService.getUserSpotStats()
       const userSpot = _(spots)
         .chain()
@@ -476,7 +499,26 @@ export default {
           }
         })
         .value()
-      return Object.values(userSpot)
+      this.loadingUserSpotStats = false
+      this.userSpotStats = Object.values(userSpot)
+    },
+    async getTotalSpotStats() {
+      this.loadingTotalSpotStats = true
+      const spots = await rcapiService.getTotalSpotStats()
+      const userSpot = _(spots)
+        .chain()
+        .groupBy('spot')
+        .mapValues(records => {
+          return {
+            spot: UploadUtil.toSpot(records?.[0]?.spot),
+            strict: records.find(it => it.isStrictMode)?.count ?? 0,
+            normal: records.find(it => !it.isStrictMode)?.count ?? 0,
+            total: _.sumBy(records, 'count'),
+          }
+        })
+        .value()
+      this.loadingTotalSpotStats = false
+      this.totalSpotStats = Object.values(userSpot)
     },
   },
 }

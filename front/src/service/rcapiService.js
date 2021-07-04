@@ -88,6 +88,14 @@ export default {
       method: 'GET',
     }).then(response => response.json())
   },
+  getTotalSpotStats() {
+    return fetch(`${host}/stats`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'GET',
+    }).then(response => response.json())
+  },
 }
 
 const toParamStr = (name, value) => {
