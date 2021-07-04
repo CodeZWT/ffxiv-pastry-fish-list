@@ -54,90 +54,99 @@
                 </v-btn-toggle>
               </div>
               <v-subheader>※ 杆型下方的百分比为未提竿或脱钩数据的占比</v-subheader>
-              <div class="d-flex">
-                <div style="width: 48px"></div>
-                <div v-for="fish in baitOfSpot.fishList" :key="fish.fishId">
-                  <item-icon :icon-class="fish.fishIcon" />
-                </div>
-                <div
-                  v-for="tug in TUGS"
-                  :key="tug"
-                  style="width: 48px"
-                  class="d-flex align-center justify-center"
-                >
-                  <v-avatar :color="tugColor[tug]" size="40">
-                    <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
-                  </v-avatar>
-                </div>
-              </div>
-              <div
-                v-for="{
-                  bait,
-                  fishCntList,
-                  tugCntList,
-                  totalCnt,
-                } in baitOfSpot.baitFishCntList"
-                :key="bait.baitId"
-                class="d-flex"
-              >
-                <item-icon
-                  :icon-class="bait.baitIcon"
-                  :title="bait.baitName + '#' + bait.baitId"
-                />
-                <div
-                  v-for="{ fish, cnt, percentage, tugColor } in fishCntList"
-                  :key="bait.baitId + '-' + fish.fishId"
-                >
-                  <div
-                    v-if="cnt > 0"
-                    style="position: relative"
-                    :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
-                  >
-                    <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />
-                    <v-progress-circular
-                      :value="percentage"
-                      rotate="-90"
-                      style="position: absolute; top: 6px; left: 8px"
-                      :color="tugColor + ' lighten-2'"
-                    >
-                      <div :style="percentage === 100 ? 'font-size: x-small' : ''">
-                        {{ percentage.toFixed(0) }}
-                      </div>
-                    </v-progress-circular>
+              <div>
+                <div class="d-flex">
+                  <div style="width: 48px"></div>
+                  <div v-for="fish in baitOfSpot.fishList" :key="fish.fishId">
+                    <item-icon :icon-class="fish.fishIcon" />
                   </div>
-                  <div v-else style="width: 48px"></div>
+                  <div
+                    v-for="tug in TUGS"
+                    :key="tug"
+                    style="width: 48px"
+                    class="d-flex align-center justify-center"
+                  >
+                    <v-avatar :color="tugColor[tug]" size="40">
+                      <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
+                    </v-avatar>
+                  </div>
                 </div>
+                <div
+                  v-for="{
+                    bait,
+                    fishCntList,
+                    tugCntList,
+                    totalCnt,
+                  } in baitOfSpot.baitFishCntList"
+                  :key="bait.baitId"
+                  class="d-flex"
+                >
+                  <item-icon
+                    :icon-class="bait.baitIcon"
+                    :title="bait.baitName + '#' + bait.baitId"
+                  />
+                  <div
+                    v-for="{ fish, cnt, percentage, tugColor } in fishCntList"
+                    :key="bait.baitId + '-' + fish.fishId"
+                  >
+                    <div
+                      v-if="cnt > 0"
+                      style="position: relative"
+                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
+                    >
+                      <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />
+                      <v-progress-circular
+                        :value="percentage"
+                        rotate="-90"
+                        style="position: absolute; top: 6px; left: 8px"
+                        :color="tugColor + ' lighten-2'"
+                      >
+                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">
+                          {{ percentage.toFixed(0) }}
+                        </div>
+                      </v-progress-circular>
+                    </div>
+                    <div v-else style="width: 48px"></div>
+                  </div>
 
-                <div
-                  v-for="{ tug, cnt, percentage, tugColor } in tugCntList"
-                  :key="bait.baitId + '-' + tug"
-                >
                   <div
-                    v-if="cnt > 0"
-                    style="position: relative; width: 48px"
-                    :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
+                    v-for="{ tug, cnt, percentage, tugColor } in tugCntList"
+                    :key="bait.baitId + '-' + tug"
                   >
-                    <v-progress-circular
-                      :value="percentage"
-                      rotate="-90"
-                      style="position: absolute; top: 6px; left: 8px"
-                      :color="tugColor + ' lighten-2'"
+                    <div
+                      v-if="cnt > 0"
+                      style="position: relative; width: 48px"
+                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
                     >
-                      <div :style="percentage === 100 ? 'font-size: x-small' : ''">
-                        {{ percentage.toFixed(0) }}
-                      </div>
-                    </v-progress-circular>
+                      <v-progress-circular
+                        :value="percentage"
+                        rotate="-90"
+                        style="position: absolute; top: 6px; left: 8px"
+                        :color="tugColor + ' lighten-2'"
+                      >
+                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">
+                          {{ percentage.toFixed(0) }}
+                        </div>
+                      </v-progress-circular>
+                    </div>
+                    <div v-else style="width: 48px"></div>
                   </div>
-                  <div v-else style="width: 48px"></div>
                 </div>
               </div>
             </template>
+            <div>
+              <BiteTimeChart :records="fishBiteTimes" :fish-list="spotFishList" />
+            </div>
           </v-card-text>
         </v-card>
       </v-tab-item>
       <v-tab-item>
         <v-card flat>
           <v-card-text>
+            <div v-if="isLogin()">
+              <div>未登录</div>
+              <div>按 <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>y</kbd> 以登录</div>
+            </div>
             <v-data-table
               :headers="userSpotStatsHeaders"
               :items="userSpotStats"
@@ -289,7 +298,7 @@
 
 <script>
 import EnvMixin from '@/components/basic/EnvMixin'
-import rcapiService from '@/service/rcapiService'
+import rcapiService, { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 import UploadUtil from '@/utils/UploadUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import throttle from 'lodash/throttle'
@@ -297,10 +306,12 @@ import * as _ from 'lodash'
 import DataUtil from '@/utils/DataUtil'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import PinyinMatch from 'pinyin-match'
+import BiteTimeChart from '@/components/BiteTimeChart'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
 export default {
   name: 'RecordPage',
-  components: { ItemIcon },
+  components: { BiteTimeChart, ItemIcon },
   mixins: [EnvMixin],
   props: ['lazyTransformedFishDict', 'lazySourceFishList'],
   data() {
@@ -427,6 +438,38 @@ export default {
     this.getUserSpotStats()
   },
   computed: {
+    spotFishList() {
+      return UploadUtil.fishListOfSpot(this.spotId).map(
+        id => UploadUtil.toFish(id).fishName
+      )
+    },
+    fishBiteTimes() {
+      const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
+      const showStrict = filters.includes('strict')
+      const showNormal = filters.includes('normal')
+      const records = this.spotRecords[0] // [data, totalCnt]
+      return _(records)
+        .chain()
+        .filter(
+          ({ fish, bait, biteInterval }) =>
+            fish > 0 && bait > 0 && biteInterval > 0 && biteInterval < 70
+        )
+        .filter(({ isStrictMode }) => {
+          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        })
+        .groupBy(({ bait }) => UploadUtil.toBait(bait).baitName)
+        .mapValues(records => {
+          return _(records)
+            .chain()
+            .groupBy(({ fish }) => UploadUtil.toFish(fish).fishName)
+            .mapValues(baitRec => [
+              _.minBy(baitRec, 'biteInterval')?.biteInterval,
+              _.maxBy(baitRec, 'biteInterval')?.biteInterval,
+            ])
+            .value()
+        })
+        .value()
+    },
     baitOfSpot() {
       const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
       const showStrict = filters.includes('strict')
@@ -530,6 +573,9 @@ export default {
     },
   },
   methods: {
+    isLogin() {
+      return !!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)
+    },
     searchFilterOptions(item, searchText, itemText) {
       if (this.$i18n.locale === 'zh-CN') {
         return PinyinMatch.match(itemText, searchText) !== false
