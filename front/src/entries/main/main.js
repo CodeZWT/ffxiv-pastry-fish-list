@@ -8,7 +8,24 @@ import { initTooltip } from '@thewakingsands/kit-tooltip'
 import { Settings } from 'luxon'
 import VueKonva from 'vue-konva'
 import ECharts from 'vue-echarts'
-import 'echarts'
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart } from 'echarts/charts'
+import {
+  GridComponent,
+  LegendComponent,
+  TitleComponent,
+  TooltipComponent,
+} from 'echarts/components'
+
+use([
+  CanvasRenderer,
+  BarChart,
+  GridComponent,
+  TooltipComponent,
+  TitleComponent,
+  LegendComponent,
+])
 
 initTooltip()
 Settings.defaultLocale = 'zh-CN'

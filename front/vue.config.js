@@ -93,7 +93,6 @@ module.exports = {
         vuetify: 'Vuetify',
         konva: 'konva',
         'konva-vue': 'VueKonva',
-        echarts: 'echarts',
       })
     }
 
