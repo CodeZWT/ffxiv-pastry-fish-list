@@ -1308,6 +1308,13 @@ export default {
       }
       event.preventDefault()
     })
+
+    if (!this.isElectron) {
+      hotkeys('ctrl+alt+y', event => {
+        this.showRoseDialog = true
+        event.preventDefault()
+      })
+    }
     // this.finishReloadPage()
 
     // this.sendElectronEvent('startReader', {
