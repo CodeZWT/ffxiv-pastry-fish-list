@@ -76,7 +76,9 @@ export default {
                 return min + '-' + max
               },
             },
-            data: this.itemNames.map(fishName => record[fishName]?.[1] ?? '-'),
+            data: this.itemNames.map(
+              fishName => record[fishName]?.[1] - record[fishName]?.[0] ?? '-'
+            ),
           },
         ]
         // {
