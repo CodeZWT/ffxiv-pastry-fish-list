@@ -93,8 +93,14 @@ module.exports = {
         vuetify: 'Vuetify',
         konva: 'konva',
         'konva-vue': 'VueKonva',
+        echarts: 'echarts',
       })
     }
+    // else {
+    //   config.externals({
+    //     echarts: 'echarts',
+    //   })
+    // }
 
     config.output
       .libraryTarget('umd')

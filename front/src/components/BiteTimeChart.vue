@@ -124,7 +124,6 @@ export default {
             type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
           },
           formatter: tar => {
-            console.log(tar)
             const data = this.records[tar.seriesName]?.[tar.name]
             if (data) {
               const [min, max] = data
