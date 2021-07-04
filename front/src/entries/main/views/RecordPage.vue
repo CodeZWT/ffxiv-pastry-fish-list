@@ -97,7 +97,23 @@
         </v-card>
       </v-tab-item>
       <v-tab-item>
-        <v-card flat> personal</v-card>
+        <v-card flat>
+          <v-card-text>
+            <v-data-table
+              :headers="userSpotStatsHeaders"
+              :items="spotStats"
+              multi-sort
+              class="elevation-1"
+              :loading="spotStatsLoading"
+            >
+              <template v-slot:item.spot="{ item }">
+                <div class="d-flex align-center">
+                  <div>{{ item.spot.spotName }}</div>
+                </div>
+              </template>
+            </v-data-table>
+          </v-card-text>
+        </v-card>
       </v-tab-item>
       <v-tab-item>
         <v-card flat>
@@ -235,7 +251,7 @@ export default {
   props: ['lazyTransformedFishDict', 'lazySourceFishList'],
   data() {
     return {
-      tabIndex: 0,
+      tabIndex: 1,
       modeFilters: [0, 1],
       modeFilterOptions: ['strict', 'normal'],
       loading: true,
@@ -243,6 +259,7 @@ export default {
       totalRecords: 0,
       records: [],
       spotRecords: [],
+      spotStats: [],
       refresh: () => {},
       options: {
         sortBy: ['startTime'],
@@ -294,12 +311,40 @@ export default {
           value: 'isStrictMode',
         },
       ],
+      userSpotStatsHeaders: [
+        {
+          text: '钓场',
+          align: 'start',
+          sortable: true,
+          value: 'spot',
+          sort: (u, v) => u.spotId - v.spotId,
+        },
+        {
+          text: '严格',
+          align: 'start',
+          sortable: true,
+          value: 'strict',
+        },
+        {
+          text: '普通',
+          align: 'start',
+          sortable: true,
+          value: 'normal',
+        },
+        {
+          text: '全部',
+          align: 'start',
+          sortable: true,
+          value: 'total',
+        },
+      ],
+      spotStatsLoading: false,
     }
   },
   watch: {
     options: {
       handler(options) {
-        this.getDataFromApi(options)
+        this.getRecords(options)
       },
       deep: true,
     },
@@ -312,9 +357,10 @@ export default {
     },
   },
   async mounted() {
-    this.refresh = throttle(() => this.getDataFromApi(this.options), 5000, {
+    this.refresh = throttle(() => this.getRecords(this.options), 5000, {
       leading: true,
     })
+    this.spotStats = await this.getUserSpotStats()
   },
   computed: {
     baitOfSpot() {
@@ -399,7 +445,7 @@ export default {
         return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
       }
     },
-    getDataFromApi(options) {
+    getRecords(options) {
       const { sortBy, sortDesc, page, itemsPerPage } = options
       this.loading = true
       rcapiService.getRecords(sortBy, sortDesc, page - 1, itemsPerPage).then(data => {
@@ -415,6 +461,22 @@ export default {
         this.totalRecords = total
         this.loading = false
       })
+    },
+    async getUserSpotStats() {
+      const spots = await rcapiService.getUserSpotStats()
+      const userSpot = _(spots)
+        .chain()
+        .groupBy('spot')
+        .mapValues(records => {
+          return {
+            spot: UploadUtil.toSpot(records?.[0]?.spot),
+            strict: records.find(it => it.isStrictMode)?.count ?? 0,
+            normal: records.find(it => !it.isStrictMode)?.count ?? 0,
+            total: _.sumBy(records, 'count'),
+          }
+        })
+        .value()
+      return Object.values(userSpot)
     },
   },
 }

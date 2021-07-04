@@ -137,7 +137,9 @@ export default {
         : DataUtil.getItemIconClass(fishId, 60027),
     }
   },
-  toSpot(spotId) {
+  toSpot(spot) {
+    if (!spot) console.log(spot)
+    const spotId = +(spot || 0)
     return {
       spotId: spotId,
       spotName: DataUtil.getName(

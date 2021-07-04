@@ -2,7 +2,7 @@ import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
 const host = DevelopmentModeUtil.isTest()
-  ? 'https://rcapi.traveleorzea.com' // 'http://localhost:3100'
+  ? 'http://localhost:3100'
   : 'https://rcapi.traveleorzea.com'
 
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
@@ -75,6 +75,15 @@ export default {
     return fetch(`${host}/spots/${spotId}/records`, {
       headers: {
         'content-type': 'application/json',
+      },
+      method: 'GET',
+    }).then(response => response.json())
+  },
+  getUserSpotStats() {
+    return fetch(`${host}/user/stats`, {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)}`,
       },
       method: 'GET',
     }).then(response => response.json())
