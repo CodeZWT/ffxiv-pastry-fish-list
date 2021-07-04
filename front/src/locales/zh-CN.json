@@ -315,6 +315,11 @@
     "medium": "中杆",
     "heavy": "鱼王杆"
   },
+  "tugShort": {
+    "light": "轻",
+    "medium": "中",
+    "heavy": "重"
+  },
   "tugTable": {
     "tugFish": "杆型 \\ 鱼"
   },

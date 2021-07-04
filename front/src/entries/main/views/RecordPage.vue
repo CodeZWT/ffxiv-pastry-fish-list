@@ -6,9 +6,9 @@
     "
   >
     <v-tabs v-model="tabIndex" grow>
-      <v-tab> 钓场</v-tab>
-      <v-tab> 个人</v-tab>
-      <v-tab> 所有</v-tab>
+      <v-tab>钓场</v-tab>
+      <v-tab>个人</v-tab>
+      <v-tab>所有</v-tab>
     </v-tabs>
     <v-tabs-items v-model="tabIndex">
       <v-tab-item>
@@ -53,14 +53,30 @@
                   </v-btn>
                 </v-btn-toggle>
               </div>
+              <v-subheader>※ 杆型下方的百分比为未提竿或脱钩数据的占比</v-subheader>
               <div class="d-flex">
                 <div style="width: 48px"></div>
                 <div v-for="fish in baitOfSpot.fishList" :key="fish.fishId">
                   <item-icon :icon-class="fish.fishIcon" />
                 </div>
+                <div
+                  v-for="tug in TUGS"
+                  :key="tug"
+                  style="width: 48px"
+                  class="d-flex align-center justify-center"
+                >
+                  <v-avatar :color="tugColor[tug]" size="40">
+                    <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
+                  </v-avatar>
+                </div>
               </div>
               <div
-                v-for="{ bait, fishCntList, totalCnt } in baitOfSpot.baitFishCntList"
+                v-for="{
+                  bait,
+                  fishCntList,
+                  tugCntList,
+                  totalCnt,
+                } in baitOfSpot.baitFishCntList"
                 :key="bait.baitId"
                 class="d-flex"
               >
@@ -78,6 +94,29 @@
                     :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
                   >
                     <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />
+                    <v-progress-circular
+                      :value="percentage"
+                      rotate="-90"
+                      style="position: absolute; top: 6px; left: 8px"
+                      :color="tugColor + ' lighten-2'"
+                    >
+                      <div :style="percentage === 100 ? 'font-size: x-small' : ''">
+                        {{ percentage.toFixed(0) }}
+                      </div>
+                    </v-progress-circular>
+                  </div>
+                  <div v-else style="width: 48px"></div>
+                </div>
+
+                <div
+                  v-for="{ tug, cnt, percentage, tugColor } in tugCntList"
+                  :key="bait.baitId + '-' + tug"
+                >
+                  <div
+                    v-if="cnt > 0"
+                    style="position: relative; width: 48px"
+                    :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
+                  >
                     <v-progress-circular
                       :value="percentage"
                       rotate="-90"
@@ -266,7 +305,8 @@ export default {
   props: ['lazyTransformedFishDict', 'lazySourceFishList'],
   data() {
     return {
-      tabIndex: 1,
+      TUGS: ['light', 'medium', 'heavy'],
+      tabIndex: 0,
       modeFilters: [0, 1],
       modeFilterOptions: ['strict', 'normal'],
       loadingRecords: true,
@@ -278,6 +318,12 @@ export default {
       spotRecords: [],
       userSpotStats: [],
       totalSpotStats: [],
+
+      tugColor: {
+        light: 'success',
+        medium: 'error',
+        heavy: 'warning',
+      },
       refresh: () => {},
       options: {
         sortBy: ['startTime'],
@@ -382,15 +428,11 @@ export default {
   },
   computed: {
     baitOfSpot() {
-      const tugColor = {
-        light: 'success',
-        medium: 'error',
-        heavy: 'warning',
-      }
       const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
       const showStrict = filters.includes('strict')
       const showNormal = filters.includes('normal')
-      const baitFishCnt = _(this.spotRecords[0])
+      const records = this.spotRecords[0] // [data, totalCnt]
+      const baitFishCnt = _(records)
         .chain()
         .filter(({ fish, bait }) => fish > 0 && bait > 0)
         .filter(({ isStrictMode }) => {
@@ -405,9 +447,31 @@ export default {
             .value()
         })
         .value()
-      const fishIdList = UploadUtil.fishListOfSpot(this.spotId)
+
+      const unknownFishCnt = _(records)
+        .chain()
+        .filter(({ fish, bait }) => fish === -1 && bait > 0)
+        .filter(({ isStrictMode }) => {
+          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        })
+        .groupBy(({ bait }) => bait)
+        .mapValues(records => {
+          return _(records)
+            .chain()
+            .groupBy(({ tug }) => {
+              return this.TUGS[tug]
+            })
+            .mapValues(baitRec => baitRec.length)
+            .value()
+        })
+        .value()
+
+      const fishIdList = UploadUtil.fishListOfSpot(this.spotId) //.concat(['light', 'medium', 'heavy'])
       const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
-        const totalCnt = _.sum(Object.values(fishCntDict))
+        const tugCntDict = unknownFishCnt[bait] ?? {}
+        const totalCnt =
+          _.sum(Object.values(fishCntDict)) + _.sum(Object.values(tugCntDict))
+
         return {
           bait: UploadUtil.toBait(bait),
           fishCntList: fishIdList.map(fishId => {
@@ -429,8 +493,18 @@ export default {
               fish: UploadUtil.toFish(fishId),
               cnt: cnt,
               percentage: (cnt / totalCnt) * 100,
-              tugColor:
-                tugColor[fishInfo?.baits?.[fishInfo?.baits?.length - 1 ?? 0]?.tug],
+              tugColor: this.tugColor[
+                fishInfo?.baits?.[fishInfo?.baits?.length - 1 ?? 0]?.tug
+              ],
+            }
+          }),
+          tugCntList: ['light', 'medium', 'heavy'].map(tug => {
+            const cnt = tugCntDict[tug] ?? 0
+            return {
+              tug: tug,
+              cnt: cnt,
+              percentage: (cnt / totalCnt) * 100,
+              tugColor: this.tugColor[tug],
             }
           }),
           totalCnt: totalCnt,
