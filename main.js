@@ -550,7 +550,7 @@ async function init() {
         lastUploadTime = now
         return response.data
       } catch (e) {
-        log.error('Upload error', e)
+        log.error('Upload error', e.message)
         lastUploadTime = now
       }
     }
