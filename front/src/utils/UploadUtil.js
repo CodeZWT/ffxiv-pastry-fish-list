@@ -71,6 +71,8 @@ const toUploadData = records => {
   })
 }
 
+const UPLOAD_LIMIT = 100
+
 export default {
   isLogin() {
     return !!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)
@@ -85,7 +87,7 @@ export default {
       .filter(record => {
         return record.uploadEnabled && !record.uploaded
       })
-      .limit(200)
+      .limit(UPLOAD_LIMIT)
       .toArray()
     if (recordsToUpload.length > 0) {
       window.electron?.ipcRenderer

@@ -543,7 +543,7 @@ async function init() {
   })
   ipcMain.handle('uploadRecords', async (event, { accessToken, records }) => {
     const now = Date.now()
-    if (records.length === 200 || lastUploadTime + CONSTANTS.INTERVAL_MINUTE * 10 < now) {
+    if (records.length === 100 || lastUploadTime + CONSTANTS.INTERVAL_MINUTE * 10 < now) {
       try {
         const response = await upload(accessToken, records)
         log.info('Uploaded data CNT:', response.data.length)
