@@ -491,6 +491,12 @@ async function init() {
         sendFishingData(fishingData)
       }
     })
+    .on('setStrictMode', (event, isStrictMode) => {
+      readerConfig.isStrictMode = isStrictMode
+      callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
+    })
 
   const upload = async (accessToken, records) => {
     return rcapiService.uploadRecords(accessToken, records)

@@ -114,7 +114,7 @@ export default {
           body: JSON.stringify(records),
         })
         if (response.ok) {
-          const data = response.json()
+          const data = await response.json()
           console.info('Uploaded data CNT:', data.length)
           return data
         } else {
