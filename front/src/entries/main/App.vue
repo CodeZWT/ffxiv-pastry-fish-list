@@ -755,6 +755,7 @@ import repeat from 'lodash/repeat'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
 import RoseModeDialog from '@/components/Dialog/RoseModeDialog'
 import UploadUtil from '@/utils/UploadUtil'
+import { INTERVAL_MINUTE } from 'Data/constants'
 // let totalCnt = 0
 
 export default {
@@ -1251,8 +1252,10 @@ export default {
         this.setZoomFactor(windowSetting.main.zoomFactor)
       }
 
+      setInterval(UploadUtil.sendUploadRecord, INTERVAL_MINUTE)
+
       window.electron?.ipcRenderer
-        ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
+        // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
         ?.on('fishCaught', (event, data) => {
           const fishId = data?.fishId
           this.setFishCompleted({ fishId: fishId, completed: true })

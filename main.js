@@ -541,21 +541,21 @@ async function init() {
   ipcMain.handle('getWindowSetting', () => {
     return windowSetting
   })
-  ipcMain.handle('uploadRecords', async (event, { accessToken, records }) => {
-    const now = Date.now()
-    if (records.length === 100 || lastUploadTime + CONSTANTS.INTERVAL_MINUTE * 10 < now) {
-      try {
-        const response = await upload(accessToken, records)
-        log.info('Uploaded data CNT:', response.data.length)
-        lastUploadTime = now
-        return response.data
-      } catch (e) {
-        log.error('Upload error', e.message)
-        lastUploadTime = now
-      }
-    }
-    return []
-  })
+  // ipcMain.handle('uploadRecords', async (event, { accessToken, records }) => {
+  //   const now = Date.now()
+  //   if (records.length === 100 || lastUploadTime + CONSTANTS.INTERVAL_MINUTE * 10 < now) {
+  //     try {
+  //       const response = await upload(accessToken, records)
+  //       log.info('Uploaded data CNT:', response.data.length)
+  //       lastUploadTime = now
+  //       return response.data
+  //     } catch (e) {
+  //       log.error('Upload error', e.message)
+  //       lastUploadTime = now
+  //     }
+  //   }
+  //   return []
+  // })
   globalShortcut.register('Alt+Shift+Y', () => {
     callWindowSafe(WINDOWS.main, win => win.webContents.send('showRoseModeDialog'))
   })

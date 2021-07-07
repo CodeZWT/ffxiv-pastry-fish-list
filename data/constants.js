@@ -15,4 +15,6 @@ module.exports = {
 
   REGIONS: ['CN', 'Global'],
   MONITOR_TYPES: ['RawSocket', 'WinPCap'],
+
+  UPLOAD_LIMIT: 100,
 }

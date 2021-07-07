@@ -1,5 +1,6 @@
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import { INTERVAL_MINUTE, UPLOAD_LIMIT } from 'Data/constants'
 
 const host = DevelopmentModeUtil.isTest()
   ? 'http://localhost:3100'
@@ -96,6 +97,36 @@ export default {
       method: 'GET',
     }).then(response => response.json())
   },
+  async uploadRecords(records) {
+    const now = Date.now()
+    if (
+      records.length === UPLOAD_LIMIT ||
+      this.lastUploadTime + INTERVAL_MINUTE * 10 < now
+    ) {
+      this.lastUploadTime = now
+      try {
+        const response = await fetch(`${host}/records`, {
+          headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)}`,
+          },
+          method: 'POST',
+          body: JSON.stringify(records),
+        })
+        if (response.ok) {
+          const data = response.json()
+          console.info('Uploaded data CNT:', data.length)
+          return data
+        } else {
+          console.error('Upload error', response.status, response)
+        }
+      } catch (e) {
+        console.error('Network error', e)
+      }
+    }
+    return []
+  },
+  lastUploadTime: 0,
 }
 
 const toParamStr = (name, value) => {

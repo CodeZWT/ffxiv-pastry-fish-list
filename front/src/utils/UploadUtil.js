@@ -4,7 +4,7 @@ import Weather from '@/utils/Weather'
 import DATA from 'Data/data'
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
 import db from '@/plugins/db'
-import { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
+import rcapiService, { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import { WEATHER_TYPES } from 'Data/translation'
 import PLACE_NAMES from 'Data/placeNames'
@@ -79,7 +79,7 @@ export default {
   },
   async sendUploadRecord() {
     if (!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)) {
-      console.log('upload skipped')
+      console.info('upload skipped')
       return
     }
     const recordsToUpload = await db.records
@@ -90,26 +90,21 @@ export default {
       .limit(UPLOAD_LIMIT)
       .toArray()
     if (recordsToUpload.length > 0) {
-      window.electron?.ipcRenderer
-        ?.invoke('uploadRecords', {
-          accessToken: LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY),
-          records: toUploadData(recordsToUpload),
-        })
-        ?.then(result => {
-          console.log('result', result)
-          if (result.length > 0) {
-            db.records.bulkGet(result).then(recordsUploaded => {
-              db.records.bulkPut(
-                recordsUploaded.map(record => {
-                  return {
-                    ...record,
-                    uploaded: true,
-                  }
-                })
-              )
-            })
-          }
-        })
+      rcapiService.uploadRecords(toUploadData(recordsToUpload)).then(result => {
+        console.info('result', result)
+        if (result.length > 0) {
+          db.records.bulkGet(result).then(recordsUploaded => {
+            db.records.bulkPut(
+              recordsUploaded.map(record => {
+                return {
+                  ...record,
+                  uploaded: true,
+                }
+              })
+            )
+          })
+        }
+      })
     }
   },
   async getUploadStatus() {
