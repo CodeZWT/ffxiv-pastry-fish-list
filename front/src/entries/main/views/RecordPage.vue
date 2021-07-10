@@ -99,7 +99,7 @@
                         :value="percentage"
                         rotate="-90"
                         style="position: absolute; top: 6px; left: 8px"
-                        :color="tugColor + ' lighten-2'"
+                        :color="`${tugColor} ${theme.isDark ? 'lighten-2' : 'darken-1'}`"
                       >
                         <div :style="percentage === 100 ? 'font-size: x-small' : ''">
                           {{ percentage.toFixed(0) }}
@@ -135,7 +135,7 @@
               </div>
             </template>
             <div>
-              <BiteTimeChart :records="fishBiteTimes" :fish-list="spotFishList" />
+              <BiteTimeChart :data="biteTimeChartData" />
             </div>
           </v-card-text>
         </v-card>
@@ -314,6 +314,11 @@ export default {
   components: { BiteTimeChart, ItemIcon },
   mixins: [EnvMixin],
   props: ['lazyTransformedFishDict', 'lazySourceFishList'],
+  inject: {
+    theme: {
+      default: { isDark: false },
+    },
+  },
   data() {
     return {
       TUGS: ['light', 'medium', 'heavy'],
@@ -443,6 +448,36 @@ export default {
         id => UploadUtil.toFish(id).fishName
       )
     },
+    biteTimeChartData() {
+      // :records="fishBiteTimes" :fish-list="spotFishList"
+      return {
+        records: this.fishBiteTimes,
+        allBaitRecords: this.allBaitFishBiteTimes,
+        fishList: this.spotFishList,
+        baitList: Object.keys(this.fishBiteTimes).map(bait => UploadUtil.toBait(bait)),
+      }
+    },
+    allBaitFishBiteTimes() {
+      const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
+      const showStrict = filters.includes('strict')
+      const showNormal = filters.includes('normal')
+      const records = this.spotRecords[0] // [data, totalCnt]
+      return _(records)
+        .chain()
+        .filter(
+          ({ fish, bait, biteInterval }) =>
+            fish > 0 && bait > 0 && biteInterval > 0 && biteInterval < 70
+        )
+        .filter(({ isStrictMode }) => {
+          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        })
+        .groupBy(({ fish }) => UploadUtil.toFish(fish).fishName)
+        .mapValues(baitRec => [
+          _.minBy(baitRec, 'biteInterval')?.biteInterval,
+          _.maxBy(baitRec, 'biteInterval')?.biteInterval,
+        ])
+        .value()
+    },
     fishBiteTimes() {
       const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
       const showStrict = filters.includes('strict')
@@ -457,7 +492,7 @@ export default {
         .filter(({ isStrictMode }) => {
           return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
         })
-        .groupBy(({ bait }) => UploadUtil.toBait(bait).baitName)
+        .groupBy(({ bait }) => bait)
         .mapValues(records => {
           return _(records)
             .chain()

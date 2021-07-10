@@ -29,8 +29,6 @@ echarts.use([
   LegendComponent,
 ])
 
-import ECharts from 'vue-echarts'
-
 initTooltip()
 Settings.defaultLocale = 'zh-CN'
 
@@ -40,8 +38,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // use([CanvasRenderer, BarChart, GridComponent, TooltipComponent])
-
-Vue.component('v-chart', ECharts)
 
 new Vue({
   router,
