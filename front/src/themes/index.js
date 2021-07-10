@@ -37,7 +37,7 @@ export default {
         inner: '#f2f3f5',
         background: '#F5F5F4',
         selected: '#1c7c54',
-        fishing: '#cbdfbd',
+        fishing: '#9ec483',
         fishingSecondary: '#82C79D',
         completed: '#98c1d9',
         completedSecondary: '#aed9e0',
