@@ -18,7 +18,10 @@
         </v-checkbox>
       </div>
     </div>
-    <div id="main" style="width: 800px;height: 800px"></div>
+    <div
+      id="main"
+      :style="`width: 800px;height: ${enableBaitFilter ? 800 : 400}px`"
+    ></div>
   </div>
 </template>
 
@@ -62,6 +65,11 @@ export default {
       if (enableBaitFilter) {
         this.baitSelected = clone(this.allBaitIds)
       }
+      this.$nextTick(() => {
+        this.chart.dispose()
+        this.chart = this.initChart(this.theme.isDark)
+        this.chart.setOption(this.option)
+      })
     },
     option(option) {
       this.chart.clear()

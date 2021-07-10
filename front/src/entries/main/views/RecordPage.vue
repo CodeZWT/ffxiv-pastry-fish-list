@@ -134,7 +134,7 @@
                 </div>
               </div>
             </template>
-            <div>
+            <div v-if="spotId > 0">
               <BiteTimeChart :data="biteTimeChartData" />
             </div>
           </v-card-text>
