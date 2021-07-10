@@ -137,6 +137,68 @@
             <div v-if="spotId > 0">
               <BiteTimeChart :data="biteTimeChartData" />
             </div>
+            <div v-if="spotId > 0">
+              <v-select
+                v-model="fishSelected"
+                :items="spotFishList"
+                item-text="fishName"
+                item-value="fishId"
+                label="选择鱼"
+              ></v-select>
+              <div v-if="fishSelected > 0">
+                <v-subheader>时间分布</v-subheader>
+                <div
+                  v-for="(daySection, i) in etBiteCounts"
+                  :key="'daySection-' + i"
+                  class="d-flex align-center"
+                >
+                  <div v-for="(etSection, j) in daySection" :key="`etSession-${i}-${j}`">
+                    <v-menu
+                      open-on-hover
+                      open-delay="300"
+                      close-deplay="300"
+                      right
+                      offset-x
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <div
+                          v-bind="attrs"
+                          v-on="on"
+                          style="height: 40px; width: 40px"
+                          :class="
+                            'd-flex justify-center align-center' +
+                              (etSection > 0 ? ' success' : '')
+                          "
+                        >
+                          <div>
+                            {{ i * 8 + j }}
+                          </div>
+                        </div>
+                      </template>
+                      <v-card>
+                        <v-card-title> 详情（共{{ etSection }}） </v-card-title>
+                        <v-card-text>
+                          <div class="d-flex flex-wrap">
+                            <div
+                              v-for="(entry, idx) in etBiteDetailOf(i * 8 + j, 1, 0.5)"
+                              :key="'detail' + idx"
+                              style="height: 40px; width: 40px"
+                              :class="
+                                'd-flex justify-center align-center' +
+                                  (entry.cnt > 0 ? ' success' : '')
+                              "
+                              :title="entry.cnt"
+                            >
+                              <div>{{ entry.time }}</div>
+                            </div>
+                          </div>
+                        </v-card-text>
+                      </v-card>
+                    </v-menu>
+                  </div>
+                </div>
+              </div>
+            </div>
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -321,6 +383,7 @@ export default {
   },
   data() {
     return {
+      fishSelected: undefined,
       TUGS: ['light', 'medium', 'heavy'],
       tabIndex: 0,
       modeFilters: [0, 1],
@@ -444,16 +507,14 @@ export default {
   },
   computed: {
     spotFishList() {
-      return UploadUtil.fishListOfSpot(this.spotId).map(
-        id => UploadUtil.toFish(id).fishName
-      )
+      return UploadUtil.fishListOfSpot(this.spotId).map(id => UploadUtil.toFish(id))
     },
     biteTimeChartData() {
       // :records="fishBiteTimes" :fish-list="spotFishList"
       return {
         records: this.fishBiteTimes,
         allBaitRecords: this.allBaitFishBiteTimes,
-        fishList: this.spotFishList,
+        fishList: this.spotFishList.map(it => it.fishName),
         baitList: Object.keys(this.fishBiteTimes).map(bait => UploadUtil.toBait(bait)),
       }
     },
@@ -477,6 +538,44 @@ export default {
           _.maxBy(baitRec, 'biteInterval')?.biteInterval,
         ])
         .value()
+    },
+    etBiteCountsDict() {
+      const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
+      const showStrict = filters.includes('strict')
+      const showNormal = filters.includes('normal')
+      const records = this.spotRecords[0] // [data, totalCnt]
+      return _(records)
+        .chain()
+        .filter(
+          ({ fish, bait, biteInterval, etHour, etMinute }) =>
+            fish > 0 &&
+            bait > 0 &&
+            biteInterval > 0 &&
+            biteInterval < 70 &&
+            etHour >= 0 &&
+            etHour <= 23 &&
+            etMinute >= 0 &&
+            etMinute <= 59 &&
+            fish === this.fishSelected
+        )
+        .filter(({ isStrictMode }) => {
+          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        })
+        .groupBy(({ etHour, etMinute }) => etHour * 60 + Math.floor(etMinute / 30) * 30)
+        .mapValues(records => records.length)
+        .value()
+    },
+    etBiteCounts() {
+      const all = this.etCountsOf(0, 24, 1)
+      let table = []
+      for (let j = 0; j < 24; j += 8) {
+        let row = []
+        for (let i = 0; i < 8; i += 1) {
+          row.push(all[j + i])
+        }
+        table.push(row)
+      }
+      return table
     },
     fishBiteTimes() {
       const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
@@ -608,6 +707,29 @@ export default {
     },
   },
   methods: {
+    etBiteDetailOf(start, duration, interval) {
+      const ret = []
+      const cnts = this.etCountsOf(start, duration, interval)
+      for (let i = start, idx = 0; i < start + duration; i += interval, idx++) {
+        const hour = Math.floor(i)
+        const minute = (i - hour) * 60
+        const paddingZero = it => (it > 10 ? it : '0' + it)
+        ret.push({ time: paddingZero(hour) + ':' + paddingZero(minute), cnt: cnts[idx] })
+      }
+      return ret
+    },
+    etCountsOf(start, duration, interval) {
+      let table = []
+      const intervalMinute = interval * 60
+      for (let i = start * 60; i < (start + duration) * 60; i += intervalMinute) {
+        let intervalCnt = 0
+        for (let offset = 0; offset < intervalMinute; offset++) {
+          intervalCnt += this.etBiteCountsDict[i + offset] ?? 0
+        }
+        table.push(intervalCnt)
+      }
+      return table
+    },
     isLogin() {
       return !!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)
     },
