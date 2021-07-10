@@ -145,7 +145,7 @@
                 item-value="fishId"
                 label="选择鱼"
               ></v-select>
-              <div v-if="fishSelected > 0">
+              <div v-if="spotId > 0 && fishSelected > 0">
                 <v-subheader>时间分布</v-subheader>
                 <div
                   v-for="(daySection, i) in etBiteCounts"
@@ -164,14 +164,19 @@
                         <div
                           v-bind="attrs"
                           v-on="on"
-                          style="height: 40px; width: 40px"
+                          style="height: 40px; width: 40px; position: relative"
                           :class="
                             'd-flex justify-center align-center' +
-                              (etSection > 0 ? ' success' : '')
+                              (etSection > 0 ? ' secondary' : '')
                           "
                         >
-                          <div>
+                          <div
+                            style="position: absolute; top: 0; left: 0; font-size: xx-small; line-height: 14px"
+                          >
                             {{ i * 8 + j }}
+                          </div>
+                          <div style="font-size: x-large">
+                            {{ etSection }}
                           </div>
                         </div>
                       </template>
@@ -182,19 +187,62 @@
                             <div
                               v-for="(entry, idx) in etBiteDetailOf(i * 8 + j, 1, 0.5)"
                               :key="'detail' + idx"
-                              style="height: 40px; width: 40px"
-                              :class="
-                                'd-flex justify-center align-center' +
-                                  (entry.cnt > 0 ? ' success' : '')
-                              "
-                              :title="entry.cnt"
+                              class="d-flex flex-column align-center"
                             >
-                              <div>{{ entry.time }}</div>
+                              <div>
+                                {{ entry.time }}
+                              </div>
+                              <div
+                                style="height: 40px; width: 40px;"
+                                :class="
+                                  'd-flex justify-center align-center' +
+                                    (entry.cnt > 0 ? ' secondary' : '')
+                                "
+                                :title="entry.cnt"
+                              >
+                                <div style="font-size: x-large">{{ entry.cnt }}</div>
+                              </div>
                             </div>
                           </div>
                         </v-card-text>
                       </v-card>
                     </v-menu>
+                  </div>
+                </div>
+              </div>
+              <div v-if="spotId > 0 && fishSelected > 0">
+                <v-subheader>天气分布</v-subheader>
+                <div class="d-flex align-center">
+                  <div style="height: 40px; width: 40px"></div>
+                  <div
+                    v-for="(weather, i) in spotWeathers"
+                    :key="'th-weather-' + i"
+                    class="d-flex"
+                  >
+                    <div style="height: 40px; width: 40px">
+                      <div :class="weather.icon" :title="weather.name" />
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  v-for="(weatherRow, i) in weatherBiteCounts"
+                  :key="'weather-' + i"
+                  class="d-flex"
+                >
+                  <div style="height: 40px; width: 40px">
+                    <div :class="spotWeathers[i].icon" :title="spotWeathers[i].name" />
+                  </div>
+                  <div
+                    v-for="(cnt, j) in weatherRow"
+                    :key="'weather-' + i + '-' + j"
+                    style="height: 40px; width: 40px"
+                    :class="
+                      'd-flex justify-center align-center' + (cnt > 0 ? ' secondary' : '')
+                    "
+                    :title="cnt"
+                  >
+                    <div style="font-size: x-large">{{ cnt }}</div>
                   </div>
                 </div>
               </div>
@@ -370,6 +418,8 @@ import SPOT_FISH_DICT from 'Data/spotFishDict'
 import PinyinMatch from 'pinyin-match'
 import BiteTimeChart from '@/components/BiteTimeChart'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import SPOT_WEATHER from 'Data/spotWeather'
+import uniq from 'lodash/uniq'
 
 export default {
   name: 'RecordPage',
@@ -539,6 +589,41 @@ export default {
         ])
         .value()
     },
+    spotWeathers() {
+      return uniq((SPOT_WEATHER[this.spotId] ?? []).filter(it => it > 0))
+        .sort()
+        .map(weatherId => UploadUtil.toWeather(weatherId))
+    },
+    weatherBiteCounts() {
+      const weathers = this.spotWeathers.map(it => it.id)
+      let table = []
+      for (const weather of weathers) {
+        let row = []
+        for (const prevWeather of weathers) {
+          row.push(this.weatherBiteCountsDict[weather + '-' + prevWeather] ?? 0)
+        }
+        table.push(row)
+      }
+      return table
+    },
+    weatherBiteCountsDict() {
+      const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
+      const showStrict = filters.includes('strict')
+      const showNormal = filters.includes('normal')
+      const records = this.spotRecords[0] // [data, totalCnt]
+      return _(records)
+        .chain()
+        .filter(
+          ({ fish, prevWeather, weather }) =>
+            fish > 0 && prevWeather > 0 && weather > 0 && fish === this.fishSelected
+        )
+        .filter(({ isStrictMode }) => {
+          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        })
+        .groupBy(({ prevWeather, weather }) => prevWeather + '-' + weather)
+        .mapValues(records => records.length)
+        .value()
+    },
     etBiteCountsDict() {
       const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
       const showStrict = filters.includes('strict')
@@ -547,11 +632,8 @@ export default {
       return _(records)
         .chain()
         .filter(
-          ({ fish, bait, biteInterval, etHour, etMinute }) =>
+          ({ fish, etHour, etMinute }) =>
             fish > 0 &&
-            bait > 0 &&
-            biteInterval > 0 &&
-            biteInterval < 70 &&
             etHour >= 0 &&
             etHour <= 23 &&
             etMinute >= 0 &&

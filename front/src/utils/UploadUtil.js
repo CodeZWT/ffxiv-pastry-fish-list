@@ -144,6 +144,14 @@ export default {
       ),
     }
   },
+  toWeather(weatherId) {
+    const weather = WEATHER_TYPES[weatherId]
+    return {
+      id: weatherId,
+      name: DataUtil.getName(weather),
+      icon: DataUtil.iconIdToClass(weather.icon),
+    }
+  },
   fishListOfSpot(spot) {
     return SPOT_FISH_DICT[spot]?.filter(fishId => fishId > 0) ?? []
   },
