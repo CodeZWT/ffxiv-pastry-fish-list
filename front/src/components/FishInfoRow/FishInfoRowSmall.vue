@@ -53,7 +53,7 @@
             :hat="fish.showHatCover"
           />
           <div :class="inPredator ? 'ml-4' : 'ml-1'">
-            <div class="text-subtitle-1" :title="toItemTitle(fish)">
+            <div class="text-subtitle-1 text-break" :title="toItemTitle(fish)">
               {{ fish.name }}
             </div>
             <!-- bottom actions line -->
@@ -101,6 +101,9 @@
             "
           >
             {{ $t(transformedFishTimePart.countDownType) }}
+          </div>
+          <div v-else-if="!transformedFishTimePart.hasCountDown && !fish.checking">
+            {{ $t('countDown.allAvailable') }}
           </div>
         </div>
         <div v-else class="d-flex flex-column">

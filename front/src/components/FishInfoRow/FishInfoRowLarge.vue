@@ -74,7 +74,7 @@
                   <v-hover v-slot="{ hover }">
                     <div
                       :class="
-                        `text-subtitle-1 ${
+                        `text-subtitle-1 text-break ${
                           hover ? 'info--text text-decoration-underline' : ''
                         }`
                       "
@@ -160,6 +160,9 @@
               <div v-if="fish.checking" title="开荒中一切数据仅供参考" class="ml-1">
                 <v-icon small color="warning">mdi-alert-outline</v-icon>
                 <span class="warning--text">开荒中</span>
+              </div>
+              <div v-if="!transformedFishTimePart.hasCountDown && !fish.checking">
+                {{ $t('countDown.allAvailable') }}
               </div>
             </div>
             <!--  2nd: next count down / interval & fishing window rate -->
