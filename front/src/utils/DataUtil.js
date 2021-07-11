@@ -618,8 +618,8 @@ export default {
     return (
       fishEyesUsed &&
       (fish.startHour !== 0 || fish.endHour !== 24) &&
-      fish.patch < 4 &&
-      !LIVING_LEGENDS.includes(fish._id)
+      (fish._id === 20524 || // 20524 巧儿海陆行鸟
+        (fish.patch < 4 && !LIVING_LEGENDS.includes(fish._id)))
     )
   },
   getFishWindowOfSingleFish(
