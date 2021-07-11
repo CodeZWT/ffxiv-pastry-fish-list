@@ -135,6 +135,7 @@
               </div>
             </template>
             <div v-if="spotId > 0">
+              <v-switch v-model="chumBiteTime" label="撒饵" inset />
               <BiteTimeChart :data="biteTimeChartData" />
             </div>
             <div v-if="spotId > 0">
@@ -433,6 +434,7 @@ export default {
   },
   data() {
     return {
+      chumBiteTime: false,
       fishSelected: undefined,
       TUGS: ['light', 'medium', 'heavy'],
       tabIndex: 0,
@@ -576,8 +578,12 @@ export default {
       return _(records)
         .chain()
         .filter(
-          ({ fish, bait, biteInterval }) =>
-            fish > 0 && bait > 0 && biteInterval > 0 && biteInterval < 70
+          ({ fish, bait, biteInterval, chum }) =>
+            fish > 0 &&
+            bait > 0 &&
+            biteInterval > 0 &&
+            biteInterval < 70 &&
+            chum === this.chumBiteTime
         )
         .filter(({ isStrictMode }) => {
           return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
@@ -667,8 +673,12 @@ export default {
       return _(records)
         .chain()
         .filter(
-          ({ fish, bait, biteInterval }) =>
-            fish > 0 && bait > 0 && biteInterval > 0 && biteInterval < 70
+          ({ fish, bait, biteInterval, chum }) =>
+            fish > 0 &&
+            bait > 0 &&
+            biteInterval > 0 &&
+            biteInterval < 70 &&
+            chum === this.chumBiteTime
         )
         .filter(({ isStrictMode }) => {
           return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
