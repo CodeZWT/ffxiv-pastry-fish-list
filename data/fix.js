@@ -1889,10 +1889,6 @@ module.exports = {
       gig: null,
       aquarium: null,
       anglerFishId: 3454,
-      checkInfo: {
-        weatherRestricted: true,
-        timeRestricted: true,
-      },
     },
     33240: {
       // Aquamaton
@@ -1918,10 +1914,6 @@ module.exports = {
       gig: null,
       aquarium: null,
       anglerFishId: 3455,
-      checkInfo: {
-        weatherRestricted: false,
-        timeRestricted: true,
-      },
     },
     33241: {
       // Cinder Surprise
@@ -1946,10 +1938,6 @@ module.exports = {
       gig: null,
       aquarium: null,
       anglerFishId: 3456,
-      checkInfo: {
-        weatherRestricted: true,
-        timeRestricted: true,
-      },
     },
     33242: {
       // Ealad Skaan
@@ -1972,10 +1960,6 @@ module.exports = {
       gig: null,
       aquarium: null,
       anglerFishId: 3457,
-      checkInfo: {
-        weatherRestricted: true,
-        timeRestricted: true,
-      },
     },
     33243: {
       // Greater Serpent of Ronka
@@ -1998,10 +1982,6 @@ module.exports = {
       gig: null,
       aquarium: null,
       anglerFishId: 3458,
-      checkInfo: {
-        weatherRestricted: false,
-        timeRestricted: true,
-      },
     },
     33244: {
       // Lancetfish
@@ -2026,10 +2006,6 @@ module.exports = {
       gig: null,
       aquarium: null,
       anglerFishId: 3459,
-      checkInfo: {
-        weatherRestricted: true,
-        timeRestricted: true,
-      },
     },
     8752: { intuitionLength: 600 },
     8760: { intuitionLength: 300 },
