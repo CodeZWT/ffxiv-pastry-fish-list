@@ -190,26 +190,28 @@
             <v-icon>mdi-check-circle</v-icon>
             <span class="ml-1 subtitle-1">登录成功</span>
           </div>
-          <div>
-            <v-sheet outlined class="pa-5 d-flex flex-column align-center">
-              <div class="text-h6">已上传/全部</div>
-              <div class="text-h6">{{ uploadStatus }}</div>
-              <v-tooltip bottom color="secondary">
-                <template v-slot:activator="{ on, attrs }">
-                  <div v-bind="attrs" v-on="on">
-                    <v-btn @click="refreshUploadStatus">
-                      <v-icon>mdi-refresh</v-icon>
-                      刷新
-                    </v-btn>
+          <template v-if="isElectron">
+            <div>
+              <v-sheet outlined class="pa-5 d-flex flex-column align-center">
+                <div class="text-h6">已上传/全部</div>
+                <div class="text-h6">{{ uploadStatus }}</div>
+                <v-tooltip bottom color="secondary">
+                  <template v-slot:activator="{ on, attrs }">
+                    <div v-bind="attrs" v-on="on">
+                      <v-btn @click="refreshUploadStatus">
+                        <v-icon>mdi-refresh</v-icon>
+                        刷新
+                      </v-btn>
+                    </div>
+                  </template>
+                  <div style="min-height: 32px" class="d-flex align-center">
+                    打开对话框时也会重新统计
                   </div>
-                </template>
-                <div style="min-height: 32px" class="d-flex align-center">
-                  打开对话框时也会重新统计
-                </div>
-              </v-tooltip>
-            </v-sheet>
-          </div>
-          <div class="my-1">* 上传功能更新前的数据忽略</div>
+                </v-tooltip>
+              </v-sheet>
+            </div>
+            <div class="my-1">* 上传功能更新前的数据忽略</div>
+          </template>
         </div>
         <v-btn block @click="close" class="mt-4">关闭</v-btn>
         <v-btn block @click="logout" class="mt-4" color="error">登出</v-btn>
@@ -302,6 +304,9 @@ export default {
     }
   },
   computed: {
+    isElectron() {
+      return DevelopmentModeUtil.isElectron()
+    },
     nextSendInterval() {
       if (this.now > this.nextSendTime) {
         return 0

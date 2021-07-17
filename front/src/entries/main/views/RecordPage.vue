@@ -254,7 +254,7 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <div v-if="isLogin()">
+            <div v-if="!isLogin()">
               <div>未登录</div>
               <div>按 <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>y</kbd> 以登录</div>
             </div>
