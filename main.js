@@ -43,7 +43,7 @@ let enableMouseThrough = false
 // let showReaderOnlyIfFishing = false
 const FILE_ENCODING = 'utf8'
 const SETUP_PATH = 'setup'
-let skipUpdate = isDev
+let skipUpdate = false
 let updateDownloaded = false
 let updateDownloading = false
 // const DOWNLOADED_COMMITHASH_PATH = SETUP_PATH + '/DOWNLOADED_COMMITHASH'
@@ -497,6 +497,9 @@ async function init() {
       callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
       callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
     })
+    .on('downloadUpdate', (event) => {
+      downloadUpdates(intervalHandle)
+    })
 
   const upload = async (accessToken, records) => {
     return rcapiService.uploadRecords(accessToken, records)
@@ -589,11 +592,13 @@ async function init() {
   createMainWindow()
   await createAndShowLoadingWindow()
   // await createMiniWin(WINDOWS.main)
-  updateIfNeeded()
+  // updateIfNeeded()
   intervalHandle = setInterval(
-    () => updateIfNeeded(intervalHandle),
-    CONSTANTS.INTERVAL_MINUTE * 10
+    () => showUpdateDialogIfNecessary(),
+    isDev ? CONSTANTS.INTERVAL_SECOND*10 : CONSTANTS.INTERVAL_MINUTE * 10
   )
+  showUpdateDialogIfNecessary()
+
   // uploadIfNeeded()
   uploadIntervalHandle = setInterval(() => uploadIfNeeded(), CONSTANTS.INTERVAL_MINUTE)
   tray = new Tray(path.join(__dirname, 'assets/icon256.png'))
@@ -1116,6 +1121,7 @@ async function downloadCommitHash() {
     })
     .catch(() => {
       // do nothing
+      return undefined
     })
 }
 
@@ -1138,10 +1144,77 @@ async function downloadSetupFile(onDownloadProgress, onFinished) {
     })
 }
 
-let lastUploadTime = 0
+// let lastUploadTime = 0
+
 async function uploadIfNeeded() {
   callFirstAvailableWin([WINDOWS.readerTimer, WINDOWS.timerMini, WINDOWS.main], win => {
     win.webContents.send('getUploadRecords')
+  })
+}
+
+const getLocalVersion = () => {
+  let LOCAL_COMMIT_HAST_PATH
+  if (isDev) {
+    LOCAL_COMMIT_HAST_PATH = __dirname + '/front-electron-dist/COMMITHASH' // VERSION
+  } else {
+    LOCAL_COMMIT_HAST_PATH = path.join(app.getAppPath(), '../../resources/COMMITHASH')
+  }
+  const localCommitHash = fs.readFileSync(LOCAL_COMMIT_HAST_PATH).toString(FILE_ENCODING)
+  log.info('Local commit hash', localCommitHash)
+  return localCommitHash
+}
+
+const newVersionAvailable = async () => {
+  log.info('Checking updates...')
+  const localCommitHash = getLocalVersion()
+  const remoteCommitHash = await downloadCommitHash()
+  log.info('Remote commit hash:', remoteCommitHash)
+  return (
+    localCommitHash !== remoteCommitHash &&
+    remoteCommitHash != null
+  )
+}
+
+const showUpdateDialogIfNecessary = async () => {
+  if (!updateDownloading && skipUpdate) {
+    log.info('skip update')
+    return
+  }
+  const newVersion = await newVersionAvailable()
+  if (newVersion) {
+    callWindowSafe(WINDOWS.main, win => {
+      win.webContents.send('showUpdateDialog')
+    })
+  }
+}
+
+const downloadUpdates = async (intervalHandle) => {
+  clearInterval(intervalHandle)
+  updateDownloading = true
+  const throttled = throttle(
+    progress => {
+      try {
+        log.info('progress', progress.percent)
+        callWindowSafe(WINDOWS.main, win => {
+          win.webContents.send('setupDownload', progress)
+          win.setProgressBar(progress.percent)
+        })
+      } catch (e) {
+        log.error('Try set download progress failed.', e)
+      }
+    },
+    500,
+    { leading: true, trailing: false ,}
+  )
+  await downloadSetupFile(throttled, () => {
+    try {
+      log.info('download setup finished')
+      updateDownloading = false
+      updateDownloaded = true
+      callWindowSafe(WINDOWS.main, win => win.webContents.send('checkStartSetup'))
+    } catch (e) {
+      log.error('Try open update dialog failed.', e)
+    }
   })
 }
 
@@ -1157,14 +1230,7 @@ async function updateIfNeeded(intervalHandle) {
   }
 
   log.info('Checking updates...')
-  let LOCAL_COMMIT_HAST_PATH
-  if (isDev) {
-    LOCAL_COMMIT_HAST_PATH = __dirname + '/front-electron-dist/COMMITHASH' // VERSION
-  } else {
-    LOCAL_COMMIT_HAST_PATH = path.join(app.getAppPath(), '../../resources/COMMITHASH')
-  }
-  const localCommitHash = fs.readFileSync(LOCAL_COMMIT_HAST_PATH).toString(FILE_ENCODING)
-  log.info('Local commit hash', localCommitHash)
+  const localCommitHash = getLocalVersion()
   const remoteCommitHash = await downloadCommitHash()
   log.info('Remote commit hash:', remoteCommitHash)
   if (localCommitHash !== remoteCommitHash && remoteCommitHash != null) {

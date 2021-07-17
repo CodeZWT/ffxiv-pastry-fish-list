@@ -126,6 +126,21 @@ export default {
     }
     return []
   },
+  async getPatchInfo() {
+    const env = DevelopmentModeUtil.isTest() ? 'dev' : 'prod'
+    return fetch(`${host}/patch?env=${env}`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'GET',
+    }).then(response => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        return '{}'
+      }
+    })
+  },
   lastUploadTime: 0,
 }
 

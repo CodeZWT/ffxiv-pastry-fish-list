@@ -580,7 +580,7 @@
           <div>
             钓场的范围提示由 <span class="font-weight-bold">轩辕十四@沃仙曦染</span> 提供
           </div>
-          <div>感谢来自于各个开源作者的支持：</div>
+          <div>感谢各开源项目及攻略网站的帮助：</div>
           <ul>
             <li>
               钓鱼数据：
@@ -647,6 +647,7 @@
       @update="startUpdate"
       @skip="skipUpdate"
     />
+    <update-available-dialog v-model="showUpdateAvailableDialog" />
     <import-export-dialog v-model="showImportExport" />
     <bait-dialog
       v-model="showBaitDialog"
@@ -756,11 +757,13 @@ import ResizeIndicator from '@/components/basic/ResizeIndicator'
 import RoseModeDialog from '@/components/Dialog/RoseModeDialog'
 import UploadUtil from '@/utils/UploadUtil'
 import { INTERVAL_MINUTE } from 'Data/constants'
+import UpdateAvailableDialog from '@/components/Dialog/UpdateAvailableDialog'
 // let totalCnt = 0
 
 export default {
   name: 'App',
   components: {
+    UpdateAvailableDialog,
     RoseModeDialog,
     ResizeIndicator,
     FishEyesToggleButton,
@@ -781,6 +784,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    showUpdateAvailableDialog: false,
     showRoseDialog: false,
     downloadProgress: 0,
     lastCatchFishId: undefined,
@@ -1254,8 +1258,12 @@ export default {
 
       setInterval(UploadUtil.sendUploadRecord, INTERVAL_MINUTE)
 
+      // const that = this
       window.electron?.ipcRenderer
         // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
+        ?.on('showUpdateDialog', () => {
+          this.showUpdateAvailableDialog = true
+        })
         ?.on('fishCaught', (event, data) => {
           const fishId = data?.fishId
           this.setFishCompleted({ fishId: fishId, completed: true })
@@ -1372,7 +1380,6 @@ export default {
         this.finishReloadPage()
       }
     }, 1000)
-
     // this.weatherChangeTrigger *= -1
     // setInterval(() => {
     //   this.weatherChangeTrigger *= -1
