@@ -115,7 +115,20 @@
         </v-row>
         <v-row>
           <v-col cols="12" v-if="tip.comment">
-            <div class="text-subtitle-2" style="font-weight: bold">其他</div>
+            <div class="d-flex align-center">
+              <div class="text-subtitle-2" style="font-weight: bold">其他</div>
+              <v-spacer />
+              <v-tooltip top color="secondary">
+                <template v-slot:activator="{ on, attrs }">
+                  <div v-bind="attrs" v-on="on">
+                    <div>鱼糕注：关于“入门”</div>
+                  </div>
+                </template>
+                <div>
+                  攻略中“入门”相关描述指钓法本身简单，并非指鱼容易咬钩，也不意味着不容易脱钩，即与最终钓上鱼的难度没有必然联系。
+                </div>
+              </v-tooltip>
+            </div>
             <div class="text--primary" v-html="tip.comment"></div>
           </v-col>
         </v-row>
