@@ -711,7 +711,9 @@ export default {
     const sampleKeys = _.keys(flatten(sample, { safe: true })).sort()
     // console.debug(_.difference(importKeys, sampleKeys))
     // console.debug(_.difference(sampleKeys, importKeys))
-    return importKeys.every(it => sampleKeys.includes(it))
+    return importKeys
+      .filter(it => !it.startsWith('reader.'))
+      .every(it => sampleKeys.includes(it))
   },
 
   tugToHookset(tug, hookset) {
