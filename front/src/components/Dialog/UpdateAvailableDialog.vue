@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :value="show" @input="$emit('input', $event)" max-width="300">
+  <v-dialog :value="show" @input="$emit('input', $event)" max-width="500">
     <v-card>
       <v-card-title>鱼糕 当前版本 {{ version }}</v-card-title>
       <v-card-text v-if="updateInfo.version">
@@ -46,6 +46,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    hash: {
+      type: String,
+      default: undefined,
+    },
   },
   data() {
     return {
@@ -56,7 +60,7 @@ export default {
   watch: {
     show(show) {
       if (show) {
-        rcapiService.getPatchInfo().then(info => {
+        rcapiService.getPatchInfo(this.hash).then(info => {
           this.updateInfo = JSON.parse(info.content)
         })
       }

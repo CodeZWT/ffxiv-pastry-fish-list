@@ -126,9 +126,8 @@ export default {
     }
     return []
   },
-  async getPatchInfo() {
-    const env = DevelopmentModeUtil.isTest() ? 'dev' : 'prod'
-    return fetch(`${host}/patch?env=${env}`, {
+  async getPatchInfo(hash) {
+    return fetch(`${host}/patch/${hash}`, {
       headers: {
         'content-type': 'application/json',
       },
@@ -137,7 +136,7 @@ export default {
       if (response.ok) {
         return response.json()
       } else {
-        return '{}'
+        return { content: '{}' }
       }
     })
   },

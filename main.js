@@ -1169,10 +1169,14 @@ const newVersionAvailable = async () => {
   const localCommitHash = getLocalVersion()
   const remoteCommitHash = await downloadCommitHash()
   log.info('Remote commit hash:', remoteCommitHash)
-  return (
+  if (
     localCommitHash !== remoteCommitHash &&
     remoteCommitHash != null
-  )
+  ) {
+    return remoteCommitHash
+  } else {
+    return undefined
+  }
 }
 
 const showUpdateDialogIfNecessary = async () => {
@@ -1181,9 +1185,9 @@ const showUpdateDialogIfNecessary = async () => {
     return
   }
   const newVersion = await newVersionAvailable()
-  if (newVersion) {
+  if (newVersion != null) {
     callWindowSafe(WINDOWS.main, win => {
-      win.webContents.send('showUpdateDialog')
+      win.webContents.send('showUpdateDialog', newVersion)
     })
   }
 }

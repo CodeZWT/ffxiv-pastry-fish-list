@@ -647,7 +647,7 @@
       @update="startUpdate"
       @skip="skipUpdate"
     />
-    <update-available-dialog v-model="showUpdateAvailableDialog" />
+    <update-available-dialog v-model="showUpdateAvailableDialog" :hash="newVersion" />
     <import-export-dialog v-model="showImportExport" />
     <bait-dialog
       v-model="showBaitDialog"
@@ -785,6 +785,7 @@ export default {
   },
   data: vm => ({
     showUpdateAvailableDialog: false,
+    newVersion: undefined,
     showRoseDialog: false,
     downloadProgress: 0,
     lastCatchFishId: undefined,
@@ -1261,8 +1262,9 @@ export default {
       // const that = this
       window.electron?.ipcRenderer
         // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
-        ?.on('showUpdateDialog', () => {
+        ?.on('showUpdateDialog', (event, newVersion) => {
           this.showUpdateAvailableDialog = true
+          this.newVersion = newVersion
         })
         ?.on('fishCaught', (event, data) => {
           const fishId = data?.fishId
