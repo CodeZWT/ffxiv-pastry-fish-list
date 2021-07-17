@@ -24,6 +24,24 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
+        <div class="text-h6">Version 0.9.0</div>
+        <div class="text-subtitle-1">更新时间: 2021/07/17 18:00</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>修复导入失败的问题</li>
+        </ul>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <ul>
+          <li>增加更新提示</li>
+          <ul>
+            <li>之后新版本更新会显示更新确认框</li>
+            <li>在确认更新前将不会实际下载更新文件</li>
+            <li>将显示新版本更新的介绍</li>
+          </ul>
+        </ul>
+
+        <v-divider />
+
         <div class="text-h6">Version 0.8.13</div>
         <div class="text-subtitle-1">更新时间: 2021/07/01 22:00</div>
         <div class="text-h5 text-center my-1">鱼糕桌面版</div>

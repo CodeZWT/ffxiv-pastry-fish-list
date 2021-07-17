@@ -3,7 +3,7 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import { INTERVAL_MINUTE, UPLOAD_LIMIT } from 'Data/constants'
 
 const host = DevelopmentModeUtil.isTest()
-  ? 'http://localhost:3100'
+  ? 'https://rcapi.traveleorzea.com' // 'http://localhost:3100'
   : 'https://rcapi.traveleorzea.com'
 
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
