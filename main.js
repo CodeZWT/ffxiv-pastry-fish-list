@@ -377,6 +377,7 @@ async function init() {
       // }
       if (loadingFinished) return
       log.info('in finishLoading')
+      showUpdateDialogIfNecessary()
       loadingFinished = true
       readerConfig = readerSetting
       mainWindowConfig = userData.mainWindow
@@ -597,7 +598,6 @@ async function init() {
     () => showUpdateDialogIfNecessary(),
     isDev ? CONSTANTS.INTERVAL_SECOND*10 : CONSTANTS.INTERVAL_MINUTE * 10
   )
-  showUpdateDialogIfNecessary()
 
   // uploadIfNeeded()
   uploadIntervalHandle = setInterval(() => uploadIfNeeded(), CONSTANTS.INTERVAL_MINUTE)
