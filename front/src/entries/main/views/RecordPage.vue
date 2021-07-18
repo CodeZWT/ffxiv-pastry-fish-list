@@ -296,6 +296,13 @@
                       <div>{{ item.spot.spotName }}</div>
                     </div>
                   </template>
+                  <template v-slot:item.finished="{ item }">
+                    <div class="d-flex align-center">
+                      <v-icon v-if="item.finished" color="primary"
+                        >mdi-check-decagram</v-icon
+                      >
+                    </div>
+                  </template>
                 </v-data-table>
               </v-col>
               <v-col cols="12">
@@ -528,9 +535,15 @@ export default {
         },
         {
           text: '全部',
-          align: 'start',
+          align: 'center',
           sortable: true,
           value: 'total',
+        },
+        {
+          text: '阶段性目标',
+          align: 'start',
+          sortable: true,
+          value: 'finished',
         },
       ],
     }
@@ -878,11 +891,13 @@ export default {
         .chain()
         .groupBy('spot')
         .mapValues(records => {
+          const total = _.sumBy(records, 'count')
           return {
             spot: UploadUtil.toSpot(records?.[0]?.spot),
             strict: records.find(it => it.isStrictMode)?.count ?? 0,
             normal: records.find(it => !it.isStrictMode)?.count ?? 0,
-            total: _.sumBy(records, 'count'),
+            total: total,
+            finished: total >= 1000,
           }
         })
         .value()
