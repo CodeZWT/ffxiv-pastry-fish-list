@@ -4,7 +4,9 @@
     <v-system-bar
       app
       v-else-if="showTimerBar"
-      :color="isUploadMode && isStrictMode ? 'deep-purple darken-1' : 'black'"
+      :color="
+        isRoseMode && isUploadMode && isStrictMode ? 'deep-purple darken-1' : 'black'
+      "
     >
       <v-img :src="readerIcon" max-height="20" max-width="20" />
       <span class="mx-1">渔捞</span>
@@ -15,7 +17,7 @@
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer />
       <v-switch
-        v-if="isUploadMode"
+        v-if="isUploadMode && isRoseMode"
         :value="isStrictMode"
         color="default"
         dense
@@ -114,7 +116,7 @@ export default {
       return DataUtil.formatDateTime(this.now, 'HH:mm')
     },
     ...mapState(['sounds', 'readerTimerMiniMode']),
-    ...mapGetters(['readerRegion', 'isStrictMode', 'isUploadMode']),
+    ...mapGetters(['readerRegion', 'isStrictMode', 'isUploadMode', 'isRoseMode']),
   },
   async created() {
     this.closeMode =
