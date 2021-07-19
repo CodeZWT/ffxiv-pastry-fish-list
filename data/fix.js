@@ -2024,6 +2024,9 @@ module.exports = {
     32053: {
       startHour: 17,
       endHour: 20,
+    },
+    12821: {
+      endHour: 16.5
     }
   },
   COLLECTABLE_FISH_ITEM_ID: [
