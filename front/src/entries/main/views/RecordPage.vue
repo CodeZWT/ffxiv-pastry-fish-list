@@ -818,7 +818,7 @@ export default {
       for (let i = start, idx = 0; i < start + duration; i += interval, idx++) {
         const hour = Math.floor(i)
         const minute = (i - hour) * 60
-        const paddingZero = it => (it > 10 ? it : '0' + it)
+        const paddingZero = it => (it >= 10 ? it : '0' + it)
         ret.push({ time: paddingZero(hour) + ':' + paddingZero(minute), cnt: cnts[idx] })
       }
       return ret
