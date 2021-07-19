@@ -9,6 +9,7 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import { WEATHER_TYPES } from 'Data/translation'
 import PLACE_NAMES from 'Data/placeNames'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
+import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
 
 const toUploadData = records => {
   return records.map(record => {
@@ -67,6 +68,9 @@ const toUploadData = records => {
       recordPatch: record.patch ?? 5.35,
       tug: ['light', 'medium', 'heavy'].indexOf(record.tug),
       isStrictMode: record.isStrictMode,
+      oceanFishingTime: DataUtil.isOceanFishingSpot(spotId)
+        ? timeOfOFSpot(spotId, record.startTime)
+        : undefined,
     }
   })
 }
@@ -186,4 +190,11 @@ export default {
       tug: ['light', 'medium', 'heavy'][record.tug],
     }
   },
+  timeOfOFSpot: timeOfOFSpot,
+}
+
+function timeOfOFSpot(spotId, time) {
+  return OceanFishingUtil.voyagesWithTipOf(time, 1)[0].locationTips?.find(
+    ({ fishingSpots }) => fishingSpots.spectralCurrent === spotId
+  )?.shift
 }
