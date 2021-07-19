@@ -891,13 +891,13 @@ export default {
         .chain()
         .groupBy('spot')
         .mapValues(records => {
-          const total = _.sumBy(records, 'count')
+          const strict = records.find(it => it.isStrictMode)?.count ?? 0
           return {
             spot: UploadUtil.toSpot(records?.[0]?.spot),
-            strict: records.find(it => it.isStrictMode)?.count ?? 0,
+            strict: strict,
             normal: records.find(it => !it.isStrictMode)?.count ?? 0,
-            total: total,
-            finished: total >= 1000,
+            total: _.sumBy(records, 'count'),
+            finished: strict >= 1000,
           }
         })
         .value()
