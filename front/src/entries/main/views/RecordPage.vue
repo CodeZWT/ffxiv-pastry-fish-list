@@ -172,7 +172,13 @@
                           "
                         >
                           <div
-                            style="position: absolute; top: 0; left: 0; font-size: xx-small; line-height: 14px"
+                            style="
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              font-size: xx-small;
+                              line-height: 14px;
+                            "
                           >
                             {{ i * 8 + j }}
                           </div>
@@ -182,7 +188,9 @@
                         </div>
                       </template>
                       <v-card>
-                        <v-card-title> 详情（共{{ etSection }}） </v-card-title>
+                        <v-card-title>
+                          详情（ET {{ i * 8 + j }}时 共{{ etSection }}条记录）
+                        </v-card-title>
                         <v-card-text>
                           <div class="d-flex flex-wrap">
                             <div
@@ -194,12 +202,12 @@
                                 {{ entry.time }}
                               </div>
                               <div
-                                style="height: 40px; width: 40px;"
+                                style="height: 40px; width: 40px"
                                 :class="
                                   'd-flex justify-center align-center' +
                                     (entry.cnt > 0 ? ' secondary' : '')
                                 "
-                                :title="entry.cnt"
+                                :title="`${entry.cnt}条记录`"
                               >
                                 <div style="font-size: x-large">{{ entry.cnt }}</div>
                               </div>
@@ -213,37 +221,58 @@
               </div>
               <div v-if="spotId > 0 && fishSelected > 0">
                 <v-subheader>天气分布</v-subheader>
+                <div
+                  :style="
+                    `padding-left: 60px; text-align: center; width: ${40 *
+                      (spotWeathers.length + 1)}px`
+                  "
+                >
+                  当前天气
+                </div>
                 <div class="d-flex align-center">
-                  <div style="height: 40px; width: 40px"></div>
+                  <div style="height: 40px; width: 60px" />
                   <div
                     v-for="(weather, i) in spotWeathers"
                     :key="'th-weather-' + i"
                     class="d-flex"
                   >
-                    <div style="height: 40px; width: 40px">
+                    <div
+                      style="height: 40px; width: 40px"
+                      class="d-flex justify-center align-center"
+                    >
                       <div :class="weather.icon" :title="weather.name" />
                     </div>
                   </div>
                 </div>
-
-                <div
-                  v-for="(weatherRow, i) in weatherBiteCounts"
-                  :key="'weather-' + i"
-                  class="d-flex"
-                >
-                  <div style="height: 40px; width: 40px">
-                    <div :class="spotWeathers[i].icon" :title="spotWeathers[i].name" />
+                <div class="d-flex">
+                  <div style="width: 20px" class="d-flex align-center">
+                    <div>前置天气</div>
                   </div>
-                  <div
-                    v-for="(cnt, j) in weatherRow"
-                    :key="'weather-' + i + '-' + j"
-                    style="height: 40px; width: 40px"
-                    :class="
-                      'd-flex justify-center align-center' + (cnt > 0 ? ' secondary' : '')
-                    "
-                    :title="cnt"
-                  >
-                    <div style="font-size: x-large">{{ cnt }}</div>
+                  <div>
+                    <div
+                      v-for="(weatherRow, i) in weatherBiteCounts"
+                      :key="'weather-' + i"
+                      class="d-flex"
+                    >
+                      <div style="height: 40px; width: 40px">
+                        <div
+                          :class="spotWeathers[i].icon"
+                          :title="spotWeathers[i].name"
+                        />
+                      </div>
+                      <div
+                        v-for="(cnt, j) in weatherRow"
+                        :key="'weather-' + i + '-' + j"
+                        style="height: 40px; width: 40px"
+                        :class="
+                          'd-flex justify-center align-center' +
+                            (cnt > 0 ? ' secondary' : '')
+                        "
+                        :title="`${cnt}条记录`"
+                      >
+                        <div style="font-size: x-large">{{ cnt }}</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
