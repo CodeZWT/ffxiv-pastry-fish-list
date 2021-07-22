@@ -17,7 +17,7 @@
                 <div>
                   <v-tabs v-model="tabIndex">
                     <!--                    <v-tab>第二期重建</v-tab>-->
-                    <v-tab>第三期重建</v-tab>
+                    <!--                    <v-tab>第三期重建</v-tab>-->
                     <v-tab>第四期重建</v-tab>
                   </v-tabs>
                   <v-card color="system">
@@ -219,7 +219,7 @@ export default {
         ImgUtil.getImgUrl('diadem-tip-map-grade3.png'),
         ImgUtil.getImgUrl('diadem-tip-map-grade4.png'),
       ],
-      tabIndex: 1,
+      tabIndex: 0,
       isElectron: DevelopmentModeUtil.isElectron(),
     }
   },
@@ -238,7 +238,7 @@ export default {
       }
     },
     versionIndex() {
-      return this.tabIndex + 1
+      return this.tabIndex + 2
     },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
