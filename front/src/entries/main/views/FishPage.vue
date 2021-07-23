@@ -594,8 +594,6 @@ export default {
     }
   },
   mounted() {
-    document.title = `${this.$t('top.systemBarTitle')} - ${this.$t('top.fishList')}`
-
     this.throttledResizeFn = _.throttle(this.resizeInternal, 100)
     this.onWindowResize()
   },
