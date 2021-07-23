@@ -23,7 +23,14 @@
             class="d-flex justify-center align-center elevation-4 rounded-xl overflow-hidden"
             style="left: 50%; top: 4px; position: absolute; z-index: 10; margin-left: -120px;"
           >
-            <v-btn @click="resize" tile height="48" width="48" style="min-width: 48px">
+            <v-btn
+              @click="resize"
+              tile
+              height="48"
+              width="48"
+              style="min-width: 48px"
+              title="重置地图状态"
+            >
               <v-icon>mdi-arrow-collapse</v-icon>
             </v-btn>
             <v-btn-toggle
@@ -32,16 +39,28 @@
               color="primary"
               class="rounded-l-0"
             >
-              <v-btn @click="toggleLayer('rangeHelperLayer')" icon>
+              <v-btn
+                @click="toggleLayer('rangeHelperLayer')"
+                icon
+                title="隐藏/显示 钓场范围提示（紫色标记）"
+              >
                 <v-icon>mdi-waves</v-icon>
               </v-btn>
-              <v-btn @click="toggleLayer('markerRangeLayer')" icon>
+              <v-btn
+                @click="toggleLayer('markerRangeLayer')"
+                icon
+                title="隐藏/显示 游戏内钓场提示（范围圈）"
+              >
                 <v-icon>mdi-map-marker-radius</v-icon>
               </v-btn>
-              <v-btn @click="toggleLayer('textLayer')" icon>
+              <v-btn @click="toggleLayer('textLayer')" icon title="隐藏/显示 钓场名称">
                 <v-icon>mdi-format-text</v-icon>
               </v-btn>
-              <v-btn @click="toggleMapLock" icon>
+              <v-btn
+                @click="toggleMapLock"
+                icon
+                title="取消/启用 地图锁（取消后可鼠标移动以及滚轮缩放地图）"
+              >
                 <v-icon>mdi-lock</v-icon>
               </v-btn>
             </v-btn-toggle>
