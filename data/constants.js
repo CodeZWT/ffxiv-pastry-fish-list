@@ -17,4 +17,11 @@ module.exports = {
   MONITOR_TYPES: ['RawSocket', 'WinPCap'],
 
   UPLOAD_LIMIT: 100,
+
+  TUGS: ['light', 'medium', 'heavy'],
+  TUG_COLOR: {
+    light: 'success',
+    medium: 'error',
+    heavy: 'warning',
+  },
 }

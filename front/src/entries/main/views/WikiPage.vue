@@ -345,16 +345,20 @@
             </v-col>
 
             <v-col cols="12" class="my-1">
-              <fish-tug-table v-if="mode === 'normal'" :value="currentFishList" />
+              <div v-if="mode === 'normal'">
+                <bait-percentage-chart :bait-of-spot="baitOfSpot" />
+              </div>
+              <!-- <fish-tug-table v-if="mode === 'normal'" :value="currentFishList" /> -->
               <fish-gig-table v-else :value="currentFishList" />
             </v-col>
           </v-row>
         </div>
         <div v-else-if="isOceanFishingSpot" class="grid-content">
           <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
-          <!--          <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
+          <!-- <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
         </div>
       </div>
+
       <div
         v-if="isMobile"
         style="position: absolute; top: 4px; left: 0; right: 0; z-index: 1"
@@ -480,26 +484,28 @@ import FishList from '@/components/FishList'
 import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
 import FIX from 'Data/fix'
 import FishGigTable from '@/components/FishingGigTable'
-import FishTugTable from '@/components/FishingTugTable'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import LinkList from '@/components/basic/LinkList'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import ItemIcon from '@/components/basic/ItemIcon'
-import { GLOBAL_PATCH_VERSION, CN_PATCH_VERSION } from 'Data/constants'
+import Constants, { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import DATA_CN from 'Data/translation'
 import AchievementProgress from '@/components/AchievementProgress'
 import ImgUtil from '@/utils/ImgUtil'
+import rcapiService from '@/service/rcapiService'
+import UploadUtil from '@/utils/UploadUtil'
+import BaitPercentageChart from '@/components/charts/BaitPercentageChart'
 
 export default {
   name: 'WikiPage',
   components: {
+    BaitPercentageChart,
     AchievementProgress,
     ItemIcon,
     NewFeatureMark,
     LinkList,
     DetailItemMap,
-    FishTugTable,
     FishGigTable,
     OceanFishingFishList,
     FishList,
@@ -552,8 +558,94 @@ export default {
     isElectron: DevelopmentModeUtil.isElectron(),
     showSyncDialog: false,
     syncStatus: 'not-start',
+    spotRecordCountCache: {},
+    TUGS: Constants.TUGS,
+    tugColor: Constants.TUG_COLOR,
   }),
   computed: {
+    baitOfSpot() {
+      const records = this.spotRecordCountCache[this.currentSpotId]?.items || []
+      console.log(this.spotRecordCountCache, this.currentSpotId, records)
+      const baitFishCnt = _(records)
+        .chain()
+        .filter(({ fish, bait }) => fish > 0 && bait > 0)
+        .groupBy(({ bait }) => bait)
+        .mapValues(records => {
+          return _(records)
+            .chain()
+            .groupBy(({ fish }) => fish)
+            .mapValues(baitRec => baitRec.length)
+            .value()
+        })
+        .value()
+      const unknownFishCnt = _(records)
+        .chain()
+        .filter(({ fish, bait }) => fish === -1 && bait > 0)
+        .groupBy(({ bait }) => bait)
+        .mapValues(records => {
+          return _(records)
+            .chain()
+            .groupBy(({ tug }) => {
+              return this.TUGS[tug]
+            })
+            .mapValues(baitRec => baitRec.length)
+            .value()
+        })
+        .value()
+
+      const fishIdList = UploadUtil.fishListOfSpot(this.currentSpotId) //.concat(['light', 'medium', 'heavy'])
+      const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
+        const tugCntDict = unknownFishCnt[bait] ?? {}
+        const totalCnt =
+          _.sum(Object.values(fishCntDict)) + _.sum(Object.values(tugCntDict))
+
+        return {
+          bait: UploadUtil.toBait(bait),
+          fishCntList: fishIdList.map(fishId => {
+            const fishInfo =
+              this.lazyTransformedFishDict[fishId] ??
+              this.lazyTransformedFishDict[
+                Object.keys(this.lazyTransformedFishDict).find(
+                  id => DataUtil.toItemId(id) === fishId
+                )
+              ]
+            // console.log(
+            //   fishInfo,
+            //   fishId,
+            //   this.lazyTransformedFishDict[fishId],
+            //   fishLocationId
+            // )
+            const cnt = fishCntDict[fishId] ?? 0
+            return {
+              fish: UploadUtil.toFish(fishId),
+              cnt: cnt,
+              percentage: (cnt / totalCnt) * 100,
+              tugColor: this.tugColor[
+                fishInfo?.baits?.[fishInfo?.baits?.length - 1 ?? 0]?.tug
+              ],
+            }
+          }),
+          tugCntList: ['light', 'medium', 'heavy'].map(tug => {
+            const cnt = tugCntDict[tug] ?? 0
+            return {
+              tug: tug,
+              cnt: cnt,
+              percentage: (cnt / totalCnt) * 100,
+              tugColor: this.tugColor[tug],
+            }
+          }),
+          totalCnt: totalCnt,
+        }
+      })
+
+      return {
+        fishList: fishIdList.map(fishId => UploadUtil.toFish(fishId)),
+        baitFishCntList: _.sortBy(baitFishCntList, ({ bait: { baitId } }) => {
+          // console.log(fishIdList, baitId, fishIdList.includes(baitId))
+          return baitId * (fishIdList.includes(+baitId) ? 1000000 : 1)
+        }),
+      }
+    },
     showSpotPredators() {
       return (
         this.mode === 'spear' && this.currentFishList.some(it => it.predators.length > 0)
@@ -825,6 +917,7 @@ export default {
     currentSpotId(currentSpotId) {
       if (currentSpotId !== -1) {
         setTimeout(() => this.$refs.simpleMap?.resize(), 500)
+        this.getBaitDataOfSpot(currentSpotId)
       }
     },
     // completedSpots(newSpots, oldSpots) {
@@ -893,6 +986,16 @@ export default {
       })
   },
   methods: {
+    async getBaitDataOfSpot(spotId) {
+      const spotData = this.spotRecordCountCache[spotId]
+      if (!spotData) {
+        this.$set(
+          this.spotRecordCountCache,
+          spotId,
+          await rcapiService.getSpotRecordCount(spotId)
+        )
+      }
+    },
     showSpot(spotId, mode) {
       if (DataUtil.isDiademSpot(spotId)) {
         return

@@ -1,11 +1,13 @@
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import { INTERVAL_MINUTE, UPLOAD_LIMIT } from 'Data/constants'
+import { decode, decodeAsync } from '@msgpack/msgpack'
 
 const host = DevelopmentModeUtil.isTest()
   ? 'http://localhost:3100'
   : 'https://rcapi.traveleorzea.com'
-
+const DATA_HOST =
+  'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files@bdf25151a2e628ca4a4839c7443d5b2065be4dfb'
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
 export const TEMP_RC_ACCESS_TOKEN_KEY = 'TEMP_RC_ACCESS_TOKEN'
 
@@ -139,6 +141,24 @@ export default {
         return { content: '{}' }
       }
     })
+  },
+  async getSpotRecordCount(spotId) {
+    return fetch(`${DATA_HOST}/${spotId}.data`, {
+      method: 'GET',
+    }).then(async resp => {
+      const data = await this.decodeFromBlob(await resp.blob())
+      console.log(data)
+      return data
+    })
+  },
+  async decodeFromBlob(blob) {
+    if (blob.stream) {
+      // Blob#stream(): ReadableStream<Uint8Array> (recommended)
+      return await decodeAsync(blob.stream())
+    } else {
+      // Blob#arrayBuffer(): Promise<ArrayBuffer> (if stream() is not available)
+      return decode(await blob.arrayBuffer())
+    }
   },
   lastUploadTime: 0,
 }

@@ -128,11 +128,11 @@ const routes = [
         '../views/RecordPage'
       ),
     meta: {
-      title: '鱼糕 - 数据统计（内侧）',
+      title: '鱼糕 - 数据统计（内测）',
       metaTags: [
         {
           property: 'og:title',
-          content: '鱼糕 - 数据统计（内侧）',
+          content: '鱼糕 - 数据统计（内测）',
         },
       ],
     },

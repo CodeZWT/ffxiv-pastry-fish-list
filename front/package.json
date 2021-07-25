@@ -19,6 +19,7 @@
     "@better-scroll/core": "^2.0.4",
     "@better-scroll/mouse-wheel": "^2.0.4",
     "@better-scroll/scroll-bar": "^2.0.4",
+    "@msgpack/msgpack": "^2.7.0",
     "@thewakingsands/axis-font-icons": "^0.2.1",
     "@thewakingsands/kit-tooltip": "^0.3.5",
     "clipboard": "^2.0.6",
