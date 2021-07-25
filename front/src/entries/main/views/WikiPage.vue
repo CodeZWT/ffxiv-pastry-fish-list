@@ -346,7 +346,10 @@
 
             <v-col cols="12" class="my-1">
               <div v-if="mode === 'normal'">
-                <bait-percentage-chart :bait-of-spot="baitOfSpot" />
+                <bait-percentage-chart
+                  :records="records"
+                  :fish-dict="lazyTransformedFishDict"
+                />
               </div>
               <!-- <fish-tug-table v-if="mode === 'normal'" :value="currentFishList" /> -->
               <fish-gig-table v-else :value="currentFishList" />
@@ -489,12 +492,11 @@ import LinkList from '@/components/basic/LinkList'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import ItemIcon from '@/components/basic/ItemIcon'
-import Constants, { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
+import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import DATA_CN from 'Data/translation'
 import AchievementProgress from '@/components/AchievementProgress'
 import ImgUtil from '@/utils/ImgUtil'
 import rcapiService from '@/service/rcapiService'
-import UploadUtil from '@/utils/UploadUtil'
 import BaitPercentageChart from '@/components/charts/BaitPercentageChart'
 
 export default {
@@ -559,92 +561,10 @@ export default {
     showSyncDialog: false,
     syncStatus: 'not-start',
     spotRecordCountCache: {},
-    TUGS: Constants.TUGS,
-    tugColor: Constants.TUG_COLOR,
   }),
   computed: {
-    baitOfSpot() {
-      const records = this.spotRecordCountCache[this.currentSpotId]?.items || []
-      console.log(this.spotRecordCountCache, this.currentSpotId, records)
-      const baitFishCnt = _(records)
-        .chain()
-        .filter(({ fish, bait }) => fish > 0 && bait > 0)
-        .groupBy(({ bait }) => bait)
-        .mapValues(records => {
-          return _(records)
-            .chain()
-            .groupBy(({ fish }) => fish)
-            .mapValues(baitRec => baitRec.length)
-            .value()
-        })
-        .value()
-      const unknownFishCnt = _(records)
-        .chain()
-        .filter(({ fish, bait }) => fish === -1 && bait > 0)
-        .groupBy(({ bait }) => bait)
-        .mapValues(records => {
-          return _(records)
-            .chain()
-            .groupBy(({ tug }) => {
-              return this.TUGS[tug]
-            })
-            .mapValues(baitRec => baitRec.length)
-            .value()
-        })
-        .value()
-
-      const fishIdList = UploadUtil.fishListOfSpot(this.currentSpotId) //.concat(['light', 'medium', 'heavy'])
-      const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
-        const tugCntDict = unknownFishCnt[bait] ?? {}
-        const totalCnt =
-          _.sum(Object.values(fishCntDict)) + _.sum(Object.values(tugCntDict))
-
-        return {
-          bait: UploadUtil.toBait(bait),
-          fishCntList: fishIdList.map(fishId => {
-            const fishInfo =
-              this.lazyTransformedFishDict[fishId] ??
-              this.lazyTransformedFishDict[
-                Object.keys(this.lazyTransformedFishDict).find(
-                  id => DataUtil.toItemId(id) === fishId
-                )
-              ]
-            // console.log(
-            //   fishInfo,
-            //   fishId,
-            //   this.lazyTransformedFishDict[fishId],
-            //   fishLocationId
-            // )
-            const cnt = fishCntDict[fishId] ?? 0
-            return {
-              fish: UploadUtil.toFish(fishId),
-              cnt: cnt,
-              percentage: (cnt / totalCnt) * 100,
-              tugColor: this.tugColor[
-                fishInfo?.baits?.[fishInfo?.baits?.length - 1 ?? 0]?.tug
-              ],
-            }
-          }),
-          tugCntList: ['light', 'medium', 'heavy'].map(tug => {
-            const cnt = tugCntDict[tug] ?? 0
-            return {
-              tug: tug,
-              cnt: cnt,
-              percentage: (cnt / totalCnt) * 100,
-              tugColor: this.tugColor[tug],
-            }
-          }),
-          totalCnt: totalCnt,
-        }
-      })
-
-      return {
-        fishList: fishIdList.map(fishId => UploadUtil.toFish(fishId)),
-        baitFishCntList: _.sortBy(baitFishCntList, ({ bait: { baitId } }) => {
-          // console.log(fishIdList, baitId, fishIdList.includes(baitId))
-          return baitId * (fishIdList.includes(+baitId) ? 1000000 : 1)
-        }),
-      }
+    records() {
+      return this.spotRecordCountCache[this.currentSpotId]?.items || []
     },
     showSpotPredators() {
       return (

@@ -90,6 +90,10 @@
 <script>
 import ItemIcon from '@/components/basic/ItemIcon'
 import Constants from 'Data/constants'
+import _ from 'lodash'
+import UploadUtil from '@/utils/UploadUtil'
+import DataUtil from '@/utils/DataUtil'
+
 export default {
   name: 'BaitPercentageChart',
   components: { ItemIcon },
@@ -99,7 +103,11 @@ export default {
     },
   },
   props: {
-    baitOfSpot: {
+    records: {
+      type: Array,
+      default: () => [],
+    },
+    fishDict: {
       type: Object,
       default: () => ({}),
     },
@@ -109,6 +117,96 @@ export default {
       TUGS: Constants.TUGS,
       tugColor: Constants.TUG_COLOR,
     }
+  },
+  computed: {
+    spotId() {
+      if (this.records.length > 0) {
+        return this.records[0].spot
+      } else {
+        return -1
+      }
+    },
+    baitOfSpot() {
+      console.log('records', this.records)
+      const records = this.records
+      const baitFishCnt = _(records)
+        .chain()
+        .filter(({ fish, bait }) => fish > 0 && bait > 0)
+        .groupBy(({ bait }) => bait)
+        .mapValues(records => {
+          return _(records)
+            .chain()
+            .groupBy(({ fish }) => fish)
+            .mapValues(baitRec => baitRec.length)
+            .value()
+        })
+        .value()
+      const unknownFishCnt = _(records)
+        .chain()
+        .filter(({ fish, bait }) => fish === -1 && bait > 0)
+        .groupBy(({ bait }) => bait)
+        .mapValues(records => {
+          return _(records)
+            .chain()
+            .groupBy(({ tug }) => {
+              return this.TUGS[tug]
+            })
+            .mapValues(baitRec => baitRec.length)
+            .value()
+        })
+        .value()
+
+      const fishIdList = UploadUtil.fishListOfSpot(this.spotId) //.concat(['light', 'medium', 'heavy'])
+      const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
+        const tugCntDict = unknownFishCnt[bait] ?? {}
+        const totalCnt =
+          _.sum(Object.values(fishCntDict)) + _.sum(Object.values(tugCntDict))
+
+        return {
+          bait: UploadUtil.toBait(bait),
+          fishCntList: fishIdList.map(fishId => {
+            const fishInfo =
+              this.fishDict[fishId] ??
+              this.fishDict[
+                Object.keys(this.fishDict).find(id => DataUtil.toItemId(id) === fishId)
+              ]
+            // console.log(
+            //   fishInfo,
+            //   fishId,
+            //   this.fishDict[fishId],
+            //   fishLocationId
+            // )
+            const cnt = fishCntDict[fishId] ?? 0
+            return {
+              fish: UploadUtil.toFish(fishId),
+              cnt: cnt,
+              percentage: (cnt / totalCnt) * 100,
+              tugColor: this.tugColor[
+                fishInfo?.baits?.[fishInfo?.baits?.length - 1 ?? 0]?.tug
+              ],
+            }
+          }),
+          tugCntList: ['light', 'medium', 'heavy'].map(tug => {
+            const cnt = tugCntDict[tug] ?? 0
+            return {
+              tug: tug,
+              cnt: cnt,
+              percentage: (cnt / totalCnt) * 100,
+              tugColor: this.tugColor[tug],
+            }
+          }),
+          totalCnt: totalCnt,
+        }
+      })
+
+      return {
+        fishList: fishIdList.map(fishId => UploadUtil.toFish(fishId)),
+        baitFishCntList: _.sortBy(baitFishCntList, ({ bait: { baitId } }) => {
+          // console.log(fishIdList, baitId, fishIdList.includes(baitId))
+          return baitId * (fishIdList.includes(+baitId) ? 1000000 : 1)
+        }),
+      }
+    },
   },
 }
 </script>
