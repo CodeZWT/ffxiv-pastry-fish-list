@@ -7,7 +7,7 @@ const host = DevelopmentModeUtil.isTest()
   ? 'http://localhost:3100'
   : 'https://rcapi.traveleorzea.com'
 const DATA_HOST =
-  'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files@bdf25151a2e628ca4a4839c7443d5b2065be4dfb'
+  'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files@e119beb879c4e4a9378e784ee50aa1a324016649'
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
 export const TEMP_RC_ACCESS_TOKEN_KEY = 'TEMP_RC_ACCESS_TOKEN'
 
@@ -146,9 +146,14 @@ export default {
     return fetch(`${DATA_HOST}/${spotId}.data`, {
       method: 'GET',
     }).then(async resp => {
-      const data = await this.decodeFromBlob(await resp.blob())
-      console.log(data)
-      return data
+      if (resp.ok) {
+        const data = await this.decodeFromBlob(await resp.blob())
+        // console.log(data)
+        return data
+      } else {
+        console.log('404 return empty')
+        return { items: [] }
+      }
     })
   },
   async decodeFromBlob(blob) {

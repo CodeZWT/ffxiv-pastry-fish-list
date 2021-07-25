@@ -1,11 +1,55 @@
 <template>
   <v-container fluid>
-    <v-row class="ml-2">
+    <v-row class="ml-2" v-if="records.length > 0">
       <v-col cols="12">
-        {{ prevWeathers }}
-        {{ weathers }}
-        <v-switch inset label="天气筛选" v-model="enableWeatherFilter" />
+        <v-switch
+          inset
+          label="条件筛选"
+          v-model="enableWeatherFilter"
+          style="width: 200px"
+        />
         <template v-if="enableWeatherFilter">
+          <div class="d-flex flex-wrap align-center">
+            <v-subheader class="pb-8">ET范围</v-subheader>
+            <div class="d-flex flex-column">
+              <div class="d-flex align-content-space-between">
+                <v-autocomplete
+                  v-model="etHourStartFilter"
+                  :items="etHourOptions"
+                  label="开始ET小时"
+                  outlined
+                  auto-select-first
+                  style="width: 100px; min-width: 100px"
+                ></v-autocomplete>
+                <v-autocomplete
+                  v-model="etMinuteStartFilter"
+                  :items="etMinuteStartOptions"
+                  label="开始ET分"
+                  outlined
+                  auto-select-first
+                  class="ml-1"
+                  style="width: 100px; min-width: 100px"
+                ></v-autocomplete>
+              </div>
+              <div class="d-flex align-content-space-between">
+                <v-autocomplete
+                  v-model="etHourEndFilter"
+                  :items="etHourOptions"
+                  label="结束ET小时"
+                  outlined
+                  style="width: 100px; min-width: 100px"
+                ></v-autocomplete>
+                <v-autocomplete
+                  v-model="etMinuteEndFilter"
+                  :items="etMinuteEndOptions"
+                  label="结束ET分"
+                  outlined
+                  class="ml-1"
+                  style="width: 100px; min-width: 100px"
+                ></v-autocomplete>
+              </div>
+            </div>
+          </div>
           <div class="d-flex flex-wrap align-center">
             <v-subheader>前置天气</v-subheader>
             <div
@@ -129,6 +173,7 @@
         </div>
       </v-col>
     </v-row>
+    <v-row v-else> 暂无鱼饵概率数据（仅列出严格模式下数据） </v-row>
   </v-container>
 </template>
 
@@ -140,6 +185,10 @@ import UploadUtil from '@/utils/UploadUtil'
 import DataUtil from '@/utils/DataUtil'
 import uniq from 'lodash/uniq'
 import SPOT_WEATHER from 'Data/spotWeather'
+
+const hourMinuteToMinutes = (hour, minute) => {
+  return hour * 60 + minute
+}
 
 export default {
   name: 'BaitPercentageChart',
@@ -166,9 +215,74 @@ export default {
       prevWeatherFilter: [],
       weatherFilter: [],
       enableWeatherFilter: false,
+      etHourStartFilter: 0,
+      etHourEndFilter: 23,
+      etMinuteStartFilter: 0,
+      etMinuteEndFilter: 59,
+      etStartFilter: null,
+      etEndFilter: null,
+      range: [0, 48],
     }
   },
   computed: {
+    etHourOptions() {
+      const options = []
+      for (let i = 0; i < 24; i++) {
+        options.push({ text: i, value: i })
+      }
+      return options
+    },
+    etMinuteStep() {
+      return 30
+    },
+    etMinuteStartOptions() {
+      const options = []
+      for (let i = 0; i < 60; i += this.etMinuteStep) {
+        options.push({ text: i, value: i })
+      }
+      return options
+    },
+    etMinuteEndOptions() {
+      const options = []
+      for (let i = this.etMinuteStep - 1; i < 60; i += this.etMinuteStep) {
+        options.push({ text: i, value: i })
+      }
+      return options
+    },
+    etFilterTicks() {
+      const options = []
+      const tick = 0.5
+      for (let i = 0; i < 48; i += tick) {
+        options.push(i)
+      }
+      return options
+    },
+    etFilterTickLabels() {
+      const labels = []
+      const tick = 0.5
+      for (let i = 0; i < 48; i += tick) {
+        const hour = Math.floor(i)
+        const minute = (i - hour) * 60
+        if (minute > 0) {
+          labels.push('')
+        } else {
+          labels.push(hour.toString())
+        }
+      }
+      return labels
+    },
+    etHourStart() {
+      return this.enableWeatherFilter ? this.etHourStartFilter : 0
+    },
+    etHourEnd() {
+      return this.enableWeatherFilter ? this.etHourEndFilter : 23
+    },
+    etMinuteStart() {
+      return this.enableWeatherFilter ? this.etMinuteStartFilter : 0
+    },
+    etMinuteEnd() {
+      return this.enableWeatherFilter ? this.etMinuteEndFilter : 59
+    },
     prevWeathers() {
       return this.enableWeatherFilter
         ? this.prevWeatherFilter
@@ -195,6 +309,26 @@ export default {
           return (
             this.prevWeathers.includes(prevWeather) && this.weathers.includes(weather)
           )
+        })
+        .filter(({ etHour, etMinuteStart, fish, bait }) => {
+          const rangeStart = hourMinuteToMinutes(this.etHourStart, this.etMinuteStart)
+          const rangeEnd = hourMinuteToMinutes(this.etHourEnd, this.etMinuteEnd)
+          const time = hourMinuteToMinutes(etHour, etMinuteStart)
+          if (fish == 30432) {
+            console.log(
+              rangeStart,
+              rangeEnd,
+              time,
+              rangeStart < rangeEnd,
+              rangeStart <= time && time <= rangeEnd,
+              bait
+            )
+          }
+          if (rangeStart < rangeEnd) {
+            return rangeStart <= time && time <= rangeEnd
+          } else {
+            return rangeStart <= time || time <= rangeEnd
+          }
         })
         .groupBy(({ bait }) => bait)
         .mapValues(records => {

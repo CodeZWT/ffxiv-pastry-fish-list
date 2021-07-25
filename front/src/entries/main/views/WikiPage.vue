@@ -229,11 +229,12 @@
             <v-col cols="12" class="my-1">
               <div v-if="mode === 'normal'">
                 <bait-percentage-chart
+                  v-if="isRoseMode"
                   :records="records"
                   :fish-dict="lazyTransformedFishDict"
                 />
+                <fish-tug-table v-else :value="currentFishList" />
               </div>
-              <!-- <fish-tug-table v-if="mode === 'normal'" :value="currentFishList" /> -->
               <fish-gig-table v-else :value="currentFishList" />
             </v-col>
 
@@ -499,10 +500,12 @@ import AchievementProgress from '@/components/AchievementProgress'
 import ImgUtil from '@/utils/ImgUtil'
 import rcapiService from '@/service/rcapiService'
 import BaitPercentageChart from '@/components/charts/BaitPercentageChart'
+import FishTugTable from '@/components/FishingTugTable'
 
 export default {
   name: 'WikiPage',
   components: {
+    FishTugTable,
     BaitPercentageChart,
     AchievementProgress,
     ItemIcon,
@@ -823,6 +826,7 @@ export default {
       'getFishingSpot',
       'getFishCompleted',
       'allCompletedFish',
+      'isRoseMode',
     ]),
   },
   watch: {
