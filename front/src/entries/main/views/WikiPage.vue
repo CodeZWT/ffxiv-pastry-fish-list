@@ -223,6 +223,66 @@
         >
           <!--  show spot/fish view  -->
           <v-row v-if="currentSpotId" no-gutters>
+            <v-col cols="12" class="my-1 d-flex justify-center">
+              <h1>{{ currentMapInfo.name }}</h1>
+            </v-col>
+            <v-col cols="12" class="my-1">
+              <div v-if="mode === 'normal'">
+                <bait-percentage-chart
+                  :records="records"
+                  :fish-dict="lazyTransformedFishDict"
+                />
+              </div>
+              <!-- <fish-tug-table v-if="mode === 'normal'" :value="currentFishList" /> -->
+              <fish-gig-table v-else :value="currentFishList" />
+            </v-col>
+
+            <v-col v-if="showSpotPredators" cols="12" class="my-1">
+              <div>
+                <v-card color="info">
+                  <v-card-title>
+                    {{ $t('gigTip.fishShadow.title') }}
+                  </v-card-title>
+                  <v-card-text>
+                    此处为鱼影，需要刺相应个数的前置鱼才能触发，触发后在小地图上会有鱼影位置提示。
+                  </v-card-text>
+                  <v-card-subtitle>
+                    {{ $t('gigTip.fishShadow.location') }}
+                  </v-card-subtitle>
+                  <v-card-text>
+                    <detail-item-map :fish="currentSpotPredators[0]" />
+                  </v-card-text>
+                  <v-card-subtitle>
+                    {{ $t('gigTip.fishShadow.predators') }}
+                  </v-card-subtitle>
+
+                  <v-card-text>
+                    <fish-list
+                      :fish-list="currentSpotPredators"
+                      :fish-list-time-part="fishListTimePart"
+                      :fish-list-weather-change-part="fishListWeatherChangePart"
+                      :show-fish-divider="false"
+                      hide-spot-column
+                      @fish-selected="onFishClicked($event)"
+                    />
+                  </v-card-text>
+                </v-card>
+              </div>
+            </v-col>
+
+            <v-col cols="12" class="my-1">
+              <v-card>
+                <fish-list
+                  :fish-list="currentFishList"
+                  :fish-list-time-part="fishListTimePart"
+                  :fish-list-weather-change-part="fishListWeatherChangePart"
+                  hide-spot-column
+                  hide-predators
+                  @fish-selected="onFishClicked($event)"
+                />
+              </v-card>
+            </v-col>
+
             <v-col cols="12" class="my-1">
               <v-expansion-panels hover flat tile :value="0">
                 <v-expansion-panel class="systemSecondary">
@@ -294,65 +354,6 @@
                   </v-expansion-panel-content>
                 </v-expansion-panel>
               </v-expansion-panels>
-            </v-col>
-
-            <v-col cols="12" class="my-1">
-              <div>
-                <v-card v-if="showSpotPredators" color="info">
-                  <v-card-title>
-                    {{ $t('gigTip.fishShadow.title') }}
-                  </v-card-title>
-                  <v-card-text>
-                    此处为鱼影，需要刺相应个数的前置鱼才能触发，触发后在小地图上会有鱼影位置提示。
-                  </v-card-text>
-                  <v-card-subtitle>
-                    {{ $t('gigTip.fishShadow.location') }}
-                  </v-card-subtitle>
-                  <v-card-text>
-                    <detail-item-map :fish="currentSpotPredators[0]" />
-                  </v-card-text>
-                  <v-card-subtitle>
-                    {{ $t('gigTip.fishShadow.predators') }}
-                  </v-card-subtitle>
-
-                  <v-card-text>
-                    <fish-list
-                      :fish-list="currentSpotPredators"
-                      :fish-list-time-part="fishListTimePart"
-                      :fish-list-weather-change-part="fishListWeatherChangePart"
-                      :show-fish-divider="false"
-                      hide-spot-column
-                      @fish-selected="onFishClicked($event)"
-                    />
-                  </v-card-text>
-                </v-card>
-              </div>
-            </v-col>
-
-            <v-col cols="12" class="my-1">
-              <v-card>
-                <v-card-text>
-                  <fish-list
-                    :fish-list="currentFishList"
-                    :fish-list-time-part="fishListTimePart"
-                    :fish-list-weather-change-part="fishListWeatherChangePart"
-                    hide-spot-column
-                    hide-predators
-                    @fish-selected="onFishClicked($event)"
-                  />
-                </v-card-text>
-              </v-card>
-            </v-col>
-
-            <v-col cols="12" class="my-1">
-              <div v-if="mode === 'normal'">
-                <bait-percentage-chart
-                  :records="records"
-                  :fish-dict="lazyTransformedFishDict"
-                />
-              </div>
-              <!-- <fish-tug-table v-if="mode === 'normal'" :value="currentFishList" /> -->
-              <fish-gig-table v-else :value="currentFishList" />
             </v-col>
           </v-row>
         </div>
