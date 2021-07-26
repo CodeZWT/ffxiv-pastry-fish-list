@@ -310,20 +310,10 @@ export default {
             this.prevWeathers.includes(prevWeather) && this.weathers.includes(weather)
           )
         })
-        .filter(({ etHour, etMinuteStart, fish, bait }) => {
+        .filter(({ etHour, etMinuteStart }) => {
           const rangeStart = hourMinuteToMinutes(this.etHourStart, this.etMinuteStart)
           const rangeEnd = hourMinuteToMinutes(this.etHourEnd, this.etMinuteEnd)
           const time = hourMinuteToMinutes(etHour, etMinuteStart)
-          if (fish == 30432) {
-            console.log(
-              rangeStart,
-              rangeEnd,
-              time,
-              rangeStart < rangeEnd,
-              rangeStart <= time && time <= rangeEnd,
-              bait
-            )
-          }
           if (rangeStart < rangeEnd) {
             return rangeStart <= time && time <= rangeEnd
           } else {
@@ -335,7 +325,7 @@ export default {
           return _(records)
             .chain()
             .groupBy(({ fish }) => fish)
-            .mapValues(baitRec => baitRec.length)
+            .mapValues(baitRec => _.sumBy(baitRec, ({ quantity }) => +quantity))
             .value()
         })
         .value()
@@ -349,11 +339,11 @@ export default {
             .groupBy(({ tug }) => {
               return this.TUGS[tug]
             })
-            .mapValues(baitRec => baitRec.length)
+            .mapValues(baitRec => _.sumBy(baitRec, ({ quantity }) => +quantity))
             .value()
         })
         .value()
-
+      console.log(records.map(({ fish }) => fish))
       const fishIdList = UploadUtil.fishListOfSpot(this.spotId) //.concat(['light', 'medium', 'heavy'])
       const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
         const tugCntDict = unknownFishCnt[bait] ?? {}
