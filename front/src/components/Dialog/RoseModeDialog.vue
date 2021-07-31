@@ -3,7 +3,7 @@
     <v-card v-if="!isRoseMode">
       <v-card-title>请输入暗号</v-card-title>
       <v-card-text>
-        <v-text-field v-model="code"></v-text-field>
+        <v-text-field v-model="code" autofocus />
       </v-card-text>
       <v-card-actions>
         <v-btn block @click="check">确认</v-btn>
