@@ -147,11 +147,11 @@ export default {
           startTime: fishWindow[0],
           endTime: fishWindow[1],
           start: DataUtil.formatDateTime(fishWindow[0]),
-          end: end.toLocaleDateString() + ' ' + end.toLocaleTimeString(),
-          interval: this.printCountDownTime(end - start),
+          end: DataUtil.formatDateTime(fishWindow[1]),
+          interval: this.printCountDownTime(end.getTime() - start.getTime()),
           nextInterval:
             index < fishWindows.length - 1
-              ? this.printCountDownTime(fishWindows[index + 1][0] - end)
+              ? this.printCountDownTime(fishWindows[index + 1][0] - end.getTime())
               : '',
         }
       })
