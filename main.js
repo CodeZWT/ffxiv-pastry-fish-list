@@ -498,7 +498,7 @@ async function init() {
       callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
       callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
     })
-    .on('downloadUpdate', (event) => {
+    .on('downloadUpdate', event => {
       downloadUpdates(intervalHandle)
     })
 
@@ -596,7 +596,7 @@ async function init() {
   // updateIfNeeded()
   intervalHandle = setInterval(
     () => showUpdateDialogIfNecessary(),
-    isDev ? CONSTANTS.INTERVAL_SECOND*10 : CONSTANTS.INTERVAL_MINUTE * 10
+    isDev ? CONSTANTS.INTERVAL_MINUTE : CONSTANTS.INTERVAL_MINUTE * 10
   )
 
   // uploadIfNeeded()
@@ -1169,10 +1169,7 @@ const newVersionAvailable = async () => {
   const localCommitHash = getLocalVersion()
   const remoteCommitHash = await downloadCommitHash()
   log.info('Remote commit hash:', remoteCommitHash)
-  if (
-    localCommitHash !== remoteCommitHash &&
-    remoteCommitHash != null
-  ) {
+  if (localCommitHash !== remoteCommitHash && remoteCommitHash != null) {
     return remoteCommitHash
   } else {
     return undefined
@@ -1192,7 +1189,7 @@ const showUpdateDialogIfNecessary = async () => {
   }
 }
 
-const downloadUpdates = async (intervalHandle) => {
+const downloadUpdates = async intervalHandle => {
   clearInterval(intervalHandle)
   updateDownloading = true
   const throttled = throttle(
@@ -1208,7 +1205,7 @@ const downloadUpdates = async (intervalHandle) => {
       }
     },
     500,
-    { leading: true, trailing: false ,}
+    { leading: true, trailing: false }
   )
   await downloadSetupFile(throttled, () => {
     try {
