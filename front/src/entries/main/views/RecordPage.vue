@@ -57,25 +57,54 @@
               <div>
                 <div class="d-flex">
                   <div style="width: 48px"></div>
-                  <div v-for="fish in baitOfSpot.fishList" :key="fish.fishId">
+                  <div
+                    v-for="fish in baitOfSpot.fishList"
+                    :key="fish.fishId"
+                    style="margin-top: 22px"
+                  >
                     <item-icon :icon-class="fish.fishIcon" />
                   </div>
-                  <div
-                    v-for="tug in TUGS"
-                    :key="tug"
-                    style="width: 48px"
-                    class="d-flex align-center justify-center"
-                  >
-                    <v-avatar :color="tugColor[tug]" size="40">
-                      <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
-                    </v-avatar>
-                  </div>
+                  <v-card outlined rounded>
+                    <div style="text-align: center">
+                      脱钩
+                    </div>
+                    <div class="d-flex align-center">
+                      <div
+                        v-for="tug in TUGS"
+                        :key="tug"
+                        style="width: 48px"
+                        class="d-flex align-center justify-center"
+                      >
+                        <v-avatar :color="tugColor[tug]" size="40">
+                          <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
+                        </v-avatar>
+                      </div>
+                    </div>
+                  </v-card>
+                  <v-card outlined rounded>
+                    <div style="text-align: center">
+                      未提钩
+                    </div>
+                    <div class="d-flex align-center">
+                      <div
+                        v-for="tug in TUGS"
+                        :key="tug"
+                        style="width: 48px"
+                        class="d-flex align-center justify-center"
+                      >
+                        <v-avatar :color="tugColor[tug]" size="40">
+                          <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
+                        </v-avatar>
+                      </div>
+                    </div>
+                  </v-card>
                 </div>
                 <div
                   v-for="{
                     bait,
                     fishCntList,
-                    tugCntList,
+                    missedTugCntList,
+                    cancelledTugCntList,
                     totalCnt,
                   } in baitOfSpot.baitFishCntList"
                   :key="bait.baitId"
@@ -110,8 +139,31 @@
                   </div>
 
                   <div
-                    v-for="{ tug, cnt, percentage, tugColor } in tugCntList"
-                    :key="bait.baitId + '-' + tug"
+                    v-for="{ tug, cnt, percentage, tugColor } in missedTugCntList"
+                    :key="`${bait.baitId}-${tug}-missed`"
+                  >
+                    <div
+                      v-if="cnt > 0"
+                      style="position: relative; width: 48px"
+                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
+                    >
+                      <v-progress-circular
+                        :value="percentage"
+                        rotate="-90"
+                        style="position: absolute; top: 6px; left: 8px"
+                        :color="tugColor + ' lighten-2'"
+                      >
+                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">
+                          {{ percentage.toFixed(0) }}
+                        </div>
+                      </v-progress-circular>
+                    </div>
+                    <div v-else style="width: 48px"></div>
+                  </div>
+
+                  <div
+                    v-for="{ tug, cnt, percentage, tugColor } in cancelledTugCntList"
+                    :key="`${bait.baitId}-${tug}-cancelled`"
                   >
                     <div
                       v-if="cnt > 0"
@@ -457,6 +509,7 @@ import BiteTimeChart from '@/components/BiteTimeChart'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import SPOT_WEATHER from 'Data/spotWeather'
 import uniq from 'lodash/uniq'
+import Constants from 'Data/constants'
 
 export default {
   name: 'RecordPage',
@@ -472,7 +525,7 @@ export default {
     return {
       chumBiteTime: false,
       fishSelected: undefined,
-      TUGS: ['light', 'medium', 'heavy'],
+      TUGS: Constants.TUGS,
       tabIndex: 0,
       modeFilters: [0, 1],
       modeFilterOptions: ['strict', 'normal'],
@@ -759,9 +812,27 @@ export default {
         })
         .value()
 
-      const unknownFishCnt = _(records)
+      const cancelledFish = _(records)
         .chain()
-        .filter(({ fish, bait }) => fish === -1 && bait > 0)
+        .filter(({ fish, bait, cancelled }) => fish === -1 && cancelled && bait > 0)
+        .filter(({ isStrictMode }) => {
+          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        })
+        .groupBy(({ bait }) => bait)
+        .mapValues(records => {
+          return _(records)
+            .chain()
+            .groupBy(({ tug }) => {
+              return this.TUGS[tug]
+            })
+            .mapValues(baitRec => baitRec.length)
+            .value()
+        })
+        .value()
+
+      const missedFish = _(records)
+        .chain()
+        .filter(({ fish, bait, missed }) => fish === -1 && missed && bait > 0)
         .filter(({ isStrictMode }) => {
           return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
         })
@@ -779,9 +850,12 @@ export default {
 
       const fishIdList = UploadUtil.fishListOfSpot(this.spotId) //.concat(['light', 'medium', 'heavy'])
       const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
-        const tugCntDict = unknownFishCnt[bait] ?? {}
+        const missedTugCntDict = missedFish[bait] ?? {}
+        const cancelledTugCntDict = cancelledFish[bait] ?? {}
         const totalCnt =
-          _.sum(Object.values(fishCntDict)) + _.sum(Object.values(tugCntDict))
+          _.sum(Object.values(fishCntDict)) +
+          _.sum(Object.values(missedTugCntDict)) +
+          _.sum(Object.values(cancelledTugCntDict))
 
         return {
           bait: UploadUtil.toBait(bait),
@@ -809,8 +883,17 @@ export default {
               ],
             }
           }),
-          tugCntList: ['light', 'medium', 'heavy'].map(tug => {
-            const cnt = tugCntDict[tug] ?? 0
+          missedTugCntList: Constants.TUGS.map(tug => {
+            const cnt = missedTugCntDict[tug] ?? 0
+            return {
+              tug: tug,
+              cnt: cnt,
+              percentage: (cnt / totalCnt) * 100,
+              tugColor: this.tugColor[tug],
+            }
+          }),
+          cancelledTugCntList: Constants.TUGS.map(tug => {
+            const cnt = cancelledTugCntDict[tug] ?? 0
             return {
               tug: tug,
               cnt: cnt,

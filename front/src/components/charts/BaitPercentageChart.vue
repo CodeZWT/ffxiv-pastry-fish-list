@@ -343,7 +343,6 @@ export default {
             .value()
         })
         .value()
-      console.log(records.map(({ fish }) => fish))
       const fishIdList = UploadUtil.fishListOfSpot(this.spotId) //.concat(['light', 'medium', 'heavy'])
       const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
         const tugCntDict = unknownFishCnt[bait] ?? {}
