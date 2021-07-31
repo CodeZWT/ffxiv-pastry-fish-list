@@ -1250,7 +1250,7 @@ export default {
     console.debug(process.env.commit_hash)
     if (DevelopmentModeUtil.isElectron()) {
       const db = (await import('@/plugins/db')).default
-
+      this.resetUploadSettingIfNecessary(db)
       const windowSetting = await this.getWindowSetting()
       if (windowSetting) {
         this.setOpacity(windowSetting.main.opacity)
@@ -1389,6 +1389,33 @@ export default {
     // }, 200)
   },
   methods: {
+    async resetUploadSettingIfNecessary(db) {
+      if (!this.isRoseMode) {
+        console.debug('Rose Mode is Disabled, try reset upload setting for old data...')
+        // Force set isStrictMode to false
+        this.disableStrictMode()
+        console.debug('[1/2] strict mode disabled')
+        // Fix upload setting
+        // uploadEnabled,uploaded,isStrictMode
+        const recordsToDisableUpload = await db.records
+          .filter(({ uploadEnabled, uploaded }) => uploadEnabled && !uploaded)
+          .toArray()
+        console.debug('[2/2] Records # to be reset:', recordsToDisableUpload.length)
+
+        if (recordsToDisableUpload.length > 0) {
+          await db.records.bulkPut(
+            recordsToDisableUpload.map(record => ({
+              ...record,
+              uploadEnabled: false,
+              isStrictMode: false,
+            }))
+          )
+          console.debug('[2/2] Records reset')
+        } else {
+          console.debug('[2/2] No records to set')
+        }
+      }
+    },
     showUpdateDialog() {
       this.showCheckStartSetupDialog = true
     },
@@ -2116,6 +2143,7 @@ export default {
       this.setMiniMode(true)
     },
     ...mapMutations([
+      'disableStrictMode',
       'reloadReaderUserData',
       'setOpacity',
       'setZoomFactor',

@@ -94,8 +94,9 @@ export default {
       .limit(UPLOAD_LIMIT)
       .toArray()
     if (recordsToUpload.length > 0) {
+      console.debug('Start uploading #', recordsToUpload.length)
       rcapiService.uploadRecords(toUploadData(recordsToUpload)).then(result => {
-        console.info('result', result)
+        console.debug('Uploaded #', result.length)
         if (result.length > 0) {
           db.records.bulkGet(result).then(recordsUploaded => {
             db.records.bulkPut(
@@ -109,6 +110,8 @@ export default {
           })
         }
       })
+    } else {
+      console.debug('No records to upload')
     }
   },
   async getUploadStatus() {

@@ -227,7 +227,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['readerSetting', 'showBanner', 'isUploadMode', 'isStrictMode']),
+    ...mapGetters([
+      'readerSetting',
+      'showBanner',
+      'isUploadMode',
+      'isStrictMode',
+      'isRoseMode',
+    ]),
     disableTooltip() {
       return this.dataStatus?.serverId === -1
     },
@@ -421,8 +427,8 @@ export default {
         this.dataCurrentRecord = data.currentRecord
       })
       ?.on('newRecord', (event, data) => {
-        data.uploadEnabled = this.isUploadMode
-        data.isStrictMode = this.isStrictMode
+        data.uploadEnabled = this.isRoseMode && this.isUploadMode
+        data.isStrictMode = this.isRoseMode && this.isStrictMode
         console.log('store in reader', data)
         db.records.put(data).catch(error => console.error('storeError', error))
       })

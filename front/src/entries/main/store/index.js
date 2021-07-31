@@ -270,6 +270,12 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    disableStrictMode(state) {
+      LocalStorageUtil.storeReaderUserData({
+        ...state.readerSetting,
+        isStrictMode: false,
+      })
+    },
     reloadReaderUserData(state) {
       state.readerSetting = loadReaderUserData()
     },
