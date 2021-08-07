@@ -421,6 +421,9 @@
                 </v-row>
               </v-col>
               <v-col cols="12">
+                <v-switch v-model="isFixedOwnRecordMode" label="修正上传数据" inset />
+              </v-col>
+              <v-col cols="12">
                 <v-data-table
                   :headers="headers"
                   :items="records"
@@ -516,8 +519,27 @@
                   </template>
                   <template v-slot:item.isStrictMode="{ item }">
                     <div class="d-flex align-center">
-                      <v-icon v-if="item.isStrictMode">mdi-check</v-icon>
+                      <v-icon v-if="item.isStrictMode">mdi-flag</v-icon>
                     </div>
+                  </template>
+                  <template v-slot:item.actions="{ item }">
+                    <v-btn
+                      icon
+                      text
+                      color="deep-purple darken-1"
+                      @click="toggleRecordStrictMode(item)"
+                    >
+                      <v-icon>
+                        {{
+                          item.isStrictMode ? 'mdi-flag-remove-outline' : 'mdi-flag-plus'
+                        }}
+                      </v-icon>
+                    </v-btn>
+                    <v-btn icon text color="error" @click="deleteRecord(item)">
+                      <v-icon>
+                        mdi-delete
+                      </v-icon>
+                    </v-btn>
                   </template>
                 </v-data-table>
               </v-col>
@@ -558,6 +580,7 @@ export default {
   },
   data() {
     return {
+      isFixedOwnRecordMode: false,
       recordsStartMillis: undefined,
       recordsEndMillis: undefined,
       recordsFilterSelf: true,
@@ -565,7 +588,7 @@ export default {
       chumBiteTime: false,
       fishSelected: undefined,
       TUGS: Constants.TUGS,
-      tabIndex: 0,
+      tabIndex: 2,
       modeFilters: [0, 1],
       modeFilterOptions: ['strict', 'normal'],
       loadingRecords: true,
@@ -590,7 +613,7 @@ export default {
         page: 1,
         itemsPerPage: 20,
       },
-      headers: [
+      fixedHeaders: [
         {
           text: '时间',
           align: 'start',
@@ -697,6 +720,21 @@ export default {
     this.getUserSpotStats()
   },
   computed: {
+    headers() {
+      if (this.isFixedOwnRecordMode) {
+        return [
+          ...this.fixedHeaders,
+          {
+            text: '操作',
+            align: 'start',
+            sortable: false,
+            value: 'actions',
+          },
+        ]
+      } else {
+        return this.fixedHeaders
+      }
+    },
     filters() {
       return {
         startTime: this.recordsStartMillis,
@@ -978,6 +1016,13 @@ export default {
     },
   },
   methods: {
+    toggleRecordStrictMode(record) {
+      console.log('set to', !record.isStrictMode)
+      rcapiService.setOwnRecordStrictMode(record.id, !record.isStrictMode)
+    },
+    deleteRecord(record) {
+      console.log(record)
+    },
     etBiteDetailOf(start, duration, interval) {
       const ret = []
       const cnts = this.etCountsOf(start, duration, interval)

@@ -212,6 +212,19 @@ export default {
       return decode(await blob.arrayBuffer())
     }
   },
+  async setOwnRecordStrictMode(recordId, isStrictMode) {
+    const response = await fetch(
+      `${host}/records/${recordId}?isStrictMode=${!!isStrictMode}`,
+      {
+        headers: {
+          'content-type': 'application/json',
+          Authorization: `Bearer ${LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)}`,
+        },
+        method: 'PUT',
+      }
+    )
+    return response.ok
+  },
   lastUploadTime: 0,
 }
 
