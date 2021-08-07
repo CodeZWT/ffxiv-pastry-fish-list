@@ -4,7 +4,7 @@ import { INTERVAL_MINUTE, UPLOAD_LIMIT } from 'Data/constants'
 import { decode, decodeAsync } from '@msgpack/msgpack'
 
 const host = DevelopmentModeUtil.isTest()
-  ? 'http://localhost:3100'
+  ? 'https://rcapi.traveleorzea.com' // 'http://localhost:3100'
   : 'https://rcapi.traveleorzea.com'
 const DATA_HOST =
   'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files@records'
@@ -37,6 +37,10 @@ export default {
       },
       method: 'POST',
     }).then(response => response.json())
+  },
+  logout() {
+    LocalStorageUtil.remove(RC_ACCESS_TOKEN_KEY)
+    LocalStorageUtil.remove(RC_USER_PROFILE_KEY)
   },
   confirmEmail({ token }) {
     return fetch(host + '/auth/confirmEmail', {
@@ -223,6 +227,16 @@ export default {
         method: 'PUT',
       }
     )
+    return response.ok
+  },
+  async removeOwnRecord(recordId) {
+    const response = await fetch(`${host}/records/${recordId}`, {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)}`,
+      },
+      method: 'DELETE',
+    })
     return response.ok
   },
   lastUploadTime: 0,

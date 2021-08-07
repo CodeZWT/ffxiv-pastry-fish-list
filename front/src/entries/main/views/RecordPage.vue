@@ -524,10 +524,11 @@
                   </template>
                   <template v-slot:item.actions="{ item }">
                     <v-btn
+                      v-if="item.userId === currentUserId"
                       icon
                       text
                       color="deep-purple darken-1"
-                      @click="toggleRecordStrictMode(item)"
+                      @click="throttledToggleRecordStrictMode(item)"
                     >
                       <v-icon>
                         {{
@@ -535,7 +536,13 @@
                         }}
                       </v-icon>
                     </v-btn>
-                    <v-btn icon text color="error" @click="deleteRecord(item)">
+                    <v-btn
+                      v-if="item.userId === currentUserId"
+                      icon
+                      text
+                      color="error"
+                      @click="throttledDeleteRecord(item)"
+                    >
                       <v-icon>
                         mdi-delete
                       </v-icon>
@@ -580,6 +587,7 @@ export default {
   },
   data() {
     return {
+      currentUserId: undefined,
       isFixedOwnRecordMode: false,
       recordsStartMillis: undefined,
       recordsEndMillis: undefined,
@@ -588,7 +596,7 @@ export default {
       chumBiteTime: false,
       fishSelected: undefined,
       TUGS: Constants.TUGS,
-      tabIndex: 2,
+      tabIndex: 0,
       modeFilters: [0, 1],
       modeFilterOptions: ['strict', 'normal'],
       loadingRecords: true,
@@ -607,6 +615,8 @@ export default {
         heavy: 'warning',
       },
       refresh: () => {},
+      throttledDeleteRecord: () => {},
+      throttledToggleRecordStrictMode: () => {},
       options: {
         sortBy: ['startTime'],
         sortDesc: [true],
@@ -712,10 +722,19 @@ export default {
       }
     },
   },
-  mounted() {
-    this.refresh = throttle(() => this.getTotalTabData(), 5000, {
+  async mounted() {
+    const userProfile = await rcapiService.getUserProfile()
+    this.currentUserId = userProfile.userId
+    this.refresh = throttle(this.getTotalTabData, 5000, {
       leading: true,
     })
+    this.throttledDeleteRecord = throttle(this.deleteRecord, 500, {
+      leading: true,
+    })
+    this.throttledToggleRecordStrictMode = throttle(this.toggleRecordStrictMode, 500, {
+      leading: true,
+    })
+
     this.getTotalSpotStats()
     this.getUserSpotStats()
   },
@@ -1016,12 +1035,15 @@ export default {
     },
   },
   methods: {
-    toggleRecordStrictMode(record) {
+    async toggleRecordStrictMode(record) {
       console.log('set to', !record.isStrictMode)
-      rcapiService.setOwnRecordStrictMode(record.id, !record.isStrictMode)
+      await rcapiService.setOwnRecordStrictMode(record.id, !record.isStrictMode)
+      this.getTotalTabData()
     },
-    deleteRecord(record) {
-      console.log(record)
+    async deleteRecord(record) {
+      console.log('remove', record)
+      await rcapiService.removeOwnRecord(record.id)
+      this.getTotalTabData()
     },
     etBiteDetailOf(start, duration, interval) {
       const ret = []

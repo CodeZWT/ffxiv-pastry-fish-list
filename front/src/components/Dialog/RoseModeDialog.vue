@@ -457,8 +457,8 @@ export default {
       }
       this.loading = false
     },
-    logout() {
-      LocalStorageUtil.remove(RC_ACCESS_TOKEN_KEY)
+    async logout() {
+      await rcapiService.logout()
       this.$emit('input', false)
       this.showSnackbar({
         text: '已登出',
