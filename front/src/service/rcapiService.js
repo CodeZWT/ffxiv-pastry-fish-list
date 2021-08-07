@@ -63,7 +63,11 @@ export default {
       method: 'POST',
     }).then(response => response.json())
   },
+  isLogin() {
+    return !!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)
+  },
   async getUserProfile() {
+    if (!this.isLogin()) return { userId: 0 }
     const userProfile = LocalStorageUtil.get(RC_USER_PROFILE_KEY)
     if (userProfile) {
       return userProfile

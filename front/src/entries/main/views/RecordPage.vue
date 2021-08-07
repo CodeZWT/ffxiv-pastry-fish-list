@@ -415,12 +415,12 @@
                       </v-btn-toggle>
                     </div>
                   </v-col>
-                  <v-col>
+                  <v-col v-if="isLogin()">
                     <v-switch v-model="recordsFilterSelf" label="只显示自己的数据" />
                   </v-col>
                 </v-row>
               </v-col>
-              <v-col cols="12">
+              <v-col v-if="isLogin()" cols="12">
                 <v-switch v-model="isFixedOwnRecordMode" label="修正上传数据" inset />
               </v-col>
               <v-col cols="12">
