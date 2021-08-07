@@ -10,6 +10,7 @@ const DATA_HOST =
   'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files@records'
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
 export const TEMP_RC_ACCESS_TOKEN_KEY = 'TEMP_RC_ACCESS_TOKEN'
+export const RC_USER_PROFILE_KEY = 'RC_USER_PROFILE'
 
 export default {
   signup({ username, nickname, password }) {
@@ -58,21 +59,67 @@ export default {
       method: 'POST',
     }).then(response => response.json())
   },
-  getRecords(sortBy, sortDesc, page, itemsPerPage) {
+  async getUserProfile() {
+    const userProfile = LocalStorageUtil.get(RC_USER_PROFILE_KEY)
+    if (userProfile) {
+      return userProfile
+    }
+
+    const response = await fetch(`${host}/user/profile`, {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)}`,
+      },
+      method: 'GET',
+    })
+    if (response.ok) {
+      const userProfile = await response.json()
+      LocalStorageUtil.set(RC_USER_PROFILE_KEY, userProfile, {
+        expires: 3650,
+      })
+      return userProfile
+    }
+  },
+  async getRecords(
+    sortBy,
+    sortDesc,
+    page,
+    itemsPerPage,
+    startTime,
+    endTime,
+    strictMode,
+    filterSelf
+  ) {
+    let strictModeFilterType = 'all'
+    if (strictMode.length === 1) {
+      if (strictMode[0] === 'strict') {
+        strictModeFilterType = 'strict'
+      } else {
+        strictModeFilterType = 'normal'
+      }
+    }
+    const userProfile = await this.getUserProfile()
     const paramStr = [
       { name: 'sortBy', value: sortBy },
       { name: 'sortDesc', value: sortDesc },
       { name: 'page', value: page },
       { name: 'itemsPerPage', value: itemsPerPage },
+      { name: 'startTime', value: startTime ?? '' },
+      { name: 'endTime', value: endTime ?? '' },
+      { name: 'strictMode', value: strictModeFilterType },
+      { name: 'userId', value: filterSelf ? userProfile.userId : 0 },
     ]
       .map(({ name, value }) => toParamStr(name, value))
       .join('&')
-    return fetch(`${host}/records?${paramStr}`, {
+    const response = await fetch(`${host}/records?${paramStr}`, {
       headers: {
         'content-type': 'application/json',
       },
       method: 'GET',
-    }).then(response => response.json())
+    })
+    if (response.ok) {
+      return await response.json()
+    }
   },
   getSpotRecords(spotId) {
     return fetch(`${host}/spots/${spotId}/records`, {

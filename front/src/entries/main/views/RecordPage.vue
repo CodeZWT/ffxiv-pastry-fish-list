@@ -65,9 +65,7 @@
                     <item-icon :icon-class="fish.fishIcon" />
                   </div>
                   <v-card outlined rounded>
-                    <div style="text-align: center">
-                      脱钩
-                    </div>
+                    <div style="text-align: center">脱钩</div>
                     <div class="d-flex align-center">
                       <div
                         v-for="tug in TUGS"
@@ -82,9 +80,7 @@
                     </div>
                   </v-card>
                   <v-card outlined rounded>
-                    <div style="text-align: center">
-                      未提钩
-                    </div>
+                    <div style="text-align: center">未提钩</div>
                     <div class="d-flex align-center">
                       <div
                         v-for="tug in TUGS"
@@ -386,6 +382,44 @@
                   </template>
                 </v-data-table>
               </v-col>
+              <v-col cols="6">
+                <date-time-input
+                  v-model="recordsStartMillis"
+                  date-label="开始日期"
+                  time-label="开始时间"
+                />
+              </v-col>
+              <v-col cols="6">
+                <date-time-input
+                  v-model="recordsEndMillis"
+                  date-label="结束日期"
+                  time-label="结束时间"
+                />
+              </v-col>
+              <v-col cols="12">
+                <v-row no-gutters class="d-flex align-center">
+                  <v-col>
+                    <div class="d-flex align-center">
+                      <v-subheader>模式筛选</v-subheader>
+                      <v-btn-toggle
+                        v-model="recordsStrictModeFilter"
+                        rounded
+                        dense
+                        mandatory
+                        multiple
+                        active-class="primary"
+                      >
+                        <v-btn small v-for="filter in modeFilterOptions" :key="filter">
+                          {{ $t('upload.mode.' + filter) }}
+                        </v-btn>
+                      </v-btn-toggle>
+                    </div>
+                  </v-col>
+                  <v-col>
+                    <v-switch v-model="recordsFilterSelf" label="只显示自己的数据" />
+                  </v-col>
+                </v-row>
+              </v-col>
               <v-col cols="12">
                 <v-data-table
                   :headers="headers"
@@ -510,10 +544,11 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import SPOT_WEATHER from 'Data/spotWeather'
 import uniq from 'lodash/uniq'
 import Constants from 'Data/constants'
+import DateTimeInput from '@/components/basic/DateTimeInput'
 
 export default {
   name: 'RecordPage',
-  components: { BiteTimeChart, ItemIcon },
+  components: { DateTimeInput, BiteTimeChart, ItemIcon },
   mixins: [EnvMixin],
   props: ['lazyTransformedFishDict', 'lazySourceFishList'],
   inject: {
@@ -523,6 +558,10 @@ export default {
   },
   data() {
     return {
+      recordsStartMillis: undefined,
+      recordsEndMillis: undefined,
+      recordsFilterSelf: true,
+      recordsStrictModeFilter: [0, 1],
       chumBiteTime: false,
       fishSelected: undefined,
       TUGS: Constants.TUGS,
@@ -633,9 +672,14 @@ export default {
   watch: {
     options: {
       handler(options) {
-        this.getRecords(options)
+        this.getRecords(options, this.filters)
       },
       deep: true,
+    },
+    filters: {
+      handler(filters) {
+        this.getRecords(this.options, filters)
+      },
     },
     spotId(spotId) {
       if (spotId > 0) {
@@ -653,6 +697,16 @@ export default {
     this.getUserSpotStats()
   },
   computed: {
+    filters() {
+      return {
+        startTime: this.recordsStartMillis,
+        endTime: this.recordsEndMillis,
+        strictMode: this.recordsStrictModeFilter.map(
+          filterIndex => this.modeFilterOptions[filterIndex]
+        ),
+        filterSelf: this.recordsFilterSelf,
+      }
+    },
     spotFishList() {
       return UploadUtil.fishListOfSpot(this.spotId).map(id => UploadUtil.toFish(id))
     },
@@ -958,25 +1012,36 @@ export default {
       }
     },
     getTotalTabData() {
-      this.getRecords(this.options)
+      this.getRecords(this.options, this.filters)
       this.getTotalSpotStats()
     },
-    getRecords(options) {
+    getRecords(options, filters) {
       const { sortBy, sortDesc, page, itemsPerPage } = options
       this.loadingRecords = true
-      rcapiService.getRecords(sortBy, sortDesc, page - 1, itemsPerPage).then(data => {
-        const [records, total] = data
-        this.records = records
-          .map(record => UploadUtil.toReadableData(record))
-          .map(record => {
-            return {
-              ...record,
-              fishBasicInfo: this.lazyTransformedFishDict[record.fishId] ?? {},
-            }
-          })
-        this.totalRecords = total
-        this.loadingRecords = false
-      })
+      rcapiService
+        .getRecords(
+          sortBy,
+          sortDesc,
+          page - 1,
+          itemsPerPage,
+          filters.startTime,
+          filters.endTime,
+          filters.strictMode,
+          filters.filterSelf
+        )
+        .then(data => {
+          const [records, total] = data
+          this.records = records
+            .map(record => UploadUtil.toReadableData(record))
+            .map(record => {
+              return {
+                ...record,
+                fishBasicInfo: this.lazyTransformedFishDict[record.fishId] ?? {},
+              }
+            })
+          this.totalRecords = total
+          this.loadingRecords = false
+        })
     },
     async getUserSpotStats() {
       this.loadingUserSpotStats = true
