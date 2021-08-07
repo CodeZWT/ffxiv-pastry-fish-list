@@ -529,6 +529,7 @@
                       text
                       color="deep-purple darken-1"
                       @click="throttledToggleRecordStrictMode(item)"
+                      :title="item.isStrictMode ? '取消严格标记' : '添加严格标记'"
                     >
                       <v-icon>
                         {{
@@ -542,6 +543,7 @@
                       text
                       color="error"
                       @click="throttledDeleteRecord(item)"
+                      title="删除本条记录（无法恢复！！！）"
                     >
                       <v-icon>
                         mdi-delete
