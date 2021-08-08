@@ -1,6 +1,7 @@
 <template>
   <div class="d-flex align-center">
     <date-input v-model="dateStr" :label="dateLabel" />
+    <v-spacer />
     <time-input v-model="timeStr" :label="timeLabel" />
   </div>
 </template>
