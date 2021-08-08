@@ -15,6 +15,7 @@
         readonly
         v-bind="attrs"
         v-on="on"
+        solo
       ></v-text-field>
     </template>
     <v-time-picker :value="value" @input="handleInput" format="24hr"></v-time-picker>

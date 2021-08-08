@@ -15,6 +15,7 @@
         readonly
         v-bind="attrs"
         v-on="on"
+        solo
       ></v-text-field>
     </template>
     <v-date-picker

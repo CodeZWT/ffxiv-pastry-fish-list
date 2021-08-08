@@ -416,7 +416,65 @@
                     </div>
                   </v-col>
                   <v-col v-if="isLogin()">
-                    <v-switch v-model="recordsFilterSelf" label="只显示自己的数据" />
+                    <v-switch
+                      v-model="recordsFilterSelf"
+                      label="只显示自己的数据"
+                      inset
+                    />
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col cols="12">
+                <v-row>
+                  <v-col>
+                    <v-autocomplete
+                      ref="search"
+                      v-model="recordsFilterSpotId"
+                      :items="spotsForSearch"
+                      item-value="id"
+                      item-text="name"
+                      label="请输入钓场"
+                      clearable
+                      solo
+                      :filter="searchFilterOptions"
+                    >
+                      <template v-slot:item="data">
+                        <div class="d-flex">
+                          <v-list-item-content>
+                            <v-list-item-title>
+                              <div>
+                                {{ data.item.name }}
+                              </div>
+                            </v-list-item-title>
+                          </v-list-item-content>
+                        </div>
+                      </template>
+                    </v-autocomplete>
+                  </v-col>
+                  <v-col>
+                    <v-autocomplete
+                      ref="search"
+                      v-model="recordsFilterFishId"
+                      :items="fishForSearch"
+                      item-value="id"
+                      item-text="name"
+                      label="请输入鱼"
+                      clearable
+                      solo
+                      :filter="searchFilterOptions"
+                    >
+                      <template v-slot:item="data">
+                        <div class="d-flex">
+                          <v-list-item-content>
+                            <v-list-item-title>
+                              <div>
+                                {{ data.item.name }}
+                              </div>
+                            </v-list-item-title>
+                          </v-list-item-content>
+                        </div>
+                      </template>
+                    </v-autocomplete>
                   </v-col>
                 </v-row>
               </v-col>
@@ -595,6 +653,8 @@ export default {
       recordsEndMillis: undefined,
       recordsFilterSelf: true,
       recordsStrictModeFilter: [0, 1],
+      recordsFilterSpotId: undefined,
+      recordsFilterFishId: undefined,
       chumBiteTime: false,
       fishSelected: undefined,
       TUGS: Constants.TUGS,
@@ -764,6 +824,8 @@ export default {
           filterIndex => this.modeFilterOptions[filterIndex]
         ),
         filterSelf: this.recordsFilterSelf,
+        spotId: this.recordsFilterSpotId,
+        fishId: this.recordsFilterFishId,
       }
     },
     spotFishList() {
@@ -1035,6 +1097,22 @@ export default {
         }
       })
     },
+    fishForSearch() {
+      return [
+        { id: -2, name: '脱钩' },
+        { id: -3, name: '未知' },
+      ].concat(
+        _.uniqBy(
+          Object.values(this.lazyTransformedFishDict).map(({ id, name }) => {
+            return {
+              id: DataUtil.toItemId(id),
+              name: name,
+            }
+          }),
+          'id'
+        )
+      )
+    },
   },
   methods: {
     async toggleRecordStrictMode(record) {
@@ -1096,7 +1174,9 @@ export default {
           filters.startTime,
           filters.endTime,
           filters.strictMode,
-          filters.filterSelf
+          filters.filterSelf,
+          filters.spotId,
+          filters.fishId
         )
         .then(data => {
           const [records, total] = data

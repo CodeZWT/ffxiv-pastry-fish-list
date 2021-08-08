@@ -4,7 +4,7 @@ import { INTERVAL_MINUTE, UPLOAD_LIMIT } from 'Data/constants'
 import { decode, decodeAsync } from '@msgpack/msgpack'
 
 const host = DevelopmentModeUtil.isTest()
-  ? 'https://rcapi.traveleorzea.com' // 'http://localhost:3100'
+  ? 'http://localhost:3100'
   : 'https://rcapi.traveleorzea.com'
 const DATA_HOST =
   'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files@records'
@@ -96,7 +96,9 @@ export default {
     startTime,
     endTime,
     strictMode,
-    filterSelf
+    filterSelf,
+    spotId,
+    fishId
   ) {
     let strictModeFilterType = 'all'
     if (strictMode.length === 1) {
@@ -116,6 +118,8 @@ export default {
       { name: 'endTime', value: endTime ?? '' },
       { name: 'strictMode', value: strictModeFilterType },
       { name: 'userId', value: filterSelf ? userProfile.userId : 0 },
+      { name: 'spot', value: spotId == null ? '' : spotId },
+      { name: 'fish', value: fishId == null ? '' : fishId },
     ]
       .map(({ name, value }) => toParamStr(name, value))
       .join('&')
