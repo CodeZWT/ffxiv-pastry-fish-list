@@ -809,7 +809,7 @@ export default {
             name_chs: `国服${CN_PATCH_VERSION}版本最大值`,
             description: `国服${CN_PATCH_VERSION}版本共有${this.achievementInfo.noRiverWideEnough.cn}条鱼属于成就记录范围。`,
             type: 'maxTip',
-            nextLine: false,
+            nextLine: true,
           }),
         total: goBigOrGoHomeFishIds.length + goBigFarFromHomeFishIds.length,
       }
