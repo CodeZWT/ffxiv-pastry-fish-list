@@ -20837,7 +20837,7 @@ module.exports = {
       description: '累计钓上并标记1140种钓鱼笔记中记载的物种。',
       data: [1140],
       title: null,
-      itemTitle: "Resplendent Tacklefiend's Rod",
+      itemTitle: "辉煌渔劫钓竿",
       itemIcon: 38244,
     },
     2833: {

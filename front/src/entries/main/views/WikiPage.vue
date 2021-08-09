@@ -152,7 +152,11 @@
               <div class="text-h6">成就计数</div>
               <div class="text-subtitle-1">鼠标悬停成就数字可查看说明</div>
               <v-divider />
-              <v-subheader>专研钓鱼笔记（5.45最大值1159，5.58最大值1181）</v-subheader>
+              <v-subheader>
+                {{
+                  `${achievementInfo.iCatchThat.name}（${CN_PATCH_VERSION}最大值${achievementInfo.iCatchThat.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.iCatchThat.total}）`
+                }}
+              </v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
@@ -162,7 +166,7 @@
                   />
                 </v-col>
               </v-row>
-              <v-subheader>愿者上钩</v-subheader>
+              <v-subheader>{{ achievementInfo.goBigOrGoHome.name }}</v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
@@ -172,7 +176,11 @@
                   />
                 </v-col>
               </v-row>
-              <v-subheader>净界太公（5.45最大值28）</v-subheader>
+              <v-subheader>
+                {{
+                  `${achievementInfo.goBigFarFromHome.name}（${CN_PATCH_VERSION}最大值${achievementInfo.goBigFarFromHome.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.goBigFarFromHome.total}）`
+                }}
+              </v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
@@ -183,7 +191,11 @@
                 </v-col>
               </v-row>
 
-              <v-subheader>No River Wide Enough（5.45最大值232）</v-subheader>
+              <v-subheader>
+                {{
+                  `${achievementInfo.noRiverWideEnough.name}（${CN_PATCH_VERSION}最大值${achievementInfo.noRiverWideEnough.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.noRiverWideEnough.total}）`
+                }}
+              </v-subheader>
               <v-row>
                 <v-col>
                   <achievement-progress
@@ -404,7 +416,7 @@
       <v-card>
         <!-- patch update wait note -->
         <!--        <v-alert outlined type="warning" border="left">-->
-        <!--          更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。-->
+        <!--          更新国服5.5后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
         <v-card-title>数据同步</v-card-title>
         <v-card-subtitle v-if="!isElectron">
@@ -531,6 +543,14 @@ export default {
     'lazyTransformedFishList',
   ],
   data: vm => ({
+    CN_PATCH_VERSION: CN_PATCH_VERSION,
+    GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
+    achievementInfo: {
+      iCatchThat: { name: '专研钓鱼笔记', cn: 1175 },
+      goBigOrGoHome: { name: '愿者上钩', cn: 204 },
+      goBigFarFromHome: { name: '净界太公', cn: 39 },
+      noRiverWideEnough: { name: 'No River Wide Enough', cn: 243 },
+    },
     showBulkCompleteCheckbox: false,
     modes: [
       { title: vm.$t('wiki.mode.normal'), icon: 'fishing-icon', value: 'normal' },
@@ -741,9 +761,9 @@ export default {
             }
           })
           .concat({
-            data: [1159],
-            name_chs: '国服5.45版本最大值',
-            description: '国服5.45版本共有1159条鱼属于成就记录范围。',
+            data: [this.achievementInfo.iCatchThat.cn],
+            name_chs: `国服${CN_PATCH_VERSION}版本最大值`,
+            description: `国服${CN_PATCH_VERSION}版本共有${this.achievementInfo.iCatchThat.cn}条鱼属于成就记录范围。`,
             type: 'maxTip',
             nextLine: true,
           }),
@@ -769,9 +789,9 @@ export default {
         ticks: [2833]
           .map(achievementId => FIX.ACHIEVEMENT[achievementId])
           .concat({
-            data: [28],
-            name_chs: '国服5.45版本最大值',
-            description: '国服5.45版本共有28条鱼属于成就记录范围。',
+            data: [this.achievementInfo.goBigFarFromHome.cn],
+            name_chs: `国服${CN_PATCH_VERSION}版本最大值`,
+            description: `国服${CN_PATCH_VERSION}版本共有${this.achievementInfo.goBigFarFromHome.cn}条鱼属于成就记录范围。`,
             type: 'maxTip',
             nextLine: false,
           }),
@@ -782,7 +802,15 @@ export default {
         record: this.allCompletedFish.filter(
           it => goBigOrGoHomeFishIds.includes(it) || goBigFarFromHomeFishIds.includes(it)
         ).length,
-        ticks: [2834].map(achievementId => FIX.ACHIEVEMENT[achievementId]),
+        ticks: [2834]
+          .map(achievementId => FIX.ACHIEVEMENT[achievementId])
+          .concat({
+            data: [this.achievementInfo.noRiverWideEnough.cn],
+            name_chs: `国服${CN_PATCH_VERSION}版本最大值`,
+            description: `国服${CN_PATCH_VERSION}版本共有${this.achievementInfo.noRiverWideEnough.cn}条鱼属于成就记录范围。`,
+            type: 'maxTip',
+            nextLine: false,
+          }),
         total: goBigOrGoHomeFishIds.length + goBigFarFromHomeFishIds.length,
       }
       return _.mapValues(
