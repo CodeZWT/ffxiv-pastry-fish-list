@@ -415,9 +415,9 @@
     <v-dialog v-model="showSyncDialog" max-width="320" :fullscreen="isMobile" scrollable>
       <v-card>
         <!-- patch update wait note -->
-        <!--        <v-alert outlined type="warning" border="left">-->
-        <!--          更新国服5.5后，渔捞与同步功能不可用，请耐心等待自动更新。-->
-        <!--        </v-alert>-->
+        <v-alert outlined type="warning" border="left">
+          更新国服5.5后，渔捞与同步功能不可用，请耐心等待自动更新。
+        </v-alert>
         <v-card-title>数据同步</v-card-title>
         <v-card-subtitle v-if="!isElectron">
           数据同步为鱼糕桌面版功能，左侧可下载桌面版。

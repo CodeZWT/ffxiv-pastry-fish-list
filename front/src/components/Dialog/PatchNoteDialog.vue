@@ -21,9 +21,25 @@
       <v-divider />
       <v-card-text style="max-height: 600px">
         <!-- patch update wait note -->
-        <!--        <v-alert outlined type="warning" border="left">-->
-        <!--          更新国服5.45后，渔捞与同步功能不可用，请耐心等待自动更新。-->
-        <!--        </v-alert>-->
+        <v-alert outlined type="warning" border="left">
+          更新国服5.5后，渔捞与同步功能不可用，请耐心等待自动更新。
+        </v-alert>
+
+        <div class="text-h6">Version 0.9.1</div>
+        <div class="text-subtitle-1">更新时间: 2021/08/09 22:50</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>更新5.5鱼数据</li>
+          <li>更新部分鱼数据</li>
+          <li>增加地图工具栏说明</li>
+        </ul>
+        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <ul>
+          <li>去除调试按钮</li>
+        </ul>
+
+        <v-divider />
+
         <div class="text-h6">Version 0.9.0</div>
         <div class="text-subtitle-1">更新时间: 2021/07/17 18:00</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
