@@ -957,7 +957,7 @@ export default {
         },
       ],
       available:
-        aquarium.patch === this.toFishFilterPatch(this.PATCH_AVAILABLE_MAX)
+        aquarium.patch === this.PATCH_AVAILABLE_MAX
           ? 1
           : aquarium.patch > this.PATCH_AVAILABLE_MAX
           ? 2
