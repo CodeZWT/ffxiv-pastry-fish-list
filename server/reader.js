@@ -313,7 +313,7 @@ function init() {
 }
 
 function testOpcode(packet) {
-  if (packet.type === 'unknown' && packet.data[0] === 2 && packet.data.length === 8) {
+  if (packet.data[0] === 2 && packet.data.length === 8) {
     console.log('weatherChange opcode:', packet.opcode)
   }
 }
