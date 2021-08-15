@@ -184,11 +184,11 @@
               <div v-else style="width: 48px"></div>
             </div>
           </div>
-          <v-subheader>※ 杆型下方的百分比为未提竿或脱钩数据的占比</v-subheader>
+          <v-subheader>※ 杆型下方的百分比为脱钩数据的占比</v-subheader>
         </div>
       </v-col>
     </v-row>
-    <v-row v-else> 暂无鱼饵概率数据（仅列出严格模式下数据） </v-row>
+    <v-row v-else>暂无鱼饵概率数据</v-row>
   </v-container>
 </template>
 

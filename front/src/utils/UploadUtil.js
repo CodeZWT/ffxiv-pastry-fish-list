@@ -123,7 +123,8 @@ export default {
       uploaded: recordsToUpload.filter(({ uploaded }) => uploaded).length,
     }
   },
-  toBait(baitId) {
+  toBait(baitIdInput) {
+    const baitId = +baitIdInput
     return {
       baitId: baitId ?? -1,
       baitName: DataUtil.getItemName(baitId) ?? '未知',

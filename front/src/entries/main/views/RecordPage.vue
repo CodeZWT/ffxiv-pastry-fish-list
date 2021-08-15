@@ -184,7 +184,7 @@
             </template>
             <div v-if="spotId > 0">
               <v-switch v-model="chumBiteTime" label="撒饵" inset />
-              <BiteTimeChart :data="biteTimeChartData" />
+              <bite-time-chart :data="biteTimeChartData" />
             </div>
             <div v-if="spotId > 0">
               <v-select

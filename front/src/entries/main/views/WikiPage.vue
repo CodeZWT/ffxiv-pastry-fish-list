@@ -242,12 +242,18 @@
               <div v-if="mode === 'normal'">
                 <bait-percentage-chart
                   v-if="isRoseMode"
-                  :records="records"
+                  :records="baitCountRecords"
                   :fish-dict="lazyTransformedFishDict"
                 />
                 <fish-tug-table v-else :value="currentFishList" />
               </div>
               <fish-gig-table v-else :value="currentFishList" />
+            </v-col>
+            <v-col cols="12" class="my-1" v-if="isRoseMode">
+              <bite-interval-chart
+                :records="biteIntervalRecords"
+                :fish-dict="lazyTransformedFishDict"
+              />
             </v-col>
 
             <v-col v-if="showSpotPredators" cols="12" class="my-1">
@@ -513,10 +519,12 @@ import ImgUtil from '@/utils/ImgUtil'
 import rcapiService from '@/service/rcapiService'
 import BaitPercentageChart from '@/components/charts/BaitPercentageChart'
 import FishTugTable from '@/components/FishingTugTable'
+import BiteIntervalChart from '@/components/charts/BiteIntervalChart'
 
 export default {
   name: 'WikiPage',
   components: {
+    BiteIntervalChart,
     FishTugTable,
     BaitPercentageChart,
     AchievementProgress,
@@ -585,10 +593,14 @@ export default {
     showSyncDialog: false,
     syncStatus: 'not-start',
     spotRecordCountCache: {},
+    spotBiteIntervalCache: {},
   }),
   computed: {
-    records() {
+    baitCountRecords() {
       return this.spotRecordCountCache[this.currentSpotId]?.items || []
+    },
+    biteIntervalRecords() {
+      return this.spotBiteIntervalCache[this.currentSpotId]?.items || []
     },
     showSpotPredators() {
       return (
@@ -871,6 +883,7 @@ export default {
       if (currentSpotId !== -1) {
         setTimeout(() => this.$refs.simpleMap?.resize(), 500)
         this.getBaitDataOfSpot(currentSpotId)
+        this.getBiteIntervalDataOfSpot(currentSpotId)
       }
     },
     // completedSpots(newSpots, oldSpots) {
@@ -946,6 +959,16 @@ export default {
           this.spotRecordCountCache,
           spotId,
           await rcapiService.getSpotRecordCount(spotId)
+        )
+      }
+    },
+    async getBiteIntervalDataOfSpot(spotId) {
+      const spotData = this.spotBiteIntervalCache[spotId]
+      if (!spotData) {
+        this.$set(
+          this.spotBiteIntervalCache,
+          spotId,
+          await rcapiService.getSpotBiteInterval(spotId)
         )
       }
     },

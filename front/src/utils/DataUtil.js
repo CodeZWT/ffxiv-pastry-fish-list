@@ -94,10 +94,11 @@ function isAllAvailableFish(fish) {
 }
 
 function toItemId(fishLocationId) {
-  if (fishLocationId >= 1000001) {
-    return fishLocationId % 1000000
+  const idNum = +fishLocationId
+  if (idNum >= 1000001) {
+    return idNum % 1000000
   } else {
-    return fishLocationId
+    return idNum
   }
 }
 

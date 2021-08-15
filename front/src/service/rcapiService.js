@@ -202,12 +202,26 @@ export default {
     })
   },
   async getSpotRecordCount(spotId) {
-    return fetch(`${DATA_HOST}/${spotId}.data`, {
+    return fetch(`${DATA_HOST}/record-count/${spotId}.data`, {
       method: 'GET',
     }).then(async resp => {
       if (resp.ok) {
         const data = await decodeAsync(resp.body)
         // console.log(data)
+        return data
+      } else {
+        console.log('404 return empty')
+        return { items: [] }
+      }
+    })
+  },
+  async getSpotBiteInterval(spotId) {
+    return fetch(`${DATA_HOST}/bite-interval/${spotId}.data`, {
+      method: 'GET',
+    }).then(async resp => {
+      if (resp.ok) {
+        const data = await decodeAsync(resp.body)
+        console.log(data)
         return data
       } else {
         console.log('404 return empty')
