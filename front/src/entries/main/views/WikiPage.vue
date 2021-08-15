@@ -244,6 +244,7 @@
                   v-if="isRoseMode"
                   :records="baitCountRecords"
                   :fish-dict="lazyTransformedFishDict"
+                  :updatedTime="baitCountRecordUpdatedTime"
                 />
                 <fish-tug-table v-else :value="currentFishList" />
               </div>
@@ -253,6 +254,7 @@
               <bite-interval-chart
                 :records="biteIntervalRecords"
                 :fish-dict="lazyTransformedFishDict"
+                :updated-time="biteIntervalRecordsUpdatedTime"
               />
             </v-col>
 
@@ -599,8 +601,14 @@ export default {
     baitCountRecords() {
       return this.spotRecordCountCache[this.currentSpotId]?.items || []
     },
+    baitCountRecordUpdatedTime() {
+      return this.spotRecordCountCache[this.currentSpotId]?.updatedTime
+    },
     biteIntervalRecords() {
       return this.spotBiteIntervalCache[this.currentSpotId]?.items || []
+    },
+    biteIntervalRecordsUpdatedTime() {
+      return this.spotBiteIntervalCache[this.currentSpotId]?.updatedTime
     },
     showSpotPredators() {
       return (

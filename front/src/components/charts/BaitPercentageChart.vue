@@ -2,12 +2,16 @@
   <v-container fluid>
     <v-row class="ml-2" v-if="records.length > 0">
       <v-col cols="12">
-        <v-switch
-          inset
-          label="条件筛选"
-          v-model="enableWeatherFilter"
-          style="width: 200px"
-        />
+        <div class="d-flex align-center">
+          <v-switch
+            inset
+            label="条件筛选"
+            v-model="enableWeatherFilter"
+            style="width: 200px"
+          />
+          <v-spacer />
+          <v-subheader v-if="updatedTime">{{ updatedTimeStr }} </v-subheader>
+        </div>
         <template v-if="enableWeatherFilter">
           <div class="d-flex flex-wrap align-center">
             <v-subheader class="pb-8">ET范围</v-subheader>
@@ -222,6 +226,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    updatedTime: {
+      type: Number,
+      default: undefined,
+    },
   },
   data() {
     return {
@@ -242,6 +250,9 @@ export default {
     }
   },
   computed: {
+    updatedTimeStr() {
+      return `※ 更新时间 ${new Date(this.updatedTime ?? 0).toLocaleString()}`
+    },
     etHourOptions() {
       const options = []
       for (let i = 0; i < 24; i++) {

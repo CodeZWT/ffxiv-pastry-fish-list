@@ -5,6 +5,8 @@
         <div class="d-flex align-center">
           <v-switch v-model="chumBiteTime" label="撒饵" inset />
           <v-switch v-model="enableBaitFilter" inset label="鱼饵筛选" class="ml-4" />
+          <v-spacer />
+          <v-subheader v-if="updatedTime">{{ updatedTimeStr }} </v-subheader>
         </div>
         <div v-if="enableBaitFilter" class="d-flex flex-wrap">
           <div
@@ -62,6 +64,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    updatedTime: {
+      type: Number,
+      default: undefined,
+    },
   },
   data() {
     return {
@@ -96,6 +102,9 @@ export default {
     },
   },
   computed: {
+    updatedTimeStr() {
+      return `※ 更新时间 ${new Date(this.updatedTime ?? 0).toLocaleString()}`
+    },
     allBaitIds() {
       return this.dataOfSpot.baitList.map(({ baitId }) => +baitId)
     },
