@@ -88,6 +88,21 @@
               </v-checkbox>
             </div>
           </div>
+          <div class="d-flex flex-wrap align-center">
+            <v-subheader class="ml-7">鱼识</v-subheader>
+            <v-btn-toggle
+              v-model="fishersIntuitionFilter"
+              rounded
+              dense
+              mandatory
+              multiple
+              active-class="primary"
+            >
+              <v-btn small v-for="option in fishersIntuitionOptions" :key="option">
+                {{ $t('chart.fishersIntuition.' + option) }}
+              </v-btn>
+            </v-btn-toggle>
+          </div>
         </template>
       </v-col>
       <v-col cols="12">
@@ -222,6 +237,8 @@ export default {
       etStartFilter: null,
       etEndFilter: null,
       range: [0, 48],
+      fishersIntuitionFilter: [0, 1],
+      fishersIntuitionOptions: ['yes', 'no'],
     }
   },
   computed: {
@@ -305,6 +322,15 @@ export default {
       const baitFishCnt = _(records)
         .chain()
         .filter(({ fish, bait }) => fish > 0 && bait > 0)
+        .filter(({ fishersIntuition }) => {
+          if (this.fishersIntuitionFilter.length === 2) {
+            return true
+          } else if (this.fishersIntuitionFilter.length === 1) {
+            return (this.fishersIntuitionFilter[0] === 0) === fishersIntuition
+          } else {
+            return false
+          }
+        })
         .filter(({ prevWeather, weather }) => {
           return (
             this.prevWeathers.includes(prevWeather) && this.weathers.includes(weather)

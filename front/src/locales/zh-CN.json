@@ -368,5 +368,11 @@
       "strict": "严格",
       "normal": "普通"
     }
+  },
+  "chart": {
+    "fishersIntuition": {
+      "yes": "是",
+      "no": "否"
+    }
   }
 }
