@@ -10,7 +10,7 @@
             style="width: 200px"
           />
           <v-spacer />
-          <v-subheader v-if="updatedTime">{{ updatedTimeStr }} </v-subheader>
+          <v-subheader v-if="updatedTime">{{ dataMeta }} </v-subheader>
         </div>
         <template v-if="enableWeatherFilter">
           <div class="d-flex flex-wrap align-center">
@@ -250,8 +250,13 @@ export default {
     }
   },
   computed: {
-    updatedTimeStr() {
-      return `※ 更新时间 ${new Date(this.updatedTime ?? 0).toLocaleString()}`
+    recordTotal() {
+      return _.sumBy(this.records, ({ quantity }) => +quantity)
+    },
+    dataMeta() {
+      return `※ 共 ${this.recordTotal} 条数据【更新于 ${new Date(
+        this.updatedTime ?? 0
+      ).toLocaleString()}】`
     },
     etHourOptions() {
       const options = []

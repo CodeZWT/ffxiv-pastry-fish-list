@@ -6,7 +6,7 @@
           <v-switch v-model="chumBiteTime" label="撒饵" inset />
           <v-switch v-model="enableBaitFilter" inset label="鱼饵筛选" class="ml-4" />
           <v-spacer />
-          <v-subheader v-if="updatedTime">{{ updatedTimeStr }} </v-subheader>
+          <v-subheader v-if="updatedTime">{{ dataMeta }} </v-subheader>
         </div>
         <div v-if="enableBaitFilter" class="d-flex flex-wrap">
           <div
@@ -102,8 +102,13 @@ export default {
     },
   },
   computed: {
-    updatedTimeStr() {
-      return `※ 更新时间 ${new Date(this.updatedTime ?? 0).toLocaleString()}`
+    recordTotal() {
+      return _.sumBy(this.records, ({ quantity }) => +quantity)
+    },
+    dataMeta() {
+      return `※ 共 ${this.recordTotal} 条数据【更新于 ${new Date(
+        this.updatedTime ?? 0
+      ).toLocaleString()}】`
     },
     allBaitIds() {
       return this.dataOfSpot.baitList.map(({ baitId }) => +baitId)
