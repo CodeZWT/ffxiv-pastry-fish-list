@@ -2,6 +2,7 @@ import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import { INTERVAL_MINUTE, UPLOAD_LIMIT } from 'Data/constants'
 import { decode, decodeAsync } from '@msgpack/msgpack'
+import * as cjson from 'compressed-json'
 
 const host = DevelopmentModeUtil.isTest()
   ? 'http://localhost:3100'
@@ -207,8 +208,9 @@ export default {
     }).then(async resp => {
       if (resp.ok) {
         const data = await decodeAsync(resp.body)
-        // console.log(data)
-        return data
+        const decompressedData = cjson.decompress(data)
+        // console.log(decompressedData)
+        return decompressedData
       } else {
         console.log('404 return empty')
         return { items: [] }
@@ -222,8 +224,9 @@ export default {
     }).then(async resp => {
       if (resp.ok) {
         const data = await decodeAsync(resp.body)
-        console.log(data)
-        return data
+        const decompressedData = cjson.decompress(data)
+        // console.log(decompressedData)
+        return decompressedData
       } else {
         console.log('404 return empty')
         return { items: [] }
@@ -263,6 +266,9 @@ export default {
     return response.ok
   },
   async getDataFilesVersion() {
+    if (DevelopmentModeUtil.isTest()) {
+      return 'db29e838fbc56917f15280aa824fea8fccb2c6ce'
+    }
     if (this.dataFilesVersion != null) {
       return this.dataFilesVersion
     }
