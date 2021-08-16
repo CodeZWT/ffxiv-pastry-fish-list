@@ -83,13 +83,13 @@ export default {
   },
   computed: {
     allBaitIds() {
-      return this.data.baitList.map(({ baitId }) => baitId)
+      return this.data.baitList.map(({ baitId }) => +baitId)
     },
     filteredRecords() {
       const ret = {}
       Object.entries(this.records)
         .filter(
-          ([baitId]) => this.baitSelected.includes(baitId) || !this.enableBaitFilter
+          ([baitId]) => this.baitSelected.includes(+baitId) || !this.enableBaitFilter
         )
         .forEach(([baitId, record]) => {
           ret[UploadUtil.toBait(baitId).baitName] = record
