@@ -24,6 +24,19 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.5后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
+        <div class="text-h6">Version 0.9.3</div>
+        <div class="text-subtitle-1">更新时间: 2021/08/16 23:20</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>更新5.5攻略内容</li>
+        </ul>
+        <div class="text-h5 text-center my-1">鱼捞</div>
+        <ul>
+          <li>修复空岛返回清空计时的问题</li>
+        </ul>
+
+        <v-divider />
+
         <div class="text-h6">Version 0.9.2</div>
         <div class="text-subtitle-1">更新时间: 2021/08/10 23:50</div>
         <div class="text-h5 text-center my-1">鱼糕桌面版</div>
