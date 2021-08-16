@@ -419,15 +419,23 @@ onFFXIVEvent('effect', packet => {
 onFFXIVEvent(
   'prepareZoning',
   packet => {
+    let skipReset = false
+
     if (packet.targetZone && TERRITORY_TYPES[packet.targetZone]) {
-      status.zoneId = TERRITORY_TYPES[packet.targetZone].placeName
+      const newZoneId = TERRITORY_TYPES[packet.targetZone].placeName
+      skipReset = status.zoneId === newZoneId
+      status.zoneId = newZoneId
       log.debug('targetZone', packet.targetZone, 'placeName', status.zoneId)
     } else {
       log.debug('targetZone Zero')
     }
-    status.weather = undefined
-    resetDiademStatus()
-    resetIKDStatus()
+    if (!skipReset) {
+      status.weather = undefined
+      resetDiademStatus()
+      resetIKDStatus()
+    } else {
+      log.debug('skipped reset when back to the same zone')
+    }
   },
   true
 )
