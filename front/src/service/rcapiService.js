@@ -5,7 +5,7 @@ import { decode, decodeAsync } from '@msgpack/msgpack'
 import * as cjson from 'compressed-json'
 
 const host = DevelopmentModeUtil.isTest()
-  ? 'http://localhost:3100'
+  ? 'https://rcapi.traveleorzea.com' //'http://localhost:3100'
   : 'https://rcapi.traveleorzea.com'
 const DATA_HOST = 'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files'
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'

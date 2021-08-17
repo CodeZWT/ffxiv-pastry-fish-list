@@ -361,9 +361,24 @@
                 </v-btn>
               </v-col>
               <v-col cols="12">
+                <div class="d-flex align-center">
+                  <v-subheader>区域</v-subheader>
+                  <v-btn-toggle
+                    v-model="regionFilter"
+                    rounded
+                    dense
+                    mandatory
+                    multiple
+                    active-class="primary"
+                  >
+                    <v-btn small v-for="filter in regionFilterOptions" :key="filter">
+                      {{ filter }}
+                    </v-btn>
+                  </v-btn-toggle>
+                </div>
                 <v-data-table
                   :headers="userSpotStatsHeaders"
-                  :items="totalSpotStats"
+                  :items="filteredSpots"
                   multi-sort
                   class="elevation-1"
                   :loading="loadingTotalSpotStats"
@@ -603,9 +618,7 @@
                       @click="throttledDeleteRecord(item)"
                       title="删除本条记录（无法恢复！！！）"
                     >
-                      <v-icon>
-                        mdi-delete
-                      </v-icon>
+                      <v-icon>mdi-delete</v-icon>
                     </v-btn>
                   </template>
                 </v-data-table>
@@ -634,6 +647,8 @@ import SPOT_WEATHER from 'Data/spotWeather'
 import uniq from 'lodash/uniq'
 import Constants from 'Data/constants'
 import DateTimeInput from '@/components/basic/DateTimeInput'
+import FishingSpots from 'Data/fishingSpots'
+import PlaceNames from 'Data/placeNames'
 
 export default {
   name: 'RecordPage',
@@ -762,6 +777,16 @@ export default {
           value: 'finished',
         },
       ],
+      region2Spots: _.keyBy(
+        FishingSpots.filter(it => it.id).map(region => {
+          return {
+            region: region.id,
+            spots: region.territories.flatMap(tt => tt.spots.map(spot => spot.id)),
+          }
+        }),
+        'region'
+      ),
+      regionFilter: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
     }
   },
   watch: {
@@ -801,6 +826,20 @@ export default {
     this.getUserSpotStats()
   },
   computed: {
+    filteredSpots() {
+      return this.totalSpotStats.filter(it => this.spotFilter.includes(it.spot.spotId))
+    },
+    regionIds() {
+      return Object.keys(this.region2Spots)
+    },
+    spotFilter() {
+      return this.regionFilter.flatMap(i => {
+        return this.region2Spots[this.regionIds[i]].spots ?? []
+      })
+    },
+    regionFilterOptions() {
+      return this.regionIds.map(it => PlaceNames[it])
+    },
     headers() {
       if (this.isFixedOwnRecordMode) {
         return [
