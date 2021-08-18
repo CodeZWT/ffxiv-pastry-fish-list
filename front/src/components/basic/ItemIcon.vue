@@ -69,7 +69,6 @@ export default {
       switch (this.type) {
         case 'item':
           return 'item-cover-48'
-        case 'weather':
         case 'action':
         case 'icon':
           return ''
@@ -85,8 +84,6 @@ export default {
         case 'action':
         case 'icon':
           return 'item-icon-48'
-        case 'weather':
-          return 'weather-icon-32'
         default:
           return 'achievement-icon-48'
       }
@@ -111,11 +108,6 @@ export default {
   -moz-transform-origin: 0 0;
 }
 
-.hr-zoom-in {
-  zoom: 0.5;
-  -moz-transform: scale(0.5);
-  -moz-transform-origin: 0 0;
-}
 .item-icon-style {
   position: relative;
   height: 48px;
@@ -123,14 +115,7 @@ export default {
   min-height: 48px;
   min-width: 48px;
 }
-/*.db-list__item__icon__cover {*/
-/*  width: 48px;*/
-/*  height: 48px;*/
-/*  background: url(/lds/h/J/-A7DYl4vvLtvGz_nshoUsqtrEc.png) no-repeat;*/
-/*  position: absolute;*/
-/*  top: 0;*/
-/*  left: 0;*/
-/*}*/
+
 .item-cover-48 {
   width: 48px;
   height: 48px;
@@ -139,51 +124,18 @@ export default {
   left: 0;
 }
 
-/*.db-view__achievement__icon__frame {*/
-/*  position: absolute;*/
-/*  z-index: 10;*/
-/*  width: 48px;*/
-/*  height: 48px;*/
-/*  background: url(/lds/h/Y/g9-WRQ9Mxx6c37ekifgjQ-nQwY.png) repeat-y 0 0;*/
-/*  display: block;*/
-/*}*/
 .achievement-cover-48 {
   width: 48px;
   height: 48px;
   position: absolute;
 }
 
-/*.db-view__achievement__icon__image {*/
-/*  position: absolute;*/
-/*  z-index: 1;*/
-/*  top: 4px;*/
-/*  left: 4px;*/
-/*}*/
 .achievement-icon-48 {
   position: absolute;
   width: 80px;
   height: 80px;
   top: 8px;
   left: 8px;
-
-  zoom: 0.5;
-  -moz-transform: scale(0.5);
-  -moz-transform-origin: 0 0;
-}
-
-/*.db-list__item__icon__item_image {*/
-/*  position: absolute;*/
-/*  top: 0px;*/
-/*  left: 0px;*/
-/*  margin: 2px 0 0 4px;*/
-/*}*/
-
-.weather-icon-32 {
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  top: 0;
-  left: 0;
 
   zoom: 0.5;
   -moz-transform: scale(0.5);

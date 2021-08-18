@@ -775,7 +775,7 @@ export default {
                 ? {
                     id: achievement.item,
                     title: achievement.itemTitle,
-                    iconUrl: ImgUtil.getIconUrl(achievement.itemIcon),
+                    iconUrl: ImgUtil.getIconUrl(achievement.itemIcon, true),
                   }
                 : undefined,
             }
