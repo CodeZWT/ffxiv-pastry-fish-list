@@ -13,7 +13,7 @@
       <v-list v-if="item">
         <v-list-item v-for="(item, index) in item.biteTimeOfBaits" :key="index">
           <v-list-item-avatar>
-            <div :class="item.icon" />
+            <raw-item-icon :icon-class="item.icon" />
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title
@@ -33,8 +33,10 @@
 </template>
 
 <script>
+import RawItemIcon from '@/components/basic/RawItemIcon'
 export default {
   name: 'FishBiteTimeList',
+  components: { RawItemIcon },
   props: {
     item: {
       type: Object,

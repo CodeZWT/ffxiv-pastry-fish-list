@@ -23,7 +23,7 @@
             <click-helper>
               <div class="d-flex">
                 <v-list-item-avatar>
-                  <div :class="data.item.icon" />
+                  <raw-item-icon :icon-class="data.item.icon" />
                 </v-list-item-avatar>
                 <v-list-item-content>
                   <v-list-item-title>
@@ -62,10 +62,11 @@ import { mapGetters, mapState } from 'vuex'
 import PinyinMatch from 'pinyin-match'
 import ClickHelper from '@/components/basic/ClickHelper'
 import FishDetail from '@/components/FishDetail'
+import RawItemIcon from '@/components/basic/RawItemIcon'
 
 export default {
   name: 'FishSearch',
-  components: { FishDetail, ClickHelper },
+  components: { RawItemIcon, FishDetail, ClickHelper },
   props: {
     value: {
       type: Boolean,
