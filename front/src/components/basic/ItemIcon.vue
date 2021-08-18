@@ -1,7 +1,11 @@
 <template>
   <div
     :title="title"
-    :class="{ 'zoom-in': small, 'item-icon-style': true }"
+    :class="{
+      'zoom-in': small,
+      'item-icon-style': !large,
+      'item-icon-style-large': large,
+    }"
     @click="onClicked"
   >
     <div v-if="!iconUrl" :class="`${iconClass} ${iconPositionClass}`" />
@@ -43,6 +47,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    large: {
+      type: Boolean,
+      default: false,
+    },
     type: {
       type: String,
       default: 'item',
@@ -59,6 +67,7 @@ export default {
   data() {
     return {
       itemCover48: ImgUtil.getImgUrl('item-icon-cover-48x48.png'),
+      itemCover96: ImgUtil.getImgUrl('item-icon-cover-96x96.png'),
       achievementFrame48: ImgUtil.getImgUrl('achievement-icon-frame-48x48.png'),
       checkedCover48: ImgUtil.getImgUrl('item-icon-checked-48x48.png'),
       hatCover48: ImgUtil.getImgUrl('item-cover-hat-48x48.png'),
@@ -68,7 +77,7 @@ export default {
     coverClass() {
       switch (this.type) {
         case 'item':
-          return 'item-cover-48'
+          return this.large ? 'item-cover-96' : 'item-cover-48'
         case 'action':
         case 'icon':
           return ''
@@ -80,17 +89,20 @@ export default {
     iconPositionClass() {
       switch (this.type) {
         case 'item':
-          return 'item-icon-48'
         case 'action':
         case 'icon':
-          return 'item-icon-48'
+          return this.large ? 'item-icon-96' : 'item-icon-48'
         default:
           return 'achievement-icon-48'
       }
       // return this.type === 'item' ? 'item-icon-48' : 'achievement-icon-48'
     },
     cover() {
-      return this.type === 'item' ? this.itemCover48 : this.achievementFrame48
+      return this.type === 'item'
+        ? this.large
+          ? this.itemCover96
+          : this.itemCover48
+        : this.achievementFrame48
     },
   },
   methods: {
@@ -116,9 +128,25 @@ export default {
   min-width: 48px;
 }
 
+.item-icon-style-large {
+  position: relative;
+  height: 96px;
+  width: 96px;
+  min-height: 96px;
+  min-width: 96px;
+}
+
 .item-cover-48 {
   width: 48px;
   height: 48px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.item-cover-96 {
+  width: 96px;
+  height: 96px;
   position: absolute;
   top: 0;
   left: 0;
@@ -153,6 +181,15 @@ export default {
   zoom: 0.5;
   -moz-transform: scale(0.5);
   -moz-transform-origin: 0 0;
+}
+
+.item-icon-96 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 0;
+  left: 0;
+  margin: 4px 0 0 8px;
 }
 
 .item-checked-icon-48 {

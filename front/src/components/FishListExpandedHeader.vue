@@ -24,63 +24,73 @@
             :unchecked-title="$t('actions.completed.unchecked')"
           />
         </div>
-        <item-icon :icon-class="fish.icon" />
-        <link-list
-          :id="fish.id"
-          :angler-id="fish.anglerFishId"
-          :name="fish.name"
-          mode="item"
-        >
-          <v-hover v-slot="{ hover }">
-            <div
-              :class="
-                `text-subtitle-1 ${hover ? 'info--text text-decoration-underline' : ''}`
-              "
+        <item-icon :icon-class="fish.icon" large />
+        <div>
+          <div class="d-flex align-center">
+            <link-list
+              :id="fish.id"
+              :angler-id="fish.anglerFishId"
+              :name="fish.name"
+              mode="item"
             >
-              {{ fish.name }}
+              <v-hover v-slot="{ hover }">
+                <div
+                  :class="
+                    `text-subtitle-1 ${
+                      hover ? 'info--text text-decoration-underline' : ''
+                    }`
+                  "
+                >
+                  {{ fish.name }}
+                </div>
+              </v-hover>
+            </link-list>
+            <v-badge
+              inline
+              :color="fish.isFuturePatch ? 'grey' : 'primary'"
+              :content="fish.patchText"
+              :title="fish.isFuturePatch ? '未实装' : ''"
+            ></v-badge>
+          </div>
+          <div class="d-flex align-center">
+            <click-helper @click.stop :copy-text="fish.name">
+              <v-btn text icon :title="$t('list.item.copyHint')">
+                <v-icon>mdi-content-copy</v-icon>
+              </v-btn>
+            </click-helper>
+            <toggle-button
+              v-if="fish.setNotificationAvailable"
+              :value="fish.toBeNotified"
+              :title="$t('list.item.notificationHint')"
+              @input="setToBeNotified($event)"
+              checked-icon="mdi-bell"
+              unchecked-icon="mdi-bell-outline"
+            />
+            <div v-if="fish.hasTasks" class="mr-2">
+              <v-icon title="含有任务及其他信息（默认在此窗口最下方）">
+                mdi-alert-circle-outline
+              </v-icon>
             </div>
-          </v-hover>
-        </link-list>
-        <v-badge
-          inline
-          :color="fish.isFuturePatch ? 'grey' : 'primary'"
-          :content="fish.patchText"
-          :title="fish.isFuturePatch ? '未实装' : ''"
-        ></v-badge>
-        <click-helper @click.stop :copy-text="fish.name">
-          <v-btn text icon :title="$t('list.item.copyHint')">
-            <v-icon>mdi-content-copy</v-icon>
-          </v-btn>
-        </click-helper>
-        <div v-if="fish.hasTasks" class="mr-1">
-          <v-icon title="含有任务及其他信息（默认在此窗口最下方）">
-            mdi-alert-circle-outline
-          </v-icon>
-        </div>
-        <div
-          v-if="fish.folklore"
-          :data-ck-item-id="toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)"
-          class="mr-1"
-        >
-          <v-icon :title="fish.folklore.name">mdi-book-open-variant</v-icon>
-        </div>
-        <div v-if="fish.aquarium" class="mr-1">
-          <v-icon :title="`[${fish.aquarium.size}] ${fish.aquarium.water}`">
-            mdi-fishbowl
-          </v-icon>
-        </div>
-        <div v-if="fish.collectable">
-          <i class="xiv collectables" title="收藏品" />
+            <div
+              v-if="fish.folklore"
+              :data-ck-item-id="
+                toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)
+              "
+              class="mr-2"
+            >
+              <v-icon :title="fish.folklore.name">mdi-book-open-variant</v-icon>
+            </div>
+            <div v-if="fish.aquarium" class="mr-2">
+              <v-icon :title="`[${fish.aquarium.size}] ${fish.aquarium.water}`">
+                mdi-fishbowl
+              </v-icon>
+            </div>
+            <div v-if="fish.collectable">
+              <i class="xiv collectables" title="收藏品" />
+            </div>
+          </div>
         </div>
         <v-spacer />
-        <toggle-button
-          v-if="fish.setNotificationAvailable"
-          :value="fish.toBeNotified"
-          :title="$t('list.item.notificationHint')"
-          @input="setToBeNotified($event)"
-          checked-icon="mdi-bell"
-          unchecked-icon="mdi-bell-outline"
-        />
         <click-helper v-if="showClose" @click="$emit('close')">
           <v-btn elevation="50" fab small>
             <v-icon dark>mdi-close</v-icon>
