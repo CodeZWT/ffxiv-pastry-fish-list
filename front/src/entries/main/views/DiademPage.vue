@@ -48,7 +48,7 @@
 
                         <div class="d-flex align-center">
                           <div style="min-width: 113px" class="d-flex align-center">
-                            <div class="bg-060290" title="灵飞电" />
+                            <weather-icon icon-class="bg-060290" title="灵飞电" />
                             <span style="margin: 0 35px 0 4px">时也可</span>
                           </div>
                           <v-icon>mdi-subdirectory-arrow-right</v-icon>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="d-flex align-center">
                           <div style="min-width: 113px" class="d-flex align-center">
-                            <div class="bg-060291" title="灵罡风" />
+                            <weather-icon icon-class="bg-060291" title="灵罡风" />
                             <span style="margin: 0 35px 0 4px">时也可</span>
                           </div>
                           <v-icon>mdi-subdirectory-arrow-right</v-icon>
@@ -207,10 +207,11 @@ import DiademFishList from '@/components/DiademFishList/DiademFishList'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import ItemIcon from '@/components/basic/ItemIcon'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
   name: 'DiademPage',
-  components: { ItemIcon, EorzeaSimpleMap, DiademFishList },
+  components: { WeatherIcon, ItemIcon, EorzeaSimpleMap, DiademFishList },
   data() {
     return {
       regionTerritorySpots: regionTerritorySpots,
