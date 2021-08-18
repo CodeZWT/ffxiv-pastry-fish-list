@@ -69,6 +69,7 @@ export default {
       switch (this.type) {
         case 'item':
           return 'item-cover-48'
+        case 'weather':
         case 'action':
         case 'icon':
           return ''
@@ -84,6 +85,8 @@ export default {
         case 'action':
         case 'icon':
           return 'item-icon-48'
+        case 'weather':
+          return 'weather-icon-32'
         default:
           return 'achievement-icon-48'
       }
@@ -105,6 +108,12 @@ export default {
 .zoom-in {
   zoom: 0.75;
   -moz-transform: scale(0.75);
+  -moz-transform-origin: 0 0;
+}
+
+.hr-zoom-in {
+  zoom: 0.5;
+  -moz-transform: scale(0.5);
   -moz-transform-origin: 0 0;
 }
 .item-icon-style {
@@ -152,10 +161,14 @@ export default {
 /*}*/
 .achievement-icon-48 {
   position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 4px;
-  left: 4px;
+  width: 80px;
+  height: 80px;
+  top: 8px;
+  left: 8px;
+
+  zoom: 0.5;
+  -moz-transform: scale(0.5);
+  -moz-transform-origin: 0 0;
 }
 
 /*.db-list__item__icon__item_image {*/
@@ -164,13 +177,30 @@ export default {
 /*  left: 0px;*/
 /*  margin: 2px 0 0 4px;*/
 /*}*/
-.item-icon-48 {
+
+.weather-icon-32 {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 64px;
+  height: 64px;
   top: 0;
   left: 0;
-  margin: 2px 0 0 4px;
+
+  zoom: 0.5;
+  -moz-transform: scale(0.5);
+  -moz-transform-origin: 0 0;
+}
+
+.item-icon-48 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 0;
+  left: 0;
+  margin: 4px 0 0 8px;
+
+  zoom: 0.5;
+  -moz-transform: scale(0.5);
+  -moz-transform-origin: 0 0;
 }
 
 .item-checked-icon-48 {

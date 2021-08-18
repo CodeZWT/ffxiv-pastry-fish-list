@@ -184,8 +184,8 @@ export default {
 
 <style scoped>
 .hookset-icon {
-  zoom: 0.4;
-  -moz-transform: scale(0.4);
+  zoom: 0.2;
+  -moz-transform: scale(0.2);
   -moz-transform-origin: 0 0;
 }
 
