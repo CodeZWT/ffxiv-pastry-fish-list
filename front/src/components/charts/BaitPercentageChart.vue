@@ -65,7 +65,11 @@
                 <template v-slot:label>
                   <div class="d-flex align-center">
                     <div style="height: 32px; width: 32px">
-                      <div :class="weather.icon" :title="weather.name" />
+                      <weather-icon
+                        :icon-class="weather.icon"
+                        :title="weather.name"
+                        type="weather"
+                      />
                     </div>
                     <span class="ml-1">{{ weather.name }}</span>
                   </div>
@@ -84,7 +88,11 @@
                 <template v-slot:label>
                   <div class="d-flex align-center">
                     <div style="height: 32px; width: 32px">
-                      <div :class="weather.icon" :title="weather.name" />
+                      <weather-icon
+                        :icon-class="weather.icon"
+                        :title="weather.name"
+                        type="weather"
+                      />
                     </div>
                     <span class="ml-1">{{ weather.name }}</span>
                   </div>
@@ -204,6 +212,7 @@ import UploadUtil from '@/utils/UploadUtil'
 import DataUtil from '@/utils/DataUtil'
 import uniq from 'lodash/uniq'
 import SPOT_WEATHER from 'Data/spotWeather'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 const hourMinuteToMinutes = (hour, minute) => {
   return hour * 60 + minute
@@ -211,7 +220,7 @@ const hourMinuteToMinutes = (hour, minute) => {
 
 export default {
   name: 'BaitPercentageChart',
-  components: { ItemIcon },
+  components: { WeatherIcon, ItemIcon },
   inject: {
     theme: {
       default: { isDark: false },

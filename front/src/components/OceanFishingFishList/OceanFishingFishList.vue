@@ -4,7 +4,12 @@
       <v-radio-group v-model="currentWeather" row>
         <v-radio v-for="weather in weathers" :value="weather.id" :key="weather.id">
           <template v-slot:label>
-            <div v-if="weather.icon" :class="weather.icon" :title="weather.name" />
+            <weather-icon
+              v-if="weather.icon"
+              :icon-class="weather.icon"
+              :title="weather.name"
+              type="weather"
+            />
             <div class="ml-1">{{ weather.name }}</div>
           </template>
         </v-radio>
@@ -127,7 +132,11 @@
             :title="weather.name"
             class="d-flex flex-column align-center"
           >
-            <div :class="weather.icon" :title="weather.name" />
+            <weather-icon
+              :icon-class="weather.icon"
+              :title="weather.name"
+              type="weather"
+            />
             <!--          <div class="ml-1">{{ weather.name }}</div>-->
           </div>
           <div v-if="item.hasWeatherConstraint">不出现</div>
@@ -167,10 +176,11 @@ import ToggleButton from '@/components/basic/ToggleButton'
 import DataUtil from '@/utils/DataUtil'
 import FIX from 'Data/fix'
 import FishBiteTimeList from '@/components/FishBiteTimeList'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
   name: 'OceanFishingFishList',
-  components: { FishBiteTimeList, ToggleButton, ItemIcon },
+  components: { WeatherIcon, FishBiteTimeList, ToggleButton, ItemIcon },
   props: {
     dense: {
       type: Boolean,

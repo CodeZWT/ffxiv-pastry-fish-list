@@ -79,7 +79,11 @@
                   :title="weather.name"
                   class="d-flex flex-column align-center"
                 >
-                  <div :class="weather.icon" :title="weather.name" />
+                  <weather-icon
+                    :icon-class="weather.icon"
+                    :title="weather.name"
+                    type="weather"
+                  />
                   <div class="ml-1">{{ weather.name }}</div>
                 </div>
               </div>
@@ -180,10 +184,11 @@
 <script>
 import DiademFishListMixin from '@/components/DiademFishList/DiademFishListMixin'
 import LinkList from '@/components/basic/LinkList'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
   name: 'DiademFishListLarge',
-  components: { LinkList },
+  components: { WeatherIcon, LinkList },
   mixins: [DiademFishListMixin],
 }
 </script>

@@ -61,7 +61,11 @@
               <v-spacer />
               <div v-if="weather" class="d-flex align-center">
                 <div>{{ weather.name }}</div>
-                <div :class="weather.icon" />
+                <weather-icon
+                  :icon-class="weather.icon"
+                  :title="weather.name"
+                  type="weather"
+                />
               </div>
             </div>
           </v-col>
@@ -71,7 +75,11 @@
               <v-spacer />
               <div v-if="weather" class="d-flex align-center">
                 <div>{{ prevWeather.name }}</div>
-                <div :class="prevWeather.icon" />
+                <weather-icon
+                  :icon-class="prevWeather.icon"
+                  :title="prevWeather.name"
+                  type="weather"
+                />
               </div>
             </div>
           </v-col>
@@ -132,10 +140,11 @@ import DUMMY_DATA from '../util/DummyData'
 import FishTimelineTable from './FishTimelineTable'
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
   name: 'FisherStatus',
-  components: { ItemIcon, FishTimelineTable },
+  components: { WeatherIcon, ItemIcon, FishTimelineTable },
   props: ['now'],
   data: () => ({
     dataStatus: {

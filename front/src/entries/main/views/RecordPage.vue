@@ -288,7 +288,11 @@
                       style="height: 40px; width: 40px"
                       class="d-flex justify-center align-center"
                     >
-                      <div :class="weather.icon" :title="weather.name" />
+                      <weather-icon
+                        :icon-class="weather.icon"
+                        :title="weather.name"
+                        type="weather"
+                      />
                     </div>
                   </div>
                 </div>
@@ -649,10 +653,11 @@ import Constants from 'Data/constants'
 import DateTimeInput from '@/components/basic/DateTimeInput'
 import FishingSpots from 'Data/fishingSpots'
 import PlaceNames from 'Data/placeNames'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
   name: 'RecordPage',
-  components: { DateTimeInput, BiteTimeChart, ItemIcon },
+  components: { WeatherIcon, DateTimeInput, BiteTimeChart, ItemIcon },
   mixins: [EnvMixin],
   props: ['lazyTransformedFishDict', 'lazySourceFishList'],
   inject: {

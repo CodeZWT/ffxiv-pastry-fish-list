@@ -147,7 +147,11 @@
                     :key="index"
                     class="zoom-in-predator"
                   >
-                    <div :class="weather.icon" :title="weather.name" />
+                    <weather-icon
+                      :icon-class="weather.icon"
+                      :title="weather.name"
+                      type="weather"
+                    />
                   </div>
                   <v-icon v-if="fish.previousWeatherSet.length > 0" small>
                     mdi-arrow-right
@@ -157,7 +161,11 @@
                     :key="weather.name"
                     class="zoom-in-predator"
                   >
-                    <div :class="weather.icon" :title="weather.name" />
+                    <weather-icon
+                      :icon-class="weather.icon"
+                      :title="weather.name"
+                      type="weather"
+                    />
                   </div>
                 </div>
               </div>
@@ -265,10 +273,12 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 import ClickHelper from '@/components/basic/ClickHelper'
 import LinkList from '@/components/basic/LinkList'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
   name: 'FishInfoRowLarge',
   components: {
+    WeatherIcon,
     LinkList,
     ClickHelper,
     ItemIcon,

@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%;" @click="onFishClicked()">
+  <div style="width: 100%" @click="onFishClicked()">
     <v-hover v-slot="{ hover }" open-delay="300" close-deplay="300">
       <div style="position: relative">
         <v-divider
@@ -208,7 +208,7 @@
               <v-btn
                 small
                 text
-                style="padding: 0 1px;"
+                style="padding: 0 1px"
                 @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
               >
                 {{ fish.rateText }}
@@ -243,14 +243,10 @@
                     <div class="bg-011103"></div>
                   </div>
                 </template>
-                <div>
-                  时间条件在鱼眼模式下忽略
-                </div>
+                <div>时间条件在鱼眼模式下忽略</div>
               </v-tooltip>
             </div>
-            <div v-else-if="fish.checkInfo.timeRestricted">
-              有时间限制
-            </div>
+            <div v-else-if="fish.checkInfo.timeRestricted">有时间限制</div>
             <div class="d-flex" v-if="fish.hasWeatherConstraint">
               <div style="display: flex">
                 <div
@@ -258,7 +254,11 @@
                   :key="index"
                   class="zoom-in-predator"
                 >
-                  <div :class="weather.icon" :title="weather.name" />
+                  <weather-icon
+                    :icon-class="weather.icon"
+                    :title="weather.name"
+                    type="weather"
+                  />
                 </div>
                 <v-icon v-if="fish.previousWeatherSet.length > 0" small>
                   mdi-arrow-right
@@ -268,13 +268,15 @@
                   :key="weather.name"
                   class="zoom-in-predator"
                 >
-                  <div :class="weather.icon" :title="weather.name" />
+                  <weather-icon
+                    :icon-class="weather.icon"
+                    :title="weather.name"
+                    type="weather"
+                  />
                 </div>
               </div>
             </div>
-            <div v-else-if="fish.checkInfo.weatherRestricted">
-              有天气限制
-            </div>
+            <div v-else-if="fish.checkInfo.weatherRestricted">有天气限制</div>
             <div
               v-if="
                 !fish.hasTimeConstraint &&
@@ -399,21 +401,17 @@
                     text
                     icon
                     small
-                    style="padding: 0 1px;"
+                    style="padding: 0 1px"
                     @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
                   >
-                    <v-icon small>
-                      mdi-calendar
-                    </v-icon>
+                    <v-icon small> mdi-calendar </v-icon>
                   </v-btn>
                 </div>
               </v-col>
               <v-col :class="locationColClass">
                 <div v-if="!hideSpotColumn" class="d-flex">
                   <v-btn text small icon @click.stop="onFishClicked(['DetailItemMap'])">
-                    <v-icon small>
-                      mdi-map
-                    </v-icon>
+                    <v-icon small> mdi-map </v-icon>
                   </v-btn>
                   <click-helper @click.stop :copy-text="fishingSpotName">
                     <v-btn text icon small :title="$t('list.item.copyHint')">
@@ -438,10 +436,12 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 import ClickHelper from '@/components/basic/ClickHelper'
 import LinkList from '@/components/basic/LinkList'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
   name: 'FishInfoRowLarge',
   components: {
+    WeatherIcon,
     LinkList,
     ClickHelper,
     ItemIcon,

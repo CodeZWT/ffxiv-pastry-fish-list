@@ -9,7 +9,11 @@
             :key="`prev-${index}`"
             :title="weather.name"
           >
-            <div :class="weather.icon" :title="weather.name" />
+            <weather-icon
+              :icon-class="weather.icon"
+              :title="weather.name"
+              type="weather"
+            />
           </div>
           <v-icon v-if="fish.previousWeatherSet.length > 0">
             mdi-arrow-right
@@ -19,7 +23,11 @@
             :key="`curr-${index}`"
             :title="weather.name"
           >
-            <div :class="weather.icon" :title="weather.name" />
+            <weather-icon
+              :icon-class="weather.icon"
+              :title="weather.name"
+              type="weather"
+            />
           </div>
         </div>
       </div>
@@ -61,9 +69,11 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import { mapGetters } from 'vuex'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
   name: 'DetailItemRequirements',
+  components: { WeatherIcon },
   props: {
     fish: {
       type: Object,
