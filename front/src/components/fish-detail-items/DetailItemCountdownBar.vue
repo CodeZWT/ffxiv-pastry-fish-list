@@ -32,10 +32,10 @@
                   {{ $t(fish.countDownTypeName, { interval: fish.countDownTimeText }) }}
                   ({{ Math.ceil(value) }}%)
                 </strong>
-                <div
+                <effect-icon
                   v-if="fish.addBuffSuffix"
+                  :icon-class="fish.predatorsIcon"
                   :title="$t('list.item.countDown.fishShadowHint')"
-                  :class="fish.predatorsIcon"
                   style="margin-left: 2px"
                 />
               </div>
@@ -64,9 +64,11 @@
 
 <script>
 import DataUtil from '@/utils/DataUtil'
+import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'DetailItemCountdownBar',
+  components: { EffectIcon },
   props: {
     fish: {
       type: Object,

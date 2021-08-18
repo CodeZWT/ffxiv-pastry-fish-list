@@ -144,8 +144,8 @@
                       >
                       </v-badge>
                     </div>
-                    <div
-                      :class="fish.predatorsIcon"
+                    <effect-icon
+                      :icon-class="fish.predatorsIcon"
                       style="margin-left: 2px; margin-right: 2px"
                     />
                   </template>
@@ -185,10 +185,11 @@
 import DiademFishListMixin from '@/components/DiademFishList/DiademFishListMixin'
 import LinkList from '@/components/basic/LinkList'
 import WeatherIcon from '@/components/basic/WeatherIcon'
+import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'DiademFishListLarge',
-  components: { WeatherIcon, LinkList },
+  components: { EffectIcon, WeatherIcon, LinkList },
   mixins: [DiademFishListMixin],
 }
 </script>

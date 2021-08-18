@@ -3,7 +3,7 @@
     <div class="d-flex justify-center">{{ $t('detail.buffAndBaits.title') }}</div>
     <div class="d-flex justify-center align-center">
       <div v-if="fish.hasPredators">
-        <div v-if="fish.type === 'normal'" :class="fish.predatorsIcon" />
+        <effect-icon v-if="fish.type === 'normal'" :icon-class="fish.predatorsIcon" />
         <div v-else>触发鱼影</div>
       </div>
       <div v-if="fish.hasSnagging">
@@ -41,10 +41,11 @@
 <script>
 import FishBaitList from '@/components/FishBaitList'
 import ItemIcon from '@/components/basic/ItemIcon'
+import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'DetailItemBuffAndBaits',
-  components: { ItemIcon, FishBaitList },
+  components: { EffectIcon, ItemIcon, FishBaitList },
   props: {
     fish: {
       type: Object,

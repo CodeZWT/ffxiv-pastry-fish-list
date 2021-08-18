@@ -104,7 +104,7 @@
                     </v-col>
                     <v-col cols="3" class="d-flex align-center flex-wrap">
                       <div v-for="effect in record.effects" :key="effect.ID">
-                        <div :class="effect.icon" :title="effect.name" />
+                        <effect-icon :icon-class="effect.icon" :title="effect.name" />
                       </div>
                     </v-col>
                     <v-col cols="4">
@@ -198,6 +198,7 @@ import DATA from 'Data/data'
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
 import PLACE_NAMES from 'Data/placeNames'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
+import EffectIcon from '@/components/basic/EffectIcon'
 
 // import TEST from 'Data/test'
 
@@ -206,7 +207,7 @@ const LOAD_MORE_CNT = 100
 
 export default {
   name: 'ReaderHistory',
-  components: { NewFeatureMark, ItemIcon },
+  components: { EffectIcon, NewFeatureMark, ItemIcon },
   props: {
     now: {
       type: Number,

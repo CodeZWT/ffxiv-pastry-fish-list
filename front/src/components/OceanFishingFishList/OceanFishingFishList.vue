@@ -64,7 +64,7 @@
               >
               </v-badge>
             </div>
-            <div :class="item.predatorsIcon" style="margin-left: 2px" />
+            <effect-icon :icon-class="item.predatorsIcon" style="margin-left: 2px" />
           </template>
 
           <v-badge
@@ -177,10 +177,11 @@ import DataUtil from '@/utils/DataUtil'
 import FIX from 'Data/fix'
 import FishBiteTimeList from '@/components/FishBiteTimeList'
 import WeatherIcon from '@/components/basic/WeatherIcon'
+import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'OceanFishingFishList',
-  components: { WeatherIcon, FishBiteTimeList, ToggleButton, ItemIcon },
+  components: { EffectIcon, WeatherIcon, FishBiteTimeList, ToggleButton, ItemIcon },
   props: {
     dense: {
       type: Boolean,

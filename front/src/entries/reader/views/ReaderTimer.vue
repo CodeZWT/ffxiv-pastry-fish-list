@@ -43,7 +43,7 @@
         </div>
         <div class="d-flex align-center">
           <div v-for="effect in effects" :key="effect.id">
-            <div :class="effect.icon" :title="effect.name" />
+            <effect-icon :icon-class="effect.icon" :title="effect.name" />
           </div>
         </div>
       </v-col>
@@ -205,6 +205,7 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import { SERVER_ID_NAMES } from 'Data/diadem'
 import db from '@/plugins/db'
+import EffectIcon from '@/components/basic/EffectIcon'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -212,7 +213,7 @@ const SPECTRAL_CURRENT = 145
 
 export default {
   name: 'ReaderTimer',
-  components: { ItemIcon, NewFeatureMark },
+  components: { EffectIcon, ItemIcon, NewFeatureMark },
   props: ['now'],
   data() {
     return {

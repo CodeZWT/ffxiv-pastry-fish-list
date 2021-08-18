@@ -77,10 +77,10 @@
                   </div>
                 </v-tooltip>
               </div>
-              <div
+              <effect-icon
                 v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
                 :title="$t('list.item.countDown.fishShadowHint')"
-                :class="fish.predatorsIcon"
+                :icon-class="fish.predatorsIcon"
                 style="margin-left: 2px"
               />
             </div>
@@ -135,9 +135,7 @@
                       <div class="bg-011103"></div>
                     </div>
                   </template>
-                  <div>
-                    时间条件在鱼眼模式下忽略
-                  </div>
+                  <div>时间条件在鱼眼模式下忽略</div>
                 </v-tooltip>
               </div>
               <div class="d-flex" v-if="fish.hasWeatherConstraint">
@@ -173,7 +171,7 @@
             <div class="d-flex align-center">
               <div v-if="fish.hasPredators || fish.hasSnagging" class="mr-1">
                 <div v-if="fish.hasPredators">
-                  <div :class="fish.predatorsIcon" />
+                  <effect-icon :icon-class="fish.predatorsIcon" />
                 </div>
                 <div v-if="fish.hasSnagging">
                   <div :class="fish.snaggingIcon" data-ck-action-name="钓组" />
@@ -251,9 +249,7 @@
               <v-col :class="locationColClass">
                 <div v-if="!inPredator && !hideSpotColumn" class="d-flex">
                   <v-btn text small icon @click.stop="onFishClicked(['DetailItemMap'])">
-                    <v-icon small>
-                      mdi-map
-                    </v-icon>
+                    <v-icon small> mdi-map </v-icon>
                   </v-btn>
                 </div>
               </v-col>
@@ -274,10 +270,12 @@ import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 import ClickHelper from '@/components/basic/ClickHelper'
 import LinkList from '@/components/basic/LinkList'
 import WeatherIcon from '@/components/basic/WeatherIcon'
+import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'FishInfoRowLarge',
   components: {
+    EffectIcon,
     WeatherIcon,
     LinkList,
     ClickHelper,

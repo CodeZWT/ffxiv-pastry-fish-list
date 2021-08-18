@@ -113,9 +113,7 @@
       </v-card-text>
       <div v-if="fish.hasPredators" class="background pt-2">
         <div class="d-flex justify-center align-center">
-          <!--          <v-icon small>mdi-arrow-down</v-icon>-->
           <div>前置鱼</div>
-          <!--          <div :class="fish.predatorsIcon" style="margin-left: 2px" />-->
         </div>
         <v-card-text
           v-for="(predator, index) in fish.predators"

@@ -150,10 +150,10 @@
                     </div>
                   </v-tooltip>
                 </div>
-                <div
+                <effect-icon
                   v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
+                  :icon-class="fish.predatorsIcon"
                   :title="$t('list.item.countDown.fishShadowHint')"
-                  :class="fish.predatorsIcon"
                   style="margin-left: 2px"
                 />
               </template>
@@ -293,7 +293,7 @@
           >
             <div v-if="fish.hasPredators || fish.hasSnagging" class="mr-1">
               <div v-if="fish.hasPredators" class="d-flex flex-column align-center">
-                <div :class="fish.predatorsIcon" />
+                <effect-icon :icon-class="fish.predatorsIcon" />
                 <div
                   v-if="fish.intuitionLength"
                   :title="secondsToMinutesString(fish.intuitionLength)"
@@ -437,10 +437,12 @@ import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 import ClickHelper from '@/components/basic/ClickHelper'
 import LinkList from '@/components/basic/LinkList'
 import WeatherIcon from '@/components/basic/WeatherIcon'
+import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'FishInfoRowLarge',
   components: {
+    EffectIcon,
     WeatherIcon,
     LinkList,
     ClickHelper,
