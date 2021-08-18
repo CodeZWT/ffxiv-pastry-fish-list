@@ -160,12 +160,12 @@
               ，请注意！
             </li>
             <li>鼠标悬停咬钩时间可以查看所有鱼饵的咬钩时间</li>
-            <li>
-              查看原始数据与上传数据请看
-              <a href="https://docs.qq.com/sheet/DUGNNQWlaUlNudk95" target="_blank">
-                【腾讯文档】5.4数据收集
-              </a>
-            </li>
+            <!--            <li>-->
+            <!--              查看原始数据与上传数据请看-->
+            <!--              <a href="https://docs.qq.com/sheet/DUGNNQWlaUlNudk95" target="_blank">-->
+            <!--                【腾讯文档】5.4数据收集-->
+            <!--              </a>-->
+            <!--            </li>-->
           </ul>
         </v-card-text>
         <v-card-actions>

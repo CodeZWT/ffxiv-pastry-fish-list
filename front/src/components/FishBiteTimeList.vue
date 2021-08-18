@@ -25,9 +25,9 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <v-btn color="primary" block @click="openUploadPage" class="rounded-t-0">
-        上传数据
-      </v-btn>
+      <!--      <v-btn color="primary" block @click="openUploadPage" class="rounded-t-0">-->
+      <!--        上传数据-->
+      <!--      </v-btn>-->
     </v-sheet>
   </v-menu>
 </template>
