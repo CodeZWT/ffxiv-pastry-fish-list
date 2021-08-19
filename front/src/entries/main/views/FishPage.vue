@@ -279,7 +279,11 @@
           </v-container>
         </div>
       </pane>
-      <pane v-if="showRightPane" :size="rightPaneSizeOfCurrentWindowSize">
+      <pane
+        v-if="showRightPane"
+        :size="rightPaneSizeOfCurrentWindowSize"
+        style="overflow-y: hidden"
+      >
         <div v-if="resizing" style="height: 100%">
           <v-banner>
             <v-avatar slot="icon" color="quaternary" size="40">

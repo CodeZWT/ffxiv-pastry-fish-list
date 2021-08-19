@@ -1,14 +1,13 @@
 <template>
   <div class="inner">
     <template v-if="fish">
-      <div>
-        <fish-list-expanded-header
-          :value="fish"
-          :fish-time-part="fishTimePart"
-          :show-close="inPane"
-          @close="$emit('close')"
-        />
-      </div>
+      <fish-list-expanded-header
+        :value="fish"
+        :fish-time-part="fishTimePart"
+        :show-close="inPane"
+        @close="$emit('close')"
+      />
+      <v-divider />
       <div
         :class="{
           'detail-header': inPane,
