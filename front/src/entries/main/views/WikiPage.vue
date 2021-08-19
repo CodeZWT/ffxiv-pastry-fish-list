@@ -71,6 +71,7 @@
             </v-btn>
           </v-btn-toggle>
         </div>
+        <v-divider />
         <v-card-text
           :class="{
             'spot-list': true,
@@ -1323,12 +1324,12 @@ export default {
   &--pc-web
     overflow-scrolling: auto
     overflow-y: scroll
-    height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56 + 56})
+    height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56 + 45})
   &--mobile-web
     overflow-y: hidden
-    height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56 + 56})
+    height: calc(100vh - #{ 56 + 45})
   &--electron
-    height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + 56 + 56})
+    height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + 56 + 45})
 
 .detail-wrapper
   width: 100%
