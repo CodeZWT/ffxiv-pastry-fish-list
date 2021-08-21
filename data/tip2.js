@@ -1903,7 +1903,7 @@ module.exports = {
     trick:
       '(12-18；雷雨)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-雕塑家(钓起2只触发鱼识)<br>(鱼识)蚕蛹-(中杆，强力)-岩盐咸鱼-(鱼王杆，强力)-胸脊鲨',
     comment:
-      '四幻神之鲨。难点不在本身，而在于根本没有<span style="font-weight:bold">雕塑家</span>。参考钓法：提前在ET10到场，提前打开收藏品，钓起一只<span style="font-weight:bold">岩盐咸鱼</span>后，专一等待ET12，双提鱼王杆，如果非常幸运地提到了<span style="font-weight:bold">雕塑家</span>，在ET16时候在点击“否”直接触发鱼识开始追梦。鱼识很长，慢慢钓。(<span style="font-weight:bold">珍珠眼</span>：妹妹没gp了吧，我来辣！)',
+      '四幻神之鲨。难点不在本身，而在于根本没有<span style="font-weight:bold">雕塑家</span>。参考钓法：提前在ET10到场，提前打开收藏品，钓起一只<span style="font-weight:bold">岩盐咸鱼HQ</span>后等待ET12，双提鱼王杆，如果非常幸运地提到了<span style="font-weight:bold">雕塑家</span>，在ET16时候在点击<span class="orangered">“否”</span>直接触发鱼识开始追梦。鱼识很长，慢慢钓。(<span style="font-weight:bold">珍珠眼</span>：妹妹没gp了吧，我来辣！)',
   },
   24993: {
     id: 24993,
