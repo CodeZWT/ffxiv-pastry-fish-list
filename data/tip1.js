@@ -41,39 +41,39 @@ module.exports = {
     trick:
       '火萤鱼王杆上大泷太郎后触发1分钟的捕鱼人之识buff，漂浮诱饵蛙鱼王杆上波太郎。大泷太郎咬钩率相当低，一旦上钩立刻换漂浮诱饵蛙，耐心吃药撒饵挥杆一气呵成，只强力提鱼王杆，一杆没上记得继续撒饵，一般一个buff最多挥出4杆，杆是快照机制，挥出的瞬间就决定你钓到什么鱼了，只要挥杆瞬间buff还在就有机会钓到。',
   },
-  17588: {
-    id: 17588,
-    name: '莫名熔岩鱼',
-    requirements:
-      '钓场：龙堡参天高地-光轮祭坛<br>条件：传承录，晴朗/碧空，ET10-15，捕鱼人之识<br>选饵：熔岩蠕虫→花岗蟹<br>着钩：鱼王杆-强力提钩',
-    predators:
-      '化石骨舌鱼x3(3转2鱼眼，熔岩蠕虫→花岗蟹，20s左右中杆咬钩，有陨龟干扰)<br>花岗蟹x5(熔岩蠕虫，轻杆，必中)<br>直感时间180s',
-    trick:
-      '1. 开启3转2鱼眼。推荐提前到场，在ET8之前开鱼眼，因为这个钓场有3个鱼眼，分别是3转2(化石骨舌鱼)、4转3(熔岩王)、5转4(熔岩帝王)。化石骨舌鱼没有CD，熔岩帝王的CD在8点开始，熔岩王的具体CD存疑，在8点之前更容易开到3转2鱼眼。<br>2. 不要开耐心和钓组，选饵-熔岩蠕虫-抛竿，将必定拉上一只花岗蟹。如果你的GP较低，注意保证以小钓大抛出后有400GP用于双重提钩。<br>3. 以小钓大-双重提钩，并祈祷拉上来的是化石骨舌鱼而不是陨龟。如果你拉上了陨龟，你可以尝试再拉3只花岗蟹并祈祷拉上HQ，并再次以小钓大双重提钩拉上化石骨舌鱼。如果超过3只，那么去隔壁钓场挥一杆，从头再来吧。<br>*另一种方法：直接开耐心钓化石骨舌鱼，脸黑有先钓到5只花岗蟹的风险，笔者不推荐使用这种方法。<br>4. 将花岗蟹补齐到4只。注意被以小钓大抛出去的花岗蟹也计入总数，不要算错提前触发直感。如果即将进入CD，起身取消鱼眼，防止在钓莫名熔岩鱼时化石骨舌鱼干扰。<br>5. 等待到10点，打开耐心II(*亦可先不开，平钓一只花岗蟹把以小钓大II消耗掉再开耐心，取舍见下)，抛竿-精准提钩-直感发动-以小钓大-鱼王杆-强力提钩！<span style="text-decoration:line-through" class="gray"> 上钩的鱼逃走了...... </span>你钓上了世界上最大尺寸的鱼！如果咬钩的是中杆，不要提钩，继续钓花岗蟹以小钓大。<br><span class="red">*关于耐心II的前后置：耐心II前置的话，以小钓大II一般会在门票即将结束时使用，导致在门票结束后继续等待3分钟才能转好，影响钓取下一张门票，但耐心II后置有直接钓上NQ莫名的风险。推荐钓图鉴NQ无所谓的玩家使用耐心后置，追求HQ的玩家使用耐心前置。如果这是该CD的最后一张门票，使用耐心前置。</span>',
-    remark:
-      '体感难度：中下<br>复杂度：高<br>CD频率：高<br>一个CD内平均触发直觉数：2-3<br>咬钩率：高<br>平均门票数/咬钩数：1<br>平均一张门票的有效杆数：4<br>脱钩率：高<br>平均脱钩率：90%',
-    record:
-      '  1周目<br>  门票张数：11<br>  脱钩次数：6<br>NQ get！<br>  2周目<br>  门票张数：12<br>  脱钩次数：11<br>HQ get！',
-    wholeHtml:
-      '<div class="quote"><span class="tac" style="display:block;text-align:center"><span style="font-size:150%;line-height:183%"><span style="font-weight:bold">莫名熔岩鱼</span></span></span><div class="quote">钓场：龙堡参天高地-光轮祭坛<br>条件：传承录，晴朗/碧空，ET10-15，捕鱼人之识<br>选饵：熔岩蠕虫→花岗蟹<br>着钩：鱼王杆-强力提钩</div><div class="quote">门票：<br>化石骨舌鱼x3(3转2鱼眼，熔岩蠕虫→花岗蟹，20s左右中杆咬钩，有陨龟干扰)<br>花岗蟹x5(熔岩蠕虫，轻杆，必中)<br>直感时间180s</div><div class="quote">推荐流程：<br>1. 开启3转2鱼眼。推荐提前到场，在ET8之前开鱼眼，因为这个钓场有3个鱼眼，分别是3转2(化石骨舌鱼)、4转3(熔岩王)、5转4(熔岩帝王)。化石骨舌鱼没有CD，熔岩帝王的CD在8点开始，熔岩王的具体CD存疑，在8点之前更容易开到3转2鱼眼。<br>2. 不要开耐心和钓组，选饵-熔岩蠕虫-抛竿，将必定拉上一只花岗蟹。如果你的GP较低，注意保证以小钓大抛出后有400GP用于双重提钩。<br>3. 以小钓大-双重提钩，并祈祷拉上来的是化石骨舌鱼而不是陨龟。如果你拉上了陨龟，你可以尝试再拉3只花岗蟹并祈祷拉上HQ，并再次以小钓大双重提钩拉上化石骨舌鱼。如果超过3只，那么去隔壁钓场挥一杆，从头再来吧。<br>*另一种方法：直接开耐心钓化石骨舌鱼，脸黑有先钓到5只花岗蟹的风险，笔者不推荐使用这种方法。<br>4. 将花岗蟹补齐到4只。注意被以小钓大抛出去的花岗蟹也计入总数，不要算错提前触发直感。如果即将进入CD，起身取消鱼眼，防止在钓莫名熔岩鱼时化石骨舌鱼干扰。<br>5. 等待到10点，打开耐心II(*亦可先不开，平钓一只花岗蟹把以小钓大II消耗掉再开耐心，取舍见下)，抛竿-精准提钩-直感发动-以小钓大-鱼王杆-强力提钩！<span style="text-decoration:line-through" class="gray"> 上钩的鱼逃走了...... </span>你钓上了世界上最大尺寸的鱼！如果咬钩的是中杆，不要提钩，继续钓花岗蟹以小钓大。<br><span class="red">*关于耐心II的前后置：耐心II前置的话，以小钓大II一般会在门票即将结束时使用，导致在门票结束后继续等待3分钟才能转好，影响钓取下一张门票，但耐心II后置有直接钓上NQ莫名的风险。推荐钓图鉴NQ无所谓的玩家使用耐心后置，追求HQ的玩家使用耐心前置。如果这是该CD的最后一张门票，使用耐心前置。</span></div><div class="quote">笔者评价：<br>体感难度：中下<br>复杂度：高<br>CD频率：高<br>一个CD内平均触发直觉数：2-3<br>咬钩率：高<br>平均门票数/咬钩数：1<br>平均一张门票的有效杆数：4<br>脱钩率：高<br>平均脱钩率：90%</div><div class="quote">笔者的话：<br>一定要提前准备，现场钓门票会受到大量干扰。如果一张门票没钓起来/陨龟x4，获得第二张门票的难度明显增加。<br><span class="red">注意你的采集时钟的时间准确性，笔者发现市面上有部分常用的采集时钟(如版头的4.2汉化版采集时钟、暗骑士采集时钟等)对莫名熔岩鱼的CD时间多计算了1小时(实际上对7点、15点、23点，即转天气前1小时结束CD的鱼都有类似的误算)。具体的错误原因是有一行代码出现了问题，网站文件中的gt.bell.js第2158行的i&lt;7应为i&lt;8。</span><br><span style="text-decoration:line-through" class="gray"> 另外这条鱼也太大了吧，有30个拉拉肥渔夫那么长，我是怎么把这么大的家伙拉上来的 </span></div><div class="quote">笔者记录：<br>  1周目<br>  门票张数：11<br>  脱钩次数：6<br>NQ get！<br>  2周目<br>  门票张数：12<br>  脱钩次数：11<br>HQ get！</div></div><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;postcontent1&quot;)"><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;collapseBlock8307&quot;)">',
-  },
-  17589: {
-    id: 17589,
-    name: '欧巴宾海蝎',
-    requirements:
-      '钓场：魔大陆阿济兹拉-阿济兹拉旗舰岛<br>条件：传承录，<span class="red">打雷</span>，捕鱼人之识<br>选饵：恶魔蠕虫→白金鱼<br>着钩：鱼王杆-精准提钩',
-    predators: '欧洛浦肯x3(2转1鱼眼，恶魔蠕虫，唯一的中杆)<br>直感时间100s',
-    trick:
-      '(双重提钩流)<br>1. 尽量避开ET20-次日ET3，开启2转1鱼眼。注意鱼眼后你的GP应保持在400以上以保证能够立刻发动双重提钩，推荐满GP开鱼眼。你无法避开持续2鱼眼(桶眼鱼)，因为这两条鱼条件完全一样都是打雷，避开时间是为了避开宝石水母。<br>2. 抛竿平钓欧洛浦肯(咬钩率很低)，对中杆使用双重提钩，直感会直接发动。<br>3. 抛竿，提钩轻杆，拉起一只白金鱼(10s+，偶有15s以上，不易与阿济兹鱼区分)，以小钓大，然后祈祷海蝎咬钩。假如欧洛浦肯在鱼眼剩余不多时咬钩，也许能磕一瓶高级强心剂发动耐心，但警惕阿济兹鱼耗尽你的GP。<span class="red">5.0new：你也可以拍了它<span style="text-decoration:line-through" class="gray"> 但是你真的还有GP拍它吗 </span></span><br><span class="red">相关计算：发动鱼眼需要350GP，使用双重提钩需要400GP，使用高级强心剂恢复400GP，触发捕鱼人之识时的GP=MAXGP-350+(0-280)，取决于欧洛浦肯的咬钩时间。笔者的MAXGP为848，可以至少保证耐心1的发动，但是仍要考虑精准提钩的消耗。个人的建议是，在鱼眼剩余时间小于1分钟时钓起门票，使用耐心，如果在鱼眼即将消失或已经消失时钓起门票，使用耐心II，门票太快着钩则不开耐心。</span><br>优点：能够短时间内争取更多次数的捕鱼人之识。<br>缺点：不容易攒出GP在捕鱼人之识中发动耐心，往往在时间内只能用以小钓大II挥出一杆，难以保证海蝎的HQ。',
-    trick2:
-      '另一种流程：(平钓流)<br>1. 尽量避开ET20-次日ET3，开启2转1鱼眼。<br>2. 平钓欧洛浦肯，不使用双重提钩。<br>3. 钓上3只欧洛浦肯，触发直感，发动耐心II，轻杆精准提钩白金鱼，以小钓大鱼王杆精准提钩海蝎HQ！<br>优点：有足够的GP开耐心甚至撒饵，能够在一个捕鱼人之识里挥出多杆白金鱼，容易钓上HQ海蝎。<br>缺点：钓门票速度很慢，非常需要耐心。',
-    remark:
-      '(双重提钩流)<br>体感难度：高<br>复杂度：高<br>CD频率：高<br>一个CD内平均触发直觉数：完全看脸<br>咬钩率：中<br>平均门票数/咬钩数：3-4<br>平均一张门票的有效杆数：1-2<br>脱钩率：高<br>平均脱钩率：85%',
-    record:
-      '1周目<br>  门票张数：41<br>  脱钩次数：10<br>  NQ get！<br>2周目<br>  门票张数：6<br>  脱钩次数：2<br>  HQ get！',
-    wholeHtml:
-      '<div class="quote"><span class="tac" style="display:block;text-align:center"><span style="font-size:150%;line-height:183%"><span style="font-weight:bold">欧巴宾海蝎</span></span></span><div class="quote">钓场：魔大陆阿济兹拉-阿济兹拉旗舰岛<br>条件：传承录，<span class="red">打雷</span>，捕鱼人之识<br>选饵：恶魔蠕虫→白金鱼<br>着钩：鱼王杆-精准提钩</div><div class="quote">门票：<br>欧洛浦肯x3(2转1鱼眼，恶魔蠕虫，唯一的中杆)<br>直感时间100s</div><div class="quote">推荐流程：(双重提钩流)<br>1. 尽量避开ET20-次日ET3，开启2转1鱼眼。注意鱼眼后你的GP应保持在400以上以保证能够立刻发动双重提钩，推荐满GP开鱼眼。你无法避开持续2鱼眼(桶眼鱼)，因为这两条鱼条件完全一样都是打雷，避开时间是为了避开宝石水母。<br>2. 抛竿平钓欧洛浦肯(咬钩率很低)，对中杆使用双重提钩，直感会直接发动。<br>3. 抛竿，提钩轻杆，拉起一只白金鱼(10s+，偶有15s以上，不易与阿济兹鱼区分)，以小钓大，然后祈祷海蝎咬钩。假如欧洛浦肯在鱼眼剩余不多时咬钩，也许能磕一瓶高级强心剂发动耐心，但警惕阿济兹鱼耗尽你的GP。<span class="red">5.0new：你也可以拍了它<span style="text-decoration:line-through" class="gray"> 但是你真的还有GP拍它吗 </span></span><br><span class="red">相关计算：发动鱼眼需要350GP，使用双重提钩需要400GP，使用高级强心剂恢复400GP，触发捕鱼人之识时的GP=MAXGP-350+(0-280)，取决于欧洛浦肯的咬钩时间。笔者的MAXGP为848，可以至少保证耐心1的发动，但是仍要考虑精准提钩的消耗。个人的建议是，在鱼眼剩余时间小于1分钟时钓起门票，使用耐心，如果在鱼眼即将消失或已经消失时钓起门票，使用耐心II，门票太快着钩则不开耐心。</span><br>优点：能够短时间内争取更多次数的捕鱼人之识。<br>缺点：不容易攒出GP在捕鱼人之识中发动耐心，往往在时间内只能用以小钓大II挥出一杆，难以保证海蝎的HQ。</div><div class="quote">另一种流程：(平钓流)<br>1. 尽量避开ET20-次日ET3，开启2转1鱼眼。<br>2. 平钓欧洛浦肯，不使用双重提钩。<br>3. 钓上3只欧洛浦肯，触发直感，发动耐心II，轻杆精准提钩白金鱼，以小钓大鱼王杆精准提钩海蝎HQ！<br>优点：有足够的GP开耐心甚至撒饵，能够在一个捕鱼人之识里挥出多杆白金鱼，容易钓上HQ海蝎。<br>缺点：钓门票速度很慢，非常需要耐心。</div><div class="quote"><span class="red">5.0new：专一邪道<br>2转1鱼眼平钓，中杆平提，开专一再抛竿(需要鱼眼还没掉，掉了要重新开)，点掉专一buff，平提，再开专一，挂机回复GP到满强心剂转好，再开一个2转1鱼眼，没开出来就挂机回满GP再开，开出来了就挂机到鱼眼最后一秒抛竿，平提，可以以最多的GP进门票，需要时间充足，仅推荐非HQ不钓的硬核补HQ渔夫使用。</span></div><div class="quote">笔者评价：(双重提钩流)<br>体感难度：高<br>复杂度：高<br>CD频率：高<br>一个CD内平均触发直觉数：完全看脸<br>咬钩率：中<br>平均门票数/咬钩数：3-4<br>平均一张门票的有效杆数：1-2<br>脱钩率：高<br>平均脱钩率：85%</div><div class="quote">笔者的话：<br>关于天气的问题，有很多人认为是打雷转打雷，但是<span class="red">笔者近日成功在晴朗转打雷钓到了，所以可以确定不是必须打雷转打雷。</span><br>两种钓法各有优劣，视情况需要而选用。海蝎可能是最难的鱼皇，其苛刻的门票条件和GP限制，以及惊人的脱钩率令人望而却步。要钓起这条鱼需要耐心、坚持以及一些小计算。<br><span style="text-decoration:line-through" class="gray"> 建议关闭bgm，钓久了很洗脑的 </span></div><div class="quote">笔者记录：<br>1周目<br>  门票张数：41<br>  脱钩次数：10<br>  NQ get！<br>2周目<br>  门票张数：6<br>  脱钩次数：2<br>  HQ get！</div></div><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;postcontent1&quot;)"><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;collapseBlock2188&quot;)">',
-  },
+  // 17588: {
+  //   id: 17588,
+  //   name: '莫名熔岩鱼',
+  //   requirements:
+  //     '钓场：龙堡参天高地-光轮祭坛<br>条件：传承录，晴朗/碧空，ET10-15，捕鱼人之识<br>选饵：熔岩蠕虫→花岗蟹<br>着钩：鱼王杆-强力提钩',
+  //   predators:
+  //     '化石骨舌鱼x3(3转2鱼眼，熔岩蠕虫→花岗蟹，20s左右中杆咬钩，有陨龟干扰)<br>花岗蟹x5(熔岩蠕虫，轻杆，必中)<br>直感时间180s',
+  //   trick:
+  //     '1. 开启3转2鱼眼。推荐提前到场，在ET8之前开鱼眼，因为这个钓场有3个鱼眼，分别是3转2(化石骨舌鱼)、4转3(熔岩王)、5转4(熔岩帝王)。化石骨舌鱼没有CD，熔岩帝王的CD在8点开始，熔岩王的具体CD存疑，在8点之前更容易开到3转2鱼眼。<br>2. 不要开耐心和钓组，选饵-熔岩蠕虫-抛竿，将必定拉上一只花岗蟹。如果你的GP较低，注意保证以小钓大抛出后有400GP用于双重提钩。<br>3. 以小钓大-双重提钩，并祈祷拉上来的是化石骨舌鱼而不是陨龟。如果你拉上了陨龟，你可以尝试再拉3只花岗蟹并祈祷拉上HQ，并再次以小钓大双重提钩拉上化石骨舌鱼。如果超过3只，那么去隔壁钓场挥一杆，从头再来吧。<br>*另一种方法：直接开耐心钓化石骨舌鱼，脸黑有先钓到5只花岗蟹的风险，笔者不推荐使用这种方法。<br>4. 将花岗蟹补齐到4只。注意被以小钓大抛出去的花岗蟹也计入总数，不要算错提前触发直感。如果即将进入CD，起身取消鱼眼，防止在钓莫名熔岩鱼时化石骨舌鱼干扰。<br>5. 等待到10点，打开耐心II(*亦可先不开，平钓一只花岗蟹把以小钓大II消耗掉再开耐心，取舍见下)，抛竿-精准提钩-直感发动-以小钓大-鱼王杆-强力提钩！<span style="text-decoration:line-through" class="gray"> 上钩的鱼逃走了...... </span>你钓上了世界上最大尺寸的鱼！如果咬钩的是中杆，不要提钩，继续钓花岗蟹以小钓大。<br><span class="red">*关于耐心II的前后置：耐心II前置的话，以小钓大II一般会在门票即将结束时使用，导致在门票结束后继续等待3分钟才能转好，影响钓取下一张门票，但耐心II后置有直接钓上NQ莫名的风险。推荐钓图鉴NQ无所谓的玩家使用耐心后置，追求HQ的玩家使用耐心前置。如果这是该CD的最后一张门票，使用耐心前置。</span>',
+  //   remark:
+  //     '体感难度：中下<br>复杂度：高<br>CD频率：高<br>一个CD内平均触发直觉数：2-3<br>咬钩率：高<br>平均门票数/咬钩数：1<br>平均一张门票的有效杆数：4<br>脱钩率：高<br>平均脱钩率：90%',
+  //   record:
+  //     '  1周目<br>  门票张数：11<br>  脱钩次数：6<br>NQ get！<br>  2周目<br>  门票张数：12<br>  脱钩次数：11<br>HQ get！',
+  //   wholeHtml:
+  //     '<div class="quote"><span class="tac" style="display:block;text-align:center"><span style="font-size:150%;line-height:183%"><span style="font-weight:bold">莫名熔岩鱼</span></span></span><div class="quote">钓场：龙堡参天高地-光轮祭坛<br>条件：传承录，晴朗/碧空，ET10-15，捕鱼人之识<br>选饵：熔岩蠕虫→花岗蟹<br>着钩：鱼王杆-强力提钩</div><div class="quote">门票：<br>化石骨舌鱼x3(3转2鱼眼，熔岩蠕虫→花岗蟹，20s左右中杆咬钩，有陨龟干扰)<br>花岗蟹x5(熔岩蠕虫，轻杆，必中)<br>直感时间180s</div><div class="quote">推荐流程：<br>1. 开启3转2鱼眼。推荐提前到场，在ET8之前开鱼眼，因为这个钓场有3个鱼眼，分别是3转2(化石骨舌鱼)、4转3(熔岩王)、5转4(熔岩帝王)。化石骨舌鱼没有CD，熔岩帝王的CD在8点开始，熔岩王的具体CD存疑，在8点之前更容易开到3转2鱼眼。<br>2. 不要开耐心和钓组，选饵-熔岩蠕虫-抛竿，将必定拉上一只花岗蟹。如果你的GP较低，注意保证以小钓大抛出后有400GP用于双重提钩。<br>3. 以小钓大-双重提钩，并祈祷拉上来的是化石骨舌鱼而不是陨龟。如果你拉上了陨龟，你可以尝试再拉3只花岗蟹并祈祷拉上HQ，并再次以小钓大双重提钩拉上化石骨舌鱼。如果超过3只，那么去隔壁钓场挥一杆，从头再来吧。<br>*另一种方法：直接开耐心钓化石骨舌鱼，脸黑有先钓到5只花岗蟹的风险，笔者不推荐使用这种方法。<br>4. 将花岗蟹补齐到4只。注意被以小钓大抛出去的花岗蟹也计入总数，不要算错提前触发直感。如果即将进入CD，起身取消鱼眼，防止在钓莫名熔岩鱼时化石骨舌鱼干扰。<br>5. 等待到10点，打开耐心II(*亦可先不开，平钓一只花岗蟹把以小钓大II消耗掉再开耐心，取舍见下)，抛竿-精准提钩-直感发动-以小钓大-鱼王杆-强力提钩！<span style="text-decoration:line-through" class="gray"> 上钩的鱼逃走了...... </span>你钓上了世界上最大尺寸的鱼！如果咬钩的是中杆，不要提钩，继续钓花岗蟹以小钓大。<br><span class="red">*关于耐心II的前后置：耐心II前置的话，以小钓大II一般会在门票即将结束时使用，导致在门票结束后继续等待3分钟才能转好，影响钓取下一张门票，但耐心II后置有直接钓上NQ莫名的风险。推荐钓图鉴NQ无所谓的玩家使用耐心后置，追求HQ的玩家使用耐心前置。如果这是该CD的最后一张门票，使用耐心前置。</span></div><div class="quote">笔者评价：<br>体感难度：中下<br>复杂度：高<br>CD频率：高<br>一个CD内平均触发直觉数：2-3<br>咬钩率：高<br>平均门票数/咬钩数：1<br>平均一张门票的有效杆数：4<br>脱钩率：高<br>平均脱钩率：90%</div><div class="quote">笔者的话：<br>一定要提前准备，现场钓门票会受到大量干扰。如果一张门票没钓起来/陨龟x4，获得第二张门票的难度明显增加。<br><span class="red">注意你的采集时钟的时间准确性，笔者发现市面上有部分常用的采集时钟(如版头的4.2汉化版采集时钟、暗骑士采集时钟等)对莫名熔岩鱼的CD时间多计算了1小时(实际上对7点、15点、23点，即转天气前1小时结束CD的鱼都有类似的误算)。具体的错误原因是有一行代码出现了问题，网站文件中的gt.bell.js第2158行的i&lt;7应为i&lt;8。</span><br><span style="text-decoration:line-through" class="gray"> 另外这条鱼也太大了吧，有30个拉拉肥渔夫那么长，我是怎么把这么大的家伙拉上来的 </span></div><div class="quote">笔者记录：<br>  1周目<br>  门票张数：11<br>  脱钩次数：6<br>NQ get！<br>  2周目<br>  门票张数：12<br>  脱钩次数：11<br>HQ get！</div></div><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;postcontent1&quot;)"><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;collapseBlock8307&quot;)">',
+  // },
+  // 17589: {
+  //   id: 17589,
+  //   name: '欧巴宾海蝎',
+  //   requirements:
+  //     '钓场：魔大陆阿济兹拉-阿济兹拉旗舰岛<br>条件：传承录，<span class="red">打雷</span>，捕鱼人之识<br>选饵：恶魔蠕虫→白金鱼<br>着钩：鱼王杆-精准提钩',
+  //   predators: '欧洛浦肯x3(2转1鱼眼，恶魔蠕虫，唯一的中杆)<br>直感时间100s',
+  //   trick:
+  //     '(双重提钩流)<br>1. 尽量避开ET20-次日ET3，开启2转1鱼眼。注意鱼眼后你的GP应保持在400以上以保证能够立刻发动双重提钩，推荐满GP开鱼眼。你无法避开持续2鱼眼(桶眼鱼)，因为这两条鱼条件完全一样都是打雷，避开时间是为了避开宝石水母。<br>2. 抛竿平钓欧洛浦肯(咬钩率很低)，对中杆使用双重提钩，直感会直接发动。<br>3. 抛竿，提钩轻杆，拉起一只白金鱼(10s+，偶有15s以上，不易与阿济兹鱼区分)，以小钓大，然后祈祷海蝎咬钩。假如欧洛浦肯在鱼眼剩余不多时咬钩，也许能磕一瓶高级强心剂发动耐心，但警惕阿济兹鱼耗尽你的GP。<span class="red">5.0new：你也可以拍了它<span style="text-decoration:line-through" class="gray"> 但是你真的还有GP拍它吗 </span></span><br><span class="red">相关计算：发动鱼眼需要350GP，使用双重提钩需要400GP，使用高级强心剂恢复400GP，触发捕鱼人之识时的GP=MAXGP-350+(0-280)，取决于欧洛浦肯的咬钩时间。笔者的MAXGP为848，可以至少保证耐心1的发动，但是仍要考虑精准提钩的消耗。个人的建议是，在鱼眼剩余时间小于1分钟时钓起门票，使用耐心，如果在鱼眼即将消失或已经消失时钓起门票，使用耐心II，门票太快着钩则不开耐心。</span><br>优点：能够短时间内争取更多次数的捕鱼人之识。<br>缺点：不容易攒出GP在捕鱼人之识中发动耐心，往往在时间内只能用以小钓大II挥出一杆，难以保证海蝎的HQ。',
+  //   trick2:
+  //     '另一种流程：(平钓流)<br>1. 尽量避开ET20-次日ET3，开启2转1鱼眼。<br>2. 平钓欧洛浦肯，不使用双重提钩。<br>3. 钓上3只欧洛浦肯，触发直感，发动耐心II，轻杆精准提钩白金鱼，以小钓大鱼王杆精准提钩海蝎HQ！<br>优点：有足够的GP开耐心甚至撒饵，能够在一个捕鱼人之识里挥出多杆白金鱼，容易钓上HQ海蝎。<br>缺点：钓门票速度很慢，非常需要耐心。',
+  //   remark:
+  //     '(双重提钩流)<br>体感难度：高<br>复杂度：高<br>CD频率：高<br>一个CD内平均触发直觉数：完全看脸<br>咬钩率：中<br>平均门票数/咬钩数：3-4<br>平均一张门票的有效杆数：1-2<br>脱钩率：高<br>平均脱钩率：85%',
+  //   record:
+  //     '1周目<br>  门票张数：41<br>  脱钩次数：10<br>  NQ get！<br>2周目<br>  门票张数：6<br>  脱钩次数：2<br>  HQ get！',
+  //   wholeHtml:
+  //     '<div class="quote"><span class="tac" style="display:block;text-align:center"><span style="font-size:150%;line-height:183%"><span style="font-weight:bold">欧巴宾海蝎</span></span></span><div class="quote">钓场：魔大陆阿济兹拉-阿济兹拉旗舰岛<br>条件：传承录，<span class="red">打雷</span>，捕鱼人之识<br>选饵：恶魔蠕虫→白金鱼<br>着钩：鱼王杆-精准提钩</div><div class="quote">门票：<br>欧洛浦肯x3(2转1鱼眼，恶魔蠕虫，唯一的中杆)<br>直感时间100s</div><div class="quote">推荐流程：(双重提钩流)<br>1. 尽量避开ET20-次日ET3，开启2转1鱼眼。注意鱼眼后你的GP应保持在400以上以保证能够立刻发动双重提钩，推荐满GP开鱼眼。你无法避开持续2鱼眼(桶眼鱼)，因为这两条鱼条件完全一样都是打雷，避开时间是为了避开宝石水母。<br>2. 抛竿平钓欧洛浦肯(咬钩率很低)，对中杆使用双重提钩，直感会直接发动。<br>3. 抛竿，提钩轻杆，拉起一只白金鱼(10s+，偶有15s以上，不易与阿济兹鱼区分)，以小钓大，然后祈祷海蝎咬钩。假如欧洛浦肯在鱼眼剩余不多时咬钩，也许能磕一瓶高级强心剂发动耐心，但警惕阿济兹鱼耗尽你的GP。<span class="red">5.0new：你也可以拍了它<span style="text-decoration:line-through" class="gray"> 但是你真的还有GP拍它吗 </span></span><br><span class="red">相关计算：发动鱼眼需要350GP，使用双重提钩需要400GP，使用高级强心剂恢复400GP，触发捕鱼人之识时的GP=MAXGP-350+(0-280)，取决于欧洛浦肯的咬钩时间。笔者的MAXGP为848，可以至少保证耐心1的发动，但是仍要考虑精准提钩的消耗。个人的建议是，在鱼眼剩余时间小于1分钟时钓起门票，使用耐心，如果在鱼眼即将消失或已经消失时钓起门票，使用耐心II，门票太快着钩则不开耐心。</span><br>优点：能够短时间内争取更多次数的捕鱼人之识。<br>缺点：不容易攒出GP在捕鱼人之识中发动耐心，往往在时间内只能用以小钓大II挥出一杆，难以保证海蝎的HQ。</div><div class="quote">另一种流程：(平钓流)<br>1. 尽量避开ET20-次日ET3，开启2转1鱼眼。<br>2. 平钓欧洛浦肯，不使用双重提钩。<br>3. 钓上3只欧洛浦肯，触发直感，发动耐心II，轻杆精准提钩白金鱼，以小钓大鱼王杆精准提钩海蝎HQ！<br>优点：有足够的GP开耐心甚至撒饵，能够在一个捕鱼人之识里挥出多杆白金鱼，容易钓上HQ海蝎。<br>缺点：钓门票速度很慢，非常需要耐心。</div><div class="quote"><span class="red">5.0new：专一邪道<br>2转1鱼眼平钓，中杆平提，开专一再抛竿(需要鱼眼还没掉，掉了要重新开)，点掉专一buff，平提，再开专一，挂机回复GP到满强心剂转好，再开一个2转1鱼眼，没开出来就挂机回满GP再开，开出来了就挂机到鱼眼最后一秒抛竿，平提，可以以最多的GP进门票，需要时间充足，仅推荐非HQ不钓的硬核补HQ渔夫使用。</span></div><div class="quote">笔者评价：(双重提钩流)<br>体感难度：高<br>复杂度：高<br>CD频率：高<br>一个CD内平均触发直觉数：完全看脸<br>咬钩率：中<br>平均门票数/咬钩数：3-4<br>平均一张门票的有效杆数：1-2<br>脱钩率：高<br>平均脱钩率：85%</div><div class="quote">笔者的话：<br>关于天气的问题，有很多人认为是打雷转打雷，但是<span class="red">笔者近日成功在晴朗转打雷钓到了，所以可以确定不是必须打雷转打雷。</span><br>两种钓法各有优劣，视情况需要而选用。海蝎可能是最难的鱼皇，其苛刻的门票条件和GP限制，以及惊人的脱钩率令人望而却步。要钓起这条鱼需要耐心、坚持以及一些小计算。<br><span style="text-decoration:line-through" class="gray"> 建议关闭bgm，钓久了很洗脑的 </span></div><div class="quote">笔者记录：<br>1周目<br>  门票张数：41<br>  脱钩次数：10<br>  NQ get！<br>2周目<br>  门票张数：6<br>  脱钩次数：2<br>  HQ get！</div></div><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;postcontent1&quot;)"><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;collapseBlock2188&quot;)">',
+  // },
   17590: {
     id: 17590,
     name: '铠鱼',
@@ -160,20 +160,20 @@ module.exports = {
     wholeHtml:
       '<div class="quote"><span class="tac" style="display:block;text-align:center"><span style="font-size:150%;line-height:183%"><span style="font-weight:bold">镰甲鱼</span></span></span><div class="quote">钓场：基拉巴尼亚山区-夫妇池<br>条件：传承录，扬沙，捕鱼人之识<br>选饵：<span class="red">5.0new：悬浮诱饵鱼<span style="text-decoration:line-through" class="gray"> 没想到吧，我米诺悬浮拟饵改名了 </span></span><br>着钩：鱼王杆-强力提钩</div><div class="quote">门票：<br>怨妇虾x2(鱼王)<br>直感时间180s</div><div class="quote">推荐流程：<br>没什么好推荐的，钓鱼王，钓鱼王，钓完鱼王钓鱼皇，撒饵耐心强力提，<span style="text-decoration:line-through" class="gray"> 怎么又是怨妇虾 </span>。<br>注意鱼王不吃双提<span style="text-decoration:line-through" class="gray"> 更不吃专一垂钓 </span>。<span style="text-decoration:line-through" class="gray"> 有门票内鱼王竿看时间放竿的手法，但是不推荐。谁能顶住鱼王竿的诱惑呢 </span><br><span class="red">5.0new：门票触发的时候，把钓上的那条怨妇虾拍了，可以保证直感内不受怨妇虾的干扰。</span></div><div class="quote">笔者评价：<br>体感难度：中<br>复杂度：低<br>CD频率：较高<br>一个CD内平均触发直觉数：1<br>咬钩率：中<br>脱钩率：中</div><div class="quote">笔者的话：<br>一条纯运气，没什么技巧的鱼。一直钓不上的非洲渔夫在我们服务器的渔夫贝里称“钓成了怨妇”。</div><div class="quote">笔者记录：<br>CD1<br>怨妇虾脱钩1<br>门票2<br>直感中怨妇虾1<br>直感中脱钩1<br>HQ get！</div></div><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;postcontent0&quot;)"><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;collapseBlock8659&quot;)">',
   },
-  24992: {
-    id: 24992,
-    name: '胸脊鲨',
-    requirements:
-      '钓场：基拉巴尼亚湖区-盐湖<br>条件：传承录，ET16-18，捕鱼人之识<br>选饵：蚕蛹→岩盐咸鱼<br>着钩：鱼王杆-强力提钩',
-    predators:
-      '雕塑家x2(ET12-18，雷雨，鱼眼，蚕蛹→岩盐咸鱼，鱼王竿，25s以上)<br>直感时间360s',
-    trick:
-      '0.不推荐单提雕塑家法，因为雕塑家咬钩率低CD短且少，盐湖度假法不知道要挂到猴年马月去。耐心双提也不推荐。<br>1.收藏品采集，鱼眼，平钓岩盐咸鱼(唯一的中杆，20s即可收杆)，以小钓大II，双重提钩，<span style="text-decoration:line-through" class="gray"> 珍珠眼x2 </span>，以小钓大IICD时继续空手套HQ咸鱼以小钓大双提，重复数次。<br>2.如果双提中奖了，留着收藏品确认窗口不点，直到GP恢复好，时间到ET16。如果雕塑家是在ET16-18的CD钓上来的，可以挂机到次日ET16点，俗称罚站。(因为在确认收藏品窗口不点的时候，即使是拿出了小板凳也不会坐下。)<br>3.<span class="red">取消！</span>耐心！强力！强力！鱼皇咬钩率很高，咬钩比珍珠眼快，大约20s咬。',
-    remark: '体感难度：高<br>复杂度：中<br>CD频率：中<br>咬钩率：高<br>脱钩率：中低',
-    record: 'CD6<br>双提珍珠眼12<br>门票1<br>HQ get！<br>第4条钓上',
-    wholeHtml:
-      '<div class="quote"><span class="tac" style="display:block;text-align:center"><span style="font-size:150%;line-height:183%"><span style="font-weight:bold">胸脊鲨</span></span></span><div class="quote">钓场：基拉巴尼亚湖区-盐湖<br>条件：传承录，ET16-18，捕鱼人之识<br>选饵：蚕蛹→岩盐咸鱼<br>着钩：鱼王杆-强力提钩</div><div class="quote">门票：<br>雕塑家x2(ET12-18，雷雨，鱼眼，蚕蛹→岩盐咸鱼，鱼王竿，25s以上)<br>直感时间360s</div><div class="quote">推荐流程：<br>0.不推荐单提雕塑家法，因为雕塑家咬钩率低CD短且少，盐湖度假法不知道要挂到猴年马月去。耐心双提也不推荐。<br>1.收藏品采集，鱼眼，平钓岩盐咸鱼(唯一的中杆，20s即可收杆)，以小钓大II，双重提钩，<span style="text-decoration:line-through" class="gray"> 珍珠眼x2 </span>，以小钓大IICD时继续空手套HQ咸鱼以小钓大双提，重复数次。<br>2.如果双提中奖了，留着收藏品确认窗口不点，直到GP恢复好，时间到ET16。如果雕塑家是在ET16-18的CD钓上来的，可以挂机到次日ET16点，俗称罚站。(因为在确认收藏品窗口不点的时候，即使是拿出了小板凳也不会坐下。)<br>3.<span class="red">取消！</span>耐心！强力！强力！鱼皇咬钩率很高，咬钩比珍珠眼快，大约20s咬。</div><div class="quote">笔者评价：<br>体感难度：高<br>复杂度：中<br>CD频率：中<br>咬钩率：高<br>脱钩率：中低</div><div class="quote">笔者的话：<br>杀不尽的珍珠眼，流不尽的非洲泪。门票就像摸奖，每个CD都去提几竿，说不定就中了。难点都在门票，鱼皇本体比较好钓，咬钩率很高。鱼皇本身没有天气要求，所以可以用罚站法。<br>可以刷新盐湖的钓场记录。<br><span class="red">5.0new：雕塑家不吃专一垂钓，珍珠眼拍击水面也没用。</span></div><div class="quote">笔者记录：<br>CD6<br>双提珍珠眼12<br>门票1<br>HQ get！<br>第4条钓上</div></div><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;postcontent0&quot;)"><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;collapseBlock3850&quot;)">',
-  },
+  // 24992: {
+  //   id: 24992,
+  //   name: '胸脊鲨',
+  //   requirements:
+  //     '钓场：基拉巴尼亚湖区-盐湖<br>条件：传承录，ET16-18，捕鱼人之识<br>选饵：蚕蛹→岩盐咸鱼<br>着钩：鱼王杆-强力提钩',
+  //   predators:
+  //     '雕塑家x2(ET12-18，雷雨，鱼眼，蚕蛹→岩盐咸鱼，鱼王竿，25s以上)<br>直感时间360s',
+  //   trick:
+  //     '0.不推荐单提雕塑家法，因为雕塑家咬钩率低CD短且少，盐湖度假法不知道要挂到猴年马月去。耐心双提也不推荐。<br>1.收藏品采集，鱼眼，平钓岩盐咸鱼(唯一的中杆，20s即可收杆)，以小钓大II，双重提钩，<span style="text-decoration:line-through" class="gray"> 珍珠眼x2 </span>，以小钓大IICD时继续空手套HQ咸鱼以小钓大双提，重复数次。<br>2.如果双提中奖了，留着收藏品确认窗口不点，直到GP恢复好，时间到ET16。如果雕塑家是在ET16-18的CD钓上来的，可以挂机到次日ET16点，俗称罚站。(因为在确认收藏品窗口不点的时候，即使是拿出了小板凳也不会坐下。)<br>3.<span class="red">取消！</span>耐心！强力！强力！鱼皇咬钩率很高，咬钩比珍珠眼快，大约20s咬。',
+  //   remark: '体感难度：高<br>复杂度：中<br>CD频率：中<br>咬钩率：高<br>脱钩率：中低',
+  //   record: 'CD6<br>双提珍珠眼12<br>门票1<br>HQ get！<br>第4条钓上',
+  //   wholeHtml:
+  //     '<div class="quote"><span class="tac" style="display:block;text-align:center"><span style="font-size:150%;line-height:183%"><span style="font-weight:bold">胸脊鲨</span></span></span><div class="quote">钓场：基拉巴尼亚湖区-盐湖<br>条件：传承录，ET16-18，捕鱼人之识<br>选饵：蚕蛹→岩盐咸鱼<br>着钩：鱼王杆-强力提钩</div><div class="quote">门票：<br>雕塑家x2(ET12-18，雷雨，鱼眼，蚕蛹→岩盐咸鱼，鱼王竿，25s以上)<br>直感时间360s</div><div class="quote">推荐流程：<br>0.不推荐单提雕塑家法，因为雕塑家咬钩率低CD短且少，盐湖度假法不知道要挂到猴年马月去。耐心双提也不推荐。<br>1.收藏品采集，鱼眼，平钓岩盐咸鱼(唯一的中杆，20s即可收杆)，以小钓大II，双重提钩，<span style="text-decoration:line-through" class="gray"> 珍珠眼x2 </span>，以小钓大IICD时继续空手套HQ咸鱼以小钓大双提，重复数次。<br>2.如果双提中奖了，留着收藏品确认窗口不点，直到GP恢复好，时间到ET16。如果雕塑家是在ET16-18的CD钓上来的，可以挂机到次日ET16点，俗称罚站。(因为在确认收藏品窗口不点的时候，即使是拿出了小板凳也不会坐下。)<br>3.<span class="red">取消！</span>耐心！强力！强力！鱼皇咬钩率很高，咬钩比珍珠眼快，大约20s咬。</div><div class="quote">笔者评价：<br>体感难度：高<br>复杂度：中<br>CD频率：中<br>咬钩率：高<br>脱钩率：中低</div><div class="quote">笔者的话：<br>杀不尽的珍珠眼，流不尽的非洲泪。门票就像摸奖，每个CD都去提几竿，说不定就中了。难点都在门票，鱼皇本体比较好钓，咬钩率很高。鱼皇本身没有天气要求，所以可以用罚站法。<br>可以刷新盐湖的钓场记录。<br><span class="red">5.0new：雕塑家不吃专一垂钓，珍珠眼拍击水面也没用。</span></div><div class="quote">笔者记录：<br>CD6<br>双提珍珠眼12<br>门票1<br>HQ get！<br>第4条钓上</div></div><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;postcontent0&quot;)"><img src="about:blank" style="display:none" onerror="ubbcode.copyChk(this.parentNode,&quot;collapseBlock3850&quot;)">',
+  // },
   24993: {
     id: 24993,
     name: '红龙',
