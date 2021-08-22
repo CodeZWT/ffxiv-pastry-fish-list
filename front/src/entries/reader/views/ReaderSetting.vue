@@ -97,7 +97,7 @@
 
               <div class="font-weight-bold subtitle-1">
                 <div>请测试人员在开始测试后开启此开关</div>
-                <div>不要使用非必要的技能（如撒饵，拍击水面）并提起所有咬钩的鱼。</div>
+                <div>不要使用非必要的技能（如专一，拍击水面）并提起所有咬钩的鱼。</div>
               </div>
             </v-card-text>
           </v-card>
