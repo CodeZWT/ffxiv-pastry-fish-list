@@ -174,7 +174,10 @@
                   <effect-icon :icon-class="fish.predatorsIcon" />
                 </div>
                 <div v-if="fish.hasSnagging">
-                  <div :class="fish.snaggingIcon" data-ck-action-name="钓组" />
+                  <effect-icon
+                    :icon-class="fish.snaggingIcon"
+                    data-ck-action-name="钓组"
+                  />
                 </div>
               </div>
               <div v-if="isSpearFish" class="d-flex align-center">
