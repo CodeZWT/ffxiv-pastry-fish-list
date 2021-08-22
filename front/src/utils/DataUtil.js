@@ -1235,6 +1235,7 @@ export default {
       closeMode: 'CLOSE',
     },
     isRoseMode: false,
+    readChartTip: false,
     // reader: {
     //   region: 'CN',
     //   monitorType: 'RawSocket',

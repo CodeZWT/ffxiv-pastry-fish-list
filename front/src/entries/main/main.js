@@ -18,6 +18,7 @@ import {
 } from 'echarts/components'
 // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
 import { CanvasRenderer } from 'echarts/renderers'
+import VueMarkdown from 'vue-markdown'
 
 // 注册必须的组件
 echarts.use([
@@ -36,6 +37,8 @@ Vue.config.productionTip = false
 if (process.env.NODE_ENV === 'development') {
   Vue.use(VueKonva) // no need to set plugin if import by CND
 }
+
+Vue.use(VueMarkdown)
 
 // use([CanvasRenderer, BarChart, GridComponent, TooltipComponent])
 

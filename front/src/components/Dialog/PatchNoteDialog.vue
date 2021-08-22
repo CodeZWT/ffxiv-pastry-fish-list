@@ -24,15 +24,16 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.5后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
+        <!--        <div>-->
+        <!--          仅在网页版随时更新，将来记入下一版本-->
+        <!--        </div>-->
         <div class="text-h6">
-          Version 0.9.3-fix
+          Version 0.9.4
         </div>
-        <div>
-          仅在网页版随时更新，将来记入下一版本
-        </div>
-        <div class="text-subtitle-1">更新时间: 2021/08/20 00:53</div>
+        <div class="text-subtitle-1">更新时间: 2021/08/22 18:16</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
+          <li>增加数据统计图，前往钓鱼笔记中的钓场即可查看</li>
           <li>图标高清化</li>
           <li>修复手机版钓鱼笔记的钓场列表无法滚动的问题</li>
         </ul>

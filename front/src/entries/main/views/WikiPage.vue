@@ -235,17 +235,20 @@
           </v-col>
           <v-col cols="12" class="my-1">
             <div v-if="mode === 'normal'">
+              <v-btn block color="primary" @click="showAboutChartDialog = true">
+                <v-icon>mdi-information</v-icon>
+                关于数据统计图
+              </v-btn>
               <bait-percentage-chart
-                v-if="isRoseMode"
                 :records="baitCountRecords"
                 :fish-dict="lazyTransformedFishDict"
                 :updatedTime="baitCountRecordUpdatedTime"
               />
-              <fish-tug-table v-else :value="currentFishList" />
+              <!--              <fish-tug-table v-else :value="currentFishList" />-->
             </div>
             <fish-gig-table v-else :value="currentFishList" />
           </v-col>
-          <v-col cols="12" class="my-1" v-if="isRoseMode">
+          <v-col cols="12" class="my-1">
             <bite-interval-chart
               :records="biteIntervalRecords"
               :fish-dict="lazyTransformedFishDict"
@@ -305,11 +308,7 @@
                 <v-expansion-panel-header class="systemSecondary">
                   <div>
                     <div
-                      style="
-                          display: flex;
-                          align-items: center;
-                          justify-content: center;
-                        "
+                      style="display: flex; align-items: center; justify-content: center"
                     >
                       <link-list
                         :id="currentMapInfo.id"
@@ -481,6 +480,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <about-chart-dialog v-model="showAboutChartDialog" />
   </div>
 </template>
 
@@ -510,14 +510,14 @@ import AchievementProgress from '@/components/AchievementProgress'
 import ImgUtil from '@/utils/ImgUtil'
 import rcapiService from '@/service/rcapiService'
 import BaitPercentageChart from '@/components/charts/BaitPercentageChart'
-import FishTugTable from '@/components/FishingTugTable'
 import BiteIntervalChart from '@/components/charts/BiteIntervalChart'
+import AboutChartDialog from '@/components/Dialog/AboutChartDialog'
 
 export default {
   name: 'WikiPage',
   components: {
+    AboutChartDialog,
     BiteIntervalChart,
-    FishTugTable,
     BaitPercentageChart,
     AchievementProgress,
     ItemIcon,
@@ -545,6 +545,7 @@ export default {
   data: vm => ({
     CN_PATCH_VERSION: CN_PATCH_VERSION,
     GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
+    showAboutChartDialog: false,
     achievementInfo: {
       iCatchThat: { name: '专研钓鱼笔记', cn: 1175 },
       goBigOrGoHome: { name: '愿者上钩', cn: 204 },
@@ -865,6 +866,7 @@ export default {
       'getFishCompleted',
       'allCompletedFish',
       'isRoseMode',
+      'readChartTip',
     ]),
   },
   watch: {
@@ -948,6 +950,8 @@ export default {
           this.syncStatus = 'finished'
         }
       })
+
+    this.showAboutChartDialog = !this.readChartTip
   },
   methods: {
     async getBaitDataOfSpot(spotId) {

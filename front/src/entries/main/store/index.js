@@ -223,6 +223,9 @@ export default new Vuex.Store({
     isRoseMode: state => {
       return state.userData.isRoseMode
     },
+    readChartTip: state => {
+      return state.userData.readChartTip
+    },
     opacity: state => {
       return state.windowSetting.opacity
     },
@@ -281,6 +284,10 @@ export default new Vuex.Store({
     },
     setRoseMode(state, rose) {
       state.userData = { ...state.userData, isRoseMode: rose }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
+    setReadChartTip(state, read) {
+      state.userData = { ...state.userData, readChartTip: read }
       LocalStorageUtil.storeUserData(state.userData)
     },
     setShowCompetitionDialog(state, show) {
