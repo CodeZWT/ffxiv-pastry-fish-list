@@ -98,20 +98,38 @@
             </v-checkbox>
           </div>
         </div>
-        <div class="d-flex flex-wrap align-center">
-          <v-subheader :class="{ 'ml-7': !isMobile }">鱼识</v-subheader>
-          <v-btn-toggle
-            v-model="fishersIntuitionFilter"
-            rounded
-            dense
-            mandatory
-            multiple
-            active-class="primary"
-          >
-            <v-btn small v-for="option in fishersIntuitionOptions" :key="option">
-              {{ $t('chart.fishersIntuition.' + option) }}
-            </v-btn>
-          </v-btn-toggle>
+        <div class="d-flex align-center">
+          <div class="d-flex flex-wrap align-center">
+            <v-subheader :class="{ 'ml-7': !isMobile }">鱼识</v-subheader>
+            <v-btn-toggle
+              v-model="fishersIntuitionFilter"
+              rounded
+              dense
+              mandatory
+              multiple
+              active-class="primary"
+            >
+              <v-btn small v-for="option in fishersIntuitionOptions" :key="option">
+                {{ $t('chart.fishersIntuition.' + option) }}
+              </v-btn>
+            </v-btn-toggle>
+          </div>
+
+          <div class="d-flex flex-wrap align-center">
+            <v-subheader class="ml-2">钓组</v-subheader>
+            <v-btn-toggle
+              v-model="snaggingFilter"
+              rounded
+              dense
+              mandatory
+              multiple
+              active-class="primary"
+            >
+              <v-btn small v-for="option in snaggingOptions" :key="option">
+                {{ $t('chart.snagging.' + option) }}
+              </v-btn>
+            </v-btn-toggle>
+          </div>
         </div>
       </template>
       <div style="width: 100%; overflow-x: scroll">
@@ -262,6 +280,8 @@ export default {
       range: [0, 48],
       fishersIntuitionFilter: [0, 1],
       fishersIntuitionOptions: ['yes', 'no'],
+      snaggingFilter: [0, 1],
+      snaggingOptions: ['yes', 'no'],
     }
   },
   computed: {
@@ -365,6 +385,15 @@ export default {
             return false
           }
         })
+        .filter(({ snagging }) => {
+          if (this.snaggingFilter.length === 2) {
+            return true
+          } else if (this.snaggingFilter.length === 1) {
+            return (this.snaggingFilter[0] === 0) === snagging
+          } else {
+            return false
+          }
+        })
         .filter(({ prevWeather, weather }) => {
           return (
             this.prevWeathers.includes(prevWeather) && this.weathers.includes(weather)
@@ -455,9 +484,12 @@ export default {
     },
   },
   watch: {
-    spotWeathers(spotWeathers) {
-      this.weatherFilter = spotWeathers.map(it => it.id)
-      this.prevWeatherFilter = spotWeathers.map(it => it.id)
+    spotWeathers: {
+      handler(spotWeathers) {
+        this.weatherFilter = spotWeathers.map(it => it.id)
+        this.prevWeatherFilter = spotWeathers.map(it => it.id)
+      },
+      immediate: true,
     },
   },
   methods: {

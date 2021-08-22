@@ -373,6 +373,10 @@
     "fishersIntuition": {
       "yes": "是",
       "no": "否"
+    },
+    "snagging": {
+      "yes": "是",
+      "no": "否"
     }
   }
 }
