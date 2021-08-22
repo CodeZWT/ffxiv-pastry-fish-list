@@ -8,15 +8,15 @@
     <v-card>
       <v-card-title>
         {{ $t('top.patchNote') }}
-        <v-spacer />
-        <div class="d-flex flex-column align-center">
-          <a
-            href="https://ricecake302.coding.net/s/eb3a7844-db84-4792-90db-7805f6a941c1/3"
-            target="_blank"
-          >
-            如有错误，请前往此页面
-          </a>
-        </div>
+        <!--        <v-spacer />-->
+        <!--        <div class="d-flex flex-column align-center">-->
+        <!--          <a-->
+        <!--            href="https://ricecake302.coding.net/s/eb3a7844-db84-4792-90db-7805f6a941c1/3"-->
+        <!--            target="_blank"-->
+        <!--          >-->
+        <!--            如有错误，请前往此页面-->
+        <!--          </a>-->
+        <!--        </div>-->
       </v-card-title>
       <v-divider />
       <v-card-text style="max-height: 600px">
