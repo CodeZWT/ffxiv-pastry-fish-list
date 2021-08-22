@@ -5,7 +5,7 @@ import { decode, decodeAsync } from '@msgpack/msgpack'
 import * as cjson from 'compressed-json'
 
 const host = DevelopmentModeUtil.isTest()
-  ? 'https://rcapi.traveleorzea.com' //'http://localhost:3100'
+  ? 'http://localhost:3100'
   : 'https://rcapi.traveleorzea.com'
 const DATA_HOST = 'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files'
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
@@ -267,7 +267,7 @@ export default {
   },
   async getDataFilesVersion() {
     if (DevelopmentModeUtil.isTest()) {
-      return 'f7a79d81769d1f52dbae152f34176b5e29456683'
+      return 'fc4c9776f3490f2377f3e9f237b7343288cdca94'
     }
     if (this.dataFilesVersion != null) {
       return this.dataFilesVersion
