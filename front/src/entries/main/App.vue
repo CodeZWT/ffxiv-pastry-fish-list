@@ -2216,6 +2216,7 @@ body {
 
 * {
   scrollbar-width: thin;
+  scrollbar-height: thin;
   scrollbar-color: #ffffff66 rgba(0, 0, 0, 0.2);
 }
 
@@ -2223,6 +2224,7 @@ body {
 
 *::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 *::-webkit-scrollbar-track {

@@ -1,127 +1,131 @@
 <template>
-  <v-container fluid>
-    <v-row class="ml-2" v-if="records.length > 0">
-      <v-col cols="12">
-        <div class="d-flex align-center">
-          <v-switch
-            inset
-            label="条件筛选"
-            v-model="enableWeatherFilter"
-            style="width: 200px"
-          />
-          <v-spacer />
-          <v-subheader v-if="updatedTime">{{ dataMeta }} </v-subheader>
+  <div style="width: 100%">
+    <template v-if="records.length > 0">
+      <div class="d-flex align-center">
+        <div class="pl-2">
+          <v-switch inset label="条件筛选" v-model="enableWeatherFilter" />
         </div>
-        <template v-if="enableWeatherFilter">
-          <div class="d-flex flex-wrap align-center">
-            <v-subheader class="pb-8">ET范围</v-subheader>
-            <div class="d-flex flex-column">
-              <div class="d-flex align-content-space-between">
-                <v-autocomplete
-                  v-model="etHourStartFilter"
-                  :items="etHourOptions"
-                  label="开始ET小时"
-                  outlined
-                  auto-select-first
-                  style="width: 100px; min-width: 100px"
-                ></v-autocomplete>
-                <v-autocomplete
-                  v-model="etMinuteStartFilter"
-                  :items="etMinuteStartOptions"
-                  label="开始ET分"
-                  outlined
-                  auto-select-first
-                  class="ml-1"
-                  style="width: 100px; min-width: 100px"
-                ></v-autocomplete>
-              </div>
-              <div class="d-flex align-content-space-between">
-                <v-autocomplete
-                  v-model="etHourEndFilter"
-                  :items="etHourOptions"
-                  label="结束ET小时"
-                  outlined
-                  style="width: 100px; min-width: 100px"
-                ></v-autocomplete>
-                <v-autocomplete
-                  v-model="etMinuteEndFilter"
-                  :items="etMinuteEndOptions"
-                  label="结束ET分"
-                  outlined
-                  class="ml-1"
-                  style="width: 100px; min-width: 100px"
-                ></v-autocomplete>
-              </div>
+        <v-spacer />
+        <v-subheader v-if="updatedTime" :style="`width: ${isMobile ? 100 : 200}px`"
+          >{{ isMobile ? dataMetaShort : dataMeta }}
+        </v-subheader>
+      </div>
+      <template v-if="enableWeatherFilter">
+        <div class="d-flex flex-wrap align-center">
+          <v-subheader class="pb-8">ET范围</v-subheader>
+          <div class="d-flex flex-column">
+            <div class="d-flex align-content-space-between">
+              <v-autocomplete
+                v-model="etHourStartFilter"
+                :items="etHourOptions"
+                label="开始ET小时"
+                outlined
+                auto-select-first
+                style="width: 100px; min-width: 100px"
+              ></v-autocomplete>
+              <v-autocomplete
+                v-model="etMinuteStartFilter"
+                :items="etMinuteStartOptions"
+                label="开始ET分"
+                outlined
+                auto-select-first
+                class="ml-1"
+                style="width: 100px; min-width: 100px"
+              ></v-autocomplete>
+            </div>
+            <div class="d-flex align-content-space-between">
+              <v-autocomplete
+                v-model="etHourEndFilter"
+                :items="etHourOptions"
+                label="结束ET小时"
+                outlined
+                style="width: 100px; min-width: 100px"
+              ></v-autocomplete>
+              <v-autocomplete
+                v-model="etMinuteEndFilter"
+                :items="etMinuteEndOptions"
+                label="结束ET分"
+                outlined
+                class="ml-1"
+                style="width: 100px; min-width: 100px"
+              ></v-autocomplete>
             </div>
           </div>
-          <div class="d-flex flex-wrap align-center">
-            <v-subheader>前置天气</v-subheader>
-            <div
-              v-for="weather in spotWeathers"
-              :key="weather.id"
-              class="d-flex align-center mr-2"
-            >
-              <v-checkbox v-model="prevWeatherFilter" :value="weather.id">
-                <template v-slot:label>
-                  <div class="d-flex align-center">
-                    <div style="height: 32px; width: 32px">
-                      <weather-icon
-                        :icon-class="weather.icon"
-                        :title="weather.name"
-                        type="weather"
-                      />
-                    </div>
-                    <span class="ml-1">{{ weather.name }}</span>
+        </div>
+        <div class="d-flex flex-wrap align-center">
+          <v-subheader>前置天气</v-subheader>
+          <div
+            v-for="weather in spotWeathers"
+            :key="weather.id"
+            class="d-flex align-center mr-2"
+          >
+            <v-checkbox v-model="prevWeatherFilter" :value="weather.id">
+              <template v-slot:label>
+                <div class="d-flex align-center">
+                  <div style="height: 32px; width: 32px">
+                    <weather-icon
+                      :icon-class="weather.icon"
+                      :title="weather.name"
+                      type="weather"
+                    />
                   </div>
-                </template>
-              </v-checkbox>
-            </div>
+                  <span class="ml-1">{{ weather.name }}</span>
+                </div>
+              </template>
+            </v-checkbox>
           </div>
-          <div class="d-flex flex-wrap align-center">
-            <v-subheader class="ml-7">天气</v-subheader>
-            <div
-              v-for="weather in spotWeathers"
-              :key="weather.id"
-              class="d-flex align-center mr-2"
-            >
-              <v-checkbox v-model="weatherFilter" :value="weather.id">
-                <template v-slot:label>
-                  <div class="d-flex align-center">
-                    <div style="height: 32px; width: 32px">
-                      <weather-icon
-                        :icon-class="weather.icon"
-                        :title="weather.name"
-                        type="weather"
-                      />
-                    </div>
-                    <span class="ml-1">{{ weather.name }}</span>
+        </div>
+        <div class="d-flex flex-wrap align-center">
+          <v-subheader :class="{ 'ml-7': !isMobile }">天气</v-subheader>
+          <div
+            v-for="weather in spotWeathers"
+            :key="weather.id"
+            class="d-flex align-center mr-2"
+          >
+            <v-checkbox v-model="weatherFilter" :value="weather.id">
+              <template v-slot:label>
+                <div class="d-flex align-center">
+                  <div style="height: 32px; width: 32px">
+                    <weather-icon
+                      :icon-class="weather.icon"
+                      :title="weather.name"
+                      type="weather"
+                    />
                   </div>
-                </template>
-              </v-checkbox>
-            </div>
+                  <span class="ml-1">{{ weather.name }}</span>
+                </div>
+              </template>
+            </v-checkbox>
           </div>
-          <div class="d-flex flex-wrap align-center">
-            <v-subheader class="ml-7">鱼识</v-subheader>
-            <v-btn-toggle
-              v-model="fishersIntuitionFilter"
-              rounded
-              dense
-              mandatory
-              multiple
-              active-class="primary"
-            >
-              <v-btn small v-for="option in fishersIntuitionOptions" :key="option">
-                {{ $t('chart.fishersIntuition.' + option) }}
-              </v-btn>
-            </v-btn-toggle>
-          </div>
-        </template>
-      </v-col>
-      <v-col cols="12">
-        <div class="d-flex flex-column align-center">
+        </div>
+        <div class="d-flex flex-wrap align-center">
+          <v-subheader :class="{ 'ml-7': !isMobile }">鱼识</v-subheader>
+          <v-btn-toggle
+            v-model="fishersIntuitionFilter"
+            rounded
+            dense
+            mandatory
+            multiple
+            active-class="primary"
+          >
+            <v-btn small v-for="option in fishersIntuitionOptions" :key="option">
+              {{ $t('chart.fishersIntuition.' + option) }}
+            </v-btn>
+          </v-btn-toggle>
+        </div>
+      </template>
+      <div style="width: 100%; overflow-x: scroll">
+        <div
+          class="d-flex flex-column align-center"
+          :style="`width: ${48 * (baitOfSpot.fishList.length + 4)}px`"
+        >
           <div class="d-flex">
             <div style="width: 48px"></div>
-            <div v-for="fish in baitOfSpot.fishList" :key="fish.fishId">
+            <div
+              v-for="fish in baitOfSpot.fishList"
+              :key="fish.fishId"
+              :title="toItemTitle({ name: fish.fishName, id: fish.fishId })"
+            >
               <item-icon :icon-class="fish.fishIcon" />
             </div>
             <div
@@ -147,7 +151,7 @@
           >
             <item-icon
               :icon-class="bait.baitIcon"
-              :title="bait.baitName + '#' + bait.baitId"
+              :title="toItemTitle({ name: bait.baitName, id: bait.baitId })"
             />
             <div
               v-for="{ fish, cnt, percentage, tugColor } in fishCntList"
@@ -196,12 +200,12 @@
               <div v-else style="width: 48px"></div>
             </div>
           </div>
-          <v-subheader>※ 杆型下方的百分比为脱钩数据的占比</v-subheader>
         </div>
-      </v-col>
-    </v-row>
-    <v-row v-else>暂无鱼饵概率数据</v-row>
-  </v-container>
+      </div>
+      <v-subheader>※ 轻、中、重 下方的百分比为脱钩数据的占比</v-subheader>
+    </template>
+    <template v-else>暂无鱼饵概率数据</template>
+  </div>
 </template>
 
 <script>
@@ -213,6 +217,7 @@ import DataUtil from '@/utils/DataUtil'
 import uniq from 'lodash/uniq'
 import SPOT_WEATHER from 'Data/spotWeather'
 import WeatherIcon from '@/components/basic/WeatherIcon'
+import EnvMixin from '@/components/basic/EnvMixin'
 
 const hourMinuteToMinutes = (hour, minute) => {
   return hour * 60 + minute
@@ -226,6 +231,7 @@ export default {
       default: { isDark: false },
     },
   },
+  mixins: [EnvMixin],
   props: {
     records: {
       type: Array,
@@ -262,8 +268,11 @@ export default {
     recordTotal() {
       return _.sumBy(this.records, ({ quantity }) => +quantity)
     },
+    dataMetaShort() {
+      return `※ 共 ${this.recordTotal} 条数据`
+    },
     dataMeta() {
-      return `※ 共 ${this.recordTotal} 条数据【更新于 ${new Date(
+      return `${this.dataMetaShort}【更新于 ${new Date(
         this.updatedTime ?? 0
       ).toLocaleString()}】`
     },
@@ -450,6 +459,9 @@ export default {
       this.weatherFilter = spotWeathers.map(it => it.id)
       this.prevWeatherFilter = spotWeathers.map(it => it.id)
     },
+  },
+  methods: {
+    toItemTitle: DataUtil.toItemTitle,
   },
 }
 </script>

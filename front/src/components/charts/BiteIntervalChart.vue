@@ -1,12 +1,16 @@
 <template>
-  <v-container fluid>
-    <v-row class="ml-2" v-show="records.length > 0">
+  <div style="width: 100%">
+    <v-row v-show="records.length > 0">
       <v-col cols="12">
         <div class="d-flex align-center">
-          <v-switch v-model="chumBiteTime" label="撒饵" inset />
+          <div class="pl-2">
+            <v-switch v-model="chumBiteTime" label="撒饵" inset />
+          </div>
           <v-switch v-model="enableBaitFilter" inset label="鱼饵筛选" class="ml-4" />
           <v-spacer />
-          <v-subheader v-if="updatedTime">{{ dataMeta }} </v-subheader>
+          <v-subheader v-if="updatedTime" :style="`width: ${isMobile ? 100 : 200}px`"
+            >{{ isMobile ? dataMetaShort : dataMeta }}
+          </v-subheader>
         </div>
         <div v-if="enableBaitFilter" class="d-flex flex-wrap">
           <div
@@ -24,14 +28,16 @@
             </v-checkbox>
           </div>
         </div>
-        <div
-          id="main"
-          :style="`width: 800px;height: ${enableBaitFilter ? 800 : 400}px`"
-        ></div>
+        <div style="overflow-x: scroll; width: 100%">
+          <div
+            id="main"
+            :style="`width: 800px;height: ${enableBaitFilter ? 800 : 400}px`"
+          ></div>
+        </div>
       </v-col>
     </v-row>
     <v-row v-show="records.length === 0">暂无咬钩时长数据</v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -43,6 +49,7 @@ import clone from 'lodash/clone'
 import themes from '@/components/echart-theme/theme'
 import * as _ from 'lodash'
 import DataUtil from '@/utils/DataUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
 
 echarts.registerTheme('dark', themes.dark)
 echarts.registerTheme('light', themes.light)
@@ -55,6 +62,7 @@ export default {
       default: { isDark: false },
     },
   },
+  mixins: [EnvMixin],
   props: {
     records: {
       type: Array,
@@ -105,8 +113,11 @@ export default {
     recordTotal() {
       return _.sumBy(this.records, ({ quantity }) => +quantity)
     },
+    dataMetaShort() {
+      return `※ 共 ${this.recordTotal} 条数据`
+    },
     dataMeta() {
-      return `※ 共 ${this.recordTotal} 条数据【更新于 ${new Date(
+      return `${this.dataMetaShort}【更新于 ${new Date(
         this.updatedTime ?? 0
       ).toLocaleString()}】`
     },

@@ -129,266 +129,255 @@
         </v-card-text>
       </div>
     </v-navigation-drawer>
-    <div style="height: 100%; width: 100%">
+    <div
+      :class="{
+        'detail-wrapper': true,
+        'detail-wrapper--pc-web': !isMobile && !isElectron,
+        'detail-wrapper--pc-electron': !isMobile && isElectron,
+        'detail-wrapper--mobile-web': isMobile && !isElectron,
+        'detail-wrapper--mobile-electron': isMobile && isElectron,
+      }"
+    >
       <div
-        :class="{
-          'detail-wrapper': true,
-          'detail-wrapper--pc-web': !isMobile && !isElectron,
-          'detail-wrapper--pc-electron': !isMobile && isElectron,
-          'detail-wrapper--mobile-web': isMobile && !isElectron,
-          'detail-wrapper--mobile-electron': isMobile && isElectron,
-        }"
+        v-if="
+          !type || type === 'region' || (type === 'territory' && isOceanFishingTerritory)
+        "
+        class="fill-height d-flex flex-column align-content-space-between"
       >
-        <div
-          v-if="
-            !type ||
-              type === 'region' ||
-              (type === 'territory' && isOceanFishingTerritory)
-          "
-          class="fill-height d-flex flex-column align-content-space-between"
-        >
-          <!--  show empty / region view  -->
-          <div>
-            <v-sheet outlined class="pa-4">
-              <div class="text-h6">成就计数</div>
-              <div class="text-subtitle-1">鼠标悬停成就数字可查看说明</div>
-              <v-divider />
-              <v-subheader>
-                {{
-                  `${achievementInfo.iCatchThat.name}（${CN_PATCH_VERSION}最大值${achievementInfo.iCatchThat.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.iCatchThat.total}）`
-                }}
-              </v-subheader>
-              <v-row>
-                <v-col>
-                  <achievement-progress
-                    :value="counts.iCatchThat.record"
-                    :total="counts.iCatchThat.total"
-                    :ticks="counts.iCatchThat.ticks"
-                  />
-                </v-col>
-              </v-row>
-              <v-subheader>{{ achievementInfo.goBigOrGoHome.name }}</v-subheader>
-              <v-row>
-                <v-col>
-                  <achievement-progress
-                    :value="counts.goBigOrGoHome.record"
-                    :total="counts.goBigOrGoHome.total"
-                    :ticks="counts.goBigOrGoHome.ticks"
-                  />
-                </v-col>
-              </v-row>
-              <v-subheader>
-                {{
-                  `${achievementInfo.goBigFarFromHome.name}（${CN_PATCH_VERSION}最大值${achievementInfo.goBigFarFromHome.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.goBigFarFromHome.total}）`
-                }}
-              </v-subheader>
-              <v-row>
-                <v-col>
-                  <achievement-progress
-                    :value="counts.goBigFarFromHome.record"
-                    :total="counts.goBigFarFromHome.total"
-                    :ticks="counts.goBigFarFromHome.ticks"
-                  />
-                </v-col>
-              </v-row>
-
-              <v-subheader>
-                {{
-                  `${achievementInfo.noRiverWideEnough.name}（${CN_PATCH_VERSION}最大值${achievementInfo.noRiverWideEnough.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.noRiverWideEnough.total}）`
-                }}
-              </v-subheader>
-              <v-row>
-                <v-col>
-                  <achievement-progress
-                    :value="counts.noRiverWideEnough.record"
-                    :total="counts.noRiverWideEnough.total"
-                    :ticks="counts.noRiverWideEnough.ticks"
-                  />
-                </v-col>
-              </v-row>
-
-              <v-btn color="primary" @click="showSyncDialog = true" block class="mt-2">
-                <v-icon left>mdi-sync</v-icon>
-                同步游戏数据
-              </v-btn>
-            </v-sheet>
-          </div>
-          <div
-            class="d-flex justify-center align-center"
-            style="width: 100%; height: 100%"
-          >
-            <v-icon size="200">mdi-book-open-page-variant</v-icon>
-          </div>
-        </div>
-        <div v-else-if="type === 'territory'" style="width: 100%; height: 100%">
-          <!--  show territory view  -->
-          <eorzea-simple-map
-            ref="simpleMap"
-            :id="currentMapInfo.mapFileId"
-            :size-factor="currentMapInfo.size_factor"
-            :fishing-spots="currentSpotList"
-            :show-fishing-range-helper="mode === 'normal'"
-          />
-        </div>
-        <div
-          v-else-if="(type === 'spot' || type === 'fish') && !isOceanFishingSpot"
-          class="grid-content"
-        >
-          <!--  show spot/fish view  -->
-          <v-row v-if="currentSpotId" no-gutters>
-            <v-col cols="12" class="my-1 d-flex justify-center">
-              <h1>{{ currentMapInfo.name }}</h1>
-            </v-col>
-            <v-col cols="12" class="my-1">
-              <div v-if="mode === 'normal'">
-                <bait-percentage-chart
-                  v-if="isRoseMode"
-                  :records="baitCountRecords"
-                  :fish-dict="lazyTransformedFishDict"
-                  :updatedTime="baitCountRecordUpdatedTime"
+        <!--  show empty / region view  -->
+        <div>
+          <v-sheet outlined class="pa-4">
+            <div class="text-h6">成就计数</div>
+            <div class="text-subtitle-1">鼠标悬停成就数字可查看说明</div>
+            <v-divider />
+            <v-subheader>
+              {{
+                `${achievementInfo.iCatchThat.name}（${CN_PATCH_VERSION}最大值${achievementInfo.iCatchThat.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.iCatchThat.total}）`
+              }}
+            </v-subheader>
+            <v-row>
+              <v-col>
+                <achievement-progress
+                  :value="counts.iCatchThat.record"
+                  :total="counts.iCatchThat.total"
+                  :ticks="counts.iCatchThat.ticks"
                 />
-                <fish-tug-table v-else :value="currentFishList" />
-              </div>
-              <fish-gig-table v-else :value="currentFishList" />
-            </v-col>
-            <v-col cols="12" class="my-1" v-if="isRoseMode">
-              <bite-interval-chart
-                :records="biteIntervalRecords"
+              </v-col>
+            </v-row>
+            <v-subheader>{{ achievementInfo.goBigOrGoHome.name }}</v-subheader>
+            <v-row>
+              <v-col>
+                <achievement-progress
+                  :value="counts.goBigOrGoHome.record"
+                  :total="counts.goBigOrGoHome.total"
+                  :ticks="counts.goBigOrGoHome.ticks"
+                />
+              </v-col>
+            </v-row>
+            <v-subheader>
+              {{
+                `${achievementInfo.goBigFarFromHome.name}（${CN_PATCH_VERSION}最大值${achievementInfo.goBigFarFromHome.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.goBigFarFromHome.total}）`
+              }}
+            </v-subheader>
+            <v-row>
+              <v-col>
+                <achievement-progress
+                  :value="counts.goBigFarFromHome.record"
+                  :total="counts.goBigFarFromHome.total"
+                  :ticks="counts.goBigFarFromHome.ticks"
+                />
+              </v-col>
+            </v-row>
+
+            <v-subheader>
+              {{
+                `${achievementInfo.noRiverWideEnough.name}（${CN_PATCH_VERSION}最大值${achievementInfo.noRiverWideEnough.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.noRiverWideEnough.total}）`
+              }}
+            </v-subheader>
+            <v-row>
+              <v-col>
+                <achievement-progress
+                  :value="counts.noRiverWideEnough.record"
+                  :total="counts.noRiverWideEnough.total"
+                  :ticks="counts.noRiverWideEnough.ticks"
+                />
+              </v-col>
+            </v-row>
+
+            <v-btn color="primary" @click="showSyncDialog = true" block class="mt-2">
+              <v-icon left>mdi-sync</v-icon>
+              同步游戏数据
+            </v-btn>
+          </v-sheet>
+        </div>
+        <div class="d-flex justify-center align-center" style="width: 100%; height: 100%">
+          <v-icon size="200">mdi-book-open-page-variant</v-icon>
+        </div>
+      </div>
+      <div v-else-if="type === 'territory'" style="width: 100%; height: 100%">
+        <!--  show territory view  -->
+        <eorzea-simple-map
+          ref="simpleMap"
+          :id="currentMapInfo.mapFileId"
+          :size-factor="currentMapInfo.size_factor"
+          :fishing-spots="currentSpotList"
+          :show-fishing-range-helper="mode === 'normal'"
+        />
+      </div>
+      <div
+        v-else-if="(type === 'spot' || type === 'fish') && !isOceanFishingSpot"
+        class="grid-content"
+      >
+        <!--  show spot/fish view  -->
+        <v-row v-if="currentSpotId" no-gutters>
+          <v-col cols="12" class="my-1 d-flex justify-center">
+            <h1>{{ currentMapInfo.name }}</h1>
+          </v-col>
+          <v-col cols="12" class="my-1">
+            <div v-if="mode === 'normal'">
+              <bait-percentage-chart
+                v-if="isRoseMode"
+                :records="baitCountRecords"
                 :fish-dict="lazyTransformedFishDict"
-                :updated-time="biteIntervalRecordsUpdatedTime"
+                :updatedTime="baitCountRecordUpdatedTime"
               />
-            </v-col>
+              <fish-tug-table v-else :value="currentFishList" />
+            </div>
+            <fish-gig-table v-else :value="currentFishList" />
+          </v-col>
+          <v-col cols="12" class="my-1" v-if="isRoseMode">
+            <bite-interval-chart
+              :records="biteIntervalRecords"
+              :fish-dict="lazyTransformedFishDict"
+              :updated-time="biteIntervalRecordsUpdatedTime"
+            />
+          </v-col>
 
-            <v-col v-if="showSpotPredators" cols="12" class="my-1">
-              <div>
-                <v-card color="info">
-                  <v-card-title>
-                    {{ $t('gigTip.fishShadow.title') }}
-                  </v-card-title>
-                  <v-card-text>
-                    此处为鱼影，需要刺相应个数的前置鱼才能触发，触发后在小地图上会有鱼影位置提示。
-                  </v-card-text>
-                  <v-card-subtitle>
-                    {{ $t('gigTip.fishShadow.location') }}
-                  </v-card-subtitle>
-                  <v-card-text>
-                    <detail-item-map :fish="currentSpotPredators[0]" />
-                  </v-card-text>
-                  <v-card-subtitle>
-                    {{ $t('gigTip.fishShadow.predators') }}
-                  </v-card-subtitle>
+          <v-col v-if="showSpotPredators" cols="12" class="my-1">
+            <div>
+              <v-card color="info">
+                <v-card-title>
+                  {{ $t('gigTip.fishShadow.title') }}
+                </v-card-title>
+                <v-card-text>
+                  此处为鱼影，需要刺相应个数的前置鱼才能触发，触发后在小地图上会有鱼影位置提示。
+                </v-card-text>
+                <v-card-subtitle>
+                  {{ $t('gigTip.fishShadow.location') }}
+                </v-card-subtitle>
+                <v-card-text>
+                  <detail-item-map :fish="currentSpotPredators[0]" />
+                </v-card-text>
+                <v-card-subtitle>
+                  {{ $t('gigTip.fishShadow.predators') }}
+                </v-card-subtitle>
 
-                  <v-card-text>
-                    <fish-list
-                      :fish-list="currentSpotPredators"
-                      :fish-list-time-part="fishListTimePart"
-                      :fish-list-weather-change-part="fishListWeatherChangePart"
-                      :show-fish-divider="false"
-                      hide-spot-column
-                      @fish-selected="onFishClicked($event)"
-                    />
-                  </v-card-text>
-                </v-card>
-              </div>
-            </v-col>
-
-            <v-col cols="12" class="my-1">
-              <v-card>
-                <fish-list
-                  :fish-list="currentFishList"
-                  :fish-list-time-part="fishListTimePart"
-                  :fish-list-weather-change-part="fishListWeatherChangePart"
-                  hide-spot-column
-                  hide-predators
-                  @fish-selected="onFishClicked($event)"
-                />
+                <v-card-text>
+                  <fish-list
+                    :fish-list="currentSpotPredators"
+                    :fish-list-time-part="fishListTimePart"
+                    :fish-list-weather-change-part="fishListWeatherChangePart"
+                    :show-fish-divider="false"
+                    hide-spot-column
+                    @fish-selected="onFishClicked($event)"
+                  />
+                </v-card-text>
               </v-card>
-            </v-col>
+            </div>
+          </v-col>
 
-            <v-col cols="12" class="my-1">
-              <v-expansion-panels hover flat tile :value="0">
-                <v-expansion-panel class="systemSecondary">
-                  <v-expansion-panel-header class="systemSecondary">
-                    <div>
-                      <div
-                        style="
+          <v-col cols="12" class="my-1">
+            <v-card>
+              <fish-list
+                :fish-list="currentFishList"
+                :fish-list-time-part="fishListTimePart"
+                :fish-list-weather-change-part="fishListWeatherChangePart"
+                hide-spot-column
+                hide-predators
+                @fish-selected="onFishClicked($event)"
+              />
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" class="my-1">
+            <v-expansion-panels hover flat tile :value="0">
+              <v-expansion-panel class="systemSecondary">
+                <v-expansion-panel-header class="systemSecondary">
+                  <div>
+                    <div
+                      style="
                           display: flex;
                           align-items: center;
                           justify-content: center;
                         "
-                      >
-                        <link-list
-                          :id="currentMapInfo.id"
-                          :angler-id="currentMapInfo.anglerLocationId"
-                          :name="currentMapInfo.name"
-                          mode="spot"
-                          :spot-mode="mode"
-                        >
-                          <v-hover v-slot="{ hover }">
-                            <div
-                              :class="
-                                `text-subtitle-1 ${
-                                  hover ? 'info--text text-decoration-underline' : ''
-                                }`
-                              "
-                            >
-                              {{ currentMapInfo.name }}
-                            </div>
-                          </v-hover>
-                        </link-list>
-                        <!--                      <div-->
-                        <!--                        class="text-subtitle-1"-->
-                        <!--                        :title="currentMapInfo.name + '#' + currentMapInfo.id"-->
-                        <!--                      >-->
-                        <!--                        {{ currentMapInfo.name }}-->
-                        <!--                      </div>-->
-                        <div class="text-subtitle-1 ml-2">
-                          ({{ currentMapInfo.fishSpotPositionText }})
-                        </div>
-                        <click-helper @click.stop :copy-text="currentMapInfo.name">
-                          <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
-                            <v-icon>mdi-content-copy</v-icon>
-                          </v-btn>
-                        </click-helper>
-                        <!--                    {{ currentMapInfo }}-->
-                      </div>
-
-                      <div v-if="showSpotPredators" class="text-center">
-                        此处为鱼影，需要刺前置鱼触发，详情见地图下方说明。
-                      </div>
-                    </div>
-                  </v-expansion-panel-header>
-                  <v-expansion-panel-content>
-                    <div
-                      style="width: 100%; height: 512px"
-                      class="d-flex justify-center mt-4"
                     >
-                      <div style="width: 100%; max-width: 512px">
-                        <eorzea-simple-map
-                          ref="simpleMap"
-                          :id="currentMapInfo.mapFileId"
-                          :size-factor="currentMapInfo.size_factor"
-                          :fishing-spots="currentSpotList"
-                          :show-fishing-range-helper="mode === 'normal'"
-                        />
+                      <link-list
+                        :id="currentMapInfo.id"
+                        :angler-id="currentMapInfo.anglerLocationId"
+                        :name="currentMapInfo.name"
+                        mode="spot"
+                        :spot-mode="mode"
+                      >
+                        <v-hover v-slot="{ hover }">
+                          <div
+                            :class="
+                              `text-subtitle-1 ${
+                                hover ? 'info--text text-decoration-underline' : ''
+                              }`
+                            "
+                          >
+                            {{ currentMapInfo.name }}
+                          </div>
+                        </v-hover>
+                      </link-list>
+                      <!--                      <div-->
+                      <!--                        class="text-subtitle-1"-->
+                      <!--                        :title="currentMapInfo.name + '#' + currentMapInfo.id"-->
+                      <!--                      >-->
+                      <!--                        {{ currentMapInfo.name }}-->
+                      <!--                      </div>-->
+                      <div class="text-subtitle-1 ml-2">
+                        ({{ currentMapInfo.fishSpotPositionText }})
                       </div>
+                      <click-helper @click.stop :copy-text="currentMapInfo.name">
+                        <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
+                          <v-icon>mdi-content-copy</v-icon>
+                        </v-btn>
+                      </click-helper>
+                      <!--                    {{ currentMapInfo }}-->
                     </div>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-              </v-expansion-panels>
-            </v-col>
-          </v-row>
-        </div>
-        <div v-else-if="isOceanFishingSpot" class="grid-content">
-          <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
-          <!-- <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
-        </div>
-      </div>
 
-      <div
-        v-if="isMobile"
-        style="position: absolute; top: 4px; left: 0; right: 0; z-index: 1"
-      >
+                    <div v-if="showSpotPredators" class="text-center">
+                      此处为鱼影，需要刺前置鱼触发，详情见地图下方说明。
+                    </div>
+                  </div>
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <div
+                    style="width: 100%; height: 512px"
+                    class="d-flex justify-center mt-4"
+                  >
+                    <div style="width: 100%; max-width: 512px">
+                      <eorzea-simple-map
+                        ref="simpleMap"
+                        :id="currentMapInfo.mapFileId"
+                        :size-factor="currentMapInfo.size_factor"
+                        :fishing-spots="currentSpotList"
+                        :show-fishing-range-helper="mode === 'normal'"
+                      />
+                    </div>
+                  </div>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+          </v-col>
+        </v-row>
+      </div>
+      <div v-else-if="isOceanFishingSpot" class="grid-content">
+        <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
+        <!-- <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
+      </div>
+      <div v-if="isMobile">
         <v-btn @click="showMapMenu = !showMapMenu" block color="primary" tile>
           点击选择地图
         </v-btn>
@@ -1315,10 +1304,11 @@ export default {
 
 .grid-content
   height: 100%
+  width: 100%
   overflow-scrolling: auto
   overflow-y: auto
-  padding: 0 4px
-  margin: 0 0 4px 0
+  overflow-x: hidden
+  padding-left: 4px
 
 .spot-list
   &--pc-web
@@ -1337,20 +1327,20 @@ export default {
 
   &--mobile
     &-web
-      margin-top: 40px
+      //margin-top: 40px
       max-height: calc(100vh - #{ $top-bars-padding + $footer-padding + 40})
     &-electron
-      margin-top: 40px
+      //margin-top: 40px
       max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + 40})
 
-  &--pc-web
-    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
-
-  &--pc-electron
-    max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+  &--pc
+    &-web
+      width: 100%
+      max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+    &-electron
+      max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
 
 .nav-bar
-  //overflow-y: hidden
   &--pc
     width: 20vw
     min-width: 250px
