@@ -28,6 +28,17 @@
         <!--          仅在网页版随时更新，将来记入下一版本-->
         <!--        </div>-->
         <div class="text-h6">
+          Version 0.9.5
+        </div>
+        <div class="text-subtitle-1">更新时间: 2021/08/25 22:00</div>
+        <div class="text-h5 text-center my-1">渔捞</div>
+        <ul>
+          <li>支持国际服5.58 hotfix</li>
+        </ul>
+
+        <v-divider />
+
+        <div class="text-h6">
           Version 0.9.4
         </div>
         <div class="text-subtitle-1">更新时间: 2021/08/22 18:16</div>
