@@ -49,7 +49,7 @@ const toUploadData = records => {
       fishPatch: DataUtil.getFishPatch(record.fishId),
       missed: record.missed,
       cancelled: record.cancelled,
-      bait: record.baitId,
+      bait: record.baitId ?? -1,
       biteInterval: +((record.biteTime - record.startTime) / 1000).toFixed(1),
       chum: record.chum,
       hookset: ['normal', 'precision', 'powerful', 'double'].indexOf(record.hookset) ?? 0,
