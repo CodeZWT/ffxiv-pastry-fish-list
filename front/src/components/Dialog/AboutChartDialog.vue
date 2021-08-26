@@ -40,8 +40,7 @@
 在我们的测试中，不使用影响概率的**专一**、**拍击水面**技能。
 ### 如何解决钓场中不同鱼不同条件的问题
 在我们的测试中，不使用**鱼眼**技能，并记录了**天气**、**咬钩时间ET**、**咬钩时长**、**钓组**、**鱼识**信息。
-在图的上方，会有对应的筛选选项，可以使用这些选项筛选出几乎任意条件下的数据。因此，可以通过这样的方式查看目标鱼（如鱼王）CD中的实际比例。
-当然，由于人力有限，目前数据大部分集中在鱼王CD中，非CD条件的数据较少。但是**默认配置是不进行任何筛选的**，请注意！
+在图的上方，会有对应的筛选选项，可以使用这些选项筛选出几乎任意条件下的数据。因此，可以通过这样的方式查看目标鱼（如鱼王）CD中的实际比例。(暗号:钓鱼数据测试) 当然，由于人力有限，目前数据大部分集中在鱼王CD中，非CD条件的数据较少。但是**默认配置是不进行任何筛选的**，请注意！
 ### 数据有问题，咬钩时间过长/短的，根本不可能用这个鱼饵?!
 由于渔捞本身并不完全可靠，可能出现各种匪夷所思的数据，欢迎反馈。目前将人工进行修正。~~自动化修正在做了在做了~~
 ### 和我的“体感”不同？
@@ -51,17 +50,15 @@
 "
           >
           </vue-markdown>
+          <v-btn color="primary" block outlined @click="showApplyDialog = true">
+            我已经认真读完了以上内容，申请成为志愿者
+          </v-btn>
         </v-card-text>
         <v-divider />
         <v-card-actions>
-          <div class="d-flex justify-space-around" style="width: 100%">
-            <v-btn color="primary" @click="showApplyDialog = true">
-              申请成为志愿者
-            </v-btn>
-            <v-btn @click="handleClose">
-              关闭
-            </v-btn>
-          </div>
+          <v-btn @click="handleClose" block>
+            关闭
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -69,7 +66,7 @@
       <v-card>
         <v-card-title>
           <div>QQ群：796331554</div>
-          <div>加群暗号：钓鱼数据测试</div>
+          <div>加群暗号在文章中，请仔细阅读</div>
         </v-card-title>
       </v-card>
     </v-dialog>
