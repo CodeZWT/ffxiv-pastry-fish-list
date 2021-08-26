@@ -495,6 +495,31 @@
                       </template>
                     </v-autocomplete>
                   </v-col>
+                  <v-col>
+                    <v-autocomplete
+                      ref="search"
+                      v-model="recordsFilterBaitId"
+                      :items="baitForSearch"
+                      item-value="id"
+                      item-text="name"
+                      label="请输入鱼饵"
+                      clearable
+                      solo
+                      :filter="searchFilterOptions"
+                    >
+                      <template v-slot:item="data">
+                        <div class="d-flex">
+                          <v-list-item-content>
+                            <v-list-item-title>
+                              <div>
+                                {{ data.item.name }}
+                              </div>
+                            </v-list-item-title>
+                          </v-list-item-content>
+                        </div>
+                      </template>
+                    </v-autocomplete>
+                  </v-col>
                 </v-row>
               </v-col>
               <v-col v-if="isLogin()" cols="12">
@@ -654,6 +679,7 @@ import DateTimeInput from '@/components/basic/DateTimeInput'
 import FishingSpots from 'Data/fishingSpots'
 import PlaceNames from 'Data/placeNames'
 import WeatherIcon from '@/components/basic/WeatherIcon'
+import BAITS from 'Data/bait'
 
 export default {
   name: 'RecordPage',
@@ -675,6 +701,7 @@ export default {
       recordsStrictModeFilter: [0, 1],
       recordsFilterSpotId: undefined,
       recordsFilterFishId: undefined,
+      recordsFilterBaitId: undefined,
       chumBiteTime: false,
       fishSelected: undefined,
       TUGS: Constants.TUGS,
@@ -870,6 +897,7 @@ export default {
         filterSelf: this.recordsFilterSelf,
         spotId: this.recordsFilterSpotId,
         fishId: this.recordsFilterFishId,
+        baitId: this.recordsFilterBaitId,
       }
     },
     spotFishList() {
@@ -1157,6 +1185,19 @@ export default {
         )
       )
     },
+    baitForSearch() {
+      return [{ id: -1, name: '未知' }].concat(
+        _.uniqBy(
+          Object.entries(BAITS).map(([id, name]) => {
+            return {
+              id: DataUtil.toItemId(id),
+              name: name,
+            }
+          }),
+          'id'
+        )
+      )
+    },
   },
   methods: {
     async toggleRecordStrictMode(record) {
@@ -1220,7 +1261,8 @@ export default {
           filters.strictMode,
           filters.filterSelf,
           filters.spotId,
-          filters.fishId
+          filters.fishId,
+          filters.baitId
         )
         .then(data => {
           const [records, total] = data

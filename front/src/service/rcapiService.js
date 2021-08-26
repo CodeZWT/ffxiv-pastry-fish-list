@@ -98,7 +98,8 @@ export default {
     strictMode,
     filterSelf,
     spotId,
-    fishId
+    fishId,
+    baitId
   ) {
     let strictModeFilterType = 'all'
     if (strictMode.length === 1) {
@@ -120,6 +121,7 @@ export default {
       { name: 'userId', value: filterSelf ? userProfile.userId : 0 },
       { name: 'spot', value: spotId == null ? '' : spotId },
       { name: 'fish', value: fishId == null ? '' : fishId },
+      { name: 'bait', value: baitId == null ? '' : baitId },
     ]
       .map(({ name, value }) => toParamStr(name, value))
       .join('&')
