@@ -1169,34 +1169,37 @@ export default {
         }
       })
     },
+    fishOptions() {
+      return _.uniqBy(
+        Object.values(this.lazyTransformedFishDict).map(({ id, name }) => {
+          return {
+            id: DataUtil.toItemId(id),
+            name: name,
+          }
+        }),
+        'id'
+      )
+    },
     fishForSearch() {
       return [
         { id: -2, name: '脱钩' },
         { id: -3, name: '未知' },
-      ].concat(
-        _.uniqBy(
-          Object.values(this.lazyTransformedFishDict).map(({ id, name }) => {
-            return {
-              id: DataUtil.toItemId(id),
-              name: name,
-            }
-          }),
-          'id'
-        )
-      )
+      ].concat(this.fishOptions)
     },
     baitForSearch() {
-      return [{ id: -1, name: '未知' }].concat(
-        _.uniqBy(
-          Object.entries(BAITS).map(([id, name]) => {
-            return {
-              id: DataUtil.toItemId(id),
-              name: name,
-            }
-          }),
-          'id'
+      return [{ id: -1, name: '未知' }]
+        .concat(
+          _.uniqBy(
+            Object.entries(BAITS).map(([id, name]) => {
+              return {
+                id: DataUtil.toItemId(id),
+                name: name,
+              }
+            }),
+            'id'
+          )
         )
-      )
+        .concat(this.fishOptions)
     },
   },
   methods: {
