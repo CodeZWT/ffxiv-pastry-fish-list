@@ -167,21 +167,23 @@ export default {
         ])
         .value()
 
-      const fishNameList = UploadUtil.fishListOfSpot(this.spotId).map(fishId => {
-        const fishInfo =
-          this.fishDict[fishId] ??
-          this.fishDict[
-            Object.keys(this.fishDict).find(id => DataUtil.toItemId(id) === fishId)
-          ]
-        return fishInfo.name
-      }) //.concat(['light', 'medium', 'heavy'])
-
+      const fishList = reverse(
+        UploadUtil.fishListOfSpot(this.spotId).map(fishId => {
+          return (
+            this.fishDict[fishId] ??
+            this.fishDict[
+              Object.keys(this.fishDict).find(id => DataUtil.toItemId(id) === fishId)
+            ]
+          )
+        })
+      )
       const baitList = Object.keys(biteTimes).map(bait => UploadUtil.toBait(bait))
+
       return {
         biteTimes,
         allBaitBiteTimes,
-        fishNameList,
         baitList,
+        fishList,
       }
     },
     spotId() {
@@ -191,14 +193,14 @@ export default {
         return -1
       }
     },
-    fishList() {
-      return this.dataOfSpot.fishNameList
+    fishInfoList() {
+      return this.dataOfSpot.fishList
     },
     baitList() {
       return this.dataOfSpot.baitList
     },
     itemNames() {
-      return reverse(this.fishList)
+      return this.dataOfSpot.fishList.map(it => it.name)
     },
     allBaitRecords() {
       return this.dataOfSpot.allBaitBiteTimes
@@ -206,7 +208,7 @@ export default {
     allBaitSeries() {
       return [
         {
-          name: '辅助',
+          name: 'support-transparent-bar',
           type: 'bar',
           stack: 'allBait',
           itemStyle: {
@@ -237,11 +239,19 @@ export default {
               return min + '-' + max
             },
           },
-          data: this.itemNames.map(
-            fishName =>
-              this.allBaitRecords[fishName]?.[1] - this.allBaitRecords[fishName]?.[0] ??
-              '-'
-          ),
+          data: this.fishInfoList.map(fish => {
+            const record = this.allBaitRecords[fish.name]
+            const color =
+              fish.tug === 'light'
+                ? '#2a9d8f'
+                : fish.tug === 'medium'
+                ? '#c14953'
+                : '#b68738'
+            return {
+              value: record?.[1] - record?.[0] ?? '-',
+              itemStyle: { color: color },
+            }
+          }),
         },
       ]
     },
@@ -331,15 +341,7 @@ export default {
       return {
         title: {
           text: '咬钩时间分布',
-          // subtext: 'From ExcelHome',
-          // sublink: 'http://e.weibo.com/1341556070/AjQH99che',
         },
-        // legend: {
-        //   data: [],
-        // },
-        // legend: {
-        //   data: this.baitList.map(({ baitName }) => baitName),
-        // },
         tooltip: {
           trigger: 'item',
           axisPointer: {

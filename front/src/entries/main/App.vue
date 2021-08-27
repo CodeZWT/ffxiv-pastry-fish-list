@@ -1971,6 +1971,7 @@ export default {
             ? fish.catchPathList.map(it => this.getBaits(fish, it))
             : [],
           baits: this.getBaits(fish),
+          tug: fish.tug,
           hasFishEyes: fish.fishEyes !== false,
           fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
           fishEyesText: DataUtil.secondsToMinutesString(fish.fishEyes),
