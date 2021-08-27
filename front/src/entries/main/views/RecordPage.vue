@@ -614,6 +614,13 @@
                       </template>
                     </v-progress-linear>
                   </template>
+                  <template v-slot:item.effects="{ item }">
+                    <div class="d-flex align-center">
+                      <div v-for="effect in item.effects" :key="effect.id">
+                        <effect-icon :icon-class="effect.icon" :title="effect.name" />
+                      </div>
+                    </div>
+                  </template>
                   <template v-slot:item.userId="{ item }">
                     <div class="d-flex align-center">
                       {{ item.userNickname }}
@@ -680,10 +687,11 @@ import FishingSpots from 'Data/fishingSpots'
 import PlaceNames from 'Data/placeNames'
 import WeatherIcon from '@/components/basic/WeatherIcon'
 import BAITS from 'Data/bait'
+import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'RecordPage',
-  components: { WeatherIcon, DateTimeInput, BiteTimeChart, ItemIcon },
+  components: { EffectIcon, WeatherIcon, DateTimeInput, BiteTimeChart, ItemIcon },
   mixins: [EnvMixin],
   props: ['lazyTransformedFishDict', 'lazySourceFishList'],
   inject: {
@@ -756,6 +764,12 @@ export default {
           align: 'start',
           sortable: true,
           value: 'bait',
+        },
+        {
+          text: '状态',
+          align: 'start',
+          sortable: false,
+          value: 'effects',
         },
         {
           text: '咬钩时长',

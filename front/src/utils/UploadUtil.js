@@ -10,6 +10,7 @@ import { WEATHER_TYPES } from 'Data/translation'
 import PLACE_NAMES from 'Data/placeNames'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
+import { STATUS } from 'Data/common'
 
 const toUploadData = records => {
   return records.map(record => {
@@ -164,6 +165,20 @@ export default {
     return SPOT_FISH_DICT[spot]?.filter(fishId => fishId > 0) ?? []
   },
   toReadableData(record) {
+    const effects = []
+    if (record.surfaceScale) {
+      effects.push(STATUS[1803])
+    }
+    if (record.identicalCast) {
+      effects.push(STATUS[1804])
+    }
+    if (record.gatheringFortuneUp) {
+      effects.push(STATUS[850])
+    }
+    if (record.catchAndRelease) {
+      effects.push(STATUS[765])
+    }
+
     return {
       ...record,
       startTime: new Date(record.startTime),
@@ -192,6 +207,13 @@ export default {
           : '',
       hookset: ['normal', 'precision', 'powerful', 'double'][record.hookset],
       tug: ['light', 'medium', 'heavy'][record.tug],
+      effects: effects.map(effect => {
+        return {
+          id: effect.id,
+          name: DataUtil.getName(effect),
+          icon: DataUtil.iconIdToClass(effect.icon),
+        }
+      }),
     }
   },
   timeOfOFSpot: timeOfOFSpot,
