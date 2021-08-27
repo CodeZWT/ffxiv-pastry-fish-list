@@ -12217,7 +12217,7 @@ module.exports = {
       name_chs: '黑鲢',
       spearFishingId: 20025,
       locations: [470],
-      gig: 4,
+      gig: 3,
       requiredCnt: 0,
       startHour: 0,
       endHour: 24,
