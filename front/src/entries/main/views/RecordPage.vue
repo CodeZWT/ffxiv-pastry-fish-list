@@ -307,9 +307,10 @@
                       class="d-flex"
                     >
                       <div style="height: 40px; width: 40px">
-                        <div
-                          :class="spotWeathers[i].icon"
+                        <weather-icon
+                          :icon-class="spotWeathers[i].icon"
                           :title="spotWeathers[i].name"
+                          type="weather"
                         />
                       </div>
                       <div
