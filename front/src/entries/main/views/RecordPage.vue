@@ -626,6 +626,14 @@
                       {{ item.userNickname }}
                     </div>
                   </template>
+                  <template v-slot:item.hookset="{ item }">
+                    <item-icon :icon-class="item.hookset.icon" small type="action" />
+                  </template>
+                  <template v-slot:item.userId="{ item }">
+                    <div class="d-flex align-center">
+                      {{ item.userNickname }}
+                    </div>
+                  </template>
                   <template v-slot:item.isStrictMode="{ item }">
                     <div class="d-flex align-center">
                       <v-icon v-if="item.isStrictMode">mdi-flag</v-icon>
@@ -770,6 +778,12 @@ export default {
           align: 'start',
           sortable: false,
           value: 'effects',
+        },
+        {
+          text: '提钩',
+          align: 'start',
+          sortable: false,
+          value: 'hookset',
         },
         {
           text: '咬钩时长',

@@ -11,6 +11,8 @@ import PLACE_NAMES from 'Data/placeNames'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
 import { STATUS } from 'Data/common'
+import capitalize from 'lodash/capitalize'
+import UploadUtil from '@/utils/UploadUtil'
 
 const toUploadData = records => {
   return records.map(record => {
@@ -143,6 +145,13 @@ export default {
         : DataUtil.getItemIconClass(fishId, 60027),
     }
   },
+  toHookset(hookset) {
+    const hooksetId = ['normal', 'precision', 'powerful', 'double'][hookset]
+    return {
+      id: hooksetId,
+      icon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[capitalize(hooksetId)]),
+    }
+  },
   toSpot(spot) {
     if (!spot) console.log(spot)
     const spotId = +(spot || 0)
@@ -205,7 +214,7 @@ export default {
                   : 0)
             ]
           : '',
-      hookset: ['normal', 'precision', 'powerful', 'double'][record.hookset],
+      hookset: UploadUtil.toHookset(record.hookset),
       tug: ['light', 'medium', 'heavy'][record.tug],
       effects: effects.map(effect => {
         return {
