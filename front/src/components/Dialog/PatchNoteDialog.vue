@@ -24,9 +24,20 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.5后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
-        <!--        <div>-->
-        <!--          仅在网页版随时更新，将来记入下一版本-->
-        <!--        </div>-->
+        <div class="text-h6">
+          Version 0.9.5-fix
+        </div>
+        <div>
+          仅在网页版随时更新，将来记入下一版本
+        </div>
+        <div class="text-subtitle-1">更新时间: 2021/08/27 11:43</div>
+        <div class="text-h5 text-center my-1">鱼糕</div>
+        <ul>
+          <li>更新咬钩时间分布图，在不区分鱼饵显示时根据杆型显示颜色</li>
+        </ul>
+
+        <v-divider />
+
         <div class="text-h6">
           Version 0.9.5
         </div>
