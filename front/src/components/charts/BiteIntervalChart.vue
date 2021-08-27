@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%">
+  <v-container fluid>
     <v-row v-show="records.length > 0">
       <v-col cols="12">
         <div class="d-flex align-center">
@@ -36,8 +36,10 @@
         </div>
       </v-col>
     </v-row>
-    <v-row v-show="records.length === 0">暂无咬钩时长数据</v-row>
-  </div>
+    <v-row v-show="records.length === 0" style="width: 100%" class="px-4"
+      >暂无咬钩时长数据</v-row
+    >
+  </v-container>
 </template>
 
 <script>

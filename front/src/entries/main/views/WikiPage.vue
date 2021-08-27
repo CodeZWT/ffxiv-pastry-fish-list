@@ -248,7 +248,7 @@
             </div>
             <fish-gig-table v-else :value="currentFishList" />
           </v-col>
-          <v-col cols="12" class="my-1">
+          <v-col v-if="mode === 'normal'" cols="12" class="my-1">
             <bite-interval-chart
               :records="biteIntervalRecords"
               :fish-dict="lazyTransformedFishDict"
