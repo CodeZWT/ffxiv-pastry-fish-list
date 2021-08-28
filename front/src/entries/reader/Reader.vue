@@ -16,14 +16,24 @@
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer />
-      <v-switch
-        v-if="isUploadMode && isRoseMode"
-        :value="isStrictMode"
-        color="default"
-        dense
-        @change="toggleStrictMode"
-        style="-webkit-app-region: none"
-      />
+      <div style="-webkit-app-region: none">
+        <v-tooltip bottom color="secondary">
+          <template v-slot:activator="{ on, attrs }">
+            <div v-bind="attrs" v-on="on">
+              <v-switch
+                v-if="isUploadMode && isRoseMode"
+                :input-value="isStrictMode"
+                color="secondary"
+                dense
+                @change="toggleStrictMode"
+              />
+            </div>
+          </template>
+          <div>
+            切换严格模式
+          </div>
+        </v-tooltip>
+      </div>
       <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
         <new-feature-mark :id="SettingFeatureId">
           <v-icon>mdi-cog</v-icon>
