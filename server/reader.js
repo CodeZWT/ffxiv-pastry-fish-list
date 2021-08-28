@@ -540,10 +540,12 @@ function saveCurrentRecord() {
     }
     currentRecord.id = uuid()
     fishRecordCallback(currentRecord)
+    status.lastRecordCancelled = false
     if (currentRecord.missed) {
       log.info('fish missed')
     } else if (currentRecord.cancelled) {
       log.info('fish ignored')
+      status.lastRecordCancelled = true
     }
     records.push(currentRecord)
     readableRecords.push(toReadable(currentRecord))
@@ -568,6 +570,7 @@ function resetStatus() {
     serverId: -1,
     diademWeatherEndTime: null,
     diademServerDict: {},
+    lastRecordCancelled: false,
   }
 }
 

@@ -384,6 +384,7 @@
     "baitTip": "切换任意鱼饵以读取数据",
     "surfaceScaleTip": "严格模式下请不要使用拍击水面",
     "identicalCastTip": "严格模式下请不要使用专一垂钓",
-    "fishEyesTip": "严格模式下请不要使用鱼眼"
+    "fishEyesTip": "严格模式下请不要使用鱼眼",
+    "lastRecordCancelledTip": "严格模式下请不要不提钩，请在数据统计-所有页面中标记为非严格模式（10分钟上传一次，非实时）。抛竿并提钩可以关闭本提示。"
   }
 }

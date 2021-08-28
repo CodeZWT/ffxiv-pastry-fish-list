@@ -31,11 +31,13 @@
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div style="min-width: 100px">
           咬钩计时
-          <v-btn small text icon @click="toggleMiniMode(true)" title="迷你模式">
-            <new-feature-mark id="MiniMode-V.0.6.6-1">
-              <v-icon small>mdi-dock-window</v-icon>
-            </new-feature-mark>
-          </v-btn>
+          <span :title="isStrictMode ? '严格模式下禁用' : '迷你模式'">
+            <v-btn small text icon @click="toggleMiniMode(true)" :disabled="isStrictMode">
+              <new-feature-mark id="MiniMode-V.0.6.6-1">
+                <v-icon small>mdi-dock-window</v-icon>
+              </new-feature-mark>
+            </v-btn>
+          </span>
         </div>
         <v-spacer />
         <div class="mr-1" title="获得力/鉴别力/采集力">
@@ -199,9 +201,20 @@
           </v-alert>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="error" @click="closeStrictMode" block>
-            关闭严格模式
-          </v-btn>
+          <div style="width: 100%">
+            <!--            <v-btn-->
+            <!--              v-if="lastRecordCancelled"-->
+            <!--              color="warning"-->
+            <!--              @click="closeStrictMode"-->
+            <!--              block-->
+            <!--              class="my-1"-->
+            <!--            >-->
+            <!--              将本地上一条记录标记为非严格-->
+            <!--            </v-btn>-->
+            <v-btn color="error" @click="closeStrictMode" block>
+              关闭严格模式
+            </v-btn>
+          </div>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -269,6 +282,9 @@ export default {
     fishEyes() {
       return !!this.effects.find(effect => effect.id === 762)
     },
+    lastRecordCancelled() {
+      return !!this.dataStatus?.lastRecordCancelled
+    },
     hasStrictModeViolation() {
       return (
         this.shouldCheckForStrictMode &&
@@ -276,7 +292,8 @@ export default {
           this.identicalCast ||
           this.noStatus ||
           this.noBait ||
-          this.fishEyes)
+          this.fishEyes ||
+          this.lastRecordCancelled)
       )
     },
     strictModeCheckTip() {
@@ -290,6 +307,8 @@ export default {
         return this.$t('readerTimer.identicalCastTip')
       } else if (this.fishEyes) {
         return this.$t('readerTimer.fishEyesTip')
+      } else if (this.lastRecordCancelled) {
+        return this.$t('readerTimer.lastRecordCancelledTip')
       }
       return ''
     },
@@ -498,6 +517,18 @@ export default {
       })
   },
   methods: {
+    // async markLastRecordNotStrict() {
+    //   let table = db.records.orderBy('startTime').reverse()
+    //   const records = await table
+    //     .filter(record => record.fishId === -1 && record.canceled === true)
+    //     .limit(1)
+    //     .toArray()
+    //   if (records.length > 0) {
+    //     const record = records[0]
+    //     record.isStrictMode = false
+    //     db.records.put(record).catch(error => console.error('storeError', error))
+    //   }
+    // },
     closeStrictMode() {
       this.setStrictMode(false)
       this.sendElectronEvent('setStrictMode', false)
