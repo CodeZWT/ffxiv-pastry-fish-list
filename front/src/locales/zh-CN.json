@@ -378,5 +378,12 @@
       "yes": "是",
       "no": "否"
     }
+  },
+  "readerTimer": {
+    "statusTip": "切换职业以获取获得力相关信息",
+    "baitTip": "切换任意鱼饵以读取数据",
+    "surfaceScaleTip": "严格模式下请不要使用拍击水面",
+    "identicalCastTip": "严格模式下请不要使用专一垂钓",
+    "fishEyesTip": "严格模式下请不要使用鱼眼"
   }
 }

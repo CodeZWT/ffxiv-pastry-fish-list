@@ -108,7 +108,7 @@
         </v-progress-linear>
       </v-col>
       <v-col cols="12" class="mt-4 d-flex">
-        <div v-if="!bait.id">切换任意鱼饵以读取数据</div>
+        <div v-if="!bait.id">{{ $t('readerTimer.baitTip') }}</div>
         <div v-else class="d-flex align-center">
           <span class="mr-1">鱼饵</span>
           <item-icon :icon-class="bait.icon" :title="bait.name" small />
@@ -190,6 +190,21 @@
         </v-progress-linear>
       </v-col>
     </v-row>
+    <v-dialog :value="hasStrictModeViolation" fullscreen persistent>
+      <v-card>
+        <v-card-title>严格模式检查</v-card-title>
+        <v-card-text>
+          <v-alert outlined type="error" border="left">
+            {{ strictModeCheckTip }}
+          </v-alert>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="error" @click="closeStrictMode" block>
+            关闭严格模式
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -206,6 +221,7 @@ import WindowUtil from '@/entries/reader/util/WindowUtil'
 import { SERVER_ID_NAMES } from 'Data/diadem'
 import db from '@/plugins/db'
 import EffectIcon from '@/components/basic/EffectIcon'
+import rcapiService from '@/service/rcapiService'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -235,6 +251,48 @@ export default {
       'isStrictMode',
       'isRoseMode',
     ]),
+    shouldCheckForStrictMode() {
+      return this.isRoseMode && this.isStrictMode && this.isUploadMode
+    },
+    noStatus() {
+      return !this.playerStatus.gathering
+    },
+    noBait() {
+      return !this.bait.id
+    },
+    surfaceScale() {
+      return !!this.effects.find(effect => effect.id === 1803)
+    },
+    identicalCast() {
+      return !!this.effects.find(effect => effect.id === 1804)
+    },
+    fishEyes() {
+      return !!this.effects.find(effect => effect.id === 762)
+    },
+    hasStrictModeViolation() {
+      return (
+        this.shouldCheckForStrictMode &&
+        (this.surfaceScale ||
+          this.identicalCast ||
+          this.noStatus ||
+          this.noBait ||
+          this.fishEyes)
+      )
+    },
+    strictModeCheckTip() {
+      if (this.noStatus) {
+        return this.$t('readerTimer.statusTip')
+      } else if (this.noBait) {
+        return this.$t('readerTimer.baitTip')
+      } else if (this.surfaceScale) {
+        return this.$t('readerTimer.surfaceScaleTip')
+      } else if (this.identicalCast) {
+        return this.$t('readerTimer.identicalCastTip')
+      } else if (this.fishEyes) {
+        return this.$t('readerTimer.fishEyesTip')
+      }
+      return ''
+    },
     disableTooltip() {
       return this.dataStatus?.serverId === -1
     },
@@ -273,7 +331,7 @@ export default {
         gp: this.dataStatus?.gp,
         text: this.dataStatus?.gathering
           ? `${this.dataStatus?.gathering}/${this.dataStatus?.perception}/${this.dataStatus?.gp}`
-          : '切换职业以获取获得力相关信息',
+          : this.$t('readerTimer.statusTip'),
       }
     },
     bait() {
@@ -428,8 +486,9 @@ export default {
         this.dataCurrentRecord = data.currentRecord
       })
       ?.on('newRecord', (event, data) => {
-        data.uploadEnabled = this.isRoseMode && this.isUploadMode
-        data.isStrictMode = this.isRoseMode && this.isStrictMode
+        const isLogin = rcapiService.isLogin()
+        data.uploadEnabled = this.isRoseMode && this.isUploadMode && isLogin
+        data.isStrictMode = this.isRoseMode && this.isStrictMode && isLogin
         console.log('store in reader', data)
         db.records.put(data).catch(error => console.error('storeError', error))
       })
@@ -439,6 +498,10 @@ export default {
       })
   },
   methods: {
+    closeStrictMode() {
+      this.setStrictMode(false)
+      this.sendElectronEvent('setStrictMode', false)
+    },
     onDismiss() {
       this.setNotShowBanner()
     },
@@ -473,6 +536,7 @@ export default {
       'updateReaderTimerMiniMode',
       'setFishCompleted',
       'setNotShowBanner',
+      'setStrictMode',
     ]),
   },
 }

@@ -3,7 +3,7 @@ const merge = require('lodash/merge')
 const CN_DATA = require('./translation')
 const DATA = require('./data')
 const FISH = require('./fish')
-const BAITS = require('Data/bait')
+const BAITS = require('../data/bait')
 
 const FISHING_SPOTS = merge(DATA.FISHING_SPOTS, CN_DATA.FISHING_SPOTS)
 const ITEMS = merge(FISH, BAITS)

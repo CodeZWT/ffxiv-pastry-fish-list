@@ -758,6 +758,7 @@ import RoseModeDialog from '@/components/Dialog/RoseModeDialog'
 import UploadUtil from '@/utils/UploadUtil'
 import { INTERVAL_MINUTE } from 'Data/constants'
 import UpdateAvailableDialog from '@/components/Dialog/UpdateAvailableDialog'
+import rcapiService from '@/service/rcapiService'
 // let totalCnt = 0
 
 export default {
@@ -1294,8 +1295,11 @@ export default {
           }
         })
         ?.on('newRecord', (event, data) => {
-          data.uploadEnabled = this.readerSetting.isUploadMode
-          data.isStrictMode = this.readerSetting.isStrictMode
+          const isLogin = rcapiService.isLogin()
+          data.uploadEnabled =
+            this.readerSetting.isUploadMode && this.isRoseMode && isLogin
+          data.isStrictMode =
+            this.readerSetting.isStrictMode && this.isRoseMode && isLogin
           console.log('store data', data)
           db.records.put(data).catch(error => console.error('storeError', error))
         })
