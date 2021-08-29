@@ -24,24 +24,24 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.5后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
-        <div class="text-h6">
-          Version 0.9.5-fix
-        </div>
-        <div>
-          仅在网页版随时更新，将来记入下一版本
-        </div>
-        <div class="text-subtitle-1">更新时间: 2021/08/27 23:54</div>
+        <!--        <div>-->
+        <!--          仅在网页版随时更新，将来记入下一版本-->
+        <!--        </div>-->
+        <div class="text-h6">Version 0.9.6</div>
+        <div class="text-subtitle-1">更新时间: 2021/08/29 20:00</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
           <li>更新咬钩时间分布图，在不区分鱼饵显示时根据杆型显示颜色</li>
           <li>修正刺鱼黑鲢的渔叉尖为大型</li>
         </ul>
+        <div class="text-h5 text-center my-1">渔捞</div>
+        <ul>
+          <li>数据上传相关更新（普通用户无影响，默认并不上传数据）</li>
+        </ul>
 
         <v-divider />
 
-        <div class="text-h6">
-          Version 0.9.5
-        </div>
+        <div class="text-h6">Version 0.9.5</div>
         <div class="text-subtitle-1">更新时间: 2021/08/25 22:00</div>
         <div class="text-h5 text-center my-1">渔捞</div>
         <ul>
@@ -50,9 +50,7 @@
 
         <v-divider />
 
-        <div class="text-h6">
-          Version 0.9.4
-        </div>
+        <div class="text-h6">Version 0.9.4</div>
         <div class="text-subtitle-1">更新时间: 2021/08/22 18:16</div>
         <div class="text-h5 text-center my-1">鱼糕</div>
         <ul>
