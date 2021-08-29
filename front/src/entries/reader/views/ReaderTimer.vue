@@ -211,9 +211,7 @@
             <!--            >-->
             <!--              将本地上一条记录标记为非严格-->
             <!--            </v-btn>-->
-            <v-btn color="error" @click="closeStrictMode" block>
-              关闭严格模式
-            </v-btn>
+            <v-btn color="error" @click="closeStrictMode" block> 关闭严格模式</v-btn>
           </div>
         </v-card-actions>
       </v-card>
@@ -265,7 +263,12 @@ export default {
       'isRoseMode',
     ]),
     shouldCheckForStrictMode() {
-      return this.isRoseMode && this.isStrictMode && this.isUploadMode
+      return (
+        this.isRoseMode &&
+        this.isStrictMode &&
+        this.isUploadMode &&
+        rcapiService.isLogin()
+      )
     },
     noStatus() {
       return !this.playerStatus.gathering
