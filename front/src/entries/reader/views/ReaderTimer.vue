@@ -495,7 +495,7 @@ export default {
       window.process?.argv?.find(it => it.indexOf('--mode') === 0)?.split('=')?.[1] ??
       'normal'
     this.updateReaderTimerMiniMode(this.mode === 'mini')
-
+    this.closeStrictMode()
     window.electron?.ipcRenderer
       ?.on('fishingData', (event, data) => {
         this.dataStatus = {
