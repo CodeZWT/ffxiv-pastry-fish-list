@@ -37,8 +37,9 @@ const EMPTY_RECORD = {
   uploaded: false
 }
 let status, currentRecord
-const records = []
-const readableRecords = []
+// const records = []
+// const readableRecords = []
+let prevRecord = undefined
 resetStatus()
 resetRecord()
 
@@ -386,14 +387,10 @@ function onFFXIVEventWithFilter(
         updateCallback({
           status,
           currentRecord,
-          // records,
-          // readableRecords,
         })
       }
       // log.debug(status)
       // log.debug(currentRecord)
-      // log.debug(records)
-      // log.debug(readableRecords)
       // log.debug('----------------------------------------------------')
     }
   })
@@ -547,8 +544,9 @@ function saveCurrentRecord() {
       log.info('fish ignored')
       status.lastRecordCancelled = true
     }
-    records.push(currentRecord)
-    readableRecords.push(toReadable(currentRecord))
+    prevRecord = Object.assign({}, currentRecord)
+    // records.push(currentRecord)
+    // readableRecords.push(toReadable(currentRecord))
   }
   resetRecord()
 }
@@ -749,7 +747,6 @@ function getHookset(hookset) {
 function isFlatSet(param, i) {
   return ((param >> i) & 1) === 1
 }
-
 // caught fish
 onFFXIVEventWithFilter('actorControlSelf', null, 320, null, packet => {
   // log.info(packet.param2.toString(2))
@@ -763,8 +760,8 @@ onFFXIVEventWithFilter('actorControlSelf', null, 320, null, packet => {
   if (!isSpearFish) {
     log.info('fish caught', caughtFishId)
     fishCaughtCallback({ fishId: caughtFishId, hq })
-    if (records.length === 0) return
-    const prevRecord = records[records.length - 1]
+    if (!prevRecord) return
+    // const prevRecord = records[records.length - 1]
     prevRecord.fishId = caughtFishId
     prevRecord.hq = hq
     prevRecord.moochable = isFlatSet(packet.param3, 0)
@@ -774,7 +771,7 @@ onFFXIVEventWithFilter('actorControlSelf', null, 320, null, packet => {
 
     // log.info('fish caught record', prevRecord)
     fishRecordCallback(prevRecord)
-    readableRecords[readableRecords.length - 1] = toReadable(prevRecord)
+    // readableRecords[readableRecords.length - 1] = toReadable(prevRecord)
   } else {
     log.info('spear fish caught', caughtFishId)
     fishCaughtCallback({ fishId: caughtFishId, hq })
