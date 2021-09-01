@@ -519,6 +519,9 @@ export default {
         this.setFishCompleted({ fishId: fishId, completed: true })
       })
   },
+  mounted() {
+    this.sendElectronEvent('updateWindowSetting', null)
+  },
   methods: {
     // async markLastRecordNotStrict() {
     //   let table = db.records.orderBy('startTime').reverse()

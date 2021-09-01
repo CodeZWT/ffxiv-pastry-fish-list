@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/timer',
     name: 'ReaderTimer',
     component: ReaderTimer,
   },

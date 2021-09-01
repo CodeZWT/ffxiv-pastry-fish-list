@@ -456,7 +456,8 @@ async function init() {
         })
       }
     })
-    .on('updateWindowSetting', (event, newWindowSetting) => {
+    .on('updateWindowSetting', (event, newSetting) => {
+      const newWindowSetting = newSetting || windowSetting
       Object.entries({
         timer: 'readerTimer',
         timerMini: 'timerMini',
@@ -465,8 +466,6 @@ async function init() {
       }).forEach(([settingName, windowName]) => {
         if (
           newWindowSetting[settingName] &&
-          WINDOWS[windowName] &&
-          !WINDOWS[windowName].isDestroyed() &&
           newWindowSetting[settingName].zoomFactor > 0.3
         ) {
           if (settingName !== 'timerMini') {
@@ -474,14 +473,16 @@ async function init() {
               settingName + '.opacity',
               newWindowSetting[settingName].opacity
             )
-            WINDOWS[windowName].setOpacity(newWindowSetting[settingName].opacity)
+            callWindowSafe(WINDOWS[windowName], win =>
+              win.setOpacity(newWindowSetting[settingName].opacity)
+            )
           }
           saveWindowSetting(
             settingName + '.zoomFactor',
             newWindowSetting[settingName].zoomFactor
           )
-          WINDOWS[windowName].webContents.setZoomFactor(
-            newWindowSetting[settingName].zoomFactor
+          callWindowSafe(WINDOWS[windowName], win =>
+            win.webContents.setZoomFactor(newWindowSetting[settingName].zoomFactor)
           )
         }
       })
@@ -792,8 +793,10 @@ function createTransparentWin(
   width,
   height,
   show,
-  additionalArguments = null
+  additionalArguments = null,
+  settingName = null,
 ) {
+  const setting = settingName && windowSetting[settingName]
   WINDOWS[windowName] = new BrowserWindow({
     width: width,
     height: height,
@@ -808,6 +811,7 @@ function createTransparentWin(
       nodeIntegration: true,
       enableRemoteModule: true,
       preload: __dirname + '/preload.js',
+      zoomFactor: (setting && setting.zoomFactor) || 0,
       additionalArguments: additionalArguments,
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
@@ -874,7 +878,8 @@ function createTimerMiniWin() {
     windowSetting.timerMini.size.w,
     windowSetting.timerMini.size.h,
     false,
-    ['--route-name=ReaderTimer', '--mode=mini']
+    ['--route-name=ReaderTimerMini', '--mode=mini'],
+    'timerMini'
   )
     .then(win => {
       if (windowSetting.timerMini.pos.x && windowSetting.timerMini.pos.y) {
@@ -1004,7 +1009,7 @@ function setOnTop(win, alwaysOnTop = true) {
   win.setMinimizable(!alwaysOnTop)
 }
 
-function createReader() {
+function createReader(loadedCallback) {
   const settingName = 'timer'
   // closedWindows[settingName] = null
   const win = createWindow(
@@ -1012,13 +1017,8 @@ function createReader() {
     settingName,
     'assets/reader.png',
     'reader',
-    null,
-    () => {
-      // createTimerMiniWin(win)
-      // createReaderSetting(win)
-      // createReaderHistory(win)
-      // createReaderSpotStatistics(win)
-    },
+    'timer',
+    loadedCallback,
     ['--route-name=ReaderTimer', '--mode=normal'],
     false,
     true,
@@ -1082,16 +1082,25 @@ function updateUserData(updateData) {
 function showReader() {
   if (!windowSetting.timerMini.enabled) {
     if (!WINDOWS.readerTimer) {
-      WINDOWS.readerTimer = createReader()
+      WINDOWS.readerTimer = createReader(win => {
+        // createTimerMiniWin(win)
+        // createReaderSetting(win)
+        // createReaderHistory(win)
+        // createReaderSpotStatistics(win)
+        win.show()
+      })
+    } else {
+      callWindowSafe(WINDOWS.readerTimer, win => win.show())
     }
-    callWindowSafe(WINDOWS.readerTimer, win => win.show())
   } else {
     if (!WINDOWS.timerMini) {
       createTimerMiniWin().then(win => {
         WINDOWS.timerMini = win
+        win.show()
       })
+    } else {
+      callWindowSafe(WINDOWS.timerMini, win => win.show())
     }
-    callWindowSafe(WINDOWS.timerMini, win => win.show())
   }
 }
 
