@@ -456,9 +456,13 @@ onFFXIVEvent('eventPlay', packet => {
         currentRecord.tug = getTug(packet.param5)
         break
       case 2:
-        currentRecord.cancelled =
-          !!actionTimeline[packet.param5] &&
-          actionTimeline[packet.param5].subType === 'cancel'
+        if (packet.param5 === 0) {
+          currentRecord.missed = true
+        } else {
+          currentRecord.cancelled =
+            !!actionTimeline[packet.param5] &&
+            actionTimeline[packet.param5].subType === 'cancel'
+        }
         saveCurrentRecord()
         break
       default:
