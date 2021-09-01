@@ -397,7 +397,7 @@ module.exports = {
       tug: 'light',
     },
     8769: {
-      intuitionLength: 120,
+      intuitionLength: 180,
       bestCatchPath: [12711, 31004937],
     },
     7945: {
@@ -1281,7 +1281,7 @@ module.exports = {
       ],
     },
     8754: {
-      intuitionLength: 600,
+      intuitionLength: 350,
       bestCatchPath: [2606],
       catchPathList: [[2606], [2585, 4869], [2585, 4869, 4904], [2585, 4869, 4904, 4919]],
     },
