@@ -86,6 +86,9 @@ export default {
     selectedSpotId() {
       return this.dataStatus?.spotId
     },
+    chum() {
+      return !!this.dataStatus?.effects?.find(effect => effect === 763)
+    },
     currentSpotRecords() {
       return this.rawRecords.map(record => {
         const biteInterval = +((record.biteTime - record.startTime) / 1000).toFixed(1)
@@ -142,13 +145,16 @@ export default {
       },
       immediate: true,
     },
+    chum(chum) {
+      this.currentChumForGraph = chum ? 'chum' : 'normal'
+    },
   },
   async created() {
     window.electron?.ipcRenderer
       ?.on('fishingData', (event, data) => {
         this.dataStatus = {
           ...data.status,
-          // effects: Array.from(data.status && data.status.effects),
+          effects: Array.from(data.status && data.status.effects),
         }
         this.dataCurrentRecord = data.currentRecord
       })
