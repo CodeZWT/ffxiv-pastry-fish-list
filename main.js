@@ -65,6 +65,7 @@ unhandled({
 contextMenu()
 const DEFAULT_HOTKEY_SETTING = {
   mouseThrough: 'L',
+  toggleReader: 'K',
 }
 const DEFAULT_WINDOW_SETTING = {
   main: {
@@ -130,6 +131,9 @@ function saveHotkeySetting(path, value) {
     configStore.set('hotkeySetting', hotkeySetting)
     globalShortcut.register('Alt+Shift+' + hotkeySetting.mouseThrough, () => {
       setMouseThrough(!enableMouseThrough)
+    })
+    globalShortcut.register('Alt+Shift+' + hotkeySetting.toggleReader, () => {
+      toggleReader()
     })
   }
 }
@@ -277,6 +281,7 @@ async function init() {
 
       // set hotkey
       saveHotkeySetting('mouseThrough', updateData.data.hotkey.mouseThrough || 'L')
+      saveHotkeySetting('toggleReader', updateData.data.hotkey.toggleReader || 'K')
 
       // restart machina
       const newRegion = updateData.data.region || 'CN'
@@ -580,7 +585,7 @@ async function init() {
     callWindowSafe(WINDOWS.main, win => win.webContents.send('showRoseModeDialog'))
   })
   globalShortcut.register('Alt+CommandOrControl+]', () => {
-    showReader()
+    toggleReader()
   })
   globalShortcut.register('Alt+CommandOrControl+[', () => {
     callWindowSafe(WINDOWS.main, win =>
@@ -1084,10 +1089,36 @@ function showReader() {
     if (!WINDOWS.timerMini) {
       createTimerMiniWin().then(win => {
         WINDOWS.timerMini = win
-        callWindowSafe(WINDOWS.timerMini, win => win.show())
       })
     }
+    callWindowSafe(WINDOWS.timerMini, win => win.show())
   }
+}
+
+function toggleReader() {
+  if (!windowSetting.timerMini.enabled) {
+    if (!WINDOWS.readerTimer) {
+      WINDOWS.readerTimer = createReader()
+    }
+    toggleWindow(WINDOWS.readerTimer)
+  } else {
+    if (!WINDOWS.timerMini) {
+      createTimerMiniWin().then(win => {
+        WINDOWS.timerMini = win
+      })
+    }
+    toggleWindow(WINDOWS.timerMini)
+  }
+}
+
+function toggleWindow(window) {
+  callWindowSafe(window, win => {
+    if (win.isVisible()) {
+      win.hide()
+    } else {
+      win.show()
+    }
+  })
 }
 
 function showReaderSetting() {

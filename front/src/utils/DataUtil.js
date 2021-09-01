@@ -1308,6 +1308,7 @@ export default {
     isStrictMode: false,
     hotkey: {
       mouseThrough: 'L',
+      toggleReader: 'K',
     },
     showReaderBanner: true,
     timer: {

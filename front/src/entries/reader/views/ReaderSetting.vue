@@ -125,6 +125,25 @@
               hide-details
             ></v-text-field>
           </v-card-text>
+          <v-card-text class="d-flex align-center">
+            <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+              切换鱼糕鼠标穿透
+            </div>
+            <div class="mr-2">
+              <kbd class="text-subtitle-1">Alt</kbd>+
+              <kbd class="text-subtitle-1">Shift</kbd>+
+            </div>
+            <v-text-field
+              readonly
+              :value="lazySetting.hotkey.toggleReader"
+              @keydown="setHotkey('toggleReader', $event)"
+              style="max-width: 36px"
+              placeholder="]"
+              outlined
+              dense
+              hide-details
+            ></v-text-field>
+          </v-card-text>
         </v-card>
         <v-card outlined width="100%" class="my-1">
           <div class="overline ml-2">计时器</div>
