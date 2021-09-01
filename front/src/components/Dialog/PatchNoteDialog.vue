@@ -27,32 +27,48 @@
         <!--        <div>-->
         <!--          仅在网页版随时更新，将来记入下一版本-->
         <!--        </div>-->
-        <div class="text-h6">Version 0.9.6</div>
-        <div class="text-subtitle-1">更新时间: 2021/08/29 20:00</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.9.6</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/08/29 20:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新咬钩时间分布图，在不区分鱼饵显示时根据杆型显示颜色</li>
           <li>修正刺鱼黑鲢的渔叉尖为大型</li>
         </ul>
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>数据上传相关更新（普通用户无影响，默认并不上传数据）</li>
         </ul>
 
         <v-divider />
 
-        <div class="text-h6">Version 0.9.5</div>
-        <div class="text-subtitle-1">更新时间: 2021/08/25 22:00</div>
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.9.5</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/08/25 22:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>支持国际服5.58 hotfix</li>
         </ul>
 
         <v-divider />
 
-        <div class="text-h6">Version 0.9.4</div>
-        <div class="text-subtitle-1">更新时间: 2021/08/22 18:16</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.9.4</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/08/22 18:16</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>
             增加
@@ -68,50 +84,70 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.9.3</div>
-        <div class="text-subtitle-1">更新时间: 2021/08/16 23:20</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.9.3</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/08/16 23:20</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新5.5攻略内容</li>
         </ul>
-        <div class="text-h5 text-center my-1">鱼捞</div>
+        <div class="text-h6 my-1">鱼捞</div>
         <ul>
           <li>修复空岛返回清空计时的问题</li>
         </ul>
 
         <v-divider />
 
-        <div class="text-h6">Version 0.9.2</div>
-        <div class="text-subtitle-1">更新时间: 2021/08/10 23:50</div>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.9.2</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/08/10 23:50</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>支持国服5.5</li>
         </ul>
 
         <v-divider />
 
-        <div class="text-h6">Version 0.9.1</div>
-        <div class="text-subtitle-1">更新时间: 2021/08/09 22:50</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.9.1</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/08/09 22:50</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新5.5鱼数据</li>
           <li>更新部分鱼数据</li>
           <li>增加地图工具栏说明</li>
         </ul>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>去除调试按钮</li>
         </ul>
 
         <v-divider />
 
-        <div class="text-h6">Version 0.9.0</div>
-        <div class="text-subtitle-1">更新时间: 2021/07/17 18:00</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.9.0</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/07/17 18:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修复导入失败的问题</li>
         </ul>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>增加更新提示</li>
           <ul>
@@ -123,9 +159,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.13</div>
-        <div class="text-subtitle-1">更新时间: 2021/07/01 22:00</div>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.13</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/07/01 22:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>修复设置自定义咬钩提示音无法试听的问题</li>
           <li>修复新用户咬钩提示音无法播放的问题</li>
@@ -133,9 +174,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.12</div>
-        <div class="text-subtitle-1">更新时间: 2021/06/27 23:41</div>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.12</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/06/27 23:41</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>修复全新安装无限加载的问题</li>
           <li>修复切换迷你模式打开多个迷你模式窗口的问题</li>
@@ -143,15 +189,20 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.11</div>
-        <div class="text-subtitle-1">更新时间: 2021/06/27 21:20</div>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.11</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/06/27 21:20</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>更新部分鱼数据</li>
           <li>更新部分钓场范围提示</li>
           <li>更新海钓攻略，添加宏的复制功能</li>
         </ul>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>
             修复上次动态加载界面后出现的一系列问题，现改为部分界面第一次打开时动态加载
@@ -161,25 +212,35 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.10</div>
-        <div class="text-subtitle-1">更新时间: 2021/06/20 17:40</div>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.10</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/06/20 17:40</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>修复幻海流、空岛天气计时</li>
         </ul>
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.9</div>
-        <div class="text-subtitle-1">更新时间: 2021/06/20 14:20</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.9</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/06/20 14:20</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新5.55鱼皇数据</li>
           <li>增加“光之渔夫钓鱼大赛”页面，包括往届信息以及最终排名</li>
           <li>修复5.55鱼皇未计入钓鱼笔记计数的问题</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>
             优化内存占用
@@ -196,18 +257,28 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.8</div>
-        <div class="text-subtitle-1">更新时间: 2021/06/08 23:20</div>
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.8</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/06/08 23:20</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>更新5.45支持</li>
         </ul>
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.7</div>
-        <div class="text-subtitle-1">更新时间: 2021/06/07 22:20</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.7</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/06/07 22:20</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新5.45翻译</li>
           <li>更新5.45成就计数</li>
@@ -217,14 +288,19 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.6</div>
-        <div class="text-subtitle-1">更新时间: 2021/06/03 00:00</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.6</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/06/03 00:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修复开荒鱼的鱼饵筛选与条件筛选</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>修复天气检测（幻海流，空岛天气）</li>
         </ul>
@@ -232,9 +308,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.5</div>
-        <div class="text-subtitle-1">更新时间: 2021/05/31 23:40</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.5</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/05/31 23:40</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>增加5.55鱼皇相关信息，条件仍在开荒中可能随时更新，仅供参考！</li>
         </ul>
@@ -242,9 +323,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.4</div>
-        <div class="text-subtitle-1">更新时间: 2021/05/23 13:20</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.4</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/05/23 13:20</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>增加“第三届光之渔夫钓鱼大赛”相关宣传，欢迎大家踊跃报名！</li>
           <li>更新云冠群岛的部分说明。</li>
@@ -253,9 +339,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.3</div>
-        <div class="text-subtitle-1">更新时间: 2021/05/11 22:20</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.3</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/05/11 22:20</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新部分鱼数据</li>
           <li>
@@ -265,7 +356,7 @@
           </li>
           <li>更新第四期伊修加德重建页面部分内容。</li>
         </ul>
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>更新渔捞以及图鉴同步以支持5.41</li>
         </ul>
@@ -273,9 +364,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.2</div>
-        <div class="text-subtitle-1">更新时间: 2021/05/03 20:00</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.2</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/05/03 20:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新5.5水族馆内容</li>
           <li>
@@ -285,11 +381,11 @@
           <li>更新海钓数据</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">桌面版</div>
+        <div class="text-h6 my-1">桌面版</div>
         <ul>
           <li>导出文件中增加杆型列</li>
         </ul>
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>修复国际服幻海流、空岛计时</li>
           <li>修正幻海补偿最大值为60秒</li>
@@ -298,16 +394,21 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.1</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/28 00:00</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.1</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/04/28 00:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更正修复图鉴说明</li>
           <li>增加5.45鱼</li>
           <li>修正收藏品</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>修复关闭时报错</li>
         </ul>
@@ -315,9 +416,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.8.0</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/25 22:40</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.8.0</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/04/25 22:40</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>增加5.5鱼数据，由于国际服仍在开荒期，数据随时可能更新。</li>
           <li>图鉴增加5.5计数</li>
@@ -325,13 +431,13 @@
           <li>修复了海钓航班表在筛选时不显示日期的问题</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>支持国际服同步图鉴，请在渔捞处切换国服/国际服</li>
           <li>支持自定义安装路径，更新时选择新路径即可切换安装路径，历史数据仍会保留</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>
             增加新的检测方式，国服用户可以尝试切换使用更稳定的Npcap作为检测方式。（第一次切换请按照提示安装Npcap）
@@ -347,9 +453,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.7.9</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/18 20:50</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.7.9</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/04/18 20:50</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>
             钓鱼笔记增加显示钓鱼总数，烟波钓徒计数，净界太公计数，（桌面版可直接同步游戏内数据）
@@ -373,7 +484,7 @@
           </li>
         </ul>
 
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>
             增加同步游戏内钓鱼笔记的功能，同步后原先的钓鱼以及刺鱼记录会被完全覆盖，请注意！
@@ -381,7 +492,7 @@
           <li>感谢 美依礼芽@延夏 的大力协助！</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>修复幻海流计时器延长计算出错的问题</li>
         </ul>
@@ -389,9 +500,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.7.8</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/11 22:05</div>
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.7.8</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/04/11 22:05</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>修复渔捞记录导出功能</li>
         </ul>
@@ -399,9 +515,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.7.7</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/11 21:00</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.7.7</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/04/11 21:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修正部分海钓攻略数据</li>
           <li>依照统计数据显示咬钩数据</li>
@@ -414,15 +535,20 @@
         </ul>
         <p />
 
-        <div class="text-h6">Version 0.7.6</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/06 21:00</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.7.6</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/04/06 21:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修正海钓天气筛选</li>
         </ul>
         <p />
 
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>渔捞检测已更新，支持国服5.4</li>
         </ul>
@@ -430,9 +556,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.7.5</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/06 10:00</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.7.5</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/04/06 10:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>5.4中文翻译更新</li>
           <li>删除旧版海钓页面</li>
@@ -445,9 +576,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.7.4</div>
-        <div class="text-subtitle-1">更新时间: 2021/04/03 14:03</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.7.4</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/04/03 14:03</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>增加海钓冲分推荐</li>
         </ul>
@@ -455,13 +591,18 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.7.3</div>
-        <div class="text-subtitle-1">更新时间: 2021/03/29 21:00</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.7.3</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/03/29 21:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>增加第四期空岛内容</li>
         </ul>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>修复最小化时同时最小化渔捞的问题</li>
           <li>修复点击渔捞激活主界面的问题</li>
@@ -471,9 +612,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.7.2</div>
-        <div class="text-subtitle-1">更新时间: 2021/03/27 20:32</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.7.2</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/03/27 20:32</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修正珊瑚海龙限定鱼饵</li>
           <li>显示海钓前置鱼双提个数</li>
@@ -485,9 +631,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.7.1</div>
-        <div class="text-subtitle-1">更新时间: 2021/03/26 23:55</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.7.1</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/03/26 23:55</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修正“只能用该鱼饵”在普通列表中显示的问题</li>
         </ul>
@@ -495,9 +646,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.7.0</div>
-        <div class="text-subtitle-1">更新时间: 2021/03/26 22:40</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.7.0</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/03/26 22:40</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <v-alert outlined type="success" border="left" icon="mdi-ferry">
           <ul>
             <li>增加了5.4海钓新页面，游戏正式更新后，旧海钓页面将会删除</li>
@@ -510,11 +666,11 @@
           </ul>
         </v-alert>
 
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>修复退出副本时的报错，如还有问题欢迎反馈。</li>
         </ul>
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>增加双提的支持（双提技能，个数，导出文件中双提相关内容）</li>
         </ul>
@@ -522,9 +678,14 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.6.10</div>
-        <div class="text-subtitle-1">更新时间: 2021/03/16 23:40</div>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.10</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/03/16 23:40</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>尝试修复关闭鱼糕时的报错，如还有问题欢迎反馈。</li>
           <li>修复无网络时更新报错的问题。</li>
@@ -537,9 +698,15 @@
           3/15
           更新了多次版本，但是没有更新版本号。由于主要是后台代码更新，所以看上去像是出了无限更新的BUG...因此之后版本更新都会更新版本号，并加入更新时间。
         </v-alert>
-        <div class="text-h6">Version 0.6.9</div>
-        <div class="text-subtitle-1">更新时间: 2021/03/16 01:11</div>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.9</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/03/16 01:11</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>修复切换迷你模式的报错</li>
         </ul>
@@ -547,8 +714,13 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.6.8</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.8</div>
+            <v-spacer />
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <v-alert outlined type="success" border="left">
           <ul>
             <li>
@@ -566,7 +738,7 @@
           <li>去除第二期空岛的过期信息</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <div class="text-h6 my-1">渔捞</div>
         <v-alert outlined type="error" border="left">
           若使用渔捞报错，请检查是否使用了防火墙相关的软件。若是，请将鱼糕安装目录加入信任区。
           <a
@@ -592,7 +764,7 @@
           <li>修复5.4海钓钓场判断错误</li>
           <li>修复收藏品状态的判断问题</li>
         </ul>
-        <div class="text-h5 text-center my-1">桌面版</div>
+        <div class="text-h6 my-1">桌面版</div>
         <ul>
           <li>增加系统托盘支持</li>
           <li>增加鼠标穿透支持</li>
@@ -605,14 +777,19 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.6.7</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.7</div>
+            <v-spacer />
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>增加水族馆<v-icon>mdi-fishbowl</v-icon></li>
           <li>增加列表页面水族馆支持</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">渔捞</div>
+        <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>国际服支持</li>
           <li>
@@ -623,8 +800,13 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.6.6</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.6</div>
+            <v-spacer />
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>再次修复鱼饵筛选选择错位的问题 (是的，上次修出新的问题了。。。）</li>
           <li>修复列表展开过慢的问题</li>
@@ -634,7 +816,7 @@
           </li>
           <li>更新部分鱼数据，以及5.X鱼攻略。</li>
         </ul>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <v-subheader>计时器</v-subheader>
         <ul>
           <li>修复未打开计时器仍会发出提钩提示音的问题</li>
@@ -663,8 +845,13 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.6.5</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.5</div>
+            <v-spacer />
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修复无法导入的问题</li>
           <li>修复右上按钮显示不全的问题</li>
@@ -676,8 +863,13 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.6.4</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.4</div>
+            <v-spacer />
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>增加5.4版本鱼</li>
           <li>
@@ -685,7 +877,7 @@
             <span class="error--text">（请注意：国服当前版本尚未实装新鱼眼）</span>
           </li>
         </ul>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>修复查看帮助后，最小化悬浮窗出现黑色底框的问题。</li>
           <li>修复最小化悬浮窗后，透明窗体覆盖其他窗口的问题。</li>
@@ -694,14 +886,19 @@
 
         <v-divider />
 
-        <div class="text-h6">Version 0.6.3</div>
-        <div class="text-h5 text-center my-1">鱼糕</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.3</div>
+            <v-spacer />
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新攻略内容的修正</li>
           <li>增加滚动条宽度</li>
         </ul>
 
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>增加页面缩放功能（对应浏览器的页面缩放功能，在主界面设置中配置）。</li>
           <li>支持保存窗口位置与大小</li>
@@ -719,8 +916,13 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.6.2</div>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.2</div>
+            <v-spacer />
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>修复最小化按钮没有正常显示的问题。</li>
           <li>修复游戏“窗口全屏模式”下无法置顶的问题。</li>
@@ -729,8 +931,13 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.6.1</div>
-        <div class="text-h5 text-center my-1">渔捞 - 钓鱼辅助</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.1</div>
+            <v-spacer />
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">渔捞 - 钓鱼辅助</div>
         <div class="text-subtitle-1 text-center">
           （点击桌面版左侧侧边栏<v-icon>mdi-fish</v-icon>开启）
         </div>
@@ -753,14 +960,14 @@
           <li>支持显示当前状态（拍击水面、撒饵、专一垂钓、收藏品采集）</li>
         </ul>
         <v-divider />
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>支持透明并在游戏上层显示，支持悬浮窗模式。（透明度可在左下设置中调整）</li>
           <li>可以跳过更新（跳过更新后，下次打开程序会再次检查更新）</li>
         </ul>
         <p />
         <v-divider />
-        <div class="text-h5 text-center my-1">修正</div>
+        <div class="text-h6 my-1">修正</div>
         <ul>
           <li>更新部分鱼以及5.X攻略数据。</li>
           <li>在搜索框跳转时自动关闭搜索对话框。</li>
@@ -769,22 +976,33 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.6.0</div>
-        <div class="text-h5 text-center my-1">网站迁移</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.6.0</div>
+            <v-spacer />
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">网站迁移</div>
         <ul>
           <li>如果你看到这行字，说明已经在新版页面了。</li>
           <li>请更新收藏夹中的地址：https://ricecake.traveleorzea.com</li>
           <li>桌面版是自动更新的，无需任何操作</li>
         </ul>
-        <div class="text-h5 text-center my-1">鱼糕桌面版</div>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>点击左侧 <v-icon>mdi-desktop-mac-dashboard</v-icon> 下载桌面版</li>
           <li>支持自动更新</li>
         </ul>
         <p />
         <v-divider />
-        <div class="text-h6">Version 0.5.3</div>
-        <div class="text-h5 text-center my-1">鱼饵相关功能</div>
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.5.3</div>
+            <v-spacer />
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼饵相关功能</div>
         <ul>
           <li>增加鱼饵筛选功能，在筛选界面中可以开启鱼饵筛选。</li>
           <li>
@@ -831,7 +1049,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.5.2</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.5.2</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <div class="text-h5 text-center">刺鱼笔记</div>
         <ul>
           <li>增加钓鱼笔记中刺鱼相关内容。</li>
@@ -844,7 +1067,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.5.1</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.5.1</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>固定列表鱼默认列表合并，显示在同一页面中。</li>
           <li>列表中增加传承录，收藏品信息。</li>
@@ -853,7 +1081,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.5.0</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.5.0</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <div>
           <div class="text-h5 text-center">新增出海垂钓攻略支持</div>
           <div class="text-h6 text-center">钓鱼笔记也已同步更新</div>
@@ -877,7 +1110,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.4.3</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.4.3</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <div>
           <div class="text-h5 text-center">新增云冠群岛支持</div>
           <div class="text-h6 text-center">包括第二期以及即将更新的第三期重建</div>
@@ -907,7 +1145,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.4.2</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.4.2</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <div>
           <div class="text-h5 text-center">星芒节快乐！</div>
           <div>
@@ -929,7 +1172,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.4.1</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.4.1</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>更新列表中所有按钮的位置，增加操作栏，所有按钮移动至操作栏中。</li>
           <li>列表中增加版本号，未实装的鱼的版本底色为灰色。</li>
@@ -938,7 +1186,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.4.0</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.4.0</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>
             增加海钓时间表。点击左侧图标
@@ -951,7 +1204,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.3.2</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.3.2</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>
             增加攻略支持：（感谢攻略作者的授权与支持！）
@@ -989,7 +1247,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.3.1</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.3.1</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>
             界面颜色调整：
@@ -1040,7 +1303,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.3.0</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.3.0</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>增加图鉴功能。</li>
           <li>
@@ -1076,7 +1344,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.2.3</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.2.3</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>
             增加闹钟列表，点击列表中时间或详细列表中铃铛即可添加，详细设置在设置对话框中。
@@ -1098,7 +1371,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.2.2</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.2.2</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>修复列表固定鱼完成按钮的问题。</li>
           <li>更新地图范围提示：延夏，高脚孤丘，魔大陆阿济兹拉。（持续更新中）</li>
@@ -1106,7 +1384,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.2.1</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.2.1</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>提升页面流畅度。</li>
           <li>更新地图，增加水晶和部分地图的钓点范围提示，持续更新中。</li>
@@ -1120,7 +1403,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.2.0</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.2.0</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>界面更新，原先扩展列表变为右侧详细界面。</li>
           <li>固定和默认列表变为选项卡的形式。</li>
@@ -1131,7 +1419,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.1.6</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.1.6</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>修复等待状态，倒计时与持续时长乱序的问题。</li>
           <li>修复ACT下按钮有时没有相应的问题。</li>
@@ -1143,7 +1436,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.1.5</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.1.5</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>更新帮助文档，ACT相关。现在通过配置ACT可以正常输入了。</li>
           <li>更新所有对话框的滚动条，以及一些样式更新。</li>
@@ -1158,7 +1456,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.1.4</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.1.4</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>更新后台算法，解决长时间后，倒计时出错的问题。</li>
           <li>增加ACT下使用的缩小功能，点击左上角，钓鱼时钟旁的鱼图标切换。</li>
@@ -1175,7 +1478,12 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.1.3</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.1.3</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>向关于页面增加了重置按钮。</li>
           <li>修复了对导入数据的检测。</li>
@@ -1185,11 +1493,21 @@
         <p />
         <v-divider />
 
-        <div class="text-h6">Version 0.1.2</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.1.2</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <p>更新了 众神之爱 的ET时间：5-7 修正为 5:30-6:30。</p>
         <v-divider />
 
-        <div class="text-h6">Version 0.1.1</div>
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.1.1</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <ul>
           <li>修正了FishTracker导入的问题。</li>
           <li>显示没有钓场的鱼。</li>
@@ -1210,7 +1528,13 @@
         </ul>
         <p />
         <v-divider />
-        <div class="text-h6">Version 0.1.0</div>
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.1.0</div>
+            <v-spacer />
+          </div>
+        </v-alert>
         <p>初始版本</p>
       </v-card-text>
       <v-card-actions>
