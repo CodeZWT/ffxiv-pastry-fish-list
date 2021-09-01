@@ -498,6 +498,16 @@ async function init() {
       callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
       callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
     })
+    .on('postLogin', (event, isStrictMode) => {
+      callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
+    })
+    .on('postLogout', (event, isStrictMode) => {
+      callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
+      callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
+    })
     .on('downloadUpdate', event => {
       downloadUpdates(intervalHandle)
     })

@@ -273,6 +273,14 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setMainSetting(state, { path, value }) {
+      state.userData = { ..._.set(state.userData, path, value) }
+      LocalStorageUtil.storeUserData(state.userData)
+    },
+    setReaderSetting(state, { path, value }) {
+      state.readerSetting = { ..._.set(state.readerSetting, path, value) }
+      LocalStorageUtil.storeReaderUserData(state.readerSetting)
+    },
     disableStrictMode(state) {
       LocalStorageUtil.storeReaderUserData({
         ...state.readerSetting,

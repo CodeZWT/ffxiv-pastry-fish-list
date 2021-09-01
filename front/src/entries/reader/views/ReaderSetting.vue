@@ -83,7 +83,7 @@
             <v-card-text class="d-flex flex-column">
               <div class="d-flex align-center">
                 <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">上传模式</div>
-                <v-switch inset v-model="lazySetting.isUploadMode" />
+                <v-switch inset v-model="lazySetting.isUploadMode" :disabled="!isLogin" />
               </div>
               <div>
                 开启此模式后，钓鱼数据将会上传至鱼糕服务器。无敏感数据，涵盖内容与导出文件中的范围一致。
@@ -92,12 +92,14 @@
                 <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
                   严格数据收集模式
                 </div>
-                <v-switch inset v-model="lazySetting.isStrictMode" />
+                <v-switch inset v-model="lazySetting.isStrictMode" :disabled="!isLogin" />
               </div>
 
               <div class="font-weight-bold subtitle-1">
                 <div>请测试人员在开始测试后开启此开关</div>
-                <div>不要使用非必要的技能（如专一，拍击水面）并提起所有咬钩的鱼。</div>
+                <div>
+                  不要使用非必要的技能（如专一，拍击水面，鱼眼）并提起所有咬钩的鱼。
+                </div>
               </div>
             </v-card-text>
           </v-card>
@@ -336,15 +338,16 @@
 
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { MONITOR_TYPES, REGIONS } from 'Data/constants'
 import set from 'lodash/set'
 import last from 'lodash/last'
 import db from '@/plugins/db'
 import DataUtil from '@/utils/DataUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
 
 export default {
   name: 'ReaderSetting',
+  mixins: [EnvMixin],
   props: {
     now: {
       type: Number,
@@ -367,9 +370,6 @@ export default {
     }
   },
   computed: {
-    isTest() {
-      return DevelopmentModeUtil.isTest()
-    },
     themeClass() {
       return this.$vuetify.theme.dark ? 'theme--dark' : 'theme--light'
     },

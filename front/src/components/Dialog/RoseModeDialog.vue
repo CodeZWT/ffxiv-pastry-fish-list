@@ -238,7 +238,7 @@ import rcapiService, {
 } from '@/service/rcapiService'
 import UploadUtil from '@/utils/UploadUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
 
 setInteractionMode('eager')
 
@@ -276,6 +276,7 @@ const DEFAULT_RESEND_TIME = 60000
 
 export default {
   name: 'RoseModeDialog',
+  mixins: [EnvMixin],
   components: { ValidationObserver, ValidationProvider },
   model: {
     prop: 'show',
@@ -300,13 +301,9 @@ export default {
       nextSendTime: 0,
       now: Date.now(),
       uploadStatus: '-/-',
-      isTest: DevelopmentModeUtil.isTest(),
     }
   },
   computed: {
-    isElectron() {
-      return DevelopmentModeUtil.isElectron()
-    },
     nextSendInterval() {
       if (this.now > this.nextSendTime) {
         return 0
@@ -386,6 +383,9 @@ export default {
           LocalStorageUtil.set(RC_ACCESS_TOKEN_KEY, result.access_token, {
             expires: 3650,
           })
+          this.setReaderSetting({ path: 'isUploadMode', value: true })
+          this.setReaderSetting({ path: 'isStrictMode', value: false })
+          this.sendElectronEvent('postLogin')
           // this.mode = 'LoginSuccess'
           // setTimeout(() => this.$emit('input', false), 1000)
           this.showSnackbar({
@@ -459,6 +459,9 @@ export default {
     },
     async logout() {
       await rcapiService.logout()
+      this.setReaderSetting({ path: 'isUploadMode', value: false })
+      this.setReaderSetting({ path: 'isStrictMode', value: false })
+      this.sendElectronEvent('postLogout')
       this.$emit('input', false)
       this.showSnackbar({
         text: '已登出',
@@ -470,7 +473,7 @@ export default {
       const { total, uploaded } = await UploadUtil.getUploadStatus()
       this.uploadStatus = `${uploaded} / ${total}`
     },
-    ...mapMutations(['setRoseMode', 'showSnackbar']),
+    ...mapMutations(['setRoseMode', 'showSnackbar', 'setReaderSetting']),
   },
 }
 </script>

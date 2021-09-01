@@ -660,8 +660,7 @@
                       icon
                       text
                       color="error"
-                      @click="throttledDeleteRecord(item)"
-                      title="删除本条记录（无法恢复！！！）"
+                      @click="handleTryDelete(item)"
                     >
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
@@ -673,6 +672,21 @@
         </v-card>
       </v-tab-item>
     </v-tabs-items>
+    <v-dialog v-model="showDeleteAlert" max-width="600">
+      <v-card>
+        <v-card-title>
+          删除确认
+        </v-card-title>
+        <v-card-text>
+          是否确认删除本条记录？建议只删除错误数据（如异常的咬钩时长，不可能的鱼饵）。
+          对于严格模式下由于技能或未提钩造成的数据，请使用清除严格标记功能。
+        </v-card-text>
+        <v-card-actions class="d-flex justify-end">
+          <v-btn color="error" @click="handleConfirmDelete">删除</v-btn>
+          <v-btn @click="showDeleteAlert = false">取消</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -710,6 +724,8 @@ export default {
   },
   data() {
     return {
+      showDeleteAlert: false,
+      recordToRemove: undefined,
       currentUserId: undefined,
       isFixedOwnRecordMode: false,
       recordsStartMillis: undefined,
@@ -1232,6 +1248,16 @@ export default {
     },
   },
   methods: {
+    handleTryDelete(record) {
+      this.recordToRemove = record
+      this.showDeleteAlert = true
+    },
+    handleConfirmDelete() {
+      if (this.recordToRemove) {
+        this.throttledDeleteRecord(this.recordToRemove)
+      }
+      this.showDeleteAlert = false
+    },
     async toggleRecordStrictMode(record) {
       console.log('set to', !record.isStrictMode)
       await rcapiService.setOwnRecordStrictMode(record.id, !record.isStrictMode)
