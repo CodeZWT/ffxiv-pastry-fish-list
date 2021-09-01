@@ -294,12 +294,8 @@
             <div v-if="fish.hasPredators || fish.hasSnagging" class="mr-1">
               <div v-if="fish.hasPredators" class="d-flex flex-column align-center">
                 <effect-icon :icon-class="fish.predatorsIcon" />
-                <div
-                  v-if="fish.intuitionLength"
-                  :title="secondsToMinutesString(fish.intuitionLength)"
-                  class="text-subtitle-2"
-                >
-                  {{ fish.intuitionLength }}s
+                <div v-if="fish.intuitionLength" class="text-subtitle-2">
+                  {{ secondsToMinutesString(fish.intuitionLength) }}
                 </div>
               </div>
               <div v-if="fish.hasSnagging">

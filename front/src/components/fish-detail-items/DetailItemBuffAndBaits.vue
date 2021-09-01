@@ -3,7 +3,12 @@
     <div class="d-flex justify-center">{{ $t('detail.buffAndBaits.title') }}</div>
     <div class="d-flex justify-center align-center">
       <div v-if="fish.hasPredators">
-        <effect-icon v-if="fish.type === 'normal'" :icon-class="fish.predatorsIcon" />
+        <div v-if="fish.type === 'normal'" class="d-flex flex-column align-center">
+          <effect-icon :icon-class="fish.predatorsIcon" />
+          <div>
+            {{ fish.fishersIntuitionText }}
+          </div>
+        </div>
         <div v-else>触发鱼影</div>
       </div>
       <div v-if="fish.hasSnagging">
