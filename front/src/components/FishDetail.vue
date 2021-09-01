@@ -98,7 +98,7 @@ export default {
   overflow-scrolling: auto
   overflow-y: scroll
   &--web
-    height: calc(100vh - #{ $top-bars-padding + $footer-padding + $detail-header-height})
+    height: calc(100vh - #{ $top-bars-padding + $footer-padding + $detail-header-height + $divider-height})
   &--electron
-    height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + $detail-header-height})
+    height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + $detail-header-height + $divider-height})
 </style>
