@@ -336,7 +336,7 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <div v-if="!isLogin()">
+            <div v-if="!isLogin">
               <div>未登录</div>
               <div>按 <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>y</kbd> 以登录</div>
             </div>
@@ -435,7 +435,7 @@
                       </v-btn-toggle>
                     </div>
                   </v-col>
-                  <v-col v-if="isLogin()">
+                  <v-col v-if="isLogin">
                     <v-switch
                       v-model="recordsFilterSelf"
                       label="只显示自己的数据"
@@ -523,7 +523,7 @@
                   </v-col>
                 </v-row>
               </v-col>
-              <v-col v-if="isLogin()" cols="12">
+              <v-col v-if="isLogin" cols="12">
                 <v-switch v-model="isFixedOwnRecordMode" label="修正上传数据" inset />
               </v-col>
               <v-col cols="12">
@@ -674,9 +674,7 @@
     </v-tabs-items>
     <v-dialog v-model="showDeleteAlert" max-width="600">
       <v-card>
-        <v-card-title>
-          删除确认
-        </v-card-title>
+        <v-card-title> 删除确认 </v-card-title>
         <v-card-text>
           是否确认删除本条记录？建议只删除错误数据（如异常的咬钩时长，不可能的鱼饵）。
           对于严格模式下由于技能或未提钩造成的数据，请使用清除严格标记功能。
@@ -692,7 +690,7 @@
 
 <script>
 import EnvMixin from '@/components/basic/EnvMixin'
-import rcapiService, { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
+import rcapiService from '@/service/rcapiService'
 import UploadUtil from '@/utils/UploadUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import throttle from 'lodash/throttle'
@@ -701,7 +699,6 @@ import DataUtil from '@/utils/DataUtil'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import PinyinMatch from 'pinyin-match'
 import BiteTimeChart from '@/components/BiteTimeChart'
-import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import SPOT_WEATHER from 'Data/spotWeather'
 import uniq from 'lodash/uniq'
 import Constants from 'Data/constants'
@@ -1290,9 +1287,6 @@ export default {
         table.push(intervalCnt)
       }
       return table
-    },
-    isLogin() {
-      return !!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)
     },
     searchFilterOptions(item, searchText, itemText) {
       if (this.$i18n.locale === 'zh-CN') {
