@@ -442,6 +442,10 @@ function resetRecord() {
   currentRecord = cloneDeep(EMPTY_RECORD)
 }
 
+onFFXIVEvent('updateClassInfo', packet => {
+  console.debug('UpdateClassInfo', packet)
+})
+
 onFFXIVEvent('eventPlay', packet => {
   if (packet.eventId === FISHING_EVENT) {
     // log.debug('eventPlay', actionTimeline[packet.param5], packet)
@@ -1159,6 +1163,7 @@ onFFXIVEvent('playerStats', packet => {
   status.gathering = packet.gathering
   status.perception = packet.perception
   status.gp = packet.gp
+  status.effects = new Set()
 })
 
 onFFXIVEvent('clientTrigger', packet => {
