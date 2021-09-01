@@ -375,7 +375,7 @@ export default {
     interval() {
       const startTime = this.dataCurrentRecord?.startTime ?? this.now
       const biteTime = this.dataCurrentRecord?.biteTime ?? this.now
-      return biteTime - startTime
+      return Math.max(biteTime - startTime, 0)
     },
     intervalPercentage() {
       const percentage = this.interval / 60000

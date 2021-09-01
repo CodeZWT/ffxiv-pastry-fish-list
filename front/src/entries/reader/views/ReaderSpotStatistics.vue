@@ -18,7 +18,7 @@
           <div v-else>
             <v-slider
               :value="timer"
-              max="60"
+              :max="rangeMax"
               min="0"
               ticks="always"
               tick-size="4"
@@ -26,7 +26,11 @@
               :tick-labels="labels"
               disabled
             ></v-slider>
-            <fish-timeline-table :pointer="interval" :timelines="dataForChart" />
+            <fish-timeline-table
+              :pointer="interval"
+              :timelines="dataForChart"
+              :max="rangeMax"
+            />
           </div>
         </v-col>
       </v-row>
@@ -71,7 +75,7 @@ export default {
     interval() {
       const startTime = this.dataCurrentRecord?.startTime ?? this.now
       const biteTime = this.dataCurrentRecord?.biteTime ?? this.now
-      return (biteTime - startTime) / 1000
+      return Math.max((biteTime - startTime) / 1000, 0)
     },
     timer() {
       return +(this.interval > 60 ? 60 : this.interval).toFixed(0)
@@ -136,6 +140,13 @@ export default {
           return { name: fish.name, min, max, tug: fish.tug }
         })
         .filter(it => it !== null)
+    },
+    rangeMax() {
+      if (this.dataForChart.length > 0) {
+        return Math.max(...this.dataForChart.map(it => it.max)) * 1.25
+      } else {
+        return 60
+      }
     },
   },
   watch: {

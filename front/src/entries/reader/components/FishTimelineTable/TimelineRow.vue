@@ -28,7 +28,7 @@ export default {
     },
     pointer: {
       type: Number,
-      default: 30,
+      default: 0,
     },
     start: {
       type: Number,
@@ -69,7 +69,7 @@ export default {
       return DataUtil.TUG_ICON_COLOR[DataUtil.TUG_ICON[this.tug]]
     },
     pointerPos() {
-      return (this.pointer / this.total) * 100 - this.pointerWidth / 2
+      return Math.min(1, this.pointer / this.total) * 100 - this.pointerWidth / 2
     },
   },
 }

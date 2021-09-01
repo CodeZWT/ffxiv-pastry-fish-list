@@ -7,6 +7,7 @@
         :tug="timeline.tug"
         :min="timeline.min"
         :max="timeline.max"
+        :end="max"
       />
     </div>
   </div>
@@ -17,7 +18,7 @@ import TimelineRow from './FishTimelineTable/TimelineRow'
 export default {
   name: 'FishTimelineTable',
   components: { TimelineRow },
-  props: ['pointer', 'timelines'],
+  props: ['pointer', 'timelines', 'max'],
 }
 </script>
 
