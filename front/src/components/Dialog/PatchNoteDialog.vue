@@ -30,6 +30,20 @@
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
+            <div class="text-h6">Version 0.9.6-fix</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/09/01 18:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>修正部分鱼识时长数据</li>
+        </ul>
+
+        <v-divider />
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
             <div class="text-h6">Version 0.9.6</div>
             <v-spacer />
             <div class="text-subtitle-1">更新时间: 2021/08/29 20:00</div>
