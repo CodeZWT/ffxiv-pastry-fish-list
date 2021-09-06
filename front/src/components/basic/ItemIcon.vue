@@ -91,9 +91,9 @@ export default {
         case 'item':
         case 'action':
         case 'icon':
-          return this.large ? 'item-icon-96' : 'item-icon-48'
+          return this.large ? 'item-icon-96' : 'item-icon-48 item-margin-moz'
         default:
-          return 'achievement-icon-48'
+          return 'achievement-icon-48 achievement-margin-moz'
       }
       // return this.type === 'item' ? 'item-icon-48' : 'achievement-icon-48'
     },
@@ -160,10 +160,9 @@ export default {
 
 .achievement-icon-48 {
   position: absolute;
-  width: 80px;
-  height: 80px;
-  top: 8px;
-  left: 8px;
+  min-width: 80px;
+  min-height: 80px;
+  margin: 8px;
 
   zoom: 0.5;
   -moz-transform: scale(0.5);
@@ -172,8 +171,8 @@ export default {
 
 .item-icon-48 {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   top: 0;
   left: 0;
   margin: 4px 0 0 8px;
@@ -181,6 +180,18 @@ export default {
   zoom: 0.5;
   -moz-transform: scale(0.5);
   -moz-transform-origin: 0 0;
+}
+
+@-moz-document url-prefix() {
+  .item-margin-moz {
+    margin: 2px 0 0 4px !important;
+  }
+
+  .achievement-margin-moz {
+    margin: 4px !important;
+    min-width: 80px;
+    min-height: 80px;
+  }
 }
 
 .item-icon-96 {
