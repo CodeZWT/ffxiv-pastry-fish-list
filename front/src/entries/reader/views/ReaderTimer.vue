@@ -214,12 +214,16 @@
             <!--              将本地上一条记录标记为非严格-->
             <!--            </v-btn>-->
             <v-btn
-              v-if="lastRecordCancelled || wrongHookset"
+              v-if="(lastRecordCancelled || wrongHookset) && !skipAlert"
               @click="closeAlert"
               block
               class="mb-1"
             >
-              关闭提示框（请在后台页面自助删除对应数据）
+              {{
+                `关闭提示框${
+                  lastRecordCancelled ? '（请在后台页面自助删除对应数据）' : ''
+                }`
+              }}
             </v-btn>
             <v-btn color="error" @click="closeStrictMode" block>关闭严格模式</v-btn>
           </div>
@@ -328,7 +332,11 @@ export default {
       )
     },
     strictModeCheckTip() {
-      if (this.noStatus) {
+      if (this.lastRecordCancelled && !this.skipAlert) {
+        return this.$t('readerTimer.lastRecordCancelledTip')
+      } else if (this.wrongHookset && !this.skipAlert) {
+        return this.$t('readerTimer.wrongHooksetTip')
+      } else if (this.noStatus) {
         return this.$t('readerTimer.statusTip')
       } else if (this.noBait) {
         return this.$t('readerTimer.baitTip')
@@ -338,10 +346,6 @@ export default {
         return this.$t('readerTimer.identicalCastTip')
       } else if (this.fishEyes) {
         return this.$t('readerTimer.fishEyesTip')
-      } else if (this.lastRecordCancelled) {
-        return this.$t('readerTimer.lastRecordCancelledTip')
-      } else if (this.wrongHookset) {
-        return this.$t('readerTimer.wrongHooksetTip')
       }
       return ''
     },
