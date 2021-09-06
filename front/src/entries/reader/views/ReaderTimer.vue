@@ -244,6 +244,7 @@ import db from '@/plugins/db'
 import EffectIcon from '@/components/basic/EffectIcon'
 import rcapiService from '@/service/rcapiService'
 import VueMarkdown from 'vue-markdown'
+import RecordValidator from '@/utils/RecordValidator'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -543,7 +544,10 @@ export default {
       ?.on('newRecord', (event, data) => {
         const isLogin = rcapiService.isLogin()
         data.uploadEnabled = this.isRoseMode && this.isUploadMode && isLogin
-        data.isStrictMode = this.isRoseMode && this.isStrictMode && isLogin
+        data.isStrictMode = RecordValidator.judgeRecordStrictFlag(
+          this.isRoseMode && this.isStrictMode && isLogin,
+          data
+        )
         console.log('store in reader', data)
         db.records.put(data).catch(error => console.error('storeError', error))
       })

@@ -759,6 +759,7 @@ import UploadUtil from '@/utils/UploadUtil'
 import { INTERVAL_MINUTE } from 'Data/constants'
 import UpdateAvailableDialog from '@/components/Dialog/UpdateAvailableDialog'
 import rcapiService from '@/service/rcapiService'
+import RecordValidator from '@/utils/RecordValidator'
 // let totalCnt = 0
 
 export default {
@@ -1298,8 +1299,10 @@ export default {
           const isLogin = rcapiService.isLogin()
           data.uploadEnabled =
             this.readerSetting.isUploadMode && this.isRoseMode && isLogin
-          data.isStrictMode =
-            this.readerSetting.isStrictMode && this.isRoseMode && isLogin
+          data.isStrictMode = RecordValidator.judgeRecordStrictFlag(
+            this.readerSetting.isStrictMode && this.isRoseMode && isLogin,
+            data
+          )
           console.log('store data', data)
           db.records.put(data).catch(error => console.error('storeError', error))
         })
