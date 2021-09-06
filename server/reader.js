@@ -445,10 +445,6 @@ function resetRecord() {
   currentRecord = cloneDeep(EMPTY_RECORD)
 }
 
-onFFXIVEvent('updateClassInfo', packet => {
-  console.debug('UpdateClassInfo', packet)
-})
-
 onFFXIVEvent('eventPlay', packet => {
   if (packet.eventId === FISHING_EVENT) {
     // log.debug('eventPlay', actionTimeline[packet.param5], packet)
@@ -463,13 +459,9 @@ onFFXIVEvent('eventPlay', packet => {
         currentRecord.tug = getTug(packet.param5)
         break
       case 2:
-        if (packet.param5 === 0) {
-          currentRecord.missed = true
-        } else {
-          currentRecord.cancelled =
-            !!actionTimeline[packet.param5] &&
-            actionTimeline[packet.param5].subType === 'cancel'
-        }
+        currentRecord.cancelled =
+          !!actionTimeline[packet.param5] &&
+          actionTimeline[packet.param5].subType === 'cancel'
         saveCurrentRecord()
         break
       default:
@@ -525,12 +517,19 @@ function getTug(value) {
 }
 
 onFFXIVEvent('eventPlay4', packet => {
+  // console.debug(
+  //   actionTimeline[packet.param1],
+  //   actionTimeline[packet.param2],
+  //   actionTimeline[packet.param3],
+  //   actionTimeline[packet.param4]
+  // )
   if (actionTimeline[packet.param1] != null) {
     // currentRecord.hookset = getHookset(packet.param1)
     currentRecord.missed =
       actionTimeline[packet.param2] != null &&
       actionTimeline[packet.param1].subType.includes('hooking') &&
-      !actionTimeline[packet.param2].subType.includes('landing')
+      (actionTimeline[packet.param2].subType === 'landing_failure' ||
+        !actionTimeline[packet.param2].subType.includes('landing'))
     applyCurrentStatusOnLanding(currentRecord, status)
   }
 })
@@ -555,7 +554,7 @@ const actionTimeline = {
   288: { id: 288, type: 'fishing', subType: 'normal_landing_hq' },
   289: { id: 289, type: 'fishing', subType: 'long_landing_nq' },
   290: { id: 290, type: 'fishing', subType: 'long_landing_hq' },
-  291: { id: 291, type: 'fishing', subType: 'landing_failure' },
+  291: { id: 291, type: 'fishing', subType: 'landing_failure' }, // 鱼线断了
   292: { id: 292, type: 'fishing', subType: 'hit_excite' }, // 轻杆
   293: { id: 293, type: 'fishing', subType: 'hit_strike' }, // 中杆
   294: { id: 294, type: 'fishing', subType: 'hit_bite' }, // 鱼王竿
