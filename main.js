@@ -27,7 +27,6 @@ const merge = require('lodash/merge')
 const unhandled = require('electron-unhandled')
 const contextMenu = require('electron-context-menu')
 const cloneDeep = require('lodash/cloneDeep')
-const rcapiService = require('./server/rcapiService')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
