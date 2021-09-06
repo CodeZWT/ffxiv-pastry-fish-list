@@ -193,7 +193,7 @@
           <template v-if="isElectron">
             <div>
               <v-sheet outlined class="pa-5 d-flex flex-column align-center">
-                <div class="text-h6">已上传/全部</div>
+                <div class="text-h6">已上传/总数</div>
                 <div class="text-h6">{{ uploadStatus }}</div>
                 <v-tooltip bottom color="secondary">
                   <template v-slot:activator="{ on, attrs }">
