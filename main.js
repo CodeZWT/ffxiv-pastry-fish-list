@@ -390,6 +390,9 @@ async function init() {
       globalShortcut.register('Alt+Shift+' + hotkeySetting.mouseThrough, () => {
         setMouseThrough(!enableMouseThrough)
       })
+      globalShortcut.register('Alt+Shift+' + hotkeySetting.toggleReader, () => {
+        toggleReader()
+      })
 
       startReaderOnce({
         region: readerConfig.region,
