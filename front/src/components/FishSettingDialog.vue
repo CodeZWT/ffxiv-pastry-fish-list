@@ -130,7 +130,16 @@
                     }}
                   </v-chip>
                 </div>
-
+                <div>
+                  <v-btn
+                    v-if="lazyNotificationSetting.isSystemNotificationEnabled"
+                    @click="testNotification"
+                    color="info"
+                    block
+                  >
+                    {{ $t('setting.dialog.notification.systemNotification.test') }}
+                  </v-btn>
+                </div>
                 <div
                   v-for="setting in lazyNotificationSetting.settings"
                   :key="setting.key"
@@ -457,6 +466,12 @@ export default {
           this.notificationStatus = status
         })
       }
+    },
+    testNotification() {
+      new Notification('系统通知测试', {
+        icon: DataUtil.iconIdToUrl(29159),
+        body: '有鱼准备脱钩了！',
+      })
     },
     ...mapMutations([
       'setMainWindowCloseMode',

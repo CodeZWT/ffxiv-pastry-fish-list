@@ -7,8 +7,8 @@ export default {
         (tug === 'medium' && hookset !== 'powerful') ||
         hookset === 'double' ||
         hookset === 'normal')
-    const noBait = !record.bait || record.bait < 0
-    const noStatus = !record.gathering
+    const noBait = !record.baitId || record.baitId < 0
+    const noStatus = !record.cancelled && !record.gathering
     return (
       isStrictMode &&
       !record.surfaceScale &&
