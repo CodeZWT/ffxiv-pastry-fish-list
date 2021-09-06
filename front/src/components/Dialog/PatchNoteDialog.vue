@@ -30,14 +30,17 @@
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
-            <div class="text-h6">Version 0.9.6-fix</div>
+            <div class="text-h6">Version 0.9.7</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/09/01 18:00</div>
+            <div class="text-subtitle-1">更新时间: 2021/09/06 22:00</div>
           </div>
         </v-alert>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修正部分鱼识时长数据</li>
+          <li>增加闹钟测试按钮（见设置）</li>
+          <li>修复火狐浏览器图标错位的问题</li>
+          <li></li>
         </ul>
         <div class="text-h6 my-1">渔捞</div>
         <ul>
@@ -47,6 +50,13 @@
           <li>自动根据当前状态调整钓场统计的撒饵选项</li>
           <li>自动调整钓场统计的最大值显示范围</li>
           <li>增加切换渔捞快捷键（见渔捞设置）</li>
+          <li>修复计时器缩放比例问题</li>
+        </ul>
+        <div class="text-h6 my-1">上传相关（普通模式不受影响）</div>
+        <ul>
+          <li>增加上传数据状态检查</li>
+          <li>增加上传数据本地过滤</li>
+          <li>修正部分错误数据</li>
         </ul>
 
         <v-divider />
