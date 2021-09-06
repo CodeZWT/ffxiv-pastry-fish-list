@@ -5,16 +5,17 @@ const isDev = require('electron-is-dev')
 const isElevated = require('is-elevated')
 const { exec } = require('child_process')
 const log = require('electron-log')
-const { TERRITORY_TYPES } = require('../data/fix')
-const { voyagesWithTipOf } = require('../utils/OceanFishingCore')
 const { v4: uuid } = require('uuid')
-const { version: PASTRY_FISH_VERSION } = require('../package.json')
-const { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } = require('../data/constants')
 const merge = require('lodash/merge')
 const cloneDeep = require('lodash/cloneDeep')
 const Events = require('events')
+
+const { TERRITORY_TYPES } = require('../data/fix')
+const { voyagesWithTipOf } = require('../utils/OceanFishingCore')
+const { version: PASTRY_FISH_VERSION } = require('../package.json')
+const { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } = require('../data/constants')
+
 const playerSetupOf = require('./customDataReader/playerSetup')
-const { toReadable } = require('./toReadable')
 
 const INTERVAL_MINUTE = 60000
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * INTERVAL_MINUTE
@@ -226,6 +227,7 @@ function onFFXIVEventOfUnknown(opcode, callback) {
       updateCallback({
         status,
         currentRecord,
+        prevRecord,
       })
     }
   })
@@ -252,6 +254,7 @@ function onFFXIVEventWithFilter(
         updateCallback({
           status,
           currentRecord,
+          prevRecord,
         })
       }
       // log.debug(status)

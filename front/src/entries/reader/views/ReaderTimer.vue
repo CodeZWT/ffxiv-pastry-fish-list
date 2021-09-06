@@ -143,7 +143,9 @@
         <v-btn @click="nextTestEvent" class="mr-1" color="info">next</v-btn>
         <v-btn @click="resetTest" color="error">reset</v-btn>
         <div>Test Data</div>
-        <div>{{ dataStatus }}</div>
+        <div>Status: {{ dataStatus }}</div>
+        <div>Record: {{ dataCurrentRecord }}</div>
+        <div>Prev: {{ dataPrevRecord }}</div>
       </v-col>
     </v-row>
     <v-row no-gutters v-else>
@@ -197,11 +199,11 @@
         <v-card-title>严格模式检查</v-card-title>
         <v-card-text>
           <v-alert outlined type="error" border="left">
-            {{ strictModeCheckTip }}
+            <vue-markdown :source="strictModeCheckTip" />
           </v-alert>
         </v-card-text>
         <v-card-actions>
-          <div style="width: 100%">
+          <div style="width: 100%" class="d-flex flex-column">
             <!--            <v-btn-->
             <!--              v-if="lastRecordCancelled"-->
             <!--              color="warning"-->
@@ -211,7 +213,15 @@
             <!--            >-->
             <!--              将本地上一条记录标记为非严格-->
             <!--            </v-btn>-->
-            <v-btn color="error" @click="closeStrictMode" block> 关闭严格模式</v-btn>
+            <v-btn
+              v-if="lastRecordCancelled || wrongHookset"
+              @click="closeAlert"
+              block
+              class="mb-1"
+            >
+              关闭提示框（请在后台页面自助删除对应数据）
+            </v-btn>
+            <v-btn color="error" @click="closeStrictMode" block>关闭严格模式</v-btn>
           </div>
         </v-card-actions>
       </v-card>
@@ -233,6 +243,7 @@ import { SERVER_ID_NAMES } from 'Data/diadem'
 import db from '@/plugins/db'
 import EffectIcon from '@/components/basic/EffectIcon'
 import rcapiService from '@/service/rcapiService'
+import VueMarkdown from 'vue-markdown'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -240,7 +251,7 @@ const SPECTRAL_CURRENT = 145
 
 export default {
   name: 'ReaderTimer',
-  components: { EffectIcon, ItemIcon, NewFeatureMark },
+  components: { EffectIcon, ItemIcon, NewFeatureMark, VueMarkdown },
   props: ['now'],
   data() {
     return {
@@ -249,9 +260,11 @@ export default {
         effects: [],
       },
       dataCurrentRecord: {},
+      dataPrevRecord: {},
       spectralCurrentCountDownTotal: 2 * DataUtil.INTERVAL_MINUTE,
       HistoryFeatureId: ReaderFeatures.History,
       SpotStatisticsFeatureId: ReaderFeatures.SpotStatistics,
+      closeAlertStartTime: undefined,
     }
   },
   computed: {
@@ -286,7 +299,21 @@ export default {
       return !!this.effects.find(effect => effect.id === 762)
     },
     lastRecordCancelled() {
-      return !!this.dataStatus?.lastRecordCancelled
+      return !!this.dataPrevRecord?.cancelled
+    },
+    wrongHookset() {
+      const { gatheringFortuneUp, catchAndRelease, hookset, tug } =
+        this.dataPrevRecord ?? {}
+      return (
+        (catchAndRelease || gatheringFortuneUp) &&
+        ((tug === 'light' && hookset !== 'precision') ||
+          (tug === 'medium' && hookset !== 'powerful') ||
+          hookset === 'double' ||
+          hookset === 'normal')
+      )
+    },
+    skipAlert() {
+      return this.closeAlertStartTime === this.dataPrevRecord?.startTime
     },
     hasStrictModeViolation() {
       return (
@@ -296,7 +323,7 @@ export default {
           this.noStatus ||
           this.noBait ||
           this.fishEyes ||
-          this.lastRecordCancelled)
+          (!this.skipAlert && (this.lastRecordCancelled || this.wrongHookset)))
       )
     },
     strictModeCheckTip() {
@@ -312,6 +339,8 @@ export default {
         return this.$t('readerTimer.fishEyesTip')
       } else if (this.lastRecordCancelled) {
         return this.$t('readerTimer.lastRecordCancelledTip')
+      } else if (this.wrongHookset) {
+        return this.$t('readerTimer.wrongHooksetTip')
       }
       return ''
     },
@@ -474,6 +503,9 @@ export default {
     normalWeatherStartTime() {
       return this.dataStatus?.normalWeatherStartTime
     },
+    fishingStartTime() {
+      return this.dataCurrentRecord?.startTime
+    },
     ...mapState(['sounds', 'readerTimerMiniMode', 'userData']),
   },
   watch: {
@@ -506,6 +538,7 @@ export default {
           effects: Array.from(data.status && data.status.effects),
         }
         this.dataCurrentRecord = data.currentRecord
+        this.dataPrevRecord = data.prevRecord
       })
       ?.on('newRecord', (event, data) => {
         const isLogin = rcapiService.isLogin()
@@ -538,6 +571,9 @@ export default {
     closeStrictMode() {
       this.setStrictMode(false)
       this.sendElectronEvent('setStrictMode', false)
+    },
+    closeAlert() {
+      this.closeAlertStartTime = this.dataPrevRecord?.startTime
     },
     onDismiss() {
       this.setNotShowBanner()
