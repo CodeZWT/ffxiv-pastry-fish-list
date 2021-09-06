@@ -1085,9 +1085,11 @@ export default {
       const showStrict = filters.includes('strict')
       const showNormal = filters.includes('normal')
       const records = this.spotRecords[0] // [data, totalCnt]
+      const fishIdList = UploadUtil.fishListOfSpot(this.spotId)
+      //.concat(['light', 'medium', 'heavy'])
       const baitFishCnt = _(records)
         .chain()
-        .filter(({ fish, bait }) => fish > 0 && bait > 0)
+        .filter(({ fish, bait }) => fish > 0 && bait > 0 && fishIdList.includes(fish))
         .filter(({ isStrictMode }) => {
           return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
         })
@@ -1137,7 +1139,6 @@ export default {
         })
         .value()
 
-      const fishIdList = UploadUtil.fishListOfSpot(this.spotId) //.concat(['light', 'medium', 'heavy'])
       const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
         const missedTugCntDict = missedFish[bait] ?? {}
         const cancelledTugCntDict = cancelledFish[bait] ?? {}

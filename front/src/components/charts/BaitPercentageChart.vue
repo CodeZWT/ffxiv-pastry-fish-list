@@ -372,10 +372,12 @@ export default {
       }
     },
     baitOfSpot() {
+      const fishIdList = UploadUtil.fishListOfSpot(this.spotId)
+      //.concat(['light', 'medium', 'heavy'])
       const records = this.records
       const baitFishCnt = _(records)
         .chain()
-        .filter(({ fish, bait }) => fish > 0 && bait > 0)
+        .filter(({ fish, bait }) => fish > 0 && bait > 0 && fishIdList.includes(fish))
         .filter(({ fishersIntuition }) => {
           if (this.fishersIntuitionFilter.length === 2) {
             return true
@@ -432,7 +434,6 @@ export default {
             .value()
         })
         .value()
-      const fishIdList = UploadUtil.fishListOfSpot(this.spotId) //.concat(['light', 'medium', 'heavy'])
       const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
         const tugCntDict = unknownFishCnt[bait] ?? {}
         const totalCnt =
