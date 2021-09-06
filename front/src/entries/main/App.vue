@@ -1341,6 +1341,7 @@ export default {
     //   region: this.readerRegion,
     //   monitorType: this.readerMonitorType,
     // })
+    this.closeStrictMode()
   },
   async mounted() {
     // setTimeout(async () => {
@@ -1396,6 +1397,10 @@ export default {
     // }, 200)
   },
   methods: {
+    closeStrictMode() {
+      this.disableStrictMode()
+      this.sendElectronEvent('setStrictMode', false)
+    },
     async resetUploadSettingIfNecessary(db) {
       if (!this.isRoseMode) {
         console.debug('Rose Mode is Disabled, try reset upload setting for old data...')
