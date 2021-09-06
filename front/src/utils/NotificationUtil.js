@@ -38,7 +38,7 @@ export default {
     const fishNotificationByKey = _.groupBy(fishNotifications, 'setting.key')
     const firstFish = (fishNotificationByKey['fishing'] ??
       fishNotificationByKey['waiting'])?.[0]?.fish
-    const notificationCandidates = FISH_NOTIFICATION[firstFish.id].text ?? [
+    const notificationCandidates = FISH_NOTIFICATION[firstFish.id]?.text ?? [
       '有鱼准备脱钩了！',
     ]
     const text =
