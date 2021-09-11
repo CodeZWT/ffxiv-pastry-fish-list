@@ -224,6 +224,10 @@
     "maximize": {
       "restore": "向下还原",
       "maximize": "最大化"
+    },
+    "toBeNotifiedLocked": {
+      "checked": "点击取消锁定（标记已完成时自动取消闹钟）",
+      "unchecked": "点击锁定（标记已完成时保留闹钟）"
     }
   },
   "list": {

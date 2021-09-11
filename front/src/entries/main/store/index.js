@@ -208,6 +208,9 @@ export default new Vuex.Store({
     getFishToBeNotified: state => fishId => {
       return state.userData.toBeNotified.includes(DataUtil.toItemId(fishId))
     },
+    getFishToBeNotifiedLocked: state => fishId => {
+      return state.userData.toBeNotifiedLocked.includes(DataUtil.toItemId(fishId))
+    },
     filters: state => {
       return state.userData.filters
     },
@@ -406,19 +409,23 @@ export default new Vuex.Store({
       }
       state.remainingBaitIds = newRemainingBaitIds
       if (completed) {
+        const unlockedFishId = simpleFishIds.filter(
+          fishId => !state.userData.toBeNotifiedLocked.includes(fishId)
+        )
         state.userData = updateUserDataStateRecords(
           state.userData,
           'toBeNotified',
-          simpleFishIds,
+          unlockedFishId,
           false
         )
       }
     },
     setFishCompleted(state, { fishId, completed }) {
+      const simpleFishId = DataUtil.toItemId(fishId)
       state.userData = updateUserDataStateRecords(
         state.userData,
         'completed',
-        [DataUtil.toItemId(fishId)],
+        [simpleFishId],
         completed
       )
       const newRemainingBaitIds = getRemainingBaitIdsWithUserData(state.userData)
@@ -427,11 +434,11 @@ export default new Vuex.Store({
         state.baitIdsForNotification = removed
       }
       state.remainingBaitIds = newRemainingBaitIds
-      if (completed) {
+      if (completed && !state.userData.toBeNotifiedLocked.includes(simpleFishId)) {
         state.userData = updateUserDataStateRecords(
           state.userData,
           'toBeNotified',
-          [DataUtil.toItemId(fishId)],
+          [simpleFishId],
           false
         )
       }
@@ -445,11 +452,28 @@ export default new Vuex.Store({
       )
     },
     setFishToBeNotified(state, { fishId, toBeNotified }) {
+      const simpleFishId = DataUtil.toItemId(fishId)
       state.userData = updateUserDataStateRecords(
         state.userData,
         'toBeNotified',
-        [DataUtil.toItemId(fishId)],
+        [simpleFishId],
         toBeNotified
+      )
+      if (!toBeNotified) {
+        state.userData = updateUserDataStateRecords(
+          state.userData,
+          'toBeNotifiedLocked',
+          [simpleFishId],
+          false
+        )
+      }
+    },
+    setFishToBeNotifiedLocked(state, { fishId, toBeNotifiedLocked }) {
+      state.userData = updateUserDataStateRecords(
+        state.userData,
+        'toBeNotifiedLocked',
+        [DataUtil.toItemId(fishId)],
+        toBeNotifiedLocked
       )
     },
     setFilters(state, filters) {

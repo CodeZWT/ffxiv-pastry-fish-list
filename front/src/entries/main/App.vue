@@ -688,7 +688,7 @@
       <div class="d-flex align-center" v-else>
         <v-expansion-panels flat>
           <v-expansion-panel>
-            <v-expansion-panel-header> 多个鱼饵已钓完所有鱼</v-expansion-panel-header>
+            <v-expansion-panel-header>多个鱼饵已钓完所有鱼</v-expansion-panel-header>
             <v-expansion-panel-content>
               <div class="d-flex flex-wrap">
                 <div

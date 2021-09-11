@@ -18,6 +18,7 @@
           :position="toPos(index)"
           :hide-spot-column="hideSpotColumn"
           :show-divider="showFishDivider"
+          :type="type"
           @click="onFishClicked($event, fish.fishingSpots)"
         />
       </div>
@@ -105,6 +106,10 @@ export default {
     enableLoadMore: {
       type: Boolean,
       default: false,
+    },
+    type: {
+      type: String,
+      default: 'normal',
     },
   },
   data: () => ({

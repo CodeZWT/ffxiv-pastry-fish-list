@@ -13,6 +13,7 @@
       :hide-spot-column="hideSpotColumn"
       :is-last="position === 'last'"
       :show-divider="showDivider"
+      :type="type"
       @click="$emit('click', $event)"
     />
   </v-sheet>
@@ -48,6 +49,10 @@ export default {
     showDivider: {
       type: Boolean,
       default: true,
+    },
+    type: {
+      type: String,
+      default: 'normal',
     },
   },
   computed: {

@@ -1064,6 +1064,7 @@ export default {
     completed: [],
     pinned: [],
     toBeNotified: [],
+    toBeNotifiedLocked: [],
     filters: {
       patches: [
         // eslint-disable-next-line

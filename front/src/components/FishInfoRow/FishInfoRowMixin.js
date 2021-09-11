@@ -35,6 +35,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      default: 'normal',
+    },
   },
   computed: {
     isTimeCheckSkipped() {
@@ -52,6 +56,7 @@ export default {
         notificationHint: toBeNotified
           ? this.$t('list.item.notificationHintOff')
           : this.$t('list.item.notificationHint'),
+        toBeNotifiedLocked: this.getFishToBeNotifiedLocked(this.fish.id),
       }
     },
     transformedFishTimePart() {
@@ -105,6 +110,7 @@ export default {
       'getFishCompleted',
       'getFishPinned',
       'getFishToBeNotified',
+      'getFishToBeNotifiedLocked',
     ]),
   },
   methods: {
@@ -122,6 +128,9 @@ export default {
     setToBeNotified(toBeNotified) {
       this.setFishToBeNotified({ fishId: this.fish.id, toBeNotified })
     },
+    setToBeNotifiedLocked(toBeNotifiedLocked) {
+      this.setFishToBeNotifiedLocked({ fishId: this.fish.id, toBeNotifiedLocked })
+    },
     onFishClicked(components, fishId) {
       this.$emit('click', { fishId: fishId ?? this.fish.id, components })
     },
@@ -131,6 +140,7 @@ export default {
       'setFishPinned',
       'setFishToBeNotified',
       'showSnackbar',
+      'setFishToBeNotifiedLocked',
     ]),
   },
 }

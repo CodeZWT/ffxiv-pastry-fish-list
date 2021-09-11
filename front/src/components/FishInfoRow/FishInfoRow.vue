@@ -10,6 +10,7 @@
     :mode="mode"
     :hide-spot-column="hideSpotColumn"
     :is-last="isLast"
+    :type="type"
     @click="$emit('click', $event)"
   />
 </template>
@@ -30,6 +31,7 @@ export default {
     'mode',
     'hideSpotColumn',
     'isLast',
+    'type',
   ],
   name: 'FishInfoRow',
   components: { FishInfoRowSmall, FishInfoRowMedium, FishInfoRowLarge },

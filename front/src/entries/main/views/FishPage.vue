@@ -255,6 +255,7 @@
                         clear-all-button
                         @fish-selected="onFishSelected($event)"
                         @clear-all="clearToBeNotified"
+                        type="notification"
                       >
                         <template v-slot:empty>
                           <div class="d-flex flex-column align-center">

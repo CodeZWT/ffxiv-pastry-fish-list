@@ -20,12 +20,22 @@
             }"
           >
             <toggle-button
+              v-if="type === 'normal'"
               :value="transformedFishPart.pinned"
               @input="setPinned($event)"
               checked-icon="mdi-pin"
               unchecked-icon="mdi-pin-outline"
               :checked-title="$t('actions.pin.checked')"
               :unchecked-title="$t('actions.pin.unchecked')"
+            />
+            <toggle-button
+              v-if="type === 'notification'"
+              :value="transformedFishPart.toBeNotifiedLocked"
+              @input="setToBeNotifiedLocked($event)"
+              checked-icon="mdi-lock"
+              unchecked-icon="mdi-lock-open-variant"
+              :checked-title="$t('actions.toBeNotifiedLocked.checked')"
+              :unchecked-title="$t('actions.toBeNotifiedLocked.unchecked')"
             />
           </div>
 
