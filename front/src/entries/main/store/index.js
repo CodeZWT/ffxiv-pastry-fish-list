@@ -325,6 +325,13 @@ export default new Vuex.Store({
       state.userData.listSetting[listType].expanded = expanded
       LocalStorageUtil.storeUserData(state.userData)
     },
+    updateShowPinnedInNormalList(state, show) {
+      DataUtil.setUserDataPartSilently(state, {
+        path: 'listSetting.pinned.showPinnedInNormalList',
+        data: show,
+      })
+    },
+
     updateUserBaitFilterData(state, { path, data }) {
       if (path) {
         const newBaitFilter = _.cloneDeep(state.baitFilter)

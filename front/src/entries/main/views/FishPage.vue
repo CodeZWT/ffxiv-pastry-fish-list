@@ -182,7 +182,20 @@
                         class="my-2 rounded-lg"
                       >
                         <v-expansion-panel>
-                          <v-expansion-panel-header>固定列表</v-expansion-panel-header>
+                          <v-expansion-panel-header>
+                            <div class="d-flex align-center">
+                              <div>固定列表</div>
+                              <v-spacer />
+                              <div class="mr-2">
+                                <v-switch
+                                  v-model="showPinnedInNormalList"
+                                  inset
+                                  label="同时在默认列表中显示"
+                                  @click.stop
+                                />
+                              </div>
+                            </div>
+                          </v-expansion-panel-header>
                           <v-expansion-panel-content>
                             <fish-list
                               :fish-list="pinnedFishList"
@@ -404,6 +417,14 @@ export default {
         this.setListExpandedStatus('pinned', index === 0)
       },
     },
+    showPinnedInNormalList: {
+      get() {
+        return this.listSetting.pinned.showPinnedInNormalList
+      },
+      set(show) {
+        this.updateShowPinnedInNormalList(show)
+      },
+    },
     rightPercentage() {
       return this.rightPaneSizeOfCurrentWindowSize
     },
@@ -444,7 +465,8 @@ export default {
         const fishData = this.allFish[fishId]
         if (
           fishData.gig == null &&
-          !this.getFishPinned(fishId) &&
+          (this.listSetting.pinned.showPinnedInNormalList ||
+            !this.getFishPinned(fishId)) &&
           DataUtil.showFishInList(fishData)
         ) {
           // console.log(fishId, this.allFish[fishId])
@@ -510,6 +532,7 @@ export default {
       // baitFilterIds: 'baitFilterIds',
     }),
     ...mapGetters([
+      'listSetting',
       'getFishCompleted',
       'filters',
       'showFilter',
@@ -604,7 +627,6 @@ export default {
   methods: {
     setListExpandedStatus(list, expanded) {
       this.updateListExpanded({ listType: list, expanded })
-      // this.updateUserData({ path: `listSetting.${list}.expanded`, data: expanded })
     },
     onScroll(e) {
       this.offsetTop = e.target.scrollTop
@@ -659,6 +681,7 @@ export default {
       'clearToBeNotified',
       'setShowFishPageRightPane',
       'showSnackbar',
+      'updateShowPinnedInNormalList',
     ]),
   },
 }

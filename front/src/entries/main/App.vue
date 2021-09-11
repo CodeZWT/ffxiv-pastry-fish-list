@@ -914,7 +914,10 @@ export default {
       let countdownSortedFishList = this.sortedFishIds
         .filter(id => idSet.has(id))
         .map(id => this.lazyTransformedFishDict[id])
-        .filter(it => !this.getFishPinned(it.id))
+        .filter(
+          it =>
+            this.listSetting.pinned.showPinnedInNormalList || !this.getFishPinned(it.id)
+        )
       // .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
 
       if (this.filters.sorterType === 'RATE') {
@@ -1142,6 +1145,7 @@ export default {
       'baitIdsForNotification',
     ]),
     ...mapGetters([
+      'listSetting',
       'isRoseMode',
       'mainWindowCloseMode',
       // 'readerRegion',

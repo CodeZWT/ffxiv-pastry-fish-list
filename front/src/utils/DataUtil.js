@@ -859,6 +859,10 @@ export default {
     state.userData = newUserData
     LocalStorageUtil.storeUserData(state.userData)
   },
+  setUserDataPartSilently(state, { path, data }) {
+    _.set(state.userData, path, data)
+    LocalStorageUtil.storeUserData(state.userData)
+  },
 
   // setUserDataPartInLocalStorage(state, { path, data }) {
   //   const newUserData = _.cloneDeep(state.userData)
@@ -1109,6 +1113,7 @@ export default {
       },
       pinned: {
         expanded: true,
+        showPinnedInNormalList: false,
       },
     },
     showFilter: true,
