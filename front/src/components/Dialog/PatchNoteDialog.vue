@@ -24,9 +24,22 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.5后，渔捞与同步功能不可用，请耐心等待自动更新。-->
         <!--        </v-alert>-->
-        <!--        <div>-->
-        <!--          仅在网页版随时更新，将来记入下一版本-->
-        <!--        </div>-->
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.9.7-fix</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/09/11 09:33</div>
+          </div>
+        </v-alert>
+        <v-subheader>
+          仅在网页版随时更新，改动将记入下一版本。
+        </v-subheader>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>修正鱼饵概率图中脱钩数据未正确筛选的问题</li>
+        </ul>
+        <v-divider />
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
