@@ -268,9 +268,9 @@ export default {
     return response.ok
   },
   async getDataFilesVersion() {
-    if (DevelopmentModeUtil.isTest()) {
-      return 'fc4c9776f3490f2377f3e9f237b7343288cdca94'
-    }
+    // if (DevelopmentModeUtil.isTest()) {
+    //   return 'fc4c9776f3490f2377f3e9f237b7343288cdca94'
+    // }
     if (this.dataFilesVersion != null) {
       return this.dataFilesVersion
     }
