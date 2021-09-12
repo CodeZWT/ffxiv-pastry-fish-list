@@ -1,44 +1,32 @@
 export default {
   setAlwaysOnTop(alwaysOnTop) {
-    const remote = window.require ? window.require('electron').remote : null
-    const WIN = remote.getCurrentWindow()
-    console.log('set top', alwaysOnTop)
-    WIN.setAlwaysOnTop(alwaysOnTop, 'screen-saver')
-    WIN.setMinimizable(!alwaysOnTop)
+    this.sendElectronEvent('alwaysOnTop', alwaysOnTop)
   },
 
   closeWindow() {
-    const remote = window.require ? window.require('electron').remote : null
-    const WIN = remote.getCurrentWindow()
-    WIN.close()
+    this.sendElectronEvent('close')
   },
 
   isWindowHidden() {
-    const remote = window.require ? window.require('electron').remote : null
-    const WIN = remote.getCurrentWindow()
-    return !WIN.isVisible()
+    return false
+    // const remote = window.require ? window.require('electron').remote : null
+    // const WIN = remote.getCurrentWindow()
+    // return !WIN.isVisible()
   },
 
   hideWindow() {
-    const remote = window.require ? window.require('electron').remote : null
-    const WIN = remote.getCurrentWindow()
-    WIN.hide()
+    this.sendElectronEvent('hide')
   },
-
   minimizeWindow() {
-    const remote = window.require ? window.require('electron').remote : null
-    const WIN = remote.getCurrentWindow()
-    WIN.minimize()
+    this.sendElectronEvent('minimize')
   },
-
   maximizeWindow() {
-    const remote = window.require ? window.require('electron').remote : null
-    const WIN = remote.getCurrentWindow()
-    WIN.maximize()
+    this.sendElectronEvent('maximize')
   },
   unmaximizeWindow() {
-    const remote = window.require ? window.require('electron').remote : null
-    const WIN = remote.getCurrentWindow()
-    WIN.unmaximize()
+    this.sendElectronEvent('unmaximize')
+  },
+  sendElectronEvent(channel, data) {
+    window.electron?.ipcRenderer?.send(channel, data)
   },
 }

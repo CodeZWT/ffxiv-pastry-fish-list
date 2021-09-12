@@ -14,10 +14,10 @@
     "build:websiteFront": "cd front && yarn build:main",
     "build": "cd front && yarn build:github"
   },
-  "main": "main.js",
+  "main": "mainScreen.js",
   "devDependencies": {
     "coding-generic": "^1.2.0",
-    "electron": "^11.2.1",
+    "electron": "^14.0.0",
     "electron-builder": "^22.9.1",
     "electron-devtools-installer": "^3.1.1",
     "eslint": "^7.18.0",
