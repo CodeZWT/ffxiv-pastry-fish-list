@@ -26,7 +26,7 @@
     </v-system-bar>
 
     <v-main>
-      <Screen />
+      <Screen :now="now" />
     </v-main>
   </v-app>
 </template>
