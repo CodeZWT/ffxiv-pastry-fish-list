@@ -22,6 +22,7 @@
     </v-navigation-drawer>
     <div class="py-0 ml-14" style="height: 100%">
       <grid-layout
+        class="window-area"
         :layout.sync="layout"
         :col-num="12"
         :row-height="30"
@@ -33,7 +34,7 @@
         :use-css-transforms="true"
       >
         <grid-item
-          v-for="item in layout"
+          v-for="(item, i) in layout"
           :x="item.x"
           :y="item.y"
           :w="item.w"
@@ -42,7 +43,16 @@
           :key="item.i"
         >
           <v-sheet class="window-wrapper rounded elevation-4" color="background">
-            <reader-timer-window :now="now" @close="() => removeItem(item.i)" />
+            <reader-timer-window
+              v-if="windows[i].type === 'READER_TIMER'"
+              :now="now"
+              @close="() => removeItem(item.i)"
+            />
+            <reader-history-window
+              v-if="windows[i].type === 'READER_HISTORY'"
+              :now="now"
+              @close="() => removeItem(item.i)"
+            />
           </v-sheet>
         </grid-item>
       </grid-layout>
@@ -53,10 +63,12 @@
 <script>
 import VueGridLayout from 'vue-grid-layout'
 import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
+import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
 
 export default {
   name: 'Screen',
   components: {
+    ReaderHistoryWindow,
     ReaderTimerWindow,
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
@@ -77,12 +89,16 @@ export default {
   }),
   created() {
     this.addReaderTimer()
+    this.addReaderHistory()
   },
   methods: {
     addReaderTimer() {
-      this.addItem(3, 4)
+      this.addItem('READER_TIMER', 3, 4)
     },
-    addItem: function(w, h) {
+    addReaderHistory() {
+      this.addItem('READER_HISTORY', 3, 12)
+    },
+    addItem: function(type, w, h) {
       // Add a new item. It must have a unique key!
       this.layout.push({
         x: 0, //(this.layout.length * 2) % (this.colNum || 12),
@@ -93,21 +109,30 @@ export default {
       })
       // Increment the counter to ensure key is always unique.
       this.index++
+      this.windows.push({ type })
     },
     removeItem: function(val) {
       const index = this.layout.map(item => item.i).indexOf(val)
       this.layout.splice(index, 1)
+      this.windows.splice(index, 1)
     },
   },
 }
 </script>
 
 <style scoped lang="sass">
+@import "~@/styles/RcVariables"
+
 ::v-deep .vue-grid-item.vue-grid-placeholder
   background: gray
 
 .screen
   height: 100%
+  overflow-y: hidden
+
+.window-area
+  height: 100%
+  overflow-y: scroll
 
 .window-wrapper
   height: 100%

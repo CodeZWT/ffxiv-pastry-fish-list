@@ -487,9 +487,10 @@ export default {
 @import "~@/styles/RcVariables"
 
 .wrapper
-  height: calc(100vh - #{ $top-bars-padding-reader })
-  overflow-y: scroll
-  overflow-x: hidden
-  padding-left: 6px
-  padding-top: 8px
+  height: 100%
+  //height: calc(100vh - #{ $top-bars-padding-reader })
+  //overflow-y: scroll
+  //overflow-x: hidden
+  //padding-left: 6px
+  //padding-top: 8px
 </style>

@@ -24,7 +24,6 @@
         <v-icon>mdi-window-close</v-icon>
       </v-btn>
     </v-system-bar>
-
     <v-main>
       <Screen :now="now" />
     </v-main>
