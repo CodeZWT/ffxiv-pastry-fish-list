@@ -637,19 +637,22 @@ function resetWindowPos() {
 }
 
 function setMouseThrough(enable) {
-  enableMouseThrough = enable
-  callWindowSafe(WINDOWS.readerTimer, win =>
+  // enableMouseThrough = enable
+  callWindowSafe(SCREEN, win =>
     win.setIgnoreMouseEvents(enable, { forward: true })
   )
-  callWindowSafe(WINDOWS.timerMini, win =>
-    win.setIgnoreMouseEvents(enable, { forward: true })
-  )
-  callWindowSafe(WINDOWS.readerHistory, win =>
-    win.setIgnoreMouseEvents(enable, { forward: true })
-  )
-  callWindowSafe(WINDOWS.readerSpotStatistics, win =>
-    win.setIgnoreMouseEvents(enable, { forward: true })
-  )
+  // callWindowSafe(WINDOWS.readerTimer, win =>
+  //   win.setIgnoreMouseEvents(enable, { forward: true })
+  // )
+  // callWindowSafe(WINDOWS.timerMini, win =>
+  //   win.setIgnoreMouseEvents(enable, { forward: true })
+  // )
+  // callWindowSafe(WINDOWS.readerHistory, win =>
+  //   win.setIgnoreMouseEvents(enable, { forward: true })
+  // )
+  // callWindowSafe(WINDOWS.readerSpotStatistics, win =>
+  //   win.setIgnoreMouseEvents(enable, { forward: true })
+  // )
 }
 
 let switchingMiniMode = false
@@ -1491,6 +1494,18 @@ async function init() {
     })
   })
   setupScreenEvent()
+  setupScreenHotkey(hotkeySetting)
+}
+
+const SCREEN_STATUS = {
+  enableMouseThrough: false
+}
+
+const setupScreenHotkey = (hotkeySetting) => {
+  globalShortcut.register('Alt+Shift+'+hotkeySetting.mouseThrough, () => {
+    setMouseThrough(!SCREEN_STATUS.enableMouseThrough)
+    SCREEN_STATUS.enableMouseThrough = !SCREEN_STATUS.enableMouseThrough
+  })
 }
 
 const createScreen = () => {
