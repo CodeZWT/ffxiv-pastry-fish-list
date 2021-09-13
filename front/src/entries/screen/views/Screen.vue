@@ -20,9 +20,8 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <div class="py-0 ml-14" style="height: 100%">
+    <div class="py-0 ml-14">
       <grid-layout
-        class="window-area"
         :layout.sync="layout"
         :col-num="12"
         :row-height="30"
@@ -32,6 +31,7 @@
         :responsive="true"
         :margin="[10, 10]"
         :use-css-transforms="true"
+        :auto-size="false"
       >
         <grid-item
           v-for="(item, i) in layout"
@@ -128,13 +128,13 @@ export default {
 
 .screen
   height: 100%
-  overflow-y: hidden
-
-.window-area
-  height: 100%
-  overflow-y: scroll
 
 .window-wrapper
   height: 100%
   width: 100%
+
+.vue-grid-layout
+  height: calc(100vh - #{ $top-system-bar-padding})
+  overflow-y: hidden
+  background: rgba(117, 117, 117, 0.5)
 </style>
