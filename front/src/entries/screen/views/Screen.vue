@@ -41,7 +41,7 @@
           :i="item.i"
           :key="item.i"
         >
-          <v-sheet class="window-wrapper rounded elevation-4">
+          <v-sheet class="window-wrapper rounded elevation-4" color="background">
             <reader-timer-window :now="now" @close="() => removeItem(item.i)" />
           </v-sheet>
         </grid-item>
