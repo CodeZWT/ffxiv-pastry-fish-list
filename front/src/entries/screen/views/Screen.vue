@@ -53,6 +53,11 @@
               :now="now"
               @close="() => removeItem(item.i)"
             />
+            <reader-spot-statistics-window
+              v-if="windows[i].type === 'READER_SPOT_STATISTICS'"
+              :now="now"
+              @close="() => removeItem(item.i)"
+            />
           </v-sheet>
         </grid-item>
       </grid-layout>
@@ -64,10 +69,12 @@
 import VueGridLayout from 'vue-grid-layout'
 import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
+import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
 
 export default {
   name: 'Screen',
   components: {
+    ReaderSpotStatisticsWindow,
     ReaderHistoryWindow,
     ReaderTimerWindow,
     GridLayout: VueGridLayout.GridLayout,
@@ -90,6 +97,7 @@ export default {
   created() {
     this.addReaderTimer()
     this.addReaderHistory()
+    this.addReaderSpotStatistics()
   },
   methods: {
     addReaderTimer() {
@@ -98,11 +106,14 @@ export default {
     addReaderHistory() {
       this.addItem('READER_HISTORY', 3, 12)
     },
-    addItem: function(type, w, h) {
+    addReaderSpotStatistics() {
+      this.addItem('READER_SPOT_STATISTICS', 3, 12, 3, 0)
+    },
+    addItem(type, w, h, x = 0, y = 0) {
       // Add a new item. It must have a unique key!
       this.layout.push({
-        x: 0, //(this.layout.length * 2) % (this.colNum || 12),
-        y: 0, //this.layout.length + (this.colNum || 12), // puts it at the bottom
+        x: x, //(this.layout.length * 2) % (this.colNum || 12),
+        y: y, //this.layout.length + (this.colNum || 12), // puts it at the bottom
         w: w,
         h: h,
         i: this.index,
@@ -111,7 +122,7 @@ export default {
       this.index++
       this.windows.push({ type })
     },
-    removeItem: function(val) {
+    removeItem(val) {
       const index = this.layout.map(item => item.i).indexOf(val)
       this.layout.splice(index, 1)
       this.windows.splice(index, 1)
