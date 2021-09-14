@@ -1,333 +1,333 @@
 <template>
-  <v-card>
-    <v-card-text class="wrapper">
-      <v-row no-gutters>
-        <v-alert outlined type="warning" border="left">
-          若渔捞以及自动同步图鉴功能没有效果，可按照以下步骤排查。
-          <ul>
-            <li>
-              切换下方的检测方式为Npcap，注意第一次需要安装额外的软件，并且在国际服使用加速器时很可能无效。
-            </li>
-            <li>
-              检查有无非系统自带防火墙或杀毒软件（如360、火绒）。建议先关闭后尝试，若可行再尝试加入信任区。
-            </li>
-            <li>如切换过国际服国服模式或检测模式请尝试重启</li>
-            <li>
-              如国服游戏窗口只显示“最终”而未显示“最终幻想XIV”，
-              <ul>
-                <li>
-                  查看 控制面板 - 更改日期、时间或数字格式 - 管理 - 更改系统区域设置 -
-                  取消勾选“使用Unicode UTF-8提供全球语言支持”
-                </li>
-                <li>若是其他语言系统可以尝试安装中文包</li>
-              </ul>
-            </li>
-            <li>安装报错可以尝试重新下载安装包</li>
-          </ul>
-        </v-alert>
-        <v-col cols="12" class="d-flex align-center my-1">
-          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">区服</div>
-          <v-btn-toggle v-model="region" rounded dense mandatory active-class="primary">
-            <v-btn small>国服</v-btn>
-            <v-btn small>国际服</v-btn>
-          </v-btn-toggle>
-        </v-col>
-        <v-col cols="12" class="d-flex align-center my-1">
-          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">检测方式</div>
-          <v-btn-toggle
-            v-model="monitorType"
-            rounded
-            dense
-            mandatory
-            active-class="primary"
-          >
-            <v-btn small>RawSocket</v-btn>
-            <v-btn small>Npcap</v-btn>
-          </v-btn-toggle>
-        </v-col>
-        <v-col cols="12">
-          <ul>
-            <li>RawSocket：受防火墙影响，支持加速器</li>
-            <li>
-              Npcap：不支持国际服加速器
-              <ul>
-                <li>第一次开启，需要安装Npcap，点击上方按钮后会弹窗安装</li>
-                <li>安装后建议重启鱼糕</li>
-              </ul>
-            </li>
-          </ul>
-        </v-col>
-        <v-col cols="12" :class="`${themeClass} v-label text-subtitle-1 mt-2`">
-          若要设置鼠标穿透，请在右下角系统托盘处右键鱼糕图标选择“打开渔捞鼠标穿透”，或使用下方设置的快捷键。
-        </v-col>
-        <v-col cols="6" class="d-flex align-center">
-          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">自动标记已完成</div>
-          <v-switch inset v-model="lazySetting.autoSetCompleted" />
-        </v-col>
-        <v-col cols="6" class="d-flex align-center">
-          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-            仅HQ时标记已完成
-          </div>
-          <v-switch inset v-model="lazySetting.autoSetCompletedOnlyHQ" />
-        </v-col>
-        <v-col cols="12" class="d-flex align-center">
-          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-            仅在钓鱼时显示渔捞
-          </div>
-          <v-switch inset v-model="lazySetting.showReaderOnlyIfFishing" />
-        </v-col>
+  <div>
+    <!--    <v-card-text class="wrapper">-->
+    <v-row no-gutters>
+      <v-alert outlined type="warning" border="left">
+        若渔捞以及自动同步图鉴功能没有效果，可按照以下步骤排查。
+        <ul>
+          <li>
+            切换下方的检测方式为Npcap，注意第一次需要安装额外的软件，并且在国际服使用加速器时很可能无效。
+          </li>
+          <li>
+            检查有无非系统自带防火墙或杀毒软件（如360、火绒）。建议先关闭后尝试，若可行再尝试加入信任区。
+          </li>
+          <li>如切换过国际服国服模式或检测模式请尝试重启</li>
+          <li>
+            如国服游戏窗口只显示“最终”而未显示“最终幻想XIV”，
+            <ul>
+              <li>
+                查看 控制面板 - 更改日期、时间或数字格式 - 管理 - 更改系统区域设置 -
+                取消勾选“使用Unicode UTF-8提供全球语言支持”
+              </li>
+              <li>若是其他语言系统可以尝试安装中文包</li>
+            </ul>
+          </li>
+          <li>安装报错可以尝试重新下载安装包</li>
+        </ul>
+      </v-alert>
+      <v-col cols="12" class="d-flex align-center my-1">
+        <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">区服</div>
+        <v-btn-toggle v-model="region" rounded dense mandatory active-class="primary">
+          <v-btn small>国服</v-btn>
+          <v-btn small>国际服</v-btn>
+        </v-btn-toggle>
+      </v-col>
+      <v-col cols="12" class="d-flex align-center my-1">
+        <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">检测方式</div>
+        <v-btn-toggle
+          v-model="monitorType"
+          rounded
+          dense
+          mandatory
+          active-class="primary"
+        >
+          <v-btn small>RawSocket</v-btn>
+          <v-btn small>Npcap</v-btn>
+        </v-btn-toggle>
+      </v-col>
+      <v-col cols="12">
+        <ul>
+          <li>RawSocket：受防火墙影响，支持加速器</li>
+          <li>
+            Npcap：不支持国际服加速器
+            <ul>
+              <li>第一次开启，需要安装Npcap，点击上方按钮后会弹窗安装</li>
+              <li>安装后建议重启鱼糕</li>
+            </ul>
+          </li>
+        </ul>
+      </v-col>
+      <v-col cols="12" :class="`${themeClass} v-label text-subtitle-1 mt-2`">
+        若要设置鼠标穿透，请在右下角系统托盘处右键鱼糕图标选择“打开渔捞鼠标穿透”，或使用下方设置的快捷键。
+      </v-col>
+      <v-col cols="6" class="d-flex align-center">
+        <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">自动标记已完成</div>
+        <v-switch inset v-model="lazySetting.autoSetCompleted" />
+      </v-col>
+      <v-col cols="6" class="d-flex align-center">
+        <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+          仅HQ时标记已完成
+        </div>
+        <v-switch inset v-model="lazySetting.autoSetCompletedOnlyHQ" />
+      </v-col>
+      <v-col cols="12" class="d-flex align-center">
+        <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+          仅在钓鱼时显示渔捞
+        </div>
+        <v-switch inset v-model="lazySetting.showReaderOnlyIfFishing" />
+      </v-col>
 
-        <v-col cols="12" v-if="isRoseMode">
-          <v-card outlined width="100%" class="my-1">
-            <div class="overline ml-2">数据上传</div>
-            <v-card-text class="d-flex flex-column">
-              <div class="d-flex align-center">
-                <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">上传模式</div>
-                <v-switch inset v-model="lazySetting.isUploadMode" :disabled="!isLogin" />
+      <v-col cols="12" v-if="isRoseMode">
+        <v-card outlined width="100%" class="my-1">
+          <div class="overline ml-2">数据上传</div>
+          <v-card-text class="d-flex flex-column">
+            <div class="d-flex align-center">
+              <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">上传模式</div>
+              <v-switch inset v-model="lazySetting.isUploadMode" :disabled="!isLogin" />
+            </div>
+            <div>
+              开启此模式后，钓鱼数据将会上传至鱼糕服务器。无敏感数据，涵盖内容与导出文件中的范围一致。
+            </div>
+            <div class="d-flex align-center">
+              <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+                严格数据收集模式
               </div>
+              <v-switch inset v-model="lazySetting.isStrictMode" :disabled="!isLogin" />
+            </div>
+
+            <div class="font-weight-bold subtitle-1">
+              <div>请测试人员在开始测试后开启此开关</div>
               <div>
-                开启此模式后，钓鱼数据将会上传至鱼糕服务器。无敏感数据，涵盖内容与导出文件中的范围一致。
+                不要使用非必要的技能（如专一，拍击水面，鱼眼）并提起所有咬钩的鱼。
               </div>
-              <div class="d-flex align-center">
-                <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-                  严格数据收集模式
-                </div>
-                <v-switch inset v-model="lazySetting.isStrictMode" :disabled="!isLogin" />
-              </div>
-
-              <div class="font-weight-bold subtitle-1">
-                <div>请测试人员在开始测试后开启此开关</div>
-                <div>
-                  不要使用非必要的技能（如专一，拍击水面，鱼眼）并提起所有咬钩的鱼。
-                </div>
-              </div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-card outlined width="100%" class="my-1">
-          <div class="overline ml-2">快捷键</div>
-          <v-card-text class="d-flex align-center">
-            <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-              切换鱼糕鼠标穿透
             </div>
-            <div class="mr-2">
-              <kbd class="text-subtitle-1">Alt</kbd>+
-              <kbd class="text-subtitle-1">Shift</kbd>+
-            </div>
-            <v-text-field
-              readonly
-              :value="lazySetting.hotkey.mouseThrough"
-              @keydown="setHotkey('mouseThrough', $event)"
-              style="max-width: 36px"
-              placeholder="]"
-              outlined
-              dense
-              hide-details
-            ></v-text-field>
-          </v-card-text>
-          <v-card-text class="d-flex align-center">
-            <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-              切换鱼糕鼠标穿透
-            </div>
-            <div class="mr-2">
-              <kbd class="text-subtitle-1">Alt</kbd>+
-              <kbd class="text-subtitle-1">Shift</kbd>+
-            </div>
-            <v-text-field
-              readonly
-              :value="lazySetting.hotkey.toggleReader"
-              @keydown="setHotkey('toggleReader', $event)"
-              style="max-width: 36px"
-              placeholder="]"
-              outlined
-              dense
-              hide-details
-            ></v-text-field>
           </v-card-text>
         </v-card>
-        <v-card outlined width="100%" class="my-1">
-          <div class="overline ml-2">计时器</div>
-          <v-card-text>
-            <div class="d-flex align-center">
-              <v-slider
-                v-model="lazyWindowSetting.timer.opacity"
-                label="透明度"
-                max="1"
-                min="0.1"
-                step="0.05"
-                ticks
-                thumb-label
-              />
-            </div>
-            <div class="d-flex align-center">
-              <v-slider
-                v-model="lazyWindowSetting.timer.zoomFactor"
-                max="3"
-                min="0.4"
-                step="0.1"
-                ticks
-                label="缩放比例"
-                thumb-label
-              >
-                <template v-slot:thumb-label="{ value }">
-                  {{ Math.floor(value * 100) }}%
-                </template>
-              </v-slider>
-            </div>
-            <!--            <div class="d-flex align-center">-->
-            <!--              <v-slider-->
-            <!--                v-model="lazyWindowSetting.timerMini.opacity"-->
-            <!--                label="迷你模式透明度"-->
-            <!--                max="1"-->
-            <!--                min="0.1"-->
-            <!--                step="0.05"-->
-            <!--                ticks-->
-            <!--                thumb-label-->
-            <!--              />-->
-            <!--            </div>-->
-            <div class="d-flex align-center">
-              <v-slider
-                v-model="lazyWindowSetting.timerMini.zoomFactor"
-                max="3"
-                min="0.4"
-                step="0.1"
-                ticks
-                label="迷你模式缩放比例"
-                thumb-label
-              >
-                <template v-slot:thumb-label="{ value }">
-                  {{ Math.floor(value * 100) }}%
-                </template>
-              </v-slider>
-            </div>
-            <div
-              v-for="tug in tugSettingTypes"
-              class="d-flex flex-column"
-              :key="`color-${tug}`"
+      </v-col>
+      <v-card outlined width="100%" class="my-1">
+        <div class="overline ml-2">快捷键</div>
+        <v-card-text class="d-flex align-center">
+          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+            切换鱼糕鼠标穿透
+          </div>
+          <div class="mr-2">
+            <kbd class="text-subtitle-1">Alt</kbd>+
+            <kbd class="text-subtitle-1">Shift</kbd>+
+          </div>
+          <v-text-field
+            readonly
+            :value="lazySetting.hotkey.mouseThrough"
+            @keydown="setHotkey('mouseThrough', $event)"
+            style="max-width: 36px"
+            placeholder="]"
+            outlined
+            dense
+            hide-details
+          ></v-text-field>
+        </v-card-text>
+        <v-card-text class="d-flex align-center">
+          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
+            切换鱼糕鼠标穿透
+          </div>
+          <div class="mr-2">
+            <kbd class="text-subtitle-1">Alt</kbd>+
+            <kbd class="text-subtitle-1">Shift</kbd>+
+          </div>
+          <v-text-field
+            readonly
+            :value="lazySetting.hotkey.toggleReader"
+            @keydown="setHotkey('toggleReader', $event)"
+            style="max-width: 36px"
+            placeholder="]"
+            outlined
+            dense
+            hide-details
+          ></v-text-field>
+        </v-card-text>
+      </v-card>
+      <v-card outlined width="100%" class="my-1">
+        <div class="overline ml-2">计时器</div>
+        <v-card-text>
+          <div class="d-flex align-center">
+            <v-slider
+              v-model="lazyWindowSetting.timer.opacity"
+              label="透明度"
+              max="1"
+              min="0.1"
+              step="0.05"
+              ticks
+              thumb-label
+            />
+          </div>
+          <div class="d-flex align-center">
+            <v-slider
+              v-model="lazyWindowSetting.timer.zoomFactor"
+              max="3"
+              min="0.4"
+              step="0.1"
+              ticks
+              label="缩放比例"
+              thumb-label
             >
-              <v-subheader class="pl-0">
-                {{ $t('tug.' + tug) + '颜色' }}
-              </v-subheader>
-              <v-color-picker
-                v-model="lazySetting.timer.color[tug]"
-                mode="hexa"
-                swatches-max-height="196"
-                hide-canvas
-              ></v-color-picker>
-            </div>
+              <template v-slot:thumb-label="{ value }">
+                {{ Math.floor(value * 100) }}%
+              </template>
+            </v-slider>
+          </div>
+          <!--            <div class="d-flex align-center">-->
+          <!--              <v-slider-->
+          <!--                v-model="lazyWindowSetting.timerMini.opacity"-->
+          <!--                label="迷你模式透明度"-->
+          <!--                max="1"-->
+          <!--                min="0.1"-->
+          <!--                step="0.05"-->
+          <!--                ticks-->
+          <!--                thumb-label-->
+          <!--              />-->
+          <!--            </div>-->
+          <div class="d-flex align-center">
+            <v-slider
+              v-model="lazyWindowSetting.timerMini.zoomFactor"
+              max="3"
+              min="0.4"
+              step="0.1"
+              ticks
+              label="迷你模式缩放比例"
+              thumb-label
+            >
+              <template v-slot:thumb-label="{ value }">
+                {{ Math.floor(value * 100) }}%
+              </template>
+            </v-slider>
+          </div>
+          <div
+            v-for="tug in tugSettingTypes"
+            class="d-flex flex-column"
+            :key="`color-${tug}`"
+          >
+            <v-subheader class="pl-0">
+              {{ $t('tug.' + tug) + '颜色' }}
+            </v-subheader>
+            <v-color-picker
+              v-model="lazySetting.timer.color[tug]"
+              mode="hexa"
+              swatches-max-height="196"
+              hide-canvas
+            ></v-color-picker>
+          </div>
 
-            <div v-for="tug in TUG_TYPES" class="d-flex flex-column" :key="tug">
-              <v-radio-group
-                v-model="lazySetting.timer.sound[tug].source"
-                :label="$t('tug.' + tug) + '提示音'"
-                column
-              >
-                <v-radio label="内置" value="DEFAULT"></v-radio>
-                <v-radio value="CUSTOMIZED">
-                  <template v-slot:label>
-                    <div class="d-flex align-center">
-                      <div>自定义</div>
-                      <v-btn
-                        text
-                        @click="showFileViewer(tug)"
-                        :title="lazySetting.timer.sound[tug].customPath"
-                      >
-                        <v-icon>mdi-file-music-outline</v-icon>
-                        <div class="text-truncate" style="max-width: 170px">
-                          {{
-                            toDisplayFileName(lazySetting.timer.sound[tug].customPath) ||
-                              '未选择文件'
-                          }}
-                        </div>
-                      </v-btn>
-                    </div>
-                  </template>
-                </v-radio>
-              </v-radio-group>
-              <div class="d-flex">
-                <v-slider
-                  v-model="lazySetting.timer.sound[tug].volume"
-                  max="1"
-                  min="0"
-                  step="0.01"
-                  :label="$t('setting.dialog.notification.volume')"
-                  thumb-label
-                >
-                </v-slider>
-                <v-btn icon text @click="ringBell(tug)">
-                  <v-icon>mdi-play</v-icon>
-                </v-btn>
-              </div>
-            </div>
-          </v-card-text>
-        </v-card>
-
-        <v-card outlined width="100%" class="my-1">
-          <div class="overline ml-2">历史记录</div>
-          <v-card-text>
-            <div class="d-flex align-center">
-              <v-slider
-                v-model="lazyWindowSetting.history.opacity"
-                label="透明度"
-                max="1"
-                min="0.1"
-                step="0.05"
-                ticks
-                thumb-label
-              />
-            </div>
-            <div class="d-flex align-center">
-              <v-slider
-                v-model="lazyWindowSetting.history.zoomFactor"
-                max="3"
-                min="0.4"
-                step="0.1"
-                ticks
-                label="缩放比例"
-                thumb-label
-              >
-                <template v-slot:thumb-label="{ value }">
-                  {{ Math.floor(value * 100) }}%
+          <div v-for="tug in TUG_TYPES" class="d-flex flex-column" :key="tug">
+            <v-radio-group
+              v-model="lazySetting.timer.sound[tug].source"
+              :label="$t('tug.' + tug) + '提示音'"
+              column
+            >
+              <v-radio label="内置" value="DEFAULT"></v-radio>
+              <v-radio value="CUSTOMIZED">
+                <template v-slot:label>
+                  <div class="d-flex align-center">
+                    <div>自定义</div>
+                    <v-btn
+                      text
+                      @click="showFileViewer(tug)"
+                      :title="lazySetting.timer.sound[tug].customPath"
+                    >
+                      <v-icon>mdi-file-music-outline</v-icon>
+                      <div class="text-truncate" style="max-width: 170px">
+                        {{
+                          toDisplayFileName(lazySetting.timer.sound[tug].customPath) ||
+                            '未选择文件'
+                        }}
+                      </div>
+                    </v-btn>
+                  </div>
                 </template>
-              </v-slider>
-            </div>
-          </v-card-text>
-        </v-card>
-
-        <v-card outlined width="100%" class="my-1">
-          <div class="overline ml-2">钓场统计</div>
-          <v-card-text>
-            <div class="d-flex align-center">
+              </v-radio>
+            </v-radio-group>
+            <div class="d-flex">
               <v-slider
-                v-model="lazyWindowSetting.spotStatistics.opacity"
-                label="透明度"
+                v-model="lazySetting.timer.sound[tug].volume"
                 max="1"
-                min="0.1"
-                step="0.05"
-                ticks
-                thumb-label
-              />
-            </div>
-            <div class="d-flex align-center">
-              <v-slider
-                v-model="lazyWindowSetting.spotStatistics.zoomFactor"
-                max="3"
-                min="0.4"
-                step="0.1"
-                ticks
-                label="缩放比例"
+                min="0"
+                step="0.01"
+                :label="$t('setting.dialog.notification.volume')"
                 thumb-label
               >
-                <template v-slot:thumb-label="{ value }">
-                  {{ Math.floor(value * 100) }}%
-                </template>
               </v-slider>
+              <v-btn icon text @click="ringBell(tug)">
+                <v-icon>mdi-play</v-icon>
+              </v-btn>
             </div>
-          </v-card-text>
-        </v-card>
-        <!--        <div v-if="isTest">{{ lazySetting }}</div>-->
-      </v-row>
-    </v-card-text>
+          </div>
+        </v-card-text>
+      </v-card>
+
+      <v-card outlined width="100%" class="my-1">
+        <div class="overline ml-2">历史记录</div>
+        <v-card-text>
+          <div class="d-flex align-center">
+            <v-slider
+              v-model="lazyWindowSetting.history.opacity"
+              label="透明度"
+              max="1"
+              min="0.1"
+              step="0.05"
+              ticks
+              thumb-label
+            />
+          </div>
+          <div class="d-flex align-center">
+            <v-slider
+              v-model="lazyWindowSetting.history.zoomFactor"
+              max="3"
+              min="0.4"
+              step="0.1"
+              ticks
+              label="缩放比例"
+              thumb-label
+            >
+              <template v-slot:thumb-label="{ value }">
+                {{ Math.floor(value * 100) }}%
+              </template>
+            </v-slider>
+          </div>
+        </v-card-text>
+      </v-card>
+
+      <v-card outlined width="100%" class="my-1">
+        <div class="overline ml-2">钓场统计</div>
+        <v-card-text>
+          <div class="d-flex align-center">
+            <v-slider
+              v-model="lazyWindowSetting.spotStatistics.opacity"
+              label="透明度"
+              max="1"
+              min="0.1"
+              step="0.05"
+              ticks
+              thumb-label
+            />
+          </div>
+          <div class="d-flex align-center">
+            <v-slider
+              v-model="lazyWindowSetting.spotStatistics.zoomFactor"
+              max="3"
+              min="0.4"
+              step="0.1"
+              ticks
+              label="缩放比例"
+              thumb-label
+            >
+              <template v-slot:thumb-label="{ value }">
+                {{ Math.floor(value * 100) }}%
+              </template>
+            </v-slider>
+          </div>
+        </v-card-text>
+      </v-card>
+      <!--        <div v-if="isTest">{{ lazySetting }}</div>-->
+    </v-row>
+    <!--    </v-card-text>-->
     <!--    <v-divider />-->
     <!--    <v-card-actions>-->
     <!--      <v-btn @click="saveSetting" block color="primary">应用设置</v-btn>-->
@@ -352,7 +352,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-card>
+  </div>
 </template>
 
 <script>

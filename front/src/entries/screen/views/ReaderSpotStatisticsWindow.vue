@@ -1,7 +1,7 @@
 <template>
   <div class="window">
     <v-system-bar class="window-top-bar rounded-t">
-      <span class="mx-1">本地历史记录</span>
+      <span class="mx-1">钓场统计</span>
       <v-spacer />
       <v-btn @click="close" x-small text>
         <v-icon>mdi-window-close</v-icon>

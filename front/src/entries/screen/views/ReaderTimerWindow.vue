@@ -37,10 +37,13 @@
     <div class="window-content">
       <reader-timer :now="now" />
     </div>
-    <v-dialog v-model="showSettingDialog" max-width="600">
-      <v-sheet>
-        <reader-setting :now="now" />
-      </v-sheet>
+    <v-dialog v-model="showSettingDialog" max-width="600" scrollable>
+      <v-card>
+        <v-card-title>渔捞设置</v-card-title>
+        <v-card-text>
+          <reader-setting :now="now" />
+        </v-card-text>
+      </v-card>
     </v-dialog>
   </div>
 </template>
