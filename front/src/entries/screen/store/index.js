@@ -39,7 +39,10 @@ export default new Vuex.Store({
   },
   mutations: {
     setStrictMode(state, isStrictMode) {
-      LocalStorageUtil.storeReaderUserData({ ...state.readerSetting, isStrictMode })
+      DataUtil.setReaderSettingPart(state, {
+        path: 'isStrictMode',
+        data: isStrictMode,
+      })
     },
     setNotShowBanner(state) {
       const newSetting = _.cloneDeep(state.readerSetting)

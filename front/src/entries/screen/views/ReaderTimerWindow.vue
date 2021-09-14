@@ -50,7 +50,7 @@
 
 <script>
 import ReaderTimer from '@/entries/reader/views/ReaderTimer'
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import READER_ICON from 'Assets/reader.png'
 import SETTING_ICON from 'Assets/setting.png'
@@ -77,10 +77,10 @@ export default {
     ...mapGetters(['readerRegion', 'isStrictMode', 'isUploadMode', 'isRoseMode']),
   },
   methods: {
+    ...mapMutations(['setStrictMode']),
     toggleStrictMode() {
       const newStrictMode = !this.isStrictMode
       this.setStrictMode(newStrictMode)
-      this.sendElectronEvent('setStrictMode', newStrictMode)
     },
     close() {
       this.$emit('close')

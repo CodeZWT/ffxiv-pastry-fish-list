@@ -863,6 +863,16 @@ export default {
     _.set(state.userData, path, data)
     LocalStorageUtil.storeUserData(state.userData)
   },
+  setReaderSettingPart(state, { path, data }) {
+    const readerSetting = _.cloneDeep(state.readerSetting)
+    _.set(readerSetting, path, data)
+    state.readerSetting = readerSetting
+    LocalStorageUtil.storeUserData(state.readerSetting)
+  },
+  setReaderSettingPartSilently(state, { path, data }) {
+    _.set(state.readerSetting, path, data)
+    LocalStorageUtil.storeReaderUserData(state.readerSetting)
+  },
 
   // setUserDataPartInLocalStorage(state, { path, data }) {
   //   const newUserData = _.cloneDeep(state.userData)
