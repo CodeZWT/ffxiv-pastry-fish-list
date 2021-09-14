@@ -86,7 +86,6 @@ export default {
       this.$emit('close')
     },
     showSetting() {
-      // TODO show setting dialog directly
       this.showSettingDialog = true
     },
   },
