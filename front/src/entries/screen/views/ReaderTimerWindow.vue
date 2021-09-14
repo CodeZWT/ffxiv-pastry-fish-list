@@ -37,6 +37,11 @@
     <div class="window-content">
       <reader-timer :now="now" />
     </div>
+    <v-dialog v-model="showSettingDialog" max-width="600">
+      <v-sheet>
+        <reader-setting :now="now" />
+      </v-sheet>
+    </v-dialog>
   </div>
 </template>
 
@@ -46,10 +51,11 @@ import { mapGetters, mapState } from 'vuex'
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import READER_ICON from 'Assets/reader.png'
 import SETTING_ICON from 'Assets/setting.png'
+import ReaderSetting from '@/entries/reader/views/ReaderSetting'
 
 export default {
   name: 'ReaderTimerWindow',
-  components: { ReaderTimer },
+  components: { ReaderSetting, ReaderTimer },
   props: {
     now: {
       type: Number,
@@ -61,6 +67,7 @@ export default {
     settingIcon: SETTING_ICON,
     CN_PATCH_VERSION: CN_PATCH_VERSION,
     GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
+    showSettingDialog: false,
   }),
   computed: {
     ...mapState(['sounds', 'readerTimerMiniMode']),
@@ -77,6 +84,7 @@ export default {
     },
     showSetting() {
       // TODO show setting dialog directly
+      this.showSettingDialog = true
     },
   },
 }
