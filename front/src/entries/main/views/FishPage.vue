@@ -9,7 +9,7 @@
     >
       <pane
         :size="100 - rightPaneSizeOfCurrentWindowSize"
-        v-if="!rightPaneFullScreen || !showRightPane"
+        v-if="!lazyRightPaneFullScreen || !showRightPane"
         ref="scrollTarget"
         v-scroll.self="onScroll"
       >
@@ -49,15 +49,11 @@
                     <div v-if="baitFilterEnabledComputed">
                       <div class="d-flex align-center">
                         <v-btn text small class="mx-1" @click="selectAllBaits()">
-                          <v-icon left>
-                            mdi-check-all
-                          </v-icon>
+                          <v-icon left> mdi-check-all </v-icon>
                           选择所有
                         </v-btn>
                         <v-btn text small class="mx-1" @click="clearAllBaits">
-                          <v-icon left>
-                            mdi-close
-                          </v-icon>
+                          <v-icon left> mdi-close </v-icon>
                           清除所有
                         </v-btn>
                         <v-tooltip right>
@@ -133,9 +129,7 @@
                 <div style="width: 100%">
                   <v-banner v-if="showBanner" two-line>
                     <v-avatar slot="icon" color="primary" size="40">
-                      <v-icon icon="mdi-lock" color="white">
-                        mdi-information
-                      </v-icon>
+                      <v-icon icon="mdi-lock" color="white"> mdi-information </v-icon>
                     </v-avatar>
 
                     <div>
@@ -145,9 +139,7 @@
                       <div>
                         点击每列鱼可以打开右侧详细界面。其他功能如钓鱼笔记，云冠群岛，出海垂钓内容请通过左边的侧边栏访问。
                       </div>
-                      <div>
-                        本站与其他钓鱼时钟的导入、导出功能在侧边栏的“设置”中。
-                      </div>
+                      <div>本站与其他钓鱼时钟的导入、导出功能在侧边栏的“设置”中。</div>
                       <div>
                         若使用桌面版，可直接同步游戏内图鉴，左侧导航栏进入“钓鱼笔记”页面，选择“同步游戏数据”。
                       </div>
@@ -155,9 +147,7 @@
 
                     <template v-slot:actions>
                       <click-helper @click="onDismiss">
-                        <v-btn text color="primary">
-                          不再显示
-                        </v-btn>
+                        <v-btn text color="primary"> 不再显示 </v-btn>
                       </click-helper>
                     </template>
                   </v-banner>
@@ -285,9 +275,7 @@
                 @click="backToTop"
                 :style="`right: ${rightPercentage}%`"
               >
-                <v-icon>
-                  mdi-chevron-up
-                </v-icon>
+                <v-icon> mdi-chevron-up </v-icon>
               </v-btn>
             </v-fab-transition>
           </v-container>
@@ -301,9 +289,7 @@
         <div v-if="resizing" style="height: 100%">
           <v-banner>
             <v-avatar slot="icon" color="quaternary" size="40">
-              <v-icon color="white">
-                mdi-alert
-              </v-icon>
+              <v-icon color="white"> mdi-alert </v-icon>
             </v-avatar>
 
             <div>
@@ -386,6 +372,8 @@ export default {
     'toBeNotifiedFishList',
     'selectedFish',
     'filteredFishIdSet',
+    'activeTabIndex',
+    'rightPaneFullScreen',
   ],
   data: () => ({
     isElectron: DevelopmentModeUtil.isElectron(),
@@ -393,7 +381,7 @@ export default {
     fishListOpenStatus: [0, 1],
     throttledResizeFn: undefined,
     resizing: false,
-    rightPaneFullScreen: window.innerWidth < 1264,
+    lazyRightPaneFullScreen: false,
     loading: true,
     forceShowComponents: undefined,
     selectedBaitIdIndices: [],
@@ -503,7 +491,7 @@ export default {
       },
     },
     rightPaneSizeOfCurrentWindowSize() {
-      if (this.rightPaneFullScreen) {
+      if (this.lazyRightPaneFullScreen) {
         if (this.showRightPane) return 100
         else return 0
       } else {
@@ -525,7 +513,6 @@ export default {
       fishingSpots: 'fishingSpots',
       zones: 'zones',
       bigFish: 'bigFish',
-      activeTabIndex: 'activeTabIndex',
       sounds: 'sounds',
       showFishPageRightPane: 'showFishPageRightPane',
       baitFilter: 'baitFilter',
@@ -622,6 +609,7 @@ export default {
     }
   },
   mounted() {
+    this.lazyRightPaneFullScreen = this.rightPaneFullScreen
     this.throttledResizeFn = _.throttle(this.resizeInternal, 100)
     this.onWindowResize()
   },
@@ -664,7 +652,7 @@ export default {
       this.throttledResizeFn(resizePaneInfos)
     },
     onWindowResize() {
-      this.rightPaneFullScreen = window.innerWidth < 1264
+      this.lazyRightPaneFullScreen = window.innerWidth < 1264
       // this.$refs.splitPanes.$el.style.height =
       //   window.innerHeight - 24 - 48 - document.getElementById('fish-footer').offsetHeight
       setTimeout(() => {
@@ -711,7 +699,7 @@ export default {
   height: calc(100vh - #{ $top-bars-padding + $footer-padding })
 
 .splitpanes--electron
-  height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding })
+  //height: calc(100% - #{ $top-bars-padding-electron })
 
 .theme--dark
   .splitpanes--vertical::v-deep

@@ -1,26 +1,6 @@
 <template>
   <div class="screen">
-    <v-navigation-drawer
-      v-model="showSideBar"
-      :mini-variant.sync="miniSideBar"
-      color="system"
-      absolute
-      expand-on-hover
-    >
-      <v-list dense>
-        <v-list-item @click="addReaderTimer">
-          <v-list-item-icon>
-            <v-icon>
-              {{ 'mdi-fish' }}
-            </v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ '渔捞' }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <div class="py-0 ml-14">
+    <div>
       <grid-layout
         :layout.sync="layout"
         :col-num="12"
@@ -58,10 +38,122 @@
               :now="now"
               @close="() => removeItem(item.i)"
             />
+            <main-window
+              v-if="windows[i].type === 'MAIN'"
+              :page="mainPage"
+              :active-tab-index="mainPageTabIndex"
+              :now="now"
+              @close="() => removeItem(item.i)"
+              :lazySourceFishList="lazySourceFishList"
+              :lazyTransformedFishList="lazyTransformedFishList"
+              :lazyTransformedFishDict="lazyTransformedFishDict"
+              :fishListTimePart="fishListTimePart"
+              :extraFishListTimePart="extraFishListTimePart"
+              :fishListWeatherChangePart="fishListWeatherChangePart"
+              :pinnedFishList="pinnedFishList"
+              :sortedFilteredFishList="sortedFilteredFishList"
+              :toBeNotifiedFishList="toBeNotifiedFishList"
+              :selectedFish="selectedFish"
+              :filteredFishIdSet="filteredFishIdSet"
+              @fish-selected="onFishSelected"
+            />
           </v-sheet>
         </grid-item>
       </grid-layout>
+      <v-btn
+        elevation="2"
+        fab
+        fixed
+        bottom
+        right
+        outlined
+        @mouseenter="showWindowMenu = true"
+      >
+        <v-img
+          src="https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/pastry-fish.png"
+          width="38"
+          height="38"
+          contain
+        ></v-img>
+        <!--        <v-icon large>mdi-cat</v-icon>-->
+      </v-btn>
     </div>
+
+    <v-dialog v-model="showWindowMenu" max-width="300">
+      <v-sheet>
+        <v-subheader>鱼糕</v-subheader>
+        <v-list>
+          <v-list-item @click="addFishList">
+            <v-list-item-icon>
+              <v-icon>mdi-format-list-text</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>{{ $t('list.normalTitle') }}</v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="addNotificationList">
+            <v-list-item-icon>
+              <v-icon>mdi-bell</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>{{ $t('list.toBeNotifiedTitle') }}</v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="addWiki">
+            <v-list-item-icon>
+              <v-icon>mdi-notebook</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>{{ $t('top.fishWiki') }}</v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="addOceanFishing">
+            <v-list-item-icon>
+              <v-icon>mdi-ferry</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>{{ $t('top.oceanFishing') }}</v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="addDiadem">
+            <v-list-item-icon>
+              <v-img
+                :src="dark ? diademDark : diademLight"
+                height="24"
+                width="24"
+              ></v-img>
+            </v-list-item-icon>
+            <v-list-item-content>{{ $t('top.diadem') }}</v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="addAquarium">
+            <v-list-item-icon>
+              <v-icon>mdi-fishbowl</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>{{ $t('top.aquarium') }}</v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="addCompetition">
+            <v-list-item-icon>
+              <v-icon>mdi-trophy</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>{{ $t('top.competition') }}</v-list-item-content>
+          </v-list-item>
+
+          <v-subheader>渔捞</v-subheader>
+          <v-list-item @click="addReaderTimer">
+            <v-list-item-icon>
+              <v-icon>mdi-fish</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>计时器</v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="addReaderHistory">
+            <v-list-item-icon>
+              <v-icon>mdi-fish</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>本地历史记录</v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="addReaderSpotStatistics">
+            <v-list-item-icon>
+              <v-icon>mdi-fish</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>本地钓场统计</v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-sheet>
+    </v-dialog>
+
+    <v-dialog v-model="showMainWindow" fullscreen> </v-dialog>
   </div>
 </template>
 
@@ -70,22 +162,34 @@ import VueGridLayout from 'vue-grid-layout'
 import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
+import MainWindow from '@/entries/screen/views/MainWindow'
+import AppMixin from '@/components/AppMixin'
 
 export default {
   name: 'Screen',
+  mixins: [AppMixin],
   components: {
+    MainWindow,
     ReaderSpotStatisticsWindow,
     ReaderHistoryWindow,
     ReaderTimerWindow,
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
   },
-  props: {
-    now: {
-      type: Number,
-      default: 0,
-    },
-  },
+  // props: [
+  //   'now',
+  //   'lazySourceFishList',
+  //   'lazyTransformedFishList',
+  //   'lazyTransformedFishDict',
+  //   'pinnedFishList',
+  //   'fishListTimePart',
+  //   'extraFishListTimePart',
+  //   'fishListWeatherChangePart',
+  //   'sortedFilteredFishList',
+  //   'toBeNotifiedFishList',
+  //   'selectedFish',
+  //   'filteredFishIdSet',
+  // ],
   data: () => ({
     showSideBar: true,
     miniSideBar: true,
@@ -93,13 +197,22 @@ export default {
     colNum: 12,
     index: 0,
     windows: [],
+    showWindowMenu: false,
+    showMainWindow: false,
+    mainPage: 'ListPage',
+    mainPageTabIndex: 0,
   }),
   created() {
     this.addReaderTimer()
     this.addReaderHistory()
     this.addReaderSpotStatistics()
+    this.addFishList()
+    this.addWiki()
   },
   methods: {
+    openMainWindow() {
+      this.showMainWindow = true
+    },
     addReaderTimer() {
       this.addItem('READER_TIMER', 3, 4)
     },
@@ -108,6 +221,48 @@ export default {
     },
     addReaderSpotStatistics() {
       this.addItem('READER_SPOT_STATISTICS', 3, 12, 3, 0)
+    },
+    addFishList() {
+      this.mainPage = 'ListPage'
+      this.mainPageTabIndex = 0
+      this.addMainWindowIfNotExist()
+    },
+    addNotificationList() {
+      this.mainPage = 'ListPage'
+      this.mainPageTabIndex = 1
+      this.addMainWindowIfNotExist()
+    },
+    addWiki() {
+      this.mainPage = 'WikiPage'
+      this.addMainWindowIfNotExist()
+    },
+    addOceanFishing() {
+      this.mainPage = 'OceanFishingPage54'
+      this.addMainWindowIfNotExist()
+    },
+    addDiadem() {
+      this.mainPage = 'DiademPage'
+      this.addMainWindowIfNotExist()
+    },
+    addAquarium() {
+      this.mainPage = 'AquariumPage'
+      this.addMainWindowIfNotExist()
+    },
+    addCompetition() {
+      this.mainPage = 'CompetitionPage'
+      this.addMainWindowIfNotExist()
+    },
+    addRecord() {
+      this.mainPage = 'RecordPage'
+      this.addMainWindowIfNotExist()
+    },
+    addMainWindowIfNotExist() {
+      if (!this.hasItem('MAIN')) {
+        this.addItem('MAIN', 3, 12, 3, 0)
+      }
+    },
+    hasItem(type) {
+      return this.windows.findIndex(it => it.type === type) > 0
     },
     addItem(type, w, h, x = 0, y = 0) {
       // Add a new item. It must have a unique key!

@@ -491,6 +491,8 @@
           :toBeNotifiedFishList="toBeNotifiedFishList"
           :selectedFish="selectedFish"
           :filteredFishIdSet="filteredFishIdSet"
+          :activeTabIndex="activeTabIndex"
+          :right-pane-full-screen="rightPaneFullScreen"
           @fish-selected="onFishSelected"
         />
       </div>
@@ -723,6 +725,11 @@ import AppMixin from '@/components/AppMixin'
 export default {
   name: 'App',
   mixins: [AppMixin],
+  data() {
+    return {
+      rightPaneFullScreen: window.innerWidth < 1264,
+    }
+  },
   methods: {
     toPage(page) {
       if (this.$route.name !== page) {

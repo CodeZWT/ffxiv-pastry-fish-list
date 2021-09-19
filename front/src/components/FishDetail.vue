@@ -28,9 +28,7 @@
         ></fish-detail-content>
       </div>
     </template>
-    <template v-else>
-      empty
-    </template>
+    <template v-else> empty </template>
   </div>
 </template>
 
@@ -93,6 +91,9 @@ export default {
 
 <style lang="sass" scoped>
 @import "~@/styles/RcVariables"
+
+.inner
+  width: 100%
 
 .detail-header
   overflow-scrolling: auto
