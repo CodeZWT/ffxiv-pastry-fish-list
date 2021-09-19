@@ -3,39 +3,25 @@
     <div class="col-12">
       <v-simple-table>
         <colgroup>
-          <col span="1" style="width: 25%;" />
-          <col span="1" style="width: 8%;" />
-          <col span="1" style="width: 6%;" />
-          <col span="1" style="width: 5%;" />
-          <col span="1" style="width: 5%;" />
-          <col span="1" style="width: 7%;" />
-          <col span="1" style="width: 32%;" />
-          <col span="1" style="width: 12%;" />
+          <col span="1" style="width: 25%" />
+          <col span="1" style="width: 8%" />
+          <col span="1" style="width: 6%" />
+          <col span="1" style="width: 5%" />
+          <col span="1" style="width: 5%" />
+          <col span="1" style="width: 7%" />
+          <col span="1" style="width: 32%" />
+          <col span="1" style="width: 12%" />
         </colgroup>
         <thead>
           <tr>
-            <th>
-              名称
-            </th>
-            <th class="text-center">
-              天气
-            </th>
+            <th>名称</th>
+            <th class="text-center">天气</th>
             <th class="text-center">天穹街<br />振兴票</th>
-            <th class="text-center">
-              技巧点
-            </th>
-            <th class="text-center">
-              双提
-            </th>
-            <th class="text-center">
-              咬钩(s)
-            </th>
-            <th>
-              钓法
-            </th>
-            <th>
-              分解
-            </th>
+            <th class="text-center">技巧点</th>
+            <th class="text-center">双提</th>
+            <th class="text-center">咬钩(s)</th>
+            <th>钓法</th>
+            <th>分解</th>
           </tr>
         </thead>
         <tbody>

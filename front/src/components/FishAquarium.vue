@@ -111,6 +111,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    isMobile: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -119,11 +123,6 @@ export default {
       imageSizeNormal: { w: 892, h: 363 },
       imageSizeS: { w: 548, h: 435 },
     }
-  },
-  computed: {
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
-    },
   },
 }
 </script>

@@ -72,7 +72,7 @@
                 <span>可以正常使用设置中的拖动条)</span>
               </p>
               <p>
-                <img :src="helpImages[1]" alt="act-config-ngld-item" style="zoom:80%;" />
+                <img :src="helpImages[1]" alt="act-config-ngld-item" style="zoom: 80%" />
               </p>
             </li>
             <li>
@@ -90,7 +90,7 @@
             </li>
           </ol>
           <p>
-            <img :src="helpImages[2]" alt="act-config-advance" style="zoom:80%;" />
+            <img :src="helpImages[2]" alt="act-config-advance" style="zoom: 80%" />
           </p>
           <h3><a class="md-header-anchor"></a><span>ACT可用的一些配置</span></h3>
           <ul>
@@ -145,8 +145,11 @@
 <script>
 import ClickHelper from '@/components/basic/ClickHelper'
 import ImgUtil from '@/utils/ImgUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
+
 export default {
   name: 'HelpDialog',
+  mixins: [EnvMixin],
   components: { ClickHelper },
   model: {
     prop: 'showHelpDialog',
@@ -158,9 +161,6 @@ export default {
     },
   },
   computed: {
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
-    },
     helpImages() {
       const images = []
       for (let i = 1; i <= 5; i++) {

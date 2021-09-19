@@ -42,6 +42,7 @@
               v-if="windows[i].type === 'MAIN'"
               :page="mainPage"
               :active-tab-index="mainPageTabIndex"
+              :is-mobile="true"
               :now="now"
               @close="() => removeItem(item.i)"
               :lazySourceFishList="lazySourceFishList"

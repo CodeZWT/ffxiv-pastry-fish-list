@@ -10,7 +10,7 @@
         </div>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
-        <fish-aquarium :fish="fish.aquarium" class="mt-2" />
+        <fish-aquarium :fish="fish.aquarium" class="mt-2" :is-mobile="isMobile" />
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -18,8 +18,11 @@
 
 <script>
 import FishAquarium from '@/components/FishAquarium'
+import EnvMixin from '@/components/basic/EnvMixin'
+
 export default {
   name: 'DetailItemAquarium',
+  mixins: [EnvMixin],
   components: { FishAquarium },
   props: {
     fish: {

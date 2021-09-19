@@ -3,8 +3,8 @@
     <div class="col-12">
       <v-simple-table>
         <colgroup>
-          <col span="1" style="width: 25%;" />
-          <col span="1" style="width: 75%;" />
+          <col span="1" style="width: 25%" />
+          <col span="1" style="width: 75%" />
         </colgroup>
         <!--        <thead>-->
         <!--          <tr>-->

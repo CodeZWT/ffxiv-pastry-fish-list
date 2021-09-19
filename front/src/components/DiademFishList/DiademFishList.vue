@@ -11,11 +11,8 @@ import DiademFishListSmall from '@/components/DiademFishList/DiademFishListSmall
 export default {
   name: 'DiademFishList',
   components: { DiademFishListLarge, DiademFishListSmall },
-  props: ['spotData'],
+  props: ['spotData', 'isMobile'],
   computed: {
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
-    },
     component() {
       const mode = this.isMobile ? 'small' : 'large'
       switch (mode) {

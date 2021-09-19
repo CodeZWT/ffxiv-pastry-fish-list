@@ -280,18 +280,19 @@ import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import _ from 'lodash'
 import ClickHelper from '@/components/basic/ClickHelper'
-import { required, min_value, max_value } from 'vee-validate/dist/rules'
+import { max_value, min_value, required } from 'vee-validate/dist/rules'
 import {
   extend,
+  setInteractionMode,
   ValidationObserver,
   ValidationProvider,
-  setInteractionMode,
 } from 'vee-validate'
 import i18n from '@/i18n'
 import draggable from 'vuedraggable'
 import DetailItemSettingEntry from '@/components/DetailItemSettingEntry'
 import NotificationUtil from '@/utils/NotificationUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
 
 setInteractionMode('eager')
 
@@ -311,6 +312,7 @@ extend('min_value', {
 
 export default {
   name: 'FishSettingDialog',
+  mixins: [EnvMixin],
   components: {
     DetailItemSettingEntry,
     ClickHelper,
@@ -346,9 +348,6 @@ export default {
       set(show) {
         this.$emit('input', show)
       },
-    },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
     },
     ...mapState(['sounds']),
     ...mapGetters([

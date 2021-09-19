@@ -187,7 +187,7 @@
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               <!-- <div>{{ JSON.stringify(item, null, 2) }}</div> -->
-              <diadem-fish-list :spot-data="item" />
+              <diadem-fish-list :spot-data="item" :is-mobile="isMobile" />
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -208,9 +208,11 @@ import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import ItemIcon from '@/components/basic/ItemIcon'
 import WeatherIcon from '@/components/basic/WeatherIcon'
+import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 
 export default {
   name: 'DiademPage',
+  mixins: [PageMixin],
   components: { WeatherIcon, ItemIcon, EorzeaSimpleMap, DiademFishList },
   data() {
     return {
@@ -240,9 +242,6 @@ export default {
     },
     versionIndex() {
       return this.tabIndex + 2
-    },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
     },
     allFish() {
       return this.fish

@@ -39,6 +39,7 @@ import placeNames from 'Data/placeNames'
 
 export default {
   name: 'FishDetailContent',
+
   components: {
     DetailItemFishWindowTable,
     DetailItemBuffAndBaits,

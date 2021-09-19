@@ -1,7 +1,15 @@
 <template>
   <div style="width: 100%" class="pr-2 pt-2">
     <div
-      style="position: absolute; top: 10%; bottom: 10%; left: 2px; width: 4px; z-index: 1;border-radius: 2px"
+      style="
+        position: absolute;
+        top: 10%;
+        bottom: 10%;
+        left: 2px;
+        width: 4px;
+        z-index: 1;
+        border-radius: 2px;
+      "
     />
     <v-row no-gutters>
       <div
@@ -109,9 +117,11 @@ import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import LinkList from '@/components/basic/LinkList'
 import FIX from '../../../data/fix'
+import EnvMixin from '@/components/basic/EnvMixin'
 
 export default {
   name: 'FishListExpandedHeader',
+  mixins: [EnvMixin],
   components: { LinkList, ItemIcon, ClickHelper, ToggleButton },
   props: {
     value: {
@@ -166,9 +176,6 @@ export default {
           Object.values(FIX.QUEST).filter(task => task.items.includes(fish._id)).length >
           0,
       }
-    },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
     },
     ...mapState(['folklore']),
     ...mapGetters([

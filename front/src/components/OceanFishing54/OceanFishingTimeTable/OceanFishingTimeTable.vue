@@ -45,14 +45,15 @@ export default {
       type: Boolean,
       default: false,
     },
+    isMobile: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {}
   },
   computed: {
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
-    },
     componentType() {
       return this.isMobile ? 'OceanFishingTimeTableSmall' : 'OceanFishingTimeTableLarge'
     },

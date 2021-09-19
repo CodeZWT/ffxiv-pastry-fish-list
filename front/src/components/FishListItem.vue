@@ -14,6 +14,7 @@
       :is-last="position === 'last'"
       :show-divider="showDivider"
       :type="type"
+      :is-mobile="isMobile"
       @click="$emit('click', $event)"
     />
   </v-sheet>
@@ -53,6 +54,10 @@ export default {
     type: {
       type: String,
       default: 'normal',
+    },
+    isMobile: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

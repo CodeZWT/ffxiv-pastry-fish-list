@@ -21,7 +21,13 @@
           <div
             v-if="!isMobile && hover"
             class="d-flex justify-center align-center elevation-4 rounded-xl overflow-hidden"
-            style="left: 50%; top: 4px; position: absolute; z-index: 10; margin-left: -120px;"
+            style="
+              left: 50%;
+              top: 4px;
+              position: absolute;
+              z-index: 10;
+              margin-left: -120px;
+            "
           >
             <v-btn
               @click="resize"
@@ -126,6 +132,7 @@ import ImgUtil from '@/utils/ImgUtil'
 import _ from 'lodash'
 import { mapMutations, mapState } from 'vuex'
 import copy from 'copy-to-clipboard'
+import EnvMixin from '@/components/basic/EnvMixin'
 // import Konva from 'konva'
 
 const TEXT_PADDING = 50
@@ -375,6 +382,7 @@ const AVAILABLE_HELP = new Set([
 
 export default {
   name: 'EorzeaSimpleMap',
+  mixins: [EnvMixin],
   props: {
     // x: {
     //   type: Number,
@@ -441,9 +449,6 @@ export default {
     // markerRangeFactor() {
     //   return this.markerRadius / 300
     // },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
-    },
     mapImageUrl() {
       // "MapFilename": "/m/s1f4/s1f4.00.jpg",
       // "MapFilenameId": "s1f4/00",

@@ -43,9 +43,7 @@
                     </div>
                   </v-card-title>
                   <v-card-text class="d-flex align-center flex-column">
-                    <div class="text-subtitle-1">
-                      详细内容以及报名链接：
-                    </div>
+                    <div class="text-subtitle-1">详细内容以及报名链接：</div>
                     <div class="text-subtitle-1">
                       <a href="https://ngabbs.com/read.php?tid=26872848" target="_blank">
                         第三届光之渔夫钓鱼大赛
@@ -68,9 +66,11 @@
 <script>
 import ImgUtil from '@/utils/ImgUtil'
 import { mapMutations } from 'vuex'
+import EnvMixin from '@/components/basic/EnvMixin'
 
 export default {
   name: 'CompetitionDialog',
+  mixins: [EnvMixin],
   props: {
     value: {
       type: Boolean,
@@ -93,9 +93,6 @@ export default {
       set(showDialog) {
         return this.$emit('input', showDialog)
       },
-    },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
     },
   },
   methods: {

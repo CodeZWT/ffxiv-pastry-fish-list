@@ -32,13 +32,11 @@ export default {
     'hideSpotColumn',
     'isLast',
     'type',
+    'isMobile',
   ],
   name: 'FishInfoRow',
   components: { FishInfoRowSmall, FishInfoRowMedium, FishInfoRowLarge },
   computed: {
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
-    },
     component() {
       const mode = this.mode ?? (this.isMobile ? 'small' : 'large')
       switch (mode) {

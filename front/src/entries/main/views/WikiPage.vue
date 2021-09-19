@@ -1,6 +1,7 @@
 <template>
   <div style="height: 100%" class="d-flex">
     <v-navigation-drawer
+      v-if="showMapMenu"
       v-model="showMapMenu"
       :floating="isMobile"
       :fixed="isMobile"
@@ -291,6 +292,7 @@
                     :fish-list-weather-change-part="fishListWeatherChangePart"
                     :show-fish-divider="false"
                     hide-spot-column
+                    :is-mobile="isMobile"
                     @fish-selected="onFishClicked($event)"
                   />
                 </v-card-text>
@@ -306,6 +308,7 @@
                 :fish-list-weather-change-part="fishListWeatherChangePart"
                 hide-spot-column
                 hide-predators
+                :is-mobile="isMobile"
                 @fish-selected="onFishClicked($event)"
               />
             </v-card>
@@ -521,9 +524,11 @@ import rcapiService from '@/service/rcapiService'
 import BaitPercentageChart from '@/components/charts/BaitPercentageChart'
 import BiteIntervalChart from '@/components/charts/BiteIntervalChart'
 import AboutChartDialog from '@/components/Dialog/AboutChartDialog'
+import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 
 export default {
   name: 'WikiPage',
+  mixins: [PageMixin],
   components: {
     AboutChartDialog,
     BiteIntervalChart,
@@ -598,6 +603,9 @@ export default {
     spotBiteIntervalCache: {},
   }),
   computed: {
+    isMobileGlobal() {
+      return this.$vuetify.breakpoint.mobile
+    },
     baitCountRecords() {
       return this.spotRecordCountCache[this.currentSpotId]?.items || []
     },
@@ -713,9 +721,6 @@ export default {
         this.extraFishListTimePart,
         this.fishListWeatherChangePart
       )
-    },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
     },
     fishCaughtCnt() {
       return this.allCompletedFish.length

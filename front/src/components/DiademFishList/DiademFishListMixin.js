@@ -14,11 +14,6 @@ export default {
       scripsIcon: ImgUtil.getImgUrl('skybuilders-scrips-065073-36x36.png'),
     }
   },
-  computed: {
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
-    },
-  },
   methods: {
     toFishingSpotData(fishingSpot) {
       return {

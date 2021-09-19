@@ -15,6 +15,7 @@
       <fish-page
         v-if="page === 'ListPage'"
         :now="now"
+        :is-mobile="isMobile"
         :lazyFishSourceList="lazySourceFishList"
         :lazyTransformedFishList="lazyTransformedFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
@@ -33,6 +34,7 @@
       <wiki-page
         v-if="page === 'WikiPage'"
         :now="now"
+        :is-mobile="isMobile"
         :lazyFishSourceList="lazySourceFishList"
         :lazyTransformedFishList="lazyTransformedFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
@@ -50,6 +52,7 @@
       <OceanFishingPage54
         v-else-if="page === 'OceanFishingPage54'"
         :now="now"
+        :is-mobile="isMobile"
         :lazyFishSourceList="lazySourceFishList"
         :lazyTransformedFishList="lazyTransformedFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
@@ -66,6 +69,7 @@
       <DiademPage
         v-else-if="page === 'DiademPage'"
         :now="now"
+        :is-mobile="isMobile"
         :lazyFishSourceList="lazySourceFishList"
         :lazyTransformedFishList="lazyTransformedFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
@@ -82,6 +86,7 @@
       <AquariumPage
         v-else-if="page === 'AquariumPage'"
         :now="now"
+        :is-mobile="isMobile"
         :lazyFishSourceList="lazySourceFishList"
         :lazyTransformedFishList="lazyTransformedFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
@@ -98,6 +103,7 @@
       <CompetitionPage
         v-else-if="page === 'CompetitionPage'"
         :now="now"
+        :is-mobile="isMobile"
         :lazyFishSourceList="lazySourceFishList"
         :lazyTransformedFishList="lazyTransformedFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
@@ -114,6 +120,7 @@
       <RecordPage
         v-else-if="page === 'RecordPage'"
         :now="now"
+        :is-mobile="isMobile"
         :lazyFishSourceList="lazySourceFishList"
         :lazyTransformedFishList="lazyTransformedFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
@@ -154,7 +161,7 @@ export default {
   props: [
     'page',
     'activeTabIndex',
-
+    'isMobile',
     'now',
     'lazySourceFishList',
     'lazyTransformedFishList',
@@ -187,6 +194,7 @@ export default {
 
 .window
   height: 100%
+  overflow: hidden
 
 .window-content
   //height: 100%

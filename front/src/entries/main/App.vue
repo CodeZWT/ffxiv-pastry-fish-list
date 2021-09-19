@@ -493,6 +493,7 @@
           :filteredFishIdSet="filteredFishIdSet"
           :activeTabIndex="activeTabIndex"
           :right-pane-full-screen="rightPaneFullScreen"
+          :is-mobile="isMobile"
           @fish-selected="onFishSelected"
         />
       </div>

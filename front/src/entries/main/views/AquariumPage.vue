@@ -206,7 +206,7 @@
           min-height="240"
           transition="fade-transition"
         >
-          <fish-aquarium :fish="fish" />
+          <fish-aquarium :fish="fish" :is-mobile="isMobile" />
         </v-lazy>
       </v-col>
     </v-row>
@@ -226,10 +226,12 @@ import ImgUtil from '@/utils/ImgUtil'
 import PinyinMatch from 'pinyin-match'
 import FishAquarium from '@/components/FishAquarium'
 import { CN_PATCH_VERSION } from 'Data/constants'
+import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 
 const PATCHES_MIN = [2, 3, 4, 5]
 export default {
   name: 'AquariumPage',
+  mixins: [PageMixin],
   components: { FishAquarium },
   data() {
     return {
@@ -247,9 +249,6 @@ export default {
     }
   },
   computed: {
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
-    },
     cols() {
       return this.isMobile ? 12 : 4
     },

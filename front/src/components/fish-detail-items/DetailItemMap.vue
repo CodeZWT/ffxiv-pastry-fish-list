@@ -154,9 +154,6 @@ export default {
     multiple() {
       return this.fishingSpots.length > 1
     },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
-    },
     ...mapGetters(['getFishingSpot']),
   },
   created() {

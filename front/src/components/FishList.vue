@@ -19,6 +19,7 @@
           :hide-spot-column="hideSpotColumn"
           :show-divider="showFishDivider"
           :type="type"
+          :is-mobile="isMobile"
           @click="onFishClicked($event, fish.fishingSpots)"
         />
       </div>
@@ -111,6 +112,10 @@ export default {
       type: String,
       default: 'normal',
     },
+    isMobile: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     openPanelIndex: undefined,
@@ -164,9 +169,6 @@ export default {
           return color
         }
       })
-    },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),

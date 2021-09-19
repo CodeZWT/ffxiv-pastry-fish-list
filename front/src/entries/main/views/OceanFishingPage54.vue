@@ -43,6 +43,7 @@
           :voyages="currentVoyage.voyageList"
           :targetOptions="targetOptions"
           hide-filters
+          :is-mobile="isMobile"
         />
 
         <ocean-fishing-voyage
@@ -232,8 +233,9 @@ import ImgUtil from '@/utils/ImgUtil'
 import OceanFishingVoyage from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingVoyage'
 import DATA_CN from 'Data/translation'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import { OCEAN_FISHING_TIPS, OCEAN_FISHING_BONUS } from 'Data/fix'
+import { OCEAN_FISHING_BONUS, OCEAN_FISHING_TIPS } from 'Data/fix'
 import ItemIcon from '@/components/basic/ItemIcon'
+import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 
 // https://ngabbs.com/read.php?tid=20553241
 
@@ -241,6 +243,7 @@ const MINUTE = 60000
 
 export default {
   name: 'OceanFishingPage54',
+  mixins: [PageMixin],
   components: { ItemIcon, OceanFishingVoyage, OceanFishingTimeTable },
   props: ['now', 'lazyTransformedFishDict'],
   data() {
@@ -288,9 +291,6 @@ export default {
       set(show) {
         return this.setShowOFBiteTimeDialog(show)
       },
-    },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
     },
     voyages() {
       return this.assembleVoyages(

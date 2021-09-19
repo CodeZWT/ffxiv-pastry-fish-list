@@ -192,6 +192,7 @@
                               :fish-list-time-part="fishListTimePart"
                               :fish-list-weather-change-part="fishListWeatherChangePart"
                               @fish-selected="onFishSelected($event)"
+                              :is-mobile="isMobile"
                             >
                               <template v-slot:empty>
                                 <span>
@@ -219,6 +220,7 @@
                               :fish-list-weather-change-part="fishListWeatherChangePart"
                               show-fish-divider
                               enable-load-more
+                              :is-mobile="isMobile"
                               @fish-selected="onFishSelected($event)"
                             >
                               <template v-slot:empty>
@@ -246,6 +248,7 @@
                         @fish-selected="onFishSelected($event)"
                         @clear-all="clearToBeNotified"
                         type="notification"
+                        :is-mobile="isMobile"
                       >
                         <template v-slot:empty>
                           <div class="d-flex flex-column align-center">
@@ -342,6 +345,7 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import DataUtil from '@/utils/DataUtil'
 import FIX from 'Data/fix'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 
 export default {
   name: 'fish-page',
@@ -359,6 +363,7 @@ export default {
       default: { isDark: false },
     },
   },
+  mixins: [PageMixin],
   props: [
     'now',
     'lazyFishSourceList',
@@ -478,9 +483,6 @@ export default {
       return _.mapValues(_.groupBy(baitFishItems, 'bait'), baitFishList =>
         _.uniq(baitFishList.map(it => it.fish))
       )
-    },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
     },
     rightPaneSize: {
       get() {

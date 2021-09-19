@@ -63,9 +63,11 @@ import PinyinMatch from 'pinyin-match'
 import ClickHelper from '@/components/basic/ClickHelper'
 import FishDetail from '@/components/FishDetail'
 import RawItemIcon from '@/components/basic/RawItemIcon'
+import EnvMixin from '@/components/basic/EnvMixin'
 
 export default {
   name: 'FishSearch',
+  mixins: [EnvMixin],
   components: { RawItemIcon, FishDetail, ClickHelper },
   props: {
     value: {
@@ -133,9 +135,6 @@ export default {
     //   return value =>
     //     DataUtil.getPredators(this.allFish[value], this.allFish, this.fishListTimePart, this.fishListWeatherChangePart)
     // },
-    isMobile() {
-      return this.$vuetify.breakpoint.mobile
-    },
     fish() {
       return DataUtil.assembleFishForDetail(
         this.fishId,
