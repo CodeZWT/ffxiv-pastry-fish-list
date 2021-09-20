@@ -239,7 +239,10 @@
       </div>
       <div
         v-else-if="(type === 'spot' || type === 'fish') && !isOceanFishingSpot"
-        class="grid-content"
+        :class="{
+          'grid-content': true,
+          'grid-content--web': !isElectron,
+        }"
       >
         <!--  show spot/fish view  -->
         <v-row v-if="currentSpotId" no-gutters>
@@ -387,7 +390,13 @@
           </v-col>
         </v-row>
       </div>
-      <div v-else-if="isOceanFishingSpot" class="grid-content">
+      <div
+        v-else-if="isOceanFishingSpot"
+        :class="{
+          'grid-content': true,
+          'grid-content--web': !isElectron,
+        }"
+      >
         <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
         <!-- <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
       </div>
@@ -1331,6 +1340,9 @@ export default {
   overflow-x: hidden
   padding-left: 4px
   overflow-y: auto
+  &--web
+    height: 100%
+    width: 100%
 
 .spot-list
   &--pc-web

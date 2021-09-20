@@ -26,7 +26,13 @@
             ></v-skeleton-loader>
           </v-sheet>
         </div>
-        <div v-else class="main-pane">
+        <div
+          v-else
+          :class="{
+            'main-pane': true,
+            'main-pane--web': !isElectron,
+          }"
+        >
           <v-container
             fluid
             :class="{ 'py-0': true, 'px-0': isMobile }"
@@ -709,10 +715,12 @@ export default {
 
 .main-pane
   width: 100%
+  &--web
+    height: 100%
+    overflow-y: scroll
 
 .splitpanes--web
   height: calc(100vh - #{ $top-bars-padding + $footer-padding })
-  overflow-y: scroll
 
 .splitpanes--electron
   //height: calc(100% - #{ $top-bars-padding-electron })
