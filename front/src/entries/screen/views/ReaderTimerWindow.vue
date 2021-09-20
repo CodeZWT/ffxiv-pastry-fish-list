@@ -1,9 +1,7 @@
 <template>
   <div class="window">
     <v-system-bar
-      :color="
-        isRoseMode && isUploadMode && isStrictMode ? 'deep-purple darken-1' : 'black'
-      "
+      :color="systemBarColor"
       class="window-top-bar rounded-t vue-draggable-handle"
     >
       <v-img :src="readerIcon" max-height="20" max-width="20" />
@@ -64,6 +62,10 @@ export default {
       type: Number,
       default: 0,
     },
+    dark: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     readerIcon: READER_ICON,
@@ -75,6 +77,13 @@ export default {
   computed: {
     ...mapState(['sounds', 'readerTimerMiniMode']),
     ...mapGetters(['readerRegion', 'isStrictMode', 'isUploadMode', 'isRoseMode']),
+    systemBarColor() {
+      return this.isRoseMode && this.isUploadMode && this.isStrictMode
+        ? 'deep-purple darken-1'
+        : this.dark
+        ? 'dark'
+        : 'light'
+    },
   },
   methods: {
     ...mapMutations(['setStrictMode']),

@@ -27,20 +27,34 @@
           @resized="handleResized"
           @container-resized="handleContainerResized"
         >
-          <v-sheet class="window-wrapper rounded elevation-4" color="background">
-            <reader-timer-window
-              v-if="windows[i].type === 'READER_TIMER'"
-              :now="now"
+          <v-sheet
+            v-if="windows[i].type === 'READER_TIMER_MINI'"
+            class="window-wrapper rounded elevation-4"
+            color="transparent"
+          >
+            <reader-timer-mini-window
+              v-if="windows[i].type === 'READER_TIMER_MINI'"
+              :now="readerNow"
+              :dark="dark"
               @close="() => removeItem(item.i)"
             />
+          </v-sheet>
+          <v-sheet v-else class="window-wrapper rounded elevation-4" color="background">
+            <reader-timer-window
+              v-if="windows[i].type === 'READER_TIMER'"
+              :now="readerNow"
+              :dark="dark"
+              @close="() => removeItem(item.i)"
+            />
+
             <reader-history-window
               v-if="windows[i].type === 'READER_HISTORY'"
-              :now="now"
+              :now="readerNow"
               @close="() => removeItem(item.i)"
             />
             <reader-spot-statistics-window
               v-if="windows[i].type === 'READER_SPOT_STATISTICS'"
-              :now="now"
+              :now="readerNow"
               @close="() => removeItem(item.i)"
             />
             <main-window
@@ -153,6 +167,12 @@
                 <v-icon>mdi-timer</v-icon>
               </v-list-item-icon>
               <v-list-item-content>计时器</v-list-item-content>
+            </v-list-item>
+            <v-list-item @click="addReaderTimerMini">
+              <v-list-item-icon>
+                <v-icon>mdi-timer</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>迷你计时器</v-list-item-content>
             </v-list-item>
             <v-list-item @click="addReaderHistory">
               <v-list-item-icon>
@@ -371,11 +391,13 @@ import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
 import MainWindow from '@/entries/screen/views/MainWindow'
 import AppMixin from '@/components/AppMixin'
+import ReaderTimerMiniWindow from '@/entries/screen/views/ReaderTimerMiniWindow'
 
 export default {
   name: 'Screen',
   mixins: [AppMixin],
   components: {
+    ReaderTimerMiniWindow,
     MainWindow,
     ReaderSpotStatisticsWindow,
     ReaderHistoryWindow,
@@ -409,14 +431,21 @@ export default {
     mainPage: 'ListPage',
     mainPageTabIndex: 0,
     gridReady: false,
+    readerNow: Date.now(),
   }),
   created() {
-    // this.addReaderTimer()
-    // this.addReaderHistory()
-    // this.addReaderSpotStatistics()
+    this.addReaderTimerMini()
+    this.addReaderTimer()
+    this.addReaderHistory()
+    this.addReaderSpotStatistics()
     // this.addFishList()
     // this.addWiki()
-    this.addCompetition()
+    // this.addCompetition()
+  },
+  mounted() {
+    setInterval(() => {
+      this.now = Date.now()
+    }, 100)
   },
   methods: {
     showMainSetting() {
@@ -451,6 +480,9 @@ export default {
     },
     addReaderTimer() {
       this.addItem('READER_TIMER', 3, 4)
+    },
+    addReaderTimerMini() {
+      this.addItem('READER_TIMER_MINI', 4, 3)
     },
     addReaderHistory() {
       this.addItem('READER_HISTORY', 3, 12)

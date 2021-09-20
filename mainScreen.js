@@ -151,14 +151,15 @@ let mainWindowConfig = {}
 let fishingData = undefined
 
 const sendFishingData = data => {
-  callWindowSafe(WINDOWS.main, win => {
-    win.webContents.send('fishingData', data)
-  })
-  callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('fishingData', data))
-  callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('fishingData', data))
-  callWindowSafe(WINDOWS.readerSpotStatistics, win => {
-    win.webContents.send('fishingData', data)
-  })
+  callWindowSafe(SCREEN, win => win.webContents.send('fishingData', data))
+  // callWindowSafe(WINDOWS.main, win => {
+  //   win.webContents.send('fishingData', data)
+  // })
+  // callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('fishingData', data))
+  // callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('fishingData', data))
+  // callWindowSafe(WINDOWS.readerSpotStatistics, win => {
+  //   win.webContents.send('fishingData', data)
+  // })
 }
 
 function setupEvent() {
@@ -371,37 +372,37 @@ function setupEvent() {
         })
       }
     })
-    .on('updateWindowSetting', (event, newSetting) => {
-      const newWindowSetting = newSetting || windowSetting
-      Object.entries({
-        timer: 'readerTimer',
-        timerMini: 'timerMini',
-        history: 'readerHistory',
-        spotStatistics: 'readerSpotStatistics',
-      }).forEach(([settingName, windowName]) => {
-        if (
-          newWindowSetting[settingName] &&
-          newWindowSetting[settingName].zoomFactor > 0.3
-        ) {
-          if (settingName !== 'timerMini') {
-            saveWindowSetting(
-              settingName + '.opacity',
-              newWindowSetting[settingName].opacity
-            )
-            callWindowSafe(WINDOWS[windowName], win =>
-              win.setOpacity(newWindowSetting[settingName].opacity)
-            )
-          }
-          saveWindowSetting(
-            settingName + '.zoomFactor',
-            newWindowSetting[settingName].zoomFactor
-          )
-          callWindowSafe(WINDOWS[windowName], win =>
-            win.webContents.setZoomFactor(newWindowSetting[settingName].zoomFactor)
-          )
-        }
-      })
-    })
+    // .on('updateWindowSetting', (event, newSetting) => {
+    //   const newWindowSetting = newSetting || windowSetting
+    //   Object.entries({
+    //     timer: 'readerTimer',
+    //     timerMini: 'timerMini',
+    //     history: 'readerHistory',
+    //     spotStatistics: 'readerSpotStatistics',
+    //   }).forEach(([settingName, windowName]) => {
+    //     if (
+    //       newWindowSetting[settingName] &&
+    //       newWindowSetting[settingName].zoomFactor > 0.3
+    //     ) {
+    //       if (settingName !== 'timerMini') {
+    //         saveWindowSetting(
+    //           settingName + '.opacity',
+    //           newWindowSetting[settingName].opacity
+    //         )
+    //         callWindowSafe(WINDOWS[windowName], win =>
+    //           win.setOpacity(newWindowSetting[settingName].opacity)
+    //         )
+    //       }
+    //       saveWindowSetting(
+    //         settingName + '.zoomFactor',
+    //         newWindowSetting[settingName].zoomFactor
+    //       )
+    //       callWindowSafe(WINDOWS[windowName], win =>
+    //         win.webContents.setZoomFactor(newWindowSetting[settingName].zoomFactor)
+    //       )
+    //     }
+    //   })
+    // })
     .on('listCntUpdated', (event, listCnt) => {
       callWindowSafe(WINDOWS.mini, win => win.send('listCntUpdated', listCnt))
     })
@@ -572,19 +573,23 @@ function setupFishDataReader() {
       fishId > 0 &&
       (!readerConfig.autoSetCompletedOnlyHQ || hq)
     ) {
-      callFirstAvailableWin([WINDOWS.main, WINDOWS.readerTimer, WINDOWS.timerMini], win =>
+      callFirstAvailableWin([SCREEN], win =>
         win.webContents.send('fishCaught', data)
       )
+      // callFirstAvailableWin([WINDOWS.main, WINDOWS.readerTimer, WINDOWS.timerMini], win =>
+      //   win.webContents.send('fishCaught', data)
+      // )
     }
   })
   FishingDataReader.onNewRecord(data => {
-    callFirstAvailableWin([WINDOWS.readerTimer, WINDOWS.timerMini, WINDOWS.main], win =>
-      win.webContents.send('newRecord', data)
-    )
-    callWindowSafe(WINDOWS.readerHistory, win => win.webContents.send('newRecord', data))
-    callWindowSafe(WINDOWS.readerSpotStatistics, win =>
-      win.webContents.send('newRecord', data)
-    )
+    callWindowSafe(SCREEN, win => win.webContents.send('newRecord', data))
+    // callFirstAvailableWin([WINDOWS.readerTimer, WINDOWS.timerMini, WINDOWS.main], win =>
+    //   win.webContents.send('newRecord', data)
+    // )
+    // callWindowSafe(WINDOWS.readerHistory, win => win.webContents.send('newRecord', data))
+    // callWindowSafe(WINDOWS.readerSpotStatistics, win =>
+    //   win.webContents.send('newRecord', data)
+    // )
   })
   FishingDataReader.onPlayerSetup(data => {
     callWindowSafe(WINDOWS.main, win => {
@@ -798,52 +803,53 @@ function createTransparentWin(
   additionalArguments = null,
   settingName = null
 ) {
-  const setting = settingName && windowSetting[settingName]
-  WINDOWS[windowName] = new BrowserWindow({
-    width: width,
-    height: height,
-    frame: false,
-    show: false,
-    transparent: true,
-    resizable: false,
-    maximizable: false,
-    skipTaskbar: true,
-    webPreferences: {
-      contextIsolation: false,
-      nodeIntegration: true,
-      enableRemoteModule: true,
-      preload: __dirname + '/preload.js',
-      zoomFactor: (setting && setting.zoomFactor) || 0,
-      additionalArguments: additionalArguments,
-    },
-    icon: path.join(__dirname, 'assets/icon256.png'),
-  })
-  const win = WINDOWS[windowName]
-  win.removeMenu()
-  setOnTop(win)
-  // if (!show) {
-  //   win.hide()
+  return Promise.resolve()
+  // const setting = settingName && windowSetting[settingName]
+  // WINDOWS[windowName] = new BrowserWindow({
+  //   width: width,
+  //   height: height,
+  //   frame: false,
+  //   show: false,
+  //   transparent: true,
+  //   resizable: false,
+  //   maximizable: false,
+  //   skipTaskbar: true,
+  //   webPreferences: {
+  //     contextIsolation: false,
+  //     nodeIntegration: true,
+  //     enableRemoteModule: true,
+  //     preload: __dirname + '/preload.js',
+  //     zoomFactor: (setting && setting.zoomFactor) || 0,
+  //     additionalArguments: additionalArguments,
+  //   },
+  //   icon: path.join(__dirname, 'assets/icon256.png'),
+  // })
+  // const win = WINDOWS[windowName]
+  // win.removeMenu()
+  // setOnTop(win)
+  // // if (!show) {
+  // //   win.hide()
+  // // }
+  // win.once('ready-to-show', () => {
+  //   if (show) win.show()
+  // })
+  // let loadedPromise
+  // if (isDev) {
+  //   loadedPromise = win.loadURL(
+  //     `http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`
+  //   )
+  // } else {
+  //   loadedPromise = win.loadFile(
+  //     path.join(__dirname, `/front-electron-dist/${page}.html`),
+  //     {
+  //       hash: hash && '/' + hash,
+  //     }
+  //   )
   // }
-  win.once('ready-to-show', () => {
-    if (show) win.show()
-  })
-  let loadedPromise
-  if (isDev) {
-    loadedPromise = win.loadURL(
-      `http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`
-    )
-  } else {
-    loadedPromise = win.loadFile(
-      path.join(__dirname, `/front-electron-dist/${page}.html`),
-      {
-        hash: hash && '/' + hash,
-      }
-    )
-  }
-  win.on('closed', () => {
-    WINDOWS[windowName] = null
-  })
-  return loadedPromise.then(() => win)
+  // win.on('closed', () => {
+  //   WINDOWS[windowName] = null
+  // })
+  // return loadedPromise.then(() => win)
 }
 
 const MINI_POS_OFFSET = 20
@@ -928,70 +934,72 @@ function createWindow(
   skipTaskbar = false,
   parent = null
 ) {
-  const setting = windowSetting[settingName]
-  WINDOWS[windowName] = new BrowserWindow({
-    backgroundColor: '#33333d',
-    width: setting.size.w,
-    height: setting.size.h,
-    x: setting.pos.x,
-    y: setting.pos.y,
-    opacity: setting.opacity,
-    frame: false,
-    show: false,
-    transparent: false,
-    maximizable: maximizable,
-    icon: path.join(__dirname, iconPath),
-    parent: parent,
-    skipTaskbar: skipTaskbar,
-    webPreferences: {
-      contextIsolation: false,
-      nodeIntegration: true,
-      enableRemoteModule: true,
-      preload: __dirname + '/preload.js',
-      zoomFactor: setting.zoomFactor,
-      additionalArguments: additionalArguments,
-    },
-  })
-  const win = WINDOWS[windowName]
-  win.removeMenu()
-  win.webContents.on('new-window', (e, url) => {
-    e.preventDefault()
-    shell.openExternal(url)
-  })
-  if (isDev) {
-    win
-      .loadURL(`http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`)
-      .then(() => loadedCallback(win))
-  } else {
-    win
-      .loadFile(path.join(__dirname, `/front-electron-dist/${page}.html`), {
-        hash: hash && '/' + hash,
-      })
-      .then(() => loadedCallback(win))
-  }
-
-  if (keepOnTop) setOnTop(win)
-
-  setMouseThrough(enableMouseThrough)
-
-  win.once('ready-to-show', () => {
-    if (fishingData) {
-      sendFishingData(fishingData)
-    }
-  })
-
-  return win
-    .on('moved', () => {
-      const [x, y] = win.getPosition()
-      saveWindowSetting(settingName + '.pos', { x, y })
-    })
-    .on('resized', () => {
-      const [w, h] = win.getSize()
-      saveWindowSetting(settingName + '.size', { w, h })
-    })
-    .on('closed', () => {
-      WINDOWS[windowName] = null
-    })
+  return undefined
+  //
+  // const setting = windowSetting[settingName]
+  // WINDOWS[windowName] = new BrowserWindow({
+  //   backgroundColor: '#33333d',
+  //   width: setting.size.w,
+  //   height: setting.size.h,
+  //   x: setting.pos.x,
+  //   y: setting.pos.y,
+  //   opacity: setting.opacity,
+  //   frame: false,
+  //   show: false,
+  //   transparent: false,
+  //   maximizable: maximizable,
+  //   icon: path.join(__dirname, iconPath),
+  //   parent: parent,
+  //   skipTaskbar: skipTaskbar,
+  //   webPreferences: {
+  //     contextIsolation: false,
+  //     nodeIntegration: true,
+  //     enableRemoteModule: true,
+  //     preload: __dirname + '/preload.js',
+  //     zoomFactor: setting.zoomFactor,
+  //     additionalArguments: additionalArguments,
+  //   },
+  // })
+  // const win = WINDOWS[windowName]
+  // win.removeMenu()
+  // win.webContents.on('new-window', (e, url) => {
+  //   e.preventDefault()
+  //   shell.openExternal(url)
+  // })
+  // if (isDev) {
+  //   win
+  //     .loadURL(`http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`)
+  //     .then(() => loadedCallback(win))
+  // } else {
+  //   win
+  //     .loadFile(path.join(__dirname, `/front-electron-dist/${page}.html`), {
+  //       hash: hash && '/' + hash,
+  //     })
+  //     .then(() => loadedCallback(win))
+  // }
+  //
+  // if (keepOnTop) setOnTop(win)
+  //
+  // setMouseThrough(enableMouseThrough)
+  //
+  // win.once('ready-to-show', () => {
+  //   if (fishingData) {
+  //     sendFishingData(fishingData)
+  //   }
+  // })
+  //
+  // return win
+  //   .on('moved', () => {
+  //     const [x, y] = win.getPosition()
+  //     saveWindowSetting(settingName + '.pos', { x, y })
+  //   })
+  //   .on('resized', () => {
+  //     const [w, h] = win.getSize()
+  //     saveWindowSetting(settingName + '.size', { w, h })
+  //   })
+  //   .on('closed', () => {
+  //     WINDOWS[windowName] = null
+  //   })
 }
 
 function createMainWindow(loadedCallback) {

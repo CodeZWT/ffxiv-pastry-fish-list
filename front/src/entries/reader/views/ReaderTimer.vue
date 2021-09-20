@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row no-gutters v-if="!readerTimerMiniMode">
+    <v-row no-gutters v-if="!mini">
       <!-- patch update wait note -->
       <!--      <v-alert outlined type="warning" border="left">-->
       <!--        更新国服5.41后，渔捞与同步功能不可用，请耐心等待自动更新。-->
@@ -12,32 +12,16 @@
       <!--          </v-icon>-->
       <!--        </v-avatar>-->
 
-      <!--        <div>-->
-      <!--          <ul>-->
-      <!--            <li>窗口改为动态加载，因此会有约1秒的加载时间</li>-->
-      <!--            <li>可以在打开渔捞界面的状态下，关闭主界面</li>-->
-      <!--            <li>点击系统托盘图标可再次打开主界面</li>-->
-      <!--            <li>关闭主界面时，不会有闹钟提示，但是可以记录咬钩数据</li>-->
-      <!--            <li>程序将在所有窗口关闭时关闭</li>-->
-      <!--          </ul>-->
-      <!--        </div>-->
-
-      <!--        <template v-slot:actions>-->
-      <!--          <v-btn color="primary" @click="onDismiss">-->
-      <!--            关闭通知-->
-      <!--          </v-btn>-->
-      <!--        </template>-->
-      <!--      </v-banner>-->
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div style="min-width: 100px">
           咬钩计时
-          <span :title="isStrictMode ? '严格模式下禁用' : '迷你模式'">
-            <v-btn small text icon @click="toggleMiniMode(true)" :disabled="isStrictMode">
-              <new-feature-mark id="MiniMode-V.0.6.6-1">
-                <v-icon small>mdi-dock-window</v-icon>
-              </new-feature-mark>
-            </v-btn>
-          </span>
+          <!--          <span :title="isStrictMode ? '严格模式下禁用' : '迷你模式'">-->
+          <!--            <v-btn small text icon @click="toggleMiniMode(true)" :disabled="isStrictMode">-->
+          <!--              <new-feature-mark id="MiniMode-V.0.6.6-1">-->
+          <!--                <v-icon small>mdi-dock-window</v-icon>-->
+          <!--              </new-feature-mark>-->
+          <!--            </v-btn>-->
+          <!--          </span>-->
         </div>
         <v-spacer />
         <div class="mr-1" title="获得力/鉴别力/采集力">
@@ -127,16 +111,16 @@
             <v-icon>mdi-notebook</v-icon>
           </new-feature-mark>
         </v-btn>
-        <v-btn color="info" @click="showSpotStatistics" class="mr-2">
-          <new-feature-mark :id="SpotStatisticsFeatureId">
-            <v-icon>mdi-chart-box</v-icon>
-          </new-feature-mark>
-        </v-btn>
-        <v-btn color="info" @click="showHistory">
-          <new-feature-mark :id="HistoryFeatureId">
-            <v-icon>mdi-history</v-icon>
-          </new-feature-mark>
-        </v-btn>
+        <!--        <v-btn color="info" @click="showSpotStatistics" class="mr-2">-->
+        <!--          <new-feature-mark :id="SpotStatisticsFeatureId">-->
+        <!--            <v-icon>mdi-chart-box</v-icon>-->
+        <!--          </new-feature-mark>-->
+        <!--        </v-btn>-->
+        <!--        <v-btn color="info" @click="showHistory">-->
+        <!--          <new-feature-mark :id="HistoryFeatureId">-->
+        <!--            <v-icon>mdi-history</v-icon>-->
+        <!--          </new-feature-mark>-->
+        <!--        </v-btn>-->
       </v-col>
 
       <v-col cols="12" v-if="isTest" class="mt-4">
@@ -150,22 +134,16 @@
     </v-row>
     <v-row no-gutters v-else>
       <v-col class="d-flex align-center mb-1">
-        <v-progress-linear
-          :value="intervalPercentage"
-          :color="color"
-          height="25"
-          rounded
-          style="-webkit-app-region: drag"
-        >
+        <v-progress-linear :value="intervalPercentage" :color="color" height="25" rounded>
           <template>
             <strong>{{ intervalText }} {{ tugText }}</strong>
           </template>
         </v-progress-linear>
-        <v-btn small icon text @click="toggleMiniMode(false)" title="退出迷你模式">
-          <new-feature-mark id="MiniModeRestore-V.0.6.6-1">
-            <v-icon small>mdi-arrow-expand</v-icon>
-          </new-feature-mark>
-        </v-btn>
+        <!--        <v-btn small icon text @click="toggleMiniMode(false)" title="退出迷你模式">-->
+        <!--          <new-feature-mark id="MiniModeRestore-V.0.6.6-1">-->
+        <!--            <v-icon small>mdi-arrow-expand</v-icon>-->
+        <!--          </new-feature-mark>-->
+        <!--        </v-btn>-->
       </v-col>
       <v-col cols="12" v-if="isOceanFishing" class="pr-7">
         <v-progress-linear
@@ -173,7 +151,6 @@
           color="info"
           height="25"
           rounded
-          style="-webkit-app-region: drag"
         >
           <template v-if="spectralCurrentCountDown">
             <strong>{{ weatherText }}: {{ spectralCurrentIntervalText }}</strong>
@@ -186,7 +163,6 @@
           color="primary"
           height="25"
           rounded
-          style="-webkit-app-region: drag"
         >
           <template v-if="diademWeatherCountDown">
             <strong>{{ weatherText }}: {{ diademWeatherCountdownText }}</strong>
@@ -244,11 +220,9 @@ import COMMON from 'Data/common'
 import ItemIcon from '@/components/basic/ItemIcon'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import { SERVER_ID_NAMES } from 'Data/diadem'
-import db from '@/plugins/db'
 import EffectIcon from '@/components/basic/EffectIcon'
 import rcapiService from '@/service/rcapiService'
 import VueMarkdown from 'vue-markdown'
-import RecordValidator from '@/utils/RecordValidator'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]
@@ -257,7 +231,16 @@ const SPECTRAL_CURRENT = 145
 export default {
   name: 'ReaderTimer',
   components: { EffectIcon, ItemIcon, NewFeatureMark, VueMarkdown },
-  props: ['now'],
+  props: {
+    now: {
+      type: Number,
+      default: 0,
+    },
+    mini: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       mode: 'normal',
@@ -511,7 +494,7 @@ export default {
     fishingStartTime() {
       return this.dataCurrentRecord?.startTime
     },
-    ...mapState(['sounds', 'readerTimerMiniMode', 'userData']),
+    ...mapState(['sounds', 'userData']),
   },
   watch: {
     tug(tug) {
@@ -531,37 +514,32 @@ export default {
     // },
   },
   created() {
-    this.mode =
-      window.process?.argv?.find(it => it.indexOf('--mode') === 0)?.split('=')?.[1] ??
-      'normal'
-    this.updateReaderTimerMiniMode(this.mode === 'mini')
     this.closeStrictMode()
-    window.electron?.ipcRenderer
-      ?.on('fishingData', (event, data) => {
-        this.dataStatus = {
-          ...data.status,
-          effects: Array.from(data.status && data.status.effects),
-        }
-        this.dataCurrentRecord = data.currentRecord
-        this.dataPrevRecord = data.prevRecord
-      })
-      ?.on('newRecord', (event, data) => {
-        const isLogin = rcapiService.isLogin()
-        data.uploadEnabled = this.isRoseMode && this.isUploadMode && isLogin
-        data.isStrictMode = RecordValidator.judgeRecordStrictFlag(
-          this.isRoseMode && this.isStrictMode && isLogin,
-          data
-        )
-        console.log('store in reader', data)
-        db.records.put(data).catch(error => console.error('storeError', error))
-      })
-      ?.on('fishCaught', (event, data) => {
-        const fishId = data?.fishId
-        this.setFishCompleted({ fishId: fishId, completed: true })
-      })
+    window.electron?.ipcRenderer?.on('fishingData', (event, data) => {
+      this.dataStatus = {
+        ...data.status,
+        effects: Array.from(data.status && data.status.effects),
+      }
+      this.dataCurrentRecord = data.currentRecord
+      this.dataPrevRecord = data.prevRecord
+    })
+    // ?.on('newRecord', (event, data) => {
+    //   const isLogin = rcapiService.isLogin()
+    //   data.uploadEnabled = this.isRoseMode && this.isUploadMode && isLogin
+    //   data.isStrictMode = RecordValidator.judgeRecordStrictFlag(
+    //     this.isRoseMode && this.isStrictMode && isLogin,
+    //     data
+    //   )
+    //   console.log('store in reader', data)
+    //   db.records.put(data).catch(error => console.error('storeError', error))
+    // })
+    // ?.on('fishCaught', (event, data) => {
+    //   const fishId = data?.fishId
+    //   this.setFishCompleted({ fishId: fishId, completed: true })
+    // })
   },
   mounted() {
-    this.sendElectronEvent('updateWindowSetting', null)
+    // this.sendElectronEvent('updateWindowSetting', null)
   },
   methods: {
     // async markLastRecordNotStrict() {
@@ -599,22 +577,22 @@ export default {
       this.sendElectronEvent('showSpotPage', this.spotId)
     },
     toggleMiniMode(mini) {
-      this.sendElectronEvent('timerMiniMode', mini)
+      console.log(mini)
+      // this.sendElectronEvent('timerMiniMode', mini)
     },
     ringBell(tugType) {
       DataUtil.ringBell(this.readerSetting.timer.sound, tugType, this.sounds)
     },
-    showHistory() {
-      this.sendElectronEvent('toggleHistory')
-      this.setFeatureViewed(this.HistoryFeatureId)
-    },
-    showSpotStatistics() {
-      this.sendElectronEvent('toggleSpotStatistics')
-      this.setFeatureViewed(this.SpotStatisticsFeatureId)
-    },
+    // showHistory() {
+    //   this.sendElectronEvent('toggleHistory')
+    //   this.setFeatureViewed(this.HistoryFeatureId)
+    // },
+    // showSpotStatistics() {
+    //   this.sendElectronEvent('toggleSpotStatistics')
+    //   this.setFeatureViewed(this.SpotStatisticsFeatureId)
+    // },
     ...mapMutations([
       'setFeatureViewed',
-      'updateReaderTimerMiniMode',
       'setFishCompleted',
       'setNotShowBanner',
       'setStrictMode',
