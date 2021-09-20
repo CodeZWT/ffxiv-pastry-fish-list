@@ -1,6 +1,6 @@
 <template>
   <div class="window">
-    <v-system-bar class="window-top-bar rounded-t">
+    <v-system-bar class="window-top-bar rounded-t vue-draggable-handle">
       <span class="mx-1">本地历史记录</span>
       <v-spacer />
       <v-btn @click="showSetting" x-small text>
@@ -10,7 +10,7 @@
         <v-icon>mdi-window-close</v-icon>
       </v-btn>
     </v-system-bar>
-    <div class="window-content">
+    <div class="window-content no-drag">
       <reader-history :now="now" />
     </div>
   </div>

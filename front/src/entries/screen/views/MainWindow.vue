@@ -1,7 +1,8 @@
 <template>
   <div class="window">
-    <v-system-bar class="window-top-bar rounded-t">
-      <span class="mx-1">本地历史记录</span>
+    <v-system-bar class="window-top-bar rounded-t vue-draggable-handle">
+      <span class="mx-1">{{ pageTitle }}</span>
+      <span class="mx-1" v-if="isMobile">mobile</span>
       <v-spacer />
       <v-btn @click="showSetting" x-small text>
         <v-icon>mdi-cog</v-icon>
@@ -11,7 +12,7 @@
       </v-btn>
     </v-system-bar>
 
-    <div class="window-content">
+    <div class="window-content no-drag">
       <fish-page
         v-if="page === 'ListPage'"
         :now="now"
@@ -175,6 +176,38 @@ export default {
     'selectedFish',
     'filteredFishIdSet',
   ],
+  computed: {
+    pageTitle() {
+      let title = ''
+      switch (this.page) {
+        case 'FishPage':
+          title =
+            this.activeTabIndex === 0
+              ? this.$t('list.normalTitle')
+              : this.$t('list.toBeNotifiedTitle')
+          break
+        case 'WikiPage':
+          title = this.$t('top.fishWiki')
+          break
+        case 'OceanFishingPage54':
+          title = this.$t('top.oceanFishing')
+          break
+        case 'RecordPage':
+          title = this.$t('top.record')
+          break
+        case 'CompetitionPage':
+          title = this.$t('top.competition')
+          break
+        case 'AquariumPage':
+          title = this.$t('top.aquarium')
+          break
+        case 'DiademPage':
+          title = this.$t('top.diadem')
+          break
+      }
+      return title
+    },
+  },
   methods: {
     close() {
       this.$emit('close')

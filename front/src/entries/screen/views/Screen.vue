@@ -12,6 +12,7 @@
         :margin="[10, 10]"
         :use-css-transforms="true"
         :auto-size="false"
+        @layout-ready="handleGridReady"
       >
         <grid-item
           v-for="(item, i) in layout"
@@ -21,6 +22,10 @@
           :h="item.h"
           :i="item.i"
           :key="item.i"
+          drag-allow-from=".vue-draggable-handle"
+          drag-ignore-from=".no-drag"
+          @resized="handleResized"
+          @container-resized="handleContainerResized"
         >
           <v-sheet class="window-wrapper rounded elevation-4" color="background">
             <reader-timer-window
@@ -42,7 +47,7 @@
               v-if="windows[i].type === 'MAIN'"
               :page="mainPage"
               :active-tab-index="mainPageTabIndex"
-              :is-mobile="true"
+              :is-mobile="windows[i].isMobile"
               :now="now"
               @close="() => removeItem(item.i)"
               :lazySourceFishList="lazySourceFishList"
@@ -202,15 +207,40 @@ export default {
     showMainWindow: false,
     mainPage: 'ListPage',
     mainPageTabIndex: 0,
+    gridReady: false,
   }),
   created() {
-    this.addReaderTimer()
-    this.addReaderHistory()
-    this.addReaderSpotStatistics()
-    this.addFishList()
+    // this.addReaderTimer()
+    // this.addReaderHistory()
+    // this.addReaderSpotStatistics()
+    // this.addFishList()
     this.addWiki()
   },
   methods: {
+    handleGridReady() {
+      this.gridReady = true
+    },
+    handleResized(i, newH, newW, newHPx, newWPx) {
+      if (this.gridReady) {
+        this.windows[i] = {
+          ...this.windows[i],
+          isMobile:
+            newWPx <
+            this.$vuetify.breakpoint.thresholds[
+              this.$vuetify.breakpoint.mobileBreakpoint
+            ],
+        }
+      }
+    },
+    handleContainerResized(i, newH, newW, newHPx, newWPx) {
+      if (this.gridReady) {
+        this.windows[i] = {
+          ...this.windows[i],
+          isMobile:
+            newWPx < this.$vuetify.breakpoint.thresholds[this.$vuetify.breakpoint.mobile],
+        }
+      }
+    },
     openMainWindow() {
       this.showMainWindow = true
     },
@@ -221,7 +251,7 @@ export default {
       this.addItem('READER_HISTORY', 3, 12)
     },
     addReaderSpotStatistics() {
-      this.addItem('READER_SPOT_STATISTICS', 3, 12, 3, 0)
+      this.addItem('READER_SPOT_STATISTICS', 3, 12)
     },
     addFishList() {
       this.mainPage = 'ListPage'
@@ -259,11 +289,11 @@ export default {
     },
     addMainWindowIfNotExist() {
       if (!this.hasItem('MAIN')) {
-        this.addItem('MAIN', 3, 12, 3, 0)
+        this.addItem('MAIN', 3, 12, 0, 0)
       }
     },
     hasItem(type) {
-      return this.windows.findIndex(it => it.type === type) > 0
+      return !!this.windows.find(it => it.type === type)
     },
     addItem(type, w, h, x = 0, y = 0) {
       // Add a new item. It must have a unique key!
@@ -276,7 +306,7 @@ export default {
       })
       // Increment the counter to ensure key is always unique.
       this.index++
-      this.windows.push({ type })
+      this.windows.push({ type, isMobile: true })
     },
     removeItem(val) {
       const index = this.layout.map(item => item.i).indexOf(val)

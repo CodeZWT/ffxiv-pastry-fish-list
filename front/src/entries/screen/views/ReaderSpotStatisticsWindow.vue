@@ -1,13 +1,13 @@
 <template>
   <div class="window">
-    <v-system-bar class="window-top-bar rounded-t">
+    <v-system-bar class="window-top-bar rounded-t vue-draggable-handle">
       <span class="mx-1">钓场统计</span>
       <v-spacer />
       <v-btn @click="close" x-small text>
         <v-icon>mdi-window-close</v-icon>
       </v-btn>
     </v-system-bar>
-    <div class="window-content">
+    <div class="window-content no-drag">
       <reader-spot-statistics :now="now" />
     </div>
   </div>

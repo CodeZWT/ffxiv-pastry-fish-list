@@ -4,7 +4,7 @@
       :color="
         isRoseMode && isUploadMode && isStrictMode ? 'deep-purple darken-1' : 'black'
       "
-      class="window-top-bar rounded-t"
+      class="window-top-bar rounded-t vue-draggable-handle"
     >
       <v-img :src="readerIcon" max-height="20" max-width="20" />
       <span class="mx-1">渔捞</span>
@@ -34,7 +34,7 @@
         <v-icon>mdi-window-close</v-icon>
       </v-btn>
     </v-system-bar>
-    <div class="window-content">
+    <div class="window-content no-drag">
       <reader-timer :now="now" />
     </div>
     <v-dialog v-model="showSettingDialog" max-width="600" scrollable>
