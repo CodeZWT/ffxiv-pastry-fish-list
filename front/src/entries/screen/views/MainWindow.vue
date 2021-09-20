@@ -243,17 +243,8 @@
         v-else-if="page === 'OceanFishingPage54'"
         :now="now"
         :is-mobile="isMobile"
-        :lazyFishSourceList="lazySourceFishList"
-        :lazyTransformedFishList="lazyTransformedFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
-        :fishListTimePart="fishListTimePart"
-        :extraFishListTimePart="extraFishListTimePart"
-        :fishListWeatherChangePart="fishListWeatherChangePart"
-        :pinnedFishList="pinnedFishList"
-        :sortedFilteredFishList="sortedFilteredFishList"
-        :toBeNotifiedFishList="toBeNotifiedFishList"
         :selectedFish="selectedFish"
-        :filteredFishIdSet="filteredFishIdSet"
         @fish-selected="onFishSelected"
       />
       <DiademPage

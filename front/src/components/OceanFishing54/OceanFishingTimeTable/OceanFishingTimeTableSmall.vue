@@ -3,11 +3,11 @@
     <v-form v-if="!hideFilters">
       <v-container>
         <v-row>
-          <v-col cols="12" md="3" class="d-flex">
+          <v-col cols="12" class="d-flex">
             <v-subheader style="min-width: 100px">显示航班数</v-subheader>
             <v-text-field v-model="voyageN" type="number" solo />
           </v-col>
-          <v-col cols="12" md="6" class="d-flex">
+          <v-col cols="12" class="d-flex">
             <v-subheader style="min-width: 100px">筛选条件</v-subheader>
             <v-autocomplete
               class="targetSelector"
@@ -66,20 +66,13 @@
         <v-simple-table>
           <template v-slot:default>
             <colgroup>
-              <col span="1" style="width: 40%;" />
-              <col span="1" style="width: 40%;" />
-              <col span="1" style="width: 20%;" />
+              <col span="1" style="width: 40%" />
+              <col span="1" style="width: 60%" />
             </colgroup>
             <thead>
               <tr>
                 <th class="text-right">登船登记时间<br />（本地）</th>
-                <th class="text-left pl-5">
-                  目标
-                </th>
-
-                <!--                <th class="text-left">-->
-                <!--                  航线-->
-                <!--                </th>-->
+                <th class="text-left pl-5">目标</th>
               </tr>
             </thead>
             <tbody>
@@ -130,13 +123,6 @@
                     </div>
                   </div>
                 </td>
-                <!--                <td>-->
-                <!--                  <div class="d-flex align-center">-->
-                <!--                    <div>-->
-                <!--                      {{ voyage.simpleName }}-->
-                <!--                    </div>-->
-                <!--                  </div>-->
-                <!--                </td>-->
               </tr>
             </tbody>
           </template>
@@ -149,6 +135,7 @@
 <script>
 import ItemIcon from '@/components/basic/ItemIcon'
 import OceanFishingTimeTableMixin from '@/components/OceanFishing54/OceanFishingTimeTable/OceanFishingTimeTableMixin'
+
 export default {
   name: 'OceanFishingTimeTableSmall',
   components: { ItemIcon },

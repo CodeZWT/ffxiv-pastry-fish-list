@@ -2,7 +2,9 @@
   <v-container
     fluid
     :class="
-      `detail-wrapper ${isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'}`
+      `pa-0 detail-wrapper ${
+        isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'
+      }`
     "
   >
     <v-tabs v-model="pageSection" centered icons-and-text grow>
@@ -49,6 +51,7 @@
         <ocean-fishing-voyage
           :voyage="currentVoyage.voyageList && currentVoyage.voyageList[0]"
           :fish-dict="lazyTransformedFishDict"
+          :is-mobile="isMobile"
         />
       </v-card-text>
     </v-card>
@@ -72,9 +75,10 @@
           <ocean-fishing-time-table
             :voyages="voyages"
             :targetOptions="targetOptions"
+            :is-mobile="isMobile"
+            show-current-route-indicator
             @filterChanged="filterChanged"
             @voyage-selected="onVoyageSelected"
-            show-current-route-indicator
           />
         </div>
       </v-card>
@@ -92,6 +96,7 @@
             :voyage="selectedVoyage"
             :fish-dict="lazyTransformedFishDict"
             :default-target="selectedTarget"
+            :is-mobile="isMobile"
           />
         </v-card-text>
       </v-card>
@@ -479,14 +484,13 @@ function shift2Icon(shift) {
 
 .detail-wrapper
   width: 100%
-  height: 100%
   overflow-scrolling: auto
-  overflow-y: scroll
   overflow-x: hidden
 
   &--web
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+    overflow-y: scroll
 
   &--electron
-    max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+    //max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
 </style>

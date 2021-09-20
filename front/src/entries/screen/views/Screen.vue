@@ -229,7 +229,8 @@ export default {
     // this.addReaderHistory()
     // this.addReaderSpotStatistics()
     // this.addFishList()
-    this.addWiki()
+    // this.addWiki()
+    this.addOceanFishing()
   },
   methods: {
     handleGridReady() {

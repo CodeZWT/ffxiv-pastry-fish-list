@@ -82,8 +82,7 @@
         <v-col
           v-for="(location, index) in currentLocations"
           :key="index"
-          cols="12"
-          md="4"
+          :cols="isMobile ? 12 : 4"
         >
           <v-row no-gutters>
             <v-col cols="12">
@@ -234,8 +233,7 @@
         <v-col
           v-for="(location, index) in currentLocations"
           :key="location.id"
-          cols="12"
-          md="4"
+          :cols="isMobile ? 12 : 4"
         >
           <point-tip
             :location="location"
@@ -257,8 +255,7 @@
         <v-col
           v-for="(location, index) in currentLocations"
           :key="location.id"
-          cols="12"
-          md="4"
+          :cols="isMobile ? 12 : 4"
         >
           <achievement-tip
             :achievement-id="currentTip.id"
@@ -331,6 +328,10 @@ export default {
     defaultTarget: {
       type: Object,
       default: undefined,
+    },
+    isMobile: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
