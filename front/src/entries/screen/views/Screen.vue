@@ -348,6 +348,6 @@ export default {
 
 .vue-grid-layout
   height: calc(100vh - #{ $top-system-bar-padding})
-  overflow-y: hidden
+  overflow-y: scroll
   background: rgba(117, 117, 117, 0.5)
 </style>
