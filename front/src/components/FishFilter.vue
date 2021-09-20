@@ -14,8 +14,9 @@
               <v-row wrap no-gutters>
                 <v-col
                   v-for="version in exVersion"
+                  :cols="isMobile ? 12 : 6"
                   :key="version"
-                  class="col-12 col-md-6 my-1"
+                  class="my-1"
                 >
                   <div>
                     <div class="d-flex align-center">
@@ -46,7 +47,7 @@
               </v-row>
               <!-- Mark & BigFish -->
               <v-row no-gutters class="my-2">
-                <v-col class="col-12 col-md-6">
+                <v-col :cols="isMobile ? 12 : 6">
                   <div class="subtitle-2 ml-2">{{ $t('filter.bigFish.title') }}</div>
                   <v-btn-toggle
                     v-model="bigFishTypes"
@@ -75,7 +76,7 @@
                   <!--                    </div>-->
                   <!--                  </v-tooltip>-->
                 </v-col>
-                <v-col cols="6">
+                <v-col :cols="isMobile ? 12 : 6">
                   <div class="subtitle-2 ml-2">
                     {{ $t('filter.fishConstraint.title') }}
                   </div>
@@ -176,7 +177,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 
 const PATCHES = {
@@ -197,6 +197,14 @@ export default {
     filters: {
       type: Object,
       default: () => ({}),
+    },
+    isMobile: {
+      type: Boolean,
+      default: false,
+    },
+    isNormalTabActive: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -242,7 +250,6 @@ export default {
         ),
       }
     },
-    ...mapGetters(['isNormalTabActive']),
   },
   watch: {
     filters: {

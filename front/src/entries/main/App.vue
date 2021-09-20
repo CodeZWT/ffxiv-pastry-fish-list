@@ -494,6 +494,7 @@
           :activeTabIndex="activeTabIndex"
           :right-pane-full-screen="rightPaneFullScreen"
           :is-mobile="isMobile"
+          :toggle-map-menu="showMapMenu"
           @fish-selected="onFishSelected"
         />
       </div>
@@ -722,14 +723,23 @@
 <script>
 import '@thewakingsands/axis-font-icons'
 import AppMixin from '@/components/AppMixin'
+import MainWindowMixin from '@/components/MainWindowMixin'
 
 export default {
   name: 'App',
-  mixins: [AppMixin],
+  mixins: [AppMixin, MainWindowMixin],
   data() {
     return {
       rightPaneFullScreen: window.innerWidth < 1264,
     }
+  },
+  computed: {
+    isListPage() {
+      return this.$route.name === 'ListPage'
+    },
+    isWikiPage() {
+      return this.$route.name === 'WikiPage'
+    },
   },
   methods: {
     toPage(page) {

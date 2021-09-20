@@ -91,17 +91,13 @@
           </div>
         </div>
       </v-col>
-      <v-col class="col-6 col-sm-3 d-flex flex-column justify-center">
+      <v-col class="col-6 d-flex flex-column justify-center">
         <div v-if="!inPredator && !hideSpotColumn">
           <fishing-spot-column :fishing-spots="fish.fishingSpots" small />
         </div>
         <div v-if="!transformedFishTimePart.hasCountDown" class="text-subtitle-2">
-          <div v-if="fish.checkInfo.timeRestricted">
-            有时间限制
-          </div>
-          <div v-if="fish.checkInfo.weatherRestricted">
-            有天气限制
-          </div>
+          <div v-if="fish.checkInfo.timeRestricted">有时间限制</div>
+          <div v-if="fish.checkInfo.weatherRestricted">有天气限制</div>
           <div
             v-if="
               !fish.hasTimeConstraint &&
@@ -182,9 +178,7 @@
           :unchecked-title="$t('actions.completed.unchecked')"
         />
       </v-col>
-      <v-col
-        class="col-11 col-sm-3 d-flex flex-row align-center justify-center justify-sm-start my-2 my-sm-0"
-      >
+      <v-col class="col-11 d-flex flex-row align-center justify-center my-2">
         <div v-if="fish.hasPredators || fish.hasSnagging" class="mr-1">
           <div v-if="fish.hasPredators" class="d-flex flex-column align-center">
             <effect-icon :icon-class="fish.predatorsIcon" />

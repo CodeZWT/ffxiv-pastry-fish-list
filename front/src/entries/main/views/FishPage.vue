@@ -37,6 +37,8 @@
                 <fish-filter
                   :show="showFilter"
                   :filters="filters"
+                  :is-mobile="isMobile"
+                  :isNormalTabActive="isNormalTabActive"
                   @input="onFiltersUpdate"
                 >
                   <div>
@@ -143,15 +145,24 @@
                       <div>
                         若使用桌面版，可直接同步游戏内图鉴，左侧导航栏进入“钓鱼笔记”页面，选择“同步游戏数据”。
                       </div>
+                      <v-btn
+                        outlined
+                        color="primary"
+                        block
+                        class="mt-1"
+                        @click="onDismiss"
+                      >
+                        不再显示
+                      </v-btn>
                     </div>
 
-                    <template v-slot:actions>
-                      <click-helper @click="onDismiss">
-                        <v-btn text color="primary"> 不再显示 </v-btn>
-                      </click-helper>
-                    </template>
+                    <!--                    <template v-slot:actions>-->
+                    <!--                      <click-helper @click="onDismiss">-->
+                    <!--                        <v-btn text color="primary"> 不再显示 </v-btn>-->
+                    <!--                      </click-helper>-->
+                    <!--                    </template>-->
                   </v-banner>
-                  <v-tabs-items v-model="activeTabIndex">
+                  <v-tabs-items v-model="activeTabIndex" touchless>
                     <!--                    <v-tab-item-->
                     <!--                      key="pin"-->
                     <!--                      class="list-wrapper"-->
@@ -395,6 +406,9 @@ export default {
     baitFilterInputted: false,
   }),
   computed: {
+    isNormalTabActive() {
+      return this.activeTabIndex === DataUtil.TAB_INDEX_NORMAL
+    },
     normalListExpansion: {
       get() {
         return this.listSetting.normal.expanded ? 0 : undefined
@@ -692,13 +706,13 @@ export default {
 .splitpanes__pane
   background-color: unset !important
   overflow-scrolling: auto
-  overflow-y: scroll
 
 .main-pane
   width: 100%
 
 .splitpanes--web
   height: calc(100vh - #{ $top-bars-padding + $footer-padding })
+  overflow-y: scroll
 
 .splitpanes--electron
   //height: calc(100% - #{ $top-bars-padding-electron })

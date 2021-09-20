@@ -73,13 +73,11 @@ export default {
     lastCatchFishId: undefined,
     notificationRecords: {},
     isElectron: DevelopmentModeUtil.isElectron(),
-    THEME_MODE_ICONS: ['mdi-weather-night', 'mdi-weather-sunny', 'mdi-brightness-auto'],
     systemThemeMode: 'DARK',
     THEME_SETTING_MODES: DataUtil.THEME_SETTING_MODES,
     achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
     showJumpingOverlay: false,
     now: Date.now(),
-    fisher: ImgUtil.getImgUrl('pastry-fish.png'),
     version,
     noOp: DataUtil.noOp,
     showHelpDialog: false,
@@ -337,12 +335,6 @@ export default {
         return undefined
       }
     },
-    isListPage() {
-      return this.$route.name === 'ListPage'
-    },
-    isWikiPage() {
-      return this.$route.name === 'WikiPage'
-    },
     showSearch: {
       get() {
         return this.showSearchDialog
@@ -367,16 +359,6 @@ export default {
     //     this.setThemeMode(dark)
     //   },
     // },
-    showHatCover: {
-      get() {
-        return this.startLight
-      },
-      set(startLight) {
-        this.setStartLight(startLight)
-        this.showJumpingOverlay = true
-        this.startReloadPage()
-      },
-    },
     inMigrationPage() {
       return this.$route.name === 'MigrationPage'
     },
@@ -392,9 +374,6 @@ export default {
       } else {
         return this.themeMode === 'DARK'
       }
-    },
-    themeModeIndex() {
-      return DataUtil.THEME_SETTING_MODES.indexOf(this.themeMode)
     },
     showCompetitionDialogComputed: {
       get() {
@@ -746,16 +725,6 @@ export default {
           })
         })
     },
-    toggleFishEyesUsed() {
-      this.showSnackbar({
-        text: '设置成功，即将重新加载页面，请稍后...',
-        color: 'success',
-      })
-      this.updateUserData({ path: 'fishEyesUsed', data: !this.fishEyesUsed })
-      setTimeout(() => {
-        this.startReloadPage()
-      }, 2000)
-    },
     showSetting() {
       this.showSettingDialog = true
       this.setFeatureViewed(this.SettingFeatureId)
@@ -813,9 +782,6 @@ export default {
     showBaitDialogOfSetting() {
       this.showBaitDialog = true
       this.showBaitNotificationSetting = true
-    },
-    selectThemeMode(index) {
-      this.setThemeMode(DataUtil.THEME_SETTING_MODES[index])
     },
     checkFishNeedSplit(fishList) {
       const spot2FishList = _.mapValues(

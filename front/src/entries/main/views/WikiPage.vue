@@ -1,11 +1,14 @@
 <template>
   <div style="height: 100%" class="d-flex">
     <v-navigation-drawer
-      v-if="showMapMenu"
+      v-if="showMapMenu || !isMobile"
       v-model="showMapMenu"
-      :floating="isMobile"
-      :fixed="isMobile"
-      :class="{ 'nav-bar--pc': !isMobile }"
+      :absolute="isMobile"
+      :class="{
+        'nav-bar--pc': !isMobile,
+      }"
+      :temporary="isMobile"
+      z-index="1"
     >
       <div>
         <v-sheet class="pa-1 primary">
@@ -388,11 +391,11 @@
         <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
         <!-- <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
       </div>
-      <div v-if="isMobile">
-        <v-btn @click="showMapMenu = !showMapMenu" block color="primary" tile>
-          点击选择地图
-        </v-btn>
-      </div>
+      <!--      <div v-if="isMobile">-->
+      <!--        <v-btn @click="showMapMenu = !showMapMenu" block color="primary" tile>-->
+      <!--          点击选择地图-->
+      <!--        </v-btn>-->
+      <!--      </div>-->
     </div>
     <v-dialog
       v-model="isDetailFishWindowOpen"
@@ -555,6 +558,7 @@ export default {
     'extraFishListTimePart',
     'lazyFishSourceList',
     'lazyTransformedFishList',
+    'toggleMapMenu',
   ],
   data: vm => ({
     CN_PATCH_VERSION: CN_PATCH_VERSION,
@@ -883,6 +887,9 @@ export default {
     ]),
   },
   watch: {
+    toggleMapMenu() {
+      this.showMapMenu = !this.showMapMenu
+    },
     currentRegionTerritorySpots(regionTerritorySpots) {
       if (regionTerritorySpots && regionTerritorySpots.length > 0) {
         this.root = new TreeModel().parse({
@@ -1320,12 +1327,10 @@ export default {
   width: 100%
 
 .grid-content
-  height: 100%
-  width: 100%
-  overflow-scrolling: auto
-  overflow-y: auto
+  //overflow-scrolling: auto
   overflow-x: hidden
   padding-left: 4px
+  overflow-y: auto
 
 .spot-list
   &--pc-web
@@ -1344,18 +1349,17 @@ export default {
 
   &--mobile
     &-web
-      //margin-top: 40px
-      max-height: calc(100vh - #{ $top-bars-padding + $footer-padding + 40})
+      max-height: calc(100vh - #{ $top-bars-padding + $footer-padding })
     &-electron
-      //margin-top: 40px
-      max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + 40})
+      max-height: 100%
 
   &--pc
     &-web
       width: 100%
       max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
     &-electron
-      max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+      max-height: 100%
+
 
 .nav-bar
   &--pc
