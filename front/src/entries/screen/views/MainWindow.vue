@@ -70,7 +70,7 @@
             <v-icon>mdi-hook</v-icon>
           </v-btn>
 
-          <v-tooltip bottom>
+          <v-tooltip bottom v-if="!isWikiPage">
             <template v-slot:activator="{ on: tooltip, attrs }">
               <v-btn
                 icon
@@ -184,9 +184,8 @@
                 </v-list>
               </v-menu>
             </v-list-item>
-            <v-list-item @click="toggleFishEyesUsed">
+            <v-list-item v-if="isListPage || isWikiPage" @click="toggleFishEyesUsed">
               <fish-eyes-toggle-button
-                v-if="isListPage || isWikiPage"
                 :value="fishEyesUsed"
                 show-title
                 @input="toggleFishEyesUsed"
@@ -324,9 +323,7 @@ export default {
     'filteredFishIdSet',
   ],
   data() {
-    return {
-      showMapMenu: false,
-    }
+    return {}
   },
   computed: {
     ...mapGetters([

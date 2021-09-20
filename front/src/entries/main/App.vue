@@ -108,7 +108,22 @@
         <v-icon>mdi-hook</v-icon>
       </v-btn>
 
-      <v-tooltip bottom>
+      <v-tooltip bottom v-if="isWikiPage && isMobile">
+        <template v-slot:activator="{ on: tooltip, attrs }">
+          <v-btn
+            icon
+            text
+            v-bind="attrs"
+            v-on="{ ...tooltip }"
+            @click="showMapMenu = !showMapMenu"
+          >
+            <v-icon>mdi-map</v-icon>
+          </v-btn>
+        </template>
+        <div>点击选择钓场</div>
+      </v-tooltip>
+
+      <v-tooltip bottom v-if="!isWikiPage">
         <template v-slot:activator="{ on, attrs }">
           <div v-bind="attrs" v-on="on">
             <v-btn icon text @click="setShowSearchDialog(true)">
@@ -172,6 +187,12 @@
         </template>
         <v-list>
           <v-list-item @click="showBaitDialog = true">
+            <v-btn v-if="isWikiPage" icon text @click="setShowSearchDialog(true)">
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+            <div>搜索 <kbd>/</kbd></div>
+          </v-list-item>
+          <v-list-item @click="showBaitDialog = true">
             <v-btn icon text v-if="isListPage || isWikiPage">
               <v-icon>mdi-hook</v-icon>
             </v-btn>
@@ -217,9 +238,8 @@
               </v-list>
             </v-menu>
           </v-list-item>
-          <v-list-item @click="toggleFishEyesUsed">
+          <v-list-item v-if="isListPage || isWikiPage" @click="toggleFishEyesUsed">
             <fish-eyes-toggle-button
-              v-if="isListPage || isWikiPage"
               :value="fishEyesUsed"
               show-title
               @input="toggleFishEyesUsed"

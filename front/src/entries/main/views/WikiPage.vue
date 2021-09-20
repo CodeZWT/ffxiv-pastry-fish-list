@@ -2,7 +2,8 @@
   <div style="height: 100%" class="d-flex">
     <v-navigation-drawer
       v-if="showMapMenu || !isMobile"
-      v-model="showMapMenu"
+      :value="showMapMenu || !isMobile"
+      @input="showMapMenu = $event"
       :absolute="isMobile"
       :class="{
         'nav-bar--pc': !isMobile,
@@ -151,8 +152,11 @@
         <!--  show empty / region view  -->
         <div>
           <v-sheet outlined class="pa-4">
-            <div class="text-h6">成就计数</div>
-            <div class="text-subtitle-1">鼠标悬停成就数字可查看说明</div>
+            <div class="text-h5">成就计数</div>
+            <div class="text-subtitle-2">鼠标悬停成就数字可查看说明</div>
+            <div v-if="isMobile" class="text-subtitle-2">
+              点击上方<v-icon small>mdi-map</v-icon>按钮显示钓场选择菜单
+            </div>
             <v-divider />
             <v-subheader v-if="achievementInfo.iCatchThat.cn">
               {{
