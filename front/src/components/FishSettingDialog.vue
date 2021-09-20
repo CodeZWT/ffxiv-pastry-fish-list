@@ -291,7 +291,6 @@ import i18n from '@/i18n'
 import draggable from 'vuedraggable'
 import DetailItemSettingEntry from '@/components/DetailItemSettingEntry'
 import NotificationUtil from '@/utils/NotificationUtil'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 
 setInteractionMode('eager')
@@ -327,7 +326,6 @@ export default {
     },
   },
   data: () => ({
-    isElectron: DevelopmentModeUtil.isElectron(),
     NOTIFICATION_SOUNDS: DataUtil.NOTIFICATION_SOUNDS,
     lazyOpacity: undefined,
     lazyZoomFactor: undefined,
