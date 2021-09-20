@@ -160,6 +160,8 @@ export default {
 
 .achievement-icon-48 {
   position: absolute;
+  width: 80px;
+  height: 80px;
   min-width: 80px;
   min-height: 80px;
   margin: 8px;
@@ -173,6 +175,8 @@ export default {
   position: absolute;
   min-width: 80px;
   min-height: 80px;
+  width: 80px;
+  height: 80px;
   top: 0;
   left: 0;
   margin: 4px 0 0 8px;
