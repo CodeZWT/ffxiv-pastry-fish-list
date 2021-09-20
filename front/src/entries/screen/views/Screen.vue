@@ -230,7 +230,7 @@ export default {
     // this.addReaderSpotStatistics()
     // this.addFishList()
     // this.addWiki()
-    this.addDiadem()
+    this.addAquarium()
   },
   methods: {
     handleGridReady() {

@@ -255,19 +255,8 @@
       />
       <AquariumPage
         v-else-if="page === 'AquariumPage'"
-        :now="now"
         :is-mobile="isMobile"
-        :lazyFishSourceList="lazySourceFishList"
-        :lazyTransformedFishList="lazyTransformedFishList"
-        :lazyTransformedFishDict="lazyTransformedFishDict"
-        :fishListTimePart="fishListTimePart"
-        :extraFishListTimePart="extraFishListTimePart"
-        :fishListWeatherChangePart="fishListWeatherChangePart"
-        :pinnedFishList="pinnedFishList"
-        :sortedFilteredFishList="sortedFilteredFishList"
-        :toBeNotifiedFishList="toBeNotifiedFishList"
         :selectedFish="selectedFish"
-        :filteredFishIdSet="filteredFishIdSet"
         @fish-selected="onFishSelected"
       />
       <CompetitionPage

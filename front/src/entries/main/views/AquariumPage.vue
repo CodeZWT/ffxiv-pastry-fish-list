@@ -2,7 +2,9 @@
   <v-container
     fluid
     :class="
-      `detail-wrapper ${isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'}`
+      `px-0 detail-wrapper ${
+        isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'
+      }`
     "
   >
     <v-row>
@@ -180,7 +182,7 @@
                 <template v-slot:item="data">
                   <div class="d-flex">
                     <v-list-item-avatar>
-                      <div :class="data.item.icon" />
+                      <raw-item-icon :icon-class="data.item.icon" />
                     </v-list-item-avatar>
                     <v-list-item-content>
                       <v-list-item-title>
@@ -227,12 +229,13 @@ import PinyinMatch from 'pinyin-match'
 import FishAquarium from '@/components/FishAquarium'
 import { CN_PATCH_VERSION } from 'Data/constants'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import RawItemIcon from '@/components/basic/RawItemIcon'
 
 const PATCHES_MIN = [2, 3, 4, 5]
 export default {
   name: 'AquariumPage',
   mixins: [PageMixin],
-  components: { FishAquarium },
+  components: { RawItemIcon, FishAquarium },
   data() {
     return {
       aquariumSettingImg: ImgUtil.getImgUrl('aquarium-setting.jpg'),
@@ -300,14 +303,14 @@ export default {
 
 .detail-wrapper
   width: 100%
-  height: 100%
   overflow-scrolling: auto
-  overflow-y: scroll
   overflow-x: hidden
 
   &--web
+    height: 100%
+    overflow-y: scroll
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
 
   &--electron
-    max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+    //max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
 </style>
