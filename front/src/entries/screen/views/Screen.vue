@@ -230,7 +230,7 @@ export default {
     // this.addReaderSpotStatistics()
     // this.addFishList()
     // this.addWiki()
-    this.addOceanFishing()
+    this.addDiadem()
   },
   methods: {
     handleGridReady() {
@@ -305,7 +305,7 @@ export default {
     },
     addMainWindowIfNotExist() {
       if (!this.hasItem('MAIN')) {
-        this.addItem('MAIN', 3, 12, 0, 0)
+        this.addItem('MAIN', 4, 12, 0, 0)
       }
     },
     hasItem(type) {

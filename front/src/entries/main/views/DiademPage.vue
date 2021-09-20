@@ -13,7 +13,7 @@
           </v-card-title>
           <v-card-text>
             <v-row>
-              <v-col class="col-12 col-md-8">
+              <v-col :cols="isMobile ? 12 : 8">
                 <div>
                   <v-tabs v-model="tabIndex">
                     <!--                    <v-tab>第二期重建</v-tab>-->
@@ -164,7 +164,7 @@
                   </v-card>
                 </div>
               </v-col>
-              <v-col class="col-12 col-md-4">
+              <v-col :cols="isMobile ? 12 : 4">
                 <v-img v-if="tipMap" :src="tipMap" />
                 <template v-else>
                   <eorzea-simple-map
@@ -352,16 +352,16 @@ export default {
 
 .detail-wrapper
   width: 100%
-  height: 100%
   overflow-scrolling: auto
-  overflow-y: scroll
   overflow-x: hidden
 
   &--web
+    height: 100%
+    overflow-y: scroll
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
 
   &--electron
-    max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+    //max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
 
 .red
   color: orangered !important
