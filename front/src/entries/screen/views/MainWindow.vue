@@ -259,23 +259,7 @@
         :selectedFish="selectedFish"
         @fish-selected="onFishSelected"
       />
-      <CompetitionPage
-        v-else-if="page === 'CompetitionPage'"
-        :now="now"
-        :is-mobile="isMobile"
-        :lazyFishSourceList="lazySourceFishList"
-        :lazyTransformedFishList="lazyTransformedFishList"
-        :lazyTransformedFishDict="lazyTransformedFishDict"
-        :fishListTimePart="fishListTimePart"
-        :extraFishListTimePart="extraFishListTimePart"
-        :fishListWeatherChangePart="fishListWeatherChangePart"
-        :pinnedFishList="pinnedFishList"
-        :sortedFilteredFishList="sortedFilteredFishList"
-        :toBeNotifiedFishList="toBeNotifiedFishList"
-        :selectedFish="selectedFish"
-        :filteredFishIdSet="filteredFishIdSet"
-        @fish-selected="onFishSelected"
-      />
+      <CompetitionPage v-else-if="page === 'CompetitionPage'" :is-mobile="isMobile" />
       <RecordPage
         v-else-if="page === 'RecordPage'"
         :now="now"

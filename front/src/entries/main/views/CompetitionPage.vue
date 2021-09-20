@@ -2,7 +2,9 @@
   <v-container
     fluid
     :class="
-      `detail-wrapper ${isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'}`
+      `pa-0 detail-wrapper ${
+        isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'
+      }`
     "
   >
     <v-row no-gutters>
@@ -89,17 +91,19 @@
 
 <script>
 import { competitions } from 'Data/competition'
-import EnvMixin from '@/components/basic/EnvMixin'
 import ImgViewer from '@/components/basic/ImgViewer'
+import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 export default {
   name: 'CompetitionPage',
   components: { ImgViewer },
-  mixins: [EnvMixin],
+  mixins: [PageMixin],
   data() {
     return {
       tab: null,
       competitionImageCrrIdx: competitions.map(() => 0),
+      isElectron: DevelopmentModeUtil.isElectron(),
     }
   },
   computed: {
@@ -132,14 +136,14 @@ export default {
 @import "~@/styles/RcVariables"
 .detail-wrapper
   width: 100%
-  height: 100%
   overflow-scrolling: auto
-  overflow-y: scroll
   overflow-x: hidden
 
   &--web
+    height: 100%
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+    overflow-y: scroll
 
   &--electron
-    max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+    //max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
 </style>
