@@ -516,11 +516,11 @@ export default {
     if (DevelopmentModeUtil.isElectron()) {
       const db = (await import('@/plugins/db')).default
       this.resetUploadSettingIfNecessary(db)
-      const windowSetting = await this.getWindowSetting()
-      if (windowSetting) {
-        this.setOpacity(windowSetting.main.opacity)
-        this.setZoomFactor(windowSetting.main.zoomFactor)
-      }
+      // const windowSetting = await this.getWindowSetting()
+      // if (windowSetting) {
+      //   this.setOpacity(windowSetting.main.opacity)
+      //   this.setZoomFactor(windowSetting.main.zoomFactor)
+      // }
 
       setInterval(UploadUtil.sendUploadRecord, INTERVAL_MINUTE)
 
@@ -532,8 +532,16 @@ export default {
           this.newVersion = newVersion
         })
         ?.on('fishCaught', (event, data) => {
+          // Be care of spear fish!
           const fishId = data?.fishId
-          this.setFishCompleted({ fishId: fishId, completed: true })
+          const hq = data?.hq
+          if (
+            this.readerSetting.autoSetCompleted &&
+            fishId > 0 &&
+            (!this.readerSetting.autoSetCompletedOnlyHQ || hq)
+          ) {
+            this.setFishCompleted({ fishId: fishId, completed: true })
+          }
         })
         ?.on('setupDownload', (event, data) => {
           console.log(data)
@@ -698,11 +706,11 @@ export default {
       this.showCompetitionDialogComputed = true
       this.setFeatureViewed('Competition-V.0.8.3-2')
     },
-    getWindowSetting() {
-      return window.electron?.ipcRenderer
-        ?.invoke('getWindowSetting')
-        ?.then(setting => (this.lazyWindowSetting = setting))
-    },
+    // getWindowSetting() {
+    //   return window.electron?.ipcRenderer
+    //     ?.invoke('getWindowSetting')
+    //     ?.then(setting => (this.lazyWindowSetting = setting))
+    // },
     startReloadPage() {
       this.sendElectronEvent('startLoading')
       window.location.reload()

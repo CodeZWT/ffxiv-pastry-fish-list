@@ -434,10 +434,13 @@ export default {
     readerNow: Date.now(),
   }),
   created() {
-    this.addReaderTimerMini()
-    this.addReaderTimer()
-    this.addReaderHistory()
-    this.addReaderSpotStatistics()
+    // TODO readerConfig.showReaderOnlyIfFishing
+    // TODO postLogin
+    // TODO postLogout
+    // this.addReaderTimerMini()
+    // this.addReaderTimer()
+    // this.addReaderHistory()
+    // this.addReaderSpotStatistics()
     // this.addFishList()
     // this.addWiki()
     // this.addCompetition()

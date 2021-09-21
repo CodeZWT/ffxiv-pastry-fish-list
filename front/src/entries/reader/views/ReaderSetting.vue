@@ -65,9 +65,7 @@
         <v-switch inset v-model="lazySetting.autoSetCompleted" />
       </v-col>
       <v-col cols="6" class="d-flex align-center">
-        <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-          仅HQ时标记已完成
-        </div>
+        <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">仅HQ时标记已完成</div>
         <v-switch inset v-model="lazySetting.autoSetCompletedOnlyHQ" />
       </v-col>
       <v-col cols="12" class="d-flex align-center">
@@ -148,58 +146,47 @@
       <v-card outlined width="100%" class="my-1">
         <div class="overline ml-2">计时器</div>
         <v-card-text>
-          <div class="d-flex align-center">
-            <v-slider
-              v-model="lazyWindowSetting.timer.opacity"
-              label="透明度"
-              max="1"
-              min="0.1"
-              step="0.05"
-              ticks
-              thumb-label
-            />
-          </div>
-          <div class="d-flex align-center">
-            <v-slider
-              v-model="lazyWindowSetting.timer.zoomFactor"
-              max="3"
-              min="0.4"
-              step="0.1"
-              ticks
-              label="缩放比例"
-              thumb-label
-            >
-              <template v-slot:thumb-label="{ value }">
-                {{ Math.floor(value * 100) }}%
-              </template>
-            </v-slider>
-          </div>
-          <!--            <div class="d-flex align-center">-->
-          <!--              <v-slider-->
-          <!--                v-model="lazyWindowSetting.timerMini.opacity"-->
-          <!--                label="迷你模式透明度"-->
-          <!--                max="1"-->
-          <!--                min="0.1"-->
-          <!--                step="0.05"-->
-          <!--                ticks-->
-          <!--                thumb-label-->
-          <!--              />-->
-          <!--            </div>-->
-          <div class="d-flex align-center">
-            <v-slider
-              v-model="lazyWindowSetting.timerMini.zoomFactor"
-              max="3"
-              min="0.4"
-              step="0.1"
-              ticks
-              label="迷你模式缩放比例"
-              thumb-label
-            >
-              <template v-slot:thumb-label="{ value }">
-                {{ Math.floor(value * 100) }}%
-              </template>
-            </v-slider>
-          </div>
+          <!--          <div class="d-flex align-center">-->
+          <!--            <v-slider-->
+          <!--              v-model="lazyWindowSetting.timer.opacity"-->
+          <!--              label="透明度"-->
+          <!--              max="1"-->
+          <!--              min="0.1"-->
+          <!--              step="0.05"-->
+          <!--              ticks-->
+          <!--              thumb-label-->
+          <!--            />-->
+          <!--          </div>-->
+          <!--          <div class="d-flex align-center">-->
+          <!--            <v-slider-->
+          <!--              v-model="lazyWindowSetting.timer.zoomFactor"-->
+          <!--              max="3"-->
+          <!--              min="0.4"-->
+          <!--              step="0.1"-->
+          <!--              ticks-->
+          <!--              label="缩放比例"-->
+          <!--              thumb-label-->
+          <!--            >-->
+          <!--              <template v-slot:thumb-label="{ value }">-->
+          <!--                {{ Math.floor(value * 100) }}%-->
+          <!--              </template>-->
+          <!--            </v-slider>-->
+          <!--          </div>-->
+          <!--          <div class="d-flex align-center">-->
+          <!--            <v-slider-->
+          <!--              v-model="lazyWindowSetting.timerMini.zoomFactor"-->
+          <!--              max="3"-->
+          <!--              min="0.4"-->
+          <!--              step="0.1"-->
+          <!--              ticks-->
+          <!--              label="迷你模式缩放比例"-->
+          <!--              thumb-label-->
+          <!--            >-->
+          <!--              <template v-slot:thumb-label="{ value }">-->
+          <!--                {{ Math.floor(value * 100) }}%-->
+          <!--              </template>-->
+          <!--            </v-slider>-->
+          <!--          </div>-->
           <div
             v-for="tug in tugSettingTypes"
             class="d-flex flex-column"
@@ -262,69 +249,69 @@
         </v-card-text>
       </v-card>
 
-      <v-card outlined width="100%" class="my-1">
-        <div class="overline ml-2">历史记录</div>
-        <v-card-text>
-          <div class="d-flex align-center">
-            <v-slider
-              v-model="lazyWindowSetting.history.opacity"
-              label="透明度"
-              max="1"
-              min="0.1"
-              step="0.05"
-              ticks
-              thumb-label
-            />
-          </div>
-          <div class="d-flex align-center">
-            <v-slider
-              v-model="lazyWindowSetting.history.zoomFactor"
-              max="3"
-              min="0.4"
-              step="0.1"
-              ticks
-              label="缩放比例"
-              thumb-label
-            >
-              <template v-slot:thumb-label="{ value }">
-                {{ Math.floor(value * 100) }}%
-              </template>
-            </v-slider>
-          </div>
-        </v-card-text>
-      </v-card>
+      <!--      <v-card outlined width="100%" class="my-1">-->
+      <!--        <div class="overline ml-2">历史记录</div>-->
+      <!--        <v-card-text>-->
+      <!--          <div class="d-flex align-center">-->
+      <!--            <v-slider-->
+      <!--              v-model="lazyWindowSetting.history.opacity"-->
+      <!--              label="透明度"-->
+      <!--              max="1"-->
+      <!--              min="0.1"-->
+      <!--              step="0.05"-->
+      <!--              ticks-->
+      <!--              thumb-label-->
+      <!--            />-->
+      <!--          </div>-->
+      <!--          <div class="d-flex align-center">-->
+      <!--            <v-slider-->
+      <!--              v-model="lazyWindowSetting.history.zoomFactor"-->
+      <!--              max="3"-->
+      <!--              min="0.4"-->
+      <!--              step="0.1"-->
+      <!--              ticks-->
+      <!--              label="缩放比例"-->
+      <!--              thumb-label-->
+      <!--            >-->
+      <!--              <template v-slot:thumb-label="{ value }">-->
+      <!--                {{ Math.floor(value * 100) }}%-->
+      <!--              </template>-->
+      <!--            </v-slider>-->
+      <!--          </div>-->
+      <!--        </v-card-text>-->
+      <!--      </v-card>-->
 
-      <v-card outlined width="100%" class="my-1">
-        <div class="overline ml-2">钓场统计</div>
-        <v-card-text>
-          <div class="d-flex align-center">
-            <v-slider
-              v-model="lazyWindowSetting.spotStatistics.opacity"
-              label="透明度"
-              max="1"
-              min="0.1"
-              step="0.05"
-              ticks
-              thumb-label
-            />
-          </div>
-          <div class="d-flex align-center">
-            <v-slider
-              v-model="lazyWindowSetting.spotStatistics.zoomFactor"
-              max="3"
-              min="0.4"
-              step="0.1"
-              ticks
-              label="缩放比例"
-              thumb-label
-            >
-              <template v-slot:thumb-label="{ value }">
-                {{ Math.floor(value * 100) }}%
-              </template>
-            </v-slider>
-          </div>
-        </v-card-text>
-      </v-card>
+      <!--      <v-card outlined width="100%" class="my-1">-->
+      <!--        <div class="overline ml-2">钓场统计</div>-->
+      <!--        <v-card-text>-->
+      <!--          <div class="d-flex align-center">-->
+      <!--            <v-slider-->
+      <!--              v-model="lazyWindowSetting.spotStatistics.opacity"-->
+      <!--              label="透明度"-->
+      <!--              max="1"-->
+      <!--              min="0.1"-->
+      <!--              step="0.05"-->
+      <!--              ticks-->
+      <!--              thumb-label-->
+      <!--            />-->
+      <!--          </div>-->
+      <!--          <div class="d-flex align-center">-->
+      <!--            <v-slider-->
+      <!--              v-model="lazyWindowSetting.spotStatistics.zoomFactor"-->
+      <!--              max="3"-->
+      <!--              min="0.4"-->
+      <!--              step="0.1"-->
+      <!--              ticks-->
+      <!--              label="缩放比例"-->
+      <!--              thumb-label-->
+      <!--            >-->
+      <!--              <template v-slot:thumb-label="{ value }">-->
+      <!--                {{ Math.floor(value * 100) }}%-->
+      <!--              </template>-->
+      <!--            </v-slider>-->
+      <!--          </div>-->
+      <!--        </v-card-text>-->
+      <!--      </v-card>-->
       <!--        <div v-if="isTest">{{ lazySetting }}</div>-->
     </v-row>
     <!--    </v-card-text>-->
@@ -376,12 +363,12 @@ export default {
   data() {
     return {
       lazySetting: {},
-      lazyWindowSetting: {
-        timer: {},
-        timerMini: {},
-        history: {},
-        spotStatistics: {},
-      },
+      // lazyWindowSetting: {
+      //   timer: {},
+      //   timerMini: {},
+      //   history: {},
+      //   spotStatistics: {},
+      // },
       TUG_TYPES: DataUtil.TUG_TYPES,
       tugSettingTypes: ['default', ...DataUtil.TUG_TYPES],
       showInstallNpcapPrompt: false,
@@ -424,24 +411,19 @@ export default {
       },
       deep: true,
     },
-    lazyWindowSetting: {
-      handler(lazyWindowSetting) {
-        console.debug('update window setting', lazyWindowSetting)
-        if (lazyWindowSetting.setting) {
-          window.electron?.ipcRenderer?.send('updateWindowSetting', lazyWindowSetting)
-        }
-      },
-      deep: true,
-    },
-    // readerSetting(readerSetting) {
-    //   if (!isEqual(readerSetting, this.lazySetting)) {
-    //     this.lazySetting = readerSetting
-    //   }
+    // lazyWindowSetting: {
+    //   handler(lazyWindowSetting) {
+    //     console.debug('update window setting', lazyWindowSetting)
+    //     if (lazyWindowSetting.setting) {
+    //       window.electron?.ipcRenderer?.send('updateWindowSetting', lazyWindowSetting)
+    //     }
+    //   },
+    //   deep: true,
     // },
   },
   async created() {
     this.lazySetting = this.readerSetting
-    this.lazyWindowSetting = await this.getWindowSetting()
+    // this.lazyWindowSetting = await this.getWindowSetting()
     window.electron?.ipcRenderer
       ?.on('installNpcapPrompt', () => {
         this.showInstallNpcapPrompt = true
@@ -474,18 +456,10 @@ export default {
       this.showInstallNpcapPrompt = false
       this.monitorType = 0
     },
-    getWindowSetting() {
-      return window.electron?.ipcRenderer
-        ?.invoke('getWindowSetting')
-        ?.then(setting => (this.lazyWindowSetting = setting))
-    },
-    // saveSetting() {
-    //   console.debug('update setting', this.lazySetting)
-    //   window.electron?.ipcRenderer?.send('updateUserData', {
-    //     path: 'reader',
-    //     data: this.lazySetting,
-    //   })
-    //   window.electron?.ipcRenderer?.send('updateWindowSetting', this.lazyWindowSetting)
+    // getWindowSetting() {
+    //   return window.electron?.ipcRenderer
+    //     ?.invoke('getWindowSetting')
+    //     ?.then(setting => (this.lazyWindowSetting = setting))
     // },
     toDisplayFileName(path) {
       return path && last(path.split('\\'))
