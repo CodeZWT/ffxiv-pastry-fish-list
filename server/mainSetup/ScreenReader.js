@@ -1,7 +1,6 @@
 const FishingDataReader = require("../reader");
 const log = require("electron-log");
 const { exec } = require("child_process");
-const { callWindowSafe } = require("./server/mainSetup/utils");
 
 class ScreenReader {
   constructor(region, monitorType) {
