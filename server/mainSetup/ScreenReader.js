@@ -1,26 +1,31 @@
 const FishingDataReader = require("../reader");
 const log = require("electron-log");
+const { exec } = require("child_process");
+const { callWindowSafe } = require("./server/mainSetup/utils");
 
 class ScreenReader {
-  constructor() {
+  constructor(region, monitorType) {
     this.fishingData = undefined
     this.machinaStarted = false
+    this.region = region
+    this.monitorType = monitorType
   }
 
   setSender(sender) {
+    this.sender = sender
+
     FishingDataReader.onUpdate(async data => {
       this.fishingData = data
-      sender.send('fishingData', data)
+      this.sender.send('fishingData', data)
     })
-
     FishingDataReader.onFishCaught(data => {
-      sender.send('fishCaught', data)
+      this.sender.send('fishCaught', data)
     })
     FishingDataReader.onNewRecord(data => {
-      sender.send('newRecord', data)
+      this.sender.send('newRecord', data)
     })
     FishingDataReader.onPlayerSetup(data => {
-      sender.send('playerSetup', data)
+      this.sender.send('playerSetup', data)
     })
   }
 
@@ -36,6 +41,29 @@ class ScreenReader {
   }
 
   restart(options, fn) {
+    const newRegion = options.region || 'CN'
+    const newMonitorType = options.monitorType || 'RawSocket'
+    if (
+      this.machinaStarted &&
+      (this.region !== newRegion || this.monitorType !== newMonitorType)
+    ) {
+      this.region = newRegion
+      this.monitorType = newMonitorType
+
+      if (newMonitorType === 'WinPCap') {
+        exec('Get-Service -Name Npcap', { shell: 'powershell.exe' }, err => {
+          if (err) {
+            this.sender.send('installNpcapPrompt')
+          } else {
+            const options = { region: newRegion, monitorType: newMonitorType }
+            FishingDataReader.restart(options, fn)
+          }
+        })
+      } else {
+        const options = { region: newRegion, monitorType: newMonitorType }
+        FishingDataReader.restart(options, fn)
+      }
+    }
     this.machinaStarted = true
     FishingDataReader.restart(options, fn)
   }

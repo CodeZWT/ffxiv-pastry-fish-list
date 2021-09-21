@@ -27,7 +27,7 @@ const { Updater } = require("./server/mainSetup/Updater");
 log.transports.console.level = 'silly'
 
 const WINDOWS = {}
-let tray, region, monitorType
+let tray
 let intervalHandle
 let uploadIntervalHandle
 let loadingFinished = false
@@ -44,9 +44,21 @@ unhandled({
 })
 contextMenu()
 
-let readerConfig = {}
 let mainWindowConfig = {}
-let fishingData = undefined
+
+const handleUserDataUpdates = (updateData) => {
+  // set hotkey
+  setting.saveHotkeySetting(SCREEN, 'mouseThrough', updateData.data.hotkey.mouseThrough || 'L')
+
+  const options = {
+    region: updateData.data.region,
+    monitorType: updateData.data.monitorType,
+  }
+  // restart machina
+  dataReader.restart(options, () => {
+    log.info('Machina restarted!', options)
+  })
+}
 
 function setupEvent() {
   ipcMain
@@ -66,38 +78,7 @@ function setupEvent() {
       quitAndSetup()
     })
     .on('updateUserData', (event, updateData) => {
-      readerConfig = updateData.data
-
-      // set hotkey
-      setting.saveHotkeySetting(SCREEN, 'mouseThrough', updateData.data.hotkey.mouseThrough || 'L')
-
-      // restart machina
-      const newRegion = updateData.data.region || 'CN'
-      const newMonitorType = updateData.data.monitorType || 'RawSocket'
-      if (region !== newRegion || monitorType !== newMonitorType) {
-        region = newRegion
-        monitorType = newMonitorType
-
-        if (newMonitorType === 'WinPCap') {
-          exec('Get-Service -Name Npcap', { shell: 'powershell.exe' }, err => {
-            if (err) {
-              callWindowSafe(WINDOWS.readerSetting, win =>
-                win.webContents.send('installNpcapPrompt')
-              )
-            } else {
-              const options = { region: newRegion, monitorType: newMonitorType }
-              dataReader.restart(options, () => {
-                log.info('Machina restarted!', options)
-              })
-            }
-          })
-        } else {
-          const options = { region: newRegion, monitorType: newMonitorType }
-          dataReader.restart(options, () => {
-            log.info('Machina restarted!', options)
-          })
-        }
-      }
+      handleUserDataUpdates(updateData)
     })
     .on('installNpcap', () => {
       callWindowSafe(SCREEN, win => {
@@ -126,12 +107,11 @@ function setupEvent() {
       log.info('in finishLoading')
       updater.showUpdateDialogIfNecessary()
       loadingFinished = true
-      readerConfig = readerSetting
       mainWindowConfig = userData.mainWindow
 
       dataReader.startReaderOnce({
-        region: readerConfig.region,
-        monitorType: readerConfig.monitorType,
+        region: readerSetting.region,
+        monitorType: readerSetting.monitorType,
       })
     })
     .on('exportHistory', (event, data) => {
@@ -173,9 +153,6 @@ function setupEvent() {
       if (dataReader.fishingData) {
         sender.send('fishingData', dataReader.fishingData)
       }
-    })
-    .on('setStrictMode', (event, isStrictMode) => {
-      readerConfig.isStrictMode = isStrictMode
     })
     .on('downloadUpdate', event => {
       updater.downloadUpdates(intervalHandle)

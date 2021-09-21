@@ -29,9 +29,7 @@
               />
             </div>
           </template>
-          <div>
-            切换严格模式
-          </div>
+          <div>切换严格模式</div>
         </v-tooltip>
       </div>
       <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
@@ -159,7 +157,7 @@ export default {
     toggleStrictMode() {
       const newStrictMode = !this.isStrictMode
       this.setStrictMode(newStrictMode)
-      this.sendElectronEvent('setStrictMode', newStrictMode)
+      // this.sendElectronEvent('setStrictMode', newStrictMode)
     },
     sendElectronEvent(channel, data) {
       window.electron?.ipcRenderer?.send(channel, data)

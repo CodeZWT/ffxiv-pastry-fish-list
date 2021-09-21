@@ -556,7 +556,7 @@ export default {
     // },
     closeStrictMode() {
       this.setStrictMode(false)
-      this.sendElectronEvent('setStrictMode', false)
+      // this.sendElectronEvent('setStrictMode', false)
     },
     closeAlert() {
       this.closeAlertStartTime = this.dataPrevRecord?.startTime

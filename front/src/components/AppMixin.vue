@@ -670,7 +670,7 @@ export default {
   methods: {
     closeStrictMode() {
       this.disableStrictMode()
-      this.sendElectronEvent('setStrictMode', false)
+      // this.sendElectronEvent('setStrictMode', false)
     },
     async resetUploadSettingIfNecessary(db) {
       if (!this.isRoseMode) {
