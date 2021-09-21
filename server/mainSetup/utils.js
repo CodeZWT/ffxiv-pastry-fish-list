@@ -38,11 +38,17 @@ const setMouseThrough = (target, enable) => {
   callWindowSafe(target, win => win.setIgnoreMouseEvents(enable, { forward: true }))
 }
 
+const setOnTop =(win, alwaysOnTop = true) => {
+  win.setAlwaysOnTop(alwaysOnTop, 'screen-saver')
+  win.setMinimizable(!alwaysOnTop)
+}
+
 module.exports = {
   callFirstAvailableWin,
   callTargetSafe,
   callWindowSafe,
   callWindowsSafe,
   setMouseThrough,
+  setOnTop,
   showAndFocus,
 }
