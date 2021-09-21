@@ -109,8 +109,8 @@ const handleExportHistory = () => {
     })
 }
 
-const showOpenDialog = () => {
-  dialog
+const getSoundFilePath = () => {
+  return dialog
     .showOpenDialog({
       title: '选择音频文件',
       buttonLabel: '选择',
@@ -240,7 +240,7 @@ const setupEvent = () => {
     })
 
   ipcMain.handle('showOpenSoundFileDialog', () => {
-    return showOpenDialog()
+    return getSoundFilePath()
   })
 };
 
