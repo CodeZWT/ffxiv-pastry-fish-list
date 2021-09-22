@@ -29,17 +29,18 @@
           <div class="d-flex align-center">
             <div class="text-h6">Version 0.9.7-fix</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/09/11 09:33</div>
+            <div class="text-subtitle-1">更新时间: 2021/09/22 23:00</div>
           </div>
         </v-alert>
-        <v-subheader>
-          仅在网页版随时更新，改动将记入下一版本。
-        </v-subheader>
+        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。 </v-subheader>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修正鱼饵概率图中脱钩数据未正确筛选的问题</li>
           <li>增加将固定列表中的鱼同时显示在默认列表中的选项</li>
           <li>增加闹钟锁定功能，设置后标记已完成不会自动删除闹钟</li>
+          <li>
+            修正晨曦旗鱼条件，天气条件修正为：晴朗 转 阴云，薄雾，微风，其他条件不变
+          </li>
         </ul>
         <v-divider />
 
