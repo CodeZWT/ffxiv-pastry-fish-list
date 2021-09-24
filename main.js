@@ -1469,3 +1469,6 @@ function startReaderOnce(options) {
     })
   }
 }
+
+
+app.on('ready', () => app.setAppUserModelId("ffxiv-pastry-fish"));
