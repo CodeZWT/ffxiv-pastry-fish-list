@@ -142,7 +142,7 @@
         v-if="
           !type || type === 'region' || (type === 'territory' && isOceanFishingTerritory)
         "
-        class="fill-height d-flex flex-column align-content-space-between"
+        class="fill-height d-flex flex-column align-content-space-between grid-content"
       >
         <!--  show empty / region view  -->
         <div>
@@ -210,11 +210,11 @@
             </v-btn>
           </v-sheet>
         </div>
-        <div class="d-flex justify-center align-center" style="width: 100%; height: 100%">
-          <v-icon size="200">mdi-book-open-page-variant</v-icon>
-        </div>
+        <!--        <div class="d-flex justify-center align-center" style="width: 100%; height: 100%">-->
+        <!--          <v-icon size="200">mdi-book-open-page-variant</v-icon>-->
+        <!--        </div>-->
       </div>
-      <div v-else-if="type === 'territory'" style="width: 100%; height: 100%">
+      <div v-else-if="type === 'territory'" class="grid-content">
         <!--  show territory view  -->
         <eorzea-simple-map
           ref="simpleMap"
