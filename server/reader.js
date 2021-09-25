@@ -52,6 +52,8 @@ const machinaOptions = isDev
       parseAlgorithm: 'PacketSpecific',
       region: 'CN',
       port: 13347,
+      opcodeUrl:
+        'https://cdn.jsdelivr.net/gh/ricecake404/FFXIVOpcodes@cn-latest/opcodes.min.json',
       // pid: 24120,
       // logger: log.debug
     }
@@ -62,6 +64,8 @@ const machinaOptions = isDev
       monitorType: 'RawSocket',
       region: 'CN',
       port: 13347,
+      opcodeUrl:
+        'https://cdn.jsdelivr.net/gh/ricecake404/FFXIVOpcodes@cn-latest/opcodes.min.json',
       machinaExePath: path.join(
         app.getAppPath(),
         '../../resources/MachinaWrapper/MachinaWrapper.exe'

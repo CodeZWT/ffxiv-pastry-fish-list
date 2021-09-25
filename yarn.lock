@@ -2041,9 +2041,9 @@ js-yaml@^3.13.1, js-yaml@^3.14.0:
     esprima "^4.0.0"
 
 jsbi@^3.1.1:
-  version "3.1.4"
-  resolved "https://registry.npm.taobao.org/jsbi/download/jsbi-3.1.4.tgz#9654dd02207a66a4911b4e4bb74265bc2cbc9dd0"
-  integrity sha1-llTdAiB6ZqSRG05Lt0JlvCy8ndA=
+  version "3.2.4"
+  resolved "https://registry.nlark.com/jsbi/download/jsbi-3.2.4.tgz#aba5b77a14d7f546adc0bd17ab82c07e29f54e91"
+  integrity sha1-q6W3ehTX9UatwL0Xq4LAfin1TpE=
 
 jsbn@~0.1.0:
   version "0.1.1"
@@ -2192,10 +2192,15 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.npm.taobao.org/lodash.debounce/download/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
-lodash@^4.17.10, lodash@^4.17.19, lodash@^4.17.20:
+lodash@^4.17.10, lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
+
+lodash@^4.17.19:
+  version "4.17.21"
+  resolved "https://registry.nlark.com/lodash/download/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
 
 logform@^2.2.0:
   version "2.2.0"
@@ -2372,10 +2377,8 @@ nice-try@^1.0.4:
   resolved "https://registry.npm.taobao.org/nice-try/download/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha1-ozeKdpbOfSI+iPybdkvX7xCJ42Y=
 
-node-machina-ffxiv@^2.42.12:
-  version "2.42.12"
-  resolved "https://registry.npm.taobao.org/node-machina-ffxiv/download/node-machina-ffxiv-2.42.12.tgz#4449755e6b39623c1834c745f94fc032a81c84fa"
-  integrity sha1-REl1Xms5YjwYNMdF+U/AMqgchPo=
+"node-machina-ffxiv@file:../../github/node-machina-ffxiv":
+  version "2.43.1"
   dependencies:
     jsbi "^3.1.1"
     request "^2.88.0"
@@ -2778,7 +2781,7 @@ registry-url@^5.0.0:
 
 request-promise-core@1.1.4:
   version "1.1.4"
-  resolved "https://registry.npm.taobao.org/request-promise-core/download/request-promise-core-1.1.4.tgz#3eedd4223208d419867b78ce815167d10593a22f"
+  resolved "https://registry.nlark.com/request-promise-core/download/request-promise-core-1.1.4.tgz#3eedd4223208d419867b78ce815167d10593a22f"
   integrity sha1-Pu3UIjII1BmGe3jOgVFn0QWToi8=
   dependencies:
     lodash "^4.17.19"
@@ -3109,7 +3112,7 @@ stat-mode@^1.0.0:
 
 stealthy-require@^1.1.1:
   version "1.1.1"
-  resolved "https://registry.npm.taobao.org/stealthy-require/download/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
+  resolved "https://registry.nlark.com/stealthy-require/download/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
 
 stream-transform@^2.0.1:
@@ -3575,9 +3578,9 @@ write-file-atomic@^3.0.0:
     typedarray-to-buffer "^3.1.5"
 
 ws@^7.3.1:
-  version "7.4.3"
-  resolved "https://registry.npm.taobao.org/ws/download/ws-7.4.3.tgz#1f9643de34a543b8edb124bdcbc457ae55a6e5cd"
-  integrity sha1-H5ZD3jSlQ7jtsSS9y8RXrlWm5c0=
+  version "7.5.5"
+  resolved "https://registry.nlark.com/ws/download/ws-7.5.5.tgz?cache=0&sync_timestamp=1631130711705&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fws%2Fdownload%2Fws-7.5.5.tgz#8b4bc4af518cfabd0473ae4f99144287b33eb881"
+  integrity sha1-i0vEr1GM+r0Ec65PmRRCh7M+uIE=
 
 xdg-basedir@^4.0.0:
   version "4.0.0"
