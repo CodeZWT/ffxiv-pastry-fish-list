@@ -21,18 +21,18 @@
       <v-divider />
       <v-card-text style="max-height: 600px">
         <!-- patch update wait note -->
-        <!--        <v-alert outlined type="warning" border="left">-->
-        <!--          更新国服5.5后，渔捞与同步功能不可用，请耐心等待自动更新。-->
-        <!--        </v-alert>-->
+        <v-alert outlined type="warning" border="left">
+          更新国服5.55后，渔捞与同步功能不可用，请耐心等待自动更新。
+        </v-alert>
+        <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
-            <div class="text-h6">Version 0.9.7-fix</div>
+            <div class="text-h6">Version 0.9.8</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/09/22 23:00</div>
+            <div class="text-subtitle-1">更新时间: 2021/09/25 23:00</div>
           </div>
         </v-alert>
-        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。 </v-subheader>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修正鱼饵概率图中脱钩数据未正确筛选的问题</li>
@@ -42,6 +42,13 @@
             修正晨曦旗鱼条件，天气条件修正为：晴朗 转 阴云，薄雾，微风，其他条件不变
           </li>
         </ul>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
+        <ul>
+          <li>更新加载界面</li>
+          <li>感谢 马猴烧鱼@拉诺西亚 绘制的素材</li>
+          <li>感谢 明朗@宇宙和音 加工的亿点点动画</li>
+        </ul>
+
         <v-divider />
 
         <v-alert color="secondary" outlined class="mt-4">
