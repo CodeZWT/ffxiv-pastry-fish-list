@@ -874,7 +874,7 @@ function createMiniWin(parent) {
 }
 
 function createAndShowLoadingWindow(parent) {
-  return createTransparentWin('loading', 'loading', null, 250, 250, true)
+  return createTransparentWin('loading', 'loading', null, 350, 400, true)
     .then(win => {
       win.setParentWindow(parent)
     })

@@ -4,15 +4,13 @@
       <div class="d-flex align-center justify-center fill-height">
         <v-card
           outlined
-          class="d-flex justify-center align-center flex-column pa-4 elevation-24"
+          class="d-flex justify-center align-center flex-column pa-4 elevation-12"
         >
           <div class="d-flex flex-column align-center">
-            <v-avatar>
-              <v-img :src="fisher" />
-            </v-avatar>
-            <v-badge :content="version" class="px-1" inline />
+            <v-img :src="loadingPic" :width="240" :aspect-ratio="1" />
+            <v-badge :content="version" class="px-1 my-2" inline />
             <div class="d-flex">
-              <div class="mr-2">鱼糕烹饪中</div>
+              <div class="mr-2">鱼糕咬钩中</div>
               <v-progress-circular indeterminate size="24" />
             </div>
           </div>
@@ -23,15 +21,15 @@
 </template>
 
 <script>
-import ImgUtil from '@/utils/ImgUtil'
 import { version } from '../../../package.json'
+import loadingPic from 'Assets/pastry-fish-loading.gif'
 
 export default {
   name: 'Loading',
   data() {
     return {
       version: version,
-      fisher: ImgUtil.getImgUrl('pastry-fish.png'),
+      loadingPic: loadingPic,
     }
   },
 }
