@@ -1453,10 +1453,22 @@ export default {
       window.location.reload()
     },
     finishReloadPage() {
-      this.sendElectronEvent('finishLoading', {
-        userData: this.userData,
-        readerSetting: this.readerSetting,
-      })
+      rcapiService
+        .getOpcodeFileVersion()
+        .then(version => {
+          this.sendElectronEvent('finishLoading', {
+            userData: this.userData,
+            readerSetting: this.readerSetting,
+            opcodeVersion: version,
+          })
+        })
+        .catch(() => {
+          this.sendElectronEvent('finishLoading', {
+            userData: this.userData,
+            readerSetting: this.readerSetting,
+            opcodeVersion: 'latest',
+          })
+        })
     },
     toggleFishEyesUsed() {
       this.showSnackbar({

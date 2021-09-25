@@ -55,6 +55,8 @@ let settingVisible = false,
 let hideBySwitch = false,
   hideByFishingTrigger = false
 let isFishing = false
+let remoteOpcodeVersion = 'latest'
+
 unhandled({
   logger: log.error,
   reportButton: error => {
@@ -296,14 +298,22 @@ async function init() {
                 win.webContents.send('installNpcapPrompt')
               )
             } else {
-              const options = { region: newRegion, monitorType: newMonitorType }
+              const options = {
+                region: newRegion,
+                monitorType: newMonitorType,
+                opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
+              }
               FishingDataReader.restart(options, () => {
                 log.info('Machina restarted!', options)
               })
             }
           })
         } else {
-          const options = { region: newRegion, monitorType: newMonitorType }
+          const options = {
+            region: newRegion,
+            monitorType: newMonitorType,
+            opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
+          }
           FishingDataReader.restart(options, () => {
             log.info('Machina restarted!', options)
           })
@@ -375,12 +385,13 @@ async function init() {
     .on('updateMainConfig', (event, config) => {
       mainWindowConfig = config
     })
-    .on('finishLoading', (event, { userData, readerSetting }) => {
+    .on('finishLoading', (event, { userData, readerSetting, opcodeVersion }) => {
       // if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
       //   return loadingForReloadingPage.close()
       // }
       if (loadingFinished) return
       log.info('in finishLoading')
+      remoteOpcodeVersion = opcodeVersion
       showUpdateDialogIfNecessary()
       loadingFinished = true
       readerConfig = readerSetting
@@ -397,6 +408,7 @@ async function init() {
       startReaderOnce({
         region: readerConfig.region,
         monitorType: readerConfig.monitorType,
+        opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`
       })
 
       callWindowSafe(WINDOWS.main, win => {

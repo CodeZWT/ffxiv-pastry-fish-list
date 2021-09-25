@@ -290,6 +290,35 @@ export default {
   },
   lastUploadTime: 0,
   dataFilesVersion: undefined,
+
+  async getOpcodeFileVersion() {
+    // if (DevelopmentModeUtil.isTest()) {
+    //   return ''
+    // }
+    if (this.opcodeFileVersion != null) {
+      return this.opcodeFileVersion
+    }
+    return fetch(`${host}/records/opcodeFileVersion`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'GET',
+    })
+      .then(async response => {
+        if (response.ok) {
+          this.opcodeFileVersion = await response.text()
+          return this.opcodeFileVersion
+        } else {
+          console.error('failed to get opcode file version, using default latest')
+          return 'latest'
+        }
+      })
+      .catch(() => {
+        console.error('failed to get opcode file version in catch, using default latest')
+        return 'latest'
+      })
+  },
+  opcodeFileVersion: undefined,
 }
 
 const toParamStr = (name, value) => {
