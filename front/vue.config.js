@@ -75,6 +75,15 @@ module.exports = {
       filename: 'screen.html',
       title: '鱼糕桌面版',
     },
+    fishv2: {
+      entry: 'src/entries/fish-v2/main.js',
+      template:
+        process.env.NODE_ENV === 'development'
+          ? 'public/index.dev.html'
+          : 'public/index.html',
+      filename: 'fish-v2.html',
+      title: '列表v2',
+    },
     // 当使用只有入口的字符串格式时，
     // 模板会被推导为 `public/subpage.html`
     // 并且如果找不到的话，就回退到 `public/index.html`。

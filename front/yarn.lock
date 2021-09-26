@@ -8795,7 +8795,7 @@ vue-eslint-parser@^7.0.0:
 
 vue-grid-layout@^2.3.12:
   version "2.3.12"
-  resolved "https://registry.npm.taobao.org/vue-grid-layout/download/vue-grid-layout-2.3.12.tgz#b6396357b86a66805c117431d7c193d2e066edda"
+  resolved "https://registry.npmmirror.com/vue-grid-layout/download/vue-grid-layout-2.3.12.tgz#b6396357b86a66805c117431d7c193d2e066edda"
   integrity sha1-tjljV7hqZoBcEXQx18GT0uBm7do=
   dependencies:
     "@interactjs/actions" "^1.10.2"
