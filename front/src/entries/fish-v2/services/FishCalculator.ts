@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 interface FishCondition {
   etHourStart: number;
   etHourEnd: number; // not included
@@ -6,4 +5,4 @@ interface FishCondition {
   weathers: number[];
 }
 
-export const windowOf = (condition: FishCondition) => [condition]
+export const windowOf = (condition: FishCondition) => [condition];
