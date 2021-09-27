@@ -6728,12 +6728,12 @@ module.exports = {
     33324: { id: 33324, name_chs: '金色皮皮拉鱼', icon: 28492 },
     33325: { id: 33325, name_chs: '奸隐鱼', icon: 28035 },
     33326: { id: 33326, name_chs: '绒毛海神虾', icon: 28034 },
-    33239: { id: 33239, name_chs: 'Listracanthus', icon: 28497 },
-    33240: { id: 33240, name_chs: 'Aquamaton', icon: 28038 },
-    33241: { id: 33241, name_chs: 'Cinder Surprise', icon: 29622 },
-    33242: { id: 33242, name_chs: 'Ealad Skaan', icon: 28495 },
-    33243: { id: 33243, name_chs: 'Greater Serpent of Ronka', icon: 28499 },
-    33244: { id: 33244, name_chs: 'Lancetfish', icon: 28033 },
+    33239: { id: 33239, name_chs: '利斯塔克鲨', icon: 28497 },
+    33240: { id: 33240, name_chs: '自走鱼偶', icon: 28038 },
+    33241: { id: 33241, name_chs: '惊喜蛋', icon: 29622 },
+    33242: { id: 33242, name_chs: '镜中蝶', icon: 28495 },
+    33243: { id: 33243, name_chs: '隆卡的大水蛇？', icon: 28499 },
+    33244: { id: 33244, name_chs: '长吻帆蜥鱼', icon: 28033 },
     999990: {id: 999990, name_chs: '未知鱼饵', icon:60051}
   },
   FISHING_SPOTS: {

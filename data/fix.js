@@ -1869,7 +1869,7 @@ module.exports = {
       bestCatchPath: [27590],
     },
     33239: {
-      // Listracanthus
+      // 利斯塔克鲨
       _id: 33239,
       previousWeatherSet: [1, 2],
       weatherSet: [4],
@@ -1891,7 +1891,7 @@ module.exports = {
       anglerFishId: 3454,
     },
     33240: {
-      // Aquamaton
+      // 自走鱼偶
       _id: 33240,
       previousWeatherSet: [],
       weatherSet: [],
@@ -1916,7 +1916,7 @@ module.exports = {
       anglerFishId: 3455,
     },
     33241: {
-      // Cinder Surprise
+      // 惊喜蛋
       _id: 33241,
       previousWeatherSet: [11],
       weatherSet: [14],
@@ -1940,7 +1940,7 @@ module.exports = {
       anglerFishId: 3456,
     },
     33242: {
-      // Ealad Skaan
+      // 镜中蝶
       _id: 33242,
       previousWeatherSet: [10],
       weatherSet: [1],
@@ -1962,7 +1962,7 @@ module.exports = {
       anglerFishId: 3457,
     },
     33243: {
-      // Greater Serpent of Ronka
+      // 隆卡的大水蛇？
       _id: 33243,
       previousWeatherSet: [],
       weatherSet: [],
@@ -1984,7 +1984,7 @@ module.exports = {
       anglerFishId: 3458,
     },
     33244: {
-      // Lancetfish
+      // 长吻帆蜥鱼
       _id: 33244,
       previousWeatherSet: [2],
       weatherSet: [3],
