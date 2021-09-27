@@ -10,6 +10,10 @@
           >{{ isMobile ? dataMetaShort : dataMeta }}
         </v-subheader>
       </div>
+      <v-subheader v-if="!enableWeatherFilter"
+        >※
+        当前显示范围包括了所有时间天气下的数据，未区分有无鱼识及钓组。打开条件筛选以设置条件。</v-subheader
+      >
       <template v-if="enableWeatherFilter">
         <div class="d-flex flex-wrap align-center">
           <v-subheader class="pb-8">ET范围</v-subheader>
@@ -135,25 +139,39 @@
       <div style="width: 100%; overflow-x: scroll">
         <div
           class="d-flex flex-column align-center"
-          :style="`width: ${48 * (baitOfSpot.fishList.length + 4)}px`"
+          :style="`width: ${48 * (baitOfSpot.fishList.length + 5)}px`"
         >
           <div class="d-flex">
             <div style="width: 48px"></div>
             <div
               v-for="fish in baitOfSpot.fishList"
               :key="fish.fishId"
-              :title="toItemTitle({ name: fish.fishName, id: fish.fishId })"
+              style="margin-top: 22px"
             >
               <item-icon :icon-class="fish.fishIcon" />
             </div>
+            <v-card outlined rounded>
+              <div style="text-align: center">脱钩</div>
+              <div class="d-flex align-center">
+                <div
+                  v-for="tug in TUGS"
+                  :key="tug"
+                  style="width: 48px"
+                  class="d-flex align-center justify-center"
+                >
+                  <v-avatar :color="tugColor[tug]" size="40">
+                    <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
+                  </v-avatar>
+                </div>
+              </div>
+            </v-card>
             <div
-              v-for="tug in TUGS"
-              :key="tug"
               style="width: 48px"
-              class="d-flex align-center justify-center"
+              class="d-flex align-center justify-center pt-5"
+              title="总记录数"
             >
-              <v-avatar :color="tugColor[tug]" size="40">
-                <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
+              <v-avatar color="blue-grey darken-3" size="40">
+                <span class="text-h6">总</span>
               </v-avatar>
             </div>
           </div>
@@ -207,7 +225,7 @@
                 <v-progress-circular
                   :value="percentage"
                   rotate="-90"
-                  style="position: absolute; top: 6px; left: 8px"
+                  style="position: absolute; top: 8px; left: 8px"
                   :color="tugColor + ' lighten-2'"
                 >
                   <div :style="percentage === 100 ? 'font-size: x-small' : ''">
@@ -217,10 +235,20 @@
               </div>
               <div v-else style="width: 48px"></div>
             </div>
+            <div
+              style="height: 48px; width: 48px"
+              :class="'d-flex justify-center align-center'"
+              :title="`共${totalCnt}条记录`"
+            >
+              <div style="font-size: large">{{ abbrNum(totalCnt, 1) }}</div>
+            </div>
           </div>
         </div>
       </div>
-      <v-subheader>※ 轻、中、重 下方的百分比为脱钩数据的占比</v-subheader>
+      <v-subheader
+        >※ 显示的数字为鱼在使用对应鱼饵时的统计概率，鼠标悬停查看具体数据。</v-subheader
+      >
+      <v-subheader>※ “轻、中、重”下方为脱钩数据，“总”下方为总记录数。</v-subheader>
     </template>
     <template v-else>暂无鱼饵概率数据</template>
   </div>
@@ -495,6 +523,40 @@ export default {
   },
   methods: {
     toItemTitle: DataUtil.toItemTitle,
+    abbrNum(number, decPlaces) {
+      // 2 decimal places => 100, 3 => 1000, etc
+      decPlaces = Math.pow(10, decPlaces)
+
+      // Enumerate number abbreviations
+      const abbrev = ['k', 'm', 'b', 't']
+
+      // Go through the array backwards, so we do the largest first
+      for (let i = abbrev.length - 1; i >= 0; i--) {
+        // Convert array index to "1000", "1000000", etc
+        const size = Math.pow(10, (i + 1) * 3)
+
+        // If the number is bigger or equal do the abbreviation
+        if (size <= number) {
+          // Here, we multiply by decPlaces, round, and then divide by decPlaces.
+          // This gives us nice rounding to a particular decimal place.
+          number = Math.round((number * decPlaces) / size) / decPlaces
+
+          // Handle special case where we round up to the next abbreviation
+          if (number === 1000 && i < abbrev.length - 1) {
+            number = 1
+            i++
+          }
+
+          // Add the letter for the abbreviation
+          number += abbrev[i]
+
+          // We are done... stop
+          break
+        }
+      }
+
+      return number
+    },
   },
 }
 </script>
