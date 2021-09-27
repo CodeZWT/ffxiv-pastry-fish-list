@@ -150,10 +150,13 @@
             <div class="text-h6">成就计数</div>
             <div class="text-subtitle-1">鼠标悬停成就数字可查看说明</div>
             <v-divider />
-            <v-subheader>
+            <v-subheader v-if="achievementInfo.iCatchThat.cn">
               {{
                 `${achievementInfo.iCatchThat.name}（${CN_PATCH_VERSION}最大值${achievementInfo.iCatchThat.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.iCatchThat.total}）`
               }}
+            </v-subheader>
+            <v-subheader v-else>
+              {{ achievementInfo.iCatchThat.name }}
             </v-subheader>
             <v-row>
               <v-col>
@@ -174,10 +177,13 @@
                 />
               </v-col>
             </v-row>
-            <v-subheader>
+            <v-subheader v-if="achievementInfo.goBigFarFromHome.cn">
               {{
                 `${achievementInfo.goBigFarFromHome.name}（${CN_PATCH_VERSION}最大值${achievementInfo.goBigFarFromHome.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.goBigFarFromHome.total}）`
               }}
+            </v-subheader>
+            <v-subheader v-else>
+              {{ achievementInfo.goBigFarFromHome.name }}
             </v-subheader>
             <v-row>
               <v-col>
@@ -189,10 +195,13 @@
               </v-col>
             </v-row>
 
-            <v-subheader>
+            <v-subheader v-if="achievementInfo.noRiverWideEnough.cn">
               {{
                 `${achievementInfo.noRiverWideEnough.name}（${CN_PATCH_VERSION}最大值${achievementInfo.noRiverWideEnough.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.noRiverWideEnough.total}）`
               }}
+            </v-subheader>
+            <v-subheader v-else>
+              {{ achievementInfo.noRiverWideEnough.name }}
             </v-subheader>
             <v-row>
               <v-col>
@@ -547,10 +556,10 @@ export default {
     GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
     showAboutChartDialog: false,
     achievementInfo: {
-      iCatchThat: { name: '专研钓鱼笔记', cn: 1175 },
-      goBigOrGoHome: { name: '愿者上钩', cn: 204 },
-      goBigFarFromHome: { name: '净界太公', cn: 39 },
-      noRiverWideEnough: { name: 'No River Wide Enough', cn: 243 },
+      iCatchThat: { name: '专研钓鱼笔记' },
+      goBigOrGoHome: { name: '愿者上钩' },
+      goBigFarFromHome: { name: '净界太公' },
+      noRiverWideEnough: { name: '太公仙路' }, // , cn: 243
     },
     showBulkCompleteCheckbox: false,
     modes: [
@@ -757,27 +766,26 @@ export default {
         //   { title: '赐福渔采钓竿', cnt: 780, itemId: 24831 },
         //   { title: '5.5璀璨钓竿', cnt: 1140, itemId: 33358 },
         // ],
-        ticks: [1731, 2176, 2832]
-          .map(achievementId => {
-            const achievement = FIX.ACHIEVEMENT[achievementId]
-            return {
-              ...achievement,
-              item: achievement.item
-                ? {
-                    id: achievement.item,
-                    title: achievement.itemTitle,
-                    iconUrl: ImgUtil.getIconUrl(achievement.itemIcon, true),
-                  }
-                : undefined,
-            }
-          })
-          .concat({
-            data: [this.achievementInfo.iCatchThat.cn],
-            name_chs: `国服${CN_PATCH_VERSION}版本最大值`,
-            description: `国服${CN_PATCH_VERSION}版本共有${this.achievementInfo.iCatchThat.cn}条鱼属于成就记录范围。`,
-            type: 'maxTip',
-            nextLine: true,
-          }),
+        ticks: [1731, 2176, 2832].map(achievementId => {
+          const achievement = FIX.ACHIEVEMENT[achievementId]
+          return {
+            ...achievement,
+            item: achievement.item
+              ? {
+                  id: achievement.item,
+                  title: achievement.itemTitle,
+                  iconUrl: ImgUtil.getIconUrl(achievement.itemIcon, true),
+                }
+              : undefined,
+          }
+        }),
+        // .concat({
+        //   data: [this.achievementInfo.iCatchThat.cn],
+        //   name_chs: `国服${CN_PATCH_VERSION}版本最大值`,
+        //   description: `国服${CN_PATCH_VERSION}版本共有${this.achievementInfo.iCatchThat.cn}条鱼属于成就记录范围。`,
+        //   type: 'maxTip',
+        //   nextLine: true,
+        // }),
         total: podSpearFish.length + oceanFish.length, // + globalNormalFish + globalBigFish,
       }
 
