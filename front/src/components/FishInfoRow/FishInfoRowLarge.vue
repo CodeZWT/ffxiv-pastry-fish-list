@@ -250,7 +250,7 @@
               <v-tooltip v-if="isTimeCheckSkipped" bottom color="secondary">
                 <template v-slot:activator="{ on, attrs }">
                   <div v-bind="attrs" v-on="on">
-                    <div class="bg-011103"></div>
+                    <effect-icon icon-class="bg-011103" />
                   </div>
                 </template>
                 <div>时间条件在鱼眼模式下忽略</div>

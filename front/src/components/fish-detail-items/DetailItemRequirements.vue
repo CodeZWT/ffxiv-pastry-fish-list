@@ -50,7 +50,7 @@
           <v-tooltip v-if="isTimeCheckSkipped" bottom color="secondary">
             <template v-slot:activator="{ on, attrs }">
               <div v-bind="attrs" v-on="on">
-                <div class="bg-011103"></div>
+                <effect-icon icon-class="bg-011103" />
               </div>
             </template>
             <div>
@@ -70,10 +70,11 @@
 import DataUtil from '@/utils/DataUtil'
 import { mapGetters } from 'vuex'
 import WeatherIcon from '@/components/basic/WeatherIcon'
+import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'DetailItemRequirements',
-  components: { WeatherIcon },
+  components: { EffectIcon, WeatherIcon },
   props: {
     fish: {
       type: Object,
