@@ -10,8 +10,8 @@
     >
       <v-img :src="readerIcon" max-height="20" max-width="20" />
       <span class="mx-1">渔捞</span>
-      <span v-if="readerRegion === 'CN'">国服{{ CN_PATCH_VERSION }}</span>
-      <span v-else>国际服{{ GLOBAL_PATCH_VERSION }}</span>
+      <span v-if="readerRegion === 'CN'">国服</span>
+      <span v-else>国际服</span>
       <v-spacer />
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
