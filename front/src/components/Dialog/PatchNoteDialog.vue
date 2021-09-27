@@ -25,6 +25,20 @@
           更新国服5.55后，渔捞与同步功能不可用，请耐心等待自动更新。
         </v-alert>
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 0.9.9</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/09/27 21:15</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>更新5.55鱼以及成就翻译</li>
+          <li>更新5.55鱼皇攻略</li>
+        </ul>
+
+        <v-divider />
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
