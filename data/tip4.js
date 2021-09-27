@@ -1,7 +1,7 @@
 module.exports = {
   author: '颜君行@琥珀原 & Aki秋山@摩杜纳 & 轩辕十四@沃仙曦染',
-  title: '5.x 鱼王心得（至5.5）',
-  lastUpdate: '2021/08/16',
+  title: '5.x 鱼王鱼皇心得',
+  lastUpdate: '2021/09/27',
   TIPS: {
     28065: {
       id: 28065,
