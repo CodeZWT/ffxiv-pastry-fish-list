@@ -146,6 +146,7 @@
             <div
               v-for="fish in baitOfSpot.fishList"
               :key="fish.fishId"
+              :title="toItemTitle({ name: fish.fishName, id: fish.fishId })"
               style="margin-top: 22px"
             >
               <item-icon :icon-class="fish.fishIcon" />

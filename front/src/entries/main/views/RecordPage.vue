@@ -61,6 +61,7 @@
                     v-for="fish in baitOfSpot.fishList"
                     :key="fish.fishId"
                     style="margin-top: 22px"
+                    :title="toItemTitle({ name: fish.fishName, id: fish.fishId })"
                   >
                     <item-icon :icon-class="fish.fishIcon" />
                   </div>
@@ -1246,6 +1247,7 @@ export default {
     },
   },
   methods: {
+    toItemTitle: DataUtil.toItemTitle,
     handleTryDelete(record) {
       this.recordToRemove = record
       this.showDeleteAlert = true
