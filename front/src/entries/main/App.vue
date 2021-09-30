@@ -535,7 +535,7 @@
       :extraFishListTimePart="extraFishListTimePart"
       :fish-list-weather-change-part="fishListWeatherChangePart"
       :now="now"
-      @change="searchedFishId = $event"
+      @change="handleSearch"
     />
 
     <v-footer app style="font-size: small; max-height: 31px">

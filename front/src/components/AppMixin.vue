@@ -41,6 +41,7 @@ import repeat from 'lodash/repeat'
 import placeNames from 'Data/placeNames'
 import FishWindow from '@/utils/FishWindow'
 import ClipboardJS from 'clipboard'
+import { FishListUpdateWorker } from '@/utils/new/FishListUpdate'
 
 export default {
   name: 'AppMixin',
@@ -66,6 +67,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    fishUpdater: undefined,
     showUpdateAvailableDialog: false,
     newVersion: undefined,
     showRoseDialog: false,
@@ -651,23 +653,30 @@ export default {
     const sounds = await this.loadingSounds()
     this.setSounds(DataUtil.toMap(sounds, it => it.key))
 
+    this.fishUpdater = new FishListUpdateWorker(
+      this.lazySourceImportantFishList,
+      this.fishListTimePart,
+      this.extraFishListTimePart,
+      this.getCountDown
+    )
+    const now = Date.now()
+    this.now = now
+    this.fishUpdater.initAllFishTimePart(now)
+
+    this.finishLoading()
+    this.finishReloadPage()
+
     setInterval(() => {
-      const now = Date.now()
-      this.now = now
-      this.updateFishListTimePart(now)
+      this.now = Date.now()
       this.checkNotification(now)
-      if (this.loading) {
-        this.finishLoading()
-        this.finishReloadPage()
-      }
     }, 1000)
-    // this.weatherChangeTrigger *= -1
-    // setInterval(() => {
-    //   this.weatherChangeTrigger *= -1
-    // }, Math.floor(WEATHER_CHANGE_INTERVAL_EARTH))
-    // }, 200)
+    window.requestAnimationFrame(() => this.fishUpdater.doNext(Date.now()))
   },
   methods: {
+    handleSearch(fishId) {
+      this.searchedFishId = fishId
+      this.fishUpdater.searchedFishId = fishId
+    },
     closeStrictMode() {
       this.disableStrictMode()
       // this.sendElectronEvent('setStrictMode', false)
@@ -786,6 +795,7 @@ export default {
     onFishSelected({ fishId, firstSpotId }) {
       this.selectedFishId = fishId
       this.selectedFishFirstSpotId = firstSpotId
+      this.fishUpdater.selectedFishId = this.selectedFishId
     },
     showBaitDialogOfSetting() {
       this.showBaitDialog = true

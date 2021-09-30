@@ -215,7 +215,7 @@
       :extraFishListTimePart="extraFishListTimePart"
       :fish-list-weather-change-part="fishListWeatherChangePart"
       :now="now"
-      @change="searchedFishId = $event"
+      @change="handleSearch"
     />
 
     <fish-setting-dialog v-model="showSettingDialog" />

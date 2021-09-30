@@ -24,4 +24,8 @@ module.exports = {
     medium: 'error',
     heavy: 'warning',
   },
+
+  FISHING: 0,
+  WAITING: 1,
+  ALL_AVAILABLE: 2,
 }
