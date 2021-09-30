@@ -1,4 +1,4 @@
-import { ALL_AVAILABLE } from 'Data/constants'
+import { ALL_AVAILABLE, FISHING } from 'Data/constants'
 import DataUtil from '@/utils/DataUtil'
 import Vue from 'vue'
 
@@ -7,9 +7,11 @@ class FishListUpdateWorker {
   searchedFishId
   fishToUpdate = []
   extraFishToUpdate = []
+  activeFishCnt = 0
   total = 0
   current = 0
   step = 1
+  initCountDownSlotNumber = 1
   updateCountDownSlotNumber = 1
   slot = 0
 
@@ -40,7 +42,7 @@ class FishListUpdateWorker {
   genUpdateWorks(now) {
     this.extraFishToUpdate = []
     this.fishToUpdate = []
-
+    this.activeFishCnt = 0
     // source fish list
     this.fishList.forEach((fish, index) => {
       const countDown = this.fishListTimePart[fish._id]?.countDown
@@ -49,6 +51,8 @@ class FishListUpdateWorker {
       // if fish has predators, their constraints are also checked
       if (countDown?.type === ALL_AVAILABLE) {
         return
+      } else if (countDown?.type === FISHING) {
+        this.activeFishCnt++
       }
 
       // calculate countdown for selected(in fish list) and searched fish
@@ -87,8 +91,16 @@ class FishListUpdateWorker {
     if (this.slot === 0) {
       this.genUpdateWorks(now)
       console.log(this.step)
-    } else {
+    } else if (
+      this.slot >= this.initCountDownSlotNumber &&
+      this.slot < this.initCountDownSlotNumber + this.updateCountDownSlotNumber
+    ) {
       this.updateCountdownNext(now)
+    } else if (
+      this.slot >=
+      this.initCountDownSlotNumber + this.updateCountDownSlotNumber
+    ) {
+      // do nothing
     }
     this.slot = (this.slot + 1) % 60
     window.requestAnimationFrame(() => this.doNext(Date.now()))

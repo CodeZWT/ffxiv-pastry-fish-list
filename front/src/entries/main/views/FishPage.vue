@@ -205,7 +205,8 @@
                           </v-expansion-panel-header>
                           <v-expansion-panel-content>
                             <fish-list
-                              :fish-list="pinnedFishList"
+                              :fish-dict="lazyTransformedFishDict"
+                              :fish-ids="pinnedFishIdList"
                               :fish-list-time-part="fishListTimePart"
                               :fish-list-weather-change-part="fishListWeatherChangePart"
                               @fish-selected="onFishSelected($event)"
@@ -232,7 +233,8 @@
                           <v-expansion-panel-header>默认列表</v-expansion-panel-header>
                           <v-expansion-panel-content>
                             <fish-list
-                              :fish-list="sortedFilteredFishList"
+                              :fish-dict="lazyTransformedFishDict"
+                              :fish-ids="sortedFilteredFishIdList"
                               :fish-list-time-part="fishListTimePart"
                               :fish-list-weather-change-part="fishListWeatherChangePart"
                               show-fish-divider
@@ -258,7 +260,7 @@
                       :reverse-transition="false"
                     >
                       <fish-list
-                        :fish-list="toBeNotifiedFishList"
+                        :fish-list="toBeNotifiedFishIdList"
                         :fish-list-time-part="fishListTimePart"
                         :fish-list-weather-change-part="fishListWeatherChangePart"
                         clear-all-button
@@ -386,12 +388,12 @@ export default {
     'lazyFishSourceList',
     'lazyTransformedFishList',
     'lazyTransformedFishDict',
-    'pinnedFishList',
+    'pinnedFishIdList',
     'fishListTimePart',
     'extraFishListTimePart',
     'fishListWeatherChangePart',
-    'sortedFilteredFishList',
-    'toBeNotifiedFishList',
+    'sortedFilteredFishIdList',
+    'toBeNotifiedFishIdList',
     'selectedFish',
     'filteredFishIdSet',
     'activeTabIndex',

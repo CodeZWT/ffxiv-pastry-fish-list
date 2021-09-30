@@ -506,9 +506,9 @@
           :fishListTimePart="fishListTimePart"
           :extraFishListTimePart="extraFishListTimePart"
           :fishListWeatherChangePart="fishListWeatherChangePart"
-          :pinnedFishList="pinnedFishList"
-          :sortedFilteredFishList="sortedFilteredFishList"
-          :toBeNotifiedFishList="toBeNotifiedFishList"
+          :pinnedFishIdList="pinnedFishIdList"
+          :sortedFilteredFishIdList="sortedFilteredFishIdList"
+          :toBeNotifiedFishIdList="toBeNotifiedFishIdList"
           :selectedFish="selectedFish"
           :filteredFishIdSet="filteredFishIdSet"
           :activeTabIndex="activeTabIndex"
@@ -614,7 +614,9 @@
                     FFX|V Fish Tracker App
                   </a>
                 </li>
-                <li><a @click="goTo('https://garlandtools.org/db/')">Garland Data</a></li>
+                <li>
+                  <a @click="goTo('https://ffxiv.cyanclay.xyz/db/')">Garland 数据</a>
+                </li>
                 <li><a @click="goTo('https://cn.ff14angler.com/')">饥饿的猫</a></li>
                 <li>
                   <a @click="goTo('https://ffxivteamcraft.com/')">FFXIV TEAMCRAFT</a>

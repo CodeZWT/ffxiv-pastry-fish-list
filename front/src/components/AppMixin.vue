@@ -28,7 +28,6 @@ import DATA_CN from 'Data/translation'
 import _ from 'lodash'
 import FIX, { SATISFACTION_SUPPLY_FISH } from 'Data/fix'
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import isEqual from 'lodash/isEqual'
 import UploadUtil from '@/utils/UploadUtil'
 import { INTERVAL_MINUTE } from 'Data/constants'
 import rcapiService from '@/service/rcapiService'
@@ -100,6 +99,8 @@ export default {
     lazyTransformedFishDict: {},
     lazyFishConstraintDict: {},
     sortedFishIds: [],
+    sortedPinnedFishIds: [],
+    sortedToBeNotifiedIds: [],
     fishListTimePart: {},
     searchedFishId: undefined,
     selectedFishId: undefined,
@@ -134,13 +135,15 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
-    listFishCntForMini() {
-      return this.listFishCnt.slice(0, 2)
-    },
+    // listFishCntForMini() {
+    //   return this.listFishCnt.slice(0, 2)
+    // },
     allFish() {
+      console.log('allFish triggered')
       return this.fish
     },
     filteredFishIdSet() {
+      console.log('filteredFishIdSet triggered')
       const idSet = new Set()
       this.lazyTransformedFishList
         .filter(fish => {
@@ -171,6 +174,7 @@ export default {
       return idSet
     },
     baitFilteredFishIdSet() {
+      console.log('baitFilteredFishIdSet triggered')
       const list = Array.from(this.filteredFishIdSet)
       const idSet = new Set()
       const baitIds = this.baitFilter.baitIds
@@ -189,28 +193,26 @@ export default {
       // console.log(Array.from(idSet))
       return idSet
     },
-    sortedFilteredFishList() {
+    sortedFilteredFishIdList() {
+      console.log('sortedFilteredFishIdList triggered')
       const idSet = this.baitFilteredFishIdSet
       let countdownSortedFishList = this.sortedFishIds
         .filter(id => idSet.has(id))
-        .map(id => this.lazyTransformedFishDict[id])
         .filter(
           it =>
             this.listSetting.pinned.showPinnedInNormalList || !this.getFishPinned(it.id)
         )
-      // .filter((it, index) => this.filters.fishN === -1 || index < this.filters.fishN)
 
       if (this.filters.sorterType === 'RATE') {
         const firstWaitingFishLongerThanTwoHoursIndex = countdownSortedFishList.findIndex(
-          fish => {
+          fishId => {
             const countDownType =
-              this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE
+              this.fishListTimePart[fishId]?.countDown.type ?? DataUtil.ALL_AVAILABLE
             if (countDownType === DataUtil.FISHING) {
               return false
             }
             const countDownTime =
-              this.fishListTimePart[fish._id]?.countDown?.time ??
-              DataUtil.INTERVAL_HOUR * 2
+              this.fishListTimePart[fishId]?.countDown?.time ?? DataUtil.INTERVAL_HOUR * 2
             if (countDownTime >= DataUtil.INTERVAL_HOUR * 2) {
               return true
             }
@@ -226,46 +228,32 @@ export default {
               )
 
         countdownSortedFishList = _.sortBy(countdownSortedFishList, [
-          fish =>
-            this.fishListTimePart[fish._id]?.countDown.type ?? DataUtil.ALL_AVAILABLE,
-          fish => this.lazyFishWindowRates[fish._id],
+          fishId =>
+            this.fishListTimePart[fishId]?.countDown.type ?? DataUtil.ALL_AVAILABLE,
+          fishId => this.lazyFishWindowRates[fishId],
         ]).concat(rateSortExcludedFish)
       }
 
       return countdownSortedFishList
     },
-    pinnedFishList() {
-      const fishSourceList = this.lazyTransformedFishList
-      const sortedFishIds = this.sortedFishIds
-      return _.sortBy(
-        fishSourceList.filter(it => this.getFishPinned(it.id)),
-        [
-          fish => {
-            if (this.filters.sorterType === 'COUNTDOWN') {
-              return 1
-            } else {
-              return this.lazyFishWindowRates[fish.id]
-            }
-          },
-          fish => {
-            const index = sortedFishIds.indexOf(fish.id)
-            if (index === -1) {
-              return sortedFishIds.length
-            } else {
-              return index
-            }
-          },
-          fish => fish.id,
-        ]
-      )
+    pinnedFishIdList() {
+      console.log('pinnedFishIdList triggered')
+      const sortedFishIds = this.sortedPinnedFishIds
+      if (this.filters.sorterType === 'COUNTDOWN') {
+        return sortedFishIds
+      } else {
+        return _.sortBy(sortedFishIds, [fish => this.lazyFishWindowRates[fish.id]])
+      }
     },
     listFishCnt() {
+      console.log('listFishCnt triggered')
+      // TODO implement with id list instead
       const fishListTimePart = this.fishListTimePart
       const doFullCountSearch = [true, false, true]
       const allListCnt = [
-        this.pinnedFishList,
-        this.sortedFilteredFishList,
-        this.toBeNotifiedFishList,
+        this.pinnedFishIdList,
+        this.sortedFilteredFishIdList,
+        this.toBeNotifiedFishIdList,
       ].map((list, index) => {
         if (Object.keys(fishListTimePart).length === 0) {
           return {
@@ -277,16 +265,16 @@ export default {
         if (doFullCountSearch[index]) {
           return {
             type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
-            cnt: list.reduce((cnt, fish) => {
+            cnt: list.reduce((cnt, fishId) => {
               return (
                 cnt +
-                (fishListTimePart[fish.id]?.countDown?.type === DataUtil.FISHING ? 1 : 0)
+                (fishListTimePart[fishId]?.countDown?.type === DataUtil.FISHING ? 1 : 0)
               )
             }, 0),
           }
         } else {
           const firstNotFishingIndex = list.findIndex(
-            it => fishListTimePart[it.id]?.countDown?.type !== DataUtil.FISHING
+            it => fishListTimePart[it]?.countDown?.type !== DataUtil.FISHING
           )
           return {
             type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
@@ -299,24 +287,17 @@ export default {
         allListCnt[2],
       ]
     },
-    toBeNotifiedFishList() {
-      const fishSourceList = this.lazyTransformedFishList
-      const sortedFishIds = this.sortedFishIds
-      return _.sortBy(
-        fishSourceList.filter(it => this.getFishToBeNotified(it.id)),
-        [
-          fish => {
-            if (this.filters.sorterType === 'COUNTDOWN') {
-              return 1
-            } else {
-              return this.lazyFishWindowRates[fish.id]
-            }
-          },
-          fish => sortedFishIds.indexOf(fish.id),
-        ]
-      )
+    toBeNotifiedFishIdList() {
+      console.log('toBeNotifiedFishIdList triggered')
+      const sortedFishIds = this.sortedToBeNotifiedIds
+      if (this.filters.sorterType === 'COUNTDOWN') {
+        return sortedFishIds
+      } else {
+        return _.sortBy(sortedFishIds, fishId => this.lazyFishWindowRates[fishId])
+      }
     },
     selectedFish() {
+      console.log('selectedFish triggered')
       const fish = this.allFish[this.selectedFishId]
       if (fish) {
         return {
@@ -468,6 +449,7 @@ export default {
     },
     fishListTimePart: {
       handler: function(fishListTimePart) {
+        console.log('fishListTimePart watcher triggered')
         const newSortedFishIds = _.sortBy(fishListTimePart, [
           'countDown.type',
           'countDown.timePoint',
@@ -476,14 +458,24 @@ export default {
         if (!_.isEqual(this.sortedFishIds, newSortedFishIds)) {
           this.sortedFishIds = newSortedFishIds
         }
+        const newSortedPinIds = newSortedFishIds.filter(id => this.getFishPinned(id))
+        if (!_.isEqual(this.sortedPinnedFishIds, newSortedPinIds)) {
+          this.sortedPinnedFishIds = newSortedPinIds
+        }
+        const newSortedNotifyIds = newSortedFishIds.filter(id =>
+          this.getFishToBeNotified(id)
+        )
+        if (!_.isEqual(this.sortedToBeNotifiedIds, newSortedNotifyIds)) {
+          this.sortedToBeNotifiedIds = newSortedNotifyIds
+        }
       },
       deep: true,
     },
-    listFishCnt(listFishCnt, oldValue) {
-      if (!isEqual(listFishCnt, oldValue)) {
-        this.sendElectronEvent('listCntUpdated', listFishCnt)
-      }
-    },
+    // listFishCnt(listFishCnt, oldValue) {
+    //   if (!isEqual(listFishCnt, oldValue)) {
+    //     this.sendElectronEvent('listCntUpdated', listFishCnt)
+    //   }
+    // },
     // weatherChangeTrigger() {
     // this.updateWeatherChangePart(this.now)
     // },
@@ -931,35 +923,35 @@ export default {
           this.notificationRecords[setting.key] ?? []
         )
         existedRecordFishIds.forEach(oldRecordFishId => {
-          if (!this.toBeNotifiedFishList.find(fish => fish._id === +oldRecordFishId)) {
+          if (!this.toBeNotifiedFishIdList.find(fishId => fishId === +oldRecordFishId)) {
             this.notificationRecords[setting.key][oldRecordFishId] = undefined
           }
         })
       })
 
-      this.toBeNotifiedFishList.forEach(fish => {
-        const countDown = this.fishListTimePart[fish.id]?.countDown
+      this.toBeNotifiedFishIdList.forEach(fishId => {
+        const countDown = this.fishListTimePart[fishId]?.countDown
         if (countDown?.type === DataUtil.ALL_AVAILABLE) {
-          console.warn('all available fish in notification list!', fish._id)
+          console.warn('all available fish in notification list!', fishId)
           return false
         }
 
         this.notification.settings.forEach(setting => {
           if (setting.enabled) {
-            const startTime = this.notificationRecords[setting.key]?.[fish._id]
+            const startTime = this.notificationRecords[setting.key]?.[fishId]
             if (startTime) {
               if (now >= startTime - setting.before * DataUtil.INTERVAL_MINUTE) {
-                notifications.push({ fish, setting })
-                this.notificationRecords[setting.key][fish._id] = undefined
+                notifications.push({ fishId, setting })
+                this.notificationRecords[setting.key][fishId] = undefined
               }
             } else {
               const fishWindows =
-                this.fishListWeatherChangePart[fish.id]?.fishWindows ?? []
+                this.fishListWeatherChangePart[fishId]?.fishWindows ?? []
 
               if (!this.notificationRecords[setting.key]) {
                 this.notificationRecords[setting.key] = []
               }
-              this.notificationRecords[setting.key][fish._id] = fishWindows
+              this.notificationRecords[setting.key][fishId] = fishWindows
                 .map(it => it[0])
                 .find(window => now <= window - setting.before * DataUtil.INTERVAL_MINUTE)
             }
@@ -970,7 +962,7 @@ export default {
       if (notifications.length > 0) {
         console.debug(
           'ring bell for',
-          notifications.map(it => it.fish._id)
+          notifications.map(it => this.lazyTransformedFishDict[it.fishId])
         )
         this.ringBell(notifications.map(it => it.setting.sound))
         if (this.isSystemNotificationEnabled) {

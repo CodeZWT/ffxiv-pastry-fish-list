@@ -2,7 +2,7 @@
   <v-row no-gutters class="my-4 inner">
     <v-col cols="12">
       <div
-        v-if="fishList.length <= 0"
+        v-if="fishListToShow.length <= 0"
         class="d-flex justify-center align-content-center pa-2"
       >
         <slot name="empty" />
@@ -71,12 +71,17 @@ import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import FishListItem from '@/components/FishListItem'
 import ClickHelper from '@/components/basic/ClickHelper'
+import isEqual from 'lodash/isEqual'
 
 export default {
   name: 'fish-list',
   components: { ClickHelper, FishListItem },
   props: {
-    fishList: {
+    fishDict: {
+      type: Object,
+      default: () => ({}),
+    },
+    fishIds: {
       type: Array,
       default: () => [],
     },
@@ -121,16 +126,18 @@ export default {
     openPanelIndex: undefined,
     showClearConfirmDialog: false,
     showN: 50,
+    fishListToShow: [],
   }),
   computed: {
     remainingCnt() {
-      return this.fishList.length - this.showN
+      return this.fishIds.length - this.showN
     },
-    fishListOfShowLimit() {
-      return this.enableLoadMore ? this.fishList.slice(0, this.showN) : this.fishList
+    // watched
+    fishIdsToShow() {
+      return this.enableLoadMore ? this.fishIds.slice(0, this.showN) : this.fishIds
     },
     flattenFishList() {
-      return this.fishListOfShowLimit.flatMap(fish => {
+      return this.fishListToShow.flatMap(fish => {
         return [
           fish,
           ...(this.hidePredators
@@ -172,6 +179,17 @@ export default {
     },
     ...mapState({ allFish: 'fish' }),
     ...mapGetters(['getFishCompleted', 'getFishCompleted', 'filters']),
+  },
+  watch: {
+    fishIdsToShow: {
+      handler(fishIds, old) {
+        if (!isEqual(fishIds, old)) {
+          console.log('update fish list', fishIds.length)
+          this.fishListToShow = fishIds.map(id => this.fishDict[id])
+        }
+      },
+      immediate: true,
+    },
   },
   methods: {
     loadMore() {

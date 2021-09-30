@@ -127,7 +127,7 @@ function toHuijiWikiItemLink({ name }) {
   return `https://ff14.huijiwiki.com/wiki/%E7%89%A9%E5%93%81:${encodeURI(name)}`
 }
 
-const GARLAND_BASE_URL = 'https://garlandtools.org/db'
+const GARLAND_BASE_URL = 'https://ffxiv.cyanclay.xyz/db'
 
 function toGarlandItemLink({ id }) {
   return `${GARLAND_BASE_URL}/#item/${id}`
@@ -231,7 +231,7 @@ export default {
     GARLAND: {
       id: 'GARLAND',
       icon: 'http://garlandtools.org/favicon.png',
-      title: 'Garland Data',
+      title: 'Garland 数据',
       itemFn: toGarlandItemLink,
       spotFn: toGarlandSpotLink,
     },
@@ -243,13 +243,16 @@ export default {
       spotFn: toTeamcraftSpotLink,
     },
   },
-
+  itemIconUrlOf(iconId) {
+    return `https://ffxiv.cyanclay.xyz/files/icons/item/t/${iconId}.png`
+  },
   iconIdToUrl(iconId) {
     if (iconId == null) return ''
-    const iconIdStr = iconId + ''
-    const icon = iconIdStr.padStart(6, '0')
-    const path = icon.substring(0, 3) + '000'
-    return `${this.XIV_API_HOST}/i/${path}/${icon}.png`
+    return this.itemIconUrlOf(iconId)
+    // const iconIdStr = iconId + ''
+    // const icon = iconIdStr.padStart(6, '0')
+    // const path = icon.substring(0, 3) + '000'
+    // return `${this.XIV_API_HOST}/i/${path}/${icon}.png`
   },
   iconIdToClass: ImgUtil.iconIdToClass,
   getName(multiLanguageItem, locale = 'chs') {

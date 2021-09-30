@@ -210,9 +210,9 @@
         :fishListTimePart="fishListTimePart"
         :extraFishListTimePart="extraFishListTimePart"
         :fishListWeatherChangePart="fishListWeatherChangePart"
-        :pinnedFishList="pinnedFishList"
-        :sortedFilteredFishList="sortedFilteredFishList"
-        :toBeNotifiedFishList="toBeNotifiedFishList"
+        :pinnedFishIdList="pinnedFishIdList"
+        :sortedFilteredFishIdList="sortedFilteredFishIdList"
+        :toBeNotifiedFishIdList="toBeNotifiedFishIdList"
         :selectedFish="selectedFish"
         :filteredFishIdSet="filteredFishIdSet"
         :active-tab-index="activeTabIndex"
@@ -229,12 +229,6 @@
         :fishListTimePart="fishListTimePart"
         :extraFishListTimePart="extraFishListTimePart"
         :fishListWeatherChangePart="fishListWeatherChangePart"
-        :pinnedFishList="pinnedFishList"
-        :sortedFilteredFishList="sortedFilteredFishList"
-        :toBeNotifiedFishList="toBeNotifiedFishList"
-        :selectedFish="selectedFish"
-        :filteredFishIdSet="filteredFishIdSet"
-        :right-pane-full-screen="true"
         :toggle-map-menu="showMapMenu"
         @fish-selected="onFishSelected"
       />
@@ -264,17 +258,7 @@
         :now="now"
         :is-mobile="isMobile"
         :lazyFishSourceList="lazySourceFishList"
-        :lazyTransformedFishList="lazyTransformedFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
-        :fishListTimePart="fishListTimePart"
-        :extraFishListTimePart="extraFishListTimePart"
-        :fishListWeatherChangePart="fishListWeatherChangePart"
-        :pinnedFishList="pinnedFishList"
-        :sortedFilteredFishList="sortedFilteredFishList"
-        :toBeNotifiedFishList="toBeNotifiedFishList"
-        :selectedFish="selectedFish"
-        :filteredFishIdSet="filteredFishIdSet"
-        @fish-selected="onFishSelected"
       />
     </div>
   </div>
@@ -313,12 +297,12 @@ export default {
     'lazySourceFishList',
     'lazyTransformedFishList',
     'lazyTransformedFishDict',
-    'pinnedFishList',
+    'pinnedFishIdList',
     'fishListTimePart',
     'extraFishListTimePart',
     'fishListWeatherChangePart',
-    'sortedFilteredFishList',
-    'toBeNotifiedFishList',
+    'sortedFilteredFishIdList',
+    'toBeNotifiedFishIdList',
     'selectedFish',
     'filteredFishIdSet',
   ],

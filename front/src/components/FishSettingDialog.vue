@@ -466,7 +466,7 @@ export default {
     },
     testNotification() {
       new Notification('系统通知测试', {
-        icon: DataUtil.iconIdToUrl(29159),
+        icon: DataUtil.itemIconUrlOf(28495),
         body: '有鱼准备脱钩了！',
       })
     },
