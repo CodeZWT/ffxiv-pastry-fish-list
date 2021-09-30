@@ -1,8 +1,8 @@
 interface FishCondition {
-  etHourStart: number;
-  etHourEnd: number; // not included
-  prevWeathers: number[];
-  weathers: number[];
+  etHourStart: number
+  etHourEnd: number // not included
+  prevWeathers: number[]
+  weathers: number[]
 }
 
-export const windowOf = (condition: FishCondition) => [condition];
+export const windowOf = (condition: FishCondition) => [condition]

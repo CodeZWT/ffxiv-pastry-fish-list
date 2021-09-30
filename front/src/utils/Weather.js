@@ -10,11 +10,11 @@ function getStartLight() {
   //   _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
   //   LocalStorageUtil.loadUserData()
   // )
-  const starLigtSettingPath = 'event.startLight'
+  const starLightSettingPath = 'event.startLight'
   return _.get(
     LocalStorageUtil.loadUserData(),
-    starLigtSettingPath,
-    _.get(DataUtil.USER_DEFAULT_DATA, starLigtSettingPath)
+    starLightSettingPath,
+    _.get(DataUtil.USER_DEFAULT_DATA, starLightSettingPath)
   )
 }
 
