@@ -218,6 +218,9 @@ export default new Vuex.Store({
     pinnedFishIds: state => {
       return state.userData.pinned
     },
+    toBeNotifiedFishIds: state => {
+      return state.userData.toBeNotified
+    },
     showFilter: state => {
       return state.userData.showFilter
     },

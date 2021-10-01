@@ -200,8 +200,7 @@ export default {
       let countdownSortedFishList = this.sortedFishIds
         .filter(id => idSet.has(id))
         .filter(
-          it =>
-            this.listSetting.pinned.showPinnedInNormalList || !this.getFishPinned(it.id)
+          id => this.listSetting.pinned.showPinnedInNormalList || !this.getFishPinned(id)
         )
 
       if (this.filters.sorterType === 'RATE') {
@@ -388,6 +387,8 @@ export default {
       'baitIdsForNotification',
     ]),
     ...mapGetters([
+      'pinnedFishIds',
+      'toBeNotifiedFishIds',
       'listSetting',
       'isRoseMode',
       'mainWindowCloseMode',
@@ -471,6 +472,22 @@ export default {
         }
       },
       deep: true,
+    },
+    pinnedFishIds(pinnedFishIds) {
+      const newSortedPinIds = this.sortedFishIds.filter(fishId =>
+        pinnedFishIds.includes(DataUtil.toItemId(fishId))
+      )
+      if (!_.isEqual(this.sortedPinnedFishIds, newSortedPinIds)) {
+        this.sortedPinnedFishIds = newSortedPinIds
+      }
+    },
+    toBeNotifiedFishIds(toBeNotifiedFishIds) {
+      const newSortedToBeNotifiedIds = this.sortedFishIds.filter(fishId =>
+        toBeNotifiedFishIds.includes(DataUtil.toItemId(fishId))
+      )
+      if (!_.isEqual(this.sortedToBeNotifiedIds, newSortedToBeNotifiedIds)) {
+        this.sortedToBeNotifiedIds = newSortedToBeNotifiedIds
+      }
     },
     // listFishCnt(listFishCnt, oldValue) {
     //   if (!isEqual(listFishCnt, oldValue)) {
