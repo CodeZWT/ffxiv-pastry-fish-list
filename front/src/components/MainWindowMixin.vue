@@ -9,7 +9,7 @@ export default {
   name: 'MainWindowMixin',
   data() {
     return {
-      fisher: ImgUtil.getImgUrl('pastry-fish.png'),
+      fisher: ImgUtil.getImgUrl('pastry-fish-surprise.png'),
       THEME_SETTING_MODES: DataUtil.THEME_SETTING_MODES,
       THEME_MODE_ICONS: ['mdi-weather-night', 'mdi-weather-sunny', 'mdi-brightness-auto'],
       isElectron: DevelopmentModeUtil.isElectron(),

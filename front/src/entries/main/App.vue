@@ -55,7 +55,15 @@
         @click="onFishIconClicked"
         :style="`margin-left: ${isMobile ? 0 : -12}px; -webkit-app-region: none`"
       >
-        <v-img :src="fisher" />
+        <v-tooltip right z-index="10">
+          <template v-slot:activator="{ on, attrs }">
+            <v-img v-on="on" v-bind="attrs" :src="fisher" />
+          </template>
+          <div class="d-flex flex-column align-center">
+            <v-img :src="fisher" />
+            <div>Surprise!</div>
+          </div>
+        </v-tooltip>
       </v-avatar>
       <v-toolbar-title
         v-if="!isMobile"
