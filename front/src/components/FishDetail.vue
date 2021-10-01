@@ -21,7 +21,6 @@
           :fish-time-part="fishTimePart"
           :fish-weather-change-part="fishWeatherChangePart"
           :predators="predators"
-          :now="now"
           :forceShowComponents="forceShowComponents"
           :hide-map="hideMap"
           @close-dialog="$emit('close-dialog')"
@@ -49,10 +48,6 @@ export default {
     inPane: {
       type: Boolean,
       default: false,
-    },
-    now: {
-      type: Number,
-      default: Date.now(),
     },
     forceShowComponents: {
       type: Array,

@@ -62,10 +62,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    now: {
-      type: Number,
-      default: Date.now(),
-    },
   },
   data: vm => ({
     lazyExpansionValue: vm.expanded ? 0 : undefined,
@@ -129,6 +125,7 @@ export default {
     ...mapState({
       allFish: 'fish',
       fishingSpots: 'fishingSpots',
+      now: 'now',
     }),
     ...mapGetters(['fishEyesUsed']),
   },

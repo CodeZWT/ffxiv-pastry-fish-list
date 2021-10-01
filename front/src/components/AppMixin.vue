@@ -139,11 +139,11 @@ export default {
     //   return this.listFishCnt.slice(0, 2)
     // },
     allFish() {
-      console.log('allFish triggered')
+      // console.log('allFish triggered')
       return this.fish
     },
     filteredFishIdSet() {
-      console.log('filteredFishIdSet triggered')
+      // console.log('filteredFishIdSet triggered')
       const idSet = new Set()
       this.lazyTransformedFishList
         .filter(fish => {
@@ -174,7 +174,7 @@ export default {
       return idSet
     },
     baitFilteredFishIdSet() {
-      console.log('baitFilteredFishIdSet triggered')
+      // console.log('baitFilteredFishIdSet triggered')
       const list = Array.from(this.filteredFishIdSet)
       const idSet = new Set()
       const baitIds = this.baitFilter.baitIds
@@ -194,7 +194,7 @@ export default {
       return idSet
     },
     sortedFilteredFishIdList() {
-      console.log('sortedFilteredFishIdList triggered')
+      // console.log('sortedFilteredFishIdList triggered')
       const now = Date.now()
       const idSet = this.baitFilteredFishIdSet
       let countdownSortedFishList = this.sortedFishIds
@@ -237,7 +237,7 @@ export default {
       return countdownSortedFishList
     },
     pinnedFishIdList() {
-      console.log('pinnedFishIdList triggered')
+      // console.log('pinnedFishIdList triggered')
       const sortedFishIds = this.sortedPinnedFishIds
       if (this.filters.sorterType === 'COUNTDOWN') {
         return sortedFishIds
@@ -246,7 +246,7 @@ export default {
       }
     },
     listFishCnt() {
-      console.log('listFishCnt triggered')
+      // console.log('listFishCnt triggered')
       // TODO implement with id list instead
       const fishListTimePart = this.fishListTimePart
       const doFullCountSearch = [true, false, true]
@@ -288,7 +288,7 @@ export default {
       ]
     },
     toBeNotifiedFishIdList() {
-      console.log('toBeNotifiedFishIdList triggered')
+      // console.log('toBeNotifiedFishIdList triggered')
       const sortedFishIds = this.sortedToBeNotifiedIds
       if (this.filters.sorterType === 'COUNTDOWN') {
         return sortedFishIds
@@ -297,7 +297,7 @@ export default {
       }
     },
     selectedFish() {
-      console.log('selectedFish triggered')
+      // console.log('selectedFish triggered')
       const fish = this.allFish[this.selectedFishId]
       if (fish) {
         return {
@@ -451,7 +451,7 @@ export default {
     },
     fishListTimePart: {
       handler: function(fishListTimePart) {
-        console.log('fishListTimePart watcher triggered')
+        // console.log('fishListTimePart watcher triggered')
         const newSortedFishIds = _.sortBy(fishListTimePart, [
           'countDown.type',
           'countDown.timePoint',

@@ -341,7 +341,6 @@
             ref="fishDetail"
             :fish="selectedFish"
             :forceShowComponents="forceShowComponents"
-            :now="now"
             in-pane
             @close="showRightPane = false"
           />
@@ -385,7 +384,6 @@ export default {
   },
   mixins: [PageMixin],
   props: [
-    'now',
     'lazyFishSourceList',
     'lazyTransformedFishList',
     'lazyTransformedFishDict',

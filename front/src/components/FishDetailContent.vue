@@ -12,7 +12,6 @@
           :fish="fish"
           :fish-weather-change-part="fishWeatherChangePart"
           :expanded="component.expanded"
-          :now="component.name === 'DetailItemFishWindowTable' ? now : undefined"
           :show-fishing-range-helper="fish.type === 'normal'"
           :count-down-time-text="countDownTimeText"
           :count-down-remain-percentage="countDownRemainPercentage"
@@ -78,10 +77,6 @@ export default {
     listItemColor: {
       type: String,
       default: '',
-    },
-    now: {
-      type: Number,
-      default: Date.now(),
     },
     forceShowComponents: {
       type: Array,
@@ -226,7 +221,7 @@ export default {
         }))
       }
     },
-    ...mapState({ allFish: 'fish' }),
+    ...mapState({ allFish: 'fish', now: 'now' }),
     ...mapGetters([
       'getWeather',
       'getFishingSpot',
