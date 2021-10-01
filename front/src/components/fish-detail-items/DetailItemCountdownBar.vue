@@ -65,6 +65,8 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
+import isEqual from 'lodash/isEqual'
+import { mapState } from 'vuex'
 
 export default {
   name: 'DetailItemCountdownBar',
@@ -74,21 +76,19 @@ export default {
       type: Object,
       default: undefined,
     },
-    countDownTimeText: {
-      type: String,
-      default: '',
-    },
-    countDownRemainPercentage: {
-      type: Number,
-      default: undefined,
-    },
   },
   data: () => ({
     FISHING: DataUtil.FISHING,
     WAITING: DataUtil.WAITING,
     loading: true,
+    countDownTimeText: '',
+    countDownRemainPercentage: undefined,
   }),
   computed: {
+    ...mapState(['now']),
+    countDownTime() {
+      return this.fish.countDownTimePoint - this.now
+    },
     fishingColor() {
       return DataUtil.getColorByStatus(
         this.$vuetify.theme.currentTheme,
@@ -107,6 +107,20 @@ export default {
       },
       immediate: true,
     },
+    countDownTime(countDownTime) {
+      const newCountDownTimeText = this.printCountDownTime(countDownTime, 2)
+      if (!isEqual(this.countDownTimeText, newCountDownTimeText)) {
+        this.countDownTimeText = newCountDownTimeText
+      }
+
+      const newPercentage = Math.ceil((countDownTime / this.fish.countDownTotal) * 100)
+      if (this.countDownRemainPercentage !== newPercentage) {
+        this.countDownRemainPercentage = newPercentage
+      }
+    },
+  },
+  methods: {
+    printCountDownTime: DataUtil.printCountDownTime,
   },
 }
 </script>

@@ -13,8 +13,6 @@
           :fish-weather-change-part="fishWeatherChangePart"
           :expanded="component.expanded"
           :show-fishing-range-helper="fish.type === 'normal'"
-          :count-down-time-text="countDownTimeText"
-          :count-down-remain-percentage="countDownRemainPercentage"
           @close-dialog="$emit('close-dialog')"
         />
       </v-col>
@@ -37,7 +35,6 @@ import DetailItemQuest from '@/components/fish-detail-items/DetailItemQuest'
 import _ from 'lodash'
 import FIX from 'Data/fix'
 import placeNames from 'Data/placeNames'
-import isEqual from 'lodash/isEqual'
 
 export default {
   name: 'FishDetailContent',
@@ -87,20 +84,7 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
-      countDownTimeText: '',
-      countDownNextInterval: '',
-      countDownRemainPercentage: undefined,
-    }
-  },
   computed: {
-    countDownTime() {
-      return this.fishTimePart.countDown?.timePoint - this.now
-    },
-    nextInterval() {
-      return this.fishTimePart.countDown?.nextTimePoint - this.now
-    },
     fish() {
       const fish = this.value
       const hasPredators = Object.keys(fish.predators).length > 0
@@ -221,7 +205,7 @@ export default {
         }))
       }
     },
-    ...mapState({ allFish: 'fish', now: 'now' }),
+    ...mapState({ allFish: 'fish' }),
     ...mapGetters([
       'getWeather',
       'getFishingSpot',
@@ -235,31 +219,8 @@ export default {
       'getItemIconClass',
     ]),
   },
-  watch: {
-    countDownTime(countDownTime) {
-      const newCountDownTimeText = this.printCountDownTime(countDownTime)
-      if (!isEqual(this.countDownTimeText, newCountDownTimeText)) {
-        this.countDownTimeText = newCountDownTimeText
-      }
 
-      const newPercentage = Math.ceil(
-        (countDownTime / this.fishTimePart.countDown.fishWindowTotal) * 100
-      )
-      if (this.countDownRemainPercentage !== newPercentage) {
-        this.countDownRemainPercentage = newPercentage
-      }
-    },
-    nextInterval(nextInterval) {
-      const newText = this.$t('countDown.nextInterval', {
-        nextInterval: this.printCountDownTime(nextInterval, 1, false),
-      })
-      if (!isEqual(this.countDownNextInterval, newText)) {
-        this.countDownNextInterval = newText
-      }
-    },
-  },
   methods: {
-    printCountDownTime: DataUtil.printCountDownTime,
     resize() {
       this.$refs.simpleMap?.resize()
     },
