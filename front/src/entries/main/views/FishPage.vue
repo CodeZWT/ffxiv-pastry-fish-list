@@ -260,7 +260,8 @@
                       :reverse-transition="false"
                     >
                       <fish-list
-                        :fish-list="toBeNotifiedFishIdList"
+                        :fish-dict="lazyTransformedFishDict"
+                        :fish-ids="toBeNotifiedFishIdList"
                         :fish-list-time-part="fishListTimePart"
                         :fish-list-weather-change-part="fishListWeatherChangePart"
                         clear-all-button

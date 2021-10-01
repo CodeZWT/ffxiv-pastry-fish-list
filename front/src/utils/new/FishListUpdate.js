@@ -1,5 +1,4 @@
 import { ALL_AVAILABLE, FISHING } from 'Data/constants'
-import DataUtil from '@/utils/DataUtil'
 import Vue from 'vue'
 
 class FishListUpdateWorker {
@@ -65,15 +64,16 @@ class FishListUpdateWorker {
       }
 
       const lazyStartTime = countDown?.timePoint
-      const currentInterval = countDown?.time
+      // const currentInterval = countDown?.time
       // calculate for all fish
       // If timePoint and time are not initialized then calculate first
       // If not, update countDown when the actual countdown text needed to be updated
       // e.g. text '05小时候开始' (start in 05 hours) only be updated 1 time per hour
       if (
         !lazyStartTime ||
-        !currentInterval ||
-        DataUtil.shouldUpdate(lazyStartTime - now, currentInterval)
+        // !currentInterval ||
+        lazyStartTime < now
+        // DataUtil.shouldUpdate(lazyStartTime - now, currentInterval)
       ) {
         this.fishToUpdate.push(index)
       }
@@ -86,24 +86,18 @@ class FishListUpdateWorker {
     // console.log('gen new work', this.total, this.step)
   }
 
-  doNext(now) {
+  doNext() {
     // console.debug('slot', this.slot)
+    const now = Date.now()
+    // console.log(new Date(now).getSeconds())
     if (this.slot === 0) {
       this.genUpdateWorks(now)
-      console.log(this.step)
-    } else if (
-      this.slot >= this.initCountDownSlotNumber &&
-      this.slot < this.initCountDownSlotNumber + this.updateCountDownSlotNumber
-    ) {
+      // console.log(this.step)
+    } else if (this.slot > 0) {
       this.updateCountdownNext(now)
-    } else if (
-      this.slot >=
-      this.initCountDownSlotNumber + this.updateCountDownSlotNumber
-    ) {
-      // do nothing
     }
     this.slot = (this.slot + 1) % 60
-    window.requestAnimationFrame(() => this.doNext(Date.now()))
+    window.requestAnimationFrame(() => this.doNext())
   }
 
   updateCountdownNext(now) {
@@ -112,7 +106,7 @@ class FishListUpdateWorker {
       return
     }
     const end = Math.min(this.current + this.step, this.total)
-    // console.debug(`Start Update: [${this.current}, ${end})`)
+    console.debug(`Start Update: [${this.current}, ${end})`)
     for (let i = this.current; i < end; i++) {
       let fish, target
       if (i < this.extraFishToUpdate.length) {

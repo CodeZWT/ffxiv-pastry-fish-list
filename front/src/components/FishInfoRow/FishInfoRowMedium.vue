@@ -67,7 +67,7 @@
                     <div v-bind="attrs" v-on="on">
                       {{
                         $t(transformedFishTimePart.countDownType, {
-                          interval: transformedFishTimePart.countDownTimeText,
+                          interval: countDownTimeText,
                         })
                       }}
                     </div>
@@ -94,7 +94,7 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <div v-bind="attrs" v-on="on" class="text-subtitle-2">
-                      {{ transformedFishTimePart.countDownNextInterval }}
+                      {{ countDownNextInterval }}
                     </div>
                   </template>
                   <span>{{ transformedFishTimePart.countDownNextTimePointText }}</span>

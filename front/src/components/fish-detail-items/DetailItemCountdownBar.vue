@@ -7,7 +7,7 @@
             <template v-slot:activator="{ on, attrs }">
               <div v-bind="attrs" v-on="on" class="d-flex align-center">
                 <strong>{{
-                  $t(fish.countDownTypeName, { interval: fish.countDownTimeText })
+                  $t(fish.countDownTypeName, { interval: countDownTimeText })
                 }}</strong>
               </div>
             </template>
@@ -18,7 +18,7 @@
     </div>
     <div v-else-if="fish.countDownType === FISHING" style="height: 100%">
       <v-progress-linear
-        :value="fish.countDownRemainPercentage"
+        :value="countDownRemainPercentage"
         height="25"
         rounded
         :color="fishingColor"
@@ -29,8 +29,8 @@
               <div v-bind="attrs" v-on="on" class="d-flex align-center">
                 <v-icon size="20">mdi-alarm</v-icon>
                 <strong>
-                  {{ $t(fish.countDownTypeName, { interval: fish.countDownTimeText }) }}
-                  ({{ Math.ceil(value) }}%)
+                  {{ $t(fish.countDownTypeName, { interval: countDownTimeText }) }}
+                  ({{ value }}%)
                 </strong>
                 <effect-icon
                   v-if="fish.addBuffSuffix"
@@ -72,6 +72,14 @@ export default {
   props: {
     fish: {
       type: Object,
+      default: undefined,
+    },
+    countDownTimeText: {
+      type: String,
+      default: '',
+    },
+    countDownRemainPercentage: {
+      type: Number,
       default: undefined,
     },
   },

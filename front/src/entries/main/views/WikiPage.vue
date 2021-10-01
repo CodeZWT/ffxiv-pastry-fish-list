@@ -297,7 +297,8 @@
 
                 <v-card-text>
                   <fish-list
-                    :fish-list="currentSpotPredators"
+                    :fish-dict="lazyTransformedFishDict"
+                    :fish-ids="currentSpotPredatorIds"
                     :fish-list-time-part="fishListTimePart"
                     :fish-list-weather-change-part="fishListWeatherChangePart"
                     :show-fish-divider="false"
@@ -313,7 +314,8 @@
           <v-col cols="12" class="my-1">
             <v-card>
               <fish-list
-                :fish-list="currentFishList"
+                :fish-dict="lazyTransformedFishDict"
+                :fish-ids="currentFishIdList"
                 :fish-list-time-part="fishListTimePart"
                 :fish-list-weather-change-part="fishListWeatherChangePart"
                 hide-spot-column
@@ -643,6 +645,9 @@ export default {
     currentSpotPredators() {
       return this.currentFishList.find(fish => fish.predators.length > 0)?.predators ?? []
     },
+    currentSpotPredatorIds() {
+      return this.currentSpotPredators.map(it => it.id)
+    },
     currentRegionTerritorySpots() {
       return this.mode === 'normal'
         ? this.regionTerritorySpots
@@ -699,17 +704,11 @@ export default {
           return []
       }
     },
-    currentFishList() {
-      return this.spotDict?.[this.currentSpotId]?.fishList?.map(
-        fishId => this.lazyTransformedFishDict[fishId]
-      )
+    currentFishIdList() {
+      return this.spotDict?.[this.currentSpotId]?.fishList
     },
-    currentFlattenFishList() {
-      return (
-        this.currentFishList?.flatMap(fish => {
-          return [fish, ...fish.predators]
-        }) ?? []
-      )
+    currentFishList() {
+      return this.currentFishIdList?.map(fishId => this.lazyTransformedFishDict[fishId])
     },
     normalCompletedSpotFishIds: {
       get() {
@@ -1133,13 +1132,6 @@ export default {
           })
       }
       return []
-    },
-    toPos(index) {
-      return index === 0
-        ? 'first'
-        : index === this.currentFlattenFishList.length - 1
-        ? 'last'
-        : 'inside'
     },
     getPathNodesOf(id) {
       return (

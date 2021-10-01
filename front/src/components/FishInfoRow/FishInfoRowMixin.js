@@ -1,5 +1,6 @@
 import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import isEqual from 'lodash/isEqual'
 
 export default {
   props: {
@@ -40,6 +41,12 @@ export default {
       default: 'normal',
     },
   },
+  data() {
+    return {
+      countDownTimeText: '',
+      countDownNextInterval: '',
+    }
+  },
   computed: {
     isTimeCheckSkipped() {
       return DataUtil.skipTimeCheckOf(this.fish, this.fishEyesUsed)
@@ -59,46 +66,47 @@ export default {
         toBeNotifiedLocked: this.getFishToBeNotifiedLocked(this.fish.id),
       }
     },
+    timePart() {
+      return (
+        this.fishTimePart ?? {
+          id: this.fish.id,
+          countDown: { type: DataUtil.ALL_AVAILABLE },
+        }
+      )
+    },
+    countDownTime() {
+      return this.timePart.countDown?.timePoint - this.now
+    },
+    nextInterval() {
+      return this.timePart.countDown?.nextTimePoint - this.now
+    },
     transformedFishTimePart() {
-      const fishTimePart = this.fishTimePart ?? {
-        id: this.fish.id,
-        countDown: { type: DataUtil.ALL_AVAILABLE },
-      }
       return {
-        countDownType: DataUtil.getCountDownTypeName(fishTimePart.countDown?.type),
-        countDownTime: fishTimePart.countDown?.time,
-        countDownTimeText: this.printCountDownTime(fishTimePart.countDown?.time),
-        countDownTimePoint: fishTimePart.countDown?.timePoint,
+        countDownType: DataUtil.getCountDownTypeName(this.timePart.countDown?.type),
+        countDownTimePoint: this.timePart.countDown?.timePoint,
         countDownTimePointText: this.$t('countDown.timePointHint', {
-          timePoint: DataUtil.formatDateTime(fishTimePart.countDown?.timePoint),
+          timePoint: DataUtil.formatDateTime(this.timePart.countDown?.timePoint),
         }),
         countDownTotal: this.printCountDownTime(
-          fishTimePart.countDown?.fishWindowTotal,
+          this.timePart.countDown?.fishWindowTotal,
           1,
           false
         ),
         countDownTotalHint: this.$t('countDown.intervalHint', {
-          interval: this.printCountDownTime(fishTimePart.countDown?.fishWindowTotal, 2),
-        }),
-        countDownNextInterval: this.$t('countDown.nextInterval', {
-          nextInterval: this.printCountDownTime(
-            fishTimePart.countDown?.nextInterval,
-            1,
-            false
-          ),
+          interval: this.printCountDownTime(this.timePart.countDown?.fishWindowTotal, 2),
         }),
         countDownNextTimePointText: this.$t('countDown.timePointHint', {
-          timePoint: DataUtil.formatDateTime(fishTimePart.countDown?.nextTimePoint),
+          timePoint: DataUtil.formatDateTime(this.timePart.countDown?.nextTimePoint),
         }),
-        hasCountDown: DataUtil.hasCountDown(fishTimePart.countDown),
-        isWaiting: fishTimePart.countDown?.type === DataUtil.WAITING,
-        isFishing: fishTimePart.countDown?.type === DataUtil.FISHING,
+        hasCountDown: DataUtil.hasCountDown(this.timePart.countDown),
+        isWaiting: this.timePart.countDown?.type === DataUtil.WAITING,
+        isFishing: this.timePart.countDown?.type === DataUtil.FISHING,
       }
     },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },
-    ...mapState(['showFishPageRightPane']),
+    ...mapState(['showFishPageRightPane', 'now']),
     ...mapGetters([
       'fishEyesUsed',
       'getWeather',
@@ -112,6 +120,22 @@ export default {
       'getFishToBeNotified',
       'getFishToBeNotifiedLocked',
     ]),
+  },
+  watch: {
+    countDownTime(countDownTime) {
+      const newText = this.printCountDownTime(countDownTime)
+      if (!isEqual(this.countDownTimeText, newText)) {
+        this.countDownTimeText = newText
+      }
+    },
+    nextInterval(nextInterval) {
+      const newText = this.$t('countDown.nextInterval', {
+        nextInterval: this.printCountDownTime(nextInterval, 1, false),
+      })
+      if (!isEqual(this.countDownNextInterval, newText)) {
+        this.countDownNextInterval = newText
+      }
+    },
   },
   methods: {
     secondsToMinutesString: DataUtil.secondsToMinutesString,

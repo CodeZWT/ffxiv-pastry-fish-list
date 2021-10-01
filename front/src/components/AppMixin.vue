@@ -23,7 +23,6 @@ import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
 import { version } from '../../package.json'
 import { MainFeatures } from 'Data/newFeatures'
-import EorzeaTime from '@/utils/Time'
 import DATA_CN from 'Data/translation'
 import _ from 'lodash'
 import FIX, { SATISFACTION_SUPPLY_FISH } from 'Data/fix'
@@ -41,6 +40,7 @@ import placeNames from 'Data/placeNames'
 import FishWindow from '@/utils/FishWindow'
 import ClipboardJS from 'clipboard'
 import { FishListUpdateWorker } from '@/utils/new/FishListUpdate'
+import EorzeaTime from '@/utils/Time'
 
 export default {
   name: 'AppMixin',
@@ -195,6 +195,7 @@ export default {
     },
     sortedFilteredFishIdList() {
       console.log('sortedFilteredFishIdList triggered')
+      const now = Date.now()
       const idSet = this.baitFilteredFishIdSet
       let countdownSortedFishList = this.sortedFishIds
         .filter(id => idSet.has(id))
@@ -211,8 +212,8 @@ export default {
             if (countDownType === DataUtil.FISHING) {
               return false
             }
-            const countDownTime =
-              this.fishListTimePart[fishId]?.countDown?.time ?? DataUtil.INTERVAL_HOUR * 2
+            const timePoint = this.fishListTimePart[fishId]?.countDown?.timePoint
+            const countDownTime = timePoint ? timePoint - now : DataUtil.INTERVAL_HOUR * 2
             if (countDownTime >= DataUtil.INTERVAL_HOUR * 2) {
               return true
             }
@@ -610,6 +611,9 @@ export default {
   },
   async mounted() {
     // setTimeout(async () => {
+    const now = Date.now()
+    this.now = now
+    this.setNow(now)
     this.initialUserData()
     console.debug('website version', this.version)
     if (
@@ -620,7 +624,6 @@ export default {
     }
     this.cafeKitTooltipCopyPatch()
 
-    this.now = Date.now()
     this.lazySourceFishList = Object.values(this.allFish).filter(
       it => it.patch == null || it.patch <= DataUtil.PATCH_MAX
     )
@@ -651,18 +654,20 @@ export default {
       this.extraFishListTimePart,
       this.getCountDown
     )
-    const now = Date.now()
-    this.now = now
-    this.fishUpdater.initAllFishTimePart(now)
-
-    this.finishLoading()
-    this.finishReloadPage()
+    console.debug('init all fish time')
+    this.fishUpdater.initAllFishTimePart(this.now)
 
     setInterval(() => {
-      this.now = Date.now()
+      const now = Date.now()
+      this.now = now
+      this.setNow(now)
       this.checkNotification(now)
+      if (this.loading) {
+        this.finishLoading()
+        this.finishReloadPage()
+      }
     }, 1000)
-    window.requestAnimationFrame(() => this.fishUpdater.doNext(Date.now()))
+    window.requestAnimationFrame(() => this.fishUpdater.doNext())
   },
   methods: {
     handleSearch(fishId) {
@@ -883,38 +888,38 @@ export default {
     loadingSounds() {
       return DataUtil.loadingDefaultSounds(DataUtil.NOTIFICATION_SOUNDS)
     },
-    updateFishListTimePart(now) {
-      this.lazySourceImportantFishList.forEach(fish => {
-        const countDown = this.fishListTimePart[fish._id]?.countDown
-        // if (fish._id === 999999) {
-        //   console.debug(countDown)
-        // }
-        if (countDown?.type === DataUtil.ALL_AVAILABLE) return
-
-        const lazyStartTime = countDown?.timePoint
-        const currentInterval = countDown?.time
-        if (
-          (this.selectedFishId != null && fish._id === this.selectedFishId) ||
-          (this.searchedFishId != null && fish._id === this.searchedFishId)
-        ) {
-          this.$set(this.extraFishListTimePart, fish._id, {
-            id: fish._id,
-            countDown: this.getCountDown(fish, now),
-          })
-        }
-
-        if (
-          !lazyStartTime ||
-          !currentInterval ||
-          DataUtil.shouldUpdate(lazyStartTime - now, currentInterval)
-        ) {
-          this.$set(this.fishListTimePart, fish._id, {
-            id: fish._id,
-            countDown: this.getCountDown(fish, now),
-          })
-        }
-      })
-    },
+    // updateFishListTimePart(now) {
+    //   this.lazySourceImportantFishList.forEach(fish => {
+    //     const countDown = this.fishListTimePart[fish._id]?.countDown
+    //     // if (fish._id === 999999) {
+    //     //   console.debug(countDown)
+    //     // }
+    //     if (countDown?.type === DataUtil.ALL_AVAILABLE) return
+    //
+    //     const lazyStartTime = countDown?.timePoint
+    //     const currentInterval = countDown?.time
+    //     if (
+    //       (this.selectedFishId != null && fish._id === this.selectedFishId) ||
+    //       (this.searchedFishId != null && fish._id === this.searchedFishId)
+    //     ) {
+    //       this.$set(this.extraFishListTimePart, fish._id, {
+    //         id: fish._id,
+    //         countDown: this.getCountDown(fish, now),
+    //       })
+    //     }
+    //
+    //     if (
+    //       !lazyStartTime ||
+    //       !currentInterval ||
+    //       DataUtil.shouldUpdate(lazyStartTime - now, currentInterval)
+    //     ) {
+    //       this.$set(this.fishListTimePart, fish._id, {
+    //         id: fish._id,
+    //         countDown: this.getCountDown(fish, now),
+    //       })
+    //     }
+    //   })
+    // },
     checkNotification(now) {
       let notifications = []
 
@@ -1346,19 +1351,17 @@ export default {
         if (now <= targetFishWindow[0]) {
           return {
             type: DataUtil.WAITING,
-            time: targetFishWindow[0] - now,
+            // time: targetFishWindow[0] - now,
             timePoint: targetFishWindow[0],
             fishWindowTotal: targetFishWindow[1] - targetFishWindow[0],
           }
         } else if (now <= targetFishWindow[1]) {
           return {
             type: DataUtil.FISHING,
-            time: targetFishWindow[1] - now,
+            // time: targetFishWindow[1] - now,
             timePoint: targetFishWindow[1],
             fishWindowTotal: targetFishWindow[1] - targetFishWindow[0],
-            nextInterval: nextTargetFishWindow
-              ? nextTargetFishWindow[0] - now
-              : undefined,
+            // nextInterval: nextTargetFishWindow              ? nextTargetFishWindow[0] - now              : undefined,
             nextTimePoint: nextTargetFishWindow ? nextTargetFishWindow[0] : undefined,
           }
         }
@@ -1435,6 +1438,7 @@ export default {
       'setStartLight',
       'initialUserData',
       'setShowCompetitionDialog',
+      'setNow',
     ]),
   },
 }

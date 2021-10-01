@@ -159,8 +159,8 @@ function getCombinedFishData() {
     mergeByReplacingArray(
       FishingData,
       FIX.FISH,
-      FIX.SPEAR_FISH,
-      DevelopmentModeUtil.isTest() ? FIX.TEST_FISH : {}
+      FIX.SPEAR_FISH
+      // DevelopmentModeUtil.isTest() ? FIX.TEST_FISH : {}
     ),
     fish => {
       return {

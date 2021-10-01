@@ -184,7 +184,7 @@ export default {
     fishIdsToShow: {
       handler(fishIds, old) {
         if (!isEqual(fishIds, old)) {
-          console.log('update fish list', fishIds.length)
+          console.debug('update fish list', fishIds.length)
           this.fishListToShow = fishIds.map(id => this.fishDict[id])
         }
       },

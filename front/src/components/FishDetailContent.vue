@@ -14,6 +14,8 @@
           :expanded="component.expanded"
           :now="component.name === 'DetailItemFishWindowTable' ? now : undefined"
           :show-fishing-range-helper="fish.type === 'normal'"
+          :count-down-time-text="countDownTimeText"
+          :count-down-remain-percentage="countDownRemainPercentage"
           @close-dialog="$emit('close-dialog')"
         />
       </v-col>
@@ -36,6 +38,7 @@ import DetailItemQuest from '@/components/fish-detail-items/DetailItemQuest'
 import _ from 'lodash'
 import FIX from 'Data/fix'
 import placeNames from 'Data/placeNames'
+import isEqual from 'lodash/isEqual'
 
 export default {
   name: 'FishDetailContent',
@@ -89,8 +92,20 @@ export default {
       default: false,
     },
   },
-  data: () => ({}),
+  data() {
+    return {
+      countDownTimeText: '',
+      countDownNextInterval: '',
+      countDownRemainPercentage: undefined,
+    }
+  },
   computed: {
+    countDownTime() {
+      return this.fishTimePart.countDown?.timePoint - this.now
+    },
+    nextInterval() {
+      return this.fishTimePart.countDown?.nextTimePoint - this.now
+    },
     fish() {
       const fish = this.value
       const hasPredators = Object.keys(fish.predators).length > 0
@@ -157,17 +172,11 @@ export default {
         countDownTypeName: DataUtil.getCountDownTypeName(
           this.fishTimePart.countDown.type
         ),
-        countDownTime: this.fishTimePart.countDown.time,
-        countDownTimeText: this.printCountDownTime(this.fishTimePart.countDown.time, 2),
         countDownTimePoint: this.fishTimePart.countDown?.timePoint,
         countDownTimePointText: this.$t('countDown.timePointHint', {
           timePoint: DataUtil.formatDateTime(this.fishTimePart.countDown?.timePoint),
         }),
         countDownTotal: this.fishTimePart.countDown.fishWindowTotal,
-        countDownRemainPercentage:
-          (this.fishTimePart.countDown.time /
-            this.fishTimePart.countDown.fishWindowTotal) *
-          100,
         isFishing: this.fishTimePart.countDown?.type === DataUtil.FISHING,
         baitsExtra:
           bestCatchPathExtra.length > 0 ? this.getBaits(fish, bestCatchPathExtra) : [],
@@ -230,6 +239,29 @@ export default {
       'getFishingSpots',
       'getItemIconClass',
     ]),
+  },
+  watch: {
+    countDownTime(countDownTime) {
+      const newCountDownTimeText = this.printCountDownTime(countDownTime)
+      if (!isEqual(this.countDownTimeText, newCountDownTimeText)) {
+        this.countDownTimeText = newCountDownTimeText
+      }
+
+      const newPercentage = Math.ceil(
+        (countDownTime / this.fishTimePart.countDown.fishWindowTotal) * 100
+      )
+      if (this.countDownRemainPercentage !== newPercentage) {
+        this.countDownRemainPercentage = newPercentage
+      }
+    },
+    nextInterval(nextInterval) {
+      const newText = this.$t('countDown.nextInterval', {
+        nextInterval: this.printCountDownTime(nextInterval, 1, false),
+      })
+      if (!isEqual(this.countDownNextInterval, newText)) {
+        this.countDownNextInterval = newText
+      }
+    },
   },
   methods: {
     printCountDownTime: DataUtil.printCountDownTime,

@@ -122,7 +122,7 @@
                     <div v-bind="attrs" v-on="on">
                       {{
                         $t(transformedFishTimePart.countDownType, {
-                          interval: transformedFishTimePart.countDownTimeText,
+                          interval: countDownTimeText,
                         })
                       }}
                     </div>
@@ -155,7 +155,7 @@
                     class="text-subtitle-2"
                     style="padding-top: 3px"
                   >
-                    {{ transformedFishTimePart.countDownNextInterval }}
+                    {{ countDownNextInterval }}
                   </div>
                 </template>
                 <span>{{ transformedFishTimePart.countDownNextTimePointText }}</span>

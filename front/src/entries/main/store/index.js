@@ -16,6 +16,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    now: Date.now(),
     fish: DataUtil.FISH_DATA,
     fishingSpots: DataUtil.FISHING_SPOTS,
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
@@ -276,6 +277,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setNow(state, now) {
+      state.now = now
+    },
     setMainSetting(state, { path, value }) {
       state.userData = { ..._.set(state.userData, path, value) }
       LocalStorageUtil.storeUserData(state.userData)
