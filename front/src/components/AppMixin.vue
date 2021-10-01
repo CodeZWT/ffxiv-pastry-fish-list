@@ -41,6 +41,7 @@ import FishWindow from '@/utils/FishWindow'
 import ClipboardJS from 'clipboard'
 import { FishListUpdateWorker } from '@/utils/new/FishListUpdate'
 import EorzeaTime from '@/utils/Time'
+import { PageVisibilityUtil } from '@/utils/new/PageVisibilityUtil'
 
 export default {
   name: 'AppMixin',
@@ -67,6 +68,7 @@ export default {
   },
   data: vm => ({
     fishUpdater: undefined,
+    pageVisibilityUtil: undefined,
     showUpdateAvailableDialog: false,
     newVersion: undefined,
     showRoseDialog: false,
@@ -673,11 +675,15 @@ export default {
     )
     console.debug('init all fish time')
     this.fishUpdater.initAllFishTimePart(this.now)
-
+    this.pageVisibilityUtil = new PageVisibilityUtil()
     setInterval(() => {
       const now = Date.now()
       this.now = now
       this.setNow(now)
+      if (this.pageVisibilityUtil.pageIsHidden) {
+        // console.debug('triggered when hidden')
+        this.fishUpdater.doAllOnce()
+      }
       this.checkNotification(now)
       if (this.loading) {
         this.finishLoading()

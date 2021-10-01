@@ -100,6 +100,13 @@ class FishListUpdateWorker {
     window.requestAnimationFrame(() => this.doNext())
   }
 
+  doAllOnce() {
+    // console.debug('all')
+    const now = Date.now()
+    this.genUpdateWorks(now)
+    this.updateCountdownNext(now)
+  }
+
   updateCountdownNext(now) {
     if (this.current >= this.total) {
       // console.debug('Nothing to do', this.current, this.total)
