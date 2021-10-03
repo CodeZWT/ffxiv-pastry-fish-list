@@ -17,28 +17,43 @@ const GitRevPlugin = require('git-revision-webpack-plugin')
 const GitRevisionPlugin = new GitRevPlugin()
 const path = require('path')
 
-module.exports = {
-  transpileDependencies: ['vuetify'],
-  publicPath: process.env.VUE_APP_STATIC_FILES_URL,
-  productionSourceMap: false,
-  pages: {
-    index: {
-      // page 的入口
-      entry: 'src/entries/main/main.js',
-      // 模板来源
-      template:
-        process.env.NODE_ENV === 'development'
-          ? 'public/index.dev.html'
-          : 'public/index.html',
-      // 在 dist/index.html 的输出
-      filename: 'index.html',
-      // 当使用 title 选项时，
-      // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
-      title: '鱼糕',
-      // 在这个页面中包含的块，默认情况下会包含
-      // 提取出来的通用 chunk 和 vendor chunk。
-      // chunks: ['chunk-vendors', 'chunk-common', 'index'],
-    },
+let pages = {
+  index: {
+    // page 的入口
+    entry: 'src/entries/main/main.js',
+    // 模板来源
+    template:
+      process.env.NODE_ENV === 'development'
+        ? 'public/index.dev.html'
+        : 'public/index.html',
+    // 在 dist/index.html 的输出
+    filename: 'index.html',
+    // 当使用 title 选项时，
+    // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+    title: '鱼糕',
+    // 在这个页面中包含的块，默认情况下会包含
+    // 提取出来的通用 chunk 和 vendor chunk。
+    // chunks: ['chunk-vendors', 'chunk-common', 'index'],
+  },
+  // fishv2: {
+  //   entry: 'src/entries/fish-v2/main.js',
+  //   template:
+  //     process.env.NODE_ENV === 'development'
+  //       ? 'public/index.dev.html'
+  //       : 'public/index.html',
+  //   filename: 'fish-v2.html',
+  //   title: '列表v2',
+  // },
+  // 当使用只有入口的字符串格式时，
+  // 模板会被推导为 `public/subpage.html`
+  // 并且如果找不到的话，就回退到 `public/index.html`。
+  // 输出文件名会被推导为 `subpage.html`。
+  // subpage: 'src/subpage/main.js',
+}
+if (process.env.VUE_APP_ELECTRON === 'true') {
+  console.log('build for electron')
+  pages = {
+    ...pages,
     reader: {
       entry: 'src/entries/reader/reader.js',
       template:
@@ -75,21 +90,16 @@ module.exports = {
       filename: 'screen.html',
       title: '鱼糕桌面版',
     },
-    fishv2: {
-      entry: 'src/entries/fish-v2/main.js',
-      template:
-        process.env.NODE_ENV === 'development'
-          ? 'public/index.dev.html'
-          : 'public/index.html',
-      filename: 'fish-v2.html',
-      title: '列表v2',
-    },
-    // 当使用只有入口的字符串格式时，
-    // 模板会被推导为 `public/subpage.html`
-    // 并且如果找不到的话，就回退到 `public/index.html`。
-    // 输出文件名会被推导为 `subpage.html`。
-    // subpage: 'src/subpage/main.js',
-  },
+  }
+} else {
+  console.log('build for web')
+}
+
+module.exports = {
+  transpileDependencies: ['vuetify'],
+  publicPath: process.env.VUE_APP_STATIC_FILES_URL,
+  productionSourceMap: false,
+  pages: pages,
   pluginOptions: {
     i18n: {
       locale: 'zh-CN',
@@ -140,6 +150,29 @@ module.exports = {
       .set('Utils', path.join(__dirname, '../utils'))
   },
   configureWebpack: {
+    optimization: {
+      splitChunks: {
+        chunks: 'async',
+        minSize: 20000,
+        maxSize: 244000,
+        minChunks: 1,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        enforceSizeThreshold: 50000,
+        cacheGroups: {
+          defaultVendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
+            reuseExistingChunk: true,
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+        },
+      },
+    },
     plugins: [
       GitRevisionPlugin,
       new webpack.DefinePlugin({
