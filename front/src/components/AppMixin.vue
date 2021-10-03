@@ -558,7 +558,6 @@ export default {
           }
         })
         ?.on('setupDownload', (event, data) => {
-          console.log(data)
           if (this.downloadProgress < 100) {
             this.downloadProgress = data.percent * 100
           }
@@ -588,7 +587,6 @@ export default {
             this.readerSetting.isStrictMode && this.isRoseMode && isLogin,
             data
           )
-          console.log('store data', data)
           db.records.put(data).catch(error => console.error('storeError', error))
         })
         ?.on('showRoseModeDialog', () => {
@@ -646,7 +644,9 @@ export default {
     this.lazySourceFishList = Object.values(this.allFish).filter(
       it => it.patch == null || it.patch <= DataUtil.PATCH_MAX
     )
-    this.checkFishNeedSplit(this.lazySourceFishList)
+    if (DevelopmentModeUtil.isTest()) {
+      this.checkFishNeedSplit(this.lazySourceFishList)
+    }
     this.lazySourceImportantFishList = this.lazySourceFishList.filter(it =>
       DataUtil.showFishInList(it)
     )
@@ -844,7 +844,7 @@ export default {
           }
         })
         if (notAvailableSpots.length > 0) {
-          console.log(
+          console.debug(
             this.getItemName(fish._id),
             fish._id,
             notAvailableSpots,
@@ -878,7 +878,7 @@ export default {
         )
 
         if (Object.keys(territories).length > 1) {
-          console.log(this.getItemName(fish._id), fish._id, territories)
+          console.debug(this.getItemName(fish._id), fish._id, territories)
           // return Object.values(territories).map(locations => {
           //   return {
           //     ...fish,
@@ -1039,7 +1039,7 @@ export default {
         it => fish.bait === it.baitId
       )
       if (!collectedBiteData) {
-        console.log(this.getItemName(fish._id), 'miss data')
+        console.debug(this.getItemName(fish._id), 'miss data')
       }
       // else if (collectedBiteData.count < 10) {
       //   // console.log(collectedBiteData.fish, 'data not enough', collectedBiteData.count)

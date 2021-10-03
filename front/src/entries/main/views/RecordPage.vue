@@ -1259,12 +1259,10 @@ export default {
       this.showDeleteAlert = false
     },
     async toggleRecordStrictMode(record) {
-      console.log('set to', !record.isStrictMode)
       await rcapiService.setOwnRecordStrictMode(record.id, !record.isStrictMode)
       this.getTotalTabData()
     },
     async deleteRecord(record) {
-      console.log('remove', record)
       await rcapiService.removeOwnRecord(record.id)
       this.getTotalTabData()
     },

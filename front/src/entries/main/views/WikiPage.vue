@@ -1244,9 +1244,6 @@ export default {
       const itemText = item[textKey]
       let result
       if (this.$i18n.locale === 'zh-CN') {
-        if (itemText == null) {
-          console.log(item.id)
-        }
         result = PinyinMatch.match(itemText ?? '', searchText) !== false
       } else {
         result = itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1

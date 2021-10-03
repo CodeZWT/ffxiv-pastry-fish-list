@@ -116,7 +116,7 @@ export default {
     importData(dataStr) {
       this.migrationStep = 'migrating'
       if (dataStr == null) {
-        console.log('no data to migrate')
+        console.debug('no data to migrate')
         this.endMigration()
         return
       }
@@ -145,9 +145,9 @@ export default {
       window.location.href = url.substring(0, url.indexOf('/#/'))
     },
     receiveUserData(event) {
-      console.log(event)
+      console.debug(event)
       if (event?.data?.type === 'migration-data') {
-        console.log('receiveUserData', event?.data)
+        console.debug('receiveUserData', event?.data)
         this.data = event?.data?.data
         this.testData = event?.data?.testData
         this.hasBothData = this.data && this.testData
