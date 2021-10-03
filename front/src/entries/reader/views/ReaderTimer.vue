@@ -175,7 +175,7 @@
         <v-card-title>严格模式检查</v-card-title>
         <v-card-text>
           <v-alert outlined type="error" border="left">
-            <vue-markdown :source="strictModeCheckTip" />
+            <div>{{ strictModeCheckTip }}</div>
           </v-alert>
         </v-card-text>
         <v-card-actions>
@@ -220,7 +220,6 @@ import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import ItemIcon from '@/components/basic/ItemIcon'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
-import VueMarkdown from 'vue-markdown'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import rcapiService from '@/service/rcapiService'
 
@@ -230,7 +229,7 @@ const SPECTRAL_CURRENT = 145
 
 export default {
   name: 'ReaderTimer',
-  components: { EffectIcon, ItemIcon, NewFeatureMark, VueMarkdown },
+  components: { EffectIcon, ItemIcon, NewFeatureMark },
   props: {
     now: {
       type: Number,

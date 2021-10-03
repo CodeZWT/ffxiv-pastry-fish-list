@@ -16,6 +16,8 @@ const webpack = require('webpack')
 const GitRevPlugin = require('git-revision-webpack-plugin')
 const GitRevisionPlugin = new GitRevPlugin()
 const path = require('path')
+const MarkdownIt = require('markdown-it')
+const md = new MarkdownIt()
 
 let pages = {
   index: {
@@ -129,7 +131,6 @@ module.exports = {
     }
     // else {
     //   config.externals({
-    //     echarts: 'echarts',
     //   })
     // }
 
@@ -138,11 +139,42 @@ module.exports = {
       .globalObject('this')
       .end()
 
-      .module.rule('help')
+    config.module
+      .rule('help')
       .test(/help\.html$/i)
       .use('html-loader')
       .loader('html-loader')
       .end()
+
+    const rule = config.module
+      .rule('md')
+      .test(/\.md$/)
+      .pre()
+
+    rule
+      .use('v-loader')
+      .loader('vue-loader')
+      .options({
+        transformAssetUrls: {
+          video: 'src',
+          source: 'src',
+          img: 'src',
+          image: 'xlink:href',
+        },
+      })
+
+    rule
+      .use('ware-loader')
+      .loader('ware-loader')
+      .options({
+        raw: true,
+        middleware: function(source) {
+          // use markdown-it to render the markdown file to html, then
+          // surround the output of that that with Vue template syntax
+          // so it can be processed by the 'vue-loader'
+          return `<template><div>${md.render(source)}</div></template>`
+        },
+      })
 
     config.resolve.alias
       .set('Data', path.join(__dirname, '../data'))
@@ -152,24 +184,20 @@ module.exports = {
   configureWebpack: {
     optimization: {
       splitChunks: {
-        chunks: 'async',
-        minSize: 20000,
-        maxSize: 244000,
-        minChunks: 1,
-        maxAsyncRequests: 30,
-        maxInitialRequests: 30,
-        enforceSizeThreshold: 50000,
+        chunks: 'all',
         cacheGroups: {
           defaultVendors: {
+            name: 'chunk-vendors',
             test: /[\\/]node_modules[\\/]/,
-            priority: -10,
-            reuseExistingChunk: true,
+            priority: 0,
           },
-          default: {
-            minChunks: 2,
-            priority: -20,
-            reuseExistingChunk: true,
-          },
+          // common: {
+          //   name: 'chunk-common',
+          //   minChunks: 2,
+          //   maxSize: 300000,
+          //   priority: -20,
+          //   reuseExistingChunk: true,
+          // },
         },
       },
     },

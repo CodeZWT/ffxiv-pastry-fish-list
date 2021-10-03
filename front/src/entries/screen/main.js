@@ -3,7 +3,6 @@ import { initTooltip } from '@thewakingsands/kit-tooltip'
 import App from './App.vue'
 import Vue from 'vue'
 import VueKonva from 'vue-konva'
-import VueMarkdown from 'vue-markdown'
 import i18n from '@/i18n'
 import router from './router'
 import store from './store'
@@ -16,8 +15,6 @@ Vue.config.productionTip = false
 if (process.env.NODE_ENV === 'development') {
   Vue.use(VueKonva) // no need to set plugin if import by CND
 }
-
-Vue.use(VueMarkdown)
 
 // use([CanvasRenderer, BarChart, GridComponent, TooltipComponent])
 

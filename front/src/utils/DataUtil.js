@@ -7,9 +7,9 @@ import DATA from 'Data/data'
 import DATA_CN, { LIVING_LEGENDS } from 'Data/translation'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EorzeaTime from '@/utils/Time'
+import FISH from 'Data/fish'
 import FIX, { AQUARIUM_FISH_SIZE, AQUARIUM_WATER, OCEAN_FISHING_FISH } from 'Data/fix'
 import FishWindow from '@/utils/FishWindow'
-import FishingData from 'Data/fishingData'
 import ImgUtil from '@/utils/ImgUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import TimeFormatter from '@/utils/TimeFormatter'
@@ -154,22 +154,22 @@ function toInnerSpotLink({ id, mode }) {
 const TIP3_FISH_IDS = [16744, 17589]
 const TIP5_FISH_IDS = [17591, 12753, 12810]
 
-function getCombinedFishData() {
-  return _.mapValues(
-    mergeByReplacingArray(
-      FishingData,
-      FIX.FISH,
-      FIX.SPEAR_FISH
-      // DevelopmentModeUtil.isTest() ? FIX.TEST_FISH : {}
-    ),
-    fish => {
-      return {
-        ...fish,
-        collectable: FIX.COLLECTABLE_FISH_ITEM_ID.includes(toItemId(fish._id)),
-      }
-    }
-  )
-}
+// function getCombinedFishData() {
+//   return _.mapValues(
+//     mergeByReplacingArray(
+//       FishingData,
+//       FIX.FISH,
+//       FIX.SPEAR_FISH
+//       // DevelopmentModeUtil.isTest() ? FIX.TEST_FISH : {}
+//     ),
+//     fish => {
+//       return {
+//         ...fish,
+//         collectable: FIX.COLLECTABLE_FISH_ITEM_ID.includes(toItemId(fish._id)),
+//       }
+//     }
+//   )
+// }
 
 function mergeByReplacingArray(object, ...otherArgs) {
   return _.mergeWith(object, ...otherArgs, mergeArray)
@@ -1398,8 +1398,8 @@ export default {
   NOTIFICATION_SOUNDS: NOTIFICATION_SOUNDS,
   READER_SOUNDS: READER_SOUNDS,
 
-  FISH_DATA: getCombinedFishData(),
+  FISH_DATA: FISH,
   ITEMS: _.merge(DATA_CN.ITEMS, DevelopmentModeUtil.isTest() ? FIX.TEST_ITEMS : {}),
   FISHING_SPOTS: _.merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
-  FISH_ID_TO_WIKI_IDS: generateFishId2WikiId(FIX.FISH),
+  FISH_ID_TO_WIKI_IDS: generateFishId2WikiId(FISH),
 }

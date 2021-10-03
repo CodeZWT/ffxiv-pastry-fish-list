@@ -1229,7 +1229,7 @@ export default {
       } else {
         return Object.entries(predators).map(([predatorId, count]) => {
           return {
-            ...this.assembleSpearFish(FIX.SPEAR_FISH[predatorId], true),
+            ...this.assembleSpearFish(this.allFish[predatorId], true),
             requiredCnt: count,
           }
         })
