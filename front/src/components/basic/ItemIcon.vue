@@ -113,105 +113,81 @@ export default {
 }
 </script>
 
-<style scoped>
-.zoom-in {
-  zoom: 0.75;
-  -moz-transform: scale(0.75);
-  -moz-transform-origin: 0 0;
-}
+<style lang="sass" scoped>
+.zoom-in
+  zoom: 0.75
+  -moz-transform: scale(0.75)
+  -moz-transform-origin: 0 0
+.item-icon-style
+  position: relative
+  height: 48px
+  width: 48px
+  min-height: 48px
+  min-width: 48px
+.item-icon-style-large
+  position: relative
+  height: 96px
+  width: 96px
+  min-height: 96px
+  min-width: 96px
+.item-cover-48
+  width: 48px
+  height: 48px
+  position: absolute
+  top: 0
+  left: 0
+.item-cover-96
+  width: 96px
+  height: 96px
+  position: absolute
+  top: 0
+  left: 0
+.achievement-cover-48
+  width: 48px
+  height: 48px
+  position: absolute
+.achievement-icon-48
+  position: absolute
+  width: 80px
+  height: 80px
+  min-width: 80px
+  min-height: 80px
+  margin: 8px
+  zoom: 0.5
+  -moz-transform: scale(0.5)
+  -moz-transform-origin: 0 0
+.item-icon-48
+  position: absolute
+  min-width: 80px
+  min-height: 80px
+  width: 80px
+  height: 80px
+  top: 0
+  left: 0
+  margin: 4px 0 0 8px
+  zoom: 0.5
+  -moz-transform: scale(0.5)
+  -moz-transform-origin: 0 0
 
-.item-icon-style {
-  position: relative;
-  height: 48px;
-  width: 48px;
-  min-height: 48px;
-  min-width: 48px;
-}
+@-moz-document url-prefix()
+  .item-margin-moz
+    margin: 2px 0 0 4px !important
+  .achievement-margin-moz
+    margin: 4px !important
+    min-width: 80px
+    min-height: 80px
 
-.item-icon-style-large {
-  position: relative;
-  height: 96px;
-  width: 96px;
-  min-height: 96px;
-  min-width: 96px;
-}
-
-.item-cover-48 {
-  width: 48px;
-  height: 48px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.item-cover-96 {
-  width: 96px;
-  height: 96px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.achievement-cover-48 {
-  width: 48px;
-  height: 48px;
-  position: absolute;
-}
-
-.achievement-icon-48 {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  min-width: 80px;
-  min-height: 80px;
-  margin: 8px;
-
-  zoom: 0.5;
-  -moz-transform: scale(0.5);
-  -moz-transform-origin: 0 0;
-}
-
-.item-icon-48 {
-  position: absolute;
-  min-width: 80px;
-  min-height: 80px;
-  width: 80px;
-  height: 80px;
-  top: 0;
-  left: 0;
-  margin: 4px 0 0 8px;
-
-  zoom: 0.5;
-  -moz-transform: scale(0.5);
-  -moz-transform-origin: 0 0;
-}
-
-@-moz-document url-prefix() {
-  .item-margin-moz {
-    margin: 2px 0 0 4px !important;
-  }
-
-  .achievement-margin-moz {
-    margin: 4px !important;
-    min-width: 80px;
-    min-height: 80px;
-  }
-}
-
-.item-icon-96 {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  top: 0;
-  left: 0;
-  margin: 4px 0 0 8px;
-}
-
-.item-checked-icon-48 {
-  width: 48px;
-  height: 48px;
-  position: absolute;
-  top: -2px;
-  left: 0;
-}
+.item-icon-96
+  position: absolute
+  width: 80px
+  height: 80px
+  top: 0
+  left: 0
+  margin: 4px 0 0 8px
+.item-checked-icon-48
+  width: 48px
+  height: 48px
+  position: absolute
+  top: -2px
+  left: 0
 </style>

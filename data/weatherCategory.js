@@ -82,7 +82,7 @@ const checkFishWeather = (fishList, detailedFishDict) => {
     .filter(it => it !== '')
     .join('\n\n')
 
-  console.log(res)
+  console.debug(res)
 }
 
 const toCategoryStr = categoryResult => {

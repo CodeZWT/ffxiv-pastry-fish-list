@@ -376,7 +376,6 @@ export default {
           LOAD_MORE_CNT,
           this.showIgnoredRecord
         )
-        console.log('newLoadedRecords', newLoadedRecords)
         // this.dbLoadedCnt += newLoadedRecords.length
         this.rawRecords = this.rawRecords.concat(newLoadedRecords)
       }

@@ -218,9 +218,9 @@
 <script>
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import {
+  AQUARIUMS,
   AQUARIUM_FISH_SIZE,
   AQUARIUM_WATER,
-  AQUARIUMS,
   OCEAN_FISHING_FISH,
 } from 'Data/fix'
 import DataUtil from '@/utils/DataUtil'

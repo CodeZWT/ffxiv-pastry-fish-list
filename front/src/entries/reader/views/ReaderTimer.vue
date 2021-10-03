@@ -576,10 +576,10 @@ export default {
     showSpotPage() {
       this.sendElectronEvent('showSpotPage', this.spotId)
     },
-    toggleMiniMode(mini) {
-      console.log(mini)
-      // this.sendElectronEvent('timerMiniMode', mini)
-    },
+    // toggleMiniMode(mini) {
+    // console.log(mini)
+    // this.sendElectronEvent('timerMiniMode', mini)
+    // },
     ringBell(tugType) {
       DataUtil.ringBell(this.readerSetting.timer.sound, tugType, this.sounds)
     },

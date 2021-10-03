@@ -227,10 +227,10 @@
 import { mapGetters, mapMutations } from 'vuex'
 import { email, max, required } from 'vee-validate/dist/rules'
 import {
-  extend,
-  setInteractionMode,
   ValidationObserver,
   ValidationProvider,
+  extend,
+  setInteractionMode,
 } from 'vee-validate'
 import rcapiService, {
   RC_ACCESS_TOKEN_KEY,

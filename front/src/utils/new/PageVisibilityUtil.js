@@ -16,9 +16,7 @@ export class PageVisibilityUtil {
     }
 
     if (typeof document.addEventListener === 'undefined' || hidden === undefined) {
-      console.log(
-        'This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.'
-      )
+      console.error('browser does not support the Page Visibility API.')
     } else {
       // Handle page visibility change
       document.addEventListener(

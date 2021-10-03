@@ -282,10 +282,10 @@ import _ from 'lodash'
 import ClickHelper from '@/components/basic/ClickHelper'
 import { max_value, min_value, required } from 'vee-validate/dist/rules'
 import {
-  extend,
-  setInteractionMode,
   ValidationObserver,
   ValidationProvider,
+  extend,
+  setInteractionMode,
 } from 'vee-validate'
 import i18n from '@/i18n'
 import draggable from 'vuedraggable'

@@ -86,7 +86,7 @@ export default {
   },
   async sendUploadRecord() {
     if (!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)) {
-      console.info('upload skipped')
+      console.debug('upload skipped')
       return
     }
     const recordsToUpload = await db.records
@@ -153,7 +153,9 @@ export default {
     }
   },
   toSpot(spot) {
-    if (!spot) console.log(spot)
+    if (!spot) {
+      console.warn('invalid spot marked as 0', spot)
+    }
     const spotId = +(spot || 0)
     return {
       spotId: spotId,

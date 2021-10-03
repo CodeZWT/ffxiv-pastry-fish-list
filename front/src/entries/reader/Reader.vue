@@ -142,7 +142,7 @@ export default {
 
     window.electron?.ipcRenderer?.on('reloadUserData', () => {
       this.reloadUserData()
-      console.info('loading sounds')
+      console.debug('loading sounds')
       this.loadingSounds().then(sounds =>
         this.setSounds(DataUtil.toMap(sounds, it => it.key))
       )

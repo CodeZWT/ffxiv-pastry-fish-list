@@ -178,7 +178,7 @@ export default {
         })
         if (response.ok) {
           const data = await response.json()
-          console.info('Uploaded data CNT:', data.length)
+          console.debug('Uploaded data CNT:', data.length)
           return data
         } else {
           console.error('Upload error', response.status, response)
@@ -214,7 +214,7 @@ export default {
         // console.log(decompressedData)
         return decompressedData
       } else {
-        console.log('404 return empty')
+        console.debug('404 return empty')
         return { items: [] }
       }
     })
@@ -230,7 +230,7 @@ export default {
         // console.log(decompressedData)
         return decompressedData
       } else {
-        console.log('404 return empty')
+        console.debug('404 return empty')
         return { items: [] }
       }
     })
