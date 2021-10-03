@@ -58,7 +58,6 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@gfx/zopfli": "^1.0.15",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -78,7 +77,6 @@
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "typescript": "~4.1.5",
-    "vue-cli-plugin-compression": "~1.1.5",
     "vue-cli-plugin-i18n": "~1.0.1",
     "vue-template-compiler": "^2.6.11"
   }
