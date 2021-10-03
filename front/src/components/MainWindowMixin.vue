@@ -1,9 +1,9 @@
 <script>
-import ImgUtil from '@/utils/ImgUtil'
 import { mapMutations } from 'vuex'
-import FIX from 'Data/fix'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import FIX from 'Data/fix'
+import ImgUtil from '@/utils/ImgUtil'
 
 export default {
   name: 'MainWindowMixin',

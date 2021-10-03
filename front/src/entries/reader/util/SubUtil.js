@@ -6,14 +6,14 @@
 //     1803, // Surface Slap
 //     1804, // Identical Cast
 // ])
-import merge from 'lodash/merge'
 import { DATA } from './data'
-import CN_DATA from './translation'
 import { DateTime } from 'luxon'
-import i18n from '@/i18n'
-import regionTerritorySpots from 'Data/fishingSpots.js'
-import keyBy from 'lodash/keyBy'
+import CN_DATA from './translation'
 import DataUtil from '@/utils/DataUtil'
+import i18n from '@/i18n'
+import keyBy from 'lodash/keyBy'
+import merge from 'lodash/merge'
+import regionTerritorySpots from 'Data/fishingSpots.js'
 
 function getSpotDict(regionDict) {
   return keyBy(

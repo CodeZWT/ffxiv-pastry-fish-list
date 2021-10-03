@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import FishAquarium from '@/components/FishAquarium'
 import EnvMixin from '@/components/basic/EnvMixin'
+import FishAquarium from '@/components/FishAquarium'
 
 export default {
   name: 'DetailItemAquarium',

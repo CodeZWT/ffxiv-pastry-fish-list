@@ -1,10 +1,10 @@
-import ClickHelper from '@/components/basic/ClickHelper'
-import FishBaitList from '@/components/FishBaitList'
-import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
-import ItemIcon from '@/components/basic/ItemIcon'
-import DataUtil from '@/utils/DataUtil'
-import ImgUtil from '@/utils/ImgUtil'
 import { mapMutations } from 'vuex'
+import ClickHelper from '@/components/basic/ClickHelper'
+import DataUtil from '@/utils/DataUtil'
+import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
+import FishBaitList from '@/components/FishBaitList'
+import ImgUtil from '@/utils/ImgUtil'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   components: { ClickHelper, FishBaitList, DetailItemMap, ItemIcon },

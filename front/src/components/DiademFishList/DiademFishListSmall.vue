@@ -141,10 +141,10 @@
 </template>
 
 <script>
-import DiademFishListMixin from '@/components/DiademFishList/DiademFishListMixin'
 import DataUtil from '@/utils/DataUtil'
-import WeatherIcon from '@/components/basic/WeatherIcon'
+import DiademFishListMixin from '@/components/DiademFishList/DiademFishListMixin'
 import EffectIcon from '@/components/basic/EffectIcon'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
   name: 'DiademFishListSmall',

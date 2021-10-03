@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import _ from 'lodash'
-import DATA from 'Data/data'
-import DATA_CN from 'Data/translation'
-import DataUtil from '@/utils/DataUtil'
-import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import {
   loadBaitFilterUserData,
   loadReaderUserData,
   loadUserData,
 } from '@/utils/UserDataLoader'
 import CONSTANTS from 'Data/constants'
+import DATA from 'Data/data'
+import DATA_CN from 'Data/translation'
+import DataUtil from '@/utils/DataUtil'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import Vue from 'vue'
+import Vuex from 'vuex'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 

@@ -1,6 +1,6 @@
-import cloneDeep from 'lodash/cloneDeep'
-import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import DataUtil from '@/utils/DataUtil'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import cloneDeep from 'lodash/cloneDeep'
 
 export function loadUserData() {
   return DataUtil.migrateOldVersionUserData(

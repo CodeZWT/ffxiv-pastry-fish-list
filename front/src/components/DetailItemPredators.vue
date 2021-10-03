@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import FishInfoRow from '@/components/FishInfoRow/FishInfoRow'
 import { mapGetters } from 'vuex'
+import FishInfoRow from '@/components/FishInfoRow/FishInfoRow'
 
 export default {
   name: 'DetailItemPredators',

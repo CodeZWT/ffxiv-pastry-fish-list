@@ -118,8 +118,8 @@
 
 <script>
 import DataUtil from '@/utils/DataUtil'
-import ItemIcon from '@/components/basic/ItemIcon'
 import ImgUtil from '@/utils/ImgUtil'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'FishBaitList',

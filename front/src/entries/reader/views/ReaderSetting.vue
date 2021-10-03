@@ -343,13 +343,13 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
 import { MONITOR_TYPES, REGIONS } from 'Data/constants'
-import set from 'lodash/set'
-import last from 'lodash/last'
-import db from '@/plugins/db'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
+import db from '@/plugins/db'
+import last from 'lodash/last'
+import set from 'lodash/set'
 
 export default {
   name: 'ReaderSetting',

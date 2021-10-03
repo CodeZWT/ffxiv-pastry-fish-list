@@ -67,10 +67,10 @@
 </template>
 
 <script>
-import DataUtil from '@/utils/DataUtil'
 import { mapGetters } from 'vuex'
-import WeatherIcon from '@/components/basic/WeatherIcon'
+import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
+import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
   name: 'DetailItemRequirements',

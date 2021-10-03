@@ -32,10 +32,10 @@
 </template>
 
 <script>
-import FishDetailContent from '@/components/FishDetailContent'
-import FishListExpandedHeader from '@/components/FishListExpandedHeader'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import FishDetailContent from '@/components/FishDetailContent'
+import FishListExpandedHeader from '@/components/FishListExpandedHeader'
 
 export default {
   name: 'FishDetail',

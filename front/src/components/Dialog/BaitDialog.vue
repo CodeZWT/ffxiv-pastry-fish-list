@@ -158,13 +158,13 @@
 </template>
 
 <script>
-import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import _ from 'lodash'
+import ClickHelper from '@/components/basic/ClickHelper'
+import DataUtil from '@/utils/DataUtil'
+import FIX from 'Data/fix'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PinyinMatch from 'pinyin-match'
-import ClickHelper from '@/components/basic/ClickHelper'
-import FIX from 'Data/fix'
+import _ from 'lodash'
 
 export default {
   name: 'BaitDialog',

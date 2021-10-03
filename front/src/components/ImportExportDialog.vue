@@ -141,9 +141,9 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import ResetButton from '@/components/ResetButton'
-import ClickHelper from '@/components/basic/ClickHelper'
 import _ from 'lodash'
 
 export default {

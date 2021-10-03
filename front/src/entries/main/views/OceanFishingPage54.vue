@@ -229,17 +229,17 @@
 </template>
 
 <script>
-import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
-import DataUtil from '@/utils/DataUtil'
 import { DateTime, FixedOffsetZone } from 'luxon'
-import { mapGetters, mapMutations } from 'vuex'
-import OceanFishingTimeTable from '@/components/OceanFishing54/OceanFishingTimeTable/OceanFishingTimeTable'
-import ImgUtil from '@/utils/ImgUtil'
-import OceanFishingVoyage from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingVoyage'
-import DATA_CN from 'Data/translation'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import { OCEAN_FISHING_BONUS, OCEAN_FISHING_TIPS } from 'Data/fix'
+import { mapGetters, mapMutations } from 'vuex'
+import DATA_CN from 'Data/translation'
+import DataUtil from '@/utils/DataUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
+import OceanFishingTimeTable from '@/components/OceanFishing54/OceanFishingTimeTable/OceanFishingTimeTable'
+import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
+import OceanFishingVoyage from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingVoyage'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 
 // https://ngabbs.com/read.php?tid=20553241

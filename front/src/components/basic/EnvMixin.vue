@@ -1,7 +1,7 @@
 <script>
+import { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 
 export default {
   name: 'EnvMixin',

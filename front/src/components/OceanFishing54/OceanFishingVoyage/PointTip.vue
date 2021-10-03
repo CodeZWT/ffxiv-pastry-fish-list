@@ -125,8 +125,8 @@
 </template>
 
 <script>
-import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
 import { OCEAN_FISHING_TIPS } from 'Data/fix'
+import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
 import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {

@@ -1,5 +1,5 @@
-import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import DataUtil from '@/utils/DataUtil'
 import isEqual from 'lodash/isEqual'
 
 export default {

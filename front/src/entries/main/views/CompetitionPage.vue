@@ -91,9 +91,9 @@
 
 <script>
 import { competitions } from 'Data/competition'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import ImgViewer from '@/components/basic/ImgViewer'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
 export default {
   name: 'CompetitionPage',

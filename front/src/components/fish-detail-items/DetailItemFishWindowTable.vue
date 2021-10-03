@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import FishWindow from '@/utils/FishWindow'
-import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapState } from 'vuex'
+import DataUtil from '@/utils/DataUtil'
+import FishWindow from '@/utils/FishWindow'
 
 export default {
   name: 'DetailItemFishWindowTable',

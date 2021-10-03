@@ -295,16 +295,16 @@
 </template>
 
 <script>
-import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
-import regionTerritorySpots from 'Data/fishingSpots'
-import { mapGetters } from 'vuex'
-import ItemIcon from '@/components/basic/ItemIcon'
-import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
-import PointTip from '@/components/OceanFishing54/OceanFishingVoyage/PointTip'
-import AchievementTip from '@/components/OceanFishing54/OceanFishingVoyage/AchievementTip'
-import OceanFishingBlueFishTip from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingBlueFishTip'
 import { OCEAN_FISHING_TIPS } from 'Data/fix'
+import { mapGetters } from 'vuex'
+import AchievementTip from '@/components/OceanFishing54/OceanFishingVoyage/AchievementTip'
+import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
 import ImgUtil from '@/utils/ImgUtil'
+import ItemIcon from '@/components/basic/ItemIcon'
+import OceanFishingBlueFishTip from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingBlueFishTip'
+import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
+import PointTip from '@/components/OceanFishing54/OceanFishingVoyage/PointTip'
+import regionTerritorySpots from 'Data/fishingSpots'
 
 export default {
   name: 'OceanFishingVoyage',

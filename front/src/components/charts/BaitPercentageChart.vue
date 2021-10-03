@@ -256,15 +256,15 @@
 </template>
 
 <script>
-import ItemIcon from '@/components/basic/ItemIcon'
 import Constants from 'Data/constants'
-import _ from 'lodash'
-import UploadUtil from '@/utils/UploadUtil'
 import DataUtil from '@/utils/DataUtil'
-import uniq from 'lodash/uniq'
-import SPOT_WEATHER from 'Data/spotWeather'
-import WeatherIcon from '@/components/basic/WeatherIcon'
 import EnvMixin from '@/components/basic/EnvMixin'
+import ItemIcon from '@/components/basic/ItemIcon'
+import SPOT_WEATHER from 'Data/spotWeather'
+import UploadUtil from '@/utils/UploadUtil'
+import WeatherIcon from '@/components/basic/WeatherIcon'
+import _ from 'lodash'
+import uniq from 'lodash/uniq'
 
 const hourMinuteToMinutes = (hour, minute) => {
   return hour * 60 + minute

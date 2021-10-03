@@ -1,6 +1,6 @@
+import Screen from '../views/Screen'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Screen from '../views/Screen'
 
 Vue.use(VueRouter)
 

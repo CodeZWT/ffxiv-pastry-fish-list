@@ -169,9 +169,9 @@
 
 <script>
 import DiademFishListMixin from '@/components/DiademFishList/DiademFishListMixin'
+import EffectIcon from '@/components/basic/EffectIcon'
 import LinkList from '@/components/basic/LinkList'
 import WeatherIcon from '@/components/basic/WeatherIcon'
-import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'DiademFishListLarge',

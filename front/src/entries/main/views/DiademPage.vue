@@ -197,18 +197,18 @@
 </template>
 
 <script>
-import regionTerritorySpots from 'Data/fishingSpots'
-import _ from 'lodash'
 import { mapGetters, mapState } from 'vuex'
-import DataUtil from '@/utils/DataUtil'
 import DIADEM from 'Data/diadem'
-import ImgUtil from '@/utils/ImgUtil'
-import DiademFishList from '@/components/DiademFishList/DiademFishList'
+import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import DiademFishList from '@/components/DiademFishList/DiademFishList'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
+import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
-import WeatherIcon from '@/components/basic/WeatherIcon'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import WeatherIcon from '@/components/basic/WeatherIcon'
+import _ from 'lodash'
+import regionTerritorySpots from 'Data/fishingSpots'
 
 export default {
   name: 'DiademPage',

@@ -216,19 +216,19 @@
 </template>
 
 <script>
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import {
   AQUARIUMS,
   AQUARIUM_FISH_SIZE,
   AQUARIUM_WATER,
   OCEAN_FISHING_FISH,
 } from 'Data/fix'
-import DataUtil from '@/utils/DataUtil'
-import ImgUtil from '@/utils/ImgUtil'
-import PinyinMatch from 'pinyin-match'
-import FishAquarium from '@/components/FishAquarium'
 import { CN_PATCH_VERSION } from 'Data/constants'
+import DataUtil from '@/utils/DataUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import FishAquarium from '@/components/FishAquarium'
+import ImgUtil from '@/utils/ImgUtil'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
 
 const PATCHES_MIN = [2, 3, 4, 5]

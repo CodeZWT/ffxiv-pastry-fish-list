@@ -32,13 +32,13 @@
 
 <script>
 import '@thewakingsands/axis-font-icons'
+import { version } from '../../../package.json'
+import DataUtil from '@/utils/DataUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import EorzeaTime from '@/utils/Time'
 import Screen from '@/entries/screen/views/Screen'
 import ToggleButton from '@/components/basic/ToggleButton'
-import EorzeaTime from '@/utils/Time'
-import DataUtil from '@/utils/DataUtil'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import { version } from '../../../package.json'
 
 export default {
   name: 'App',

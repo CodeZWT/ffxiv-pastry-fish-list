@@ -276,22 +276,22 @@
 </template>
 
 <script>
-import DataUtil from '@/utils/DataUtil'
-import { mapGetters, mapMutations, mapState } from 'vuex'
-import _ from 'lodash'
-import ClickHelper from '@/components/basic/ClickHelper'
-import { max_value, min_value, required } from 'vee-validate/dist/rules'
 import {
   ValidationObserver,
   ValidationProvider,
   extend,
   setInteractionMode,
 } from 'vee-validate'
-import i18n from '@/i18n'
-import draggable from 'vuedraggable'
+import { mapGetters, mapMutations, mapState } from 'vuex'
+import { max_value, min_value, required } from 'vee-validate/dist/rules'
+import ClickHelper from '@/components/basic/ClickHelper'
+import DataUtil from '@/utils/DataUtil'
 import DetailItemSettingEntry from '@/components/DetailItemSettingEntry'
-import NotificationUtil from '@/utils/NotificationUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
+import NotificationUtil from '@/utils/NotificationUtil'
+import _ from 'lodash'
+import draggable from 'vuedraggable'
+import i18n from '@/i18n'
 
 setInteractionMode('eager')
 

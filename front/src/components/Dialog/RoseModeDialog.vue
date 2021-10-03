@@ -224,21 +224,21 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
-import { email, max, required } from 'vee-validate/dist/rules'
 import {
   ValidationObserver,
   ValidationProvider,
   extend,
   setInteractionMode,
 } from 'vee-validate'
+import { email, max, required } from 'vee-validate/dist/rules'
+import { mapGetters, mapMutations } from 'vuex'
+import EnvMixin from '@/components/basic/EnvMixin'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import UploadUtil from '@/utils/UploadUtil'
 import rcapiService, {
   RC_ACCESS_TOKEN_KEY,
   TEMP_RC_ACCESS_TOKEN_KEY,
 } from '@/service/rcapiService'
-import UploadUtil from '@/utils/UploadUtil'
-import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import EnvMixin from '@/components/basic/EnvMixin'
 
 setInteractionMode('eager')
 

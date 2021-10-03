@@ -82,9 +82,9 @@
 </template>
 
 <script>
-import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'LinkList',

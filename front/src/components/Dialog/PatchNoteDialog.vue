@@ -1621,9 +1621,9 @@
 </template>
 
 <script>
-import FIX from 'Data/fix'
-import DIADEM from 'Data/diadem'
 import ClickHelper from '@/components/basic/ClickHelper'
+import DIADEM from 'Data/diadem'
+import FIX from 'Data/fix'
 
 export default {
   name: 'PatchNoteDialog',

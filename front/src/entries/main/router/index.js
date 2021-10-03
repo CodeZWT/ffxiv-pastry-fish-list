@@ -1,6 +1,6 @@
+import MigrationPage from '../views/MigrationPage'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MigrationPage from '../views/MigrationPage'
 
 Vue.use(VueRouter)
 

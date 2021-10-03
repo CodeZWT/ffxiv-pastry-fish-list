@@ -57,13 +57,13 @@
 </template>
 
 <script>
-import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapState } from 'vuex'
-import PinyinMatch from 'pinyin-match'
 import ClickHelper from '@/components/basic/ClickHelper'
-import FishDetail from '@/components/FishDetail'
-import RawItemIcon from '@/components/basic/RawItemIcon'
+import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
+import FishDetail from '@/components/FishDetail'
+import PinyinMatch from 'pinyin-match'
+import RawItemIcon from '@/components/basic/RawItemIcon'
 
 export default {
   name: 'FishSearch',

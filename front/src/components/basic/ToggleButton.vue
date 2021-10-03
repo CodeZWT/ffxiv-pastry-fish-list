@@ -9,9 +9,9 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
-import { mapMutations } from 'vuex'
 
 export default {
   name: 'ToggleButton',

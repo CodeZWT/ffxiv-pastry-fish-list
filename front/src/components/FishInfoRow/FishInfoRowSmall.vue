@@ -228,13 +228,13 @@
 </template>
 
 <script>
-import ToggleButton from '@/components/basic/ToggleButton'
+import ClickHelper from '@/components/basic/ClickHelper'
+import EffectIcon from '@/components/basic/EffectIcon'
 import FishBaitList from '@/components/FishBaitList'
 import FishingSpotColumn from '@/components/FishingSpotColumn'
 import ItemIcon from '@/components/basic/ItemIcon'
+import ToggleButton from '@/components/basic/ToggleButton'
 import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
-import ClickHelper from '@/components/basic/ClickHelper'
-import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'FishInfoRowSmall',

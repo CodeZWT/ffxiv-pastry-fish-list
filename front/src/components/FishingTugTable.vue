@@ -37,8 +37,8 @@
 
 <script>
 import DataUtil from '@/utils/DataUtil'
-import _ from 'lodash'
 import ItemIcon from '@/components/basic/ItemIcon'
+import _ from 'lodash'
 
 export default {
   name: 'FishTugTable',

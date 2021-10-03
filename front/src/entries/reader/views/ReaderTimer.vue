@@ -210,19 +210,19 @@
 </template>
 
 <script>
-import DataUtil from '@/utils/DataUtil'
-import { mapGetters, mapMutations, mapState } from 'vuex'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import { WEATHER_TYPES } from 'Data/translation'
 import { ReaderFeatures } from 'Data/newFeatures'
-import NewFeatureMark from '@/components/basic/NewFeatureMark'
-import COMMON from 'Data/common'
-import ItemIcon from '@/components/basic/ItemIcon'
-import WindowUtil from '@/entries/reader/util/WindowUtil'
 import { SERVER_ID_NAMES } from 'Data/diadem'
+import { WEATHER_TYPES } from 'Data/translation'
+import { mapGetters, mapMutations, mapState } from 'vuex'
+import COMMON from 'Data/common'
+import DataUtil from '@/utils/DataUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
-import rcapiService from '@/service/rcapiService'
+import ItemIcon from '@/components/basic/ItemIcon'
+import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import VueMarkdown from 'vue-markdown'
+import WindowUtil from '@/entries/reader/util/WindowUtil'
+import rcapiService from '@/service/rcapiService'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
 const DIADEM_WEATHERS = [133, 134, 135, 136]

@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import reverse from 'lodash/reverse'
+import * as echarts from 'echarts'
 import ItemIcon from '@/components/basic/ItemIcon'
 import UploadUtil from '@/utils/UploadUtil'
-import * as echarts from 'echarts'
 import clone from 'lodash/clone'
+import reverse from 'lodash/reverse'
 import themes from '@/components/echart-theme/theme'
 
 echarts.registerTheme('dark', themes.dark)

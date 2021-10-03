@@ -144,8 +144,8 @@
 
 <script>
 import ClickHelper from '@/components/basic/ClickHelper'
-import ImgUtil from '@/utils/ImgUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
+import ImgUtil from '@/utils/ImgUtil'
 
 export default {
   name: 'HelpDialog',

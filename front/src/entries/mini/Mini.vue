@@ -33,9 +33,9 @@
 </template>
 
 <script>
-import ImgUtil from '@/utils/ImgUtil'
 import { version } from '../../../package.json'
 import DataUtil from '@/utils/DataUtil'
+import ImgUtil from '@/utils/ImgUtil'
 
 export default {
   name: 'Mini',

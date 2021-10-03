@@ -6,8 +6,8 @@
 
 <script>
 import BScroll from '@better-scroll/core'
-import Scrollbar from '@better-scroll/scroll-bar'
 import MouseWheel from '@better-scroll/mouse-wheel'
+import Scrollbar from '@better-scroll/scroll-bar'
 
 BScroll.use(Scrollbar)
 BScroll.use(MouseWheel)

@@ -85,8 +85,8 @@
 <script>
 // import DataUtil from '@/utils/DataUtil'
 
-import ItemIcon from '@/components/basic/ItemIcon'
 import DataUtil from '@/utils/DataUtil'
+import ItemIcon from '@/components/basic/ItemIcon'
 export default {
   name: 'AchievementProgress',
   components: { ItemIcon },

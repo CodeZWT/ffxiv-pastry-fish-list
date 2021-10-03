@@ -1,5 +1,5 @@
-import store from 'store2'
 import DataUtil from '@/utils/DataUtil'
+import store from 'store2'
 
 const USER_DATA_KEY = 'userData'
 const BAIT_FILTER_KEY = 'baitFilter'

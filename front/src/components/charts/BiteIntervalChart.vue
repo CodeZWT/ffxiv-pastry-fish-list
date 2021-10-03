@@ -43,15 +43,15 @@
 </template>
 
 <script>
-import reverse from 'lodash/reverse'
-import ItemIcon from '@/components/basic/ItemIcon'
-import UploadUtil from '@/utils/UploadUtil'
-import * as echarts from 'echarts'
-import clone from 'lodash/clone'
-import themes from '@/components/echart-theme/theme'
 import * as _ from 'lodash'
+import * as echarts from 'echarts'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
+import ItemIcon from '@/components/basic/ItemIcon'
+import UploadUtil from '@/utils/UploadUtil'
+import clone from 'lodash/clone'
+import reverse from 'lodash/reverse'
+import themes from '@/components/echart-theme/theme'
 
 echarts.registerTheme('dark', themes.dark)
 echarts.registerTheme('light', themes.light)

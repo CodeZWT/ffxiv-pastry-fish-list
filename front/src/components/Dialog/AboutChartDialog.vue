@@ -74,8 +74,8 @@
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
 import { mapMutations } from 'vuex'
+import VueMarkdown from 'vue-markdown'
 
 export default {
   name: 'AboutChartDialog',

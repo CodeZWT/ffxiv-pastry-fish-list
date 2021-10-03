@@ -1,9 +1,9 @@
+import { loadReaderUserData, loadUserData } from '@/utils/UserDataLoader'
+import CONSTANTS from 'Data/constants'
+import DataUtil from '@/utils/DataUtil'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import DataUtil from '@/utils/DataUtil'
-import { loadReaderUserData, loadUserData } from '@/utils/UserDataLoader'
-import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import CONSTANTS from 'Data/constants'
 import _ from 'lodash'
 
 Vue.use(Vuex)

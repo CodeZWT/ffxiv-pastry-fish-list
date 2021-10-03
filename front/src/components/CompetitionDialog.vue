@@ -64,9 +64,9 @@
 </template>
 
 <script>
-import ImgUtil from '@/utils/ImgUtil'
 import { mapMutations } from 'vuex'
 import EnvMixin from '@/components/basic/EnvMixin'
+import ImgUtil from '@/utils/ImgUtil'
 
 export default {
   name: 'CompetitionDialog',

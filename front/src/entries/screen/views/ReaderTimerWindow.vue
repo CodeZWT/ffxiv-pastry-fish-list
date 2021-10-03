@@ -47,12 +47,12 @@
 </template>
 
 <script>
-import ReaderTimer from '@/entries/reader/views/ReaderTimer'
-import { mapGetters, mapMutations, mapState } from 'vuex'
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import READER_ICON from 'Assets/reader.png'
-import SETTING_ICON from 'Assets/setting.png'
 import ReaderSetting from '@/entries/reader/views/ReaderSetting'
+import ReaderTimer from '@/entries/reader/views/ReaderTimer'
+import SETTING_ICON from 'Assets/setting.png'
 
 export default {
   name: 'ReaderTimerWindow',

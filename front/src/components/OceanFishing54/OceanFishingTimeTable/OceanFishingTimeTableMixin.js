@@ -1,6 +1,6 @@
 import ItemIcon from '@/components/basic/ItemIcon'
-import _ from 'lodash'
 import PinyinMatch from 'pinyin-match'
+import _ from 'lodash'
 
 export default {
   components: { ItemIcon },

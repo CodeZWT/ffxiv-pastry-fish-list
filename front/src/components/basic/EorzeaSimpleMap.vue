@@ -127,12 +127,12 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
 import ImgUtil from '@/utils/ImgUtil'
 import _ from 'lodash'
-import { mapMutations, mapState } from 'vuex'
 import copy from 'copy-to-clipboard'
-import EnvMixin from '@/components/basic/EnvMixin'
 // import Konva from 'konva'
 
 const TEXT_PADDING = 50

@@ -186,19 +186,19 @@
 </template>
 
 <script>
-import ItemIcon from '@/components/basic/ItemIcon'
-import DataUtil from '@/utils/DataUtil'
-import max from 'lodash/max'
-import COMMON from 'Data/common'
-import db from '@/plugins/db'
-import capitalize from 'lodash/capitalize'
-import EorzeaTime from '@/utils/Time'
-import Weather from '@/utils/Weather'
-import DATA from 'Data/data'
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
-import PLACE_NAMES from 'Data/placeNames'
-import NewFeatureMark from '@/components/basic/NewFeatureMark'
+import COMMON from 'Data/common'
+import DATA from 'Data/data'
+import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
+import EorzeaTime from '@/utils/Time'
+import ItemIcon from '@/components/basic/ItemIcon'
+import NewFeatureMark from '@/components/basic/NewFeatureMark'
+import PLACE_NAMES from 'Data/placeNames'
+import Weather from '@/utils/Weather'
+import capitalize from 'lodash/capitalize'
+import db from '@/plugins/db'
+import max from 'lodash/max'
 
 // import TEST from 'Data/test'
 

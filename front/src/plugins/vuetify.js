@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import settings from '@/themes'
-import Vuetify from 'vuetify'
 import VueI18n from 'vue-i18n'
+import Vuetify from 'vuetify'
+import settings from '@/themes'
 Vue.use(Vuetify)
 Vue.use(VueI18n)
 

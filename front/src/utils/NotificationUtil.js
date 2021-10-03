@@ -1,6 +1,6 @@
+import { FISH_NOTIFICATION } from 'Data/fix'
 import _ from 'lodash'
 import i18n from '@/i18n'
-import { FISH_NOTIFICATION } from 'Data/fix'
 
 export default {
   NOTIFICATION_PERMISSIONS: {

@@ -1,9 +1,9 @@
-import DATA from 'Data/data'
-import FIX from 'Data/fix'
 import { WEATHER_TYPES } from 'Data/translation'
+import DATA from 'Data/data'
 import DataUtil from '@/utils/DataUtil'
-import _ from 'lodash'
+import FIX from 'Data/fix'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import _ from 'lodash'
 
 function getStartLight() {
   // const userData = DataUtil.mergeUserData(

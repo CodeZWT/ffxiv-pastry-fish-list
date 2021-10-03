@@ -100,8 +100,8 @@
 </template>
 
 <script>
-import ItemIcon from '@/components/basic/ItemIcon'
 import GifLoader from '@/components/basic/GifLoader'
+import ItemIcon from '@/components/basic/ItemIcon'
 
 export default {
   name: 'FishAquarium',

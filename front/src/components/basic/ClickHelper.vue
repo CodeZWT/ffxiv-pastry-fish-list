@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import copy from 'copy-to-clipboard'
 import { mapMutations } from 'vuex'
+import copy from 'copy-to-clipboard'
 
 export default {
   // click helper to trigger click event for vuetify components in ACT

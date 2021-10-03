@@ -71,8 +71,8 @@
 </template>
 
 <script>
-import ItemIcon from '@/components/basic/ItemIcon'
 import DataUtil from '@/utils/DataUtil'
+import ItemIcon from '@/components/basic/ItemIcon'
 import LinkList from '@/components/basic/LinkList'
 export default {
   name: 'DetailItemQuest',

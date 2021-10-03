@@ -351,20 +351,20 @@
 </template>
 
 <script>
+import 'splitpanes/dist/splitpanes.css'
+import { Pane, Splitpanes } from 'splitpanes'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import ClickHelper from '@/components/basic/ClickHelper'
+import DataUtil from '@/utils/DataUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import FIX from 'Data/fix'
+import FishDetail from '@/components/FishDetail'
 import FishFilter from '@/components/FishFilter'
 import FishList from '@/components/FishList'
-import _ from 'lodash'
-import ClickHelper from '@/components/basic/ClickHelper'
-import { Pane, Splitpanes } from 'splitpanes'
-import 'splitpanes/dist/splitpanes.css'
-import FishDetail from '@/components/FishDetail'
-import NotificationUtil from '@/utils/NotificationUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
-import DataUtil from '@/utils/DataUtil'
-import FIX from 'Data/fix'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import NotificationUtil from '@/utils/NotificationUtil'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import _ from 'lodash'
 
 export default {
   name: 'fish-page',

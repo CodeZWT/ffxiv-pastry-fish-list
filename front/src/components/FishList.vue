@@ -68,9 +68,9 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import FishListItem from '@/components/FishListItem'
-import ClickHelper from '@/components/basic/ClickHelper'
 import isEqual from 'lodash/isEqual'
 
 export default {

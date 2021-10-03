@@ -108,10 +108,10 @@
 </template>
 
 <script>
-import ClickHelper from '@/components/basic/ClickHelper'
-import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
-import DataUtil from '@/utils/DataUtil'
 import { mapGetters, mapMutations } from 'vuex'
+import ClickHelper from '@/components/basic/ClickHelper'
+import DataUtil from '@/utils/DataUtil'
+import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import LinkList from '@/components/basic/LinkList'
 
 export default {

@@ -265,16 +265,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import AquariumPage from '@/entries/main/views/AquariumPage'
+import CompetitionPage from '@/entries/main/views/CompetitionPage'
+import DiademPage from '@/entries/main/views/DiademPage'
+import FishEyesToggleButton from '@/components/FishEyesToggleButton'
 import FishPage from '@/entries/main/views/FishPage'
-import WikiPage from '@/entries/main/views/WikiPage'
+import MainWindowMixin from '@/components/MainWindowMixin'
 import OceanFishingPage54 from '@/entries/main/views/OceanFishingPage54'
 import RecordPage from '@/entries/main/views/RecordPage'
-import CompetitionPage from '@/entries/main/views/CompetitionPage'
-import AquariumPage from '@/entries/main/views/AquariumPage'
-import DiademPage from '@/entries/main/views/DiademPage'
-import MainWindowMixin from '@/components/MainWindowMixin'
-import FishEyesToggleButton from '@/components/FishEyesToggleButton'
-import { mapGetters } from 'vuex'
+import WikiPage from '@/entries/main/views/WikiPage'
 
 export default {
   name: 'MainWindow',

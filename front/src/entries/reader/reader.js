@@ -1,12 +1,12 @@
-import Vue from 'vue'
+import { Settings } from 'luxon'
+import { initTooltip } from '@thewakingsands/kit-tooltip'
 import Reader from './Reader.vue'
+import Vue from 'vue'
+import VueKonva from 'vue-konva'
+import i18n from '@/i18n'
 import router from './router'
 import store from './store'
-import i18n from '@/i18n'
 import vuetify from '@/plugins/vuetify'
-import { initTooltip } from '@thewakingsands/kit-tooltip'
-import { Settings } from 'luxon'
-import VueKonva from 'vue-konva'
 
 initTooltip()
 Settings.defaultLocale = 'zh-CN'

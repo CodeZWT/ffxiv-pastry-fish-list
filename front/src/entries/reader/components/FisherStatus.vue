@@ -133,14 +133,14 @@
 </template>
 
 <script>
-import SubUtil, { WEATHER_CHANGE_INTERVAL_EARTH } from '../util/SubUtil'
-import max from 'lodash/max'
-import clone from 'lodash/clone'
 import DUMMY_DATA from '../util/DummyData'
-import FishTimelineTable from './FishTimelineTable'
 import DataUtil from '@/utils/DataUtil'
+import FishTimelineTable from './FishTimelineTable'
 import ItemIcon from '@/components/basic/ItemIcon'
+import SubUtil, { WEATHER_CHANGE_INTERVAL_EARTH } from '../util/SubUtil'
 import WeatherIcon from '@/components/basic/WeatherIcon'
+import clone from 'lodash/clone'
+import max from 'lodash/max'
 
 export default {
   name: 'FisherStatus',

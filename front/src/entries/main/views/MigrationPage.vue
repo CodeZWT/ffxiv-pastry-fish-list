@@ -69,8 +69,8 @@
 </template>
 
 <script>
-import DataUtil from '@/utils/DataUtil'
 import { mapMutations, mapState } from 'vuex'
+import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'MigrationPage.vue',

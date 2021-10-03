@@ -1,8 +1,8 @@
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import * as cjson from 'compressed-json'
 import { INTERVAL_MINUTE, UPLOAD_LIMIT } from 'Data/constants'
 import { decode, decodeAsync } from '@msgpack/msgpack'
-import * as cjson from 'compressed-json'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
 const host = DevelopmentModeUtil.isTest()
   ? 'https://rcapi.traveleorzea.com' //'http://localhost:3100'

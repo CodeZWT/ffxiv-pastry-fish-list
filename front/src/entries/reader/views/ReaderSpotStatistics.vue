@@ -39,9 +39,9 @@
 </template>
 
 <script>
+import DataUtil from '@/utils/DataUtil'
 import FishTimelineTable from '@/entries/reader/components/FishTimelineTable'
 import db from '@/plugins/db'
-import DataUtil from '@/utils/DataUtil'
 
 export default {
   name: 'ReaderSpotStatistics',

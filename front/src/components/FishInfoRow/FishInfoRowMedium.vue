@@ -265,15 +265,15 @@
 </template>
 
 <script>
-import ToggleButton from '@/components/basic/ToggleButton'
+import ClickHelper from '@/components/basic/ClickHelper'
+import EffectIcon from '@/components/basic/EffectIcon'
 import FishBaitList from '@/components/FishBaitList'
 import FishingSpotColumn from '@/components/FishingSpotColumn'
 import ItemIcon from '@/components/basic/ItemIcon'
-import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
-import ClickHelper from '@/components/basic/ClickHelper'
 import LinkList from '@/components/basic/LinkList'
+import ToggleButton from '@/components/basic/ToggleButton'
 import WeatherIcon from '@/components/basic/WeatherIcon'
-import EffectIcon from '@/components/basic/EffectIcon'
+import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 
 export default {
   name: 'FishInfoRowLarge',

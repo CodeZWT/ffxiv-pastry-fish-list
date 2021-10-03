@@ -44,9 +44,9 @@
 </template>
 
 <script>
+import EffectIcon from '@/components/basic/EffectIcon'
 import FishBaitList from '@/components/FishBaitList'
 import ItemIcon from '@/components/basic/ItemIcon'
-import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'DetailItemBuffAndBaits',

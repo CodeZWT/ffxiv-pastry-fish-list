@@ -60,9 +60,9 @@
 </template>
 
 <script>
-import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
-import FIX from 'Data/fix'
 import ClickHelper from '@/components/basic/ClickHelper'
+import FIX from 'Data/fix'
+import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
 
 export default {
   name: 'AchievementTip',

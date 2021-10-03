@@ -203,8 +203,8 @@
 
 <script>
 import FishBaitList from '@/components/FishBaitList'
-import FishWeatherNotAvailable from '@/components/OceanFishingFishList/FishWeatherNotAvailable'
 import FishBiteTimeList from '@/components/FishBiteTimeList'
+import FishWeatherNotAvailable from '@/components/OceanFishingFishList/FishWeatherNotAvailable'
 export default {
   name: 'FishTip',
   components: { FishBiteTimeList, FishWeatherNotAvailable, FishBaitList },

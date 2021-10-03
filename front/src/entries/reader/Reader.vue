@@ -76,18 +76,18 @@
 </template>
 
 <script>
-import WindowUtil from './util/WindowUtil'
 import '@thewakingsands/axis-font-icons'
-import EorzeaTime from '@/utils/Time'
-import DataUtil from '@/utils/DataUtil'
-import { mapGetters, mapMutations, mapState } from 'vuex'
-import READER_ICON from 'Assets/reader.png'
-import SETTING_ICON from 'Assets/setting.png'
-import { ReaderFeatures } from 'Data/newFeatures'
-import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
-import db from '@/plugins/db'
+import { ReaderFeatures } from 'Data/newFeatures'
+import { mapGetters, mapMutations, mapState } from 'vuex'
+import DataUtil from '@/utils/DataUtil'
+import EorzeaTime from '@/utils/Time'
+import NewFeatureMark from '@/components/basic/NewFeatureMark'
+import READER_ICON from 'Assets/reader.png'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
+import SETTING_ICON from 'Assets/setting.png'
+import WindowUtil from './util/WindowUtil'
+import db from '@/plugins/db'
 
 export default {
   name: 'Reader',

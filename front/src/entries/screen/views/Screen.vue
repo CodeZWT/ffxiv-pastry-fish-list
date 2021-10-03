@@ -387,13 +387,13 @@
 </template>
 
 <script>
-import VueGridLayout from 'vue-grid-layout'
-import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
+import AppMixin from '@/components/AppMixin'
+import MainWindow from '@/entries/screen/views/MainWindow'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
-import MainWindow from '@/entries/screen/views/MainWindow'
-import AppMixin from '@/components/AppMixin'
 import ReaderTimerMiniWindow from '@/entries/screen/views/ReaderTimerMiniWindow'
+import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
+import VueGridLayout from 'vue-grid-layout'
 
 export default {
   name: 'Screen',

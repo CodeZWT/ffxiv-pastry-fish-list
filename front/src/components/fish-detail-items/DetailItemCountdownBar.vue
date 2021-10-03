@@ -63,10 +63,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import isEqual from 'lodash/isEqual'
-import { mapState } from 'vuex'
 
 export default {
   name: 'DetailItemCountdownBar',

@@ -1,10 +1,10 @@
-import Vue from 'vue'
+import { Settings } from 'luxon'
 import App from './App.vue'
+import Vue from 'vue'
+import i18n from '@/i18n'
 import router from './router'
 import store from './store'
-import i18n from '@/i18n'
 import vuetify from '@/plugins/vuetify'
-import { Settings } from 'luxon'
 
 Settings.defaultLocale = 'zh-CN'
 

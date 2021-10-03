@@ -1,6 +1,6 @@
+import ReaderTimer from '../views/ReaderTimer'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ReaderTimer from '../views/ReaderTimer'
 
 Vue.use(VueRouter)
 

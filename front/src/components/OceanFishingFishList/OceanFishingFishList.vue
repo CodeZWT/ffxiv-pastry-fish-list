@@ -170,14 +170,14 @@
 </template>
 
 <script>
-import ItemIcon from '@/components/basic/ItemIcon'
 import { mapGetters, mapMutations } from 'vuex'
-import ToggleButton from '@/components/basic/ToggleButton'
 import DataUtil from '@/utils/DataUtil'
+import EffectIcon from '@/components/basic/EffectIcon'
 import FIX from 'Data/fix'
 import FishBiteTimeList from '@/components/FishBiteTimeList'
+import ItemIcon from '@/components/basic/ItemIcon'
+import ToggleButton from '@/components/basic/ToggleButton'
 import WeatherIcon from '@/components/basic/WeatherIcon'
-import EffectIcon from '@/components/basic/EffectIcon'
 
 export default {
   name: 'OceanFishingFishList',

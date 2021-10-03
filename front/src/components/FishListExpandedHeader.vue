@@ -111,13 +111,13 @@
 
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import ToggleButton from '@/components/basic/ToggleButton'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
+import FIX from '../../../data/fix'
 import ItemIcon from '@/components/basic/ItemIcon'
 import LinkList from '@/components/basic/LinkList'
-import FIX from '../../../data/fix'
-import EnvMixin from '@/components/basic/EnvMixin'
+import ToggleButton from '@/components/basic/ToggleButton'
 
 export default {
   name: 'FishListExpandedHeader',
