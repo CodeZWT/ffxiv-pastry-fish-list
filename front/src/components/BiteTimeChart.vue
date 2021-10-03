@@ -29,7 +29,7 @@
 import reverse from 'lodash/reverse'
 import ItemIcon from '@/components/basic/ItemIcon'
 import UploadUtil from '@/utils/UploadUtil'
-import * as echarts from 'echarts/core'
+import * as echarts from 'echarts'
 import clone from 'lodash/clone'
 import themes from '@/components/echart-theme/theme'
 
