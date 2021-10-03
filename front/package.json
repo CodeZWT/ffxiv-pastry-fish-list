@@ -4,17 +4,17 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "serve:electron": "vue-cli-service serve --mode electronlocal",
-    "inspect": "vue-cli-service inspect",
-    "build:main": "vue-cli-service build --mode main --dest ../front-web-dist",
+    "build": "vue-cli-service build --dest ../front-web-dist",
+    "lint": "vue-cli-service lint",
     "build:electron": "vue-cli-service build --mode electron --dest ../front-electron-dist",
     "build:github": "vue-cli-service build --mode github --dest ../front-web-dist",
-    "build:traveleorzea": "vue-cli-service build --mode traveleorzea --dest ../front-web-dist",
-    "build": "vue-cli-service build --dest ../front-web-dist",
+    "build:main": "vue-cli-service build --mode main --dest ../front-web-dist",
     "build:staging": "vue-cli-service build --mode staging --dest ../front-web-dist",
-    "lint": "vue-cli-service lint",
+    "build:traveleorzea": "vue-cli-service build --mode traveleorzea --dest ../front-web-dist",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
+    "inspect": "vue-cli-service inspect",
     "lint:fix": "vue-cli-service lint --fix",
-    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
+    "serve:electron": "vue-cli-service serve --mode electronlocal"
   },
   "dependencies": {
     "@better-scroll/core": "^2.0.4",
@@ -61,12 +61,12 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-babel": "~4.5.13",
+    "@vue/cli-plugin-eslint": "~4.5.13",
+    "@vue/cli-plugin-router": "~4.5.13",
     "@vue/cli-plugin-typescript": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.13",
+    "@vue/cli-service": "~4.5.13",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^5.0.2",
     "babel-eslint": "^10.1.0",
@@ -79,7 +79,7 @@
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "typescript": "~4.1.5",
-    "vue-cli-plugin-i18n": "~1.0.1",
+    "vue-cli-plugin-i18n": "~2.3.1",
     "vue-cli-plugin-webpack-bundle-analyzer": "~4.0.0",
     "vue-template-compiler": "^2.6.11"
   }
