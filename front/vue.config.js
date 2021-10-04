@@ -100,7 +100,7 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
 module.exports = {
   transpileDependencies: ['vuetify'],
   publicPath: process.env.VUE_APP_STATIC_FILES_URL,
-  productionSourceMap: true,
+  productionSourceMap: false,
   pages: pages,
   pluginOptions: {
     i18n: {
