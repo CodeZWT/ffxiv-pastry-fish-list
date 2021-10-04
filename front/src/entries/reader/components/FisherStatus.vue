@@ -139,8 +139,7 @@ import FishTimelineTable from './FishTimelineTable'
 import ItemIcon from '@/components/basic/ItemIcon'
 import SubUtil, { WEATHER_CHANGE_INTERVAL_EARTH } from '../util/SubUtil'
 import WeatherIcon from '@/components/basic/WeatherIcon'
-import clone from 'lodash/clone'
-import max from 'lodash/max'
+import _ from 'lodash'
 
 export default {
   name: 'FisherStatus',
@@ -246,8 +245,8 @@ export default {
       return SubUtil.getWeather(this.spot.id, this.prevWeatherCheckPoint)
     },
     records() {
-      const records = clone(this.dataReadableRecords ?? []).reverse()
-      const maxBiteInterval = max(records.map(it => it.biteInterval))
+      const records = _.clone(this.dataReadableRecords ?? []).reverse()
+      const maxBiteInterval = _.max(records.map(it => it.biteInterval))
       let intervalMax = 60
       if (maxBiteInterval != null) {
         const maxBiteIntervalInteger = +maxBiteInterval.toFixed(1).split('.')[0]

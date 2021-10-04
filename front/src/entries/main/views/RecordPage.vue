@@ -690,7 +690,6 @@
 </template>
 
 <script>
-import * as _ from 'lodash'
 import BAITS from 'Data/bait'
 import BiteTimeChart from '@/components/BiteTimeChart'
 import Constants from 'Data/constants'
@@ -706,9 +705,8 @@ import SPOT_FISH_DICT from 'Data/spotFishDict'
 import SPOT_WEATHER from 'Data/spotWeather'
 import UploadUtil from '@/utils/UploadUtil'
 import WeatherIcon from '@/components/basic/WeatherIcon'
+import _ from 'lodash'
 import rcapiService from '@/service/rcapiService'
-import throttle from 'lodash/throttle'
-import uniq from 'lodash/uniq'
 
 export default {
   name: 'RecordPage',
@@ -887,13 +885,13 @@ export default {
   async mounted() {
     const userProfile = await rcapiService.getUserProfile()
     this.currentUserId = userProfile.userId
-    this.refresh = throttle(this.getTotalTabData, 5000, {
+    this.refresh = _.throttle(this.getTotalTabData, 5000, {
       leading: true,
     })
-    this.throttledDeleteRecord = throttle(this.deleteRecord, 500, {
+    this.throttledDeleteRecord = _.throttle(this.deleteRecord, 500, {
       leading: true,
     })
-    this.throttledToggleRecordStrictMode = throttle(this.toggleRecordStrictMode, 500, {
+    this.throttledToggleRecordStrictMode = _.throttle(this.toggleRecordStrictMode, 500, {
       leading: true,
     })
 
@@ -981,7 +979,7 @@ export default {
         .value()
     },
     spotWeathers() {
-      return uniq((SPOT_WEATHER[this.spotId] ?? []).filter(it => it > 0))
+      return _.uniq((SPOT_WEATHER[this.spotId] ?? []).filter(it => it > 0))
         .sort()
         .map(weatherId => UploadUtil.toWeather(weatherId))
     },

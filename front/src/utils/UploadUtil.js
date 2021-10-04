@@ -10,7 +10,8 @@ import PLACE_NAMES from 'Data/placeNames'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
-import capitalize from 'lodash/capitalize'
+import _ from 'lodash'
+
 import db from '@/plugins/db'
 import rcapiService, { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 
@@ -149,7 +150,7 @@ export default {
     const hooksetId = ['normal', 'precision', 'powerful', 'double'][hookset]
     return {
       id: hooksetId,
-      icon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[capitalize(hooksetId)]),
+      icon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[_.capitalize(hooksetId)]),
     }
   },
   toSpot(spot) {

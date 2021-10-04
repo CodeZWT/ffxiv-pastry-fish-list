@@ -14,7 +14,6 @@ import ImgUtil from '@/utils/ImgUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import TimeFormatter from '@/utils/TimeFormatter'
 import _ from 'lodash'
-import cloneDeep from 'lodash/cloneDeep'
 import flatten from 'flat'
 import i18n from '@/i18n'
 import tip1Data from 'Data/tip1'
@@ -807,7 +806,7 @@ export default {
 
   toSpotsOfPredator(fishingSpots, firstSpotId, isSpear = false) {
     if (!firstSpotId) return fishingSpots
-    const spots = cloneDeep(fishingSpots)
+    const spots = _.cloneDeep(fishingSpots)
     const predatorSpotIndex = spots.findIndex(spot => spot.fishingSpotId === firstSpotId)
     const predatorSpot = spots.splice(predatorSpotIndex, 1)
     return isSpear ? [...spots, ...predatorSpot] : [...predatorSpot, ...spots]

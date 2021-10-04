@@ -168,8 +168,6 @@
 </template>
 <script>
 import tip1 from 'Data/tip1'
-// import CN_DATA from 'Data/translation'
-// import _ from 'lodash'
 
 export default {
   name: 'Tip1',

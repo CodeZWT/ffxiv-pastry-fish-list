@@ -196,9 +196,7 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import PLACE_NAMES from 'Data/placeNames'
 import Weather from '@/utils/Weather'
-import capitalize from 'lodash/capitalize'
 import db from '@/plugins/db'
-import max from 'lodash/max'
 
 // import TEST from 'Data/test'
 
@@ -263,7 +261,7 @@ export default {
           },
           hookset: {
             icon: DataUtil.iconIdToClass(
-              DataUtil.HOOKSET_ICON[capitalize(record.hookset)]
+              DataUtil.HOOKSET_ICON[_.capitalize(record.hookset)]
             ),
           },
           effects: Object.values(COMMON.STATUS)
@@ -285,7 +283,7 @@ export default {
         }
       })
 
-      const maxBiteInterval = max(records.map(it => it.biteInterval))
+      const maxBiteInterval = _.max(records.map(it => it.biteInterval))
       let intervalMax = 60
       if (maxBiteInterval != null) {
         const maxBiteIntervalInteger = +maxBiteInterval.toFixed(1).split('.')[0]
@@ -458,7 +456,7 @@ export default {
           鱼饵: DataUtil.getItemName(record.baitId),
           '咬钩时长（秒）': ((record.biteTime - record.startTime) / 1000).toFixed(1),
           撒饵: record.chum ? '是' : '否',
-          提钩: DataUtil.HOOKSET_SKILL_NAME_DICT[capitalize(record.hookset)] ?? '提钩',
+          提钩: DataUtil.HOOKSET_SKILL_NAME_DICT[_.capitalize(record.hookset)] ?? '提钩',
           个数: record.quantity,
           获得力: record.gathering,
           鉴别力: record.perception,

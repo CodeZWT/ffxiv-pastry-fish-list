@@ -66,7 +66,7 @@
 import { mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
-import isEqual from 'lodash/isEqual'
+import _ from 'lodash'
 
 export default {
   name: 'DetailItemCountdownBar',
@@ -109,7 +109,7 @@ export default {
     },
     countDownTime(countDownTime) {
       const newCountDownTimeText = this.printCountDownTime(countDownTime, 2)
-      if (!isEqual(this.countDownTimeText, newCountDownTimeText)) {
+      if (!_.isEqual(this.countDownTimeText, newCountDownTimeText)) {
         this.countDownTimeText = newCountDownTimeText
       }
 

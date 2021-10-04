@@ -43,14 +43,12 @@
 </template>
 
 <script>
-import * as _ from 'lodash'
 import * as echarts from 'echarts'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import ItemIcon from '@/components/basic/ItemIcon'
 import UploadUtil from '@/utils/UploadUtil'
-import clone from 'lodash/clone'
-import reverse from 'lodash/reverse'
+import _ from 'lodash'
 import themes from '@/components/echart-theme/theme'
 
 echarts.registerTheme('dark', themes.dark)
@@ -93,7 +91,7 @@ export default {
   watch: {
     enableBaitFilter(enableBaitFilter) {
       if (enableBaitFilter) {
-        this.baitSelected = clone(this.allBaitIds)
+        this.baitSelected = _.clone(this.allBaitIds)
       }
       this.$nextTick(() => {
         this.chart.dispose()
@@ -169,7 +167,7 @@ export default {
         ])
         .value()
 
-      const fishList = reverse(
+      const fishList = _.reverse(
         UploadUtil.fishListOfSpot(this.spotId).map(fishId => {
           return (
             this.fishDict[fishId] ??

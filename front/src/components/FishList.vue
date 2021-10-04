@@ -71,7 +71,7 @@ import { mapGetters, mapState } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import FishListItem from '@/components/FishListItem'
-import isEqual from 'lodash/isEqual'
+import _ from 'lodash'
 
 export default {
   name: 'fish-list',
@@ -183,7 +183,7 @@ export default {
   watch: {
     fishIdsToShow: {
       handler(fishIds, old) {
-        if (!isEqual(fishIds, old)) {
+        if (!_.isEqual(fishIds, old)) {
           console.debug('update fish list', fishIds.length)
           this.fishListToShow = fishIds.map(id => this.fishDict[id])
         }

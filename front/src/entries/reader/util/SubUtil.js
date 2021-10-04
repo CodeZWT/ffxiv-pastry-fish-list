@@ -10,13 +10,13 @@ import { DATA } from './data'
 import { DateTime } from 'luxon'
 import CN_DATA from './translation'
 import DataUtil from '@/utils/DataUtil'
+import _ from 'lodash'
 import i18n from '@/i18n'
-import keyBy from 'lodash/keyBy'
-import merge from 'lodash/merge'
+
 import regionTerritorySpots from 'Data/fishingSpots.js'
 
 function getSpotDict(regionDict) {
-  return keyBy(
+  return _.keyBy(
     Object.values(regionDict)
       .flatMap(region => region.territories)
       .flatMap(territory => territory.spots),
@@ -5787,7 +5787,7 @@ const SubUtil = {
     }
   },
 
-  FISHING_SPOTS: merge(DATA.FISHING_SPOTS, CN_DATA.FISHING_SPOTS),
+  FISHING_SPOTS: _.merge(DATA.FISHING_SPOTS, CN_DATA.FISHING_SPOTS),
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 }
 const EARTH_TO_EROZEA = 3600 / 175

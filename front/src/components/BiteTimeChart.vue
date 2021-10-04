@@ -29,8 +29,7 @@
 import * as echarts from 'echarts'
 import ItemIcon from '@/components/basic/ItemIcon'
 import UploadUtil from '@/utils/UploadUtil'
-import clone from 'lodash/clone'
-import reverse from 'lodash/reverse'
+import _ from 'lodash'
 import themes from '@/components/echart-theme/theme'
 
 echarts.registerTheme('dark', themes.dark)
@@ -63,7 +62,7 @@ export default {
   watch: {
     enableBaitFilter(enableBaitFilter) {
       if (enableBaitFilter) {
-        this.baitSelected = clone(this.allBaitIds)
+        this.baitSelected = _.clone(this.allBaitIds)
       }
       this.$nextTick(() => {
         this.chart.dispose()
@@ -113,7 +112,7 @@ export default {
     //   }
     // },
     itemNames() {
-      return reverse(this.fishList)
+      return _.reverse(this.fishList)
     },
     allBaitRecords() {
       return this.data.allBaitRecords

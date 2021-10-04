@@ -1,6 +1,6 @@
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
-import isEqual from 'lodash/isEqual'
+import _ from 'lodash'
 
 export default {
   props: {
@@ -124,7 +124,7 @@ export default {
   watch: {
     countDownTime(countDownTime) {
       const newText = this.printCountDownTime(countDownTime)
-      if (!isEqual(this.countDownTimeText, newText)) {
+      if (!_.isEqual(this.countDownTimeText, newText)) {
         this.countDownTimeText = newText
       }
     },
@@ -132,7 +132,7 @@ export default {
       const newText = this.$t('countDown.nextInterval', {
         nextInterval: this.printCountDownTime(nextInterval, 1, false),
       })
-      if (!isEqual(this.countDownNextInterval, newText)) {
+      if (!_.isEqual(this.countDownNextInterval, newText)) {
         this.countDownNextInterval = newText
       }
     },

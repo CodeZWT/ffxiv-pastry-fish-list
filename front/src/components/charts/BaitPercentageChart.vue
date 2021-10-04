@@ -264,7 +264,6 @@ import SPOT_WEATHER from 'Data/spotWeather'
 import UploadUtil from '@/utils/UploadUtil'
 import WeatherIcon from '@/components/basic/WeatherIcon'
 import _ from 'lodash'
-import uniq from 'lodash/uniq'
 
 const hourMinuteToMinutes = (hour, minute) => {
   return hour * 60 + minute
@@ -508,7 +507,7 @@ export default {
       }
     },
     spotWeathers() {
-      return uniq((SPOT_WEATHER[this.spotId] ?? []).filter(it => it > 0))
+      return _.uniq((SPOT_WEATHER[this.spotId] ?? []).filter(it => it > 0))
         .sort()
         .map(weatherId => UploadUtil.toWeather(weatherId))
     },

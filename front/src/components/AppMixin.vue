@@ -41,7 +41,6 @@ import hotkeys from 'hotkeys-js'
 import placeNames from 'Data/placeNames'
 import rcapiService from '@/service/rcapiService'
 import regionTerritorySpots from 'Data/fishingSpots'
-import repeat from 'lodash/repeat'
 
 export default {
   name: 'AppMixin',
@@ -1118,7 +1117,7 @@ export default {
         },
         star: {
           quantity: fish.star,
-          text: repeat('★', fish.star),
+          text: _.repeat('★', fish.star),
         },
       }
     },

@@ -347,9 +347,8 @@ import { MONITOR_TYPES, REGIONS } from 'Data/constants'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
+import _ from 'lodash'
 import db from '@/plugins/db'
-import last from 'lodash/last'
-import set from 'lodash/set'
 
 export default {
   name: 'ReaderSetting',
@@ -461,7 +460,7 @@ export default {
     //     ?.then(setting => (this.lazyWindowSetting = setting))
     // },
     toDisplayFileName(path) {
-      return path && last(path.split('\\'))
+      return path && _.last(path.split('\\'))
     },
     showFileViewer(type) {
       window.electron?.ipcRenderer?.invoke('showOpenSoundFileDialog').then(result => {
@@ -473,7 +472,7 @@ export default {
               filePath: result.filePath,
             })
             .then(() => {
-              set(this.lazySetting, `timer.sound.${type}.customPath`, result.filePath)
+              _.set(this.lazySetting, `timer.sound.${type}.customPath`, result.filePath)
               console.debug('loading sounds in setting')
               this.loadingSounds().then(sounds =>
                 this.setSounds(DataUtil.toMap(sounds, it => it.key))
