@@ -35,7 +35,7 @@ let pages = {
     title: '鱼糕',
     // 在这个页面中包含的块，默认情况下会包含
     // 提取出来的通用 chunk 和 vendor chunk。
-    // chunks: ['chunk-vendors', 'chunk-common', 'index'],
+    chunks: ['chunk-vendors', 'chunk-vendors-common', 'index'],
   },
   // fishv2: {
   //   entry: 'src/entries/fish-v2/main.js',
@@ -100,7 +100,7 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
 module.exports = {
   transpileDependencies: ['vuetify'],
   publicPath: process.env.VUE_APP_STATIC_FILES_URL,
-  productionSourceMap: false,
+  productionSourceMap: true,
   pages: pages,
   pluginOptions: {
     i18n: {
@@ -189,6 +189,11 @@ module.exports = {
       splitChunks: {
         chunks: 'all',
         cacheGroups: {
+          vendorsGroup1: {
+            name: 'chunk-vendors-common',
+            test: /[\\/]node_modules[\\/](howler|splitpanes|sortablejs|vee-validate|vuedraggable|clipboard)[\\/]/,
+            priority: 10,
+          },
           defaultVendors: {
             name: 'chunk-vendors',
             test: /[\\/]node_modules[\\/]/,
