@@ -35,7 +35,12 @@ let pages = {
     title: '鱼糕',
     // 在这个页面中包含的块，默认情况下会包含
     // 提取出来的通用 chunk 和 vendor chunk。
-    chunks: ['chunk-vendors', 'chunk-vendors-common', 'index'],
+    chunks: ['chunk-vendors-1', 'chunk-vendors-other', 'index'],
+    // 当使用只有入口的字符串格式时，
+    // 模板会被推导为 `public/subpage.html`
+    // 并且如果找不到的话，就回退到 `public/index.html`。
+    // 输出文件名会被推导为 `subpage.html`。
+    // subpage: 'src/subpage/main.js',
   },
   // fishv2: {
   //   entry: 'src/entries/fish-v2/main.js',
@@ -46,11 +51,6 @@ let pages = {
   //   filename: 'fish-v2.html',
   //   title: '列表v2',
   // },
-  // 当使用只有入口的字符串格式时，
-  // 模板会被推导为 `public/subpage.html`
-  // 并且如果找不到的话，就回退到 `public/index.html`。
-  // 输出文件名会被推导为 `subpage.html`。
-  // subpage: 'src/subpage/main.js',
 }
 if (process.env.VUE_APP_ELECTRON === 'true') {
   console.log('build for electron')
@@ -190,15 +190,42 @@ module.exports = {
         chunks: 'all',
         cacheGroups: {
           vendorsGroup1: {
-            name: 'chunk-vendors-common',
+            name: 'chunk-vendors-1',
             test: /[\\/]node_modules[\\/](howler|splitpanes|sortablejs|vee-validate|vuedraggable|clipboard)[\\/]/,
             priority: 10,
           },
-          defaultVendors: {
-            name: 'chunk-vendors',
+          vendorsGroupOther: {
+            name: 'chunk-vendors-other',
+            minSize: 1,
+            chunks: 'all',
+            minChunks: 1,
             test: /[\\/]node_modules[\\/]/,
-            priority: 0,
+            priority: 5,
           },
+          // pageData: {
+          //   name: 'chunk-page-data',
+          //   minSize: 1,
+          //   chunks: 'all',
+          //   minChunks: 1,
+          //   test(module) {
+          //     // `module.resource` contains the absolute path of the file on disk.
+          //     // Note the usage of `path.sep` instead of / or \, for cross-platform compatibility.
+          //     const path = require('path')
+          //     if (
+          //       module.resource &&
+          //       module.resource.endsWith('fish.js') &&
+          //       module.resource.includes(`${path.sep}data${path.sep}`)
+          //     ) {
+          //       console.log('matchedddd!!!!!!!!!')
+          //     }
+          //     return (
+          //       module.resource &&
+          //       module.resource.endsWith('fish.js') &&
+          //       module.resource.includes(`${path.sep}data${path.sep}`)
+          //     )
+          //   },
+          //   priority: 20,
+          // },
           // common: {
           //   name: 'chunk-common',
           //   minChunks: 2,
