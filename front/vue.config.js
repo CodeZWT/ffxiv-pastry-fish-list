@@ -125,8 +125,11 @@ module.exports = {
         vue: 'Vue',
         vuetify: 'Vuetify',
         konva: 'konva',
-        'konva-vue': 'VueKonva',
+        'vue-konva': 'VueKonva',
         echarts: 'echarts',
+        '@thewakingsands/kit-tooltip': 'CafeKitTooltip',
+        luxon: 'luxon',
+        dexie: 'Dexie',
       })
     }
     // else {
