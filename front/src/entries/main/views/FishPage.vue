@@ -481,9 +481,7 @@ export default {
         const fishData = this.allFish[fishId]
         if (
           fishData.gig == null &&
-          (this.listSetting.pinned.showPinnedInNormalList ||
-            !this.getFishPinned(fishId)) &&
-          DataUtil.showFishInList(fishData)
+          (this.listSetting.pinned.showPinnedInNormalList || !this.getFishPinned(fishId))
         ) {
           // console.log(fishId, this.allFish[fishId])
           baitFishItems.push({
