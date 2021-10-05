@@ -681,18 +681,6 @@ export default {
     )
   },
 
-  // hasTips(fishId) {
-  //   return (
-  //     !!tip1Data[fishId] ||
-  //     !!tip2Data[fishId] ||
-  //     TIP3_FISH_IDS.includes(fishId) ||
-  //     !!tip4.TIPS[fishId] ||
-  //     TIP5_FISH_IDS.includes(fishId) ||
-  //     !!tip6.TIPS[fishId] ||
-  //     !!tip7.TIPS[fishId]
-  //   )
-  // },
-
   validateImportData(data, sample) {
     const importKeys = _.keys(flatten(data, { safe: true })).sort()
     const sampleKeys = _.keys(flatten(sample, { safe: true })).sort()

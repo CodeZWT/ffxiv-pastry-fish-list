@@ -10,7 +10,10 @@
         </div>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
-        <v-row no-gutters>
+        <div v-if="!hasTips(fish.id)" class="text-center">
+          暂无攻略
+        </div>
+        <v-row v-else no-gutters>
           <v-col cols="12">
             <tip7 :id="fish.id" />
           </v-col>
@@ -39,6 +42,9 @@
 </template>
 
 <script>
+import { BIG_FISH } from 'Data/translation'
+import DataUtil from '@/utils/DataUtil'
+
 export default {
   name: 'DetailItemTips',
   components: {
@@ -69,6 +75,15 @@ export default {
     },
     'fish.id': function() {
       this.lazyExpansionValue = this.expanded ? 0 : undefined
+    },
+  },
+  methods: {
+    hasTips(fishId) {
+      return (
+        BIG_FISH.includes(fishId) ||
+        DataUtil.TIP3_FISH_IDS.includes(fishId) ||
+        DataUtil.TIP5_FISH_IDS.includes(fishId)
+      )
     },
   },
 }
