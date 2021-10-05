@@ -516,6 +516,7 @@
 
 <script>
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
+import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import AboutChartDialog from '@/components/Dialog/AboutChartDialog'
 import AchievementProgress from '@/components/AchievementProgress'
@@ -741,20 +742,6 @@ export default {
     fishCaughtCnt() {
       return this.allCompletedFish.length
     },
-    // total
-    // | normal fish                                                                                   | spear fish                |
-    // | normal fish                     | ocean fish                    |                             | normal fish | fish shadow |
-    // | normal fish | big fish | legend | normal sea fish               | current fish                |                           |
-    // |                                 | normal fish | intuition fish  | normal big fish | blue fish |                           |
-
-    // spearFishTotal() {
-    //
-    // },
-    // normalFishTotal() {
-    //   return _.uniq(Object.keys(this.allFish).map(id => DataUtil.toItemId(id))).length +
-    //     Object.keys(FIX.OCEAN_FISHING_FISH).length -
-    //     (DevelopmentModeUtil.isTest() ? 2 : 0)
-    // },
     region() {
       return 'CN'
     },
@@ -772,7 +759,7 @@ export default {
         .filter(it => it.type !== 'test')
         .value()
 
-      const oceanFish = Object.values(FIX.OCEAN_FISHING_FISH)
+      const oceanFish = Object.values(OCEAN_FISHING_FISH)
 
       // let podNormalFish =[], podNormalFish =[],  podNormalFish =[], spearFish = [], podFish = []
       const iCatchThat = {
@@ -884,7 +871,7 @@ export default {
     fishTotal() {
       return (
         _.uniq(Object.keys(this.allFish).map(id => DataUtil.toItemId(id))).length +
-        Object.keys(FIX.OCEAN_FISHING_FISH).length -
+        Object.keys(OCEAN_FISHING_FISH).length -
         (DevelopmentModeUtil.isTest() ? 2 : 0)
       )
     },

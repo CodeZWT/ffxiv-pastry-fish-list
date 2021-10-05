@@ -60,8 +60,8 @@
 </template>
 
 <script>
+import { OCEAN_FISHING_TIPS } from 'Data/oceanFishing'
 import ClickHelper from '@/components/basic/ClickHelper'
-import FIX from 'Data/fix'
 import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
 
 export default {
@@ -87,8 +87,8 @@ export default {
   },
   data() {
     return {
-      oceanFishTipReference: FIX.OCEAN_FISHING_TIPS.tip3,
-      tip: FIX.OCEAN_FISHING_TIPS.tip3.achievementTip,
+      oceanFishTipReference: OCEAN_FISHING_TIPS.tip3,
+      tip: OCEAN_FISHING_TIPS.tip3.achievementTip,
     }
   },
   methods: {

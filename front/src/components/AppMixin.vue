@@ -2,6 +2,12 @@
 import { FishListUpdateWorker } from '@/utils/new/FishListUpdate'
 import { INTERVAL_MINUTE } from 'Data/constants'
 import { MainFeatures } from 'Data/newFeatures'
+import {
+  OCEAN_FISHING_BITE_TIME,
+  OCEAN_FISHING_BITE_TIME_COLLECTED,
+  OCEAN_FISHING_BONUS,
+  OCEAN_FISHING_FISH,
+} from 'Data/oceanFishing'
 import { PageVisibilityUtil } from '@/utils/new/PageVisibilityUtil'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import { version } from '../../package.json'
@@ -1006,7 +1012,7 @@ export default {
       })
     },
     assembleOceanFishList() {
-      const fishList = Object.values(FIX.OCEAN_FISHING_FISH)
+      const fishList = Object.values(OCEAN_FISHING_FISH)
       return fishList.map(fish => this.assembleOceanFish(fish))
     },
     midRounding(num) {
@@ -1023,10 +1029,10 @@ export default {
     },
     assembleOceanFish(fish) {
       const hasPredators = fish.predators && Object.keys(fish.predators).length > 0
-      const bonus = FIX.OCEAN_FISHING_BONUS[fish.bonus]
+      const bonus = OCEAN_FISHING_BONUS[fish.bonus]
       const realNotAvailableWeatherSet = this.getRealNotAvailableWeatherSet(fish._id)
 
-      const fishCollectedDataOfAllBaits = FIX.OCEAN_FISHING_BITE_TIME_COLLECTED.filter(
+      const fishCollectedDataOfAllBaits = OCEAN_FISHING_BITE_TIME_COLLECTED.filter(
         it => it.fishId === fish._id
       ).map(it => ({
         baitId: it.baitId,
@@ -1053,12 +1059,12 @@ export default {
       const biteTimeMin =
         collectedBiteData?.biteTimeMin ??
         fish.biteTimeMin ??
-        FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[0]
+        OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[0]
 
       const biteTimeMax =
         collectedBiteData?.biteTimeMax ??
         fish.biteTimeMax ??
-        FIX.OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[1]
+        OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[1]
 
       return {
         ...fish,
@@ -1083,7 +1089,7 @@ export default {
               icon: this.getItemIconClass(fish.baitExtra),
             }
           : null,
-        baits: this.getBaits(fish, undefined, FIX.OCEAN_FISHING_FISH),
+        baits: this.getBaits(fish, undefined, OCEAN_FISHING_FISH),
         availableBaitList: [],
         baitUniqueType: fish.isBaitUnique
           ? fish.baitExtra
@@ -1125,7 +1131,7 @@ export default {
       }
     },
     getRealNotAvailableWeatherSet(fishId) {
-      const fish = FIX.OCEAN_FISHING_FISH[fishId]
+      const fish = OCEAN_FISHING_FISH[fishId]
       if (fish == null) return []
 
       const predatorIds = fish.predators ? Object.keys(fish.predators) : []
@@ -1152,7 +1158,7 @@ export default {
       } else {
         return Object.entries(predators).map(([predatorId, count]) => {
           return {
-            ...this.assembleOceanFish(FIX.OCEAN_FISHING_FISH[predatorId]),
+            ...this.assembleOceanFish(OCEAN_FISHING_FISH[predatorId]),
             requiredCnt: count,
           }
         })

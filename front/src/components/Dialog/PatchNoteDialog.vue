@@ -87,11 +87,9 @@
       </v-card-text>
       <v-card-actions>
         <div class="d-flex flex-column flex-fill">
-          <click-helper @click="onConfirmPatchNote">
-            <v-btn color="primary" block>
-              {{ $t('general.dialog.confirm') }}
-            </v-btn>
-          </click-helper>
+          <v-btn color="primary" block @click="onConfirmPatchNote">
+            {{ $t('general.dialog.confirm') }}
+          </v-btn>
         </div>
       </v-card-actions>
     </v-card>
@@ -99,13 +97,10 @@
 </template>
 
 <script>
-import ClickHelper from '@/components/basic/ClickHelper'
-
 export default {
   name: 'PatchNoteDialog',
   components: {
     PatchNoteHistory: () => import('@/components/Dialog/PatchNoteHistory'),
-    ClickHelper,
   },
   model: {
     prop: 'showPatchNoteDialog',

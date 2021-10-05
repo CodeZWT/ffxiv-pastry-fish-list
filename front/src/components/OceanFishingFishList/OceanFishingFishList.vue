@@ -170,10 +170,10 @@
 </template>
 
 <script>
+import { OCEAN_FISHING_WEATHER } from 'Data/oceanFishing'
 import { mapGetters, mapMutations } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
-import FIX from 'Data/fix'
 import FishBiteTimeList from '@/components/FishBiteTimeList'
 import ItemIcon from '@/components/basic/ItemIcon'
 import ToggleButton from '@/components/basic/ToggleButton'
@@ -219,7 +219,7 @@ export default {
     weathers() {
       return this.weatherSet
         .map(weatherId => {
-          const weather = FIX.OCEAN_FISHING_WEATHER[weatherId]
+          const weather = OCEAN_FISHING_WEATHER[weatherId]
           return {
             id: weather._id,
             name: DataUtil.getName(weather),

@@ -1553,14 +1553,14 @@
 </template>
 
 <script>
+import { OCEAN_FISHING_TIPS } from 'Data/oceanFishing'
 import DIADEM from 'Data/diadem'
-import FIX from 'Data/fix'
 
 export default {
   name: 'PatchNoteHistory',
   data() {
     return {
-      oceanFishTipReference: FIX.OCEAN_FISHING_TIPS.tip1,
+      oceanFishTipReference: OCEAN_FISHING_TIPS.tip1,
       diademTips: DIADEM.SIMPLE_TIPS,
     }
   },

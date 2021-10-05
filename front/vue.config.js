@@ -35,7 +35,18 @@ let pages = {
     title: '鱼糕',
     // 在这个页面中包含的块，默认情况下会包含
     // 提取出来的通用 chunk 和 vendor chunk。
-    chunks: ['chunk-vendors-1', 'chunk-vendors-other', 'index'],
+    chunks: [
+      'chunk-vendors-1',
+      'chunk-vendors-other',
+      'chunk-data-fish',
+      'chunk-data-oceanfishing',
+      'chunk-data-tip',
+      'chunk-data-translation',
+      'chunk-data-fix',
+      'chunk-data-other',
+      'chunk-locales',
+      'index',
+    ],
     // 当使用只有入口的字符串格式时，
     // 模板会被推导为 `public/subpage.html`
     // 并且如果找不到的话，就回退到 `public/index.html`。
@@ -202,30 +213,55 @@ module.exports = {
             test: /[\\/]node_modules[\\/]/,
             priority: 5,
           },
-          // pageData: {
-          //   name: 'chunk-page-data',
-          //   minSize: 1,
-          //   chunks: 'all',
-          //   minChunks: 1,
-          //   test(module) {
-          //     // `module.resource` contains the absolute path of the file on disk.
-          //     // Note the usage of `path.sep` instead of / or \, for cross-platform compatibility.
-          //     const path = require('path')
-          //     if (
-          //       module.resource &&
-          //       module.resource.endsWith('fish.js') &&
-          //       module.resource.includes(`${path.sep}data${path.sep}`)
-          //     ) {
-          //       console.log('matchedddd!!!!!!!!!')
-          //     }
-          //     return (
-          //       module.resource &&
-          //       module.resource.endsWith('fish.js') &&
-          //       module.resource.includes(`${path.sep}data${path.sep}`)
-          //     )
-          //   },
-          //   priority: 20,
-          // },
+          fishData: {
+            name: 'chunk-data-fish',
+            chunks: 'all',
+            enforce: true,
+            test: /[\\/]data[\\/]fish\.js/,
+            priority: 1,
+          },
+          oceanFishingData: {
+            name: 'chunk-data-oceanfishing',
+            chunks: 'all',
+            enforce: true,
+            test: /[\\/]data[\\/]oceanFishing\.js/,
+            priority: 1,
+          },
+          localesData: {
+            name: 'chunk-locales',
+            chunks: 'all',
+            enforce: true,
+            test: /[\\/]locales[\\/].+\.json/,
+            priority: 1,
+          },
+          tipData: {
+            name: 'chunk-data-tip',
+            chunks: 'all',
+            enforce: true,
+            test: /[\\/]data[\\/]tip\d+\.js/,
+            priority: 1,
+          },
+          translationData: {
+            name: 'chunk-data-translation',
+            chunks: 'all',
+            enforce: true,
+            test: /[\\/]data[\\/](translation|fishingSpots)\.js/,
+            priority: 1,
+          },
+          fixData: {
+            name: 'chunk-data-fix',
+            chunks: 'all',
+            enforce: true,
+            test: /[\\/]data[\\/]fix\.js/,
+            priority: 1,
+          },
+          otherData: {
+            name: 'chunk-data-other',
+            chunks: 'all',
+            enforce: true,
+            test: /[\\/]data[\\/].+\.js/,
+            priority: 0,
+          },
           // common: {
           //   name: 'chunk-common',
           //   minChunks: 2,
