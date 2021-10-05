@@ -23,15 +23,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
-import DetailItemAquarium from '@/components/fish-detail-items/DetailItemAquarium'
-import DetailItemBuffAndBaits from '@/components/fish-detail-items/DetailItemBuffAndBaits'
-import DetailItemCountdownBar from '@/components/fish-detail-items/DetailItemCountdownBar'
-import DetailItemFishWindowTable from '@/components/fish-detail-items/DetailItemFishWindowTable'
-import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
-import DetailItemPredators from '@/components/DetailItemPredators'
-import DetailItemQuest from '@/components/fish-detail-items/DetailItemQuest'
-import DetailItemRequirements from '@/components/fish-detail-items/DetailItemRequirements'
-import DetailItemTips from '@/components/fish-detail-items/DetailItemTips/DetailItemTips'
+
 import FIX from 'Data/fix'
 import _ from 'lodash'
 import placeNames from 'Data/placeNames'
@@ -40,15 +32,20 @@ export default {
   name: 'FishDetailContent',
 
   components: {
-    DetailItemFishWindowTable,
-    DetailItemBuffAndBaits,
-    DetailItemRequirements,
-    DetailItemCountdownBar,
-    DetailItemMap,
-    DetailItemPredators,
-    DetailItemTips,
-    DetailItemAquarium,
-    DetailItemQuest,
+    DetailItemAquarium: () => import('@/components/fish-detail-items/DetailItemAquarium'),
+    DetailItemBuffAndBaits: () =>
+      import('@/components/fish-detail-items/DetailItemBuffAndBaits'),
+    DetailItemCountdownBar: () =>
+      import('@/components/fish-detail-items/DetailItemCountdownBar'),
+    DetailItemFishWindowTable: () =>
+      import('@/components/fish-detail-items/DetailItemFishWindowTable'),
+    DetailItemMap: () => import('@/components/fish-detail-items/DetailItemMap'),
+    DetailItemPredators: () => import('@/components/DetailItemPredators'),
+    DetailItemQuest: () => import('@/components/fish-detail-items/DetailItemQuest'),
+    DetailItemRequirements: () =>
+      import('@/components/fish-detail-items/DetailItemRequirements'),
+    DetailItemTips: () =>
+      import('@/components/fish-detail-items/DetailItemTips/DetailItemTips'),
   },
   props: {
     value: {
