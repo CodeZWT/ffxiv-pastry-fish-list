@@ -126,7 +126,7 @@
         <v-icon>mdi-map</v-icon>
       </v-btn>
 
-      <v-tooltip bottom v-if="!isWikiPage">
+      <v-tooltip bottom v-if="!isWikiPage || !isMobile">
         <template v-slot:activator="{ on, attrs }">
           <div v-bind="attrs" v-on="on">
             <v-btn icon text @click="setShowSearchDialog(true)">
