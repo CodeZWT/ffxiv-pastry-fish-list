@@ -14558,7 +14558,7 @@ module.exports = {
   22398: {
     _id: 22398,
     previousWeatherSet: [],
-    weatherSet: [3, 4],
+    weatherSet: [3, 4, 5],
     startHour: 0,
     endHour: 24,
     predators: {},
