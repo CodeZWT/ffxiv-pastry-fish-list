@@ -95,7 +95,6 @@ export default {
     drawer: true,
     mini: true,
     lazySourceFishList: [],
-    lazySourceImportantFishList: [],
     lazyTransformedFishList: [],
     lazyTransformedFishDict: {},
     lazyFishConstraintDict: {},
@@ -640,16 +639,22 @@ export default {
     }
     this.cafeKitTooltipCopyPatch()
 
-    this.lazySourceFishList = Object.values(this.allFish).filter(
-      it => it.patch == null || it.patch <= DataUtil.PATCH_MAX
-    )
+    this.loadingSounds(sounds => {
+      this.setSounds(DataUtil.toMap(sounds, it => it.key))
+      console.debug('sound loaded')
+    })
+
+    this.pageVisibilityUtil = new PageVisibilityUtil()
     if (DevelopmentModeUtil.isTest()) {
       this.checkFishNeedSplit(this.lazySourceFishList)
     }
-    this.lazySourceImportantFishList = this.lazySourceFishList.filter(it =>
-      DataUtil.showFishInList(it)
+
+    this.lazySourceFishList = Object.values(this.allFish).filter(
+      it => it.patch == null || it.patch <= DataUtil.PATCH_MAX
     )
+    console.debug('update weather part')
     this.updateWeatherChangePart(this.now)
+    console.debug('update weather part finished')
 
     this.lazyFishConstraintDict = _.mapValues(
       this.fishListWeatherChangePart,
@@ -663,19 +668,17 @@ export default {
       this.lazyTransformedFishList,
       fish => fish.id
     )
-    const sounds = await this.loadingSounds()
-    this.setSounds(DataUtil.toMap(sounds, it => it.key))
 
     this.fishUpdater = new FishListUpdateWorker(
-      this.lazySourceImportantFishList,
+      this.lazySourceFishList,
       this.fishListTimePart,
       this.extraFishListTimePart,
       this.getCountDown
     )
     console.debug('init all fish time')
     this.fishUpdater.initAllFishTimePart(this.now)
-    this.pageVisibilityUtil = new PageVisibilityUtil()
     setInterval(() => {
+      // in interval
       const now = Date.now()
       this.now = now
       this.setNow(now)
@@ -890,7 +893,7 @@ export default {
       })
     },
     updateWeatherChangePart(now) {
-      this.fishListWeatherChangePart = this.lazySourceImportantFishList.reduce(
+      this.fishListWeatherChangePart = this.lazySourceFishList.reduce(
         (fish2WeatherPart, fish) => {
           fish2WeatherPart[fish._id] = {
             fishWindows: this.getFishWindowOf(fish, now),
@@ -901,7 +904,7 @@ export default {
       )
 
       if (Object.keys(this.lazyFishWindowRates).length === 0) {
-        this.lazySourceImportantFishList.forEach(fish => {
+        this.lazySourceFishList.forEach(fish => {
           const fishWindows = this.fishListWeatherChangePart[fish._id]?.fishWindows
           this.lazyFishWindowRates[fish._id] = DataUtil.computeRate(fishWindows)
         })
@@ -911,7 +914,7 @@ export default {
       return DataUtil.loadingDefaultSounds(DataUtil.NOTIFICATION_SOUNDS)
     },
     // updateFishListTimePart(now) {
-    //   this.lazySourceImportantFishList.forEach(fish => {
+    //   this.lazySourceFishList.forEach(fish => {
     //     const countDown = this.fishListTimePart[fish._id]?.countDown
     //     // if (fish._id === 999999) {
     //     //   console.debug(countDown)

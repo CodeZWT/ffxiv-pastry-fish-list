@@ -2,7 +2,7 @@ import { FISH as DIADEM_FISH } from 'Data/diadem'
 import { DateTime } from 'luxon'
 import { Howl } from 'howler'
 import { detect } from 'detect-browser'
-import CONSTANTS, { CN_PATCH_VERSION } from 'Data/constants'
+import CONSTANTS, { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import DATA from 'Data/data'
 import DATA_CN, { LIVING_LEGENDS } from 'Data/translation'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
@@ -331,18 +331,6 @@ export default {
     }
   },
   isAllAvailableFish: isAllAvailableFish,
-
-  showFishInList() {
-    // update to show all wiki fish in default list
-    return true
-    // return (
-    //   DATA_CN.BIG_FISH.includes(fish._id) ||
-    //   DATA_CN.NEW_PATCH_FISH.includes(fish._id) ||
-    //   (DevelopmentModeUtil.isTest() &&
-    //     Object.keys(FIX.TEST_ITEMS).includes(fish._id + '')) ||
-    //   !isAllAvailableFish(fish)
-    // )
-  },
 
   formatDateTime(millis, format = "[MM-dd '{dayDescription}'] HH:mm:ss") {
     if (millis) {
@@ -1053,7 +1041,7 @@ export default {
     WAITING: ['#2d2d32', '#272727'],
   },
 
-  PATCH_MAX: 5.58,
+  PATCH_MAX: GLOBAL_PATCH_VERSION,
   PATCH_AVAILABLE_MAX: CN_PATCH_VERSION,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
