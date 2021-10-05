@@ -109,6 +109,7 @@ export default {
   src: url('../../../../assets/font/FFXIV_Lodestone_SSF.ttf') format('truetype')
   src: url('../../../../assets/font/FFXIV_Lodestone_SSF.woff') format('woff')
   unicode-range: U+E020-E0DB
+  font-display: swap
 
 .cafekit.ck-popup
   z-index: 9999 !important

@@ -193,6 +193,7 @@ export default {
   src: url('~Assets/font/FFXIV_Lodestone_SSF.ttf') format('truetype'),
     url('~Assets/font/FFXIV_Lodestone_SSF.woff') format('woff');
   unicode-range: U+E020-E0DB;
+  font-display: swap;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
