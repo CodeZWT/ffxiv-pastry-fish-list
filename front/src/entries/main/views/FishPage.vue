@@ -397,6 +397,7 @@ export default {
     'filteredFishIdSet',
     'activeTabIndex',
     'rightPaneFullScreen',
+    'now',
   ],
   data: () => ({
     isElectron: DevelopmentModeUtil.isElectron(),
@@ -708,7 +709,7 @@ export default {
     padding-right: 0 !important
 
 .filter-wrapper
-  z-index: 4
+  //z-index: 4
 
 .splitpanes__pane
   background-color: unset !important

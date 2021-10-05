@@ -271,7 +271,7 @@
         :fixed="isMobile"
         color="system"
         :expand-on-hover="!isMobile"
-        style="z-index: 10"
+        style="z-index: 2"
       >
         <v-list dense>
           <v-list-item
@@ -491,7 +491,7 @@
         </template>
       </v-navigation-drawer>
       <div :class="{ 'py-0': true, 'ml-14': !isMobile }" style="height: 100%">
-        <v-overlay :value="loading || showJumpingOverlay" opacity="0.9" z-index="9999">
+        <v-overlay v-if="loading || showJumpingOverlay" opacity="0.9" z-index="9999">
           <div class="d-flex flex-column align-center">
             <v-progress-circular indeterminate size="64" />
             <div>{{ $t('list.loading') }}</div>

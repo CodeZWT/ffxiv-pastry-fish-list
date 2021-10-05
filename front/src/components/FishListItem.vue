@@ -1,9 +1,9 @@
 <template>
   <v-sheet
     v-ripple
-    :key="fish._id"
     :color="color"
     :class="['v-list-item', 'v-list-item--link', 'px-0', borderClass]"
+    v-observe-visibility="debouncedVisibilityChanged"
   >
     <fish-info-row
       :fish="fish"
@@ -15,6 +15,7 @@
       :show-divider="showDivider"
       :type="type"
       :is-mobile="isMobile"
+      :is-intersecting="isIntersecting"
       @click="$emit('click', $event)"
     />
   </v-sheet>
@@ -22,6 +23,7 @@
 
 <script>
 import FishInfoRow from '@/components/FishInfoRow/FishInfoRow'
+import _ from 'lodash'
 
 export default {
   name: 'FishListItem',
@@ -60,6 +62,18 @@ export default {
       default: false,
     },
   },
+  created() {
+    this.debouncedVisibilityChanged = _.debounce(this.visibilityChanged, 500, {
+      leading: false,
+      trailing: true,
+    })
+  },
+  data() {
+    return {
+      isIntersecting: false,
+      debouncedVisibilityChanged: () => {},
+    }
+  },
   computed: {
     roundedClass() {
       switch (this.position) {
@@ -79,12 +93,19 @@ export default {
       }
     },
   },
+  methods: {
+    visibilityChanged(isVisible) {
+      if (isVisible) {
+        this.isIntersecting = true
+      }
+    },
+  },
 }
 </script>
 
 <style lang="sass" scoped>
 .v-sheet
-  min-height: 54px
+  min-height: 74px
 
   &.border-normal
     border-top: 2px solid #757575 !important

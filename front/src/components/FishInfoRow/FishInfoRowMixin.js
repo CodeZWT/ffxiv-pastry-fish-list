@@ -40,6 +40,10 @@ export default {
       type: String,
       default: 'normal',
     },
+    isIntersecting: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {

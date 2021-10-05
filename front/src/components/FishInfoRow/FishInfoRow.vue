@@ -11,6 +11,7 @@
     :hide-spot-column="hideSpotColumn"
     :is-last="isLast"
     :type="type"
+    :is-intersecting="isIntersecting"
     @click="$emit('click', $event)"
   />
 </template>
@@ -33,6 +34,7 @@ export default {
     'isLast',
     'type',
     'isMobile',
+    'isIntersecting',
   ],
   name: 'FishInfoRow',
   components: { FishInfoRowSmall, FishInfoRowMedium, FishInfoRowLarge },
