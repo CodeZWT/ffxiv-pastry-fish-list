@@ -116,20 +116,15 @@
         <v-icon>mdi-hook</v-icon>
       </v-btn>
 
-      <v-tooltip bottom v-if="isWikiPage && isMobile">
-        <template v-slot:activator="{ on: tooltip, attrs }">
-          <v-btn
-            icon
-            text
-            v-bind="attrs"
-            v-on="{ ...tooltip }"
-            @click="showMapMenu = !showMapMenu"
-          >
-            <v-icon>mdi-map</v-icon>
-          </v-btn>
-        </template>
-        <div>点击选择钓场</div>
-      </v-tooltip>
+      <v-btn
+        v-if="isWikiPage && isMobile"
+        icon
+        text
+        @click="showMapMenu = !showMapMenu"
+        title="点击选择钓场"
+      >
+        <v-icon>mdi-map</v-icon>
+      </v-btn>
 
       <v-tooltip bottom v-if="!isWikiPage">
         <template v-slot:activator="{ on, attrs }">
