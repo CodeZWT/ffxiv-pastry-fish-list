@@ -645,10 +645,9 @@ export default {
     }
     this.cafeKitTooltipCopyPatch()
 
-    this.loadingSounds(sounds => {
-      this.setSounds(DataUtil.toMap(sounds, it => it.key))
-      console.debug('sound loaded')
-    })
+    const sounds = await this.loadingSounds()
+    this.setSounds(DataUtil.toMap(sounds, it => it.key))
+    console.debug('sound loaded')
 
     this.pageVisibilityUtil = new PageVisibilityUtil()
     if (DevelopmentModeUtil.isTest()) {
