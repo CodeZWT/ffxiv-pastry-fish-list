@@ -40,7 +40,6 @@ let pages = {
       'chunk-vendors-other',
       'chunk-data-fish',
       'chunk-data-oceanfishing',
-      'chunk-data-tip',
       'chunk-data-translation',
       'chunk-data-fix',
       'chunk-data-other',
