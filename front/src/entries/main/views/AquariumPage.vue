@@ -216,13 +216,9 @@
 </template>
 
 <script>
-import {
-  AQUARIUMS,
-  AQUARIUM_FISH_SIZE,
-  AQUARIUM_WATER,
-  OCEAN_FISHING_FISH,
-} from 'Data/fix'
+import { AQUARIUMS, AQUARIUM_FISH_SIZE, AQUARIUM_WATER } from 'Data/fix'
 import { CN_PATCH_VERSION } from 'Data/constants'
+import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import FishAquarium from '@/components/FishAquarium'

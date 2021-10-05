@@ -230,7 +230,7 @@
 
 <script>
 import { DateTime, FixedOffsetZone } from 'luxon'
-import { OCEAN_FISHING_BONUS, OCEAN_FISHING_TIPS } from 'Data/fix'
+import { OCEAN_FISHING_BONUS, OCEAN_FISHING_TIPS } from 'Data/oceanFishing'
 import { mapGetters, mapMutations } from 'vuex'
 import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'

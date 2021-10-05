@@ -295,7 +295,7 @@
 </template>
 
 <script>
-import { OCEAN_FISHING_TIPS } from 'Data/fix'
+import { OCEAN_FISHING_TIPS } from 'Data/oceanFishing'
 import { mapGetters } from 'vuex'
 import AchievementTip from '@/components/OceanFishing54/OceanFishingVoyage/AchievementTip'
 import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
