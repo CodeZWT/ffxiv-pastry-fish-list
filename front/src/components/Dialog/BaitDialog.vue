@@ -104,7 +104,7 @@
                   <click-helper>
                     <div class="d-flex">
                       <v-list-item-avatar>
-                        <div :class="data.item.icon" />
+                        <raw-item-icon :icon-class="data.item.icon" />
                       </v-list-item-avatar>
                       <v-list-item-content>
                         <v-list-item-title>
@@ -164,11 +164,12 @@ import DataUtil from '@/utils/DataUtil'
 import FIX from 'Data/fix'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PinyinMatch from 'pinyin-match'
+import RawItemIcon from '@/components/basic/RawItemIcon'
 import _ from 'lodash'
 
 export default {
   name: 'BaitDialog',
-  components: { ClickHelper, ItemIcon },
+  components: { RawItemIcon, ClickHelper, ItemIcon },
   model: {
     prop: 'showBaitDialog',
     event: 'input',
