@@ -5,22 +5,20 @@
       <!--        :class="`range-block ${color}`"-->
       <!--        :style="`left: ${left}%; width: ${length}%;`"-->
       <!--      ></div>-->
-      <div class="theme--dark" style="z-index: 2; font-weight: bolder">
-        {{ value }} / {{ total }}
-      </div>
+      <div
+        :class="`range-block rounded-l ${color}`"
+        :style="`left: 0; width: ${pointerPos}%`"
+      />
       <template v-for="(tick, index) in ticks">
         <div
           :key="index"
           :class="`range-block error`"
-          :style="
-            `left: ${posOfTick(tick.data[0])}%; width: ${pointerWidth}%;z-index: 1;`
-          "
+          :style="`left: ${posOfTick(tick.data[0])}%; width: ${pointerWidth}%;`"
         ></div>
       </template>
-      <div
-        :class="`range-block rounded-l ${color}`"
-        :style="`left: 0; width: ${pointerPos}%;z-index: 0;`"
-      />
+      <div class="theme--dark" style="z-index: 1; font-weight: bolder">
+        {{ value }} / {{ total }}
+      </div>
     </div>
     <div class="d-flex justify-center" style="height: 25px; position: relative">
       <template v-for="(tick, index) in ticks">
