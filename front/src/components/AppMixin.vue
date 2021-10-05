@@ -1208,7 +1208,7 @@ export default {
         }),
         isPredator: isPredator,
         anglerFishId: fish.anglerFishId,
-        hasTips: DataUtil.hasTips(fish._id),
+        hasTips: true, // DataUtil.hasTips(fish._id),
         predators: hasPredators ? this.getSpearFishPredators(fish.predators) : [],
         gig: fish.gig
           ? {
@@ -1317,7 +1317,7 @@ export default {
           }),
           isPredator: isPredator,
           anglerFishId: fish.anglerFishId,
-          hasTips: DataUtil.hasTips(fish._id),
+          hasTips: true, // DataUtil.hasTips(fish._id),
           predators: this.assembleFish(DataUtil.getPredators(fish, this.allFish), true),
           aquarium: !!aquariumFish && {
             size: FIX.AQUARIUM_FISH_SIZE[aquariumFish.size].size,

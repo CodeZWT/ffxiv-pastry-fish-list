@@ -16,11 +16,6 @@ import TimeFormatter from '@/utils/TimeFormatter'
 import _ from 'lodash'
 import flatten from 'flat'
 import i18n from '@/i18n'
-import tip1Data from 'Data/tip1'
-import tip2Data from 'Data/tip2'
-import tip4 from 'Data/tip4'
-import tip6 from 'Data/tip6'
-import tip7 from 'Data/tip7'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -697,17 +692,17 @@ export default {
     )
   },
 
-  hasTips(fishId) {
-    return (
-      !!tip1Data[fishId] ||
-      !!tip2Data[fishId] ||
-      TIP3_FISH_IDS.includes(fishId) ||
-      !!tip4.TIPS[fishId] ||
-      TIP5_FISH_IDS.includes(fishId) ||
-      !!tip6.TIPS[fishId] ||
-      !!tip7.TIPS[fishId]
-    )
-  },
+  // hasTips(fishId) {
+  //   return (
+  //     !!tip1Data[fishId] ||
+  //     !!tip2Data[fishId] ||
+  //     TIP3_FISH_IDS.includes(fishId) ||
+  //     !!tip4.TIPS[fishId] ||
+  //     TIP5_FISH_IDS.includes(fishId) ||
+  //     !!tip6.TIPS[fishId] ||
+  //     !!tip7.TIPS[fishId]
+  //   )
+  // },
 
   validateImportData(data, sample) {
     const importKeys = _.keys(flatten(data, { safe: true })).sort()

@@ -79,14 +79,15 @@
                 small
               />
               <!-- fish tips link -->
-              <click-helper
-                v-if="fish.hasTips"
+              <v-btn
+                text
+                icon
+                small
+                :title="$t('list.item.tipHint')"
                 @click.stop="onFishClicked(['DetailItemTips'])"
               >
-                <v-btn text icon small :title="$t('list.item.tipHint')">
-                  <v-icon small>mdi-book</v-icon>
-                </v-btn>
-              </click-helper>
+                <v-icon small>mdi-book</v-icon>
+              </v-btn>
             </div>
           </div>
         </div>
@@ -228,7 +229,6 @@
 </template>
 
 <script>
-import ClickHelper from '@/components/basic/ClickHelper'
 import EffectIcon from '@/components/basic/EffectIcon'
 import FishBaitList from '@/components/FishBaitList'
 import FishingSpotColumn from '@/components/FishingSpotColumn'
@@ -240,7 +240,6 @@ export default {
   name: 'FishInfoRowSmall',
   components: {
     EffectIcon,
-    ClickHelper,
     ItemIcon,
     FishingSpotColumn,
     FishBaitList,

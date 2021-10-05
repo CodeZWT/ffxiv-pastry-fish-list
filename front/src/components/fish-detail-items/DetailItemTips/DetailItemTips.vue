@@ -39,17 +39,17 @@
 </template>
 
 <script>
-import Tip1 from '@/components/fish-detail-items/DetailItemTips/Tip1'
-import Tip2 from '@/components/fish-detail-items/DetailItemTips/Tip2'
-import Tip3 from '@/components/fish-detail-items/DetailItemTips/Tip3'
-import Tip4 from '@/components/fish-detail-items/DetailItemTips/Tip4'
-import Tip5 from '@/components/fish-detail-items/DetailItemTips/Tip5'
-import Tip6 from '@/components/fish-detail-items/DetailItemTips/Tip6'
-import Tip7 from '@/components/fish-detail-items/DetailItemTips/Tip7'
-
 export default {
   name: 'DetailItemTips',
-  components: { Tip1, Tip2, Tip3, Tip4, Tip5, Tip6, Tip7 },
+  components: {
+    Tip1: () => import('@/components/fish-detail-items/DetailItemTips/Tip1'),
+    Tip2: () => import('@/components/fish-detail-items/DetailItemTips/Tip2'),
+    Tip3: () => import('@/components/fish-detail-items/DetailItemTips/Tip3'),
+    Tip4: () => import('@/components/fish-detail-items/DetailItemTips/Tip4'),
+    Tip5: () => import('@/components/fish-detail-items/DetailItemTips/Tip5'),
+    Tip6: () => import('@/components/fish-detail-items/DetailItemTips/Tip6'),
+    Tip7: () => import('@/components/fish-detail-items/DetailItemTips/Tip7'),
+  },
   props: {
     fish: {
       type: Object,

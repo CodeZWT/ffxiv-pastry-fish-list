@@ -165,7 +165,7 @@ export default {
         baits: this.getBaits(fish),
         isCompleted: this.getFishCompleted(fish._id),
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(fish),
-        hasTips: DataUtil.hasTips(fish._id),
+        hasTips: true, // DataUtil.hasTips(fish._id),
         gig: fish.gig
           ? {
               id: fish.gig,

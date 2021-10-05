@@ -418,14 +418,15 @@
                     small
                   />
                   <!-- fish tips link -->
-                  <click-helper
-                    v-if="fish.hasTips"
+                  <v-btn
+                    text
+                    icon
+                    small
+                    :title="$t('list.item.tipHint')"
                     @click.stop="onFishClicked(['DetailItemTips'])"
                   >
-                    <v-btn text icon small :title="$t('list.item.tipHint')">
-                      <v-icon small>mdi-book</v-icon>
-                    </v-btn>
-                  </click-helper>
+                    <v-icon small>mdi-book</v-icon>
+                  </v-btn>
                 </div>
               </v-col>
               <v-col :class="countDownColClass">
