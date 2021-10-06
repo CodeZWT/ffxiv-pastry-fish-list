@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import FishInfoRow from '@/components/FishInfoRow/FishInfoRow'
 import _ from 'lodash'
 
@@ -95,8 +96,12 @@ export default {
   },
   methods: {
     visibilityChanged(isVisible) {
-      if (isVisible) {
-        this.isIntersecting = true
+      if (DevelopmentModeUtil.isElectron()) {
+        this.isIntersecting = isVisible
+      } else {
+        if (isVisible) {
+          this.isIntersecting = true
+        }
       }
     },
   },
