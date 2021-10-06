@@ -196,6 +196,7 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import PLACE_NAMES from 'Data/placeNames'
 import Weather from '@/utils/Weather'
+import _ from 'lodash'
 import db from '@/plugins/db'
 
 // import TEST from 'Data/test'
