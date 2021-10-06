@@ -243,7 +243,7 @@
       <v-col cols="6">
         <template v-if="!inPredator && !hideSpotColumn">
           <template v-if="isIntersecting">
-            <fishing-spot-column :fishing-spots="fish.fishingSpots" />
+            <fishing-spot-column :fishing-spots="fish.fishingSpots" small />
           </template>
           <template v-else>
             <div style="text-align: end" class="mr-2">...</div>

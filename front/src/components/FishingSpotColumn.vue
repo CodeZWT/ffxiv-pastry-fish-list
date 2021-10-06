@@ -96,7 +96,7 @@ export default {
       return this.fishingSpots.length > 1
     },
     direction() {
-      return this.small ? 'align-start' : 'align-end'
+      return this.small ? 'align-end' : 'align-start'
     },
     showZone() {
       return this.firstLocation.zone !== this.firstLocation.fishingSpotName || !this.small
