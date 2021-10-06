@@ -19,80 +19,20 @@ const path = require('path')
 const MarkdownIt = require('markdown-it')
 const md = new MarkdownIt()
 
-let pages = {
-  index: {
-    // page 的入口
-    entry: 'src/entries/main/main.js',
-    // 模板来源
-    template:
-      process.env.NODE_ENV === 'development'
-        ? 'public/index.dev.html'
-        : 'public/index.html',
-    // 在 dist/index.html 的输出
-    filename: 'index.html',
-    // 当使用 title 选项时，
-    // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
-    title: '鱼糕',
-    // 在这个页面中包含的块，默认情况下会包含
-    // 提取出来的通用 chunk 和 vendor chunk。
-    chunks: [
-      'chunk-vendors-1',
-      'chunk-vendors-other',
-      'chunk-data-fish',
-      'chunk-data-oceanfishing',
-      'chunk-data-translation',
-      'chunk-data-fix',
-      'chunk-data-other',
-      'chunk-locales',
-      'index',
-    ],
-    // 当使用只有入口的字符串格式时，
-    // 模板会被推导为 `public/subpage.html`
-    // 并且如果找不到的话，就回退到 `public/index.html`。
-    // 输出文件名会被推导为 `subpage.html`。
-    // subpage: 'src/subpage/main.js',
-  },
-  // fishv2: {
-  //   entry: 'src/entries/fish-v2/main.js',
-  //   template:
-  //     process.env.NODE_ENV === 'development'
-  //       ? 'public/index.dev.html'
-  //       : 'public/index.html',
-  //   filename: 'fish-v2.html',
-  //   title: '列表v2',
-  // },
-}
+// fishv2: {
+//   entry: 'src/entries/fish-v2/main.js',
+//   template:
+//     process.env.NODE_ENV === 'development'
+//       ? 'public/index.dev.html'
+//       : 'public/index.html',
+//   filename: 'fish-v2.html',
+//   title: '列表v2',
+// },
+
+let pages
 if (process.env.VUE_APP_ELECTRON === 'true') {
   console.log('build for electron')
   pages = {
-    ...pages,
-    reader: {
-      entry: 'src/entries/reader/reader.js',
-      template:
-        process.env.NODE_ENV === 'development'
-          ? 'public/index.dev.html'
-          : 'public/index.html',
-      filename: 'reader.html',
-      title: '渔捞',
-    },
-    loading: {
-      entry: 'src/entries/loading/loading.js',
-      template:
-        process.env.NODE_ENV === 'development'
-          ? 'public/index.dev.html'
-          : 'public/index.html',
-      filename: 'loading.html',
-      title: '加载中',
-    },
-    mini: {
-      entry: 'src/entries/mini/mini.js',
-      template:
-        process.env.NODE_ENV === 'development'
-          ? 'public/index.dev.html'
-          : 'public/index.html',
-      filename: 'mini.html',
-      title: '迷你鱼糕',
-    },
     screen: {
       entry: 'src/entries/screen/main.js',
       template:
@@ -101,10 +41,55 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
           : 'public/index.html',
       filename: 'screen.html',
       title: '鱼糕桌面版',
+      chunks: [
+        'chunk-vendors-1',
+        'chunk-vendors-other',
+        'chunk-data-fish',
+        'chunk-data-oceanfishing',
+        'chunk-data-translation',
+        'chunk-data-fix',
+        'chunk-data-other',
+        'chunk-locales',
+        'screen',
+      ],
     },
   }
 } else {
   console.log('build for web')
+  pages = {
+    index: {
+      // page 的入口
+      entry: 'src/entries/main/main.js',
+      // 模板来源
+      template:
+        process.env.NODE_ENV === 'development'
+          ? 'public/index.dev.html'
+          : 'public/index.html',
+      // 在 dist/index.html 的输出
+      filename: 'index.html',
+      // 当使用 title 选项时，
+      // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+      title: '鱼糕',
+      // 在这个页面中包含的块，默认情况下会包含
+      // 提取出来的通用 chunk 和 vendor chunk。
+      chunks: [
+        'chunk-vendors-1',
+        'chunk-vendors-other',
+        'chunk-data-fish',
+        'chunk-data-oceanfishing',
+        'chunk-data-translation',
+        'chunk-data-fix',
+        'chunk-data-other',
+        'chunk-locales',
+        'index',
+      ],
+      // 当使用只有入口的字符串格式时，
+      // 模板会被推导为 `public/subpage.html`
+      // 并且如果找不到的话，就回退到 `public/index.html`。
+      // 输出文件名会被推导为 `subpage.html`。
+      // subpage: 'src/subpage/main.js',
+    },
+  }
 }
 
 module.exports = {
