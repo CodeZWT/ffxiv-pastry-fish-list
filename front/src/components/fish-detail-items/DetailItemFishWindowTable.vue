@@ -10,7 +10,17 @@
         </div>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
-        <v-simple-table dense class="system">
+        <div
+          v-if="fishWindowsToShow.length === 0"
+          style="height: 352px"
+          class="d-flex justify-center align-center"
+        >
+          <div class="d-flex align-center">
+            <v-icon x-large>mdi-table-search</v-icon>
+            <span>加载中...</span>
+          </div>
+        </div>
+        <v-simple-table dense class="system" v-else>
           <template v-slot:default>
             <thead>
               <tr>
