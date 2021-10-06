@@ -813,15 +813,14 @@ export default {
       const goBigFarFromHome = {
         record: this.allCompletedFish.filter(it => goBigFarFromHomeFishIds.includes(it))
           .length,
-        ticks: [2833]
-          .map(achievementId => FIX.ACHIEVEMENT[achievementId])
-          .concat({
-            data: [this.achievementInfo.goBigFarFromHome.cn],
-            name_chs: `国服${CN_PATCH_VERSION}版本最大值`,
-            description: `国服${CN_PATCH_VERSION}版本共有${this.achievementInfo.goBigFarFromHome.cn}条鱼属于成就记录范围。`,
-            type: 'maxTip',
-            nextLine: false,
-          }),
+        ticks: [2833].map(achievementId => FIX.ACHIEVEMENT[achievementId]),
+        // .concat({
+        //   data: [this.achievementInfo.goBigFarFromHome.cn],
+        //   name_chs: `国服${CN_PATCH_VERSION}版本最大值`,
+        //   description: `国服${CN_PATCH_VERSION}版本共有${this.achievementInfo.goBigFarFromHome.cn}条鱼属于成就记录范围。`,
+        //   type: 'maxTip',
+        //   nextLine: false,
+        // }),
         total: goBigFarFromHomeFishIds.length, //+ globalBigFish,
       }
 
@@ -829,15 +828,14 @@ export default {
         record: this.allCompletedFish.filter(
           it => goBigOrGoHomeFishIds.includes(it) || goBigFarFromHomeFishIds.includes(it)
         ).length,
-        ticks: [2834]
-          .map(achievementId => FIX.ACHIEVEMENT[achievementId])
-          .concat({
-            data: [this.achievementInfo.noRiverWideEnough.cn],
-            name_chs: `国服${CN_PATCH_VERSION}版本最大值`,
-            description: `国服${CN_PATCH_VERSION}版本共有${this.achievementInfo.noRiverWideEnough.cn}条鱼属于成就记录范围。`,
-            type: 'maxTip',
-            nextLine: true,
-          }),
+        ticks: [2834].map(achievementId => FIX.ACHIEVEMENT[achievementId]),
+        // .concat({
+        //   data: [this.achievementInfo.noRiverWideEnough.cn],
+        //   name_chs: `国服${CN_PATCH_VERSION}版本最大值`,
+        //   description: `国服${CN_PATCH_VERSION}版本共有${this.achievementInfo.noRiverWideEnough.cn}条鱼属于成就记录范围。`,
+        //   type: 'maxTip',
+        //   nextLine: true,
+        // }),
         total: goBigOrGoHomeFishIds.length + goBigFarFromHomeFishIds.length,
       }
       return _.mapValues(
