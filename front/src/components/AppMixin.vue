@@ -976,7 +976,8 @@ export default {
             const startTime = this.notificationRecords[setting.key]?.[fishId]
             if (startTime) {
               if (now >= startTime - setting.before * DataUtil.INTERVAL_MINUTE) {
-                notifications.push({ fishId, setting })
+                const fish = this.lazyTransformedFishDict[fishId]
+                notifications.push({ fish, setting })
                 this.notificationRecords[setting.key][fishId] = undefined
               }
             } else {
@@ -997,7 +998,7 @@ export default {
       if (notifications.length > 0) {
         console.debug(
           'ring bell for',
-          notifications.map(it => this.lazyTransformedFishDict[it.fishId])
+          notifications.map(it => it.name)
         )
         this.ringBell(notifications.map(it => it.setting.sound))
         if (this.isSystemNotificationEnabled) {
