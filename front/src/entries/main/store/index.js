@@ -14,7 +14,7 @@ import _ from 'lodash'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export const MainStore = {
   state: {
     now: Date.now(),
     fish: DataUtil.FISH_DATA,
@@ -628,7 +628,9 @@ export default new Vuex.Store({
     },
   },
   modules: {},
-})
+}
+
+export default new Vuex.Store(MainStore)
 
 function updateUserDataStateRecords(userData, type, keys, value) {
   // console.debug('set', type, value, keys)
