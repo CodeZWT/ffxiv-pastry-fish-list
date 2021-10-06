@@ -1,5 +1,5 @@
 <template>
-  <div :class="`d-flex ${direction} align-end mr-2`">
+  <div :class="`d-flex flex-column ${direction} mr-2`">
     <link-list
       :id="firstLocation.fishingSpotId"
       :angler-id="firstLocation.fishingSpot.anglerLocationId"
@@ -96,7 +96,7 @@ export default {
       return this.fishingSpots.length > 1
     },
     direction() {
-      return this.small ? 'flex-row' : 'flex-column'
+      return this.small ? 'align-start' : 'align-end'
     },
     showZone() {
       return this.firstLocation.zone !== this.firstLocation.fishingSpotName || !this.small
