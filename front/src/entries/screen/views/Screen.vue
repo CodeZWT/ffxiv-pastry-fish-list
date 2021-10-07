@@ -77,6 +77,7 @@
               :filteredFishIdSet="filteredFishIdSet"
               @fish-selected="onFishSelected"
               @startReloadPage="startReloadPage"
+              @show-setting="showSettingDialog = true"
             />
 
             <fish-detail-window

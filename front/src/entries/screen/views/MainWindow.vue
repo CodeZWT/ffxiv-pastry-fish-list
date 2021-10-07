@@ -399,7 +399,7 @@ export default {
       this.$emit('close')
     },
     showSetting() {
-      // TODO show setting dialog directly
+      this.$emit('show-setting')
     },
     onFishSelected(e) {
       this.$emit('fish-selected', e)
