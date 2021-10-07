@@ -413,7 +413,6 @@ export default {
     miniSideBar: true,
     // layout: [],
     colNum: 12,
-    index: 0,
     windows: [],
     showWindowMenu: false,
     mainPage: 'ListPage',
@@ -441,11 +440,6 @@ export default {
       this.readerNow = Date.now()
     }, 100)
   },
-  computed: {
-    mobileThreshold() {
-      return this.$vuetify.breakpoint.thresholds[this.$vuetify.breakpoint.mobile]
-    },
-  },
   methods: {
     showMainSetting() {
       this.showSettingDialog = true
@@ -453,24 +447,28 @@ export default {
     handleGridReady() {
       this.gridReady = true
     },
-    handleResized(i, newH, newW, newHPx, newWPx) {
+    handleResized(id, newH, newW, newHPx, newWPx) {
+      console.debug(id, 'resized', newW, newH, newWPx, newHPx)
       if (this.gridReady) {
-        this.item = {
-          ...this.item,
-          isMobile:
-            newWPx <
-            this.$vuetify.breakpoint.thresholds[
-              this.$vuetify.breakpoint.mobileBreakpoint
-            ],
-        }
+        this.updateItem(id, {
+          isMobile: newWPx < this.$vuetify.breakpoint.thresholds.xs,
+        })
       }
     },
-    handleContainerResized(i, newH, newW, newHPx, newWPx) {
+    updateItem(id, updatePart) {
+      const index = this.getItemIndex(id)
+      const item = this.windows[index]
+      this.windows.splice(index, 1, {
+        ...item,
+        ...updatePart,
+      })
+    },
+    handleContainerResized(id, newH, newW, newHPx, newWPx) {
+      console.debug(id, 'container resized', newW, newH, newWPx, newHPx)
       if (this.gridReady) {
-        this.windows[i] = {
-          ...this.windows[i],
-          isMobile: newWPx < this.mobileThreshold,
-        }
+        this.updateItem(id, {
+          isMobile: newWPx < this.$vuetify.breakpoint.thresholds.xs,
+        })
       }
     },
     addReaderTimer() {
@@ -545,9 +543,11 @@ export default {
         y: y,
       })
     },
+    getItemIndex(id) {
+      return this.windows.findIndex(it => it.i === id)
+    },
     removeItem(id) {
-      const index = this.windows.findIndex(it => it.i === id)
-      this.windows.splice(index, 1)
+      this.windows.splice(this.getItemIndex(id), 1)
     },
   },
 }
