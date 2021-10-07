@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%" class="d-flex">
+  <div :style="isElectron ? '' : 'height: 100%'" class="d-flex">
     <v-navigation-drawer
       v-if="showMapMenu || !isMobile"
       :value="showMapMenu || !isMobile"
@@ -8,6 +8,7 @@
       :class="{
         'nav-bar--pc': !isMobile,
       }"
+      :style="isElectron && !isMobile ? 'height: unset' : 'height: 100%'"
       :temporary="isMobile"
       z-index="1"
     >
@@ -1332,7 +1333,7 @@ export default {
     overflow-y: hidden
     height: calc(100vh - #{ 56 + 45})
   &--electron
-    height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + 56 + 45})
+    //height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
 
 .detail-wrapper
   width: 100%

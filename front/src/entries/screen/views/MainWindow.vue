@@ -14,7 +14,7 @@
 
     <div class="window-content no-drag">
       <v-toolbar height="56px" class="fish-app-bar" dense color="system">
-        <v-tooltip bottom v-if="isWikiPage">
+        <v-tooltip bottom v-if="isWikiPage && isMobile">
           <template v-slot:activator="{ on: tooltip, attrs }">
             <v-btn
               icon

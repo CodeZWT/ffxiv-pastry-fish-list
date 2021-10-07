@@ -515,6 +515,10 @@ export default {
       this.mainPage = 'CompetitionPage'
       this.addMainWindowIfNotExist()
     },
+    addFish() {
+      this.mainPage = 'FishDetailPage'
+      this.addMainWindowIfNotExist()
+    },
     addRecord() {
       this.mainPage = 'RecordPage'
       this.addMainWindowIfNotExist()
