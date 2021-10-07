@@ -90,7 +90,7 @@
         </grid-item>
       </grid-layout>
 
-      <v-menu v-model="showWindowMenu" max-width="300">
+      <v-menu v-model="showWindowMenu">
         <template v-slot:activator="{ on }">
           <v-btn
             v-on="on"
@@ -112,89 +112,96 @@
           </v-btn>
         </template>
         <v-sheet>
-          <v-subheader>鱼糕</v-subheader>
-          <v-list>
-            <v-list-item @click="addFishList">
-              <v-list-item-icon>
-                <v-icon>mdi-format-list-text</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('list.normalTitle') }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="addNotificationList">
-              <v-list-item-icon>
-                <v-icon>mdi-bell</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{
-                $t('list.toBeNotifiedTitle')
-              }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="addWiki">
-              <v-list-item-icon>
-                <v-icon>mdi-notebook</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.fishWiki') }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="addOceanFishing">
-              <v-list-item-icon>
-                <v-icon>mdi-ferry</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.oceanFishing') }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="addDiadem">
-              <v-list-item-icon>
-                <v-img
-                  :src="dark ? diademDark : diademLight"
-                  height="24"
-                  width="24"
-                ></v-img>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.diadem') }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="addAquarium">
-              <v-list-item-icon>
-                <v-icon>mdi-fishbowl</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.aquarium') }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="addCompetition">
-              <v-list-item-icon>
-                <v-icon>mdi-trophy</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.competition') }}</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="showMainSetting">
-              <v-list-item-icon>
-                <v-icon>mdi-cog</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>{{ $t('top.uiConfig') }}</v-list-item-content>
-            </v-list-item>
-
-            <v-subheader>渔捞</v-subheader>
-            <v-list-item @click="addReaderTimer">
-              <v-list-item-icon>
-                <v-icon>mdi-timer</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>计时器</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="addReaderTimerMini">
-              <v-list-item-icon>
-                <v-icon>mdi-timer</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>迷你计时器</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="addReaderHistory">
-              <v-list-item-icon>
-                <v-icon>mdi-history</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>本地历史记录</v-list-item-content>
-            </v-list-item>
-            <v-list-item @click="addReaderSpotStatistics">
-              <v-list-item-icon>
-                <v-icon>mdi-map</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>本地钓场统计</v-list-item-content>
-            </v-list-item>
-          </v-list>
+          <v-row>
+            <v-col>
+              <v-subheader>鱼糕</v-subheader>
+              <v-list>
+                <v-list-item @click="addFishList">
+                  <v-list-item-icon>
+                    <v-icon>mdi-format-list-text</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('list.normalTitle') }}</v-list-item-content>
+                </v-list-item>
+                <v-list-item @click="addNotificationList">
+                  <v-list-item-icon>
+                    <v-icon>mdi-bell</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{
+                    $t('list.toBeNotifiedTitle')
+                  }}</v-list-item-content>
+                </v-list-item>
+                <v-list-item @click="addWiki">
+                  <v-list-item-icon>
+                    <v-icon>mdi-notebook</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.fishWiki') }}</v-list-item-content>
+                </v-list-item>
+                <v-list-item @click="addOceanFishing">
+                  <v-list-item-icon>
+                    <v-icon>mdi-ferry</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.oceanFishing') }}</v-list-item-content>
+                </v-list-item>
+                <v-list-item @click="addDiadem">
+                  <v-list-item-icon>
+                    <v-img
+                      :src="dark ? diademDark : diademLight"
+                      height="24"
+                      width="24"
+                    ></v-img>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.diadem') }}</v-list-item-content>
+                </v-list-item>
+                <v-list-item @click="addAquarium">
+                  <v-list-item-icon>
+                    <v-icon>mdi-fishbowl</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.aquarium') }}</v-list-item-content>
+                </v-list-item>
+                <v-list-item @click="addCompetition">
+                  <v-list-item-icon>
+                    <v-icon>mdi-trophy</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.competition') }}</v-list-item-content>
+                </v-list-item>
+                <v-list-item @click="showMainSetting">
+                  <v-list-item-icon>
+                    <v-icon>mdi-cog</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>{{ $t('top.uiConfig') }}</v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-col>
+            <v-col>
+              <v-subheader>渔捞</v-subheader>
+              <v-list>
+                <v-list-item @click="addReaderTimer">
+                  <v-list-item-icon>
+                    <v-icon>mdi-timer</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>计时器</v-list-item-content>
+                </v-list-item>
+                <v-list-item @click="addReaderTimerMini">
+                  <v-list-item-icon>
+                    <v-icon>mdi-timer</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>迷你计时器</v-list-item-content>
+                </v-list-item>
+                <v-list-item @click="addReaderHistory">
+                  <v-list-item-icon>
+                    <v-icon>mdi-history</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>本地历史记录</v-list-item-content>
+                </v-list-item>
+                <v-list-item @click="addReaderSpotStatistics">
+                  <v-list-item-icon>
+                    <v-icon>mdi-map</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>本地钓场统计</v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-col>
+          </v-row>
         </v-sheet>
       </v-menu>
     </div>
@@ -203,15 +210,6 @@
       <div class="d-flex flex-column align-center">
         <v-progress-circular indeterminate size="64" />
         <div>{{ $t('list.loading') }}</div>
-        <div class="d-flex flex-column align-center">
-          <div>如出现无限加载，或者任何问题，可以加群或关注以下页面</div>
-          <a
-            href="https://ricecake302.coding.net/s/eb3a7844-db84-4792-90db-7805f6a941c1/3"
-            target="_blank"
-          >
-            如有错误，请前往此页面
-          </a>
-        </div>
       </div>
     </v-overlay>
 
