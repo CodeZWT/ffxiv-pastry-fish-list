@@ -968,7 +968,8 @@ export default {
         }
       })
 
-    this.showAboutChartDialog = !this.readChartTip
+    // TODO recover this
+    // this.showAboutChartDialog = !this.readChartTip
   },
   methods: {
     async getBaitDataOfSpot(spotId) {

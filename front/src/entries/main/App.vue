@@ -338,7 +338,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item @click="toCompetitionPage" link>
+          <v-list-item v-if="isElectron" @click="toCompetitionPage" link>
             <v-list-item-icon>
               <new-feature-mark id="Competition-V.0.8.3-2">
                 <v-icon>mdi-trophy</v-icon>
@@ -349,8 +349,9 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-divider class="mx-2" />
-          <v-list-item v-if="!isElectron" @click="showDownload" link>
+          <!--  <v-divider class="mx-2" />-->
+          <!--    TODO recover this   -->
+          <v-list-item v-if="false && !isElectron" @click="showDownload" link>
             <v-list-item-icon>
               <new-feature-mark :id="DesktopDownloadFeatureId">
                 <v-icon>mdi-desktop-mac-dashboard</v-icon>
@@ -559,16 +560,17 @@
             {{ $t('footer.author') }}
           </span>
         </div>
-        <template v-if="!isMobile">
-          <div>
-            <i class="fab fa-weibo" aria-hidden="true"></i>
-            红豆年糕找不到
-          </div>
-          <div class="ml-2">
-            合作：<i class="fab fa-weibo" aria-hidden="true"></i>
-            光之渔夫bot
-          </div>
-        </template>
+        <!--    TODO recover this   -->
+        <!--        <template v-if="!isMobile">-->
+        <!--          <div>-->
+        <!--            <i class="fab fa-weibo" aria-hidden="true"></i>-->
+        <!--            红豆年糕找不到-->
+        <!--          </div>-->
+        <!--          <div class="ml-2">-->
+        <!--            合作：<i class="fab fa-weibo" aria-hidden="true"></i>-->
+        <!--            光之渔夫bot-->
+        <!--          </div>-->
+        <!--        </template>-->
         <v-spacer />
         <div v-if="!isMobile" class="text-truncate" :title="$t('footer.ffRights')">
           {{ $t('footer.ffRights') }}
