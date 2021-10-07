@@ -72,6 +72,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    isMouseThrough: false,
     fishUpdater: undefined,
     pageVisibilityUtil: undefined,
     showUpdateAvailableDialog: false,
@@ -545,6 +546,9 @@ export default {
       // const that = this
       window.electron?.ipcRenderer
         // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
+        ?.on('setMouseThrough', (event, isMouseThrough) => {
+          this.isMouseThrough = isMouseThrough
+        })
         ?.on('showUpdateDialog', (event, newVersion) => {
           this.showUpdateAvailableDialog = true
           this.newVersion = newVersion

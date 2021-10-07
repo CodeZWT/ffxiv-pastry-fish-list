@@ -1,5 +1,10 @@
 <template>
-  <div class="screen">
+  <div
+    :class="{
+      screen: true,
+      'screen--normal': !isMouseThrough,
+    }"
+  >
     <div>
       <grid-layout
         :layout.sync="windows"
@@ -576,6 +581,8 @@ export default {
 
 .screen
   height: 100%
+  &--normal
+    background: rgba(117, 117, 117, 0.5)
 
 .window-wrapper
   height: 100%
@@ -584,5 +591,7 @@ export default {
 .vue-grid-layout
   height: calc(100vh - #{ $top-system-bar-padding})
   overflow-y: scroll
-  background: rgba(117, 117, 117, 0.5)
+  //border-style: solid
+  //border-color: white
+  //border-width: thin
 </style>

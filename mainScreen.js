@@ -40,6 +40,7 @@ unhandled({
 contextMenu()
 
 const handleUserDataUpdates = (updateData) => {
+  log.debug('handle update user data', updateData)
   // set hotkey
   setting.saveHotkeySetting(SCREEN, 'mouseThrough', updateData.data.hotkey.mouseThrough || 'L')
 
@@ -302,6 +303,8 @@ const init = async () => {
         mode: 'undocked',
       })
     }
+    setting.setSender(sender)
+    setting.setupHotkey(win)
 
     globalShortcut.register('Alt+CommandOrControl+[', () => {
       callWindowSafe(win, win =>

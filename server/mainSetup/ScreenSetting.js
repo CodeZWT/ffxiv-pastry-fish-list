@@ -72,6 +72,10 @@ class ScreenSetting {
     this.enableMouseThrough = false
   }
 
+  setSender(sender) {
+    this.sender = sender
+  }
+
   saveHotkeySetting(win, path, value) {
     const old = get(this.hotkeySetting, path)
     if (value !== old) {
@@ -86,8 +90,10 @@ class ScreenSetting {
 
   setupHotkey(win){
     globalShortcut.register('Alt+Shift+'+this.hotkeySetting.mouseThrough, () => {
-      setMouseThrough(win, !this.enableMouseThrough)
-      this.enableMouseThrough = !this.enableMouseThrough
+      const enableMouseThrough = !this.enableMouseThrough
+      setMouseThrough(win, enableMouseThrough)
+      this.sender.send('setMouseThrough', enableMouseThrough)
+      this.enableMouseThrough = enableMouseThrough
     })
   }
 }
