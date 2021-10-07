@@ -2,7 +2,7 @@
   <div class="screen">
     <div>
       <grid-layout
-        :layout.sync="layout"
+        :layout.sync="windows"
         :col-num="12"
         :row-height="30"
         :is-draggable="true"
@@ -15,7 +15,7 @@
         @layout-ready="handleGridReady"
       >
         <grid-item
-          v-for="(item, i) in layout"
+          v-for="item in windows"
           :x="item.x"
           :y="item.y"
           :w="item.w"
@@ -28,12 +28,12 @@
           @container-resized="handleContainerResized"
         >
           <v-sheet
-            v-if="windows[i].type === 'READER_TIMER_MINI'"
+            v-if="item.type === 'READER_TIMER_MINI'"
             class="window-wrapper rounded elevation-4"
             color="transparent"
           >
             <reader-timer-mini-window
-              v-if="windows[i].type === 'READER_TIMER_MINI'"
+              v-if="item.type === 'READER_TIMER_MINI'"
               :now="readerNow"
               :dark="dark"
               @close="() => removeItem(item.i)"
@@ -41,27 +41,27 @@
           </v-sheet>
           <v-sheet v-else class="window-wrapper rounded elevation-4" color="background">
             <reader-timer-window
-              v-if="windows[i].type === 'READER_TIMER'"
+              v-if="item.type === 'READER_TIMER'"
               :now="readerNow"
               :dark="dark"
               @close="() => removeItem(item.i)"
             />
 
             <reader-history-window
-              v-if="windows[i].type === 'READER_HISTORY'"
+              v-if="item.type === 'READER_HISTORY'"
               :now="readerNow"
               @close="() => removeItem(item.i)"
             />
             <reader-spot-statistics-window
-              v-if="windows[i].type === 'READER_SPOT_STATISTICS'"
+              v-if="item.type === 'READER_SPOT_STATISTICS'"
               :now="readerNow"
               @close="() => removeItem(item.i)"
             />
             <main-window
-              v-if="windows[i].type === 'MAIN'"
+              v-if="item.type === 'MAIN'"
               :page="mainPage"
               :active-tab-index="mainPageTabIndex"
-              :is-mobile="windows[i].isMobile"
+              :is-mobile="item.isMobile"
               :now="now"
               @close="() => removeItem(item.i)"
               :lazySourceFishList="lazySourceFishList"
@@ -387,6 +387,7 @@
 </template>
 
 <script>
+import { v4 as uuid } from 'uuid'
 import AppMixin from '@/components/AppMixin'
 import MainWindow from '@/entries/screen/views/MainWindow'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
@@ -410,12 +411,11 @@ export default {
   data: () => ({
     showSideBar: true,
     miniSideBar: true,
-    layout: [],
+    // layout: [],
     colNum: 12,
     index: 0,
     windows: [],
     showWindowMenu: false,
-    showMainWindow: false,
     mainPage: 'ListPage',
     mainPageTabIndex: 0,
     gridReady: false,
@@ -436,7 +436,15 @@ export default {
   mounted() {
     setInterval(() => {
       this.now = Date.now()
+    }, 1000)
+    setInterval(() => {
+      this.readerNow = Date.now()
     }, 100)
+  },
+  computed: {
+    mobileThreshold() {
+      return this.$vuetify.breakpoint.thresholds[this.$vuetify.breakpoint.mobile]
+    },
   },
   methods: {
     showMainSetting() {
@@ -447,8 +455,8 @@ export default {
     },
     handleResized(i, newH, newW, newHPx, newWPx) {
       if (this.gridReady) {
-        this.windows[i] = {
-          ...this.windows[i],
+        this.item = {
+          ...this.item,
           isMobile:
             newWPx <
             this.$vuetify.breakpoint.thresholds[
@@ -461,25 +469,21 @@ export default {
       if (this.gridReady) {
         this.windows[i] = {
           ...this.windows[i],
-          isMobile:
-            newWPx < this.$vuetify.breakpoint.thresholds[this.$vuetify.breakpoint.mobile],
+          isMobile: newWPx < this.mobileThreshold,
         }
       }
     },
-    openMainWindow() {
-      this.showMainWindow = true
-    },
     addReaderTimer() {
-      this.addItem('READER_TIMER', 3, 4)
+      this.addItemIfNotExist('READER_TIMER', 3, 4)
     },
     addReaderTimerMini() {
-      this.addItem('READER_TIMER_MINI', 4, 3)
+      this.addItemIfNotExist('READER_TIMER_MINI', 4, 3)
     },
     addReaderHistory() {
-      this.addItem('READER_HISTORY', 3, 12)
+      this.addItemIfNotExist('READER_HISTORY', 3, 12)
     },
     addReaderSpotStatistics() {
-      this.addItem('READER_SPOT_STATISTICS', 3, 12)
+      this.addItemIfNotExist('READER_SPOT_STATISTICS', 3, 12)
     },
     addFishList() {
       this.mainPage = 'ListPage'
@@ -516,29 +520,29 @@ export default {
       this.addMainWindowIfNotExist()
     },
     addMainWindowIfNotExist() {
-      if (!this.hasItem('MAIN')) {
-        this.addItem('MAIN', 4, 12, 0, 0)
+      this.addItemIfNotExist('MAIN', 6, 12, false)
+    },
+    addItemIfNotExist(type, w, h, isMobile = true, x = 0, y = 0) {
+      if (!this.hasItemOfType(type)) {
+        this.addItem(type, w, h, isMobile, x, y)
       }
     },
-    hasItem(type) {
+    hasItemOfType(type) {
       return !!this.windows.find(it => it.type === type)
     },
-    addItem(type, w, h, x = 0, y = 0) {
-      // Add a new item. It must have a unique key!
-      this.layout.push({
-        x: x, //(this.layout.length * 2) % (this.colNum || 12),
-        y: y, //this.layout.length + (this.colNum || 12), // puts it at the bottom
+    addItem(type, w, h, isMobile = true, x = 0, y = 0) {
+      this.windows.push({
+        i: uuid(),
+        type,
         w: w,
         h: h,
-        i: this.index,
+        isMobile: isMobile,
+        x: x,
+        y: y,
       })
-      // Increment the counter to ensure key is always unique.
-      this.index++
-      this.windows.push({ type, isMobile: true })
     },
-    removeItem(val) {
-      const index = this.layout.map(item => item.i).indexOf(val)
-      this.layout.splice(index, 1)
+    removeItem(id) {
+      const index = this.windows.findIndex(it => it.i === id)
       this.windows.splice(index, 1)
     },
   },
