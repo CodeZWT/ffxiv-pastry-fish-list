@@ -491,15 +491,6 @@
           <div class="d-flex flex-column align-center">
             <v-progress-circular indeterminate size="64" />
             <div>{{ $t('list.loading') }}</div>
-            <div class="d-flex flex-column align-center">
-              <div>如出现无限加载，或者任何问题，可以加群或关注以下页面</div>
-              <a
-                href="https://ricecake302.coding.net/s/eb3a7844-db84-4792-90db-7805f6a941c1/3"
-                target="_blank"
-              >
-                如有错误，请前往此页面
-              </a>
-            </div>
           </div>
         </v-overlay>
         <router-view
