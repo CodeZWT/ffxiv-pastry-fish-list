@@ -4,7 +4,7 @@
       <fish-list-expanded-header
         :value="fish"
         :fish-time-part="fishTimePart"
-        :show-close="inPane"
+        :show-close="inPane || showClose"
         @close="$emit('close')"
       />
       <v-divider />
@@ -46,6 +46,10 @@ export default {
       default: undefined,
     },
     inPane: {
+      type: Boolean,
+      default: false,
+    },
+    showClose: {
       type: Boolean,
       default: false,
     },

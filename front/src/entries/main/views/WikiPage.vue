@@ -243,7 +243,7 @@
         />
       </div>
       <div
-        v-else-if="(type === 'spot' || type === 'fish') && !isOceanFishingSpot"
+        v-else-if="type === 'spot' && !isOceanFishingSpot"
         :class="{
           'grid-content': true,
           'grid-content--web': !isElectron,
@@ -398,48 +398,58 @@
         </v-row>
       </div>
       <div
-        v-else-if="isOceanFishingSpot"
+        v-else-if="type === 'spot' && isOceanFishingSpot"
         :class="{
           'grid-content': true,
           'grid-content--web': !isElectron,
         }"
       >
         <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
-        <!-- <pre>{{ JSON.stringify(currentFishList, null, 2) }}</pre>-->
       </div>
-      <!--      <div v-if="isMobile">-->
-      <!--        <v-btn @click="showMapMenu = !showMapMenu" block color="primary" tile>-->
-      <!--          点击选择地图-->
-      <!--        </v-btn>-->
-      <!--      </div>-->
+      <div
+        v-else-if="type === 'fish' && !isOceanFishingSpot"
+        :class="{
+          'grid-content': true,
+          'grid-content--web': !isElectron,
+        }"
+      >
+        <fish-detail
+          :fish="currentFish"
+          :now="now"
+          :forceShowComponents="forceShowComponents"
+          :show-fishing-range-helper="mode === 'normal'"
+          show-close
+          @close="closeFishDetailPage"
+        />
+      </div>
     </div>
-    <v-dialog
-      v-model="isDetailFishWindowOpen"
-      max-width="70vh"
-      :fullscreen="isMobile"
-      scrollable
-    >
-      <v-card>
-        <v-card-text>
-          <fish-detail
-            :fish="currentFish"
-            :now="now"
-            :forceShowComponents="forceShowComponents"
-            :show-fishing-range-helper="mode === 'normal'"
-            hide-map
-          />
-        </v-card-text>
-        <v-card-actions>
-          <div class="d-flex flex-column flex-fill">
-            <click-helper @click="isDetailFishWindowOpen = false">
-              <v-btn class="mt-2" color="default" block text>
-                {{ $t('general.dialog.close') }}
-              </v-btn>
-            </click-helper>
-          </div>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <!--    <v-dialog-->
+    <!--      v-model="isDetailFishWindowOpen"-->
+    <!--      max-width="70vh"-->
+    <!--      :fullscreen="isMobile"-->
+    <!--      scrollable-->
+    <!--    >-->
+    <!--      <v-card>-->
+    <!--        <v-card-text>-->
+    <!--          <fish-detail-->
+    <!--            :fish="currentFish"-->
+    <!--            :now="now"-->
+    <!--            :forceShowComponents="forceShowComponents"-->
+    <!--            :show-fishing-range-helper="mode === 'normal'"-->
+    <!--            hide-map-->
+    <!--          />-->
+    <!--        </v-card-text>-->
+    <!--        <v-card-actions>-->
+    <!--          <div class="d-flex flex-column flex-fill">-->
+    <!--            <click-helper @click="isDetailFishWindowOpen = false">-->
+    <!--              <v-btn class="mt-2" color="default" block text>-->
+    <!--                {{ $t('general.dialog.close') }}-->
+    <!--              </v-btn>-->
+    <!--            </click-helper>-->
+    <!--          </div>-->
+    <!--        </v-card-actions>-->
+    <!--      </v-card>-->
+    <!--    </v-dialog>-->
     <v-dialog v-model="showSyncDialog" max-width="320" :fullscreen="isMobile" scrollable>
       <v-card>
         <!-- patch update wait note -->
@@ -925,7 +935,7 @@ export default {
     // },
     currentFishId(fishId) {
       if (fishId > 0 && !this.isOceanFishingSpot) {
-        this.isDetailFishWindowOpen = true
+        // this.isDetailFishWindowOpen = true
         this.$emit('fish-selected', { fishId })
       }
     },
@@ -973,6 +983,10 @@ export default {
     // this.showAboutChartDialog = !this.readChartTip
   },
   methods: {
+    closeFishDetailPage() {
+      this.currentFishId = -1
+      this.type = 'spot'
+    },
     async getBaitDataOfSpot(spotId) {
       const spotData = this.spotRecordCountCache[spotId]
       if (!spotData) {
@@ -1155,6 +1169,7 @@ export default {
       }
     },
     onFishClicked({ fishId, components }) {
+      this.type = 'fish'
       this.currentFishId = fishId
       this.forceShowComponents = components
     },
@@ -1344,6 +1359,8 @@ export default {
       max-height: calc(100vh - #{ $top-bars-padding + $footer-padding })
     &-electron
       max-height: 100%
+      max-width: 100%
+      overflow-x: scroll
 
   &--pc
     &-web
@@ -1351,7 +1368,7 @@ export default {
       max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
     &-electron
       max-height: 100%
-
+      overflow-x: scroll
 
 .nav-bar
   &--pc
