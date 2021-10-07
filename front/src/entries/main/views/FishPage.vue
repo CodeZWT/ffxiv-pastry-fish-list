@@ -663,15 +663,18 @@ export default {
     onFishSelected({ fishId, components, firstSpotId }) {
       this.$emit('fish-selected', { fishId, firstSpotId })
       this.forceShowComponents = components
-      this.showRightPane = true
+      if (!this.isElectron) {
+        this.showRightPane = true
+      }
     },
     resizeInternal(resizePaneInfos) {
       this.rightPaneSize = resizePaneInfos[1].size
       this.$refs.fishDetail?.resize()
     },
-    onResize(resizePaneInfos) {
-      this.resizing = true
-      this.throttledResizeFn(resizePaneInfos)
+    onResize() {
+      // resizePaneInfos
+      // this.resizing = true
+      // this.throttledResizeFn(resizePaneInfos)
     },
     onWindowResize() {
       this.lazyRightPaneFullScreen = window.innerWidth < 1264

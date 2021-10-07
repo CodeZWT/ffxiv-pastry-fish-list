@@ -13,7 +13,13 @@
     </v-system-bar>
 
     <div class="window-content no-drag">
-      <v-toolbar height="56px" class="fish-app-bar" dense color="system">
+      <v-toolbar
+        height="56px"
+        class="fish-app-bar"
+        dense
+        color="system"
+        v-if="!isFishDetailPage"
+      >
         <v-tooltip bottom v-if="isWikiPage && isMobile">
           <template v-slot:activator="{ on: tooltip, attrs }">
             <v-btn
@@ -219,6 +225,11 @@
         :right-pane-full-screen="true"
         @fish-selected="onFishSelected"
       />
+      <fish-detail-page
+        v-if="page === 'FishDetailPage'"
+        :now="now"
+        :fish="selectedFish"
+      />
       <wiki-page
         v-if="page === 'WikiPage'"
         :now="now"
@@ -238,19 +249,16 @@
         :is-mobile="isMobile"
         :lazyTransformedFishDict="lazyTransformedFishDict"
         :selectedFish="selectedFish"
-        @fish-selected="onFishSelected"
       />
       <DiademPage
         v-else-if="page === 'DiademPage'"
         :is-mobile="isMobile"
         :selectedFish="selectedFish"
-        @fish-selected="onFishSelected"
       />
       <AquariumPage
         v-else-if="page === 'AquariumPage'"
         :is-mobile="isMobile"
         :selectedFish="selectedFish"
-        @fish-selected="onFishSelected"
       />
       <CompetitionPage v-else-if="page === 'CompetitionPage'" :is-mobile="isMobile" />
       <RecordPage
@@ -269,6 +277,7 @@ import { mapGetters } from 'vuex'
 import AquariumPage from '@/entries/main/views/AquariumPage'
 import CompetitionPage from '@/entries/main/views/CompetitionPage'
 import DiademPage from '@/entries/main/views/DiademPage'
+import FishDetailPage from '@/entries/main/views/FishDetailPage'
 import FishEyesToggleButton from '@/components/FishEyesToggleButton'
 import FishPage from '@/entries/main/views/FishPage'
 import MainWindowMixin from '@/components/MainWindowMixin'
@@ -280,6 +289,7 @@ export default {
   name: 'MainWindow',
   mixins: [MainWindowMixin],
   components: {
+    FishDetailPage,
     FishEyesToggleButton,
     DiademPage,
     AquariumPage,
@@ -349,6 +359,9 @@ export default {
     },
     isWikiPage() {
       return this.page === 'WikiPage'
+    },
+    isFishDetailPage() {
+      return this.page === 'FishDetailPage'
     },
     pageTitle() {
       let title = ''

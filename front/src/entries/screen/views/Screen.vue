@@ -78,6 +78,13 @@
               @fish-selected="onFishSelected"
               @startReloadPage="startReloadPage"
             />
+
+            <fish-detail-window
+              v-if="item.type === 'FISH_DETAIL'"
+              :now="now"
+              @close="() => removeItem(item.i)"
+              :fish="selectedFish"
+            />
           </v-sheet>
         </grid-item>
       </grid-layout>
@@ -389,6 +396,7 @@
 <script>
 import { v4 as uuid } from 'uuid'
 import AppMixin from '@/components/AppMixin'
+import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
 import MainWindow from '@/entries/screen/views/MainWindow'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
@@ -400,6 +408,7 @@ export default {
   name: 'Screen',
   mixins: [AppMixin],
   components: {
+    FishDetailWindow,
     ReaderTimerMiniWindow,
     MainWindow,
     ReaderSpotStatisticsWindow,
@@ -441,6 +450,14 @@ export default {
     }, 100)
   },
   methods: {
+    onFishSelected({ fishId, firstSpotId }) {
+      this.selectedFishId = fishId
+      this.selectedFishFirstSpotId = firstSpotId
+      this.fishUpdater.selectedFishId = this.selectedFishId
+      if (this.mainPage === 'ListPage') {
+        this.addFish()
+      }
+    },
     showMainSetting() {
       this.showSettingDialog = true
     },
@@ -514,8 +531,7 @@ export default {
       this.addMainWindowIfNotExist()
     },
     addFish() {
-      this.mainPage = 'FishDetailPage'
-      this.addMainWindowIfNotExist()
+      this.addItemIfNotExist('FISH_DETAIL', 2, 12, true)
     },
     addRecord() {
       this.mainPage = 'RecordPage'
