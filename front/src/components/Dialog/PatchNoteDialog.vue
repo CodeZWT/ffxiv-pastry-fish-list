@@ -50,17 +50,17 @@
           <li>更新5.55鱼皇攻略</li>
           <li>更新鱼饵概率图，增加说明以及显示总数</li>
         </ul>
-
-        <v-expansion-panels class="mt-4" flat>
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              <div>往期更新</div>
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <PatchNoteHistory />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
+        <!--TODO recover this-->
+        <!--        <v-expansion-panels class="mt-4" flat>-->
+        <!--          <v-expansion-panel>-->
+        <!--            <v-expansion-panel-header>-->
+        <!--              <div>往期更新</div>-->
+        <!--            </v-expansion-panel-header>-->
+        <!--            <v-expansion-panel-content>-->
+        <!--              <PatchNoteHistory />-->
+        <!--            </v-expansion-panel-content>-->
+        <!--          </v-expansion-panel>-->
+        <!--        </v-expansion-panels>-->
       </v-card-text>
       <v-card-actions>
         <div class="d-flex flex-column flex-fill">
@@ -76,9 +76,6 @@
 <script>
 export default {
   name: 'PatchNoteDialog',
-  components: {
-    PatchNoteHistory: () => import('@/components/Dialog/PatchNoteHistory'),
-  },
   model: {
     prop: 'showPatchNoteDialog',
     event: 'input',
