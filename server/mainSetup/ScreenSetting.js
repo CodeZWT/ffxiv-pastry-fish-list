@@ -47,7 +47,7 @@ const DEFAULT_WINDOW_SETTING = {
   },
 }
 const DEFAULT_HOTKEY_SETTING = {
-  mouseThrough: 'L',
+  mouseThrough: '`',
   toggleReader: 'K',
 }
 
@@ -80,7 +80,7 @@ class ScreenSetting {
     const old = get(this.hotkeySetting, path)
     if (value !== old) {
       if (old) {
-        globalShortcut.unregister('Alt+Shift+' + old)
+        globalShortcut.unregister('Alt+' + old)
       }
       set(this.hotkeySetting, path, value)
       this.configStore.set('hotkeySetting', this.hotkeySetting)
@@ -89,7 +89,7 @@ class ScreenSetting {
   }
 
   setupHotkey(win){
-    globalShortcut.register('Alt+Shift+'+this.hotkeySetting.mouseThrough, () => {
+    globalShortcut.register('Alt+'+this.hotkeySetting.mouseThrough, () => {
       const enableMouseThrough = !this.enableMouseThrough
       setMouseThrough(win, enableMouseThrough)
       this.sender.send('setMouseThrough', enableMouseThrough)
