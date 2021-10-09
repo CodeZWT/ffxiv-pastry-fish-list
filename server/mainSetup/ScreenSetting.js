@@ -6,6 +6,7 @@ const cloneDeep = require("lodash/cloneDeep");
 const get = require("lodash/get");
 const set = require("lodash/set");
 const { setMouseThrough } = require("./utils");
+let HOTKEY_SETTING_KEY = 'hotkeySettingV2'
 
 const DEFAULT_WINDOW_SETTING = {
   main: {
@@ -61,14 +62,13 @@ const initSetting = (configStore, key, defaultVal) => {
     log.debug(`Config [${key}] Read`, JSON.stringify(configStore.get(key)))
   }
 };
-
 class ScreenSetting {
   constructor() {
     this.configStore = new Store()
     initSetting(this.configStore, 'windowSetting', DEFAULT_WINDOW_SETTING)
     this.windowSetting = this.configStore.get('windowSetting')
-    initSetting(this.configStore, 'hotkeySetting', DEFAULT_HOTKEY_SETTING)
-    this.hotkeySetting = this.configStore.get('hotkeySetting')
+    initSetting(this.configStore, HOTKEY_SETTING_KEY, DEFAULT_HOTKEY_SETTING)
+    this.hotkeySetting = this.configStore.get(HOTKEY_SETTING_KEY)
     this.enableMouseThrough = false
   }
 
@@ -83,7 +83,7 @@ class ScreenSetting {
         globalShortcut.unregister('Alt+' + old)
       }
       set(this.hotkeySetting, path, value)
-      this.configStore.set('hotkeySetting', this.hotkeySetting)
+      this.configStore.set(HOTKEY_SETTING_KEY, this.hotkeySetting)
       this.setupHotkey(win)
     }
   }
