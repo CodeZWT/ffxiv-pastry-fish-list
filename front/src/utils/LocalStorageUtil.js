@@ -10,8 +10,17 @@ const VIEWED_FEATURES_KEYS = {
   reader: 'readerViewedFeatures',
 }
 const READER_USER_DATA_KEY = 'readerUserData'
+const WINDOWS_LAYOUT_KEY = 'windowLayouts'
 
 export default {
+  storeWindowLayouts(layouts) {
+    store.set(WINDOWS_LAYOUT_KEY, layouts)
+  },
+
+  loadWindowLayouts() {
+    return store.get(WINDOWS_LAYOUT_KEY)
+  },
+
   storeUserData(userData) {
     store.set(USER_DATA_KEY, userData)
   },

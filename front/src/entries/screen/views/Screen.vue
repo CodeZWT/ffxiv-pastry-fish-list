@@ -5,211 +5,193 @@
       'screen--normal': !isMouseThrough,
     }"
   >
-    <div>
-      <grid-layout
-        :layout.sync="windows"
-        :col-num="12"
-        :row-height="30"
-        :is-draggable="true"
-        :is-resizable="true"
-        :vertical-compact="false"
-        :responsive="true"
-        :margin="[10, 10]"
-        :use-css-transforms="true"
-        :auto-size="false"
-        @layout-ready="handleGridReady"
+    <screen-container>
+      <screen-window
+        v-for="item in layouts"
+        :id="item.id"
+        :key="item.id"
+        :x="item.x"
+        :y="item.y"
+        :w="item.w"
+        :h="item.h"
+        :z="item.z"
       >
-        <grid-item
-          v-for="item in windows"
-          :x="item.x"
-          :y="item.y"
-          :w="item.w"
-          :h="item.h"
-          :i="item.i"
-          :key="item.i"
-          drag-allow-from=".vue-draggable-handle"
-          drag-ignore-from=".no-drag"
-          @resized="handleResized"
-          @container-resized="handleContainerResized"
+        <v-sheet
+          v-if="item.type === 'READER_TIMER_MINI'"
+          class="window-wrapper rounded elevation-4"
+          color="transparent"
         >
-          <v-sheet
+          <reader-timer-mini-window
             v-if="item.type === 'READER_TIMER_MINI'"
-            class="window-wrapper rounded elevation-4"
-            color="transparent"
-          >
-            <reader-timer-mini-window
-              v-if="item.type === 'READER_TIMER_MINI'"
-              :now="readerNow"
-              :dark="dark"
-              @close="() => removeItem(item.i)"
-            />
-          </v-sheet>
-          <v-sheet v-else class="window-wrapper rounded elevation-4" color="background">
-            <reader-timer-window
-              v-if="item.type === 'READER_TIMER'"
-              :now="readerNow"
-              :dark="dark"
-              @close="() => removeItem(item.i)"
-            />
-
-            <reader-history-window
-              v-if="item.type === 'READER_HISTORY'"
-              :now="readerNow"
-              @close="() => removeItem(item.i)"
-            />
-            <reader-spot-statistics-window
-              v-if="item.type === 'READER_SPOT_STATISTICS'"
-              :now="readerNow"
-              @close="() => removeItem(item.i)"
-            />
-            <main-window
-              v-if="item.type === 'MAIN'"
-              :page="mainPage"
-              :active-tab-index="mainPageTabIndex"
-              :is-mobile="item.isMobile"
-              :now="now"
-              @close="() => removeItem(item.i)"
-              :lazySourceFishList="lazySourceFishList"
-              :lazyTransformedFishList="lazyTransformedFishList"
-              :lazyTransformedFishDict="lazyTransformedFishDict"
-              :fishListTimePart="fishListTimePart"
-              :extraFishListTimePart="extraFishListTimePart"
-              :fishListWeatherChangePart="fishListWeatherChangePart"
-              :pinnedFishIdList="pinnedFishIdList"
-              :sortedFilteredFishIdList="sortedFilteredFishIdList"
-              :toBeNotifiedFishIdList="toBeNotifiedFishIdList"
-              :selectedFish="selectedFish"
-              :filteredFishIdSet="filteredFishIdSet"
-              @fish-selected="onFishSelected"
-              @startReloadPage="startReloadPage"
-              @show-setting="showSettingDialog = true"
-            />
-
-            <fish-detail-window
-              v-if="item.type === 'FISH_DETAIL'"
-              :now="now"
-              @close="() => removeItem(item.i)"
-              :fish="selectedFish"
-            />
-          </v-sheet>
-        </grid-item>
-      </grid-layout>
-
-      <v-menu v-model="showWindowMenu">
-        <template v-slot:activator="{ on }">
-          <v-btn
-            v-on="on"
-            elevation="2"
-            fab
-            fixed
-            bottom
-            right
-            outlined
-            @mouseenter="showWindowMenu = true"
-          >
-            <v-img
-              src="https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/pastry-fish.png"
-              width="38"
-              height="38"
-              contain
-            ></v-img>
-            <!--        <v-icon large>mdi-cat</v-icon>-->
-          </v-btn>
-        </template>
-        <v-sheet>
-          <v-row>
-            <v-col>
-              <v-subheader>鱼糕</v-subheader>
-              <v-list>
-                <v-list-item @click="addFishList">
-                  <v-list-item-icon>
-                    <v-icon>mdi-format-list-text</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>{{ $t('list.normalTitle') }}</v-list-item-content>
-                </v-list-item>
-                <v-list-item @click="addNotificationList">
-                  <v-list-item-icon>
-                    <v-icon>mdi-bell</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>{{
-                    $t('list.toBeNotifiedTitle')
-                  }}</v-list-item-content>
-                </v-list-item>
-                <v-list-item @click="addWiki">
-                  <v-list-item-icon>
-                    <v-icon>mdi-notebook</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>{{ $t('top.fishWiki') }}</v-list-item-content>
-                </v-list-item>
-                <v-list-item @click="addOceanFishing">
-                  <v-list-item-icon>
-                    <v-icon>mdi-ferry</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>{{ $t('top.oceanFishing') }}</v-list-item-content>
-                </v-list-item>
-                <v-list-item @click="addDiadem">
-                  <v-list-item-icon>
-                    <v-img
-                      :src="dark ? diademDark : diademLight"
-                      height="24"
-                      width="24"
-                    ></v-img>
-                  </v-list-item-icon>
-                  <v-list-item-content>{{ $t('top.diadem') }}</v-list-item-content>
-                </v-list-item>
-                <v-list-item @click="addAquarium">
-                  <v-list-item-icon>
-                    <v-icon>mdi-fishbowl</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>{{ $t('top.aquarium') }}</v-list-item-content>
-                </v-list-item>
-                <v-list-item @click="addCompetition">
-                  <v-list-item-icon>
-                    <v-icon>mdi-trophy</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>{{ $t('top.competition') }}</v-list-item-content>
-                </v-list-item>
-                <v-list-item @click="showMainSetting">
-                  <v-list-item-icon>
-                    <v-icon>mdi-cog</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>{{ $t('top.uiConfig') }}</v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-col>
-            <v-col>
-              <v-subheader>渔捞</v-subheader>
-              <v-list>
-                <v-list-item @click="addReaderTimer">
-                  <v-list-item-icon>
-                    <v-icon>mdi-timer</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>计时器</v-list-item-content>
-                </v-list-item>
-                <v-list-item @click="addReaderTimerMini">
-                  <v-list-item-icon>
-                    <v-icon>mdi-timer</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>迷你计时器</v-list-item-content>
-                </v-list-item>
-                <v-list-item @click="addReaderHistory">
-                  <v-list-item-icon>
-                    <v-icon>mdi-history</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>本地历史记录</v-list-item-content>
-                </v-list-item>
-                <v-list-item @click="addReaderSpotStatistics">
-                  <v-list-item-icon>
-                    <v-icon>mdi-map</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>本地钓场统计</v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-col>
-          </v-row>
+            :now="readerNow"
+            :dark="dark"
+            @close="() => removeItem(item.id)"
+          />
         </v-sheet>
-      </v-menu>
-    </div>
+        <v-sheet v-else class="window-wrapper rounded elevation-4" color="background">
+          <reader-timer-window
+            v-if="item.type === 'READER_TIMER'"
+            :now="readerNow"
+            :dark="dark"
+            @close="() => removeItem(item.id)"
+          />
+
+          <reader-history-window
+            v-if="item.type === 'READER_HISTORY'"
+            :now="readerNow"
+            @close="() => removeItem(item.id)"
+          />
+          <reader-spot-statistics-window
+            v-if="item.type === 'READER_SPOT_STATISTICS'"
+            :now="readerNow"
+            @close="() => removeItem(item.id)"
+          />
+          <main-window
+            v-if="item.type === 'MAIN'"
+            :page="mainPage"
+            :active-tab-index="mainPageTabIndex"
+            :is-mobile="item.isMobile"
+            :now="now"
+            @close="() => removeItem(item.id)"
+            :lazySourceFishList="lazySourceFishList"
+            :lazyTransformedFishList="lazyTransformedFishList"
+            :lazyTransformedFishDict="lazyTransformedFishDict"
+            :fishListTimePart="fishListTimePart"
+            :extraFishListTimePart="extraFishListTimePart"
+            :fishListWeatherChangePart="fishListWeatherChangePart"
+            :pinnedFishIdList="pinnedFishIdList"
+            :sortedFilteredFishIdList="sortedFilteredFishIdList"
+            :toBeNotifiedFishIdList="toBeNotifiedFishIdList"
+            :selectedFish="selectedFish"
+            :filteredFishIdSet="filteredFishIdSet"
+            @fish-selected="onFishSelected"
+            @startReloadPage="startReloadPage"
+            @show-setting="showSettingDialog = true"
+          />
+
+          <fish-detail-window
+            v-if="item.type === 'FISH_DETAIL'"
+            :now="now"
+            @close="() => removeItem(item.id)"
+            :fish="selectedFish"
+          />
+        </v-sheet>
+      </screen-window>
+    </screen-container>
+    <v-menu v-model="showWindowMenu">
+      <template v-slot:activator="{ on }">
+        <v-btn
+          v-on="on"
+          elevation="2"
+          fab
+          fixed
+          bottom
+          right
+          outlined
+          @mouseenter="showWindowMenu = true"
+        >
+          <v-img
+            src="https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/pastry-fish.png"
+            width="38"
+            height="38"
+            contain
+          ></v-img>
+          <!--        <v-icon large>mdi-cat</v-icon>-->
+        </v-btn>
+      </template>
+      <v-sheet>
+        <v-row>
+          <v-col>
+            <v-subheader>鱼糕</v-subheader>
+            <v-list>
+              <v-list-item @click="addFishList">
+                <v-list-item-icon>
+                  <v-icon>mdi-format-list-text</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('list.normalTitle') }}</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="addNotificationList">
+                <v-list-item-icon>
+                  <v-icon>mdi-bell</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{
+                  $t('list.toBeNotifiedTitle')
+                }}</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="addWiki">
+                <v-list-item-icon>
+                  <v-icon>mdi-notebook</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.fishWiki') }}</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="addOceanFishing">
+                <v-list-item-icon>
+                  <v-icon>mdi-ferry</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.oceanFishing') }}</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="addDiadem">
+                <v-list-item-icon>
+                  <v-img
+                    :src="dark ? diademDark : diademLight"
+                    height="24"
+                    width="24"
+                  ></v-img>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.diadem') }}</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="addAquarium">
+                <v-list-item-icon>
+                  <v-icon>mdi-fishbowl</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.aquarium') }}</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="addCompetition">
+                <v-list-item-icon>
+                  <v-icon>mdi-trophy</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.competition') }}</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="showMainSetting">
+                <v-list-item-icon>
+                  <v-icon>mdi-cog</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ $t('top.uiConfig') }}</v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-col>
+          <v-col>
+            <v-subheader>渔捞</v-subheader>
+            <v-list>
+              <v-list-item @click="addReaderTimer">
+                <v-list-item-icon>
+                  <v-icon>mdi-timer</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>计时器</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="addReaderTimerMini">
+                <v-list-item-icon>
+                  <v-icon>mdi-timer</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>迷你计时器</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="addReaderHistory">
+                <v-list-item-icon>
+                  <v-icon>mdi-history</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>本地历史记录</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="addReaderSpotStatistics">
+                <v-list-item-icon>
+                  <v-icon>mdi-map</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>本地钓场统计</v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-col>
+        </v-row>
+      </v-sheet>
+    </v-menu>
 
     <v-overlay :value="loading || showJumpingOverlay" opacity="0.9" z-index="9999">
       <div class="d-flex flex-column align-center">
@@ -398,6 +380,7 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex'
 import { v4 as uuid } from 'uuid'
 import AppMixin from '@/components/AppMixin'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
@@ -406,20 +389,21 @@ import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
 import ReaderTimerMiniWindow from '@/entries/screen/views/ReaderTimerMiniWindow'
 import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
-import VueGridLayout from 'vue-grid-layout'
+import ScreenContainer from '@/components/basic/screen/ScreenContainer'
+import ScreenWindow from '@/components/basic/screen/ScreenWindow'
 
 export default {
   name: 'Screen',
   mixins: [AppMixin],
   components: {
+    ScreenWindow,
+    MainWindow,
+    ScreenContainer,
     FishDetailWindow,
     ReaderTimerMiniWindow,
-    MainWindow,
     ReaderSpotStatisticsWindow,
     ReaderHistoryWindow,
     ReaderTimerWindow,
-    GridLayout: VueGridLayout.GridLayout,
-    GridItem: VueGridLayout.GridItem,
   },
   data: () => ({
     showSideBar: true,
@@ -430,9 +414,11 @@ export default {
     showWindowMenu: false,
     mainPage: 'ListPage',
     mainPageTabIndex: 0,
-    gridReady: false,
     readerNow: Date.now(),
   }),
+  computed: {
+    ...mapState('screenWindow', ['layouts']),
+  },
   created() {
     // TODO readerConfig.showReaderOnlyIfFishing
     // TODO postLogin
@@ -452,8 +438,14 @@ export default {
     setInterval(() => {
       this.readerNow = Date.now()
     }, 100)
+    this.loadLayouts()
   },
   methods: {
+    ...mapMutations('screenWindow', [
+      'updateWindowLayout',
+      'removeWindowLayout',
+      'loadLayouts',
+    ]),
     onFishSelected({ fishId, firstSpotId }) {
       this.selectedFishId = fishId
       this.selectedFishFirstSpotId = firstSpotId
@@ -465,44 +457,17 @@ export default {
     showMainSetting() {
       this.showSettingDialog = true
     },
-    handleGridReady() {
-      this.gridReady = true
-    },
-    handleResized(id, newH, newW, newHPx, newWPx) {
-      console.debug(id, 'resized', newW, newH, newWPx, newHPx)
-      if (this.gridReady) {
-        this.updateItem(id, {
-          isMobile: newWPx < this.$vuetify.breakpoint.thresholds.xs,
-        })
-      }
-    },
-    updateItem(id, updatePart) {
-      const index = this.getItemIndex(id)
-      const item = this.windows[index]
-      this.windows.splice(index, 1, {
-        ...item,
-        ...updatePart,
-      })
-    },
-    handleContainerResized(id, newH, newW, newHPx, newWPx) {
-      console.debug(id, 'container resized', newW, newH, newWPx, newHPx)
-      if (this.gridReady) {
-        this.updateItem(id, {
-          isMobile: newWPx < this.$vuetify.breakpoint.thresholds.xs,
-        })
-      }
-    },
     addReaderTimer() {
-      this.addItemIfNotExist('READER_TIMER', 3, 4)
+      this.addItemIfNotExist('READER_TIMER', 450, 150)
     },
     addReaderTimerMini() {
-      this.addItemIfNotExist('READER_TIMER_MINI', 4, 3)
+      this.addItemIfNotExist('READER_TIMER_MINI', 450, 85)
     },
     addReaderHistory() {
-      this.addItemIfNotExist('READER_HISTORY', 3, 12)
+      this.addItemIfNotExist('READER_HISTORY', 429, 645)
     },
     addReaderSpotStatistics() {
-      this.addItemIfNotExist('READER_SPOT_STATISTICS', 3, 12)
+      this.addItemIfNotExist('READER_SPOT_STATISTICS', 500, 450)
     },
     addFishList() {
       this.mainPage = 'ListPage'
@@ -535,14 +500,14 @@ export default {
       this.addMainWindowIfNotExist()
     },
     addFish() {
-      this.addItemIfNotExist('FISH_DETAIL', 2, 12, true)
+      this.addItemIfNotExist('FISH_DETAIL', 200, 600, true)
     },
     addRecord() {
       this.mainPage = 'RecordPage'
       this.addMainWindowIfNotExist()
     },
     addMainWindowIfNotExist() {
-      this.addItemIfNotExist('MAIN', 6, 12, false)
+      this.addItemIfNotExist('MAIN', 600, 600, false)
     },
     addItemIfNotExist(type, w, h, isMobile = true, x = 0, y = 0) {
       if (!this.hasItemOfType(type)) {
@@ -550,12 +515,12 @@ export default {
       }
     },
     hasItemOfType(type) {
-      return !!this.windows.find(it => it.type === type)
+      return !!this.layouts.find(it => it.type === type)
     },
     addItem(type, w, h, isMobile = true, x = 0, y = 0) {
-      this.windows.push({
-        i: uuid(),
-        type,
+      this.updateWindowLayout({
+        id: uuid(),
+        type: type,
         w: w,
         h: h,
         isMobile: isMobile,
@@ -564,10 +529,10 @@ export default {
       })
     },
     getItemIndex(id) {
-      return this.windows.findIndex(it => it.i === id)
+      return this.layouts.findIndex(it => it.id === id)
     },
     removeItem(id) {
-      this.windows.splice(this.getItemIndex(id), 1)
+      this.removeWindowLayout(id)
     },
   },
 }
@@ -575,9 +540,6 @@ export default {
 
 <style scoped lang="sass">
 @import "~@/styles/RcVariables"
-
-::v-deep .vue-grid-item.vue-grid-placeholder
-  background: gray
 
 .screen
   height: 100%
@@ -587,11 +549,4 @@ export default {
 .window-wrapper
   height: 100%
   width: 100%
-
-.vue-grid-layout
-  height: calc(100vh - #{ $top-system-bar-padding})
-  overflow-y: scroll
-  //border-style: solid
-  //border-color: white
-  //border-width: thin
 </style>

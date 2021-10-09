@@ -14,7 +14,7 @@ import _ from 'lodash'
 
 Vue.use(Vuex)
 
-export const MainStore = {
+export const MainModule = {
   state: {
     now: Date.now(),
     fish: DataUtil.FISH_DATA,
@@ -497,12 +497,12 @@ export const MainStore = {
     setShowImportExportDialog(state, show) {
       state.showImportExportDialog = show
     },
-    showSnackbar(state, { text, color, timeout }) {
+    showSnackbar(state, snackBarSetting) {
       state.snackbar = {
         show: true,
-        text,
-        color,
-        timeout: timeout ?? 2000,
+        text: snackBarSetting.text,
+        color: snackBarSetting.color,
+        timeout: snackBarSetting.timeout ?? 2000,
       }
     },
     setNotShowBanner(state) {
@@ -627,10 +627,9 @@ export const MainStore = {
       return
     },
   },
-  modules: {},
 }
 
-export default new Vuex.Store(MainStore)
+export default new Vuex.Store(MainModule)
 
 function updateUserDataStateRecords(userData, type, keys, value) {
   // console.debug('set', type, value, keys)

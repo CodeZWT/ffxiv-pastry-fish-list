@@ -1,3 +1,4 @@
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 import * as CafeKitTooltip from '@thewakingsands/kit-tooltip'
 import { Settings } from 'luxon'
 import App from './App.vue'

@@ -50,7 +50,7 @@
     "vee-validate": "^3.4.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
-    "vue-grid-layout": "^2.3.12",
+    "vue-draggable-resizable": "^2.3.0",
     "vue-i18n": "^8.17.3",
     "vue-konva": "^2.1.4",
     "vue-observe-visibility": "^1.0.0",

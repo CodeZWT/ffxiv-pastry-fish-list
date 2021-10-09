@@ -179,9 +179,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-snackbar v-model="showExportError" centered color="error">
-      导出失败，文件已打开。
-    </v-snackbar>
   </div>
 </template>
 
@@ -332,6 +329,12 @@ export default {
       })
       ?.on('exportHistoryFailedWithBusyFile', () => {
         this.showExportError = true
+
+        this.showSnackbar({
+          text: '导出失败，文件已打开。',
+          color: 'error',
+        })
+
         this.exporting = false
       })
   },
@@ -486,9 +489,4 @@ export default {
 
 .wrapper
   height: 100%
-  //height: calc(100vh - #{ $top-bars-padding-reader })
-  //overflow-y: scroll
-  //overflow-x: hidden
-  //padding-left: 6px
-  //padding-top: 8px
 </style>
