@@ -27,7 +27,14 @@
         ></fish-detail-content>
       </div>
     </template>
-    <template v-else> empty </template>
+    <template v-else>
+      <div class="d-flex fill-height align-center justify-center">
+        <div class="d-flex align-center">
+          <v-icon x-large>mdi-fish</v-icon>
+          <div>请选择鱼以显示详情</div>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -93,6 +100,7 @@ export default {
 
 .inner
   width: 100%
+  height: 100%
 
 .detail-header
   overflow-scrolling: auto
