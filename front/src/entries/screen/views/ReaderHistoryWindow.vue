@@ -1,27 +1,26 @@
 <template>
-  <div class="window">
-    <v-system-bar class="window-top-bar rounded-t vue-draggable-handle">
-      <span class="mx-1">本地历史记录</span>
-      <v-spacer />
-      <v-btn @click="showSetting" x-small text>
-        <v-icon>mdi-cog</v-icon>
-      </v-btn>
-      <v-btn @click="close" x-small text>
-        <v-icon>mdi-window-close</v-icon>
-      </v-btn>
-    </v-system-bar>
-    <div class="window-content no-drag">
-      <reader-history :now="now" />
-    </div>
-  </div>
+  <screen-window
+    :id="id"
+    :x="item.x"
+    :y="item.y"
+    :w="item.w"
+    :h="item.h"
+    :z="item.z"
+    title="本地历史记录"
+  >
+    <reader-history :now="now" />
+  </screen-window>
 </template>
 
 <script>
 import ReaderHistory from '@/entries/reader/views/ReaderHistory'
+import ScreenWindow from '@/components/basic/screen/ScreenWindow'
+import WindowMixin from '@/components/basic/screen/WindowMixin'
 
 export default {
   name: 'ReaderHistoryWindow',
-  components: { ReaderHistory },
+  mixins: [WindowMixin],
+  components: { ScreenWindow, ReaderHistory },
   props: {
     now: {
       type: Number,
@@ -39,16 +38,4 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
-@import "~@/styles/RcVariables"
-
-.window
-  height: 100%
-
-.window-content
-  height: calc(100% - #{ $top-system-bar-padding })
-  overflow-y: scroll
-
-.window-top-bar
-  -webkit-app-region: none
-</style>
+<style scoped lang="sass"></style>

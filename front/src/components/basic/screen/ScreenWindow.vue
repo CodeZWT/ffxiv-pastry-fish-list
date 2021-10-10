@@ -4,17 +4,51 @@
     :h="h"
     :x="x"
     :y="y"
+    :z="z"
     @dragging="onDrag"
     @resizing="onResize"
     @dragstop="onDragStop"
+    @activated="onActivated"
     :parent="true"
     className="dr-wrapper"
     classNameHandle="dr-handle"
+    drag-cancel=".dr-drag-cancel"
   >
-    <v-sheet v-if="dragging" color="background" class="drag-placeholder">
-      dragging
+    <v-sheet
+      v-if="dragging"
+      :color="'background'"
+      class="drag-placeholder d-flex fill-height align-center justify-center"
+    >
+      <div style="font-size: x-large">{{ title }}</div>
     </v-sheet>
-    <slot v-else></slot>
+    <v-sheet
+      v-else
+      class="window-wrapper rounded elevation-4"
+      :color="frameless ? 'transparent' : 'background'"
+    >
+      <slot name="header" v-if="!frameless">
+        <v-system-bar class="rounded-t">
+          <span class="mx-1">{{ title }}</span>
+          <span class="mx-1" v-if="isMobile">mobile</span>
+          <v-spacer />
+          <div class="dr-drag-cancel">
+            <slot name="header-buttons"> </slot>
+            <v-btn @click="handleCloseWindow" x-small text>
+              <v-icon>mdi-window-close</v-icon>
+            </v-btn>
+          </div>
+        </v-system-bar>
+      </slot>
+      <div
+        :class="{
+          'window-content': true,
+          'window-content--normal': !frameless,
+          'dr-drag-cancel': !frameless,
+        }"
+      >
+        <slot></slot>
+      </div>
+    </v-sheet>
   </vue-draggable-resizable>
 </template>
 
@@ -58,6 +92,14 @@ export default {
       type: String,
       default: undefined,
     },
+    title: {
+      type: String,
+      default: '',
+    },
+    frameless: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {}
@@ -80,7 +122,12 @@ export default {
       'updateWindowLayout',
       'startDragging',
       'stopDragging',
+      'closeWindow',
+      'activeWindow',
     ]),
+    handleCloseWindow() {
+      this.closeWindow(this.id)
+    },
     onResize(x, y, w, h) {
       this.updateWindowLayout({
         id: this.id,
@@ -100,6 +147,9 @@ export default {
     onDragStop() {
       this.stopDragging()
     },
+    onActivated() {
+      this.activeWindow(this.id)
+    },
   },
 }
 </script>
@@ -109,6 +159,8 @@ export default {
 </style>
 
 <style lang="sass" scoped>
+@import "~@/styles/RcVariables"
+
 .drag-placeholder
   height: 100%
   width: 100%
@@ -129,4 +181,13 @@ export default {
     border-bottom: 8px solid grey
     border-left: 8px solid transparent
     cursor: se-resize
+
+.window-wrapper
+  height: 100%
+  width: 100%
+
+.window-content
+  overflow-y: scroll
+  &--normal
+    height: calc(100% - #{ $top-system-bar-padding })
 </style>

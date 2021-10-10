@@ -649,10 +649,6 @@ export default {
     }
     this.cafeKitTooltipCopyPatch()
 
-    const sounds = await this.loadingSounds()
-    this.setSounds(DataUtil.toMap(sounds, it => it.key))
-    console.debug('sound loaded')
-
     this.pageVisibilityUtil = new PageVisibilityUtil()
     if (DevelopmentModeUtil.isTest()) {
       this.checkFishNeedSplit(this.lazySourceFishList)
@@ -702,6 +698,10 @@ export default {
       }
     }, 1000)
     window.requestAnimationFrame(() => this.fishUpdater.doNext())
+
+    const sounds = await this.loadingSounds()
+    this.setSounds(DataUtil.toMap(sounds, it => it.key))
+    console.debug('sound loaded')
   },
   methods: {
     handleSearch(fishId) {

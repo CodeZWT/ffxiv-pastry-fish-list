@@ -1,18 +1,20 @@
 <template>
-  <div class="window">
-    <v-system-bar class="window-top-bar rounded-t vue-draggable-handle">
-      <span class="mx-1">{{ pageTitle }}</span>
-      <span class="mx-1" v-if="isMobile">mobile</span>
-      <v-spacer />
+  <screen-window
+    :id="id"
+    :x="item.x"
+    :y="item.y"
+    :w="item.w"
+    :h="item.h"
+    :z="item.z"
+    :title="pageTitle"
+  >
+    <template v-slot:header-buttons>
       <v-btn @click="showSetting" x-small text>
         <v-icon>mdi-cog</v-icon>
       </v-btn>
-      <v-btn @click="close" x-small text>
-        <v-icon>mdi-window-close</v-icon>
-      </v-btn>
-    </v-system-bar>
+    </template>
 
-    <div class="window-content no-drag">
+    <template>
       <v-toolbar
         height="56px"
         class="fish-app-bar"
@@ -268,12 +270,12 @@
         :lazyFishSourceList="lazySourceFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
       />
-    </div>
-  </div>
+    </template>
+  </screen-window>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import AquariumPage from '@/entries/main/views/AquariumPage'
 import CompetitionPage from '@/entries/main/views/CompetitionPage'
 import DiademPage from '@/entries/main/views/DiademPage'
@@ -283,12 +285,15 @@ import FishPage from '@/entries/main/views/FishPage'
 import MainWindowMixin from '@/components/MainWindowMixin'
 import OceanFishingPage54 from '@/entries/main/views/OceanFishingPage54'
 import RecordPage from '@/entries/main/views/RecordPage'
+import ScreenWindow from '@/components/basic/screen/ScreenWindow'
 import WikiPage from '@/entries/main/views/WikiPage'
+import WindowMixin from '@/components/basic/screen/WindowMixin'
 
 export default {
   name: 'MainWindow',
-  mixins: [MainWindowMixin],
+  mixins: [WindowMixin, MainWindowMixin],
   components: {
+    ScreenWindow,
     FishDetailPage,
     FishEyesToggleButton,
     DiademPage,
@@ -300,9 +305,6 @@ export default {
     FishPage,
   },
   props: [
-    'page',
-    'activeTabIndex',
-    'isMobile',
     'now',
     'lazySourceFishList',
     'lazyTransformedFishList',
@@ -316,10 +318,14 @@ export default {
     'selectedFish',
     'filteredFishIdSet',
   ],
-  data() {
-    return {}
-  },
   computed: {
+    page() {
+      return this.mainWinSubPage
+    },
+    activeTabIndex() {
+      return this.tabIndex
+    },
+    ...mapState('screenWindow', ['mainWinSubPage', 'tabIndex']),
     ...mapGetters([
       'listSetting',
       'isRoseMode',
@@ -408,17 +414,4 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
-@import "~@/styles/RcVariables"
-
-.window
-  height: 100%
-  overflow: hidden
-
-.window-content
-  height: calc(100% - #{ $top-system-bar-padding })
-  overflow-y: scroll
-
-.window-top-bar
-  -webkit-app-region: none
-</style>
+<style scoped lang="sass"></style>

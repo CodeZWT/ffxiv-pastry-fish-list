@@ -5,79 +5,65 @@
       'screen--normal': !isMouseThrough,
     }"
   >
-    <screen-container>
-      <screen-window
-        v-for="item in layouts"
-        :id="item.id"
-        :key="item.id"
-        :x="item.x"
-        :y="item.y"
-        :w="item.w"
-        :h="item.h"
-        :z="item.z"
-      >
-        <v-sheet
-          v-if="item.type === 'READER_TIMER_MINI'"
-          class="window-wrapper rounded elevation-4"
-          color="transparent"
-        >
-          <reader-timer-mini-window
-            v-if="item.type === 'READER_TIMER_MINI'"
-            :now="readerNow"
-            :dark="dark"
-            @close="() => removeItem(item.id)"
-          />
-        </v-sheet>
-        <v-sheet v-else class="window-wrapper rounded elevation-4" color="background">
-          <reader-timer-window
-            v-if="item.type === 'READER_TIMER'"
-            :now="readerNow"
-            :dark="dark"
-            @close="() => removeItem(item.id)"
-          />
+    <template v-for="winId in windows">
+      <main-window
+        v-if="winId.indexOf('MAIN') === 0"
+        :id="winId"
+        :key="winId"
+        :now="now"
+        :lazySourceFishList="lazySourceFishList"
+        :lazyTransformedFishList="lazyTransformedFishList"
+        :lazyTransformedFishDict="lazyTransformedFishDict"
+        :fishListTimePart="fishListTimePart"
+        :extraFishListTimePart="extraFishListTimePart"
+        :fishListWeatherChangePart="fishListWeatherChangePart"
+        :pinnedFishIdList="pinnedFishIdList"
+        :sortedFilteredFishIdList="sortedFilteredFishIdList"
+        :toBeNotifiedFishIdList="toBeNotifiedFishIdList"
+        :selectedFish="selectedFish"
+        :filteredFishIdSet="filteredFishIdSet"
+        @fish-selected="onFishSelected"
+        @startReloadPage="startReloadPage"
+        @show-setting="showSettingDialog = true"
+      />
 
-          <reader-history-window
-            v-if="item.type === 'READER_HISTORY'"
-            :now="readerNow"
-            @close="() => removeItem(item.id)"
-          />
-          <reader-spot-statistics-window
-            v-if="item.type === 'READER_SPOT_STATISTICS'"
-            :now="readerNow"
-            @close="() => removeItem(item.id)"
-          />
-          <main-window
-            v-if="item.type === 'MAIN'"
-            :page="mainPage"
-            :active-tab-index="mainPageTabIndex"
-            :is-mobile="item.isMobile"
-            :now="now"
-            @close="() => removeItem(item.id)"
-            :lazySourceFishList="lazySourceFishList"
-            :lazyTransformedFishList="lazyTransformedFishList"
-            :lazyTransformedFishDict="lazyTransformedFishDict"
-            :fishListTimePart="fishListTimePart"
-            :extraFishListTimePart="extraFishListTimePart"
-            :fishListWeatherChangePart="fishListWeatherChangePart"
-            :pinnedFishIdList="pinnedFishIdList"
-            :sortedFilteredFishIdList="sortedFilteredFishIdList"
-            :toBeNotifiedFishIdList="toBeNotifiedFishIdList"
-            :selectedFish="selectedFish"
-            :filteredFishIdSet="filteredFishIdSet"
-            @fish-selected="onFishSelected"
-            @startReloadPage="startReloadPage"
-            @show-setting="showSettingDialog = true"
-          />
+      <fish-detail-window
+        v-else-if="winId.indexOf('FISH_DETAIL') === 0"
+        :id="winId"
+        :key="winId"
+        :now="now"
+        :fish="selectedFish"
+      />
 
-          <fish-detail-window
-            v-if="item.type === 'FISH_DETAIL'"
-            :now="now"
-            @close="() => removeItem(item.id)"
-            :fish="selectedFish"
-          />
-        </v-sheet>
-      </screen-window>
-    </screen-container>
+      <reader-timer-mini-window
+        v-else-if="winId.indexOf('READER_TIMER_MINI') === 0"
+        :id="winId"
+        :key="winId"
+        :now="readerNow"
+        :dark="dark"
+      />
+      <reader-timer-window
+        v-else-if="winId.indexOf('READER_TIMER') === 0"
+        :id="winId"
+        :key="winId"
+        :now="readerNow"
+        :dark="dark"
+      />
+
+      <reader-history-window
+        v-else-if="winId.indexOf('READER_HISTORY') === 0"
+        :id="winId"
+        :key="winId"
+        :now="readerNow"
+      />
+      <reader-spot-statistics-window
+        v-else-if="winId.indexOf('READER_SPOT_STATISTICS') === 0"
+        :id="winId"
+        :key="winId"
+        :now="readerNow"
+      />
+    </template>
+
     <v-menu v-model="showWindowMenu">
       <template v-slot:activator="{ on }">
         <v-btn
@@ -381,7 +367,6 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
-import { v4 as uuid } from 'uuid'
 import AppMixin from '@/components/AppMixin'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
 import MainWindow from '@/entries/screen/views/MainWindow'
@@ -389,35 +374,27 @@ import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
 import ReaderTimerMiniWindow from '@/entries/screen/views/ReaderTimerMiniWindow'
 import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
-import ScreenContainer from '@/components/basic/screen/ScreenContainer'
-import ScreenWindow from '@/components/basic/screen/ScreenWindow'
 
 export default {
   name: 'Screen',
   mixins: [AppMixin],
   components: {
-    ScreenWindow,
-    MainWindow,
-    ScreenContainer,
     FishDetailWindow,
-    ReaderTimerMiniWindow,
     ReaderSpotStatisticsWindow,
     ReaderHistoryWindow,
     ReaderTimerWindow,
+    ReaderTimerMiniWindow,
+    MainWindow,
   },
   data: () => ({
     showSideBar: true,
     miniSideBar: true,
-    // layout: [],
     colNum: 12,
-    windows: [],
     showWindowMenu: false,
-    mainPage: 'ListPage',
-    mainPageTabIndex: 0,
     readerNow: Date.now(),
   }),
   computed: {
-    ...mapState('screenWindow', ['layouts']),
+    ...mapState('screenWindow', ['layouts', 'windows', 'mainWinSubPage']),
   },
   created() {
     // TODO readerConfig.showReaderOnlyIfFishing
@@ -433,24 +410,16 @@ export default {
   },
   mounted() {
     setInterval(() => {
-      this.now = Date.now()
-    }, 1000)
-    setInterval(() => {
       this.readerNow = Date.now()
     }, 100)
-    this.loadLayouts()
   },
   methods: {
-    ...mapMutations('screenWindow', [
-      'updateWindowLayout',
-      'removeWindowLayout',
-      'loadLayouts',
-    ]),
+    ...mapMutations('screenWindow', ['updateWindowLayout', 'showWindow']),
     onFishSelected({ fishId, firstSpotId }) {
       this.selectedFishId = fishId
       this.selectedFishFirstSpotId = firstSpotId
       this.fishUpdater.selectedFishId = this.selectedFishId
-      if (this.mainPage === 'ListPage') {
+      if (this.mainWinSubPage === 'ListPage') {
         this.addFish()
       }
     },
@@ -458,81 +427,79 @@ export default {
       this.showSettingDialog = true
     },
     addReaderTimer() {
-      this.addItemIfNotExist('READER_TIMER', 450, 150)
-    },
-    addReaderTimerMini() {
-      this.addItemIfNotExist('READER_TIMER_MINI', 450, 85)
-    },
-    addReaderHistory() {
-      this.addItemIfNotExist('READER_HISTORY', 429, 645)
-    },
-    addReaderSpotStatistics() {
-      this.addItemIfNotExist('READER_SPOT_STATISTICS', 500, 450)
-    },
-    addFishList() {
-      this.mainPage = 'ListPage'
-      this.mainPageTabIndex = 0
-      this.addMainWindowIfNotExist()
-    },
-    addNotificationList() {
-      this.mainPage = 'ListPage'
-      this.mainPageTabIndex = 1
-      this.addMainWindowIfNotExist()
-    },
-    addWiki() {
-      this.mainPage = 'WikiPage'
-      this.addMainWindowIfNotExist()
-    },
-    addOceanFishing() {
-      this.mainPage = 'OceanFishingPage54'
-      this.addMainWindowIfNotExist()
-    },
-    addDiadem() {
-      this.mainPage = 'DiademPage'
-      this.addMainWindowIfNotExist()
-    },
-    addAquarium() {
-      this.mainPage = 'AquariumPage'
-      this.addMainWindowIfNotExist()
-    },
-    addCompetition() {
-      this.mainPage = 'CompetitionPage'
-      this.addMainWindowIfNotExist()
-    },
-    addFish() {
-      this.addItemIfNotExist('FISH_DETAIL', 200, 600, true)
-    },
-    addRecord() {
-      this.mainPage = 'RecordPage'
-      this.addMainWindowIfNotExist()
-    },
-    addMainWindowIfNotExist() {
-      this.addItemIfNotExist('MAIN', 600, 600, false)
-    },
-    addItemIfNotExist(type, w, h, isMobile = true, x = 0, y = 0) {
-      if (!this.hasItemOfType(type)) {
-        this.addItem(type, w, h, isMobile, x, y)
-      }
-    },
-    hasItemOfType(type) {
-      return !!this.layouts.find(it => it.type === type)
-    },
-    addItem(type, w, h, isMobile = true, x = 0, y = 0) {
-      this.updateWindowLayout({
-        id: uuid(),
-        type: type,
-        w: w,
-        h: h,
-        isMobile: isMobile,
-        x: x,
-        y: y,
+      this.showWindow({
+        type: 'READER_TIMER',
       })
     },
-    getItemIndex(id) {
-      return this.layouts.findIndex(it => it.id === id)
+    addReaderTimerMini() {
+      this.showWindow({
+        type: 'READER_TIMER_MINI',
+      })
     },
-    removeItem(id) {
-      this.removeWindowLayout(id)
+    addReaderHistory() {
+      this.showWindow({
+        type: 'READER_HISTORY',
+      })
+    },
+    addReaderSpotStatistics() {
+      this.showWindow({
+        type: 'READER_SPOT_STATISTICS',
+      })
+    },
+    addFishList() {
+      this.showWindow({
+        type: 'MAIN',
+        subPage: 'ListPage',
+        tabIndex: 0,
+      })
+    },
+    addNotificationList() {
+      this.showWindow({
+        type: 'MAIN',
+        subPage: 'ListPage',
+        tabIndex: 1,
+      })
+    },
+    addWiki() {
+      this.showWindow({
+        type: 'MAIN',
+        subPage: 'WikiPage',
+      })
+    },
+    addOceanFishing() {
+      this.showWindow({
+        type: 'MAIN',
+        subPage: 'OceanFishingPage54',
+      })
+    },
+    addDiadem() {
+      this.showWindow({
+        type: 'MAIN',
+        subPage: 'DiademPage',
+      })
+    },
+    addAquarium() {
+      this.showWindow({
+        type: 'MAIN',
+        subPage: 'AquariumPage',
+      })
+    },
+    addCompetition() {
+      this.showWindow({
+        type: 'MAIN',
+        subPage: 'CompetitionPage',
+      })
+    },
+    addFish() {
+      this.showWindow({
+        type: 'FISH_DETAIL',
+      })
+    },
+    addRecord() {
+      this.showWindow({
+        type: 'MAIN',
+        subPage: 'RecordPage',
+      })
     },
   },
 }
@@ -545,8 +512,4 @@ export default {
   height: 100%
   &--normal
     background: rgba(117, 117, 117, 0.5)
-
-.window-wrapper
-  height: 100%
-  width: 100%
 </style>

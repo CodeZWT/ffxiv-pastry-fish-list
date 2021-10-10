@@ -1,9 +1,18 @@
 <template>
-  <div class="window vue-draggable-handle">
-    <div class="window-content">
+  <screen-window
+    :id="id"
+    :x="item.x"
+    :y="item.y"
+    :w="item.w"
+    :h="item.h"
+    :z="item.z"
+    frameless
+    title="渔捞迷你模式"
+  >
+    <template>
       <reader-timer :now="now" :mini="true" />
-    </div>
-  </div>
+    </template>
+  </screen-window>
 </template>
 
 <script>
@@ -12,10 +21,13 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import READER_ICON from 'Assets/reader.png'
 import ReaderTimer from '@/entries/reader/views/ReaderTimer'
 import SETTING_ICON from 'Assets/setting.png'
+import ScreenWindow from '@/components/basic/screen/ScreenWindow'
+import WindowMixin from '@/components/basic/screen/WindowMixin'
 
 export default {
   name: 'ReaderTimerMiniWindow',
-  components: { ReaderTimer },
+  mixins: [WindowMixin],
+  components: { ScreenWindow, ReaderTimer },
   props: {
     now: {
       type: Number,
@@ -64,16 +76,4 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
-@import "~@/styles/RcVariables"
-
-.window
-  height: 100%
-
-.window-content
-  height: calc(100% - #{ $top-system-bar-padding })
-  overflow-y: scroll
-
-.window-top-bar
-  -webkit-app-region: none
-</style>
+<style scoped lang="sass"></style>

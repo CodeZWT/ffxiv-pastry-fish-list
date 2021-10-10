@@ -1,24 +1,26 @@
 <template>
-  <div class="window">
-    <v-system-bar class="window-top-bar rounded-t vue-draggable-handle">
-      <span class="mx-1">钓场统计</span>
-      <v-spacer />
-      <v-btn @click="close" x-small text>
-        <v-icon>mdi-window-close</v-icon>
-      </v-btn>
-    </v-system-bar>
-    <div class="window-content no-drag">
-      <reader-spot-statistics :now="now" />
-    </div>
-  </div>
+  <screen-window
+    :id="id"
+    :x="item.x"
+    :y="item.y"
+    :w="item.w"
+    :h="item.h"
+    :z="item.z"
+    title="本地历史记录"
+  >
+    <reader-spot-statistics :now="now" />
+  </screen-window>
 </template>
 
 <script>
 import ReaderSpotStatistics from '@/entries/reader/views/ReaderSpotStatistics'
+import ScreenWindow from '@/components/basic/screen/ScreenWindow'
+import WindowMixin from '@/components/basic/screen/WindowMixin'
 
 export default {
   name: 'ReaderSpotStatisticsWindow',
-  components: { ReaderSpotStatistics },
+  mixins: [WindowMixin],
+  components: { ScreenWindow, ReaderSpotStatistics },
   props: {
     now: {
       type: Number,
@@ -33,16 +35,4 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
-@import "~@/styles/RcVariables"
-
-.window
-  height: 100%
-
-.window-content
-  height: calc(100% - #{ $top-system-bar-padding })
-  overflow-y: scroll
-
-.window-top-bar
-  -webkit-app-region: none
-</style>
+<style scoped lang="sass"></style>
