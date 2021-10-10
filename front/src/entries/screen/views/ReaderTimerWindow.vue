@@ -13,7 +13,7 @@
         <v-img :src="readerIcon" max-height="20" max-width="20" />
         <span class="mx-1">{{ title }}</span>
         <v-spacer />
-        <div class="dr-drag-cancel">
+        <div class="dr-drag-cancel d-flex align-center">
           <div>
             <v-tooltip bottom color="secondary">
               <template v-slot:activator="{ on, attrs }">

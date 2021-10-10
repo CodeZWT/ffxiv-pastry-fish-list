@@ -170,7 +170,7 @@
         </v-progress-linear>
       </v-col>
     </v-row>
-    <v-dialog :value="hasStrictModeViolation" fullscreen persistent>
+    <v-dialog :value="hasStrictModeViolation" persistent max-width="600">
       <v-card>
         <v-card-title>严格模式检查</v-card-title>
         <v-card-text>
