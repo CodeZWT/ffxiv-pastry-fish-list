@@ -80,7 +80,7 @@ const ScreenWindowModule = {
     layouts: storedConfig?.layouts ?? DEFAULT_LAYOUTS,
     windows: storedConfig?.windows ?? [],
     dragging: false,
-    mainWinSubPage: 'ListPage',
+    subPage: 'ListPage',
     tabIndex: 0,
   },
   getters: {

@@ -320,12 +320,12 @@ export default {
   ],
   computed: {
     page() {
-      return this.mainWinSubPage
+      return this.subPage
     },
     activeTabIndex() {
       return this.tabIndex
     },
-    ...mapState('screenWindow', ['mainWinSubPage', 'tabIndex']),
+    ...mapState('screenWindow', ['subPage', 'tabIndex']),
     ...mapGetters([
       'listSetting',
       'isRoseMode',
