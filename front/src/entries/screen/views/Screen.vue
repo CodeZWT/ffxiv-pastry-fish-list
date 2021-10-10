@@ -138,11 +138,12 @@
                 </v-list-item-icon>
                 <v-list-item-content>{{ $t('top.competition') }}</v-list-item-content>
               </v-list-item>
-              <v-list-item @click="showMainSetting">
+
+              <v-list-item v-if="isRoseMode" @click="addRecord">
                 <v-list-item-icon>
-                  <v-icon>mdi-cog</v-icon>
+                  <v-icon>mdi-chart-bar</v-icon>
                 </v-list-item-icon>
-                <v-list-item-content>{{ $t('top.uiConfig') }}</v-list-item-content>
+                <v-list-item-content>{{ $t('top.record') }}</v-list-item-content>
               </v-list-item>
             </v-list>
           </v-col>
@@ -172,6 +173,67 @@
                   <v-icon>mdi-map</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>本地钓场统计</v-list-item-content>
+              </v-list-item>
+            </v-list>
+            <v-subheader>其他</v-subheader>
+            <v-list>
+              <v-list-item @click="showMainSetting">
+                <v-list-item-icon>
+                  <v-icon>mdi-cog</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>主界面{{ $t('top.uiConfig') }}</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="showPatchNoteDialog = true">
+                <v-list-item-icon>
+                  <v-icon>mdi-tag</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.patchNote') }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+
+              <v-list-item @click="setShowImportExportDialog(true)">
+                <v-list-item-icon>
+                  <v-icon>mdi-database</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.menu') }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+
+              <v-list-item @click="showAboutDialog = true">
+                <v-list-item-icon>
+                  <v-icon>mdi-information</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.about') }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+
+              <v-list-item
+                v-if="isElectron && downloadProgress > 0"
+                link
+                @click="showUpdateDialog"
+              >
+                <v-list-item-icon>
+                  <div>
+                    <v-progress-circular rotate="-90" size="24" :value="downloadProgress">
+                      <div style="font-size: x-small">
+                        {{ downloadProgress === 100 ? '' : Math.floor(downloadProgress) }}
+                      </div>
+                    </v-progress-circular>
+                  </div>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                  <v-list-item-title>
+                    {{
+                      downloadProgress === 100
+                        ? $t('top.downloaded')
+                        : $t('top.downloading')
+                    }}
+                  </v-list-item-title>
+                </v-list-item-content>
               </v-list-item>
             </v-list>
           </v-col>

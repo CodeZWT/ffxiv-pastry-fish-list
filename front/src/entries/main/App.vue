@@ -429,16 +429,14 @@
               </template>
               <!--        <v-list-item-group active-class="primary--text">-->
 
-              <click-helper @click="setShowImportExportDialog(true)">
-                <v-list-item @click="noOp">
-                  <v-list-item-icon>
-                    <v-icon>mdi-database</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title>{{ $t('top.menu') }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </click-helper>
+              <v-list-item @click="setShowImportExportDialog(true)">
+                <v-list-item-icon>
+                  <v-icon>mdi-database</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.menu') }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
               <click-helper @click="showSetting">
                 <v-list-item @click="noOp">
                   <v-list-item-icon>
@@ -461,26 +459,22 @@
                   </v-list-item-content>
                 </v-list-item>
               </click-helper>
-              <click-helper @click="showPatchNoteDialog = true">
-                <v-list-item @click="noOp">
-                  <v-list-item-icon>
-                    <v-icon>mdi-tag</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title>{{ $t('top.patchNote') }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </click-helper>
-              <click-helper @click="showAboutDialog = true">
-                <v-list-item @click="noOp">
-                  <v-list-item-icon>
-                    <v-icon>mdi-information</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title>{{ $t('top.about') }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </click-helper>
+              <v-list-item @click="showPatchNoteDialog = true">
+                <v-list-item-icon>
+                  <v-icon>mdi-tag</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.patchNote') }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="showAboutDialog = true">
+                <v-list-item-icon>
+                  <v-icon>mdi-information</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.about') }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
               <!--        </v-list-item-group>-->
             </v-list-group>
           </v-list>
