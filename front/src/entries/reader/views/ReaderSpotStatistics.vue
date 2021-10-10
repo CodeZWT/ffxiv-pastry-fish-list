@@ -1,5 +1,5 @@
 <template>
-  <v-card class="fill-height">
+  <v-card>
     <v-card-title> {{ fishingSpot.name }}</v-card-title>
     <v-card-text>
       <v-row>

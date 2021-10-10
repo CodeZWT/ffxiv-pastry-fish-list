@@ -27,14 +27,7 @@ export default {
       default: 0,
     },
   },
-  methods: {
-    close() {
-      this.$emit('close')
-    },
-    showSetting() {
-      // TODO show setting dialog directly
-    },
-  },
+  methods: {},
 }
 </script>
 

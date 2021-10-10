@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     resize() {
-      this.$refs.detailContent.resize()
+      this.$refs.detailContent?.resize()
     },
   },
 }

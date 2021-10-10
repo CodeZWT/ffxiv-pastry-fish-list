@@ -8,6 +8,7 @@
     @dragging="onDrag"
     @resizing="onResize"
     @dragstop="onDragStop"
+    :active.sync="active"
     @click.native="onActivated"
     :parent="true"
     className="dr-wrapper"
@@ -102,7 +103,9 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      active: false,
+    }
   },
   computed: {
     ...mapState('screenWindow', ['dragging']),
@@ -148,6 +151,7 @@ export default {
       this.stopDragging()
     },
     onActivated() {
+      this.active = true
       this.activeWindow(this.id)
     },
   },
@@ -187,7 +191,7 @@ export default {
   width: 100%
 
 .window-content
-  overflow-y: scroll
+  overflow-y: auto
   &--normal
     height: calc(100% - #{ $top-system-bar-padding })
 </style>

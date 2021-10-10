@@ -6,7 +6,7 @@
     :w="item.w"
     :h="item.h"
     :z="item.z"
-    title="本地历史记录"
+    title="本地钓场统计"
   >
     <reader-spot-statistics :now="now" />
   </screen-window>
@@ -25,11 +25,6 @@ export default {
     now: {
       type: Number,
       default: 0,
-    },
-  },
-  methods: {
-    close() {
-      this.$emit('close')
     },
   },
 }
