@@ -8,7 +8,7 @@
     @dragging="onDrag"
     @resizing="onResize"
     @dragstop="onDragStop"
-    @activated="onActivated"
+    @click.native="onActivated"
     :parent="true"
     className="dr-wrapper"
     classNameHandle="dr-handle"
