@@ -208,23 +208,37 @@
         <!--        </v-sheet>-->
       </v-toolbar>
 
-      <fish-page
+      <!--      <fish-page-->
+      <!--        v-if="page === 'ListPage'"-->
+      <!--        :now="now"-->
+      <!--        :is-mobile="isMobile"-->
+      <!--        :lazyFishSourceList="lazySourceFishList"-->
+      <!--        :lazyTransformedFishList="lazyTransformedFishList"-->
+      <!--        :lazyTransformedFishDict="lazyTransformedFishDict"-->
+      <!--        :fishListTimePart="fishListTimePart"-->
+      <!--        :extraFishListTimePart="extraFishListTimePart"-->
+      <!--        :fishListWeatherChangePart="fishListWeatherChangePart"-->
+      <!--        :pinnedFishIdList="pinnedFishIdList"-->
+      <!--        :sortedFilteredFishIdList="sortedFilteredFishIdList"-->
+      <!--        :toBeNotifiedFishIdList="toBeNotifiedFishIdList"-->
+      <!--        :selectedFish="selectedFish"-->
+      <!--        :filteredFishIdSet="filteredFishIdSet"-->
+      <!--        :active-tab-index="activeTabIndex"-->
+      <!--        :right-pane-full-screen="true"-->
+      <!--        @fish-selected="onFishSelected"-->
+      <!--      />-->
+      <fish-filter-list
         v-if="page === 'ListPage'"
-        :now="now"
         :is-mobile="isMobile"
-        :lazyFishSourceList="lazySourceFishList"
-        :lazyTransformedFishList="lazyTransformedFishList"
         :lazyTransformedFishDict="lazyTransformedFishDict"
-        :fishListTimePart="fishListTimePart"
-        :extraFishListTimePart="extraFishListTimePart"
-        :fishListWeatherChangePart="fishListWeatherChangePart"
         :pinnedFishIdList="pinnedFishIdList"
+        :fishListTimePart="fishListTimePart"
+        :fishListWeatherChangePart="fishListWeatherChangePart"
         :sortedFilteredFishIdList="sortedFilteredFishIdList"
         :toBeNotifiedFishIdList="toBeNotifiedFishIdList"
-        :selectedFish="selectedFish"
         :filteredFishIdSet="filteredFishIdSet"
-        :active-tab-index="activeTabIndex"
-        :right-pane-full-screen="true"
+        :activeTabIndex="activeTabIndex"
+        :show-right-pane="false"
         @fish-selected="onFishSelected"
       />
       <fish-detail-page
@@ -281,7 +295,7 @@ import CompetitionPage from '@/entries/main/views/CompetitionPage'
 import DiademPage from '@/entries/main/views/DiademPage'
 import FishDetailPage from '@/entries/main/views/FishDetailPage'
 import FishEyesToggleButton from '@/components/FishEyesToggleButton'
-import FishPage from '@/entries/main/views/FishPage'
+import FishFilterList from '@/components/basic/FishFilterList'
 import MainWindowMixin from '@/components/MainWindowMixin'
 import OceanFishingPage54 from '@/entries/main/views/OceanFishingPage54'
 import RecordPage from '@/entries/main/views/RecordPage'
@@ -293,6 +307,7 @@ export default {
   name: 'MainWindow',
   mixins: [WindowMixin, MainWindowMixin],
   components: {
+    FishFilterList,
     ScreenWindow,
     FishDetailPage,
     FishEyesToggleButton,
@@ -302,7 +317,6 @@ export default {
     RecordPage,
     OceanFishingPage54,
     WikiPage,
-    FishPage,
   },
   props: [
     'now',

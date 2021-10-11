@@ -28,6 +28,7 @@
         :fish="selectedFish"
         :forceShowComponents="forceShowComponents"
         in-pane
+        show-close
         @close="showRightPane = false"
       />
     </div>
@@ -90,15 +91,6 @@ export default {
       set(percentage) {
         this.setRightPanePercentage(percentage)
       },
-    },
-    rightPaneSizeOfCurrentWindowSize() {
-      if (this.lazyRightPaneFullScreen) {
-        if (this.showRightPane) return 100
-        else return 0
-      } else {
-        if (this.showRightPane) return this.rightPaneSize
-        else return 0
-      }
     },
     showRightPane: {
       get() {

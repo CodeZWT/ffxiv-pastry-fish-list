@@ -1,7 +1,12 @@
 <template>
   <v-container
     fluid
-    :class="{ 'px-0': isMobile, 'filter-list-container': true }"
+    :class="{
+      'px-0': isMobile,
+      'filter-list-container': true,
+      'filter-list-container--web': !isElectron,
+      'filter-list-container--desktop': isElectron,
+    }"
     style="position: relative"
     ref="scrollTarget"
     v-scroll.self="onScroll"
@@ -512,7 +517,10 @@ export default {
 
 .filter-list-container
   overflow-y: auto
-  height: calc(100vh - #{$toolbar-height + $footer-padding})
+  &--web
+    height: calc(100vh - #{$toolbar-height + $footer-padding})
+  &--desktop
+    height: calc(100% - #{$toolbar-height})
 
 
 .list-wrapper::v-deep

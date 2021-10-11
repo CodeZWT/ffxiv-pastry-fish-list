@@ -456,7 +456,7 @@ export default {
     readerNow: Date.now(),
   }),
   computed: {
-    ...mapState('screenWindow', ['layouts', 'windows', 'mainWinSubPage']),
+    ...mapState('screenWindow', ['layouts', 'windows', 'subPage']),
   },
   created() {
     // TODO readerConfig.showReaderOnlyIfFishing
@@ -481,7 +481,7 @@ export default {
       this.selectedFishId = fishId
       this.selectedFishFirstSpotId = firstSpotId
       this.fishUpdater.selectedFishId = this.selectedFishId
-      if (this.mainWinSubPage === 'ListPage') {
+      if (this.subPage === 'ListPage') {
         this.addFish()
       }
     },

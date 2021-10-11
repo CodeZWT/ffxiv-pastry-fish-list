@@ -4,7 +4,7 @@
       <fish-list-expanded-header
         :value="fish"
         :fish-time-part="fishTimePart"
-        :show-close="inPane || showClose"
+        :show-close="showClose"
         @close="$emit('close')"
       />
       <v-divider />
@@ -108,5 +108,5 @@ export default {
   &--web
     height: calc(100vh - #{ $top-bars-padding + $footer-padding + $detail-header-height + $divider-height})
   &--electron
-    height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding + $detail-header-height + $divider-height})
+    height: calc(100% - #{ $detail-header-height + $divider-height})
 </style>

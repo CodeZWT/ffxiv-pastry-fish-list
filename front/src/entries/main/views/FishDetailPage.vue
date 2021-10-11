@@ -1,5 +1,5 @@
 <template>
-  <fish-detail :fish="fish" :now="now" />
+  <fish-detail :fish="fish" :now="now" in-pane />
 </template>
 
 <script>
