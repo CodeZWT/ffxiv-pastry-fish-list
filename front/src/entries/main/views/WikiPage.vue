@@ -1,18 +1,25 @@
 <template>
-  <div :style="isElectron ? '' : 'height: 100%'" class="d-flex">
+  <div
+    :class="{
+      'wiki-page': true,
+      'wiki-page--pc-web': !isMobile && !isElectron,
+      'wiki-page--pc-electron': !isMobile && isElectron,
+      'wiki-page--mobile-web': isMobile && !isElectron,
+      'wiki-page--mobile-electron': isMobile && isElectron,
+    }"
+  >
     <v-navigation-drawer
       v-if="showMapMenu || !isMobile"
       :value="showMapMenu || !isMobile"
       @input="showMapMenu = $event"
-      :absolute="isMobile"
+      :fixed="isMobile"
       :class="{
         'nav-bar--pc': !isMobile,
       }"
-      :style="isElectron && !isMobile ? 'height: unset' : 'height: 100%'"
       :temporary="isMobile"
       z-index="1"
     >
-      <div>
+      <div class="fill-height">
         <v-sheet class="pa-1 primary">
           <div class="d-flex align-center">
             <v-btn text icon @click="type = undefined">
@@ -135,15 +142,7 @@
         </v-card-text>
       </div>
     </v-navigation-drawer>
-    <div
-      :class="{
-        'detail-wrapper': true,
-        'detail-wrapper--pc-web': !isMobile && !isElectron,
-        'detail-wrapper--pc-electron': !isMobile && isElectron,
-        'detail-wrapper--mobile-web': isMobile && !isElectron,
-        'detail-wrapper--mobile-electron': isMobile && isElectron,
-      }"
-    >
+    <div style="width: 100%">
       <div
         v-if="
           !type || type === 'region' || (type === 'territory' && isOceanFishingTerritory)
@@ -156,7 +155,9 @@
             <div class="text-h5">成就计数</div>
             <div class="text-subtitle-2">鼠标悬停成就数字可查看说明</div>
             <div v-if="isMobile" class="text-subtitle-2">
-              点击上方<v-icon small>mdi-map</v-icon>按钮显示钓场选择菜单
+              点击上方
+              <v-icon small>mdi-map</v-icon>
+              按钮显示钓场选择菜单
             </div>
             <v-divider />
             <v-subheader v-if="achievementInfo.iCatchThat.cn">
@@ -423,33 +424,6 @@
         />
       </div>
     </div>
-    <!--    <v-dialog-->
-    <!--      v-model="isDetailFishWindowOpen"-->
-    <!--      max-width="70vh"-->
-    <!--      :fullscreen="isMobile"-->
-    <!--      scrollable-->
-    <!--    >-->
-    <!--      <v-card>-->
-    <!--        <v-card-text>-->
-    <!--          <fish-detail-->
-    <!--            :fish="currentFish"-->
-    <!--            :now="now"-->
-    <!--            :forceShowComponents="forceShowComponents"-->
-    <!--            :show-fishing-range-helper="mode === 'normal'"-->
-    <!--            hide-map-->
-    <!--          />-->
-    <!--        </v-card-text>-->
-    <!--        <v-card-actions>-->
-    <!--          <div class="d-flex flex-column flex-fill">-->
-    <!--            <click-helper @click="isDetailFishWindowOpen = false">-->
-    <!--              <v-btn class="mt-2" color="default" block text>-->
-    <!--                {{ $t('general.dialog.close') }}-->
-    <!--              </v-btn>-->
-    <!--            </click-helper>-->
-    <!--          </div>-->
-    <!--        </v-card-actions>-->
-    <!--      </v-card>-->
-    <!--    </v-dialog>-->
     <v-dialog v-model="showSyncDialog" max-width="320" :fullscreen="isMobile" scrollable>
       <v-card>
         <!-- patch update wait note -->
@@ -1312,26 +1286,7 @@ export default {
   height: 20px
   background: url('https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/fishing-notebook.png') -84px -28px
 
-
-.vue-grid-item .resizing
-  opacity: 0.9
-
-
-.vue-grid-item .text
-  font-size: 24px
-  text-align: center
-  position: absolute
-
-  top: 0
-  bottom: 0
-  left: 0
-  right: 0
-  margin: auto
-  height: 100%
-  width: 100%
-
 .grid-content
-  //overflow-scrolling: auto
   overflow-x: hidden
   padding-left: 4px
   overflow-y: auto
@@ -1339,18 +1294,19 @@ export default {
     height: 100%
     width: 100%
 
-.spot-list
-  &--pc-web
-    overflow-scrolling: auto
-    overflow-y: scroll
-    height: calc(100vh - #{ $top-bars-padding + $footer-padding + 56 + 45})
-  &--mobile-web
-    overflow-y: hidden
-    height: calc(100vh - #{ 56 + 45})
-  &--electron
-    //height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+$spot-menu-padding: $spot-menu-search-height + $spot-menu-toolbar-height + $divider-height
 
-.detail-wrapper
+.spot-list
+  overflow-y: auto
+  &--pc-web
+    height: calc(100vh - #{ $top-bars-padding + $footer-padding + $spot-menu-padding})
+  &--mobile-web
+    height: calc(100vh - #{ $spot-menu-padding })
+  &--electron
+    height: calc(100% - #{ $spot-menu-padding })
+
+.wiki-page
+  display: flex
   width: 100%
   height: 100%
 
@@ -1358,17 +1314,15 @@ export default {
     &-web
       max-height: calc(100vh - #{ $top-bars-padding + $footer-padding })
     &-electron
-      max-height: 100%
+      max-height: calc(100% - #{ $top-bars-padding })
       max-width: 100%
-      overflow-x: scroll
 
   &--pc
     &-web
       width: 100%
-      max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+      max-height: calc(100vh - #{ $top-bars-padding + $footer-padding })
     &-electron
-      max-height: 100%
-      overflow-x: scroll
+      max-height: calc(100% - #{ $top-bars-padding })
 
 .nav-bar
   &--pc
