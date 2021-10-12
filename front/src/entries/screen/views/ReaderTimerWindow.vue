@@ -9,7 +9,11 @@
     :title="title"
   >
     <template v-slot:header>
-      <v-system-bar :color="systemBarColor" class="rounded-t">
+      <v-system-bar
+        :color="systemBarColor"
+        class="rounded-t"
+        style="-webkit-app-region: none"
+      >
         <v-img :src="readerIcon" max-height="20" max-width="20" />
         <span class="mx-1">{{ title }}</span>
         <v-spacer />
