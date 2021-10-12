@@ -424,7 +424,7 @@
         />
       </div>
     </div>
-    <v-dialog v-model="showSyncDialog" max-width="320" :fullscreen="isMobile" scrollable>
+    <v-dialog v-model="showSyncDialog" max-width="320" scrollable persistent>
       <v-card>
         <!-- patch update wait note -->
         <!--        <v-alert outlined type="warning" border="left">-->
