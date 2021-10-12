@@ -80,8 +80,8 @@ const ScreenWindowModule = {
     layouts: storedConfig?.layouts ?? DEFAULT_LAYOUTS,
     windows: storedConfig?.windows ?? [],
     dragging: false,
-    subPage: 'ListPage',
-    tabIndex: 0,
+    subPage: storedConfig?.subPage ?? 'ListPage',
+    tabIndex: storedConfig?.tabIndex ?? 0,
   },
   getters: {
     getWindowLayout(state, windowId) {
@@ -148,6 +148,8 @@ const SaveLayoutPlugin = store => {
       LocalStorageUtil.storeWindowLayouts({
         layouts: state.screenWindow.layouts,
         windows: state.screenWindow.windows,
+        subPage: state.screenWindow.subPage,
+        tabIndex: state.screenWindow.tabIndex,
       })
     }
   })
