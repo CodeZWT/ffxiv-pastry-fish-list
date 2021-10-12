@@ -486,11 +486,11 @@ function shift2Icon(shift) {
   width: 100%
   overflow-scrolling: auto
   overflow-x: hidden
+  overflow-y: auto
 
   &--web
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
-    overflow-y: scroll
 
   &--electron
-    //max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+    max-height: calc(100% - #{ $toolbar-height })
 </style>
