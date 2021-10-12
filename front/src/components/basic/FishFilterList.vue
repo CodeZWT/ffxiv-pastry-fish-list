@@ -2,7 +2,7 @@
   <v-container
     fluid
     :class="{
-      'px-0': isMobile,
+      'px-1': isMobile,
       'filter-list-container': true,
       'filter-list-container--web': !isElectron,
       'filter-list-container--desktop': isElectron,
@@ -260,7 +260,7 @@
         v-show="showBackToTopBtn"
         fab
         class="primary back-to-top-btn"
-        :style="`right: ${rightPercentage}%`"
+        :style="`right: ${rightPercentage}%; bottom: ${bottomOffset}px`"
         @click="backToTop"
       >
         <v-icon>mdi-chevron-up</v-icon>
@@ -343,7 +343,10 @@ export default {
       return this.offsetTop > 0 && (this.isElectron || !this.isMobile)
     },
     rightPercentage() {
-      return this.showRightPane ? 25 : 0
+      return this.showRightPane ? 25 : 3
+    },
+    bottomOffset() {
+      return this.isMobile ? 4 : 36
     },
     isNormalTabActive() {
       return this.activeTabIndex === DataUtil.TAB_INDEX_NORMAL
@@ -534,6 +537,4 @@ export default {
 .back-to-top-btn
   z-index: 2
   position: fixed
-  bottom: calc(4px + #{ $footer-padding })
-  margin-right: 8px
 </style>

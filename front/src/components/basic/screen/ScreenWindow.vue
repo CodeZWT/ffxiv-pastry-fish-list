@@ -182,9 +182,10 @@ export default {
     height: 0
     right: 0
     bottom: 0
-    border-bottom: 8px solid grey
+    border-bottom: 8px solid #bbb5b5
     border-left: 8px solid transparent
     cursor: se-resize
+    z-index: 10
 
 .window-wrapper
   height: 100%
