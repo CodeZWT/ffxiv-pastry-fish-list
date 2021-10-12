@@ -361,7 +361,7 @@ export default {
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
 
   &--electron
-    //max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+    max-height: calc(100% - #{ $toolbar-height })
 
 .red
   color: orangered !important
