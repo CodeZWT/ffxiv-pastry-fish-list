@@ -82,13 +82,17 @@ const ScreenWindowModule = {
     dragging: false,
     subPage: storedConfig?.subPage ?? 'ListPage',
     tabIndex: storedConfig?.tabIndex ?? 0,
+    globalClickThrough: false,
   },
   getters: {
-    getWindowLayout(state, windowId) {
-      return state.layouts.find(l => l.id === windowId)
+    isOpen: state => windowId => {
+      return state.windows.indexOf(windowId) > -1
     },
   },
   mutations: {
+    setGlobalClickThrough(state, clickThrough) {
+      state.globalClickThrough = clickThrough
+    },
     showWindow(state, windowInfo) {
       let windowId = windowInfo.type
       // if (windowInfo.type === 'MAIN') {

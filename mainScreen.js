@@ -16,20 +16,28 @@ const iconv = require('iconv-lite')
 const datauri = require('datauri')
 const unhandled = require('electron-unhandled')
 const contextMenu = require('electron-context-menu')
-const { callWindowSafe, showAndFocus, callTargetSafe, setOnTop } = require("./server/mainSetup/utils");
+const { callWindowSafe, showAndFocus, callTargetSafe, setOnTop, setMouseThrough } = require("./server/mainSetup/utils");
 const { setupDevEnv } = require("./server/mainSetup/setupDevEnv");
 const { ScreenSetting } = require("./server/mainSetup/ScreenSetting");
 const { ScreenTray } = require("./server/mainSetup/ScreenTray");
 const { MessageSender } = require("./server/mainSetup/MessageSender");
 const { ScreenReader } = require("./server/mainSetup/ScreenReader");
 const { Updater } = require("./server/mainSetup/Updater");
+const { HotkeySetting } = require('./server/mainSetup/HotkeySetting')
 
 log.transports.console.level = 'silly'
 
-let tray, setting, sender, dataReader, updater
-let loadingFinished = false
+let tray, setting, sender, dataReader, updater, hotkeySetting
 let mainWindowConfig = {}
 let SCREEN
+let remoteOpcodeVersion = 'latest'
+
+const STATUS = {
+  globalClickThrough: false,
+  loadingFinished: false,
+}
+
+const opcodeUrlOf = (version) => `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${version}/opcodes.min.json`
 
 unhandled({
   logger: log.error,
@@ -47,6 +55,7 @@ const handleUserDataUpdates = (updateData) => {
   const options = {
     region: updateData.data.region,
     monitorType: updateData.data.monitorType,
+    opcodeUrl: opcodeUrlOf(remoteOpcodeVersion),
   }
   // restart machina
   dataReader.restart(options, () => {
@@ -139,16 +148,38 @@ const getSoundFilePath = () => {
     })
 };
 
-const handleFinishLoadingFront = (userData, readerSetting) => {
-  if (!loadingFinished) {
-    loadingFinished = true
+const handleFinishLoadingFront = (userData, readerSetting, keybindings, opcodeVersion) => {
+  if (!STATUS.loadingFinished) {
+    STATUS.loadingFinished = true
     log.info('in finishLoading')
     updater.showUpdateDialogIfNecessary()
     mainWindowConfig = userData.mainWindow
+    remoteOpcodeVersion = opcodeVersion
+
+    hotkeySetting = new HotkeySetting(keybindings, {
+      toggleReaderTimer: () => {
+        sender.send('toggleReaderTimer')
+      },
+      toggleReaderTimerMini: () => {
+        sender.send('toggleReaderTimerMini')
+      },
+      toggleReaderHistory: () => {
+        sender.send('toggleReaderHistory')
+      },
+      toggleReaderSpotStatistics: () => {
+        sender.send('toggleReaderSpotStatistics')
+      },
+      toggleGlobalClickThrough: () => {
+        STATUS.globalClickThrough = !STATUS.globalClickThrough
+        sender.send('setGlobalClickThrough', STATUS.globalClickThrough)
+        setMouseThrough(SCREEN, STATUS.globalClickThrough)
+      }
+    })
 
     dataReader.startReaderOnce({
       region: readerSetting.region,
       monitorType: readerSetting.monitorType,
+      opcodeUrl: opcodeUrlOf(remoteOpcodeVersion),
     })
   }
 }
@@ -195,6 +226,9 @@ app.on('window-all-closed', () => {
 
 const setupEvent = () => {
   ipcMain
+    .on('finishLoading', (event, { userData, readerSetting, keybindings, opcodeVersion }) => {
+      handleFinishLoadingFront(userData, readerSetting, keybindings, opcodeVersion)
+    })
     .on('maximize', () => {
       callWindowSafe(SCREEN, win => win.maximize())
     })
@@ -222,9 +256,6 @@ const setupEvent = () => {
     .on('updateMainConfig', (event, config) => {
       mainWindowConfig = config
     })
-    .on('finishLoading', (event, { userData, readerSetting }) => {
-      handleFinishLoadingFront(userData, readerSetting)
-    })
     .on('exportHistory', (event, data) => {
       handleExportHistory()
     })
@@ -238,6 +269,12 @@ const setupEvent = () => {
     })
     .on('downloadUpdate', event => {
       updater.downloadUpdates()
+    })
+    .on('setClickThrough', (event, isMouseThrough)=> {
+      setMouseThrough(SCREEN, isMouseThrough)
+    })
+    .on('updateKeybindings', (event, keybindings)=> {
+      hotkeySetting.bindHotkey(keybindings)
     })
 
   ipcMain.handle('showOpenSoundFileDialog', () => {
@@ -302,17 +339,14 @@ const init = async () => {
       win.webContents.openDevTools({
         mode: 'undocked',
       })
+      // globalShortcut.register('Alt+CommandOrControl+[', () => {
+      //   callWindowSafe(win, win =>
+      //     win.webContents.openDevTools({
+      //       mode: 'undocked',
+      //     })
+      //   )
+      // })
     }
-    setting.setSender(sender)
-    setting.setupHotkey(win)
-
-    globalShortcut.register('Alt+CommandOrControl+[', () => {
-      callWindowSafe(win, win =>
-        win.webContents.openDevTools({
-          mode: 'undocked',
-        })
-      )
-    })
   })
 };
 

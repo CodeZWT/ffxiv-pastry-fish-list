@@ -1,4 +1,5 @@
 const log = require('electron-log')
+
 const callWindowSafe = (win, winCallback) => {
   if (win && !win.isDestroyed()) {
     winCallback(win)
@@ -35,7 +36,9 @@ const showAndFocus = target => {
 }
 
 const setMouseThrough = (target, enable) => {
-  callWindowSafe(target, win => win.setIgnoreMouseEvents(enable, { forward: true }))
+  callWindowSafe(target, win => {
+    win.setIgnoreMouseEvents(enable, { forward: true })
+  })
 }
 
 const setOnTop =(win, alwaysOnTop = true) => {

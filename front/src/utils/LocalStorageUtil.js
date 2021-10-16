@@ -11,8 +11,17 @@ const VIEWED_FEATURES_KEYS = {
 }
 const READER_USER_DATA_KEY = 'readerUserData'
 const WINDOWS_LAYOUT_KEY = 'windowLayouts'
+const KEYBINDING_KEY = 'keybindings'
 
 export default {
+  storeKeybindings(bindings) {
+    store.set(KEYBINDING_KEY, bindings)
+  },
+
+  loadKeybindings() {
+    return store.get(KEYBINDING_KEY)
+  },
+
   storeWindowLayouts(layouts) {
     store.set(WINDOWS_LAYOUT_KEY, layouts)
   },

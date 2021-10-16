@@ -25,7 +25,11 @@
     </v-sheet>
     <v-sheet
       v-else
-      class="window-wrapper rounded elevation-4"
+      :class="{
+        'window-wrapper': true,
+        rounded: true,
+        'elevation-4': !frameless,
+      }"
       :color="frameless ? 'transparent' : 'background'"
     >
       <slot name="header" v-if="!frameless">

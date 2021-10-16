@@ -1,6 +1,5 @@
 <script>
 import { FishListUpdateWorker } from '@/utils/new/FishListUpdate'
-import { INTERVAL_MINUTE } from 'Data/constants'
 import { MainFeatures } from 'Data/newFeatures'
 import {
   OCEAN_FISHING_BITE_TIME,
@@ -33,14 +32,12 @@ import MigrateToTravelEorzeaDialog from '@/components/Dialog/MigrateToTravelEorz
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import NotificationUtil from '@/utils/NotificationUtil'
 import PatchNoteDialog from '@/components/Dialog/PatchNoteDialog'
-import RecordValidator from '@/utils/RecordValidator'
 import ResetButton from '@/components/ResetButton'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
 import RoseModeDialog from '@/components/Dialog/RoseModeDialog'
 import ToggleButton from '@/components/basic/ToggleButton'
 import UpdateAvailableDialog from '@/components/Dialog/UpdateAvailableDialog'
 import UpdateDialog from '@/components/Dialog/UpdateDialog'
-import UploadUtil from '@/utils/UploadUtil'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import _ from 'lodash'
 import hotkeys from 'hotkeys-js'
@@ -73,6 +70,7 @@ export default {
   },
   data: vm => ({
     isMouseThrough: false,
+    isTempMouseThrough: false,
     fishUpdater: undefined,
     pageVisibilityUtil: undefined,
     showUpdateAvailableDialog: false,
@@ -373,6 +371,7 @@ export default {
         this.setShowCompetitionDialog(show)
       },
     },
+    ...mapState('keybinding', ['keybindings']),
     ...mapState([
       'readerSetting',
       'userData',
@@ -531,77 +530,6 @@ export default {
       this.showChromeTimeZoneBugDialog = this.showChromeBugDialog
     }
 
-    console.debug(process.env.commit_hash)
-    if (DevelopmentModeUtil.isElectron()) {
-      const db = (await import('@/plugins/db')).default
-      this.resetUploadSettingIfNecessary(db)
-      // const windowSetting = await this.getWindowSetting()
-      // if (windowSetting) {
-      //   this.setOpacity(windowSetting.main.opacity)
-      //   this.setZoomFactor(windowSetting.main.zoomFactor)
-      // }
-
-      setInterval(UploadUtil.sendUploadRecord, INTERVAL_MINUTE)
-
-      // const that = this
-      window.electron?.ipcRenderer
-        // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
-        ?.on('setMouseThrough', (event, isMouseThrough) => {
-          this.isMouseThrough = isMouseThrough
-        })
-        ?.on('showUpdateDialog', (event, newVersion) => {
-          this.showUpdateAvailableDialog = true
-          this.newVersion = newVersion
-        })
-        ?.on('fishCaught', (event, data) => {
-          // Be care of spear fish!
-          const fishId = data?.fishId
-          const hq = data?.hq
-          if (
-            this.readerSetting.autoSetCompleted &&
-            fishId > 0 &&
-            (!this.readerSetting.autoSetCompletedOnlyHQ || hq)
-          ) {
-            this.setFishCompleted({ fishId: fishId, completed: true })
-          }
-        })
-        ?.on('setupDownload', (event, data) => {
-          if (this.downloadProgress < 100) {
-            this.downloadProgress = data.percent * 100
-          }
-        })
-        ?.on('checkStartSetup', () => {
-          this.downloadProgress = 100
-          this.showUpdateDialog()
-        })
-        // ?.on('updateUserData', (event, data) => {
-        //   this.updateUserData(data)
-        //   window.electron?.ipcRenderer?.send('reloadUserData')
-        // })
-        ?.on('reloadUserData', () => {
-          this.reloadReaderUserData()
-        })
-        ?.on('showSpotPage', (event, spotId) => {
-          this.setMiniMode(false)
-          if (!window.location.hash.startsWith('#/wiki')) {
-            this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
-          }
-        })
-        ?.on('newRecord', (event, data) => {
-          const isLogin = rcapiService.isLogin()
-          data.uploadEnabled =
-            this.readerSetting.isUploadMode && this.isRoseMode && isLogin
-          data.isStrictMode = RecordValidator.judgeRecordStrictFlag(
-            this.readerSetting.isStrictMode && this.isRoseMode && isLogin,
-            data
-          )
-          db.records.put(data).catch(error => console.error('storeError', error))
-        })
-        ?.on('showRoseModeDialog', () => {
-          this.showRoseDialog = true
-        })
-    }
-
     this.startLoading()
     // this.drawer = !this.isMobile
 
@@ -632,6 +560,7 @@ export default {
     //   region: this.readerRegion,
     //   monitorType: this.readerMonitorType,
     // })
+    this.bindHotkeys()
     this.closeStrictMode()
   },
   async mounted() {
@@ -704,6 +633,38 @@ export default {
     console.debug('sound loaded')
   },
   methods: {
+    bindHotkeys() {
+      console.debug('loading hotkeys')
+      console.log(this.keybindings)
+      // hotkeys(this.keybindings.switchMouseThrough, () => {
+      //   this.isMouseThrough = !this.isMouseThrough
+      //   this.sendElectronEvent('setMouseThrough', this.isMouseThrough)
+      // })
+      // hotkeys('*', { keyup: true }, (event, handler) => {
+      //   if (
+      //     event.key === this.keybindings.holdingSwitchMouseThrough &&
+      //     this.isMouseThrough
+      //   ) {
+      //     if (event.type === 'keydown' && this.isTempMouseThrough) {
+      //       console.debug('set mouse through')
+      //       this.isTempMouseThrough = false
+      //       this.sendElectronEvent('setMouseThrough', false)
+      //     } else if (event.type === 'keyup') {
+      //       console.debug('unset mouse through')
+      //       this.isTempMouseThrough = true
+      //       this.sendElectronEvent('setMouseThrough', true)
+      //     }
+      //   }
+      //
+      //   // if (event.type === 'keydown') {
+      //   //   console.log('keydown:', event, handler)
+      //   // }
+      //
+      //   if (event.type === 'keyup') {
+      //     console.log('keyup:', event, handler)
+      //   }
+      // })
+    },
     handleSearch(fishId) {
       this.searchedFishId = fishId
       this.fishUpdater.searchedFishId = fishId
@@ -762,6 +723,7 @@ export default {
           this.sendElectronEvent('finishLoading', {
             userData: this.userData,
             readerSetting: this.readerSetting,
+            keybindings: this.keybindings,
             opcodeVersion: version,
           })
         })
@@ -769,6 +731,7 @@ export default {
           this.sendElectronEvent('finishLoading', {
             userData: this.userData,
             readerSetting: this.readerSetting,
+            keybindings: this.keybindings,
             opcodeVersion: 'latest',
           })
         })

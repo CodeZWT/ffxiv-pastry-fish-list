@@ -22,7 +22,8 @@
     "aquarium": "水族馆",
     "competition": "光之渔夫钓鱼大赛",
     "roseMode": "上传模式",
-    "record": "数据统计"
+    "record": "数据统计",
+    "keybinding": "快捷键设置"
   },
   "toolbar": {
     "theme": {
@@ -392,5 +393,14 @@
     "fishEyesTip": "严格模式下请不要使用鱼眼",
     "lastRecordCancelledTip": "严格模式下 请不要 不提钩\n\n请在数据统计-所有页面中标记为非严格模式（10分钟上传一次，非实时）。",
     "wrongHooksetTip": "严格模式下 请不要 在耐心I或II状态下\n- 使用普通提钩\n- 使用双重提钩\n- 对轻杆使用强力精准提钩\n- 对中杆使用精准提钩"
+  },
+  "keybinding": {
+    "item": {
+      "toggleReaderTimer":  "打开/关闭计时器",
+      "toggleReaderTimerMini": "打开/关闭迷你计时器",
+      "toggleReaderHistory":  "打开/关闭本地历史记录",
+      "toggleReaderSpotStatistics": "打开/关闭本地钓场统计",
+      "toggleGlobalClickThrough": "打开/关闭鼠标穿透"
+    }
   }
 }

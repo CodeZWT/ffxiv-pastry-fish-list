@@ -1,3 +1,4 @@
+import { KeybindingModule } from '@/entries/screen/store/keybinding'
 import { MainModule } from '@/entries/main/store'
 import { SaveLayoutPlugin, ScreenWindowModule } from '@/entries/screen/store/screenWindow'
 import { loadReaderUserData, loadUserData } from '@/utils/UserDataLoader'
@@ -56,5 +57,6 @@ export default new Vuex.Store({
   },
   modules: {
     screenWindow: ScreenWindowModule,
+    keybinding: KeybindingModule,
   },
 })

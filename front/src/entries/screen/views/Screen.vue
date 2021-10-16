@@ -4,7 +4,6 @@
     @mouseleave="setClickThrough(false)"
     :class="{
       screen: true,
-      'screen--normal': !isMouseThrough,
     }"
   >
     <template v-for="winId in windows">
@@ -184,6 +183,12 @@
                   <v-icon>mdi-cog</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>主界面{{ $t('top.uiConfig') }}</v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="showKeybindingDialog = true">
+                <v-list-item-icon>
+                  <v-icon>mdi-keyboard</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content> {{ $t('top.keybinding') }} </v-list-item-content>
               </v-list-item>
               <v-list-item @click="showPatchNoteDialog = true">
                 <v-list-item-icon>
@@ -374,6 +379,7 @@
     <desktop-version-dialog v-model="showDownloadDialog" />
     <rose-mode-dialog v-model="showRoseDialog" />
     <!--    <competition-dialog v-model="showCompetitionDialogComputed" />-->
+    <key-binding-dialog v-model="showKeybindingDialog" />
 
     <v-snackbar
       :timeout="snackbar.timeout"
@@ -430,20 +436,26 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { INTERVAL_MINUTE } from 'Data/constants'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import AppMixin from '@/components/AppMixin'
 import ClickThroughMixin from '@/components/ClickThroughMixin'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
+import KeyBindingDialog from '@/components/Dialog/KeyBindingDialog'
 import MainWindow from '@/entries/screen/views/MainWindow'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
 import ReaderTimerMiniWindow from '@/entries/screen/views/ReaderTimerMiniWindow'
 import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
+import RecordValidator from '@/utils/RecordValidator'
+import UploadUtil from '@/utils/UploadUtil'
+import rcapiService from '@/service/rcapiService'
 
 export default {
   name: 'Screen',
   mixins: [AppMixin, ClickThroughMixin],
   components: {
+    KeyBindingDialog,
     FishDetailWindow,
     ReaderSpotStatisticsWindow,
     ReaderHistoryWindow,
@@ -452,6 +464,7 @@ export default {
     MainWindow,
   },
   data: () => ({
+    showKeybindingDialog: false,
     showSideBar: true,
     miniSideBar: true,
     colNum: 12,
@@ -460,18 +473,105 @@ export default {
   }),
   computed: {
     ...mapState('screenWindow', ['layouts', 'windows', 'subPage']),
+    ...mapGetters('screenWindow', ['isOpen']),
   },
-  created() {
+  async created() {
     // TODO readerConfig.showReaderOnlyIfFishing
     // TODO postLogin
     // TODO postLogout
-    // this.addReaderTimerMini()
-    // this.addReaderTimer()
-    // this.addReaderHistory()
-    // this.addReaderSpotStatistics()
-    // this.addFishList()
-    // this.addWiki()
-    // this.addCompetition()
+    console.debug(process.env.commit_hash)
+    const db = (await import('@/plugins/db')).default
+    this.resetUploadSettingIfNecessary(db)
+    // const windowSetting = await this.getWindowSetting()
+    // if (windowSetting) {
+    //   this.setOpacity(windowSetting.main.opacity)
+    //   this.setZoomFactor(windowSetting.main.zoomFactor)
+    // }
+
+    setInterval(UploadUtil.sendUploadRecord, INTERVAL_MINUTE)
+    window.electron?.ipcRenderer
+      // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
+      ?.on('showUpdateDialog', (event, newVersion) => {
+        this.showUpdateAvailableDialog = true
+        this.newVersion = newVersion
+      })
+      ?.on('fishCaught', (event, data) => {
+        // Be care of spear fish!
+        const fishId = data?.fishId
+        const hq = data?.hq
+        if (
+          this.readerSetting.autoSetCompleted &&
+          fishId > 0 &&
+          (!this.readerSetting.autoSetCompletedOnlyHQ || hq)
+        ) {
+          this.setFishCompleted({ fishId: fishId, completed: true })
+        }
+      })
+      ?.on('setupDownload', (event, data) => {
+        if (this.downloadProgress < 100) {
+          this.downloadProgress = data.percent * 100
+        }
+      })
+      ?.on('checkStartSetup', () => {
+        this.downloadProgress = 100
+        this.showUpdateDialog()
+      })
+      // ?.on('updateUserData', (event, data) => {
+      //   this.updateUserData(data)
+      //   window.electron?.ipcRenderer?.send('reloadUserData')
+      // })
+      ?.on('reloadUserData', () => {
+        this.reloadReaderUserData()
+      })
+      // ?.on('showSpotPage', (event, spotId) => {
+      //   this.setMiniMode(false)
+      //   if (!window.location.hash.startsWith('#/wiki')) {
+      //     this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
+      //   }
+      // })
+      ?.on('newRecord', (event, data) => {
+        const isLogin = rcapiService.isLogin()
+        data.uploadEnabled = this.readerSetting.isUploadMode && this.isRoseMode && isLogin
+        data.isStrictMode = RecordValidator.judgeRecordStrictFlag(
+          this.readerSetting.isStrictMode && this.isRoseMode && isLogin,
+          data
+        )
+        db.records.put(data).catch(error => console.error('storeError', error))
+      })
+      ?.on('showRoseModeDialog', () => {
+        this.showRoseDialog = true
+      })
+      ?.on('toggleReaderTimer', () => {
+        if (this.isOpen('READER_TIMER')) {
+          this.closeWindow('READER_TIMER')
+        } else {
+          this.addReaderTimer()
+        }
+      })
+      ?.on('toggleReaderTimerMini', () => {
+        if (this.isOpen('READER_TIMER_MINI')) {
+          this.closeWindow('READER_TIMER_MINI')
+        } else {
+          this.addReaderTimerMini()
+        }
+      })
+      ?.on('toggleReaderHistory', () => {
+        if (this.isOpen('READER_HISTORY')) {
+          this.closeWindow('READER_HISTORY')
+        } else {
+          this.addReaderHistory()
+        }
+      })
+      ?.on('toggleReaderSpotStatistics', () => {
+        if (this.isOpen('READER_SPOT_STATISTICS')) {
+          this.closeWindow('READER_SPOT_STATISTICS')
+        } else {
+          this.addReaderSpotStatistics()
+        }
+      })
+      ?.on('setGlobalClickThrough', (event, clickThrough) => {
+        this.setGlobalClickThrough(clickThrough)
+      })
   },
   mounted() {
     setInterval(() => {
@@ -479,7 +579,12 @@ export default {
     }, 100)
   },
   methods: {
-    ...mapMutations('screenWindow', ['updateWindowLayout', 'showWindow']),
+    ...mapMutations('screenWindow', [
+      'updateWindowLayout',
+      'showWindow',
+      'closeWindow',
+      'setGlobalClickThrough',
+    ]),
     onFishSelected({ fishId, firstSpotId }) {
       this.selectedFishId = fishId
       this.selectedFishFirstSpotId = firstSpotId
