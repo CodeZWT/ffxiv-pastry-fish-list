@@ -17,7 +17,7 @@
     @mouseover.native.stop="() => setClickThrough(false)"
   >
     <v-sheet
-      v-if="dragging"
+      v-if="dragging && dragPlaceholder"
       :color="'background'"
       class="drag-placeholder d-flex fill-height align-center justify-center"
     >
@@ -101,6 +101,11 @@ export default {
       default: '',
     },
     frameless: {
+      type: Boolean,
+      default: false,
+    },
+    // show dragging placeholder when any window dragging
+    dragPlaceholder: {
       type: Boolean,
       default: false,
     },

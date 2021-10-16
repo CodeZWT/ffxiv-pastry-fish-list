@@ -7,6 +7,7 @@
     :h="item.h"
     :z="item.z"
     :title="pageTitle"
+    drag-placeholder
   >
     <template v-slot:header-buttons>
       <v-btn @click="showSetting" x-small text>
