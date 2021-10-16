@@ -1,29 +1,29 @@
 <template>
   <v-app>
-    <v-system-bar app>
-      <div>{{ $t('top.navBarTitle', { title, version }) }}</div>
-      <span class="ml-1"></span>
-      <v-spacer />
-      <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
-      <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
-      <v-spacer></v-spacer>
-      <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-window-minimize</v-icon>
-      </v-btn>
-      <toggle-button
-        :value="maximized"
-        @input="maximizeOrRestore"
-        checked-icon="mdi-window-restore"
-        unchecked-icon="mdi-window-maximize"
-        :checked-title="$t('actions.maximize.restore')"
-        :unchecked-title="$t('actions.maximize.maximize')"
-        small
-        style="-webkit-app-region: none"
-      />
-      <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-window-close</v-icon>
-      </v-btn>
-    </v-system-bar>
+    <!--    <v-system-bar app>-->
+    <!--      <div>{{ $t('top.navBarTitle', { title, version }) }}</div>-->
+    <!--      <span class="ml-1"></span>-->
+    <!--      <v-spacer />-->
+    <!--      <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>-->
+    <!--      <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>-->
+    <!--      <v-spacer></v-spacer>-->
+    <!--      <v-btn @click="minimize" x-small text style="-webkit-app-region: none">-->
+    <!--        <v-icon>mdi-window-minimize</v-icon>-->
+    <!--      </v-btn>-->
+    <!--      <toggle-button-->
+    <!--        :value="maximized"-->
+    <!--        @input="maximizeOrRestore"-->
+    <!--        checked-icon="mdi-window-restore"-->
+    <!--        unchecked-icon="mdi-window-maximize"-->
+    <!--        :checked-title="$t('actions.maximize.restore')"-->
+    <!--        :unchecked-title="$t('actions.maximize.maximize')"-->
+    <!--        small-->
+    <!--        style="-webkit-app-region: none"-->
+    <!--      />-->
+    <!--      <v-btn @click="close" x-small text style="-webkit-app-region: none">-->
+    <!--        <v-icon>mdi-window-close</v-icon>-->
+    <!--      </v-btn>-->
+    <!--    </v-system-bar>-->
     <v-main>
       <Screen />
     </v-main>
@@ -37,12 +37,11 @@ import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EorzeaTime from '@/utils/Time'
 import Screen from '@/entries/screen/views/Screen'
-import ToggleButton from '@/components/basic/ToggleButton'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 
 export default {
   name: 'App',
-  components: { Screen, ToggleButton },
+  components: { Screen },
   data: vm => ({
     now: Date.now(),
     version: version,

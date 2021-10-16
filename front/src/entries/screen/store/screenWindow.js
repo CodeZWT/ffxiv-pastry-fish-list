@@ -1,3 +1,4 @@
+import { sendElectronEvent } from '@/utils/electronHelper'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
 import _ from 'lodash'
@@ -79,6 +80,7 @@ const ScreenWindowModule = {
   state: {
     layouts: storedConfig?.layouts ?? DEFAULT_LAYOUTS,
     windows: storedConfig?.windows ?? [],
+    dialogs: [],
     dragging: false,
     subPage: storedConfig?.subPage ?? 'ListPage',
     tabIndex: storedConfig?.tabIndex ?? 0,
@@ -90,6 +92,15 @@ const ScreenWindowModule = {
     },
   },
   mutations: {
+    registerDialog(state, dialogId) {
+      state.dialogs.push(dialogId)
+    },
+    unRegisterDialog(state, dialogId) {
+      const index = state.dialogs.indexOf(dialogId)
+      if (index > -1) {
+        state.dialogs.splice(index, 1)
+      }
+    },
     setGlobalClickThrough(state, clickThrough) {
       state.globalClickThrough = clickThrough
     },
@@ -147,8 +158,27 @@ const ScreenWindowModule = {
 }
 
 const SaveLayoutPlugin = store => {
+  let prevState = _.cloneDeep({
+    windows: store.state.screenWindow.windows,
+    layouts: store.state.screenWindow.layouts,
+    dialogs: store.state.screenWindow.dialogs,
+  })
   store.subscribe((mutation, state) => {
     if (mutation.type.indexOf('screenWindow/') === 0) {
+      let nextState = _.cloneDeep({
+        windows: store.state.screenWindow.windows,
+        layouts: store.state.screenWindow.layouts,
+        dialogs: store.state.screenWindow.dialogs,
+      })
+      if (!_.isEqual(prevState, nextState)) {
+        sendElectronEvent('updateWindowSetting', {
+          windows: nextState.windows,
+          layouts: nextState.layouts,
+          dialogs: nextState.dialogs,
+        })
+      }
+      prevState = nextState
+
       LocalStorageUtil.storeWindowLayouts({
         layouts: state.screenWindow.layouts,
         windows: state.screenWindow.windows,

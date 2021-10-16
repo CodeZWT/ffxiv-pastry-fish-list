@@ -1,7 +1,5 @@
 <template>
   <div
-    @mouseover="() => setClickThrough(true)"
-    @mouseleave="setClickThrough(false)"
     :class="{
       screen: true,
     }"
@@ -439,7 +437,6 @@
 import { INTERVAL_MINUTE } from 'Data/constants'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import AppMixin from '@/components/AppMixin'
-import ClickThroughMixin from '@/components/ClickThroughMixin'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
 import KeyBindingDialog from '@/components/Dialog/KeyBindingDialog'
 import MainWindow from '@/entries/screen/views/MainWindow'
@@ -453,7 +450,7 @@ import rcapiService from '@/service/rcapiService'
 
 export default {
   name: 'Screen',
-  mixins: [AppMixin, ClickThroughMixin],
+  mixins: [AppMixin],
   components: {
     KeyBindingDialog,
     FishDetailWindow,
@@ -467,7 +464,6 @@ export default {
     showKeybindingDialog: false,
     showSideBar: true,
     miniSideBar: true,
-    colNum: 12,
     showWindowMenu: false,
     readerNow: Date.now(),
   }),

@@ -4,7 +4,6 @@ const {
   ipcMain,
   shell,
   dialog,
-  globalShortcut,
 } = require('electron')
 const { exec } = require('child_process')
 const isDev = require('electron-is-dev')
@@ -148,13 +147,32 @@ const getSoundFilePath = () => {
     })
 };
 
-const handleFinishLoadingFront = (userData, readerSetting, keybindings, opcodeVersion) => {
+const setWindowShape = (win, windowSetting) => {
+  if (windowSetting.dialogs.length > 0) {
+    win.setShape([])
+  } else {
+    const windowRectangles = windowSetting.windows.map(w => {
+      const l = windowSetting.layouts[w]
+      return {
+        x: l.x,
+        y: l.y,
+        width: l.w,
+        height: l.h
+      }
+    })
+    win.setShape(windowRectangles)
+  }
+}
+
+const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybindings, opcodeVersion) => {
   if (!STATUS.loadingFinished) {
     STATUS.loadingFinished = true
     log.info('in finishLoading')
     updater.showUpdateDialogIfNecessary()
     mainWindowConfig = userData.mainWindow
     remoteOpcodeVersion = opcodeVersion
+
+    setWindowShape(SCREEN, windowSetting)
 
     hotkeySetting = new HotkeySetting(keybindings, {
       toggleReaderTimer: () => {
@@ -226,8 +244,11 @@ app.on('window-all-closed', () => {
 
 const setupEvent = () => {
   ipcMain
-    .on('finishLoading', (event, { userData, readerSetting, keybindings, opcodeVersion }) => {
-      handleFinishLoadingFront(userData, readerSetting, keybindings, opcodeVersion)
+    .on('finishLoading', (event, { userData, readerSetting, windowSetting, keybindings, opcodeVersion }) => {
+      handleFinishLoadingFront(userData, readerSetting, windowSetting, keybindings, opcodeVersion)
+    })
+    .on('updateWindowSetting', (event, windowSetting) => {
+      setWindowShape(SCREEN, windowSetting)
     })
     .on('maximize', () => {
       callWindowSafe(SCREEN, win => win.maximize())
@@ -271,7 +292,7 @@ const setupEvent = () => {
       updater.downloadUpdates()
     })
     .on('setClickThrough', (event, isMouseThrough)=> {
-      setMouseThrough(SCREEN, isMouseThrough)
+      // setMouseThrough(SCREEN, isMouseThrough)
     })
     .on('updateKeybindings', (event, keybindings)=> {
       hotkeySetting.bindHotkey(keybindings)
@@ -297,7 +318,7 @@ const createScreen = () => {
       contextIsolation: false,
       nodeIntegration: true,
       preload: __dirname + '/preload.js',
-      nativeWindowOpen: true
+      nativeWindowOpen: true,
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
@@ -305,6 +326,7 @@ const createScreen = () => {
   setOnTop(SCREEN)
   SCREEN.once('ready-to-show', () => {
     SCREEN.show()
+    SCREEN.maximize()
   })
   let loadedPromise
   if (isDev) {

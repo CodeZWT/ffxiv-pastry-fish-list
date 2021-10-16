@@ -371,6 +371,7 @@ export default {
         this.setShowCompetitionDialog(show)
       },
     },
+    ...mapState('screenWindow', ['layouts', 'windows', 'dialogs']),
     ...mapState('keybinding', ['keybindings']),
     ...mapState([
       'readerSetting',
@@ -723,6 +724,11 @@ export default {
           this.sendElectronEvent('finishLoading', {
             userData: this.userData,
             readerSetting: this.readerSetting,
+            windowSetting: {
+              layouts: this.layouts,
+              windows: this.windows,
+              dialogs: this.dialogs,
+            },
             keybindings: this.keybindings,
             opcodeVersion: version,
           })
@@ -731,6 +737,11 @@ export default {
           this.sendElectronEvent('finishLoading', {
             userData: this.userData,
             readerSetting: this.readerSetting,
+            windowSetting: {
+              layouts: this.layouts,
+              windows: this.windows,
+              dialogs: this.dialogs,
+            },
             keybindings: this.keybindings,
             opcodeVersion: 'latest',
           })
