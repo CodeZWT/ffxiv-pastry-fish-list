@@ -47,14 +47,14 @@
     <template>
       <reader-timer :now="now" />
 
-      <v-dialog v-model="showSettingDialog" max-width="600" scrollable>
+      <rc-dialog v-model="showSettingDialog" max-width="600" scrollable>
         <v-card>
           <v-card-title>渔捞设置</v-card-title>
           <v-card-text>
             <reader-setting :now="now" />
           </v-card-text>
         </v-card>
-      </v-dialog>
+      </rc-dialog>
     </template>
   </screen-window>
 </template>
@@ -62,6 +62,7 @@
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import READER_ICON from 'Assets/reader.png'
+import RcDialog from '@/components/basic/RcDialog'
 import ReaderSetting from '@/entries/reader/views/ReaderSetting'
 import ReaderTimer from '@/entries/reader/views/ReaderTimer'
 import SETTING_ICON from 'Assets/setting.png'
@@ -71,7 +72,7 @@ import WindowMixin from '@/components/basic/screen/WindowMixin'
 export default {
   name: 'ReaderTimerWindow',
   mixins: [WindowMixin],
-  components: { ScreenWindow, ReaderSetting, ReaderTimer },
+  components: { RcDialog, ScreenWindow, ReaderSetting, ReaderTimer },
   props: {
     now: {
       type: Number,

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog
+  <rc-dialog
     :value="showPatchNoteDialog && !inMigrationPage"
     @input="$emit('input', $event)"
     max-width="600px"
@@ -70,12 +70,14 @@
         </div>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
+import RcDialog from '@/components/basic/RcDialog'
 export default {
   name: 'PatchNoteDialog',
+  components: { RcDialog },
   model: {
     prop: 'showPatchNoteDialog',
     event: 'input',
