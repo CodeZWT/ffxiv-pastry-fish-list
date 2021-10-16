@@ -1,5 +1,7 @@
 <template>
   <div
+    @mouseover="() => setClickThrough(true)"
+    @mouseleave="setClickThrough(false)"
     :class="{
       screen: true,
       'screen--normal': !isMouseThrough,
@@ -430,6 +432,7 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 import AppMixin from '@/components/AppMixin'
+import ClickThroughMixin from '@/components/ClickThroughMixin'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
 import MainWindow from '@/entries/screen/views/MainWindow'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
@@ -439,7 +442,7 @@ import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
 
 export default {
   name: 'Screen',
-  mixins: [AppMixin],
+  mixins: [AppMixin, ClickThroughMixin],
   components: {
     FishDetailWindow,
     ReaderSpotStatisticsWindow,

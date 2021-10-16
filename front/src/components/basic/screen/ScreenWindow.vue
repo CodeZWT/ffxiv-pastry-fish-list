@@ -14,6 +14,7 @@
     className="dr-wrapper"
     classNameHandle="dr-handle"
     drag-cancel=".dr-drag-cancel"
+    @mouseover.native.stop="() => setClickThrough(false)"
   >
     <v-sheet
       v-if="dragging"
@@ -55,10 +56,12 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import ClickThroughMixin from '@/components/ClickThroughMixin'
 import VueDraggableResizable from 'vue-draggable-resizable'
 
 export default {
   name: 'ScreenWindow',
+  mixins: [ClickThroughMixin],
   components: { VueDraggableResizable },
   props: {
     id: {
