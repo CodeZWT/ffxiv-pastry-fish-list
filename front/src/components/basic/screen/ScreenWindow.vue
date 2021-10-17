@@ -15,6 +15,7 @@
     className="dr-wrapper"
     classNameHandle="dr-handle"
     drag-cancel=".dr-drag-cancel"
+    style="-webkit-user-select: none"
   >
     <v-sheet
       v-if="dragging && dragPlaceholder"
