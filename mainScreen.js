@@ -192,6 +192,11 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
       }
     })
 
+    const { screen } = require('electron')
+    const primaryDisplay = screen.getPrimaryDisplay()
+    const {width, height} = primaryDisplay.workAreaSize
+    sender.send('showMenuWindow', {width, height})
+
     dataReader.startReaderOnce({
       region: readerSetting.region,
       monitorType: readerSetting.monitorType,

@@ -94,6 +94,7 @@ const ScreenWindowModule = {
     subPage: storedConfig?.subPage ?? 'ListPage',
     tabIndex: storedConfig?.tabIndex ?? 0,
     globalClickThrough: false,
+    menuInitialized: storedConfig?.menuInitialized ?? false,
   },
   getters: {
     isOpen: state => windowId => {
@@ -156,6 +157,16 @@ const ScreenWindowModule = {
     stopDragging(state) {
       state.dragging = false
     },
+    setMenuWindowToScreenCenter(state, workAreaSize) {
+      if (!state.menuInitialized) {
+        Vue.set(state.layouts, 'MENU', {
+          ...DEFAULT_LAYOUTS.MENU,
+          x: Math.floor(workAreaSize.width / 2 - DEFAULT_LAYOUTS.MENU.w / 2),
+          y: Math.floor(workAreaSize.height / 2 - DEFAULT_LAYOUTS.MENU.h / 2),
+        })
+        state.menuInitialized = true
+      }
+    },
   },
 }
 
@@ -186,6 +197,7 @@ const SaveLayoutPlugin = store => {
         windows: state.screenWindow.windows,
         subPage: state.screenWindow.subPage,
         tabIndex: state.screenWindow.tabIndex,
+        menuInitialized: state.screenWindow.menuInitialized,
       })
     }
   })
