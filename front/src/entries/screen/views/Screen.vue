@@ -67,6 +67,7 @@
         :id="winId"
         :key="winId"
         @show-setting="showSetting"
+        @show-about="showAboutDialog = true"
         :dark="dark"
       />
     </template>

@@ -154,7 +154,7 @@
                     </v-list-item-content>
                   </v-list-item>
 
-                  <v-list-item @click="showAboutDialog = true">
+                  <v-list-item @click="showAboutDialog">
                     <v-list-item-icon>
                       <v-icon>mdi-information</v-icon>
                     </v-list-item-icon>
@@ -299,6 +299,9 @@ export default {
   methods: {
     ...mapMutations('screenWindow', ['showWindow']),
     ...mapMutations(['setShowImportExportDialog']),
+    showAboutDialog() {
+      this.$emit('show-about')
+    },
     showUpdateDialog() {
       this.showCheckStartSetupDialog = true
     },
