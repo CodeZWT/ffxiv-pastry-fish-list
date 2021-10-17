@@ -89,6 +89,16 @@
                     <v-list-item-content>{{ $t('top.record') }}</v-list-item-content>
                   </v-list-item>
                 </v-list>
+
+                <v-subheader>退出</v-subheader>
+                <v-list>
+                  <v-list-item @click="exit">
+                    <v-list-item-icon>
+                      <v-icon>mdi-close</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content> 退出鱼糕 </v-list-item-content>
+                  </v-list-item>
+                </v-list>
               </v-col>
               <v-col>
                 <v-subheader>渔捞</v-subheader>
@@ -385,6 +395,9 @@ export default {
         type: 'MAIN',
         subPage: 'RecordPage',
       })
+    },
+    exit() {
+      sendElectronEvent('close')
     },
   },
 }
