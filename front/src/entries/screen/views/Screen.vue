@@ -384,9 +384,11 @@ export default {
       }
     },
     addFish() {
-      this.showWindow({
-        type: 'FISH_DETAIL',
-      })
+      setTimeout(() => {
+        this.showWindow({
+          type: 'FISH_DETAIL',
+        })
+      }, 200)
     },
 
     addMenu() {

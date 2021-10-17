@@ -6,6 +6,7 @@
     :w="item.w"
     :h="item.h"
     :z="item.z"
+    :is-mobile="item.isMobile"
     :title="pageTitle"
     drag-placeholder
   >

@@ -35,7 +35,7 @@
       <slot name="header" v-if="!frameless">
         <v-system-bar class="rounded-t" style="-webkit-app-region: none">
           <span class="mx-1">{{ title }}</span>
-          <span class="mx-1" v-if="isMobile">mobile</span>
+          <!-- <span class="mx-1">{{ z }}</span> -->
           <v-spacer />
           <div class="dr-drag-cancel">
             <slot name="header-buttons"> </slot>
