@@ -1344,6 +1344,7 @@ export default {
       this.setMiniMode(true)
     },
     ...mapMutations([
+      'setShowImportExportDialog',
       'disableStrictMode',
       'reloadReaderUserData',
       'setOpacity',

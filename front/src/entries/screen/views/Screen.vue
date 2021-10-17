@@ -194,7 +194,6 @@
     />
     <rose-mode-dialog v-model="showRoseDialog" />
     <!--    <competition-dialog v-model="showCompetitionDialogComputed" />-->
-    <key-binding-dialog v-model="showKeybindingDialog" />
 
     <v-snackbar
       :timeout="snackbar.timeout"
@@ -252,10 +251,9 @@
 
 <script>
 import { INTERVAL_MINUTE } from 'Data/constants'
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import AppMixin from '@/components/AppMixin'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
-import KeyBindingDialog from '@/components/Dialog/KeyBindingDialog'
 import MainWindow from '@/entries/screen/views/MainWindow'
 import MenuWindow from '@/entries/screen/views/MenuWindow'
 import RcDialog from '@/components/basic/RcDialog'
@@ -273,7 +271,6 @@ export default {
   components: {
     MenuWindow,
     RcDialog,
-    KeyBindingDialog,
     FishDetailWindow,
     ReaderSpotStatisticsWindow,
     ReaderHistoryWindow,
@@ -282,14 +279,12 @@ export default {
     MainWindow,
   },
   data: () => ({
-    showKeybindingDialog: false,
     showSideBar: true,
     miniSideBar: true,
     readerNow: Date.now(),
   }),
   computed: {
     ...mapState('screenWindow', ['layouts', 'windows', 'subPage', 'dialogs']),
-    ...mapGetters('screenWindow', ['isOpen']),
   },
   async created() {
     // TODO readerConfig.showReaderOnlyIfFishing
@@ -348,39 +343,14 @@ export default {
       ?.on('showRoseModeDialog', () => {
         this.showRoseDialog = true
       })
-      ?.on('toggleReaderTimer', () => {
-        if (this.isOpen('READER_TIMER')) {
-          this.closeWindow('READER_TIMER')
-        } else {
-          this.addReaderTimer()
-        }
-      })
-      ?.on('toggleReaderTimerMini', () => {
-        if (this.isOpen('READER_TIMER_MINI')) {
-          this.closeWindow('READER_TIMER_MINI')
-        } else {
-          this.addReaderTimerMini()
-        }
-      })
-      ?.on('toggleReaderHistory', () => {
-        if (this.isOpen('READER_HISTORY')) {
-          this.closeWindow('READER_HISTORY')
-        } else {
-          this.addReaderHistory()
-        }
-      })
-      ?.on('toggleReaderSpotStatistics', () => {
-        if (this.isOpen('READER_SPOT_STATISTICS')) {
-          this.closeWindow('READER_SPOT_STATISTICS')
-        } else {
-          this.addReaderSpotStatistics()
-        }
-      })
       ?.on('setGlobalClickThrough', (event, clickThrough) => {
         this.setGlobalClickThrough(clickThrough)
       })
-
-    this.addMenu()
+      ?.on('showMenuWindow', (event, workAreaSize) => {
+        console.log('showMenuWindow', workAreaSize)
+        this.setMenuWindowToScreenCenter(workAreaSize)
+        this.addMenu()
+      })
   },
   mounted() {
     setInterval(() => {
@@ -393,6 +363,7 @@ export default {
       'showWindow',
       'closeWindow',
       'setGlobalClickThrough',
+      'setMenuWindowToScreenCenter',
     ]),
     onFishSelected({ fishId, firstSpotId }) {
       this.selectedFishId = fishId

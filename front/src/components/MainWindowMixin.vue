@@ -48,7 +48,6 @@ export default {
       'setFishCompleted',
       'toggleFilterPanel',
       'setShowSearchDialog',
-      'setShowImportExportDialog',
       'setWebsiteVersion',
       'setActiveTab',
       'showSnackbar',

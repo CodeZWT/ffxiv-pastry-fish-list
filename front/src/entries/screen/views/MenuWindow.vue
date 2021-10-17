@@ -208,6 +208,7 @@
         @skip="skipUpdate"
       />
       <update-available-dialog v-model="showUpdateAvailableDialog" :hash="newVersion" />
+      <key-binding-dialog v-model="showKeybindingDialog" />
     </div>
   </screen-window>
 </template>
@@ -217,6 +218,7 @@ import { mapGetters, mapMutations } from 'vuex'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import ImgUtil from '@/utils/ImgUtil'
+import KeyBindingDialog from '@/components/Dialog/KeyBindingDialog'
 import RcDialog from '@/components/basic/RcDialog'
 import ScreenWindow from '@/components/basic/screen/ScreenWindow'
 import UpdateAvailableDialog from '@/components/Dialog/UpdateAvailableDialog'
@@ -227,6 +229,7 @@ export default {
   name: 'MenuWindow',
   mixins: [WindowMixin],
   components: {
+    KeyBindingDialog,
     UpdateDialog,
     UpdateAvailableDialog,
     RcDialog,
@@ -244,12 +247,14 @@ export default {
     showCheckStartSetupDialog: false,
     showUpdateAvailableDialog: false,
     showWindowMenu: false,
+    showKeybindingDialog: false,
     newVersion: undefined,
     diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
     diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
   }),
   computed: {
     ...mapGetters(['isRoseMode']),
+    ...mapGetters('screenWindow', ['isOpen']),
   },
   created() {
     window.electron?.ipcRenderer
@@ -261,6 +266,34 @@ export default {
       ?.on('checkStartSetup', () => {
         this.downloadProgress = 100
         this.showUpdateDialog()
+      })
+      ?.on('toggleReaderTimer', () => {
+        if (this.isOpen('READER_TIMER')) {
+          this.closeWindow('READER_TIMER')
+        } else {
+          this.addReaderTimer()
+        }
+      })
+      ?.on('toggleReaderTimerMini', () => {
+        if (this.isOpen('READER_TIMER_MINI')) {
+          this.closeWindow('READER_TIMER_MINI')
+        } else {
+          this.addReaderTimerMini()
+        }
+      })
+      ?.on('toggleReaderHistory', () => {
+        if (this.isOpen('READER_HISTORY')) {
+          this.closeWindow('READER_HISTORY')
+        } else {
+          this.addReaderHistory()
+        }
+      })
+      ?.on('toggleReaderSpotStatistics', () => {
+        if (this.isOpen('READER_SPOT_STATISTICS')) {
+          this.closeWindow('READER_SPOT_STATISTICS')
+        } else {
+          this.addReaderSpotStatistics()
+        }
       })
   },
   methods: {
