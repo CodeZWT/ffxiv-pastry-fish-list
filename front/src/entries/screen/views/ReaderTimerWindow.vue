@@ -37,7 +37,7 @@
           <v-btn @click="showSetting" x-small text>
             <v-icon>mdi-cog</v-icon>
           </v-btn>
-          <v-btn @click="handleCloseWindow" x-small text>
+          <v-btn @click.stop="handleCloseWindow" x-small text>
             <v-icon>mdi-window-close</v-icon>
           </v-btn>
         </div>

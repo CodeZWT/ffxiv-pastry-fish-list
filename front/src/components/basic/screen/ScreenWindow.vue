@@ -39,7 +39,7 @@
           <v-spacer />
           <div class="dr-drag-cancel">
             <slot name="header-buttons"> </slot>
-            <v-btn @click="handleCloseWindow" x-small text>
+            <v-btn @click.stop="handleCloseWindow" x-small text>
               <v-icon>mdi-window-close</v-icon>
             </v-btn>
           </div>

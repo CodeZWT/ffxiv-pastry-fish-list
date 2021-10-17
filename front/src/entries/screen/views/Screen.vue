@@ -350,8 +350,8 @@ export default {
       ?.on('showMenuWindow', (event, workAreaSize) => {
         console.log('showMenuWindow', workAreaSize)
         this.setMenuWindowToScreenCenter(workAreaSize)
-        this.addMenu()
       })
+    this.addMenu()
   },
   mounted() {
     setInterval(() => {

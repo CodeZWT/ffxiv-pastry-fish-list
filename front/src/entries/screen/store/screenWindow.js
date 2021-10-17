@@ -63,7 +63,7 @@ const DEFAULT_LAYOUTS = {
     y: 0,
     w: 64,
     h: 64,
-    z: 0,
+    z: 100,
     type: 'MENU',
     isMobile: true,
   },
@@ -80,7 +80,7 @@ const setWindowActive = (windows, layouts, windowId) => {
     }
   })
   wins.forEach((winId, index) => {
-    layouts[winId2LayoutId(winId)].z = index
+    layouts[winId2LayoutId(winId)].z = winId === 'MENU' ? 100 : index
   })
 }
 
@@ -129,7 +129,9 @@ const ScreenWindowModule = {
       }
     },
     activeWindow(state, activeWindowId) {
-      setWindowActive(state.windows, state.layouts, activeWindowId)
+      if (state.windows.includes(activeWindowId)) {
+        setWindowActive(state.windows, state.layouts, activeWindowId)
+      }
     },
     closeWindow(state, windowId) {
       const index = state.windows.indexOf(windowId)
@@ -140,7 +142,7 @@ const ScreenWindowModule = {
           return state.layouts[winId2LayoutId(winId)].z
         })
         wins.forEach((winId, index) => {
-          state.layouts[winId2LayoutId(winId)].z = index
+          state.layouts[winId2LayoutId(winId)].z = winId === 'MENU' ? 100 : index
         })
       }
     },
