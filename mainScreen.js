@@ -48,8 +48,6 @@ contextMenu()
 
 const handleUserDataUpdates = (updateData) => {
   log.debug('handle update user data', updateData)
-  // set hotkey
-  setting.saveHotkeySetting(SCREEN, 'mouseThrough', updateData.data.hotkey.mouseThrough || 'L')
 
   const options = {
     region: updateData.data.region,
