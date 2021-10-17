@@ -346,6 +346,7 @@ const createScreen = () => {
     resizable: true,
     maximizable: false,
     skipTaskbar: false,
+    focusable: false,
     // fullscreen: true,
     webPreferences: {
       contextIsolation: false,
