@@ -213,6 +213,12 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
         STATUS.globalClickThrough = !STATUS.globalClickThrough
         sender.send('setGlobalClickThrough', STATUS.globalClickThrough)
         setMouseThrough(SCREEN, STATUS.globalClickThrough)
+      },
+      showSearch: () => {
+        sender.send('showSearch')
+      },
+      showRoseDialog: () => {
+        sender.send('showRoseDialog')
       }
     })
 

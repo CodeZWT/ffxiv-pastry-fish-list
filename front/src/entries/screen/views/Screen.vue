@@ -360,6 +360,15 @@ export default {
         console.log('showMenuWindow', workAreaSize)
         this.setMenuWindowToScreenCenter(workAreaSize)
       })
+      ?.on('showSearch', () => {
+        if (!this.showSearchDialog) {
+          this.setShowSearchDialog(true)
+        }
+      })
+      ?.on('showRoseDialog', () => {
+        console.log('showRoseDialog')
+        this.showRoseDialog = true
+      })
     this.addMenu()
   },
   mounted() {

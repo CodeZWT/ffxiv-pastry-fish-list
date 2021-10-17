@@ -400,7 +400,8 @@
       "toggleReaderTimerMini": "打开/关闭迷你计时器",
       "toggleReaderHistory":  "打开/关闭本地历史记录",
       "toggleReaderSpotStatistics": "打开/关闭本地钓场统计",
-      "toggleGlobalClickThrough": "打开/关闭鼠标穿透"
+      "toggleGlobalClickThrough": "打开/关闭鼠标穿透",
+      "showSearch": "打开搜索"
     }
   }
 }

@@ -16,7 +16,12 @@ const DEFAULT_KEYBINDINGS = {
   toggleReaderHistory: 'Alt+Shift+H',
   toggleReaderSpotStatistics: 'Alt+Shift+S',
   toggleGlobalClickThrough: 'Alt+Shift+]',
+  showSearch: 'Alt+Shift+F',
+  showRoseDialog: 'Ctrl+Alt+Y',
 }
+
+const HiddenItems = ['showRoseDialog']
+
 let storedConfig = LocalStorageUtil.loadKeybindings()
 
 const sendElectronEvent = (channel, data) => {
@@ -37,4 +42,4 @@ const KeybindingModule = {
   plugins: [KeyBindingPlugin],
 }
 
-export { KeybindingModule }
+export { KeybindingModule, HiddenItems }

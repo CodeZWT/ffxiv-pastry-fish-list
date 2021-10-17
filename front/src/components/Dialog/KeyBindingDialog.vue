@@ -8,17 +8,19 @@
         <v-simple-table>
           <tbody>
             <tr v-for="(key, item) in keybindings" :key="item">
-              <td>
-                {{ $t(`keybinding.item.${item}`) }}
-              </td>
-              <td>{{ key }}</td>
-              <td>
-                <rc-tooltip message="修改">
-                  <v-btn icon text @click="editHotkey(item, key)"
-                    ><v-icon small>mdi-pencil</v-icon></v-btn
-                  >
-                </rc-tooltip>
-              </td>
+              <template v-if="!hiddenItems.includes(item)">
+                <td>
+                  {{ $t(`keybinding.item.${item}`) }}
+                </td>
+                <td>{{ key }}</td>
+                <td>
+                  <rc-tooltip message="修改">
+                    <v-btn icon text @click="editHotkey(item, key)"
+                      ><v-icon small>mdi-pencil</v-icon></v-btn
+                    >
+                  </rc-tooltip>
+                </td>
+              </template>
             </tr>
           </tbody>
         </v-simple-table>
@@ -66,6 +68,7 @@
 </template>
 
 <script>
+import { HiddenItems } from '@/entries/screen/store/keybinding'
 import { mapMutations, mapState } from 'vuex'
 import RcDialog from '@/components/basic/RcDialog'
 import RcTooltip from '@/components/basic/RcTooltip'
@@ -93,6 +96,9 @@ export default {
   },
   computed: {
     ...mapState('keybinding', ['keybindings']),
+    hiddenItems() {
+      return HiddenItems
+    },
     showDialog: {
       get() {
         return this.show
