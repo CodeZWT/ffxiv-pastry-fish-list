@@ -1,37 +1,18 @@
-<template>
-  <v-dialog
-    :value="value"
-    @input="$emit('input', $event)"
-    :max-width="maxWidth"
-    :scrollable="scrollable"
-  >
-    <slot></slot>
-  </v-dialog>
-</template>
-
 <script>
+import { VDialog } from 'vuetify/lib'
 import { mapMutations } from 'vuex'
 import { v4 as uuid } from 'uuid'
+
 export default {
   name: 'RcDialog',
-  props: {
-    value: {
-      type: Boolean,
-    },
-    scrollable: {
-      type: Boolean,
-    },
-    maxWidth: {
-      type: String,
-    },
-  },
+  extends: VDialog,
   data() {
     return {
       dialogId: uuid(),
     }
   },
   watch: {
-    value: {
+    isActive: {
       handler(newValue) {
         if (newValue) {
           this.registerDialog(this.dialogId)
@@ -47,5 +28,3 @@ export default {
   },
 }
 </script>
-
-<style scoped></style>
