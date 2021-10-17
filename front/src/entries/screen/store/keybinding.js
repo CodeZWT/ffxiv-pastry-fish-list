@@ -11,12 +11,12 @@ const KeyBindingPlugin = store => {
 }
 
 const DEFAULT_KEYBINDINGS = {
-  toggleReaderTimer: 'Alt+Shift+T',
-  toggleReaderTimerMini: 'Alt+Shift+M',
-  toggleReaderHistory: 'Alt+Shift+H',
-  toggleReaderSpotStatistics: 'Alt+Shift+S',
-  toggleGlobalClickThrough: 'Alt+Shift+]',
-  showSearch: 'Alt+Shift+F',
+  toggleReaderTimer: 'Ctrl+Shift+T',
+  toggleReaderTimerMini: 'Ctrl+Shift+M',
+  toggleReaderHistory: 'Ctrl+Shift+H',
+  toggleReaderSpotStatistics: 'Ctrl+Shift+S',
+  toggleGlobalClickThrough: 'Ctrl+Shift+]',
+  showSearch: 'Ctrl+Shift+F',
   showRoseDialog: 'Ctrl+Alt+Y',
 }
 
@@ -39,7 +39,6 @@ const KeybindingModule = {
       sendElectronEvent('updateKeybindings', state.keybindings)
     },
   },
-  plugins: [KeyBindingPlugin],
 }
 
-export { KeybindingModule, HiddenItems }
+export { KeybindingModule, HiddenItems, KeyBindingPlugin }

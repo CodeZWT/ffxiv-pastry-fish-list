@@ -1,4 +1,4 @@
-import { KeybindingModule } from '@/entries/screen/store/keybinding'
+import { KeyBindingPlugin, KeybindingModule } from '@/entries/screen/store/keybinding'
 import { MainModule } from '@/entries/main/store'
 import { SaveLayoutPlugin, ScreenWindowModule } from '@/entries/screen/store/screenWindow'
 import { loadReaderUserData, loadUserData } from '@/utils/UserDataLoader'
@@ -10,13 +10,11 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  plugins: [SaveLayoutPlugin],
   state: {
     readerTimerMiniMode: false,
     ...MainModule.state,
   },
   getters: {
-    ...MainModule.getters,
     isStrictMode: state => {
       return state.readerSetting.isStrictMode
     },
@@ -32,6 +30,7 @@ export default new Vuex.Store({
     showReaderBanner: state => {
       return state.readerSetting.showReaderBanner
     },
+    ...MainModule.getters,
   },
   mutations: {
     setStrictMode(state, isStrictMode) {
@@ -59,4 +58,5 @@ export default new Vuex.Store({
     screenWindow: ScreenWindowModule,
     keybinding: KeybindingModule,
   },
+  plugins: [SaveLayoutPlugin, KeyBindingPlugin],
 })

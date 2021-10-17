@@ -71,6 +71,39 @@ const DEFAULT_LAYOUTS = {
 const storedConfig = LocalStorageUtil.loadWindowLayouts()
 const winId2LayoutId = winId => winId.split('-')[0]
 
+const SaveLayoutPlugin = store => {
+  let prevState = _.cloneDeep({
+    windows: store.state.screenWindow.windows,
+    layouts: store.state.screenWindow.layouts,
+    dialogs: store.state.screenWindow.dialogs,
+    alerts: store.state.screenWindow.alerts,
+    bottomNotifications: store.state.screenWindow.bottomNotifications,
+  })
+  store.subscribe((mutation, state) => {
+    if (mutation.type.indexOf('screenWindow/') === 0) {
+      let nextState = _.cloneDeep({
+        windows: state.screenWindow.windows,
+        layouts: state.screenWindow.layouts,
+        dialogs: state.screenWindow.dialogs,
+        alerts: state.screenWindow.alerts,
+        bottomNotifications: state.screenWindow.bottomNotifications,
+      })
+      if (!_.isEqual(prevState, nextState)) {
+        sendElectronEvent('updateWindowSetting', nextState)
+      }
+      prevState = nextState
+
+      LocalStorageUtil.storeWindowLayouts({
+        layouts: state.screenWindow.layouts,
+        windows: state.screenWindow.windows,
+        subPage: state.screenWindow.subPage,
+        tabIndex: state.screenWindow.tabIndex,
+        menuInitialized: state.screenWindow.menuInitialized,
+      })
+    }
+  })
+}
+
 const setWindowActive = (windows, layouts, windowId) => {
   const wins = _.sortBy(windows, winId => {
     if (winId === windowId) {
@@ -192,37 +225,4 @@ const ScreenWindowModule = {
   },
 }
 
-const SaveLayoutPlugin = store => {
-  let prevState = _.cloneDeep({
-    windows: store.state.screenWindow.windows,
-    layouts: store.state.screenWindow.layouts,
-    dialogs: store.state.screenWindow.dialogs,
-    alerts: store.state.screenWindow.alerts,
-    bottomNotifications: store.state.screenWindow.bottomNotifications,
-  })
-  store.subscribe((mutation, state) => {
-    if (mutation.type.indexOf('screenWindow/') === 0) {
-      let nextState = _.cloneDeep({
-        windows: store.state.screenWindow.windows,
-        layouts: store.state.screenWindow.layouts,
-        dialogs: store.state.screenWindow.dialogs,
-        alerts: store.state.screenWindow.alerts,
-        bottomNotifications: store.state.screenWindow.bottomNotifications,
-      })
-      if (!_.isEqual(prevState, nextState)) {
-        sendElectronEvent('updateWindowSetting', nextState)
-      }
-      prevState = nextState
-
-      LocalStorageUtil.storeWindowLayouts({
-        layouts: state.screenWindow.layouts,
-        windows: state.screenWindow.windows,
-        subPage: state.screenWindow.subPage,
-        tabIndex: state.screenWindow.tabIndex,
-        menuInitialized: state.screenWindow.menuInitialized,
-      })
-    }
-  })
-}
-
-export { ScreenWindowModule, SaveLayoutPlugin, winId2LayoutId }
+export { ScreenWindowModule, winId2LayoutId, SaveLayoutPlugin }
