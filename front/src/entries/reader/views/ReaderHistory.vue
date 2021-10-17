@@ -166,7 +166,7 @@
         </v-card>
       </div>
     </div>
-    <v-dialog v-model="showClearConfirmDialog">
+    <rc-dialog v-model="showClearConfirmDialog">
       <v-card>
         <v-card-title> 确认清空所有记录吗？ </v-card-title>
         <v-card-text>
@@ -178,7 +178,7 @@
           <v-btn color="error" @click="clearHistory"> 清空 </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
   </div>
 </template>
 
@@ -192,6 +192,7 @@ import EorzeaTime from '@/utils/Time'
 import ItemIcon from '@/components/basic/ItemIcon'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import PLACE_NAMES from 'Data/placeNames'
+import RcDialog from '@/components/basic/RcDialog'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
 import db from '@/plugins/db'
@@ -203,7 +204,7 @@ const LOAD_MORE_CNT = 100
 
 export default {
   name: 'ReaderHistory',
-  components: { EffectIcon, NewFeatureMark, ItemIcon },
+  components: { RcDialog, EffectIcon, NewFeatureMark, ItemIcon },
   props: {
     now: {
       type: Number,

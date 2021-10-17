@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :value="show" @input="closeDialog" max-width="600px" persistent>
+  <rc-dialog :value="show" @input="closeDialog" max-width="600px" persistent>
     <v-card>
       <v-card-title> 网站迁移公告 </v-card-title>
       <v-card-text>
@@ -21,12 +21,14 @@
         </v-btn>
       </v-card-text>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
+import RcDialog from '@/components/basic/RcDialog'
 export default {
   name: 'MigrateToTravelEorzeaDialog',
+  components: { RcDialog },
   model: {
     prop: 'show',
   },

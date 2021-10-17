@@ -67,7 +67,7 @@
       </v-card>
     </v-hover>
     <template v-if="fish.sizeId === 1">
-      <v-dialog
+      <rc-dialog
         v-model="showExpandedDialog"
         content-class="rounded-xl"
         :width="currentIndex === 0 ? imageSizeS.w : imageSizeNormal.w"
@@ -79,14 +79,13 @@
           :width="currentIndex === 0 ? imageSizeS.w : imageSizeNormal.w"
           :height="currentIndex === 0 ? imageSizeS.h : imageSizeNormal.h"
         />
-      </v-dialog>
+      </rc-dialog>
     </template>
     <template v-else>
-      <v-dialog
+      <rc-dialog
         v-model="showExpandedDialog"
         content-class="rounded-xl"
         :width="imageSizeNormal.w"
-        :height="imageSizeNormal.h"
       >
         <gif-loader
           :src="fish.images[0].gif"
@@ -94,7 +93,7 @@
           :width="imageSizeNormal.w"
           :height="imageSizeNormal.h"
         />
-      </v-dialog>
+      </rc-dialog>
     </template>
   </div>
 </template>
@@ -102,10 +101,11 @@
 <script>
 import GifLoader from '@/components/basic/GifLoader'
 import ItemIcon from '@/components/basic/ItemIcon'
+import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'FishAquarium',
-  components: { ItemIcon, GifLoader },
+  components: { RcDialog, ItemIcon, GifLoader },
   props: {
     fish: {
       type: Object,

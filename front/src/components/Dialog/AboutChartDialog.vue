@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog
+    <rc-dialog
       :value="show"
       @input="$emit('input', $event)"
       max-width="600"
@@ -34,25 +34,26 @@
           <v-btn @click="handleClose" block> 关闭 </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
-    <v-dialog v-model="showApplyDialog" max-width="400">
+    </rc-dialog>
+    <rc-dialog v-model="showApplyDialog" max-width="400">
       <v-card>
         <v-card-title>
           <div>QQ群：796331554</div>
           <div>加群暗号在文章中，请仔细阅读</div>
         </v-card-title>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
   </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
+import RcDialog from '@/components/basic/RcDialog'
 import StatsExplanation from '@/doc/stats-explanation.md'
 
 export default {
   name: 'AboutChartDialog',
-  components: { StatsExplanation },
+  components: { RcDialog, StatsExplanation },
   model: {
     prop: 'show',
     event: 'input',

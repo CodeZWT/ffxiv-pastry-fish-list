@@ -673,7 +673,7 @@
         </v-card>
       </v-tab-item>
     </v-tabs-items>
-    <v-dialog v-model="showDeleteAlert" max-width="600">
+    <rc-dialog v-model="showDeleteAlert" max-width="600">
       <v-card>
         <v-card-title> 删除确认 </v-card-title>
         <v-card-text>
@@ -685,7 +685,7 @@
           <v-btn @click="showDeleteAlert = false">取消</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
   </v-container>
 </template>
 
@@ -701,6 +701,7 @@ import FishingSpots from 'Data/fishingSpots'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PinyinMatch from 'pinyin-match'
 import PlaceNames from 'Data/placeNames'
+import RcDialog from '@/components/basic/RcDialog'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import SPOT_WEATHER from 'Data/spotWeather'
 import UploadUtil from '@/utils/UploadUtil'
@@ -710,7 +711,14 @@ import rcapiService from '@/service/rcapiService'
 
 export default {
   name: 'RecordPage',
-  components: { EffectIcon, WeatherIcon, DateTimeInput, BiteTimeChart, ItemIcon },
+  components: {
+    RcDialog,
+    EffectIcon,
+    WeatherIcon,
+    DateTimeInput,
+    BiteTimeChart,
+    ItemIcon,
+  },
   mixins: [EnvMixin],
   props: ['lazyTransformedFishDict', 'lazySourceFishList'],
   inject: {

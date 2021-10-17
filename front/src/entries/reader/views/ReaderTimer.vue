@@ -170,7 +170,7 @@
         </v-progress-linear>
       </v-col>
     </v-row>
-    <v-dialog :value="hasStrictModeViolation" persistent max-width="600">
+    <rc-dialog :value="hasStrictModeViolation" persistent max-width="600">
       <v-card>
         <v-card-title>严格模式检查</v-card-title>
         <v-card-text>
@@ -205,7 +205,7 @@
           </div>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
   </v-container>
 </template>
 
@@ -220,6 +220,7 @@ import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import ItemIcon from '@/components/basic/ItemIcon'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
+import RcDialog from '@/components/basic/RcDialog'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import rcapiService from '@/service/rcapiService'
 
@@ -229,7 +230,7 @@ const SPECTRAL_CURRENT = 145
 
 export default {
   name: 'ReaderTimer',
-  components: { EffectIcon, ItemIcon, NewFeatureMark },
+  components: { RcDialog, EffectIcon, ItemIcon, NewFeatureMark },
   props: {
     now: {
       type: Number,

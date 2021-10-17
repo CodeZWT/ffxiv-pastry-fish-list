@@ -30,7 +30,7 @@
         </v-img>
       </div>
     </v-hover>
-    <v-dialog v-model="showExpandedDialog" fullscreen scrollable>
+    <rc-dialog v-model="showExpandedDialog" fullscreen scrollable>
       <v-card>
         <v-card-text>
           <v-img :lazy-src="lazySrc" :src="src" :contain="contain">
@@ -50,13 +50,15 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
   </div>
 </template>
 
 <script>
+import RcDialog from '@/components/basic/RcDialog'
 export default {
   name: 'ImgViewer',
+  components: { RcDialog },
   props: {
     lazySrc: {
       type: String,

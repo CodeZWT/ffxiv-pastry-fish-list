@@ -1,5 +1,5 @@
 <template>
-  <v-dialog
+  <rc-dialog
     v-model="dialog"
     :fullscreen="isMobile"
     max-width="1264px"
@@ -53,7 +53,7 @@
         </click-helper>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
@@ -64,11 +64,12 @@ import EnvMixin from '@/components/basic/EnvMixin'
 import FishDetail from '@/components/FishDetail'
 import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
+import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'FishSearch',
   mixins: [EnvMixin],
-  components: { RawItemIcon, FishDetail, ClickHelper },
+  components: { RcDialog, RawItemIcon, FishDetail, ClickHelper },
   props: {
     value: {
       type: Boolean,

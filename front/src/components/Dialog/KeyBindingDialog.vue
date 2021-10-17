@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="showDialog" max-width="600" persistent>
+  <rc-dialog v-model="showDialog" max-width="600" persistent>
     <v-card>
       <v-card-title>
         {{ $t('top.keybinding') }}
@@ -27,7 +27,7 @@
         <v-btn @click="$emit('input', false)">关闭</v-btn>
       </v-card-actions>
     </v-card>
-    <v-dialog v-model="showEditDialog" max-width="300" persistent>
+    <rc-dialog v-model="showEditDialog" max-width="300" persistent>
       <v-card>
         <v-card-title>
           修改快捷键
@@ -61,17 +61,18 @@
           <v-btn @click="cancelSetHotkey">取消</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
-  </v-dialog>
+    </rc-dialog>
+  </rc-dialog>
 </template>
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import RcDialog from '@/components/basic/RcDialog'
 import RcTooltip from '@/components/basic/RcTooltip'
 
 export default {
   name: 'KeyBindingDialog',
-  components: { RcTooltip },
+  components: { RcDialog, RcTooltip },
   model: {
     prop: 'show',
     event: 'input',

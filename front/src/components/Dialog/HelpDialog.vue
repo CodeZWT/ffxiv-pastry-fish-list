@@ -1,5 +1,5 @@
 <template>
-  <v-dialog
+  <rc-dialog
     :value="showHelpDialog"
     @input="$emit('input', $event)"
     :fullscreen="isMobile"
@@ -139,18 +139,19 @@
         </div>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
 import ClickHelper from '@/components/basic/ClickHelper'
 import EnvMixin from '@/components/basic/EnvMixin'
 import ImgUtil from '@/utils/ImgUtil'
+import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'HelpDialog',
   mixins: [EnvMixin],
-  components: { ClickHelper },
+  components: { RcDialog, ClickHelper },
   model: {
     prop: 'showHelpDialog',
   },

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog
+  <rc-dialog
     v-model="dialog"
     :fullscreen="$vuetify.breakpoint.mobile"
     max-width="1264px"
@@ -136,19 +136,20 @@
     <v-snackbar :timeout="2000" v-model="info.show" :color="info.color" centered absolute>
       <div class="text-center">{{ info.text }}</div>
     </v-snackbar>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
 import { mapMutations, mapState } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
+import RcDialog from '@/components/basic/RcDialog'
 import ResetButton from '@/components/ResetButton'
 import _ from 'lodash'
 
 export default {
   name: 'ImportExportDialog',
-  components: { ClickHelper, ResetButton },
+  components: { RcDialog, ClickHelper, ResetButton },
   props: {
     value: {
       type: Boolean,

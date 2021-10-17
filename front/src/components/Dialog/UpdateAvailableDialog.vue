@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :value="show" @input="$emit('input', $event)" max-width="500">
+  <rc-dialog :value="show" @input="$emit('input', $event)" max-width="500">
     <v-card>
       <v-card-title>鱼糕 当前版本 {{ version }}</v-card-title>
       <v-card-text v-if="updateInfo.version">
@@ -29,15 +29,17 @@
         <v-btn @click="handleSkipUpdate">忽略更新</v-btn>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
 import { version } from '../../../package.json'
+import RcDialog from '@/components/basic/RcDialog'
 import rcapiService from '@/service/rcapiService'
 
 export default {
   name: 'UpdateAvailableDialog',
+  components: { RcDialog },
   model: {
     prop: 'show',
   },

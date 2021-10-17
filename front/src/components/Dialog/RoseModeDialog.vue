@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :value="show" @input="$emit('input', $event)" max-width="300">
+  <rc-dialog :value="show" @input="$emit('input', $event)" max-width="300">
     <v-card v-if="!isRoseMode">
       <v-card-title>请输入暗号</v-card-title>
       <v-card-text>
@@ -220,7 +220,7 @@
         <v-btn @click="exit">退出上传模式</v-btn>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
@@ -234,6 +234,7 @@ import { email, max, required } from 'vee-validate/dist/rules'
 import { mapGetters, mapMutations } from 'vuex'
 import EnvMixin from '@/components/basic/EnvMixin'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import RcDialog from '@/components/basic/RcDialog'
 import UploadUtil from '@/utils/UploadUtil'
 import rcapiService, {
   RC_ACCESS_TOKEN_KEY,
@@ -277,7 +278,7 @@ const DEFAULT_RESEND_TIME = 60000
 export default {
   name: 'RoseModeDialog',
   mixins: [EnvMixin],
-  components: { ValidationObserver, ValidationProvider },
+  components: { RcDialog, ValidationObserver, ValidationProvider },
   model: {
     prop: 'show',
   },

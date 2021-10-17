@@ -571,7 +571,7 @@
       @confirm="onConfirmPatchNote"
     />
     <help-dialog v-model="showHelpDialog" />
-    <v-dialog
+    <rc-dialog
       v-model="showAboutDialog"
       :fullscreen="isMobile"
       max-width="600px"
@@ -656,7 +656,7 @@
           </div>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
     <update-dialog
       v-model="showCheckStartSetupDialog"
       :progress="downloadProgress"
@@ -736,9 +736,11 @@
 import '@thewakingsands/axis-font-icons'
 import AppMixin from '@/components/AppMixin'
 import MainWindowMixin from '@/components/MainWindowMixin'
+import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'App',
+  components: { RcDialog },
   mixins: [AppMixin, MainWindowMixin],
   data() {
     return {

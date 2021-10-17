@@ -15,7 +15,7 @@
             </div>
           </div>
           <v-spacer />
-          <v-dialog v-model="explanationDialog" width="500">
+          <rc-dialog v-model="explanationDialog" width="500">
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" v-on="on" text>
                 <v-icon left>mdi-information</v-icon>
@@ -33,7 +33,7 @@
                 ，如果不追求HQ，请酌情参考攻略中的技巧。
               </v-card-text>
             </v-card>
-          </v-dialog>
+          </rc-dialog>
         </div>
 
         <div class="red">
@@ -167,10 +167,12 @@
   </div>
 </template>
 <script>
+import RcDialog from '@/components/basic/RcDialog'
 import tip1 from 'Data/tip1'
 
 export default {
   name: 'Tip1',
+  components: { RcDialog },
   props: ['id'],
   data: () => ({
     explanationDialog: false,

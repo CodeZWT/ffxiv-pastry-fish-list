@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :value="show" @input="$emit('input', $event)" max-width="600" scrollable>
+  <rc-dialog :value="show" @input="$emit('input', $event)" max-width="600" scrollable>
     <v-card>
       <v-card-title>
         <div>桌面版下载</div>
@@ -65,14 +65,16 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
 import ImgUtil from '@/utils/ImgUtil'
+import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'DesktopVersionDialog',
+  components: { RcDialog },
   model: {
     prop: 'show',
   },

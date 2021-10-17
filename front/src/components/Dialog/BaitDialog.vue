@@ -1,5 +1,5 @@
 <template>
-  <v-dialog
+  <rc-dialog
     :value="showBaitDialog"
     @input="$emit('input', $event)"
     max-width="600"
@@ -154,7 +154,7 @@
         </click-helper>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
@@ -165,11 +165,12 @@ import FIX from 'Data/fix'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
+import RcDialog from '@/components/basic/RcDialog'
 import _ from 'lodash'
 
 export default {
   name: 'BaitDialog',
-  components: { RawItemIcon, ClickHelper, ItemIcon },
+  components: { RcDialog, RawItemIcon, ClickHelper, ItemIcon },
   model: {
     prop: 'showBaitDialog',
     event: 'input',

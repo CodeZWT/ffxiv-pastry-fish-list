@@ -27,7 +27,7 @@
         </div>
       </v-card-text>
     </v-card>
-    <v-dialog :value="showDialog && !loading" persistent max-width="290">
+    <rc-dialog :value="showDialog && !loading" persistent max-width="290">
       <v-card>
         <v-card-title> 请选择数据来源 </v-card-title>
         <v-card-text v-if="hasLocalData" class="subtitle-1 error--text">
@@ -63,7 +63,7 @@
           </div>
         </v-card-text>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
     <iframe v-show="false" :src="migrationSrcUrl" id="migration-src"></iframe>
   </div>
 </template>
@@ -71,9 +71,11 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
+import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'MigrationPage.vue',
+  components: { RcDialog },
   data: () => ({
     migrationStep: 'waiting',
     migrateSuccess: undefined,

@@ -33,7 +33,7 @@
       </v-btn>
     </v-col>
     <v-col cols="12" v-if="clearAllButton && flattenFishList.length > 0">
-      <v-dialog v-model="showClearConfirmDialog" max-width="330">
+      <rc-dialog v-model="showClearConfirmDialog" max-width="330">
         <template v-slot:activator="{ on, attrs }">
           <click-helper v-bind="attrs" v-on="on">
             <v-btn block color="error" class="rounded-t-0">
@@ -61,7 +61,7 @@
             </click-helper>
           </v-card-actions>
         </v-card>
-      </v-dialog>
+      </rc-dialog>
     </v-col>
   </v-row>
 </template>
@@ -71,11 +71,12 @@ import { mapGetters, mapState } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import FishListItem from '@/components/FishListItem'
+import RcDialog from '@/components/basic/RcDialog'
 import _ from 'lodash'
 
 export default {
   name: 'fish-list',
-  components: { ClickHelper, FishListItem },
+  components: { RcDialog, ClickHelper, FishListItem },
   props: {
     fishDict: {
       type: Object,

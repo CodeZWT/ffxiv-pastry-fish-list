@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="value" persistent max-width="290" scrollable>
+  <rc-dialog v-model="value" persistent max-width="290" scrollable>
     <template v-slot:activator="{ on, attrs }">
       <click-helper v-on="on" v-bind="attrs">
         <v-btn color="error" block>{{ $t('importExport.dialog.reset.btn') }}</v-btn>
@@ -23,16 +23,17 @@
         </click-helper>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
+import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'ResetButton',
-  components: { ClickHelper },
+  components: { RcDialog, ClickHelper },
   // props: {
   //   value: {
   //     type: Boolean,

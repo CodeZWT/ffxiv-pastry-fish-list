@@ -424,7 +424,7 @@
         />
       </div>
     </div>
-    <v-dialog v-model="showSyncDialog" max-width="320" scrollable persistent>
+    <rc-dialog v-model="showSyncDialog" max-width="320" scrollable persistent>
       <v-card>
         <!-- patch update wait note -->
         <!--        <v-alert outlined type="warning" border="left">-->
@@ -494,7 +494,7 @@
           <!--          </div>-->
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
     <about-chart-dialog v-model="showAboutChartDialog" />
   </div>
 </template>
@@ -524,6 +524,7 @@ import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 import PinyinMatch from 'pinyin-match'
+import RcDialog from '@/components/basic/RcDialog'
 import TreeModel from 'tree-model'
 import _ from 'lodash'
 import normSpots from 'Data/fishingSpots'
@@ -534,6 +535,7 @@ export default {
   name: 'WikiPage',
   mixins: [PageMixin],
   components: {
+    RcDialog,
     AboutChartDialog,
     BiteIntervalChart,
     BaitPercentageChart,

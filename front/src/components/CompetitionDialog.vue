@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="800" persistent>
+  <rc-dialog v-model="dialog" max-width="800" persistent>
     <v-card>
       <v-card-title>
         <div style="text-align: center; width: 100%" class="text-h5">
@@ -60,16 +60,18 @@
         <v-btn @click="handleClose" block>关闭</v-btn>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 import EnvMixin from '@/components/basic/EnvMixin'
 import ImgUtil from '@/utils/ImgUtil'
+import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'CompetitionDialog',
+  components: { RcDialog },
   mixins: [EnvMixin],
   props: {
     value: {

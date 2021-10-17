@@ -319,7 +319,7 @@
     <!--    <v-card-actions>-->
     <!--      <v-btn @click="saveSetting" block color="primary">应用设置</v-btn>-->
     <!--    </v-card-actions>-->
-    <v-dialog v-model="showInstallNpcapPrompt" max-width="300">
+    <rc-dialog v-model="showInstallNpcapPrompt" max-width="300">
       <v-card>
         <v-card-title>安装Npcap支持</v-card-title>
         <v-card-text v-if="!installing">
@@ -338,7 +338,7 @@
           <v-btn @click="cancelInstall()">取消</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
   </div>
 </template>
 
@@ -347,11 +347,13 @@ import { MONITOR_TYPES, REGIONS } from 'Data/constants'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
+import RcDialog from '@/components/basic/RcDialog'
 import _ from 'lodash'
 import db from '@/plugins/db'
 
 export default {
   name: 'ReaderSetting',
+  components: { RcDialog },
   mixins: [EnvMixin],
   props: {
     now: {

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="600" v-model="show" persistent>
+  <rc-dialog max-width="600" v-model="show" persistent>
     <v-card>
       <v-card-title>
         检测到当前浏览器为Chrome，时区为西八区（UTC-08:00）
@@ -27,14 +27,16 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
+import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'ChromeTimeZoneBugDialog',
+  components: { RcDialog },
   model: {
     prop: 'show',
   },

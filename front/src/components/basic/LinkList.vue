@@ -53,7 +53,7 @@
       </v-card>
     </v-menu>
 
-    <v-dialog v-model="showConfigDialog" max-width="300">
+    <rc-dialog v-model="showConfigDialog" max-width="300">
       <v-card>
         <v-card-title>
           设置默认跳转
@@ -77,7 +77,7 @@
           </v-list>
         </v-card-text>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
   </div>
 </template>
 
@@ -85,10 +85,11 @@
 import { mapGetters, mapMutations } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
+import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'LinkList',
-  components: { ClickHelper },
+  components: { RcDialog, ClickHelper },
   props: {
     id: {
       type: Number,

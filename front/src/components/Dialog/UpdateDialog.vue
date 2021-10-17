@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :value="show" @input="$emit('input', $event)" max-width="300" persistent>
+  <rc-dialog :value="show" @input="$emit('input', $event)" max-width="300" persistent>
     <v-card v-if="progress < 100">
       <v-card-title>更新程序下载中</v-card-title>
       <v-card-text>
@@ -22,12 +22,14 @@
         <v-btn @click="$emit('skip')">暂不更新</v-btn>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
+import RcDialog from '@/components/basic/RcDialog'
 export default {
   name: 'UpdateDialog',
+  components: { RcDialog },
   model: {
     prop: 'show',
   },

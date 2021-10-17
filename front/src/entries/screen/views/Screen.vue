@@ -271,7 +271,7 @@
       @confirm="onConfirmPatchNote"
     />
     <help-dialog v-model="showHelpDialog" />
-    <v-dialog
+    <rc-dialog
       v-model="showAboutDialog"
       :fullscreen="isMobile"
       max-width="600px"
@@ -356,7 +356,7 @@
           </div>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
     <update-dialog
       v-model="showCheckStartSetupDialog"
       :progress="downloadProgress"
@@ -440,6 +440,7 @@ import AppMixin from '@/components/AppMixin'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
 import KeyBindingDialog from '@/components/Dialog/KeyBindingDialog'
 import MainWindow from '@/entries/screen/views/MainWindow'
+import RcDialog from '@/components/basic/RcDialog'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
 import ReaderTimerMiniWindow from '@/entries/screen/views/ReaderTimerMiniWindow'
@@ -452,6 +453,7 @@ export default {
   name: 'Screen',
   mixins: [AppMixin],
   components: {
+    RcDialog,
     KeyBindingDialog,
     FishDetailWindow,
     ReaderSpotStatisticsWindow,

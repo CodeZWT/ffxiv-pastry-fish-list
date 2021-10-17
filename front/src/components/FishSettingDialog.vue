@@ -1,5 +1,5 @@
 <template>
-  <v-dialog
+  <rc-dialog
     v-model="showSettingDialog"
     :fullscreen="isMobile"
     max-width="600px"
@@ -272,7 +272,7 @@
         </div>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </rc-dialog>
 </template>
 
 <script>
@@ -289,6 +289,7 @@ import DataUtil from '@/utils/DataUtil'
 import DetailItemSettingEntry from '@/components/DetailItemSettingEntry'
 import EnvMixin from '@/components/basic/EnvMixin'
 import NotificationUtil from '@/utils/NotificationUtil'
+import RcDialog from '@/components/basic/RcDialog'
 import _ from 'lodash'
 import draggable from 'vuedraggable'
 import i18n from '@/i18n'
@@ -313,6 +314,7 @@ export default {
   name: 'FishSettingDialog',
   mixins: [EnvMixin],
   components: {
+    RcDialog,
     DetailItemSettingEntry,
     ClickHelper,
     ValidationObserver,

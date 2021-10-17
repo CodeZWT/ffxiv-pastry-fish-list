@@ -101,7 +101,7 @@
         </v-card-text>
       </v-card>
     </template>
-    <!--    <v-dialog v-model="showUpdateDialog" width="500" persistent scrollable>-->
+    <!--    <rc-dialog v-model="showUpdateDialog" width="500" persistent scrollable>-->
     <!--      <v-card>-->
     <!--        <v-card-title> 5.4 版本更新说明 </v-card-title>-->
     <!--        <v-card-text>-->
@@ -147,9 +147,9 @@
     <!--          <v-btn block color="primary" @click="showUpdateDialog = false"> 确认 </v-btn>-->
     <!--        </v-card-actions>-->
     <!--      </v-card>-->
-    <!--    </v-dialog>-->
+    <!--    </rc-dialog>-->
 
-    <v-dialog v-model="showBiteTimeDialog" width="500" persistent scrollable>
+    <rc-dialog v-model="showBiteTimeDialog" width="500" persistent scrollable>
       <v-card>
         <v-card-title> 咬钩时间说明 </v-card-title>
         <v-card-text>
@@ -178,8 +178,8 @@
           <v-btn block color="primary" @click="showBiteTimeDialog = false"> 确认 </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
-    <v-dialog v-model="showIKDBonusDialog" scrollable max-width="1080">
+    </rc-dialog>
+    <rc-dialog v-model="showIKDBonusDialog" scrollable max-width="1080">
       <v-card>
         <v-card-title> 额外奖励表 </v-card-title>
         <v-card-text>
@@ -224,7 +224,7 @@
           <v-btn block color="primary" @click="showIKDBonusDialog = false"> 确认 </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </rc-dialog>
   </v-container>
 </template>
 
@@ -241,6 +241,7 @@ import OceanFishingTimeTable from '@/components/OceanFishing54/OceanFishingTimeT
 import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
 import OceanFishingVoyage from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingVoyage'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import RcDialog from '@/components/basic/RcDialog'
 
 // https://ngabbs.com/read.php?tid=20553241
 
@@ -249,7 +250,7 @@ const MINUTE = 60000
 export default {
   name: 'OceanFishingPage54',
   mixins: [PageMixin],
-  components: { ItemIcon, OceanFishingVoyage, OceanFishingTimeTable },
+  components: { RcDialog, ItemIcon, OceanFishingVoyage, OceanFishingTimeTable },
   props: ['now', 'lazyTransformedFishDict'],
   data() {
     return {

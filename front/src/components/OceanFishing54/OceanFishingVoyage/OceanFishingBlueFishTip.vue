@@ -6,7 +6,7 @@
     </v-card-text>
     <v-card-subtitle>
       <div class="d-flex">
-        <v-dialog width="500">
+        <rc-dialog width="500">
           <template v-slot:activator="{ on, attrs }">
             <v-btn v-bind="attrs" v-on="on" text icon>
               <v-icon>mdi-information</v-icon>
@@ -20,7 +20,7 @@
               <div v-html="tip.extra"></div>
             </v-card-text>
           </v-card>
-        </v-dialog>
+        </rc-dialog>
         <div class="d-flex flex-column align-end" style="width: 100%">
           <a :href="tip.link" target="_blank" style="color: white">
             {{ tip.title }}
@@ -35,8 +35,10 @@
 </template>
 
 <script>
+import RcDialog from '@/components/basic/RcDialog'
 export default {
   name: 'OceanFishingBlueFishTip',
+  components: { RcDialog },
   props: {
     fishId: {
       //currentTipBlueFishList[index]._id
