@@ -18,6 +18,7 @@
       }"
       :temporary="isMobile"
       z-index="1"
+      hide-overlay
     >
       <div class="fill-height">
         <v-sheet class="pa-1 primary">
