@@ -188,14 +188,6 @@ export default {
   },
   methods: {
     toItemTitle: DataUtil.toItemTitle,
-    copyToClipboard() {
-      // const clipboard = document.getElementById('clipboard')
-      // clipboard.value = text
-      // clipboard.select()
-      // clipboard.setSelectionRange(0, 99999) // For mobile devices
-      // document.execCommand('copy')
-      // this.showSnackbar({ text: this.$t('importExport.dialog.message.copySuccess'), color: 'success' })
-    },
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })
     },
@@ -208,12 +200,7 @@ export default {
       this.setFishToBeNotified({ fishId: this.fish.id, toBeNotified })
     },
     toItemIdIfExisted: DataUtil.toItemIdIfExisted,
-    ...mapMutations([
-      'setFishCompleted',
-      'setFishPinned',
-      'showSnackbar',
-      'setFishToBeNotified',
-    ]),
+    ...mapMutations(['setFishCompleted', 'setFishPinned', 'setFishToBeNotified']),
   },
 }
 </script>

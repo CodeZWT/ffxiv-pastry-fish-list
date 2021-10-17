@@ -196,7 +196,7 @@
     <rose-mode-dialog v-model="showRoseDialog" />
     <!--    <competition-dialog v-model="showCompetitionDialogComputed" />-->
 
-    <v-snackbar
+    <rc-snackbar
       :timeout="snackbar.timeout"
       v-model="snackbar.show"
       :color="snackbar.color"
@@ -204,8 +204,8 @@
       elevation="24"
     >
       <div class="text-center">{{ snackbar.text }}</div>
-    </v-snackbar>
-    <v-snackbar
+    </rc-snackbar>
+    <rc-snackbar
       :timeout="baitIdsForNotification.length > 1 ? -1 : 5000"
       v-model="showBaitNotification"
       elevation="24"
@@ -246,7 +246,7 @@
           关闭
         </v-btn>
       </template>
-    </v-snackbar>
+    </rc-snackbar>
   </div>
 </template>
 
@@ -258,6 +258,7 @@ import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
 import MainWindow from '@/entries/screen/views/MainWindow'
 import MenuWindow from '@/entries/screen/views/MenuWindow'
 import RcDialog from '@/components/basic/RcDialog'
+import RcSnackbar from '@/components/basic/RcSnackbar'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
 import ReaderTimerMiniWindow from '@/entries/screen/views/ReaderTimerMiniWindow'
@@ -270,6 +271,7 @@ export default {
   name: 'Screen',
   mixins: [AppMixin],
   components: {
+    RcSnackbar,
     MenuWindow,
     RcDialog,
     FishDetailWindow,
@@ -285,7 +287,14 @@ export default {
     readerNow: Date.now(),
   }),
   computed: {
-    ...mapState('screenWindow', ['layouts', 'windows', 'subPage', 'dialogs']),
+    ...mapState('screenWindow', [
+      'layouts',
+      'windows',
+      'subPage',
+      'dialogs',
+      'alerts',
+      'bottomNotifications',
+    ]),
   },
   async created() {
     // TODO readerConfig.showReaderOnlyIfFishing
@@ -397,6 +406,8 @@ export default {
               layouts: this.layouts,
               windows: this.windows,
               dialogs: this.dialogs,
+              alerts: this.alerts,
+              bottomNotifications: this.bottomNotifications,
             },
             keybindings: this.keybindings,
             opcodeVersion: version,
@@ -410,6 +421,8 @@ export default {
               layouts: this.layouts,
               windows: this.windows,
               dialogs: this.dialogs,
+              alerts: this.alerts,
+              bottomNotifications: this.bottomNotifications,
             },
             keybindings: this.keybindings,
             opcodeVersion: 'latest',

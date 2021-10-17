@@ -90,6 +90,8 @@ const ScreenWindowModule = {
     layouts: { ...DEFAULT_LAYOUTS, ...storedConfig?.layouts },
     windows: storedConfig?.windows ?? [],
     dialogs: [],
+    alerts: [],
+    bottomNotifications: [],
     dragging: false,
     subPage: storedConfig?.subPage ?? 'ListPage',
     tabIndex: storedConfig?.tabIndex ?? 0,
@@ -109,6 +111,24 @@ const ScreenWindowModule = {
       const index = state.dialogs.indexOf(dialogId)
       if (index > -1) {
         state.dialogs.splice(index, 1)
+      }
+    },
+    registerAlert(state, id) {
+      state.alerts.push(id)
+    },
+    unregisterAlert(state, id) {
+      const index = state.alerts.indexOf(id)
+      if (index > -1) {
+        state.alerts.splice(index, 1)
+      }
+    },
+    registerBottomNotification(state, id) {
+      state.bottomNotifications.push(id)
+    },
+    unregisterBottomNotification(state, id) {
+      const index = state.bottomNotifications.indexOf(id)
+      if (index > -1) {
+        state.bottomNotifications.splice(index, 1)
       }
     },
     setGlobalClickThrough(state, clickThrough) {
@@ -177,6 +197,8 @@ const SaveLayoutPlugin = store => {
     windows: store.state.screenWindow.windows,
     layouts: store.state.screenWindow.layouts,
     dialogs: store.state.screenWindow.dialogs,
+    alerts: store.state.screenWindow.alerts,
+    bottomNotifications: store.state.screenWindow.bottomNotifications,
   })
   store.subscribe((mutation, state) => {
     if (mutation.type.indexOf('screenWindow/') === 0) {
@@ -184,13 +206,11 @@ const SaveLayoutPlugin = store => {
         windows: store.state.screenWindow.windows,
         layouts: store.state.screenWindow.layouts,
         dialogs: store.state.screenWindow.dialogs,
+        alerts: store.state.screenWindow.alerts,
+        bottomNotifications: store.state.screenWindow.bottomNotifications,
       })
       if (!_.isEqual(prevState, nextState)) {
-        sendElectronEvent('updateWindowSetting', {
-          windows: nextState.windows,
-          layouts: nextState.layouts,
-          dialogs: nextState.dialogs,
-        })
+        sendElectronEvent('updateWindowSetting', nextState)
       }
       prevState = nextState
 

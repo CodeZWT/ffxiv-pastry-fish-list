@@ -1010,7 +1010,7 @@ export default {
         const wikiIds = DataUtil.FISH_ID_TO_WIKI_IDS[fishId]
         if (wikiIds) {
           const spotFishId = wikiIds[0].split('-')[3]
-          const fishType = this.lazyTransformedFishDict[spotFishId].type
+          const fishType = this.lazyTransformedFishDict[spotFishId]?.type
           if (fishType === type) {
             return wikiIds
           } else {

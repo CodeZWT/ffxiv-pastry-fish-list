@@ -158,6 +158,30 @@ const setWindowShape = (win, windowSetting) => {
         height: l.h
       }
     })
+
+    const [winWidth, winHeight] = SCREEN.getSize()
+    if (windowSetting.alerts.length > 0) {
+      const width = 344
+      const height = 48
+      windowRectangles.push({
+        x: Math.floor(winWidth/2-width/2),
+        y: Math.floor(winHeight/2-height/2),
+        width: width,
+        height: height
+      })
+    }
+
+    if (windowSetting.bottomNotifications.length > 0) {
+      const width = 390
+      const height = 80
+      windowRectangles.push({
+        x: Math.floor(winWidth/2-width/2),
+        y: Math.floor(winHeight-height),
+        width: width,
+        height: height
+      })
+    }
+
     win.setShape(windowRectangles)
   }
 }
