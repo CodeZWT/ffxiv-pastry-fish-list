@@ -11,6 +11,7 @@
     :active.sync="active"
     @click.native="onActivated"
     :parent="true"
+    :resizable="resizable"
     className="dr-wrapper"
     classNameHandle="dr-handle"
     drag-cancel=".dr-drag-cancel"
@@ -109,6 +110,10 @@ export default {
     dragPlaceholder: {
       type: Boolean,
       default: false,
+    },
+    resizable: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {

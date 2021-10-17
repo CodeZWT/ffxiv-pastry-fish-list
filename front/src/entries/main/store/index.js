@@ -1,3 +1,5 @@
+import { KeybindingModule } from '@/entries/screen/store/keybinding'
+import { ScreenWindowModule } from '@/entries/screen/store/screenWindow'
 import {
   loadBaitFilterUserData,
   loadReaderUserData,
@@ -626,6 +628,10 @@ export const MainModule = {
       context.commit('batchSetFishCompleted', { fishIds, completed: true })
       return
     },
+  },
+  modules: {
+    screenWindow: ScreenWindowModule,
+    keybinding: KeybindingModule,
   },
 }
 

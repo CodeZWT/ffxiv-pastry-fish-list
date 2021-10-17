@@ -8,9 +8,7 @@
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
       <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
-        <new-feature-mark :id="SettingFeatureId">
-          <v-icon>mdi-cog</v-icon>
-        </new-feature-mark>
+        <v-icon>mdi-cog</v-icon>
       </v-btn>
       <toggle-button
         :value="alwaysOnTop"
@@ -362,17 +360,6 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item v-if="isElectron" @click="openReader" link>
-            <v-list-item-icon>
-              <new-feature-mark :id="ReaderTimerFeatureId">
-                <v-icon>mdi-fish</v-icon>
-              </new-feature-mark>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ $t('top.fishReader') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
           <v-list-item
             v-if="isElectron && isRoseMode"
             @click="showRoseDialog = true"
@@ -391,28 +378,6 @@
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.record') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item
-            v-if="isElectron && downloadProgress > 0"
-            link
-            @click="showUpdateDialog"
-          >
-            <v-list-item-icon>
-              <div>
-                <v-progress-circular rotate="-90" size="24" :value="downloadProgress">
-                  <div style="font-size: x-small">
-                    {{ downloadProgress === 100 ? '' : Math.floor(downloadProgress) }}
-                  </div>
-                </v-progress-circular>
-              </div>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{
-                  downloadProgress === 100 ? $t('top.downloaded') : $t('top.downloading')
-                }}
-              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -440,9 +405,7 @@
               <click-helper @click="showSetting">
                 <v-list-item @click="noOp">
                   <v-list-item-icon>
-                    <new-feature-mark :id="SettingFeatureId">
-                      <v-icon>mdi-tune</v-icon>
-                    </new-feature-mark>
+                    <v-icon>mdi-tune</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>{{ $t('top.uiConfig') }}</v-list-item-title>
@@ -657,13 +620,6 @@
         </v-card-actions>
       </v-card>
     </rc-dialog>
-    <update-dialog
-      v-model="showCheckStartSetupDialog"
-      :progress="downloadProgress"
-      @update="startUpdate"
-      @skip="skipUpdate"
-    />
-    <update-available-dialog v-model="showUpdateAvailableDialog" :hash="newVersion" />
     <import-export-dialog v-model="showImportExport" />
     <bait-dialog
       v-model="showBaitDialog"
@@ -734,6 +690,7 @@
 
 <script>
 import '@thewakingsands/axis-font-icons'
+import { MainFeatures } from 'Data/newFeatures'
 import AppMixin from '@/components/AppMixin'
 import MainWindowMixin from '@/components/MainWindowMixin'
 import RcDialog from '@/components/basic/RcDialog'
@@ -745,6 +702,8 @@ export default {
   data() {
     return {
       rightPaneFullScreen: window.innerWidth < 1264,
+      showDownloadDialog: false,
+      DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
     }
   },
   computed: {
@@ -756,6 +715,10 @@ export default {
     },
   },
   methods: {
+    showDownload() {
+      this.showDownloadDialog = true
+      this.setFeatureViewed(this.DesktopDownloadFeatureId)
+    },
     toPage(page) {
       if (this.$route.name !== page) {
         this.$router.push({ name: page })

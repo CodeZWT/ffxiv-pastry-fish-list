@@ -58,6 +58,15 @@ const DEFAULT_LAYOUTS = {
     type: 'READER_SPOT_STATISTICS',
     isMobile: true,
   },
+  MENU: {
+    x: 0,
+    y: 0,
+    w: 64,
+    h: 64,
+    z: 0,
+    type: 'MENU',
+    isMobile: true,
+  },
 }
 const storedConfig = LocalStorageUtil.loadWindowLayouts()
 const winId2LayoutId = winId => winId.split('-')[0]
@@ -78,7 +87,7 @@ const setWindowActive = (windows, layouts, windowId) => {
 const ScreenWindowModule = {
   namespaced: true,
   state: {
-    layouts: storedConfig?.layouts ?? DEFAULT_LAYOUTS,
+    layouts: { ...DEFAULT_LAYOUTS, ...storedConfig?.layouts },
     windows: storedConfig?.windows ?? [],
     dialogs: [],
     dragging: false,
@@ -106,12 +115,6 @@ const ScreenWindowModule = {
     },
     showWindow(state, windowInfo) {
       let windowId = windowInfo.type
-      // if (windowInfo.type === 'MAIN') {
-      //   windowId += '-' + windowInfo.subPage
-      //   if (windowInfo.mainPageTabIndex != null) {
-      //     windowId += '-' + windowInfo.mainPageTabIndex
-      //   }
-      // }
       state.subPage = windowInfo.subPage ?? state.subPage
       state.tabIndex = windowInfo.tabIndex ?? state.tabIndex
 
@@ -119,7 +122,6 @@ const ScreenWindowModule = {
 
       if (state.windows.includes(windowId)) {
         setWindowActive(state.windows, state.layouts, windowId)
-        // state.windows.splice(windowIndex, 1, windowId)
       } else {
         state.layouts[layoutId].z = state.windows.length
         state.windows.push(windowId)

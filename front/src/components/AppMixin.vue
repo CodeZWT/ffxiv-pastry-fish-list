@@ -42,7 +42,6 @@ import WindowUtil from '@/entries/reader/util/WindowUtil'
 import _ from 'lodash'
 import hotkeys from 'hotkeys-js'
 import placeNames from 'Data/placeNames'
-import rcapiService from '@/service/rcapiService'
 import regionTerritorySpots from 'Data/fishingSpots'
 
 export default {
@@ -73,10 +72,7 @@ export default {
     isTempMouseThrough: false,
     fishUpdater: undefined,
     pageVisibilityUtil: undefined,
-    showUpdateAvailableDialog: false,
-    newVersion: undefined,
     showRoseDialog: false,
-    downloadProgress: 0,
     lastCatchFishId: undefined,
     notificationRecords: {},
     isElectron: DevelopmentModeUtil.isElectron(),
@@ -119,14 +115,10 @@ export default {
     showBaitNotificationSetting: false,
     showBaitNotification: false,
     showChromeTimeZoneBugDialog: false,
-    showCheckStartSetupDialog: false,
-    showDownloadDialog: false,
     migrationSource: '',
     alwaysOnTop: false,
     maximized: false,
     ReaderTimerFeatureId: MainFeatures.ReaderTimer,
-    DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
-    SettingFeatureId: MainFeatures.Setting,
     FishEyesFeatureId: MainFeatures.FishEyesButton,
   }),
   computed: {
@@ -371,7 +363,6 @@ export default {
         this.setShowCompetitionDialog(show)
       },
     },
-    ...mapState('screenWindow', ['layouts', 'windows', 'dialogs']),
     ...mapState('keybinding', ['keybindings']),
     ...mapState([
       'readerSetting',
@@ -542,19 +533,6 @@ export default {
       this.systemThemeMode = e.matches ? 'DARK' : 'LIGHT'
     })
 
-    hotkeys('/', event => {
-      if (!this.showSearchDialog) {
-        this.setShowSearchDialog(true)
-      }
-      event.preventDefault()
-    })
-
-    // if (!this.isElectron) {
-    hotkeys('alt+shift+y', event => {
-      this.showRoseDialog = true
-      event.preventDefault()
-    })
-    // }
     // this.finishReloadPage()
 
     // this.sendElectronEvent('startReader', {
@@ -634,37 +612,21 @@ export default {
     console.debug('sound loaded')
   },
   methods: {
+    finishReloadPage() {},
     bindHotkeys() {
-      console.debug('loading hotkeys')
-      console.log(this.keybindings)
-      // hotkeys(this.keybindings.switchMouseThrough, () => {
-      //   this.isMouseThrough = !this.isMouseThrough
-      //   this.sendElectronEvent('setMouseThrough', this.isMouseThrough)
-      // })
-      // hotkeys('*', { keyup: true }, (event, handler) => {
-      //   if (
-      //     event.key === this.keybindings.holdingSwitchMouseThrough &&
-      //     this.isMouseThrough
-      //   ) {
-      //     if (event.type === 'keydown' && this.isTempMouseThrough) {
-      //       console.debug('set mouse through')
-      //       this.isTempMouseThrough = false
-      //       this.sendElectronEvent('setMouseThrough', false)
-      //     } else if (event.type === 'keyup') {
-      //       console.debug('unset mouse through')
-      //       this.isTempMouseThrough = true
-      //       this.sendElectronEvent('setMouseThrough', true)
-      //     }
-      //   }
-      //
-      //   // if (event.type === 'keydown') {
-      //   //   console.log('keydown:', event, handler)
-      //   // }
-      //
-      //   if (event.type === 'keyup') {
-      //     console.log('keyup:', event, handler)
-      //   }
-      // })
+      if (!this.isElectron) {
+        hotkeys('/', event => {
+          if (!this.showSearchDialog) {
+            this.setShowSearchDialog(true)
+          }
+          event.preventDefault()
+        })
+
+        hotkeys('alt+shift+y', event => {
+          this.showRoseDialog = true
+          event.preventDefault()
+        })
+      }
     },
     handleSearch(fishId) {
       this.searchedFishId = fishId
@@ -701,9 +663,6 @@ export default {
         }
       }
     },
-    showUpdateDialog() {
-      this.showCheckStartSetupDialog = true
-    },
     showCompetition() {
       this.showCompetitionDialogComputed = true
       this.setFeatureViewed('Competition-V.0.8.3-2')
@@ -717,39 +676,8 @@ export default {
       this.sendElectronEvent('startLoading')
       window.location.reload()
     },
-    finishReloadPage() {
-      rcapiService
-        .getOpcodeFileVersion()
-        .then(version => {
-          this.sendElectronEvent('finishLoading', {
-            userData: this.userData,
-            readerSetting: this.readerSetting,
-            windowSetting: {
-              layouts: this.layouts,
-              windows: this.windows,
-              dialogs: this.dialogs,
-            },
-            keybindings: this.keybindings,
-            opcodeVersion: version,
-          })
-        })
-        .catch(() => {
-          this.sendElectronEvent('finishLoading', {
-            userData: this.userData,
-            readerSetting: this.readerSetting,
-            windowSetting: {
-              layouts: this.layouts,
-              windows: this.windows,
-              dialogs: this.dialogs,
-            },
-            keybindings: this.keybindings,
-            opcodeVersion: 'latest',
-          })
-        })
-    },
     showSetting() {
       this.showSettingDialog = true
-      this.setFeatureViewed(this.SettingFeatureId)
     },
     toggleAlwaysOnTop() {
       this.alwaysOnTop = !this.alwaysOnTop
@@ -785,17 +713,6 @@ export default {
     openReader() {
       this.sendElectronEvent('openReader')
       this.setFeatureViewed(this.ReaderTimerFeatureId)
-    },
-    showDownload() {
-      this.showDownloadDialog = true
-      this.setFeatureViewed(this.DesktopDownloadFeatureId)
-    },
-    startUpdate() {
-      this.sendElectronEvent('startUpdate')
-    },
-    skipUpdate() {
-      this.sendElectronEvent('skipUpdate')
-      this.showCheckStartSetupDialog = false
     },
     onFishSelected({ fishId, firstSpotId }) {
       this.selectedFishId = fishId
@@ -1436,7 +1353,6 @@ export default {
       'setFishCompleted',
       'toggleFilterPanel',
       'setShowSearchDialog',
-      'setShowImportExportDialog',
       'setWebsiteVersion',
       'setActiveTab',
       'showSnackbar',
