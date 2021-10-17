@@ -841,7 +841,7 @@ export default {
     const readerSetting = _.cloneDeep(state.readerSetting)
     _.set(readerSetting, path, data)
     state.readerSetting = readerSetting
-    LocalStorageUtil.storeUserData(state.readerSetting)
+    LocalStorageUtil.storeReaderUserData(state.readerSetting)
   },
   setReaderSettingPartSilently(state, { path, data }) {
     _.set(state.readerSetting, path, data)
