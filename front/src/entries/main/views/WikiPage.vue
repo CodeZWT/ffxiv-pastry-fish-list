@@ -223,8 +223,14 @@
                 />
               </v-col>
             </v-row>
-
-            <v-btn color="primary" @click="showSyncDialog = true" block class="mt-2">
+            <!-- TODO recover this -->
+            <v-btn
+              v-if="isElectron"
+              color="primary"
+              @click="showSyncDialog = true"
+              block
+              class="mt-2"
+            >
               <v-icon left>mdi-sync</v-icon>
               同步游戏数据
             </v-btn>
