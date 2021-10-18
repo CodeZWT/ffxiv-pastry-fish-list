@@ -10,7 +10,19 @@
     title="渔捞迷你模式"
   >
     <template>
-      <reader-timer :now="now" :mini="true" />
+      <div class="d-flex align-start">
+        <reader-timer :now="now" :mini="true" />
+        <v-btn
+          @click.stop="handleCloseWindow"
+          x-small
+          icon
+          text
+          class="my-3 mx-1"
+          color="error"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </div>
     </template>
   </screen-window>
 </template>
