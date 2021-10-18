@@ -168,7 +168,7 @@
           </v-row>
           <v-row>
             <v-col>
-              <v-autocomplete
+              <rc-autocomplete
                 ref="search"
                 v-model="fishId"
                 :items="filteredList"
@@ -193,7 +193,7 @@
                     </v-list-item-content>
                   </div>
                 </template>
-              </v-autocomplete>
+              </rc-autocomplete>
             </v-col>
           </v-row>
         </v-card-text>
@@ -226,12 +226,13 @@ import ImgUtil from '@/utils/ImgUtil'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
+import RcAutocomplete from '@/components/basic/RcAutocomplete'
 
 const PATCHES_MIN = [2, 3, 4, 5]
 export default {
   name: 'AquariumPage',
   mixins: [PageMixin],
-  components: { RawItemIcon, FishAquarium },
+  components: { RcAutocomplete, RawItemIcon, FishAquarium },
   data() {
     return {
       aquariumSettingImg: ImgUtil.getImgUrl('aquarium-setting.jpg'),

@@ -5,10 +5,11 @@
     max-width="1264px"
     style="z-index: 100"
     scrollable
+    autofocus
   >
     <v-card>
       <v-card-title>
-        <v-autocomplete
+        <rc-autocomplete
           ref="search"
           v-model="fishId"
           :items="fishSearchData"
@@ -38,7 +39,7 @@
               </div>
             </click-helper>
           </template>
-        </v-autocomplete>
+        </rc-autocomplete>
       </v-card-title>
       <template v-if="fish != null">
         <v-divider />
@@ -64,12 +65,13 @@ import EnvMixin from '@/components/basic/EnvMixin'
 import FishDetail from '@/components/FishDetail'
 import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
+import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'FishSearch',
   mixins: [EnvMixin],
-  components: { RcDialog, RawItemIcon, FishDetail, ClickHelper },
+  components: { RcAutocomplete, RcDialog, RawItemIcon, FishDetail, ClickHelper },
   props: {
     value: {
       type: Boolean,

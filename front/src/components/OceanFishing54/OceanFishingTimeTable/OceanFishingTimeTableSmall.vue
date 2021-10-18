@@ -5,11 +5,11 @@
         <v-row>
           <v-col cols="12" class="d-flex">
             <v-subheader style="min-width: 100px">显示航班数</v-subheader>
-            <v-text-field v-model="voyageN" type="number" solo />
+            <rc-text-field v-model="voyageN" type="number" solo />
           </v-col>
           <v-col cols="12" class="d-flex">
             <v-subheader style="min-width: 100px">筛选条件</v-subheader>
-            <v-autocomplete
+            <rc-autocomplete
               class="targetSelector"
               v-model="targets"
               :items="selectionOptions"
@@ -56,7 +56,7 @@
                   </div>
                 </div>
               </template>
-            </v-autocomplete>
+            </rc-autocomplete>
           </v-col>
         </v-row>
       </v-container>
@@ -135,10 +135,12 @@
 <script>
 import ItemIcon from '@/components/basic/ItemIcon'
 import OceanFishingTimeTableMixin from '@/components/OceanFishing54/OceanFishingTimeTable/OceanFishingTimeTableMixin'
+import RcAutocomplete from '@/components/basic/RcAutocomplete'
+import RcTextField from '@/components/basic/RcTextField'
 
 export default {
   name: 'OceanFishingTimeTableSmall',
-  components: { ItemIcon },
+  components: { RcTextField, RcAutocomplete, ItemIcon },
   mixins: [OceanFishingTimeTableMixin],
 }
 </script>

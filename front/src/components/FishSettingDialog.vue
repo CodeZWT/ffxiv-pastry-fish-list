@@ -159,7 +159,7 @@
                         :name="`${setting.key}-before`"
                         rules="required|max_value:20|min_value:0"
                       >
-                        <v-text-field
+                        <rc-text-field
                           v-model="setting.before"
                           :label="$t('setting.dialog.notification.before')"
                           :suffix="$t('setting.dialog.notification.unit')"
@@ -290,6 +290,7 @@ import DetailItemSettingEntry from '@/components/DetailItemSettingEntry'
 import EnvMixin from '@/components/basic/EnvMixin'
 import NotificationUtil from '@/utils/NotificationUtil'
 import RcDialog from '@/components/basic/RcDialog'
+import RcTextField from '@/components/basic/RcTextField'
 import _ from 'lodash'
 import draggable from 'vuedraggable'
 import i18n from '@/i18n'
@@ -314,6 +315,7 @@ export default {
   name: 'FishSettingDialog',
   mixins: [EnvMixin],
   components: {
+    RcTextField,
     RcDialog,
     DetailItemSettingEntry,
     ClickHelper,

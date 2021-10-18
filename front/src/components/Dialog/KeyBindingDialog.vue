@@ -29,11 +29,9 @@
         <v-btn text @click="$emit('input', false)">关闭</v-btn>
       </v-card-actions>
     </v-card>
-    <rc-dialog v-model="showEditDialog" max-width="300" persistent>
+    <rc-dialog v-model="showEditDialog" max-width="300" persistent autofocus>
       <v-card>
-        <v-card-title>
-          修改快捷键
-        </v-card-title>
+        <v-card-title> 修改快捷键 </v-card-title>
         <v-card-text>
           <div class="d-flex align-center justify-center" style="width: 100%">
             <template v-for="(key, i) in currentControlKeys">

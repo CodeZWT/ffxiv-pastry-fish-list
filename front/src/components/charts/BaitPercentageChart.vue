@@ -19,15 +19,15 @@
           <v-subheader class="pb-8">ET范围</v-subheader>
           <div class="d-flex flex-column">
             <div class="d-flex align-content-space-between">
-              <v-autocomplete
+              <rc-autocomplete
                 v-model="etHourStartFilter"
                 :items="etHourOptions"
                 label="开始ET小时"
                 outlined
                 auto-select-first
                 style="width: 100px; min-width: 100px"
-              ></v-autocomplete>
-              <v-autocomplete
+              ></rc-autocomplete>
+              <rc-autocomplete
                 v-model="etMinuteStartFilter"
                 :items="etMinuteStartOptions"
                 label="开始ET分"
@@ -35,24 +35,24 @@
                 auto-select-first
                 class="ml-1"
                 style="width: 100px; min-width: 100px"
-              ></v-autocomplete>
+              ></rc-autocomplete>
             </div>
             <div class="d-flex align-content-space-between">
-              <v-autocomplete
+              <rc-autocomplete
                 v-model="etHourEndFilter"
                 :items="etHourOptions"
                 label="结束ET小时"
                 outlined
                 style="width: 100px; min-width: 100px"
-              ></v-autocomplete>
-              <v-autocomplete
+              ></rc-autocomplete>
+              <rc-autocomplete
                 v-model="etMinuteEndFilter"
                 :items="etMinuteEndOptions"
                 label="结束ET分"
                 outlined
                 class="ml-1"
                 style="width: 100px; min-width: 100px"
-              ></v-autocomplete>
+              ></rc-autocomplete>
             </div>
           </div>
         </div>
@@ -260,6 +260,7 @@ import Constants from 'Data/constants'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import ItemIcon from '@/components/basic/ItemIcon'
+import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import SPOT_WEATHER from 'Data/spotWeather'
 import UploadUtil from '@/utils/UploadUtil'
 import WeatherIcon from '@/components/basic/WeatherIcon'
@@ -271,7 +272,7 @@ const hourMinuteToMinutes = (hour, minute) => {
 
 export default {
   name: 'BaitPercentageChart',
-  components: { WeatherIcon, ItemIcon },
+  components: { RcAutocomplete, WeatherIcon, ItemIcon },
   inject: {
     theme: {
       default: { isDark: false },

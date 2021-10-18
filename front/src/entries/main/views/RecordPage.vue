@@ -14,7 +14,7 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <v-autocomplete
+            <rc-autocomplete
               ref="search"
               v-model="spotId"
               :items="spotsForSearch"
@@ -36,7 +36,7 @@
                   </v-list-item-content>
                 </div>
               </template>
-            </v-autocomplete>
+            </rc-autocomplete>
             <template v-if="spotId > 0">
               <div class="ma-4 d-flex align-center">
                 <v-subheader>模式筛选</v-subheader>
@@ -448,7 +448,7 @@
               <v-col cols="12">
                 <v-row>
                   <v-col>
-                    <v-autocomplete
+                    <rc-autocomplete
                       ref="search"
                       v-model="recordsFilterSpotId"
                       :items="spotsForSearch"
@@ -470,10 +470,10 @@
                           </v-list-item-content>
                         </div>
                       </template>
-                    </v-autocomplete>
+                    </rc-autocomplete>
                   </v-col>
                   <v-col>
-                    <v-autocomplete
+                    <rc-autocomplete
                       ref="search"
                       v-model="recordsFilterFishId"
                       :items="fishForSearch"
@@ -495,10 +495,10 @@
                           </v-list-item-content>
                         </div>
                       </template>
-                    </v-autocomplete>
+                    </rc-autocomplete>
                   </v-col>
                   <v-col>
-                    <v-autocomplete
+                    <rc-autocomplete
                       ref="search"
                       v-model="recordsFilterBaitId"
                       :items="baitForSearch"
@@ -520,7 +520,7 @@
                           </v-list-item-content>
                         </div>
                       </template>
-                    </v-autocomplete>
+                    </rc-autocomplete>
                   </v-col>
                 </v-row>
               </v-col>
@@ -701,6 +701,7 @@ import FishingSpots from 'Data/fishingSpots'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PinyinMatch from 'pinyin-match'
 import PlaceNames from 'Data/placeNames'
+import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import SPOT_WEATHER from 'Data/spotWeather'
@@ -712,6 +713,7 @@ import rcapiService from '@/service/rcapiService'
 export default {
   name: 'RecordPage',
   components: {
+    RcAutocomplete,
     RcDialog,
     EffectIcon,
     WeatherIcon,

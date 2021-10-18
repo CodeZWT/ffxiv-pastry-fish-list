@@ -26,14 +26,14 @@
             <v-btn text icon @click="type = undefined">
               <v-icon> mdi-home </v-icon>
             </v-btn>
-            <v-text-field
+            <rc-text-field
               v-model="searchText"
               :label="$t('wiki.searchTitle')"
               flat
               solo-inverted
               hide-details
               clearable
-            ></v-text-field>
+            ></rc-text-field>
             <!-- expand all button -->
             <!--            <v-btn icon text class="ml-1" @click="expandAll">-->
             <!--              <v-icon>mdi-arrow-expand-vertical</v-icon>-->
@@ -532,6 +532,7 @@ import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishing
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 import PinyinMatch from 'pinyin-match'
 import RcDialog from '@/components/basic/RcDialog'
+import RcTextField from '@/components/basic/RcTextField'
 import TreeModel from 'tree-model'
 import _ from 'lodash'
 import normSpots from 'Data/fishingSpots'
@@ -542,6 +543,7 @@ export default {
   name: 'WikiPage',
   mixins: [PageMixin],
   components: {
+    RcTextField,
     RcDialog,
     AboutChartDialog,
     BiteIntervalChart,

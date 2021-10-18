@@ -112,7 +112,7 @@
             <kbd class="text-subtitle-1">Alt</kbd>+
             <kbd class="text-subtitle-1">Shift</kbd>+
           </div>
-          <v-text-field
+          <rc-text-field
             readonly
             :value="lazySetting.hotkey.mouseThrough"
             @keydown="setHotkey('mouseThrough', $event)"
@@ -121,7 +121,7 @@
             outlined
             dense
             hide-details
-          ></v-text-field>
+          ></rc-text-field>
         </v-card-text>
         <v-card-text class="d-flex align-center">
           <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
@@ -131,7 +131,7 @@
             <kbd class="text-subtitle-1">Alt</kbd>+
             <kbd class="text-subtitle-1">Shift</kbd>+
           </div>
-          <v-text-field
+          <rc-text-field
             readonly
             :value="lazySetting.hotkey.toggleReader"
             @keydown="setHotkey('toggleReader', $event)"
@@ -140,7 +140,7 @@
             outlined
             dense
             hide-details
-          ></v-text-field>
+          ></rc-text-field>
         </v-card-text>
       </v-card>
       <v-card outlined width="100%" class="my-1">
@@ -348,12 +348,13 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import RcDialog from '@/components/basic/RcDialog'
+import RcTextField from '@/components/basic/RcTextField'
 import _ from 'lodash'
 import db from '@/plugins/db'
 
 export default {
   name: 'ReaderSetting',
-  components: { RcDialog },
+  components: { RcTextField, RcDialog },
   mixins: [EnvMixin],
   props: {
     now: {

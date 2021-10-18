@@ -8,7 +8,7 @@
     min-width="auto"
   >
     <template v-slot:activator="{ on, attrs }">
-      <v-text-field
+      <rc-text-field
         v-model="value"
         :label="label"
         prepend-icon="mdi-timer"
@@ -16,15 +16,17 @@
         v-bind="attrs"
         v-on="on"
         solo
-      ></v-text-field>
+      ></rc-text-field>
     </template>
     <v-time-picker :value="value" @input="handleInput" format="24hr"></v-time-picker>
   </v-menu>
 </template>
 
 <script>
+import RcTextField from '@/components/basic/RcTextField'
 export default {
   name: 'TimeInput',
+  components: { RcTextField },
   props: {
     value: {
       type: String,

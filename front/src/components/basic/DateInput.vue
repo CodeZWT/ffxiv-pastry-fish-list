@@ -8,7 +8,7 @@
     min-width="auto"
   >
     <template v-slot:activator="{ on, attrs }">
-      <v-text-field
+      <rc-text-field
         :value="value"
         :label="label"
         prepend-icon="mdi-calendar"
@@ -16,7 +16,7 @@
         v-bind="attrs"
         v-on="on"
         solo
-      ></v-text-field>
+      ></rc-text-field>
     </template>
     <v-date-picker
       :value="value"
@@ -29,9 +29,11 @@
 
 <script>
 import { DateTime } from 'luxon'
+import RcTextField from '@/components/basic/RcTextField'
 
 export default {
   name: 'DateInput',
+  components: { RcTextField },
   props: {
     value: {
       type: String,

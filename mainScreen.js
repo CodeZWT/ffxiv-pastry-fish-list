@@ -330,6 +330,14 @@ const setupEvent = () => {
     .on('updateKeybindings', (event, keybindings)=> {
       hotkeySetting.bindHotkey(keybindings)
     })
+    .on('setFocused', (event, focused)=> {
+      SCREEN.setFocusable(focused)
+      if (focused) {
+        SCREEN.focus()
+      } else {
+        SCREEN.blur()
+      }
+    })
 
   ipcMain.handle('showOpenSoundFileDialog', () => {
     return getSoundFilePath()

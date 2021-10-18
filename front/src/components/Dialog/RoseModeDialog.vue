@@ -1,5 +1,5 @@
 <template>
-  <rc-dialog :value="show" @input="$emit('input', $event)" max-width="300">
+  <rc-dialog :value="show" @input="$emit('input', $event)" max-width="300" autofocus>
     <v-card v-if="!isRoseMode">
       <v-card-title>请输入暗号</v-card-title>
       <v-card-text>
@@ -133,11 +133,6 @@
                 </form>
               </validation-observer>
             </div>
-            <!--            <v-form>-->
-            <!--              <v-text-field label="邮箱" v-model="username" />-->
-            <!--              <v-text-field label="密码" v-model="password" type="password" />-->
-            <!--              <v-text-field label="再次输入密码" v-model="rePassword" type="password" />-->
-            <!--            </v-form>-->
           </v-tab-item>
         </v-tabs-items>
       </v-card-text>

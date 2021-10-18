@@ -88,7 +88,7 @@
           </v-col>
           <template v-if="isListTab">
             <v-col cols="12" class="my-2">
-              <v-autocomplete
+              <rc-autocomplete
                 ref="search"
                 v-model="searchBaitId"
                 :items="baitsForSearch"
@@ -116,7 +116,7 @@
                     </div>
                   </click-helper>
                 </template>
-              </v-autocomplete>
+              </rc-autocomplete>
             </v-col>
             <v-col cols="12">
               <v-expansion-panels>
@@ -165,12 +165,13 @@ import FIX from 'Data/fix'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
+import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
 import _ from 'lodash'
 
 export default {
   name: 'BaitDialog',
-  components: { RcDialog, RawItemIcon, ClickHelper, ItemIcon },
+  components: { RcAutocomplete, RcDialog, RawItemIcon, ClickHelper, ItemIcon },
   model: {
     prop: 'showBaitDialog',
     event: 'input',
