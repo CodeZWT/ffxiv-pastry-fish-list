@@ -1,5 +1,5 @@
 <template>
-  <rc-dialog v-model="showDialog" max-width="600" persistent>
+  <rc-dialog v-model="showDialog" max-width="600">
     <v-card>
       <v-card-title>
         {{ $t('top.keybinding') }}
@@ -26,7 +26,7 @@
         </v-simple-table>
       </v-card-text>
       <v-card-actions class="d-flex justify-end">
-        <v-btn @click="$emit('input', false)">关闭</v-btn>
+        <v-btn text @click="$emit('input', false)">关闭</v-btn>
       </v-card-actions>
     </v-card>
     <rc-dialog v-model="showEditDialog" max-width="300" persistent>
@@ -59,8 +59,8 @@
             设置的快捷键与已有的快捷键冲突
           </div>
         </v-card-text>
-        <v-card-actions v-if="hasBindingError" class="d-flex justify-end">
-          <v-btn @click="cancelSetHotkey">取消</v-btn>
+        <v-card-actions class="d-flex justify-end">
+          <v-btn text @click="cancelSetHotkey">关闭</v-btn>
         </v-card-actions>
       </v-card>
     </rc-dialog>
