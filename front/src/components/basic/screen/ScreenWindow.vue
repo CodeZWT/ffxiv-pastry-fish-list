@@ -25,7 +25,7 @@
       <div style="font-size: x-large">{{ title }}</div>
     </v-sheet>
     <v-sheet
-      v-else
+      v-show="!dragging || !dragPlaceholder"
       :class="{
         'window-wrapper': true,
         rounded: true,

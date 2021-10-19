@@ -4,9 +4,10 @@
       screen: true,
     }"
   >
-    <template v-for="winId in windows">
+    <template v-for="(_, winId) in layouts">
       <main-window
         v-if="winId.indexOf('MAIN') === 0"
+        v-show="windows.includes(winId)"
         :id="winId"
         :key="winId"
         :now="now"
@@ -27,7 +28,7 @@
       />
 
       <fish-detail-window
-        v-else-if="winId.indexOf('FISH_DETAIL') === 0"
+        v-if="windows.includes(winId) && winId.indexOf('FISH_DETAIL') === 0"
         :id="winId"
         :key="winId"
         :now="now"
@@ -35,14 +36,14 @@
       />
 
       <reader-timer-mini-window
-        v-else-if="winId.indexOf('READER_TIMER_MINI') === 0"
+        v-else-if="windows.includes(winId) && winId.indexOf('READER_TIMER_MINI') === 0"
         :id="winId"
         :key="winId"
         :now="readerNow"
         :dark="dark"
       />
       <reader-timer-window
-        v-else-if="winId.indexOf('READER_TIMER') === 0"
+        v-else-if="windows.includes(winId) && winId.indexOf('READER_TIMER') === 0"
         :id="winId"
         :key="winId"
         :now="readerNow"
@@ -50,20 +51,22 @@
       />
 
       <reader-history-window
-        v-else-if="winId.indexOf('READER_HISTORY') === 0"
+        v-else-if="windows.includes(winId) && winId.indexOf('READER_HISTORY') === 0"
         :id="winId"
         :key="winId"
         :now="readerNow"
       />
       <reader-spot-statistics-window
-        v-else-if="winId.indexOf('READER_SPOT_STATISTICS') === 0"
+        v-else-if="
+          windows.includes(winId) && winId.indexOf('READER_SPOT_STATISTICS') === 0
+        "
         :id="winId"
         :key="winId"
         :now="readerNow"
       />
 
       <menu-window
-        v-else-if="winId.indexOf('MENU') === 0"
+        v-else-if="windows.includes(winId) && winId.indexOf('MENU') === 0"
         :id="winId"
         :key="winId"
         @show-setting="showSetting"
