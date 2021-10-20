@@ -268,6 +268,7 @@ import ReaderTimerMiniWindow from '@/entries/screen/views/ReaderTimerMiniWindow'
 import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
 import RecordValidator from '@/utils/RecordValidator'
 import UploadUtil from '@/utils/UploadUtil'
+import _ from 'lodash'
 import rcapiService from '@/service/rcapiService'
 
 export default {
@@ -288,8 +289,11 @@ export default {
     showSideBar: true,
     miniSideBar: true,
     readerNow: Date.now(),
+    openedReaderWindows: [],
+    isFishing: false,
   }),
   computed: {
+    ...mapState(['readerSetting']),
     ...mapState('screenWindow', [
       'layouts',
       'windows',
@@ -372,12 +376,32 @@ export default {
         console.log('showRoseDialog')
         this.showRoseDialog = true
       })
+      ?.on('fishingData', (event, data) => {
+        this.isFishing = data.status.isFishing
+      })
     this.addMenu()
   },
   mounted() {
     setInterval(() => {
       this.readerNow = Date.now()
     }, 100)
+  },
+  watch: {
+    isFishing(isFishing) {
+      if (this.readerSetting.showReaderOnlyIfFishing) {
+        if (isFishing) {
+          this.openedReaderWindows.forEach(id => {
+            this.showWindow({ type: id })
+          })
+        } else {
+          this.openedReaderWindows = _.sortBy(
+            this.windows.filter(id => id.indexOf('READER_') === 0),
+            winId => this.layouts[winId].z
+          )
+          this.openedReaderWindows.forEach(winId => this.closeWindow(winId))
+        }
+      }
+    },
   },
   methods: {
     ...mapMutations('screenWindow', [
