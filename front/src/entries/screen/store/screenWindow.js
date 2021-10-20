@@ -96,6 +96,7 @@ const SaveLayoutPlugin = store => {
       LocalStorageUtil.storeWindowLayouts({
         layouts: state.screenWindow.layouts,
         windows: state.screenWindow.windows,
+        hiddenReaderWindows: state.screenWindow.hiddenReaderWindows,
         subPage: state.screenWindow.subPage,
         tabIndex: state.screenWindow.tabIndex,
         menuInitialized: state.screenWindow.menuInitialized,
@@ -122,6 +123,7 @@ const ScreenWindowModule = {
   state: {
     layouts: { ...DEFAULT_LAYOUTS, ...storedConfig?.layouts },
     windows: storedConfig?.windows ?? [],
+    hiddenReaderWindows: storedConfig?.hiddenReaderWindows ?? [],
     dialogs: [],
     alerts: [],
     bottomNotifications: [],
@@ -137,6 +139,9 @@ const ScreenWindowModule = {
     },
   },
   mutations: {
+    setHiddenReaderWindows(state, windowsIds) {
+      state.hiddenReaderWindows = windowsIds
+    },
     registerDialog(state, dialogId) {
       state.dialogs.push(dialogId)
     },

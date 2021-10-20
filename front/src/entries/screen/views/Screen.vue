@@ -291,7 +291,6 @@ export default {
     showSideBar: true,
     miniSideBar: true,
     readerNow: Date.now(),
-    openedReaderWindows: [],
     isFishing: false,
   }),
   computed: {
@@ -303,6 +302,7 @@ export default {
       'dialogs',
       'alerts',
       'bottomNotifications',
+      'hiddenReaderWindows',
     ]),
   },
   async created() {
@@ -390,7 +390,27 @@ export default {
     this.loadReaderSounds().then(sounds =>
       this.setSounds(DataUtil.toMap(sounds, it => it.key))
     )
-
+    // this.$watch(
+    //   () => !this.isFishing && this.readerSetting.showReaderOnlyIfFishing,
+    //   hideReaderWindows => {
+    //     if (hideReaderWindows) {
+    //       this.setHiddenReaderWindows(
+    //         _.sortBy(
+    //           this.windows.filter(id => id.indexOf('READER_') === 0),
+    //           winId => this.layouts[winId].z
+    //         )
+    //       )
+    //       this.hiddenReaderWindows.forEach(winId => this.closeWindow(winId))
+    //     } else {
+    //       this.hiddenReaderWindows.forEach(id => {
+    //         this.showWindow({ type: id })
+    //       })
+    //     }
+    //   },
+    //   {
+    //     immediate: true,
+    //   }
+    // )
     // window.electron?.ipcRenderer?.on('reloadUserData', () => {
     //   this.reloadUserData()
     //   console.debug('loading sounds')
@@ -400,21 +420,36 @@ export default {
     // })
   },
   watch: {
-    isFishing(isFishing) {
-      if (this.readerSetting.showReaderOnlyIfFishing) {
-        if (isFishing) {
-          this.openedReaderWindows.forEach(id => {
-            this.showWindow({ type: id })
-          })
-        } else {
-          this.openedReaderWindows = _.sortBy(
-            this.windows.filter(id => id.indexOf('READER_') === 0),
-            winId => this.layouts[winId].z
-          )
-          this.openedReaderWindows.forEach(winId => this.closeWindow(winId))
+    isFishing: {
+      handler(isFishing) {
+        if (this.readerSetting.showReaderOnlyIfFishing) {
+          if (isFishing) {
+            this.hiddenReaderWindows.forEach(id => {
+              this.showWindow({ type: id })
+            })
+            this.setHiddenReaderWindows([])
+          } else {
+            if (this.hiddenReaderWindows.length === 0) {
+              this.setHiddenReaderWindows(
+                _.sortBy(
+                  this.windows.filter(id => id.indexOf('READER_') === 0),
+                  winId => this.layouts[winId].z
+                )
+              )
+            }
+            this.hiddenReaderWindows.forEach(winId => this.closeWindow(winId))
+          }
         }
-      }
+      },
+      immediate: true,
     },
+    // 'readerSetting.showReaderOnlyIfFishing': {
+    //   handler(showReaderOnlyIfFishing) {
+    //     if (showReaderOnlyIfFishing) {
+    //
+    //     }
+    //   },
+    // },
   },
   methods: {
     ...mapMutations(['setSounds']),
@@ -424,6 +459,7 @@ export default {
       'closeWindow',
       'setGlobalClickThrough',
       'setMenuWindowToScreenCenter',
+      'setHiddenReaderWindows',
     ]),
     loadReaderSounds() {
       return DataUtil.loadingSounds(db)
