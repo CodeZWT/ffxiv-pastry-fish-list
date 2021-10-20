@@ -32,13 +32,14 @@ import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import READER_ICON from 'Assets/reader.png'
 import ReaderTimer from '@/entries/reader/views/ReaderTimer'
+import ReaderTimerMixin from '@/entries/screen/views/ReaderTimerMixin'
 import SETTING_ICON from 'Assets/setting.png'
 import ScreenWindow from '@/components/basic/screen/ScreenWindow'
 import WindowMixin from '@/components/basic/screen/WindowMixin'
 
 export default {
   name: 'ReaderTimerMiniWindow',
-  mixins: [WindowMixin],
+  mixins: [WindowMixin, ReaderTimerMixin],
   components: { ScreenWindow, ReaderTimer },
   props: {
     now: {

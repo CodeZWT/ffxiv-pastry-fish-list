@@ -546,7 +546,7 @@ export const MainModule = {
     },
     setSounds(state, sounds) {
       console.debug('update sounds', sounds)
-      state.sounds = sounds
+      state.sounds = { ...state.sounds, ...sounds }
     },
     clearToBeNotified(state) {
       state.userData = { ...state.userData, toBeNotified: [] }

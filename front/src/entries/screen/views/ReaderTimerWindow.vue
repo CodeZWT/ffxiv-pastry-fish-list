@@ -60,18 +60,19 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import READER_ICON from 'Assets/reader.png'
 import RcDialog from '@/components/basic/RcDialog'
 import ReaderSetting from '@/entries/reader/views/ReaderSetting'
 import ReaderTimer from '@/entries/reader/views/ReaderTimer'
+import ReaderTimerMixin from '@/entries/screen/views/ReaderTimerMixin'
 import SETTING_ICON from 'Assets/setting.png'
 import ScreenWindow from '@/components/basic/screen/ScreenWindow'
 import WindowMixin from '@/components/basic/screen/WindowMixin'
 
 export default {
   name: 'ReaderTimerWindow',
-  mixins: [WindowMixin],
+  mixins: [WindowMixin, ReaderTimerMixin],
   components: { RcDialog, ScreenWindow, ReaderSetting, ReaderTimer },
   props: {
     now: {
@@ -89,7 +90,6 @@ export default {
     showSettingDialog: false,
   }),
   computed: {
-    ...mapState(['sounds', 'readerTimerMiniMode']),
     ...mapGetters(['readerRegion', 'isStrictMode', 'isUploadMode', 'isRoseMode']),
     title() {
       return `渔捞 ${this.readerRegion === 'CN' ? '国服' : '国际服'}`

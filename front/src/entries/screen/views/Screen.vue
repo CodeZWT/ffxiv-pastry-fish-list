@@ -257,6 +257,7 @@
 import { INTERVAL_MINUTE } from 'Data/constants'
 import { mapMutations, mapState } from 'vuex'
 import AppMixin from '@/components/AppMixin'
+import DataUtil from '@/utils/DataUtil'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
 import MainWindow from '@/entries/screen/views/MainWindow'
 import MenuWindow from '@/entries/screen/views/MenuWindow'
@@ -269,6 +270,7 @@ import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
 import RecordValidator from '@/utils/RecordValidator'
 import UploadUtil from '@/utils/UploadUtil'
 import _ from 'lodash'
+import db from '@/plugins/db'
 import rcapiService from '@/service/rcapiService'
 
 export default {
@@ -293,7 +295,7 @@ export default {
     isFishing: false,
   }),
   computed: {
-    ...mapState(['readerSetting']),
+    ...mapState(['readerSetting', 'sounds']),
     ...mapState('screenWindow', [
       'layouts',
       'windows',
@@ -385,6 +387,17 @@ export default {
     setInterval(() => {
       this.readerNow = Date.now()
     }, 100)
+    this.loadReaderSounds().then(sounds =>
+      this.setSounds(DataUtil.toMap(sounds, it => it.key))
+    )
+
+    // window.electron?.ipcRenderer?.on('reloadUserData', () => {
+    //   this.reloadUserData()
+    //   console.debug('loading sounds')
+    //   this.loadingSounds().then(sounds =>
+    //     this.setSounds(DataUtil.toMap(sounds, it => it.key))
+    //   )
+    // })
   },
   watch: {
     isFishing(isFishing) {
@@ -404,6 +417,7 @@ export default {
     },
   },
   methods: {
+    ...mapMutations(['setSounds']),
     ...mapMutations('screenWindow', [
       'updateWindowLayout',
       'showWindow',
@@ -411,6 +425,9 @@ export default {
       'setGlobalClickThrough',
       'setMenuWindowToScreenCenter',
     ]),
+    loadReaderSounds() {
+      return DataUtil.loadingSounds(db)
+    },
     onFishSelected({ fishId, firstSpotId }) {
       this.selectedFishId = fishId
       this.selectedFishFirstSpotId = firstSpotId

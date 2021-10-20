@@ -1,3 +1,5 @@
+import { sendElectronEvent } from '@/utils/electronHelper'
+
 export default {
   setAlwaysOnTop(alwaysOnTop) {
     this.sendElectronEvent('alwaysOnTop', alwaysOnTop)
@@ -26,7 +28,5 @@ export default {
   unmaximizeWindow() {
     this.sendElectronEvent('unmaximize')
   },
-  sendElectronEvent(channel, data) {
-    window.electron?.ipcRenderer?.send(channel, data)
-  },
+  sendElectronEvent: sendElectronEvent,
 }
