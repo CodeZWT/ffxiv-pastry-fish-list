@@ -102,47 +102,47 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-card outlined width="100%" class="my-1">
-        <div class="overline ml-2">快捷键</div>
-        <v-card-text class="d-flex align-center">
-          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-            切换鱼糕鼠标穿透
-          </div>
-          <div class="mr-2">
-            <kbd class="text-subtitle-1">Alt</kbd>+
-            <kbd class="text-subtitle-1">Shift</kbd>+
-          </div>
-          <rc-text-field
-            readonly
-            :value="lazySetting.hotkey.mouseThrough"
-            @keydown="setHotkey('mouseThrough', $event)"
-            style="max-width: 36px"
-            placeholder="]"
-            outlined
-            dense
-            hide-details
-          ></rc-text-field>
-        </v-card-text>
-        <v-card-text class="d-flex align-center">
-          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-            切换鱼糕鼠标穿透
-          </div>
-          <div class="mr-2">
-            <kbd class="text-subtitle-1">Alt</kbd>+
-            <kbd class="text-subtitle-1">Shift</kbd>+
-          </div>
-          <rc-text-field
-            readonly
-            :value="lazySetting.hotkey.toggleReader"
-            @keydown="setHotkey('toggleReader', $event)"
-            style="max-width: 36px"
-            placeholder="]"
-            outlined
-            dense
-            hide-details
-          ></rc-text-field>
-        </v-card-text>
-      </v-card>
+      <!--      <v-card outlined width="100%" class="my-1">-->
+      <!--        <div class="overline ml-2">快捷键</div>-->
+      <!--        <v-card-text class="d-flex align-center">-->
+      <!--          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">-->
+      <!--            切换鱼糕鼠标穿透-->
+      <!--          </div>-->
+      <!--          <div class="mr-2">-->
+      <!--            <kbd class="text-subtitle-1">Alt</kbd>+-->
+      <!--            <kbd class="text-subtitle-1">Shift</kbd>+-->
+      <!--          </div>-->
+      <!--          <rc-text-field-->
+      <!--            readonly-->
+      <!--            :value="lazySetting.hotkey.mouseThrough"-->
+      <!--            @keydown="setHotkey('mouseThrough', $event)"-->
+      <!--            style="max-width: 36px"-->
+      <!--            placeholder="]"-->
+      <!--            outlined-->
+      <!--            dense-->
+      <!--            hide-details-->
+      <!--          ></rc-text-field>-->
+      <!--        </v-card-text>-->
+      <!--        <v-card-text class="d-flex align-center">-->
+      <!--          <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">-->
+      <!--            切换鱼糕鼠标穿透-->
+      <!--          </div>-->
+      <!--          <div class="mr-2">-->
+      <!--            <kbd class="text-subtitle-1">Alt</kbd>+-->
+      <!--            <kbd class="text-subtitle-1">Shift</kbd>+-->
+      <!--          </div>-->
+      <!--          <rc-text-field-->
+      <!--            readonly-->
+      <!--            :value="lazySetting.hotkey.toggleReader"-->
+      <!--            @keydown="setHotkey('toggleReader', $event)"-->
+      <!--            style="max-width: 36px"-->
+      <!--            placeholder="]"-->
+      <!--            outlined-->
+      <!--            dense-->
+      <!--            hide-details-->
+      <!--          ></rc-text-field>-->
+      <!--        </v-card-text>-->
+      <!--      </v-card>-->
       <v-card outlined width="100%" class="my-1">
         <div class="overline ml-2">计时器</div>
         <v-card-text>
@@ -223,7 +223,7 @@
                       <div class="text-truncate" style="max-width: 170px">
                         {{
                           toDisplayFileName(lazySetting.timer.sound[tug].customPath) ||
-                            '未选择文件'
+                          '未选择文件'
                         }}
                       </div>
                     </v-btn>
@@ -348,13 +348,12 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import RcDialog from '@/components/basic/RcDialog'
-import RcTextField from '@/components/basic/RcTextField'
 import _ from 'lodash'
 import db from '@/plugins/db'
 
 export default {
   name: 'ReaderSetting',
-  components: { RcTextField, RcDialog },
+  components: { RcDialog },
   mixins: [EnvMixin],
   props: {
     now: {
