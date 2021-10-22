@@ -27,7 +27,6 @@ export default {
           this.unRegisterDialog(this.dialogId)
         }
         if (this.autofocus) {
-          console.log('setFocused', isActive)
           sendElectronEvent('setFocused', isActive)
         }
       },
