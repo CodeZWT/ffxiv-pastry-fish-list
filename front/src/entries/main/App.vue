@@ -349,14 +349,12 @@
 
           <!--  <v-divider class="mx-2" />-->
           <!--    TODO recover this   -->
-          <v-list-item v-if="false && !isElectron" @click="showDownload" link>
+          <v-list-item v-if="!isElectron" @click="toUpdateInfo" link>
             <v-list-item-icon>
-              <new-feature-mark :id="DesktopDownloadFeatureId">
-                <v-icon>mdi-desktop-mac-dashboard</v-icon>
-              </new-feature-mark>
+              <v-icon>mdi-desktop-mac-dashboard</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{ $t('top.desktopVersion') }}</v-list-item-title>
+              <v-list-item-title>{{ $t('top.moreInfo') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
@@ -765,6 +763,9 @@ export default {
     showDownload() {
       this.showDownloadDialog = true
       this.setFeatureViewed(this.DesktopDownloadFeatureId)
+    },
+    toUpdateInfo() {
+      window.open('https://ngabbs.com/read.php?tid=23609086')
     },
     toPage(page) {
       if (this.$route.name !== page) {
