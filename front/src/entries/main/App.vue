@@ -491,38 +491,83 @@
     />
 
     <v-footer app style="font-size: small; max-height: 31px">
-      <div
-        class="d-flex"
-        style="width: 100%; cursor: pointer"
-        @click="showAboutDialog = true"
-      >
-        <div class="text-truncate mr-2" :title="$t('footer.contact')">
-          <span v-if="!isMobile">
-            {{ $t('footer.author') }}
-          </span>
-          <span>
-            <i class="fab fa-qq" aria-hidden="true"></i>
-            1153646847
-          </span>
-          <span v-if="isMobile">
-            {{ $t('footer.author') }}
-          </span>
+      <div class="d-flex" style="width: 100%">
+        <template v-if="!isMobile">
+          <div
+            class="text-truncate mr-2"
+            :title="$t('footer.contact')"
+            @click="showAboutDialog = true"
+            style="cursor: pointer"
+          >
+            <span v-if="!isMobile">
+              {{ $t('footer.author') }}
+            </span>
+            <span>
+              <i class="fab fa-qq" aria-hidden="true"></i>
+              1153646847
+            </span>
+            <span v-if="isMobile">
+              {{ $t('footer.author') }}
+            </span>
+          </div>
+          <v-spacer />
+        </template>
+        <div class="d-flex">
+          <div class="mx-1" style="min-width: 150px">
+            <a
+              target="_blank"
+              href="https://beian.miit.gov.cn"
+              style="
+                display: inline-block;
+                text-decoration: none;
+                height: 20px;
+                line-height: 20px;
+              "
+            >
+              <p
+                style="
+                  float: left;
+                  height: 20px;
+                  line-height: 20px;
+                  margin: 0px 0px 0px 5px;
+                  color: #939393;"
+              >
+                黔ICP备2020011894号-1
+              </p>
+            </a>
+          </div>
+          <div class="mx-1" style="min-width: 200px">
+            <a
+              target="_blank"
+              href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52270102000276"
+              style="
+                display: inline-block;
+                text-decoration: none;
+                height: 20px;
+                line-height: 20px;
+              "
+            >
+              <img v-if="!isMobile" :src="beianIcon" style="float: left" />
+              <p
+                style="
+                  float: left;
+                  height: 20px;
+                  line-height: 20px;
+                  margin: 0px 0px 0px 5px;
+                  color: #939393;
+                "
+              >
+                黔公网安备 52270102000276号
+              </p>
+            </a>
+          </div>
         </div>
-        <!--    TODO recover this   -->
-        <!--        <template v-if="!isMobile">-->
-        <!--          <div>-->
-        <!--            <i class="fab fa-weibo" aria-hidden="true"></i>-->
-        <!--            红豆年糕找不到-->
-        <!--          </div>-->
-        <!--          <div class="ml-2">-->
-        <!--            合作：<i class="fab fa-weibo" aria-hidden="true"></i>-->
-        <!--            光之渔夫bot-->
-        <!--          </div>-->
-        <!--        </template>-->
-        <v-spacer />
-        <div v-if="!isMobile" class="text-truncate" :title="$t('footer.ffRights')">
-          {{ $t('footer.ffRights') }}
-        </div>
+        <template v-if="!isMobile">
+          <v-spacer />
+          <div class="text-truncate" :title="$t('footer.ffRights')">
+            {{ $t('footer.ffRights') }}
+          </div>
+        </template>
       </div>
       <resize-indicator />
     </v-footer>
@@ -694,6 +739,7 @@ import { MainFeatures } from 'Data/newFeatures'
 import AppMixin from '@/components/AppMixin'
 import MainWindowMixin from '@/components/MainWindowMixin'
 import RcDialog from '@/components/basic/RcDialog'
+import beianIcon from 'Assets/beian-icon.png'
 
 export default {
   name: 'App',
@@ -704,6 +750,7 @@ export default {
       rightPaneFullScreen: window.innerWidth < 1264,
       showDownloadDialog: false,
       DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
+      beianIcon: beianIcon,
     }
   },
   computed: {

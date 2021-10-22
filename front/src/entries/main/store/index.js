@@ -1,3 +1,4 @@
+import { DialogModule } from '@/entries/screen/store/dialog'
 import { KeybindingModule } from '@/entries/screen/store/keybinding'
 import { ScreenWindowModule } from '@/entries/screen/store/screenWindow'
 import {
@@ -632,6 +633,7 @@ export const MainModule = {
   modules: {
     screenWindow: ScreenWindowModule,
     keybinding: KeybindingModule,
+    dialog: DialogModule,
   },
 }
 
