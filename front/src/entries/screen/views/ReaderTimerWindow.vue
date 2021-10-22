@@ -46,15 +46,6 @@
 
     <template>
       <reader-timer :now="now" />
-
-      <rc-dialog v-model="showSettingDialog" max-width="600" scrollable>
-        <v-card>
-          <v-card-title>渔捞设置</v-card-title>
-          <v-card-text>
-            <reader-setting :now="now" />
-          </v-card-text>
-        </v-card>
-      </rc-dialog>
     </template>
   </screen-window>
 </template>
@@ -62,8 +53,6 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import READER_ICON from 'Assets/reader.png'
-import RcDialog from '@/components/basic/RcDialog'
-import ReaderSetting from '@/entries/reader/views/ReaderSetting'
 import ReaderTimer from '@/entries/reader/views/ReaderTimer'
 import ReaderTimerMixin from '@/entries/screen/views/ReaderTimerMixin'
 import SETTING_ICON from 'Assets/setting.png'
@@ -73,7 +62,7 @@ import WindowMixin from '@/components/basic/screen/WindowMixin'
 export default {
   name: 'ReaderTimerWindow',
   mixins: [WindowMixin, ReaderTimerMixin],
-  components: { RcDialog, ScreenWindow, ReaderSetting, ReaderTimer },
+  components: { ScreenWindow, ReaderTimer },
   props: {
     now: {
       type: Number,
@@ -87,7 +76,6 @@ export default {
   data: () => ({
     readerIcon: READER_ICON,
     settingIcon: SETTING_ICON,
-    showSettingDialog: false,
   }),
   computed: {
     ...mapGetters(['readerRegion', 'isStrictMode', 'isUploadMode', 'isRoseMode']),
@@ -103,13 +91,14 @@ export default {
     },
   },
   methods: {
+    ...mapMutations('dialog', ['setShowDialog']),
     ...mapMutations(['setStrictMode']),
     toggleStrictMode() {
       const newStrictMode = !this.isStrictMode
       this.setStrictMode(newStrictMode)
     },
     showSetting() {
-      this.showSettingDialog = true
+      this.setShowDialog({ dialog: 'readerSettingDialog', show: true })
     },
   },
 }

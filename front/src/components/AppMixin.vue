@@ -86,7 +86,6 @@ export default {
     showHelpDialog: false,
     showAboutDialog: false,
     showSettingDialog: false,
-    showPatchNoteDialog: false,
     showMigrationDialog: false,
     // listFishCnt: [{ cnt: 0 }, { cnt: 0 }, { cnt: 0 }],
     TABS: DataUtil.TABS,
@@ -122,6 +121,14 @@ export default {
     FishEyesFeatureId: MainFeatures.FishEyesButton,
   }),
   computed: {
+    showPatchNoteDialog: {
+      get() {
+        return this.patchNoteDialog
+      },
+      set(show) {
+        this.setShowDialog({ dialog: 'patchNoteDialog', show: show })
+      },
+    },
     // TODO: CHECK different with real eorzea time of 1 minute
     eorzeaTime() {
       return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
@@ -363,6 +370,7 @@ export default {
         this.setShowCompetitionDialog(show)
       },
     },
+    ...mapState('dialog', ['patchNoteDialog']),
     ...mapState('keybinding', ['keybindings']),
     ...mapState([
       'readerSetting',
@@ -1343,6 +1351,7 @@ export default {
     onFishIconClicked() {
       this.setMiniMode(true)
     },
+    ...mapMutations('dialog', ['setShowDialog']),
     ...mapMutations([
       'setShowImportExportDialog',
       'disableStrictMode',

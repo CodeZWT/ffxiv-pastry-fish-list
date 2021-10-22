@@ -33,31 +33,41 @@
                     <v-list-item-icon>
                       <v-icon>mdi-format-list-text</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>{{
-                      $t('list.normalTitle')
-                    }}</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title>{{
+                        $t('list.normalTitle')
+                      }}</v-list-item-title></v-list-item-content
+                    >
                   </v-list-item>
                   <v-list-item @click="addNotificationList">
                     <v-list-item-icon>
                       <v-icon>mdi-bell</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>{{
-                      $t('list.toBeNotifiedTitle')
-                    }}</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title>{{
+                        $t('list.toBeNotifiedTitle')
+                      }}</v-list-item-title></v-list-item-content
+                    >
                   </v-list-item>
                   <v-list-item @click="addWiki">
                     <v-list-item-icon>
                       <v-icon>mdi-notebook</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>{{ $t('top.fishWiki') }}</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title>{{
+                        $t('top.fishWiki')
+                      }}</v-list-item-title></v-list-item-content
+                    >
                   </v-list-item>
                   <v-list-item @click="addOceanFishing">
                     <v-list-item-icon>
                       <v-icon>mdi-ferry</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>{{
-                      $t('top.oceanFishing')
-                    }}</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title>{{
+                        $t('top.oceanFishing')
+                      }}</v-list-item-title></v-list-item-content
+                    >
                   </v-list-item>
                   <v-list-item @click="addDiadem">
                     <v-list-item-icon>
@@ -67,36 +77,42 @@
                         width="24"
                       ></v-img>
                     </v-list-item-icon>
-                    <v-list-item-content>{{ $t('top.diadem') }}</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title>{{
+                        $t('top.diadem')
+                      }}</v-list-item-title></v-list-item-content
+                    >
                   </v-list-item>
                   <v-list-item @click="addAquarium">
                     <v-list-item-icon>
                       <v-icon>mdi-fishbowl</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>{{ $t('top.aquarium') }}</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title>{{
+                        $t('top.aquarium')
+                      }}</v-list-item-title></v-list-item-content
+                    >
                   </v-list-item>
                   <v-list-item @click="addCompetition">
                     <v-list-item-icon>
                       <v-icon>mdi-trophy</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>{{ $t('top.competition') }}</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title>{{
+                        $t('top.competition')
+                      }}</v-list-item-title></v-list-item-content
+                    >
                   </v-list-item>
 
                   <v-list-item v-if="isRoseMode" @click="addRecord">
                     <v-list-item-icon>
                       <v-icon>mdi-chart-bar</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>{{ $t('top.record') }}</v-list-item-content>
-                  </v-list-item>
-                </v-list>
-
-                <v-subheader>退出</v-subheader>
-                <v-list>
-                  <v-list-item @click="exit">
-                    <v-list-item-icon>
-                      <v-icon>mdi-close</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content> 退出鱼糕 </v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title>{{
+                        $t('top.record')
+                      }}</v-list-item-title></v-list-item-content
+                    >
                   </v-list-item>
                 </v-list>
               </v-col>
@@ -107,52 +123,52 @@
                     <v-list-item-icon>
                       <v-icon>mdi-timer</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>计时器</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title>计时器</v-list-item-title></v-list-item-content
+                    >
                   </v-list-item>
                   <v-list-item @click="addReaderTimerMini">
                     <v-list-item-icon>
                       <v-icon>mdi-timer</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>迷你计时器</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        >迷你计时器</v-list-item-title
+                      ></v-list-item-content
+                    >
                   </v-list-item>
                   <v-list-item @click="addReaderHistory">
                     <v-list-item-icon>
                       <v-icon>mdi-history</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>本地历史记录</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        >本地历史记录</v-list-item-title
+                      ></v-list-item-content
+                    >
                   </v-list-item>
                   <v-list-item @click="addReaderSpotStatistics">
                     <v-list-item-icon>
                       <v-icon>mdi-map</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>本地钓场统计</v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        >本地钓场统计</v-list-item-title
+                      ></v-list-item-content
+                    >
                   </v-list-item>
                 </v-list>
                 <v-subheader>其他</v-subheader>
                 <v-list>
-                  <v-list-item @click="showMainSetting">
+                  <v-list-item @click="showGlobalSettingDialog = true">
                     <v-list-item-icon>
                       <v-icon>mdi-cog</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content
-                      >主界面{{ $t('top.uiConfig') }}</v-list-item-content
+                    <v-list-item-content>
+                      <v-list-item-title>{{
+                        $t('top.uiConfig')
+                      }}</v-list-item-title></v-list-item-content
                     >
-                  </v-list-item>
-                  <v-list-item @click="showKeybindingDialog = true">
-                    <v-list-item-icon>
-                      <v-icon>mdi-keyboard</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      {{ $t('top.keybinding') }}
-                    </v-list-item-content>
-                  </v-list-item>
-                  <v-list-item @click="showPatchNoteDialog = true">
-                    <v-list-item-icon>
-                      <v-icon>mdi-tag</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{ $t('top.patchNote') }}</v-list-item-title>
-                    </v-list-item-content>
                   </v-list-item>
 
                   <v-list-item @click="setShowImportExportDialog(true)">
@@ -160,24 +176,11 @@
                       <v-icon>mdi-database</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                      <v-list-item-title>{{ $t('top.menu') }}</v-list-item-title>
+                      <v-list-item-title> {{ $t('top.menu') }}</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
 
-                  <v-list-item @click="showAboutDialog">
-                    <v-list-item-icon>
-                      <v-icon>mdi-information</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{ $t('top.about') }}</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-
-                  <v-list-item
-                    v-if="isElectron && downloadProgress > 0"
-                    link
-                    @click="showUpdateDialog"
-                  >
+                  <v-list-item v-if="downloadProgress > 0" link @click="showUpdateDialog">
                     <v-list-item-icon>
                       <div>
                         <v-progress-circular
@@ -200,7 +203,17 @@
                           downloadProgress === 100
                             ? $t('top.downloaded')
                             : $t('top.downloading')
-                        }}
+                        }}</v-list-item-title
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item @click="exit">
+                    <v-list-item-icon>
+                      <v-icon class="error--text">mdi-close</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content class="error--text">
+                      <v-list-item-title>
+                        退出鱼糕
                       </v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
@@ -218,7 +231,11 @@
         @skip="skipUpdate"
       />
       <update-available-dialog v-model="showUpdateAvailableDialog" :hash="newVersion" />
-      <key-binding-dialog v-model="showKeybindingDialog" />
+      <global-setting-dialog
+        v-model="showGlobalSettingDialog"
+        @show-setting="showMainSetting"
+        @show-about="$emit('show-about')"
+      />
     </div>
   </screen-window>
 </template>
@@ -227,8 +244,8 @@
 import { mapGetters, mapMutations } from 'vuex'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import GlobalSettingDialog from '@/entries/screen/views/GlobalSettingDialog'
 import ImgUtil from '@/utils/ImgUtil'
-import KeyBindingDialog from '@/components/Dialog/KeyBindingDialog'
 import RcDialog from '@/components/basic/RcDialog'
 import ScreenWindow from '@/components/basic/screen/ScreenWindow'
 import UpdateAvailableDialog from '@/components/Dialog/UpdateAvailableDialog'
@@ -239,7 +256,7 @@ export default {
   name: 'MenuWindow',
   mixins: [WindowMixin],
   components: {
-    KeyBindingDialog,
+    GlobalSettingDialog,
     UpdateDialog,
     UpdateAvailableDialog,
     RcDialog,
@@ -252,12 +269,12 @@ export default {
     },
   },
   data: () => ({
+    showGlobalSettingDialog: false,
     isElectron: DevelopmentModeUtil.isElectron(),
     downloadProgress: 0,
     showCheckStartSetupDialog: false,
     showUpdateAvailableDialog: false,
     showWindowMenu: false,
-    showKeybindingDialog: false,
     newVersion: undefined,
     diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
     diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
@@ -322,7 +339,6 @@ export default {
       sendElectronEvent('skipUpdate')
       this.showCheckStartSetupDialog = false
     },
-
     showMainSetting() {
       this.$emit('show-setting')
     },

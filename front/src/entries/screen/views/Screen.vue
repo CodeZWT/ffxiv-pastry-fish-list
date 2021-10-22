@@ -199,6 +199,15 @@
     <rose-mode-dialog v-model="showRoseDialog" />
     <!--    <competition-dialog v-model="showCompetitionDialogComputed" />-->
 
+    <rc-dialog v-model="showReaderSettingDialog" max-width="600" scrollable>
+      <v-card>
+        <v-card-title>渔捞设置</v-card-title>
+        <v-card-text>
+          <reader-setting :now="now" />
+        </v-card-text>
+      </v-card>
+    </rc-dialog>
+
     <rc-snackbar
       :timeout="snackbar.timeout"
       v-model="snackbar.show"
@@ -264,6 +273,7 @@ import MenuWindow from '@/entries/screen/views/MenuWindow'
 import RcDialog from '@/components/basic/RcDialog'
 import RcSnackbar from '@/components/basic/RcSnackbar'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
+import ReaderSetting from '@/entries/reader/views/ReaderSetting'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
 import ReaderTimerMiniWindow from '@/entries/screen/views/ReaderTimerMiniWindow'
 import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
@@ -277,6 +287,7 @@ export default {
   name: 'Screen',
   mixins: [AppMixin],
   components: {
+    ReaderSetting,
     RcSnackbar,
     MenuWindow,
     RcDialog,
@@ -294,6 +305,7 @@ export default {
     isFishing: false,
   }),
   computed: {
+    ...mapState('dialog', ['readerSettingDialog']),
     ...mapState(['readerSetting', 'sounds']),
     ...mapState('screenWindow', [
       'layouts',
@@ -304,9 +316,16 @@ export default {
       'bottomNotifications',
       'hiddenReaderWindows',
     ]),
+    showReaderSettingDialog: {
+      get() {
+        return this.readerSettingDialog
+      },
+      set(show) {
+        this.setShowDialog({ dialog: 'readerSettingDialog', show: show })
+      },
+    },
   },
   async created() {
-    // TODO readerConfig.showReaderOnlyIfFishing
     // TODO postLogin
     // TODO postLogout
     console.debug(process.env.commit_hash)
@@ -452,6 +471,7 @@ export default {
     // },
   },
   methods: {
+    ...mapMutations('dialog', ['setShowDialog']),
     ...mapMutations(['setSounds']),
     ...mapMutations('screenWindow', [
       'updateWindowLayout',

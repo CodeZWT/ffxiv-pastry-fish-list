@@ -1,3 +1,4 @@
+import { DialogModule } from '@/entries/screen/store/dialog'
 import { KeyBindingPlugin, KeybindingModule } from '@/entries/screen/store/keybinding'
 import { MainModule } from '@/entries/main/store'
 import { SaveLayoutPlugin, ScreenWindowModule } from '@/entries/screen/store/screenWindow'
@@ -57,6 +58,7 @@ export default new Vuex.Store({
   modules: {
     screenWindow: ScreenWindowModule,
     keybinding: KeybindingModule,
+    dialog: DialogModule,
   },
   plugins: [SaveLayoutPlugin, KeyBindingPlugin],
 })
