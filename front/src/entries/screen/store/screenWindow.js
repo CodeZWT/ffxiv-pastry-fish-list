@@ -3,10 +3,13 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
 import _ from 'lodash'
 
+const initXOf = w => Math.floor(window.innerWidth / 2 - w / 2)
+const initYOf = h => Math.floor(window.innerHeight / 2 - h / 2)
+
 const DEFAULT_LAYOUTS = {
   MAIN: {
-    x: 0,
-    y: 0,
+    x: initXOf(600),
+    y: initYOf(600),
     w: 600,
     h: 600,
     z: 0,
@@ -14,8 +17,8 @@ const DEFAULT_LAYOUTS = {
     isMobile: true,
   },
   FISH_DETAIL: {
-    x: 0,
-    y: 0,
+    x: initXOf(400),
+    y: initYOf(600),
     w: 400,
     h: 600,
     z: 0,
@@ -23,8 +26,8 @@ const DEFAULT_LAYOUTS = {
     isMobile: true,
   },
   READER_TIMER: {
-    x: 0,
-    y: 0,
+    x: initXOf(450),
+    y: initYOf(150),
     w: 450,
     h: 150,
     z: 0,
@@ -32,8 +35,8 @@ const DEFAULT_LAYOUTS = {
     isMobile: true,
   },
   READER_TIMER_MINI: {
-    x: 0,
-    y: 0,
+    x: initXOf(425),
+    y: initYOf(85),
     w: 425,
     h: 85,
     z: 0,
@@ -41,8 +44,8 @@ const DEFAULT_LAYOUTS = {
     isMobile: true,
   },
   READER_HISTORY: {
-    x: 0,
-    y: 0,
+    x: initXOf(420),
+    y: initYOf(645),
     w: 420,
     h: 645,
     z: 0,
@@ -50,8 +53,8 @@ const DEFAULT_LAYOUTS = {
     isMobile: true,
   },
   READER_SPOT_STATISTICS: {
-    x: 0,
-    y: 0,
+    x: initXOf(500),
+    y: initYOf(450),
     w: 500,
     h: 450,
     z: 0,
@@ -59,8 +62,8 @@ const DEFAULT_LAYOUTS = {
     isMobile: true,
   },
   MENU: {
-    x: 0,
-    y: 0,
+    x: initXOf(64),
+    y: initYOf(64),
     w: 64,
     h: 64,
     z: 100,
@@ -121,7 +124,7 @@ const setWindowActive = (windows, layouts, windowId) => {
 const ScreenWindowModule = {
   namespaced: true,
   state: {
-    layouts: { ...DEFAULT_LAYOUTS, ...storedConfig?.layouts },
+    layouts: _.cloneDeep({ ...DEFAULT_LAYOUTS, ...storedConfig?.layouts }),
     windows: storedConfig?.windows ?? [],
     hiddenReaderWindows: storedConfig?.hiddenReaderWindows ?? [],
     dialogs: [],
@@ -217,15 +220,9 @@ const ScreenWindowModule = {
     stopDragging(state) {
       state.dragging = false
     },
-    setMenuWindowToScreenCenter(state, workAreaSize) {
-      if (!state.menuInitialized) {
-        Vue.set(state.layouts, 'MENU', {
-          ...DEFAULT_LAYOUTS.MENU,
-          x: Math.floor(workAreaSize.width / 2 - DEFAULT_LAYOUTS.MENU.w / 2),
-          y: Math.floor(workAreaSize.height / 2 - DEFAULT_LAYOUTS.MENU.h / 2),
-        })
-        state.menuInitialized = true
-      }
+    resetLayouts(state) {
+      state.layouts = _.cloneDeep(DEFAULT_LAYOUTS)
+      state.menuInitialized = false
     },
   },
 }

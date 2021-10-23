@@ -16,6 +16,7 @@
     classNameHandle="dr-handle"
     drag-cancel=".dr-drag-cancel"
     style="-webkit-user-select: none"
+    v-resize="onWindowResize"
   >
     <v-sheet
       v-if="dragging && dragPlaceholder"
@@ -168,6 +169,13 @@ export default {
     onActivated() {
       this.active = true
       this.activeWindow(this.id)
+    },
+    onWindowResize() {
+      this.updateWindowLayout({
+        id: this.id,
+        x: Math.max(0, Math.min(this.x, window.innerWidth - this.w)),
+        y: Math.max(0, Math.min(this.y, window.innerHeight - this.h)),
+      })
     },
   },
 }

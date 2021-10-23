@@ -184,8 +184,15 @@ const setWindowShape = (win, windowSetting) => {
         height: height
       })
     }
-
-    win.setShape(windowRectangles)
+    // console.log('set shape', windowRectangles)
+    win.setShape(windowRectangles.map(rec => {
+      return {
+        x: Math.floor(rec.x),
+        y: Math.floor(rec.y),
+        width: Math.floor(rec.width),
+        height: Math.floor(rec.height),
+      }
+    }))
   }
 }
 
@@ -224,10 +231,6 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
         sender.send('showRoseDialog')
       }
     })
-
-    const primaryDisplay = screen.getPrimaryDisplay()
-    const {width, height} = primaryDisplay.workAreaSize
-    sender.send('showMenuWindow', {width, height})
 
     dataReader.startReaderOnce({
       region: readerSetting.region,

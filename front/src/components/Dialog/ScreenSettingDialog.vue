@@ -3,6 +3,7 @@
     <v-card>
       <v-card-title> 屏幕设置 </v-card-title>
       <v-card-text>
+        <v-subheader>显示器设置</v-subheader>
         <v-list>
           <v-list-item
             v-for="(displayId, index) in displayIds"
@@ -10,16 +11,18 @@
             @click="() => setTargetDisplay(displayId)"
           >
             <v-list-item-title>
-              {{ '屏幕' + (index + 1) }}
+              {{ '显示器' + (index + 1) }}
             </v-list-item-title>
             <v-list-item-action>
               <v-icon v-if="displayId === targetDisplayId">mdi-check</v-icon>
             </v-list-item-action>
           </v-list-item>
         </v-list>
+        <v-btn block color="info" @click="getAllDisplays"> 重新检测屏幕 </v-btn>
+        <v-subheader>窗口设置</v-subheader>
+        <v-btn block color="error" @click="resetLayouts"> 重置窗口 </v-btn>
       </v-card-text>
       <v-card-actions class="d-flex justify-end">
-        <v-btn text @click="getAllDisplays"> 重新检测屏幕 </v-btn>
         <v-btn text @click="show = false"> 关闭 </v-btn>
       </v-card-actions>
     </v-card>
@@ -59,6 +62,7 @@ export default {
     },
   },
   methods: {
+    ...mapMutations('screenWindow', ['resetLayouts']),
     ...mapMutations('dialog', ['setShowDialog']),
     getAllDisplays() {
       invokeElectronEvent('getAllDisplays', null, ({ displayIds, targetDisplayId }) => {

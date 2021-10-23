@@ -384,10 +384,6 @@ export default {
       ?.on('setGlobalClickThrough', (event, clickThrough) => {
         this.setGlobalClickThrough(clickThrough)
       })
-      ?.on('showMenuWindow', (event, workAreaSize) => {
-        console.log('showMenuWindow', workAreaSize)
-        this.setMenuWindowToScreenCenter(workAreaSize)
-      })
       ?.on('showSearch', () => {
         if (!this.showSearchDialog) {
           this.setShowSearchDialog(true)
@@ -478,7 +474,6 @@ export default {
       'showWindow',
       'closeWindow',
       'setGlobalClickThrough',
-      'setMenuWindowToScreenCenter',
       'setHiddenReaderWindows',
     ]),
     loadReaderSounds() {
