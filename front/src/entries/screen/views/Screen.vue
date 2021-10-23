@@ -232,23 +232,9 @@
         <span class="ml-2">已钓完所有鱼</span>
       </div>
       <div class="d-flex align-center" v-else>
-        <v-expansion-panels flat>
-          <v-expansion-panel>
-            <v-expansion-panel-header>多个鱼饵已钓完所有鱼</v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <div class="d-flex flex-wrap">
-                <div
-                  class="d-flex align-center"
-                  v-for="baitId in baitIdsForNotification"
-                  :key="baitId"
-                >
-                  <item-icon :icon-class="getItemIconClass(baitId)" small class="mt-1" />
-                  <span>{{ getItemName(baitId) }}</span>
-                </div>
-              </div>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
+        <v-btn @click="showFinishedBaitDialog = true">
+          多个鱼饵已钓完所有鱼（点击查看）
+        </v-btn>
       </div>
       <template v-slot:action="{ attrs }">
         <v-btn color="primary" text v-bind="attrs" @click="showBaitDialogOfSetting">
@@ -259,6 +245,25 @@
         </v-btn>
       </template>
     </rc-snackbar>
+    <rc-dialog v-model="showFinishedBaitDialog" max-width="300">
+      <v-card>
+        <v-card-title>
+          以下钓饵已钓完所有鱼
+        </v-card-title>
+        <v-card-text>
+          <div class="d-flex flex-wrap">
+            <div
+              class="d-flex align-center"
+              v-for="baitId in baitIdsForNotification"
+              :key="baitId"
+            >
+              <item-icon :icon-class="getItemIconClass(baitId)" small class="mt-1" />
+              <span>{{ getItemName(baitId) }}</span>
+            </div>
+          </div>
+        </v-card-text>
+      </v-card>
+    </rc-dialog>
   </div>
 </template>
 
@@ -303,6 +308,7 @@ export default {
     miniSideBar: true,
     readerNow: Date.now(),
     isFishing: false,
+    showFinishedBaitDialog: false,
   }),
   computed: {
     ...mapState('dialog', ['readerSettingDialog']),

@@ -175,7 +175,7 @@ const setWindowShape = (win, windowSetting) => {
     }
 
     if (windowSetting.bottomNotifications.length > 0) {
-      const width = 390
+      const width = 450
       const height = 100
       windowRectangles.push({
         x: Math.floor(winWidth/2-width/2),
