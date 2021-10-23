@@ -398,6 +398,7 @@
   },
   "keybinding": {
     "item": {
+      "toggleMain": "打开/关闭主界面",
       "toggleReaderTimer":  "打开/关闭计时器",
       "toggleReaderTimerMini": "打开/关闭迷你计时器",
       "toggleReaderHistory":  "打开/关闭本地历史记录",

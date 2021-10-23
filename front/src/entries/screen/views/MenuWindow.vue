@@ -241,7 +241,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import GlobalSettingDialog from '@/entries/screen/views/GlobalSettingDialog'
@@ -294,6 +294,13 @@ export default {
         this.downloadProgress = 100
         this.showUpdateDialog()
       })
+      ?.on('toggleMain', () => {
+        if (this.isOpen('MAIN')) {
+          this.closeWindow('MAIN')
+        } else {
+          this.showPrevMainWindow()
+        }
+      })
       ?.on('toggleReaderTimer', () => {
         if (this.isOpen('READER_TIMER')) {
           this.closeWindow('READER_TIMER')
@@ -324,6 +331,7 @@ export default {
       })
   },
   methods: {
+    ...mapActions('screenWindow', ['showPrevMainWindow']),
     ...mapMutations('screenWindow', ['showWindow']),
     ...mapMutations(['setShowImportExportDialog']),
     showAboutDialog() {

@@ -238,6 +238,15 @@ const ScreenWindowModule = {
       })
     },
   },
+  actions: {
+    showPrevMainWindow({ commit, state }) {
+      commit('showWindow', {
+        type: 'MAIN',
+        subPage: state.subPage,
+        tabIndex: state.tabIndex,
+      })
+    },
+  },
 }
 
 export { ScreenWindowModule, winId2LayoutId, SaveLayoutPlugin }

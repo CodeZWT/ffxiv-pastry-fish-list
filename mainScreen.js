@@ -207,6 +207,9 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
     setWindowShape(WINDOW_SCREEN, windowSetting)
 
     hotkeySetting = new HotkeySetting(keybindings, {
+      toggleMain: () => {
+        sender.send('toggleMain')
+      },
       toggleReaderTimer: () => {
         sender.send('toggleReaderTimer')
       },
