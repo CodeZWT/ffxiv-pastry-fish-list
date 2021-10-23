@@ -31,6 +31,17 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
+            <v-list-item @click="showScreenSettingDialog = true">
+              <v-list-item-icon>
+                <v-icon>mdi-monitor</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ $t('top.screen') }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+
             <v-list-item @click="showPatchNote">
               <v-list-item-icon>
                 <v-icon>mdi-tag</v-icon>
@@ -58,17 +69,19 @@
       </v-card>
     </rc-dialog>
     <key-binding-dialog v-model="showKeybindingDialog" />
+    <screen-setting-dialog />
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import KeyBindingDialog from '@/components/Dialog/KeyBindingDialog'
 import RcDialog from '@/components/basic/RcDialog'
+import ScreenSettingDialog from '@/components/Dialog/ScreenSettingDialog'
 
 export default {
   name: 'GlobalSettingDialog',
-  components: { KeyBindingDialog, RcDialog },
+  components: { ScreenSettingDialog, KeyBindingDialog, RcDialog },
   props: {
     value: {
       type: Boolean,
@@ -81,12 +94,21 @@ export default {
     }
   },
   computed: {
+    ...mapState('dialog', ['screenSettingDialog']),
     show: {
       get() {
         return this.value
       },
       set(show) {
         this.$emit('input', show)
+      },
+    },
+    showScreenSettingDialog: {
+      get() {
+        return this.screenSettingDialog
+      },
+      set(show) {
+        this.setShowDialog({ dialog: 'screenSettingDialog', show: show })
       },
     },
   },

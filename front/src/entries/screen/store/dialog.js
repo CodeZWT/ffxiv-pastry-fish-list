@@ -3,6 +3,7 @@ const DialogModule = {
   state: {
     patchNoteDialog: false,
     readerSettingDialog: false,
+    screenSettingDialog: false,
   },
   mutations: {
     setShowDialog(state, showDialogInfo) {

@@ -23,13 +23,16 @@ const { MessageSender } = require("./server/mainSetup/MessageSender");
 const { ScreenReader } = require("./server/mainSetup/ScreenReader");
 const { Updater } = require("./server/mainSetup/Updater");
 const { HotkeySetting } = require('./server/mainSetup/HotkeySetting')
+const { DisplayConfig } = require('./server/mainSetup/DisplayConfig')
 
 log.transports.console.level = 'silly'
 
-let tray, setting, sender, dataReader, updater, hotkeySetting
+let tray, setting, sender, dataReader, updater, hotkeySetting, displayConfig
 let mainWindowConfig = {}
-let SCREEN
+let WINDOW_SCREEN
 let remoteOpcodeVersion = 'latest'
+let screen
+let maximizeTimeout
 
 const STATUS = {
   globalClickThrough: false,
@@ -67,12 +70,12 @@ const handleInstallNPCAP = () => {
       log.info('Machina restarted with same config!')
     })
     sender.send('installNpcapFishined')
-    callWindowSafe(SCREEN, win => {
+    callWindowSafe(WINDOW_SCREEN, win => {
       setOnTop(win, true)
     })
   };
 
-  callWindowSafe(SCREEN, win => {
+  callWindowSafe(WINDOW_SCREEN, win => {
     setOnTop(win, false)
   })
   if (isDev) {
@@ -159,7 +162,7 @@ const setWindowShape = (win, windowSetting) => {
       }
     })
 
-    const [winWidth, winHeight] = SCREEN.getSize()
+    const [winWidth, winHeight] = WINDOW_SCREEN.getSize()
     if (windowSetting.alerts.length > 0) {
       const width = 344
       const height = 48
@@ -194,7 +197,7 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
     mainWindowConfig = userData.mainWindow
     remoteOpcodeVersion = opcodeVersion
 
-    setWindowShape(SCREEN, windowSetting)
+    setWindowShape(WINDOW_SCREEN, windowSetting)
 
     hotkeySetting = new HotkeySetting(keybindings, {
       toggleReaderTimer: () => {
@@ -212,7 +215,7 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
       toggleGlobalClickThrough: () => {
         STATUS.globalClickThrough = !STATUS.globalClickThrough
         sender.send('setGlobalClickThrough', STATUS.globalClickThrough)
-        setMouseThrough(SCREEN, STATUS.globalClickThrough)
+        setMouseThrough(WINDOW_SCREEN, STATUS.globalClickThrough)
       },
       showSearch: () => {
         sender.send('showSearch')
@@ -222,7 +225,6 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
       }
     })
 
-    const { screen } = require('electron')
     const primaryDisplay = screen.getPrimaryDisplay()
     const {width, height} = primaryDisplay.workAreaSize
     sender.send('showMenuWindow', {width, height})
@@ -281,19 +283,19 @@ const setupEvent = () => {
       handleFinishLoadingFront(userData, readerSetting, windowSetting, keybindings, opcodeVersion)
     })
     .on('updateWindowSetting', (event, windowSetting) => {
-      setWindowShape(SCREEN, windowSetting)
+      setWindowShape(WINDOW_SCREEN, windowSetting)
     })
     .on('maximize', () => {
-      callWindowSafe(SCREEN, win => win.maximize())
+      callWindowSafe(WINDOW_SCREEN, win => win.maximize())
     })
     .on('unmaximize', () => {
-      callWindowSafe(SCREEN, win => win.unmaximize())
+      callWindowSafe(WINDOW_SCREEN, win => win.unmaximize())
     })
     .on('minimize', () => {
-      callWindowSafe(SCREEN, win => win.minimize())
+      callWindowSafe(WINDOW_SCREEN, win => win.minimize())
     })
     .on('close', () => {
-      callWindowSafe(SCREEN, win => win.close())
+      callWindowSafe(WINDOW_SCREEN, win => win.close())
     })
     .on('startUpdate', () => {
       quitAndSetup()
@@ -325,29 +327,46 @@ const setupEvent = () => {
       updater.downloadUpdates()
     })
     .on('setClickThrough', (event, isMouseThrough)=> {
-      // setMouseThrough(SCREEN, isMouseThrough)
+      // setMouseThrough(WINDOW_SCREEN, isMouseThrough)
     })
     .on('updateKeybindings', (event, keybindings)=> {
       hotkeySetting.bindHotkey(keybindings)
     })
     .on('setFocused', (event, focused)=> {
-      SCREEN.setFocusable(focused)
+      WINDOW_SCREEN.setFocusable(focused)
       if (focused) {
-        SCREEN.focus()
+        WINDOW_SCREEN.focus()
       } else {
-        SCREEN.blur()
+        WINDOW_SCREEN.blur()
       }
     })
 
   ipcMain.handle('showOpenSoundFileDialog', () => {
     return getSoundFilePath()
   })
+
+  ipcMain.handle('getAllDisplays', () => {
+    WINDOW_SCREEN.maximize()
+    return displayConfig.getDisplayInfo()
+  })
+  ipcMain.on('setDisplay', (event, displayId) => {
+      displayConfig.setTargetDisplay(displayId)
+      WINDOW_SCREEN.setPosition(displayConfig.x, displayConfig.y)
+      WINDOW_SCREEN.maximize()
+  })
+  screen.on('display-metrics-changed', () => {
+    maximizeTimeout && clearTimeout(maximizeTimeout)
+    maximizeTimeout = setTimeout(() => {
+      WINDOW_SCREEN.maximize()
+    }, 1000)
+  })
 };
+
 
 const createScreen = () => {
   const hash = undefined,
     page = 'screen'
-  SCREEN = new BrowserWindow({
+  WINDOW_SCREEN = new BrowserWindow({
     frame: false,
     show: false,
     transparent: true,
@@ -364,38 +383,42 @@ const createScreen = () => {
     },
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
-  SCREEN.removeMenu()
-  setOnTop(SCREEN)
-  SCREEN.once('ready-to-show', () => {
-    SCREEN.show()
-    SCREEN.maximize()
+  WINDOW_SCREEN.removeMenu()
+  setOnTop(WINDOW_SCREEN)
+  WINDOW_SCREEN.once('ready-to-show', () => {
+    log.info('displayConfig', displayConfig)
+    WINDOW_SCREEN.setPosition(displayConfig.x, displayConfig.y)
+    WINDOW_SCREEN.show()
+    WINDOW_SCREEN.maximize()
   })
   let loadedPromise
   if (isDev) {
-    loadedPromise = SCREEN.loadURL(
+    loadedPromise = WINDOW_SCREEN.loadURL(
       `http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`
     )
   } else {
-    loadedPromise = SCREEN.loadFile(
+    loadedPromise = WINDOW_SCREEN.loadFile(
       path.join(__dirname, `/front-electron-dist/${page}.html`),
       {
         hash: hash && ('/' + hash),
       }
     )
   }
-  SCREEN.on('closed', () => {
-    SCREEN = null
+  WINDOW_SCREEN.on('closed', () => {
+    WINDOW_SCREEN = null
   })
-  return loadedPromise.then(() => SCREEN)
+  return loadedPromise.then(() => WINDOW_SCREEN)
 }
 
 const init = async () => {
   setupDevEnv()
+  screen = require('electron').screen
   setting = new ScreenSetting()
+  displayConfig = new DisplayConfig(screen, setting)
   dataReader = new ScreenReader()
   setupEvent()
   createScreen().then(win => {
-    tray = new ScreenTray(win, quit)
+    tray = new ScreenTray(win, quit, displayConfig)
     sender = new MessageSender(win)
     dataReader.setSender(sender)
     updater = new Updater(win, sender)
@@ -422,7 +445,7 @@ if (!gotTheLock) {
   app.on('second-instance', (event, commandLine, workingDirectory) => {
     // Someone tried to run a second instance, we should focus our window.
     log.info('Focus main window when try to open 2nd instance')
-    showAndFocus(SCREEN)
+    showAndFocus(WINDOW_SCREEN)
   })
 
   app
