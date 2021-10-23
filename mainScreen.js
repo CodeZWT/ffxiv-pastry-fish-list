@@ -37,6 +37,7 @@ let maximizeTimeout
 const STATUS = {
   globalClickThrough: false,
   loadingFinished: false,
+  exportFilePath: undefined,
 }
 
 const opcodeUrlOf = (version) => `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${version}/opcodes.min.json`
@@ -91,8 +92,8 @@ const handleInstallNPCAP = () => {
   }
 };
 
-const handleExportHistory = () => {
-  dialog
+const handleShowExportFileDialog = () => {
+  return dialog
     .showSaveDialog({
       title: '导出',
       defaultPath: '鱼糕钓鱼记录.csv',
@@ -101,12 +102,20 @@ const handleExportHistory = () => {
     })
     .then(result => {
       if (!result.canceled) {
-        const csv = new ObjectsToCsv(data)
-        return csv.toString().then(str => {
-          fs.writeFileSync(result.filePath, iconv.encode(str, 'gb2312'))
-        })
+        STATUS.exportFilePath = result.filePath
+        log.info(STATUS.exportFilePath)
       }
-      log.info(result)
+      return !result.canceled
+    })
+}
+
+const handleExportHistory = data => {
+  log.info('123',STATUS.exportFilePath)
+  const csv = new ObjectsToCsv(data)
+  csv
+    .toString()
+    .then(str => {
+      fs.writeFileSync(STATUS.exportFilePath, iconv.encode(str, 'gb2312'))
     })
     .catch(err => {
       if (err.code === 'EBUSY') {
@@ -285,9 +294,18 @@ app.on('window-all-closed', () => {
 
 const setupEvent = () => {
   ipcMain
-    .on('finishLoading', (event, { userData, readerSetting, windowSetting, keybindings, opcodeVersion }) => {
-      handleFinishLoadingFront(userData, readerSetting, windowSetting, keybindings, opcodeVersion)
-    })
+    .on(
+      'finishLoading',
+      (event, { userData, readerSetting, windowSetting, keybindings, opcodeVersion }) => {
+        handleFinishLoadingFront(
+          userData,
+          readerSetting,
+          windowSetting,
+          keybindings,
+          opcodeVersion
+        )
+      }
+    )
     .on('updateWindowSetting', (event, windowSetting) => {
       setWindowShape(WINDOW_SCREEN, windowSetting)
     })
@@ -318,9 +336,6 @@ const setupEvent = () => {
     .on('updateMainConfig', (event, config) => {
       mainWindowConfig = config
     })
-    .on('exportHistory', (event, data) => {
-      handleExportHistory()
-    })
     .on('reloadRecords', () => {
       sender.send('reloadRecords')
     })
@@ -332,13 +347,13 @@ const setupEvent = () => {
     .on('downloadUpdate', event => {
       updater.downloadUpdates()
     })
-    .on('setClickThrough', (event, isMouseThrough)=> {
+    .on('setClickThrough', (event, isMouseThrough) => {
       // setMouseThrough(WINDOW_SCREEN, isMouseThrough)
     })
-    .on('updateKeybindings', (event, keybindings)=> {
+    .on('updateKeybindings', (event, keybindings) => {
       hotkeySetting.bindHotkey(keybindings)
     })
-    .on('setFocused', (event, focused)=> {
+    .on('setFocused', (event, focused) => {
       WINDOW_SCREEN.setFocusable(focused)
       if (focused) {
         WINDOW_SCREEN.focus()
@@ -356,9 +371,9 @@ const setupEvent = () => {
     return displayConfig.getDisplayInfo()
   })
   ipcMain.on('setDisplay', (event, displayId) => {
-      displayConfig.setTargetDisplay(displayId)
-      WINDOW_SCREEN.setPosition(displayConfig.x, displayConfig.y)
-      WINDOW_SCREEN.maximize()
+    displayConfig.setTargetDisplay(displayId)
+    WINDOW_SCREEN.setPosition(displayConfig.x, displayConfig.y)
+    WINDOW_SCREEN.maximize()
   })
   screen.on('display-metrics-changed', () => {
     maximizeTimeout && clearTimeout(maximizeTimeout)
@@ -366,7 +381,14 @@ const setupEvent = () => {
       WINDOW_SCREEN.maximize()
     }, 1000)
   })
-};
+
+  ipcMain.handle('showExportFileDialog', async () => {
+    return await handleShowExportFileDialog()
+  })
+  ipcMain.on('exportHistory', (event, data) => {
+    handleExportHistory(data)
+  })
+}
 
 
 const createScreen = () => {

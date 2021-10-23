@@ -4,14 +4,16 @@
       <v-card-text>
         <v-row no-gutters>
           <v-btn
-            :loading="exporting"
+            :readonly="exporting || generating"
             :disabled="deleting"
             @click="exportHistory"
             color="primary"
           >
-            <new-feature-mark id="ExportCSV-V.0.6.6-1">
-              <v-icon>mdi-file-table</v-icon>导出至文件
-            </new-feature-mark>
+            <template v-if="exporting"> 读取数据中 {{ exportPercentage }} </template>
+            <template v-else-if="exporting">
+              生成文件中
+            </template>
+            <template v-else> <v-icon>mdi-file-table</v-icon>导出至文件 </template>
           </v-btn>
           <v-btn
             icon
@@ -121,7 +123,7 @@
                     </v-col>
 
                     <v-chip
-                      v-if="hover"
+                      v-if="hover && canDelete"
                       style="position: absolute; right: 0; top: 0"
                       class="rounded-r-0 rounded-bl-xl rounded-tl-0"
                       x-small
@@ -166,7 +168,7 @@
         </v-card>
       </div>
     </div>
-    <rc-dialog v-model="showClearConfirmDialog">
+    <rc-dialog v-model="showClearConfirmDialog" max-width="300">
       <v-card>
         <v-card-title> 确认清空所有记录吗？ </v-card-title>
         <v-card-text>
@@ -184,6 +186,7 @@
 
 <script>
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
+import { invokeElectronEvent, sendElectronEvent } from '@/utils/electronHelper'
 import COMMON from 'Data/common'
 import DATA from 'Data/data'
 import DataUtil from '@/utils/DataUtil'
@@ -213,6 +216,8 @@ export default {
   },
   data() {
     return {
+      totalExportCount: 0,
+      exportedRecordCount: 0,
       loadingCnt: INITIAL_LOADING_CNT,
       rawRecords: [], //TEST.READER_HISTORY_RECORDS,
       dbRecordsCnt: 0,
@@ -221,12 +226,22 @@ export default {
       showPlayerStatus: false,
       showHookset: false,
       exporting: false,
+      generating: false,
       deleting: false,
       showClearConfirmDialog: false,
       showExportError: false,
     }
   },
   computed: {
+    canDelete() {
+      return !this.deleting && !this.exporting && !this.generating
+    },
+    exportPercentage() {
+      if (this.totalExportCount) {
+        return ((this.exportedRecordCount / this.totalExportCount) * 100).toFixed(0) + '%'
+      }
+      return ''
+    },
     dbLoadedCnt() {
       return this.rawRecords.length
     },
@@ -304,8 +319,6 @@ export default {
     },
   },
   async created() {
-    // const bk = []
-    // await db.records.bulkPut(bk)
     await this.init()
 
     window.electron?.ipcRenderer
@@ -336,7 +349,7 @@ export default {
           color: 'error',
         })
 
-        this.exporting = false
+        this.generating = false
       })
   },
   methods: {
@@ -399,16 +412,39 @@ export default {
     sendElectronEvent(channel, data) {
       window.electron?.ipcRenderer?.send(channel, data)
     },
-    exportHistory() {
+    async exportHistory() {
       if (!this.exporting) {
         this.exporting = true
-        db.records
-          .orderBy('startTime')
-          .reverse()
-          .toArray()
-          .then(data => {
-            window.electron?.ipcRenderer?.send('exportHistory', this.toExportData(data))
-          })
+
+        this.totalExportCount = await db.records.count()
+        console.debug('start export', this.totalExportCount, 'records')
+        let allData = []
+        const batchCnt = 100
+        for (let i = 0; i < this.totalExportCount; i += batchCnt) {
+          const batchData = await db.records
+            .offset(i)
+            .limit(batchCnt)
+            .toArray()
+          this.exportedRecordCount = i
+          allData.splice(0, 0, ...this.toExportData(batchData))
+        }
+        console.log('start sort')
+        const max = Date.now()
+        allData = _.sortBy(allData, it => max - it.timestamp)
+        console.log('sort finished')
+
+        invokeElectronEvent('showExportFileDialog', null, async continueExport => {
+          this.exporting = false
+          if (continueExport) {
+            this.generating = true
+            console.log('start toExportData')
+            // allData = await this.toExportData(allData)
+            sendElectronEvent('exportHistory', allData)
+            console.log('toExportData finished')
+          } else {
+            this.generating = false
+          }
+        })
       }
     },
     isDiademSpot: DataUtil.isDiademSpot,
@@ -478,6 +514,7 @@ export default {
           捕鱼人之识: record.fishersIntuition ? '是' : '否',
           记录版本: DataUtil.toPatchText(record.patch ?? 5.35),
           杆型: this.$t('tug.' + record.tug),
+          timestamp: record.startTime,
         }
       })
     },
