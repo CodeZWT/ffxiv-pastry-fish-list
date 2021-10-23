@@ -26,7 +26,6 @@
         </div>
 
         <v-row>
-          {{ layouts }}
           <v-col v-for="win in opacityWindows" cols="12" :key="win.winId">
             <v-slider
               :value="layouts[win.winId].opacity"

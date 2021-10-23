@@ -167,7 +167,7 @@ const setWindowShape = (win, windowSetting) => {
         x: l.x,
         y: l.y,
         width: l.w,
-        height: l.h
+        height: l.h,
       }
     })
 

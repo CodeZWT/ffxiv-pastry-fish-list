@@ -8,13 +8,13 @@ const initYOf = h => Math.floor(window.innerHeight / 2 - h / 2)
 
 const DEFAULT_LAYOUTS = {
   MAIN: {
-    x: initXOf(600),
+    x: initXOf(960),
     y: initYOf(600),
-    w: 600,
+    w: 960,
     h: 600,
     z: 0,
     type: 'MAIN',
-    isMobile: true,
+    isMobile: false,
     opacity: 1,
   },
   FISH_DETAIL: {
