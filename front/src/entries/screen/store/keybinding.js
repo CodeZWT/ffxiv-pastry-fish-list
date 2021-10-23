@@ -11,6 +11,7 @@ const KeyBindingPlugin = store => {
 }
 
 const DEFAULT_KEYBINDINGS = {
+  toggleMenu: 'Ctrl+Shift+K',
   toggleMain: 'Ctrl+Shift+P',
   toggleReaderTimer: 'Ctrl+Shift+T',
   toggleReaderTimerMini: 'Ctrl+Shift+M',

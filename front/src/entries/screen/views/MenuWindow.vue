@@ -24,6 +24,9 @@
           </v-btn>
         </template>
         <v-card>
+          <v-card-title>
+            功能菜单
+          </v-card-title>
           <v-card-text>
             <v-row @click="showWindowMenu = false">
               <v-col>
@@ -293,6 +296,9 @@ export default {
       ?.on('checkStartSetup', () => {
         this.downloadProgress = 100
         this.showUpdateDialog()
+      })
+      ?.on('toggleMenu', () => {
+        this.showWindowMenu = !this.showWindowMenu
       })
       ?.on('toggleMain', () => {
         if (this.isOpen('MAIN')) {
