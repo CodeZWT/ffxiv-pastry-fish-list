@@ -7,6 +7,7 @@
     :h="item.h"
     :z="item.z"
     :title="title"
+    :opacity="item.opacity"
   >
     <template v-slot:header>
       <v-system-bar

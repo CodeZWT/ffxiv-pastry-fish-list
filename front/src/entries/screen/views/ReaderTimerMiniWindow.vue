@@ -6,6 +6,7 @@
     :w="item.w"
     :h="item.h"
     :z="item.z"
+    :opacity="item.opacity"
     frameless
     title="渔捞迷你模式"
   >

@@ -15,6 +15,7 @@ const DEFAULT_LAYOUTS = {
     z: 0,
     type: 'MAIN',
     isMobile: true,
+    opacity: 1,
   },
   FISH_DETAIL: {
     x: initXOf(400),
@@ -24,6 +25,7 @@ const DEFAULT_LAYOUTS = {
     z: 0,
     type: 'FISH_DETAIL',
     isMobile: true,
+    opacity: 1,
   },
   READER_TIMER: {
     x: initXOf(450),
@@ -33,6 +35,7 @@ const DEFAULT_LAYOUTS = {
     z: 0,
     type: 'READER_TIMER',
     isMobile: true,
+    opacity: 1,
   },
   READER_TIMER_MINI: {
     x: initXOf(425),
@@ -42,6 +45,7 @@ const DEFAULT_LAYOUTS = {
     z: 0,
     type: 'READER_TIMER_MINI',
     isMobile: true,
+    opacity: 1,
   },
   READER_HISTORY: {
     x: initXOf(420),
@@ -51,6 +55,7 @@ const DEFAULT_LAYOUTS = {
     z: 0,
     type: 'READER_HISTORY',
     isMobile: true,
+    opacity: 1,
   },
   READER_SPOT_STATISTICS: {
     x: initXOf(500),
@@ -60,6 +65,7 @@ const DEFAULT_LAYOUTS = {
     z: 0,
     type: 'READER_SPOT_STATISTICS',
     isMobile: true,
+    opacity: 1,
   },
   MENU: {
     x: initXOf(64),
@@ -69,6 +75,7 @@ const DEFAULT_LAYOUTS = {
     z: 100,
     type: 'MENU',
     isMobile: true,
+    opacity: 1,
   },
 }
 const storedConfig = LocalStorageUtil.loadWindowLayouts()
@@ -223,6 +230,12 @@ const ScreenWindowModule = {
     resetLayouts(state) {
       state.layouts = _.cloneDeep(DEFAULT_LAYOUTS)
       state.menuInitialized = false
+    },
+    setWindowOpacity(state, data) {
+      Vue.set(state.layouts, data.winId, {
+        ...state.layouts[data.winId],
+        opacity: data.opacity,
+      })
     },
   },
 }

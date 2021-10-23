@@ -6,6 +6,7 @@
     :w="item.w"
     :h="item.h"
     :z="item.z"
+    :opacity="item.opacity"
     title="本地历史记录"
   >
     <reader-history :now="now" />

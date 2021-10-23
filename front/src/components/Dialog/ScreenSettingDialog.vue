@@ -1,5 +1,5 @@
 <template>
-  <rc-dialog v-model="show" max-width="600">
+  <rc-dialog v-model="show" max-width="600" scrollable>
     <v-card>
       <v-card-title> 屏幕设置 </v-card-title>
       <v-card-text>
@@ -21,6 +21,26 @@
         <v-btn block color="info" @click="getAllDisplays"> 重新检测屏幕 </v-btn>
         <v-subheader>窗口设置</v-subheader>
         <v-btn block color="error" @click="resetLayouts"> 重置窗口 </v-btn>
+        <div class="text-subtitle-1">
+          窗口透明度
+        </div>
+
+        <v-row>
+          {{ layouts }}
+          <v-col v-for="win in opacityWindows" cols="12" :key="win.winId">
+            <v-slider
+              :value="layouts[win.winId].opacity"
+              @input="setWindowOpacity({ winId: win.winId, opacity: $event })"
+              max="1"
+              min="0.1"
+              step="0.05"
+              ticks
+              :label="win.title"
+              thumb-label
+            >
+            </v-slider>
+          </v-col>
+        </v-row>
       </v-card-text>
       <v-card-actions class="d-flex justify-end">
         <v-btn text @click="show = false"> 关闭 </v-btn>
@@ -41,10 +61,37 @@ export default {
     return {
       displayIds: [],
       targetDisplayId: undefined,
+      opacityWindows: [
+        {
+          winId: 'MAIN',
+          title: '主界面',
+        },
+        {
+          winId: 'READER_TIMER',
+          title: '计时器',
+        },
+        {
+          winId: 'READER_TIMER_MINI',
+          title: '迷你计时器',
+        },
+        {
+          winId: 'READER_HISTORY',
+          title: '本地历史记录',
+        },
+        {
+          winId: 'READER_SPOT_STATISTICS',
+          title: '本地钓场统计',
+        },
+        {
+          winId: 'FISH_DETAIL',
+          title: '鱼详情',
+        },
+      ],
     }
   },
   computed: {
     ...mapState('dialog', ['screenSettingDialog']),
+    ...mapState('screenWindow', ['layouts']),
     show: {
       get() {
         return this.screenSettingDialog
@@ -62,7 +109,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('screenWindow', ['resetLayouts']),
+    ...mapMutations('screenWindow', ['resetLayouts', 'setWindowOpacity']),
     ...mapMutations('dialog', ['setShowDialog']),
     getAllDisplays() {
       invokeElectronEvent('getAllDisplays', null, ({ displayIds, targetDisplayId }) => {

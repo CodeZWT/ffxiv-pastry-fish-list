@@ -32,6 +32,7 @@
         rounded: true,
         'elevation-4': !frameless,
       }"
+      :style="`opacity: ${opacity}`"
       :color="frameless ? 'transparent' : 'background'"
     >
       <slot name="header" v-if="!frameless">
@@ -91,6 +92,10 @@ export default {
     z: {
       type: Number,
       default: 0,
+    },
+    opacity: {
+      type: Number,
+      default: 1,
     },
     isMobile: {
       type: Boolean,
