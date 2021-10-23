@@ -446,6 +446,7 @@ const init = async () => {
   dataReader = new ScreenReader()
   setupEvent()
   createScreen().then(win => {
+    win.webContents.setBackgroundThrottling(false)
     tray = new ScreenTray(win, quit, displayConfig)
     sender = new MessageSender(win)
     dataReader.setSender(sender)
