@@ -29,7 +29,7 @@ const md = new MarkdownIt()
 //   title: '列表v2',
 // },
 
-let pages
+let pages, optimization
 if (process.env.VUE_APP_ELECTRON === 'true') {
   console.log('build for electron')
   pages = {
@@ -41,19 +41,18 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
           : 'public/index.html',
       filename: 'screen.html',
       title: '鱼糕桌面版',
-      chunks: [
-        'chunk-vendors-1',
-        'chunk-vendors-other',
-        'chunk-data-fish',
-        'chunk-data-oceanfishing',
-        'chunk-data-translation',
-        'chunk-data-fix',
-        'chunk-data-other',
-        'chunk-locales',
-        'screen',
-      ],
+    },
+    loading: {
+      entry: 'src/entries/loading/loading.js',
+      template:
+        process.env.NODE_ENV === 'development'
+          ? 'public/index.dev.html'
+          : 'public/index.html',
+      filename: 'loading.html',
+      title: '加载中',
     },
   }
+  optimization = {}
 } else {
   console.log('build for web')
   pages = {
@@ -88,6 +87,75 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
       // 并且如果找不到的话，就回退到 `public/index.html`。
       // 输出文件名会被推导为 `subpage.html`。
       // subpage: 'src/subpage/main.js',
+    },
+  }
+  optimization = {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendorsGroup1: {
+          name: 'chunk-vendors-1',
+          test: /[\\/]node_modules[\\/](howler|splitpanes|sortablejs|vee-validate|vuedraggable|clipboard)[\\/]/,
+          priority: 10,
+        },
+        vendorsGroupOther: {
+          name: 'chunk-vendors-other',
+          minSize: 1,
+          chunks: 'all',
+          minChunks: 1,
+          test: /[\\/]node_modules[\\/]/,
+          priority: 5,
+        },
+        fishData: {
+          name: 'chunk-data-fish',
+          chunks: 'all',
+          enforce: true,
+          test: /[\\/]data[\\/]fish\.js/,
+          priority: 1,
+        },
+        oceanFishingData: {
+          name: 'chunk-data-oceanfishing',
+          chunks: 'all',
+          enforce: true,
+          test: /[\\/]data[\\/]oceanFishing\.js/,
+          priority: 1,
+        },
+        localesData: {
+          name: 'chunk-locales',
+          chunks: 'all',
+          enforce: true,
+          test: /[\\/]locales[\\/].+\.json/,
+          priority: 1,
+        },
+        tipData: {
+          name: 'chunk-data-tip',
+          chunks: 'all',
+          enforce: true,
+          test: /[\\/]data[\\/]tip\d+\.js/,
+          priority: 1,
+        },
+        translationData: {
+          name: 'chunk-data-translation',
+          chunks: 'all',
+          enforce: true,
+          test: /[\\/]data[\\/](translation|fishingSpots)\.js/,
+          priority: 1,
+        },
+        fixData: {
+          name: 'chunk-data-fix',
+          chunks: 'all',
+          enforce: true,
+          test: /[\\/]data[\\/]fix\.js/,
+          priority: 1,
+        },
+        otherData: {
+          name: 'chunk-data-other',
+          chunks: 'all',
+          enforce: true,
+          test: /[\\/]data[\\/].+\.js/,
+          priority: 0,
+        },
+      },
     },
   }
 }
@@ -180,82 +248,7 @@ module.exports = {
       .set('Utils', path.join(__dirname, '../utils'))
   },
   configureWebpack: {
-    optimization: {
-      splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-          vendorsGroup1: {
-            name: 'chunk-vendors-1',
-            test: /[\\/]node_modules[\\/](howler|splitpanes|sortablejs|vee-validate|vuedraggable|clipboard)[\\/]/,
-            priority: 10,
-          },
-          vendorsGroupOther: {
-            name: 'chunk-vendors-other',
-            minSize: 1,
-            chunks: 'all',
-            minChunks: 1,
-            test: /[\\/]node_modules[\\/]/,
-            priority: 5,
-          },
-          fishData: {
-            name: 'chunk-data-fish',
-            chunks: 'all',
-            enforce: true,
-            test: /[\\/]data[\\/]fish\.js/,
-            priority: 1,
-          },
-          oceanFishingData: {
-            name: 'chunk-data-oceanfishing',
-            chunks: 'all',
-            enforce: true,
-            test: /[\\/]data[\\/]oceanFishing\.js/,
-            priority: 1,
-          },
-          localesData: {
-            name: 'chunk-locales',
-            chunks: 'all',
-            enforce: true,
-            test: /[\\/]locales[\\/].+\.json/,
-            priority: 1,
-          },
-          tipData: {
-            name: 'chunk-data-tip',
-            chunks: 'all',
-            enforce: true,
-            test: /[\\/]data[\\/]tip\d+\.js/,
-            priority: 1,
-          },
-          translationData: {
-            name: 'chunk-data-translation',
-            chunks: 'all',
-            enforce: true,
-            test: /[\\/]data[\\/](translation|fishingSpots)\.js/,
-            priority: 1,
-          },
-          fixData: {
-            name: 'chunk-data-fix',
-            chunks: 'all',
-            enforce: true,
-            test: /[\\/]data[\\/]fix\.js/,
-            priority: 1,
-          },
-          otherData: {
-            name: 'chunk-data-other',
-            chunks: 'all',
-            enforce: true,
-            test: /[\\/]data[\\/].+\.js/,
-            priority: 0,
-          },
-          // common: {
-          //   name: 'chunk-common',
-          //   minChunks: 2,
-          //   maxSize: 300000,
-          //   priority: -20,
-          //   reuseExistingChunk: true,
-          // },
-        },
-      },
-    },
+    optimization: optimization,
     plugins: [
       GitRevisionPlugin,
       new webpack.DefinePlugin({

@@ -29,7 +29,7 @@ log.transports.console.level = 'silly'
 
 let tray, setting, sender, dataReader, updater, hotkeySetting, displayConfig
 let mainWindowConfig = {}
-let WINDOW_SCREEN
+let WINDOW_SCREEN, WINDOW_LOADING
 let remoteOpcodeVersion = 'latest'
 let screen
 let maximizeTimeout
@@ -209,6 +209,11 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
   if (!STATUS.loadingFinished) {
     STATUS.loadingFinished = true
     log.info('in finishLoading')
+    callWindowSafe(WINDOW_LOADING, win => {
+      log.info('try close loading window')
+      win.close()
+    })
+
     updater.showUpdateDialogIfNecessary()
     mainWindowConfig = userData.mainWindow
     remoteOpcodeVersion = opcodeVersion
@@ -417,7 +422,6 @@ const createScreen = () => {
   WINDOW_SCREEN.removeMenu()
   setOnTop(WINDOW_SCREEN)
   WINDOW_SCREEN.once('ready-to-show', () => {
-    log.info('displayConfig', displayConfig)
     WINDOW_SCREEN.setPosition(displayConfig.x, displayConfig.y)
     WINDOW_SCREEN.show()
     WINDOW_SCREEN.maximize()
@@ -469,6 +473,42 @@ const init = async () => {
   })
 };
 
+const showLoadingWindow = () => {
+  const page = 'loading'
+  const hash = 'loading'
+  WINDOW_LOADING = new BrowserWindow({
+    width: 350, height: 400, frame: false, show: false,
+    transparent: true,
+    resizable: false,
+    maximizable: false,
+    skipTaskbar: true,
+    icon: path.join(__dirname, 'assets/icon256.png'),
+  })
+  const win = WINDOW_LOADING
+  win.removeMenu()
+  setOnTop(win)
+  win.once('ready-to-show', () => {
+    win.show()
+  })
+  let loadedPromise
+  if (isDev) {
+    loadedPromise = win.loadURL(
+      `http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`
+    )
+  } else {
+    loadedPromise = win.loadFile(
+      path.join(__dirname, `/front-electron-dist/${page}.html`),
+      {
+        hash: hash && '/' + hash,
+      }
+    )
+  }
+  win.on('closed', () => {
+    WINDOW_LOADING = null
+  })
+  return loadedPromise.then(() => win)
+}
+
 const gotTheLock = app.requestSingleInstanceLock()
 if (!gotTheLock) {
   log.info('Try open 2nd instance just quit')
@@ -482,6 +522,9 @@ if (!gotTheLock) {
 
   app
     .whenReady()
+    .then(() => {
+      return showLoadingWindow()
+    })
     .then(() => init())
     .catch(error => {
       log.error('error in init', error)
