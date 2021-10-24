@@ -255,6 +255,7 @@
     </rc-dialog>
 
     <new-patch-introduction-dialog />
+    <update-available-dialog v-model="showUpdateAvailableDialog" :hash="newVersion" />
   </div>
 </template>
 
@@ -302,6 +303,8 @@ export default {
     readerNow: Date.now(),
     isFishing: false,
     showFinishedBaitDialog: false,
+    showUpdateAvailableDialog: false,
+    newVersion: undefined,
   }),
   computed: {
     ...mapState('flag', ['flags']),

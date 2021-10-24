@@ -24,9 +24,7 @@
           </v-btn>
         </template>
         <v-card>
-          <v-card-title>
-            功能菜单
-          </v-card-title>
+          <v-card-title> 功能菜单 </v-card-title>
           <v-card-text>
             <v-row @click="showWindowMenu = false">
               <v-col>
@@ -215,9 +213,7 @@
                       <v-icon class="error--text">mdi-close</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="error--text">
-                      <v-list-item-title>
-                        退出鱼糕
-                      </v-list-item-title>
+                      <v-list-item-title> 退出鱼糕 </v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
                 </v-list>
@@ -233,7 +229,6 @@
         @update="startUpdate"
         @skip="skipUpdate"
       />
-      <update-available-dialog v-model="showUpdateAvailableDialog" :hash="newVersion" />
       <global-setting-dialog
         v-model="showGlobalSettingDialog"
         @show-setting="showMainSetting"
@@ -251,7 +246,6 @@ import GlobalSettingDialog from '@/entries/screen/views/GlobalSettingDialog'
 import ImgUtil from '@/utils/ImgUtil'
 import RcDialog from '@/components/basic/RcDialog'
 import ScreenWindow from '@/components/basic/screen/ScreenWindow'
-import UpdateAvailableDialog from '@/components/Dialog/UpdateAvailableDialog'
 import UpdateDialog from '@/components/Dialog/UpdateDialog'
 import WindowMixin from '@/components/basic/screen/WindowMixin'
 
@@ -261,7 +255,6 @@ export default {
   components: {
     GlobalSettingDialog,
     UpdateDialog,
-    UpdateAvailableDialog,
     RcDialog,
     ScreenWindow,
   },
@@ -276,9 +269,7 @@ export default {
     isElectron: DevelopmentModeUtil.isElectron(),
     downloadProgress: 0,
     showCheckStartSetupDialog: false,
-    showUpdateAvailableDialog: false,
     showWindowMenu: false,
-    newVersion: undefined,
     diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
     diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
   }),
