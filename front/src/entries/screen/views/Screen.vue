@@ -253,6 +253,8 @@
         </v-card-text>
       </v-card>
     </rc-dialog>
+
+    <new-patch-introduction-dialog />
   </div>
 </template>
 
@@ -264,6 +266,7 @@ import DataUtil from '@/utils/DataUtil'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
 import MainWindow from '@/entries/screen/views/MainWindow'
 import MenuWindow from '@/entries/screen/views/MenuWindow'
+import NewPatchIntroductionDialog from '@/components/Dialog/NewPatchIntroductionDialog'
 import RcDialog from '@/components/basic/RcDialog'
 import RcSnackbar from '@/components/basic/RcSnackbar'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
@@ -281,6 +284,7 @@ export default {
   name: 'Screen',
   mixins: [AppMixin],
   components: {
+    NewPatchIntroductionDialog,
     ReaderSettingDialog,
     RcSnackbar,
     MenuWindow,
@@ -300,6 +304,7 @@ export default {
     showFinishedBaitDialog: false,
   }),
   computed: {
+    ...mapState('flag', ['flags']),
     ...mapState('dialog', ['readerSettingDialog']),
     ...mapState(['readerSetting', 'sounds']),
     ...mapState('screenWindow', [
@@ -401,34 +406,12 @@ export default {
     this.loadReaderSounds().then(sounds =>
       this.setSounds(DataUtil.toMap(sounds, it => it.key))
     )
-    // this.$watch(
-    //   () => !this.isFishing && this.readerSetting.showReaderOnlyIfFishing,
-    //   hideReaderWindows => {
-    //     if (hideReaderWindows) {
-    //       this.setHiddenReaderWindows(
-    //         _.sortBy(
-    //           this.windows.filter(id => id.indexOf('READER_') === 0),
-    //           winId => this.layouts[winId].z
-    //         )
-    //       )
-    //       this.hiddenReaderWindows.forEach(winId => this.closeWindow(winId))
-    //     } else {
-    //       this.hiddenReaderWindows.forEach(id => {
-    //         this.showWindow({ type: id })
-    //       })
-    //     }
-    //   },
-    //   {
-    //     immediate: true,
-    //   }
-    // )
-    // window.electron?.ipcRenderer?.on('reloadUserData', () => {
-    //   this.reloadUserData()
-    //   console.debug('loading sounds')
-    //   this.loadingSounds().then(sounds =>
-    //     this.setSounds(DataUtil.toMap(sounds, it => it.key))
-    //   )
-    // })
+    if (!this.flags.newPatchIntroductionFlag) {
+      this.setShowDialog({
+        dialog: 'newPatchIntroductionDialog',
+        show: true,
+      })
+    }
   },
   watch: {
     isFishing: {

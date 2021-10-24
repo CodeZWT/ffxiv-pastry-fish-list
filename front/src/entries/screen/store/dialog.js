@@ -4,6 +4,7 @@ const DialogModule = {
     patchNoteDialog: false,
     readerSettingDialog: false,
     screenSettingDialog: false,
+    newPatchIntroductionDialog: false,
   },
   mutations: {
     setShowDialog(state, showDialogInfo) {

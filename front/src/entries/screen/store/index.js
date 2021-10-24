@@ -1,4 +1,5 @@
 import { DialogModule } from '@/entries/screen/store/dialog'
+import { FlagModule, FlagPlugin } from '@/entries/screen/store/oneTimeFlag'
 import { KeyBindingPlugin, KeybindingModule } from '@/entries/screen/store/keybinding'
 import { MainModule } from '@/entries/main/store'
 import { SaveLayoutPlugin, ScreenWindowModule } from '@/entries/screen/store/screenWindow'
@@ -59,6 +60,7 @@ export default new Vuex.Store({
     screenWindow: ScreenWindowModule,
     keybinding: KeybindingModule,
     dialog: DialogModule,
+    flag: FlagModule,
   },
-  plugins: [SaveLayoutPlugin, KeyBindingPlugin],
+  plugins: [SaveLayoutPlugin, KeyBindingPlugin, FlagPlugin],
 })
