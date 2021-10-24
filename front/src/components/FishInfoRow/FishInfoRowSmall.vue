@@ -68,10 +68,24 @@
             :hat="fish.showHatCover"
           />
           <div :class="inPredator ? 'ml-4' : 'ml-1'">
-            <div class="text-subtitle-1 text-break" :title="toItemTitle(fish)">
-              {{ fish.name }}
-            </div>
-            <!-- bottom actions line -->
+            <link-list
+              :id="fish.id"
+              :angler-id="fish.anglerFishId"
+              :name="fish.name"
+              mode="item"
+            >
+              <v-hover v-slot="{ hover }">
+                <div
+                  :class="
+                    `text-subtitle-1 text-break ${
+                      hover ? 'info--text text-decoration-underline' : ''
+                    }`
+                  "
+                >
+                  {{ fish.name }}
+                </div>
+              </v-hover>
+            </link-list>
             <div v-if="isIntersecting" class="d-flex">
               <!-- alarm -->
               <toggle-button
@@ -259,12 +273,14 @@ import EffectIcon from '@/components/basic/EffectIcon'
 import FishBaitList from '@/components/FishBaitList'
 import FishingSpotColumn from '@/components/FishingSpotColumn'
 import ItemIcon from '@/components/basic/ItemIcon'
+import LinkList from '@/components/basic/LinkList'
 import ToggleButton from '@/components/basic/ToggleButton'
 import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 
 export default {
   name: 'FishInfoRowSmall',
   components: {
+    LinkList,
     EffectIcon,
     ItemIcon,
     FishingSpotColumn,
