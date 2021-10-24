@@ -9,9 +9,9 @@ class ScreenTray {
     this.displayConfig = displayConfig
     this.tray = new Tray(path.join(__dirname, '../../assets/icon256.png'))
     const contextMenu = Menu.buildFromTemplate([
-      { label: '打开渔捞鼠标穿透', click: () => setMouseThrough(this.win, true) },
-      { label: '关闭渔捞鼠标穿透', click: () => setMouseThrough(this.win, false) },
-      { label: '重置窗口位置', click: () => this.resetWindowPos() },
+      { label: '打开鼠标穿透', click: () => setMouseThrough(this.win, true) },
+      { label: '关闭鼠标穿透', click: () => setMouseThrough(this.win, false) },
+      // { label: '重置窗口位置', click: () => this.resetWindowPos() },
       { label: '退出鱼糕程序', click: quitFn },
     ])
 
