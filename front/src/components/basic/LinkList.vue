@@ -7,6 +7,11 @@
       nudge-right="4"
       open-delay="300"
       close-delay="300"
+      :right="right"
+      :left="left"
+      :top="top"
+      :bottom="bottom"
+      offset-overflow
     >
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on" @click.stop="goToDefaultPage">
@@ -112,6 +117,22 @@ export default {
       default: 'normal',
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    left: {
+      type: Boolean,
+      default: false,
+    },
+    right: {
+      type: Boolean,
+      default: false,
+    },
+    top: {
+      type: Boolean,
+      default: false,
+    },
+    bottom: {
       type: Boolean,
       default: false,
     },
