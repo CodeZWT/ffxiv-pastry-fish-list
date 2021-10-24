@@ -197,16 +197,7 @@
       :source="migrationSource"
     />
     <rose-mode-dialog v-model="showRoseDialog" />
-    <!--    <competition-dialog v-model="showCompetitionDialogComputed" />-->
-
-    <rc-dialog v-model="showReaderSettingDialog" max-width="600" scrollable>
-      <v-card>
-        <v-card-title>渔捞设置</v-card-title>
-        <v-card-text>
-          <reader-setting :now="now" />
-        </v-card-text>
-      </v-card>
-    </rc-dialog>
+    <reader-setting-dialog v-model="showReaderSettingDialog" />
 
     <rc-snackbar
       :timeout="snackbar.timeout"
@@ -247,9 +238,7 @@
     </rc-snackbar>
     <rc-dialog v-model="showFinishedBaitDialog" max-width="300">
       <v-card>
-        <v-card-title>
-          以下钓饵已钓完所有鱼
-        </v-card-title>
+        <v-card-title> 以下钓饵已钓完所有鱼 </v-card-title>
         <v-card-text>
           <div class="d-flex flex-wrap">
             <div
@@ -278,7 +267,7 @@ import MenuWindow from '@/entries/screen/views/MenuWindow'
 import RcDialog from '@/components/basic/RcDialog'
 import RcSnackbar from '@/components/basic/RcSnackbar'
 import ReaderHistoryWindow from '@/entries/screen/views/ReaderHistoryWindow'
-import ReaderSetting from '@/entries/reader/views/ReaderSetting'
+import ReaderSettingDialog from '@/entries/reader/views/ReaderSettingDialog'
 import ReaderSpotStatisticsWindow from '@/entries/screen/views/ReaderSpotStatisticsWindow'
 import ReaderTimerMiniWindow from '@/entries/screen/views/ReaderTimerMiniWindow'
 import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
@@ -292,7 +281,7 @@ export default {
   name: 'Screen',
   mixins: [AppMixin],
   components: {
-    ReaderSetting,
+    ReaderSettingDialog,
     RcSnackbar,
     MenuWindow,
     RcDialog,
