@@ -1,6 +1,6 @@
 {
   "name": "fish-list",
-  "version": "0.9.9",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
