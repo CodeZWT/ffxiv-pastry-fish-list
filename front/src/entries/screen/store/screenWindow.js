@@ -87,6 +87,7 @@ const SaveLayoutPlugin = store => {
     layouts: store.state.screenWindow.layouts,
     dialogs: store.state.screenWindow.dialogs,
     alerts: store.state.screenWindow.alerts,
+    menus: store.state.screenWindow.menus,
     bottomNotifications: store.state.screenWindow.bottomNotifications,
   })
   store.subscribe((mutation, state) => {
@@ -96,6 +97,7 @@ const SaveLayoutPlugin = store => {
         layouts: state.screenWindow.layouts,
         dialogs: state.screenWindow.dialogs,
         alerts: state.screenWindow.alerts,
+        menus: state.screenWindow.menus,
         bottomNotifications: state.screenWindow.bottomNotifications,
       })
       if (!_.isEqual(prevState, nextState)) {
@@ -136,6 +138,7 @@ const ScreenWindowModule = {
     hiddenReaderWindows: storedConfig?.hiddenReaderWindows ?? [],
     dialogs: [],
     alerts: [],
+    menus: [],
     bottomNotifications: [],
     dragging: false,
     subPage: storedConfig?.subPage ?? 'ListPage',
@@ -168,6 +171,15 @@ const ScreenWindowModule = {
       const index = state.alerts.indexOf(id)
       if (index > -1) {
         state.alerts.splice(index, 1)
+      }
+    },
+    registerMenu(state, menu) {
+      state.menus.push(menu)
+    },
+    unregisterMenu(state, id) {
+      const index = state.menus.map(m => m.id).indexOf(id)
+      if (index > -1) {
+        state.menus.splice(index, 1)
       }
     },
     registerBottomNotification(state, id) {

@@ -193,6 +193,16 @@ const setWindowShape = (win, windowSetting) => {
         height: height
       })
     }
+
+    windowSetting.menus.forEach(menu => {
+      windowRectangles.push({
+        x: menu.x,
+        y: menu.y,
+        width: menu.w,
+        height: menu.h,
+      })
+    })
+
     // console.log('set shape', windowRectangles)
     win.setShape(windowRectangles.map(rec => {
       return {
@@ -451,13 +461,11 @@ const init = async () => {
   setting = new ScreenSetting()
   displayConfig = new DisplayConfig(screen, setting)
   dataReader = new ScreenReader()
+
   setupEvent()
   createScreen().then(win => {
     win.webContents.setBackgroundThrottling(false)
-    tray = new ScreenTray(win, quit, displayConfig)
-    sender = new MessageSender(win)
-    dataReader.setSender(sender)
-    updater = new Updater(win, sender)
+
     if (isDev) {
       win.webContents.openDevTools({
         mode: 'undocked',
@@ -471,18 +479,30 @@ const init = async () => {
       // })
     }
   })
+
+  tray = new ScreenTray(WINDOW_SCREEN, quit, displayConfig)
+  sender = new MessageSender(WINDOW_SCREEN)
+  dataReader.setSender(sender)
+  updater = new Updater(WINDOW_SCREEN, sender)
+
 };
 
 const showLoadingWindow = () => {
   const page = 'loading'
   const hash = 'loading'
   WINDOW_LOADING = new BrowserWindow({
-    width: 350, height: 400, frame: false, show: false,
+    width: 350,
+    height: 400,
+    frame: false,
+    show: false,
     transparent: true,
     resizable: false,
     maximizable: false,
     skipTaskbar: true,
     icon: path.join(__dirname, 'assets/icon256.png'),
+    webPreferences: {
+      nativeWindowOpen: true,
+    },
   })
   const win = WINDOW_LOADING
   win.removeMenu()

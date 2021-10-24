@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu
+    <rc-menu
       :disabled="disabled"
       open-on-hover
       offset-x
@@ -56,7 +56,7 @@
           </v-list-item>
         </v-list>
       </v-card>
-    </v-menu>
+    </rc-menu>
 
     <rc-dialog v-model="showConfigDialog" max-width="300">
       <v-card>
@@ -91,10 +91,11 @@ import { mapGetters, mapMutations } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import RcDialog from '@/components/basic/RcDialog'
+import RcMenu from '@/components/basic/RcMenu'
 
 export default {
   name: 'LinkList',
-  components: { RcDialog, ClickHelper },
+  components: { RcMenu, RcDialog, ClickHelper },
   props: {
     id: {
       type: Number,
