@@ -111,7 +111,7 @@ export default {
     },
     mode: {
       type: String,
-      default: 'item',
+      default: 'itemV2',
     },
     spotMode: {
       type: String,

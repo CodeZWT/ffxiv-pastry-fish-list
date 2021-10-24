@@ -72,7 +72,7 @@
               :id="fish.id"
               :angler-id="fish.anglerFishId"
               :name="fish.name"
-              mode="item"
+              mode="fish"
             >
               <v-hover v-slot="{ hover }">
                 <div
@@ -146,12 +146,20 @@
               v-if="fish.baitsExtra.length > 0"
               title="一种可能情况A"
             />
-            <fish-bait-list :baits="fish.baits" />
+            <fish-bait-list
+              :baits="fish.baits"
+              @fish-clicked="onFishClicked(undefined, $event)"
+              :target="fish"
+              hide-target
+            />
           </div>
           <template v-if="fish.baitsExtra.length > 0">
             <div class="d-flex align-center">
               <i class="xiv square-b" title="另一种可能情况B" />
-              <fish-bait-list :baits="fish.baitsExtra" />
+              <fish-bait-list
+                :baits="fish.baitsExtra"
+                @fish-clicked="onFishClicked(undefined, $event)"
+              />
             </div>
           </template>
         </div>

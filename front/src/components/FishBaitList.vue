@@ -9,42 +9,46 @@
         <div v-if="baitInx !== 0 && !simple" style="display: flex; align-items: center">
           <v-icon small>mdi-arrow-right</v-icon>
         </div>
-        <div
-          :data-ck-item-id="
-            !bait.diademAnyBait && toItemIdIfExisted(bait.baitId, bait.baitName)
-          "
-          style="height: 36px; width: 36px"
-          @click="onBaitOrFishClicked($event, bait.baitId)"
+
+        <link-list
+          :id="bait.baitId"
+          :name="bait.baitName"
+          :mode="isFishId(bait.baitId) ? 'fish' : 'itemV2'"
         >
-          <v-badge
-            v-if="firstBaitUnique"
-            :color="baitUniqueType === 'UNIQUE' ? 'primary' : 'grey'"
-            icon="mdi-lock"
-            offset-x="12"
-            offset-y="12"
-            left
-            :title="
-              baitUniqueType === 'UNIQUE' ? '只能用该鱼饵' : '除以小钓大外只能用该鱼饵'
-            "
+          <div
+            style="height: 36px; width: 36px"
+            @click="onBaitOrFishClicked($event, bait.baitId)"
           >
+            <v-badge
+              v-if="firstBaitUnique"
+              :color="baitUniqueType === 'UNIQUE' ? 'primary' : 'grey'"
+              icon="mdi-lock"
+              offset-x="12"
+              offset-y="12"
+              left
+              :title="
+                baitUniqueType === 'UNIQUE' ? '只能用该鱼饵' : '除以小钓大外只能用该鱼饵'
+              "
+            >
+              <item-icon
+                :icon-url="bait.diademAnyBait ? diademAnyBaitIcon : null"
+                :icon-class="bait.baitIcon"
+                :title="toItemTitle(bait.baitName, bait.baitId, bait.diademAnyBait)"
+                small
+              />
+            </v-badge>
             <item-icon
+              v-else
               :icon-url="bait.diademAnyBait ? diademAnyBaitIcon : null"
               :icon-class="bait.baitIcon"
               :title="toItemTitle(bait.baitName, bait.baitId, bait.diademAnyBait)"
               small
             />
-          </v-badge>
-          <item-icon
-            v-else
-            :icon-url="bait.diademAnyBait ? diademAnyBaitIcon : null"
-            :icon-class="bait.baitIcon"
-            :title="toItemTitle(bait.baitName, bait.baitId, bait.diademAnyBait)"
-            small
-          />
-          <div style="width: 36px" class="d-flex justify-center" title="可套娃">
-            <v-icon v-if="bait.biteSelf" small>mdi-refresh</v-icon>
+            <div style="width: 36px" class="d-flex justify-center" title="可套娃">
+              <v-icon v-if="bait.biteSelf" small>mdi-refresh</v-icon>
+            </div>
           </div>
-        </div>
+        </link-list>
         <v-row no-gutters class="d-flex" style="max-width: 27px">
           <v-col cols="12">
             <v-badge
@@ -120,10 +124,11 @@
 import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
+import LinkList from '@/components/basic/LinkList'
 
 export default {
   name: 'FishBaitList',
-  components: { ItemIcon },
+  components: { LinkList, ItemIcon },
   props: {
     baits: {
       type: Array,
@@ -166,6 +171,7 @@ export default {
     },
   },
   methods: {
+    isFishId: id => DataUtil.isFishId(id),
     toItemIdIfExisted: DataUtil.toItemIdIfExisted,
     onBaitOrFishClicked(event, itemId) {
       if (DataUtil.isFishId(itemId)) {

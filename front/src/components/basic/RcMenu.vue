@@ -17,7 +17,6 @@ export default {
         if (newValue) {
           setTimeout(() => {
             const rect = this.$refs.content.getBoundingClientRect()
-            console.log('active', newValue)
             this.registerMenu({
               id: this.id,
               x: rect.x,
