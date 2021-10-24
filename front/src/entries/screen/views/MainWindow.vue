@@ -25,7 +25,7 @@
         color="system"
         v-if="!isFishDetailPage"
       >
-        <v-tooltip bottom v-if="isWikiPage && isMobile">
+        <v-tooltip left v-if="isWikiPage && isMobile">
           <template v-slot:activator="{ on: tooltip, attrs }">
             <v-btn
               icon
@@ -42,7 +42,7 @@
         <v-spacer />
         <v-toolbar-items>
           <div v-if="inStartLight">
-            <v-tooltip bottom>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on">
                   <v-switch
@@ -81,7 +81,7 @@
             <v-icon>mdi-hook</v-icon>
           </v-btn>
 
-          <v-tooltip bottom v-if="!isWikiPage">
+          <v-tooltip left v-if="!isWikiPage">
             <template v-slot:activator="{ on: tooltip, attrs }">
               <v-btn
                 icon
@@ -96,9 +96,9 @@
             <div>按<kbd>/</kbd>键直接搜索</div>
           </v-tooltip>
 
-          <v-menu offset-y v-if="!isMobile">
+          <v-menu bottom left offset-y v-if="!isMobile">
             <template v-slot:activator="{ on: menu, attrs }">
-              <v-tooltip bottom>
+              <v-tooltip left>
                 <template v-slot:activator="{ on: tooltip }">
                   <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
                     <v-icon> mdi-theme-light-dark</v-icon>
@@ -112,7 +112,7 @@
                 <v-tooltip
                   v-for="(mode, index) in THEME_SETTING_MODES"
                   :key="index"
-                  bottom
+                  left
                   :disabled="mode !== 'AUTO'"
                 >
                   <template v-slot:activator="{ on, attrs }">
@@ -139,7 +139,7 @@
         </v-toolbar-items>
         <v-menu v-if="isMobile" offset-y left>
           <template v-slot:activator="{ on: menu, attrs }">
-            <v-tooltip bottom>
+            <v-tooltip left>
               <template v-slot:activator="{ on: tooltip }">
                 <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
                   <v-icon>mdi-dots-vertical</v-icon>
@@ -170,7 +170,7 @@
                     <v-tooltip
                       v-for="(mode, index) in THEME_SETTING_MODES"
                       :key="index"
-                      bottom
+                      left
                       :disabled="mode !== 'AUTO'"
                     >
                       <template v-slot:activator="{ on, attrs }">
