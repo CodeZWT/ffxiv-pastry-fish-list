@@ -8,6 +8,7 @@
     :z="item.z"
     :is-mobile="item.isMobile"
     :opacity="item.opacity"
+    show-time
     :title="pageTitle"
     drag-placeholder
   >

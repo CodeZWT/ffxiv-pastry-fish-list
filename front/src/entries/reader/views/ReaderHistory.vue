@@ -428,19 +428,14 @@ export default {
           this.exportedRecordCount = i
           allData.splice(0, 0, ...this.toExportData(batchData))
         }
-        console.log('start sort')
         const max = Date.now()
         allData = _.sortBy(allData, it => max - it.timestamp)
-        console.log('sort finished')
 
         invokeElectronEvent('showExportFileDialog', null, async continueExport => {
           this.exporting = false
           if (continueExport) {
             this.generating = true
-            console.log('start toExportData')
-            // allData = await this.toExportData(allData)
             sendElectronEvent('exportHistory', allData)
-            console.log('toExportData finished')
           } else {
             this.generating = false
           }

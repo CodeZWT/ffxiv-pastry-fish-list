@@ -114,7 +114,6 @@ export default {
       invokeElectronEvent('getAllDisplays', null, ({ displayIds, targetDisplayId }) => {
         this.displayIds = displayIds
         this.targetDisplayId = targetDisplayId
-        console.log(this.displayIds)
       })
     },
     setTargetDisplay(displayId) {

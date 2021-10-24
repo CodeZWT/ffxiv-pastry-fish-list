@@ -391,7 +391,6 @@ export default {
         }
       })
       ?.on('showRoseDialog', () => {
-        console.log('showRoseDialog')
         this.showRoseDialog = true
       })
       ?.on('fishingData', (event, data) => {

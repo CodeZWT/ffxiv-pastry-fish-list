@@ -39,6 +39,11 @@
         <v-system-bar class="rounded-t" style="-webkit-app-region: none">
           <span class="mx-1">{{ title }}</span>
           <!-- <span class="mx-1">{{ z }}</span> -->
+          <template v-if="showTime">
+            <v-spacer />
+            <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
+            <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
+          </template>
           <v-spacer />
           <div class="dr-drag-cancel">
             <slot name="header-buttons"> </slot>
@@ -63,6 +68,8 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import DataUtil from '@/utils/DataUtil'
+import EorzeaTime from '@/utils/Time'
 import VueDraggableResizable from 'vue-draggable-resizable'
 
 export default {
@@ -72,6 +79,10 @@ export default {
     id: {
       type: String,
       default: undefined,
+    },
+    showTime: {
+      type: Boolean,
+      default: false,
     },
     w: {
       type: Number,
@@ -129,7 +140,14 @@ export default {
     }
   },
   computed: {
+    ...mapState(['now']),
     ...mapState('screenWindow', ['dragging']),
+    eorzeaTime() {
+      return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
+    },
+    earthTime() {
+      return DataUtil.formatDateTime(this.now, 'HH:mm')
+    },
   },
   mounted() {
     this.updateWindowLayout({

@@ -18,6 +18,10 @@
         <v-img :src="readerIcon" max-height="20" max-width="20" />
         <span class="mx-1">{{ title }}</span>
         <v-spacer />
+        <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
+        <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
+
+        <v-spacer />
         <div class="dr-drag-cancel d-flex align-center">
           <div>
             <v-tooltip bottom color="secondary">
@@ -53,6 +57,8 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import DataUtil from '@/utils/DataUtil'
+import EorzeaTime from '@/utils/Time'
 import READER_ICON from 'Assets/reader.png'
 import ReaderTimer from '@/entries/reader/views/ReaderTimer'
 import ReaderTimerMixin from '@/entries/screen/views/ReaderTimerMixin'
@@ -89,6 +95,12 @@ export default {
         : this.dark
         ? 'dark'
         : 'light'
+    },
+    eorzeaTime() {
+      return new EorzeaTime(EorzeaTime.toEorzeaTime(this.now))
+    },
+    earthTime() {
+      return DataUtil.formatDateTime(this.now, 'HH:mm')
     },
   },
   methods: {
