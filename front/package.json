@@ -42,7 +42,6 @@
     "lottie-web": "^5.7.3",
     "luxon": "^1.25.0",
     "pinyin-match": "^1.1.7",
-    "splitpanes": "^2.3.3",
     "store2": "^2.12.0",
     "tree-model": "^1.0.7",
     "uuid": "^8.3.2",

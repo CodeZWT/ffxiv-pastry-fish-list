@@ -856,15 +856,6 @@ body {
 
 /* scroller setting end */
 
-.splitpanes--vertical .splitpanes__pane {
-  -webkit-transition: unset !important;
-  transition: unset !important;
-  /*transition-property: width;*/
-  /*transition-duration: 0.2s;*/
-  /*transition-timing-function: ease-out;*/
-  /*transition-delay: 0s;*/
-}
-
 .theme-switch .v-messages {
   display: none !important;
 }

@@ -95,7 +95,7 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
       cacheGroups: {
         vendorsGroup1: {
           name: 'chunk-vendors-1',
-          test: /[\\/]node_modules[\\/](howler|splitpanes|sortablejs|vee-validate|vuedraggable|clipboard)[\\/]/,
+          test: /[\\/]node_modules[\\/](howler|sortablejs|vee-validate|vuedraggable|clipboard)[\\/]/,
           priority: 10,
         },
         vendorsGroupOther: {

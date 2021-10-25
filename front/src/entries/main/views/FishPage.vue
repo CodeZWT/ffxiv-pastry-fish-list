@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import 'splitpanes/dist/splitpanes.css'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import FishDetail from '@/components/FishDetail'
@@ -173,8 +172,6 @@ export default {
     },
     onWindowResize() {
       this.lazyRightPaneFullScreen = window.innerWidth < 1264
-      // this.$refs.splitPanes.$el.style.height =
-      //   window.innerHeight - 24 - 48 - document.getElementById('fish-footer').offsetHeight
       setTimeout(() => {
         this.$refs.fishDetail?.resize()
       }, 500)
