@@ -106,10 +106,18 @@
                       <v-icon>mdi-trophy</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                      <v-list-item-title>{{
-                        $t('top.competition')
-                      }}</v-list-item-title></v-list-item-content
-                    >
+                      <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item @click="showExtraMainWindow()">
+                    <v-list-item-icon>
+                      <v-icon>mdi-dock-window</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        在新窗口中打开鱼糕
+                      </v-list-item-title>
+                    </v-list-item-content>
                   </v-list-item>
 
                   <v-list-item v-if="isRoseMode" @click="addRecord">
@@ -342,6 +350,9 @@ export default {
     ...mapActions('screenWindow', ['showPrevMainWindow']),
     ...mapMutations('screenWindow', ['showWindow']),
     ...mapMutations(['setShowImportExportDialog']),
+    showExtraMainWindow() {
+      sendElectronEvent('showMainWindow')
+    },
     showAboutDialog() {
       this.$emit('show-about')
     },

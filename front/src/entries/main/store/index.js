@@ -1,4 +1,5 @@
 import { DialogModule } from '@/entries/screen/store/dialog'
+import { FlagModule } from '@/entries/screen/store/oneTimeFlag'
 import { KeybindingModule } from '@/entries/screen/store/keybinding'
 import { ScreenWindowModule } from '@/entries/screen/store/screenWindow'
 import {
@@ -6,6 +7,7 @@ import {
   loadReaderUserData,
   loadUserData,
 } from '@/utils/UserDataLoader'
+import { sendElectronEvent } from '@/utils/electronHelper'
 import CONSTANTS from 'Data/constants'
 import DATA from 'Data/data'
 import DATA_CN from 'Data/translation'
@@ -17,7 +19,32 @@ import _ from 'lodash'
 
 Vue.use(Vuex)
 
+const ScreenPluginOf = source => store => {
+  let prevState = _.cloneDeep({
+    userData: store.state.userData,
+  })
+  store.subscribe((mutation, state) => {
+    let nextState = _.cloneDeep({
+      userData: state.userData,
+    })
+    if (!_.isEqual(prevState, nextState)) {
+      if (prevState.userData.fishEyesUsed !== nextState.userData.fishEyesUsed) {
+        sendElectronEvent('broadcast', {
+          source: source,
+          type: 'reloadPage',
+        })
+      } else {
+        sendElectronEvent('broadcast', {
+          source: source,
+          type: 'reloadUserData',
+        })
+      }
+    }
+    prevState = nextState
+  })
+}
 export const MainModule = {
+  plugins: [ScreenPluginOf('main')],
   state: {
     now: Date.now(),
     fish: DataUtil.FISH_DATA,
@@ -299,6 +326,9 @@ export const MainModule = {
         ...state.readerSetting,
         isStrictMode: false,
       })
+    },
+    reloadUserData(state) {
+      state.userData = loadUserData()
     },
     reloadReaderUserData(state) {
       state.readerSetting = loadReaderUserData()
@@ -634,10 +664,12 @@ export const MainModule = {
     screenWindow: ScreenWindowModule,
     keybinding: KeybindingModule,
     dialog: DialogModule,
+    flag: FlagModule,
   },
 }
 
 export default new Vuex.Store(MainModule)
+export { ScreenPluginOf }
 
 function updateUserDataStateRecords(userData, type, keys, value) {
   // console.debug('set', type, value, keys)

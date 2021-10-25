@@ -421,6 +421,18 @@ const setupEvent = () => {
   ipcMain.on('exportHistory', (event, data) => {
     handleExportHistory(data)
   })
+
+  ipcMain.on('broadcast', (event, data) => {
+    if (data.source === 'main') {
+      sender.send('broadcast', data)
+    } else {
+      sender.sendMain('broadcast', data)
+    }
+  })
+
+  ipcMain.on("showMainWindow", () => {
+    showMainWindow()
+  })
 }
 
 const createMainWindow = () => {
@@ -465,7 +477,13 @@ const createMainWindow = () => {
   return loadedPromise.then(() => WINDOW_MAIN)
 }
 
-
+const showMainWindow = () => {
+  if (WINDOW_MAIN && !WINDOW_MAIN.isDestroyed()) {
+    showAndFocus(WINDOW_MAIN)
+  } else {
+    createMainWindow()
+  }
+}
 
 const createScreen = () => {
   const hash = undefined,
@@ -521,7 +539,6 @@ const init = async () => {
   dataReader = new ScreenReader()
 
   setupEvent()
-  createMainWindow()
   createScreen().then(win => {
     win.webContents.setBackgroundThrottling(false)
 
@@ -540,7 +557,7 @@ const init = async () => {
   })
   unhandled = new Unhandled(WINDOW_SCREEN, WINDOW_LOADING)
   tray = new ScreenTray(WINDOW_SCREEN, quit, displayConfig)
-  sender = new MessageSender(WINDOW_SCREEN)
+  sender = new MessageSender(WINDOW_SCREEN, WINDOW_MAIN)
   dataReader.setSender(sender)
   updater = new Updater(WINDOW_SCREEN, sender)
 };

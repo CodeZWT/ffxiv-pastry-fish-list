@@ -549,6 +549,21 @@ export default {
     // })
     this.bindHotkeys()
     this.closeStrictMode()
+
+    window.electron?.ipcRenderer?.on('broadcast', (event, { type, source }) => {
+      console.log(source)
+      if (type === 'reloadUserData') {
+        this.reloadUserData()
+      } else if (type === 'reloadPage') {
+        this.showSnackbar({
+          text: '设置成功，即将重新加载页面，请稍后...',
+          color: 'success',
+        })
+        setTimeout(() => {
+          this.startReloadPage()
+        }, 2000)
+      }
+    })
   },
   async mounted() {
     // setTimeout(async () => {
@@ -1353,6 +1368,7 @@ export default {
     },
     ...mapMutations('dialog', ['setShowDialog']),
     ...mapMutations([
+      'reloadUserData',
       'setShowImportExportDialog',
       'disableStrictMode',
       'reloadReaderUserData',

@@ -507,7 +507,8 @@
                   height: 20px;
                   line-height: 20px;
                   margin: 0px 0px 0px 5px;
-                  color: #939393;"
+                  color: #939393;
+                "
               >
                 黔ICP备2020011894号-1
               </p>
