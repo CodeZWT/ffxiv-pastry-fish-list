@@ -24,7 +24,14 @@
           </v-btn>
         </template>
         <v-card>
-          <v-card-title> 功能菜单 </v-card-title>
+          <v-card-title>
+            <div class="d-flex align-center" style="width: 100%">
+              <div>功能菜单</div>
+              <v-spacer />
+              <div>鱼糕</div>
+              <v-badge :content="version" inline />
+            </div>
+          </v-card-title>
           <v-card-text>
             <v-row @click="showWindowMenu = false">
               <v-col>
@@ -241,6 +248,7 @@
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import { sendElectronEvent } from '@/utils/electronHelper'
+import { version } from '../../../../package.json'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import GlobalSettingDialog from '@/entries/screen/views/GlobalSettingDialog'
 import ImgUtil from '@/utils/ImgUtil'
@@ -276,6 +284,9 @@ export default {
   computed: {
     ...mapGetters(['isRoseMode']),
     ...mapGetters('screenWindow', ['isOpen']),
+    version() {
+      return version
+    },
   },
   created() {
     window.electron?.ipcRenderer
