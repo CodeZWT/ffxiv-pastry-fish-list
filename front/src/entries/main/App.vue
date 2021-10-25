@@ -7,19 +7,16 @@
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
-      <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-cog</v-icon>
-      </v-btn>
-      <toggle-button
-        :value="alwaysOnTop"
-        @input="toggleAlwaysOnTop"
-        checked-icon="mdi-pin"
-        unchecked-icon="mdi-pin-outline"
-        :checked-title="$t('actions.pinTop.checked')"
-        :unchecked-title="$t('actions.pinTop.unchecked')"
-        small
-        style="-webkit-app-region: none"
-      />
+      <!--      <toggle-button-->
+      <!--        :value="alwaysOnTop"-->
+      <!--        @input="toggleAlwaysOnTop"-->
+      <!--        checked-icon="mdi-pin"-->
+      <!--        unchecked-icon="mdi-pin-outline"-->
+      <!--        :checked-title="$t('actions.pinTop.checked')"-->
+      <!--        :unchecked-title="$t('actions.pinTop.unchecked')"-->
+      <!--        small-->
+      <!--        style="-webkit-app-region: none"-->
+      <!--      />-->
       <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-window-minimize</v-icon>
       </v-btn>
@@ -336,17 +333,6 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item v-if="isElectron" @click="toCompetitionPage" link>
-            <v-list-item-icon>
-              <new-feature-mark id="Competition-V.0.8.3-2">
-                <v-icon>mdi-trophy</v-icon>
-              </new-feature-mark>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
           <!--  <v-divider class="mx-2" />-->
           <!--    TODO recover this   -->
           <v-list-item v-if="!isElectron" @click="toUpdateInfo" link>
@@ -358,29 +344,21 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item
-            v-if="isElectron && isRoseMode"
-            @click="showRoseDialog = true"
-            link
-          >
-            <v-list-item-icon>
-              <v-icon>fas fa-user-secret</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item v-if="isElectron && isRoseMode" @click="toPage('RecordPage')" link>
-            <v-list-item-icon>
-              <v-icon>mdi-chart-bar</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ $t('top.record') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <!--          <v-list-item-->
+          <!--            v-if="isElectron && isRoseMode"-->
+          <!--            @click="showRoseDialog = true"-->
+          <!--            link-->
+          <!--          >-->
+          <!--            <v-list-item-icon>-->
+          <!--              <v-icon>fas fa-user-secret</v-icon>-->
+          <!--            </v-list-item-icon>-->
+          <!--            <v-list-item-content>-->
+          <!--              <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>-->
+          <!--            </v-list-item-content>-->
+          <!--          </v-list-item>-->
         </v-list>
 
-        <template v-slot:append>
+        <template v-slot:append v-if="!isElectron">
           <v-list nav dense>
             <v-spacer />
             <v-divider />
@@ -466,6 +444,7 @@
           :is-mobile="isMobile"
           :toggle-map-menu="showMapMenu"
           @fish-selected="onFishSelected"
+          :original="true"
         />
       </div>
       <!--      <v-container class="py-0">-->
@@ -488,7 +467,7 @@
       @change="handleSearch"
     />
 
-    <v-footer app style="font-size: small; max-height: 31px">
+    <v-footer app style="font-size: small; max-height: 31px" v-if="!isElectron">
       <div class="d-flex" style="width: 100%">
         <template v-if="!isMobile">
           <div

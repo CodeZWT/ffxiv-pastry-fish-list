@@ -1,9 +1,12 @@
 <template>
   <v-container
     fluid
-    :class="
-      `detail-wrapper ${isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'}`
-    "
+    :class="{
+      'detail-wrapper': true,
+      'detail-wrapper--web': !isElectron,
+      'detail-wrapper--electron': isElectron && !original,
+      'detail-wrapper--electron-original': isElectron && original,
+    }"
   >
     <v-row>
       <v-col cols="12">
@@ -214,6 +217,7 @@ export default {
   name: 'DiademPage',
   mixins: [PageMixin],
   components: { WeatherIcon, ItemIcon, EorzeaSimpleMap, DiademFishList },
+  props: ['original'],
   data() {
     return {
       regionTerritorySpots: regionTerritorySpots,
@@ -354,14 +358,15 @@ export default {
   width: 100%
   overflow-scrolling: auto
   overflow-x: hidden
+  overflow-y: auto
 
   &--web
     height: 100%
-    overflow-y: scroll
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
-
   &--electron
     max-height: calc(100% - #{ $toolbar-height })
+  &--electron-original
+    max-height: calc(100vh - #{ $top-system-bar-padding + $toolbar-height })
 
 .red
   color: orangered !important

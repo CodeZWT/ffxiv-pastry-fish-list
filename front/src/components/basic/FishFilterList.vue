@@ -5,7 +5,8 @@
       'px-1': isMobile,
       'filter-list-container': true,
       'filter-list-container--web': !isElectron,
-      'filter-list-container--desktop': isElectron,
+      'filter-list-container--desktop': isElectron && !original,
+      'filter-list-container--desktop-original': isElectron && original,
     }"
     style="position: relative"
     ref="scrollTarget"
@@ -289,6 +290,7 @@ export default {
     FishFilter,
   },
   props: [
+    'original',
     'lazyTransformedFishDict',
     'pinnedFishIdList',
     'fishListTimePart',

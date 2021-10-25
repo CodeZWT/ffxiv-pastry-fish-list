@@ -212,25 +212,6 @@
         <!--        </v-sheet>-->
       </v-toolbar>
 
-      <!--      <fish-page-->
-      <!--        v-if="page === 'ListPage'"-->
-      <!--        :now="now"-->
-      <!--        :is-mobile="isMobile"-->
-      <!--        :lazyFishSourceList="lazySourceFishList"-->
-      <!--        :lazyTransformedFishList="lazyTransformedFishList"-->
-      <!--        :lazyTransformedFishDict="lazyTransformedFishDict"-->
-      <!--        :fishListTimePart="fishListTimePart"-->
-      <!--        :extraFishListTimePart="extraFishListTimePart"-->
-      <!--        :fishListWeatherChangePart="fishListWeatherChangePart"-->
-      <!--        :pinnedFishIdList="pinnedFishIdList"-->
-      <!--        :sortedFilteredFishIdList="sortedFilteredFishIdList"-->
-      <!--        :toBeNotifiedFishIdList="toBeNotifiedFishIdList"-->
-      <!--        :selectedFish="selectedFish"-->
-      <!--        :filteredFishIdSet="filteredFishIdSet"-->
-      <!--        :active-tab-index="activeTabIndex"-->
-      <!--        :right-pane-full-screen="true"-->
-      <!--        @fish-selected="onFishSelected"-->
-      <!--      />-->
       <fish-filter-list
         v-if="page === 'ListPage'"
         :is-mobile="isMobile"
@@ -244,6 +225,7 @@
         :activeTabIndex="activeTabIndex"
         :show-right-pane="false"
         @fish-selected="onFishSelected"
+        :original="false"
       />
       <fish-detail-page
         v-if="page === 'FishDetailPage'"

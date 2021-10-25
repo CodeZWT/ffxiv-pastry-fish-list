@@ -1,11 +1,13 @@
 <template>
   <v-container
     fluid
-    :class="
-      `pa-0 detail-wrapper ${
-        isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'
-      }`
-    "
+    :class="{
+      'pa-0': true,
+      'detail-wrapper': true,
+      'detail-wrapper--web': !isElectron,
+      'detail-wrapper--electron': isElectron && !original,
+      'detail-wrapper--electron-original': isElectron && original,
+    }"
   >
     <v-tabs v-model="pageSection" centered icons-and-text grow>
       <v-tabs-slider></v-tabs-slider>
@@ -251,7 +253,7 @@ export default {
   name: 'OceanFishingPage54',
   mixins: [PageMixin],
   components: { RcDialog, ItemIcon, OceanFishingVoyage, OceanFishingTimeTable },
-  props: ['now', 'lazyTransformedFishDict'],
+  props: ['now', 'lazyTransformedFishDict', 'original'],
   data() {
     return {
       pageSections: [
@@ -491,7 +493,8 @@ function shift2Icon(shift) {
 
   &--web
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
-
   &--electron
     max-height: calc(100% - #{ $toolbar-height })
+  &--electron-original
+    max-height: calc(100vh - #{ $top-system-bar-padding + $toolbar-height })
 </style>

@@ -1,11 +1,13 @@
 <template>
   <v-container
     fluid
-    :class="
-      `px-0 detail-wrapper ${
-        isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'
-      }`
-    "
+    :class="{
+      'px-0': true,
+      'detail-wrapper': true,
+      'detail-wrapper--web': !isElectron,
+      'detail-wrapper--electron': isElectron && !original,
+      'detail-wrapper--electron-original': isElectron && original,
+    }"
   >
     <v-row>
       <v-card style="width: 100%" class="mx-2">
@@ -233,6 +235,7 @@ export default {
   name: 'AquariumPage',
   mixins: [PageMixin],
   components: { RcAutocomplete, RawItemIcon, FishAquarium },
+  props: ['original'],
   data() {
     return {
       aquariumSettingImg: ImgUtil.getImgUrl('aquarium-setting.jpg'),
@@ -307,7 +310,8 @@ export default {
     height: 100%
     overflow-y: scroll
     max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
-
   &--electron
     max-height: calc(100% - #{ $toolbar-height })
+  &--electron-original
+    max-height: calc(100vh - #{ $top-system-bar-padding + $toolbar-height })
 </style>

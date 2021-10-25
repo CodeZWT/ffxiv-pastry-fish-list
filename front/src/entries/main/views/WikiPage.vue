@@ -3,9 +3,11 @@
     :class="{
       'wiki-page': true,
       'wiki-page--pc-web': !isMobile && !isElectron,
-      'wiki-page--pc-electron': !isMobile && isElectron,
+      'wiki-page--pc-electron': !isMobile && isElectron && !original,
+      'wiki-page--pc-electron-original': !isMobile && isElectron && original,
       'wiki-page--mobile-web': isMobile && !isElectron,
-      'wiki-page--mobile-electron': isMobile && isElectron,
+      'wiki-page--mobile-electron': isMobile && isElectron && !original,
+      'wiki-page--mobile-electron-original': isMobile && isElectron && original,
     }"
   >
     <v-navigation-drawer
@@ -91,7 +93,8 @@
             'spot-list': true,
             'spot-list--pc-web': !isMobile && !isElectron,
             'spot-list--mobile-web': isMobile && !isElectron,
-            'spot-list--electron': isElectron,
+            'spot-list--electron': isElectron && !original,
+            'spot-list--electron-original': isElectron && original,
           }"
         >
           <v-treeview
@@ -563,6 +566,7 @@ export default {
     // GridItem: VueGridLayout.GridItem,
   },
   props: [
+    'original',
     'lazyTransformedFishDict',
     'fishListTimePart',
     'now',
@@ -1315,6 +1319,8 @@ $spot-menu-padding: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
     height: calc(100vh - #{ $spot-menu-padding })
   &--electron
     height: calc(100% - #{ $spot-menu-padding })
+  &--electron-original
+    height: calc(100vh - #{ $top-system-bar-padding +  $top-bars-padding + $spot-menu-padding })
 
 .wiki-page
   display: flex
@@ -1327,6 +1333,9 @@ $spot-menu-padding: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
     &-electron
       max-height: calc(100% - #{ $top-bars-padding })
       max-width: 100%
+    &-electron-original
+      max-height: calc(100vh - #{ $top-system-bar-padding + $top-bars-padding })
+      max-width: 100%
 
   &--pc
     &-web
@@ -1334,6 +1343,8 @@ $spot-menu-padding: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
       max-height: calc(100vh - #{ $top-bars-padding + $footer-padding })
     &-electron
       max-height: calc(100% - #{ $top-bars-padding })
+    &-electron-original
+      max-height: calc(100vh - #{ $top-system-bar-padding + $top-bars-padding })
 
 .nav-bar
   &--pc

@@ -3,7 +3,8 @@
     <div
       :class="{
         'list-part': true,
-        'list-part--web': true,
+        'list-part--web': !isElectron,
+        'list-part--desktop': isElectron,
         'show-divider': showRightPane,
       }"
       v-show="!lazyRightPaneFullScreen || !showRightPane"
@@ -20,6 +21,7 @@
         :is-mobile="isMobile"
         :show-right-pane="showRightPane"
         @fish-selected="onFishSelected"
+        :original="true"
       />
     </div>
     <div class="detail-part" v-if="showRightPane">
@@ -201,6 +203,8 @@ export default {
   flex: 1 1 500%
   &--web
     height: calc(100vh - #{$toolbar-height + $footer-padding})
+  &--desktop
+    height: calc(100vh - #{$toolbar-height + $top-system-bar-padding})
 
 .show-divider
   border-right: 1px solid gray

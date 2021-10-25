@@ -51,6 +51,15 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
       filename: 'loading.html',
       title: '加载中',
     },
+    index: {
+      entry: 'src/entries/main/main.js',
+      template:
+        process.env.NODE_ENV === 'development'
+          ? 'public/index.dev.html'
+          : 'public/index.html',
+      filename: 'index.html',
+      title: '鱼糕主界面',
+    },
   }
   optimization = {}
 } else {

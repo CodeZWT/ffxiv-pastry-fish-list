@@ -31,7 +31,7 @@ log.transports.console.level = 'silly'
 
 let tray, setting, sender, dataReader, updater, hotkeySetting, displayConfig, unhandled
 let mainWindowConfig = {}
-let WINDOW_SCREEN, WINDOW_LOADING
+let WINDOW_SCREEN, WINDOW_LOADING, WINDOW_MAIN
 let remoteOpcodeVersion = 'latest'
 let screen
 let maximizeTimeout
@@ -343,16 +343,16 @@ const setupEvent = () => {
       setWindowShape(WINDOW_SCREEN, windowSetting)
     })
     .on('maximize', () => {
-      callWindowSafe(WINDOW_SCREEN, win => win.maximize())
+      callWindowSafe(WINDOW_MAIN, win => win.maximize())
     })
     .on('unmaximize', () => {
-      callWindowSafe(WINDOW_SCREEN, win => win.unmaximize())
+      callWindowSafe(WINDOW_MAIN, win => win.unmaximize())
     })
     .on('minimize', () => {
-      callWindowSafe(WINDOW_SCREEN, win => win.minimize())
+      callWindowSafe(WINDOW_MAIN, win => win.minimize())
     })
     .on('close', () => {
-      callWindowSafe(WINDOW_SCREEN, win => win.close())
+      callWindowSafe(WINDOW_MAIN, win => win.close())
     })
     .on('startUpdate', () => {
       quitAndSetup()
@@ -423,6 +423,49 @@ const setupEvent = () => {
   })
 }
 
+const createMainWindow = () => {
+  const hash = null,
+    page = 'index'
+  WINDOW_MAIN = new BrowserWindow({
+    frame: false,
+    show: false,
+    transparent: false,
+    resizable: true,
+    maximizable: true,
+    skipTaskbar: false,
+    focusable: true,
+    webPreferences: {
+      contextIsolation: false,
+      nodeIntegration: true,
+      preload: __dirname + '/preload.js',
+      nativeWindowOpen: true,
+    },
+    icon: path.join(__dirname, 'assets/icon256.png'),
+  })
+  WINDOW_MAIN.removeMenu()
+  WINDOW_MAIN.once('ready-to-show', () => {
+    WINDOW_MAIN.show()
+  })
+  let loadedPromise
+  if (isDev) {
+    loadedPromise = WINDOW_MAIN.loadURL(
+      `http://localhost:8080/${page}${hash ? '/#/' + hash : ''}`
+    )
+  } else {
+    loadedPromise = WINDOW_MAIN.loadFile(
+      path.join(__dirname, `/front-electron-dist/${page}.html`),
+      {
+        hash: hash && ('/' + hash),
+      }
+    )
+  }
+  WINDOW_MAIN.on('closed', () => {
+    WINDOW_MAIN = null
+  })
+  return loadedPromise.then(() => WINDOW_MAIN)
+}
+
+
 
 const createScreen = () => {
   const hash = undefined,
@@ -478,6 +521,7 @@ const init = async () => {
   dataReader = new ScreenReader()
 
   setupEvent()
+  createMainWindow()
   createScreen().then(win => {
     win.webContents.setBackgroundThrottling(false)
 
