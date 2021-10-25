@@ -32,7 +32,6 @@
     "detect-browser": "^5.2.0",
     "dexie": "^3.0.3",
     "echarts": "^5.1.2",
-    "electron-log": "^4.3.5",
     "flat": "^5.0.2",
     "hotkeys-js": "^3.8.1",
     "howler": "^2.2.0",

@@ -555,11 +555,6 @@ ci-info@^2.0.0:
   resolved "https://registry.npm.taobao.org/ci-info/download/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
   integrity sha1-Z6npZL4xpR4V5QENWObxKDQAL0Y=
 
-clean-stack@^2.1.0:
-  version "2.2.0"
-  resolved "https://registry.npm.taobao.org/clean-stack/download/clean-stack-2.2.0.tgz?cache=0&sync_timestamp=1605702352378&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fclean-stack%2Fdownload%2Fclean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
-  integrity sha1-7oRy27Ep5yezHooQpCfe6d/kAIs=
-
 cli-boxes@^2.2.0:
   version "2.2.1"
   resolved "https://registry.npm.taobao.org/cli-boxes/download/cli-boxes-2.2.1.tgz#ddd5035d25094fce220e9cab40a45840a440318f"
@@ -1091,7 +1086,7 @@ electron-dl@^3.1.0:
     pupa "^2.0.1"
     unused-filename "^2.1.0"
 
-electron-is-dev@^1.0.1, electron-is-dev@^1.2.0:
+electron-is-dev@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/electron-is-dev/download/electron-is-dev-1.2.0.tgz#2e5cea0a1b3ccf1c86f577cee77363ef55deb05e"
   integrity sha1-LlzqChs8zxyG9XfO53Nj71XesF4=
@@ -1122,16 +1117,6 @@ electron-store@^7.0.2:
   dependencies:
     conf "^9.0.0"
     type-fest "^0.20.2"
-
-electron-unhandled@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.npm.taobao.org/electron-unhandled/download/electron-unhandled-3.0.2.tgz#e14a19c830ccf7b6e755191c8e78d23094d25112"
-  integrity sha1-4UoZyDDM97bnVRkcjnjSMJTSURI=
-  dependencies:
-    clean-stack "^2.1.0"
-    electron-is-dev "^1.0.1"
-    ensure-error "^2.0.0"
-    lodash.debounce "^4.0.8"
 
 electron@^14.0.0:
   version "14.0.0"
@@ -1175,11 +1160,6 @@ enquirer@^2.3.5:
   integrity sha1-Kn/l3WNKHkElqXXsmU/1RW3Dc00=
   dependencies:
     ansi-colors "^4.1.1"
-
-ensure-error@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.npm.taobao.org/ensure-error/download/ensure-error-2.1.0.tgz#f11fbe383c0cf4a54850ac77acceb7bc06e0f99d"
-  integrity sha1-8R++ODwM9KVIUKx3rM63vAbg+Z0=
 
 env-paths@^2.2.0:
   version "2.2.0"
@@ -2187,11 +2167,6 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash.debounce@^4.0.8:
-  version "4.0.8"
-  resolved "https://registry.npm.taobao.org/lodash.debounce/download/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
-  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
-
 lodash@^4.17.10, lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
@@ -2652,6 +2627,11 @@ process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.npm.taobao.org/process-nextick-args/download/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha1-eCDZsWEgzFXKmud5JoCufbptf+I=
+
+process@^0.11.10:
+  version "0.11.10"
+  resolved "https://registry.nlark.com/process/download/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
+  integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
 
 progress@^2.0.0, progress@^2.0.3:
   version "2.0.3"

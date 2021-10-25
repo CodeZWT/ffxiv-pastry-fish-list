@@ -13,7 +13,7 @@ const path = require('path')
 const ObjectsToCsv = require('objects-to-csv')
 const iconv = require('iconv-lite')
 const datauri = require('datauri')
-const unhandled = require('electron-unhandled')
+// const unhandled = require('electron-unhandled')
 const contextMenu = require('electron-context-menu')
 const { callWindowSafe, showAndFocus, callTargetSafe, setOnTop, setMouseThrough } = require("./server/mainSetup/utils");
 const { setupDevEnv } = require("./server/mainSetup/setupDevEnv");
@@ -24,10 +24,12 @@ const { ScreenReader } = require("./server/mainSetup/ScreenReader");
 const { Updater } = require("./server/mainSetup/Updater");
 const { HotkeySetting } = require('./server/mainSetup/HotkeySetting')
 const { DisplayConfig } = require('./server/mainSetup/DisplayConfig')
+const process = require('process')
+const { Unhandled } = require('./server/mainSetup/unhandled')
 
 log.transports.console.level = 'silly'
 
-let tray, setting, sender, dataReader, updater, hotkeySetting, displayConfig
+let tray, setting, sender, dataReader, updater, hotkeySetting, displayConfig, unhandled
 let mainWindowConfig = {}
 let WINDOW_SCREEN, WINDOW_LOADING
 let remoteOpcodeVersion = 'latest'
@@ -42,12 +44,25 @@ const STATUS = {
 
 const opcodeUrlOf = (version) => `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${version}/opcodes.min.json`
 
-unhandled({
-  logger: log.error,
-  reportButton: error => {
-    shell.showItemInFolder(path.join(app.getPath('userData'), 'logs/main.log'))
-  },
-})
+// unhandled({
+//   logger: log.error,
+//   reportButton: error => {
+//     shell.showItemInFolder(path.join(app.getPath('userData'), 'logs/main.log'))
+//   },
+// })
+
+// process.on('uncaughtException', function() {
+//   log.error('uncaught exception')
+//   // log.error('Front-end error:', error)
+//   dialog.showMessageBoxSync({
+//     type: 'error',
+//     message: 'Unexpected error occurred. Restarting the application.',
+//     title: 'Error',
+//   })
+//   app.relaunch()
+//   app.quit()
+// })
+
 contextMenu()
 
 const handleUserDataUpdates = (updateData) => {
@@ -479,12 +494,11 @@ const init = async () => {
       // })
     }
   })
-
+  unhandled = new Unhandled(WINDOW_SCREEN, WINDOW_LOADING)
   tray = new ScreenTray(WINDOW_SCREEN, quit, displayConfig)
   sender = new MessageSender(WINDOW_SCREEN)
   dataReader.setSender(sender)
   updater = new Updater(WINDOW_SCREEN, sender)
-
 };
 
 const showLoadingWindow = () => {
