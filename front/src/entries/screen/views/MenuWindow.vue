@@ -440,7 +440,7 @@ export default {
       })
     },
     exit() {
-      sendElectronEvent('close')
+      sendElectronEvent('quit')
     },
   },
 }

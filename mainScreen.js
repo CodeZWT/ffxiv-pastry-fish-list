@@ -354,6 +354,10 @@ const setupEvent = () => {
     .on('close', () => {
       callWindowSafe(WINDOW_MAIN, win => win.close())
     })
+    .on('quit', () => {
+      callWindowSafe(WINDOW_MAIN, win => win.close())
+      callWindowSafe(WINDOW_SCREEN, win => win.close())
+    })
     .on('startUpdate', () => {
       quitAndSetup()
     })
