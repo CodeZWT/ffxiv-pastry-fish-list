@@ -15,7 +15,7 @@ const iconv = require('iconv-lite')
 const datauri = require('datauri')
 // const unhandled = require('electron-unhandled')
 const contextMenu = require('electron-context-menu')
-const { callWindowSafe, showAndFocus, callTargetSafe, setOnTop, setMouseThrough } = require("./server/mainSetup/utils");
+const { callWindowSafe, showAndFocus, callTargetSafe, setOnTop, setMouseThrough, callWindowsSafe } = require("./server/mainSetup/utils");
 const { setupDevEnv } = require("./server/mainSetup/setupDevEnv");
 const { ScreenSetting } = require("./server/mainSetup/ScreenSetting");
 const { ScreenTray } = require("./server/mainSetup/ScreenTray");
@@ -218,6 +218,14 @@ const setWindowShape = (win, windowSetting) => {
       })
     })
 
+    // TODO check
+    // to fix browser not rendered if there is only menu button...
+    windowRectangles.push({
+      x: -1,
+      y: -1,
+      width: 1,
+      height: 1,
+    })
     // console.log('set shape', windowRectangles)
     win.setShape(windowRectangles.map(rec => {
       return {
@@ -234,10 +242,6 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
   if (!STATUS.loadingFinished) {
     STATUS.loadingFinished = true
     log.info('in finishLoading')
-    callWindowSafe(WINDOW_LOADING, win => {
-      log.info('try close loading window')
-      win.close()
-    })
 
     updater.showUpdateDialogIfNecessary()
     mainWindowConfig = userData.mainWindow
@@ -330,6 +334,22 @@ const setupEvent = () => {
     .on(
       'finishLoading',
       (event, { userData, readerSetting, windowSetting, keybindings, opcodeVersion }) => {
+
+        if (WINDOW_SCREEN !== null && WINDOW_MAIN !== null) {
+          callWindowSafe(WINDOW_LOADING, win => {
+            // log.info('try close loading window')
+            win.close()
+          })
+          callWindowSafe(WINDOW_MAIN, win => {
+            win.show()
+          })
+          callWindowSafe(WINDOW_SCREEN, win => {
+            WINDOW_SCREEN.setPosition(displayConfig.x, displayConfig.y)
+            WINDOW_SCREEN.show()
+            WINDOW_SCREEN.maximize()
+          })
+        }
+
         handleFinishLoadingFront(
           userData,
           readerSetting,
@@ -352,7 +372,7 @@ const setupEvent = () => {
       callWindowSafe(WINDOW_MAIN, win => win.minimize())
     })
     .on('close', () => {
-      callWindowSafe(WINDOW_MAIN, win => win.close())
+      callWindowSafe(WINDOW_MAIN, win => win.hide())
     })
     .on('quit', () => {
       callWindowSafe(WINDOW_MAIN, win => win.close())
@@ -460,7 +480,7 @@ const createMainWindow = () => {
   })
   WINDOW_MAIN.removeMenu()
   WINDOW_MAIN.once('ready-to-show', () => {
-    WINDOW_MAIN.show()
+    // WINDOW_MAIN.show()
   })
   let loadedPromise
   if (isDev) {
@@ -512,9 +532,9 @@ const createScreen = () => {
   WINDOW_SCREEN.removeMenu()
   setOnTop(WINDOW_SCREEN)
   WINDOW_SCREEN.once('ready-to-show', () => {
-    WINDOW_SCREEN.setPosition(displayConfig.x, displayConfig.y)
-    WINDOW_SCREEN.show()
-    WINDOW_SCREEN.maximize()
+    // WINDOW_SCREEN.setPosition(displayConfig.x, displayConfig.y)
+    // WINDOW_SCREEN.show()
+    // WINDOW_SCREEN.maximize()
   })
   let loadedPromise
   if (isDev) {
@@ -543,6 +563,9 @@ const init = async () => {
   dataReader = new ScreenReader()
 
   setupEvent()
+  createMainWindow().then(win => {
+    win.webContents.setBackgroundThrottling(false)
+  })
   createScreen().then(win => {
     win.webContents.setBackgroundThrottling(false)
 
@@ -559,7 +582,7 @@ const init = async () => {
       // })
     }
   })
-  unhandled = new Unhandled(WINDOW_SCREEN, WINDOW_LOADING)
+  unhandled = new Unhandled([WINDOW_SCREEN, WINDOW_LOADING, WINDOW_MAIN])
   tray = new ScreenTray(WINDOW_SCREEN, quit, displayConfig)
   sender = new MessageSender(WINDOW_SCREEN, WINDOW_MAIN)
   dataReader.setSender(sender)
