@@ -1,9 +1,12 @@
 <template>
   <v-container
     fluid
-    :class="
-      `detail-wrapper ${isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'}`
-    "
+    :class="{
+      'detail-wrapper': true,
+      'detail-wrapper--web': !isElectron,
+      'detail-wrapper--electron': isElectron && !original,
+      'detail-wrapper--electron-original': isElectron && original,
+    }"
   >
     <v-tabs v-model="tabIndex" grow>
       <v-tab>钓场</v-tab>
@@ -722,7 +725,7 @@ export default {
     ItemIcon,
   },
   mixins: [EnvMixin],
-  props: ['lazyTransformedFishDict', 'lazySourceFishList'],
+  props: ['lazyTransformedFishDict', 'lazySourceFishList', 'original'],
   inject: {
     theme: {
       default: { isDark: false },
@@ -1395,4 +1398,7 @@ export default {
 
   &--electron
     max-height: calc(100% - #{ $toolbar-height})
+
+  &--electron-original
+    max-height: calc(100vh - #{ $top-system-bar-padding + $toolbar-height })
 </style>
