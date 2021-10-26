@@ -46,6 +46,7 @@ const ScreenPluginOf = source => store => {
 export const MainModule = {
   plugins: [ScreenPluginOf('main')],
   state: {
+    window: 'main',
     now: Date.now(),
     fish: DataUtil.FISH_DATA,
     fishingSpots: DataUtil.FISHING_SPOTS,

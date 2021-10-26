@@ -1,6 +1,6 @@
 <script>
 import { VSnackbar } from 'vuetify/lib'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import { v4 as uuid } from 'uuid'
 
 export default {
@@ -11,20 +11,25 @@ export default {
       id: uuid(),
     }
   },
+  computed: {
+    ...mapState(['window']),
+  },
   watch: {
     isActive: {
       handler(newValue) {
-        if (this.centered) {
-          if (newValue) {
-            this.registerAlert(this.id)
+        if (this.window === 'screen') {
+          if (this.centered) {
+            if (newValue) {
+              this.registerAlert(this.id)
+            } else {
+              this.unregisterAlert(this.id)
+            }
           } else {
-            this.unregisterAlert(this.id)
-          }
-        } else {
-          if (newValue) {
-            this.registerBottomNotification(this.id)
-          } else {
-            this.unregisterBottomNotification(this.id)
+            if (newValue) {
+              this.registerBottomNotification(this.id)
+            } else {
+              this.unregisterBottomNotification(this.id)
+            }
           }
         }
       },

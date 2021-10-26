@@ -15,6 +15,7 @@ export default new Vuex.Store({
   state: {
     readerTimerMiniMode: false,
     ...MainModule.state,
+    window: 'screen',
   },
   getters: {
     isStrictMode: state => {

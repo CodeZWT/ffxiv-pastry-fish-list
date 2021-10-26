@@ -1,6 +1,6 @@
 <script>
 import { VDialog } from 'vuetify/lib'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import { v4 as uuid } from 'uuid'
 
@@ -18,16 +18,21 @@ export default {
       dialogId: uuid(),
     }
   },
+  computed: {
+    ...mapState(['window']),
+  },
   watch: {
     isActive: {
       handler(isActive) {
-        if (isActive) {
-          this.registerDialog(this.dialogId)
-        } else {
-          this.unRegisterDialog(this.dialogId)
-        }
-        if (this.autofocus) {
-          sendElectronEvent('setFocused', isActive)
+        if (this.window === 'screen') {
+          if (isActive) {
+            this.registerDialog(this.dialogId)
+          } else {
+            this.unRegisterDialog(this.dialogId)
+          }
+          if (this.autofocus) {
+            sendElectronEvent('setFocused', isActive)
+          }
         }
       },
       immediate: true,

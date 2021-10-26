@@ -1,10 +1,4 @@
-const {
-  app,
-  BrowserWindow,
-  ipcMain,
-  shell,
-  dialog,
-} = require('electron')
+const { app, BrowserWindow, ipcMain, shell, dialog, globalShortcut } = require('electron')
 const { exec } = require('child_process')
 const isDev = require('electron-is-dev')
 const log = require('electron-log')
@@ -379,7 +373,9 @@ const setupEvent = () => {
       callWindowSafe(WINDOW_SCREEN, win => win.close())
     })
     .on('alwaysOnTop', (event, alwaysOnTop) => {
-      callWindowSafe(WINDOW_MAIN, win => setOnTop(win, alwaysOnTop))
+      callWindowSafe(WINDOW_MAIN, win => {
+        setOnTop(win, alwaysOnTop)
+      })
     })
     .on('startUpdate', () => {
       quitAndSetup()
@@ -519,7 +515,7 @@ const createScreen = () => {
     frame: false,
     show: false,
     transparent: true,
-    resizable: true,
+    resizable: false,
     maximizable: false,
     skipTaskbar: false,
     focusable: false,
@@ -576,14 +572,15 @@ const init = async () => {
       win.webContents.openDevTools({
         mode: 'undocked',
       })
-      // globalShortcut.register('Alt+CommandOrControl+[', () => {
-      //   callWindowSafe(win, win =>
-      //     win.webContents.openDevTools({
-      //       mode: 'undocked',
-      //     })
-      //   )
-      // })
     }
+
+    globalShortcut.register('Alt+CommandOrControl+[', () => {
+      callWindowSafe(WINDOW_SCREEN, win =>
+        win.webContents.openDevTools({
+          mode: 'undocked',
+        })
+      )
+    })
   })
   unhandled = new Unhandled([WINDOW_SCREEN, WINDOW_LOADING, WINDOW_MAIN])
   tray = new ScreenTray(WINDOW_SCREEN, quit, displayConfig)
