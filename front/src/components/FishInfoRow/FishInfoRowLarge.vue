@@ -141,181 +141,166 @@
             </div>
           </v-col>
           <v-col :class="`${countDownColClass} d-flex flex-column justify-center`">
-            <template v-if="isIntersecting">
-              <!--  1st: end / start count down  -->
-              <div class="text-subtitle-1 d-flex">
-                <template v-if="transformedFishTimePart.hasCountDown">
-                  <div>
-                    <v-tooltip
-                      right
-                      color="secondary"
-                      :disabled="!transformedFishTimePart.hasCountDown"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <div v-bind="attrs" v-on="on">
-                          {{
-                            $t(transformedFishTimePart.countDownType, {
-                              interval: countDownTimeText,
-                            })
-                          }}
-                        </div>
-                      </template>
-                      <div class="d-flex flex-column">
-                        <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
-                      </div>
-                    </v-tooltip>
-                  </div>
-                  <effect-icon
-                    v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
-                    :icon-class="fish.predatorsIcon"
-                    :title="$t('list.item.countDown.fishShadowHint')"
-                    style="margin-left: 2px"
-                  />
-                </template>
-                <div v-if="fish.checking" title="开荒中一切数据仅供参考" class="ml-1">
-                  <v-icon small color="warning">mdi-alert-outline</v-icon>
-                  <span class="warning--text">开荒中</span>
-                </div>
-                <div v-if="!transformedFishTimePart.hasCountDown && !fish.checking">
-                  {{ $t('countDown.allAvailable') }}
-                </div>
-              </div>
-              <!--  2nd: next count down / interval & fishing window rate -->
-              <div
-                v-if="transformedFishTimePart.hasCountDown"
-                class="d-flex align-center flex-wrap"
-              >
+            <!--  1st: end / start count down  -->
+            <div class="text-subtitle-1 d-flex">
+              <template v-if="transformedFishTimePart.hasCountDown">
                 <div>
                   <v-tooltip
-                    v-if="transformedFishTimePart.isFishing"
                     right
                     color="secondary"
+                    :disabled="!transformedFishTimePart.hasCountDown"
                   >
                     <template v-slot:activator="{ on, attrs }">
-                      <div
-                        v-bind="attrs"
-                        v-on="on"
-                        class="text-subtitle-2"
-                        style="padding-top: 3px"
-                      >
-                        {{ countDownNextInterval }}
+                      <div v-bind="attrs" v-on="on">
+                        {{
+                          $t(transformedFishTimePart.countDownType, {
+                            interval: countDownTimeText,
+                          })
+                        }}
                       </div>
                     </template>
-                    <span>{{ transformedFishTimePart.countDownNextTimePointText }}</span>
+                    <div class="d-flex flex-column">
+                      <div>{{ transformedFishTimePart.countDownTimePointText }}</div>
+                    </div>
                   </v-tooltip>
                 </div>
-                <div v-if="transformedFishTimePart.isWaiting">
-                  <div class="text-subtitle-2" style="padding-top: 3px">
-                    {{ transformedFishTimePart.countDownTotalHint }}
-                  </div>
+                <effect-icon
+                  v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
+                  :icon-class="fish.predatorsIcon"
+                  :title="$t('list.item.countDown.fishShadowHint')"
+                  style="margin-left: 2px"
+                />
+              </template>
+              <div v-if="fish.checking" title="开荒中一切数据仅供参考" class="ml-1">
+                <v-icon small color="warning">mdi-alert-outline</v-icon>
+                <span class="warning--text">开荒中</span>
+              </div>
+              <div v-if="!transformedFishTimePart.hasCountDown && !fish.checking">
+                {{ $t('countDown.allAvailable') }}
+              </div>
+            </div>
+            <!--  2nd: next count down / interval & fishing window rate -->
+            <div
+              v-if="transformedFishTimePart.hasCountDown"
+              class="d-flex align-center flex-wrap"
+            >
+              <div>
+                <v-tooltip
+                  v-if="transformedFishTimePart.isFishing"
+                  right
+                  color="secondary"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <div
+                      v-bind="attrs"
+                      v-on="on"
+                      class="text-subtitle-2"
+                      style="padding-top: 3px"
+                    >
+                      {{ countDownNextInterval }}
+                    </div>
+                  </template>
+                  <span>{{ transformedFishTimePart.countDownNextTimePointText }}</span>
+                </v-tooltip>
+              </div>
+              <div v-if="transformedFishTimePart.isWaiting">
+                <div class="text-subtitle-2" style="padding-top: 3px">
+                  {{ transformedFishTimePart.countDownTotalHint }}
                 </div>
-                <v-btn
-                  small
-                  v-if="fish.rate < 1 && !showWindowBtnNextLine"
-                  text
-                  class="pl-2 pr-1"
-                  @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
-                >
-                  {{ fish.rateText }}
-                </v-btn>
               </div>
-              <div v-if="fish.rate < 1 && showWindowBtnNextLine">
-                <v-btn
-                  small
-                  text
-                  style="padding: 0 1px"
-                  @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
-                >
-                  {{ fish.rateText }}
-                </v-btn>
-              </div>
-            </template>
-            <template v-else>
-              <div>...</div>
-            </template>
+              <v-btn
+                small
+                v-if="fish.rate < 1 && !showWindowBtnNextLine"
+                text
+                class="pl-2 pr-1"
+                @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
+              >
+                {{ fish.rateText }}
+              </v-btn>
+            </div>
+            <div v-if="fish.rate < 1 && showWindowBtnNextLine">
+              <v-btn
+                small
+                text
+                style="padding: 0 1px"
+                @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
+              >
+                {{ fish.rateText }}
+              </v-btn>
+            </div>
           </v-col>
           <v-col :class="`${locationColClass} d-flex flex-column justify-center`">
-            <template v-if="isIntersecting">
-              <fishing-spot-column
-                v-if="!hideSpotColumn"
-                :fishing-spots="fish.fishingSpots"
-                :type="fish.type"
-                @click="onFishClicked(['DetailItemMap'])"
-              />
-            </template>
-            <template v-else>
-              <div>...</div>
-            </template>
+            <fishing-spot-column
+              v-if="!hideSpotColumn"
+              :fishing-spots="fish.fishingSpots"
+              :type="fish.type"
+              @click="onFishClicked(['DetailItemMap'])"
+            />
           </v-col>
           <v-col
             :class="
               `${timeAndWeatherColClass} d-flex flex-column justify-center align-center`
             "
           >
-            <template v-if="isIntersecting">
-              <div v-if="fish.hasTimeConstraint" class="d-flex align-center">
-                <div
-                  :class="{
-                    'text-decoration-line-through': isTimeCheckSkipped,
-                    'mr-1': isTimeCheckSkipped,
-                  }"
-                >
-                  {{ fish.startHourText }} - {{ fish.endHourText }}
-                </div>
-                <v-tooltip v-if="isTimeCheckSkipped" bottom color="secondary">
-                  <template v-slot:activator="{ on, attrs }">
-                    <div v-bind="attrs" v-on="on">
-                      <effect-icon icon-class="bg-011103" />
-                    </div>
-                  </template>
-                  <div>时间条件在鱼眼模式下忽略</div>
-                </v-tooltip>
-              </div>
-              <div v-else-if="fish.checkInfo.timeRestricted">有时间限制</div>
-              <div class="d-flex" v-if="fish.hasWeatherConstraint">
-                <div style="display: flex">
-                  <div
-                    v-for="(weather, index) in fish.previousWeatherSetDetail"
-                    :key="index"
-                    class="zoom-in-predator"
-                  >
-                    <weather-icon
-                      :icon-class="weather.icon"
-                      :title="weather.name"
-                      type="weather"
-                    />
-                  </div>
-                  <v-icon v-if="fish.previousWeatherSet.length > 0" small>
-                    mdi-arrow-right
-                  </v-icon>
-                  <div
-                    v-for="weather in fish.weatherSetDetail"
-                    :key="weather.name"
-                    class="zoom-in-predator"
-                  >
-                    <weather-icon
-                      :icon-class="weather.icon"
-                      :title="weather.name"
-                      type="weather"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div v-else-if="fish.checkInfo.weatherRestricted">有天气限制</div>
+            <div v-if="fish.hasTimeConstraint" class="d-flex align-center">
               <div
-                v-if="
-                  !fish.hasTimeConstraint &&
-                    !fish.hasWeatherConstraint &&
-                    !fish.checkInfo.timeRestricted &&
-                    !fish.checkInfo.weatherRestricted
-                "
+                :class="{
+                  'text-decoration-line-through': isTimeCheckSkipped,
+                  'mr-1': isTimeCheckSkipped,
+                }"
               >
-                {{ $t('list.item.noConstraint') }}
+                {{ fish.startHourText }} - {{ fish.endHourText }}
               </div>
-            </template>
-            <template v-else>
-              <div>...</div>
-            </template>
+              <v-tooltip v-if="isTimeCheckSkipped" bottom color="secondary">
+                <template v-slot:activator="{ on, attrs }">
+                  <div v-bind="attrs" v-on="on">
+                    <effect-icon icon-class="bg-011103" />
+                  </div>
+                </template>
+                <div>时间条件在鱼眼模式下忽略</div>
+              </v-tooltip>
+            </div>
+            <div v-else-if="fish.checkInfo.timeRestricted">有时间限制</div>
+            <div class="d-flex" v-if="fish.hasWeatherConstraint">
+              <div style="display: flex">
+                <div
+                  v-for="(weather, index) in fish.previousWeatherSetDetail"
+                  :key="index"
+                  class="zoom-in-predator"
+                >
+                  <weather-icon
+                    :icon-class="weather.icon"
+                    :title="weather.name"
+                    type="weather"
+                  />
+                </div>
+                <v-icon v-if="fish.previousWeatherSet.length > 0" small>
+                  mdi-arrow-right
+                </v-icon>
+                <div
+                  v-for="weather in fish.weatherSetDetail"
+                  :key="weather.name"
+                  class="zoom-in-predator"
+                >
+                  <weather-icon
+                    :icon-class="weather.icon"
+                    :title="weather.name"
+                    type="weather"
+                  />
+                </div>
+              </div>
+            </div>
+            <div v-else-if="fish.checkInfo.weatherRestricted">有天气限制</div>
+            <div
+              v-if="
+                !fish.hasTimeConstraint &&
+                  !fish.hasWeatherConstraint &&
+                  !fish.checkInfo.timeRestricted &&
+                  !fish.checkInfo.weatherRestricted
+              "
+            >
+              {{ $t('list.item.noConstraint') }}
+            </div>
           </v-col>
           <v-col
             :class="`${buffAndBaitColClass} d-flex flex-row align-center justify-center`"

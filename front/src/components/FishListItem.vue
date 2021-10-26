@@ -64,7 +64,7 @@ export default {
     },
   },
   created() {
-    this.debouncedVisibilityChanged = _.debounce(this.visibilityChanged, 500, {
+    this.debouncedVisibilityChanged = _.debounce(this.visibilityChanged, 200, {
       leading: false,
       trailing: true,
     })
