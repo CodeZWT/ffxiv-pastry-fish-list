@@ -111,9 +111,9 @@ export default {
     ...mapMutations('screenWindow', ['resetLayouts', 'setWindowOpacity']),
     ...mapMutations('dialog', ['setShowDialog']),
     getAllDisplays() {
-      invokeElectronEvent('getAllDisplays', null, ({ displayIds, targetDisplayId }) => {
+      invokeElectronEvent('getAllDisplays', null, ({ displayIds, screenDisplayId }) => {
         this.displayIds = displayIds
-        this.targetDisplayId = targetDisplayId
+        this.targetDisplayId = screenDisplayId
       })
     },
     setTargetDisplay(displayId) {

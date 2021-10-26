@@ -4,7 +4,7 @@ class DisplayConfig {
   constructor(screen, setting) {
     this.screen = screen
     this.setting = setting
-    this.setTargetDisplay(this.setting.getSetting(CONFIG_DISPLAY).targetDisplayId)
+    this.setTargetDisplay(this.setting.getSetting(CONFIG_DISPLAY).screenDisplayId)
   }
 
   getPos() {
@@ -17,23 +17,23 @@ class DisplayConfig {
   getDisplayInfo() {
     return {
       displayIds: this.screen.getAllDisplays().map(d => d.id),
-      targetDisplayId: this.targetDisplayId,
+      screenDisplayId: this.screenDisplayId,
     }
   }
 
   setTargetDisplay(displayId) {
     const primaryDisplayId = this.screen.getPrimaryDisplay().id
-    const targetDisplayId = displayId || primaryDisplayId
+    const screenDisplayId = displayId || primaryDisplayId
     const displays = this.screen.getAllDisplays()
-    const targetDisplay = displays.find(d => d.id === targetDisplayId) ||
+    const targetDisplay = displays.find(d => d.id === screenDisplayId) ||
       displays.find(d => d.id === primaryDisplayId)
 
     if (targetDisplay) {
-      this.targetDisplayId = targetDisplay.id
+      this.screenDisplayId = targetDisplay.id
       this.x = targetDisplay.workArea.x
       this.y = targetDisplay.workArea.y
       this.setting.updateSetting(CONFIG_DISPLAY, {
-        targetDisplayId: this.targetDisplayId,
+        screenDisplayId: this.screenDisplayId,
       })
     }
   }

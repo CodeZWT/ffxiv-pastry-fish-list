@@ -10,9 +10,9 @@ const datauri = require('datauri')
 // const unhandled = require('electron-unhandled')
 const contextMenu = require('electron-context-menu')
 const { callWindowSafe, showAndFocus, callTargetSafe, setOnTop, setMouseThrough, callWindowsSafe } = require("./server/mainSetup/utils");
-const { setupDevEnv } = require("./server/mainSetup/setupDevEnv");
-const { ScreenSetting } = require("./server/mainSetup/ScreenSetting");
-const { ScreenTray } = require("./server/mainSetup/ScreenTray");
+const { setupDevEnv } = require('./server/mainSetup/setupDevEnv')
+const { ScreenSetting, CONFIG_MAIN_WINDOW } = require('./server/mainSetup/ScreenSetting')
+const { ScreenTray } = require('./server/mainSetup/ScreenTray')
 const { MessageSender } = require("./server/mainSetup/MessageSender");
 const { ScreenReader } = require("./server/mainSetup/ScreenReader");
 const { Updater } = require("./server/mainSetup/Updater");
@@ -303,8 +303,8 @@ const quitAndSetup = () => {
 
 const quit = () => {
   try {
-    updater.stop()
-    dataReader.stop(() => {
+    updater && updater.stop()
+    dataReader && dataReader.stop(() => {
       log.info('quit by close')
       callTargetSafe(tray, it => it.destroy())
       app.quit()
@@ -458,10 +458,14 @@ const setupEvent = () => {
   })
 }
 
-const createMainWindow = () => {
+const createMainWindow = (mainWindowConfig) => {
   const hash = null,
     page = 'index'
   WINDOW_MAIN = new BrowserWindow({
+    x: mainWindowConfig.x,
+    y: mainWindowConfig.y,
+    width: mainWindowConfig.w,
+    height: mainWindowConfig.h,
     frame: false,
     show: false,
     transparent: false,
@@ -481,6 +485,16 @@ const createMainWindow = () => {
   WINDOW_MAIN.once('ready-to-show', () => {
     // WINDOW_MAIN.show()
   })
+  const updateWindowPosSize = () => {
+    const [x, y] = WINDOW_MAIN.getPosition()
+    const [w, h] = WINDOW_MAIN.getSize()
+    setting.updateSetting(CONFIG_MAIN_WINDOW, { x, y, w, h })
+  }
+  WINDOW_MAIN.on('moved', () => {
+    updateWindowPosSize()
+  }).on('resized', () => {
+    updateWindowPosSize()
+  })
   let loadedPromise
   if (isDev) {
     loadedPromise = WINDOW_MAIN.loadURL(
@@ -490,7 +504,7 @@ const createMainWindow = () => {
     loadedPromise = WINDOW_MAIN.loadFile(
       path.join(__dirname, `/front-electron-dist/${page}.html`),
       {
-        hash: hash && ('/' + hash),
+        hash: hash && '/' + hash,
       }
     )
   }
@@ -504,7 +518,7 @@ const showMainWindow = () => {
   if (WINDOW_MAIN && !WINDOW_MAIN.isDestroyed()) {
     showAndFocus(WINDOW_MAIN)
   } else {
-    createMainWindow()
+    createMainWindow(setting.getSetting(CONFIG_MAIN_WINDOW))
   }
 }
 
@@ -554,15 +568,37 @@ const createScreen = () => {
   return loadedPromise.then(() => WINDOW_SCREEN)
 }
 
+const mainWindowInSomeDisplay = (screen, windowArea) => {
+  return  screen.getAllDisplays().some(d => {
+    const workArea = d.workArea
+    return (
+      windowArea.x >= workArea.x &&
+      windowArea.x <= workArea.x + workArea.width &&
+      windowArea.y >= workArea.y &&
+      windowArea.y <= workArea.y + workArea.height
+    )
+  })
+}
+
 const init = async () => {
   setupDevEnv()
   screen = require('electron').screen
   setting = new ScreenSetting()
+
+  const mainWindowConfig  = setting.getSetting(CONFIG_MAIN_WINDOW)
+  if (!mainWindowInSomeDisplay(screen,mainWindowConfig )) {
+    setting.updateSetting(CONFIG_MAIN_WINDOW, {
+      x: 100,
+      y: 100,
+      w: mainWindowConfig.w,
+      h: mainWindowConfig.h
+    })
+  }
+
   displayConfig = new DisplayConfig(screen, setting)
   dataReader = new ScreenReader()
-
   setupEvent()
-  createMainWindow().then(win => {
+  createMainWindow(setting.getSetting(CONFIG_MAIN_WINDOW)).then(win => {
     win.webContents.setBackgroundThrottling(false)
   })
   createScreen().then(win => {
@@ -650,5 +686,6 @@ if (!gotTheLock) {
     .then(() => init())
     .catch(error => {
       log.error('error in init', error)
+      app.quit()
     })
 }

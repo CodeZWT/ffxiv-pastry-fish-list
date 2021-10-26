@@ -1,11 +1,18 @@
 const Store = require('electron-store')
 const log = require('electron-log')
 const { app } = require('electron')
-const merge = require('lodash/merge')
+const _ = require('lodash')
 const cloneDeep = require('lodash/cloneDeep')
 
-const DEFAULT_DISPLAY_SETTING = {
-  displayId: undefined,
+const DEFAULT_DISPLAY_CONFIG = {
+  screenDisplayId: undefined,
+}
+
+const DEFAULT_MAIN_WINDOW_CONFIG = {
+  x: 100,
+  y: 100,
+  w: 1080,
+  h: 768,
 }
 
 const initSetting = (configStore, key, defaultVal) => {
@@ -14,7 +21,7 @@ const initSetting = (configStore, key, defaultVal) => {
     configStore.set(key, defaultVal)
     log.info('Initialize user config in', app.getPath('userData'), 'of', key)
   } else {
-    configStore.set(key, merge(cloneDeep(defaultVal), setting))
+    configStore.set(key, _.merge(cloneDeep(defaultVal), setting))
     log.debug(`Config [${key}] Read`, JSON.stringify(configStore.get(key)))
   }
 }
@@ -22,7 +29,8 @@ const initSetting = (configStore, key, defaultVal) => {
 class ScreenSetting {
   constructor() {
     this.configStore = new Store()
-    initSetting(this.configStore, CONFIG_DISPLAY, DEFAULT_DISPLAY_SETTING)
+    initSetting(this.configStore, CONFIG_DISPLAY, DEFAULT_DISPLAY_CONFIG)
+    initSetting(this.configStore, CONFIG_MAIN_WINDOW, DEFAULT_MAIN_WINDOW_CONFIG)
   }
 
   updateSetting(key, value) {
@@ -34,6 +42,9 @@ class ScreenSetting {
   }
 }
 
-const CONFIG_DISPLAY = 'displayConfig'
 
-module.exports = { ScreenSetting, CONFIG_DISPLAY }
+
+const CONFIG_DISPLAY = 'displayConfig'
+const CONFIG_MAIN_WINDOW = 'mainWindowConfig'
+
+module.exports = { ScreenSetting, CONFIG_DISPLAY, CONFIG_MAIN_WINDOW }
