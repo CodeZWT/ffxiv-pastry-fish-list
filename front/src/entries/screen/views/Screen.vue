@@ -5,27 +5,27 @@
     }"
   >
     <template v-for="(_, winId) in layouts">
-      <main-window
-        v-if="winId.indexOf('MAIN') === 0"
-        v-show="windows.includes(winId)"
-        :id="winId"
-        :key="winId"
-        :now="now"
-        :lazySourceFishList="lazySourceFishList"
-        :lazyTransformedFishList="lazyTransformedFishList"
-        :lazyTransformedFishDict="lazyTransformedFishDict"
-        :fishListTimePart="fishListTimePart"
-        :extraFishListTimePart="extraFishListTimePart"
-        :fishListWeatherChangePart="fishListWeatherChangePart"
-        :pinnedFishIdList="pinnedFishIdList"
-        :sortedFilteredFishIdList="sortedFilteredFishIdList"
-        :toBeNotifiedFishIdList="toBeNotifiedFishIdList"
-        :selectedFish="selectedFish"
-        :filteredFishIdSet="filteredFishIdSet"
-        @fish-selected="onFishSelected"
-        @startReloadPage="startReloadPage"
-        @show-setting="showSetting"
-      />
+      <!--      <main-window-->
+      <!--        v-if="winId.indexOf('MAIN') === 0"-->
+      <!--        v-show="windows.includes(winId)"-->
+      <!--        :id="winId"-->
+      <!--        :key="winId"-->
+      <!--        :now="now"-->
+      <!--        :lazySourceFishList="lazySourceFishList"-->
+      <!--        :lazyTransformedFishList="lazyTransformedFishList"-->
+      <!--        :lazyTransformedFishDict="lazyTransformedFishDict"-->
+      <!--        :fishListTimePart="fishListTimePart"-->
+      <!--        :extraFishListTimePart="extraFishListTimePart"-->
+      <!--        :fishListWeatherChangePart="fishListWeatherChangePart"-->
+      <!--        :pinnedFishIdList="pinnedFishIdList"-->
+      <!--        :sortedFilteredFishIdList="sortedFilteredFishIdList"-->
+      <!--        :toBeNotifiedFishIdList="toBeNotifiedFishIdList"-->
+      <!--        :selectedFish="selectedFish"-->
+      <!--        :filteredFishIdSet="filteredFishIdSet"-->
+      <!--        @fish-selected="onFishSelected"-->
+      <!--        @startReloadPage="startReloadPage"-->
+      <!--        @show-setting="showSetting"-->
+      <!--      />-->
 
       <fish-detail-window
         v-if="windows.includes(winId) && winId.indexOf('FISH_DETAIL') === 0"
@@ -265,7 +265,6 @@ import { mapMutations, mapState } from 'vuex'
 import AppMixin from '@/components/AppMixin'
 import DataUtil from '@/utils/DataUtil'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
-import MainWindow from '@/entries/screen/views/MainWindow'
 import MenuWindow from '@/entries/screen/views/MenuWindow'
 import NewPatchIntroductionDialog from '@/components/Dialog/NewPatchIntroductionDialog'
 import RcDialog from '@/components/basic/RcDialog'
@@ -295,7 +294,6 @@ export default {
     ReaderHistoryWindow,
     ReaderTimerWindow,
     ReaderTimerMiniWindow,
-    MainWindow,
   },
   data: () => ({
     showSideBar: true,

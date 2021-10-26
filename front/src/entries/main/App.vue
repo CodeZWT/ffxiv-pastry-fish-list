@@ -7,16 +7,16 @@
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
-      <!--      <toggle-button-->
-      <!--        :value="alwaysOnTop"-->
-      <!--        @input="toggleAlwaysOnTop"-->
-      <!--        checked-icon="mdi-pin"-->
-      <!--        unchecked-icon="mdi-pin-outline"-->
-      <!--        :checked-title="$t('actions.pinTop.checked')"-->
-      <!--        :unchecked-title="$t('actions.pinTop.unchecked')"-->
-      <!--        small-->
-      <!--        style="-webkit-app-region: none"-->
-      <!--      />-->
+      <toggle-button
+        :value="alwaysOnTop"
+        @input="toggleAlwaysOnTop"
+        checked-icon="mdi-pin"
+        unchecked-icon="mdi-pin-outline"
+        :checked-title="$t('actions.pinTop.checked')"
+        :unchecked-title="$t('actions.pinTop.unchecked')"
+        small
+        style="-webkit-app-region: none"
+      />
       <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-window-minimize</v-icon>
       </v-btn>
@@ -333,6 +333,17 @@
             </v-list-item-content>
           </v-list-item>
 
+          <v-list-item v-if="isRoseMode" @click="toPage('RecordPage')">
+            <v-list-item-icon>
+              <v-icon>mdi-chart-bar</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{
+                $t('top.record')
+              }}</v-list-item-title></v-list-item-content
+            >
+          </v-list-item>
+
           <!--  <v-divider class="mx-2" />-->
           <!--    TODO recover this   -->
           <v-list-item v-if="!isElectron" @click="toUpdateInfo" link>
@@ -552,6 +563,7 @@
 
     <fish-setting-dialog v-model="showSettingDialog" />
     <patch-note-dialog
+      v-if="!isElectron"
       v-model="showPatchNoteDialog"
       :in-migration-page="inMigrationPage"
       @confirm="onConfirmPatchNote"

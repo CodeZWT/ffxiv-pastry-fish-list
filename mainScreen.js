@@ -378,6 +378,9 @@ const setupEvent = () => {
       callWindowSafe(WINDOW_MAIN, win => win.close())
       callWindowSafe(WINDOW_SCREEN, win => win.close())
     })
+    .on('alwaysOnTop', (event, alwaysOnTop) => {
+      callWindowSafe(WINDOW_MAIN, win => setOnTop(win, alwaysOnTop))
+    })
     .on('startUpdate', () => {
       quitAndSetup()
     })

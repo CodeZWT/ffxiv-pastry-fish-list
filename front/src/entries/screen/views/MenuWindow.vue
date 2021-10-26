@@ -37,141 +37,87 @@
               <v-col>
                 <v-subheader>鱼糕</v-subheader>
                 <v-list>
-                  <v-list-item @click="addFishList">
-                    <v-list-item-icon>
-                      <v-icon>mdi-format-list-text</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{
-                        $t('list.normalTitle')
-                      }}</v-list-item-title></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addNotificationList">
-                    <v-list-item-icon>
-                      <v-icon>mdi-bell</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{
-                        $t('list.toBeNotifiedTitle')
-                      }}</v-list-item-title></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addWiki">
-                    <v-list-item-icon>
-                      <v-icon>mdi-notebook</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{
-                        $t('top.fishWiki')
-                      }}</v-list-item-title></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addOceanFishing">
-                    <v-list-item-icon>
-                      <v-icon>mdi-ferry</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{
-                        $t('top.oceanFishing')
-                      }}</v-list-item-title></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addDiadem">
-                    <v-list-item-icon>
-                      <v-img
-                        :src="dark ? diademDark : diademLight"
-                        height="24"
-                        width="24"
-                      ></v-img>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{
-                        $t('top.diadem')
-                      }}</v-list-item-title></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addAquarium">
-                    <v-list-item-icon>
-                      <v-icon>mdi-fishbowl</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{
-                        $t('top.aquarium')
-                      }}</v-list-item-title></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addCompetition">
-                    <v-list-item-icon>
-                      <v-icon>mdi-trophy</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
+                  <!--                  <v-list-item @click="addFishList">-->
+                  <!--                    <v-list-item-icon>-->
+                  <!--                      <v-icon>mdi-format-list-text</v-icon>-->
+                  <!--                    </v-list-item-icon>-->
+                  <!--                    <v-list-item-content>-->
+                  <!--                      <v-list-item-title>{{-->
+                  <!--                        $t('list.normalTitle')-->
+                  <!--                      }}</v-list-item-title></v-list-item-content-->
+                  <!--                    >-->
+                  <!--                  </v-list-item>-->
+                  <!--                  <v-list-item @click="addNotificationList">-->
+                  <!--                    <v-list-item-icon>-->
+                  <!--                      <v-icon>mdi-bell</v-icon>-->
+                  <!--                    </v-list-item-icon>-->
+                  <!--                    <v-list-item-content>-->
+                  <!--                      <v-list-item-title>{{-->
+                  <!--                        $t('list.toBeNotifiedTitle')-->
+                  <!--                      }}</v-list-item-title></v-list-item-content-->
+                  <!--                    >-->
+                  <!--                  </v-list-item>-->
+                  <!--                  <v-list-item @click="addWiki">-->
+                  <!--                    <v-list-item-icon>-->
+                  <!--                      <v-icon>mdi-notebook</v-icon>-->
+                  <!--                    </v-list-item-icon>-->
+                  <!--                    <v-list-item-content>-->
+                  <!--                      <v-list-item-title>{{-->
+                  <!--                        $t('top.fishWiki')-->
+                  <!--                      }}</v-list-item-title></v-list-item-content-->
+                  <!--                    >-->
+                  <!--                  </v-list-item>-->
+                  <!--                  <v-list-item @click="addOceanFishing">-->
+                  <!--                    <v-list-item-icon>-->
+                  <!--                      <v-icon>mdi-ferry</v-icon>-->
+                  <!--                    </v-list-item-icon>-->
+                  <!--                    <v-list-item-content>-->
+                  <!--                      <v-list-item-title>{{-->
+                  <!--                        $t('top.oceanFishing')-->
+                  <!--                      }}</v-list-item-title></v-list-item-content-->
+                  <!--                    >-->
+                  <!--                  </v-list-item>-->
+                  <!--                  <v-list-item @click="addDiadem">-->
+                  <!--                    <v-list-item-icon>-->
+                  <!--                      <v-img-->
+                  <!--                        :src="dark ? diademDark : diademLight"-->
+                  <!--                        height="24"-->
+                  <!--                        width="24"-->
+                  <!--                      ></v-img>-->
+                  <!--                    </v-list-item-icon>-->
+                  <!--                    <v-list-item-content>-->
+                  <!--                      <v-list-item-title>{{-->
+                  <!--                        $t('top.diadem')-->
+                  <!--                      }}</v-list-item-title></v-list-item-content-->
+                  <!--                    >-->
+                  <!--                  </v-list-item>-->
+                  <!--                  <v-list-item @click="addAquarium">-->
+                  <!--                    <v-list-item-icon>-->
+                  <!--                      <v-icon>mdi-fishbowl</v-icon>-->
+                  <!--                    </v-list-item-icon>-->
+                  <!--                    <v-list-item-content>-->
+                  <!--                      <v-list-item-title>{{-->
+                  <!--                        $t('top.aquarium')-->
+                  <!--                      }}</v-list-item-title></v-list-item-content-->
+                  <!--                    >-->
+                  <!--                  </v-list-item>-->
+                  <!--                  <v-list-item @click="addCompetition">-->
+                  <!--                    <v-list-item-icon>-->
+                  <!--                      <v-icon>mdi-trophy</v-icon>-->
+                  <!--                    </v-list-item-icon>-->
+                  <!--                    <v-list-item-content>-->
+                  <!--                      <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>-->
+                  <!--                    </v-list-item-content>-->
+                  <!--                  </v-list-item>-->
                   <v-list-item @click="showExtraMainWindow()">
                     <v-list-item-icon>
-                      <v-icon>mdi-dock-window</v-icon>
+                      <v-icon>mdi-desktop-mac-dashboard</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                       <v-list-item-title>
-                        在新窗口中打开鱼糕
+                        鱼糕
                       </v-list-item-title>
                     </v-list-item-content>
-                  </v-list-item>
-
-                  <v-list-item v-if="isRoseMode" @click="addRecord">
-                    <v-list-item-icon>
-                      <v-icon>mdi-chart-bar</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{
-                        $t('top.record')
-                      }}</v-list-item-title></v-list-item-content
-                    >
-                  </v-list-item>
-                </v-list>
-              </v-col>
-              <v-col>
-                <v-subheader>渔捞</v-subheader>
-                <v-list>
-                  <v-list-item @click="addReaderTimer">
-                    <v-list-item-icon>
-                      <v-icon>mdi-timer</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>计时器</v-list-item-title></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addReaderTimerMini">
-                    <v-list-item-icon>
-                      <v-icon>mdi-timer</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title
-                        >迷你计时器</v-list-item-title
-                      ></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addReaderHistory">
-                    <v-list-item-icon>
-                      <v-icon>mdi-history</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title
-                        >本地历史记录</v-list-item-title
-                      ></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addReaderSpotStatistics">
-                    <v-list-item-icon>
-                      <v-icon>mdi-map</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title
-                        >本地钓场统计</v-list-item-title
-                      ></v-list-item-content
-                    >
                   </v-list-item>
                 </v-list>
                 <v-subheader>其他</v-subheader>
@@ -230,6 +176,49 @@
                     <v-list-item-content class="error--text">
                       <v-list-item-title> 退出鱼糕 </v-list-item-title>
                     </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+              </v-col>
+              <v-col>
+                <v-subheader>渔捞</v-subheader>
+                <v-list>
+                  <v-list-item @click="addReaderTimer">
+                    <v-list-item-icon>
+                      <v-icon>mdi-timer</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      <v-list-item-title>计时器</v-list-item-title></v-list-item-content
+                    >
+                  </v-list-item>
+                  <v-list-item @click="addReaderTimerMini">
+                    <v-list-item-icon>
+                      <v-icon>mdi-timer</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        >迷你计时器</v-list-item-title
+                      ></v-list-item-content
+                    >
+                  </v-list-item>
+                  <v-list-item @click="addReaderHistory">
+                    <v-list-item-icon>
+                      <v-icon>mdi-history</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        >本地历史记录</v-list-item-title
+                      ></v-list-item-content
+                    >
+                  </v-list-item>
+                  <v-list-item @click="addReaderSpotStatistics">
+                    <v-list-item-icon>
+                      <v-icon>mdi-map</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        >本地钓场统计</v-list-item-title
+                      ></v-list-item-content
+                    >
                   </v-list-item>
                 </v-list>
               </v-col>
