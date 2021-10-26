@@ -17,4 +17,5 @@ export default {
   bottom: 0
   border-bottom: 8px solid grey
   border-left: 8px solid transparent
+  z-index: 9
 </style>

@@ -62,6 +62,8 @@
       >
         <slot></slot>
       </div>
+
+      <resize-indicator v-if="resizable" @mouseover.native="onActivated" />
     </v-sheet>
   </vue-draggable-resizable>
 </template>
@@ -70,11 +72,12 @@
 import { mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaTime from '@/utils/Time'
+import ResizeIndicator from '@/components/basic/ResizeIndicator'
 import VueDraggableResizable from 'vue-draggable-resizable'
 
 export default {
   name: 'ScreenWindow',
-  components: { VueDraggableResizable },
+  components: { ResizeIndicator, VueDraggableResizable },
   props: {
     id: {
       type: String,
