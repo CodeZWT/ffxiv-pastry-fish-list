@@ -111,16 +111,12 @@
             <v-icon>mdi-notebook</v-icon>
           </new-feature-mark>
         </v-btn>
-        <!--        <v-btn color="info" @click="showSpotStatistics" class="mr-2">-->
-        <!--          <new-feature-mark :id="SpotStatisticsFeatureId">-->
-        <!--            <v-icon>mdi-chart-box</v-icon>-->
-        <!--          </new-feature-mark>-->
-        <!--        </v-btn>-->
-        <!--        <v-btn color="info" @click="showHistory">-->
-        <!--          <new-feature-mark :id="HistoryFeatureId">-->
-        <!--            <v-icon>mdi-history</v-icon>-->
-        <!--          </new-feature-mark>-->
-        <!--        </v-btn>-->
+        <v-btn color="info" @click="addReaderSpotStatistics" class="mr-2">
+          <v-icon>mdi-chart-box</v-icon>
+        </v-btn>
+        <v-btn color="info" @click="addReaderHistory">
+          <v-icon>mdi-history</v-icon>
+        </v-btn>
       </v-col>
 
       <v-col cols="12" v-if="isTest" class="mt-4">
@@ -583,14 +579,17 @@ export default {
     ringBell(tugType) {
       DataUtil.ringBell(this.readerSetting.timer.sound, tugType, this.sounds)
     },
-    // showHistory() {
-    //   this.sendElectronEvent('toggleHistory')
-    //   this.setFeatureViewed(this.HistoryFeatureId)
-    // },
-    // showSpotStatistics() {
-    //   this.sendElectronEvent('toggleSpotStatistics')
-    //   this.setFeatureViewed(this.SpotStatisticsFeatureId)
-    // },
+    addReaderHistory() {
+      this.showWindow({
+        type: 'READER_HISTORY',
+      })
+    },
+    addReaderSpotStatistics() {
+      this.showWindow({
+        type: 'READER_SPOT_STATISTICS',
+      })
+    },
+    ...mapMutations('screenWindow', ['showWindow']),
     ...mapMutations([
       'setFeatureViewed',
       'setFishCompleted',
