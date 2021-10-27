@@ -365,8 +365,11 @@ const setupEvent = () => {
     .on('minimize', () => {
       callWindowSafe(WINDOW_MAIN, win => win.minimize())
     })
-    .on('close', () => {
+    .on('hide', () => {
       callWindowSafe(WINDOW_MAIN, win => win.hide())
+    })
+    .on('close', () => {
+      callWindowSafe(WINDOW_MAIN, win => win.close())
     })
     .on('quit', () => {
       callWindowSafe(WINDOW_MAIN, win => win.close())
@@ -458,7 +461,7 @@ const setupEvent = () => {
   })
 }
 
-const createMainWindow = (mainWindowConfig) => {
+const createMainWindow = (mainWindowConfig, show = false) => {
   const hash = null,
     page = 'index'
   WINDOW_MAIN = new BrowserWindow({
@@ -483,7 +486,9 @@ const createMainWindow = (mainWindowConfig) => {
   })
   WINDOW_MAIN.removeMenu()
   WINDOW_MAIN.once('ready-to-show', () => {
-    // WINDOW_MAIN.show()
+    if (show) {
+      WINDOW_MAIN.show()
+    }
   })
   const updateWindowPosSize = () => {
     const [x, y] = WINDOW_MAIN.getPosition()
@@ -518,7 +523,7 @@ const showMainWindow = () => {
   if (WINDOW_MAIN && !WINDOW_MAIN.isDestroyed()) {
     showAndFocus(WINDOW_MAIN)
   } else {
-    createMainWindow(setting.getSetting(CONFIG_MAIN_WINDOW))
+    createMainWindow(setting.getSetting(CONFIG_MAIN_WINDOW), true)
   }
 }
 
@@ -598,7 +603,7 @@ const init = async () => {
   displayConfig = new DisplayConfig(screen, setting)
   dataReader = new ScreenReader()
   setupEvent()
-  createMainWindow(setting.getSetting(CONFIG_MAIN_WINDOW)).then(win => {
+  createMainWindow(setting.getSetting(CONFIG_MAIN_WINDOW), false).then(win => {
     win.webContents.setBackgroundThrottling(false)
   })
   createScreen().then(win => {
