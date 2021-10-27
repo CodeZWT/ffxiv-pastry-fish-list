@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import FishTimelineTable from '@/entries/reader/components/FishTimelineTable'
 import db from '@/plugins/db'
@@ -46,12 +47,6 @@ import db from '@/plugins/db'
 export default {
   name: 'ReaderSpotStatistics',
   components: { FishTimelineTable },
-  props: {
-    now: {
-      type: Number,
-      default: undefined,
-    },
-  },
   data() {
     return {
       dataStatus: {}, // spotId: 35
@@ -65,6 +60,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['now']),
     labels() {
       const labels = []
       for (let i = 0; i <= 60; i++) {

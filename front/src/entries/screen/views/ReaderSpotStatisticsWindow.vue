@@ -9,7 +9,7 @@
     :opacity="item.opacity"
     title="本地钓场统计"
   >
-    <reader-spot-statistics :now="now" />
+    <reader-spot-statistics />
   </screen-window>
 </template>
 
@@ -22,12 +22,6 @@ export default {
   name: 'ReaderSpotStatisticsWindow',
   mixins: [WindowMixin],
   components: { ScreenWindow, ReaderSpotStatistics },
-  props: {
-    now: {
-      type: Number,
-      default: 0,
-    },
-  },
 }
 </script>
 

@@ -39,14 +39,12 @@
         v-else-if="windows.includes(winId) && winId.indexOf('READER_TIMER_MINI') === 0"
         :id="winId"
         :key="winId"
-        :now="readerNow"
         :dark="dark"
       />
       <reader-timer-window
         v-else-if="windows.includes(winId) && winId.indexOf('READER_TIMER') === 0"
         :id="winId"
         :key="winId"
-        :now="readerNow"
         :dark="dark"
       />
 
@@ -54,7 +52,6 @@
         v-else-if="windows.includes(winId) && winId.indexOf('READER_HISTORY') === 0"
         :id="winId"
         :key="winId"
-        :now="readerNow"
       />
       <reader-spot-statistics-window
         v-else-if="
@@ -62,7 +59,6 @@
         "
         :id="winId"
         :key="winId"
-        :now="readerNow"
       />
 
       <menu-window
@@ -298,7 +294,6 @@ export default {
   data: () => ({
     showSideBar: true,
     miniSideBar: true,
-    readerNow: Date.now(),
     isFishing: false,
     showFinishedBaitDialog: false,
     showUpdateAvailableDialog: false,
@@ -400,9 +395,6 @@ export default {
     this.addMenu()
   },
   mounted() {
-    setInterval(() => {
-      this.readerNow = Date.now()
-    }, 100)
     this.loadReaderSounds().then(sounds =>
       this.setSounds(DataUtil.toMap(sounds, it => it.key))
     )

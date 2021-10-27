@@ -9,7 +9,7 @@
     :opacity="item.opacity"
     title="本地历史记录"
   >
-    <reader-history :now="now" />
+    <reader-history />
   </screen-window>
 </template>
 
@@ -22,12 +22,6 @@ export default {
   name: 'ReaderHistoryWindow',
   mixins: [WindowMixin],
   components: { ScreenWindow, ReaderHistory },
-  props: {
-    now: {
-      type: Number,
-      default: 0,
-    },
-  },
   methods: {},
 }
 </script>

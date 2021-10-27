@@ -208,12 +208,6 @@ const LOAD_MORE_CNT = 100
 export default {
   name: 'ReaderHistory',
   components: { RcDialog, EffectIcon, NewFeatureMark, ItemIcon },
-  props: {
-    now: {
-      type: Number,
-      default: undefined,
-    },
-  },
   data() {
     return {
       totalExportCount: 0,

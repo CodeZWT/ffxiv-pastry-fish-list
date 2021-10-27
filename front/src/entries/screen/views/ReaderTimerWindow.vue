@@ -50,13 +50,13 @@
     </template>
 
     <template>
-      <reader-timer :now="now" />
+      <reader-timer />
     </template>
   </screen-window>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaTime from '@/utils/Time'
 import READER_ICON from 'Assets/reader.png'
@@ -71,10 +71,6 @@ export default {
   mixins: [WindowMixin, ReaderTimerMixin],
   components: { ScreenWindow, ReaderTimer },
   props: {
-    now: {
-      type: Number,
-      default: 0,
-    },
     dark: {
       type: Boolean,
       default: false,
@@ -85,6 +81,7 @@ export default {
     settingIcon: SETTING_ICON,
   }),
   computed: {
+    ...mapState(['now']),
     ...mapGetters(['readerRegion', 'isStrictMode', 'isUploadMode', 'isRoseMode']),
     title() {
       return `渔捞 ${this.readerRegion === 'CN' ? '国服' : '国际服'}`

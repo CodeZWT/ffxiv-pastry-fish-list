@@ -12,7 +12,7 @@
   >
     <template>
       <div class="d-flex align-start">
-        <reader-timer :now="now" :mini="true" />
+        <reader-timer :mini="true" />
         <v-btn
           @click.stop="handleCloseWindow"
           x-small
@@ -43,10 +43,6 @@ export default {
   mixins: [WindowMixin, ReaderTimerMixin],
   components: { ScreenWindow, ReaderTimer },
   props: {
-    now: {
-      type: Number,
-      default: 0,
-    },
     dark: {
       type: Boolean,
       default: false,

@@ -228,10 +228,6 @@ export default {
   name: 'ReaderTimer',
   components: { RcDialog, EffectIcon, ItemIcon, NewFeatureMark },
   props: {
-    now: {
-      type: Number,
-      default: 0,
-    },
     mini: {
       type: Boolean,
       default: false,
@@ -249,9 +245,11 @@ export default {
       HistoryFeatureId: ReaderFeatures.History,
       SpotStatisticsFeatureId: ReaderFeatures.SpotStatistics,
       closeAlertStartTime: undefined,
+      now: Date.now(),
     }
   },
   computed: {
+    ...mapState(['sounds', 'userData']),
     ...mapGetters([
       'readerSetting',
       'showBanner',
@@ -490,7 +488,6 @@ export default {
     fishingStartTime() {
       return this.dataCurrentRecord?.startTime
     },
-    ...mapState(['sounds', 'userData']),
   },
   watch: {
     tug(tug) {
@@ -536,6 +533,9 @@ export default {
   },
   mounted() {
     // this.sendElectronEvent('updateWindowSetting', null)
+    setInterval(() => {
+      this.now = Date.now()
+    }, 100)
   },
   methods: {
     // async markLastRecordNotStrict() {
