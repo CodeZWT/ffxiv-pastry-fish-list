@@ -99,11 +99,9 @@
           </div>
         </div>
         <v-spacer />
-        <click-helper v-if="showClose" @click="$emit('close')">
-          <v-btn elevation="50" fab small>
-            <v-icon dark>mdi-close</v-icon>
-          </v-btn>
-        </click-helper>
+        <v-btn v-if="showClose" @click="$emit('close')" text icon>
+          <v-icon dark>mdi-close</v-icon>
+        </v-btn>
       </div>
     </v-row>
   </div>
