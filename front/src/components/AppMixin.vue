@@ -551,7 +551,7 @@ export default {
     this.closeStrictMode()
 
     window.electron?.ipcRenderer?.on('broadcast', (event, { type, source }) => {
-      console.log(source)
+      console.debug('reloadUserData according to', source)
       if (type === 'reloadUserData') {
         this.reloadUserData()
       } else if (type === 'reloadPage') {
