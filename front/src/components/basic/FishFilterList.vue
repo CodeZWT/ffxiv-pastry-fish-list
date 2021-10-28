@@ -521,11 +521,10 @@ export default {
 @import "~@/styles/RcVariables"
 
 .filter-list-container
+  padding-top: 0
   overflow-y: auto
-  &--web
-    height: calc(100vh - #{$toolbar-height + $footer-padding})
   &--desktop
-    height: calc(100% - #{$toolbar-height})
+    height: calc(100% - #{ $toolbar-height })
 
 
 .list-wrapper::v-deep

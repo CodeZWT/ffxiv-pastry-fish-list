@@ -203,9 +203,9 @@ export default {
   overflow-y: auto
   flex: 1 1 500%
   &--web
-    height: calc(100vh - #{$toolbar-height + $footer-padding})
+    height: calc(100vh - #{$toolbar-height + $footer-height})
   &--desktop
-    height: calc(100vh - #{$toolbar-height + $top-system-bar-padding})
+    height: calc(100vh - #{$wrapper-desktop})
 
 .show-divider
   border-right: 1px solid gray

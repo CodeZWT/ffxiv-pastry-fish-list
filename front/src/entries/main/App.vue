@@ -478,9 +478,9 @@
       @change="handleSearch"
     />
 
-    <v-footer app style="font-size: small; max-height: 31px" v-if="!isElectron">
+    <v-footer app style="font-size: small; max-height: 31px">
       <div class="d-flex" style="width: 100%">
-        <template v-if="!isMobile">
+        <template v-if="!isMobile || isElectron">
           <div
             class="text-truncate mr-2"
             :title="$t('footer.contact')"
@@ -500,57 +500,59 @@
           </div>
           <v-spacer />
         </template>
-        <div class="d-flex">
-          <div class="mx-1" style="min-width: 150px">
-            <a
-              target="_blank"
-              href="https://beian.miit.gov.cn"
-              style="
+        <template v-if="!isElectron">
+          <div class="d-flex">
+            <div class="mx-1" style="min-width: 150px">
+              <a
+                target="_blank"
+                href="https://beian.miit.gov.cn"
+                style="
                 display: inline-block;
                 text-decoration: none;
                 height: 20px;
                 line-height: 20px;
               "
-            >
-              <p
-                style="
+              >
+                <p
+                  style="
                   float: left;
                   height: 20px;
                   line-height: 20px;
                   margin: 0px 0px 0px 5px;
                   color: #939393;
                 "
-              >
-                黔ICP备2020011894号-1
-              </p>
-            </a>
-          </div>
-          <div class="mx-1" style="min-width: 200px">
-            <a
-              target="_blank"
-              href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52270102000276"
-              style="
+                >
+                  黔ICP备2020011894号-1
+                </p>
+              </a>
+            </div>
+            <div class="mx-1" style="min-width: 200px">
+              <a
+                target="_blank"
+                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52270102000276"
+                style="
                 display: inline-block;
                 text-decoration: none;
                 height: 20px;
                 line-height: 20px;
               "
-            >
-              <img v-if="!isMobile" :src="beianIcon" style="float: left" />
-              <p
-                style="
+              >
+                <img v-if="!isMobile" :src="beianIcon" style="float: left" />
+                <p
+                  style="
                   float: left;
                   height: 20px;
                   line-height: 20px;
                   margin: 0px 0px 0px 5px;
                   color: #939393;
                 "
-              >
-                黔公网安备 52270102000276号
-              </p>
-            </a>
+                >
+                  黔公网安备 52270102000276号
+                </p>
+              </a>
+            </div>
           </div>
-        </div>
+        </template>
         <template v-if="!isMobile">
           <v-spacer />
           <div class="text-truncate" :title="$t('footer.ffRights')">

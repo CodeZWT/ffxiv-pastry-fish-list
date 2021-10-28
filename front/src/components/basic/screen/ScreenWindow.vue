@@ -243,5 +243,5 @@ export default {
 .window-content
   overflow-y: auto
   &--normal
-    height: calc(100% - #{ $top-system-bar-padding })
+    height: calc(100% - #{ $system-bar-height })
 </style>

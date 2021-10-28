@@ -362,11 +362,11 @@ export default {
 
   &--web
     height: 100%
-    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+    max-height: calc(100vh - #{ $wrapper-web })
   &--electron
     max-height: calc(100% - #{ $toolbar-height })
   &--electron-original
-    max-height: calc(100vh - #{ $top-system-bar-padding + $toolbar-height })
+    max-height: calc(100vh - #{ $wrapper-desktop })
 
 .red
   color: orangered !important

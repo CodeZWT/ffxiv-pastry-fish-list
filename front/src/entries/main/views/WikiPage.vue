@@ -1311,30 +1311,25 @@ export default {
     height: 100%
     width: 100%
 
-$spot-menu-padding: $spot-menu-search-height + $spot-menu-toolbar-height + $divider-height
+$wrapper-wiki-menu: $spot-menu-search-height + $spot-menu-toolbar-height + $divider-height
 
 .spot-list
   overflow-y: auto
-
   &--pc
     &-web
-      height: calc(100vh - #{ $top-bars-padding + $footer-padding + $spot-menu-padding})
-
+      height: calc(100vh - #{ $wrapper-web + $wrapper-wiki-menu })
     &-electron
-      height: calc(100% - #{ $spot-menu-padding })
-
+      height: calc(100% - #{ $wrapper-wiki-menu })
     &-electron-original
-      height: calc(100vh - #{ $top-system-bar-padding +  $top-bars-padding + $spot-menu-padding })
+      height: calc(100vh - #{ $wrapper-desktop + $wrapper-wiki-menu })
 
   &--mobile
     &-web
-      height: calc(100vh - #{ $spot-menu-padding })
-
+      height: calc(100vh - #{ $wrapper-wiki-menu })
     &-electron
-      height: calc(100% - #{ $spot-menu-padding })
-
+      height: calc(100% - #{ $wrapper-wiki-menu })
     &-electron-original
-      height: calc(100vh - #{ $spot-menu-padding })
+      height: calc(100vh - #{ $wrapper-wiki-menu })
 
 .wiki-content
   overflow-y: auto
@@ -1343,24 +1338,19 @@ $spot-menu-padding: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
 
   &--mobile
     &-web
-      max-height: calc(100vh - #{ $top-bars-padding + $footer-padding })
-
+      max-height: calc(100vh - #{ $wrapper-web })
     &-electron
-      max-height: calc(100% - #{ $top-bars-padding })
-      max-width: 100%
-
+      max-height: calc(100% - #{ $toolbar-height })
     &-electron-original
-      max-height: calc(100vh - #{ $top-system-bar-padding + $top-bars-padding })
-      max-width: 100%
+      max-height: calc(100vh - #{ $wrapper-desktop })
 
   &--pc
     &-web
-      width: 100%
-      max-height: calc(100vh - #{ $top-bars-padding + $footer-padding })
+      max-height: calc(100vh - #{ $wrapper-web })
     &-electron
-      max-height: calc(100% - #{ $top-bars-padding })
+      max-height: calc(100% - #{ $toolbar-height })
     &-electron-original
-      max-height: calc(100vh - #{ $top-system-bar-padding + $top-bars-padding })
+      max-height: calc(100vh - #{ $wrapper-desktop })
 
 .nav-bar
   &--pc

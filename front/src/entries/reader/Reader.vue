@@ -234,5 +234,5 @@ body::-webkit-scrollbar {
 
 .reader-wrapper
   overflow-y: scroll
-  height: calc(100vh - #{ $top-bars-padding-reader})
+  height: calc(100vh - #{ $system-bar-height})
 </style>

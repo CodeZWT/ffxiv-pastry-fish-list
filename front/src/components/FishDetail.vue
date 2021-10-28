@@ -12,7 +12,8 @@
         :class="{
           'detail-header': inPane,
           'detail-header--web': inPane && !isElectron,
-          'detail-header--electron': inPane && isElectron,
+          'detail-header--electron': inPane && isElectron && !original,
+          'detail-header--electron-original': inPane && isElectron && original,
         }"
       >
         <fish-detail-content
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import FishDetailContent from '@/components/FishDetailContent'
@@ -75,6 +77,10 @@ export default {
     }
   },
   computed: {
+    ...mapState(['window']),
+    original() {
+      return this.window === 'main'
+    },
     fishTimePart() {
       return (
         this.fish?.parts?.fishTimePart ?? { countDown: { type: DataUtil.ALL_AVAILABLE } }
@@ -98,6 +104,9 @@ export default {
 <style lang="sass" scoped>
 @import "~@/styles/RcVariables"
 
+$detail-header-height: 104px
+$wrapper-detail: $detail-header-height + $divider-height
+
 .inner
   width: 100%
   height: 100%
@@ -106,7 +115,9 @@ export default {
   overflow-scrolling: auto
   overflow-y: scroll
   &--web
-    height: calc(100vh - #{ $top-bars-padding + $footer-padding + $detail-header-height + $divider-height})
+    height: calc(100vh - #{ $wrapper-web + $wrapper-detail })
   &--electron
-    height: calc(100% - #{ $detail-header-height + $divider-height})
+    height: calc(100% - #{ $wrapper-detail })
+  &--electron-original
+    height: calc(100vh - #{ $wrapper-desktop + $wrapper-detail })
 </style>

@@ -3,7 +3,7 @@
     fluid
     :class="
       `pa-0 detail-wrapper ${
-        isElectron ? 'detail-wrapper--electron' : 'detail-wrapper--web'
+        isElectron ? 'detail-wrapper--electron-original' : 'detail-wrapper--web'
       }`
     "
   >
@@ -99,6 +99,7 @@ export default {
   name: 'CompetitionPage',
   components: { ImgViewer },
   mixins: [PageMixin],
+  props: ['original'],
   data() {
     return {
       tab: null,
@@ -141,9 +142,8 @@ export default {
 
   &--web
     height: 100%
-    max-height: calc(100vh - #{ $top-bars-padding + $footer-padding})
+    max-height: calc(100vh - #{ $wrapper-web })
     overflow-y: scroll
-
-  &--electron
-    //max-height: calc(100vh - #{ $top-bars-padding-electron + $footer-padding})
+  &--electron-original
+    max-height: calc(100vh - #{ $wrapper-desktop })
 </style>
