@@ -59,6 +59,7 @@ export default {
   },
   mixins: [PageMixin],
   props: [
+    'original',
     'lazyFishSourceList',
     'lazyTransformedFishList',
     'lazyTransformedFishDict',
@@ -159,7 +160,7 @@ export default {
     onFishSelected({ fishId, components, firstSpotId }) {
       this.$emit('fish-selected', { fishId, firstSpotId })
       this.forceShowComponents = components
-      if (!this.isElectron) {
+      if (this.original) {
         this.showRightPane = true
       }
     },
