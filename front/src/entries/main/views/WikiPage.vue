@@ -1,15 +1,5 @@
 <template>
-  <div
-    :class="{
-      'wiki-page': true,
-      'wiki-page--pc-web': !isMobile && !isElectron,
-      'wiki-page--pc-electron': !isMobile && isElectron && !original,
-      'wiki-page--pc-electron-original': !isMobile && isElectron && original,
-      'wiki-page--mobile-web': isMobile && !isElectron,
-      'wiki-page--mobile-electron': isMobile && isElectron && !original,
-      'wiki-page--mobile-electron-original': isMobile && isElectron && original,
-    }"
-  >
+  <div class="d-flex">
     <v-navigation-drawer
       v-if="showMapMenu || !isMobile"
       :value="showMapMenu || !isMobile"
@@ -92,9 +82,11 @@
           :class="{
             'spot-list': true,
             'spot-list--pc-web': !isMobile && !isElectron,
+            'spot-list--pc-electron': !isMobile && isElectron && !original,
+            'spot-list--pc-electron-original': !isMobile && isElectron && original,
             'spot-list--mobile-web': isMobile && !isElectron,
-            'spot-list--electron': isElectron && !original,
-            'spot-list--electron-original': isElectron && original,
+            'spot-list--mobile-electron': isMobile && isElectron && !original,
+            'spot-list--mobile-electron-original': isMobile && isElectron && original,
           }"
         >
           <v-treeview
@@ -146,7 +138,17 @@
         </v-card-text>
       </div>
     </v-navigation-drawer>
-    <div style="width: 100%">
+    <div
+      :class="{
+        'wiki-content': true,
+        'wiki-content--pc-web': !isMobile && !isElectron,
+        'wiki-content--pc-electron': !isMobile && isElectron && !original,
+        'wiki-content--pc-electron-original': !isMobile && isElectron && original,
+        'wiki-content--mobile-web': isMobile && !isElectron,
+        'wiki-content--mobile-electron': isMobile && isElectron && !original,
+        'wiki-content--mobile-electron-original': isMobile && isElectron && original,
+      }"
+    >
       <div
         v-if="
           !type || type === 'region' || (type === 'territory' && isOceanFishingTerritory)
@@ -1313,26 +1315,40 @@ $spot-menu-padding: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
 
 .spot-list
   overflow-y: auto
-  &--pc-web
-    height: calc(100vh - #{ $top-bars-padding + $footer-padding + $spot-menu-padding})
-  &--mobile-web
-    height: calc(100vh - #{ $spot-menu-padding })
-  &--electron
-    height: calc(100% - #{ $spot-menu-padding })
-  &--electron-original
-    height: calc(100vh - #{ $top-system-bar-padding +  $top-bars-padding + $spot-menu-padding })
 
-.wiki-page
-  display: flex
+  &--pc
+    &-web
+      height: calc(100vh - #{ $top-bars-padding + $footer-padding + $spot-menu-padding})
+
+    &-electron
+      height: calc(100% - #{ $spot-menu-padding })
+
+    &-electron-original
+      height: calc(100vh - #{ $top-system-bar-padding +  $top-bars-padding + $spot-menu-padding })
+
+  &--mobile
+    &-web
+      height: calc(100vh - #{ $spot-menu-padding })
+
+    &-electron
+      height: calc(100% - #{ $spot-menu-padding })
+
+    &-electron-original
+      height: calc(100vh - #{ $spot-menu-padding })
+
+.wiki-content
+  overflow-y: auto
   width: 100%
   height: 100%
 
   &--mobile
     &-web
       max-height: calc(100vh - #{ $top-bars-padding + $footer-padding })
+
     &-electron
       max-height: calc(100% - #{ $top-bars-padding })
       max-width: 100%
+
     &-electron-original
       max-height: calc(100vh - #{ $top-system-bar-padding + $top-bars-padding })
       max-width: 100%
