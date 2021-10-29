@@ -507,20 +507,20 @@
                 target="_blank"
                 href="https://beian.miit.gov.cn"
                 style="
-                display: inline-block;
-                text-decoration: none;
-                height: 20px;
-                line-height: 20px;
-              "
+                  display: inline-block;
+                  text-decoration: none;
+                  height: 20px;
+                  line-height: 20px;
+                "
               >
                 <p
                   style="
-                  float: left;
-                  height: 20px;
-                  line-height: 20px;
-                  margin: 0px 0px 0px 5px;
-                  color: #939393;
-                "
+                    float: left;
+                    height: 20px;
+                    line-height: 20px;
+                    margin: 0px 0px 0px 5px;
+                    color: #939393;
+                  "
                 >
                   黔ICP备2020011894号-1
                 </p>
@@ -531,21 +531,21 @@
                 target="_blank"
                 href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52270102000276"
                 style="
-                display: inline-block;
-                text-decoration: none;
-                height: 20px;
-                line-height: 20px;
-              "
+                  display: inline-block;
+                  text-decoration: none;
+                  height: 20px;
+                  line-height: 20px;
+                "
               >
                 <img v-if="!isMobile" :src="beianIcon" style="float: left" />
                 <p
                   style="
-                  float: left;
-                  height: 20px;
-                  line-height: 20px;
-                  margin: 0px 0px 0px 5px;
-                  color: #939393;
-                "
+                    float: left;
+                    height: 20px;
+                    line-height: 20px;
+                    margin: 0px 0px 0px 5px;
+                    color: #939393;
+                  "
                 >
                   黔公网安备 52270102000276号
                 </p>
@@ -752,6 +752,13 @@ export default {
     isWikiPage() {
       return this.$route.name === 'WikiPage'
     },
+  },
+  mounted() {
+    window.electron?.ipcRenderer?.on('showSpotPage', (event, spotId) => {
+      if (!window.location.hash.startsWith('#/wiki')) {
+        this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
+      }
+    })
   },
   methods: {
     showDownload() {

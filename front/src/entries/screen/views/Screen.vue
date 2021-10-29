@@ -360,12 +360,6 @@ export default {
       ?.on('reloadUserData', () => {
         this.reloadReaderUserData()
       })
-      // ?.on('showSpotPage', (event, spotId) => {
-      //   this.setMiniMode(false)
-      //   if (!window.location.hash.startsWith('#/wiki')) {
-      //     this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
-      //   }
-      // })
       ?.on('newRecord', (event, data) => {
         const isLogin = rcapiService.isLogin()
         data.uploadEnabled = this.readerSetting.isUploadMode && this.isRoseMode && isLogin

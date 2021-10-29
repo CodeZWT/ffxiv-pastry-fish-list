@@ -328,7 +328,6 @@ const setupEvent = () => {
     .on(
       'finishLoading',
       (event, { userData, readerSetting, windowSetting, keybindings, opcodeVersion }) => {
-
         if (WINDOW_SCREEN !== null && WINDOW_MAIN !== null) {
           callWindowSafe(WINDOW_LOADING, win => {
             // log.info('try close loading window')
@@ -456,8 +455,12 @@ const setupEvent = () => {
     }
   })
 
-  ipcMain.on("showMainWindow", () => {
-    showMainWindow()
+  ipcMain.on('showMainWindow', () => {
+    return showMainWindow()
+  })
+
+  ipcMain.on('showSpotPage', (event, spotId) => {
+    return showMainWindow().then(win => win.webContents.send('showSpotPage', spotId))
   })
 }
 
@@ -523,11 +526,12 @@ const createMainWindow = (mainWindowConfig, show = false) => {
   return loadedPromise.then(() => WINDOW_MAIN)
 }
 
-const showMainWindow = () => {
+const showMainWindow = async () => {
   if (WINDOW_MAIN && !WINDOW_MAIN.isDestroyed()) {
     showAndFocus(WINDOW_MAIN)
+    return WINDOW_MAIN
   } else {
-    createMainWindow(setting.getSetting(CONFIG_MAIN_WINDOW), true)
+    return createMainWindow(setting.getSetting(CONFIG_MAIN_WINDOW), true)
   }
 }
 
@@ -567,7 +571,7 @@ const createScreen = () => {
     loadedPromise = WINDOW_SCREEN.loadFile(
       path.join(__dirname, `/front-electron-dist/${page}.html`),
       {
-        hash: hash && ('/' + hash),
+        hash: hash && '/' + hash,
       }
     )
   }
