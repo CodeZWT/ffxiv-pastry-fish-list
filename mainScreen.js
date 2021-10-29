@@ -490,6 +490,10 @@ const createMainWindow = (mainWindowConfig, show = false) => {
       WINDOW_MAIN.show()
     }
   })
+  WINDOW_MAIN.webContents.setWindowOpenHandler(details => {
+    shell.openExternal(details.url)
+    return { action: 'deny' }
+  })
   const updateWindowPosSize = () => {
     const [x, y] = WINDOW_MAIN.getPosition()
     const [w, h] = WINDOW_MAIN.getSize()

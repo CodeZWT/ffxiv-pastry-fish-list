@@ -3,7 +3,9 @@
     <v-card v-if="tip" outlined>
       <v-card-subtitle>
         <div class="text-subtitle-1">
-          {{ meta.title }}
+          <a :href="meta.link" target="_blank">
+            {{ meta.title }}
+          </a>
         </div>
         <div class="d-flex">
           <div>
