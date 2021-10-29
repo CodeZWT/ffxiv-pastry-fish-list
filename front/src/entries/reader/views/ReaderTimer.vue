@@ -100,21 +100,14 @@
           <item-icon :icon-class="bait.icon" :title="bait.name" small />
         </div>
         <v-spacer />
-        <v-btn
-          v-if="showJumpBtn"
-          color="info"
-          @click="showSpotPage"
-          class="mr-2"
-          title="鱼糕显示对应钓场页面"
-        >
-          <new-feature-mark id="JumpWiki-V.0.6.6-1">
-            <v-icon>mdi-notebook</v-icon>
-          </new-feature-mark>
+
+        <v-btn v-if="showJumpBtn" @click="showSpotPage" title="显示当前钓场图鉴" icon>
+          <v-icon>mdi-notebook</v-icon>
         </v-btn>
-        <v-btn color="info" @click="addReaderSpotStatistics" class="mr-2">
+        <v-btn @click="addReaderSpotStatistics" title="显示钓场统计" icon>
           <v-icon>mdi-chart-box</v-icon>
         </v-btn>
-        <v-btn color="info" @click="addReaderHistory">
+        <v-btn @click="addReaderHistory" title="显示历史记录" icon>
           <v-icon>mdi-history</v-icon>
         </v-btn>
       </v-col>
@@ -215,7 +208,6 @@ import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import ItemIcon from '@/components/basic/ItemIcon'
-import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import RcDialog from '@/components/basic/RcDialog'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import rcapiService from '@/service/rcapiService'
@@ -226,7 +218,7 @@ const SPECTRAL_CURRENT = 145
 
 export default {
   name: 'ReaderTimer',
-  components: { RcDialog, EffectIcon, ItemIcon, NewFeatureMark },
+  components: { RcDialog, EffectIcon, ItemIcon },
   props: {
     mini: {
       type: Boolean,
