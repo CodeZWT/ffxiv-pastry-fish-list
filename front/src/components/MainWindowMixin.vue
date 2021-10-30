@@ -40,7 +40,6 @@ export default {
   methods: {
     ...mapMutations([
       'disableStrictMode',
-      'reloadReaderUserData',
       'setOpacity',
       'setZoomFactor',
       'setFeatureViewed',

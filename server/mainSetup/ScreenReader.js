@@ -1,6 +1,11 @@
-const FishingDataReader = require("../reader");
-const log = require("electron-log");
-const { exec } = require("child_process");
+const FishingDataReader = require('../reader')
+const log = require('electron-log')
+const { exec } = require('child_process')
+const _ = require('lodash')
+
+const opCodeRepo = 'RicecakeFC/FFXIVOpcodes'
+const opcodeUrlOf = (version = 'latest') =>
+  `https://cdn.jsdelivr.net/gh/${opCodeRepo}@${version}/opcodes.min.json`
 
 class ScreenReader {
   constructor(region, monitorType) {
@@ -8,6 +13,7 @@ class ScreenReader {
     this.machinaStarted = false
     this.region = region
     this.monitorType = monitorType
+    this.opcodeUrl = opcodeUrlOf()
   }
 
   setSender(sender) {
@@ -33,38 +39,51 @@ class ScreenReader {
       this.machinaStarted = true
       this.region = options.region
       this.monitorType = options.monitorType
+      this.opcodeUrl = options.opcodeUrl
       FishingDataReader.restart(options, () => {
         log.info('Machina started!', options)
       })
     }
   }
 
-  restart(options, fn) {
-    const newRegion = options.region || 'CN'
-    const newMonitorType = options.monitorType || 'RawSocket'
-    if (
-      this.machinaStarted &&
-      (this.region !== newRegion || this.monitorType !== newMonitorType)
-    ) {
-      this.region = newRegion
-      this.monitorType = newMonitorType
+  restart(optionsPart, fn, force) {
+    // log.debug('in screen reader restart')
 
-      if (newMonitorType === 'WinPCap') {
+    if (!this.machinaStarted) {
+      log.error('Call restart before start once. Skipped!')
+      return
+    }
+
+    const options = _.merge({
+      region: optionsPart.region || this.region,
+      monitorType: optionsPart.monitorType || this.monitorType,
+      opcodeUrl: optionsPart.opcodeUrl || this.opcodeUrl,
+    })
+
+    if (
+      this.region !== options.region ||
+      this.monitorType !== options.monitorType ||
+      this.opcodeUrl !== options.opcodeUrl ||
+      force
+    ) {
+      this.region = options.region
+      this.monitorType = options.monitorType
+      this.opcodeUrl = options.opcodeUrl
+
+      if (options.monitorType === 'WinPCap') {
         exec('Get-Service -Name Npcap', { shell: 'powershell.exe' }, err => {
           if (err) {
             this.sender.send('installNpcapPrompt')
           } else {
-            const options = { region: newRegion, monitorType: newMonitorType }
             FishingDataReader.restart(options, fn)
           }
         })
       } else {
-        const options = { region: newRegion, monitorType: newMonitorType }
         FishingDataReader.restart(options, fn)
       }
+    } else {
+      // log.debug('Same config. Skipped restarting.')
     }
-    this.machinaStarted = true
-    FishingDataReader.restart(options, fn)
   }
 
   stop(fn) {
@@ -75,4 +94,4 @@ class ScreenReader {
   }
 }
 
-module.exports = { ScreenReader }
+module.exports = { ScreenReader, opcodeUrlOf }

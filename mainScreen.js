@@ -13,9 +13,9 @@ const { callWindowSafe, showAndFocus, callTargetSafe, setOnTop, setMouseThrough,
 const { setupDevEnv } = require('./server/mainSetup/setupDevEnv')
 const { ScreenSetting, CONFIG_MAIN_WINDOW } = require('./server/mainSetup/ScreenSetting')
 const { ScreenTray } = require('./server/mainSetup/ScreenTray')
-const { MessageSender } = require("./server/mainSetup/MessageSender");
-const { ScreenReader } = require("./server/mainSetup/ScreenReader");
-const { Updater } = require("./server/mainSetup/Updater");
+const { MessageSender } = require('./server/mainSetup/MessageSender')
+const { ScreenReader, opcodeUrlOf } = require('./server/mainSetup/ScreenReader')
+const { Updater } = require('./server/mainSetup/Updater')
 const { HotkeySetting } = require('./server/mainSetup/HotkeySetting')
 const { DisplayConfig } = require('./server/mainSetup/DisplayConfig')
 const process = require('process')
@@ -35,8 +35,6 @@ const STATUS = {
   loadingFinished: false,
   exportFilePath: undefined,
 }
-
-const opcodeUrlOf = (version) => `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${version}/opcodes.min.json`
 
 // unhandled({
 //   logger: log.error,
@@ -59,26 +57,38 @@ const opcodeUrlOf = (version) => `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOp
 
 contextMenu()
 
-const handleUserDataUpdates = (updateData) => {
-  log.debug('handle update user data', updateData)
-
-  const options = {
-    region: updateData.data.region,
-    monitorType: updateData.data.monitorType,
-    opcodeUrl: opcodeUrlOf(remoteOpcodeVersion),
-  }
-  // restart machina
-  dataReader.restart(options, () => {
-    log.info('Machina restarted!', options)
-  })
-}
+// const handleReaderSettingUpdate = readerSetting => {
+//   log.debug('current status:', STATUS.readerRegion, STATUS.readerMonitorType)
+//   log.debug('handle update readerSetting', readerSetting.region, readerSetting.monitorType)
+//
+//   if (
+//     STATUS.readerRegion === readerSetting.region &&
+//     STATUS.readerMonitorType === readerSetting.monitorType
+//   ) {
+//     log.debug("skip restart machina")
+//     return
+//   } else {
+//     STATUS.readerRegion = readerSetting.region
+//     STATUS.readerMonitorType = readerSetting.monitorType
+//   }
+//   const options = {
+//     region: readerSetting.region,
+//     monitorType: readerSetting.monitorType,
+//     opcodeUrl: opcodeUrlOf(remoteOpcodeVersion),
+//   }
+//   log.debug("try restart machina")
+//   // restart machina
+//   dataReader.restart(options, () => {
+//     log.info('Machina restarted!', options)
+//   })
+// }
 
 const handleInstallNPCAP = () => {
   const postInstallCallback = () => {
     // after install npcap
     dataReader.restart({}, () => {
       log.info('Machina restarted with same config!')
-    })
+    }, true)
     sender.send('installNpcapFishined')
     callWindowSafe(WINDOW_SCREEN, win => {
       setOnTop(win, true)
@@ -119,7 +129,6 @@ const handleShowExportFileDialog = () => {
 }
 
 const handleExportHistory = data => {
-  log.info('123',STATUS.exportFilePath)
   const csv = new ObjectsToCsv(data)
   csv
     .toString()
@@ -272,9 +281,11 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
       },
       showRoseDialog: () => {
         sender.send('showRoseDialog')
-      }
+      },
     })
 
+    STATUS.readerRegion = readerSetting.region
+    STATUS.readerMonitorType = readerSetting.monitorType
     dataReader.startReaderOnce({
       region: readerSetting.region,
       monitorType: readerSetting.monitorType,
@@ -382,9 +393,9 @@ const setupEvent = () => {
     .on('startUpdate', () => {
       quitAndSetup()
     })
-    .on('updateUserData', (event, updateData) => {
-      handleUserDataUpdates(updateData)
-    })
+    // .on('updateUserData', (event, updateData) => {
+    //   handleReaderSettingUpdate(updateData)
+    // })
     .on('installNpcap', () => {
       handleInstallNPCAP()
     })
@@ -452,6 +463,18 @@ const setupEvent = () => {
       sender.send('broadcast', data)
     } else {
       sender.sendMain('broadcast', data)
+    }
+    if (data.type === 'reloadSetting') {
+      const {
+        data: { readerSetting },
+      } = data
+      const options = {
+        region: readerSetting.region,
+        monitorType: readerSetting.monitorType,
+      }
+      dataReader.restart(options, () => {
+        log.info('Machina restarted!', options)
+      })
     }
   })
 

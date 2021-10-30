@@ -353,13 +353,6 @@ export default {
           this.setFishCompleted({ fishId: fishId, completed: true })
         }
       })
-      // ?.on('updateUserData', (event, data) => {
-      //   this.updateUserData(data)
-      //   window.electron?.ipcRenderer?.send('reloadUserData')
-      // })
-      ?.on('reloadUserData', () => {
-        this.reloadReaderUserData()
-      })
       ?.on('newRecord', (event, data) => {
         const isLogin = rcapiService.isLogin()
         data.uploadEnabled = this.readerSetting.isUploadMode && this.isRoseMode && isLogin

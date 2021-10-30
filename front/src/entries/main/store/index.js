@@ -22,12 +22,17 @@ Vue.use(Vuex)
 const ScreenPluginOf = source => store => {
   let prevState = _.cloneDeep({
     userData: store.state.userData,
+    readerSetting: store.state.readerSetting,
   })
   store.subscribe((mutation, state) => {
     let nextState = _.cloneDeep({
       userData: state.userData,
+      readerSetting: state.readerSetting,
     })
-    if (!_.isEqual(prevState, nextState)) {
+
+    if (mutation.type === 'boardCastReload') {
+      // skip boardCastReload mutation
+    } else if (!_.isEqual(prevState, nextState)) {
       if (prevState.userData.fishEyesUsed !== nextState.userData.fishEyesUsed) {
         sendElectronEvent('broadcast', {
           source: source,
@@ -36,7 +41,8 @@ const ScreenPluginOf = source => store => {
       } else {
         sendElectronEvent('broadcast', {
           source: source,
-          type: 'reloadUserData',
+          type: 'reloadSetting',
+          data: nextState,
         })
       }
     }
@@ -328,10 +334,8 @@ export const MainModule = {
         isStrictMode: false,
       })
     },
-    reloadUserData(state) {
+    boardCastReload(state) {
       state.userData = loadUserData()
-    },
-    reloadReaderUserData(state) {
       state.readerSetting = loadReaderUserData()
     },
     setRoseMode(state, rose) {

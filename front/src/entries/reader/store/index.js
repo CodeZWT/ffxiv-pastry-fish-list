@@ -56,19 +56,11 @@ export default new Vuex.Store({
         state.viewedFeatures
       )
     },
-    reloadUserData(state) {
-      state.userData = loadUserData()
-      state.readerSetting = loadReaderUserData()
-    },
     // reloadSounds(state) {
     //   state.sounds = loadUserData()
     // },
     setSounds(state, sounds) {
       state.sounds = sounds
-    },
-    updateReaderSetting(state, setting) {
-      // DataUtil.setUserDataPartInLocalStorage(state, { path: 'reader', data: setting })
-      LocalStorageUtil.storeReaderUserData(setting)
     },
     updateReaderTimerMiniMode(state, mini) {
       state.readerTimerMiniMode = mini

@@ -3,7 +3,7 @@ import { FlagModule, FlagPlugin } from '@/entries/screen/store/oneTimeFlag'
 import { KeyBindingPlugin, KeybindingModule } from '@/entries/screen/store/keybinding'
 import { MainModule, ScreenPluginOf } from '@/entries/main/store'
 import { SaveLayoutPlugin, ScreenWindowModule } from '@/entries/screen/store/screenWindow'
-import { loadReaderUserData, loadUserData } from '@/utils/UserDataLoader'
+import { loadReaderUserData } from '@/utils/UserDataLoader'
 import DataUtil from '@/utils/DataUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
@@ -42,12 +42,9 @@ export default new Vuex.Store({
         data: isStrictMode,
       })
     },
-    reloadUserData(state) {
-      state.userData = loadUserData()
-      state.readerSetting = loadReaderUserData()
-    },
     updateReaderSetting(state, setting) {
       LocalStorageUtil.storeReaderUserData(setting)
+      state.readerSetting = loadReaderUserData()
     },
     updateReaderTimerMiniMode(state, mini) {
       state.readerTimerMiniMode = mini

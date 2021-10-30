@@ -139,15 +139,6 @@ export default {
     setInterval(() => {
       this.now = Date.now()
     }, 100)
-
-    window.electron?.ipcRenderer?.on('reloadUserData', () => {
-      this.reloadUserData()
-      console.debug('loading sounds')
-      this.loadingSounds().then(sounds =>
-        this.setSounds(DataUtil.toMap(sounds, it => it.key))
-      )
-    })
-    // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
   },
   mounted() {
     // trigger fishing data manually
@@ -179,7 +170,7 @@ export default {
     loadingSounds() {
       return DataUtil.loadingSounds(db)
     },
-    ...mapMutations(['setSounds', 'reloadUserData', 'setFeatureViewed', 'setStrictMode']),
+    ...mapMutations(['setSounds', 'setFeatureViewed', 'setStrictMode']),
   },
 }
 </script>

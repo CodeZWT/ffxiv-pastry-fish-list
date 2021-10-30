@@ -551,9 +551,9 @@ export default {
     this.closeStrictMode()
 
     window.electron?.ipcRenderer?.on('broadcast', (event, { type, source }) => {
-      console.debug('reloadUserData according to', source)
-      if (type === 'reloadUserData') {
-        this.reloadUserData()
+      console.debug('reloadSettingData according to', source)
+      if (type === 'reloadSetting') {
+        this.boardCastReload()
       } else if (type === 'reloadPage') {
         this.showSnackbar({
           text: '设置成功，即将重新加载页面，请稍后...',
@@ -1368,10 +1368,9 @@ export default {
     },
     ...mapMutations('dialog', ['setShowDialog']),
     ...mapMutations([
-      'reloadUserData',
       'setShowImportExportDialog',
       'disableStrictMode',
-      'reloadReaderUserData',
+      'boardCastReload',
       'setOpacity',
       'setZoomFactor',
       'setFeatureViewed',
