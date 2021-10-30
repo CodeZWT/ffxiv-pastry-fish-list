@@ -19,12 +19,11 @@
           </v-list-item>
         </v-list>
         <v-btn block color="info" @click="getAllDisplays"> 重新检测屏幕 </v-btn>
+
         <v-subheader>窗口设置</v-subheader>
         <v-btn block color="error" @click="resetLayouts"> 重置窗口 </v-btn>
-        <div class="text-subtitle-1">
-          窗口透明度
-        </div>
 
+        <v-subheader>窗口透明度</v-subheader>
         <v-row>
           <v-col v-for="win in opacityWindows" cols="12" :key="win.winId">
             <v-slider
