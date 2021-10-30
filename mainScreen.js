@@ -364,8 +364,12 @@ const setupEvent = () => {
       }
     )
     .on('updateWindowSetting', (event, windowSetting) => {
-      setWindowShape(WINDOW_SCREEN, windowSetting)
-      WINDOW_MAIN.setOpacity(windowSetting.layouts['MAIN'].opacity)
+      callWindowSafe(WINDOW_SCREEN, win => {
+        setWindowShape(win, windowSetting)
+      })
+      callWindowSafe(WINDOW_MAIN, win => {
+        win.setOpacity(windowSetting.layouts['MAIN'].opacity)
+      })
     })
     .on('maximize', () => {
       callWindowSafe(WINDOW_MAIN, win => win.maximize())
