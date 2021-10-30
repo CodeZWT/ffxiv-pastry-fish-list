@@ -39,21 +39,17 @@
 
             <v-tabs-items v-model="selfTab">
               <v-tab-item>
-                <v-textarea v-model="selfTextToExport" ref="selfExportTextArea" />
-                <click-helper @click="exportData">
-                  <v-btn class="mr-4" color="primary">
-                    <v-icon>mdi-content-copy</v-icon>
-                    {{ $t('importExport.dialog.copy') }}
-                  </v-btn>
-                </click-helper>
+                <rc-textarea v-model="selfTextToExport" ref="selfExportTextArea" />
+                <v-btn class="mr-4" color="primary" @click="exportData">
+                  <v-icon>mdi-content-copy</v-icon>
+                  {{ $t('importExport.dialog.copy') }}
+                </v-btn>
               </v-tab-item>
               <v-tab-item>
-                <v-textarea v-model="selfDataToImport" />
-                <click-helper @click="importData">
-                  <v-btn class="mr-4" color="primary">
-                    {{ $t('importExport.dialog.self.import') }}
-                  </v-btn>
-                </click-helper>
+                <rc-textarea v-model="selfDataToImport" />
+                <v-btn class="mr-4" color="primary" @click="importData">
+                  {{ $t('importExport.dialog.self.import') }}
+                </v-btn>
               </v-tab-item>
             </v-tabs-items>
           </v-col>
@@ -97,7 +93,7 @@
 
             <v-tabs-items v-model="fishTrackerTab">
               <v-tab-item>
-                <v-textarea
+                <rc-textarea
                   v-model="fishTrackerTextToExport"
                   ref="fishTrackerExportTextArea"
                 />
@@ -109,7 +105,7 @@
                 </click-helper>
               </v-tab-item>
               <v-tab-item>
-                <v-textarea v-model="fishTrackerTextToImport" />
+                <rc-textarea v-model="fishTrackerTextToImport" />
                 <click-helper @click="importDataFromFishTracker">
                   <v-btn class="mr-4" color="primary">
                     {{
@@ -144,12 +140,13 @@ import { mapMutations, mapState } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import RcDialog from '@/components/basic/RcDialog'
+import RcTextarea from '@/components/basic/RcTextarea'
 import ResetButton from '@/components/ResetButton'
 import _ from 'lodash'
 
 export default {
   name: 'ImportExportDialog',
-  components: { RcDialog, ClickHelper, ResetButton },
+  components: { RcTextarea, RcDialog, ClickHelper, ResetButton },
   props: {
     value: {
       type: Boolean,
