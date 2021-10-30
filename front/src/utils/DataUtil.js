@@ -741,7 +741,8 @@ export default {
   toItemId: toItemId,
 
   toItemTitle(item) {
-    return item.name + (item.id < 999990 ? '#' + toItemId(item.id) : '')
+    const id = toItemId(item.id)
+    return item.name + (id < 999990 ? '#' + id : '')
   },
 
   toSpotItemId(spotId, itemId) {
