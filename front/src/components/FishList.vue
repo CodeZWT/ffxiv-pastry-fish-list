@@ -35,12 +35,11 @@
     <v-col cols="12" v-if="clearAllButton && flattenFishList.length > 0">
       <rc-dialog v-model="showClearConfirmDialog" max-width="330">
         <template v-slot:activator="{ on, attrs }">
-          <click-helper v-bind="attrs" v-on="on">
-            <v-btn block color="error" class="rounded-t-0">
-              <v-icon>mdi-playlist-remove</v-icon>
-              <span>{{ $t('list.toBeNotified.clearAll') }}</span>
-            </v-btn>
-          </click-helper>
+          <v-btn v-bind="attrs" v-on="on" block color="error" class="rounded-t-0">
+            <v-icon>mdi-playlist-remove</v-icon>
+            <span>{{ $t('list.toBeNotified.clearAll') }}</span>
+            <span>（共{{ flattenFishList.length }}条）</span>
+          </v-btn>
         </template>
 
         <v-card>
