@@ -39,21 +39,37 @@
         <v-row no-gutters>
           <v-col class="d-flex align-center">
             <div class="mr-2">显示未知鱼记录</div>
-            <v-switch v-model="showIgnoredRecord" inset />
+            <v-switch
+              :input-value="showIgnoredRecord"
+              @change="setStates({ showIgnoredRecord: $event })"
+              inset
+            />
           </v-col>
           <v-col class="d-flex align-center">
             <div class="mr-2">显示耐心状态</div>
-            <v-switch v-model="showPatient" inset />
+            <v-switch
+              :input-value="showPatient"
+              @change="setStates({ showPatient: $event })"
+              inset
+            />
           </v-col>
         </v-row>
         <v-row no-gutters>
           <v-col class="d-flex align-center">
             <div class="mr-2">显示获得力&鉴别力</div>
-            <v-switch v-model="showPlayerStatus" inset />
+            <v-switch
+              :input-value="showPlayerStatus"
+              @change="setStates({ showPlayerStatus: $event })"
+              inset
+            />
           </v-col>
           <v-col class="d-flex align-center">
             <div class="mr-2">显示提钩类别</div>
-            <v-switch v-model="showHookset" inset />
+            <v-switch
+              :input-value="showHookset"
+              @change="setStates({ showHookset: $event })"
+              inset
+            />
           </v-col>
         </v-row>
       </v-card-text>
@@ -187,6 +203,7 @@
 <script>
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
 import { invokeElectronEvent, sendElectronEvent } from '@/utils/electronHelper'
+import { mapMutations, mapState } from 'vuex'
 import COMMON from 'Data/common'
 import DATA from 'Data/data'
 import DataUtil from '@/utils/DataUtil'
@@ -215,10 +232,6 @@ export default {
       loadingCnt: INITIAL_LOADING_CNT,
       rawRecords: [], //TEST.READER_HISTORY_RECORDS,
       dbRecordsCnt: 0,
-      showIgnoredRecord: true,
-      showPatient: false,
-      showPlayerStatus: false,
-      showHookset: false,
       exporting: false,
       generating: false,
       deleting: false,
@@ -227,6 +240,12 @@ export default {
     }
   },
   computed: {
+    ...mapState('readerHistory', [
+      'showIgnoredRecord',
+      'showPatient',
+      'showPlayerStatus',
+      'showHookset',
+    ]),
     canDelete() {
       return !this.deleting && !this.exporting && !this.generating
     },
@@ -347,6 +366,7 @@ export default {
       })
   },
   methods: {
+    ...mapMutations('readerHistory', ['setStates']),
     removeRecord(record) {
       const index = this.rawRecords.findIndex(it => it.id === record.id)
       if (index > -1) {

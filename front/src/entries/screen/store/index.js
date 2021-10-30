@@ -2,6 +2,10 @@ import { DialogModule } from '@/entries/screen/store/dialog'
 import { FlagModule, FlagPlugin } from '@/entries/screen/store/oneTimeFlag'
 import { KeyBindingPlugin, KeybindingModule } from '@/entries/screen/store/keybinding'
 import { MainModule, ScreenPluginOf } from '@/entries/main/store'
+import {
+  ReaderHistoryModule,
+  ReaderHistoryPlugin,
+} from '@/entries/screen/store/readerHistory'
 import { SaveLayoutPlugin, ScreenWindowModule } from '@/entries/screen/store/screenWindow'
 import { loadReaderUserData } from '@/utils/UserDataLoader'
 import DataUtil from '@/utils/DataUtil'
@@ -59,6 +63,13 @@ export default new Vuex.Store({
     keybinding: KeybindingModule,
     dialog: DialogModule,
     flag: FlagModule,
+    readerHistory: ReaderHistoryModule,
   },
-  plugins: [SaveLayoutPlugin, KeyBindingPlugin, FlagPlugin, ScreenPluginOf('screen')],
+  plugins: [
+    SaveLayoutPlugin,
+    KeyBindingPlugin,
+    FlagPlugin,
+    ScreenPluginOf('screen'),
+    ReaderHistoryPlugin,
+  ],
 })
