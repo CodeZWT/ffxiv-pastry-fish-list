@@ -30,7 +30,7 @@ class ScreenReader {
       this.sender.send('newRecord', data)
     })
     FishingDataReader.onPlayerSetup(data => {
-      this.sender.send('playerSetup', data)
+      this.sender.sendMain('playerSetup', data)
     })
   }
 
