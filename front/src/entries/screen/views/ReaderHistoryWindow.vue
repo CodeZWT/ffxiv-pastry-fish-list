@@ -14,7 +14,7 @@
         <v-icon>mdi-cog</v-icon>
       </v-btn>
     </template>
-    <reader-history />
+    <reader-history :lazyTransformedFishDict="lazyTransformedFishDict" />
   </screen-window>
 </template>
 
@@ -28,6 +28,7 @@ export default {
   name: 'ReaderHistoryWindow',
   mixins: [WindowMixin],
   components: { ScreenWindow, ReaderHistory },
+  props: ['lazyTransformedFishDict'],
   computed: {
     ...mapState('readerHistory', ['showConfig']),
   },

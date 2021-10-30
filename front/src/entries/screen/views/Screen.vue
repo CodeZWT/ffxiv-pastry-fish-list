@@ -51,6 +51,7 @@
         v-else-if="windows.includes(winId) && winId.indexOf('READER_HISTORY') === 0"
         :id="winId"
         :key="winId"
+        :lazyTransformedFishDict="lazyTransformedFishDict"
       />
       <reader-spot-statistics-window
         v-else-if="

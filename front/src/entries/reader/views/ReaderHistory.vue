@@ -11,9 +11,7 @@
               color="primary"
             >
               <template v-if="exporting"> 读取数据中 {{ exportPercentage }} </template>
-              <template v-else-if="exporting">
-                生成文件中
-              </template>
+              <template v-else-if="exporting"> 生成文件中 </template>
               <template v-else> <v-icon>mdi-file-table</v-icon>导出至文件 </template>
             </v-btn>
             <v-btn
@@ -71,6 +69,84 @@
                 @change="setStates({ showHookset: $event })"
                 inset
               />
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col cols="12">
+              <rc-autocomplete
+                ref="search"
+                v-model="recordsFilterSpotId"
+                :items="spotsForSearch"
+                item-value="id"
+                item-text="name"
+                label="请输入钓场"
+                clearable
+                solo
+                :filter="searchFilterOptions"
+              >
+                <template v-slot:item="data">
+                  <div class="d-flex">
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <div>
+                          {{ data.item.name }}
+                        </div>
+                      </v-list-item-title>
+                    </v-list-item-content>
+                  </div>
+                </template>
+              </rc-autocomplete>
+            </v-col>
+            <v-col cols="12">
+              <rc-autocomplete
+                ref="search"
+                v-model="recordsFilterFishId"
+                :items="fishForSearch"
+                item-value="id"
+                item-text="name"
+                label="请输入鱼"
+                clearable
+                solo
+                :filter="searchFilterOptions"
+              >
+                <template v-slot:item="data">
+                  <div class="d-flex">
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <div>
+                          {{ data.item.name }}
+                        </div>
+                      </v-list-item-title>
+                    </v-list-item-content>
+                  </div>
+                </template>
+              </rc-autocomplete>
+            </v-col>
+            <v-col cols="12">
+              <rc-autocomplete
+                ref="search"
+                v-model="recordsFilterBaitId"
+                :items="baitForSearch"
+                item-value="id"
+                item-text="name"
+                label="请输入鱼饵"
+                clearable
+                solo
+                :filter="searchFilterOptions"
+              >
+                <template v-slot:item="data">
+                  <div class="d-flex">
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <div>
+                          {{ data.item.name }}
+                        </div>
+                      </v-list-item-title>
+                    </v-list-item-content>
+                  </div>
+                </template>
+              </rc-autocomplete>
             </v-col>
           </v-row>
         </v-card-text>
@@ -200,6 +276,7 @@
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
 import { invokeElectronEvent, sendElectronEvent } from '@/utils/electronHelper'
 import { mapMutations, mapState } from 'vuex'
+import BAITS from 'Data/bait'
 import COMMON from 'Data/common'
 import DATA from 'Data/data'
 import DataUtil from '@/utils/DataUtil'
@@ -208,7 +285,11 @@ import EorzeaTime from '@/utils/Time'
 import ItemIcon from '@/components/basic/ItemIcon'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import PLACE_NAMES from 'Data/placeNames'
+import PinyinMatch from 'pinyin-match'
+import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
+import SPOT_FISH_DICT from 'Data/spotFishDict'
+import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
 import db from '@/plugins/db'
@@ -220,9 +301,14 @@ const LOAD_MORE_CNT = 100
 
 export default {
   name: 'ReaderHistory',
-  components: { RcDialog, EffectIcon, NewFeatureMark, ItemIcon },
+  components: { RcAutocomplete, RcDialog, EffectIcon, NewFeatureMark, ItemIcon },
+  props: ['lazyTransformedFishDict'],
   data() {
     return {
+      recordsFilterSpotId: undefined,
+      recordsFilterFishId: undefined,
+      recordsFilterBaitId: undefined,
+      targetFishId: undefined,
       totalExportCount: 0,
       exportedRecordCount: 0,
       loadingCnt: INITIAL_LOADING_CNT,
@@ -243,6 +329,47 @@ export default {
       'showPlayerStatus',
       'showHookset',
     ]),
+    spotsForSearch() {
+      return Object.keys(SPOT_FISH_DICT).map(spotId => {
+        const spot = UploadUtil.toSpot(spotId)
+        return {
+          id: spotId,
+          name: spot.spotName,
+        }
+      })
+    },
+    fishOptions() {
+      return _.uniqBy(
+        Object.values(this.lazyTransformedFishDict).map(({ id, name }) => {
+          return {
+            id: DataUtil.toItemId(id),
+            name: name,
+          }
+        }),
+        'id'
+      )
+    },
+    fishForSearch() {
+      return [
+        { id: -2, name: '脱钩' },
+        { id: -3, name: '未知' },
+      ].concat(this.fishOptions)
+    },
+    baitForSearch() {
+      return []
+        .concat(
+          _.uniqBy(
+            Object.entries(BAITS).map(([id, name]) => {
+              return {
+                id: DataUtil.toItemId(id),
+                name: name,
+              }
+            }),
+            'id'
+          )
+        )
+        .concat(this.fishOptions)
+    },
     canDelete() {
       return !this.deleting && !this.exporting && !this.generating
     },
@@ -362,8 +489,29 @@ export default {
         this.generating = false
       })
   },
+  mounted() {
+    this.$watch(
+      () => {
+        return (
+          this.recordsFilterSpotId + this.recordsFilterFishId + this.recordsFilterBaitId
+        )
+      },
+      () => {
+        this.loadRecord(0, INITIAL_LOADING_CNT, this.showIgnoredRecord).then(data => {
+          this.rawRecords = data
+        })
+      }
+    )
+  },
   methods: {
     ...mapMutations('readerHistory', ['setStates']),
+    searchFilterOptions(item, searchText, itemText) {
+      if (this.$i18n.locale === 'zh-CN') {
+        return PinyinMatch.match(itemText, searchText) !== false
+      } else {
+        return itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+      }
+    },
     removeRecord(record) {
       const index = this.rawRecords.findIndex(it => it.id === record.id)
       if (index > -1) {
@@ -379,21 +527,58 @@ export default {
       )
     },
     async init() {
-      this.dbRecordsCnt = await db.records.count()
       this.rawRecords = await this.loadRecord(0, this.loadingCnt, this.showIgnoredRecord)
       // this.dbLoadedCnt = this.rawRecords.length
       // console.log(this.toUploadData(this.rawRecords))
       console.debug('Records Total', this.dbRecordsCnt, 'Loaded', this.rawRecords.length)
     },
     async loadRecord(offset, limit, showIgnoredRecord) {
-      let table = db.records.orderBy('startTime').reverse()
-      if (!showIgnoredRecord) {
-        table = table.filter(record => record.fishId !== -1 || record.missed === true)
+      let result = []
+      if (
+        this.recordsFilterSpotId != null ||
+        this.recordsFilterFishId != null ||
+        this.recordsFilterBaitId != null
+      ) {
+        const whereConfig = {}
+        if (this.recordsFilterSpotId != null) {
+          whereConfig.spotId = +this.recordsFilterSpotId
+        }
+        if (this.recordsFilterFishId != null) {
+          if (this.recordsFilterFishId === -2) {
+            whereConfig.missed = true
+          } else if (this.recordsFilterFishId === -3) {
+            whereConfig.cancelled = true
+          } else {
+            whereConfig.fishId = +this.recordsFilterFishId
+          }
+        }
+        if (this.recordsFilterBaitId != null) {
+          // if (this.recordsFilterBaitId === -1) {
+          // whereConfig.baitId = undefined
+          // } else {
+          whereConfig.baitId = +this.recordsFilterBaitId
+          // }
+        }
+
+        this.dbRecordsCnt = await db.records.where(whereConfig).count()
+        result = await db.records
+          .where(whereConfig)
+          .offset(offset)
+          .limit(limit)
+          .reverse()
+          .sortBy('startTime')
+      } else {
+        let table = db.records.orderBy('startTime').reverse()
+        if (!showIgnoredRecord) {
+          table = table.filter(record => record.fishId !== -1 || record.missed === true)
+        }
+        result = await table
+          .offset(offset)
+          .limit(limit)
+          .toArray()
+        this.dbRecordsCnt = await db.records.count()
       }
-      return table
-        .offset(offset)
-        .limit(limit)
-        .toArray()
+      return result
     },
     async loadingMore() {
       this.loadingCnt += LOAD_MORE_CNT
