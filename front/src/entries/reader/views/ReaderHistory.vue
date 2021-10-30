@@ -1,188 +1,184 @@
 <template>
   <div class="wrapper">
-    <v-card>
-      <v-card-text>
-        <v-row no-gutters>
-          <v-btn
-            :readonly="exporting || generating"
-            :disabled="deleting"
-            @click="exportHistory"
-            color="primary"
-          >
-            <template v-if="exporting"> 读取数据中 {{ exportPercentage }} </template>
-            <template v-else-if="exporting">
-              生成文件中
-            </template>
-            <template v-else> <v-icon>mdi-file-table</v-icon>导出至文件 </template>
-          </v-btn>
-          <v-btn
-            icon
-            text
-            @click="openHelp"
-            class="ml-1"
-            title="点击查看如何使用导出文件"
-          >
-            <new-feature-mark id="ExportHelp-V.0.6.6-1">
-              <v-icon>mdi-help-circle</v-icon>
-            </new-feature-mark>
-          </v-btn>
-          <v-spacer />
-          <v-btn
-            :loading="deleting"
-            :disabled="exporting"
-            @click="showClearConfirmDialog = true"
-            color="error"
-          >
-            <v-icon>mdi-file-remove</v-icon>清空记录
-          </v-btn>
-        </v-row>
-        <v-row no-gutters>
-          <v-col class="d-flex align-center">
-            <div class="mr-2">显示未知鱼记录</div>
-            <v-switch
-              :input-value="showIgnoredRecord"
-              @change="setStates({ showIgnoredRecord: $event })"
-              inset
-            />
-          </v-col>
-          <v-col class="d-flex align-center">
-            <div class="mr-2">显示耐心状态</div>
-            <v-switch
-              :input-value="showPatient"
-              @change="setStates({ showPatient: $event })"
-              inset
-            />
-          </v-col>
-        </v-row>
-        <v-row no-gutters>
-          <v-col class="d-flex align-center">
-            <div class="mr-2">显示获得力&鉴别力</div>
-            <v-switch
-              :input-value="showPlayerStatus"
-              @change="setStates({ showPlayerStatus: $event })"
-              inset
-            />
-          </v-col>
-          <v-col class="d-flex align-center">
-            <div class="mr-2">显示提钩类别</div>
-            <v-switch
-              :input-value="showHookset"
-              @change="setStates({ showHookset: $event })"
-              inset
-            />
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
-
-    <div class="my-2">
-      <div v-if="records.length > 0">
-        <v-list>
-          <div v-for="(record, index) in records" :key="index">
-            <v-divider v-if="index > 0" />
-            <v-hover v-slot="{ hover }" open-delay="300" close-deplay="300">
-              <v-list-item>
-                <v-list-item-content>
-                  <v-row no-gutters class="d-flex align-center">
-                    <v-col cols="5" class="d-flex align-center">
-                      <v-badge
-                        v-if="record.fish.quantity > 1"
-                        :content="record.fish.quantity"
-                        overlap
-                        bottom
-                        bordered
-                      >
-                        <item-icon :icon-class="record.fish.icon" small />
-                      </v-badge>
-                      <item-icon v-else :icon-class="record.fish.icon" small />
-                      <div>
-                        <span v-if="record.missed">{{ '脱钩' }}</span>
-                        <span v-else-if="record.cancelled">{{ '未知鱼' }}</span>
-                        <span v-else>
-                          {{ record.fish.name || '未知鱼' }}
-                          <i class="xiv hq" v-if="record.hq"></i>
-                        </span>
-                        <div class="text-subtitle-2 d-flex">
-                          <div
-                            v-if="record.size > 0"
-                            :class="['mr-2', record.fish.quantity > 1 ? 'ml-2' : '']"
-                            title="星寸：人族男性士兵的大拇指宽度、成熟的罗兰莓的长度"
-                          >
-                            {{ record.fish.size }}
-                          </div>
-                          <div
-                            v-if="showPlayerStatus"
-                            class="text-subtitle-2"
-                            title="获得力/鉴别力"
-                          >
-                            {{ record.playerStatus.text }}
-                          </div>
+    <v-expand-transition>
+      <v-card v-if="showConfig">
+        <v-card-text>
+          <v-row no-gutters>
+            <v-btn
+              :readonly="exporting || generating"
+              :disabled="deleting"
+              @click="exportHistory"
+              color="primary"
+            >
+              <template v-if="exporting"> 读取数据中 {{ exportPercentage }} </template>
+              <template v-else-if="exporting">
+                生成文件中
+              </template>
+              <template v-else> <v-icon>mdi-file-table</v-icon>导出至文件 </template>
+            </v-btn>
+            <v-btn
+              icon
+              text
+              @click="openHelp"
+              class="ml-1"
+              title="点击查看如何使用导出文件"
+            >
+              <new-feature-mark id="ExportHelp-V.0.6.6-1">
+                <v-icon>mdi-help-circle</v-icon>
+              </new-feature-mark>
+            </v-btn>
+            <v-spacer />
+            <v-btn
+              :loading="deleting"
+              :disabled="exporting"
+              @click="showClearConfirmDialog = true"
+              color="error"
+            >
+              <v-icon>mdi-file-remove</v-icon>清空记录
+            </v-btn>
+          </v-row>
+          <v-row no-gutters>
+            <v-col class="d-flex align-center">
+              <div class="mr-2">显示未知鱼记录</div>
+              <v-switch
+                :input-value="showIgnoredRecord"
+                @change="setStates({ showIgnoredRecord: $event })"
+                inset
+              />
+            </v-col>
+            <v-col class="d-flex align-center">
+              <div class="mr-2">显示耐心状态</div>
+              <v-switch
+                :input-value="showPatient"
+                @change="setStates({ showPatient: $event })"
+                inset
+              />
+            </v-col>
+          </v-row>
+          <v-row no-gutters>
+            <v-col class="d-flex align-center">
+              <div class="mr-2">显示获得力&鉴别力</div>
+              <v-switch
+                :input-value="showPlayerStatus"
+                @change="setStates({ showPlayerStatus: $event })"
+                inset
+              />
+            </v-col>
+            <v-col class="d-flex align-center">
+              <div class="mr-2">显示提钩类别</div>
+              <v-switch
+                :input-value="showHookset"
+                @change="setStates({ showHookset: $event })"
+                inset
+              />
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </v-expand-transition>
+    <v-divider v-if="showConfig"></v-divider>
+    <div v-if="records.length > 0">
+      <v-list>
+        <div v-for="(record, index) in records" :key="index">
+          <v-divider v-if="index > 0" />
+          <v-hover v-slot="{ hover }" open-delay="300" close-deplay="300">
+            <v-list-item>
+              <v-list-item-content>
+                <v-row no-gutters class="d-flex align-center">
+                  <v-col cols="5" class="d-flex align-center">
+                    <v-badge
+                      v-if="record.fish.quantity > 1"
+                      :content="record.fish.quantity"
+                      overlap
+                      bottom
+                      bordered
+                    >
+                      <item-icon :icon-class="record.fish.icon" small />
+                    </v-badge>
+                    <item-icon v-else :icon-class="record.fish.icon" small />
+                    <div>
+                      <span v-if="record.missed">{{ '脱钩' }}</span>
+                      <span v-else-if="record.cancelled">{{ '未知鱼' }}</span>
+                      <span v-else>
+                        {{ record.fish.name || '未知鱼' }}
+                        <i class="xiv hq" v-if="record.hq"></i>
+                      </span>
+                      <div class="text-subtitle-2 d-flex">
+                        <div
+                          v-if="record.size > 0"
+                          :class="['mr-2', record.fish.quantity > 1 ? 'ml-2' : '']"
+                          title="星寸：人族男性士兵的大拇指宽度、成熟的罗兰莓的长度"
+                        >
+                          {{ record.fish.size }}
+                        </div>
+                        <div
+                          v-if="showPlayerStatus"
+                          class="text-subtitle-2"
+                          title="获得力/鉴别力"
+                        >
+                          {{ record.playerStatus.text }}
                         </div>
                       </div>
-                    </v-col>
-                    <v-col cols="3" class="d-flex align-center flex-wrap">
-                      <div v-for="effect in record.effects" :key="effect.ID">
-                        <effect-icon :icon-class="effect.icon" :title="effect.name" />
-                      </div>
-                    </v-col>
-                    <v-col cols="4">
-                      <v-progress-linear
-                        :value="record.biteIntervalPercentage"
-                        :color="record.tug.color"
-                        height="25"
-                        rounded
-                      >
-                        <template>
-                          <strong>{{ record.biteInterval }}</strong>
-                        </template>
-                      </v-progress-linear>
-                    </v-col>
-
-                    <v-chip
-                      v-if="hover && canDelete"
-                      style="position: absolute; right: 0; top: 0"
-                      class="rounded-r-0 rounded-bl-xl rounded-tl-0"
-                      x-small
-                      color="error"
-                      v-ripple
-                      @click="removeRecord(record)"
+                    </div>
+                  </v-col>
+                  <v-col cols="3" class="d-flex align-center flex-wrap">
+                    <div v-for="effect in record.effects" :key="effect.ID">
+                      <effect-icon :icon-class="effect.icon" :title="effect.name" />
+                    </div>
+                  </v-col>
+                  <v-col cols="4">
+                    <v-progress-linear
+                      :value="record.biteIntervalPercentage"
+                      :color="record.tug.color"
+                      height="25"
+                      rounded
                     >
-                      <v-icon x-small>mdi-close</v-icon>
-                    </v-chip>
-                  </v-row>
-                </v-list-item-content>
-                <item-icon
-                  v-if="showHookset"
-                  :icon-class="record.hookset.icon"
-                  small
-                  type="action"
-                />
-                <item-icon
-                  :icon-class="record.bait.icon"
-                  small
-                  :title="record.bait.name"
-                />
-              </v-list-item>
-            </v-hover>
-          </div>
-        </v-list>
-        <v-btn
-          v-if="remainingCnt > 0"
-          block
-          color="primary"
-          class="rounded-t-0"
-          @click="loadingMore"
-        >
-          {{ $t('loadingMoreWithRemainingCnt', { remainingCnt }) }}
-        </v-btn>
-      </div>
-      <div v-else>
-        <v-card>
-          <v-card-text>
-            <div class="text-h6 text-center">无历史记录</div>
-          </v-card-text>
-        </v-card>
-      </div>
+                      <template>
+                        <strong>{{ record.biteInterval }}</strong>
+                      </template>
+                    </v-progress-linear>
+                  </v-col>
+
+                  <v-chip
+                    v-if="hover && canDelete"
+                    style="position: absolute; right: 0; top: 0"
+                    class="rounded-r-0 rounded-bl-xl rounded-tl-0"
+                    x-small
+                    color="error"
+                    v-ripple
+                    @click="removeRecord(record)"
+                  >
+                    <v-icon x-small>mdi-close</v-icon>
+                  </v-chip>
+                </v-row>
+              </v-list-item-content>
+              <item-icon
+                v-if="showHookset"
+                :icon-class="record.hookset.icon"
+                small
+                type="action"
+              />
+              <item-icon :icon-class="record.bait.icon" small :title="record.bait.name" />
+            </v-list-item>
+          </v-hover>
+        </div>
+      </v-list>
+      <v-btn
+        v-if="remainingCnt > 0"
+        block
+        color="primary"
+        class="rounded-t-0"
+        @click="loadingMore"
+      >
+        {{ $t('loadingMoreWithRemainingCnt', { remainingCnt }) }}
+      </v-btn>
+    </div>
+    <div v-else>
+      <v-card>
+        <v-card-text>
+          <div class="text-h6 text-center">无历史记录</div>
+        </v-card-text>
+      </v-card>
     </div>
     <rc-dialog v-model="showClearConfirmDialog" max-width="300">
       <v-card>
@@ -241,6 +237,7 @@ export default {
   },
   computed: {
     ...mapState('readerHistory', [
+      'showConfig',
       'showIgnoredRecord',
       'showPatient',
       'showPlayerStatus',

@@ -22,6 +22,7 @@ const ReaderHistoryPlugin = store => {
 const ReaderHistoryModule = {
   namespaced: true,
   state: {
+    showConfig: false,
     showIgnoredRecord:
       storedConfig?.showIgnoredRecord ?? DEFAULT_HISTORY_CONFIG.showIgnoredRecord,
     showPatient: storedConfig?.showPatient ?? DEFAULT_HISTORY_CONFIG.showPatient,
