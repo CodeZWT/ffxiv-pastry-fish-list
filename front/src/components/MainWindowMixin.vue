@@ -61,10 +61,6 @@ export default {
       window.electron?.ipcRenderer?.send(channel, data)
     },
     toggleFishEyesUsed() {
-      this.showSnackbar({
-        text: '设置成功，即将重新加载页面，请稍后...',
-        color: 'success',
-      })
       this.updateUserData({ path: 'fishEyesUsed', data: !this.fishEyesUsed })
     },
     selectThemeMode(index) {

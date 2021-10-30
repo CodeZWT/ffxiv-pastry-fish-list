@@ -40,15 +40,22 @@ const ScreenPluginOf = source => store => {
         mutation.type === 'setStartLight' ||
         prevState.userData.fishEyesUsed !== nextState.userData.fishEyesUsed
       ) {
-        if (DevelopmentModeUtil.isElectron()) {
-          sendElectronEvent('broadcast', {
-            source: source,
-            type: 'reloadPage',
-          })
+        const isElectron = DevelopmentModeUtil.isElectron()
+        state.snackbar = {
+          show: true,
+          text: `设置成功，即将${isElectron ? '重启' : '重新加载页面'}，请稍后...`,
+          color: 'success',
+          timeout: 2000,
         }
-        setTimeout(() => {
-          window.location.reload()
-        }, 1000)
+        if (isElectron) {
+          setTimeout(() => {
+            sendElectronEvent('relaunch')
+          }, 1000)
+        } else {
+          setTimeout(() => {
+            window.location.reload()
+          }, 1000)
+        }
       } else {
         sendElectronEvent('broadcast', {
           source: source,

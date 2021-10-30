@@ -554,15 +554,16 @@ export default {
       console.debug('reloadSettingData according to', source)
       if (type === 'reloadSetting') {
         this.boardCastReload()
-      } else if (type === 'reloadPage') {
-        this.showSnackbar({
-          text: '设置成功，即将重新加载页面，请稍后...',
-          color: 'success',
-        })
-        setTimeout(() => {
-          window.location.reload()
-        }, 1000)
       }
+      // else if (type === 'reloadPage') {
+      //     this.showSnackbar({
+      //       text: '设置成功，即将重新加载页面，请稍后...',
+      //       color: 'success',
+      //     })
+      //     setTimeout(() => {
+      //       window.location.reload()
+      //     }, 1000)
+      //   }
     })
   },
   async mounted() {

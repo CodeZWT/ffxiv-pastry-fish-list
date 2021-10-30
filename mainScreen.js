@@ -478,6 +478,11 @@ const setupEvent = () => {
     }
   })
 
+  ipcMain.on('relaunch', () => {
+    app.relaunch()
+    quit()
+  })
+
   ipcMain.on('showMainWindow', () => {
     return showMainWindow()
   })
