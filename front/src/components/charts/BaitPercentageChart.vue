@@ -194,23 +194,56 @@
               v-for="{ fish, cnt, percentage, tugColor } in fishCntList"
               :key="bait.baitId + '-' + fish.fishId"
             >
-              <div
-                v-if="cnt > 0"
-                style="position: relative"
-                :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
-              >
-                <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />
-                <v-progress-circular
-                  :value="percentage"
-                  rotate="-90"
-                  style="position: absolute; top: 6px; left: 8px"
-                  :color="`${tugColor} ${theme.isDark ? 'lighten-2' : 'darken-1'}`"
-                >
-                  <div :style="percentage === 100 ? 'font-size: x-small' : ''">
-                    {{ percentage.toFixed(0) }}
-                  </div>
-                </v-progress-circular>
-              </div>
+              <rc-tooltip v-if="cnt > 0">
+                <div style="position: relative">
+                  <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />
+                  <v-progress-circular
+                    :value="percentage"
+                    rotate="-90"
+                    style="position: absolute; top: 6px; left: 8px"
+                    :color="`${tugColor} ${theme.isDark ? 'lighten-2' : 'darken-1'}`"
+                  >
+                    <div :style="percentage === 100 ? 'font-size: x-small' : ''">
+                      {{ percentage.toFixed(0) }}
+                    </div>
+                  </v-progress-circular>
+                </div>
+                <template v-slot:msg>
+                  <table>
+                    <tr>
+                      <td>鱼饵</td>
+                      <td>{{ bait.baitName }}</td>
+                    </tr>
+                    <tr>
+                      <td>{{ fish.fishName }}</td>
+                      <td>{{ cnt }}条</td>
+                    </tr>
+                    <tr>
+                      <td>总共</td>
+                      <td>{{ totalCnt }}条</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        概率
+                      </td>
+                      <td>
+                        {{ `${cnt} / ${totalCnt} ≈ ${percentage.toFixed(2)}% ≈` }}
+                        <v-progress-circular
+                          :value="percentage"
+                          rotate="-90"
+                          :color="
+                            `${tugColor} ${theme.isDark ? 'lighten-2' : 'darken-1'}`
+                          "
+                        >
+                          <div :style="percentage === 100 ? 'font-size: x-small' : ''">
+                            {{ percentage.toFixed(0) }}
+                          </div>
+                        </v-progress-circular>
+                      </td>
+                    </tr>
+                  </table>
+                </template>
+              </rc-tooltip>
               <div v-else style="width: 48px"></div>
             </div>
 
@@ -218,31 +251,72 @@
               v-for="{ tug, cnt, percentage, tugColor } in tugCntList"
               :key="bait.baitId + '-' + tug"
             >
-              <div
-                v-if="cnt > 0"
-                style="position: relative; width: 48px"
-                :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
-              >
-                <v-progress-circular
-                  :value="percentage"
-                  rotate="-90"
-                  style="position: absolute; top: 8px; left: 8px"
-                  :color="tugColor + ' lighten-2'"
-                >
-                  <div :style="percentage === 100 ? 'font-size: x-small' : ''">
-                    {{ percentage.toFixed(0) }}
-                  </div>
-                </v-progress-circular>
-              </div>
+              <rc-tooltip v-if="cnt > 0">
+                <div style="position: relative; width: 48px">
+                  <v-progress-circular
+                    :value="percentage"
+                    rotate="-90"
+                    style="position: absolute; top: 8px; left: 8px"
+                    :color="tugColor + ' lighten-2'"
+                  >
+                    <div :style="percentage === 100 ? 'font-size: x-small' : ''">
+                      {{ percentage.toFixed(0) }}
+                    </div>
+                  </v-progress-circular>
+                </div>
+                <template v-slot:msg>
+                  <table>
+                    <tr>
+                      <td>鱼饵</td>
+                      <td>{{ bait.baitName }}</td>
+                    </tr>
+                    <tr>
+                      <td>{{ $t('tug.' + tug) + '脱钩' }}</td>
+                      <td>{{ cnt }}条</td>
+                    </tr>
+                    <tr>
+                      <td>总共</td>
+                      <td>{{ totalCnt }}条</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        概率
+                      </td>
+                      <td>
+                        {{ `${cnt} / ${totalCnt} ≈ ${percentage.toFixed(2)}% ≈` }}
+                        <v-progress-circular
+                          :value="percentage"
+                          rotate="-90"
+                          :color="
+                            `${tugColor} ${theme.isDark ? 'lighten-2' : 'darken-1'}`
+                          "
+                        >
+                          <div :style="percentage === 100 ? 'font-size: x-small' : ''">
+                            {{ percentage.toFixed(0) }}
+                          </div>
+                        </v-progress-circular>
+                      </td>
+                    </tr>
+                  </table>
+                </template>
+              </rc-tooltip>
               <div v-else style="width: 48px"></div>
             </div>
-            <div
-              style="height: 48px; width: 48px"
-              :class="'d-flex justify-center align-center'"
-              :title="`共${totalCnt}条记录`"
-            >
-              <div style="font-size: large">{{ abbrNum(totalCnt, 1) }}</div>
-            </div>
+            <rc-tooltip>
+              <div
+                style="height: 48px; width: 48px"
+                :class="'d-flex justify-center align-center'"
+              >
+                <div style="font-size: large">{{ abbrNum(totalCnt, 1) }}</div>
+              </div>
+              <template v-slot:msg>
+                <tr>
+                  <td>鱼饵</td>
+                  <td>{{ bait.baitName }}</td>
+                </tr>
+                {{ `使用鱼饵 ${bait.baitName} 共 ${totalCnt} 条记录` }}
+              </template>
+            </rc-tooltip>
           </div>
         </div>
       </div>
@@ -261,6 +335,7 @@ import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import ItemIcon from '@/components/basic/ItemIcon'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
+import RcTooltip from '@/components/basic/RcTooltip'
 import SPOT_WEATHER from 'Data/spotWeather'
 import UploadUtil from '@/utils/UploadUtil'
 import WeatherIcon from '@/components/basic/WeatherIcon'
@@ -272,7 +347,7 @@ const hourMinuteToMinutes = (hour, minute) => {
 
 export default {
   name: 'BaitPercentageChart',
-  components: { RcAutocomplete, WeatherIcon, ItemIcon },
+  components: { RcTooltip, RcAutocomplete, WeatherIcon, ItemIcon },
   inject: {
     theme: {
       default: { isDark: false },
@@ -562,4 +637,7 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+tr td:nth-child(2)
+  text-align: right
+</style>
