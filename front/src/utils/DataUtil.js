@@ -687,11 +687,22 @@ export default {
   validateImportData(data, sample) {
     const importKeys = _.keys(flatten(data, { safe: true })).sort()
     const sampleKeys = _.keys(flatten(sample, { safe: true })).sort()
-    // console.debug(_.difference(importKeys, sampleKeys))
-    // console.debug(_.difference(sampleKeys, importKeys))
+    console.debug(_.difference(importKeys, sampleKeys))
+    console.debug(_.difference(sampleKeys, importKeys))
     return importKeys
       .filter(it => !it.startsWith('reader.'))
       .every(it => sampleKeys.includes(it))
+  },
+
+  filterByDefaultValueKey(data, sample) {
+    let result = {}
+    let currConfigKeys = Object.keys(sample)
+    Object.entries(data).forEach(([key, item]) => {
+      if (currConfigKeys.includes(key)) {
+        result[key] = item
+      }
+    })
+    return result
   },
 
   tugToHookset(tug, hookset) {

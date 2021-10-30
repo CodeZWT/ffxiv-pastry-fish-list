@@ -23,7 +23,6 @@
       <!--        :selectedFish="selectedFish"-->
       <!--        :filteredFishIdSet="filteredFishIdSet"-->
       <!--        @fish-selected="onFishSelected"-->
-      <!--        @startReloadPage="startReloadPage"-->
       <!--        @show-setting="showSetting"-->
       <!--      />-->
 

@@ -51,10 +51,6 @@ export default {
         text: this.$t('importExport.dialog.message.resetSuccess'),
         color: 'success',
       })
-      setTimeout(() => {
-        window.electron?.ipcRenderer?.send('startLoading')
-        window.location.reload()
-      }, 2000)
     },
     ...mapMutations(['showSnackbar', 'setUserDataToDefault']),
   },

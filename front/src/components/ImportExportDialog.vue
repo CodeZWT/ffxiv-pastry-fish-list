@@ -139,6 +139,7 @@
 import { mapMutations, mapState } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
 import RcDialog from '@/components/basic/RcDialog'
 import RcTextarea from '@/components/basic/RcTextarea'
 import ResetButton from '@/components/ResetButton'
@@ -146,6 +147,7 @@ import _ from 'lodash'
 
 export default {
   name: 'ImportExportDialog',
+  mixins: [EnvMixin],
   components: { RcTextarea, RcDialog, ClickHelper, ResetButton },
   props: {
     value: {
@@ -249,17 +251,11 @@ export default {
     importData() {
       try {
         const data = JSON.parse(this.selfDataToImport)
-        if (DataUtil.validateImportData(data, DataUtil.USER_DEFAULT_DATA)) {
-          this.setUserData(data)
-          this.updateUserBaitFilterData({ data: data.baitFilter })
-          this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
-          setTimeout(() => {
-            window.electron?.ipcRenderer?.send('startLoading')
-            window.location.reload()
-          }, 2000)
-        } else {
-          this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
-        }
+        this.setUserData(
+          DataUtil.filterByDefaultValueKey(data, DataUtil.USER_DEFAULT_DATA)
+        )
+        this.updateUserBaitFilterData({ data: data.baitFilter })
+        this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
       } catch (e) {
         console.error('import error', e)
         this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
@@ -270,15 +266,12 @@ export default {
         const fishTrackerData = JSON.parse(this.fishTrackerTextToImport)
         const data = this.fromFishTrackerVersion(fishTrackerData, this.userData)
         if (
-          DataUtil.validateImportData(fishTrackerData, DataUtil.FISH_TRACKER_STRUCTURE) &&
-          DataUtil.validateImportData(data, DataUtil.USER_DEFAULT_DATA)
+          DataUtil.validateImportData(fishTrackerData, DataUtil.FISH_TRACKER_STRUCTURE)
         ) {
-          this.setUserData(data)
+          this.setUserData(
+            DataUtil.filterByDefaultValueKey(data, DataUtil.USER_DEFAULT_DATA)
+          )
           this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
-          setTimeout(() => {
-            window.electron?.ipcRenderer?.send('startLoading')
-            window.location.reload()
-          }, 2000)
         } else {
           this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
         }

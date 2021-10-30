@@ -24,7 +24,6 @@ export default {
       set(startLight) {
         this.setStartLight(startLight)
         // this.showJumpingOverlay = true
-        this.$emit('startReloadPage')
       },
     },
     inStartLight() {
@@ -61,19 +60,12 @@ export default {
     sendElectronEvent(channel, data) {
       window.electron?.ipcRenderer?.send(channel, data)
     },
-    startReloadPage() {
-      this.sendElectronEvent('startLoading')
-      window.location.reload()
-    },
     toggleFishEyesUsed() {
       this.showSnackbar({
         text: '设置成功，即将重新加载页面，请稍后...',
         color: 'success',
       })
       this.updateUserData({ path: 'fishEyesUsed', data: !this.fishEyesUsed })
-      setTimeout(() => {
-        this.startReloadPage()
-      }, 2000)
     },
     selectThemeMode(index) {
       this.setThemeMode(DataUtil.THEME_SETTING_MODES[index])

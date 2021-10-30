@@ -560,8 +560,8 @@ export default {
           color: 'success',
         })
         setTimeout(() => {
-          this.startReloadPage()
-        }, 2000)
+          window.location.reload()
+        }, 1000)
       }
     })
   },
@@ -689,15 +689,6 @@ export default {
     showCompetition() {
       this.showCompetitionDialogComputed = true
       this.setFeatureViewed('Competition-V.0.8.3-2')
-    },
-    // getWindowSetting() {
-    //   return window.electron?.ipcRenderer
-    //     ?.invoke('getWindowSetting')
-    //     ?.then(setting => (this.lazyWindowSetting = setting))
-    // },
-    startReloadPage() {
-      this.sendElectronEvent('startLoading')
-      window.location.reload()
     },
     showSetting() {
       this.showSettingDialog = true

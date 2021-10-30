@@ -12,6 +12,7 @@ import CONSTANTS from 'Data/constants'
 import DATA from 'Data/data'
 import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -33,11 +34,21 @@ const ScreenPluginOf = source => store => {
     if (mutation.type === 'boardCastReload') {
       // skip boardCastReload mutation
     } else if (!_.isEqual(prevState, nextState)) {
-      if (prevState.userData.fishEyesUsed !== nextState.userData.fishEyesUsed) {
-        sendElectronEvent('broadcast', {
-          source: source,
-          type: 'reloadPage',
-        })
+      if (
+        mutation.type === 'setUserData' ||
+        mutation.type === 'setUserDataToDefault' ||
+        mutation.type === 'setStartLight' ||
+        prevState.userData.fishEyesUsed !== nextState.userData.fishEyesUsed
+      ) {
+        if (DevelopmentModeUtil.isElectron()) {
+          sendElectronEvent('broadcast', {
+            source: source,
+            type: 'reloadPage',
+          })
+        }
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000)
       } else {
         sendElectronEvent('broadcast', {
           source: source,
