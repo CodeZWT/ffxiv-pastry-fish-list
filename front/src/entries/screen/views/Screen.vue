@@ -255,6 +255,8 @@
 
     <new-patch-introduction-dialog />
     <update-available-dialog v-model="showUpdateAvailableDialog" :hash="newVersion" />
+
+    <menu-dialog />
   </div>
 </template>
 
@@ -264,6 +266,7 @@ import { mapMutations, mapState } from 'vuex'
 import AppMixin from '@/components/AppMixin'
 import DataUtil from '@/utils/DataUtil'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
+import MenuDialog from '@/entries/screen/views/MenuDialog'
 import MenuWindow from '@/entries/screen/views/MenuWindow'
 import NewPatchIntroductionDialog from '@/components/Dialog/NewPatchIntroductionDialog'
 import RcDialog from '@/components/basic/RcDialog'
@@ -283,6 +286,7 @@ export default {
   name: 'Screen',
   mixins: [AppMixin],
   components: {
+    MenuDialog,
     NewPatchIntroductionDialog,
     ReaderSettingDialog,
     RcSnackbar,

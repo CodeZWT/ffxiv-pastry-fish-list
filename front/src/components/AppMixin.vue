@@ -121,6 +121,18 @@ export default {
     FishEyesFeatureId: MainFeatures.FishEyesButton,
   }),
   computed: {
+    ...mapState('dialog', ['menuDialog']),
+    showWindowMenu: {
+      get() {
+        return this.menuDialog
+      },
+      set(val) {
+        this.setShowDialog({
+          show: val,
+          dialog: 'menuDialog',
+        })
+      },
+    },
     showPatchNoteDialog: {
       get() {
         return this.patchNoteDialog
@@ -550,10 +562,12 @@ export default {
     this.bindHotkeys()
     this.closeStrictMode()
 
-    window.electron?.ipcRenderer?.on('broadcast', (event, { type, source }) => {
+    window.electron?.ipcRenderer?.on('broadcast', (event, { type, source, data }) => {
       console.debug('reloadSettingData according to', source)
       if (type === 'reloadSetting') {
         this.boardCastReload()
+      } else if (type === 'dialog') {
+        this.showWindowMenu = data.menuDialog
       }
       // else if (type === 'reloadPage') {
       //     this.showSnackbar({
@@ -636,6 +650,7 @@ export default {
     console.debug('sound loaded')
   },
   methods: {
+    ...mapMutations('dialog', ['setShowDialog']),
     finishReloadPage() {},
     bindHotkeys() {
       if (!this.isElectron) {

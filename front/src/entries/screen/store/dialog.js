@@ -1,6 +1,30 @@
+import { sendElectronEvent } from '@/utils/electronHelper'
+import _ from 'lodash'
+
+const DialogPluginOf = source => store => {
+  let prevState = _.cloneDeep({
+    menuDialog: store.state.dialog.menuDialog,
+  })
+  store.subscribe((mutation, state) => {
+    let nextState = _.cloneDeep({
+      menuDialog: state.dialog.menuDialog,
+    })
+
+    if (!_.isEqual(prevState, nextState)) {
+      sendElectronEvent('broadcast', {
+        source: source,
+        type: 'dialog',
+        data: nextState,
+      })
+    }
+    prevState = nextState
+  })
+}
+
 const DialogModule = {
   namespaced: true,
   state: {
+    menuDialog: false,
     patchNoteDialog: false,
     readerSettingDialog: false,
     screenSettingDialog: false,
@@ -14,4 +38,4 @@ const DialogModule = {
   },
 }
 
-export { DialogModule }
+export { DialogModule, DialogPluginOf }

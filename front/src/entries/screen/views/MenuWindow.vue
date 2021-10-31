@@ -11,256 +11,32 @@
     :resizable="false"
   >
     <div style="height: 64px; width: 64px" class="d-flex align-center justify-center">
-      <rc-dialog v-model="showWindowMenu" max-width="600">
-        <template v-slot:activator="{ on }">
-          <v-btn v-on="on" elevation="2" fab outlined>
-            <v-img
-              src="https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/pastry-fish.png"
-              width="38"
-              height="38"
-              contain
-            ></v-img>
-            <!--        <v-icon large>mdi-cat</v-icon>-->
-          </v-btn>
-        </template>
-        <v-card>
-          <v-card-title>
-            <div class="d-flex align-center" style="width: 100%">
-              <div>功能菜单</div>
-              <v-spacer />
-              <div>鱼糕</div>
-              <v-badge :content="version" inline />
-            </div>
-          </v-card-title>
-          <v-card-text>
-            <v-row @click="showWindowMenu = false">
-              <v-col>
-                <v-subheader>鱼糕</v-subheader>
-                <v-list>
-                  <!--                  <v-list-item @click="addFishList">-->
-                  <!--                    <v-list-item-icon>-->
-                  <!--                      <v-icon>mdi-format-list-text</v-icon>-->
-                  <!--                    </v-list-item-icon>-->
-                  <!--                    <v-list-item-content>-->
-                  <!--                      <v-list-item-title>{{-->
-                  <!--                        $t('list.normalTitle')-->
-                  <!--                      }}</v-list-item-title></v-list-item-content-->
-                  <!--                    >-->
-                  <!--                  </v-list-item>-->
-                  <!--                  <v-list-item @click="addNotificationList">-->
-                  <!--                    <v-list-item-icon>-->
-                  <!--                      <v-icon>mdi-bell</v-icon>-->
-                  <!--                    </v-list-item-icon>-->
-                  <!--                    <v-list-item-content>-->
-                  <!--                      <v-list-item-title>{{-->
-                  <!--                        $t('list.toBeNotifiedTitle')-->
-                  <!--                      }}</v-list-item-title></v-list-item-content-->
-                  <!--                    >-->
-                  <!--                  </v-list-item>-->
-                  <!--                  <v-list-item @click="addWiki">-->
-                  <!--                    <v-list-item-icon>-->
-                  <!--                      <v-icon>mdi-notebook</v-icon>-->
-                  <!--                    </v-list-item-icon>-->
-                  <!--                    <v-list-item-content>-->
-                  <!--                      <v-list-item-title>{{-->
-                  <!--                        $t('top.fishWiki')-->
-                  <!--                      }}</v-list-item-title></v-list-item-content-->
-                  <!--                    >-->
-                  <!--                  </v-list-item>-->
-                  <!--                  <v-list-item @click="addOceanFishing">-->
-                  <!--                    <v-list-item-icon>-->
-                  <!--                      <v-icon>mdi-ferry</v-icon>-->
-                  <!--                    </v-list-item-icon>-->
-                  <!--                    <v-list-item-content>-->
-                  <!--                      <v-list-item-title>{{-->
-                  <!--                        $t('top.oceanFishing')-->
-                  <!--                      }}</v-list-item-title></v-list-item-content-->
-                  <!--                    >-->
-                  <!--                  </v-list-item>-->
-                  <!--                  <v-list-item @click="addDiadem">-->
-                  <!--                    <v-list-item-icon>-->
-                  <!--                      <v-img-->
-                  <!--                        :src="dark ? diademDark : diademLight"-->
-                  <!--                        height="24"-->
-                  <!--                        width="24"-->
-                  <!--                      ></v-img>-->
-                  <!--                    </v-list-item-icon>-->
-                  <!--                    <v-list-item-content>-->
-                  <!--                      <v-list-item-title>{{-->
-                  <!--                        $t('top.diadem')-->
-                  <!--                      }}</v-list-item-title></v-list-item-content-->
-                  <!--                    >-->
-                  <!--                  </v-list-item>-->
-                  <!--                  <v-list-item @click="addAquarium">-->
-                  <!--                    <v-list-item-icon>-->
-                  <!--                      <v-icon>mdi-fishbowl</v-icon>-->
-                  <!--                    </v-list-item-icon>-->
-                  <!--                    <v-list-item-content>-->
-                  <!--                      <v-list-item-title>{{-->
-                  <!--                        $t('top.aquarium')-->
-                  <!--                      }}</v-list-item-title></v-list-item-content-->
-                  <!--                    >-->
-                  <!--                  </v-list-item>-->
-                  <!--                  <v-list-item @click="addCompetition">-->
-                  <!--                    <v-list-item-icon>-->
-                  <!--                      <v-icon>mdi-trophy</v-icon>-->
-                  <!--                    </v-list-item-icon>-->
-                  <!--                    <v-list-item-content>-->
-                  <!--                      <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>-->
-                  <!--                    </v-list-item-content>-->
-                  <!--                  </v-list-item>-->
-                  <v-list-item @click="showExtraMainWindow()">
-                    <v-list-item-icon>
-                      <v-icon>mdi-desktop-mac-dashboard</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>
-                        鱼糕
-                      </v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-                <v-subheader>其他</v-subheader>
-                <v-list>
-                  <v-list-item @click="showGlobalSettingDialog = true">
-                    <v-list-item-icon>
-                      <v-icon>mdi-cog</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>{{
-                        $t('top.uiConfig')
-                      }}</v-list-item-title></v-list-item-content
-                    >
-                  </v-list-item>
-
-                  <v-list-item @click="setShowImportExportDialog(true)">
-                    <v-list-item-icon>
-                      <v-icon>mdi-database</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title> {{ $t('top.menu') }}</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-
-                  <v-list-item v-if="downloadProgress > 0" link @click="showUpdateDialog">
-                    <v-list-item-icon>
-                      <div>
-                        <v-progress-circular
-                          rotate="-90"
-                          size="24"
-                          :value="downloadProgress"
-                        >
-                          <div style="font-size: x-small">
-                            {{
-                              downloadProgress === 100 ? '' : Math.floor(downloadProgress)
-                            }}
-                          </div>
-                        </v-progress-circular>
-                      </div>
-                    </v-list-item-icon>
-
-                    <v-list-item-content>
-                      <v-list-item-title>
-                        {{
-                          downloadProgress === 100
-                            ? $t('top.downloaded')
-                            : $t('top.downloading')
-                        }}</v-list-item-title
-                      >
-                    </v-list-item-content>
-                  </v-list-item>
-                  <v-list-item @click="exit">
-                    <v-list-item-icon>
-                      <v-icon class="error--text">mdi-close</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content class="error--text">
-                      <v-list-item-title> 退出鱼糕 </v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-              </v-col>
-              <v-col>
-                <v-subheader>渔捞</v-subheader>
-                <v-list>
-                  <v-list-item @click="addReaderTimer">
-                    <v-list-item-icon>
-                      <v-icon>mdi-timer</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>计时器</v-list-item-title></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addReaderTimerMini">
-                    <v-list-item-icon>
-                      <v-icon>mdi-timer</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title
-                        >迷你计时器</v-list-item-title
-                      ></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addReaderHistory">
-                    <v-list-item-icon>
-                      <v-icon>mdi-history</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title
-                        >本地历史记录</v-list-item-title
-                      ></v-list-item-content
-                    >
-                  </v-list-item>
-                  <v-list-item @click="addReaderSpotStatistics">
-                    <v-list-item-icon>
-                      <v-icon>mdi-map</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title
-                        >本地钓场统计</v-list-item-title
-                      ></v-list-item-content
-                    >
-                  </v-list-item>
-                </v-list>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
-      </rc-dialog>
-
-      <update-dialog
-        v-model="showCheckStartSetupDialog"
-        :progress="downloadProgress"
-        @update="startUpdate"
-        @skip="skipUpdate"
-      />
-      <global-setting-dialog
-        v-model="showGlobalSettingDialog"
-        @show-setting="showMainSetting"
-        @show-about="$emit('show-about')"
-      />
+      <v-btn elevation="2" fab outlined @click="showWindowMenu = true">
+        <v-img
+          src="https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/pastry-fish.png"
+          width="38"
+          height="38"
+          contain
+        ></v-img>
+        <!--        <v-icon large>mdi-cat</v-icon>-->
+      </v-btn>
     </div>
   </screen-window>
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import { version } from '../../../../package.json'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import GlobalSettingDialog from '@/entries/screen/views/GlobalSettingDialog'
 import ImgUtil from '@/utils/ImgUtil'
-import RcDialog from '@/components/basic/RcDialog'
 import ScreenWindow from '@/components/basic/screen/ScreenWindow'
-import UpdateDialog from '@/components/Dialog/UpdateDialog'
 import WindowMixin from '@/components/basic/screen/WindowMixin'
 
 export default {
   name: 'MenuWindow',
   mixins: [WindowMixin],
   components: {
-    GlobalSettingDialog,
-    UpdateDialog,
-    RcDialog,
     ScreenWindow,
   },
   props: {
@@ -274,15 +50,26 @@ export default {
     isElectron: DevelopmentModeUtil.isElectron(),
     downloadProgress: 0,
     showCheckStartSetupDialog: false,
-    showWindowMenu: false,
     diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
     diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
   }),
   computed: {
+    ...mapState('dialog', ['menuDialog']),
     ...mapGetters(['isRoseMode']),
     ...mapGetters('screenWindow', ['isOpen']),
     version() {
       return version
+    },
+    showWindowMenu: {
+      get() {
+        return this.menuDialog
+      },
+      set(val) {
+        this.setShowDialog({
+          show: val,
+          dialog: 'menuDialog',
+        })
+      },
     },
   },
   created() {
@@ -336,6 +123,7 @@ export default {
       })
   },
   methods: {
+    ...mapMutations('dialog', ['setShowDialog']),
     ...mapActions('screenWindow', ['showPrevMainWindow']),
     ...mapMutations('screenWindow', ['showWindow']),
     ...mapMutations(['setShowImportExportDialog']),

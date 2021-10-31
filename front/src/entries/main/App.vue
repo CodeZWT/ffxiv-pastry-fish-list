@@ -369,8 +369,18 @@
           <!--          </v-list-item>-->
         </v-list>
 
-        <template v-slot:append v-if="!isElectron">
-          <v-list nav dense>
+        <template v-slot:append>
+          <v-list>
+            <v-list-item @click="showMenu" link>
+              <v-list-item-icon>
+                <v-icon>mdi-desktop-mac-dashboard</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ $t('top.moreInfo') }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+          <v-list v-if="!isElectron" nav dense>
             <v-spacer />
             <v-divider />
             <v-list-group prepend-icon="mdi-cog" active-class="white--text">
@@ -764,6 +774,9 @@ export default {
     })
   },
   methods: {
+    showMenu() {
+      this.showWindowMenu = true
+    },
     showDownload() {
       this.showDownloadDialog = true
       this.setFeatureViewed(this.DesktopDownloadFeatureId)
