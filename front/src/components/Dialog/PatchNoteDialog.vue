@@ -51,6 +51,8 @@
         <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>渔捞历史记录支持搜索</li>
+          <li>原上方筛选导出等功能可以隐藏</li>
+          <li>导出功能优化</li>
         </ul>
         <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
