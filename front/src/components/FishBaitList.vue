@@ -14,6 +14,7 @@
           :id="bait.baitId"
           :name="bait.baitName"
           :mode="isFishId(bait.baitId) ? 'fish' : 'itemV2'"
+          :angler-id="toAnglerId(bait.baitId)"
         >
           <div
             style="height: 36px; width: 36px"
@@ -121,6 +122,7 @@
 </template>
 
 <script>
+import * as fishDict from 'Data/fish'
 import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
@@ -172,6 +174,7 @@ export default {
   },
   methods: {
     isFishId: id => DataUtil.isFishId(id),
+    toAnglerId: fishId => fishDict[fishId]?.anglerFishId,
     toItemIdIfExisted: DataUtil.toItemIdIfExisted,
     onBaitOrFishClicked(event, itemId) {
       if (DataUtil.isFishId(itemId)) {
