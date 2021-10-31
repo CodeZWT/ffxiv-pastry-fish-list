@@ -246,6 +246,7 @@
         class="rounded-t-0"
         @click="loadingMore"
       >
+        <!--        加载更多-->
         {{ $t('loadingMoreWithRemainingCnt', { remainingCnt }) }}
       </v-btn>
     </div>
@@ -296,8 +297,8 @@ import db from '@/plugins/db'
 
 // import TEST from 'Data/test'
 
-const INITIAL_LOADING_CNT = 100
-const LOAD_MORE_CNT = 100
+const INITIAL_LOADING_CNT = 2
+const LOAD_MORE_CNT = 2
 
 export default {
   name: 'ReaderHistory',
@@ -351,8 +352,9 @@ export default {
     },
     fishForSearch() {
       return [
-        { id: -2, name: '脱钩' },
-        { id: -3, name: '未知' },
+        // { id: -2, name: '脱钩' },
+        // { id: -3, name: '未知' },
+        { id: -1, name: '脱钩或未知' },
       ].concat(this.fishOptions)
     },
     baitForSearch() {
@@ -499,6 +501,7 @@ export default {
       () => {
         this.loadRecord(0, INITIAL_LOADING_CNT, this.showIgnoredRecord).then(data => {
           this.rawRecords = data
+          this.loadingCnt = INITIAL_LOADING_CNT
         })
       }
     )
@@ -544,14 +547,19 @@ export default {
           whereConfig.spotId = +this.recordsFilterSpotId
         }
         if (this.recordsFilterFishId != null) {
-          if (this.recordsFilterFishId === -2) {
-            whereConfig.missed = true
-          } else if (this.recordsFilterFishId === -3) {
-            whereConfig.cancelled = true
-          } else {
-            whereConfig.fishId = +this.recordsFilterFishId
-          }
+          // if (this.recordsFilterFishId === -2) {
+          //   whereConfig.missed = true
+          // } else if (this.recordsFilterFishId === -3) {
+          //   whereConfig.cancelled = true
+          // } else {
+          whereConfig.fishId = +this.recordsFilterFishId
+          // }
         }
+        // else {
+        //   if (!showIgnoredRecord) {
+        //     whereConfig.cancelled = false
+        //   }
+        // }
         if (this.recordsFilterBaitId != null) {
           // if (this.recordsFilterBaitId === -1) {
           // whereConfig.baitId = undefined
@@ -570,14 +578,19 @@ export default {
       } else {
         let table = db.records.orderBy('startTime').reverse()
         if (!showIgnoredRecord) {
-          table = table.filter(record => record.fishId !== -1 || record.missed === true)
+          table = table.filter(record => !record.cancelled)
         }
         result = await table
           .offset(offset)
           .limit(limit)
           .toArray()
+        // if (showIgnoredRecord) {
         this.dbRecordsCnt = await db.records.count()
+        // } else {
+        //   this.dbRecordsCnt = await db.records.where({ cancelled: false }).count()
+        // }
       }
+
       return result
     },
     async loadingMore() {
