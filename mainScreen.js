@@ -257,7 +257,11 @@ const handleFinishLoadingFront = (userData, readerSetting, windowSetting, keybin
         sender.send('toggleMenu')
       },
       toggleMain: () => {
-        sender.send('toggleMain')
+        if (WINDOW_MAIN && !WINDOW_MAIN.isDestroyed() && WINDOW_MAIN.isVisible()) {
+          WINDOW_MAIN.hide()
+        } else {
+          showMainWindow()
+        }
       },
       toggleReaderTimer: () => {
         sender.send('toggleReaderTimer')

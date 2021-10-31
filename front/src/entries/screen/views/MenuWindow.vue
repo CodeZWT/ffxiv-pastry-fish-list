@@ -299,13 +299,13 @@ export default {
       ?.on('toggleMenu', () => {
         this.showWindowMenu = !this.showWindowMenu
       })
-      ?.on('toggleMain', () => {
-        if (this.isOpen('MAIN')) {
-          this.closeWindow('MAIN')
-        } else {
-          this.showPrevMainWindow()
-        }
-      })
+      // ?.on('toggleMain', () => {
+      //   if (this.isOpen('MAIN')) {
+      //     this.closeWindow('MAIN')
+      //   } else {
+      //     this.showPrevMainWindow()
+      //   }
+      // })
       ?.on('toggleReaderTimer', () => {
         if (this.isOpen('READER_TIMER')) {
           this.closeWindow('READER_TIMER')
