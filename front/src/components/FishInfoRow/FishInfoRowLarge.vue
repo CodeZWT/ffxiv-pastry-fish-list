@@ -237,70 +237,8 @@
               @click="onFishClicked(['DetailItemMap'])"
             />
           </v-col>
-          <v-col
-            :class="
-              `${timeAndWeatherColClass} d-flex flex-column justify-center align-center`
-            "
-          >
-            <div v-if="fish.hasTimeConstraint" class="d-flex align-center">
-              <div
-                :class="{
-                  'text-decoration-line-through': isTimeCheckSkipped,
-                  'mr-1': isTimeCheckSkipped,
-                }"
-              >
-                {{ fish.startHourText }} - {{ fish.endHourText }}
-              </div>
-              <v-tooltip v-if="isTimeCheckSkipped" bottom color="secondary">
-                <template v-slot:activator="{ on, attrs }">
-                  <div v-bind="attrs" v-on="on">
-                    <effect-icon icon-class="bg-011103" />
-                  </div>
-                </template>
-                <div>时间条件在鱼眼模式下忽略</div>
-              </v-tooltip>
-            </div>
-            <div v-else-if="fish.checkInfo.timeRestricted">有时间限制</div>
-            <div class="d-flex" v-if="fish.hasWeatherConstraint">
-              <div style="display: flex">
-                <div
-                  v-for="(weather, index) in fish.previousWeatherSetDetail"
-                  :key="index"
-                  class="zoom-in-predator"
-                >
-                  <weather-icon
-                    :icon-class="weather.icon"
-                    :title="weather.name"
-                    type="weather"
-                  />
-                </div>
-                <v-icon v-if="fish.previousWeatherSet.length > 0" small>
-                  mdi-arrow-right
-                </v-icon>
-                <div
-                  v-for="weather in fish.weatherSetDetail"
-                  :key="weather.name"
-                  class="zoom-in-predator"
-                >
-                  <weather-icon
-                    :icon-class="weather.icon"
-                    :title="weather.name"
-                    type="weather"
-                  />
-                </div>
-              </div>
-            </div>
-            <div v-else-if="fish.checkInfo.weatherRestricted">有天气限制</div>
-            <div
-              v-if="
-                !fish.hasTimeConstraint &&
-                  !fish.hasWeatherConstraint &&
-                  !fish.checkInfo.timeRestricted &&
-                  !fish.checkInfo.weatherRestricted
-              "
-            >
-              {{ $t('list.item.noConstraint') }}
-            </div>
+          <v-col :class="`${timeAndWeatherColClass}`">
+            <weather-time-column :fish="fish" />
           </v-col>
           <v-col
             :class="`${buffAndBaitColClass} d-flex flex-row align-center justify-center`"
@@ -455,14 +393,14 @@ import FishingSpotColumn from '@/components/FishingSpotColumn'
 import ItemIcon from '@/components/basic/ItemIcon'
 import LinkList from '@/components/basic/LinkList'
 import ToggleButton from '@/components/basic/ToggleButton'
-import WeatherIcon from '@/components/basic/WeatherIcon'
+import WeatherTimeColumn from '@/components/FishInfoRow/WeatherTimeColumn'
 import fishInfoRowMixin from '@/components/FishInfoRow/FishInfoRowMixin'
 
 export default {
   name: 'FishInfoRowLarge',
   components: {
+    WeatherTimeColumn,
     EffectIcon,
-    WeatherIcon,
     LinkList,
     ClickHelper,
     ItemIcon,
