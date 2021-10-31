@@ -3,13 +3,10 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
 import _ from 'lodash'
 
-const initXOf = w => Math.floor(window.innerWidth / 2 - w / 2)
-const initYOf = h => Math.floor(window.innerHeight / 2 - h / 2)
-
 const DEFAULT_LAYOUTS = {
   MAIN: {
-    x: initXOf(960),
-    y: initYOf(600),
+    x: 100,
+    y: 100,
     w: 960,
     h: 600,
     z: 0,
@@ -18,8 +15,8 @@ const DEFAULT_LAYOUTS = {
     opacity: 1,
   },
   FISH_DETAIL: {
-    x: initXOf(400),
-    y: initYOf(600),
+    x: 100,
+    y: 100,
     w: 400,
     h: 600,
     z: 0,
@@ -28,8 +25,8 @@ const DEFAULT_LAYOUTS = {
     opacity: 1,
   },
   READER_TIMER: {
-    x: initXOf(450),
-    y: initYOf(150),
+    x: 100,
+    y: 100,
     w: 450,
     h: 150,
     z: 0,
@@ -38,8 +35,8 @@ const DEFAULT_LAYOUTS = {
     opacity: 1,
   },
   READER_TIMER_MINI: {
-    x: initXOf(425),
-    y: initYOf(85),
+    x: 100,
+    y: 100,
     w: 425,
     h: 85,
     z: 0,
@@ -48,8 +45,8 @@ const DEFAULT_LAYOUTS = {
     opacity: 1,
   },
   READER_HISTORY: {
-    x: initXOf(420),
-    y: initYOf(645),
+    x: 100,
+    y: 100,
     w: 420,
     h: 645,
     z: 0,
@@ -58,8 +55,8 @@ const DEFAULT_LAYOUTS = {
     opacity: 1,
   },
   READER_SPOT_STATISTICS: {
-    x: initXOf(500),
-    y: initYOf(450),
+    x: 100,
+    y: 100,
     w: 500,
     h: 450,
     z: 0,
@@ -68,8 +65,8 @@ const DEFAULT_LAYOUTS = {
     opacity: 1,
   },
   MENU: {
-    x: initXOf(64),
-    y: initYOf(64),
+    x: 100,
+    y: 100,
     w: 64,
     h: 64,
     z: 100,
