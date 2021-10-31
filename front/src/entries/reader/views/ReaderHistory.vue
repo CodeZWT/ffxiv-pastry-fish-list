@@ -297,8 +297,8 @@ import db from '@/plugins/db'
 
 // import TEST from 'Data/test'
 
-const INITIAL_LOADING_CNT = 2
-const LOAD_MORE_CNT = 2
+const INITIAL_LOADING_CNT = 100
+const LOAD_MORE_CNT = 100
 
 export default {
   name: 'ReaderHistory',
