@@ -491,7 +491,7 @@
               {{ $t('footer.author') }}
             </span>
             <span>
-              <i class="fab fa-qq" aria-hidden="true"></i>
+              <v-icon small>mdi-qqchat</v-icon>
               1153646847
             </span>
             <span v-if="isMobile">
@@ -581,13 +581,16 @@
         <v-card-title>关于</v-card-title>
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
-          <div><i class="fab fa-qq" aria-hidden="true"></i> 群: 1153646847</div>
           <div>
-            <i class="fab fa-weibo" aria-hidden="true"></i>
+            <v-icon small>mdi-qqchat</v-icon>
+            群: 1153646847
+          </div>
+          <div>
+            <v-icon small>mdi-sina-weibo</v-icon>
             红豆年糕找不到
           </div>
           <div>
-            合作：<i class="fab fa-weibo" aria-hidden="true"></i>
+            合作： <v-icon small>mdi-sina-weibo</v-icon>
             光之渔夫bot
           </div>
           <div>欢迎使用本站</div>
