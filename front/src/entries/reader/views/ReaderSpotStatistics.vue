@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import FishTimelineTable from '@/entries/reader/components/FishTimelineTable'
 import db from '@/plugins/db'
@@ -49,6 +48,7 @@ export default {
   components: { FishTimelineTable },
   data() {
     return {
+      now: Date.now(),
       dataStatus: {}, // spotId: 35
       dataCurrentRecord: {},
       currentChumForGraph: 'normal',
@@ -60,7 +60,6 @@ export default {
     }
   },
   computed: {
-    ...mapState(['now']),
     labels() {
       const labels = []
       for (let i = 0; i <= 60; i++) {
@@ -176,6 +175,9 @@ export default {
       ?.on('reloadRecords', () => {
         this.loadRecord(this.selectedSpotId)
       })
+    setInterval(() => {
+      this.now = Date.now()
+    }, 100)
   },
   methods: {
     async loadRecord(spotId) {
