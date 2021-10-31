@@ -122,7 +122,7 @@
       </v-col>
     </v-row>
     <v-row no-gutters v-else>
-      <v-col class="d-flex align-center mb-1">
+      <v-col cols="12" class="d-flex align-center mb-1">
         <v-progress-linear :value="intervalPercentage" :color="color" height="25" rounded>
           <template>
             <strong>{{ intervalText }} {{ tugText }}</strong>
@@ -134,7 +134,7 @@
         <!--          </new-feature-mark>-->
         <!--        </v-btn>-->
       </v-col>
-      <v-col cols="12" v-if="isOceanFishing" class="pr-7">
+      <v-col cols="12" v-if="isOceanFishing">
         <v-progress-linear
           :value="spectralCurrentIntervalPercentage"
           color="info"
@@ -146,7 +146,7 @@
           </template>
         </v-progress-linear>
       </v-col>
-      <v-col cols="12" v-if="isDiadem" class="pr-7">
+      <v-col cols="12" v-if="isDiadem">
         <v-progress-linear
           :value="diademWeatherIntervalPercentage"
           color="primary"
