@@ -24,9 +24,9 @@ const Store = require('electron-store')
 const set = require('lodash/set')
 const get = require('lodash/get')
 const merge = require('lodash/merge')
-const unhandled = require('electron-unhandled')
 const contextMenu = require('electron-context-menu')
 const cloneDeep = require('lodash/cloneDeep')
+const { Unhandled } = require('./server/mainSetupV2/unhandled')
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -56,13 +56,8 @@ let hideBySwitch = false,
   hideByFishingTrigger = false
 let isFishing = false
 let remoteOpcodeVersion = 'latest'
+let unhandled
 
-unhandled({
-  logger: log.error,
-  reportButton: error => {
-    shell.showItemInFolder(path.join(app.getPath('userData'), 'logs/main.log'))
-  },
-})
 contextMenu()
 const DEFAULT_HOTKEY_SETTING = {
   mouseThrough: 'L',
@@ -184,6 +179,8 @@ async function init() {
   windowSetting = configStore.get('windowSetting')
   initSetting(configStore, 'hotkeySetting', DEFAULT_HOTKEY_SETTING)
   hotkeySetting = configStore.get('hotkeySetting')
+
+  unhandled = new Unhandled(() => quit())
 
   FishingDataReader.onUpdate(async data => {
     if (readerConfig.showReaderOnlyIfFishing) {

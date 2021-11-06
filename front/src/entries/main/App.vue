@@ -7,6 +7,9 @@
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
+      <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
+        <v-icon>mdi-cog</v-icon>
+      </v-btn>
       <toggle-button
         :value="alwaysOnTop"
         @input="toggleAlwaysOnTop"
@@ -355,18 +358,18 @@
             </v-list-item-content>
           </v-list-item>
 
-          <!--          <v-list-item-->
-          <!--            v-if="isElectron && isRoseMode"-->
-          <!--            @click="showRoseDialog = true"-->
-          <!--            link-->
-          <!--          >-->
-          <!--            <v-list-item-icon>-->
-          <!--              <v-icon>fas fa-user-secret</v-icon>-->
-          <!--            </v-list-item-icon>-->
-          <!--            <v-list-item-content>-->
-          <!--              <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>-->
-          <!--            </v-list-item-content>-->
-          <!--          </v-list-item>-->
+          <v-list-item
+            v-if="isElectron && isRoseMode"
+            @click="showRoseDialog = true"
+            link
+          >
+            <v-list-item-icon>
+              <v-icon>fas fa-user-secret</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
 
         <template v-slot:append>
@@ -380,7 +383,7 @@
               </v-list-item-content>
             </v-list-item>
           </v-list>
-          <v-list v-if="!isElectron" nav dense>
+          <v-list nav dense>
             <v-spacer />
             <v-divider />
             <v-list-group prepend-icon="mdi-cog" active-class="white--text">
@@ -575,7 +578,6 @@
 
     <fish-setting-dialog v-model="showSettingDialog" />
     <patch-note-dialog
-      v-if="!isElectron"
       v-model="showPatchNoteDialog"
       :in-migration-page="inMigrationPage"
       @confirm="onConfirmPatchNote"
@@ -670,6 +672,13 @@
         </v-card-actions>
       </v-card>
     </rc-dialog>
+    <update-dialog
+      v-model="showCheckStartSetupDialog"
+      :progress="downloadProgress"
+      @update="startUpdate"
+      @skip="skipUpdate"
+    />
+    <update-available-dialog v-model="showUpdateAvailableDialog" :hash="newVersion" />
     <import-export-dialog v-model="showImportExport" />
     <bait-dialog
       v-model="showBaitDialog"
@@ -756,6 +765,10 @@ export default {
       showDownloadDialog: false,
       DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
       beianIcon: beianIcon,
+      showCheckStartSetupDialog: false,
+      showFinishedBaitDialog: false,
+      showUpdateAvailableDialog: false,
+      newVersion: undefined,
     }
   },
   computed: {
@@ -774,6 +787,20 @@ export default {
     })
   },
   methods: {
+    openReader() {
+      this.sendElectronEvent('openReader')
+      this.setFeatureViewed(this.ReaderTimerFeatureId)
+    },
+    startUpdate() {
+      this.sendElectronEvent('startUpdate')
+    },
+    skipUpdate() {
+      this.sendElectronEvent('skipUpdate')
+      this.showCheckStartSetupDialog = false
+    },
+    setMiniMode(mini) {
+      this.sendElectronEvent('miniMode', mini)
+    },
     showMenu() {
       this.showWindowMenu = true
     },

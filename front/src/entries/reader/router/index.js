@@ -21,7 +21,7 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "setting" */
-        '../views/ReaderSetting'
+        '../views/ReaderSettingDialog'
       ),
   },
   {

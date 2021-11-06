@@ -33,14 +33,23 @@ let pages, optimization
 if (process.env.VUE_APP_ELECTRON === 'true') {
   console.log('build for electron')
   pages = {
-    screen: {
-      entry: 'src/entries/screen/main.js',
+    index: {
+      entry: 'src/entries/main/main.js',
       template:
         process.env.NODE_ENV === 'development'
           ? 'public/index.dev.html'
           : 'public/index.html',
-      filename: 'screen.html',
-      title: '鱼糕桌面版',
+      filename: 'index.html',
+      title: '鱼糕主界面',
+    },
+    reader: {
+      entry: 'src/entries/reader/reader.js',
+      template:
+        process.env.NODE_ENV === 'development'
+          ? 'public/index.dev.html'
+          : 'public/index.html',
+      filename: 'reader.html',
+      title: '渔捞',
     },
     loading: {
       entry: 'src/entries/loading/loading.js',
@@ -51,15 +60,19 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
       filename: 'loading.html',
       title: '加载中',
     },
-    index: {
-      entry: 'src/entries/main/main.js',
+    mini: {
+      entry: 'src/entries/mini/mini.js',
       template:
         process.env.NODE_ENV === 'development'
           ? 'public/index.dev.html'
           : 'public/index.html',
-      filename: 'index.html',
-      title: '鱼糕主界面',
+      filename: 'mini.html',
+      title: '迷你鱼糕',
     },
+    // 当使用只有入口的字符串格式时，
+    // 模板会被推导为 `public/subpage.html`
+    // 并且如果找不到的话，就回退到 `public/index.html`。
+    // 输出文件名会被推导为 `subpage.html`。
   }
   optimization = {}
 } else {

@@ -1,5 +1,6 @@
 <script>
 import { FishListUpdateWorker } from '@/utils/new/FishListUpdate'
+import { INTERVAL_MINUTE } from 'Data/constants'
 import { MainFeatures } from 'Data/newFeatures'
 import {
   OCEAN_FISHING_BITE_TIME,
@@ -32,16 +33,19 @@ import MigrateToTravelEorzeaDialog from '@/components/Dialog/MigrateToTravelEorz
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import NotificationUtil from '@/utils/NotificationUtil'
 import PatchNoteDialog from '@/components/Dialog/PatchNoteDialog'
+import RecordValidator from '@/utils/RecordValidator'
 import ResetButton from '@/components/ResetButton'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
 import RoseModeDialog from '@/components/Dialog/RoseModeDialog'
 import ToggleButton from '@/components/basic/ToggleButton'
 import UpdateAvailableDialog from '@/components/Dialog/UpdateAvailableDialog'
 import UpdateDialog from '@/components/Dialog/UpdateDialog'
+import UploadUtil from '@/utils/UploadUtil'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import _ from 'lodash'
 import hotkeys from 'hotkeys-js'
 import placeNames from 'Data/placeNames'
+import rcapiService from '@/service/rcapiService'
 import regionTerritorySpots from 'Data/fishingSpots'
 
 export default {
@@ -68,6 +72,7 @@ export default {
     ResetButton,
   },
   data: vm => ({
+    downloadProgress: 0,
     isMouseThrough: false,
     isTempMouseThrough: false,
     fishUpdater: undefined,
@@ -507,11 +512,11 @@ export default {
         this.sortedToBeNotifiedIds = newSortedToBeNotifiedIds
       }
     },
-    // listFishCnt(listFishCnt, oldValue) {
-    //   if (!isEqual(listFishCnt, oldValue)) {
-    //     this.sendElectronEvent('listCntUpdated', listFishCnt)
-    //   }
-    // },
+    listFishCnt(listFishCnt, oldValue) {
+      if (!_.isEqual(listFishCnt, oldValue)) {
+        this.sendElectronEvent('listCntUpdated', listFishCnt)
+      }
+    },
     // weatherChangeTrigger() {
     // this.updateWeatherChangePart(this.now)
     // },
@@ -562,23 +567,85 @@ export default {
     this.bindHotkeys()
     this.closeStrictMode()
 
-    window.electron?.ipcRenderer?.on('broadcast', (event, { type, source, data }) => {
-      console.debug('reloadSettingData according to', source)
-      if (type === 'reloadSetting') {
-        this.boardCastReload()
-      } else if (type === 'dialog') {
-        this.showWindowMenu = data.menuDialog
+    // window.electron?.ipcRenderer?.on('broadcast', (event, { type, source, data }) => {
+    //   console.debug('reloadSettingData according to', source)
+    //   if (type === 'reloadSetting') {
+    //     this.boardCastReload()
+    //   } else if (type === 'dialog') {
+    //     this.showWindowMenu = data.menuDialog
+    //   }
+    //   // else if (type === 'reloadPage') {
+    //   //     this.showSnackbar({
+    //   //       text: '设置成功，即将重新加载页面，请稍后...',
+    //   //       color: 'success',
+    //   //     })
+    //   //     setTimeout(() => {
+    //   //       window.location.reload()
+    //   //     }, 1000)
+    //   //   }
+    // })
+
+    if (DevelopmentModeUtil.isElectron()) {
+      const db = (await import('@/plugins/db')).default
+      this.resetUploadSettingIfNecessary(db)
+      const windowSetting = await this.getWindowSetting()
+      if (windowSetting) {
+        this.setOpacity(windowSetting.main.opacity)
+        this.setZoomFactor(windowSetting.main.zoomFactor)
       }
-      // else if (type === 'reloadPage') {
-      //     this.showSnackbar({
-      //       text: '设置成功，即将重新加载页面，请稍后...',
-      //       color: 'success',
-      //     })
-      //     setTimeout(() => {
-      //       window.location.reload()
-      //     }, 1000)
-      //   }
-    })
+
+      setInterval(UploadUtil.sendUploadRecord, INTERVAL_MINUTE)
+
+      // const that = this
+      window.electron?.ipcRenderer
+        // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
+        ?.on('showUpdateDialog', (event, newVersion) => {
+          this.showUpdateAvailableDialog = true
+          this.newVersion = newVersion
+        })
+        ?.on('fishCaught', (event, data) => {
+          const fishId = data?.fishId
+          this.setFishCompleted({ fishId: fishId, completed: true })
+        })
+        ?.on('setupDownload', (event, data) => {
+          console.log(data)
+          if (this.downloadProgress < 100) {
+            this.downloadProgress = data.percent * 100
+          }
+        })
+        ?.on('checkStartSetup', () => {
+          this.downloadProgress = 100
+          this.showUpdateDialog()
+        })
+        // ?.on('updateUserData', (event, data) => {
+        //   this.updateUserData(data)
+        //   window.electron?.ipcRenderer?.send('reloadUserData')
+        // })
+        ?.on('reloadUserData', () => {
+          // this.reloadReaderUserData()
+          this.boardCastReload()
+        })
+        ?.on('showSpotPage', (event, spotId) => {
+          this.setMiniMode(false)
+          if (!window.location.hash.startsWith('#/wiki')) {
+            this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
+          }
+        })
+        ?.on('newRecord', (event, data) => {
+          const isLogin = rcapiService.isLogin()
+          data.uploadEnabled =
+            this.readerSetting.isUploadMode && this.isRoseMode && isLogin
+          data.isStrictMode = RecordValidator.judgeRecordStrictFlag(
+            this.readerSetting.isStrictMode && this.isRoseMode && isLogin,
+            data
+          )
+          console.log('store data', data)
+          db.records.put(data).catch(error => console.error('storeError', error))
+        })
+        ?.on('showRoseModeDialog', () => {
+          this.showRoseDialog = true
+        })
+    }
   },
   async mounted() {
     // setTimeout(async () => {
@@ -651,7 +718,29 @@ export default {
   },
   methods: {
     ...mapMutations('dialog', ['setShowDialog']),
-    finishReloadPage() {},
+    getWindowSetting() {
+      return window.electron?.ipcRenderer
+        ?.invoke('getWindowSetting')
+        ?.then(setting => (this.lazyWindowSetting = setting))
+    },
+    finishReloadPage() {
+      rcapiService
+        .getOpcodeFileVersion()
+        .then(version => {
+          this.sendElectronEvent('finishLoading', {
+            userData: this.userData,
+            readerSetting: this.readerSetting,
+            opcodeVersion: version,
+          })
+        })
+        .catch(() => {
+          this.sendElectronEvent('finishLoading', {
+            userData: this.userData,
+            readerSetting: this.readerSetting,
+            opcodeVersion: 'latest',
+          })
+        })
+    },
     bindHotkeys() {
       if (!this.isElectron) {
         hotkeys('/', event => {
@@ -673,7 +762,7 @@ export default {
     },
     closeStrictMode() {
       this.disableStrictMode()
-      // this.sendElectronEvent('setStrictMode', false)
+      this.sendElectronEvent('setStrictMode', false)
     },
     async resetUploadSettingIfNecessary(db) {
       if (!this.isRoseMode) {

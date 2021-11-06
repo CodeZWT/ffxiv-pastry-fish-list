@@ -1,32 +1,39 @@
-import { sendElectronEvent } from '@/utils/electronHelper'
+const remote = window.require ? window.remote : null
 
 export default {
   setAlwaysOnTop(alwaysOnTop) {
-    this.sendElectronEvent('alwaysOnTop', alwaysOnTop)
+    const WIN = remote.getCurrentWindow()
+    console.log('set top', alwaysOnTop)
+    WIN.setAlwaysOnTop(alwaysOnTop, 'screen-saver')
+    WIN.setMinimizable(!alwaysOnTop)
   },
 
   closeWindow() {
-    this.sendElectronEvent('close')
+    const WIN = remote.getCurrentWindow()
+    WIN.close()
   },
 
   isWindowHidden() {
-    return false
-    // const remote = window.require ? window.require('electron').remote : null
-    // const WIN = remote.getCurrentWindow()
-    // return !WIN.isVisible()
+    const WIN = remote.getCurrentWindow()
+    return !WIN.isVisible()
   },
 
   hideWindow() {
-    this.sendElectronEvent('hide')
+    const WIN = remote.getCurrentWindow()
+    WIN.hide()
   },
+
   minimizeWindow() {
-    this.sendElectronEvent('minimize')
+    const WIN = remote.getCurrentWindow()
+    WIN.minimize()
   },
+
   maximizeWindow() {
-    this.sendElectronEvent('maximize')
+    const WIN = remote.getCurrentWindow()
+    WIN.maximize()
   },
   unmaximizeWindow() {
-    this.sendElectronEvent('unmaximize')
+    const WIN = remote.getCurrentWindow()
+    WIN.unmaximize()
   },
-  sendElectronEvent: sendElectronEvent,
 }
