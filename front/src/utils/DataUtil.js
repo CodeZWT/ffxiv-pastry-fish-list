@@ -1318,6 +1318,7 @@ export default {
       toggleReader: 'K',
     },
     showReaderBanner: true,
+    showHistoryConfig: true,
     timer: {
       sound: {
         light: {

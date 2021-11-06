@@ -1,3 +1,7 @@
+import {
+  ReaderHistoryModule,
+  ReaderHistoryPlugin,
+} from '@/entries/screen/store/readerHistory'
 import { ScreenPluginOf } from '@/entries/main/store'
 import { loadReaderUserData, loadUserData } from '@/utils/UserDataLoader'
 import CONSTANTS from 'Data/constants'
@@ -91,6 +95,6 @@ export default new Vuex.Store({
     },
   },
   actions: {},
-  modules: {},
-  plugins: [ScreenPluginOf(router)],
+  modules: { readerHistory: ReaderHistoryModule },
+  plugins: [ScreenPluginOf(router), ReaderHistoryPlugin],
 })

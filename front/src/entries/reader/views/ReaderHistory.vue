@@ -275,6 +275,7 @@
 
 <script>
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
+import { ITEMS as NameDict } from 'Data/translation'
 import { invokeElectronEvent, sendElectronEvent } from '@/utils/electronHelper'
 import { mapMutations, mapState } from 'vuex'
 import BAITS from 'Data/bait'
@@ -283,6 +284,7 @@ import DATA from 'Data/data'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import EorzeaTime from '@/utils/Time'
+import FishDict from 'Data/fish'
 import ItemIcon from '@/components/basic/ItemIcon'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import PLACE_NAMES from 'Data/placeNames'
@@ -294,7 +296,6 @@ import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
 import db from '@/plugins/db'
-
 // import TEST from 'Data/test'
 
 const INITIAL_LOADING_CNT = 100
@@ -303,7 +304,6 @@ const LOAD_MORE_CNT = 100
 export default {
   name: 'ReaderHistory',
   components: { RcAutocomplete, RcDialog, EffectIcon, NewFeatureMark, ItemIcon },
-  props: ['lazyTransformedFishDict'],
   data() {
     return {
       recordsFilterSpotId: undefined,
@@ -341,10 +341,11 @@ export default {
     },
     fishOptions() {
       return _.uniqBy(
-        Object.values(this.lazyTransformedFishDict).map(({ id, name }) => {
+        Object.values(FishDict).map(({ _id: id }) => {
+          const itemId = DataUtil.toItemId(id)
           return {
-            id: DataUtil.toItemId(id),
-            name: name,
+            id: itemId,
+            name: NameDict[itemId].name_chs,
           }
         }),
         'id'
@@ -729,6 +730,7 @@ export default {
 <style lang="sass" scoped>
 @import "~@/styles/RcVariables"
 
-.wrapper
-  height: 100%
+//.wrapper
+//  height: 100%
+//  overflow-y: auto
 </style>

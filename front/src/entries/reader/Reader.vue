@@ -56,6 +56,9 @@
       <v-img :src="readerIcon" max-height="20" max-width="20" />
       <span class="ml-1">历史记录</span>
       <v-spacer />
+      <v-btn @click="toggleShowConfig" x-small text style="-webkit-app-region: none">
+        <v-icon>mdi-cog</v-icon>
+      </v-btn>
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -93,6 +96,7 @@ export default {
   name: 'Reader',
   components: { ResizeIndicator, NewFeatureMark },
   data: () => ({
+    showHistoryConfig: false,
     now: Date.now(),
     closeMode: 'HIDE',
     readerIcon: READER_ICON,
@@ -124,6 +128,7 @@ export default {
       return DataUtil.formatDateTime(this.now, 'HH:mm')
     },
     ...mapState(['sounds', 'readerTimerMiniMode']),
+    ...mapState('readerHistory', ['showConfig']),
     ...mapGetters(['readerRegion', 'isStrictMode', 'isUploadMode', 'isRoseMode']),
   },
   async created() {
@@ -157,6 +162,9 @@ export default {
     setTimeout(() => this.sendElectronEvent('getFishingData'), 2000)
   },
   methods: {
+    toggleShowConfig() {
+      this.setStates({ showConfig: !this.showConfig })
+    },
     toggleStrictMode() {
       const newStrictMode = !this.isStrictMode
       this.setStrictMode(newStrictMode)
@@ -182,6 +190,7 @@ export default {
     loadingSounds() {
       return DataUtil.loadingSounds(db)
     },
+    ...mapMutations('readerHistory', ['setStates']),
     ...mapMutations([
       'setSounds',
       'boardCastReload',
@@ -241,7 +250,6 @@ body::-webkit-scrollbar {
 @import "~@/styles/RcVariables"
 
 .reader-wrapper
-  overflow-y: scroll
-  height: 100%
-  //calc(100vh - #{ $system-bar-height })
+  overflow-y: auto
+  height: calc(100vh - #{ $system-bar-height })
 </style>

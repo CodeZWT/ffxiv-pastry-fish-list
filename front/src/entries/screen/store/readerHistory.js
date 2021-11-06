@@ -2,6 +2,7 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
 const READER_HISTORY_KEY = 'readerHistory'
 const DEFAULT_HISTORY_CONFIG = {
+  showConfig: true,
   showIgnoredRecord: true,
   showPatient: false,
   showPlayerStatus: false,
@@ -22,7 +23,7 @@ const ReaderHistoryPlugin = store => {
 const ReaderHistoryModule = {
   namespaced: true,
   state: {
-    showConfig: false,
+    showConfig: storedConfig?.showConfig ?? DEFAULT_HISTORY_CONFIG.showConfig,
     showIgnoredRecord:
       storedConfig?.showIgnoredRecord ?? DEFAULT_HISTORY_CONFIG.showIgnoredRecord,
     showPatient: storedConfig?.showPatient ?? DEFAULT_HISTORY_CONFIG.showPatient,
