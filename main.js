@@ -273,19 +273,21 @@ async function init() {
     .on('showSetting', () => {
       showReaderSetting(WINDOWS.readerTimer)
     })
-    .on('updateUserData', (event, updateData) => {
+    .on('broadcast', (event, broadcastPayload) => {
+      const { source, type, data } = broadcastPayload || {}
       // log.info('updateUserData', updateData.data)
       // updateUserData(updateData)
       // showReaderOnlyIfFishing = updateData.data.showReaderOnlyIfFishing
-      readerConfig = updateData.data
+      if (data == null) return
+      readerConfig = data.readerSetting
 
       // set hotkey
-      saveHotkeySetting('mouseThrough', updateData.data.hotkey.mouseThrough || 'L')
-      saveHotkeySetting('toggleReader', updateData.data.hotkey.toggleReader || 'K')
+      saveHotkeySetting('mouseThrough', readerConfig.hotkey.mouseThrough || 'L')
+      saveHotkeySetting('toggleReader', readerConfig.hotkey.toggleReader || 'K')
 
       // restart machina
-      const newRegion = updateData.data.region || 'CN'
-      const newMonitorType = updateData.data.monitorType || 'RawSocket'
+      const newRegion = readerConfig.region || 'CN'
+      const newMonitorType = readerConfig.monitorType || 'RawSocket'
       if (region !== newRegion || monitorType !== newMonitorType) {
         region = newRegion
         monitorType = newMonitorType
@@ -294,7 +296,7 @@ async function init() {
           exec('Get-Service -Name Npcap', { shell: 'powershell.exe' }, err => {
             if (err) {
               callWindowSafe(WINDOWS.readerSetting, win =>
-                win.webContents.send('installNpcapPrompt')
+                win.webContents.send('installNpcapPrompt'),
               )
             } else {
               const options = {
@@ -319,9 +321,18 @@ async function init() {
         }
       }
 
-      callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
+      Object.values(WINDOWS)
+        .forEach(win => {
+          callWindowSafe(win, win => {
+            if (win.webContents !== event.sender) {
+              win.webContents
+                .send('broadcast', { source, type, data })
+            } else {
+              console.log('skipped', win.getURL())
+            }
+
+          })
+        })
     })
     // .on('reloadUserData', () => {
     //   callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
@@ -511,22 +522,22 @@ async function init() {
         sendFishingData(fishingData)
       }
     })
-    .on('setStrictMode', (event, isStrictMode) => {
-      readerConfig.isStrictMode = isStrictMode
-      callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
-    })
-    .on('postLogin', (event, isStrictMode) => {
-      callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
-    })
-    .on('postLogout', (event, isStrictMode) => {
-      callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
-      callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
-    })
+    // .on('setStrictMode', (event, isStrictMode) => {
+    //   readerConfig.isStrictMode = isStrictMode
+    //   callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
+    //   callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
+    //   callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
+    // })
+    // .on('postLogin', (event, isStrictMode) => {
+    //   callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
+    //   callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
+    //   callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
+    // })
+    // .on('postLogout', (event, isStrictMode) => {
+    //   callWindowSafe(WINDOWS.readerTimer, win => win.webContents.send('reloadUserData'))
+    //   callWindowSafe(WINDOWS.timerMini, win => win.webContents.send('reloadUserData'))
+    //   callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
+    // })
     .on('downloadUpdate', event => {
       downloadUpdates(intervalHandle)
     })

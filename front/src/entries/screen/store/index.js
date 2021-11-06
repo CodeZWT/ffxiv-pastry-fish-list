@@ -12,6 +12,7 @@ import DataUtil from '@/utils/DataUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from '@/entries/screen/router'
 
 Vue.use(Vuex)
 
@@ -69,7 +70,7 @@ export default new Vuex.Store({
     SaveLayoutPlugin,
     KeyBindingPlugin,
     FlagPlugin,
-    ScreenPluginOf('screen'),
+    ScreenPluginOf(router),
     ReaderHistoryPlugin,
   ],
 })

@@ -567,24 +567,6 @@ export default {
     this.bindHotkeys()
     this.closeStrictMode()
 
-    // window.electron?.ipcRenderer?.on('broadcast', (event, { type, source, data }) => {
-    //   console.debug('reloadSettingData according to', source)
-    //   if (type === 'reloadSetting') {
-    //     this.boardCastReload()
-    //   } else if (type === 'dialog') {
-    //     this.showWindowMenu = data.menuDialog
-    //   }
-    //   // else if (type === 'reloadPage') {
-    //   //     this.showSnackbar({
-    //   //       text: '设置成功，即将重新加载页面，请稍后...',
-    //   //       color: 'success',
-    //   //     })
-    //   //     setTimeout(() => {
-    //   //       window.location.reload()
-    //   //     }, 1000)
-    //   //   }
-    // })
-
     if (DevelopmentModeUtil.isElectron()) {
       const db = (await import('@/plugins/db')).default
       this.resetUploadSettingIfNecessary(db)
@@ -595,6 +577,13 @@ export default {
       }
 
       setInterval(UploadUtil.sendUploadRecord, INTERVAL_MINUTE)
+
+      window.electron?.ipcRenderer?.on('broadcast', (event, { type, source }) => {
+        console.debug('reloadSettingData according to', source)
+        if (type === 'reloadSetting') {
+          this.boardCastReload()
+        }
+      })
 
       // const that = this
       window.electron?.ipcRenderer
@@ -621,10 +610,10 @@ export default {
         //   this.updateUserData(data)
         //   window.electron?.ipcRenderer?.send('reloadUserData')
         // })
-        ?.on('reloadUserData', () => {
-          // this.reloadReaderUserData()
-          this.boardCastReload()
-        })
+        // ?.on('reloadUserData', () => {
+        //   // this.reloadReaderUserData()
+        //   this.boardCastReload()
+        // })
         ?.on('showSpotPage', (event, spotId) => {
           this.setMiniMode(false)
           if (!window.location.hash.startsWith('#/wiki')) {
@@ -762,7 +751,7 @@ export default {
     },
     closeStrictMode() {
       this.disableStrictMode()
-      this.sendElectronEvent('setStrictMode', false)
+      // this.sendElectronEvent('setStrictMode', false)
     },
     async resetUploadSettingIfNecessary(db) {
       if (!this.isRoseMode) {

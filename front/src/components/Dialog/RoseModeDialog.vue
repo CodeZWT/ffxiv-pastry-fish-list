@@ -381,7 +381,7 @@ export default {
           })
           this.setReaderSetting({ path: 'isUploadMode', value: true })
           this.setReaderSetting({ path: 'isStrictMode', value: false })
-          this.sendElectronEvent('postLogin')
+          this.sendElectronEvent('broadcast', { source: this.$route.name })
           // this.mode = 'LoginSuccess'
           // setTimeout(() => this.$emit('input', false), 1000)
           this.showSnackbar({
@@ -457,7 +457,7 @@ export default {
       await rcapiService.logout()
       this.setReaderSetting({ path: 'isUploadMode', value: false })
       this.setReaderSetting({ path: 'isStrictMode', value: false })
-      this.sendElectronEvent('postLogout')
+      this.sendElectronEvent('broadcast', { source: this.$route.name })
       this.$emit('input', false)
       this.showSnackbar({
         text: '已登出',

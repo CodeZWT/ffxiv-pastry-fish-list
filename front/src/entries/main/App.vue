@@ -371,7 +371,7 @@
 
           <v-list-item v-if="isRoseMode" @click="showRoseDialog = true" link>
             <v-list-item-icon>
-              <v-icon>fas fa-user-secret</v-icon>
+              <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>

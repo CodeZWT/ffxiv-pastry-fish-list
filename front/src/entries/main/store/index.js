@@ -12,15 +12,15 @@ import CONSTANTS from 'Data/constants'
 import DATA from 'Data/data'
 import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
+import router from '@/entries/main/router'
 
 Vue.use(Vuex)
 
-const ScreenPluginOf = source => store => {
+const ScreenPluginOf = router => store => {
   let prevState = _.cloneDeep({
     userData: store.state.userData,
     readerSetting: store.state.readerSetting,
@@ -30,45 +30,47 @@ const ScreenPluginOf = source => store => {
       userData: state.userData,
       readerSetting: state.readerSetting,
     })
-
+    console.log('router in vuex', router.currentRoute.name)
+    const source = router.currentRoute.name
     if (mutation.type === 'boardCastReload') {
       // skip boardCastReload mutation
+      console.log('in boardCastReload')
     } else if (!_.isEqual(prevState, nextState)) {
-      if (
-        mutation.type === 'setUserData' ||
-        mutation.type === 'setUserDataToDefault' ||
-        mutation.type === 'setStartLight' ||
-        prevState.userData.fishEyesUsed !== nextState.userData.fishEyesUsed
-      ) {
-        const isElectron = DevelopmentModeUtil.isElectron()
-        state.snackbar = {
-          show: true,
-          text: `设置成功，即将${isElectron ? '重启' : '重新加载页面'}，请稍后...`,
-          color: 'success',
-          timeout: 2000,
-        }
-        if (isElectron) {
-          setTimeout(() => {
-            sendElectronEvent('relaunch')
-          }, 1000)
-        } else {
-          setTimeout(() => {
-            window.location.reload()
-          }, 1000)
-        }
-      } else {
-        sendElectronEvent('broadcast', {
-          source: source,
-          type: 'reloadSetting',
-          data: nextState,
-        })
-      }
+      // if (
+      //   mutation.type === 'setUserData' ||
+      //   mutation.type === 'setUserDataToDefault' ||
+      //   mutation.type === 'setStartLight' ||
+      //   prevState.userData.fishEyesUsed !== nextState.userData.fishEyesUsed
+      // ) {
+      //   const isElectron = DevelopmentModeUtil.isElectron()
+      //   state.snackbar = {
+      //     show: true,
+      //     text: `设置成功，即将${isElectron ? '重启' : '重新加载页面'}，请稍后...`,
+      //     color: 'success',
+      //     timeout: 2000,
+      //   }
+      //   if (isElectron) {
+      //     setTimeout(() => {
+      //       sendElectronEvent('relaunch')
+      //     }, 1000)
+      //   } else {
+      //     setTimeout(() => {
+      //       window.location.reload()
+      //     }, 1000)
+      //   }
+      // } else {
+      sendElectronEvent('broadcast', {
+        source: source,
+        type: 'reloadSetting',
+        data: nextState,
+      })
+      // }
     }
     prevState = nextState
   })
 }
 export const MainModule = {
-  plugins: [ScreenPluginOf('main')],
+  plugins: [ScreenPluginOf(router)],
   state: {
     window: 'main',
     now: Date.now(),
@@ -347,9 +349,9 @@ export const MainModule = {
       LocalStorageUtil.storeReaderUserData(state.readerSetting)
     },
     disableStrictMode(state) {
-      LocalStorageUtil.storeReaderUserData({
-        ...state.readerSetting,
-        isStrictMode: false,
+      DataUtil.setReaderSettingPart(state, {
+        path: 'isStrictMode',
+        data: false,
       })
     },
     boardCastReload(state) {

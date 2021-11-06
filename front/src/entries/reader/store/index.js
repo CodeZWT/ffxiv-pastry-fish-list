@@ -1,3 +1,4 @@
+import { ScreenPluginOf } from '@/entries/main/store'
 import { loadReaderUserData, loadUserData } from '@/utils/UserDataLoader'
 import CONSTANTS from 'Data/constants'
 import DataUtil from '@/utils/DataUtil'
@@ -5,6 +6,7 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
+import router from '@/entries/reader/router'
 
 Vue.use(Vuex)
 
@@ -38,8 +40,15 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    boardCastReload(state) {
+      state.userData = loadUserData()
+      state.readerSetting = loadReaderUserData()
+    },
     setStrictMode(state, isStrictMode) {
-      LocalStorageUtil.storeReaderUserData({ ...state.readerSetting, isStrictMode })
+      DataUtil.setReaderSettingPart(state, {
+        path: 'isStrictMode',
+        data: isStrictMode,
+      })
     },
     setNotShowBanner(state) {
       const newSetting = _.cloneDeep(state.readerSetting)
@@ -76,7 +85,12 @@ export default new Vuex.Store({
       }
       DataUtil.setUserDataPart(state, { path: 'completed', data: completedFishId })
     },
+    updateReaderSetting(state, setting) {
+      LocalStorageUtil.storeReaderUserData(setting)
+      state.readerSetting = loadReaderUserData()
+    },
   },
   actions: {},
   modules: {},
+  plugins: [ScreenPluginOf(router)],
 })

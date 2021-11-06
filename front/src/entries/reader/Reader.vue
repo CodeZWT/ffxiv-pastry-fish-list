@@ -140,12 +140,15 @@ export default {
       this.now = Date.now()
     }, 100)
 
-    window.electron?.ipcRenderer?.on('reloadUserData', () => {
-      this.boardCastReload()
-      console.debug('loading sounds')
-      this.loadingSounds().then(sounds =>
-        this.setSounds(DataUtil.toMap(sounds, it => it.key))
-      )
+    window.electron?.ipcRenderer?.on('broadcast', (event, { type, source }) => {
+      console.debug('reloadSettingData according to', source)
+      if (type === 'reloadSetting') {
+        this.boardCastReload()
+        console.debug('loading sounds')
+        this.loadingSounds().then(sounds =>
+          this.setSounds(DataUtil.toMap(sounds, it => it.key))
+        )
+      }
     })
     // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
   },
