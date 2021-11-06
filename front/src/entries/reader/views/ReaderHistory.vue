@@ -627,10 +627,14 @@ export default {
         this.exporting = true
 
         this.totalExportCount = await db.records.count()
-        console.debug('start export', this.totalExportCount, 'records')
+        console.debug('[export] start export', this.totalExportCount, 'records')
         let allData = []
         const batchCnt = 100
         for (let i = 0; i < this.totalExportCount; i += batchCnt) {
+          console.debug(
+            `[export] exporting: ${i} to ${Math.min(i + batchCnt, this.totalExportCount) -
+              1}`
+          )
           const batchData = await db.records
             .offset(i)
             .limit(batchCnt)
@@ -640,7 +644,7 @@ export default {
         }
         const max = Date.now()
         allData = _.sortBy(allData, it => max - it.timestamp)
-
+        console.debug('[export] read data finished')
         invokeElectronEvent('showExportFileDialog', null, async continueExport => {
           this.exporting = false
           if (continueExport) {
@@ -648,6 +652,7 @@ export default {
             sendElectronEvent('exportHistory', allData)
           } else {
             this.generating = false
+            console.debug('[export] generation finished')
           }
         })
       }
@@ -656,72 +661,81 @@ export default {
     isOceanFishingSpot: DataUtil.isOceanFishingSpot,
     toExportData(records) {
       // console.log(JSON.stringify(records))
-      return records.map(record => {
-        const date = new Date(record.startTime)
-        const spotId = record.spotId
-        const et = new EorzeaTime(EorzeaTime.toEorzeaTime(record.startTime))
-        return {
-          日期: date.toLocaleDateString('zh-CN'),
-          时间: date.toLocaleTimeString('zh-CN', { hour12: false }),
-          ET: et.toString(),
-          前置天气: Weather.weatherTextOf(
-            spotId > 0
-              ? this.isOceanFishingSpot(spotId) || this.isDiademSpot(spotId)
-                ? record.prevWeatherDetected
-                : Weather.prevWeatherAtSpot(spotId, et)
-              : undefined
-          ),
-          天气: Weather.weatherTextOf(
-            spotId > 0
-              ? this.isOceanFishingSpot(spotId) || this.isDiademSpot(spotId)
-                ? record.weatherDetected
-                : Weather.weatherAtSpot(spotId, et)
-              : undefined
-          ),
-          钓场: DataUtil.getName(
-            spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name_chs: '' }
-          ),
-          地区:
-            spotId > 0
-              ? PLACE_NAMES[
-                  DATA.WEATHER_RATES[DataUtil.FISHING_SPOTS[spotId]?.territory_id]
-                    ?.zone_id ??
-                    (this.isDiademSpot(spotId)
-                      ? DIADEM_ZONE
-                      : this.isOceanFishingSpot(spotId)
-                      ? OCEAN_FISHING_ZONE
-                      : 0)
-                ]
-              : '',
-          鱼: DataUtil.getItemName(record.fishId) ?? '未知',
-          HQ: record.hq ? '是' : '否',
-          '长度（星寸）': record.size > 0 ? (record.size / 10).toFixed(1) : '',
-          鱼版本: DataUtil.toPatchText(DataUtil.getFishPatch(record.fishId)),
-          脱钩: record.missed ? '是' : '否',
-          未提钩: record.cancelled ? '是' : '否',
-          鱼饵: DataUtil.getItemName(record.baitId),
-          '咬钩时长（秒）': ((record.biteTime - record.startTime) / 1000).toFixed(1),
-          撒饵: record.chum ? '是' : '否',
-          提钩: DataUtil.HOOKSET_SKILL_NAME_DICT[_.capitalize(record.hookset)] ?? '提钩',
-          个数: record.quantity,
-          获得力: record.gathering,
-          鉴别力: record.perception,
-          采集力: record.gp,
-          钓组: record.snagging ? '是' : '否',
-          拍击水面: record.surfaceScale ? '是' : '否',
-          拍击的鱼: record.surfaceScale
-            ? DataUtil.getItemName(record.surfaceScaleFishId) ?? '未记录'
-            : '',
-          专一垂钓: record.identicalCast ? '是' : '否',
-          耐心: record.gatheringFortuneUp && !record.catchAndRelease ? '是' : '否',
-          耐心II: record.catchAndRelease ? '是' : '否',
-          鱼眼: record.fishEyes ? '是' : '否',
-          捕鱼人之识: record.fishersIntuition ? '是' : '否',
-          记录版本: DataUtil.toPatchText(record.patch ?? 5.35),
-          杆型: this.$t('tug.' + record.tug),
-          timestamp: record.startTime,
-        }
-      })
+      return records
+        .map(record => {
+          try {
+            const date = new Date(record.startTime)
+            const spotId = record.spotId
+            const et = new EorzeaTime(EorzeaTime.toEorzeaTime(record.startTime))
+            const row = {
+              日期: date.toLocaleDateString('zh-CN'),
+              时间: date.toLocaleTimeString('zh-CN', { hour12: false }),
+              ET: et.toString(),
+              前置天气: Weather.weatherTextOf(
+                spotId > 0
+                  ? this.isOceanFishingSpot(spotId) || this.isDiademSpot(spotId)
+                    ? record.prevWeatherDetected
+                    : Weather.prevWeatherAtSpot(spotId, et)
+                  : undefined
+              ),
+              天气: Weather.weatherTextOf(
+                spotId > 0
+                  ? this.isOceanFishingSpot(spotId) || this.isDiademSpot(spotId)
+                    ? record.weatherDetected
+                    : Weather.weatherAtSpot(spotId, et)
+                  : undefined
+              ),
+              钓场: DataUtil.getName(
+                spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name_chs: '' }
+              ),
+              地区:
+                spotId > 0
+                  ? PLACE_NAMES[
+                      DATA.WEATHER_RATES[DataUtil.FISHING_SPOTS[spotId]?.territory_id]
+                        ?.zone_id ??
+                        (this.isDiademSpot(spotId)
+                          ? DIADEM_ZONE
+                          : this.isOceanFishingSpot(spotId)
+                          ? OCEAN_FISHING_ZONE
+                          : 0)
+                    ]
+                  : '',
+              鱼: DataUtil.getItemName(record.fishId) ?? '未知',
+              HQ: record.hq ? '是' : '否',
+              '长度（星寸）': record.size > 0 ? (record.size / 10).toFixed(1) : '',
+              鱼版本: DataUtil.toPatchText(DataUtil.getFishPatch(record.fishId)),
+              脱钩: record.missed ? '是' : '否',
+              未提钩: record.cancelled ? '是' : '否',
+              鱼饵: DataUtil.getItemName(record.baitId),
+              '咬钩时长（秒）': ((record.biteTime - record.startTime) / 1000).toFixed(1),
+              撒饵: record.chum ? '是' : '否',
+              提钩:
+                DataUtil.HOOKSET_SKILL_NAME_DICT[_.capitalize(record.hookset)] ?? '提钩',
+              个数: record.quantity,
+              获得力: record.gathering,
+              鉴别力: record.perception,
+              采集力: record.gp,
+              钓组: record.snagging ? '是' : '否',
+              拍击水面: record.surfaceScale ? '是' : '否',
+              拍击的鱼: record.surfaceScale
+                ? DataUtil.getItemName(record.surfaceScaleFishId) ?? '未记录'
+                : '',
+              专一垂钓: record.identicalCast ? '是' : '否',
+              耐心: record.gatheringFortuneUp && !record.catchAndRelease ? '是' : '否',
+              耐心II: record.catchAndRelease ? '是' : '否',
+              鱼眼: record.fishEyes ? '是' : '否',
+              捕鱼人之识: record.fishersIntuition ? '是' : '否',
+              记录版本: DataUtil.toPatchText(record.patch ?? 5.35),
+              杆型: this.$t('tug.' + record.tug),
+              timestamp: record.startTime,
+            }
+            return row
+          } catch (e) {
+            console.error('[export] transform data error:', e)
+            return null
+          }
+        })
+        .filter(it => it != null)
     },
   },
 }

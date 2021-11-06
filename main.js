@@ -158,6 +158,46 @@ const sendFishingData = data => {
   })
 }
 
+let exportFilePath
+const handleShowExportFileDialog = () => {
+  return dialog
+    .showSaveDialog({
+      title: '导出',
+      defaultPath: '鱼糕钓鱼记录.csv',
+      buttonLabel: '保存',
+      filters: [{ name: 'CSV', extensions: ['csv'] }],
+    })
+    .then(result => {
+      if (!result.canceled) {
+        exportFilePath = result.filePath
+        log.info(exportFilePath)
+      }
+      return !result.canceled
+    })
+}
+
+const handleExportHistory = data => {
+  const csv = new ObjectsToCsv(data)
+  csv
+    .toString()
+    .then(str => {
+      fs.writeFileSync(exportFilePath, iconv.encode(str, 'gb2312'))
+    })
+    .catch(err => {
+      if (err.code === 'EBUSY') {
+        callWindowSafe(WINDOWS.readerHistory, win =>
+                    win.webContents.send('exportHistoryFailedWithBusyFile')
+                  )
+      }
+      log.info(err)
+    })
+    .finally(() => {
+      callWindowSafe(WINDOWS.readerHistory, win =>
+        win.webContents.send('exportHistoryFinished')
+      )
+    })
+}
+
 async function init() {
   if (isDev) {
     const {
@@ -429,38 +469,6 @@ async function init() {
         win.close()
       })
     })
-    .on('exportHistory', (event, data) => {
-      dialog
-        .showSaveDialog({
-          title: '导出',
-          defaultPath: '鱼糕钓鱼记录.csv',
-          buttonLabel: '保存',
-          filters: [{ name: 'CSV', extensions: ['csv'] }],
-        })
-        .then(result => {
-          if (!result.canceled) {
-            const csv = new ObjectsToCsv(data)
-            // return csv.toDisk(result.filePath, { bom: true })
-            return csv.toString().then(str => {
-              fs.writeFileSync(result.filePath, iconv.encode(str, 'gb2312'))
-            })
-          }
-          log.info(result)
-        })
-        .catch(err => {
-          if (err.code === 'EBUSY') {
-            callWindowSafe(WINDOWS.readerHistory, win =>
-              win.webContents.send('exportHistoryFailedWithBusyFile')
-            )
-          }
-          log.info(err)
-        })
-        .finally(() => {
-          callWindowSafe(WINDOWS.readerHistory, win =>
-            win.webContents.send('exportHistoryFinished')
-          )
-        })
-    })
     .on('showSpotPage', (event, spotId) => {
       if (!WINDOWS.main) {
         createMainWindow(win => {
@@ -591,6 +599,13 @@ async function init() {
   ipcMain.handle('getWindowSetting', () => {
     return windowSetting
   })
+  ipcMain.handle('showExportFileDialog', async () => {
+    return await handleShowExportFileDialog()
+  })
+  ipcMain.on('exportHistory', (event, data) => {
+    handleExportHistory(data)
+  })
+
   // ipcMain.handle('uploadRecords', async (event, { accessToken, records }) => {
   //   const now = Date.now()
   //   if (records.length === 100 || lastUploadTime + CONSTANTS.INTERVAL_MINUTE * 10 < now) {
