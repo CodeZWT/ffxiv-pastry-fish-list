@@ -26,7 +26,9 @@ const get = require('lodash/get')
 const merge = require('lodash/merge')
 const contextMenu = require('electron-context-menu')
 const cloneDeep = require('lodash/cloneDeep')
+const remote = require("@electron/remote/main")
 const { Unhandled } = require('./server/mainSetupV2/unhandled')
+remote.initialize()
 
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
@@ -828,6 +830,7 @@ function createTransparentWin(
     icon: path.join(__dirname, 'assets/icon256.png'),
   })
   const win = WINDOWS[windowName]
+  remote.enable(win.webContents)
   win.removeMenu()
   setOnTop(win)
   // if (!show) {
@@ -959,10 +962,13 @@ function createWindow(
     },
   })
   const win = WINDOWS[windowName]
+  remote.enable(win.webContents)
   win.removeMenu()
-  win.webContents.on('new-window', (e, url) => {
-    e.preventDefault()
-    shell.openExternal(url)
+  win.webContents.setWindowOpenHandler(detail => {
+    shell.openExternal(detail.url).then(() => {
+      log.info('open external', detail.url)
+    })
+    return { action: 'deny' }
   })
   if (isDev) {
     win
