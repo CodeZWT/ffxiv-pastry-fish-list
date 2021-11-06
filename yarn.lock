@@ -45,21 +45,26 @@
     ajv "^6.12.0"
     ajv-keywords "^3.4.1"
 
-"@electron/get@^1.0.1":
-  version "1.12.2"
-  resolved "https://registry.npm.taobao.org/@electron/get/download/@electron/get-1.12.2.tgz#6442066afb99be08cefb9a281e4b4692b33764f3"
-  integrity sha1-ZEIGavuZvgjO+5ooHktGkrM3ZPM=
+"@electron/get@^1.13.0":
+  version "1.13.1"
+  resolved "https://registry.npmmirror.com/@electron/get/download/@electron/get-1.13.1.tgz#42a0aa62fd1189638bd966e23effaebb16108368"
+  integrity sha1-QqCqYv0RiWOL2WbiPv+uuxYQg2g=
   dependencies:
     debug "^4.1.1"
     env-paths "^2.2.0"
     fs-extra "^8.1.0"
     got "^9.6.0"
     progress "^2.0.3"
-    sanitize-filename "^1.6.2"
+    semver "^6.2.0"
     sumchecker "^3.0.1"
   optionalDependencies:
-    global-agent "^2.0.2"
+    global-agent "^3.0.0"
     global-tunnel-ng "^2.7.1"
+
+"@electron/remote@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.nlark.com/@electron/remote/download/@electron/remote-2.0.1.tgz#810cbc595a21f0f94641eb2d7e8264063a3f84de"
+  integrity sha1-gQy8WVoh8PlGQestfoJkBjo/hN4=
 
 "@eslint/eslintrc@^0.3.0":
   version "0.3.0"
@@ -741,11 +746,6 @@ content-disposition@^0.5.2:
   dependencies:
     safe-buffer "5.1.2"
 
-core-js@^3.6.5:
-  version "3.7.0"
-  resolved "https://registry.npm.taobao.org/core-js/download/core-js-3.7.0.tgz#b0a761a02488577afbf97179e4681bf49568520f"
-  integrity sha1-sKdhoCSIV3r7+XF55Ggb9JVoUg8=
-
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/core-util-is/download/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
@@ -1068,13 +1068,14 @@ electron-context-menu@^2.5.0:
     electron-dl "^3.1.0"
     electron-is-dev "^1.2.0"
 
-electron-devtools-installer@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.npm.taobao.org/electron-devtools-installer/download/electron-devtools-installer-3.1.1.tgz#7b56c8c86475c5e4e10de6917d150c53c9ceb55e"
-  integrity sha1-e1bIyGR1xeThDeaRfRUMU8nOtV4=
+electron-devtools-installer@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.nlark.com/electron-devtools-installer/download/electron-devtools-installer-3.2.0.tgz#acc48d24eb7033fe5af284a19667e73b78d406d0"
+  integrity sha1-rMSNJOtwM/5a8oShlmfnO3jUBtA=
   dependencies:
     rimraf "^3.0.2"
     semver "^7.2.1"
+    tslib "^2.1.0"
     unzip-crx-3 "^0.2.0"
 
 electron-dl@^3.1.0:
@@ -1118,12 +1119,12 @@ electron-store@^7.0.2:
     conf "^9.0.0"
     type-fest "^0.20.2"
 
-electron@^14.0.0:
-  version "14.0.0"
-  resolved "https://registry.nlark.com/electron/download/electron-14.0.0.tgz#a096484bfbf71d87fc0fa85a943a7869d6b9bf94"
-  integrity sha1-oJZIS/v3HYf8D6halDp4ada5v5Q=
+electron@^15.3.0:
+  version "15.3.0"
+  resolved "https://registry.npmmirror.com/electron/download/electron-15.3.0.tgz?cache=0&sync_timestamp=1636042209573&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Felectron%2Fdownload%2Felectron-15.3.0.tgz#f9803c5a05b2dac12efc6d4203492c7e204b4819"
+  integrity sha1-+YA8WgWy2sEu/G1CA0ksfiBLSBk=
   dependencies:
-    "@electron/get" "^1.0.1"
+    "@electron/get" "^1.13.0"
     "@types/node" "^14.6.2"
     extract-zip "^1.0.3"
 
@@ -1605,13 +1606,12 @@ glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-agent@^2.0.2:
-  version "2.1.12"
-  resolved "https://registry.npm.taobao.org/global-agent/download/global-agent-2.1.12.tgz#e4ae3812b731a9e81cbf825f9377ef450a8e4195"
-  integrity sha1-5K44Ercxqegcv4Jfk3fvRQqOQZU=
+global-agent@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.nlark.com/global-agent/download/global-agent-3.0.0.tgz?cache=0&sync_timestamp=1627082437079&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fglobal-agent%2Fdownload%2Fglobal-agent-3.0.0.tgz#ae7cd31bd3583b93c5a16437a1afe27cc33a1ab6"
+  integrity sha1-rnzTG9NYO5PFoWQ3oa/ifMM6GrY=
   dependencies:
     boolean "^3.0.1"
-    core-js "^3.6.5"
     es6-error "^4.1.1"
     matcher "^3.0.0"
     roarr "^2.15.3"
@@ -2866,7 +2866,7 @@ safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.2.0:
   resolved "https://registry.npm.taobao.org/safer-buffer/download/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha1-RPoWGwGHuVSd2Eu5GAL5vYOFzWo=
 
-sanitize-filename@^1.6.2, sanitize-filename@^1.6.3:
+sanitize-filename@^1.6.3:
   version "1.6.3"
   resolved "https://registry.npm.taobao.org/sanitize-filename/download/sanitize-filename-1.6.3.tgz#755ebd752045931977e30b2025d340d7c9090378"
   integrity sha1-dV69dSBFkxl34wsgJdNA18kJA3g=
@@ -3295,6 +3295,11 @@ truncate-utf8-bytes@^1.0.0:
   integrity sha1-QFkjkJWS1W94pYGENLC3hInKXys=
   dependencies:
     utf8-byte-length "^1.0.1"
+
+tslib@^2.1.0:
+  version "2.3.1"
+  resolved "https://registry.nlark.com/tslib/download/tslib-2.3.1.tgz?cache=0&sync_timestamp=1628722556410&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ftslib%2Fdownload%2Ftslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
+  integrity sha1-6KM1rdXOrlGqJh0ypJAVjvBC7wE=
 
 tunnel-agent@^0.6.0:
   version "0.6.0"

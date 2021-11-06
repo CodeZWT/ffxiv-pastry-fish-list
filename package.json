@@ -14,16 +14,17 @@
     "build:websiteFront": "cd front && yarn build:main",
     "build": "cd front && yarn build:github"
   },
-  "main": "mainScreen.js",
+  "main": "main.js",
   "devDependencies": {
     "coding-generic": "^1.2.0",
-    "electron": "^14.0.0",
+    "electron": "^15.3.0",
     "electron-builder": "^22.9.1",
-    "electron-devtools-installer": "^3.1.1",
+    "electron-devtools-installer": "^3.2.0",
     "eslint": "^7.18.0",
     "prettier": "^2.2.1"
   },
   "dependencies": {
+    "@electron/remote": "^2.0.1",
     "@thewakingsands/axis-font-icons": "^0.2.1",
     "axios": "^0.21.1",
     "datauri": "^3.0.0",
