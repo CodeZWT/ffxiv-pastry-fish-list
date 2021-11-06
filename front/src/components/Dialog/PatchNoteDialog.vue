@@ -32,6 +32,19 @@
             <div class="text-subtitle-1">更新时间: 2021/10/31 17:20</div>
           </div>
         </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
+        <ul>
+          <li>基于0.9.9更新，在各个界面保持不变的前提下，包括了1.0.0中功能相关更新</li>
+        </ul>
+
+        <v-divider />
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 1.0.0</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/10/31 17:20</div>
+          </div>
+        </v-alert>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新海外访问网页版的支持</li>
@@ -104,17 +117,16 @@
           <li>更新5.55鱼皇攻略</li>
           <li>更新鱼饵概率图，增加说明以及显示总数</li>
         </ul>
-        <!--TODO recover this-->
-        <!--        <v-expansion-panels class="mt-4" flat>-->
-        <!--          <v-expansion-panel>-->
-        <!--            <v-expansion-panel-header>-->
-        <!--              <div>往期更新</div>-->
-        <!--            </v-expansion-panel-header>-->
-        <!--            <v-expansion-panel-content>-->
-        <!--              <PatchNoteHistory />-->
-        <!--            </v-expansion-panel-content>-->
-        <!--          </v-expansion-panel>-->
-        <!--        </v-expansion-panels>-->
+        <v-expansion-panels class="mt-4" flat>
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              <div>往期更新</div>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <PatchNoteHistory />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-card-text>
       <v-card-actions>
         <div class="d-flex flex-column flex-fill">
@@ -128,10 +140,11 @@
 </template>
 
 <script>
+import PatchNoteHistory from '@/components/Dialog/PatchNoteHistory'
 import RcDialog from '@/components/basic/RcDialog'
 export default {
   name: 'PatchNoteDialog',
-  components: { RcDialog },
+  components: { PatchNoteHistory, RcDialog },
   model: {
     prop: 'showPatchNoteDialog',
     event: 'input',

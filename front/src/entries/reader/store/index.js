@@ -42,6 +42,9 @@ export default new Vuex.Store({
     showBanner: state => {
       return state.readerSetting.showReaderBanner
     },
+    themeMode: state => {
+      return state.userData.theme.mode
+    },
   },
   mutations: {
     boardCastReload(state) {

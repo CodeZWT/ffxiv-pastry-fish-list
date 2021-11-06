@@ -1,13 +1,7 @@
 <template>
   <v-app :class="{ transparent: true, 'mini-mode': hideBar }">
     <template v-if="hideBar"></template>
-    <v-system-bar
-      app
-      v-else-if="showTimerBar"
-      :color="
-        isRoseMode && isUploadMode && isStrictMode ? 'deep-purple darken-1' : 'black'
-      "
-    >
+    <v-system-bar app v-else-if="showTimerBar" :color="systemBarColor">
       <v-img :src="readerIcon" max-height="20" max-width="20" />
       <span class="mx-1">渔捞</span>
       <span v-if="readerRegion === 'CN'">国服</span>
@@ -104,8 +98,23 @@ export default {
     SettingFeatureId: ReaderFeatures.Setting,
     CN_PATCH_VERSION: CN_PATCH_VERSION,
     GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
+    systemThemeMode: 'DARK',
   }),
   computed: {
+    systemBarColor() {
+      return this.isRoseMode && this.isUploadMode && this.isStrictMode
+        ? 'deep-purple darken-1'
+        : this.dark
+        ? 'dark'
+        : 'light'
+    },
+    dark() {
+      if (this.themeMode === 'AUTO') {
+        return this.systemThemeMode === 'DARK'
+      } else {
+        return this.themeMode === 'DARK'
+      }
+    },
     showTimerBar() {
       return this.$route.name === 'ReaderTimer'
     },
@@ -129,7 +138,13 @@ export default {
     },
     ...mapState(['sounds', 'readerTimerMiniMode']),
     ...mapState('readerHistory', ['showConfig']),
-    ...mapGetters(['readerRegion', 'isStrictMode', 'isUploadMode', 'isRoseMode']),
+    ...mapGetters([
+      'readerRegion',
+      'isStrictMode',
+      'isUploadMode',
+      'isRoseMode',
+      'themeMode',
+    ]),
   },
   async created() {
     this.closeMode =
@@ -156,10 +171,26 @@ export default {
       }
     })
     // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
+
+    this.systemThemeMode =
+      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'DARK'
+        : 'LIGHT'
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      this.systemThemeMode = e.matches ? 'DARK' : 'LIGHT'
+    })
   },
   mounted() {
     // trigger fishing data manually
     setTimeout(() => this.sendElectronEvent('getFishingData'), 2000)
+  },
+  watch: {
+    dark: {
+      handler(dark) {
+        this.$vuetify.theme.dark = dark
+      },
+      immediate: true,
+    },
   },
   methods: {
     toggleShowConfig() {
