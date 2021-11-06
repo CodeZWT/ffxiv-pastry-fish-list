@@ -28,6 +28,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import { sendElectronEvent } from '@/utils/electronHelper'
 import ClickHelper from '@/components/basic/ClickHelper'
 import RcDialog from '@/components/basic/RcDialog'
 
@@ -51,6 +52,10 @@ export default {
         text: this.$t('importExport.dialog.message.resetSuccess'),
         color: 'success',
       })
+      setTimeout(() => {
+        sendElectronEvent('startLoading')
+        window.location.reload()
+      }, 1000)
     },
     ...mapMutations(['showSnackbar', 'setUserDataToDefault']),
   },

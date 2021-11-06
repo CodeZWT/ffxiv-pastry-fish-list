@@ -73,7 +73,7 @@ export default {
       this.updateUserData({ path: 'fishEyesUsed', data: !this.fishEyesUsed })
       setTimeout(() => {
         this.startReloadPage()
-      }, 2000)
+      }, 1000)
     },
     selectThemeMode(index) {
       this.setThemeMode(DataUtil.THEME_SETTING_MODES[index])

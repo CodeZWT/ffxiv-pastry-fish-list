@@ -588,23 +588,13 @@ export default {
       // const that = this
       window.electron?.ipcRenderer
         // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
-        ?.on('showUpdateDialog', (event, newVersion) => {
-          this.showUpdateAvailableDialog = true
-          this.newVersion = newVersion
-        })
+        // ?.on('showUpdateDialog', (event, newVersion) => {
+        //   this.showUpdateAvailableDialog = true
+        //   this.newVersion = newVersion
+        // })
         ?.on('fishCaught', (event, data) => {
           const fishId = data?.fishId
           this.setFishCompleted({ fishId: fishId, completed: true })
-        })
-        ?.on('setupDownload', (event, data) => {
-          console.log(data)
-          if (this.downloadProgress < 100) {
-            this.downloadProgress = data.percent * 100
-          }
-        })
-        ?.on('checkStartSetup', () => {
-          this.downloadProgress = 100
-          this.showUpdateDialog()
         })
         // ?.on('updateUserData', (event, data) => {
         //   this.updateUserData(data)

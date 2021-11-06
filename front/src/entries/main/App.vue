@@ -347,6 +347,15 @@
             >
           </v-list-item>
 
+          <v-list-item v-if="isRoseMode" @click="showRoseDialog = true" link>
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
           <!--  <v-divider class="mx-2" />-->
           <!--    TODO recover this   -->
           <v-list-item v-if="!isElectron" @click="toUpdateInfo" link>
@@ -358,6 +367,8 @@
             </v-list-item-content>
           </v-list-item>
 
+          <v-divider class="mx-2" />
+
           <v-list-item v-if="isElectron" @click="openReader" link>
             <v-list-item-icon>
               <new-feature-mark :id="ReaderTimerFeatureId">
@@ -368,13 +379,26 @@
               <v-list-item-title>{{ $t('top.fishReader') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-
-          <v-list-item v-if="isRoseMode" @click="showRoseDialog = true" link>
+          <v-list-item
+            v-if="isElectron && downloadProgress > 0"
+            link
+            @click="showUpdateDialog"
+          >
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <div>
+                <v-progress-circular rotate="-90" size="24" :value="downloadProgress">
+                  <div style="font-size: x-small">
+                    {{ downloadProgress === 100 ? '' : Math.floor(downloadProgress) }}
+                  </div>
+                </v-progress-circular>
+              </div>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>
+              <v-list-item-title>
+                {{
+                  downloadProgress === 100 ? $t('top.downloaded') : $t('top.downloading')
+                }}
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -783,7 +807,28 @@ export default {
       }
     })
   },
+  created() {
+    window.electron?.ipcRenderer
+      // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
+      ?.on('showUpdateDialog', (event, newVersion) => {
+        this.showUpdateAvailableDialog = true
+        this.newVersion = newVersion
+      })
+      ?.on('setupDownload', (event, data) => {
+        console.log(data)
+        if (this.downloadProgress < 100) {
+          this.downloadProgress = data.percent * 100
+        }
+      })
+      ?.on('checkStartSetup', () => {
+        this.downloadProgress = 100
+        this.showUpdateDialog()
+      })
+  },
   methods: {
+    showUpdateDialog() {
+      this.showCheckStartSetupDialog = true
+    },
     openReader() {
       this.sendElectronEvent('openReader')
       this.setFeatureViewed(this.ReaderTimerFeatureId)
