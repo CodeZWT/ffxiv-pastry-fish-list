@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row no-gutters v-if="!mini">
+    <v-row no-gutters v-if="!readerTimerMiniMode">
       <!-- patch update wait note -->
       <!--      <v-alert outlined type="warning" border="left">-->
       <!--        更新国服5.41后，渔捞与同步功能不可用，请耐心等待自动更新。-->
@@ -15,13 +15,11 @@
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div style="min-width: 100px">
           咬钩计时
-          <!--          <span :title="isStrictMode ? '严格模式下禁用' : '迷你模式'">-->
-          <!--            <v-btn small text icon @click="toggleMiniMode(true)" :disabled="isStrictMode">-->
-          <!--              <new-feature-mark id="MiniMode-V.0.6.6-1">-->
-          <!--                <v-icon small>mdi-dock-window</v-icon>-->
-          <!--              </new-feature-mark>-->
-          <!--            </v-btn>-->
-          <!--          </span>-->
+          <span :title="isStrictMode ? '严格模式下禁用' : '迷你模式'">
+            <v-btn small text icon @click="toggleMiniMode(true)" :disabled="isStrictMode">
+              <v-icon small>mdi-dock-window</v-icon>
+            </v-btn>
+          </span>
         </div>
         <v-spacer />
         <div class="mr-1" title="获得力/鉴别力/采集力">
@@ -104,22 +102,22 @@
         <v-btn v-if="showJumpBtn" @click="showSpotPage" title="显示当前钓场图鉴" icon>
           <v-icon>mdi-notebook</v-icon>
         </v-btn>
-        <v-btn @click="addReaderSpotStatistics" title="显示钓场统计" icon>
+        <v-btn @click="showSpotStatistics" title="显示钓场统计" icon>
           <v-icon>mdi-chart-box</v-icon>
         </v-btn>
-        <v-btn @click="addReaderHistory" title="显示历史记录" icon>
+        <v-btn @click="showHistory" title="显示历史记录" icon>
           <v-icon>mdi-history</v-icon>
         </v-btn>
       </v-col>
 
-      <v-col cols="12" v-if="isTest" class="mt-4">
-        <v-btn @click="nextTestEvent" class="mr-1" color="info">next</v-btn>
-        <v-btn @click="resetTest" color="error">reset</v-btn>
-        <div>Test Data</div>
-        <div>Status: {{ dataStatus }}</div>
-        <div>Record: {{ dataCurrentRecord }}</div>
-        <div>Prev: {{ dataPrevRecord }}</div>
-      </v-col>
+      <!--      <v-col cols="12" v-if="isTest" class="mt-4">-->
+      <!--        <v-btn @click="nextTestEvent" class="mr-1" color="info">next</v-btn>-->
+      <!--        <v-btn @click="resetTest" color="error">reset</v-btn>-->
+      <!--        <div>Test Data</div>-->
+      <!--        <div>Status: {{ dataStatus }}</div>-->
+      <!--        <div>Record: {{ dataCurrentRecord }}</div>-->
+      <!--        <div>Prev: {{ dataPrevRecord }}</div>-->
+      <!--      </v-col>-->
     </v-row>
     <v-row no-gutters v-else>
       <v-col cols="12" class="d-flex align-center mb-1">
@@ -128,11 +126,9 @@
             <strong>{{ intervalText }} {{ tugText }}</strong>
           </template>
         </v-progress-linear>
-        <!--        <v-btn small icon text @click="toggleMiniMode(false)" title="退出迷你模式">-->
-        <!--          <new-feature-mark id="MiniModeRestore-V.0.6.6-1">-->
-        <!--            <v-icon small>mdi-arrow-expand</v-icon>-->
-        <!--          </new-feature-mark>-->
-        <!--        </v-btn>-->
+        <v-btn small icon text @click="toggleMiniMode(false)" title="退出迷你模式">
+          <v-icon small>mdi-arrow-expand</v-icon>
+        </v-btn>
       </v-col>
       <v-col cols="12" v-if="isOceanFishing">
         <v-progress-linear
@@ -219,12 +215,6 @@ const SPECTRAL_CURRENT = 145
 export default {
   name: 'ReaderTimer',
   components: { RcDialog, EffectIcon, ItemIcon },
-  props: {
-    mini: {
-      type: Boolean,
-      default: false,
-    },
-  },
   data() {
     return {
       mode: 'normal',
@@ -241,7 +231,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['sounds', 'userData']),
+    ...mapState(['sounds', 'readerTimerMiniMode', 'userData']),
     ...mapGetters([
       'readerSetting',
       'showBanner',
@@ -499,6 +489,10 @@ export default {
     // },
   },
   created() {
+    this.mode =
+      window.process?.argv?.find(it => it.indexOf('--mode') === 0)?.split('=')?.[1] ??
+      'normal'
+    this.updateReaderTimerMiniMode(this.mode === 'mini')
     this.closeStrictMode()
     window.electron?.ipcRenderer?.on('fishingData', (event, data) => {
       this.dataStatus = {
@@ -564,26 +558,35 @@ export default {
     showSpotPage() {
       this.sendElectronEvent('showSpotPage', this.spotId)
     },
-    // toggleMiniMode(mini) {
-    // console.log(mini)
-    // this.sendElectronEvent('timerMiniMode', mini)
-    // },
+    toggleMiniMode(mini) {
+      console.log(mini)
+      this.sendElectronEvent('timerMiniMode', mini)
+    },
     ringBell(tugType) {
       DataUtil.ringBell(this.readerSetting.timer.sound, tugType, this.sounds)
     },
-    addReaderHistory() {
-      this.showWindow({
-        type: 'READER_HISTORY',
-      })
+    // addReaderHistory() {
+    //   this.showWindow({
+    //     type: 'READER_HISTORY',
+    //   })
+    // },
+    // addReaderSpotStatistics() {
+    //   this.showWindow({
+    //     type: 'READER_SPOT_STATISTICS',
+    //   })
+    // },
+    showHistory() {
+      this.sendElectronEvent('toggleHistory')
+      this.setFeatureViewed(this.HistoryFeatureId)
     },
-    addReaderSpotStatistics() {
-      this.showWindow({
-        type: 'READER_SPOT_STATISTICS',
-      })
+    showSpotStatistics() {
+      this.sendElectronEvent('toggleSpotStatistics')
+      this.setFeatureViewed(this.SpotStatisticsFeatureId)
     },
     ...mapMutations('screenWindow', ['showWindow']),
     ...mapMutations([
       'setFeatureViewed',
+      'updateReaderTimerMiniMode',
       'setFishCompleted',
       'setNotShowBanner',
       'setStrictMode',

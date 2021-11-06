@@ -69,7 +69,7 @@
       </v-btn>
     </v-system-bar>
     <v-main>
-      <router-view :now="now" class="reader-wrapper" />
+      <router-view class="reader-wrapper" />
       <resize-indicator />
     </v-main>
   </v-app>
@@ -139,6 +139,15 @@ export default {
     setInterval(() => {
       this.now = Date.now()
     }, 100)
+
+    window.electron?.ipcRenderer?.on('reloadUserData', () => {
+      this.boardCastReload()
+      console.debug('loading sounds')
+      this.loadingSounds().then(sounds =>
+        this.setSounds(DataUtil.toMap(sounds, it => it.key))
+      )
+    })
+    // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
   },
   mounted() {
     // trigger fishing data manually
@@ -170,7 +179,12 @@ export default {
     loadingSounds() {
       return DataUtil.loadingSounds(db)
     },
-    ...mapMutations(['setSounds', 'setFeatureViewed', 'setStrictMode']),
+    ...mapMutations([
+      'setSounds',
+      'boardCastReload',
+      'setFeatureViewed',
+      'setStrictMode',
+    ]),
   },
 }
 </script>
@@ -225,5 +239,6 @@ body::-webkit-scrollbar {
 
 .reader-wrapper
   overflow-y: scroll
-  height: calc(100vh - #{ $system-bar-height})
+  height: 100%
+  //calc(100vh - #{ $system-bar-height })
 </style>

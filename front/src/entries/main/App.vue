@@ -358,11 +358,18 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item
-            v-if="isElectron && isRoseMode"
-            @click="showRoseDialog = true"
-            link
-          >
+          <v-list-item v-if="isElectron" @click="openReader" link>
+            <v-list-item-icon>
+              <new-feature-mark :id="ReaderTimerFeatureId">
+                <v-icon>mdi-fish</v-icon>
+              </new-feature-mark>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.fishReader') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item v-if="isRoseMode" @click="showRoseDialog = true" link>
             <v-list-item-icon>
               <v-icon>fas fa-user-secret</v-icon>
             </v-list-item-icon>
