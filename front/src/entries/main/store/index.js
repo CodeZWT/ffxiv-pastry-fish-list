@@ -30,11 +30,9 @@ const ScreenPluginOf = router => store => {
       userData: state.userData,
       readerSetting: state.readerSetting,
     })
-    console.log('router in vuex', router.currentRoute.name)
     const source = router.currentRoute.name
     if (mutation.type === 'boardCastReload') {
       // skip boardCastReload mutation
-      console.log('in boardCastReload')
     } else if (!_.isEqual(prevState, nextState)) {
       // if (
       //   mutation.type === 'setUserData' ||
