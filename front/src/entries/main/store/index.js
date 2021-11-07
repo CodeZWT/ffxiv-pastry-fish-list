@@ -1,7 +1,6 @@
 import { DialogModule } from '@/entries/screen/store/dialog'
 import { FlagModule } from '@/entries/screen/store/oneTimeFlag'
 import { KeybindingModule } from '@/entries/screen/store/keybinding'
-import { ScreenWindowModule } from '@/entries/screen/store/screenWindow'
 import {
   loadBaitFilterUserData,
   loadReaderUserData,
@@ -684,7 +683,7 @@ export const MainModule = {
     },
   },
   modules: {
-    screenWindow: ScreenWindowModule,
+    // screenWindow: ScreenWindowModule,
     keybinding: KeybindingModule,
     dialog: DialogModule,
     flag: FlagModule,

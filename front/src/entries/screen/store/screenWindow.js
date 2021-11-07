@@ -79,7 +79,9 @@ const storedConfig = LocalStorageUtil.loadWindowLayouts()
 const fixMainWindowConfig = () => {
   // remove MAIN window since main window in screen is not used
   // to fix the bug that empty main window is created by the hotkey
-  storedConfig.windows = storedConfig.windows.filter(winId => winId !== 'MAIN')
+  if (storedConfig) {
+    storedConfig.windows = storedConfig.windows.filter(winId => winId !== 'MAIN')
+  }
 }
 fixMainWindowConfig()
 const winId2LayoutId = winId => winId.split('-')[0]
