@@ -21,10 +21,23 @@
       <v-divider />
       <v-card-text style="max-height: 600px">
         <!-- patch update wait note -->
-        <!--        <v-alert outlined type="warning" border="left">-->
-        <!--          更新国服5.55后，渔捞与同步功能不可用，请耐心等待自动更新。-->
-        <!--        </v-alert>-->
-        <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
+        <v-alert outlined type="warning" border="left">
+          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。
+        </v-alert>
+        <!--                <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 1.0.2</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/11/07 19:02</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
+        <ul>
+          <li>修复1.0.1无限加载的问题</li>
+        </ul>
+        <v-divider />
+
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
             <div class="text-h6">Version 1.0.1</div>
@@ -40,9 +53,7 @@
         </ul>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
-          <li>
-            修复咬钩时间统计图在点出鱼详情后不显示的问题
-          </li>
+          <li>修复咬钩时间统计图在点出鱼详情后不显示的问题</li>
         </ul>
 
         <v-divider />
@@ -62,12 +73,8 @@
             更新攻略：《5.0鱼王鱼皇心得攻略----有鱼的地方就有捕鱼人》。 感谢 颜君行@琥珀原
             、Aki秋山@摩杜纳、轩辕十四@沃仙曦染的持续更新！
           </li>
-          <li>
-            更新咬钩概率图的说明，鼠标悬停查看概率计算详情。
-          </li>
-          <li>
-            更新列表中鱼饵的悬浮窗，其他页面的鱼饵悬浮窗将会陆续更新。
-          </li>
+          <li>更新咬钩概率图的说明，鼠标悬停查看概率计算详情。</li>
+          <li>更新列表中鱼饵的悬浮窗，其他页面的鱼饵悬浮窗将会陆续更新。</li>
         </ul>
         <div class="text-h6 my-1">渔捞</div>
         <ul>
@@ -83,9 +90,7 @@
           <li>
             渔捞中的输入框获取焦点后需要点击游戏界面才可以恢复游戏焦点接受键盘操作，但如果游戏使用“窗口全屏模式”则可以避免这个问题。
           </li>
-          <li>
-            增加功能菜单，主窗口，所有渔捞窗口以及设置窗口均可由此访问。
-          </li>
+          <li>增加功能菜单，主窗口，所有渔捞窗口以及设置窗口均可由此访问。</li>
           <li>
             <div>
               <div class="d-inline">
@@ -97,9 +102,7 @@
               </div>
             </div>
           </li>
-          <li>
-            渔捞界面现与主界面深浅色模式配置同步。（渔捞现在也可设置为浅色模式）
-          </li>
+          <li>渔捞界面现与主界面深浅色模式配置同步。（渔捞现在也可设置为浅色模式）</li>
           <li>
             {{
               `窗口默认显示在系统主屏幕，多屏幕用户可在“${$t(
@@ -150,6 +153,7 @@
 <script>
 import PatchNoteHistory from '@/components/Dialog/PatchNoteHistory'
 import RcDialog from '@/components/basic/RcDialog'
+
 export default {
   name: 'PatchNoteDialog',
   components: { PatchNoteHistory, RcDialog },
