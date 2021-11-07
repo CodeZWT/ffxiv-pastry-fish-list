@@ -47,7 +47,12 @@
               </v-tab-item>
               <v-tab-item>
                 <rc-textarea v-model="selfDataToImport" />
-                <v-btn class="mr-4" color="primary" @click="importData">
+                <v-btn
+                  class="mr-4"
+                  color="primary"
+                  @click="importData"
+                  :disabled="!selfDataToImport"
+                >
                   {{ $t('importExport.dialog.self.import') }}
                 </v-btn>
               </v-tab-item>
@@ -106,13 +111,14 @@
               </v-tab-item>
               <v-tab-item>
                 <rc-textarea v-model="fishTrackerTextToImport" />
-                <click-helper @click="importDataFromFishTracker">
-                  <v-btn class="mr-4" color="primary">
-                    {{
-                      $t('importExport.dialog.other.fishTracker.importFromFishTracker')
-                    }}
-                  </v-btn>
-                </click-helper>
+                <v-btn
+                  class="mr-4"
+                  color="primary"
+                  @click="importDataFromFishTracker"
+                  :disabled="!fishTrackerTextToImport"
+                >
+                  {{ $t('importExport.dialog.other.fishTracker.importFromFishTracker') }}
+                </v-btn>
               </v-tab-item>
             </v-tabs-items>
           </v-col>
@@ -137,6 +143,7 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import { sendElectronEvent } from '@/utils/electronHelper'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
@@ -251,11 +258,18 @@ export default {
     importData() {
       try {
         const data = JSON.parse(this.selfDataToImport)
+        if (!_.isPlainObject(data)) {
+          throw new Error('not json object')
+        }
         this.setUserData(
           DataUtil.filterByDefaultValueKey(data, DataUtil.USER_DEFAULT_DATA)
         )
         this.updateUserBaitFilterData({ data: data.baitFilter })
         this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
+        setTimeout(() => {
+          sendElectronEvent('startLoading')
+          window.location.reload()
+        }, 1000)
       } catch (e) {
         console.error('import error', e)
         this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
@@ -264,6 +278,9 @@ export default {
     importDataFromFishTracker() {
       try {
         const fishTrackerData = JSON.parse(this.fishTrackerTextToImport)
+        if (!_.isPlainObject(fishTrackerData)) {
+          throw new Error('not json object')
+        }
         const data = this.fromFishTrackerVersion(fishTrackerData, this.userData)
         if (
           DataUtil.validateImportData(fishTrackerData, DataUtil.FISH_TRACKER_STRUCTURE)
@@ -272,6 +289,10 @@ export default {
             DataUtil.filterByDefaultValueKey(data, DataUtil.USER_DEFAULT_DATA)
           )
           this.showInfo(this.$t('importExport.dialog.message.importSuccess'), 'success')
+          setTimeout(() => {
+            sendElectronEvent('startLoading')
+            window.location.reload()
+          }, 1000)
         } else {
           this.showInfo(this.$t('importExport.dialog.message.importError'), 'error')
         }
