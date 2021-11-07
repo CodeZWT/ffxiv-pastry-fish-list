@@ -30,7 +30,7 @@
         </div>
         <div style="overflow-x: scroll; width: 100%">
           <div
-            id="main"
+            id="bite-interval-chart"
             :style="`width: 800px;height: ${enableBaitFilter ? 800 : 400}px`"
           ></div>
         </div>
@@ -87,6 +87,7 @@ export default {
   },
   mounted() {
     this.chart = this.initChart(this.theme.isDark)
+    this.chart.setOption(this.option)
   },
   watch: {
     enableBaitFilter(enableBaitFilter) {
@@ -421,10 +422,14 @@ export default {
   },
   methods: {
     initChart(isDark) {
-      return echarts.init(document.getElementById('main'), isDark ? 'dark' : 'light', {
-        height: 'auto',
-        width: 'auto',
-      })
+      return echarts.init(
+        document.getElementById('bite-interval-chart'),
+        isDark ? 'dark' : 'light',
+        {
+          height: 'auto',
+          width: 'auto',
+        }
+      )
     },
     toJSON(d) {
       return JSON.stringify(d, null, 2)
