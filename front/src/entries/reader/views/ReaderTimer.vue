@@ -212,7 +212,9 @@ import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import ItemIcon from '@/components/basic/ItemIcon'
 import RcDialog from '@/components/basic/RcDialog'
+import RecordValidator from '@/utils/RecordValidator'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
+import db from '@/plugins/db'
 import rcapiService from '@/service/rcapiService'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
@@ -501,28 +503,29 @@ export default {
       'normal'
     this.updateReaderTimerMiniMode(this.mode === 'mini')
     this.closeStrictMode()
-    window.electron?.ipcRenderer?.on('fishingData', (event, data) => {
-      this.dataStatus = {
-        ...data.status,
-        effects: Array.from(data.status && data.status.effects),
-      }
-      this.dataCurrentRecord = data.currentRecord
-      this.dataPrevRecord = data.prevRecord
-    })
-    // ?.on('newRecord', (event, data) => {
-    //   const isLogin = rcapiService.isLogin()
-    //   data.uploadEnabled = this.isRoseMode && this.isUploadMode && isLogin
-    //   data.isStrictMode = RecordValidator.judgeRecordStrictFlag(
-    //     this.isRoseMode && this.isStrictMode && isLogin,
-    //     data
-    //   )
-    //   console.log('store in reader', data)
-    //   db.records.put(data).catch(error => console.error('storeError', error))
-    // })
-    // ?.on('fishCaught', (event, data) => {
-    //   const fishId = data?.fishId
-    //   this.setFishCompleted({ fishId: fishId, completed: true })
-    // })
+    window.electron?.ipcRenderer
+      ?.on('fishingData', (event, data) => {
+        this.dataStatus = {
+          ...data.status,
+          effects: Array.from(data.status && data.status.effects),
+        }
+        this.dataCurrentRecord = data.currentRecord
+        this.dataPrevRecord = data.prevRecord
+      })
+      ?.on('newRecord', (event, data) => {
+        const isLogin = rcapiService.isLogin()
+        data.uploadEnabled = this.isRoseMode && this.isUploadMode && isLogin
+        data.isStrictMode = RecordValidator.judgeRecordStrictFlag(
+          this.isRoseMode && this.isStrictMode && isLogin,
+          data
+        )
+        console.log('store in reader', data)
+        db.records.put(data).catch(error => console.error('storeError', error))
+      })
+      ?.on('fishCaught', (event, data) => {
+        const fishId = data?.fishId
+        this.setFishCompleted({ fishId: fishId, completed: true })
+      })
   },
   mounted() {
     // this.sendElectronEvent('updateWindowSetting', null)
