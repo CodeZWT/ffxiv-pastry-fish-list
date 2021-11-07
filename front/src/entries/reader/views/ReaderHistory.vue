@@ -237,6 +237,32 @@
                 type="action"
               />
               <item-icon :icon-class="record.bait.icon" small :title="record.bait.name" />
+              <template v-if="isTest">
+                <rc-tooltip v-if="record.uploaded">
+                  <v-icon
+                    style="position: absolute; right: 2px; top: 24px"
+                    small
+                    :color="record.isStrictMode ? 'deep-purple darken-1' : ''"
+                  >
+                    mdi-arrow-up-bold
+                  </v-icon>
+                  <template v-slot:msg>
+                    {{ record.isStrictMode ? '严格模式已上传' : '已上传' }}
+                  </template>
+                </rc-tooltip>
+                <rc-tooltip v-else-if="record.uploadEnabled">
+                  <v-icon
+                    style="position: absolute; right: 2px; top: 24px"
+                    small
+                    :color="record.isStrictMode ? 'deep-purple darken-1' : ''"
+                  >
+                    mdi-arrow-up-bold-outline
+                  </v-icon>
+                  <template v-slot:msg>
+                    {{ record.isStrictMode ? '严格模式等待上传' : '等待上传' }}
+                  </template>
+                </rc-tooltip>
+              </template>
             </v-list-item>
           </v-hover>
         </div>
@@ -285,6 +311,7 @@ import COMMON from 'Data/common'
 import DATA from 'Data/data'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
+import EnvMixin from '@/components/basic/EnvMixin'
 import EorzeaTime from '@/utils/Time'
 import FishDict from 'Data/fish'
 import ItemIcon from '@/components/basic/ItemIcon'
@@ -293,6 +320,7 @@ import PLACE_NAMES from 'Data/placeNames'
 import PinyinMatch from 'pinyin-match'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
+import RcTooltip from '@/components/basic/RcTooltip'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
@@ -305,7 +333,15 @@ const LOAD_MORE_CNT = 100
 
 export default {
   name: 'ReaderHistory',
-  components: { RcAutocomplete, RcDialog, EffectIcon, NewFeatureMark, ItemIcon },
+  mixins: [EnvMixin],
+  components: {
+    RcTooltip,
+    RcAutocomplete,
+    RcDialog,
+    EffectIcon,
+    NewFeatureMark,
+    ItemIcon,
+  },
   data() {
     return {
       recordsFilterSpotId: undefined,
