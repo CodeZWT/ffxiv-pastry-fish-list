@@ -148,6 +148,7 @@
         'wiki-content--mobile-electron': isMobile && isElectron && !original,
         'wiki-content--mobile-electron-original': isMobile && isElectron && original,
       }"
+      id="wiki-right-content"
     >
       <div
         v-if="
@@ -262,34 +263,38 @@
           'grid-content--web': !isElectron,
         }"
       >
-        <!--  show spot/fish view  -->
+        <!--  show spot view  -->
         <v-row v-if="currentSpotId" no-gutters>
           <v-col cols="12" class="my-1 d-flex justify-center">
             <h1>{{ currentMapInfo.name }}</h1>
           </v-col>
-          <v-col cols="12" class="my-1">
-            <div v-if="mode === 'normal'">
+          <template v-if="mode === 'normal'">
+            <v-col cols="12" class="my-1">
               <v-btn block color="primary" @click="showAboutChartDialog = true">
                 <v-icon>mdi-information</v-icon>
                 关于数据统计图
               </v-btn>
+            </v-col>
+            <v-col cols="12" class="my-1">
               <bait-percentage-chart
                 :records="baitCountRecords"
                 :fish-dict="lazyTransformedFishDict"
                 :updatedTime="baitCountRecordUpdatedTime"
               />
-              <!--              <fish-tug-table v-else :value="currentFishList" />-->
-            </div>
-            <fish-gig-table v-else :value="currentFishList" />
-          </v-col>
-          <v-col v-if="mode === 'normal'" cols="12" class="my-1">
-            <bite-interval-chart
-              :records="biteIntervalRecords"
-              :fish-dict="lazyTransformedFishDict"
-              :updated-time="biteIntervalRecordsUpdatedTime"
-            />
-          </v-col>
+            </v-col>
+            <v-col cols="12" class="my-1">
+              <bite-interval-chart
+                :records="biteIntervalRecords"
+                :fish-dict="lazyTransformedFishDict"
+                :updated-time="biteIntervalRecordsUpdatedTime"
+              />
+            </v-col>
+          </template>
+          <template v-else>
+            <fish-gig-table :value="currentFishList" />
+          </template>
 
+          <!-- fish shadow predators list -->
           <v-col v-if="showSpotPredators" cols="12" class="my-1">
             <div>
               <v-card color="info">
@@ -325,21 +330,21 @@
             </div>
           </v-col>
 
+          <!-- fish list -->
           <v-col cols="12" class="my-1">
-            <v-card>
-              <fish-list
-                :fish-dict="lazyTransformedFishDict"
-                :fish-ids="currentFishIdList"
-                :fish-list-time-part="fishListTimePart"
-                :fish-list-weather-change-part="fishListWeatherChangePart"
-                hide-spot-column
-                hide-predators
-                :is-mobile="isMobile"
-                @fish-selected="onFishClicked($event)"
-              />
-            </v-card>
+            <fish-list
+              :fish-dict="lazyTransformedFishDict"
+              :fish-ids="currentFishIdList"
+              :fish-list-time-part="fishListTimePart"
+              :fish-list-weather-change-part="fishListWeatherChangePart"
+              hide-spot-column
+              hide-predators
+              :is-mobile="isMobile"
+              @fish-selected="onFishClicked($event)"
+            />
           </v-col>
 
+          <!-- map -->
           <v-col cols="12" class="my-1">
             <v-expansion-panels hover flat tile :value="0">
               <v-expansion-panel class="systemSecondary">
@@ -886,6 +891,11 @@ export default {
     ]),
   },
   watch: {
+    type(type) {
+      if (type === 'fish') {
+        this.scrollToTop()
+      }
+    },
     toggleMapMenu() {
       this.showMapMenu = !this.showMapMenu
     },
@@ -974,6 +984,11 @@ export default {
     // this.showAboutChartDialog = !this.readChartTip
   },
   methods: {
+    scrollToTop() {
+      document
+        .getElementById('wiki-right-content')
+        .scroll({ top: 0, left: 0, behavior: 'auto' })
+    },
     closeFishDetailPage() {
       this.currentFishId = -1
       this.type = 'spot'
