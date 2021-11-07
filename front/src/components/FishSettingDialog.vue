@@ -16,34 +16,34 @@
         <validation-observer ref="observer" v-slot="">
           <form>
             <v-row>
-              <!--              <v-col cols="12" v-if="isElectron">-->
-              <!--                <div>-->
-              <!--                  <v-radio-group-->
-              <!--                    v-model="lazyMainWindowCloseMode"-->
-              <!--                    label="关闭主窗口时"-->
-              <!--                    row-->
-              <!--                  >-->
-              <!--                    <v-radio label="退出程序" value="CLOSE"></v-radio>-->
-              <!--                    <v-radio label="最小化到托盘，不退出程序" value="TRAY"></v-radio>-->
-              <!--                  </v-radio-group>-->
-              <!--                </div>-->
-              <!--              </v-col>-->
-              <!--              <v-col v-if="isElectron" cols="12">-->
-              <!--                <div class="text-subtitle-1">-->
-              <!--                  {{ $t('setting.dialog.opacity.title') }}-->
-              <!--                </div>-->
-              <!--                <v-slider-->
-              <!--                  v-model="lazyOpacity"-->
-              <!--                  max="1"-->
-              <!--                  min="0.1"-->
-              <!--                  step="0.05"-->
-              <!--                  ticks-->
-              <!--                  :label="$t('setting.dialog.opacity.slider')"-->
-              <!--                  thumb-label-->
-              <!--                >-->
-              <!--                </v-slider>-->
-              <!--                <v-divider />-->
-              <!--              </v-col>-->
+              <v-col cols="12" v-if="isElectron">
+                <div>
+                  <v-radio-group
+                    v-model="lazyMainWindowCloseMode"
+                    label="关闭主窗口时"
+                    row
+                  >
+                    <v-radio label="退出程序" value="CLOSE"></v-radio>
+                    <v-radio label="最小化到托盘，不退出程序" value="TRAY"></v-radio>
+                  </v-radio-group>
+                </div>
+              </v-col>
+              <v-col v-if="isElectron" cols="12">
+                <div class="text-subtitle-1">
+                  {{ $t('setting.dialog.opacity.title') }}
+                </div>
+                <v-slider
+                  v-model="lazyOpacity"
+                  max="1"
+                  min="0.1"
+                  step="0.05"
+                  ticks
+                  :label="$t('setting.dialog.opacity.slider')"
+                  thumb-label
+                >
+                </v-slider>
+                <v-divider />
+              </v-col>
               <!--              <v-col v-if="isElectron" cols="12">-->
               <!--                <div class="text-subtitle-1">-->
               <!--                  {{ $t('setting.dialog.zoom.title') }}-->
@@ -284,6 +284,7 @@ import {
 } from 'vee-validate'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import { max_value, min_value, required } from 'vee-validate/dist/rules'
+import { sendElectronEvent } from '@/utils/electronHelper'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import DetailItemSettingEntry from '@/components/DetailItemSettingEntry'
@@ -403,13 +404,13 @@ export default {
     },
     apply() {
       this.setMainWindowCloseMode(this.lazyMainWindowCloseMode)
-      window.electron?.ipcRenderer?.send('updateMainConfig', {
+      sendElectronEvent('updateMainConfig', {
         closeMode: this.lazyMainWindowCloseMode,
       })
       this.setShowFilter(this.lazyShowFilter)
       this.setOpacity(this.lazyOpacity)
       this.setZoomFactor(this.lazyZoomFactor)
-      window.electron?.ipcRenderer?.send('updateMainWindowSetting', {
+      sendElectronEvent('updateMainWindowSetting', {
         opacity: this.lazyOpacity,
         zoomFactor: this.lazyZoomFactor,
       })
