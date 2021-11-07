@@ -276,7 +276,7 @@ async function init() {
     }
   })
   FishingDataReader.onNewRecord(data => {
-    callFirstAvailableWin([WINDOWS.readerTimer, WINDOWS.timerMini, WINDOWS.main], win =>
+    callFirstAvailableWin([WINDOWS.main, WINDOWS.readerTimer, WINDOWS.timerMini], win =>
       win.webContents.send('newRecord', data)
     )
     callWindowSafe(WINDOWS.readerHistory, win => win.webContents.send('newRecord', data))
