@@ -123,7 +123,7 @@
       <v-col cols="12" class="d-flex align-center mb-1">
         <v-progress-linear :value="intervalPercentage" :color="color" height="25" rounded>
           <template>
-            <strong>{{ intervalText }} {{ tugText }}</strong>
+            <strong class="white--text">{{ intervalText }} {{ tugText }}</strong>
           </template>
         </v-progress-linear>
         <v-btn

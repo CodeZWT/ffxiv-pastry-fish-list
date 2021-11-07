@@ -27,6 +27,18 @@
         <!--                <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
+            <div class="text-h6">Version 1.0.3</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/11/07 19:02</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">渔捞</div>
+        <ul>
+          <li>将浅色模式下的读秒设为白色</li>
+        </ul>
+        <v-divider />
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
             <div class="text-h6">Version 1.0.2</div>
             <v-spacer />
             <div class="text-subtitle-1">更新时间: 2021/11/07 19:02</div>
