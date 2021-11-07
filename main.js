@@ -367,10 +367,7 @@ async function init() {
             if (win.webContents !== event.sender) {
               win.webContents
                 .send('broadcast', { source, type, data })
-            } else {
-              console.log('skipped', win.getURL())
             }
-
           })
         })
     })
@@ -1148,19 +1145,26 @@ function showReader() {
 }
 
 function toggleReader() {
+  let targetWindow
   if (!windowSetting.timerMini.enabled) {
     if (!WINDOWS.readerTimer) {
       WINDOWS.readerTimer = createReader()
     }
-    toggleWindow(WINDOWS.readerTimer)
+    targetWindow = WINDOWS.readerTimer
   } else {
     if (!WINDOWS.timerMini) {
       createTimerMiniWin().then(win => {
         WINDOWS.timerMini = win
       })
     }
-    toggleWindow(WINDOWS.timerMini)
+    targetWindow = WINDOWS.timerMini
   }
+  callWindowSafe(targetWindow, win => {
+    if (win.isVisible()) {
+      hideByFishingTrigger = true
+    }
+    toggleWindow(win)
+  })
 }
 
 function toggleWindow(window) {
@@ -1168,7 +1172,7 @@ function toggleWindow(window) {
     if (win.isVisible()) {
       win.hide()
     } else {
-      win.show()
+      win.showInactive()
     }
   })
 }

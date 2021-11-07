@@ -127,7 +127,7 @@
           </v-card-text>
           <v-card-text class="d-flex align-center">
             <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-              切换鱼糕鼠标穿透
+              切换渔捞显示
             </div>
             <div class="mr-2">
               <kbd class="text-subtitle-1">Alt</kbd>+
