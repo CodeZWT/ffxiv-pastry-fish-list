@@ -74,6 +74,7 @@
 import '@thewakingsands/axis-font-icons'
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import { sendElectronEvent } from '@/utils/electronHelper'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaTime from '@/utils/Time'
 import READER_ICON from 'Assets/reader.png'
@@ -177,7 +178,7 @@ export default {
   },
   mounted() {
     // trigger fishing data manually
-    setTimeout(() => this.sendElectronEvent('getFishingData'), 2000)
+    setTimeout(() => sendElectronEvent('getFishingData'), 2000)
   },
   watch: {
     dark: {
@@ -194,13 +195,9 @@ export default {
     toggleStrictMode() {
       const newStrictMode = !this.isStrictMode
       this.setStrictMode(newStrictMode)
-      // this.sendElectronEvent('setStrictMode', newStrictMode)
-    },
-    sendElectronEvent(channel, data) {
-      window.electron?.ipcRenderer?.send(channel, data)
     },
     showSetting() {
-      window.electron?.ipcRenderer?.send('showSetting')
+      sendElectronEvent('showSetting')
     },
     minimize() {
       WindowUtil.minimizeWindow()
