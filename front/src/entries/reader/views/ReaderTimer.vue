@@ -119,15 +119,22 @@
       <!--        <div>Prev: {{ dataPrevRecord }}</div>-->
       <!--      </v-col>-->
     </v-row>
-    <v-row no-gutters v-else>
+    <v-row no-gutters v-else style="-webkit-app-region: drag">
       <v-col cols="12" class="d-flex align-center mb-1">
         <v-progress-linear :value="intervalPercentage" :color="color" height="25" rounded>
           <template>
             <strong>{{ intervalText }} {{ tugText }}</strong>
           </template>
         </v-progress-linear>
-        <v-btn small icon text @click="toggleMiniMode(false)" title="退出迷你模式">
-          <v-icon small>mdi-arrow-expand</v-icon>
+        <v-btn
+          small
+          icon
+          text
+          @click="toggleMiniMode(false)"
+          title="退出迷你模式"
+          style="-webkit-app-region: none"
+        >
+          <v-icon small color="white">mdi-arrow-expand</v-icon>
         </v-btn>
       </v-col>
       <v-col cols="12" v-if="isOceanFishing">
