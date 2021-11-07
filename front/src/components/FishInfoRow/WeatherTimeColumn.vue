@@ -81,7 +81,6 @@ export default {
     },
     mark() {
       if (this.fish.id === 33244) {
-        console.log(this.fish)
         return {
           time: {
             icon: 'mdi-help-circle',

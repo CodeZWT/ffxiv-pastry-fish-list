@@ -559,7 +559,6 @@ export default {
       this.sendElectronEvent('showSpotPage', this.spotId)
     },
     toggleMiniMode(mini) {
-      console.log(mini)
       this.sendElectronEvent('timerMiniMode', mini)
     },
     ringBell(tugType) {

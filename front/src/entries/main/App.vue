@@ -815,7 +815,6 @@ export default {
         this.newVersion = newVersion
       })
       ?.on('setupDownload', (event, data) => {
-        console.log(data)
         if (this.downloadProgress < 100) {
           this.downloadProgress = data.percent * 100
         }

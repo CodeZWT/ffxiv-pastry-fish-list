@@ -618,7 +618,6 @@ export default {
             this.readerSetting.isStrictMode && this.isRoseMode && isLogin,
             data
           )
-          console.log('store data', data)
           db.records.put(data).catch(error => console.error('storeError', error))
         })
         ?.on('showRoseModeDialog', () => {

@@ -3,7 +3,6 @@ const remote = window.require ? window.remote : null
 export default {
   setAlwaysOnTop(alwaysOnTop) {
     const WIN = remote.getCurrentWindow()
-    console.log('set top', alwaysOnTop)
     WIN.setAlwaysOnTop(alwaysOnTop, 'screen-saver')
     WIN.setMinimizable(!alwaysOnTop)
   },

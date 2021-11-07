@@ -454,7 +454,6 @@ export default {
   },
   methods: {
     setHotkey(hotkey, event) {
-      console.log(event)
       if (event.code.indexOf('Key') === 0) {
         this.lazySetting.hotkey[hotkey] = this.keyCodeToKey(event.code)
       }
@@ -493,7 +492,6 @@ export default {
     },
     showFileViewer(type) {
       window.electron?.ipcRenderer?.invoke('showOpenSoundFileDialog').then(result => {
-        console.info(result)
         if (!result.cancelled) {
           db.sounds
             .put({
@@ -503,7 +501,7 @@ export default {
             })
             .then(() => {
               set(this.lazySetting, `timer.sound.${type}.customPath`, result.filePath)
-              console.info('loading sounds in setting')
+              console.debug('loading sounds in setting')
               this.loadingSounds().then(sounds =>
                 this.setSounds(DataUtil.toMap(sounds, it => it.key))
               )
