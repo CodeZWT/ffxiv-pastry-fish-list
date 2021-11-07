@@ -10,9 +10,11 @@
               @click="exportHistory"
               color="primary"
             >
-              <template v-if="exporting"> 读取数据中 {{ exportPercentage }} </template>
-              <template v-else-if="exporting"> 生成文件中 </template>
-              <template v-else> <v-icon>mdi-file-table</v-icon>导出至文件 </template>
+              <template v-if="exporting && !generating">
+                读取数据中 {{ exportPercentage }}
+              </template>
+              <template v-else-if="exporting && generating">生成文件中</template>
+              <template v-else> <v-icon>mdi-file-table</v-icon>导出至文件</template>
             </v-btn>
             <v-btn
               icon
@@ -645,10 +647,10 @@ export default {
         const max = Date.now()
         allData = _.sortBy(allData, it => max - it.timestamp)
         console.debug('[export] read data finished')
+        this.generating = true
         invokeElectronEvent('showExportFileDialog', null, async continueExport => {
           this.exporting = false
           if (continueExport) {
-            this.generating = true
             sendElectronEvent('exportHistory', allData)
           } else {
             this.generating = false
@@ -741,10 +743,8 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-@import "~@/styles/RcVariables"
-
-//.wrapper
-//  height: 100%
-//  overflow-y: auto
+<style lang="sass">
+.v-system-bar .v-icon
+  font-size: 1rem
+  margin-right: 4px
 </style>

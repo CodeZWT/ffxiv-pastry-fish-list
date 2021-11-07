@@ -27,9 +27,7 @@
         </v-tooltip>
       </div>
       <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
-        <new-feature-mark :id="SettingFeatureId">
-          <v-icon>mdi-cog</v-icon>
-        </new-feature-mark>
+        <v-icon>mdi-cog</v-icon>
       </v-btn>
       <!--      <v-btn @click="minimize" x-small text style="-webkit-app-region: none">-->
       <!--        <v-icon>mdi-window-minimize</v-icon>-->
@@ -75,11 +73,9 @@
 <script>
 import '@thewakingsands/axis-font-icons'
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
-import { ReaderFeatures } from 'Data/newFeatures'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaTime from '@/utils/Time'
-import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import READER_ICON from 'Assets/reader.png'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
 import SETTING_ICON from 'Assets/setting.png'
@@ -88,14 +84,13 @@ import db from '@/plugins/db'
 
 export default {
   name: 'Reader',
-  components: { ResizeIndicator, NewFeatureMark },
+  components: { ResizeIndicator },
   data: () => ({
     showHistoryConfig: false,
     now: Date.now(),
     closeMode: 'HIDE',
     readerIcon: READER_ICON,
     settingIcon: SETTING_ICON,
-    SettingFeatureId: ReaderFeatures.Setting,
     CN_PATCH_VERSION: CN_PATCH_VERSION,
     GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
     systemThemeMode: 'DARK',
@@ -206,7 +201,6 @@ export default {
     },
     showSetting() {
       window.electron?.ipcRenderer?.send('showSetting')
-      this.setFeatureViewed(this.SettingFeatureId)
     },
     minimize() {
       WindowUtil.minimizeWindow()
@@ -222,12 +216,7 @@ export default {
       return DataUtil.loadingSounds(db)
     },
     ...mapMutations('readerHistory', ['setStates']),
-    ...mapMutations([
-      'setSounds',
-      'boardCastReload',
-      'setFeatureViewed',
-      'setStrictMode',
-    ]),
+    ...mapMutations(['setSounds', 'boardCastReload', 'setStrictMode']),
   },
 }
 </script>
