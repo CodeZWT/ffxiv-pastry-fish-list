@@ -361,6 +361,7 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
+import _ from 'lodash'
 import db from '@/plugins/db'
 import last from 'lodash/last'
 import set from 'lodash/set'
@@ -413,14 +414,19 @@ export default {
     ...mapGetters(['readerSetting', 'isRoseMode']),
   },
   watch: {
+    readerSetting(readerSetting) {
+      if (!_.isEqual(readerSetting, this.lazySetting)) {
+        this.lazySetting = readerSetting
+      }
+    },
     lazySetting: {
       handler(lazySetting) {
         console.debug('update setting', lazySetting)
         this.updateReaderSetting(lazySetting)
-        sendElectronEvent('updateUserData', {
-          path: 'reader',
-          data: lazySetting,
-        })
+        // sendElectronEvent('updateUserData', {
+        //   path: 'reader',
+        //   data: lazySetting,
+        // })
         // this.saveSetting()
       },
       deep: true,
