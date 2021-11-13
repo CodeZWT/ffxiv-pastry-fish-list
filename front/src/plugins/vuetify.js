@@ -1,7 +1,7 @@
-import 'vuetify/dist/vuetify.min.css'
+// import 'vuetify/dist/vuetify.min.css'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import Vuetify from 'vuetify'
+import Vuetify from 'vuetify/lib/framework'
 import settings from '@/themes'
 Vue.use(Vuetify)
 Vue.use(VueI18n)

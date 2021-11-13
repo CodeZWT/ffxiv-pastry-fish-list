@@ -208,7 +208,6 @@ module.exports = {
           root: '_', // indicates global variable
         },
         vue: 'Vue',
-        vuetify: 'Vuetify',
         konva: 'konva',
         'vue-konva': 'VueKonva',
         echarts: 'echarts',
@@ -217,10 +216,6 @@ module.exports = {
         dexie: 'Dexie',
       })
     }
-    // else {
-    //   config.externals({
-    //   })
-    // }
 
     config.output
       .libraryTarget('umd')
