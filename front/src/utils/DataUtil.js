@@ -936,6 +936,12 @@ export default {
   isOceanFishingSpot(id) {
     return isOceanFishingNormalSpot(id) || isOceanFishingCurrentSpot(id)
   },
+  isOceanFishingNormalSpot: isOceanFishingNormalSpot,
+  isOceanFishingCurrentSpot: isOceanFishingCurrentSpot,
+  shift2Icon(shift) {
+    const shiftIconDict = ['mdi-weather-sunny', 'mdi-weather-sunset', 'mdi-weather-night']
+    return shiftIconDict[shift]
+  },
   assembleAquarium(aquarium, fishData) {
     return {
       id: aquarium.id,

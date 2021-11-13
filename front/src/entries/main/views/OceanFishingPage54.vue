@@ -322,7 +322,7 @@ export default {
             } else {
               return {
                 ...target,
-                icon: shift2Icon(target.shift),
+                icon: DataUtil.shift2Icon(target.shift),
               }
             }
           }),
@@ -423,7 +423,7 @@ export default {
             milliseconds: voyageWithTip.time,
             day: DataUtil.formatDateTime(voyageWithTip.time, 'MM-dd'),
             time: DataUtil.formatDateTime(voyageWithTip.time, 'HH:mm'),
-            shiftIcon: shift2Icon(voyageWithTip.shift.type),
+            shiftIcon: DataUtil.shift2Icon(voyageWithTip.shift.type),
             name: voyageWithTip.shift.name,
             targets: targets,
             typeMission: voyageWithTip.typeMission,
@@ -435,7 +435,7 @@ export default {
               weatherSet: it.weatherSet,
               shift: it.shift,
               name: it.locationName,
-              icon: shift2Icon(it.shift),
+              icon: DataUtil.shift2Icon(it.shift),
               hint: it.locationHint,
             })),
           }
@@ -475,11 +475,6 @@ export default {
 
 function getCNTime(milliSeconds) {
   return DateTime.fromMillis(milliSeconds).setZone(FixedOffsetZone.instance(480))
-}
-
-function shift2Icon(shift) {
-  const shiftIconDict = ['mdi-weather-sunny', 'mdi-weather-sunset', 'mdi-weather-night']
-  return shiftIconDict[shift]
 }
 </script>
 <style lang="sass" scoped>

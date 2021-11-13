@@ -203,9 +203,9 @@ export default {
       }
     })
   },
-  async getSpotRecordCount(spotId) {
+  async getSpotRecordCount(spotId, type = 'record-count') {
     const version = await this.getDataFilesVersion()
-    return fetch(`${DATA_HOST}@${version}/record-count/${spotId}.data`, {
+    return fetch(`${DATA_HOST}@${version}/${type}/${spotId}.data`, {
       method: 'GET',
     }).then(async resp => {
       if (resp.ok) {

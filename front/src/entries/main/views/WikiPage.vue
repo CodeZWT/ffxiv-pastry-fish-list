@@ -257,7 +257,7 @@
         />
       </div>
       <div
-        v-else-if="type === 'spot' && !isOceanFishingSpot"
+        v-else-if="type === 'spot'"
         :class="{
           'grid-content': true,
           'grid-content--web': !isElectron,
@@ -277,16 +277,18 @@
             </v-col>
             <v-col cols="12" class="my-1">
               <bait-percentage-chart
+                :spot-id="currentSpotId"
                 :records="baitCountRecords"
                 :fish-dict="lazyTransformedFishDict"
                 :updatedTime="baitCountRecordUpdatedTime"
               />
             </v-col>
-            <v-col cols="12" class="my-1">
+            <v-col v-if="!isOceanFishingSpot" cols="12" class="my-1">
               <bite-interval-chart
                 :records="biteIntervalRecords"
                 :fish-dict="lazyTransformedFishDict"
                 :updated-time="biteIntervalRecordsUpdatedTime"
+                :is-mobile="isMobile"
               />
             </v-col>
           </template>
@@ -332,7 +334,13 @@
 
           <!-- fish list -->
           <v-col cols="12" class="my-1">
+            <ocean-fishing-fish-list
+              v-if="isOceanFishingSpot"
+              :fish-list="currentFishList"
+              class="ml-2"
+            />
             <fish-list
+              v-else
               :fish-dict="lazyTransformedFishDict"
               :fish-ids="currentFishIdList"
               :fish-list-time-part="fishListTimePart"
@@ -415,15 +423,15 @@
           </v-col>
         </v-row>
       </div>
-      <div
-        v-else-if="type === 'spot' && isOceanFishingSpot"
-        :class="{
-          'grid-content': true,
-          'grid-content--web': !isElectron,
-        }"
-      >
-        <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />
-      </div>
+      <!--      <div-->
+      <!--        v-else-if="type === 'spot' && isOceanFishingSpot"-->
+      <!--        :class="{-->
+      <!--          'grid-content': true,-->
+      <!--          'grid-content&#45;&#45;web': !isElectron,-->
+      <!--        }"-->
+      <!--      >-->
+      <!--        <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />-->
+      <!--      </div>-->
       <div
         v-else-if="type === 'fish' && !isOceanFishingSpot"
         :class="{
@@ -630,9 +638,6 @@ export default {
     spotBiteIntervalCache: {},
   }),
   computed: {
-    isMobileGlobal() {
-      return this.$vuetify.breakpoint.mobile
-    },
     baitCountRecords() {
       return this.spotRecordCountCache[this.currentSpotId]?.items || []
     },
@@ -996,11 +1001,13 @@ export default {
     async getBaitDataOfSpot(spotId) {
       const spotData = this.spotRecordCountCache[spotId]
       if (!spotData) {
-        this.$set(
-          this.spotRecordCountCache,
-          spotId,
-          await rcapiService.getSpotRecordCount(spotId)
-        )
+        let data
+        if (DataUtil.isOceanFishingSpot(spotId)) {
+          data = await rcapiService.getSpotRecordCount(spotId, 'record-count-ikd')
+        } else {
+          data = await rcapiService.getSpotRecordCount(spotId, 'record-count')
+        }
+        this.$set(this.spotRecordCountCache, spotId, data)
       }
     },
     async getBiteIntervalDataOfSpot(spotId) {
