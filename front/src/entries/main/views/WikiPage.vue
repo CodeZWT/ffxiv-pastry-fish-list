@@ -285,6 +285,7 @@
             </v-col>
             <v-col v-if="!isOceanFishingSpot" cols="12" class="my-1">
               <bite-interval-chart
+                :spot-id="currentSpotId"
                 :records="biteIntervalRecords"
                 :fish-dict="lazyTransformedFishDict"
                 :updated-time="biteIntervalRecordsUpdatedTime"
@@ -353,7 +354,7 @@
           </v-col>
 
           <!-- map -->
-          <v-col cols="12" class="my-1">
+          <v-col v-if="!isOceanFishingSpot" cols="12" class="my-1">
             <v-expansion-panels hover flat tile :value="0">
               <v-expansion-panel class="systemSecondary">
                 <v-expansion-panel-header class="systemSecondary">

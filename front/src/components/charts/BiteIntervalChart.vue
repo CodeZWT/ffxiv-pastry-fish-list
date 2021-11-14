@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
-    <v-row v-show="records.length > 0">
-      <v-col cols="12">
+    <v-row>
+      <v-col cols="12" v-show="records.length > 0">
         <div class="d-flex align-center">
           <div class="pl-2">
             <v-switch v-model="chumBiteTime" label="撒饵" inset />
@@ -35,10 +35,10 @@
           ></div>
         </div>
       </v-col>
+      <v-col cols="12" v-show="records.length === 0">
+        暂无咬钩时长数据
+      </v-col>
     </v-row>
-    <v-row v-show="records.length === 0" style="width: 100%" class="px-4"
-      >暂无咬钩时长数据</v-row
-    >
   </v-container>
 </template>
 
@@ -64,6 +64,10 @@ export default {
   },
   mixins: [EnvMixin],
   props: {
+    spotId: {
+      type: Number,
+      default: -1,
+    },
     records: {
       type: Array,
       default: () => [],
@@ -187,13 +191,13 @@ export default {
         fishList,
       }
     },
-    spotId() {
-      if (this.records.length > 0) {
-        return this.records[0].spot
-      } else {
-        return -1
-      }
-    },
+    // spotId() {
+    //   if (this.records.length > 0) {
+    //     return this.records[0].spot
+    //   } else {
+    //     return -1
+    //   }
+    // },
     fishInfoList() {
       return this.dataOfSpot.fishList
     },
@@ -258,8 +262,6 @@ export default {
     },
     series() {
       return Object.entries(this.filteredRecords).flatMap(([baitName, record]) => {
-        // const baitName = UploadUtil.toBait(baitId).baitName
-        // console.log(baitName)
         return [
           {
             name: baitName + '辅助',
@@ -426,8 +428,8 @@ export default {
         document.getElementById('bite-interval-chart'),
         isDark ? 'dark' : 'light',
         {
-          height: 'auto',
-          width: 'auto',
+          height: 400,
+          width: 800,
         }
       )
     },
