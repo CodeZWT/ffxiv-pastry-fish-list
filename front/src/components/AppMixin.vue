@@ -720,14 +720,13 @@ export default {
         })
     },
     bindHotkeys() {
+      hotkeys('/', event => {
+        if (!this.showSearchDialog) {
+          this.setShowSearchDialog(true)
+        }
+        event.preventDefault()
+      })
       if (!this.isElectron) {
-        hotkeys('/', event => {
-          if (!this.showSearchDialog) {
-            this.setShowSearchDialog(true)
-          }
-          event.preventDefault()
-        })
-
         hotkeys('alt+shift+y', event => {
           this.showRoseDialog = true
           event.preventDefault()

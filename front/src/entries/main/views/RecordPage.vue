@@ -342,7 +342,8 @@
           <v-card-text>
             <div v-if="!isLogin">
               <div>未登录</div>
-              <div>按 <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>y</kbd> 以登录</div>
+              <div>按 <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>y</kbd> 以登录</div>
+              <div>若同时打开了桌面版，请暂时关闭桌面版以防止快捷键冲突</div>
             </div>
             <v-data-table
               :headers="userSpotStatsHeaders"
