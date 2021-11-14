@@ -44,25 +44,25 @@
                 </v-slider>
                 <v-divider />
               </v-col>
-              <!--              <v-col v-if="isElectron" cols="12">-->
-              <!--                <div class="text-subtitle-1">-->
-              <!--                  {{ $t('setting.dialog.zoom.title') }}-->
-              <!--                </div>-->
-              <!--                <v-slider-->
-              <!--                  v-model="lazyZoomFactor"-->
-              <!--                  max="3"-->
-              <!--                  min="0.4"-->
-              <!--                  step="0.1"-->
-              <!--                  ticks-->
-              <!--                  :label="$t('setting.dialog.zoom.slider')"-->
-              <!--                  thumb-label-->
-              <!--                >-->
-              <!--                  <template v-slot:thumb-label="{ value }">-->
-              <!--                    {{ Math.floor(value * 100) }}%-->
-              <!--                  </template>-->
-              <!--                </v-slider>-->
-              <!--                <v-divider />-->
-              <!--              </v-col>-->
+              <v-col v-if="isElectron" cols="12">
+                <div class="text-subtitle-1">
+                  {{ $t('setting.dialog.zoom.title') }}
+                </div>
+                <v-slider
+                  v-model="lazyZoomFactor"
+                  max="3"
+                  min="0.4"
+                  step="0.1"
+                  ticks
+                  :label="$t('setting.dialog.zoom.slider')"
+                  thumb-label
+                >
+                  <template v-slot:thumb-label="{ value }">
+                    {{ Math.floor(value * 100) }}%
+                  </template>
+                </v-slider>
+                <v-divider />
+              </v-col>
               <v-col cols="12">
                 <div class="text-subtitle-1">
                   {{ $t('setting.dialog.notification.title') }}
