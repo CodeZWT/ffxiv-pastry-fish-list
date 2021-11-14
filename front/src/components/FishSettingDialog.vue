@@ -211,6 +211,25 @@
               </v-col>
               <v-col cols="12">
                 <div class="text-subtitle-1">
+                  {{ $t('setting.dialog.rightPanePercentageV2.title') }}
+                </div>
+                <v-slider
+                  v-model="lazyRightPanePercentage"
+                  max="0.9"
+                  min="0.1"
+                  step="0.05"
+                  ticks
+                  :label="$t('setting.dialog.rightPanePercentageV2.slider')"
+                  thumb-label
+                >
+                  <template v-slot:thumb-label="{ value }">
+                    {{ Math.floor(value * 100) }}%
+                  </template>
+                </v-slider>
+                <v-divider />
+              </v-col>
+              <v-col cols="12">
+                <div class="text-subtitle-1">
                   {{ $t('setting.dialog.detailArrangement.title') }}
                 </div>
                 <v-row>
@@ -342,6 +361,7 @@ export default {
     isNotificationSupported: NotificationUtil.isNotificationSupported(),
     lazyShowFilter: true,
     lazyMainWindowCloseMode: undefined,
+    lazyRightPanePercentage: 0.3,
   }),
   computed: {
     showSettingDialog: {
@@ -361,6 +381,7 @@ export default {
       'isSystemNotificationEnabled',
       'showFilter',
       'mainWindowCloseMode',
+      'rightPanePercentageV2',
     ]),
   },
   watch: {
@@ -390,6 +411,7 @@ export default {
       this.notificationStatus = NotificationUtil.notificationStatus()
       this.lazyShowFilter = this.showFilter
       this.lazyMainWindowCloseMode = this.mainWindowCloseMode
+      this.lazyRightPanePercentage = this.rightPanePercentageV2
     },
     playSound(key) {
       this.sounds[key]?.player?.volume(this.lazyNotificationSetting.volume).play()
@@ -414,6 +436,7 @@ export default {
         opacity: this.lazyOpacity,
         zoomFactor: this.lazyZoomFactor,
       })
+      this.setRightPanePercentageV2(this.lazyRightPanePercentage)
       this.setNotificationSetting(_.cloneDeep(this.lazyNotificationSetting))
       this.setDetailArrangement(
         _.cloneDeep({
@@ -485,6 +508,7 @@ export default {
       'disableSystemNotification',
       'showSnackbar',
       'setShowFilter',
+      'setRightPanePercentageV2',
     ]),
   },
 }

@@ -143,6 +143,10 @@
   },
   "setting": {
     "dialog": {
+      "rightPanePercentageV2": {
+        "title": "默认列表页面",
+        "slider": "右侧详细界面占比"
+      },
       "showFilter": {
         "title": "显示/隐藏列表筛选界面",
         "show": "显示",

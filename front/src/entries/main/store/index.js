@@ -296,8 +296,8 @@ export const MainModule = {
     websiteVersion: state => {
       return state.userData.websiteVersion
     },
-    rightPanePercentage: state => {
-      return state.userData.rightPanePercentage
+    rightPanePercentageV2: state => {
+      return state.userData.rightPanePercentageV2
     },
     isNormalTabActive: state => {
       return state.activeTabIndex === DataUtil.TAB_INDEX_NORMAL
@@ -586,8 +586,8 @@ export const MainModule = {
       state.userData = { ...state.userData, migrationVersion }
       LocalStorageUtil.storeUserData(state.userData)
     },
-    setRightPanePercentage(state, rightPanePercentage) {
-      state.userData = { ...state.userData, rightPanePercentage }
+    setRightPanePercentageV2(state, rightPanePercentageV2) {
+      state.userData = { ...state.userData, rightPanePercentageV2 }
       LocalStorageUtil.storeUserData(state.userData)
     },
     setActiveTab(state, activeTabIndex) {

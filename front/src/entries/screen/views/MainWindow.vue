@@ -342,7 +342,7 @@ export default {
       'showFilter',
       'showBanner',
       'getFishPinned',
-      'rightPanePercentage',
+      'rightPanePercentageV2',
       'getItemName',
       'getItemIconClass',
       'getZoneName',

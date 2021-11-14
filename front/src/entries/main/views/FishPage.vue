@@ -7,6 +7,7 @@
         'list-part--desktop': isElectron,
         'show-divider': showRightPane,
       }"
+      :style="`flex: 1 1 ${mainPaneFlexPercentage}%`"
       v-show="!lazyRightPaneFullScreen || !showRightPane"
     >
       <fish-filter-list
@@ -86,13 +87,10 @@ export default {
     forceShowComponents: undefined,
   }),
   computed: {
-    rightPaneSize: {
-      get() {
-        return this.rightPanePercentage
-      },
-      set(percentage) {
-        this.setRightPanePercentage(percentage)
-      },
+    mainPaneFlexPercentage() {
+      return Math.floor(
+        (100 * (1 - this.rightPanePercentageV2)) / this.rightPanePercentageV2
+      )
     },
     showRightPane: {
       get() {
@@ -115,7 +113,7 @@ export default {
       'showFilter',
       'showBanner',
       'getFishPinned',
-      'rightPanePercentage',
+      'rightPanePercentageV2',
       'getItemName',
       'getItemIconClass',
       'getZoneName',
@@ -164,8 +162,9 @@ export default {
         this.showRightPane = true
       }
     },
-    resizeInternal(resizePaneInfos) {
-      this.rightPaneSize = resizePaneInfos[1].size
+    resizeInternal() {
+      // resizePaneInfos
+      // this.rightPaneSize = resizePaneInfos[1].size
       this.$refs.fishDetail?.resize()
     },
     onResize() {
@@ -186,7 +185,7 @@ export default {
       'setFilters',
       'setShowSearchDialog',
       'setNotShowBanner',
-      'setRightPanePercentage',
+      'setRightPanePercentageV2',
       'clearToBeNotified',
       'setShowFishPageRightPane',
       'showSnackbar',
@@ -201,7 +200,6 @@ export default {
 
 .list-part
   overflow-y: auto
-  flex: 1 1 500%
   &--web
     height: calc(100vh - #{$toolbar-height + $footer-height})
   &--desktop
@@ -212,5 +210,5 @@ export default {
 
 .detail-part
   overflow-y: auto
-  flex: 0 1 200%
+  flex: 0 1 100%
 </style>

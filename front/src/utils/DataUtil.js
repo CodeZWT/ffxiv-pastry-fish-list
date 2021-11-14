@@ -1128,6 +1128,7 @@ export default {
     opacity: 1,
     zoomFactor: 1,
     rightPanePercentage: 30,
+    rightPanePercentageV2: 0.3,
     notification: {
       volume: 0.5,
       isSystemNotificationEnabled: true,
