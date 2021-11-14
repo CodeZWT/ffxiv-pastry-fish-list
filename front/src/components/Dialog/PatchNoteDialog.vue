@@ -21,17 +21,22 @@
       <v-divider />
       <v-card-text style="max-height: 600px">
         <!-- patch update wait note -->
-        <v-alert outlined type="warning" border="left">
-          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。
-        </v-alert>
+        <!--        <v-alert outlined type="warning" border="left">-->
+        <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
+        <!--        </v-alert>-->
         <!--                <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
             <div class="text-h6">Version 1.0.3</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/11/07 19:02</div>
+            <div class="text-subtitle-1">更新时间: 2021/11/14 17:02</div>
           </div>
         </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>钓鱼笔记海钓钓场支持概率统计图</li>
+          <li>修复图标显示过大的问题</li>
+        </ul>
         <div class="text-h6 my-1">渔捞</div>
         <ul>
           <li>将浅色模式下的读秒设为白色</li>
