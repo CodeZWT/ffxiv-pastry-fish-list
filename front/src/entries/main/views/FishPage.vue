@@ -127,6 +127,11 @@ export default {
       'listSetting',
     ]),
   },
+  watch: {
+    mainPaneFlexPercentage() {
+      this.showRightPane = false
+    },
+  },
   created() {
     if (NotificationUtil.isNotificationSupported()) {
       NotificationUtil.requestNotificationPermission().then(status => {
