@@ -42,6 +42,7 @@
         <ul>
           <li>恢复主界面缩放功能</li>
           <li>修复海钓页面小界面下的排版问题</li>
+          <li>修复搜索快捷键</li>
         </ul>
         <div class="text-h6 my-1">渔捞</div>
         <ul>
