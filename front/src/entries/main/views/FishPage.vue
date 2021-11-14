@@ -178,7 +178,7 @@ export default {
       // this.throttledResizeFn(resizePaneInfos)
     },
     onWindowResize() {
-      this.lazyRightPaneFullScreen = window.innerWidth < 1264
+      this.lazyRightPaneFullScreen = window.innerWidth < 1080
       setTimeout(() => {
         this.$refs.fishDetail?.resize()
       }, 500)

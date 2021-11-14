@@ -342,7 +342,9 @@ export default {
       'listSetting',
     ]),
     showBackToTopBtn() {
-      return this.offsetTop > 0 && (this.isElectron || !this.isMobile)
+      // TODO fix btn
+      return false
+      // return this.offsetTop > 0 && (this.isElectron || !this.isMobile)
     },
     rightPercentage() {
       return this.showRightPane ? 25 : 3

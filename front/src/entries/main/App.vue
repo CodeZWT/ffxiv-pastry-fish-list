@@ -782,7 +782,7 @@ export default {
   mixins: [AppMixin, MainWindowMixin],
   data() {
     return {
-      rightPaneFullScreen: window.innerWidth < 1264,
+      rightPaneFullScreen: window.innerWidth < 1080,
       showDownloadDialog: false,
       DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
       beianIcon: beianIcon,

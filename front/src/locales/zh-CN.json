@@ -145,6 +145,7 @@
     "dialog": {
       "rightPanePercentageV2": {
         "title": "默认列表页面",
+        "comment": "详细界面在整体界面较小时全屏显示，扩大主界面可在右侧显示详细界面",
         "slider": "右侧详细界面占比"
       },
       "showFilter": {

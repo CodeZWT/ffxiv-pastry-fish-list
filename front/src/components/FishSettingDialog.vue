@@ -213,6 +213,9 @@
                 <div class="text-subtitle-1">
                   {{ $t('setting.dialog.rightPanePercentageV2.title') }}
                 </div>
+                <div class="text-subtitle-2">
+                  {{ $t('setting.dialog.rightPanePercentageV2.comment') }}
+                </div>
                 <v-slider
                   v-model="lazyRightPanePercentage"
                   max="0.9"
