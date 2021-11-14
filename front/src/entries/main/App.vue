@@ -264,7 +264,7 @@
         :fixed="isMobile"
         color="system"
         :expand-on-hover="!isMobile"
-        style="z-index: 2"
+        style="z-index: 10"
       >
         <v-list dense>
           <v-list-item
