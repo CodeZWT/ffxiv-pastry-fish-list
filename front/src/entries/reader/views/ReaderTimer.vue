@@ -519,7 +519,7 @@ export default {
           this.isRoseMode && this.isStrictMode && isLogin,
           data
         )
-        console.log('store in reader', data)
+        // console.log('store in reader', data)
         db.records.put(data).catch(error => console.error('storeError', error))
       })
       ?.on('fishCaught', (event, data) => {
