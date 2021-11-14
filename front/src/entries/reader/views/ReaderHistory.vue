@@ -778,9 +778,3 @@ export default {
   },
 }
 </script>
-
-<style lang="sass">
-.v-system-bar .v-icon
-  font-size: 1rem
-  margin-right: 4px
-</style>
