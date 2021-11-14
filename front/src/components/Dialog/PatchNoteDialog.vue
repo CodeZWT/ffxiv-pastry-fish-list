@@ -29,13 +29,19 @@
           <div class="d-flex align-center">
             <div class="text-h6">Version 1.0.3</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/11/14 17:02</div>
+            <div class="text-subtitle-1">更新时间: 2021/11/14 20:00</div>
           </div>
         </v-alert>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>钓鱼笔记海钓钓场支持概率统计图</li>
           <li>修复图标显示过大的问题</li>
+          <li>在主界面设置中增加原先列表界面右侧详细界面的比例设置功能</li>
+        </ul>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
+        <ul>
+          <li>恢复主界面缩放功能</li>
+          <li>修复海钓页面小界面下的排版问题</li>
         </ul>
         <div class="text-h6 my-1">渔捞</div>
         <ul>
