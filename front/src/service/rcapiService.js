@@ -319,6 +319,18 @@ export default {
       })
   },
   opcodeFileVersion: undefined,
+
+  async getSponsors() {
+    const response = await fetch(`${host}/afdian/sponsors`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'GET',
+    })
+    if (response.ok) {
+      return await response.json()
+    }
+  },
 }
 
 const toParamStr = (name, value) => {

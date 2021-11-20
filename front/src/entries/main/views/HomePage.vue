@@ -95,12 +95,12 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row no-gutters>
           <v-col cols="12" class="pa-0">
             <v-subheader>支持鱼糕</v-subheader>
           </v-col>
           <v-col cols="12" @click="openWeibo('7546879530')" style="cursor: pointer">
-            <v-alert border="left" colored-border color="secondary" elevation="2">
+            <v-alert border="left" colored-border color="secondary" class="mb-2">
               <div>关注微博 @红豆年糕找不到 帮助鱼糕进行爱发电认证</div>
               <div class="text-subtitle-2 grey--text">
                 创作者需认证后即可发布动态、显示主页图片
@@ -109,26 +109,50 @@
           </v-col>
           <v-col cols="12" class="d-flex">
             <v-row no-gutters>
-              <v-col cols="11">
+              <v-col cols="10">
                 <v-btn block large @click="openAfdian" color="#946ce6">
-                  <span class="white--text text-subtitle-1">
-                    前往爱发电为鱼糕发电
-                  </span>
+                  <span class="white--text text-subtitle-1"> 前往爱发电为鱼糕发电 </span>
                 </v-btn>
               </v-col>
-              <v-col cols="1">
-                <rc-tooltip top>
+              <v-col cols="2" style="display: flex; justify-content: end">
+                <rc-tooltip bottom>
                   <v-btn large icon @click="showAfdianQRCode = true">
-                    <v-icon large>
-                      mdi-qrcode
-                    </v-icon>
+                    <v-icon large> mdi-qrcode </v-icon>
                   </v-btn>
-                  <template v-slot:msg>
-                    点击显示爱发电二维码
-                  </template>
+                  <template v-slot:msg> 点击显示爱发电二维码 </template>
                 </rc-tooltip>
               </v-col>
             </v-row>
+          </v-col>
+          <v-col cols="12" class="mt-2">
+            <v-card outlined>
+              <v-card-title>
+                <rc-tooltip>
+                  感谢名单
+                  <template v-slot:msg>
+                    <div>
+                      非实时更新，约每5分钟刷新数据
+                    </div>
+                    <div class="text-decoration-line-through">
+                      是的，2个年糕是我自己调试的时候给自己发了电
+                    </div>
+                  </template>
+                </rc-tooltip>
+              </v-card-title>
+              <v-card-text style="overflow-y: auto; max-height: 300px">
+                <v-chip
+                  v-for="sponsor in sponsorsByTotalAmountDesc"
+                  :key="sponsor.userId"
+                  pill
+                  class="ma-1"
+                >
+                  <v-avatar left>
+                    <v-img :src="sponsor.avatar"></v-img>
+                  </v-avatar>
+                  {{ sponsor.username }}
+                </v-chip>
+              </v-card-text>
+            </v-card>
           </v-col>
         </v-row>
       </v-col>
@@ -145,6 +169,8 @@ import { version } from '../../../../package.json'
 import HomePageCard from '@/components/HomePageCard'
 import ImgUtil from '@/utils/ImgUtil'
 import RcTooltip from '@/components/basic/RcTooltip'
+import orderBy from 'lodash/orderBy'
+import rcapiService from '@/service/rcapiService'
 
 export default {
   name: 'HomePage',
@@ -152,9 +178,13 @@ export default {
   data() {
     return {
       showAfdianQRCode: false,
+      sponsors: [],
     }
   },
   computed: {
+    sponsorsByTotalAmountDesc() {
+      return orderBy(this.sponsors, ['allSumAmount', 'lastPayTime'], ['desc', 'desc'])
+    },
     largeLogo() {
       return ImgUtil.getImgUrl('pastry-fish-home-logo.webp')
     },
@@ -164,6 +194,9 @@ export default {
     afdianImage() {
       return ImgUtil.getImgUrl('afdian.webp')
     },
+  },
+  async mounted() {
+    this.sponsors = await rcapiService.getSponsors()
   },
   methods: {
     ...mapMutations('dialog', ['setShowDialog']),
