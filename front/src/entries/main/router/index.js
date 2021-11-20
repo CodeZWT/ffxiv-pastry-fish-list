@@ -7,11 +7,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'ListPage',
+    name: 'HomePage',
     component: () =>
       import(
-        /* webpackChunkName: "fish" */
-        '../views/FishPage'
+        /* webpackChunkName: "home" */
+        '../views/HomePage'
       ),
     meta: {
       title: '鱼糕 - 钓鱼时钟',
@@ -19,6 +19,24 @@ const routes = [
         {
           property: 'og:title',
           content: '鱼糕 - 钓鱼时钟',
+        },
+      ],
+    },
+  },
+  {
+    path: '/list',
+    name: 'ListPage',
+    component: () =>
+      import(
+        /* webpackChunkName: "fish" */
+        '../views/FishPage'
+      ),
+    meta: {
+      title: '鱼糕 - 时钟列表',
+      metaTags: [
+        {
+          property: 'og:title',
+          content: '鱼糕 - 时钟列表',
         },
         // {
         //   name: 'description',

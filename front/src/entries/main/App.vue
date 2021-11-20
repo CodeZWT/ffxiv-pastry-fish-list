@@ -267,6 +267,14 @@
         style="z-index: 10"
       >
         <v-list dense>
+          <v-list-item @click="toPage('HomePage')" link>
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.home') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
           <v-list-item
             v-for="(notification, index) in listFishCnt"
             :key="index"
