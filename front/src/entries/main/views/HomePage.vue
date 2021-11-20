@@ -111,7 +111,7 @@
 
           <v-col cols="12" @click="openWeibo('7546879530')" style="cursor: pointer">
             <v-alert border="left" colored-border color="secondary" class="mb-2">
-              <div>关注微博 @红豆年糕找不到 帮助鱼糕进行爱发电认证</div>
+              <div>关注作者微博 @红豆年糕找不到 帮助鱼糕进行爱发电认证</div>
               <div class="text-subtitle-2 grey--text">
                 爱发电创作者需认证后即可发布动态、显示主页图片
               </div>
