@@ -153,15 +153,19 @@
               </v-card-title>
               <v-card-text style="overflow-y: auto; max-height: 300px">
                 <v-chip
-                  v-for="sponsor in sponsorsByTotalAmountDesc"
+                  v-for="sponsor in coloredSponsors"
                   :key="sponsor.userId"
                   pill
                   class="ma-1"
+                  :color="sponsor.planColor"
+                  outlined
                 >
                   <v-avatar left>
                     <v-img :src="sponsor.avatar"></v-img>
                   </v-avatar>
-                  {{ sponsor.username }}
+                  <span :class="sponsor.planTextColor">
+                    {{ sponsor.username }}
+                  </span>
                 </v-chip>
               </v-card-text>
             </v-card>
@@ -187,6 +191,11 @@ import rcapiService from '@/service/rcapiService'
 export default {
   name: 'HomePage',
   components: { RcTooltip, HomePageCard },
+  inject: {
+    theme: {
+      default: { isDark: false },
+    },
+  },
   data() {
     return {
       showAfdianQRCode: false,
@@ -194,6 +203,31 @@ export default {
     }
   },
   computed: {
+    coloredSponsors() {
+      return this.sponsorsByTotalAmountDesc.map(sponsor => {
+        const planIndex =
+          ['捕鱼专家', '鱼太公', '烟波钓徒', '钓场之王'].indexOf(
+            sponsor.currentPlanName
+          ) + 1
+        return {
+          planColor: [
+            undefined,
+            'orange lighten-4',
+            'orange lighten-2',
+            'deep-orange lighten-1',
+            'deep-orange accent-3',
+          ][planIndex],
+          planTextColor: [
+            undefined,
+            this.theme.isDark ? undefined : 'black--text',
+            undefined,
+            undefined,
+            undefined,
+          ][planIndex],
+          ...sponsor,
+        }
+      })
+    },
     sponsorsByTotalAmountDesc() {
       return orderBy(this.sponsors, ['allSumAmount', 'lastPayTime'], ['desc', 'desc'])
     },
