@@ -14,7 +14,7 @@
               </v-card-title>
               <v-card-text class="text-subtitle-1">
                 鱼糕致力于为各位光之渔夫提供一个便捷的数据查询场所。<br />
-                目前已经包括了钓鱼时钟，钓鱼&叉鱼图鉴，出海垂钓，云冠群岛，水族馆等功能。<br />
+                目前已经包括了钓鱼时钟，钓鱼&叉鱼笔记，出海垂钓，云冠群岛，水族馆等功能。<br />
               </v-card-text>
             </v-card>
           </v-col>
@@ -23,25 +23,33 @@
           </v-col>
           <v-col cols="12" md="6">
             <home-page-card @click="toPageSubList">
-              <template v-slot:title>钓鱼时钟</template>
+              <template v-slot:title>
+                <v-icon class="mr-1">mdi-timer</v-icon>钓鱼时钟
+              </template>
               <template v-slot:description>「烟波钓徒」「钓场之王」 我来啦！</template>
             </home-page-card>
           </v-col>
           <v-col cols="12" md="6">
             <home-page-card @click="toPage('WikiPage')">
-              <template v-slot:title>钓鱼图鉴</template>
+              <template v-slot:title>
+                <v-icon class="mr-1">mdi-notebook</v-icon>{{ $t('top.fishWiki') }}
+              </template>
               <template v-slot:description>目标全图鉴！附赠发光鱼竿哦~</template>
             </home-page-card>
           </v-col>
           <v-col cols="12" md="6">
             <home-page-card @click="toPage('OceanFishingPage54')">
-              <template v-slot:title>{{ $t('top.oceanFishing') }}</template>
+              <template v-slot:title>
+                <v-icon class="mr-1">mdi-ferry</v-icon>{{ $t('top.oceanFishing') }}
+              </template>
               <template v-slot:description>「海王」们上船钓蓝鱼了！</template>
             </home-page-card>
           </v-col>
           <v-col cols="12" md="6">
             <home-page-card @click="toPage('AquariumPage')">
-              <template v-slot:title>{{ $t('top.aquarium') }}</template>
+              <template v-slot:title>
+                <v-icon class="mr-1">mdi-fishbowl</v-icon>{{ $t('top.aquarium') }}
+              </template>
               <template v-slot:description>不在家里养点金鱼吗？</template>
             </home-page-card>
           </v-col>
@@ -132,7 +140,7 @@
                   感谢名单
                   <template v-slot:msg>
                     <div>
-                      非实时更新，约每5分钟刷新数据
+                      非实时更新，约每5分钟刷新数据。显示的为爱发电昵称及头像。
                     </div>
                     <div>
                       更详细的感谢名单正在筹划中...
