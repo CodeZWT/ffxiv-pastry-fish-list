@@ -8,13 +8,9 @@
             <v-card flat color="background">
               <v-card-title class="text-h4">
                 欢迎来到鱼糕！
-                <v-btn
-                  v-text="version"
-                  rounded
-                  color="primary"
-                  depressed
-                  @click="showPatchNote"
-                ></v-btn>
+                <v-btn rounded color="primary" depressed @click="showPatchNote">
+                  <span class="subtitle-1">{{ version }}</span>
+                </v-btn>
               </v-card-title>
               <v-card-text class="text-subtitle-1">
                 鱼糕致力于为各位光之渔夫提供一个便捷的数据查询场所。<br />
@@ -108,20 +104,19 @@
             </v-alert>
           </v-col>
           <v-col cols="12" class="d-flex">
-            <v-row no-gutters>
-              <v-col cols="10">
+            <v-row no-gutters class="d-flex">
+              <div style="width: calc(100% - 50px)">
                 <v-btn block large @click="openAfdian" color="#946ce6">
                   <span class="white--text text-subtitle-1"> 前往爱发电为鱼糕发电 </span>
                 </v-btn>
-              </v-col>
-              <v-col cols="2" style="display: flex; justify-content: end">
-                <rc-tooltip bottom>
-                  <v-btn large icon @click="showAfdianQRCode = true">
-                    <v-icon large> mdi-qrcode </v-icon>
-                  </v-btn>
-                  <template v-slot:msg> 点击显示爱发电二维码 </template>
-                </rc-tooltip>
-              </v-col>
+              </div>
+              <v-spacer />
+              <rc-tooltip bottom>
+                <v-btn large icon @click="showAfdianQRCode = true">
+                  <v-icon large> mdi-qrcode </v-icon>
+                </v-btn>
+                <template v-slot:msg> 点击显示爱发电二维码 </template>
+              </rc-tooltip>
             </v-row>
           </v-col>
           <v-col cols="12" class="mt-2">
