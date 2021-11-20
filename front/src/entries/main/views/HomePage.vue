@@ -169,7 +169,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import { version } from '../../../../package.json'
+import { version } from '@/../package.json'
 import HomePageCard from '@/components/HomePageCard'
 import ImgUtil from '@/utils/ImgUtil'
 import RcTooltip from '@/components/basic/RcTooltip'
