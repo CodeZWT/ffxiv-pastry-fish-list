@@ -9,11 +9,10 @@ module.exports = {
     'plugin:vue/essential',
     'eslint:recommended',
     '@vue/prettier',
-    // '@vue/typescript',
   ],
 
   parserOptions: {
-    parser: '@typescript-eslint/parser',
+    parser: 'babel-eslint',
     sourceType: 'module',
   },
   plugins: ['sort-imports-es6-autofix'],
