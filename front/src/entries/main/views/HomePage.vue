@@ -95,19 +95,25 @@
           <v-col cols="12" class="pa-0">
             <v-subheader>支持鱼糕</v-subheader>
           </v-col>
+          <v-col>
+            <v-alert border="left" colored-border color="secondary" class="mb-2">
+              <div>如果您喜欢鱼糕带来的功能，可以考虑以下方式支持鱼糕！🎉</div>
+            </v-alert>
+          </v-col>
+
           <v-col cols="12" @click="openWeibo('7546879530')" style="cursor: pointer">
             <v-alert border="left" colored-border color="secondary" class="mb-2">
               <div>关注微博 @红豆年糕找不到 帮助鱼糕进行爱发电认证</div>
               <div class="text-subtitle-2 grey--text">
-                创作者需认证后即可发布动态、显示主页图片
+                爱发电创作者需认证后即可发布动态、显示主页图片
               </div>
             </v-alert>
           </v-col>
           <v-col cols="12" class="d-flex">
-            <v-row no-gutters class="d-flex">
+            <v-row no-gutters class="d-flex align-center">
               <div style="width: calc(100% - 50px)">
-                <v-btn block large @click="openAfdian" color="#946ce6">
-                  <span class="white--text text-subtitle-1"> 前往爱发电为鱼糕发电 </span>
+                <v-btn block x-large @click="openAfdian" color="#946ce6">
+                  <span class="white--text text-h6"> 前往爱发电为鱼糕发电 </span>
                 </v-btn>
               </div>
               <v-spacer />
@@ -127,6 +133,9 @@
                   <template v-slot:msg>
                     <div>
                       非实时更新，约每5分钟刷新数据
+                    </div>
+                    <div>
+                      更详细的感谢名单正在筹划中...
                     </div>
                     <div class="text-decoration-line-through">
                       是的，2个年糕是我自己调试的时候给自己发了电
