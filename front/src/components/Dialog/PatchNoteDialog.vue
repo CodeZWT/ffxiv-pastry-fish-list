@@ -41,10 +41,18 @@
             <ul>
               <li>
                 关注作者微博
-                <a href="https://weibo.com/u/7546879530">@红豆年糕找不到</a>
+                <a href="https://weibo.com/u/7546879530" target="_blank">
+                  @红豆年糕找不到
+                </a>
                 帮助鱼糕进行爱发电认证
               </li>
-              <li>在<a href="https://afdian.net/@ricecake404">爱发电</a>为鱼糕充电！</li>
+              <li>
+                在
+                <a href="https://afdian.net/@ricecake404" target="_blank">
+                  爱发电
+                </a>
+                为鱼糕充电！
+              </li>
             </ul>
           </li>
           <li>
