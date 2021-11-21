@@ -136,20 +136,27 @@
           <v-col cols="12" class="mt-2">
             <v-card outlined>
               <v-card-title>
-                <rc-tooltip>
-                  感谢名单
-                  <template v-slot:msg>
-                    <div>
-                      非实时更新，约每5分钟刷新数据。显示的为爱发电昵称及头像。
-                    </div>
-                    <div>
-                      更详细的感谢名单正在筹划中...
-                    </div>
-                    <div class="text-decoration-line-through">
-                      是的，2个年糕是我自己调试的时候给自己发了电
-                    </div>
-                  </template>
-                </rc-tooltip>
+                <div class="d-flex align-center" style="width: 100%">
+                  <span>感谢名单</span>
+                  <v-spacer />
+                  <rc-tooltip tag="span" class="fill-height">
+                    <v-icon>mdi-help-circle-outline</v-icon>
+                    <template v-slot:msg>
+                      <div>
+                        非实时更新，约每5分钟刷新数据。
+                      </div>
+                      <div>
+                        以总发电量倒序排序。当月赞助者会根据赞助方案点亮颜色，电量越高颜色越深。
+                      </div>
+                      <div>
+                        更详细的感谢名单正在筹划中...
+                      </div>
+                      <div class="text-decoration-line-through">
+                        是的，2个年糕是我自己调试的时候给自己发了电
+                      </div>
+                    </template>
+                  </rc-tooltip>
+                </div>
               </v-card-title>
               <v-card-text style="overflow-y: auto; max-height: 300px">
                 <v-chip
@@ -194,6 +201,12 @@ export default {
   inject: {
     theme: {
       default: { isDark: false },
+    },
+  },
+  props: {
+    now: {
+      type: Number,
+      default: 0,
     },
   },
   data() {
