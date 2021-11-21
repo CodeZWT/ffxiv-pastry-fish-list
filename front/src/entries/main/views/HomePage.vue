@@ -2,10 +2,10 @@
   <v-container
     fluid
     :class="{
-      'px-0': true,
       'detail-wrapper': true,
       'detail-wrapper--web': !isElectron,
-      'detail-wrapper--electron': isElectron,
+      'detail-wrapper--electron': isElectron && !original,
+      'detail-wrapper--electron-original': isElectron && original,
     }"
   >
     <v-row>
@@ -197,6 +197,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import { version } from '@/../package.json'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import HomePageCard from '@/components/HomePageCard'
 import ImgUtil from '@/utils/ImgUtil'
 import RcTooltip from '@/components/basic/RcTooltip'
@@ -216,11 +217,16 @@ export default {
       type: Number,
       default: 0,
     },
+    original: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
       showAfdianQRCode: false,
       sponsors: [],
+      isElectron: DevelopmentModeUtil.isElectron(),
     }
   },
   computed: {
@@ -298,10 +304,10 @@ export default {
   width: 100%
   overflow-scrolling: auto
   overflow-x: hidden
+  overflow-y: auto
 
   &--web
     height: 100%
-    overflow-y: scroll
     max-height: calc(100vh - #{ $wrapper-web })
   &--electron
     max-height: calc(100% - #{ $toolbar-height })
