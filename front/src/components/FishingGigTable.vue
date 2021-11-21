@@ -1,5 +1,5 @@
 <template>
-  <v-simple-table dense class="rounded-lg pt-2 elevation-4 inner">
+  <v-simple-table dense class="rounded-lg pt-2 elevation-2 inner">
     <template v-slot:default>
       <thead>
         <tr>

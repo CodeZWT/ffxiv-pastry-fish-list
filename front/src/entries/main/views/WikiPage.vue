@@ -267,6 +267,7 @@
         <wiki-spot-detail
           :mode="mode"
           :is-mobile="isMobile"
+          :is-electron="isElectron"
           :current-spot-id="currentSpotId"
           :current-map-info="currentMapInfo"
           :lazy-transformed-fish-dict="lazyTransformedFishDict"
@@ -473,12 +474,6 @@ export default {
     syncStatus: 'not-start',
   }),
   computed: {
-    currentSpotPredators() {
-      return this.currentFishList.find(fish => fish.predators.length > 0)?.predators ?? []
-    },
-    currentSpotPredatorIds() {
-      return this.currentSpotPredators.map(it => it.id)
-    },
     currentRegionTerritorySpots() {
       return this.mode === 'normal'
         ? this.regionTerritorySpots

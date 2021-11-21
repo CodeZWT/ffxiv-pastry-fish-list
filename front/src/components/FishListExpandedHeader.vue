@@ -100,7 +100,7 @@
         </div>
         <v-spacer />
         <v-menu
-          v-if="fishingSpotToShow"
+          v-if="fishingSpotToShow && !isMobile"
           :disabled="fishingSpotsInMenu.length === 0"
           open-on-hover
           open-delay="300"
@@ -117,6 +117,7 @@
             >
               <v-icon left>mdi-notebook</v-icon>
               {{ fishingSpotToShow.fishingSpotName }}
+              <v-icon right v-if="fishingSpotsInMenu.length > 0">mdi-menu-down</v-icon>
             </v-btn>
           </template>
 
@@ -132,9 +133,7 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-spacer />
-
-        <v-btn v-if="showClose" @click="$emit('close')" text icon>
+        <v-btn v-if="showClose" @click="$emit('close')" plain icon>
           <v-icon dark>mdi-close</v-icon>
         </v-btn>
       </div>

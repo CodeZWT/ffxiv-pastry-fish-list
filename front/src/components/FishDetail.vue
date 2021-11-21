@@ -7,7 +7,9 @@
         :fish-time-part="fishTimePart"
         :show-close="showClose"
         @close="$emit('close')"
-        @show-spot="$emit('show-spot', $event)"
+        @show-spot="
+          $emit('show-spot', { spotId: $event, mode: isSpear ? 'spear' : 'normal' })
+        "
       />
       <v-divider />
       <div
@@ -98,9 +100,11 @@ export default {
     predators() {
       return this.fish?.parts?.predators ?? []
     },
+    isSpear() {
+      return this.fish.gig != null
+    },
     fishingSpots() {
-      const isSpear = this.fish.gig != null
-      return isSpear
+      return this.isSpear
         ? this.fish.locations.map(location => {
             const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[location]
             return {

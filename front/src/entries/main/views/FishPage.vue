@@ -9,6 +9,7 @@
       }"
       :style="`flex: 1 1 ${mainPaneFlexPercentage}%`"
       v-show="!isMobile || !showRightPane"
+      ref="fishPageScrollTarget"
     >
       <fish-filter-list
         v-if="spotId === -1"
@@ -29,8 +30,9 @@
         v-else
         show-close
         :current-spot-id="spotId"
-        mode="normal"
+        :mode="wikiSpotMode"
         :is-mobile="isMobile"
+        :is-electron="isElectron"
         :lazy-transformed-fish-dict="lazyTransformedFishDict"
         :fish-list-time-part="fishListTimePart"
         :fish-list-weather-change-part="fishListWeatherChangePart"
@@ -102,6 +104,7 @@ export default {
     loading: true,
     forceShowComponents: undefined,
     spotId: -1,
+    wikiSpotMode: 'normal',
   }),
   computed: {
     mainPaneFlexPercentage() {
@@ -177,8 +180,13 @@ export default {
     this.onWindowResize()
   },
   methods: {
-    showSpot(spotId) {
+    showSpot({ spotId, mode }) {
+      console.log('show', spotId, mode)
       this.spotId = spotId
+      this.wikiSpotMode = mode
+      this.$nextTick(() => {
+        this.$refs.fishPageScrollTarget.scroll({ top: 0, left: 0 })
+      })
     },
     onFishSelected({ fishId, components, firstSpotId }) {
       this.$emit('fish-selected', { fishId, firstSpotId })
