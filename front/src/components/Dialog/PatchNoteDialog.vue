@@ -30,7 +30,7 @@
           <div class="d-flex align-center">
             <div class="text-h6">Version 1.0.4</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/11/22 20:00</div>
+            <div class="text-subtitle-1">更新时间: 2021/11/21 21:00</div>
           </div>
         </v-alert>
         <div class="text-h6 my-1">鱼糕</div>
