@@ -99,6 +99,41 @@
           </div>
         </div>
         <v-spacer />
+        <v-menu
+          v-if="fishingSpotToShow"
+          :value="fishingSpotsInMenu.length > 0"
+          open-on-hover
+          open-delay="300"
+          close-deplay="300"
+          bottom
+          offset-y
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              v-bind="attrs"
+              v-on="on"
+              color="info"
+              @click="showSpot(fishingSpotToShow)"
+            >
+              <v-icon left>mdi-notebook</v-icon>
+              {{ fishingSpotToShow.fishingSpotName }}
+            </v-btn>
+          </template>
+
+          <v-list dense>
+            <v-list-item
+              v-for="(spot, index) in fishingSpotsInMenu"
+              :key="index"
+              @click="showSpot(spot)"
+            >
+              <v-list-item-content>
+                {{ spot.fishingSpotName }}
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-spacer />
+
         <v-btn v-if="showClose" @click="$emit('close')" text icon>
           <v-icon dark>mdi-close</v-icon>
         </v-btn>
@@ -126,6 +161,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    fishingSpots: {
+      type: Array,
+      default: () => [],
+    },
     fishTimePart: {
       type: Object,
       default: () => ({}),
@@ -143,6 +182,12 @@ export default {
     weatherChangeTrigger: 0,
   }),
   computed: {
+    fishingSpotToShow() {
+      return this.fishingSpots?.[0]
+    },
+    fishingSpotsInMenu() {
+      return this.fishingSpots?.length > 1 ? this.fishingSpots.slice(1) : []
+    },
     fish() {
       const fish = this.value
       const folklore = fish.folklore && this.folklore[fish.folklore]
@@ -185,6 +230,9 @@ export default {
     ]),
   },
   methods: {
+    showSpot(spot) {
+      console.log('show', spot)
+    },
     toItemTitle: DataUtil.toItemTitle,
     setCompleted(completed) {
       this.setFishCompleted({ fishId: this.fish.id, completed })

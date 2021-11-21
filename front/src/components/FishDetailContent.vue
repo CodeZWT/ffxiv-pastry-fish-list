@@ -26,7 +26,6 @@ import DataUtil from '@/utils/DataUtil'
 
 import FIX from 'Data/fix'
 import _ from 'lodash'
-import placeNames from 'Data/placeNames'
 
 export default {
   name: 'FishDetailContent',
@@ -51,6 +50,10 @@ export default {
     value: {
       type: Object,
       default: () => ({}),
+    },
+    fishingSpots: {
+      type: Array,
+      default: () => [],
     },
     fishTimePart: {
       type: Object,
@@ -125,18 +128,19 @@ export default {
         snaggingIcon: DataUtil.iconIdToClass(DataUtil.ICON_SNAGGING),
         zone: this.getZoneName(fish.location),
         hasFishingSpot: fish.locations.length > 0,
-        fishingSpots: isSpear
-          ? fish.locations.map(location => {
-              const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[location]
-              return {
-                zone: placeNames[gatheringPoint.territoryPlaceNameId],
-                fishingSpot: gatheringPoint,
-                fishingSpotName: DataUtil.getName(gatheringPoint),
-                fishingSpotId: location,
-                fishSpotPositionText: DataUtil.toPositionText(gatheringPoint),
-              }
-            })
-          : this.getFishingSpots(fish.locations),
+        fishingSpots: this.fishingSpots,
+        // fishingSpots: isSpear
+        //   ? fish.locations.map(location => {
+        //       const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[location]
+        //       return {
+        //         zone: placeNames[gatheringPoint.territoryPlaceNameId],
+        //         fishingSpot: gatheringPoint,
+        //         fishingSpotName: DataUtil.getName(gatheringPoint),
+        //         fishingSpotId: location,
+        //         fishSpotPositionText: DataUtil.toPositionText(gatheringPoint),
+        //       }
+        //     })
+        //   : this.getFishingSpots(fish.locations),
         anglerFishId: fish.anglerFishId,
         weatherSet: fish.weatherSet,
         weatherSetDetail: this.getWeather(fish.weatherSet),

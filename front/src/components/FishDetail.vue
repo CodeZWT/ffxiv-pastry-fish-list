@@ -3,6 +3,7 @@
     <template v-if="fish">
       <fish-list-expanded-header
         :value="fish"
+        :fishing-spots="fishingSpots"
         :fish-time-part="fishTimePart"
         :show-close="showClose"
         @close="$emit('close')"
@@ -19,6 +20,7 @@
         <fish-detail-content
           ref="detailContent"
           :value="fish"
+          :fishing-spots="fishingSpots"
           :fish-time-part="fishTimePart"
           :fish-weather-change-part="fishWeatherChangePart"
           :predators="predators"
@@ -40,11 +42,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import FIX from 'Data/fix'
 import FishDetailContent from '@/components/FishDetailContent'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
+import placeNames from 'Data/placeNames'
 
 export default {
   name: 'FishDetail',
@@ -78,6 +82,7 @@ export default {
   },
   computed: {
     ...mapState(['window']),
+    ...mapGetters(['getFishingSpots']),
     original() {
       return this.window === 'main'
     },
@@ -91,6 +96,21 @@ export default {
     },
     predators() {
       return this.fish?.parts?.predators ?? []
+    },
+    fishingSpots() {
+      const isSpear = this.fish.gig != null
+      return isSpear
+        ? this.fish.locations.map(location => {
+            const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[location]
+            return {
+              zone: placeNames[gatheringPoint.territoryPlaceNameId],
+              fishingSpot: gatheringPoint,
+              fishingSpotName: DataUtil.getName(gatheringPoint),
+              fishingSpotId: location,
+              fishSpotPositionText: DataUtil.toPositionText(gatheringPoint),
+            }
+          })
+        : this.getFishingSpots(this.fish.locations)
     },
   },
   methods: {
