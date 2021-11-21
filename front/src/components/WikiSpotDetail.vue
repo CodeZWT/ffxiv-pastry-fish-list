@@ -376,11 +376,11 @@ $wrapper-wiki-menu: $spot-detail-title-height + $divider-height
     &-web
       height: calc(100vh - #{ $wrapper-web + $wrapper-wiki-menu })
     &-electron
-      height: calc(100% - #{ $wrapper-wiki-menu })
+      height: calc(100vh - #{ $wrapper-desktop + $wrapper-wiki-menu })
 
   &--mobile
     &-web
-      height: calc(100vh - #{ $wrapper-wiki-menu })
+      height: calc(100vh - #{ $wrapper-web + $wrapper-wiki-menu })
     &-electron
-      height: calc(100% - #{ $wrapper-wiki-menu })
+      height: calc(100vh - #{ $wrapper-desktop + $wrapper-wiki-menu })
 </style>
