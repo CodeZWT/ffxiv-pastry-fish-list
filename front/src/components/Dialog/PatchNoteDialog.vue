@@ -47,14 +47,10 @@
               <li>在<a href="https://afdian.net/@ricecake404">爱发电</a>为鱼糕充电！</li>
             </ul>
           </li>
-        </ul>
-        <div class="text-h6 my-1">鱼糕桌面版</div>
-        <ul>
-          <li>无</li>
-        </ul>
-        <div class="text-h6 my-1">渔捞</div>
-        <ul>
-          <li>无</li>
+          <li>
+            调整鱼糕进入小尺寸模式的宽度设置，以修复不同页面在同一窗体宽度下显示不同模式的问题。
+          </li>
+          <li>在鱼详情界面增加显示钓场的按钮，以在时钟页面快捷显示钓场页面</li>
         </ul>
         <v-divider />
 
