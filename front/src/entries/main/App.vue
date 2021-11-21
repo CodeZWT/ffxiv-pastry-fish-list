@@ -374,6 +374,14 @@
               <v-list-item-title>{{ $t('top.moreInfo') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item @click="toCompetitionPage" link>
+            <v-list-item-icon>
+              <v-icon>mdi-trophy</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
           <v-divider class="mx-2" />
 
@@ -872,7 +880,6 @@ export default {
       this.setActiveTab(tabIndex)
     },
     toCompetitionPage() {
-      this.setFeatureViewed('Competition-V.0.8.3-2')
       this.toPage('CompetitionPage')
     },
   },
