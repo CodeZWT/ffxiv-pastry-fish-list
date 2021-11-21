@@ -11,6 +11,7 @@
       v-show="!isMobile || !showRightPane"
     >
       <fish-filter-list
+        v-if="spotId === -1"
         :lazyTransformedFishDict="lazyTransformedFishDict"
         :pinnedFishIdList="pinnedFishIdList"
         :fishListTimePart="fishListTimePart"
@@ -24,6 +25,18 @@
         @fish-selected="onFishSelected"
         :original="true"
       />
+      <wiki-spot-detail
+        v-else
+        show-close
+        :current-spot-id="spotId"
+        mode="normal"
+        :is-mobile="isMobile"
+        :lazy-transformed-fish-dict="lazyTransformedFishDict"
+        :fish-list-time-part="fishListTimePart"
+        :fish-list-weather-change-part="fishListWeatherChangePart"
+        @fish-selected="onFishSelected"
+        @close="spotId = -1"
+      />
     </div>
     <div class="detail-part" v-if="showRightPane">
       <fish-detail
@@ -33,6 +46,7 @@
         in-pane
         show-close
         @close="showRightPane = false"
+        @show-spot="showSpot($event)"
       />
     </div>
   </div>
@@ -45,11 +59,13 @@ import FishDetail from '@/components/FishDetail'
 import FishFilterList from '@/components/basic/FishFilterList'
 import NotificationUtil from '@/utils/NotificationUtil'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import WikiSpotDetail from '@/components/WikiSpotDetail'
 import _ from 'lodash'
 
 export default {
   name: 'fish-page',
   components: {
+    WikiSpotDetail,
     FishFilterList,
     FishDetail,
   },
@@ -85,6 +101,7 @@ export default {
     // lazyRightPaneFullScreen: false,
     loading: true,
     forceShowComponents: undefined,
+    spotId: -1,
   }),
   computed: {
     mainPaneFlexPercentage() {
@@ -160,6 +177,9 @@ export default {
     this.onWindowResize()
   },
   methods: {
+    showSpot(spotId) {
+      this.spotId = spotId
+    },
     onFishSelected({ fishId, components, firstSpotId }) {
       this.$emit('fish-selected', { fishId, firstSpotId })
       this.forceShowComponents = components

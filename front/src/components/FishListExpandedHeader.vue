@@ -101,7 +101,7 @@
         <v-spacer />
         <v-menu
           v-if="fishingSpotToShow"
-          :value="fishingSpotsInMenu.length > 0"
+          :disabled="fishingSpotsInMenu.length === 0"
           open-on-hover
           open-delay="300"
           close-deplay="300"
@@ -231,7 +231,7 @@ export default {
   },
   methods: {
     showSpot(spot) {
-      console.log('show', spot)
+      this.$emit('show-spot', spot.fishingSpotId)
     },
     toItemTitle: DataUtil.toItemTitle,
     setCompleted(completed) {

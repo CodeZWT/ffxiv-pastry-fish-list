@@ -1,7 +1,10 @@
 <template>
   <v-row v-if="currentSpotId" no-gutters>
-    <v-col cols="12" class="my-1 d-flex justify-center">
-      <h1>{{ currentMapInfo.name }}</h1>
+    <v-col cols="12" class="my-1 d-flex">
+      <h2 style="flex-grow: 1; text-align: center">{{ currentMapInfo.name }}</h2>
+      <v-btn v-if="showClose" @click="$emit('close')" icon>
+        <v-icon dark>mdi-close</v-icon>
+      </v-btn>
     </v-col>
     <template v-if="mode === 'normal'">
       <v-col cols="12" class="my-1">
@@ -201,6 +204,9 @@ export default {
     },
     fishListTimePart: {
       type: Object,
+    },
+    showClose: {
+      type: Boolean,
     },
   },
   data() {

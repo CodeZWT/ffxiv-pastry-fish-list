@@ -7,6 +7,7 @@
         :fish-time-part="fishTimePart"
         :show-close="showClose"
         @close="$emit('close')"
+        @show-spot="$emit('show-spot', $event)"
       />
       <v-divider />
       <div
