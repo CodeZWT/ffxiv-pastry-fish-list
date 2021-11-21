@@ -177,7 +177,6 @@ export default {
   methods: {
     onWindowResize() {
       this.mapWidth = this.$refs.simpleMap?.containerWidth ?? 512
-      console.log(this.$refs.simpleMap?.containerWidth)
     },
     listLinkClicked(inner) {
       this.showSpotMenu = false

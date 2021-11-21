@@ -181,7 +181,6 @@ export default {
   },
   methods: {
     showSpot({ spotId, mode }) {
-      console.log('show', spotId, mode)
       this.spotId = spotId
       this.wikiSpotMode = mode
       this.$nextTick(() => {
