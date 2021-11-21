@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-flex flex-column align-center">
     <v-expansion-panels hover flat tile v-model="lazyExpansionValue">
       <v-expansion-panel class="systemSecondary">
         <v-expansion-panel-header class="systemSecondary">
@@ -89,21 +89,26 @@
         </v-expansion-panel-header>
       </v-expansion-panel>
     </v-expansion-panels>
-    <div
+    <!--    <div-->
+    <!--      v-if="lazyExpansionValue === 0"-->
+    <!--      style="width: 100%; height: 512px"-->
+    <!--      class="d-flex justify-center mt-4"-->
+    <!--    >-->
+    <v-row
       v-if="lazyExpansionValue === 0"
-      style="width: 100%; height: 512px"
-      class="d-flex justify-center mt-4"
+      v-resize="onWindowResize"
+      :style="`width: 100%; height: 100%; max-width: 512px; max-height: ${mapWidth}px`"
+      no-gutters
     >
-      <div style="width: 100%; max-width: 512px">
-        <eorzea-simple-map
-          ref="simpleMap"
-          :id="currentSpot.fishingSpot.mapFileId"
-          :size-factor="currentSpot.fishingSpot.size_factor"
-          :fishing-spots="fishingSpotsForMap"
-          :show-fishing-range-helper="showFishingRangeHelper"
-        />
-      </div>
-    </div>
+      <eorzea-simple-map
+        ref="simpleMap"
+        :id="currentSpot.fishingSpot.mapFileId"
+        :size-factor="currentSpot.fishingSpot.size_factor"
+        :fishing-spots="fishingSpotsForMap"
+        :show-fishing-range-helper="showFishingRangeHelper"
+      />
+    </v-row>
+    <!--    </div>-->
   </div>
 </template>
 
@@ -139,6 +144,7 @@ export default {
     currentSpotIndex: 0,
     lazyExpansionValue: vm.expanded ? 0 : undefined,
     showSpotMenu: false,
+    mapWidth: 512,
   }),
   computed: {
     fishingSpots() {
@@ -169,6 +175,10 @@ export default {
     },
   },
   methods: {
+    onWindowResize() {
+      this.mapWidth = this.$refs.simpleMap?.containerWidth ?? 512
+      console.log(this.$refs.simpleMap?.containerWidth)
+    },
     listLinkClicked(inner) {
       this.showSpotMenu = false
       if (inner) {
