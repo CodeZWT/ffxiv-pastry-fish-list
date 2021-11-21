@@ -1,0 +1,328 @@
+<template>
+  <v-row v-if="currentSpotId" no-gutters>
+    <v-col cols="12" class="my-1 d-flex justify-center">
+      <h1>{{ currentMapInfo.name }}</h1>
+    </v-col>
+    <template v-if="mode === 'normal'">
+      <v-col cols="12" class="my-1">
+        <v-btn block color="primary" @click="showAboutChartDialog = true">
+          <v-icon>mdi-information</v-icon>
+          关于数据统计图
+        </v-btn>
+      </v-col>
+      <v-col cols="12" class="my-1">
+        <bait-percentage-chart
+          :spot-id="currentSpotId"
+          :records="baitCountRecords"
+          :fish-dict="lazyTransformedFishDict"
+          :updatedTime="baitCountRecordUpdatedTime"
+        />
+      </v-col>
+      <v-col v-if="!isOceanFishingSpot" cols="12" class="my-1">
+        <bite-interval-chart
+          :spot-id="currentSpotId"
+          :records="biteIntervalRecords"
+          :fish-dict="lazyTransformedFishDict"
+          :updated-time="biteIntervalRecordsUpdatedTime"
+          :is-mobile="isMobile"
+        />
+      </v-col>
+    </template>
+    <template v-else>
+      <fish-gig-table :value="currentFishList" />
+    </template>
+
+    <!-- fish shadow predators list -->
+    <v-col v-if="showSpotPredators" cols="12" class="my-1">
+      <div>
+        <v-card color="info">
+          <v-card-title>
+            {{ $t('gigTip.fishShadow.title') }}
+          </v-card-title>
+          <v-card-text>
+            此处为鱼影，需要刺相应个数的前置鱼才能触发，触发后在小地图上会有鱼影位置提示。
+          </v-card-text>
+          <v-card-subtitle>
+            {{ $t('gigTip.fishShadow.location') }}
+          </v-card-subtitle>
+          <v-card-text>
+            <detail-item-map :fish="currentSpotPredators[0]" />
+          </v-card-text>
+          <v-card-subtitle>
+            {{ $t('gigTip.fishShadow.predators') }}
+          </v-card-subtitle>
+
+          <v-card-text>
+            <fish-list
+              :fish-dict="lazyTransformedFishDict"
+              :fish-ids="currentSpotPredatorIds"
+              :fish-list-time-part="fishListTimePart"
+              :fish-list-weather-change-part="fishListWeatherChangePart"
+              :show-fish-divider="false"
+              hide-spot-column
+              :is-mobile="isMobile"
+              @fish-selected="onFishClicked($event)"
+            />
+          </v-card-text>
+        </v-card>
+      </div>
+    </v-col>
+
+    <!-- fish list -->
+    <v-col cols="12" class="my-1">
+      <ocean-fishing-fish-list
+        v-if="isOceanFishingSpot"
+        :fish-list="currentFishList"
+        class="ml-2"
+      />
+      <fish-list
+        v-else
+        :fish-dict="lazyTransformedFishDict"
+        :fish-ids="currentFishIdList"
+        :fish-list-time-part="fishListTimePart"
+        :fish-list-weather-change-part="fishListWeatherChangePart"
+        hide-spot-column
+        hide-predators
+        :is-mobile="isMobile"
+        @fish-selected="onFishClicked($event)"
+      />
+    </v-col>
+
+    <!-- map -->
+    <v-col v-if="!isOceanFishingSpot" cols="12" class="my-1">
+      <v-expansion-panels hover flat tile :value="0">
+        <v-expansion-panel class="systemSecondary">
+          <v-expansion-panel-header class="systemSecondary">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: center">
+                <link-list
+                  :id="currentMapInfo.id"
+                  :angler-id="currentMapInfo.anglerLocationId"
+                  :name="currentMapInfo.name"
+                  mode="spot"
+                  :spot-mode="mode"
+                >
+                  <v-hover v-slot="{ hover }">
+                    <div
+                      :class="
+                        `text-subtitle-1 ${
+                          hover ? 'info--text text-decoration-underline' : ''
+                        }`
+                      "
+                    >
+                      {{ currentMapInfo.name }}
+                    </div>
+                  </v-hover>
+                </link-list>
+                <!--                      <div-->
+                <!--                        class="text-subtitle-1"-->
+                <!--                        :title="currentMapInfo.name + '#' + currentMapInfo.id"-->
+                <!--                      >-->
+                <!--                        {{ currentMapInfo.name }}-->
+                <!--                      </div>-->
+                <div class="text-subtitle-1 ml-2">
+                  ({{ currentMapInfo.fishSpotPositionText }})
+                </div>
+                <click-helper @click.stop :copy-text="currentMapInfo.name">
+                  <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
+                    <v-icon>mdi-content-copy</v-icon>
+                  </v-btn>
+                </click-helper>
+                <!--                    {{ currentMapInfo }}-->
+              </div>
+
+              <div v-if="showSpotPredators" class="text-center">
+                此处为鱼影，需要刺前置鱼触发，详情见地图下方说明。
+              </div>
+            </div>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <div style="width: 100%; height: 512px" class="d-flex justify-center mt-4">
+              <div style="width: 100%; max-width: 512px">
+                <eorzea-simple-map
+                  ref="simpleMap"
+                  :id="currentMapInfo.mapFileId"
+                  :size-factor="currentMapInfo.size_factor"
+                  :fishing-spots="currentSpotList"
+                  :show-fishing-range-helper="mode === 'normal'"
+                />
+              </div>
+            </div>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </v-col>
+  </v-row>
+</template>
+
+<script>
+import DataUtil from '@/utils/DataUtil'
+import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
+import rcapiService from '@/service/rcapiService'
+
+import { mapGetters } from 'vuex'
+import BaitPercentageChart from '@/components/charts/BaitPercentageChart'
+import BiteIntervalChart from '@/components/charts/BiteIntervalChart'
+import ClickHelper from '@/components/basic/ClickHelper'
+import FIX from 'Data/fix'
+import FishList from '@/components/FishList'
+import FishingSpots from 'Data/fishingSpots'
+import LinkList from '@/components/basic/LinkList'
+import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
+import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import _ from 'lodash'
+import placeNames from 'Data/placeNames'
+
+export default {
+  name: 'WikiSpotDetail',
+  mixins: [PageMixin],
+  components: {
+    ClickHelper,
+    LinkList,
+    FishList,
+    OceanFishingFishList,
+    BiteIntervalChart,
+    BaitPercentageChart,
+    EorzeaSimpleMap,
+  },
+  props: {
+    currentSpotId: {
+      type: Number,
+      default: -1,
+    },
+    mode: {
+      type: String,
+    },
+    lazyTransformedFishDict: {
+      type: Object,
+    },
+    fishListWeatherChangePart: {
+      type: Object,
+    },
+    fishListTimePart: {
+      type: Object,
+    },
+  },
+  data() {
+    return {
+      spotRecordCountCache: {},
+      spotBiteIntervalCache: {},
+    }
+  },
+  computed: {
+    ...mapGetters(['getFishingSpot']),
+    currentSpotList() {
+      return [this.assembleSpot(this.currentSpotId)]
+    },
+    currentMapInfo() {
+      const currentSpot = _.first(this.currentSpotList)
+      console.debug('Current Spot', currentSpot)
+      return {
+        ...currentSpot,
+        id: currentSpot._id,
+        fishSpotPositionText: DataUtil.toPositionText(currentSpot),
+        size_factor: currentSpot.size_factor,
+        mapFileId: currentSpot.mapFileId,
+      }
+    },
+    isOceanFishingSpot() {
+      return DataUtil.isOceanFishingSpot(this.currentSpotId)
+    },
+    spotDict() {
+      return _.keyBy(
+        FishingSpots.flatMap(region =>
+          region.territories.flatMap(territory => territory.spots)
+        ),
+        'id'
+      )
+    },
+    currentFishIdList() {
+      return this.spotDict[this.currentSpotId]?.fishList
+    },
+    currentFishList() {
+      return this.currentFishIdList?.map(fishId => this.lazyTransformedFishDict[fishId])
+    },
+
+    baitCountRecords() {
+      return this.spotRecordCountCache[this.currentSpotId]?.items || []
+    },
+    baitCountRecordUpdatedTime() {
+      return this.spotRecordCountCache[this.currentSpotId]?.updatedTime
+    },
+    biteIntervalRecords() {
+      return this.spotBiteIntervalCache[this.currentSpotId]?.items || []
+    },
+    biteIntervalRecordsUpdatedTime() {
+      return this.spotBiteIntervalCache[this.currentSpotId]?.updatedTime
+    },
+    showSpotPredators() {
+      return (
+        this.mode === 'spear' && this.currentFishList.some(it => it.predators.length > 0)
+      )
+    },
+  },
+  watch: {
+    currentSpotId: {
+      handler(currentSpotId) {
+        if (currentSpotId !== -1) {
+          setTimeout(() => this.$refs.simpleMap?.resize(), 500)
+          this.getBaitDataOfSpot(currentSpotId)
+          this.getBiteIntervalDataOfSpot(currentSpotId)
+        }
+      },
+      immediate: true,
+    },
+  },
+  methods: {
+    onFishClicked(e) {
+      this.$emit('fish-selected', e)
+    },
+    async getBaitDataOfSpot(spotId) {
+      const spotData = this.spotRecordCountCache[spotId]
+      if (!spotData) {
+        let data
+        if (DataUtil.isOceanFishingSpot(spotId)) {
+          data = await rcapiService.getSpotRecordCount(spotId, 'record-count-ikd')
+        } else {
+          data = await rcapiService.getSpotRecordCount(spotId, 'record-count')
+        }
+        this.$set(this.spotRecordCountCache, spotId, data)
+      }
+    },
+    async getBiteIntervalDataOfSpot(spotId) {
+      const spotData = this.spotBiteIntervalCache[spotId]
+      if (!spotData) {
+        this.$set(
+          this.spotBiteIntervalCache,
+          spotId,
+          await rcapiService.getSpotBiteInterval(spotId)
+        )
+      }
+    },
+
+    assembleSpot(spotId) {
+      if (this.mode === 'normal') {
+        const spot = this.getFishingSpot(spotId)
+        return {
+          ...spot,
+          name: DataUtil.getName(spot),
+          zone: placeNames[spot.territoryId],
+        }
+      } else {
+        const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[spotId]
+        // console.log('gp', spotId, {
+        //   ...gatheringPoint,
+        //   name: DataUtil.getName(gatheringPoint),
+        // })
+        return {
+          ...gatheringPoint,
+          name: DataUtil.getName(gatheringPoint),
+          zone: placeNames[gatheringPoint.regionPlaceNameId],
+        }
+      }
+    },
+  },
+}
+</script>
+
+<style scoped></style>
