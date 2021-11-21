@@ -1,5 +1,13 @@
 <template>
-  <v-container fluid>
+  <v-container
+    fluid
+    :class="{
+      'px-0': true,
+      'detail-wrapper': true,
+      'detail-wrapper--web': !isElectron,
+      'detail-wrapper--electron': isElectron,
+    }"
+  >
     <v-row>
       <v-col cols="12" sm="6">
         <v-row>
@@ -283,4 +291,20 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+@import "~@/styles/RcVariables"
+
+.detail-wrapper
+  width: 100%
+  overflow-scrolling: auto
+  overflow-x: hidden
+
+  &--web
+    height: 100%
+    overflow-y: scroll
+    max-height: calc(100vh - #{ $wrapper-web })
+  &--electron
+    max-height: calc(100% - #{ $toolbar-height })
+  &--electron-original
+    max-height: calc(100vh - #{ $wrapper-desktop })
+</style>
