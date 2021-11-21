@@ -493,7 +493,6 @@
           :selectedFish="selectedFish"
           :filteredFishIdSet="filteredFishIdSet"
           :activeTabIndex="activeTabIndex"
-          :right-pane-full-screen="rightPaneFullScreen"
           :is-mobile="isMobile"
           :toggle-map-menu="showMapMenu"
           @fish-selected="onFishSelected"
@@ -790,7 +789,7 @@ export default {
   mixins: [AppMixin, MainWindowMixin],
   data() {
     return {
-      rightPaneFullScreen: window.innerWidth < 1080,
+      // rightPaneFullScreen: window.innerWidth < 1080,
       showDownloadDialog: false,
       DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
       beianIcon: beianIcon,

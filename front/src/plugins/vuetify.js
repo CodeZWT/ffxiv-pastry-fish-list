@@ -84,7 +84,7 @@ const i18n = new VueI18n({
 export default new Vuetify({
   preset: settings,
   breakpoint: {
-    mobileBreakpoint: 'xs',
+    mobileBreakpoint: 'sm',
   },
   lang: {
     t: (key, ...params) => i18n.t(key, params),
