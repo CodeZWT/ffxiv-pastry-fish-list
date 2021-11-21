@@ -28,11 +28,15 @@
             </v-checkbox>
           </div>
         </div>
-        <div style="overflow-x: scroll; width: 100%">
-          <div
-            id="bite-interval-chart"
-            :style="`width: 800px;height: ${enableBaitFilter ? 800 : 400}px`"
-          ></div>
+        <div style="overflow-x: scroll; width: 100%; position: relative">
+          <v-overlay
+            absolute
+            :value="enableBaitFilter && baitSelected.length === 0"
+            style="width: 800px"
+          >
+            选择至少一个鱼饵以显示数据
+          </v-overlay>
+          <div id="bite-interval-chart" style="width: 800px; height: 400px"></div>
         </div>
       </v-col>
       <v-col cols="12" v-show="records.length === 0">
@@ -96,7 +100,7 @@ export default {
   watch: {
     enableBaitFilter(enableBaitFilter) {
       if (enableBaitFilter) {
-        this.baitSelected = _.clone(this.allBaitIds)
+        this.baitSelected = []
       }
       this.$nextTick(() => {
         this.chart.dispose()
