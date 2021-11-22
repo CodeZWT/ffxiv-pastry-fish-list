@@ -21,7 +21,7 @@ export default {
         case 'small':
           return 'DiademFishListSmall'
         default:
-          return 'FishInfoRowLarge'
+          return 'DiademFishListSmall'
       }
     },
   },

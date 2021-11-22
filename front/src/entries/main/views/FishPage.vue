@@ -8,7 +8,7 @@
         'show-divider': showRightPane,
       }"
       :style="`flex: 1 1 ${mainPaneFlexPercentage}%`"
-      v-show="!isMobile || !showRightPane"
+      v-show="!rightPaneFullScreen || !showRightPane"
       ref="fishPageScrollTarget"
     >
       <fish-filter-list
@@ -101,7 +101,7 @@ export default {
     fishListOpenStatus: [0, 1],
     throttledResizeFn: undefined,
     resizing: false,
-    // lazyRightPaneFullScreen: false,
+    rightPaneFullScreen: false,
     loading: true,
     forceShowComponents: undefined,
     spotId: -1,
@@ -176,7 +176,6 @@ export default {
   },
   mounted() {
     this.showRightPane = false
-    // this.lazyRightPaneFullScreen = this.rightPaneFullScreen
     this.throttledResizeFn = _.throttle(this.resizeInternal, 100)
     this.onWindowResize()
   },
@@ -206,9 +205,10 @@ export default {
       // this.throttledResizeFn(resizePaneInfos)
     },
     onWindowResize() {
-      // this.lazyRightPaneFullScreen = window.innerWidth < 1080
+      this.rightPaneFullScreen =
+        window.innerWidth < this.$vuetify.breakpoint.thresholds.sm
       setTimeout(() => {
-        this.$refs.fishDetail?.resize()
+        this.throttledResizeFn()
       }, 500)
     },
     ...mapMutations([

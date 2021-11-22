@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-resize="onWindowResize">
     <div class="d-flex align-center">
       <v-radio-group v-model="tipIndex" row>
         <v-radio v-for="(tip, index) in tips" :value="index" :key="index">
@@ -82,7 +82,7 @@
         <v-col
           v-for="(location, index) in currentLocations"
           :key="index"
-          :cols="isMobile ? 12 : 4"
+          :cols="locationCols"
         >
           <v-row no-gutters>
             <v-col cols="12">
@@ -233,7 +233,7 @@
         <v-col
           v-for="(location, index) in currentLocations"
           :key="location.id"
-          :cols="isMobile ? 12 : 4"
+          :cols="locationCols"
         >
           <point-tip
             :location="location"
@@ -255,7 +255,7 @@
         <v-col
           v-for="(location, index) in currentLocations"
           :key="location.id"
-          :cols="isMobile ? 12 : 4"
+          :cols="locationCols"
         >
           <achievement-tip
             :achievement-id="currentTip.id"
@@ -336,6 +336,7 @@ export default {
   },
   data() {
     return {
+      locationCols: 12,
       missionOpenStatus: [0],
       enableSimpleMode: false,
       enableTypeMission: true,
@@ -583,7 +584,14 @@ export default {
       }
     },
   },
+  mounted() {
+    this.onWindowResize()
+  },
   methods: {
+    onWindowResize() {
+      this.locationCols =
+        window.innerWidth < this.$vuetify.breakpoint.thresholds.sm ? 12 : 4
+    },
     toggleShiftFilter() {
       this.shiftFilterEnabled = !this.shiftFilterEnabled
     },

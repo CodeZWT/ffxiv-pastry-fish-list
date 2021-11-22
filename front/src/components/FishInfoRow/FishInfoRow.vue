@@ -40,7 +40,7 @@ export default {
   components: { FishInfoRowSmall, FishInfoRowMedium, FishInfoRowLarge },
   computed: {
     component() {
-      const mode = this.mode ?? (this.isMobile ? 'small' : 'large')
+      const mode = this.mode ?? (this.$vuetify.breakpoint.smAndUp ? 'large' : 'small')
       switch (mode) {
         case 'large':
           return 'FishInfoRowLarge'
