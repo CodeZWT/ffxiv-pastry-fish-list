@@ -24,7 +24,22 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
-        <!--                <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 1.0.4-fix</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/11/22 23:00</div>
+          </div>
+        </v-alert>
+        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>修正感谢名单排序错误</li>
+          <li>调整各个页面切换简化模式的判定逻辑</li>
+          <li>调整显示钓场按钮的样式</li>
+        </ul>
+
+        <v-divider />
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
