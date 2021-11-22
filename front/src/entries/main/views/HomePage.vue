@@ -256,7 +256,11 @@ export default {
       })
     },
     sponsorsByTotalAmountDesc() {
-      return orderBy(this.sponsors, ['allSumAmount', 'lastPayTime'], ['desc', 'desc'])
+      return orderBy(
+        this.sponsors,
+        [sponsor => +sponsor.allSumAmount, 'lastPayTime'],
+        ['desc', 'desc']
+      )
     },
     largeLogo() {
       return ImgUtil.getImgUrl('pastry-fish-home-logo.webp')
