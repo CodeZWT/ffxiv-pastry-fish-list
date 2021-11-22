@@ -6,6 +6,7 @@
         :fishing-spots="fishingSpots"
         :fish-time-part="fishTimePart"
         :show-close="showClose"
+        :show-spot-button="showSpotButton"
         @close="$emit('close')"
         @show-spot="
           $emit('show-spot', { spotId: $event, mode: isSpear ? 'spear' : 'normal' })
@@ -57,6 +58,10 @@ export default {
   name: 'FishDetail',
   components: { FishListExpandedHeader, FishDetailContent },
   props: {
+    showSpotButton: {
+      type: Boolean,
+      default: false,
+    },
     fish: {
       type: Object,
       default: undefined,
@@ -130,7 +135,7 @@ export default {
 @import "~@/styles/RcVariables"
 
 $detail-header-height: 104px
-$wrapper-detail: $detail-header-height + $divider-height
+$wrapper-detail: $detail-header-height + $divider-height + $button-height
 
 .inner
   width: 100%

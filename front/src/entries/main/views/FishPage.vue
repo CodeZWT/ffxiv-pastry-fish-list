@@ -47,6 +47,7 @@
         :forceShowComponents="forceShowComponents"
         in-pane
         show-close
+        :show-spot-button="!isMobile"
         @close="showRightPane = false"
         @show-spot="showSpot($event)"
       />

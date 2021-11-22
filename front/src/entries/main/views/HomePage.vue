@@ -9,7 +9,7 @@
     }"
   >
     <v-row>
-      <v-col cols="12" sm="6">
+      <v-col cols="12" md="6">
         <v-row>
           <v-col cols="12">
             <v-img :src="largeLogo" height="200" contain max-width="300" />
@@ -63,7 +63,7 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="12" sm="6">
+      <v-col cols="12" md="6">
         <v-row>
           <v-col cols="12" class="pb-0 pl-0">
             <v-subheader> 联系我们 </v-subheader>
