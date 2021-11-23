@@ -68,7 +68,7 @@ class FishListUpdateWorker {
       // calculate for all fish
       // If timePoint and time are not initialized then calculate first
       // If not, update countDown when the actual countdown text needed to be updated
-      // e.g. text '05小时候开始' (start in 05 hours) only be updated 1 time per hour
+      // e.g. text '05小时后开始' (start in 05 hours) only be updated 1 time per hour
       if (
         !lazyStartTime ||
         // !currentInterval ||
