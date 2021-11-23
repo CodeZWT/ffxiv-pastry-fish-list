@@ -283,6 +283,11 @@
       "rateHint": "窗口期时间占比",
       "noConstraint": "无",
       "tipHint": "显示攻略"
+    },
+    "tip": {
+      "fishCountdownReferTo": "{fish}没有天气与时间限制，左侧显示的倒计时实际为{preconditionFish}的窗口期。",
+      "fisherIntuitionTip": "小提示：这意味着在任意时刻触发了捕鱼人之识都有机会钓上{fish}。",
+      "moochTip": "小提示：这意味着当{moochFish}钓上后随时可以以小钓大钓上{fish}。"
     }
   },
   "footer": {

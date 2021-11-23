@@ -539,7 +539,6 @@ export default {
         return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
       } else if (predators.length === 1) {
         if (this.isAllAvailableFish(fish)) {
-          console.log('[collect]', fish._id, fish)
           // console.debug(
           //   DATA_CN.ITEMS[fish._id].name_chs,
           //   'fish is all available so just look its only predator'
