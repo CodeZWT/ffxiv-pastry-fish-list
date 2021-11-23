@@ -15899,6 +15899,11 @@ module.exports = {
       24203: 3,
       24204: 5,
     },
+    predatorOrder: [
+      24203,
+      23056,
+      24204,
+    ],
     fishEyes: false,
     snagging: false,
     hookset: 'Powerful',

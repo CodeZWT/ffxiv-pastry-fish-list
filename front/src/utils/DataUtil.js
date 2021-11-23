@@ -290,7 +290,12 @@ export default {
   // completed
   getPredators(fish, allFish, fishListTimePart = {}, fishListWeatherChangePart = {}) {
     if (fish == null || allFish == null) return []
-    return Object.entries(fish.predators).map(([predatorId, count]) => {
+    let predatorOrder = fish.predatorOrder
+    if (predatorOrder == null) {
+      predatorOrder = Object.keys(fish.predators)
+    }
+    return predatorOrder.map(predatorId => {
+      const count = fish.predators[predatorId]
       return {
         ...allFish[predatorId],
         requiredCnt: count,
@@ -516,7 +521,7 @@ export default {
     // if (fish._id === 999999) {
     //   console.log(Object.keys(fish.predators))
     // }
-    if (Object.keys(fish.predators).length === 0) {
+    if (fish.gig != null || Object.keys(fish.predators).length === 0) {
       return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
     } else {
       const predators = Object.keys(fish.predators).map(predatorId => {
@@ -534,6 +539,7 @@ export default {
         return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
       } else if (predators.length === 1) {
         if (this.isAllAvailableFish(fish)) {
+          console.log('[collect]', fish._id, fish)
           // console.debug(
           //   DATA_CN.ITEMS[fish._id].name_chs,
           //   'fish is all available so just look its only predator'
