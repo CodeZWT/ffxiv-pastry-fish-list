@@ -364,16 +364,6 @@
             </v-list-item-content>
           </v-list-item>
 
-          <!--  <v-divider class="mx-2" />-->
-          <!--    TODO recover this   -->
-          <v-list-item v-if="!isElectron" @click="toUpdateInfo" link>
-            <v-list-item-icon>
-              <v-icon>mdi-desktop-mac-dashboard</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ $t('top.moreInfo') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
           <v-list-item @click="toCompetitionPage" link>
             <v-list-item-icon>
               <v-icon>mdi-trophy</v-icon>
@@ -384,6 +374,23 @@
           </v-list-item>
 
           <v-divider class="mx-2" />
+
+          <v-list-item v-if="!isElectron" @click="toDownloadPage" link>
+            <v-list-item-icon>
+              <v-icon>mdi-desktop-mac-dashboard</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.desktopVersion') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item v-else @click="toWebsite" link>
+            <v-list-item-icon>
+              <v-icon>mdi-web</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('top.website') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
           <v-list-item v-if="isElectron" @click="openReader" link>
             <v-list-item-icon>
@@ -867,8 +874,11 @@ export default {
       this.showDownloadDialog = true
       this.setFeatureViewed(this.DesktopDownloadFeatureId)
     },
-    toUpdateInfo() {
-      window.open('https://ngabbs.com/read.php?tid=23609086')
+    toDownloadPage() {
+      window.open('https://ricecake302.coding.net/s/b9ae2dd4-64e2-4412-acdd-d40ab55f85c3')
+    },
+    toWebsite() {
+      window.open('https://ricecake.traveleorzea.com')
     },
     toPage(page) {
       if (this.$route.name !== page) {
