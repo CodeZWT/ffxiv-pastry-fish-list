@@ -233,9 +233,10 @@ export default {
     coloredSponsors() {
       return this.sponsorsByTotalAmountDesc.map(sponsor => {
         const planIndex =
-          ['捕鱼专家', '鱼太公', '烟波钓徒', '钓场之王'].indexOf(
-            sponsor.currentPlanName
-          ) + 1
+          4 -
+          [50, 30, 15, 5, 0].findIndex(
+            priceThreshold => sponsor.currentPlanPrice >= priceThreshold
+          )
         return {
           planColor: [
             undefined,
