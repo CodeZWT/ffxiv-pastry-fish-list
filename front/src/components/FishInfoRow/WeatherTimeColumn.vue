@@ -110,6 +110,46 @@ export default {
                 '根据咬钩报告，长吻帆蜥鱼窗口期拓展至ET 2:01，更多的拓展空间请自行探索。同时也欢迎汇报范围外的数据。',
             },
           }
+        case 4906:
+          return {
+            all: {
+              icon: 'mdi-information',
+              comment:
+                this.$t('list.tip.fishCountdownReferTo', {
+                  fish: '鹦鹉螺',
+                  preconditionFish: '满月沙丁鱼',
+                }) +
+                '<br />' +
+                this.$t('list.tip.moochTip', { fish: '鹦鹉螺', moochFish: '满月沙丁鱼' }),
+            },
+          }
+        case 4918:
+          return {
+            all: {
+              icon: 'mdi-information',
+              comment:
+                this.$t('list.tip.fishCountdownReferTo', {
+                  fish: '腔棘鱼',
+                  preconditionFish: '满月沙丁鱼',
+                }) +
+                '<br />' +
+                this.$t('list.tip.moochTip', { fish: '腔棘鱼', moochFish: '满月沙丁鱼' }),
+            },
+          }
+        case 52004903:
+          return {
+            all: {
+              icon: 'mdi-information',
+              comment:
+                this.$t('list.tip.fishCountdownReferTo', {
+                  fish: '银鲨',
+                  preconditionFish: '满月沙丁鱼',
+                }) +
+                '<br />' +
+                this.$t('list.tip.moochTip', { fish: '银鲨', moochFish: '满月沙丁鱼' }),
+            },
+          }
+
         case 8763:
           return {
             all: {

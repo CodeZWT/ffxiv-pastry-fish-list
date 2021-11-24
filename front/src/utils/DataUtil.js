@@ -521,6 +521,12 @@ export default {
     // if (fish._id === 999999) {
     //   console.log(Object.keys(fish.predators))
     // }
+    if (this.isAllAvailableFish(fish) && fish.bestCatchPath?.length > 1) {
+      if (fish.bestCatchPath.slice(1).some(it => !this.isAllAvailableFish(allFish[it]))) {
+        console.warn('should update fish constraint', fish._id, fish)
+      }
+    }
+
     if (fish.gig != null || Object.keys(fish.predators).length === 0) {
       return this.getFishWindowOfSingleFish(fish, now, fishingSpots, fishEyesUsed, n)
     } else {
