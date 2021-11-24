@@ -123,6 +123,7 @@
               block
               tile
               @click="showSpot(fishingSpotToShow)"
+              title="点击显示钓场"
             >
               <v-icon left>mdi-notebook</v-icon>
               {{ fishingSpotToShow.fishingSpotName }}
