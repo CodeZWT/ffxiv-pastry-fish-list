@@ -47,6 +47,24 @@ const routes = [
     },
   },
   {
+    path: '/alarm',
+    name: 'AlarmPage',
+    component: () =>
+      import(
+        /* webpackChunkName: "alarm" */
+        '../views/AlarmPage'
+      ),
+    meta: {
+      title: '鱼糕 - 闹钟列表',
+      metaTags: [
+        {
+          property: 'og:title',
+          content: '鱼糕 - 闹钟列表',
+        },
+      ],
+    },
+  },
+  {
     path: '/wiki',
     name: 'WikiPage',
     component: () =>

@@ -1,3 +1,4 @@
+import { AlarmModule } from '@/entries/main/store/alarm'
 import { DialogModule } from '@/entries/screen/store/dialog'
 import { FlagModule } from '@/entries/screen/store/oneTimeFlag'
 import { KeybindingModule } from '@/entries/screen/store/keybinding'
@@ -275,6 +276,9 @@ export const MainModule = {
     toBeNotifiedFishIds: state => {
       return state.userData.toBeNotified
     },
+    toBeNotifiedIKDRoutes: state => {
+      return state.userData.toBeNotifiedIKDRoutes
+    },
     showFilter: state => {
       return state.userData.showFilter
     },
@@ -334,6 +338,9 @@ export const MainModule = {
     },
   },
   mutations: {
+    clearIKDRouteToBeNotified(state) {
+      state.userData.toBeNotifiedIKDRoutes = []
+    },
     setNow(state, now) {
       state.now = now
     },
@@ -530,6 +537,23 @@ export const MainModule = {
         )
       }
     },
+    setIKDRouteToBeNotified(state, { routeId, toBeNotified }) {
+      state.userData = updateUserDataStateRecords(
+        state.userData,
+        'toBeNotifiedIKDRoutes',
+        [routeId],
+        toBeNotified
+      )
+      if (!toBeNotified) {
+        state.userData = updateUserDataStateRecords(
+          state.userData,
+          'toBeNotifiedIKDLockedRoutes',
+          [routeId],
+          false
+        )
+      }
+    },
+
     setFishToBeNotifiedLocked(state, { fishId, toBeNotifiedLocked }) {
       state.userData = updateUserDataStateRecords(
         state.userData,
@@ -687,6 +711,7 @@ export const MainModule = {
     keybinding: KeybindingModule,
     dialog: DialogModule,
     flag: FlagModule,
+    alarm: AlarmModule,
   },
 }
 

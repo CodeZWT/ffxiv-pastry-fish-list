@@ -140,6 +140,7 @@
                     {{ $t('setting.dialog.notification.systemNotification.test') }}
                   </v-btn>
                 </div>
+                <v-subheader>{{ $t('top.fishList') }}</v-subheader>
                 <div
                   v-for="setting in lazyNotificationSetting.settings"
                   :key="setting.key"
@@ -149,7 +150,7 @@
                     <v-col class="col-sm-4 col-6">
                       <v-checkbox
                         v-model="setting.enabled"
-                        :label="$t(`setting.dialog.notification.enabled.${setting.key}`)"
+                        :label="$t(`setting.dialog.notification.fish.${setting.key}`)"
                       />
                     </v-col>
                     <v-col class="col-sm-3 col-6">
@@ -165,6 +166,60 @@
                           :suffix="$t('setting.dialog.notification.unit')"
                           min="0"
                           max="20"
+                          step="1"
+                          type="number"
+                          prepend-icon="mdi-alarm-note"
+                          :error-messages="errors"
+                          required
+                        />
+                      </validation-provider>
+                    </v-col>
+                    <v-col class="col-sm-5 col-12 d-flex align-center">
+                      <v-select
+                        v-model="setting.sound"
+                        :items="NOTIFICATION_SOUNDS"
+                        item-text="name_chs"
+                        item-value="key"
+                        :label="'选择音效'"
+                      />
+                      <v-btn
+                        icon
+                        text
+                        @click="playSound(setting.sound)"
+                        :disabled="!sounds[setting.sound].player"
+                      >
+                        <v-icon>mdi-play</v-icon>
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </div>
+                <v-divider />
+                <v-subheader>{{ $t('top.oceanFishing') }}</v-subheader>
+                <div
+                  v-for="setting in lazyNotificationSetting.IKDRouteSettings"
+                  :key="'IKDRouteSettings' + setting.key"
+                  class="d-flex align-center"
+                >
+                  <v-row>
+                    <v-col class="col-sm-4 col-6">
+                      <v-checkbox
+                        v-model="setting.enabled"
+                        :label="$t(`setting.dialog.notification.IKDRoute.${setting.key}`)"
+                      />
+                    </v-col>
+                    <v-col class="col-sm-3 col-6">
+                      <validation-provider
+                        v-if="setting.hasBefore"
+                        v-slot="{ errors }"
+                        :name="`${setting.key}-before`"
+                        rules="required|max_value:14|min_value:0"
+                      >
+                        <rc-text-field
+                          v-model="setting.before"
+                          :label="$t('setting.dialog.notification.before')"
+                          :suffix="$t('setting.dialog.notification.unit')"
+                          min="0"
+                          max="15"
                           step="1"
                           type="number"
                           prepend-icon="mdi-alarm-note"

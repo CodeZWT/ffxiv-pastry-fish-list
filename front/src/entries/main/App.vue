@@ -275,26 +275,40 @@
               <v-list-item-title>{{ $t('top.home') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item
-            v-for="(notification, index) in listFishCnt"
-            :key="index"
-            @click="toPageSubList(index)"
-          >
+          <v-list-item @click="toPageSubList(0)" link>
             <v-list-item-icon>
               <v-badge
                 color="error"
-                :value="notification.cnt"
-                :content="notification.cnt"
+                :value="listFishCnt[0].cnt"
+                :content="listFishCnt[0].cnt"
                 style="z-index: 10"
                 overlap
               >
                 <v-icon>
-                  {{ TABS[index].icon }}
+                  {{ TABS[0].icon }}
                 </v-icon>
               </v-badge>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{ $t(TABS[index].title) }}</v-list-item-title>
+              <v-list-item-title>{{ $t(TABS[0].title) }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="toPage('AlarmPage')" link>
+            <v-list-item-icon>
+              <v-badge
+                color="error"
+                :value="listFishCnt[1].cnt"
+                :content="listFishCnt[1].cnt"
+                style="z-index: 10"
+                overlap
+              >
+                <v-icon>
+                  {{ TABS[1].icon }}
+                </v-icon>
+              </v-badge>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t(TABS[1].title) }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item @click="toPage('WikiPage')" link>
@@ -793,15 +807,19 @@
 <script>
 import '@thewakingsands/axis-font-icons'
 import { MainFeatures } from 'Data/newFeatures'
+import { sendElectronEvent } from '@/utils/electronHelper'
+import AlarmMixin from '@/mixins/AlarmMixin'
 import AppMixin from '@/components/AppMixin'
+import DataUtil from '@/utils/DataUtil'
 import MainWindowMixin from '@/components/MainWindowMixin'
 import RcDialog from '@/components/basic/RcDialog'
+import _ from 'lodash'
 import beianIcon from 'Assets/beian-icon.png'
 
 export default {
   name: 'App',
   components: { RcDialog },
-  mixins: [AppMixin, MainWindowMixin],
+  mixins: [AppMixin, MainWindowMixin, AlarmMixin],
   data() {
     return {
       // rightPaneFullScreen: window.innerWidth < 1080,
@@ -823,6 +841,64 @@ export default {
     },
     isWikiPage() {
       return this.$route.name === 'WikiPage'
+    },
+    toBeNotifiedFishIdList() {
+      // console.log('toBeNotifiedFishIdList triggered')
+      const sortedFishIds = this.sortedToBeNotifiedIds
+      if (this.filters.sorterType === 'COUNTDOWN') {
+        return sortedFishIds
+      } else {
+        return _.sortBy(sortedFishIds, fishId => this.lazyFishWindowRates[fishId])
+      }
+    },
+    listFishCnt() {
+      // console.log('listFishCnt triggered')
+      // TODO implement with id list instead
+      const fishListTimePart = this.fishListTimePart
+      const doFullCountSearch = [true, false, true]
+      const allListCnt = [
+        this.pinnedFishIdList,
+        this.sortedFilteredFishIdList,
+        this.toBeNotifiedFishIdList,
+      ].map((list, index) => {
+        if (Object.keys(fishListTimePart).length === 0) {
+          return {
+            type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
+            cnt: 0,
+          }
+        }
+
+        if (doFullCountSearch[index]) {
+          return {
+            type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
+            cnt: list.reduce((cnt, fishId) => {
+              return (
+                cnt +
+                (fishListTimePart[fishId]?.countDown?.type === DataUtil.FISHING ? 1 : 0)
+              )
+            }, 0),
+          }
+        } else {
+          const firstNotFishingIndex = list.findIndex(
+            it => fishListTimePart[it]?.countDown?.type !== DataUtil.FISHING
+          )
+          return {
+            type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
+            cnt: firstNotFishingIndex === -1 ? list.length : firstNotFishingIndex,
+          }
+        }
+      })
+      return [
+        { type: allListCnt[1].type, cnt: allListCnt[0].cnt + allListCnt[1].cnt },
+        allListCnt[2],
+      ]
+    },
+  },
+  watch: {
+    listFishCnt(listFishCnt, oldValue) {
+      if (!_.isEqual(listFishCnt, oldValue)) {
+        sendElectronEvent('listCntUpdated', listFishCnt)
+      }
     },
   },
   mounted() {

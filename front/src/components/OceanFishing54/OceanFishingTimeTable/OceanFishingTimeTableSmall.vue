@@ -63,70 +63,12 @@
     </v-form>
     <v-row>
       <v-col cols="12">
-        <v-simple-table>
-          <template v-slot:default>
-            <colgroup>
-              <col span="1" style="width: 40%" />
-              <col span="1" style="width: 60%" />
-            </colgroup>
-            <thead>
-              <tr>
-                <th class="text-right">登船登记时间<br />（本地）</th>
-                <th class="text-left pl-5">目标</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(voyage, index) in voyages"
-                :key="`${voyage.day}-${voyage.time}`"
-                @click="
-                  onVoyageSelected({
-                    index,
-                  })
-                "
-                style="cursor: pointer"
-                :class="
-                  showCurrentRouteIndicator && currentVoyageIndex === index
-                    ? 'primary'
-                    : ''
-                "
-              >
-                <td>
-                  <div class="d-flex justify-end">
-                    <div :style="voyage.showDay ? '' : 'visibility: hidden'">
-                      {{ voyage.day }}
-                    </div>
-                    <div class="ml-1">{{ voyage.time }}</div>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-center">
-                    <div
-                      v-for="item in voyage.targets"
-                      :key="item.id"
-                      :style="item.type === 'item' ? 'padding-top: 4px' : ''"
-                      @click.stop="
-                        onVoyageSelected({
-                          index,
-                          targetId: item.id,
-                          targetType: item.type,
-                        })
-                      "
-                    >
-                      <item-icon
-                        :title="item.name"
-                        :icon-url="item.iconUrl"
-                        :icon-class="item.icon"
-                        :cover="item.cover"
-                        :type="item.type"
-                      />
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
+        <ocean-fishing-time-table-content-small
+          :voyages="voyages"
+          @onVoyageSelected="onVoyageSelected"
+          :show-current-route-indicator="showCurrentRouteIndicator"
+          :current-voyage-index="currentVoyageIndex"
+        />
       </v-col>
     </v-row>
   </div>
@@ -134,13 +76,19 @@
 
 <script>
 import ItemIcon from '@/components/basic/ItemIcon'
+import OceanFishingTimeTableContentSmall from '@/components/OceanFishing54/OceanFishingTimeTable/OceanFishingTimeTableContentSmall'
 import OceanFishingTimeTableMixin from '@/components/OceanFishing54/OceanFishingTimeTable/OceanFishingTimeTableMixin'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcTextField from '@/components/basic/RcTextField'
 
 export default {
   name: 'OceanFishingTimeTableSmall',
-  components: { RcTextField, RcAutocomplete, ItemIcon },
+  components: {
+    OceanFishingTimeTableContentSmall,
+    RcTextField,
+    RcAutocomplete,
+    ItemIcon,
+  },
   mixins: [OceanFishingTimeTableMixin],
 }
 </script>

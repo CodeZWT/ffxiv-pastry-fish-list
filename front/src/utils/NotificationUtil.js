@@ -1,4 +1,4 @@
-import { FISH_NOTIFICATION } from 'Data/fix'
+import { FISH_NOTIFICATION, IKD_ROUTE_NOTIFICATION } from 'Data/notification'
 import _ from 'lodash'
 import i18n from '@/i18n'
 
@@ -35,12 +35,13 @@ export default {
     return Notification.requestPermission()
   },
   showFishNotification(fishNotifications) {
-    const fishNotificationByKey = _.groupBy(fishNotifications, 'setting.key')
-    const firstFish = (fishNotificationByKey['fishing'] ??
-      fishNotificationByKey['waiting'])?.[0]?.fish
-    const notificationCandidates = FISH_NOTIFICATION[firstFish.id]?.text ?? [
-      '有鱼准备脱钩了！',
-    ]
+    if (fishNotifications.length === 0) return
+    // console.log(fishNotifications)
+    const fishNotificationByKey = _.groupBy(fishNotifications, 'alarmId')
+    const firstFish = (fishNotificationByKey['Fish-fishing'] ??
+      fishNotificationByKey['Fish-waiting'])?.[0]
+    const notificationCandidates = FISH_NOTIFICATION[firstFish.id]?.text ?? []
+    notificationCandidates.push('有鱼准备脱钩了！')
     const text =
       notificationCandidates[Math.floor(Math.random() * notificationCandidates.length)]
     const title = i18n.t('notification.fishAlarm.title', {
@@ -54,13 +55,37 @@ export default {
             minutes: notifications[0]?.setting.before,
           }),
           count: notifications.length,
-          fishList: notifications.map(it => it.fish.name).join(', '),
+          fishList: notifications.map(it => it.name).join(', '),
         })
       })
       .join('\n')
+    this.showSystemNotification(title, body, firstFish?.icon)
+  },
+  showRouteNotification(routeNotifications) {
+    // console.log(routeNotifications)
+    if (routeNotifications.length === 0) return
+    const notification = routeNotifications[0]
+
+    // console.log(notification.setting)
+    let notificationCandidates = IKD_ROUTE_NOTIFICATION[notification.id]?.text ?? []
+    notificationCandidates.push(
+      notification.setting.key === 'start' ? '有船准备开走了！' : '扬帆！起航！脱钩！'
+    )
+    const text =
+      notificationCandidates[Math.floor(Math.random() * notificationCandidates.length)]
+
+    const body = i18n.t('notification.IKDRouteAlarm.body', {
+      time: i18n.t('notification.IKDRouteAlarm.' + notification.alarmId, {
+        minutes: notification.setting.before,
+      }),
+      text: text,
+    })
+
+    this.showSystemNotification(notification.name, body)
+  },
+  showSystemNotification(title, body) {
     if (this.isNotificationGranted()) {
       new Notification(title, {
-        icon: firstFish?.iconRemoteUrl,
         body,
       })
     }

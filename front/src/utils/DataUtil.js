@@ -1,5 +1,5 @@
 import { FISH as DIADEM_FISH } from 'Data/diadem'
-import { DateTime } from 'luxon'
+import { DateTime, FixedOffsetZone } from 'luxon'
 import { Howl } from 'howler'
 import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
 import { detect } from 'detect-browser'
@@ -993,6 +993,10 @@ export default {
   },
 
   toHuijiWikiQuestLink: toHuijiWikiQuestLink,
+
+  getCNTime(milliSeconds) {
+    return DateTime.fromMillis(milliSeconds).setZone(FixedOffsetZone.instance(480))
+  },
   // FUNCTION END
 
   TIME_UNITS: ['day', 'hour', 'minute', 'second', 'days', 'hours', 'minutes', 'seconds'],
@@ -1081,6 +1085,7 @@ export default {
     pinned: [],
     toBeNotified: [],
     toBeNotifiedLocked: [],
+    toBeNotifiedIKDRoutes: [],
     filters: {
       patches: [
         // eslint-disable-next-line
@@ -1157,6 +1162,24 @@ export default {
           enabled: true,
           hasBefore: false,
           before: 0,
+        },
+      ],
+      IKDRouteSettings: [
+        {
+          key: 'start',
+          sound: NOTIFICATION_SOUNDS[3].key,
+          enabled: true,
+          hasBefore: true,
+          before: 2,
+          offset: 0,
+        },
+        {
+          key: 'end',
+          sound: NOTIFICATION_SOUNDS[6].key,
+          enabled: true,
+          hasBefore: true,
+          before: 2,
+          offset: 15,
         },
       ],
     },

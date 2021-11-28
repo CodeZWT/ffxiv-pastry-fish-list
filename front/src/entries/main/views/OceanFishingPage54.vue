@@ -231,12 +231,11 @@
 </template>
 
 <script>
-import { DateTime, FixedOffsetZone } from 'luxon'
 import { OCEAN_FISHING_BONUS, OCEAN_FISHING_TIPS } from 'Data/oceanFishing'
 import { mapGetters, mapMutations } from 'vuex'
-import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import IKDRouteMixin from '@/mixins/IKDRouteMixin'
 import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import OceanFishingTimeTable from '@/components/OceanFishing54/OceanFishingTimeTable/OceanFishingTimeTable'
@@ -251,7 +250,7 @@ const MINUTE = 60000
 
 export default {
   name: 'OceanFishingPage54',
-  mixins: [PageMixin],
+  mixins: [PageMixin, IKDRouteMixin],
   components: { RcDialog, ItemIcon, OceanFishingVoyage, OceanFishingTimeTable },
   props: ['now', 'lazyTransformedFishDict', 'original'],
   data() {
@@ -397,84 +396,11 @@ export default {
     shouldUpdate(lastUpdate, now) {
       return Math.floor(now / (15 * MINUTE)) > Math.floor(lastUpdate / (15 * MINUTE))
     },
-    assembleVoyages(time, n, types) {
-      return OceanFishingUtil.voyagesWithTipOf(time, n, types).map(
-        (voyageWithTip, index, arr) => {
-          const showDay =
-            index === 0 ||
-            getCNTime(voyageWithTip.time).day !== getCNTime(arr[index - 1].time).day
-          const targets = voyageWithTip.voyageTip.achievements
-            .map(it => this.assembleAchievement(it))
-            .concat(
-              voyageWithTip.locationTips
-                .map(locationTip => {
-                  return {
-                    blueFish: this.assembleItem(locationTip.blueFish),
-                  }
-                })
-                .flatMap(it => {
-                  return [it.blueFish]
-                })
-            )
-            .filter(it => it)
-          return {
-            showDay,
-            // simpleName: voyageWithTip.voyageSimpleName,
-            milliseconds: voyageWithTip.time,
-            day: DataUtil.formatDateTime(voyageWithTip.time, 'MM-dd'),
-            time: DataUtil.formatDateTime(voyageWithTip.time, 'HH:mm'),
-            shiftIcon: DataUtil.shift2Icon(voyageWithTip.shift.type),
-            name: voyageWithTip.shift.name,
-            targets: targets,
-            typeMission: voyageWithTip.typeMission,
-            starMission: voyageWithTip.starMission,
-            tugMission: voyageWithTip.tugMission,
-            voyageLocations: voyageWithTip.locationTips.map(it => ({
-              id: it.fishingSpots.normal,
-              spectralCurrentId: it.fishingSpots.spectralCurrent,
-              weatherSet: it.weatherSet,
-              shift: it.shift,
-              name: it.locationName,
-              icon: DataUtil.shift2Icon(it.shift),
-              hint: it.locationHint,
-            })),
-          }
-        }
-      )
-    },
-    assembleItem(itemId) {
-      return (
-        itemId && {
-          id: itemId,
-          name: this.getItemName(itemId),
-          icon: this.getItemIconClass(itemId),
-          type: 'item',
-        }
-      )
-    },
-    assembleAchievement(achievementId) {
-      if (!achievementId) return null
-      const achievement = DATA_CN.OCEAN_FISHING_ACHIEVEMENTS[achievementId]
-      return {
-        id: achievementId,
-        name: this.getAchievementName(achievementId),
-        icon: this.getAchievementIconClass(achievementId),
-        bonus: achievement.bonus,
-        bonusRequirement: OCEAN_FISHING_BONUS[achievement.bonus]?.requirement,
-        iconUrl: achievement.iconLocal && ImgUtil.getImgUrl(achievement.iconLocal),
-        nonTipOptions: achievement.nonTipOptions,
-        type: 'achievement',
-      }
-    },
     filterChanged(filter) {
       this.filter = filter
     },
     ...mapMutations(['setShowOFUpdateDialog', 'setShowOFBiteTimeDialog']),
   },
-}
-
-function getCNTime(milliSeconds) {
-  return DateTime.fromMillis(milliSeconds).setZone(FixedOffsetZone.instance(480))
 }
 </script>
 <style lang="sass" scoped>

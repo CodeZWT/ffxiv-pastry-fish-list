@@ -31,7 +31,6 @@ import ImportExportDialog from '@/components/ImportExportDialog'
 import ItemIcon from '@/components/basic/ItemIcon'
 import MigrateToTravelEorzeaDialog from '@/components/Dialog/MigrateToTravelEorzeaDialog'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
-import NotificationUtil from '@/utils/NotificationUtil'
 import PatchNoteDialog from '@/components/Dialog/PatchNoteDialog'
 import RecordValidator from '@/utils/RecordValidator'
 import ResetButton from '@/components/ResetButton'
@@ -79,7 +78,6 @@ export default {
     pageVisibilityUtil: undefined,
     showRoseDialog: false,
     lastCatchFishId: undefined,
-    notificationRecords: {},
     isElectron: DevelopmentModeUtil.isElectron(),
     systemThemeMode: 'DARK',
     THEME_SETTING_MODES: DataUtil.THEME_SETTING_MODES,
@@ -264,57 +262,6 @@ export default {
         return sortedFishIds
       } else {
         return _.sortBy(sortedFishIds, [fish => this.lazyFishWindowRates[fish.id]])
-      }
-    },
-    listFishCnt() {
-      // console.log('listFishCnt triggered')
-      // TODO implement with id list instead
-      const fishListTimePart = this.fishListTimePart
-      const doFullCountSearch = [true, false, true]
-      const allListCnt = [
-        this.pinnedFishIdList,
-        this.sortedFilteredFishIdList,
-        this.toBeNotifiedFishIdList,
-      ].map((list, index) => {
-        if (Object.keys(fishListTimePart).length === 0) {
-          return {
-            type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
-            cnt: 0,
-          }
-        }
-
-        if (doFullCountSearch[index]) {
-          return {
-            type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
-            cnt: list.reduce((cnt, fishId) => {
-              return (
-                cnt +
-                (fishListTimePart[fishId]?.countDown?.type === DataUtil.FISHING ? 1 : 0)
-              )
-            }, 0),
-          }
-        } else {
-          const firstNotFishingIndex = list.findIndex(
-            it => fishListTimePart[it]?.countDown?.type !== DataUtil.FISHING
-          )
-          return {
-            type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],
-            cnt: firstNotFishingIndex === -1 ? list.length : firstNotFishingIndex,
-          }
-        }
-      })
-      return [
-        { type: allListCnt[1].type, cnt: allListCnt[0].cnt + allListCnt[1].cnt },
-        allListCnt[2],
-      ]
-    },
-    toBeNotifiedFishIdList() {
-      // console.log('toBeNotifiedFishIdList triggered')
-      const sortedFishIds = this.sortedToBeNotifiedIds
-      if (this.filters.sorterType === 'COUNTDOWN') {
-        return sortedFishIds
-      } else {
-        return _.sortBy(sortedFishIds, fishId => this.lazyFishWindowRates[fishId])
       }
     },
     selectedFish() {
@@ -510,11 +457,6 @@ export default {
       )
       if (!_.isEqual(this.sortedToBeNotifiedIds, newSortedToBeNotifiedIds)) {
         this.sortedToBeNotifiedIds = newSortedToBeNotifiedIds
-      }
-    },
-    listFishCnt(listFishCnt, oldValue) {
-      if (!_.isEqual(listFishCnt, oldValue)) {
-        this.sendElectronEvent('listCntUpdated', listFishCnt)
       }
     },
     // weatherChangeTrigger() {
@@ -941,67 +883,6 @@ export default {
     //     }
     //   })
     // },
-    checkNotification(now) {
-      let notifications = []
-
-      this.notification.settings.forEach(setting => {
-        const existedRecordFishIds = Object.keys(
-          this.notificationRecords[setting.key] ?? []
-        )
-        existedRecordFishIds.forEach(oldRecordFishId => {
-          if (!this.toBeNotifiedFishIdList.find(fishId => fishId === +oldRecordFishId)) {
-            this.notificationRecords[setting.key][oldRecordFishId] = undefined
-          }
-        })
-      })
-
-      this.toBeNotifiedFishIdList.forEach(fishId => {
-        const countDown = this.fishListTimePart[fishId]?.countDown
-        if (countDown?.type === DataUtil.ALL_AVAILABLE) {
-          console.warn('all available fish in notification list!', fishId)
-          return false
-        }
-
-        this.notification.settings.forEach(setting => {
-          if (setting.enabled) {
-            const startTime = this.notificationRecords[setting.key]?.[fishId]
-            if (startTime) {
-              if (now >= startTime - setting.before * DataUtil.INTERVAL_MINUTE) {
-                const fish = this.lazyTransformedFishDict[fishId]
-                notifications.push({ fish, setting })
-                this.notificationRecords[setting.key][fishId] = undefined
-              }
-            } else {
-              const fishWindows =
-                this.fishListWeatherChangePart[fishId]?.fishWindows ?? []
-
-              if (!this.notificationRecords[setting.key]) {
-                this.notificationRecords[setting.key] = []
-              }
-              this.notificationRecords[setting.key][fishId] = fishWindows
-                .map(it => it[0])
-                .find(window => now <= window - setting.before * DataUtil.INTERVAL_MINUTE)
-            }
-          }
-        })
-      })
-
-      if (notifications.length > 0) {
-        console.debug(
-          'ring bell for',
-          notifications.map(it => it.name)
-        )
-        this.ringBell(notifications.map(it => it.setting.sound))
-        if (this.isSystemNotificationEnabled) {
-          NotificationUtil.showFishNotification(notifications)
-        }
-      }
-    },
-    ringBell(soundsToPlay) {
-      soundsToPlay.forEach(key => {
-        this.sounds[key]?.player?.volume(this.notification.volume).play()
-      })
-    },
     assembleOceanFishList() {
       const fishList = Object.values(OCEAN_FISHING_FISH)
       return fishList.map(fish => this.assembleOceanFish(fish))

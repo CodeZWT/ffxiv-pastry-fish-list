@@ -166,9 +166,13 @@
       "notification": {
         "title": "闹钟",
         "volume": "音量",
-        "enabled": {
+        "fish": {
           "waiting": "窗口期准备闹钟",
           "fishing": "窗口期开始闹钟"
+        },
+        "IKDRoute": {
+          "start": "海钓登记开始闹钟（整点）",
+          "end": "海钓登记结束闹钟（15分）"
         },
         "before": "提前",
         "unit": "分钟",
@@ -261,6 +265,16 @@
         "confirm": "清空"
       }
     },
+    "toBeNotifiedIKDRoute": {
+      "empty": {
+        "prefix": "当前海钓闹钟列表为空，请前往海钓页面的时间表添加闹钟。"
+      },
+      "clearAll": "清空海钓航班闹钟列表",
+      "dialog": {
+        "title": "是否确认清空海钓航班闹钟列表？",
+        "confirm": "清空"
+      }
+    },
     "normal": {
       "empty": "当前默认列表为空，更新筛选条件以显示相应鱼。"
     },
@@ -321,8 +335,13 @@
     "fishAlarm": {
       "title": "{text}(共{count}条)",
       "body": "{type}({count}): {fishList}",
-      "fishing": "进入CD",
-      "waiting": "距开始还有{minutes}分钟"
+      "Fish-fishing": "进入CD",
+      "Fish-waiting": "距开始还有{minutes}分钟"
+    },
+    "IKDRouteAlarm": {
+      "body": "{time}: {text}",
+      "IKDRoute-start": "距离开始还有{minutes}分钟",
+      "IKDRoute-end": "距截至还有{minutes}分钟"
     }
   },
   "date": {
