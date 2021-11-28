@@ -17,7 +17,7 @@ export default {
       notifications: [],
       routes: [],
       routesStartTime: 0,
-      testCounter: 0,
+      // testCounter: 0,
       alarms: {},
     }
   },
