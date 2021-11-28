@@ -175,6 +175,7 @@
         </v-expansion-panels>
       </v-col>
     </v-row>
+    <about-chart-dialog v-model="showAboutChartDialog" />
   </div>
 </template>
 
@@ -184,6 +185,7 @@ import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import rcapiService from '@/service/rcapiService'
 
 import { mapGetters } from 'vuex'
+import AboutChartDialog from '@/components/Dialog/AboutChartDialog'
 import BaitPercentageChart from '@/components/charts/BaitPercentageChart'
 import BiteIntervalChart from '@/components/charts/BiteIntervalChart'
 import ClickHelper from '@/components/basic/ClickHelper'
@@ -202,6 +204,7 @@ export default {
   name: 'WikiSpotDetail',
   mixins: [PageMixin],
   components: {
+    AboutChartDialog,
     FishGigTable,
     DetailItemMap,
     ClickHelper,
@@ -238,12 +241,13 @@ export default {
   },
   data() {
     return {
+      showAboutChartDialog: false,
       spotRecordCountCache: {},
       spotBiteIntervalCache: {},
     }
   },
   computed: {
-    ...mapGetters(['getFishingSpot']),
+    ...mapGetters(['getFishingSpot', 'readChartTip']),
     currentSpotList() {
       return [this.assembleSpot(this.currentSpotId)]
     },
@@ -312,6 +316,9 @@ export default {
       },
       immediate: true,
     },
+  },
+  created() {
+    this.showAboutChartDialog = !this.readChartTip
   },
   methods: {
     onFishClicked(e) {

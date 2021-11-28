@@ -373,7 +373,6 @@
         </v-card-actions>
       </v-card>
     </rc-dialog>
-    <about-chart-dialog v-model="showAboutChartDialog" />
   </div>
 </template>
 
@@ -381,7 +380,6 @@
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
-import AboutChartDialog from '@/components/Dialog/AboutChartDialog'
 import AchievementProgress from '@/components/AchievementProgress'
 import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
@@ -409,7 +407,6 @@ export default {
     WikiSpotDetail,
     RcTextField,
     RcDialog,
-    AboutChartDialog,
     AchievementProgress,
     ItemIcon,
     NewFeatureMark,
@@ -432,7 +429,6 @@ export default {
   data: vm => ({
     CN_PATCH_VERSION: CN_PATCH_VERSION,
     GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
-    showAboutChartDialog: false,
     achievementInfo: {
       iCatchThat: { name: '专研钓鱼笔记' },
       goBigOrGoHome: { name: '愿者上钩' },
@@ -698,7 +694,6 @@ export default {
       'getFishCompleted',
       'allCompletedFish',
       'isRoseMode',
-      'readChartTip',
     ]),
   },
   watch: {
@@ -783,9 +778,6 @@ export default {
           this.syncStatus = 'finished'
         }
       })
-
-    // TODO recover this
-    // this.showAboutChartDialog = !this.readChartTip
   },
   methods: {
     scrollToTop() {
