@@ -8962,5 +8962,13 @@ module.exports = {
       requireCollectable: true,
       comment: '需要承接此任务，并装备「天诗钓竿」才能钓上',
     },
+    68775: {
+      id: 68775,
+      name_chs: '孤独的捕鱼人',
+      items: [26746, 26747, 26748, 26749],
+      requireCollectable: false,
+      comment: '需要 <strong style="color: darkorange">完成</strong> 此任务。<br />' +
+        '小提示：这意味着没有完成任务时，对应钓场会少一条鱼王的干扰鱼。',
+    },
   },
 }

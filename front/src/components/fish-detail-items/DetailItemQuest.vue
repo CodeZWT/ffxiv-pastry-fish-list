@@ -22,7 +22,7 @@
       </div>
 
       <div v-if="task.title" class="my-1">称号：{{ task.title }}</div>
-      <div v-if="task.comment" class="my-1">备注：{{ task.comment }}</div>
+      <div v-if="task.comment" class="my-1">备注： <span v-html="task.comment" /></div>
       <div class="my-1">
         所有需求鱼
         <template v-if="task.requireCollectable">
