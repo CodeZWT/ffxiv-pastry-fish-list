@@ -83,10 +83,11 @@ export default {
 
     this.showSystemNotification(notification.name, body)
   },
-  showSystemNotification(title, body) {
+  showSystemNotification(title, body, icon) {
     if (this.isNotificationGranted()) {
       new Notification(title, {
         body,
+        icon,
       })
     }
   },
