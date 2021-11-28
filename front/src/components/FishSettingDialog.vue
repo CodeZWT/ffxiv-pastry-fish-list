@@ -219,7 +219,7 @@
                           :label="$t('setting.dialog.notification.before')"
                           :suffix="$t('setting.dialog.notification.unit')"
                           min="0"
-                          max="15"
+                          max="14"
                           step="1"
                           type="number"
                           prepend-icon="mdi-alarm-note"
