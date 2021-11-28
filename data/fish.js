@@ -6106,6 +6106,10 @@ module.exports = {
     bait: 12706,
     locations: [111, 114],
     bestCatchPath: [12706],
+    catchPathList: [
+      [12706],
+      [12704],
+    ],
     patch: 3,
     folklore: null,
     collectable: true,
@@ -7242,6 +7246,10 @@ module.exports = {
     bait: 12711,
     locations: [117],
     bestCatchPath: [12711],
+    catchPathList: [
+      [12711],
+      [12704, 12722],
+    ],
     patch: 3,
     collectable: false,
   },
@@ -7705,6 +7713,10 @@ module.exports = {
     bait: 12712,
     locations: [132],
     bestCatchPath: [12712],
+    catchPathList: [
+      [12712],
+      [28634, 12753],
+    ],
     patch: 3,
     collectable: false,
   },
