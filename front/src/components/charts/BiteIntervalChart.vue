@@ -48,6 +48,7 @@
 
 <script>
 import * as echarts from 'echarts'
+import BAITS from 'Data/bait'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import ItemIcon from '@/components/basic/ItemIcon'
@@ -145,12 +146,17 @@ export default {
       return ret
     },
     dataOfSpot() {
+      const fishIds = UploadUtil.fishListOfSpot(this.spotId)
+      const filterBaitOrSpotFish = ({ bait }) => {
+        return BAITS[bait] != null || fishIds.includes(+bait)
+      }
       const records = this.records
       const biteTimes = _(records)
         .chain()
         .filter(
           ({ fish, bait, chum }) => fish > 0 && bait > 0 && !!chum === this.chumBiteTime
         )
+        .filter(filterBaitOrSpotFish)
         .groupBy(({ bait }) => bait)
         .mapValues(records => {
           return _(records)
@@ -169,6 +175,7 @@ export default {
         .filter(
           ({ fish, bait, chum }) => fish > 0 && bait > 0 && !!chum === this.chumBiteTime
         )
+        .filter(filterBaitOrSpotFish)
         .groupBy(({ fish }) => UploadUtil.toFish(fish).fishName)
         .mapValues(baitRec => [
           _.minBy(baitRec, 'biteIntervalMin')?.biteIntervalMin,
@@ -177,7 +184,7 @@ export default {
         .value()
 
       const fishList = _.reverse(
-        UploadUtil.fishListOfSpot(this.spotId).map(fishId => {
+        fishIds.map(fishId => {
           return (
             this.fishDict[fishId] ??
             this.fishDict[
