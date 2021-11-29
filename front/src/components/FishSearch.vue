@@ -11,27 +11,34 @@
       <v-card-title>
         <rc-autocomplete
           ref="search"
-          v-model="fishId"
-          :items="fishSearchData"
+          v-model="targetId"
+          :search-input.sync="searchText"
+          :items="searchData"
           item-value="id"
           item-text="name"
           :label="$t('search.dialog.placeholder')"
           clearable
-          solo
+          outline
           :filter="filterOptions"
         >
           <template v-slot:item="data">
             <click-helper>
               <div class="d-flex">
                 <v-list-item-avatar>
-                  <raw-item-icon :icon-class="data.item.icon" />
+                  <raw-item-icon
+                    v-if="data.item.type === 'fish'"
+                    :icon-class="data.item.icon"
+                  />
+                  <div v-else class="d-flex align-center">
+                    <div :class="data.item.icon"></div>
+                  </div>
                 </v-list-item-avatar>
                 <v-list-item-content>
                   <v-list-item-title>
                     <div>
                       {{ data.item.name }}
                     </div>
-                    <div style="font-size: small">
+                    <div v-if="data.item.type === 'fish'" style="font-size: small">
                       {{ data.item.spotNamesSimple }}
                     </div>
                   </v-list-item-title>
@@ -47,6 +54,18 @@
           <fish-detail :fish="fish" :now="now" @close-dialog="$emit('input', false)" />
         </v-card-text>
       </template>
+      <!--      <template v-else-if="spearGatheringPointId != null">-->
+      <!--        <v-divider />-->
+      <!--        <v-card-text>-->
+      <!--          <a>{{ spearGatheringPointId }}</a>-->
+      <!--        </v-card-text>-->
+      <!--      </template>-->
+      <!--      <template v-else-if="fishingSpotId != null">-->
+      <!--        <v-divider />-->
+      <!--        <v-card-text>-->
+      <!--          <a>{{ fishingSpotId }}</a>-->
+      <!--        </v-card-text>-->
+      <!--      </template>-->
       <v-divider />
       <v-card-actions>
         <click-helper @click="dialog = false" block>
@@ -60,8 +79,10 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
+import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
+import FIX from 'Data/fix'
 import FishDetail from '@/components/FishDetail'
 import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
@@ -103,9 +124,28 @@ export default {
     },
   },
   data: () => ({
-    fishId: undefined,
+    targetId: undefined,
+    searchText: undefined,
   }),
   computed: {
+    targetType() {
+      if (this.targetId == null) {
+        return undefined
+      } else {
+        return this.targetId.split('#')[0]
+      }
+    },
+    fishId() {
+      return this.targetType === 'fish' ? this.targetId.split('#')[1] : undefined
+    },
+    fishingSpotId() {
+      return this.targetType === 'fishing-spot' ? this.targetId.split('#')[1] : undefined
+    },
+    spearGatheringPointId() {
+      return this.targetType === 'spear-gathering-point'
+        ? this.targetId.split('#')[1]
+        : undefined
+    },
     dialog: {
       get() {
         return this.value
@@ -113,6 +153,31 @@ export default {
       set(showDialog) {
         return this.$emit('input', showDialog)
       },
+    },
+    searchData() {
+      return this.spotSearchData.concat(this.fishSearchData)
+    },
+    spotSearchData() {
+      return Object.values(DATA_CN.FISHING_SPOTS)
+        .filter(it => it._id > 0 && DataUtil.getName(it))
+        .map(it => {
+          return {
+            type: 'fishing-spot',
+            id: 'fishing-spot#' + it._id,
+            name: DataUtil.getName(it),
+            icon: 'fishing-icon',
+          }
+        })
+        .concat(
+          Object.values(FIX.SPEAR_FISH_GATHERING_POINTS).map(it => {
+            return {
+              type: 'spear-gathering-point',
+              id: 'spear-gathering-point#' + it._id,
+              name: DataUtil.getName(it),
+              icon: 'spear-icon',
+            }
+          })
+        )
     },
     fishSearchData() {
       return this.fishData.map(it => {
@@ -126,7 +191,8 @@ export default {
           spotText = this.$t('search.dialog.spot', { spots: spotText, remaining })
         }
         return {
-          id: it._id,
+          type: 'fish',
+          id: 'fish#' + it._id,
           name: this.getItemName(it._id),
           icon: this.getItemIconClass(it._id),
           spotNamesSimple: spotText,
@@ -152,10 +218,29 @@ export default {
     ...mapGetters(['getItemName', 'getFishCompleted', 'getItemIconClass']),
   },
   watch: {
+    fishingSpotId(fishingSpotId) {
+      if (fishingSpotId != null) {
+        this.$router.push({
+          name: 'WikiPage',
+          query: { spotId: fishingSpotId, mode: 'normal' },
+        })
+        this.dialog = false
+      }
+    },
+    spearGatheringPointId(spearGatheringPointId) {
+      if (spearGatheringPointId != null) {
+        this.$router.push({
+          name: 'WikiPage',
+          query: { spotId: spearGatheringPointId, mode: 'spear' },
+        })
+        this.dialog = false
+      }
+    },
     dialog(dialog) {
-      this.fishId = undefined
+      this.targetId = undefined
       if (dialog) {
         setTimeout(() => {
+          this.searchText = undefined
           // this.$refs.search.focus()
           // console.log(this.$refs.search.$el.getElementsByTagName('input')[0])
           this.$refs.search.$el.getElementsByTagName('input')[0].click()
@@ -186,4 +271,14 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped>
+.spear-icon
+  width: 20px
+  height: 20px
+  background: url('https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/fishing-notebook.png') -64px -28px
+
+.fishing-icon
+  width: 20px
+  height: 20px
+  background: url('https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/fishing-notebook.png') -84px -28px
+</style>
