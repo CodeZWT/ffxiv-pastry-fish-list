@@ -281,7 +281,6 @@
                     :baits="fish.baits"
                     @fish-clicked="onFishClicked(undefined, $event)"
                     :target="fish"
-                    hide-target
                   />
                 </div>
                 <template v-if="fish.baitsExtra.length > 0">

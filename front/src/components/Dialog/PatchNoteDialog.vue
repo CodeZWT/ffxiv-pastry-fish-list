@@ -25,6 +25,22 @@
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 1.0.5-fix</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/12/03 21:02</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>
+            更新提钩列表，现在杆型以及精准、强力提钩显示在对应鱼的左侧，并将目标鱼加入列表
+          </li>
+        </ul>
+        <v-divider />
+
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
             <div class="text-h6">Version 1.0.5</div>

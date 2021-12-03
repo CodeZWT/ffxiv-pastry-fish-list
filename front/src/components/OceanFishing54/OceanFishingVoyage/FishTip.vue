@@ -126,6 +126,7 @@
             :target="predator"
             :simple="simple"
             :first-bait-unique="predator.isBaitUnique"
+            :hide-quantity="false"
           />
           <div v-if="!simple" class="ml-1 d-flex flex-column justify-center">
             <div>

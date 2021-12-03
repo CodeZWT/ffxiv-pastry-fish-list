@@ -6,9 +6,6 @@
     <div v-for="(bait, baitInx) in baits" :key="baitInx">
       <div class="d-flex align-center">
         <!--        <span v-if="bait.optional" style="font-size: x-large">(</span>-->
-        <div v-if="baitInx !== 0 && !simple" style="display: flex; align-items: center">
-          <v-icon small>mdi-arrow-right</v-icon>
-        </div>
 
         <link-list
           :id="bait.baitId"
@@ -50,28 +47,47 @@
             </div>
           </div>
         </link-list>
-        <v-row no-gutters class="d-flex" style="max-width: 27px">
-          <v-col cols="12">
-            <v-badge
+
+        <div v-if="!simple" style="display: flex; align-items: center">
+          <v-icon small>mdi-arrow-right</v-icon>
+        </div>
+        <div
+          class="d-flex flex-column align-center"
+          :style="`width: 24px; margin-right: -2px; margin-bottom: 4px`"
+        >
+          <div
+            :class="
+              `d-flex justify-center align-center rounded-lg ${
+                TUG_ICON_COLOR[bait.tugIcon]
+              }`
+            "
+            style="width: 100%; height: 16px;"
+          >
+            <div
               v-show="bait.tug != null"
-              :color="TUG_ICON_COLOR[bait.tugIcon]"
-              :content="bait.tugIcon"
-              inline
-            />
-          </v-col>
+              style="width: 100%; font-size: 12px; line-height: 1; text-align: center; padding-right: 0"
+            >
+              {{ bait.tugIcon }}
+            </div>
+          </div>
           <!--  :data-ck-action-name="bait.hooksetSkillName"  -->
-          <v-col v-if="!simple || bait.tug === 'heavy'" cols="12" style="height: 16px">
+          <div
+            v-if="!simple || bait.tug === 'heavy'"
+            class="d-flex justify-end"
+            style="height: 16px; margin-top: 2px"
+          >
             <div
               v-show="bait.hookset != null"
               :class="[bait.hooksetIcon, 'hookset-icon']"
             />
-          </v-col>
-        </v-row>
+          </div>
+        </div>
+
         <!--        <span v-if="bait.optional" style="font-size: x-large">)</span>-->
       </div>
     </div>
-    <template v-if="target && !hideTarget">
-      <v-icon v-if="!simple" small>mdi-arrow-right</v-icon>
+    <template v-if="target">
+      <!--      <v-icon v-if="!simple" small>mdi-arrow-right</v-icon>-->
       <item-icon :icon-class="target.icon" :title="target.name" />
       <template v-if="!hideQuantity && target.requiredCnt">
         <span class="mx-1">X</span>
@@ -85,7 +101,12 @@
       </template>
     </template>
     <v-menu
-      v-if="!hideBaitList && target && target.availableBaitList.length > 0"
+      v-if="
+        !hideBaitList &&
+          target &&
+          target.availableBaitList &&
+          target.availableBaitList.length > 0
+      "
       max-width="400"
       open-on-hover
       left
@@ -148,17 +169,17 @@ export default {
       type: String,
       default: 'NOT_UNIQUE',
     },
-    hideTarget: {
-      type: Boolean,
-      default: false,
-    },
+    // hideTarget: {
+    //   type: Boolean,
+    //   default: false,
+    // },
     hideBaitList: {
       type: Boolean,
       default: false,
     },
     hideQuantity: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   data: () => ({
@@ -176,6 +197,16 @@ export default {
     isFishId: id => DataUtil.isFishId(id),
     toAnglerId: fishId => fishDict[fishId]?.anglerFishId,
     toItemIdIfExisted: DataUtil.toItemIdIfExisted,
+    tugWidthOf(tug) {
+      switch (tug) {
+        case '!':
+          return 16
+        case '! !':
+          return 20
+        case '! ! !':
+          return 24
+      }
+    },
     onBaitOrFishClicked(event, itemId) {
       if (DataUtil.isFishId(itemId)) {
         this.$emit('fish-clicked', itemId)
