@@ -13,6 +13,7 @@ import DATA from 'Data/data'
 import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
+import PatchFish from 'Data/patch/fish'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
@@ -67,12 +68,13 @@ const ScreenPluginOf = router => store => {
     prevState = nextState
   })
 }
+
 export const MainModule = {
   plugins: [ScreenPluginOf(router)],
   state: {
     window: 'main',
     now: Date.now(),
-    fish: DataUtil.FISH_DATA,
+    fish: PatchFish.getData(),
     fishingSpots: DataUtil.FISHING_SPOTS,
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
     items: DataUtil.ITEMS,

@@ -70,9 +70,10 @@
         :title="$t('top.navBarTitle', { title, version })"
       >
         <span>{{ title }}</span>
-        <v-badge :content="version" class="px-1" />
       </v-toolbar-title>
-
+      <div>
+        <v-badge :content="version" class="px-1" />
+      </div>
       <v-spacer />
       <div v-if="inStartLight">
         <v-tooltip bottom>
@@ -403,6 +404,29 @@
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.website') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-earth</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                <v-btn-toggle
+                  v-model="regionIndex"
+                  mandatory
+                  active-class="primary"
+                  dense
+                >
+                  <v-btn x-small>
+                    {{ $t(`top.region.cn`) }}
+                  </v-btn>
+                  <v-btn x-small>
+                    {{ $t(`top.region.global`) }}
+                  </v-btn>
+                </v-btn-toggle>
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
@@ -807,6 +831,7 @@
 <script>
 import '@thewakingsands/axis-font-icons'
 import { MainFeatures } from 'Data/newFeatures'
+import { SystemInfo, setRegion } from 'Data/version'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import AlarmMixin from '@/mixins/AlarmMixin'
 import AppMixin from '@/components/AppMixin'
@@ -833,6 +858,17 @@ export default {
     }
   },
   computed: {
+    regionIndex: {
+      get() {
+        return ['CN', 'Global'].indexOf(SystemInfo.region)
+      },
+      set(regionIndex) {
+        setRegion(['CN', 'Global'][regionIndex])
+      },
+    },
+    region() {
+      return SystemInfo.region
+    },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
     },

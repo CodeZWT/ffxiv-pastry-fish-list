@@ -27,7 +27,11 @@
     "roseMode": "上传模式",
     "record": "数据统计",
     "keybinding": "快捷键设置",
-    "screen":"屏幕设置"
+    "screen":"屏幕设置",
+    "region": {
+      "cn": "国服",
+      "global": "国际服"
+    }
   },
   "toolbar": {
     "theme": {
