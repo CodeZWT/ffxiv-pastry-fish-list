@@ -7288,7 +7288,7 @@ module.exports = {
     35: {
       _id: 35,
       name_chs: '利姆萨·罗敏萨下层甲板',
-      size_factor: 100,
+      size_factor: 200,
       x: 668,
       y: 1120,
       mapFileId: 's1t2/01',
@@ -7299,7 +7299,7 @@ module.exports = {
     36: {
       _id: 36,
       name_chs: '利姆萨·罗敏萨上层甲板',
-      size_factor: 100,
+      size_factor: 200,
       x: 930,
       y: 1032,
       mapFileId: 's1t1/01',
@@ -7794,7 +7794,7 @@ module.exports = {
     81: {
       _id: 81,
       name_chs: '低语河谷',
-      size_factor: 100,
+      size_factor: 200,
       x: 1553,
       y: 530,
       mapFileId: 'f1t2/00',
@@ -7893,7 +7893,7 @@ module.exports = {
     90: {
       _id: 90,
       name_chs: '翡翠湖滨',
-      size_factor: 100,
+      size_factor: 200,
       x: 1160,
       y: 1361,
       mapFileId: 'f1t1/00',
@@ -7904,7 +7904,7 @@ module.exports = {
     91: {
       _id: 91,
       name_chs: '红茶川水系下游',
-      size_factor: 100,
+      size_factor: 200,
       x: 972,
       y: 1065,
       mapFileId: 'f1t1/00',
@@ -8003,7 +8003,7 @@ module.exports = {
     100: {
       _id: 100,
       name_chs: '红茶川水系上游',
-      size_factor: 100,
+      size_factor: 200,
       x: 790,
       y: 700,
       mapFileId: 'f1t2/00',
@@ -8047,7 +8047,7 @@ module.exports = {
     104: {
       _id: 104,
       name_chs: '海雾村',
-      size_factor: 100,
+      size_factor: 200,
       x: 1000,
       y: 1000,
       mapFileId: 's1h1/01',
@@ -8058,7 +8058,7 @@ module.exports = {
     105: {
       _id: 105,
       name_chs: '薰衣草苗圃',
-      size_factor: 100,
+      size_factor: 200,
       x: 1000,
       y: 1000,
       mapFileId: 'f1h1/01',
@@ -8069,7 +8069,7 @@ module.exports = {
     106: {
       _id: 106,
       name_chs: '高脚孤丘',
-      size_factor: 100,
+      size_factor: 200,
       x: 1000,
       y: 1000,
       mapFileId: 'w1h1/01',
@@ -8102,7 +8102,7 @@ module.exports = {
     109: {
       _id: 109,
       name_chs: '交汇河',
-      size_factor: 100,
+      size_factor: 95,
       x: 1512,
       y: 1260,
       mapFileId: 'r2f1/00',
@@ -8113,7 +8113,7 @@ module.exports = {
     110: {
       _id: 110,
       name_chs: '灰尾瀑布',
-      size_factor: 100,
+      size_factor: 95,
       x: 1640,
       y: 1252,
       mapFileId: 'r2f1/00',
@@ -8124,7 +8124,7 @@ module.exports = {
     111: {
       _id: 111,
       name_chs: '库尔札斯不冻池',
-      size_factor: 100,
+      size_factor: 95,
       x: 1302,
       y: 802,
       mapFileId: 'r2f1/00',
@@ -8135,7 +8135,7 @@ module.exports = {
     112: {
       _id: 112,
       name_chs: '清澈池',
-      size_factor: 100,
+      size_factor: 95,
       x: 1698,
       y: 236,
       mapFileId: 'r2f1/00',
@@ -8146,7 +8146,7 @@ module.exports = {
     113: {
       _id: 113,
       name_chs: '龙涎',
-      size_factor: 100,
+      size_factor: 95,
       x: 366,
       y: 414,
       mapFileId: 'r2f1/00',
@@ -8157,7 +8157,7 @@ module.exports = {
     114: {
       _id: 114,
       name_chs: '灾祸池南',
-      size_factor: 100,
+      size_factor: 95,
       x: 986,
       y: 490,
       mapFileId: 'r2f1/00',
@@ -8168,7 +8168,7 @@ module.exports = {
     115: {
       _id: 115,
       name_chs: '灰烬池',
-      size_factor: 100,
+      size_factor: 95,
       x: 620,
       y: 698,
       mapFileId: 'r2f1/00',
@@ -8179,7 +8179,7 @@ module.exports = {
     116: {
       _id: 116,
       name_chs: '灾祸池西',
-      size_factor: 100,
+      size_factor: 95,
       x: 582,
       y: 372,
       mapFileId: 'r2f1/00',
@@ -8190,7 +8190,7 @@ module.exports = {
     117: {
       _id: 117,
       name_chs: '悲叹飞泉',
-      size_factor: 100,
+      size_factor: 95,
       x: 1442,
       y: 432,
       mapFileId: 'd2f1/00',
@@ -8201,7 +8201,7 @@ module.exports = {
     118: {
       _id: 118,
       name_chs: '宽慰河',
-      size_factor: 100,
+      size_factor: 95,
       x: 1406,
       y: 656,
       mapFileId: 'd2f1/00',
@@ -8212,7 +8212,7 @@ module.exports = {
     119: {
       _id: 119,
       name_chs: '荒烟野地',
-      size_factor: 100,
+      size_factor: 95,
       x: 1152,
       y: 1178,
       mapFileId: 'd2f1/00',
@@ -8223,7 +8223,7 @@ module.exports = {
     120: {
       _id: 120,
       name_chs: '饵食台地',
-      size_factor: 100,
+      size_factor: 95,
       x: 1453,
       y: 240,
       mapFileId: 'd2f1/00',
@@ -8234,7 +8234,7 @@ module.exports = {
     121: {
       _id: 121,
       name_chs: '彻悟岩窟',
-      size_factor: 100,
+      size_factor: 95,
       x: 576,
       y: 588,
       mapFileId: 'd2f1/00',
@@ -8245,7 +8245,7 @@ module.exports = {
     122: {
       _id: 122,
       name_chs: '彻悟岩窟西',
-      size_factor: 100,
+      size_factor: 95,
       x: 410,
       y: 310,
       mapFileId: 'd2f1/00',
@@ -8256,7 +8256,7 @@ module.exports = {
     123: {
       _id: 123,
       name_chs: '不洁古像',
-      size_factor: 100,
+      size_factor: 95,
       x: 876,
       y: 466,
       mapFileId: 'd2f1/00',
@@ -8267,7 +8267,7 @@ module.exports = {
     124: {
       _id: 124,
       name_chs: '光轮祭坛',
-      size_factor: 100,
+      size_factor: 95,
       x: 316,
       y: 210,
       mapFileId: 'd2f1/00',
@@ -8278,7 +8278,7 @@ module.exports = {
     125: {
       _id: 125,
       name_chs: '沙利亚克河',
-      size_factor: 100,
+      size_factor: 95,
       x: 1052,
       y: 1070,
       mapFileId: 'd2f2/00',
@@ -8289,7 +8289,7 @@ module.exports = {
     126: {
       _id: 126,
       name_chs: '湍流三角地',
-      size_factor: 100,
+      size_factor: 95,
       x: 490,
       y: 1260,
       mapFileId: 'd2f2/00',
@@ -8300,7 +8300,7 @@ module.exports = {
     127: {
       _id: 127,
       name_chs: '沙利亚克河上流',
-      size_factor: 100,
+      size_factor: 95,
       x: 1042,
       y: 1678,
       mapFileId: 'd2f2/00',
@@ -8311,7 +8311,7 @@ module.exports = {
     128: {
       _id: 128,
       name_chs: '沙利亚克河中流',
-      size_factor: 100,
+      size_factor: 95,
       x: 931,
       y: 1140,
       mapFileId: 'd2f2/00',
@@ -8322,7 +8322,7 @@ module.exports = {
     129: {
       _id: 129,
       name_chs: '招恶荒岛',
-      size_factor: 100,
+      size_factor: 95,
       x: 1700,
       y: 1400,
       mapFileId: 'd2f3/00',
@@ -8333,7 +8333,7 @@ module.exports = {
     130: {
       _id: 130,
       name_chs: '绿茵岛',
-      size_factor: 100,
+      size_factor: 95,
       x: 368,
       y: 1584,
       mapFileId: 'd2f3/00',
@@ -8344,7 +8344,7 @@ module.exports = {
     131: {
       _id: 131,
       name_chs: '西方水泉',
-      size_factor: 100,
+      size_factor: 95,
       x: 388,
       y: 336,
       mapFileId: 'd2f3/00',
@@ -8355,7 +8355,7 @@ module.exports = {
     132: {
       _id: 132,
       name_chs: '人王遗迹',
-      size_factor: 100,
+      size_factor: 95,
       x: 1362,
       y: 1156,
       mapFileId: 'd2f3/00',
@@ -8366,7 +8366,7 @@ module.exports = {
     133: {
       _id: 133,
       name_chs: '索姆阿尔云帽',
-      size_factor: 100,
+      size_factor: 95,
       x: 828,
       y: 1868,
       mapFileId: 'd2f3/00',
@@ -8377,7 +8377,7 @@ module.exports = {
     134: {
       _id: 134,
       name_chs: '惋惜之晶遗迹',
-      size_factor: 100,
+      size_factor: 95,
       x: 914,
       y: 256,
       mapFileId: 'd2f3/00',
@@ -8388,7 +8388,7 @@ module.exports = {
     135: {
       _id: 135,
       name_chs: '沃仙曦染',
-      size_factor: 100,
+      size_factor: 95,
       x: 1324,
       y: 1610,
       mapFileId: 'a2f1/00',
@@ -8399,7 +8399,7 @@ module.exports = {
     136: {
       _id: 136,
       name_chs: '云水塘',
-      size_factor: 100,
+      size_factor: 95,
       x: 1450,
       y: 1832,
       mapFileId: 'a2f1/00',
@@ -8410,7 +8410,7 @@ module.exports = {
     137: {
       _id: 137,
       name_chs: '云顶',
-      size_factor: 100,
+      size_factor: 95,
       x: 668,
       y: 1784,
       mapFileId: 'a2f1/00',
@@ -8421,7 +8421,7 @@ module.exports = {
     138: {
       _id: 138,
       name_chs: '蓝天窗',
-      size_factor: 100,
+      size_factor: 95,
       x: 316,
       y: 500,
       mapFileId: 'a2f1/00',
@@ -8432,7 +8432,7 @@ module.exports = {
     139: {
       _id: 139,
       name_chs: '魔窟离岛',
-      size_factor: 100,
+      size_factor: 95,
       x: 680,
       y: 220,
       mapFileId: 'a2f1/00',
@@ -8443,7 +8443,7 @@ module.exports = {
     140: {
       _id: 140,
       name_chs: '阿尔法管区',
-      size_factor: 100,
+      size_factor: 95,
       x: 752,
       y: 524,
       mapFileId: 'a2f2/00',
@@ -8454,7 +8454,7 @@ module.exports = {
     141: {
       _id: 141,
       name_chs: '废液池',
-      size_factor: 100,
+      size_factor: 95,
       x: 1430,
       y: 270,
       mapFileId: 'a2f2/00',
@@ -8465,7 +8465,7 @@ module.exports = {
     142: {
       _id: 142,
       name_chs: '超星际通信塔',
-      size_factor: 100,
+      size_factor: 95,
       x: 280,
       y: 744,
       mapFileId: 'a2f2/00',
@@ -8476,7 +8476,7 @@ module.exports = {
     143: {
       _id: 143,
       name_chs: '德尔塔管区',
-      size_factor: 100,
+      size_factor: 95,
       x: 526,
       y: 1462,
       mapFileId: 'a2f2/00',
@@ -8487,7 +8487,7 @@ module.exports = {
     144: {
       _id: 144,
       name_chs: '冠毛大树',
-      size_factor: 100,
+      size_factor: 95,
       x: 274,
       y: 1630,
       mapFileId: 'a2f2/00',
@@ -8498,7 +8498,7 @@ module.exports = {
     145: {
       _id: 145,
       name_chs: '生态园',
-      size_factor: 100,
+      size_factor: 95,
       x: 1860,
       y: 840,
       mapFileId: 'a2f2/00',
@@ -8509,7 +8509,7 @@ module.exports = {
     146: {
       _id: 146,
       name_chs: '阿济兹拉旗舰岛',
-      size_factor: 100,
+      size_factor: 95,
       x: 1000,
       y: 1000,
       mapFileId: 'a2f2/00',
@@ -8542,7 +8542,7 @@ module.exports = {
     157: {
       _id: 157,
       name_chs: '防波堤',
-      size_factor: 100,
+      size_factor: 200,
       x: 950,
       y: 1000,
       mapFileId: 'e3t1/00',
@@ -8817,7 +8817,7 @@ module.exports = {
     182: {
       _id: 182,
       name_chs: '幻河上游',
-      size_factor: 100,
+      size_factor: 200,
       x: 1000,
       y: 1300,
       mapFileId: 'g3t1/00',
@@ -8828,7 +8828,7 @@ module.exports = {
     183: {
       _id: 183,
       name_chs: '神拳痕',
-      size_factor: 100,
+      size_factor: 200,
       x: 1025,
       y: 935,
       mapFileId: 'g3t1/00',
@@ -8839,7 +8839,7 @@ module.exports = {
     184: {
       _id: 184,
       name_chs: '星导寺入口',
-      size_factor: 100,
+      size_factor: 200,
       x: 1115,
       y: 490,
       mapFileId: 'g3t1/00',
@@ -8982,7 +8982,7 @@ module.exports = {
     197: {
       _id: 197,
       name_chs: '白银乡',
-      size_factor: 100,
+      size_factor: 200,
       x: 750,
       y: 1350,
       mapFileId: 'e1h1/01',
@@ -8993,7 +8993,7 @@ module.exports = {
     198: {
       _id: 198,
       name_chs: '白银水路',
-      size_factor: 100,
+      size_factor: 200,
       x: 970,
       y: 1030,
       mapFileId: 'e1h1/01',
@@ -9004,7 +9004,7 @@ module.exports = {
     199: {
       _id: 199,
       name_chs: '三艺区',
-      size_factor: 100,
+      size_factor: 200,
       x: 770,
       y: 645,
       mapFileId: 'n4t1/00',
@@ -9015,7 +9015,7 @@ module.exports = {
     200: {
       _id: 200,
       name_chs: '四艺区',
-      size_factor: 100,
+      size_factor: 200,
       x: 940,
       y: 1460,
       mapFileId: 'n4t1/00',
@@ -9026,7 +9026,7 @@ module.exports = {
     201: {
       _id: 201,
       name_chs: '水晶都起居室',
-      size_factor: 100,
+      size_factor: 200,
       x: 1175,
       y: 1530,
       mapFileId: 'n4t1/00',
@@ -9169,7 +9169,7 @@ module.exports = {
     214: {
       _id: 214,
       name_chs: '废船街',
-      size_factor: 100,
+      size_factor: 200,
       x: 1025,
       y: 1025,
       mapFileId: 'n4t2/01',
@@ -9422,7 +9422,7 @@ module.exports = {
     237: {
       _id: 237,
       name_chs: '加拉迪翁湾外海',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9433,7 +9433,7 @@ module.exports = {
     238: {
       _id: 238,
       name_chs: '加拉迪翁湾外海幻海流',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9444,7 +9444,7 @@ module.exports = {
     239: {
       _id: 239,
       name_chs: '梅尔托尔海峡南',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9455,7 +9455,7 @@ module.exports = {
     240: {
       _id: 240,
       name_chs: '梅尔托尔海峡南幻海流',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9466,7 +9466,7 @@ module.exports = {
     241: {
       _id: 241,
       name_chs: '罗塔诺海海面',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9477,7 +9477,7 @@ module.exports = {
     242: {
       _id: 242,
       name_chs: '罗塔诺海海面幻海流',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9488,7 +9488,7 @@ module.exports = {
     243: {
       _id: 243,
       name_chs: '梅尔托尔海峡北',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9499,7 +9499,7 @@ module.exports = {
     244: {
       _id: 244,
       name_chs: '梅尔托尔海峡北幻海流',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9521,7 +9521,7 @@ module.exports = {
     246: {
       _id: 246,
       name_chs: '谢尔达莱群岛近海',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9532,7 +9532,7 @@ module.exports = {
     247: {
       _id: 247,
       name_chs: '谢尔达莱群岛近海幻海流',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9543,7 +9543,7 @@ module.exports = {
     248: {
       _id: 248,
       name_chs: '绯汐海近海',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9554,7 +9554,7 @@ module.exports = {
     249: {
       _id: 249,
       name_chs: '绯汐海近海幻海流',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9565,7 +9565,7 @@ module.exports = {
     250: {
       _id: 250,
       name_chs: '罗斯利特湾近海',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9576,7 +9576,7 @@ module.exports = {
     251: {
       _id: 251,
       name_chs: '罗斯利特湾近海幻海流',
-      size_factor: 100,
+      size_factor: 400,
       x: 1025,
       y: 1025,
       mapFileId: 'o1a1/00',
@@ -9587,7 +9587,7 @@ module.exports = {
     252: {
       _id: 252,
       name_chs: "Scholar's Harbor",
-      size_factor: 100,
+      size_factor: 200,
       x: 1074,
       y: 1518,
       mapFileId: 'k5t1/00',
@@ -9598,7 +9598,7 @@ module.exports = {
     253: {
       _id: 253,
       name_chs: 'Oinops',
-      size_factor: 100,
+      size_factor: 200,
       x: 1024,
       y: 732,
       mapFileId: 'k5t1/00',
@@ -9609,7 +9609,7 @@ module.exports = {
     254: {
       _id: 254,
       name_chs: 'Reflecting Pool',
-      size_factor: 100,
+      size_factor: 200,
       x: 670,
       y: 980,
       mapFileId: 'k5t1/00',
@@ -9675,7 +9675,7 @@ module.exports = {
     260: {
       _id: 260,
       name_chs: 'Meghaduta',
-      size_factor: 100,
+      size_factor: 200,
       x: 459,
       y: 989,
       mapFileId: 'm5t1/00',
