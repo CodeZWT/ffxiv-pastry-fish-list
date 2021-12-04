@@ -24306,6 +24306,29 @@ const fishGlobalAddon = {
     gig: null,
     aquarium: null,
   },
+  36521: {
+    _id: 36521,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: true,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [285],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
 }
 
 const fishGlobal = Object.assign({}, fishCN, fishGlobalAddon)
