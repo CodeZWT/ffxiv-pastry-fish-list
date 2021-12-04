@@ -45,12 +45,22 @@
         </template>
       </v-progress-linear>
     </div>
-    <div v-else style="height: 100%">
+    <div
+      v-else-if="
+        !fish.checkInfo ||
+          (!fish.checkInfo.timeRestricted && !fish.checkInfo.weatherRestricted)
+      "
+      style="height: 100%"
+    >
       <v-progress-linear :value="100" height="25" rounded :color="fishingColor">
         <template>
           <strong>{{ $t(fish.countDownTypeName) }}</strong>
         </template>
       </v-progress-linear>
+    </div>
+    <div v-else class="d-flex justify-center">
+      <v-icon small color="warning">mdi-alert-outline</v-icon>
+      <span class="warning--text">开荒中</span>
     </div>
   </div>
   <div v-else>

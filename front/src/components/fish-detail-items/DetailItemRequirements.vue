@@ -31,6 +31,12 @@
           </div>
         </div>
       </div>
+      <div
+        v-else-if="fish.checkInfo && fish.checkInfo.weatherRestricted"
+        class="text-center"
+      >
+        有天气限制
+      </div>
       <div class="d-flex justify-center" v-else>
         {{ $t('none') }}
       </div>
@@ -57,6 +63,9 @@
               时间条件在鱼眼模式下忽略
             </div>
           </v-tooltip>
+        </div>
+        <div v-else-if="fish.checkInfo && fish.checkInfo.timeRestricted">
+          有时间限制
         </div>
         <div v-else>
           {{ $t('none') }}

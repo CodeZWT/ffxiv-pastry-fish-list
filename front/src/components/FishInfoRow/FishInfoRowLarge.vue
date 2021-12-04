@@ -171,11 +171,26 @@
                   style="margin-left: 2px"
                 />
               </template>
-              <div v-if="fish.checking" title="开荒中一切数据仅供参考" class="ml-1">
+              <div
+                v-if="
+                  fish.checking &&
+                    fish.checkInfo.timeRestricted &&
+                    fish.checkInfo.weatherRestricted
+                "
+                title="开荒中一切数据仅供参考"
+                class="ml-1"
+              >
                 <v-icon small color="warning">mdi-alert-outline</v-icon>
                 <span class="warning--text">开荒中</span>
               </div>
-              <div v-if="!transformedFishTimePart.hasCountDown && !fish.checking">
+              <div
+                v-if="
+                  !transformedFishTimePart.hasCountDown &&
+                    (!fish.checking ||
+                      (!fish.checkInfo.timeRestricted &&
+                        !fish.checkInfo.weatherRestricted))
+                "
+              >
                 {{ $t('countDown.allAvailable') }}
               </div>
             </div>
@@ -258,7 +273,11 @@
                   />
                 </div>
               </div>
-              <div v-if="isSpearFish" class="d-flex align-center">
+              <div v-if="fish.checkInfo && fish.checkInfo.bestCatchPathUnknown">
+                <v-icon small color="warning">mdi-alert-outline</v-icon>
+                <span class="warning--text">开荒中</span>
+              </div>
+              <div v-else-if="isSpearFish" class="d-flex align-center">
                 <item-icon :icon-class="fish.gig.icon" :title="fish.gig.text" />
                 <div>
                   <div>{{ fish.gig.text }}</div>

@@ -1,7 +1,14 @@
 <template>
   <div>
     <div class="d-flex justify-center">{{ $t('detail.buffAndBaits.title') }}</div>
-    <div class="d-flex justify-center align-center">
+    <div
+      v-if="fish.checkInfo && fish.checkInfo.bestCatchPathUnknown"
+      class="d-flex justify-center align-center"
+    >
+      <v-icon small color="warning">mdi-alert-outline</v-icon>
+      <span class="warning--text">开荒中</span>
+    </div>
+    <div v-else class="d-flex justify-center align-center">
       <div v-if="fish.hasPredators">
         <div v-if="fish.type === 'normal'" class="d-flex flex-column align-center">
           <effect-icon :icon-class="fish.predatorsIcon" />
