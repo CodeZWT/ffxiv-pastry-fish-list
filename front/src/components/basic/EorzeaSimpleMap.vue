@@ -428,7 +428,7 @@ export default {
   data: () => ({
     fishMarker: ImgUtil.getImgUrl('fishingSpot.png'),
     markerRange: ImgUtil.getImgUrl('markerRange.png'),
-    defaultMap: ImgUtil.getImgUrl('default.00.jpg'),
+    defaultMap: ImgUtil.getMapUrl('default.00.webp'),
     aetheryteMarker: ImgUtil.getImgUrl('PlaceName.png'),
     stage: undefined,
     mapOptions: [0, 1, 2, 3],
@@ -456,7 +456,7 @@ export default {
       if (this.mode === 'remote') {
         return `${DataUtil.XIV_API_HOST}/m/${paths[0]}/${paths[0]}.${paths[1]}.jpg`
       } else {
-        return ImgUtil.getImgUrl(`${paths[0]}.${paths[1]}.jpg`)
+        return ImgUtil.getMapUrl(`${paths[0]}.${paths[1]}.webp`)
       }
     },
     stageConfig() {
