@@ -6107,10 +6107,7 @@ const fishCN = {
     bait: 12706,
     locations: [111, 114],
     bestCatchPath: [12706],
-    catchPathList: [
-      [12706],
-      [12704],
-    ],
+    catchPathList: [[12706], [12704]],
     patch: 3,
     folklore: null,
     collectable: true,
@@ -7247,10 +7244,7 @@ const fishCN = {
     bait: 12711,
     locations: [117],
     bestCatchPath: [12711],
-    catchPathList: [
-      [12711],
-      [12704, 12722],
-    ],
+    catchPathList: [[12711], [12704, 12722]],
     patch: 3,
     collectable: false,
   },
@@ -7714,10 +7708,7 @@ const fishCN = {
     bait: 12712,
     locations: [132],
     bestCatchPath: [12712],
-    catchPathList: [
-      [12712],
-      [28634, 12753],
-    ],
+    catchPathList: [[12712], [28634, 12753]],
     patch: 3,
     collectable: false,
   },
@@ -15912,11 +15903,7 @@ const fishCN = {
       24203: 3,
       24204: 5,
     },
-    predatorOrder: [
-      24203,
-      23056,
-      24204,
-    ],
+    predatorOrder: [24203, 23056, 24204],
     fishEyes: false,
     snagging: false,
     hookset: 'Powerful',
@@ -21628,3110 +21615,2697 @@ const fishCN = {
   },
 }
 const fishGlobalAddon = {
-  "35604": {
-    "_id": 35604,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      255
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "35605": {
-    "_id": 35605,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      263
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "35606": {
-    "_id": 35606,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      270,
-      271
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "35607": {
-    "_id": 35607,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      277
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36385": {
-    "_id": 36385,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      252
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36386": {
-    "_id": 36386,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      252
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36387": {
-    "_id": 36387,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      252
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36388": {
-    "_id": 36388,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      252
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36389": {
-    "_id": 36389,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      252
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36390": {
-    "_id": 36390,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      253,
-      254
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36392": {
-    "_id": 36392,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      253
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36393": {
-    "_id": 36393,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      253
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36394": {
-    "_id": 36394,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      253
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36395": {
-    "_id": 36395,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      254
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36396": {
-    "_id": 36396,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      254
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36397": {
-    "_id": 36397,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      255,
-      256,
-      257,
-      258,
-      259
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36398": {
-    "_id": 36398,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      256,
-      257,
-      258,
-      259
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36399": {
-    "_id": 36399,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      255
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36400": {
-    "_id": 36400,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      255
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36402": {
-    "_id": 36402,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      255
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36403": {
-    "_id": 36403,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      256
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36404": {
-    "_id": 36404,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      256
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36405": {
-    "_id": 36405,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      256
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36407": {
-    "_id": 36407,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      257
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36408": {
-    "_id": 36408,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      257
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36409": {
-    "_id": 36409,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      258
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36410": {
-    "_id": 36410,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      258
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36411": {
-    "_id": 36411,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      258
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36412": {
-    "_id": 36412,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      259
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36414": {
-    "_id": 36414,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": true,
-      "timeRestricted": true
-    },
-    "bait": 29717,
-    "locations": [
-      259
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36415": {
-    "_id": 36415,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      260
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36417": {
-    "_id": 36417,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      260
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36418": {
-    "_id": 36418,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      260
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36419": {
-    "_id": 36419,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      260
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36420": {
-    "_id": 36420,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      261,
-      262,
-      263
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36421": {
-    "_id": 36421,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      261,
-      262,
-      263
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36422": {
-    "_id": 36422,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      261
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36423": {
-    "_id": 36423,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      261
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36425": {
-    "_id": 36425,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      262
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36426": {
-    "_id": 36426,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      262
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36427": {
-    "_id": 36427,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      262
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36430": {
-    "_id": 36430,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      263
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36431": {
-    "_id": 36431,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      264
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36432": {
-    "_id": 36432,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      264
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36434": {
-    "_id": 36434,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      264
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36435": {
-    "_id": 36435,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      264
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36436": {
-    "_id": 36436,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      265,
-      266,
-      267,
-      268
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36438": {
-    "_id": 36438,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      265,
-      266
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36439": {
-    "_id": 36439,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      265
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36440": {
-    "_id": 36440,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": true,
-      "timeRestricted": true
-    },
-    "bait": 29717,
-    "locations": [
-      265
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36441": {
-    "_id": 36441,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      266
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36442": {
-    "_id": 36442,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      266
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36443": {
-    "_id": 36443,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      267,
-      268
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36444": {
-    "_id": 36444,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      267
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36446": {
-    "_id": 36446,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      267
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36447": {
-    "_id": 36447,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      268
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36448": {
-    "_id": 36448,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      268
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36449": {
-    "_id": 36449,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      268
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36450": {
-    "_id": 36450,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      269
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36451": {
-    "_id": 36451,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      269
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36452": {
-    "_id": 36452,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      269
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36453": {
-    "_id": 36453,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      269
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36454": {
-    "_id": 36454,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": true
-    },
-    "bait": 29717,
-    "locations": [
-      269
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36456": {
-    "_id": 36456,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      270,
-      271
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36457": {
-    "_id": 36457,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      270
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36458": {
-    "_id": 36458,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      270
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36459": {
-    "_id": 36459,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      270
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36460": {
-    "_id": 36460,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      271
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36461": {
-    "_id": 36461,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      271
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36462": {
-    "_id": 36462,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      271
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36463": {
-    "_id": 36463,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      272
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36465": {
-    "_id": 36465,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      272
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36466": {
-    "_id": 36466,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      272
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36467": {
-    "_id": 36467,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      272
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36468": {
-    "_id": 36468,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      273,
-      274
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36470": {
-    "_id": 36470,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      273,
-      274
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36471": {
-    "_id": 36471,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      273
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36472": {
-    "_id": 36472,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": true
-    },
-    "bait": 29717,
-    "locations": [
-      273
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36473": {
-    "_id": 36473,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      274
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36475": {
-    "_id": 36475,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      274
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36476": {
-    "_id": 36476,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      275,
-      276,
-      277
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36477": {
-    "_id": 36477,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      275,
-      276,
-      277
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36478": {
-    "_id": 36478,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      275
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36479": {
-    "_id": 36479,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      275
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36480": {
-    "_id": 36480,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": true
-    },
-    "bait": 29717,
-    "locations": [
-      275
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36481": {
-    "_id": 36481,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      276
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36484": {
-    "_id": 36484,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      277
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36485": {
-    "_id": 36485,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      276
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36487": {
-    "_id": 36487,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      278,
-      279,
-      280
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36488": {
-    "_id": 36488,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      278,
-      279,
-      280
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36489": {
-    "_id": 36489,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      278
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36491": {
-    "_id": 36491,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      278
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36492": {
-    "_id": 36492,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      279
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36494": {
-    "_id": 36494,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      279
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36495": {
-    "_id": 36495,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      280
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36496": {
-    "_id": 36496,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      280
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36497": {
-    "_id": 36497,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      280
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36499": {
-    "_id": 36499,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      281,
-      282
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36501": {
-    "_id": 36501,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      281
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36502": {
-    "_id": 36502,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      281
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36503": {
-    "_id": 36503,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      281,
-      282
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36505": {
-    "_id": 36505,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      282
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36506": {
-    "_id": 36506,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      283,
-      284,
-      285
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36507": {
-    "_id": 36507,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      283,
-      284,
-      285
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36508": {
-    "_id": 36508,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      284,
-      285
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36509": {
-    "_id": 36509,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      283
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36510": {
-    "_id": 36510,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      283
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36511": {
-    "_id": 36511,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      283
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36512": {
-    "_id": 36512,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      283
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36513": {
-    "_id": 36513,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      283
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36514": {
-    "_id": 36514,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      284
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36515": {
-    "_id": 36515,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      284
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36516": {
-    "_id": 36516,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      284
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36517": {
-    "_id": 36517,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      284
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36518": {
-    "_id": 36518,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      285
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36519": {
-    "_id": 36519,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      285
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36520": {
-    "_id": 36520,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": false,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      285
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  },
-  "36521": {
-    "_id": 36521,
-    "previousWeatherSet": [],
-    "weatherSet": [],
-    "startHour": 0,
-    "endHour": 24,
-    "predators": {},
-    "fishEyes": false,
-    "snagging": false,
-    "checkInfo": {
-      "weatherRestricted": true,
-      "timeRestricted": false
-    },
-    "bait": 29717,
-    "locations": [
-      285
-    ],
-    "bestCatchPath": [
-      29717
-    ],
-    "patch": 6,
-    "folklore": null,
-    "collectable": false,
-    "gig": null,
-    "aquarium": null
-  }
+  35604: {
+    _id: 35604,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [255],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  35605: {
+    _id: 35605,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [263],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  35606: {
+    _id: 35606,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [270, 271],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  35607: {
+    _id: 35607,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [277],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36385: {
+    _id: 36385,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [252],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36386: {
+    _id: 36386,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [252],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36387: {
+    _id: 36387,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [252],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36388: {
+    _id: 36388,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [252],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36389: {
+    _id: 36389,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [252],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36390: {
+    _id: 36390,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [253, 254],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36392: {
+    _id: 36392,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [253],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36393: {
+    _id: 36393,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [253],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36394: {
+    _id: 36394,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [253],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36395: {
+    _id: 36395,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [254],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36396: {
+    _id: 36396,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [254],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36397: {
+    _id: 36397,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [255, 256, 257, 258, 259],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36398: {
+    _id: 36398,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [256, 257, 258, 259],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36399: {
+    _id: 36399,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [255],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36400: {
+    _id: 36400,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [255],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36402: {
+    _id: 36402,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [255],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36403: {
+    _id: 36403,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [256],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36404: {
+    _id: 36404,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [256],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36405: {
+    _id: 36405,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [256],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36407: {
+    _id: 36407,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [257],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36408: {
+    _id: 36408,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [257],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36409: {
+    _id: 36409,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [258],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36410: {
+    _id: 36410,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [258],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36411: {
+    _id: 36411,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [258],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36412: {
+    _id: 36412,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [259],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36414: {
+    _id: 36414,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: true,
+      timeRestricted: true,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [259],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36415: {
+    _id: 36415,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [260],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36417: {
+    _id: 36417,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [260],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36418: {
+    _id: 36418,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [260],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36419: {
+    _id: 36419,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [260],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36420: {
+    _id: 36420,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [261, 262, 263],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36421: {
+    _id: 36421,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [261, 262, 263],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36422: {
+    _id: 36422,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [261],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36423: {
+    _id: 36423,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [261],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36425: {
+    _id: 36425,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [262],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36426: {
+    _id: 36426,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [262],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36427: {
+    _id: 36427,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [262],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36430: {
+    _id: 36430,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [263],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36431: {
+    _id: 36431,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [264],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36432: {
+    _id: 36432,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [264],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36434: {
+    _id: 36434,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [264],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36435: {
+    _id: 36435,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [264],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36436: {
+    _id: 36436,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [265, 266, 267, 268],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36438: {
+    _id: 36438,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [265, 266],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36439: {
+    _id: 36439,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [265],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36440: {
+    _id: 36440,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: true,
+      timeRestricted: true,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [265],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36441: {
+    _id: 36441,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [266],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36442: {
+    _id: 36442,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [266],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36443: {
+    _id: 36443,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [267, 268],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36444: {
+    _id: 36444,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [267],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36446: {
+    _id: 36446,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [267],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36447: {
+    _id: 36447,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [268],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36448: {
+    _id: 36448,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [268],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36449: {
+    _id: 36449,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [268],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36450: {
+    _id: 36450,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [269],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36451: {
+    _id: 36451,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [269],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36452: {
+    _id: 36452,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [269],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36453: {
+    _id: 36453,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [269],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36454: {
+    _id: 36454,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: true,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [269],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36456: {
+    _id: 36456,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [270, 271],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36457: {
+    _id: 36457,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [270],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36458: {
+    _id: 36458,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [270],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36459: {
+    _id: 36459,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [270],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36460: {
+    _id: 36460,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [271],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36461: {
+    _id: 36461,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [271],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36462: {
+    _id: 36462,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [271],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36463: {
+    _id: 36463,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [272],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36465: {
+    _id: 36465,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [272],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36466: {
+    _id: 36466,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [272],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36467: {
+    _id: 36467,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [272],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36468: {
+    _id: 36468,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [273, 274],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36470: {
+    _id: 36470,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [273, 274],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36471: {
+    _id: 36471,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [273],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36472: {
+    _id: 36472,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: true,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [273],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36473: {
+    _id: 36473,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [274],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36475: {
+    _id: 36475,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [274],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36476: {
+    _id: 36476,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [275, 276, 277],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36477: {
+    _id: 36477,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [275, 276, 277],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36478: {
+    _id: 36478,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [275],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36479: {
+    _id: 36479,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [275],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36480: {
+    _id: 36480,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: true,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [275],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36481: {
+    _id: 36481,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [276],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36484: {
+    _id: 36484,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [277],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36485: {
+    _id: 36485,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [276],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36487: {
+    _id: 36487,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [278, 279, 280],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36488: {
+    _id: 36488,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [278, 279, 280],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36489: {
+    _id: 36489,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [278],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36491: {
+    _id: 36491,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [278],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36492: {
+    _id: 36492,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [279],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36494: {
+    _id: 36494,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [279],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36495: {
+    _id: 36495,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [280],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36496: {
+    _id: 36496,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [280],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36497: {
+    _id: 36497,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [280],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36499: {
+    _id: 36499,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [281, 282],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36501: {
+    _id: 36501,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [281],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36502: {
+    _id: 36502,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [281],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36503: {
+    _id: 36503,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [281, 282],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36505: {
+    _id: 36505,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [282],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36506: {
+    _id: 36506,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [283, 284, 285],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36507: {
+    _id: 36507,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [283, 284, 285],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36508: {
+    _id: 36508,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [284, 285],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36509: {
+    _id: 36509,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [283],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36510: {
+    _id: 36510,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [283],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36511: {
+    _id: 36511,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [283],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36512: {
+    _id: 36512,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [283],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36513: {
+    _id: 36513,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [283],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36514: {
+    _id: 36514,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [284],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36515: {
+    _id: 36515,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [284],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36516: {
+    _id: 36516,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [284],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36517: {
+    _id: 36517,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [284],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36518: {
+    _id: 36518,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [285],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36519: {
+    _id: 36519,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [285],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
+  36520: {
+    _id: 36520,
+    previousWeatherSet: [],
+    weatherSet: [],
+    startHour: 0,
+    endHour: 24,
+    predators: {},
+    fishEyes: false,
+    snagging: false,
+    checkInfo: {
+      weatherRestricted: false,
+      timeRestricted: false,
+      bestCatchPathUnknown: true,
+    },
+    bait: 29717,
+    locations: [285],
+    bestCatchPath: [29717],
+    patch: 6,
+    folklore: null,
+    collectable: false,
+    gig: null,
+    aquarium: null,
+  },
 }
 
 const fishGlobal = Object.assign({}, fishCN, fishGlobalAddon)

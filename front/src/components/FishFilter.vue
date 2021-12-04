@@ -177,14 +177,11 @@
 </template>
 
 <script>
+import { SystemInfo } from 'Data/version'
 import DataUtil from '@/utils/DataUtil'
+import mapValues from 'lodash/mapValues'
 
-const PATCHES = {
-  '2.x': [2.0, 2.1, 2.2, 2.3, 2.4, 2.5],
-  '3.x': [3.0, 3.1, 3.2, 3.3, 3.4, 3.5],
-  '4.x': [4.0, 4.1, 4.2, 4.3, 4.4, 4.5],
-  '5.x': [5.0, 5.1, 5.2, 5.3, 5.4, 5.5],
-}
+const PATCHES = SystemInfo.patches
 const FISH_N_FILTER_TYPES = ['10', '20', '50', 'ALL']
 
 export default {
@@ -209,14 +206,9 @@ export default {
   },
   data() {
     return {
-      exVersion: ['2.x', '3.x', '4.x', '5.x'],
       patches: PATCHES,
-      patchSelectedIndices: {
-        '2.x': [],
-        '3.x': [],
-        '4.x': [],
-        '5.x': [],
-      },
+      exVersion: Object.keys(PATCHES),
+      patchSelectedIndices: mapValues(PATCHES, () => []),
       completeFilterTypes: DataUtil.COMPLETE_FILTER_TYPES,
       completeTypes: [],
       bigFishFilterTypes: DataUtil.BIG_FISH_FILTER_TYPES,
@@ -266,6 +258,7 @@ export default {
         '3.x': this.getPatchesInVersion(filters?.patches, '3.x'),
         '4.x': this.getPatchesInVersion(filters?.patches, '4.x'),
         '5.x': this.getPatchesInVersion(filters?.patches, '5.x'),
+        '6.x': this.getPatchesInVersion(filters?.patches, '6.x'),
       }
       this.completeTypes = (filters?.completeTypes ?? []).map(typeStr =>
         DataUtil.COMPLETE_FILTER_TYPES.indexOf(typeStr)

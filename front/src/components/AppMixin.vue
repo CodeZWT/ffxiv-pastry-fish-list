@@ -9,6 +9,7 @@ import {
   OCEAN_FISHING_FISH,
 } from 'Data/oceanFishing'
 import { PageVisibilityUtil } from '@/utils/new/PageVisibilityUtil'
+import { SystemInfo } from 'Data/version'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import { version } from '../../package.json'
 import BaitDialog from '@/components/Dialog/BaitDialog'
@@ -588,8 +589,9 @@ export default {
     }
 
     this.lazySourceFishList = Object.values(this.allFish).filter(
-      it => it.patch == null || it.patch <= DataUtil.PATCH_MAX
+      it => it.patch == null || it.patch <= SystemInfo.patch
     )
+    console.log('lazySourceFishList', this.lazySourceFishList.length)
     console.debug('update weather part')
     this.updateWeatherChangePart(this.now)
     console.debug('update weather part finished')

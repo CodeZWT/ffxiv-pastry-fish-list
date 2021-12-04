@@ -556,12 +556,6 @@ export default {
     fishCaughtCnt() {
       return this.allCompletedFish.length
     },
-    region() {
-      return 'CN'
-    },
-    patch() {
-      return this.region === 'CN' ? CN_PATCH_VERSION : GLOBAL_PATCH_VERSION
-    },
     counts() {
       // const globalNormalFish = 16
       // const globalBigFish = 11
