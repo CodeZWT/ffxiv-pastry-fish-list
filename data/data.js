@@ -1,1330 +1,1330 @@
 module.exports = {
   FISHING_SPOTS: {
-    '2': {
+    2: {
       _id: 2,
       territory_id: 148,
       placename_id: 2,
     },
-    '3': {
+    3: {
       _id: 3,
       territory_id: 148,
       placename_id: 3,
     },
-    '4': {
+    4: {
       _id: 4,
       territory_id: 148,
       placename_id: 4,
     },
-    '5': {
+    5: {
       _id: 5,
       territory_id: 148,
       placename_id: 5,
     },
-    '6': {
+    6: {
       _id: 6,
       territory_id: 152,
       placename_id: 6,
     },
-    '7': {
+    7: {
       _id: 7,
       territory_id: 152,
       placename_id: 7,
     },
-    '8': {
+    8: {
       _id: 8,
       territory_id: 152,
       placename_id: 8,
     },
-    '9': {
+    9: {
       _id: 9,
       territory_id: 152,
       placename_id: 9,
     },
-    '10': {
+    10: {
       _id: 10,
       territory_id: 152,
       placename_id: 10,
     },
-    '11': {
+    11: {
       _id: 11,
       territory_id: 153,
       placename_id: 11,
     },
-    '12': {
+    12: {
       _id: 12,
       territory_id: 153,
       placename_id: 12,
     },
-    '13': {
+    13: {
       _id: 13,
       territory_id: 153,
       placename_id: 13,
     },
-    '14': {
+    14: {
       _id: 14,
       territory_id: 153,
       placename_id: 14,
     },
-    '15': {
+    15: {
       _id: 15,
       territory_id: 153,
       placename_id: 15,
     },
-    '16': {
+    16: {
       _id: 16,
       territory_id: 153,
       placename_id: 16,
     },
-    '17': {
+    17: {
       _id: 17,
       territory_id: 153,
       placename_id: 17,
     },
-    '18': {
+    18: {
       _id: 18,
       territory_id: 154,
       placename_id: 18,
     },
-    '19': {
+    19: {
       _id: 19,
       territory_id: 154,
       placename_id: 19,
     },
-    '20': {
+    20: {
       _id: 20,
       territory_id: 154,
       placename_id: 20,
     },
-    '21': {
+    21: {
       _id: 21,
       territory_id: 154,
       placename_id: 21,
     },
-    '22': {
+    22: {
       _id: 22,
       territory_id: 156,
       placename_id: 22,
     },
-    '23': {
+    23: {
       _id: 23,
       territory_id: 156,
       placename_id: 23,
     },
-    '24': {
+    24: {
       _id: 24,
       territory_id: 156,
       placename_id: 24,
     },
-    '25': {
+    25: {
       _id: 25,
       territory_id: 156,
       placename_id: 25,
     },
-    '26': {
+    26: {
       _id: 26,
       territory_id: 155,
       placename_id: 26,
     },
-    '27': {
+    27: {
       _id: 27,
       territory_id: 155,
       placename_id: 27,
     },
-    '28': {
+    28: {
       _id: 28,
       territory_id: 155,
       placename_id: 28,
     },
-    '29': {
+    29: {
       _id: 29,
       territory_id: 155,
       placename_id: 29,
     },
-    '30': {
+    30: {
       _id: 30,
       territory_id: 155,
       placename_id: 30,
     },
-    '31': {
+    31: {
       _id: 31,
       territory_id: 155,
       placename_id: 31,
     },
-    '32': {
+    32: {
       _id: 32,
       territory_id: 155,
       placename_id: 32,
     },
-    '33': {
+    33: {
       _id: 33,
       territory_id: 155,
       placename_id: 33,
     },
-    '34': {
+    34: {
       _id: 34,
       territory_id: 155,
       placename_id: 34,
     },
-    '35': {
+    35: {
       _id: 35,
       territory_id: 129,
       placename_id: 35,
     },
-    '36': {
+    36: {
       _id: 36,
       territory_id: 128,
       placename_id: 36,
     },
-    '37': {
+    37: {
       _id: 37,
       territory_id: 134,
       placename_id: 37,
     },
-    '38': {
+    38: {
       _id: 38,
       territory_id: 134,
       placename_id: 38,
     },
-    '39': {
+    39: {
       _id: 39,
       territory_id: 134,
       placename_id: 39,
     },
-    '40': {
+    40: {
       _id: 40,
       territory_id: 134,
       placename_id: 40,
     },
-    '41': {
+    41: {
       _id: 41,
       territory_id: 134,
       placename_id: 41,
     },
-    '42': {
+    42: {
       _id: 42,
       territory_id: 134,
       placename_id: 42,
     },
-    '43': {
+    43: {
       _id: 43,
       territory_id: 135,
       placename_id: 43,
     },
-    '44': {
+    44: {
       _id: 44,
       territory_id: 135,
       placename_id: 44,
     },
-    '45': {
+    45: {
       _id: 45,
       territory_id: 135,
       placename_id: 45,
     },
-    '46': {
+    46: {
       _id: 46,
       territory_id: 135,
       placename_id: 46,
     },
-    '47': {
+    47: {
       _id: 47,
       territory_id: 135,
       placename_id: 47,
     },
-    '48': {
+    48: {
       _id: 48,
       territory_id: 135,
       placename_id: 48,
     },
-    '49': {
+    49: {
       _id: 49,
       territory_id: 135,
       placename_id: 49,
     },
-    '50': {
+    50: {
       _id: 50,
       territory_id: 135,
       placename_id: 50,
     },
-    '51': {
+    51: {
       _id: 51,
       territory_id: 137,
       placename_id: 51,
     },
-    '52': {
+    52: {
       _id: 52,
       territory_id: 137,
       placename_id: 52,
     },
-    '53': {
+    53: {
       _id: 53,
       territory_id: 137,
       placename_id: 53,
     },
-    '54': {
+    54: {
       _id: 54,
       territory_id: 137,
       placename_id: 54,
     },
-    '55': {
+    55: {
       _id: 55,
       territory_id: 137,
       placename_id: 55,
     },
-    '56': {
+    56: {
       _id: 56,
       territory_id: 137,
       placename_id: 56,
     },
-    '57': {
+    57: {
       _id: 57,
       territory_id: 137,
       placename_id: 57,
     },
-    '58': {
+    58: {
       _id: 58,
       territory_id: 137,
       placename_id: 58,
     },
-    '59': {
+    59: {
       _id: 59,
       territory_id: 138,
       placename_id: 59,
     },
-    '60': {
+    60: {
       _id: 60,
       territory_id: 138,
       placename_id: 60,
     },
-    '61': {
+    61: {
       _id: 61,
       territory_id: 138,
       placename_id: 61,
     },
-    '62': {
+    62: {
       _id: 62,
       territory_id: 138,
       placename_id: 62,
     },
-    '63': {
+    63: {
       _id: 63,
       territory_id: 138,
       placename_id: 63,
     },
-    '64': {
+    64: {
       _id: 64,
       territory_id: 138,
       placename_id: 64,
     },
-    '65': {
+    65: {
       _id: 65,
       territory_id: 138,
       placename_id: 65,
     },
-    '66': {
+    66: {
       _id: 66,
       territory_id: 139,
       placename_id: 66,
     },
-    '67': {
+    67: {
       _id: 67,
       territory_id: 139,
       placename_id: 67,
     },
-    '68': {
+    68: {
       _id: 68,
       territory_id: 139,
       placename_id: 68,
     },
-    '69': {
+    69: {
       _id: 69,
       territory_id: 140,
       placename_id: 69,
     },
-    '70': {
+    70: {
       _id: 70,
       territory_id: 140,
       placename_id: 70,
     },
-    '71': {
+    71: {
       _id: 71,
       territory_id: 140,
       placename_id: 71,
     },
-    '72': {
+    72: {
       _id: 72,
       territory_id: 140,
       placename_id: 72,
     },
-    '73': {
+    73: {
       _id: 73,
       territory_id: 140,
       placename_id: 73,
     },
-    '74': {
+    74: {
       _id: 74,
       territory_id: 140,
       placename_id: 74,
     },
-    '75': {
+    75: {
       _id: 75,
       territory_id: 141,
       placename_id: 75,
     },
-    '76': {
+    76: {
       _id: 76,
       territory_id: 141,
       placename_id: 76,
     },
-    '77': {
+    77: {
       _id: 77,
       territory_id: 141,
       placename_id: 77,
     },
-    '78': {
+    78: {
       _id: 78,
       territory_id: 145,
       placename_id: 78,
     },
-    '79': {
+    79: {
       _id: 79,
       territory_id: 145,
       placename_id: 79,
     },
-    '80': {
+    80: {
       _id: 80,
       territory_id: 145,
       placename_id: 80,
     },
-    '81': {
+    81: {
       _id: 81,
       territory_id: 133,
       placename_id: 81,
     },
-    '82': {
+    82: {
       _id: 82,
       territory_id: 145,
       placename_id: 82,
     },
-    '83': {
+    83: {
       _id: 83,
       territory_id: 146,
       placename_id: 83,
     },
-    '84': {
+    84: {
       _id: 84,
       territory_id: 146,
       placename_id: 84,
     },
-    '85': {
+    85: {
       _id: 85,
       territory_id: 146,
       placename_id: 85,
     },
-    '86': {
+    86: {
       _id: 86,
       territory_id: 146,
       placename_id: 86,
     },
-    '87': {
+    87: {
       _id: 87,
       territory_id: 146,
       placename_id: 87,
     },
-    '88': {
+    88: {
       _id: 88,
       territory_id: 147,
       placename_id: 88,
     },
-    '89': {
+    89: {
       _id: 89,
       territory_id: 147,
       placename_id: 89,
     },
-    '90': {
+    90: {
       _id: 90,
       territory_id: 132,
       placename_id: 90,
     },
-    '91': {
+    91: {
       _id: 91,
       territory_id: 132,
       placename_id: 91,
     },
-    '92': {
+    92: {
       _id: 92,
       territory_id: 148,
       placename_id: 92,
     },
-    '93': {
+    93: {
       _id: 93,
       territory_id: 156,
       placename_id: 93,
     },
-    '94': {
+    94: {
       _id: 94,
       territory_id: 156,
       placename_id: 94,
     },
-    '95': {
+    95: {
       _id: 95,
       territory_id: 140,
       placename_id: 95,
     },
-    '96': {
+    96: {
       _id: 96,
       territory_id: 141,
       placename_id: 96,
     },
-    '97': {
+    97: {
       _id: 97,
       territory_id: 135,
       placename_id: 97,
     },
-    '98': {
+    98: {
       _id: 98,
       territory_id: 139,
       placename_id: 98,
     },
-    '99': {
+    99: {
       _id: 99,
       territory_id: 180,
       placename_id: 99,
     },
-    '100': {
+    100: {
       _id: 100,
       territory_id: 133,
       placename_id: 100,
     },
-    '101': {
+    101: {
       _id: 101,
       territory_id: 138,
       placename_id: 101,
     },
-    '102': {
+    102: {
       _id: 102,
       territory_id: 138,
       placename_id: 102,
     },
-    '103': {
+    103: {
       _id: 103,
       territory_id: 140,
       placename_id: 103,
     },
-    '104': {
+    104: {
       _id: 104,
       territory_id: 339,
       placename_id: 104,
     },
-    '105': {
+    105: {
       _id: 105,
       territory_id: 340,
       placename_id: 105,
     },
-    '106': {
+    106: {
       _id: 106,
       territory_id: 341,
       placename_id: 106,
     },
-    '107': {
+    107: {
       _id: 107,
       territory_id: 137,
       placename_id: 107,
     },
-    '108': {
+    108: {
       _id: 108,
       territory_id: 137,
       placename_id: 108,
     },
-    '109': {
+    109: {
       _id: 109,
       territory_id: 397,
       placename_id: 109,
     },
-    '110': {
+    110: {
       _id: 110,
       territory_id: 397,
       placename_id: 110,
     },
-    '111': {
+    111: {
       _id: 111,
       territory_id: 397,
       placename_id: 111,
     },
-    '112': {
+    112: {
       _id: 112,
       territory_id: 397,
       placename_id: 112,
     },
-    '113': {
+    113: {
       _id: 113,
       territory_id: 397,
       placename_id: 113,
     },
-    '114': {
+    114: {
       _id: 114,
       territory_id: 397,
       placename_id: 114,
     },
-    '115': {
+    115: {
       _id: 115,
       territory_id: 397,
       placename_id: 115,
     },
-    '116': {
+    116: {
       _id: 116,
       territory_id: 397,
       placename_id: 116,
     },
-    '117': {
+    117: {
       _id: 117,
       territory_id: 398,
       placename_id: 117,
     },
-    '118': {
+    118: {
       _id: 118,
       territory_id: 398,
       placename_id: 118,
     },
-    '119': {
+    119: {
       _id: 119,
       territory_id: 398,
       placename_id: 119,
     },
-    '120': {
+    120: {
       _id: 120,
       territory_id: 398,
       placename_id: 120,
     },
-    '121': {
+    121: {
       _id: 121,
       territory_id: 398,
       placename_id: 121,
     },
-    '122': {
+    122: {
       _id: 122,
       territory_id: 398,
       placename_id: 122,
     },
-    '123': {
+    123: {
       _id: 123,
       territory_id: 398,
       placename_id: 123,
     },
-    '124': {
+    124: {
       _id: 124,
       territory_id: 398,
       placename_id: 124,
     },
-    '125': {
+    125: {
       _id: 125,
       territory_id: 399,
       placename_id: 125,
     },
-    '126': {
+    126: {
       _id: 126,
       territory_id: 399,
       placename_id: 126,
     },
-    '127': {
+    127: {
       _id: 127,
       territory_id: 399,
       placename_id: 127,
     },
-    '128': {
+    128: {
       _id: 128,
       territory_id: 399,
       placename_id: 128,
     },
-    '129': {
+    129: {
       _id: 129,
       territory_id: 400,
       placename_id: 129,
     },
-    '130': {
+    130: {
       _id: 130,
       territory_id: 400,
       placename_id: 130,
     },
-    '131': {
+    131: {
       _id: 131,
       territory_id: 400,
       placename_id: 131,
     },
-    '132': {
+    132: {
       _id: 132,
       territory_id: 400,
       placename_id: 132,
     },
-    '133': {
+    133: {
       _id: 133,
       territory_id: 400,
       placename_id: 133,
     },
-    '134': {
+    134: {
       _id: 134,
       territory_id: 400,
       placename_id: 134,
     },
-    '135': {
+    135: {
       _id: 135,
       territory_id: 401,
       placename_id: 135,
     },
-    '136': {
+    136: {
       _id: 136,
       territory_id: 401,
       placename_id: 136,
     },
-    '137': {
+    137: {
       _id: 137,
       territory_id: 401,
       placename_id: 137,
     },
-    '138': {
+    138: {
       _id: 138,
       territory_id: 401,
       placename_id: 138,
     },
-    '139': {
+    139: {
       _id: 139,
       territory_id: 401,
       placename_id: 139,
     },
-    '140': {
+    140: {
       _id: 140,
       territory_id: 402,
       placename_id: 140,
     },
-    '141': {
+    141: {
       _id: 141,
       territory_id: 402,
       placename_id: 141,
     },
-    '142': {
+    142: {
       _id: 142,
       territory_id: 402,
       placename_id: 142,
     },
-    '143': {
+    143: {
       _id: 143,
       territory_id: 402,
       placename_id: 143,
     },
-    '144': {
+    144: {
       _id: 144,
       territory_id: 402,
       placename_id: 144,
     },
-    '145': {
+    145: {
       _id: 145,
       territory_id: 402,
       placename_id: 145,
     },
-    '146': {
+    146: {
       _id: 146,
       territory_id: 402,
       placename_id: 146,
     },
-    '155': {
+    155: {
       _id: 155,
       territory_id: 180,
       placename_id: 155,
     },
-    '156': {
+    156: {
       _id: 156,
       territory_id: 137,
       placename_id: 156,
     },
-    '157': {
+    157: {
       _id: 157,
       territory_id: 628,
       placename_id: 157,
     },
-    '158': {
+    158: {
       _id: 158,
       territory_id: 613,
       placename_id: 158,
     },
-    '159': {
+    159: {
       _id: 159,
       territory_id: 613,
       placename_id: 159,
     },
-    '160': {
+    160: {
       _id: 160,
       territory_id: 613,
       placename_id: 160,
     },
-    '161': {
+    161: {
       _id: 161,
       territory_id: 613,
       placename_id: 161,
     },
-    '162': {
+    162: {
       _id: 162,
       territory_id: 613,
       placename_id: 162,
     },
-    '163': {
+    163: {
       _id: 163,
       territory_id: 613,
       placename_id: 163,
     },
-    '164': {
+    164: {
       _id: 164,
       territory_id: 613,
       placename_id: 164,
     },
-    '165': {
+    165: {
       _id: 165,
       territory_id: 614,
       placename_id: 165,
     },
-    '166': {
+    166: {
       _id: 166,
       territory_id: 614,
       placename_id: 166,
     },
-    '167': {
+    167: {
       _id: 167,
       territory_id: 614,
       placename_id: 167,
     },
-    '168': {
+    168: {
       _id: 168,
       territory_id: 614,
       placename_id: 168,
     },
-    '169': {
+    169: {
       _id: 169,
       territory_id: 614,
       placename_id: 169,
     },
-    '170': {
+    170: {
       _id: 170,
       territory_id: 614,
       placename_id: 170,
     },
-    '171': {
+    171: {
       _id: 171,
       territory_id: 614,
       placename_id: 171,
     },
-    '172': {
+    172: {
       _id: 172,
       territory_id: 614,
       placename_id: 172,
     },
-    '173': {
+    173: {
       _id: 173,
       territory_id: 614,
       placename_id: 173,
     },
-    '174': {
+    174: {
       _id: 174,
       territory_id: 614,
       placename_id: 174,
     },
-    '175': {
+    175: {
       _id: 175,
       territory_id: 622,
       placename_id: 175,
     },
-    '176': {
+    176: {
       _id: 176,
       territory_id: 622,
       placename_id: 176,
     },
-    '177': {
+    177: {
       _id: 177,
       territory_id: 622,
       placename_id: 177,
     },
-    '178': {
+    178: {
       _id: 178,
       territory_id: 622,
       placename_id: 178,
     },
-    '179': {
+    179: {
       _id: 179,
       territory_id: 622,
       placename_id: 179,
     },
-    '180': {
+    180: {
       _id: 180,
       territory_id: 622,
       placename_id: 180,
     },
-    '181': {
+    181: {
       _id: 181,
       territory_id: 622,
       placename_id: 181,
     },
-    '182': {
+    182: {
       _id: 182,
       territory_id: 635,
       placename_id: 182,
     },
-    '183': {
+    183: {
       _id: 183,
       territory_id: 635,
       placename_id: 183,
     },
-    '184': {
+    184: {
       _id: 184,
       territory_id: 635,
       placename_id: 184,
     },
-    '185': {
+    185: {
       _id: 185,
       territory_id: 612,
       placename_id: 185,
     },
-    '186': {
+    186: {
       _id: 186,
       territory_id: 612,
       placename_id: 186,
     },
-    '187': {
+    187: {
       _id: 187,
       territory_id: 612,
       placename_id: 187,
     },
-    '188': {
+    188: {
       _id: 188,
       territory_id: 612,
       placename_id: 188,
     },
-    '189': {
+    189: {
       _id: 189,
       territory_id: 612,
       placename_id: 189,
     },
-    '190': {
+    190: {
       _id: 190,
       territory_id: 620,
       placename_id: 190,
     },
-    '191': {
+    191: {
       _id: 191,
       territory_id: 620,
       placename_id: 191,
     },
-    '192': {
+    192: {
       _id: 192,
       territory_id: 620,
       placename_id: 192,
     },
-    '193': {
+    193: {
       _id: 193,
       territory_id: 620,
       placename_id: 193,
     },
-    '194': {
+    194: {
       _id: 194,
       territory_id: 620,
       placename_id: 194,
     },
-    '195': {
+    195: {
       _id: 195,
       territory_id: 620,
       placename_id: 195,
     },
-    '196': {
+    196: {
       _id: 196,
       territory_id: 621,
       placename_id: 196,
     },
-    '197': {
+    197: {
       _id: 197,
       territory_id: 641,
       placename_id: 197,
     },
-    '198': {
+    198: {
       _id: 198,
       territory_id: 641,
       placename_id: 198,
     },
-    '199': {
+    199: {
       _id: 199,
       territory_id: 819,
       placename_id: 199,
     },
-    '200': {
+    200: {
       _id: 200,
       territory_id: 819,
       placename_id: 200,
     },
-    '201': {
+    201: {
       _id: 201,
       territory_id: 819,
       placename_id: 201,
     },
-    '202': {
+    202: {
       _id: 202,
       territory_id: 813,
       placename_id: 202,
     },
-    '203': {
+    203: {
       _id: 203,
       territory_id: 813,
       placename_id: 203,
     },
-    '204': {
+    204: {
       _id: 204,
       territory_id: 813,
       placename_id: 204,
     },
-    '205': {
+    205: {
       _id: 205,
       territory_id: 813,
       placename_id: 205,
     },
-    '206': {
+    206: {
       _id: 206,
       territory_id: 813,
       placename_id: 206,
     },
-    '207': {
+    207: {
       _id: 207,
       territory_id: 814,
       placename_id: 207,
     },
-    '208': {
+    208: {
       _id: 208,
       territory_id: 814,
       placename_id: 208,
     },
-    '209': {
+    209: {
       _id: 209,
       territory_id: 814,
       placename_id: 209,
     },
-    '210': {
+    210: {
       _id: 210,
       territory_id: 814,
       placename_id: 210,
     },
-    '211': {
+    211: {
       _id: 211,
       territory_id: 814,
       placename_id: 211,
     },
-    '212': {
+    212: {
       _id: 212,
       territory_id: 814,
       placename_id: 212,
     },
-    '213': {
+    213: {
       _id: 213,
       territory_id: 814,
       placename_id: 213,
     },
-    '214': {
+    214: {
       _id: 214,
       territory_id: 820,
       placename_id: 214,
     },
-    '215': {
+    215: {
       _id: 215,
       territory_id: 815,
       placename_id: 215,
     },
-    '216': {
+    216: {
       _id: 216,
       territory_id: 815,
       placename_id: 216,
     },
-    '217': {
+    217: {
       _id: 217,
       territory_id: 815,
       placename_id: 217,
     },
-    '218': {
+    218: {
       _id: 218,
       territory_id: 816,
       placename_id: 218,
     },
-    '219': {
+    219: {
       _id: 219,
       territory_id: 816,
       placename_id: 219,
     },
-    '220': {
+    220: {
       _id: 220,
       territory_id: 816,
       placename_id: 220,
     },
-    '221': {
+    221: {
       _id: 221,
       territory_id: 816,
       placename_id: 221,
     },
-    '222': {
+    222: {
       _id: 222,
       territory_id: 816,
       placename_id: 222,
     },
-    '223': {
+    223: {
       _id: 223,
       territory_id: 816,
       placename_id: 223,
     },
-    '224': {
+    224: {
       _id: 224,
       territory_id: 816,
       placename_id: 224,
     },
-    '225': {
+    225: {
       _id: 225,
       territory_id: 817,
       placename_id: 225,
     },
-    '226': {
+    226: {
       _id: 226,
       territory_id: 817,
       placename_id: 226,
     },
-    '227': {
+    227: {
       _id: 227,
       territory_id: 817,
       placename_id: 227,
     },
-    '228': {
+    228: {
       _id: 228,
       territory_id: 817,
       placename_id: 228,
     },
-    '229': {
+    229: {
       _id: 229,
       territory_id: 817,
       placename_id: 229,
     },
-    '230': {
+    230: {
       _id: 230,
       territory_id: 818,
       placename_id: 230,
     },
-    '231': {
+    231: {
       _id: 231,
       territory_id: 818,
       placename_id: 231,
     },
-    '232': {
+    232: {
       _id: 232,
       territory_id: 818,
       placename_id: 232,
     },
-    '233': {
+    233: {
       _id: 233,
       territory_id: 818,
       placename_id: 233,
     },
-    '234': {
+    234: {
       _id: 234,
       territory_id: 818,
       placename_id: 234,
     },
-    '235': {
+    235: {
       _id: 235,
       territory_id: 818,
       placename_id: 235,
     },
-    '236': {
+    236: {
       _id: 236,
       territory_id: 818,
       placename_id: 236,
     },
-    '245': {
+    245: {
       _id: 245,
       territory_id: 817,
       placename_id: 245,
     },
   },
   SPEARFISHING_SPOTS: {
-    '464': {
+    464: {
       _id: 464,
       territory_id: 613,
       placename_id: 32073,
     },
-    '465': {
+    465: {
       _id: 465,
       territory_id: 613,
       placename_id: 32076,
     },
-    '466': {
+    466: {
       _id: 466,
       territory_id: 613,
       placename_id: 32079,
     },
-    '467': {
+    467: {
       _id: 467,
       territory_id: 613,
       placename_id: 32082,
     },
-    '468': {
+    468: {
       _id: 468,
       territory_id: 613,
       placename_id: 32085,
     },
-    '469': {
+    469: {
       _id: 469,
       territory_id: 614,
       placename_id: 32088,
     },
-    '470': {
+    470: {
       _id: 470,
       territory_id: 614,
       placename_id: 32091,
     },
-    '471': {
+    471: {
       _id: 471,
       territory_id: 614,
       placename_id: 32094,
     },
-    '472': {
+    472: {
       _id: 472,
       territory_id: 613,
       placename_id: 32097,
     },
-    '473': {
+    473: {
       _id: 473,
       territory_id: 614,
       placename_id: 32100,
     },
-    '474': {
+    474: {
       _id: 474,
       territory_id: 614,
       placename_id: 32103,
     },
-    '475': {
+    475: {
       _id: 475,
       territory_id: 622,
       placename_id: 32106,
     },
-    '476': {
+    476: {
       _id: 476,
       territory_id: 622,
       placename_id: 32109,
     },
-    '477': {
+    477: {
       _id: 477,
       territory_id: 621,
       placename_id: 32112,
     },
-    '478': {
+    478: {
       _id: 478,
       territory_id: 621,
       placename_id: 32115,
     },
-    '479': {
+    479: {
       _id: 479,
       territory_id: 621,
       placename_id: 32118,
     },
-    '480': {
+    480: {
       _id: 480,
       territory_id: 613,
       placename_id: 32119,
     },
-    '481': {
+    481: {
       _id: 481,
       territory_id: 614,
       placename_id: 32120,
     },
-    '482': {
+    482: {
       _id: 482,
       territory_id: 622,
       placename_id: 32121,
     },
-    '483': {
+    483: {
       _id: 483,
       territory_id: 621,
       placename_id: 32122,
     },
-    '530': {
+    530: {
       _id: 530,
       territory_id: 613,
       placename_id: 32283,
     },
-    '635': {
+    635: {
       _id: 635,
       territory_id: 813,
       placename_id: 32776,
     },
-    '636': {
+    636: {
       _id: 636,
       territory_id: 813,
       placename_id: 32779,
     },
-    '637': {
+    637: {
       _id: 637,
       territory_id: 813,
       placename_id: 32782,
     },
-    '638': {
+    638: {
       _id: 638,
       territory_id: 816,
       placename_id: 32785,
     },
-    '639': {
+    639: {
       _id: 639,
       territory_id: 816,
       placename_id: 32788,
     },
-    '640': {
+    640: {
       _id: 640,
       territory_id: 816,
       placename_id: 32791,
     },
-    '641': {
+    641: {
       _id: 641,
       territory_id: 816,
       placename_id: 32794,
     },
-    '642': {
+    642: {
       _id: 642,
       territory_id: 816,
       placename_id: 32797,
     },
-    '643': {
+    643: {
       _id: 643,
       territory_id: 817,
       placename_id: 32800,
     },
-    '644': {
+    644: {
       _id: 644,
       territory_id: 817,
       placename_id: 32803,
     },
-    '645': {
+    645: {
       _id: 645,
       territory_id: 813,
       placename_id: 32804,
     },
-    '646': {
+    646: {
       _id: 646,
       territory_id: 816,
       placename_id: 32805,
     },
-    '647': {
+    647: {
       _id: 647,
       territory_id: 817,
       placename_id: 32806,
     },
-    '696': {
+    696: {
       _id: 696,
       territory_id: 817,
       placename_id: 33033,
     },
-    '697': {
+    697: {
       _id: 697,
       territory_id: 817,
       placename_id: 33036,
     },
   },
   WEATHER_RATES: {
-    '128': {
+    128: {
       map_id: 11,
       map_scale: 200,
       zone_id: 28,
@@ -1337,7 +1337,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '129': {
+    129: {
       map_id: 12,
       map_scale: 200,
       zone_id: 29,
@@ -1350,7 +1350,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '130': {
+    130: {
       map_id: 13,
       map_scale: 200,
       zone_id: 40,
@@ -1363,7 +1363,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '131': {
+    131: {
       map_id: 14,
       map_scale: 200,
       zone_id: 41,
@@ -1376,7 +1376,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '132': {
+    132: {
       map_id: 2,
       map_scale: 200,
       zone_id: 52,
@@ -1391,7 +1391,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '133': {
+    133: {
       map_id: 3,
       map_scale: 200,
       zone_id: 53,
@@ -1406,7 +1406,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '134': {
+    134: {
       map_id: 15,
       map_scale: 100,
       zone_id: 30,
@@ -1420,7 +1420,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '135': {
+    135: {
       map_id: 16,
       map_scale: 100,
       zone_id: 31,
@@ -1434,7 +1434,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '137': {
+    137: {
       map_id: 17,
       map_scale: 100,
       zone_id: 32,
@@ -1448,7 +1448,7 @@ module.exports = {
         [8, 100],
       ],
     },
-    '138': {
+    138: {
       map_id: 18,
       map_scale: 100,
       zone_id: 33,
@@ -1462,7 +1462,7 @@ module.exports = {
         [6, 100],
       ],
     },
-    '139': {
+    139: {
       map_id: 19,
       map_scale: 100,
       zone_id: 34,
@@ -1476,7 +1476,7 @@ module.exports = {
         [10, 100],
       ],
     },
-    '140': {
+    140: {
       map_id: 20,
       map_scale: 100,
       zone_id: 42,
@@ -1489,7 +1489,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '141': {
+    141: {
       map_id: 21,
       map_scale: 100,
       zone_id: 43,
@@ -1503,7 +1503,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '145': {
+    145: {
       map_id: 22,
       map_scale: 100,
       zone_id: 44,
@@ -1517,7 +1517,7 @@ module.exports = {
         [8, 100],
       ],
     },
-    '146': {
+    146: {
       map_id: 23,
       map_scale: 100,
       zone_id: 45,
@@ -1530,7 +1530,7 @@ module.exports = {
         [4, 100],
       ],
     },
-    '147': {
+    147: {
       map_id: 24,
       map_scale: 100,
       zone_id: 46,
@@ -1542,7 +1542,7 @@ module.exports = {
         [4, 100],
       ],
     },
-    '148': {
+    148: {
       map_id: 4,
       map_scale: 100,
       zone_id: 54,
@@ -1557,7 +1557,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '152': {
+    152: {
       map_id: 5,
       map_scale: 100,
       zone_id: 55,
@@ -1572,7 +1572,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '153': {
+    153: {
       map_id: 6,
       map_scale: 100,
       zone_id: 56,
@@ -1587,7 +1587,7 @@ module.exports = {
         [1, 100],
       ],
     },
-    '154': {
+    154: {
       map_id: 7,
       map_scale: 100,
       zone_id: 57,
@@ -1602,7 +1602,7 @@ module.exports = {
         [1, 100],
       ],
     },
-    '155': {
+    155: {
       map_id: 53,
       map_scale: 100,
       zone_id: 63,
@@ -1616,7 +1616,7 @@ module.exports = {
         [4, 100],
       ],
     },
-    '156': {
+    156: {
       map_id: 25,
       map_scale: 100,
       zone_id: 67,
@@ -1629,7 +1629,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '180': {
+    180: {
       map_id: 30,
       map_scale: 100,
       zone_id: 350,
@@ -1642,7 +1642,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '339': {
+    339: {
       map_id: 72,
       map_scale: 200,
       zone_id: 425,
@@ -1656,7 +1656,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '340': {
+    340: {
       map_id: 82,
       map_scale: 200,
       zone_id: 426,
@@ -1671,7 +1671,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '341': {
+    341: {
       map_id: 83,
       map_scale: 200,
       zone_id: 427,
@@ -1684,7 +1684,7 @@ module.exports = {
         [7, 100],
       ],
     },
-    '397': {
+    397: {
       map_id: 211,
       map_scale: 95,
       zone_id: 2200,
@@ -1698,7 +1698,7 @@ module.exports = {
         [4, 100],
       ],
     },
-    '398': {
+    398: {
       map_id: 212,
       map_scale: 95,
       zone_id: 2000,
@@ -1712,7 +1712,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '399': {
+    399: {
       map_id: 213,
       map_scale: 95,
       zone_id: 2001,
@@ -1726,7 +1726,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '400': {
+    400: {
       map_id: 214,
       map_scale: 95,
       zone_id: 2002,
@@ -1739,7 +1739,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '401': {
+    401: {
       map_id: 215,
       map_scale: 95,
       zone_id: 2100,
@@ -1753,7 +1753,7 @@ module.exports = {
         [49, 100],
       ],
     },
-    '402': {
+    402: {
       map_id: 216,
       map_scale: 95,
       zone_id: 2101,
@@ -1764,7 +1764,7 @@ module.exports = {
         [9, 100],
       ],
     },
-    '418': {
+    418: {
       map_id: 218,
       map_scale: 200,
       zone_id: 2300,
@@ -1777,7 +1777,7 @@ module.exports = {
         [4, 100],
       ],
     },
-    '419': {
+    419: {
       map_id: 219,
       map_scale: 200,
       zone_id: 2301,
@@ -1790,7 +1790,7 @@ module.exports = {
         [4, 100],
       ],
     },
-    '478': {
+    478: {
       map_id: 257,
       map_scale: 400,
       zone_id: 2082,
@@ -1804,7 +1804,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '612': {
+    612: {
       map_id: 367,
       map_scale: 100,
       zone_id: 2406,
@@ -1817,7 +1817,7 @@ module.exports = {
         [9, 100],
       ],
     },
-    '613': {
+    613: {
       map_id: 371,
       map_scale: 100,
       zone_id: 2409,
@@ -1830,7 +1830,7 @@ module.exports = {
         [1, 100],
       ],
     },
-    '614': {
+    614: {
       map_id: 354,
       map_scale: 100,
       zone_id: 2410,
@@ -1844,7 +1844,7 @@ module.exports = {
         [1, 100],
       ],
     },
-    '620': {
+    620: {
       map_id: 368,
       map_scale: 100,
       zone_id: 2407,
@@ -1858,7 +1858,7 @@ module.exports = {
         [11, 100],
       ],
     },
-    '621': {
+    621: {
       map_id: 369,
       map_scale: 100,
       zone_id: 2408,
@@ -1871,7 +1871,7 @@ module.exports = {
         [10, 100],
       ],
     },
-    '622': {
+    622: {
       map_id: 372,
       map_scale: 100,
       zone_id: 2411,
@@ -1886,7 +1886,7 @@ module.exports = {
         [1, 100],
       ],
     },
-    '628': {
+    628: {
       map_id: 370,
       map_scale: 200,
       zone_id: 2404,
@@ -1899,7 +1899,7 @@ module.exports = {
         [1, 100],
       ],
     },
-    '635': {
+    635: {
       map_id: 366,
       map_scale: 200,
       zone_id: 2403,
@@ -1912,7 +1912,7 @@ module.exports = {
         [9, 100],
       ],
     },
-    '641': {
+    641: {
       map_id: 364,
       map_scale: 200,
       zone_id: 2412,
@@ -1925,7 +1925,7 @@ module.exports = {
         [1, 100],
       ],
     },
-    '813': {
+    813: {
       map_id: 491,
       map_scale: 100,
       zone_id: 2953,
@@ -1939,7 +1939,7 @@ module.exports = {
         [10, 100],
       ],
     },
-    '814': {
+    814: {
       map_id: 492,
       map_scale: 100,
       zone_id: 2954,
@@ -1953,7 +1953,7 @@ module.exports = {
         [1, 100],
       ],
     },
-    '815': {
+    815: {
       map_id: 493,
       map_scale: 100,
       zone_id: 2955,
@@ -1966,7 +1966,7 @@ module.exports = {
         [1, 100],
       ],
     },
-    '816': {
+    816: {
       map_id: 494,
       map_scale: 100,
       zone_id: 2956,
@@ -1980,7 +1980,7 @@ module.exports = {
         [2, 100],
       ],
     },
-    '817': {
+    817: {
       map_id: 495,
       map_scale: 100,
       zone_id: 2957,
@@ -1994,7 +1994,7 @@ module.exports = {
         [3, 100],
       ],
     },
-    '818': {
+    818: {
       map_id: 496,
       map_scale: 100,
       zone_id: 2958,
@@ -2005,7 +2005,7 @@ module.exports = {
         [1, 100],
       ],
     },
-    '819': {
+    819: {
       map_id: 497,
       map_scale: 200,
       zone_id: 2951,
@@ -2019,7 +2019,7 @@ module.exports = {
         [10, 100],
       ],
     },
-    '820': {
+    820: {
       map_id: 498,
       map_scale: 200,
       zone_id: 2952,
@@ -2033,57 +2033,177 @@ module.exports = {
         [1, 100],
       ],
     },
+    956: {
+      map_id: 695,
+      map_scale: 100,
+      zone_id: 3708,
+      region_id: 3702,
+      weather_rates: [
+        [3, 20],
+        [1, 50],
+        [2, 80],
+        [4, 90],
+        [7, 100],
+      ],
+    },
+    957: {
+      map_id: 696,
+      map_scale: 100,
+      zone_id: 3709,
+      region_id: 3703,
+      weather_rates: [
+        [3, 20],
+        [1, 50],
+        [2, 80],
+        [4, 90],
+        [7, 100],
+      ],
+    },
+    958: {
+      map_id: 697,
+      map_scale: 100,
+      zone_id: 3710,
+      region_id: 3703,
+      weather_rates: [
+        [1, 40],
+        [2, 60],
+        [3, 85],
+        [4, 95],
+        [7, 100],
+      ],
+    },
+    959: {
+      map_id: 698,
+      map_scale: 100,
+      zone_id: 3711,
+      region_id: 3704,
+      weather_rates: [
+        [3, 20],
+        [1, 50],
+        [2, 70],
+        [2, 80],
+        [4, 90],
+        [7, 100],
+      ],
+    },
+    960: {
+      map_id: 699,
+      map_scale: 100,
+      zone_id: 3712,
+      region_id: 3704,
+      weather_rates: [
+        [3, 5],
+        [7, 20],
+        [4, 30],
+        [3, 40],
+        [2, 55],
+        [1, 85],
+        [2, 100],
+      ],
+    },
+    961: {
+      map_id: 700,
+      map_scale: 100,
+      zone_id: 3713,
+      region_id: 3705,
+      weather_rates: [
+        [1, 40],
+        [2, 60],
+        [3, 85],
+        [4, 95],
+        [7, 100],
+      ],
+    },
+    962: {
+      map_id: 693,
+      map_scale: 200,
+      zone_id: 3706,
+      region_id: 3702,
+      weather_rates: [
+        [1, 40],
+        [2, 60],
+        [3, 85],
+        [4, 95],
+        [7, 100],
+      ],
+    },
+    963: {
+      map_id: 694,
+      map_scale: 200,
+      zone_id: 3707,
+      region_id: 3703,
+      weather_rates: [
+        [15, 60],
+        [2, 70],
+        [1, 75],
+        [3, 90],
+        [4, 100],
+      ],
+    },
+    979: {
+      map_id: 679,
+      map_scale: 200,
+      zone_id: 4139,
+      region_id: 25,
+      weather_rates: [
+        [15, 5],
+        [2, 25],
+        [1, 65],
+        [3, 80],
+        [4, 90],
+      ],
+    },
   },
   WEATHER_TYPES: {
-    '1': {
+    1: {
       icon: '060201',
     },
-    '2': {
+    2: {
       icon: '060202',
     },
-    '3': {
+    3: {
       icon: '060203',
     },
-    '4': {
+    4: {
       icon: '060204',
     },
-    '5': {
+    5: {
       icon: '060205',
     },
-    '6': {
+    6: {
       icon: '060206',
     },
-    '7': {
+    7: {
       icon: '060207',
     },
-    '8': {
+    8: {
       icon: '060208',
     },
-    '9': {
+    9: {
       icon: '060209',
     },
-    '10': {
+    10: {
       icon: '060210',
     },
-    '11': {
+    11: {
       icon: '060211',
     },
-    '14': {
+    14: {
       icon: '060214',
     },
-    '15': {
+    15: {
       icon: '060215',
     },
-    '16': {
+    16: {
       icon: '060216',
     },
-    '17': {
+    17: {
       icon: '060218',
     },
-    '49': {
+    49: {
       icon: '060219',
     },
-    '50': {
+    50: {
       icon: '060220',
     },
   },
