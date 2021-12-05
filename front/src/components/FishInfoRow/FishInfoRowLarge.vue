@@ -174,8 +174,7 @@
               <div
                 v-if="
                   fish.checking &&
-                    fish.checkInfo.timeRestricted &&
-                    fish.checkInfo.weatherRestricted
+                    (fish.checkInfo.timeRestricted || fish.checkInfo.weatherRestricted)
                 "
                 title="开荒中一切数据仅供参考"
                 class="ml-1"
