@@ -24,19 +24,31 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
-        <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
             <div class="text-h6">Version 1.0.5-fix</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/12/03 21:02</div>
+            <div class="text-subtitle-1">更新时间: 2021/12/05 18:02</div>
           </div>
         </v-alert>
+        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>
             更新提钩列表，现在杆型以及精准、强力提钩显示在对应鱼的左侧，并将目标鱼加入列表
+          </li>
+          <li>
+            更新区服切换，点击左侧菜单栏中的切换按钮切换区服数据。切换“国际服”会显示6.X相关数据，请注意会包含剧透信息！
+          </li>
+          <li>
+            更新列表中6.X相关数据，开荒中的数据会陆续更新。
+          </li>
+          <li>
+            更新鱼眼相关数据。
+          </li>
+          <li>
+            暂未更新：钓场范围提示，水族馆等数据。
           </li>
         </ul>
         <v-divider />
