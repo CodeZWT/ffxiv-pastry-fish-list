@@ -319,7 +319,7 @@ const spotGlobalAddon = [
 const toDict = arr => {
   const dict = {}
   arr.forEach(it => {
-    dict[it.id] = it
+    dict[it.id] = Object.assign({}, it)
   })
   return dict
 }
@@ -350,12 +350,13 @@ const combineTerritory = (dataCN, dataGlobalAddon) => {
   return Object.values(dict)
 }
 
-const fishGlobal = combineRegion(spotCN, spotGlobalAddon)
+console.log(spotCN)
+const spotGlobal = combineRegion(spotCN, spotGlobalAddon)
 
 module.exports = {
   CN: spotCN,
-  Global: fishGlobal,
+  Global: spotGlobal,
   getData() {
-    return SystemInfo.region === 'CN' ? spotCN : fishGlobal
+    return SystemInfo.region === 'CN' ? spotCN : spotGlobal
   },
 }
