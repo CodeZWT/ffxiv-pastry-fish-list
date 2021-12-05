@@ -853,7 +853,7 @@ export default {
         this.lazyTransformedFishDict &&
         Object.keys(this.lazyTransformedFishDict).length > 0
       ) {
-        return (type === 'normal' ? normSpots : FIX.SPEAR_REGION_TERRITORY_POINT)
+        const tree = (type === 'normal' ? normSpots : FIX.SPEAR_REGION_TERRITORY_POINT)
           .filter(region => region.id != null)
           .map(region => {
             // output += `region,${region.id},${placeNames[region.id]}\n`
@@ -905,8 +905,10 @@ export default {
                   }),
                 }
               }),
+              _order: region.id === 3443 ? 9999 : region.id,
             }
           })
+        return _.sortBy(tree, '_order')
       }
       return []
     },
