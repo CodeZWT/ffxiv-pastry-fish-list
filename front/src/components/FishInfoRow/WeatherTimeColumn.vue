@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import { SystemInfo } from 'Data/version'
 import { mapGetters } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
@@ -195,6 +196,9 @@ export default {
                 '七彩天主没有天气与时间限制，左侧显示的倒计时根据绿彩鱼窗口期进行“拓展”。<br />' +
                 '拓展指：若绿彩鱼当天的窗口期为8-16ET，则向前拓展，变为0-16ET。<br />' +
                 '理由是总能在0-4ET和4-8ET分别尝试钓蓝彩鱼和橙彩鱼。<br />' +
+                (SystemInfo.region === 'Global'
+                  ? '国际服开启鱼眼时，将直接同步显示绿彩鱼CD。<br />'
+                  : '') +
                 this.$t('list.tip.fisherIntuitionTip', { fish: '七彩天主' }),
             },
           }

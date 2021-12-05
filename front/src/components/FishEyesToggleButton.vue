@@ -22,7 +22,13 @@
           鱼眼技能在
           <strong>5.4</strong>
           版本的效果更新为，无视时间条件，持续时间60s，消耗GP550。
-          对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼
+          <span>
+            {{
+              isGlobal
+                ? '对出海垂钓/钓场之皇/暗影篇之后(包括5.X)的鱼'
+                : '对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼'
+            }}
+          </span>
           <span class="font-weight-bold">无效</span>。
         </div>
       </div>
@@ -32,6 +38,7 @@
 </template>
 
 <script>
+import { SystemInfo } from 'Data/version'
 import ItemIcon from '@/components/basic/ItemIcon'
 import ToggleButton from '@/components/basic/ToggleButton'
 
@@ -46,6 +53,11 @@ export default {
     showTitle: {
       type: Boolean,
       default: false,
+    },
+  },
+  computed: {
+    isGlobal() {
+      return SystemInfo.region === 'Global'
     },
   },
 }

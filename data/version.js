@@ -18,6 +18,7 @@ const SystemInfo = {
   region: region,
   patch: region === 'CN' ? CN_PATCH_VERSION : GLOBAL_PATCH_VERSION,
   patches: region === 'CN' ? PATCHES_CN : PATCHES_GLOBAL,
+  fishEyesMaxPatchExclude: region === 'CN' ? 4 : 5,
 }
 
 const setRegion = region => {

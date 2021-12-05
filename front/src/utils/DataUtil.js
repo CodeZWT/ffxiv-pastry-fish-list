@@ -2,6 +2,7 @@ import { FISH as DIADEM_FISH } from 'Data/diadem'
 import { DateTime, FixedOffsetZone } from 'luxon'
 import { Howl } from 'howler'
 import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
+import { SystemInfo } from 'Data/version'
 import { detect } from 'detect-browser'
 import CONSTANTS, { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import DATA from 'Data/data'
@@ -557,7 +558,7 @@ export default {
             n
           )
         } else if (fish._id === 24992) {
-          // console.debug(DATA_CN.ITEMS[fish._id].name_chs, 'special case 1')
+          // Special Case 1: "胸脊鲨"
           return this.getFishWindowOfSingleFish(
             predators[0],
             now,
@@ -582,22 +583,32 @@ export default {
         if (fish._id === 24994) {
           // console.debug(DATA_CN.ITEMS[fish._id].name_chs, 'special case 2')
           // just return the 'Green Prismfish' i.e. "绿彩鱼" fish windows
-          return this.getFishWindowOfSingleFish(
-            allFish[24204],
+          const greenFish = allFish[24204]
+          const greenFishWindows = this.getFishWindowOfSingleFish(
+            greenFish,
             now,
             fishingSpots,
             fishEyesUsed,
             n
-          ).map(fishWindow => {
-            // if start of fish window > 0, i.e. its window is shrunk by the weather
-            // change it back to 0, since other 2 predators are always available in [0,8]
-            const startEorzeaTime = new EorzeaTime(EorzeaTime.toEorzeaTime(fishWindow[0]))
-            if (startEorzeaTime.getHours() > 0) {
-              return [startEorzeaTime.timeOfHours(0).toEarthTime(), fishWindow[1]]
-            } else {
-              return fishWindow
-            }
-          })
+          )
+          if (this.skipTimeCheckOf(greenFish, fishEyesUsed)) {
+            // if using fish eyes and in global region
+            // then just return green fish windows
+            return greenFishWindows
+          } else {
+            return greenFishWindows.map(fishWindow => {
+              // if start of fish window > 0, i.e. its window is shrunk by the weather
+              // change it back to 0, since other 2 predators are always available in [0,8]
+              const startEorzeaTime = new EorzeaTime(
+                EorzeaTime.toEorzeaTime(fishWindow[0])
+              )
+              if (startEorzeaTime.getHours() > 0) {
+                return [startEorzeaTime.timeOfHours(0).toEarthTime(), fishWindow[1]]
+              } else {
+                return fishWindow
+              }
+            })
+          }
         } else if (fish._id === 33240) {
           // Special Case 3: 'Aquamaton'
           // 2 predators and one has no restraints
@@ -620,7 +631,8 @@ export default {
       fishEyesUsed &&
       (fish.startHour !== 0 || fish.endHour !== 24) &&
       (fish._id === 20524 || // 20524 巧儿海陆行鸟
-        (fish.patch < 4 && !LIVING_LEGENDS.includes(fish._id)))
+        (fish.patch < SystemInfo.fishEyesMaxPatchExclude &&
+          !LIVING_LEGENDS.includes(fish._id)))
     )
   },
   getFishWindowOfSingleFish(
