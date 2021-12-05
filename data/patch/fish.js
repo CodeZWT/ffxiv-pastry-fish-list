@@ -1,4 +1,4 @@
-const { SystemInfo } = require("Data/version");
+const { SystemInfo } = require("../version");
 const fishCN = {
   4776: {
     _id: 4776,

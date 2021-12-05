@@ -1,4 +1,4 @@
-const { SystemInfo } = require('Data/version')
+const { SystemInfo } = require('../version')
 const spotCN = [
   {
     id: '2400',

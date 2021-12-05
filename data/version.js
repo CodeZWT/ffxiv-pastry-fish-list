@@ -1,7 +1,10 @@
-const { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } = require('Data/constants')
+const { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } = require('./constants')
 const REGION_KEY = 'RC_REGION'
 
-const region = window ? window.localStorage.getItem(REGION_KEY) || 'CN' : 'Global'
+let region = 'Global'
+if (typeof window !== 'undefined') {
+  region = window.localStorage.getItem(REGION_KEY) || 'CN'
+}
 
 const PATCHES_CN = {
   '2.x': [2.0, 2.1, 2.2, 2.3, 2.4, 2.5],

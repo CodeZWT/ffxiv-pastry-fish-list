@@ -1,4 +1,4 @@
-const { getData } = require("Data/patch/spearRegionTerritoryPoint");
+const { getData } = require("./patch/spearRegionTerritoryPoint");
 module.exports = {
   TEST_FISH: {
     999998: {
