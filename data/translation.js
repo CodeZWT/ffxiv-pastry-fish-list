@@ -6603,6 +6603,9 @@ module.exports = {
     26808: { _id: 26808, icon: 26168, name_chs: '矿物传承录·诺弗兰特篇' },
     26809: { _id: 26809, icon: 26165, name_chs: '草木传承录·诺弗兰特篇' },
     26810: { _id: 26810, icon: 26164, name_chs: '鱼类传承录·诺弗兰特篇' },
+    36606: { _id: 36606, icon: 26164, name_chs: 'Tome of Ichthyological Folklore - Ilsabard and the Northern Empty' },
+    36608: { _id: 36608, icon: 26164, name_chs: 'Tome of Ichthyological Folklore - The Sea of Stars' },
+    36609: { _id: 36609, icon: 26164, name_chs: 'Tome of Ichthyological Folklore - The World Unsundered' },
 
     6688: { _id: 6688, name_chs: '陈旧的鞣革地图', icon: 25930 },
     6689: { _id: 6689, name_chs: '陈旧的山羊革地图', icon: 25930 },
@@ -12881,5 +12884,8 @@ module.exports = {
     2506: { _id: 2506, itemId: 17843 },
     2507: { _id: 2507, itemId: 26810 },
     2508: { _id: 2508, itemId: 26810 },
+    2509: { _id: 2509, itemId: 36606 },
+    2511: { _id: 2511, itemId: 36608 },
+    2513: { _id: 2513, itemId: 36609 },
   },
 }
