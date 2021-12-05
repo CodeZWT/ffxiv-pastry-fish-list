@@ -864,6 +864,13 @@ export default {
       },
       set(regionIndex) {
         setRegion(['CN', 'Global'][regionIndex])
+        this.showSnackbar({
+          text: '设置成功，即将重新加载页面，请稍后...',
+          color: 'success',
+        })
+        setTimeout(() => {
+          this.startReloadPage()
+        }, 1000)
       },
     },
     region() {
