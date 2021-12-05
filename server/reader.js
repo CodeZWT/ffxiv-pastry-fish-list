@@ -357,6 +357,8 @@ onFFXIVEventWithFilter('actorControl', null, 21, null, packet => {
 })
 
 // status.csv
+// 2778	Angler's Art	Able to execute certain actions.
+// 850	Angler's Fortune	Chance of landing a large-sized catch while fishing is increased.
 const effectToDetect = new Set([
   761, // SNAGGING
   805, // COLLECTOR_GLOVE
@@ -1048,6 +1050,7 @@ onFFXIVEvent('weatherChange', packet => {
 
 onFFXIVEvent('playerSetup', packet => {
   log.info('playerSetup in reader, region:', region)
+  log.info('playerSetup data:', packet.data.toString())
   playerSetupOf(packet, region)
   playerSetupCallback(packet)
   log.info('reset status in playerSetup')

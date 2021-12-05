@@ -206,13 +206,13 @@ import { ReaderFeatures } from 'Data/newFeatures'
 import { SERVER_ID_NAMES } from 'Data/diadem'
 import { WEATHER_TYPES } from 'Data/translation'
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import COMMON from 'Data/common'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import ItemIcon from '@/components/basic/ItemIcon'
 import RcDialog from '@/components/basic/RcDialog'
 import RecordValidator from '@/utils/RecordValidator'
+import STATUS from 'Data/patch/status'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import db from '@/plugins/db'
 import rcapiService from '@/service/rcapiService'
@@ -247,6 +247,7 @@ export default {
       'isUploadMode',
       'isStrictMode',
       'isRoseMode',
+      'readerRegion',
     ]),
     shouldCheckForStrictMode() {
       return (
@@ -336,9 +337,12 @@ export default {
     isSpectralCurrent() {
       return this.weather === SPECTRAL_CURRENT
     },
+    status() {
+      return this.readerRegion === 'CN' ? STATUS.CN : STATUS.Global
+    },
     effects() {
       return (this.dataStatus?.effects ?? [])
-        .map(it => COMMON.STATUS[it])
+        .map(it => this.status[it])
         .filter(it => it != null)
         .map(effect => {
           return {

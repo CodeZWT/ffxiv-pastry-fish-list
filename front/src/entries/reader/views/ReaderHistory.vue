@@ -179,7 +179,10 @@
                       <span v-else-if="record.cancelled">{{ '未知鱼' }}</span>
                       <span v-else>
                         {{ record.fish.name || '未知鱼' }}
-                        <i class="xiv hq" v-if="record.hq"></i>
+                        <template v-if="record.hq">
+                          <i class="xiv hq" v-if="readerRegion === 'CN'"></i>
+                          <span v-else>[Large]</span>
+                        </template>
                       </span>
                       <div class="text-subtitle-2 d-flex">
                         <div
@@ -305,7 +308,7 @@
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
 import { ITEMS as NameDict } from 'Data/translation'
 import { invokeElectronEvent, sendElectronEvent } from '@/utils/electronHelper'
-import { mapMutations, mapState } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import BAITS from 'Data/bait'
 import COMMON from 'Data/common'
 import DATA from 'Data/data'
@@ -368,6 +371,7 @@ export default {
       'showPlayerStatus',
       'showHookset',
     ]),
+    ...mapGetters(['readerRegion']),
     spotsForSearch() {
       return Object.keys(SPOT_FISH_DICT).map(spotId => {
         const spot = UploadUtil.toSpot(spotId)
