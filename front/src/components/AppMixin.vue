@@ -1084,7 +1084,7 @@ export default {
         patchText: DataUtil.toPatchText(fish.patch),
         folklore: null,
         collectable: fish.collectable,
-        isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
+        isFuturePatch: false, // fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
         rate: rate,
         rateText: this.$t('countDown.rate', {
           rate: ((rate ?? 1) * 100).toPrecision(2),
@@ -1193,7 +1193,7 @@ export default {
             icon: this.getItemIconClass(folklore.itemId),
           },
           collectable: fish.collectable,
-          isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
+          isFuturePatch: false, // fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
           rate: rate,
           rateText: this.$t('countDown.rate', {
             rate: ((rate ?? 1) * 100).toPrecision(2),

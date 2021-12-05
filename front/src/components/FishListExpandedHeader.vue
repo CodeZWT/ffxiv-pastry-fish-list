@@ -211,7 +211,7 @@ export default {
         name: this.getItemName(fish._id),
         patch: fish.patch,
         patchText: DataUtil.toPatchText(fish.patch),
-        isFuturePatch: fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
+        isFuturePatch: false, // fish.patch > DataUtil.PATCH_AVAILABLE_MAX,
         folklore: folklore && {
           id: folklore._id,
           itemId: folklore.itemId,
