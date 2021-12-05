@@ -591,7 +591,6 @@ export default {
     this.lazySourceFishList = Object.values(this.allFish).filter(
       it => it.patch == null || it.patch <= SystemInfo.patch
     )
-    console.log('lazySourceFishList', this.lazySourceFishList.length)
     console.debug('update weather part')
     this.updateWeatherChangePart(this.now)
     console.debug('update weather part finished')

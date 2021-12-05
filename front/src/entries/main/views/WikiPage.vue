@@ -568,7 +568,6 @@ export default {
         .mapValues(it => it[0])
         .value()
       const podSpearFish = Object.values(podSpearFishDict)
-      console.log(podSpearFish.find(fish => fish._id === 36476))
       const oceanFish = Object.values(OCEAN_FISHING_FISH)
 
       // let podNormalFish =[], podNormalFish =[],  podNormalFish =[], spearFish = [], podFish = []
