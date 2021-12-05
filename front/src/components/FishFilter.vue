@@ -291,8 +291,9 @@ export default {
     },
     getPatchesInVersion(patches, version) {
       return (
-        patches?.map(it => PATCHES[version].indexOf(it)).filter(patch => patch !== -1) ??
-        []
+        patches
+          ?.map(it => (PATCHES[version] ?? []).indexOf(it))
+          .filter(patch => patch !== -1) ?? []
       )
     },
     fishN2Type(fishN) {
