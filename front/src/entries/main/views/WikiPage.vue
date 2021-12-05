@@ -559,14 +559,16 @@ export default {
     counts() {
       // const globalNormalFish = 16
       // const globalBigFish = 11
-      const podSpearFish = _.chain(
-        Object.values(this.allFish).map(it => ({ ...it, _id: DataUtil.toItemId(it._id) }))
+      const podSpearFishDict = _.chain(
+        Object.values(this.allFish)
+          .filter(it => it.type !== 'test')
+          .map(it => ({ ...it, _id: DataUtil.toItemId(it._id) }))
       )
         .groupBy(it => it._id)
         .mapValues(it => it[0])
-        .filter(it => it.type !== 'test')
         .value()
-
+      const podSpearFish = Object.values(podSpearFishDict)
+      console.log(podSpearFish.find(fish => fish._id === 36476))
       const oceanFish = Object.values(OCEAN_FISHING_FISH)
 
       // let podNormalFish =[], podNormalFish =[],  podNormalFish =[], spearFish = [], podFish = []
