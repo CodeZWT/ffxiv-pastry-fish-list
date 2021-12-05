@@ -95,7 +95,7 @@
                 </v-icon>
               </div>
               <div v-if="fish.collectable">
-                <i class="xiv collectables" title="收藏品" />
+                <i class="xiv collectables" style="font-size: 22px" title="收藏品" />
               </div>
             </div>
           </div>

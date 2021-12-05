@@ -121,12 +121,13 @@
                       toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)
                     "
                     class="mr-1"
+                    style="margin-top: -4px"
                   >
                     <v-icon small :title="fish.folklore.name"
                       >mdi-book-open-variant</v-icon
                     >
                   </div>
-                  <div v-if="fish.aquarium" class="mr-1">
+                  <div v-if="fish.aquarium" class="mr-1" style="margin-top: -2px">
                     <v-icon
                       small
                       :title="`[${fish.aquarium.size}] ${fish.aquarium.water}`"
