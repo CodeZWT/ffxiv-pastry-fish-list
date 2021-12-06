@@ -24,15 +24,15 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
+        <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
-            <div class="text-h6">Version 1.0.5-fix</div>
+            <div class="text-h6">Version 1.1.0</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/12/05 18:02</div>
+            <div class="text-subtitle-1">更新时间: 2021/12/06 22:20</div>
           </div>
         </v-alert>
-        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>
@@ -49,6 +49,18 @@
           </li>
           <li>
             暂未更新：钓场范围提示，水族馆等数据。
+          </li>
+        </ul>
+        <div class="text-h6 my-1">渔捞</div>
+        <ul>
+          <li>
+            更新国际服6.0支持
+          </li>
+          <li>
+            刺鱼的自动记录功能暂未支持
+          </li>
+          <li>
+            更新对大尺寸以及Angler's Fortune的支持
           </li>
         </ul>
         <v-divider />
