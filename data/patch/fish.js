@@ -23051,8 +23051,8 @@ const fishGlobalAddon = {
     fishEyes: false,
     snagging: false,
     checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: true,
+      weatherRestricted: true,
+      timeRestricted: false,
       bestCatchPathUnknown: true,
     },
     bait: 29717,
@@ -23396,8 +23396,8 @@ const fishGlobalAddon = {
     fishEyes: false,
     snagging: false,
     checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: true,
+      weatherRestricted: true,
+      timeRestricted: false,
       bestCatchPathUnknown: true,
     },
     bait: 29717,
@@ -23557,8 +23557,8 @@ const fishGlobalAddon = {
     fishEyes: false,
     snagging: false,
     checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: true,
+      weatherRestricted: true,
+      timeRestricted: false,
       bestCatchPathUnknown: true,
     },
     bait: 29717,
@@ -24316,8 +24316,8 @@ const fishGlobalAddon = {
     fishEyes: false,
     snagging: false,
     checkInfo: {
-      weatherRestricted: true,
-      timeRestricted: false,
+      weatherRestricted: false,
+      timeRestricted: true,
       bestCatchPathUnknown: true,
     },
     bait: 29717,
