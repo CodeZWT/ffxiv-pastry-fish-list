@@ -6,6 +6,7 @@ export default {
       ((tug === 'light' && hookset !== 'precision') ||
         (tug === 'medium' && hookset !== 'powerful') ||
         hookset === 'double' ||
+        hookset === 'triple' ||
         hookset === 'normal')
     const noBait = !record.baitId || record.baitId < 0
     const noStatus = !record.cancelled && !record.gathering

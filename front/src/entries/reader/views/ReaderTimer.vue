@@ -283,6 +283,7 @@ export default {
         ((tug === 'light' && hookset !== 'precision') ||
           (tug === 'medium' && hookset !== 'powerful') ||
           hookset === 'double' ||
+          hookset === 'triple' ||
           hookset === 'normal')
       )
     },

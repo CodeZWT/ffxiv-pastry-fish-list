@@ -56,7 +56,9 @@ const toUploadData = records => {
       bait: record.baitId ?? -1,
       biteInterval: +((record.biteTime - record.startTime) / 1000).toFixed(1),
       chum: record.chum,
-      hookset: ['normal', 'precision', 'powerful', 'double'].indexOf(record.hookset) ?? 0,
+      hookset:
+        ['normal', 'precision', 'powerful', 'double', 'triple'].indexOf(record.hookset) ??
+        0,
       quantity: record.quantity,
       gathering: record.gathering,
       perception: record.perception,
@@ -147,7 +149,7 @@ export default {
     }
   },
   toHookset(hookset) {
-    const hooksetId = ['normal', 'precision', 'powerful', 'double'][hookset]
+    const hooksetId = ['normal', 'precision', 'powerful', 'double', 'triple'][hookset]
     return {
       id: hooksetId,
       icon: DataUtil.iconIdToClass(DataUtil.HOOKSET_ICON[_.capitalize(hooksetId)]),

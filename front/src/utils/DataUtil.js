@@ -1046,6 +1046,7 @@ export default {
     Powerful: '001115',
     Precision: '001116',
     Double: '001118',
+    Triple: '001138',
   },
 
   HOOKSET_SKILL_NAME_DICT: {
@@ -1053,6 +1054,7 @@ export default {
     Precision: '精准提钩',
     Normal: '提钩',
     Double: '双重提钩',
+    Triple: '三重提钩',
   },
 
   COUNT_DOWN_TYPE: ['fishing', 'waiting', 'allAvailable'],

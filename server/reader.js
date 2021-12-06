@@ -1215,6 +1215,7 @@ onFFXIVEvent('clientTrigger', packet => {
   if (packet.commandID === 701) {
     // normal 2
     // double hook 16
+    // triple hook 21
     // mooch II 15
     // currentRecord.doubleHook = packet.param1 === 16
     currentRecord.hookset = getHooksetFromParam1(packet.param1)
@@ -1231,6 +1232,8 @@ function getHooksetFromParam1(param1) {
       return 'powerful'
     case 11:
       return 'precision'
+    case 21:
+      return 'triple'
     default:
       log.info('new hookset detect', param1)
       return 'normal'
