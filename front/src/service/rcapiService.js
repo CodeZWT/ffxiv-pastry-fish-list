@@ -293,7 +293,7 @@ export default {
 
   async getOpcodeFileVersion() {
     // if (DevelopmentModeUtil.isTest()) {
-    //   return ''
+    //   return '89c9ab2dbfa63425e8ba4d59b28e6bc7105cef52'
     // }
     if (this.opcodeFileVersion != null) {
       return this.opcodeFileVersion
