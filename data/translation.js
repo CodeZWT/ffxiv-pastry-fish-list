@@ -6603,9 +6603,21 @@ module.exports = {
     26808: { _id: 26808, icon: 26168, name_chs: '矿物传承录·诺弗兰特篇' },
     26809: { _id: 26809, icon: 26165, name_chs: '草木传承录·诺弗兰特篇' },
     26810: { _id: 26810, icon: 26164, name_chs: '鱼类传承录·诺弗兰特篇' },
-    36606: { _id: 36606, icon: 26164, name_chs: 'Tome of Ichthyological Folklore - Ilsabard and the Northern Empty' },
-    36608: { _id: 36608, icon: 26164, name_chs: 'Tome of Ichthyological Folklore - The Sea of Stars' },
-    36609: { _id: 36609, icon: 26164, name_chs: 'Tome of Ichthyological Folklore - The World Unsundered' },
+    36606: {
+      _id: 36606,
+      icon: 26164,
+      name_chs: 'Tome of Ichthyological Folklore - Ilsabard and the Northern Empty',
+    },
+    36608: {
+      _id: 36608,
+      icon: 26164,
+      name_chs: 'Tome of Ichthyological Folklore - The Sea of Stars',
+    },
+    36609: {
+      _id: 36609,
+      icon: 26164,
+      name_chs: 'Tome of Ichthyological Folklore - The World Unsundered',
+    },
 
     6688: { _id: 6688, name_chs: '陈旧的鞣革地图', icon: 25930 },
     6689: { _id: 6689, name_chs: '陈旧的山羊革地图', icon: 25930 },
@@ -6923,6 +6935,17 @@ module.exports = {
     36585: { _id: 36585, name_chs: 'Pale Panther', icon: 29931 },
     36586: { _id: 36586, name_chs: 'Saltsquid', icon: 29932 },
     36587: { _id: 36587, name_chs: 'Platinum Hammerhead', icon: 29933 },
+
+    36588: { _id: 36588, name_chs: 'Gold Salmon Roe', icon: 27044 },
+    36589: { _id: 36589, name_chs: 'Leech', icon: 27045 },
+    36590: { _id: 36590, name_chs: 'Sky Spoon Lure', icon: 27075 },
+    36591: { _id: 36591, name_chs: 'Mayfly', icon: 27046 },
+    36592: { _id: 36592, name_chs: 'Shrimp Ball', icon: 27047 },
+    36593: { _id: 36593, name_chs: 'Mackerel Strip', icon: 27048 },
+    36594: { _id: 36594, name_chs: 'Grey Worm', icon: 27049 },
+    36595: { _id: 36595, name_chs: 'Chimera Worm', icon: 27100 },
+    36596: { _id: 36596, name_chs: 'Panic Jig', icon: 27076 },
+    36597: { _id: 36597, name_chs: 'Stardust', icon: 27101 },
   },
   FISHING_SPOTS: {
     0: {
