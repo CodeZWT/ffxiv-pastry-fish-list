@@ -15,7 +15,7 @@ export default {
     return `https://ricecake500.gitee.io/pastry-fish-static-files/img/${filename}`
   },
   getMapUrl(filename) {
-    return `https://cdn.jsdelivr.net/gh/ricecake404/images@1.0.6.map.0/map/${filename}`
+    return `https://cdn.jsdelivr.net/gh/ricecake404/images@1.0.6.map.2/map/${filename}`
   },
   iconIdToClass: iconIdToClass,
 }
