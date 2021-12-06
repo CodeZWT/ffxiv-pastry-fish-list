@@ -553,8 +553,21 @@ export default {
         this.fishListWeatherChangePart
       )
     },
+    currentPatchFishIdSet() {
+      return new Set(
+        _.uniq(Object.keys(this.allFish).map(it => DataUtil.toItemId(it)))
+          .concat(Object.keys(OCEAN_FISHING_FISH))
+          .map(it => +it)
+      )
+    },
+    allCompletedFishOfCurrentPatch() {
+      console.log(this.currentPatchFishIdSet)
+      return this.allCompletedFish.filter(fishId => {
+        return this.currentPatchFishIdSet.has(fishId)
+      })
+    },
     fishCaughtCnt() {
-      return this.allCompletedFish.length
+      return this.allCompletedFishOfCurrentPatch.length
     },
     counts() {
       // const globalNormalFish = 16
@@ -572,7 +585,7 @@ export default {
 
       // let podNormalFish =[], podNormalFish =[],  podNormalFish =[], spearFish = [], podFish = []
       const iCatchThat = {
-        record: this.allCompletedFish.filter(
+        record: this.allCompletedFishOfCurrentPatch.filter(
           it =>
             FIX.FISH_PARAMETER.find(param => param.Item === it)?.IsInLog ||
             FIX.SPEAR_FISHING_ITEM.find(param => param.Item === it)?.IsVisible
@@ -610,8 +623,9 @@ export default {
         .filter(it => DATA_CN.BIG_FISH.includes(it._id) && it.patch < 5)
         .map(it => it._id)
       const goBigOrGoHome = {
-        record: this.allCompletedFish.filter(it => goBigOrGoHomeFishIds.includes(it))
-          .length,
+        record: this.allCompletedFishOfCurrentPatch.filter(it =>
+          goBigOrGoHomeFishIds.includes(it)
+        ).length,
         // 鱼太公 烟波钓徒
         ticks: [1033, 2245].map(achievementId => FIX.ACHIEVEMENT[achievementId]),
         total: goBigOrGoHomeFishIds.length,
@@ -620,8 +634,9 @@ export default {
         .filter(it => DATA_CN.BIG_FISH.includes(it._id) && it.patch >= 5)
         .map(it => it._id)
       const goBigFarFromHome = {
-        record: this.allCompletedFish.filter(it => goBigFarFromHomeFishIds.includes(it))
-          .length,
+        record: this.allCompletedFishOfCurrentPatch.filter(it =>
+          goBigFarFromHomeFishIds.includes(it)
+        ).length,
         ticks: [2833].map(achievementId => FIX.ACHIEVEMENT[achievementId]),
         // .concat({
         //   data: [this.achievementInfo.goBigFarFromHome.cn],
@@ -634,7 +649,7 @@ export default {
       }
 
       const noRiverWideEnough = {
-        record: this.allCompletedFish.filter(
+        record: this.allCompletedFishOfCurrentPatch.filter(
           it => goBigOrGoHomeFishIds.includes(it) || goBigFarFromHomeFishIds.includes(it)
         ).length,
         ticks: [2834].map(achievementId => FIX.ACHIEVEMENT[achievementId]),
@@ -706,7 +721,7 @@ export default {
           name: 'root',
           children: this.regionTerritorySpots,
         })
-        // this.updateCompletedSpot(this.allCompletedFish)
+        // this.updateCompletedSpot(this.allCompletedFishOfCurrentVersion)
       }
     },
     // completedSpots(newSpots, oldSpots) {
@@ -806,7 +821,7 @@ export default {
       }
     },
     getSpotsOfType(type) {
-      return this.allCompletedFish.flatMap(fishId => {
+      return this.allCompletedFishOfCurrentPatch.flatMap(fishId => {
         const wikiIds = DataUtil.FISH_ID_TO_WIKI_IDS[fishId]
         if (wikiIds) {
           const spotFishId = wikiIds[0].split('-')[3]
