@@ -561,7 +561,6 @@ export default {
       )
     },
     allCompletedFishOfCurrentPatch() {
-      console.log(this.currentPatchFishIdSet)
       return this.allCompletedFish.filter(fishId => {
         return this.currentPatchFishIdSet.has(fishId)
       })
