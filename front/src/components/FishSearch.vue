@@ -136,7 +136,7 @@ export default {
       }
     },
     fishId() {
-      return this.targetType === 'fish' ? this.targetId.split('#')[1] : undefined
+      return this.targetType === 'fish' ? +this.targetId.split('#')[1] : undefined
     },
     fishingSpotId() {
       return this.targetType === 'fishing-spot' ? this.targetId.split('#')[1] : undefined

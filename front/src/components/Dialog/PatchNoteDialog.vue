@@ -24,7 +24,25 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
-        <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 1.1.0-fix</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/12/06 22:20</div>
+          </div>
+        </v-alert>
+        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>
+            修复部分地图无法加载的问题
+          </li>
+          <li>
+            修复搜索中计时器固定显示“全天可钓”的问题
+          </li>
+        </ul>
+
+        <v-divider />
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
@@ -93,80 +111,6 @@
             增加部分任务鱼在列表中显示的可行鱼饵，显示低等级的鱼饵以适配职业任务时捕鱼人的实际等级
           </li>
           <li>修复“关于数据统计图”按钮失灵的问题</li>
-        </ul>
-
-        <v-divider />
-
-        <v-alert color="secondary" outlined class="mt-4">
-          <div class="d-flex align-center">
-            <div class="text-h6">Version 1.0.4</div>
-            <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/11/21 21:00</div>
-          </div>
-        </v-alert>
-        <div class="text-h6 my-1">鱼糕</div>
-        <ul>
-          <li>增加主页</li>
-          <li>
-            增加 爱发电 链接，若喜欢鱼糕带来的功能与帮助可以考虑：
-            <ul>
-              <li>
-                关注作者微博
-                <a href="https://weibo.com/u/7546879530" target="_blank">
-                  @红豆年糕找不到
-                </a>
-                帮助鱼糕进行爱发电认证
-              </li>
-              <li>
-                在
-                <a href="https://afdian.net/@ricecake404" target="_blank">
-                  爱发电
-                </a>
-                为鱼糕充电！
-              </li>
-            </ul>
-          </li>
-          <li>
-            调整鱼糕进入小尺寸模式的宽度设置，以修复不同页面在同一窗体宽度下显示不同模式的问题。
-          </li>
-          <li>在鱼详情界面增加显示钓场的按钮，以在时钟页面快捷显示钓场页面。</li>
-        </ul>
-        <v-divider />
-
-        <v-alert color="secondary" outlined class="mt-4">
-          <div class="d-flex align-center">
-            <div class="text-h6">Version 1.0.3</div>
-            <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/11/14 20:00</div>
-          </div>
-        </v-alert>
-        <div class="text-h6 my-1">鱼糕</div>
-        <ul>
-          <li>钓鱼笔记海钓钓场支持概率统计图</li>
-          <li>修复图标显示过大的问题</li>
-          <li>在主界面设置中增加原先列表界面右侧详细界面的比例设置功能</li>
-        </ul>
-        <div class="text-h6 my-1">鱼糕桌面版</div>
-        <ul>
-          <li>恢复主界面缩放功能</li>
-          <li>修复海钓页面小界面下的排版问题</li>
-          <li>修复搜索快捷键</li>
-        </ul>
-        <div class="text-h6 my-1">渔捞</div>
-        <ul>
-          <li>将浅色模式下的读秒设为白色</li>
-        </ul>
-        <v-divider />
-        <v-alert color="secondary" outlined class="mt-4">
-          <div class="d-flex align-center">
-            <div class="text-h6">Version 1.0.2</div>
-            <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/11/07 19:02</div>
-          </div>
-        </v-alert>
-        <div class="text-h6 my-1">鱼糕桌面版</div>
-        <ul>
-          <li>修复1.0.1无限加载的问题</li>
         </ul>
 
         <v-expansion-panels class="mt-4" flat>
