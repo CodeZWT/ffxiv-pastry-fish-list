@@ -24841,6 +24841,7 @@ const fishGlobalAddon = {
     name_chs: 'Thavnairian Cucumber',
     locations: [889],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -24853,7 +24854,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36523: {
@@ -24861,6 +24862,7 @@ const fishGlobalAddon = {
     name_chs: 'Spiny King Crab',
     locations: [889],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -24873,7 +24875,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36524: {
@@ -24881,6 +24883,7 @@ const fishGlobalAddon = {
     name_chs: 'Thavnairian Eel',
     locations: [889],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -24893,7 +24896,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36525: {
@@ -24901,6 +24904,7 @@ const fishGlobalAddon = {
     name_chs: 'Gilled Topknot',
     locations: [889, 900],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -24913,7 +24917,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36526: {
@@ -24921,6 +24925,7 @@ const fishGlobalAddon = {
     name_chs: 'Purusa Fish',
     locations: [889],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -24933,7 +24938,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36527: {
@@ -24941,6 +24946,7 @@ const fishGlobalAddon = {
     name_chs: 'Giantsgall Jaw',
     locations: [889],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -24953,7 +24959,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36528: {
@@ -24961,6 +24967,7 @@ const fishGlobalAddon = {
     name_chs: 'Akyaali Sardine',
     locations: [893],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -24973,7 +24980,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36529: {
@@ -24981,6 +24988,7 @@ const fishGlobalAddon = {
     name_chs: 'Spicy Pickle',
     locations: [893],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -24993,7 +25001,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36530: {
@@ -25001,6 +25009,7 @@ const fishGlobalAddon = {
     name_chs: 'Mayavahana',
     locations: [893],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25013,7 +25022,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36531: {
@@ -25021,7 +25030,8 @@ const fishGlobalAddon = {
     name_chs: 'Hedonfish',
     locations: [893],
     gig: 0,
-    requiredCnt: 0,
+    size: 'average',
+    requiredCnt: 10,
     startHour: 0,
     endHour: 24,
     predators: {},
@@ -25033,7 +25043,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36532: {
@@ -25041,6 +25051,7 @@ const fishGlobalAddon = {
     name_chs: 'Satrap Trapfish',
     locations: [893],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25053,7 +25064,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36533: {
@@ -25061,6 +25072,7 @@ const fishGlobalAddon = {
     name_chs: 'Blue Marlin',
     locations: [893],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25073,7 +25085,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36534: {
@@ -25081,6 +25093,7 @@ const fishGlobalAddon = {
     name_chs: "Satrap's Whisper",
     locations: [894],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25093,7 +25106,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36535: {
@@ -25101,10 +25114,17 @@ const fishGlobalAddon = {
     name_chs: 'Tebqeyiq Smelt',
     locations: [900],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {},
+    predators: {
+      36531: 10,
+    },
+    intuitionPredators: {
+        36546: 2,
+        36547: 3,
+    },
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: -1,
@@ -25113,7 +25133,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36536: {
@@ -25121,6 +25141,7 @@ const fishGlobalAddon = {
     name_chs: 'Shallows Cod',
     locations: [894, 900],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25133,7 +25154,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36537: {
@@ -25141,6 +25162,7 @@ const fishGlobalAddon = {
     name_chs: 'Meyhane Reveler',
     locations: [894, 900],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25153,7 +25175,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36538: {
@@ -25161,6 +25183,7 @@ const fishGlobalAddon = {
     name_chs: "Daemir's Alloy",
     locations: [894],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25173,7 +25196,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36539: {
@@ -25181,6 +25204,7 @@ const fishGlobalAddon = {
     name_chs: 'Rasa Fish',
     locations: [894],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25193,7 +25217,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36540: {
@@ -25201,6 +25225,7 @@ const fishGlobalAddon = {
     name_chs: "Agama's Palm",
     locations: [895],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25213,7 +25238,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36541: {
@@ -25221,6 +25246,7 @@ const fishGlobalAddon = {
     name_chs: 'Rummy-nosed Tetra',
     locations: [895],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25233,7 +25259,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36542: {
@@ -25241,6 +25267,7 @@ const fishGlobalAddon = {
     name_chs: 'Monksblade',
     locations: [895],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25253,7 +25280,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36543: {
@@ -25261,6 +25288,7 @@ const fishGlobalAddon = {
     name_chs: 'Atamra Cichlid',
     locations: [895],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25273,7 +25301,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36544: {
@@ -25281,6 +25309,7 @@ const fishGlobalAddon = {
     name_chs: 'Root of Maya',
     locations: [895],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25293,7 +25322,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36545: {
@@ -25301,6 +25330,7 @@ const fishGlobalAddon = {
     name_chs: 'Floral Snakehead',
     locations: [895],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25313,7 +25343,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36546: {
@@ -25321,10 +25351,13 @@ const fishGlobalAddon = {
     name_chs: 'Xiphactinus',
     locations: [900],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {},
+    predators: {
+      36531: 10,
+    },
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: -1,
@@ -25333,7 +25366,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36547: {
@@ -25341,6 +25374,7 @@ const fishGlobalAddon = {
     name_chs: 'Dusky Shark',
     locations: [894, 900],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25353,7 +25387,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36548: {
@@ -25361,6 +25395,7 @@ const fishGlobalAddon = {
     name_chs: 'Coffer Shell',
     locations: [890],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25373,7 +25408,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36549: {
@@ -25381,6 +25416,7 @@ const fishGlobalAddon = {
     name_chs: 'Onihige',
     locations: [890],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25393,7 +25429,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36550: {
@@ -25401,6 +25437,7 @@ const fishGlobalAddon = {
     name_chs: 'Onokoro Carp',
     locations: [890],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25413,7 +25450,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36551: {
@@ -25421,6 +25458,7 @@ const fishGlobalAddon = {
     name_chs: 'Ruby-spotted Crab',
     locations: [890, 899],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25433,7 +25471,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36552: {
@@ -25441,6 +25479,7 @@ const fishGlobalAddon = {
     name_chs: 'Marrow-eater',
     locations: [890],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25453,7 +25492,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36553: {
@@ -25461,7 +25500,8 @@ const fishGlobalAddon = {
     name_chs: 'Cloudy Catshark',
     locations: [890],
     gig: 0,
-    requiredCnt: 0,
+    size: 'big',
+    requiredCnt: 10,
     startHour: 0,
     endHour: 24,
     predators: {},
@@ -25473,7 +25513,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36554: {
@@ -25481,6 +25521,7 @@ const fishGlobalAddon = {
     name_chs: 'Red Gurnard',
     locations: [891],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25493,7 +25534,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36555: {
@@ -25501,6 +25542,7 @@ const fishGlobalAddon = {
     name_chs: 'Dream Pickle',
     locations: [891, 899],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25513,7 +25555,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36556: {
@@ -25521,6 +25563,7 @@ const fishGlobalAddon = {
     name_chs: 'Ruby Haddock',
     locations: [891],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25533,7 +25576,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36557: {
@@ -25541,6 +25584,7 @@ const fishGlobalAddon = {
     name_chs: 'Crown Fish',
     locations: [891, 899],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25553,7 +25597,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36558: {
@@ -25561,6 +25605,7 @@ const fishGlobalAddon = {
     name_chs: 'Sword of Isari ',
     locations: [891],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25573,7 +25618,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36559: {
@@ -25581,6 +25626,7 @@ const fishGlobalAddon = {
     name_chs: 'Blue Shark',
     locations: [891, 899],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25593,7 +25639,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36560: {
@@ -25601,6 +25647,7 @@ const fishGlobalAddon = {
     name_chs: 'Barb of Exile',
     locations: [892],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25613,7 +25660,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36561: {
@@ -25621,6 +25668,7 @@ const fishGlobalAddon = {
     name_chs: 'Smooth Lumpfish',
     locations: [892],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25633,7 +25681,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36562: {
@@ -25641,6 +25689,7 @@ const fishGlobalAddon = {
     name_chs: "Hells' Cap",
     locations: [892],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25653,7 +25702,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36563: {
@@ -25661,6 +25710,7 @@ const fishGlobalAddon = {
     name_chs: 'Keeled Fugu',
     locations: [892],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25673,7 +25723,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36564: {
@@ -25681,6 +25731,7 @@ const fishGlobalAddon = {
     name_chs: 'Eastern Seerfish',
     locations: [892],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25693,7 +25744,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36565: {
@@ -25701,6 +25752,7 @@ const fishGlobalAddon = {
     name_chs: 'False Fusilier',
     locations: [892],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25713,7 +25765,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36566: {
@@ -25721,6 +25773,7 @@ const fishGlobalAddon = {
     name_chs: 'Skipping Stone',
     locations: [896],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25733,7 +25786,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36567: {
@@ -25741,6 +25794,7 @@ const fishGlobalAddon = {
     name_chs: 'Red-spotted Blenny',
     locations: [896],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25753,7 +25807,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36568: {
@@ -25761,6 +25815,7 @@ const fishGlobalAddon = {
     name_chs: 'Othardian Wrasse',
     locations: [892],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25773,7 +25828,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36569: {
@@ -25781,6 +25836,7 @@ const fishGlobalAddon = {
     name_chs: 'Grey Mullet',
     locations: [896],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25793,7 +25849,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36570: {
@@ -25801,6 +25857,7 @@ const fishGlobalAddon = {
     name_chs: 'Prayer Cushion',
     locations: [896],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25813,7 +25870,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36571: {
@@ -25821,6 +25878,7 @@ const fishGlobalAddon = {
     name_chs: 'Deepbody Boarfish',
     locations: [896],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25833,7 +25891,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36572: {
@@ -25841,6 +25899,7 @@ const fishGlobalAddon = {
     name_chs: 'Jointed Razorfish',
     locations: [897],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25853,7 +25912,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36573: {
@@ -25861,10 +25920,13 @@ const fishGlobalAddon = {
     name_chs: 'Pipefish',
     locations: [899],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {},
+    predators: {
+      36553: 10,
+    },
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: -1,
@@ -25873,7 +25935,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36574: {
@@ -25881,6 +25943,7 @@ const fishGlobalAddon = {
     name_chs: 'Righteye Flounder',
     locations: [897],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25893,7 +25956,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36575: {
@@ -25901,6 +25964,7 @@ const fishGlobalAddon = {
     name_chs: 'Mini Yasha',
     locations: [897],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25913,7 +25977,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36576: {
@@ -25921,6 +25985,7 @@ const fishGlobalAddon = {
     name_chs: 'Sawshark',
     locations: [897],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25933,7 +25998,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36577: {
@@ -25941,6 +26006,7 @@ const fishGlobalAddon = {
     name_chs: 'Othardian Lumpsucker',
     locations: [897],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25953,7 +26019,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36578: {
@@ -25961,10 +26027,13 @@ const fishGlobalAddon = {
     name_chs: "Shogun's Kabuto",
     locations: [899],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {},
+    predators: {
+      36553: 10,
+    },
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: -1,
@@ -25973,7 +26042,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36579: {
@@ -25981,6 +26050,7 @@ const fishGlobalAddon = {
     name_chs: 'Bluefin Trevally',
     locations: [897],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -25993,7 +26063,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36580: {
@@ -26001,6 +26071,7 @@ const fishGlobalAddon = {
     name_chs: 'Kitefin Shark',
     locations: [896],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -26013,7 +26084,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36581: {
@@ -26021,6 +26092,7 @@ const fishGlobalAddon = {
     name_chs: 'Uzumaki',
     locations: [896],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -26033,7 +26105,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36582: {
@@ -26041,6 +26113,7 @@ const fishGlobalAddon = {
     name_chs: 'Natron Puffer',
     locations: [898],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -26053,7 +26126,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36583: {
@@ -26061,6 +26134,7 @@ const fishGlobalAddon = {
     name_chs: 'Diamond Dagger',
     locations: [898],
     gig: 0,
+    size: 'small',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -26073,7 +26147,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36584: {
@@ -26081,6 +26155,7 @@ const fishGlobalAddon = {
     name_chs: 'Queenly Fan',
     locations: [898],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -26093,7 +26168,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36585: {
@@ -26101,6 +26176,7 @@ const fishGlobalAddon = {
     name_chs: 'Pale Panther',
     locations: [898],
     gig: 0,
+    size: 'average',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -26113,7 +26189,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36586: {
@@ -26121,6 +26197,7 @@ const fishGlobalAddon = {
     name_chs: 'Saltsquid',
     locations: [898],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -26133,7 +26210,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
   36587: {
@@ -26141,6 +26218,7 @@ const fishGlobalAddon = {
     name_chs: 'Platinum Hammerhead',
     locations: [898],
     gig: 0,
+    size: 'big',
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
@@ -26153,7 +26231,7 @@ const fishGlobalAddon = {
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
-      bestCatchPathUnknown: true,
+      bestCatchPathUnknown: false,
     },
   },
 }

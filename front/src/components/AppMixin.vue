@@ -47,6 +47,7 @@ import hotkeys from 'hotkeys-js'
 import placeNames from 'Data/placeNames'
 import rcapiService from '@/service/rcapiService'
 import regionTerritorySpots from 'Data/fishingSpots'
+import spearFishSize from 'Data/spearFishSize'
 
 export default {
   name: 'AppMixin',
@@ -1037,9 +1038,16 @@ export default {
         })
       }
     },
+    getRequiredCntOfFish(fish, cnt) {
+      if (fish.patch < 6 && SystemInfo.region === 'Global' && cnt === 10) {
+        return 7
+      }
+      return cnt ?? 0
+    },
     assembleSpearFish(fish, isPredator = false) {
       const hasPredators = Object.keys(fish.predators).length > 0
       const rate = this.lazyFishWindowRates[fish._id]
+      const fishSize = spearFishSize[fish._id]
       return {
         _id: fish._id,
         id: fish._id,
@@ -1071,7 +1079,7 @@ export default {
         startHourText: DataUtil.formatET(fish.startHour),
         endHourText: DataUtil.formatET(fish.endHour),
         hasTimeConstraint: fish.startHour !== 0 || fish.endHour !== 24,
-        requiredCnt: fish.requiredCnt ?? 0,
+        requiredCnt: this.getRequiredCntOfFish(fish, fish.requiredCnt),
         addBuffSuffix: false,
         hasWeatherConstraint:
           fish.previousWeatherSet.length > 0 || fish.weatherSet.length > 0,
@@ -1091,6 +1099,7 @@ export default {
         isPredator: isPredator,
         anglerFishId: fish.anglerFishId,
         hasTips: true, // DataUtil.hasTips(fish._id),
+        hasIntuitionPredators: !!fish.intuitionPredators,
         predators: hasPredators ? this.getSpearFishPredators(fish.predators) : [],
         gig: fish.gig
           ? {
@@ -1100,6 +1109,12 @@ export default {
               text: this.$t('gig.' + DataUtil.GIG_DICT[fish.gig]),
             }
           : {},
+        size: {
+          id: fishSize,
+          icon: ImgUtil.getImgUrl(`${fishSize}.webp`),
+          text: this.$t('size.' + fishSize),
+          sizeFactor: fishSize === 'small' ? 0.5 : fishSize === 'average' ? 0.8 : 1,
+        },
         checking: !!fish.checkInfo,
         checkInfo: fish.checkInfo ?? {},
       }
@@ -1109,9 +1124,10 @@ export default {
         return []
       } else {
         return Object.entries(predators).map(([predatorId, count]) => {
+          const predator = this.allFish[predatorId]
           return {
-            ...this.assembleSpearFish(this.allFish[predatorId], true),
-            requiredCnt: count,
+            ...this.assembleSpearFish(predator, true),
+            requiredCnt: this.getRequiredCntOfFish(predator, count),
           }
         })
       }

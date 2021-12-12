@@ -375,6 +375,11 @@
     "large": "大型",
     "all": "任意"
   },
+  "size": {
+    "small": "小型鱼",
+    "average": "中型鱼",
+    "big": "大型鱼"
+  },
   "gigTip": {
     "isPredator": "{requiredCnt}个触发鱼影",
     "hasPredators":"只在鱼影中出现",

@@ -50,7 +50,7 @@
           />
         </v-col>
       </template>
-      <template v-else>
+      <template v-else-if="!isGlobal">
         <fish-gig-table :value="currentFishList" />
       </template>
 
@@ -153,9 +153,9 @@
                   <!--                    {{ currentMapInfo }}-->
                 </div>
 
-                <div v-if="showSpotPredators" class="text-center">
-                  此处为鱼影，需要刺前置鱼触发，详情见地图下方说明。
-                </div>
+                <!--                <div v-if="showSpotPredators" class="text-center">-->
+                <!--                  此处为鱼影，需要刺前置鱼触发，详情见地图下方说明。-->
+                <!--                </div>-->
               </div>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
@@ -184,6 +184,7 @@ import DataUtil from '@/utils/DataUtil'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import rcapiService from '@/service/rcapiService'
 
+import { SystemInfo } from 'Data/version'
 import { mapGetters } from 'vuex'
 import AboutChartDialog from '@/components/Dialog/AboutChartDialog'
 import BaitPercentageChart from '@/components/charts/BaitPercentageChart'
@@ -248,6 +249,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getFishingSpot', 'readChartTip']),
+    isGlobal() {
+      return SystemInfo.region === 'Global'
+    },
     currentSpotList() {
       return [this.assembleSpot(this.currentSpotId)]
     },
