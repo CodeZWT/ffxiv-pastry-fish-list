@@ -259,7 +259,10 @@
             :class="`${buffAndBaitColClass} d-flex flex-row align-center justify-center`"
           >
             <template v-if="isIntersecting">
-              <div v-if="fish.hasPredators || fish.hasSnagging" class="mr-1">
+              <div
+                v-if="(fish.hasPredators && !isSpearFish) || fish.hasSnagging"
+                class="mr-1"
+              >
                 <div v-if="fish.hasPredators" class="d-flex flex-column align-center">
                   <effect-icon :icon-class="fish.predatorsIcon" />
                   <div v-if="fish.intuitionLength" class="text-subtitle-2">
@@ -282,6 +285,7 @@
                   <v-img
                     :src="fish.size.icon"
                     :max-height="56 * fish.size.sizeFactor"
+                    :max-width="128"
                     contain
                   ></v-img>
                   <div>
@@ -297,7 +301,7 @@
                     </div>
                   </div>
                 </template>
-                <template v-else>
+                <template v-else class="d-flex align-center">
                   <item-icon :icon-class="fish.gig.icon" :title="fish.gig.text" />
                   <div>
                     <div>{{ fish.gig.text }}</div>
