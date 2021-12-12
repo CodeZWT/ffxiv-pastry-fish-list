@@ -28,7 +28,7 @@
           <div class="d-flex align-center">
             <div class="text-h6">Version 1.1.0-fix</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/12/06 22:20</div>
+            <div class="text-subtitle-1">更新时间: 2021/12/12 17:00</div>
           </div>
         </v-alert>
         <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
@@ -39,6 +39,9 @@
           </li>
           <li>
             修复搜索中计时器固定显示“全天可钓”的问题
+          </li>
+          <li>
+            更新6.0鱼的天气时间鱼饵信息
           </li>
         </ul>
 
