@@ -23313,6 +23313,7 @@ const fishGlobalAddon = {
     predators: {},
     fishEyes: false,
     snagging: false,
+    hookset: 'Powerful',
     tug: 'heavy',
     checkInfo: {
       weatherRestricted: true,
@@ -23716,6 +23717,7 @@ const fishGlobalAddon = {
     predators: {},
     fishEyes: false,
     snagging: false,
+    hookset: 'Powerful',
     tug: 'heavy',
     checkInfo: {
       weatherRestricted: true,
@@ -24813,6 +24815,7 @@ const fishGlobalAddon = {
     predators: {},
     fishEyes: false,
     snagging: false,
+    hookset: 'Powerful',
     tug: 'heavy',
     checkInfo: {
       weatherRestricted: false,
