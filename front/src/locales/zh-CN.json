@@ -380,6 +380,21 @@
     "average": "中型鱼",
     "big": "大型鱼"
   },
+  "spearTip": {
+    "isPredator": "{requiredCnt}个触发鱼影",
+    "hasPredators":"需要触发鱼识",
+    "hasShadowPredators": "只在鱼影中出现",
+    "fishShadow": {
+      "title": "鱼影",
+      "introduction": "",
+      "location": "前置鱼位置",
+      "predators": "前置鱼"
+    },
+    "predator": {
+      "SHADOW": "鱼影前置",
+      "INTUITION": "鱼识前置"
+    }
+  },
   "gigTip": {
     "isPredator": "{requiredCnt}个触发鱼影",
     "hasPredators":"只在鱼影中出现",

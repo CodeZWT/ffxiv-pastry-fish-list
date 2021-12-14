@@ -2,6 +2,16 @@
   <div style="width: 100%" @click="onFishClicked()">
     <v-hover v-slot="{ hover }" open-delay="300" close-deplay="300">
       <div style="position: relative">
+        <v-chip
+          v-if="!!fish.tag && isSpearFish"
+          label
+          style="position: absolute; top: 0; right: 0"
+          class="rounded-tl-0 rounded-bl-lg rounded-br-0"
+          color="primary"
+          outlined
+        >
+          {{ $t('spearTip.predator.' + fish.tag) }}
+        </v-chip>
         <v-divider
           v-if="inPredator && showDivider"
           class="ml-9"
@@ -288,16 +298,16 @@
                     :max-width="128"
                     contain
                   ></v-img>
-                  <div>
+                  <div style="min-width: 116px">
                     <div>{{ fish.size.text }}</div>
-                    <div v-if="fish.hasPredators">
-                      {{ $t('gigTip.hasPredators') }}
+                    <div v-if="fish.hasShadowPredators">
+                      {{ $t('spearTip.hasShadowPredators') }}
                     </div>
                     <div v-else-if="fish.requiredCnt && !inPredator">
-                      {{ $t('gigTip.isPredator', { requiredCnt: fish.requiredCnt }) }}
+                      {{ $t('spearTip.isPredator', { requiredCnt: fish.requiredCnt }) }}
                     </div>
-                    <div v-if="fish.hasIntuitionPredators">
-                      需要触发鱼识
+                    <div v-if="fish.hasPredators">
+                      {{ $t('spearTip.hasPredators') }}
                     </div>
                   </div>
                 </template>

@@ -992,6 +992,7 @@ export default {
         hasPredators: hasPredators,
         predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
         predators: hasPredators ? this.getOceanFishPredators(fish.predators) : [],
+        shadowPredators: [],
         bonusId: fish.bonus,
         bonus: {
           id: bonus._id,
@@ -1046,6 +1047,8 @@ export default {
     },
     assembleSpearFish(fish, isPredator = false) {
       const hasPredators = Object.keys(fish.predators).length > 0
+      const hasShadowPredators =
+        fish.shadowPredators != null && Object.keys(fish.shadowPredators).length > 0
       const rate = this.lazyFishWindowRates[fish._id]
       const fishSize = spearFishSize[fish._id]
       return {
@@ -1074,7 +1077,6 @@ export default {
         baits: [],
         availableBaitList: [],
         hasFishEyes: false,
-        hasPredators: hasPredators,
         hasSnagging: false,
         startHourText: DataUtil.formatET(fish.startHour),
         endHourText: DataUtil.formatET(fish.endHour),
@@ -1099,7 +1101,11 @@ export default {
         isPredator: isPredator,
         anglerFishId: fish.anglerFishId,
         hasTips: true, // DataUtil.hasTips(fish._id),
-        hasIntuitionPredators: !!fish.intuitionPredators,
+        hasShadowPredators: hasShadowPredators,
+        shadowPredators: hasShadowPredators
+          ? this.getSpearFishPredators(fish.shadowPredators)
+          : [],
+        hasPredators: hasPredators,
         predators: hasPredators ? this.getSpearFishPredators(fish.predators) : [],
         gig: fish.gig
           ? {
@@ -1217,6 +1223,7 @@ export default {
           anglerFishId: fish.anglerFishId,
           hasTips: true, // DataUtil.hasTips(fish._id),
           predators: this.assembleFish(DataUtil.getPredators(fish, this.allFish), true),
+          shadowPredators: [],
           aquarium: !!aquariumFish && {
             size: FIX.AQUARIUM_FISH_SIZE[aquariumFish.size].size,
             water: DataUtil.getName(FIX.AQUARIUM_WATER[aquariumFish.aquariumWater]),

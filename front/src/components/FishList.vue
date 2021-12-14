@@ -138,20 +138,39 @@ export default {
     },
     flattenFishList() {
       return this.fishListToShow.flatMap(fish => {
+        console.log(fish)
+        console.log(fish.predators)
+        console.log(fish.shadowPredators)
+
         return [
           fish,
           ...(this.hidePredators
             ? []
-            : fish.predators.map(predator => {
-                return {
-                  ...predator,
-                  fishingSpots: DataUtil.toSpotsOfPredator(
-                    predator.fishingSpots,
-                    fish.fishingSpots?.[0]?.fishingSpotId,
-                    predator.gig != null
-                  ),
-                }
-              })),
+            : fish.shadowPredators
+                .map(predator => {
+                  return {
+                    ...predator,
+                    fishingSpots: DataUtil.toSpotsOfPredator(
+                      predator.fishingSpots,
+                      fish.fishingSpots?.[0]?.fishingSpotId,
+                      predator.gig != null
+                    ),
+                    tag: 'SHADOW',
+                  }
+                })
+                .concat(
+                  fish.predators.map(predator => {
+                    return {
+                      ...predator,
+                      fishingSpots: DataUtil.toSpotsOfPredator(
+                        predator.fishingSpots,
+                        fish.fishingSpots?.[0]?.fishingSpotId,
+                        predator.gig != null
+                      ),
+                      tag: 'INTUITION',
+                    }
+                  })
+                )),
         ]
       })
     },
