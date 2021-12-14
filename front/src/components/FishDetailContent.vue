@@ -25,7 +25,9 @@ import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 
 import FIX from 'Data/fix'
+import ImgUtil from '@/utils/ImgUtil'
 import _ from 'lodash'
+import spearFishSize from 'Data/spearFishSize'
 
 export default {
   name: 'FishDetailContent',
@@ -67,6 +69,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    shadowPredators: {
+      type: Array,
+      default: () => [],
+    },
     fishingTypeColor: {
       type: String,
       default: '',
@@ -87,7 +93,8 @@ export default {
   computed: {
     fish() {
       const fish = this.value
-      const hasPredators = Object.keys(fish.predators).length > 0
+      const hasPredators = this.predators.length > 0
+      const hasShadowPredators = this.shadowPredators.length > 0
       const bestCatchPathExtra = fish.bestCatchPathExtra ?? []
       const isSpear = fish.gig != null
       const aquariumFish = FIX.AQUARIUMS[DataUtil.toItemId(fish._id)]
@@ -107,6 +114,7 @@ export default {
             }),
           }
         })
+      const fishSize = spearFishSize[fish._id]
       return {
         ...fish,
         id: fish._id,
@@ -120,6 +128,8 @@ export default {
         fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
         // fishEyesText: DataUtil.secondsToMinutesString(fish.fishEyes),
         fishEyesSeconds: fish.fishEyes,
+        hasShadowPredators: hasShadowPredators,
+        shadowPredators: this.shadowPredators,
         hasPredators: hasPredators,
         predators: this.predators,
         predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
@@ -167,6 +177,12 @@ export default {
         isCompleted: this.getFishCompleted(fish._id),
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(fish),
         hasTips: true, // DataUtil.hasTips(fish._id),
+        size: {
+          id: fishSize,
+          icon: ImgUtil.getImgUrl(`${fishSize}.webp`),
+          text: this.$t('size.' + fishSize),
+          sizeFactor: fishSize === 'small' ? 0.5 : fishSize === 'average' ? 0.8 : 1,
+        },
         gig: fish.gig
           ? {
               id: fish.gig,

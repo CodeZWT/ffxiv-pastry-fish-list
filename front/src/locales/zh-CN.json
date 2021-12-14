@@ -322,14 +322,23 @@
       "loading": "地图加载中..."
     },
     "predators": {
-      "title": "前置鱼"
+      "title": "捕鱼人之识前置鱼"
+    },
+    "shadowPredators": {
+      "title": "鱼影前置鱼"
     },
     "requirements": {
       "weather": "天气",
       "time": "时间"
     },
-    "buffAndBaits": {
-      "title": "需要状态 | 鱼饵/以小钓大"
+    "buff": {
+      "title": "需要状态"
+    },
+    "baits": {
+      "title": "鱼饵/以小钓大"
+    },
+    "fishSize": {
+      "title": "鱼尺寸"
     },
     "countDown": {
       "loading": "计算中..."

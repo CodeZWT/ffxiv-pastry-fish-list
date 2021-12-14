@@ -10,7 +10,7 @@
           <v-col :class="fishColClass">
             <div
               class="d-flex fill-height align-center flex-row px-1"
-              style="min-height: 48px"
+              style="min-height: 56px"
             >
               <div class="d-flex flex-column">
                 <div class="d-flex">
@@ -181,8 +181,35 @@
                 </div>
               </div>
               <div v-if="isSpearFish" class="d-flex align-center">
-                <item-icon :icon-class="fish.gig.icon" :title="fish.gig.text" />
-                <div>{{ fish.gig.text }}</div>
+                <template v-if="isEndWalker">
+                  <v-img
+                    :src="fish.size.icon"
+                    :max-height="32 * fish.size.sizeFactor"
+                    :max-width="64"
+                    contain
+                  ></v-img>
+                  <div style="min-width: 116px" class="ml-1">
+                    <div>{{ fish.size.text }}</div>
+                    <div v-if="fish.hasShadowPredators">
+                      {{ $t('spearTip.hasShadowPredators') }}
+                    </div>
+                    <div v-else-if="fish.requiredCnt && !inPredator">
+                      {{ $t('spearTip.isPredator', { requiredCnt: fish.requiredCnt }) }}
+                    </div>
+                  </div>
+                </template>
+                <template v-else class="d-flex align-center">
+                  <item-icon :icon-class="fish.gig.icon" :title="fish.gig.text" />
+                  <div>
+                    <div>{{ fish.gig.text }}</div>
+                    <div v-if="fish.hasPredators">
+                      {{ $t('gigTip.hasPredators') }}
+                    </div>
+                    <div v-else-if="fish.requiredCnt && !inPredator">
+                      {{ $t('gigTip.isPredator', { requiredCnt: fish.requiredCnt }) }}
+                    </div>
+                  </div>
+                </template>
               </div>
               <div v-else class="d-flex">
                 <div class="d-flex align-center">

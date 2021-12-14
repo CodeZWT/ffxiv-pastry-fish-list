@@ -59,19 +59,19 @@
         <div>
           <v-card color="info">
             <v-card-title>
-              {{ $t('gigTip.fishShadow.title') }}
+              {{ $t('spearTip.fishShadow.title') }}
             </v-card-title>
             <v-card-text>
               此处为鱼影，需要刺相应个数的前置鱼才能触发，触发后在小地图上会有鱼影位置提示。
             </v-card-text>
             <v-card-subtitle>
-              {{ $t('gigTip.fishShadow.location') }}
+              {{ $t('spearTip.fishShadow.location') }}
             </v-card-subtitle>
             <v-card-text>
               <detail-item-map :fish="currentSpotPredators[0]" />
             </v-card-text>
             <v-card-subtitle>
-              {{ $t('gigTip.fishShadow.predators') }}
+              {{ $t('spearTip.fishShadow.predators') }}
             </v-card-subtitle>
 
             <v-card-text>
@@ -299,11 +299,15 @@ export default {
     },
     showSpotPredators() {
       return (
-        this.mode === 'spear' && this.currentFishList.some(it => it.predators.length > 0)
+        this.mode === 'spear' &&
+        this.currentFishList.some(it => it.shadowPredators.length > 0)
       )
     },
     currentSpotPredators() {
-      return this.currentFishList.find(fish => fish.predators.length > 0)?.predators ?? []
+      return (
+        this.currentFishList.find(fish => fish.shadowPredators.length > 0)
+          ?.shadowPredators ?? []
+      )
     },
     currentSpotPredatorIds() {
       return this.currentSpotPredators.map(it => it.id)

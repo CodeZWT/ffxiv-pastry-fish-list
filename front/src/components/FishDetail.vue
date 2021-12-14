@@ -28,6 +28,7 @@
           :fish-time-part="fishTimePart"
           :fish-weather-change-part="fishWeatherChangePart"
           :predators="predators"
+          :shadow-predators="shadowPredators"
           :forceShowComponents="forceShowComponents"
           :hide-map="hideMap"
           @close-dialog="$emit('close-dialog')"
@@ -104,6 +105,9 @@ export default {
     },
     predators() {
       return this.fish?.parts?.predators ?? []
+    },
+    shadowPredators() {
+      return this.fish?.parts?.shadowPredators ?? []
     },
     isSpear() {
       return this.fish.gig != null

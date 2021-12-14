@@ -282,6 +282,12 @@ export default {
               this.fishListTimePart,
               this.fishListWeatherChangePart
             ),
+            shadowPredators: fish.shadowPredators
+              ? DataUtil.getPredators(
+                  { predators: fish.shadowPredators },
+                  this.lazyTransformedFishDict
+                )
+              : [],
           },
         }
       } else {

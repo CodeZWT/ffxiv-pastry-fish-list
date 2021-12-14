@@ -1,5 +1,15 @@
 <template>
   <div style="width: 100%" @click="onFishClicked()">
+    <v-chip
+      v-if="!!fish.tag && isSpearFish"
+      label
+      style="position: absolute; top: 0; right: 0"
+      class="rounded-tl-0 rounded-bl-lg rounded-br-0"
+      color="primary"
+      outlined
+    >
+      {{ $t('spearTip.predator.' + fish.tag) }}
+    </v-chip>
     <v-divider v-if="inPredator" inset style="border-color: grey" />
     <v-row
       no-gutters
@@ -129,16 +139,35 @@
             </div>
           </div>
           <div v-if="isSpearFish" class="d-flex align-center">
-            <item-icon :icon-class="fish.gig.icon" :title="fish.gig.text" />
-            <div>
-              <div>{{ fish.gig.text }}</div>
-              <div v-if="fish.hasPredators">
-                {{ $t('gigTip.hasPredators') }}
+            <template v-if="isEndWalker">
+              <v-img
+                :src="fish.size.icon"
+                :max-height="32 * fish.size.sizeFactor"
+                :max-width="64"
+                contain
+              ></v-img>
+              <div style="min-width: 116px" class="ml-1">
+                <div>{{ fish.size.text }}</div>
+                <div v-if="fish.hasShadowPredators">
+                  {{ $t('spearTip.hasShadowPredators') }}
+                </div>
+                <div v-else-if="fish.requiredCnt && !inPredator">
+                  {{ $t('spearTip.isPredator', { requiredCnt: fish.requiredCnt }) }}
+                </div>
               </div>
-              <div v-else-if="fish.requiredCnt && !inPredator">
-                {{ $t('gigTip.isPredator', { requiredCnt: fish.requiredCnt }) }}
+            </template>
+            <template v-else class="d-flex align-center">
+              <item-icon :icon-class="fish.gig.icon" :title="fish.gig.text" />
+              <div>
+                <div>{{ fish.gig.text }}</div>
+                <div v-if="fish.hasPredators">
+                  {{ $t('gigTip.hasPredators') }}
+                </div>
+                <div v-else-if="fish.requiredCnt && !inPredator">
+                  {{ $t('gigTip.isPredator', { requiredCnt: fish.requiredCnt }) }}
+                </div>
               </div>
-            </div>
+            </template>
           </div>
           <div v-else class="d-flex">
             <div class="d-flex align-center">

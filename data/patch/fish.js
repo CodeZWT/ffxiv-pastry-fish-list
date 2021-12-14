@@ -12506,6 +12506,7 @@ const fishCN = {
     anglerFishId: 638,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20145: {
     _id: 20145,
@@ -12522,6 +12523,7 @@ const fishCN = {
     anglerFishId: 639,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20146: {
     _id: 20146,
@@ -12538,6 +12540,7 @@ const fishCN = {
     anglerFishId: 640,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20147: {
     _id: 20147,
@@ -12554,6 +12557,7 @@ const fishCN = {
     anglerFishId: 641,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20148: {
     _id: 20148,
@@ -12570,6 +12574,7 @@ const fishCN = {
     anglerFishId: 642,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20149: {
     _id: 20149,
@@ -12586,6 +12591,7 @@ const fishCN = {
     anglerFishId: 643,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20150: {
     _id: 20150,
@@ -12602,6 +12608,7 @@ const fishCN = {
     anglerFishId: 644,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20151: {
     _id: 20151,
@@ -12618,6 +12625,7 @@ const fishCN = {
     anglerFishId: 645,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20152: {
     _id: 20152,
@@ -12634,6 +12642,7 @@ const fishCN = {
     anglerFishId: 646,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20153: {
     _id: 20153,
@@ -12650,6 +12659,7 @@ const fishCN = {
     anglerFishId: 647,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20154: {
     _id: 20154,
@@ -12666,6 +12676,7 @@ const fishCN = {
     anglerFishId: 648,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20155: {
     _id: 20155,
@@ -12682,6 +12693,7 @@ const fishCN = {
     anglerFishId: 649,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20156: {
     _id: 20156,
@@ -12698,6 +12710,7 @@ const fishCN = {
     anglerFishId: 650,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20157: {
     _id: 20157,
@@ -12714,6 +12727,7 @@ const fishCN = {
     anglerFishId: 651,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20158: {
     _id: 20158,
@@ -12730,6 +12744,7 @@ const fishCN = {
     anglerFishId: 652,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20159: {
     _id: 20159,
@@ -12746,6 +12761,7 @@ const fishCN = {
     anglerFishId: 653,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20160: {
     _id: 20160,
@@ -12762,6 +12778,7 @@ const fishCN = {
     anglerFishId: 654,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20161: {
     _id: 20161,
@@ -12778,6 +12795,7 @@ const fishCN = {
     anglerFishId: 655,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20162: {
     _id: 20162,
@@ -12794,6 +12812,7 @@ const fishCN = {
     anglerFishId: 656,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20163: {
     _id: 20163,
@@ -12810,6 +12829,7 @@ const fishCN = {
     anglerFishId: 657,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20164: {
     _id: 20164,
@@ -12826,6 +12846,7 @@ const fishCN = {
     anglerFishId: 658,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20165: {
     _id: 20165,
@@ -12842,6 +12863,7 @@ const fishCN = {
     anglerFishId: 659,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20166: {
     _id: 20166,
@@ -12858,6 +12880,7 @@ const fishCN = {
     anglerFishId: 660,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20167: {
     _id: 20167,
@@ -12874,6 +12897,7 @@ const fishCN = {
     anglerFishId: 661,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20168: {
     _id: 20168,
@@ -12890,6 +12914,7 @@ const fishCN = {
     anglerFishId: 662,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20169: {
     _id: 20169,
@@ -12906,6 +12931,7 @@ const fishCN = {
     anglerFishId: 663,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20170: {
     _id: 20170,
@@ -12922,6 +12948,7 @@ const fishCN = {
     anglerFishId: 664,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20171: {
     _id: 20171,
@@ -12938,6 +12965,7 @@ const fishCN = {
     anglerFishId: 665,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20172: {
     _id: 20172,
@@ -12954,6 +12982,7 @@ const fishCN = {
     anglerFishId: 666,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20173: {
     _id: 20173,
@@ -12970,6 +12999,7 @@ const fishCN = {
     anglerFishId: 667,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20174: {
     _id: 20174,
@@ -12986,6 +13016,7 @@ const fishCN = {
     anglerFishId: 668,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20175: {
     _id: 20175,
@@ -13002,6 +13033,7 @@ const fishCN = {
     anglerFishId: 669,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20176: {
     _id: 20176,
@@ -13018,6 +13050,7 @@ const fishCN = {
     anglerFishId: 670,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20177: {
     _id: 20177,
@@ -13034,6 +13067,7 @@ const fishCN = {
     anglerFishId: 671,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20178: {
     _id: 20178,
@@ -13050,6 +13084,7 @@ const fishCN = {
     anglerFishId: 672,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20179: {
     _id: 20179,
@@ -13066,6 +13101,7 @@ const fishCN = {
     anglerFishId: 673,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20180: {
     _id: 20180,
@@ -13082,6 +13118,7 @@ const fishCN = {
     anglerFishId: 674,
     patch: 4,
     collectable: true,
+    shadowPredators: {},
   },
   20181: {
     _id: 20181,
@@ -13098,6 +13135,7 @@ const fishCN = {
     anglerFishId: 675,
     patch: 4,
     collectable: true,
+    shadowPredators: {},
   },
   20182: {
     _id: 20182,
@@ -13114,6 +13152,7 @@ const fishCN = {
     anglerFishId: 676,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20183: {
     _id: 20183,
@@ -13130,6 +13169,7 @@ const fishCN = {
     anglerFishId: 677,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20184: {
     _id: 20184,
@@ -13146,6 +13186,7 @@ const fishCN = {
     anglerFishId: 678,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20185: {
     _id: 20185,
@@ -13162,6 +13203,7 @@ const fishCN = {
     anglerFishId: 679,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20186: {
     _id: 20186,
@@ -13178,6 +13220,7 @@ const fishCN = {
     anglerFishId: 680,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20187: {
     _id: 20187,
@@ -13194,6 +13237,7 @@ const fishCN = {
     anglerFishId: 681,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20188: {
     _id: 20188,
@@ -13210,6 +13254,7 @@ const fishCN = {
     anglerFishId: 682,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20189: {
     _id: 20189,
@@ -13226,6 +13271,7 @@ const fishCN = {
     anglerFishId: 683,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20190: {
     _id: 20190,
@@ -13242,6 +13288,7 @@ const fishCN = {
     anglerFishId: 684,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20191: {
     _id: 20191,
@@ -13258,6 +13305,7 @@ const fishCN = {
     anglerFishId: 685,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20192: {
     _id: 20192,
@@ -13274,6 +13322,7 @@ const fishCN = {
     anglerFishId: 686,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20193: {
     _id: 20193,
@@ -13290,6 +13339,7 @@ const fishCN = {
     anglerFishId: 687,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20194: {
     _id: 20194,
@@ -13306,6 +13356,7 @@ const fishCN = {
     anglerFishId: 688,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20195: {
     _id: 20195,
@@ -13322,6 +13373,7 @@ const fishCN = {
     anglerFishId: 689,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20196: {
     _id: 20196,
@@ -13338,6 +13390,7 @@ const fishCN = {
     anglerFishId: 690,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20197: {
     _id: 20197,
@@ -13354,6 +13407,7 @@ const fishCN = {
     anglerFishId: 691,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20198: {
     _id: 20198,
@@ -13370,6 +13424,7 @@ const fishCN = {
     anglerFishId: 692,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20199: {
     _id: 20199,
@@ -13386,6 +13441,7 @@ const fishCN = {
     anglerFishId: 693,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20200: {
     _id: 20200,
@@ -13402,6 +13458,7 @@ const fishCN = {
     anglerFishId: 694,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20201: {
     _id: 20201,
@@ -13418,6 +13475,7 @@ const fishCN = {
     anglerFishId: 695,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20202: {
     _id: 20202,
@@ -13434,6 +13492,7 @@ const fishCN = {
     anglerFishId: 696,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20203: {
     _id: 20203,
@@ -13450,6 +13509,7 @@ const fishCN = {
     anglerFishId: 697,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20204: {
     _id: 20204,
@@ -13466,6 +13526,7 @@ const fishCN = {
     anglerFishId: 698,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20205: {
     _id: 20205,
@@ -13482,6 +13543,7 @@ const fishCN = {
     anglerFishId: 699,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20206: {
     _id: 20206,
@@ -13498,6 +13560,7 @@ const fishCN = {
     anglerFishId: 700,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20207: {
     _id: 20207,
@@ -13514,6 +13577,7 @@ const fishCN = {
     anglerFishId: 701,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20208: {
     _id: 20208,
@@ -13530,6 +13594,7 @@ const fishCN = {
     anglerFishId: 702,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20209: {
     _id: 20209,
@@ -13546,6 +13611,7 @@ const fishCN = {
     anglerFishId: 703,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20210: {
     _id: 20210,
@@ -13556,14 +13622,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      20217: 7,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 704,
     patch: 4,
     collectable: true,
+    shadowPredators: {
+      20217: 7,
+    },
   },
   20211: {
     _id: 20211,
@@ -13580,6 +13647,7 @@ const fishCN = {
     anglerFishId: 705,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20212: {
     _id: 20212,
@@ -13596,6 +13664,7 @@ const fishCN = {
     anglerFishId: 706,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20213: {
     _id: 20213,
@@ -13612,6 +13681,7 @@ const fishCN = {
     anglerFishId: 707,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20214: {
     _id: 20214,
@@ -13628,6 +13698,7 @@ const fishCN = {
     anglerFishId: 708,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20215: {
     _id: 20215,
@@ -13644,6 +13715,7 @@ const fishCN = {
     anglerFishId: 709,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20216: {
     _id: 20216,
@@ -13660,6 +13732,7 @@ const fishCN = {
     anglerFishId: 710,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20217: {
     _id: 20217,
@@ -13676,6 +13749,7 @@ const fishCN = {
     anglerFishId: 711,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20218: {
     _id: 20218,
@@ -13692,6 +13766,7 @@ const fishCN = {
     anglerFishId: 712,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20219: {
     _id: 20219,
@@ -13708,6 +13783,7 @@ const fishCN = {
     anglerFishId: 713,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20220: {
     _id: 20220,
@@ -13718,14 +13794,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      20228: 7,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 714,
     patch: 4,
     collectable: true,
+    shadowPredators: {
+      20228: 7,
+    },
   },
   20221: {
     _id: 20221,
@@ -13742,6 +13819,7 @@ const fishCN = {
     anglerFishId: 715,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20222: {
     _id: 20222,
@@ -13758,6 +13836,7 @@ const fishCN = {
     anglerFishId: 716,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20223: {
     _id: 20223,
@@ -13774,6 +13853,7 @@ const fishCN = {
     anglerFishId: 717,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20224: {
     _id: 20224,
@@ -13790,6 +13870,7 @@ const fishCN = {
     anglerFishId: 718,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20225: {
     _id: 20225,
@@ -13806,6 +13887,7 @@ const fishCN = {
     anglerFishId: 719,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20226: {
     _id: 20226,
@@ -13822,6 +13904,7 @@ const fishCN = {
     anglerFishId: 720,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20227: {
     _id: 20227,
@@ -13832,14 +13915,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      20217: 7,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 721,
     patch: 4,
     collectable: true,
+    shadowPredators: {
+      20217: 7,
+    },
   },
   20228: {
     _id: 20228,
@@ -13856,6 +13940,7 @@ const fishCN = {
     anglerFishId: 722,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20229: {
     _id: 20229,
@@ -13872,6 +13957,7 @@ const fishCN = {
     anglerFishId: 723,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20230: {
     _id: 20230,
@@ -13882,14 +13968,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      20228: 7,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 724,
     patch: 4,
     collectable: true,
+    shadowPredators: {
+      20228: 7,
+    },
   },
   20231: {
     _id: 20231,
@@ -13906,6 +13993,7 @@ const fishCN = {
     anglerFishId: 725,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20232: {
     _id: 20232,
@@ -13922,6 +14010,7 @@ const fishCN = {
     anglerFishId: 726,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20233: {
     _id: 20233,
@@ -13932,14 +14021,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      20222: 7,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 727,
     patch: 4,
     collectable: true,
+    shadowPredators: {
+      20222: 7,
+    },
   },
   20234: {
     _id: 20234,
@@ -13950,14 +14040,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      20222: 7,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 728,
     patch: 4,
     collectable: true,
+    shadowPredators: {
+      20222: 7,
+    },
   },
   20235: {
     _id: 20235,
@@ -13974,6 +14065,7 @@ const fishCN = {
     anglerFishId: 729,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20236: {
     _id: 20236,
@@ -13990,6 +14082,7 @@ const fishCN = {
     anglerFishId: 730,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20237: {
     _id: 20237,
@@ -14006,6 +14099,7 @@ const fishCN = {
     anglerFishId: 731,
     patch: 4,
     collectable: false,
+    shadowPredators: {},
   },
   20238: {
     _id: 20238,
@@ -14016,14 +14110,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      20236: 7,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 732,
     patch: 4,
     collectable: true,
+    shadowPredators: {
+      20236: 7,
+    },
   },
   20239: {
     _id: 20239,
@@ -14034,14 +14129,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      20236: 7,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 733,
     patch: 4,
     collectable: true,
+    shadowPredators: {
+      20236: 7,
+    },
   },
   20524: {
     _id: 20524,
@@ -14074,14 +14170,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      20217: 7,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 734,
     patch: 4,
     collectable: false,
+    shadowPredators: {
+      20217: 7,
+    },
   },
   20785: {
     _id: 20785,
@@ -14335,6 +14432,7 @@ const fishCN = {
     anglerFishId: 740,
     patch: 4.1,
     collectable: false,
+    shadowPredators: {},
   },
   21180: {
     _id: 21180,
@@ -14345,14 +14443,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      21179: 10,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 741,
     patch: 4.1,
     collectable: false,
+    shadowPredators: {
+      21179: 10,
+    },
   },
   22389: {
     _id: 22389,
@@ -18419,6 +18518,7 @@ const fishCN = {
     anglerFishId: 3113,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27517: {
     _id: 27517,
@@ -18435,6 +18535,7 @@ const fishCN = {
     anglerFishId: 3114,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27518: {
     _id: 27518,
@@ -18451,6 +18552,7 @@ const fishCN = {
     anglerFishId: 3115,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27519: {
     _id: 27519,
@@ -18467,6 +18569,7 @@ const fishCN = {
     anglerFishId: 3116,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27520: {
     _id: 27520,
@@ -18483,6 +18586,7 @@ const fishCN = {
     anglerFishId: 3117,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27521: {
     _id: 27521,
@@ -18499,6 +18603,7 @@ const fishCN = {
     anglerFishId: 3118,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27522: {
     _id: 27522,
@@ -18515,6 +18620,7 @@ const fishCN = {
     anglerFishId: 3119,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27523: {
     _id: 27523,
@@ -18531,6 +18637,7 @@ const fishCN = {
     anglerFishId: 3120,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27524: {
     _id: 27524,
@@ -18547,6 +18654,7 @@ const fishCN = {
     anglerFishId: 3121,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27525: {
     _id: 27525,
@@ -18563,6 +18671,7 @@ const fishCN = {
     anglerFishId: 3122,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27526: {
     _id: 27526,
@@ -18579,6 +18688,7 @@ const fishCN = {
     anglerFishId: 3123,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27527: {
     _id: 27527,
@@ -18595,6 +18705,7 @@ const fishCN = {
     anglerFishId: 3124,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27528: {
     _id: 27528,
@@ -18611,6 +18722,7 @@ const fishCN = {
     anglerFishId: 3125,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27529: {
     _id: 27529,
@@ -18627,6 +18739,7 @@ const fishCN = {
     anglerFishId: 3126,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27530: {
     _id: 27530,
@@ -18643,6 +18756,7 @@ const fishCN = {
     anglerFishId: 3127,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27531: {
     _id: 27531,
@@ -18659,6 +18773,7 @@ const fishCN = {
     anglerFishId: 3128,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27532: {
     _id: 27532,
@@ -18675,6 +18790,7 @@ const fishCN = {
     anglerFishId: 3129,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27533: {
     _id: 27533,
@@ -18691,6 +18807,7 @@ const fishCN = {
     anglerFishId: 3130,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27534: {
     _id: 27534,
@@ -18701,14 +18818,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      27531: 10,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 3131,
     patch: 5,
     collectable: true,
+    shadowPredators: {
+      27531: 10,
+    },
   },
   27535: {
     _id: 27535,
@@ -18719,14 +18837,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      27531: 10,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 3132,
     patch: 5,
     collectable: true,
+    shadowPredators: {
+      27531: 10,
+    },
   },
   27536: {
     _id: 27536,
@@ -18743,6 +18862,7 @@ const fishCN = {
     anglerFishId: 3133,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27537: {
     _id: 27537,
@@ -18759,6 +18879,7 @@ const fishCN = {
     anglerFishId: 3134,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27538: {
     _id: 27538,
@@ -18775,6 +18896,7 @@ const fishCN = {
     anglerFishId: 3135,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27539: {
     _id: 27539,
@@ -18791,6 +18913,7 @@ const fishCN = {
     anglerFishId: 3136,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27540: {
     _id: 27540,
@@ -18807,6 +18930,7 @@ const fishCN = {
     anglerFishId: 3137,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27541: {
     _id: 27541,
@@ -18823,6 +18947,7 @@ const fishCN = {
     anglerFishId: 3138,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27542: {
     _id: 27542,
@@ -18839,6 +18964,7 @@ const fishCN = {
     anglerFishId: 3139,
     patch: 5,
     collectable: true,
+    shadowPredators: {},
   },
   27543: {
     _id: 27543,
@@ -18855,6 +18981,7 @@ const fishCN = {
     anglerFishId: 3140,
     patch: 5,
     collectable: true,
+    shadowPredators: {},
   },
   27544: {
     _id: 27544,
@@ -18871,6 +18998,7 @@ const fishCN = {
     anglerFishId: 3141,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27545: {
     _id: 27545,
@@ -18887,6 +19015,7 @@ const fishCN = {
     anglerFishId: 3142,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27546: {
     _id: 27546,
@@ -18903,6 +19032,7 @@ const fishCN = {
     anglerFishId: 3143,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27547: {
     _id: 27547,
@@ -18919,6 +19049,7 @@ const fishCN = {
     anglerFishId: 3144,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27548: {
     _id: 27548,
@@ -18935,6 +19066,7 @@ const fishCN = {
     anglerFishId: 3145,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27549: {
     _id: 27549,
@@ -18951,6 +19083,7 @@ const fishCN = {
     anglerFishId: 3146,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27550: {
     _id: 27550,
@@ -18967,6 +19100,7 @@ const fishCN = {
     anglerFishId: 3147,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27551: {
     _id: 27551,
@@ -18983,6 +19117,7 @@ const fishCN = {
     anglerFishId: 3148,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27552: {
     _id: 27552,
@@ -18999,6 +19134,7 @@ const fishCN = {
     anglerFishId: 3149,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27553: {
     _id: 27553,
@@ -19015,6 +19151,7 @@ const fishCN = {
     anglerFishId: 3150,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27554: {
     _id: 27554,
@@ -19031,6 +19168,7 @@ const fishCN = {
     anglerFishId: 3151,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27555: {
     _id: 27555,
@@ -19047,6 +19185,7 @@ const fishCN = {
     anglerFishId: 3152,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27556: {
     _id: 27556,
@@ -19063,6 +19202,7 @@ const fishCN = {
     anglerFishId: 3153,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27557: {
     _id: 27557,
@@ -19079,6 +19219,7 @@ const fishCN = {
     anglerFishId: 3154,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27558: {
     _id: 27558,
@@ -19095,6 +19236,7 @@ const fishCN = {
     anglerFishId: 3155,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27559: {
     _id: 27559,
@@ -19111,6 +19253,7 @@ const fishCN = {
     anglerFishId: 3156,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27560: {
     _id: 27560,
@@ -19127,6 +19270,7 @@ const fishCN = {
     anglerFishId: 3157,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27561: {
     _id: 27561,
@@ -19143,6 +19287,7 @@ const fishCN = {
     anglerFishId: 3158,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27562: {
     _id: 27562,
@@ -19159,6 +19304,7 @@ const fishCN = {
     anglerFishId: 3159,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27563: {
     _id: 27563,
@@ -19175,6 +19321,7 @@ const fishCN = {
     anglerFishId: 3160,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27564: {
     _id: 27564,
@@ -19191,6 +19338,7 @@ const fishCN = {
     anglerFishId: 3161,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27565: {
     _id: 27565,
@@ -19207,6 +19355,7 @@ const fishCN = {
     anglerFishId: 3162,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27566: {
     _id: 27566,
@@ -19217,14 +19366,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      27551: 10,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 3163,
     patch: 5,
     collectable: true,
+    shadowPredators: {
+      27551: 10,
+    },
   },
   27567: {
     _id: 27567,
@@ -19235,14 +19385,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      27551: 10,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 3164,
     patch: 5,
     collectable: true,
+    shadowPredators: {
+      27551: 10,
+    },
   },
   27568: {
     _id: 27568,
@@ -19259,6 +19410,7 @@ const fishCN = {
     anglerFishId: 3165,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27569: {
     _id: 27569,
@@ -19275,6 +19427,7 @@ const fishCN = {
     anglerFishId: 3166,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27570: {
     _id: 27570,
@@ -19291,6 +19444,7 @@ const fishCN = {
     anglerFishId: 3167,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27571: {
     _id: 27571,
@@ -19307,6 +19461,7 @@ const fishCN = {
     anglerFishId: 3168,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27572: {
     _id: 27572,
@@ -19323,6 +19478,7 @@ const fishCN = {
     anglerFishId: 3169,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27573: {
     _id: 27573,
@@ -19339,6 +19495,7 @@ const fishCN = {
     anglerFishId: 3170,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27574: {
     _id: 27574,
@@ -19355,6 +19512,7 @@ const fishCN = {
     anglerFishId: 3171,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27575: {
     _id: 27575,
@@ -19371,6 +19529,7 @@ const fishCN = {
     anglerFishId: 3172,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27576: {
     _id: 27576,
@@ -19387,6 +19546,7 @@ const fishCN = {
     anglerFishId: 3173,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27577: {
     _id: 27577,
@@ -19403,6 +19563,7 @@ const fishCN = {
     anglerFishId: 3174,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27578: {
     _id: 27578,
@@ -19419,6 +19580,7 @@ const fishCN = {
     anglerFishId: 3175,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27579: {
     _id: 27579,
@@ -19435,6 +19597,7 @@ const fishCN = {
     anglerFishId: 3176,
     patch: 5,
     collectable: false,
+    shadowPredators: {},
   },
   27580: {
     _id: 27580,
@@ -19445,14 +19608,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      27569: 10,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 3177,
     patch: 5,
     collectable: true,
+    shadowPredators: {
+      27569: 10,
+    },
   },
   27581: {
     _id: 27581,
@@ -19463,14 +19627,15 @@ const fishCN = {
     requiredCnt: 0,
     startHour: 0,
     endHour: 24,
-    predators: {
-      27569: 10,
-    },
+    predators: {},
     previousWeatherSet: [],
     weatherSet: [],
     anglerFishId: 3178,
     patch: 5,
     collectable: true,
+    shadowPredators: {
+      27569: 10,
+    },
   },
   28065: {
     _id: 28065,
@@ -21614,6 +21779,7 @@ const fishCN = {
     aquarium: null,
   },
 }
+
 const fishGlobalAddon = {
   35604: {
     _id: 35604,
