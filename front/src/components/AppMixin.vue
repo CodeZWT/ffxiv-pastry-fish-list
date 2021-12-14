@@ -1105,6 +1105,8 @@ export default {
         shadowPredators: hasShadowPredators
           ? this.getSpearFishPredators(fish.shadowPredators)
           : [],
+        predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
+        intuitionLength: fish.intuitionLength,
         hasPredators: hasPredators,
         predators: hasPredators ? this.getSpearFishPredators(fish.predators) : [],
         gig: fish.gig

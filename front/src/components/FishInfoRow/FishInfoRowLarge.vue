@@ -292,6 +292,15 @@
               </div>
               <div v-else-if="isSpearFish" class="d-flex align-center">
                 <template v-if="isEndWalker">
+                  <div style="min-width: 32px">
+                    <div v-if="fish.hasPredators" class="d-flex flex-column align-center">
+                      <effect-icon :icon-class="fish.predatorsIcon" />
+                      <div v-if="fish.intuitionLength" class="text-subtitle-2">
+                        {{ secondsToMinutesString(fish.intuitionLength) }}
+                      </div>
+                    </div>
+                  </div>
+
                   <v-img
                     :src="fish.size.icon"
                     :max-height="56 * fish.size.sizeFactor"
@@ -305,9 +314,6 @@
                     </div>
                     <div v-else-if="fish.requiredCnt && !inPredator">
                       {{ $t('spearTip.isPredator', { requiredCnt: fish.requiredCnt }) }}
-                    </div>
-                    <div v-if="fish.hasPredators">
-                      {{ $t('spearTip.hasPredators') }}
                     </div>
                   </div>
                 </template>
