@@ -24,31 +24,21 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
+        <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
-            <div class="text-h6">Version 1.1.0-fix</div>
+            <div class="text-h6">Version 1.1.1</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/12/12 17:00</div>
+            <div class="text-subtitle-1">更新时间: 2021/12/14 23:00</div>
           </div>
         </v-alert>
-        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
-          <li>
-            修复部分地图无法加载的问题
-          </li>
-          <li>
-            修复搜索中计时器固定显示“全天可钓”的问题
-          </li>
-          <li>
-            修复国服同步数据数量超过实际值的问题
-          </li>
-          <li>
-            更新6.0鱼的天气时间鱼饵信息
-          </li>
-          <li>
-            更新6.0刺鱼相关信息
-          </li>
+          <li>修复部分地图无法加载的问题</li>
+          <li>修复搜索中计时器固定显示“全天可钓”的问题</li>
+          <li>修复国服同步数据数量超过实际值的问题</li>
+          <li>更新6.0鱼的天气时间鱼饵信息</li>
+          <li>更新6.0刺鱼相关信息</li>
         </ul>
 
         <v-divider />
@@ -68,27 +58,15 @@
           <li>
             更新区服切换，点击左侧菜单栏中的切换按钮切换区服数据。切换“国际服”会显示6.X相关数据，请注意会包含剧透信息！
           </li>
-          <li>
-            更新列表中6.X相关数据，开荒中的数据会陆续更新。
-          </li>
-          <li>
-            更新鱼眼相关数据。
-          </li>
-          <li>
-            暂未更新：钓场范围提示，水族馆等数据。
-          </li>
+          <li>更新列表中6.X相关数据，开荒中的数据会陆续更新。</li>
+          <li>更新鱼眼相关数据。</li>
+          <li>暂未更新：钓场范围提示，水族馆等数据。</li>
         </ul>
         <div class="text-h6 my-1">渔捞</div>
         <ul>
-          <li>
-            更新国际服6.0支持
-          </li>
-          <li>
-            刺鱼的自动记录功能暂未支持
-          </li>
-          <li>
-            更新对大尺寸以及Angler's Fortune的支持
-          </li>
+          <li>更新国际服6.0支持</li>
+          <li>刺鱼的自动记录功能暂未支持</li>
+          <li>更新对大尺寸以及Angler's Fortune的支持</li>
         </ul>
         <v-divider />
 
