@@ -340,6 +340,9 @@
     "fishSize": {
       "title": "鱼尺寸"
     },
+    "gigSize": {
+      "title": "渔叉尖"
+    },
     "countDown": {
       "loading": "计算中..."
     }

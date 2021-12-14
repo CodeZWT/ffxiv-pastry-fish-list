@@ -29,7 +29,13 @@
 
       <v-col cols="6" class="d-flex flex-column align-center">
         <div class="d-flex justify-center">
-          {{ isSpearFish ? $t('detail.fishSize.title') : $t('detail.baits.title') }}
+          {{
+            isSpearFish
+              ? isEndWalker
+                ? $t('detail.fishSize.title')
+                : $t('detail.gigSize.title')
+              : $t('detail.baits.title')
+          }}
         </div>
         <div v-if="fish.type === 'normal'" class="d-flex">
           <div class="d-flex align-center">
