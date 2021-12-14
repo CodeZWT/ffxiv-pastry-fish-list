@@ -138,10 +138,6 @@ export default {
     },
     flattenFishList() {
       return this.fishListToShow.flatMap(fish => {
-        console.log(fish)
-        console.log(fish.predators)
-        console.log(fish.shadowPredators)
-
         return [
           fish,
           ...(this.hidePredators

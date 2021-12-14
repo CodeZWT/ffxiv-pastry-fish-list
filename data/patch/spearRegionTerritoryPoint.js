@@ -350,7 +350,6 @@ const combineTerritory = (dataCN, dataGlobalAddon) => {
   return Object.values(dict)
 }
 
-console.log(spotCN)
 const spotGlobal = combineRegion(spotCN, spotGlobalAddon)
 
 module.exports = {
