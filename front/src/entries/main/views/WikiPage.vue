@@ -385,6 +385,7 @@ import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
+import FISH_PARAMETER from 'Data/fishParameter'
 import FIX from 'Data/fix'
 import FishDetail from '@/components/FishDetail'
 import ImgUtil from '@/utils/ImgUtil'
@@ -394,6 +395,7 @@ import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 import PinyinMatch from 'pinyin-match'
 import RcDialog from '@/components/basic/RcDialog'
 import RcTextField from '@/components/basic/RcTextField'
+import SPEAR_FISHING_ITEM from 'Data/spearFishingItem'
 import TreeModel from 'tree-model'
 import WikiSpotDetail from '@/components/WikiSpotDetail'
 import _ from 'lodash'
@@ -586,8 +588,8 @@ export default {
       const iCatchThat = {
         record: this.allCompletedFishOfCurrentPatch.filter(
           it =>
-            FIX.FISH_PARAMETER.find(param => param.Item === it)?.IsInLog ||
-            FIX.SPEAR_FISHING_ITEM.find(param => param.Item === it)?.IsVisible
+            FISH_PARAMETER.find(param => param.Item === it)?.IsInLog ||
+            SPEAR_FISHING_ITEM.find(param => param.Item === it)?.IsVisible
         ).length,
         // ticks: [
         //   // { title: '捕鱼大师戒指', cnt:  160   , itemId: 6137         },

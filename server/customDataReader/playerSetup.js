@@ -1,4 +1,6 @@
-const { SPEAR_FISHING_ITEM, FISH_PARAMETER } = require('../../data/fix')
+const SPEAR_FISHING_ITEM = require('../../data/patch/spearFishingItem')
+const FISH_PARAMETER = require('../../data/patch/fishParameter')
+
 module.exports = playerSetupOf
 
 function playerSetupOf(struct, region = 'CN') {
@@ -44,14 +46,14 @@ function playerSetupOf(struct, region = 'CN') {
   const spearRecordsOffset = region === 'CN' ? CN_SPEAR_RECORD_OFFSET : GLOBAL_SPEAR_RECORD_OFFSET
 
   const caughtFishId = []
-  for (const param of FISH_PARAMETER) {
+  for (const param of FISH_PARAMETER[region]) {
     if (param.IsInLog) {
       if (isRecorded(struct.data, fishRecordsOffset, param._Key)) {
         caughtFishId.push(param.Item)
       }
     }
   }
-  for (const spearItem of SPEAR_FISHING_ITEM) {
+  for (const spearItem of SPEAR_FISHING_ITEM[region]) {
     if (spearItem.IsVisible && spearItem._Key < 30000 && spearItem._Key >= 20000) {
       const key = spearItem._Key - 20000
       if(isRecorded(struct.data, spearRecordsOffset, key)) {
