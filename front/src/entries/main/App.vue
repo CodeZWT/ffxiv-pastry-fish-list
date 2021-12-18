@@ -266,6 +266,37 @@
               </v-list>
             </v-menu>
           </v-list-item>
+          <v-list-item>
+            <v-menu offset-x left top>
+              <template v-slot:activator="{ on: menu, attrs }">
+                <div v-bind="attrs" v-on="{ ...menu }" class="d-flex align-center">
+                  <v-btn text icon>
+                    <v-icon>mdi-translate</v-icon>
+                  </v-btn>
+                  <div>设置数据语言</div>
+                </div>
+              </template>
+              <v-list>
+                <v-list-item-group color="primary" :value="localeIndex">
+                  <div v-for="(locale, index) in DATA_LOCALES" :key="index">
+                    <v-list-item @click="localeIndex = index">
+                      <v-list-item-title class="d-flex align-center">
+                        <div style="min-width: 40px">
+                          <v-img
+                            contain
+                            :src="LOCALES_ICONS[index]"
+                            height="18"
+                            width="24"
+                          />
+                        </div>
+                        <div>{{ $t(`locale.title.${locale}`) }}</div>
+                      </v-list-item-title>
+                    </v-list-item>
+                  </div>
+                </v-list-item-group>
+              </v-list>
+            </v-menu>
+          </v-list-item>
           <v-list-item v-if="isListPage || isWikiPage" @click="toggleFishEyesUsed">
             <fish-eyes-toggle-button
               :value="fishEyesUsed"
