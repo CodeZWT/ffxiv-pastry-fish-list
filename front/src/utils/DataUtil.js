@@ -18,6 +18,7 @@ import TimeFormatter from '@/utils/TimeFormatter'
 import _ from 'lodash'
 import flatten from 'flat'
 import i18n from '@/i18n'
+import itemNames from 'Data/locale/item'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -75,6 +76,7 @@ const FISH_CONSTRAINT_FILTER_TYPES = ['RESTRICTED', 'NOT_RESTRICTED']
 const BAIT_FISH_SORTER_TYPES = ['QUANTITY', 'ID']
 
 const THEME_SETTING_MODES = ['DARK', 'LIGHT', 'AUTO']
+const DATA_LOCALES = ['chs', 'en', 'ja']
 
 function hasChineseCharacter(text) {
   return text.match('[\u4e00-\u9fff]+')
@@ -765,7 +767,7 @@ export default {
 
   toItemTitle(item) {
     const id = toItemId(item.id)
-    return item.name + (id < 999990 ? '#' + id : '')
+    return item.name + (id < 999990 ? ' # ' + id : '')
   },
 
   toSpotItemId(spotId, itemId) {
@@ -918,6 +920,10 @@ export default {
 
   getItemName(id) {
     return this.getName(this.ITEMS[this.toItemId(id)])
+  },
+
+  getItemNames(id) {
+    return itemNames[this.toItemId(id)]
   },
 
   isFishId(id) {
@@ -1402,6 +1408,7 @@ export default {
   },
 
   THEME_SETTING_MODES: THEME_SETTING_MODES,
+  DATA_LOCALES: DATA_LOCALES,
 
   DETAIL_ITEM_DISPLAY_CONSTRAINTS: {
     DetailItemMap: 'hasFishingSpot',

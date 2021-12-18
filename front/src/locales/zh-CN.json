@@ -474,5 +474,12 @@
       "toggleGlobalClickThrough": "打开/关闭鼠标穿透",
       "showSearch": "打开搜索"
     }
+  },
+  "locale": {
+    "title": {
+      "chs": "中",
+      "en": "英",
+      "ja": "日"
+    }
   }
 }

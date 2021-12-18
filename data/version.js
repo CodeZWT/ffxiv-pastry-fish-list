@@ -1,9 +1,15 @@
 const { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } = require('./constants')
 const REGION_KEY = 'RC_REGION'
+const DATA_LOCALE_KEY = 'RC_DATA_LOCALE'
 
 let region = 'Global'
 if (typeof window !== 'undefined') {
   region = window.localStorage.getItem(REGION_KEY) || 'CN'
+}
+
+let dataLocale = 'chs'
+if (typeof window !== 'undefined') {
+  dataLocale = window.localStorage.getItem(DATA_LOCALE_KEY) || 'chs'
 }
 
 const PATCHES_CN = {
@@ -22,6 +28,7 @@ const SystemInfo = {
   patch: region === 'CN' ? CN_PATCH_VERSION : GLOBAL_PATCH_VERSION,
   patches: region === 'CN' ? PATCHES_CN : PATCHES_GLOBAL,
   fishEyesMaxPatchExclude: region === 'CN' ? 4 : 5,
+  dataLocale: dataLocale
 }
 
 const setRegion = region => {
@@ -29,7 +36,13 @@ const setRegion = region => {
   window.localStorage.setItem(REGION_KEY, region)
 }
 
+const setDataLocale = dataLocale => {
+  // SystemInfo.dataLocale = dataLocale
+  window.localStorage.setItem(DATA_LOCALE_KEY, dataLocale)
+}
+
 module.exports = {
   SystemInfo,
   setRegion,
+  setDataLocale,
 }

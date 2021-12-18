@@ -176,6 +176,32 @@
           </v-list-item-group>
         </v-list>
       </v-menu>
+      <v-menu offset-y v-if="!isMobile">
+        <template v-slot:activator="{ on: menu, attrs }">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on: tooltip }">
+              <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
+                <v-icon>mdi-translate</v-icon>
+              </v-btn>
+            </template>
+            <div>设置数据语言</div>
+          </v-tooltip>
+        </template>
+        <v-list>
+          <v-list-item-group color="primary" :value="localeIndex">
+            <div v-for="(locale, index) in DATA_LOCALES" :key="index">
+              <v-list-item @click="localeIndex = index">
+                <v-list-item-title class="d-flex align-center">
+                  <div style="min-width: 40px">
+                    <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
+                  </div>
+                  <div>{{ $t(`locale.title.${locale}`) }}</div>
+                </v-list-item-title>
+              </v-list-item>
+            </div>
+          </v-list-item-group>
+        </v-list>
+      </v-menu>
       <v-menu v-if="isMobile" offset-y left>
         <template v-slot:activator="{ on: menu, attrs }">
           <v-tooltip bottom>
@@ -831,11 +857,12 @@
 <script>
 import '@thewakingsands/axis-font-icons'
 import { MainFeatures } from 'Data/newFeatures'
-import { SystemInfo, setRegion } from 'Data/version'
+import { SystemInfo, setDataLocale, setRegion } from 'Data/version'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import AlarmMixin from '@/mixins/AlarmMixin'
 import AppMixin from '@/components/AppMixin'
 import DataUtil from '@/utils/DataUtil'
+import ImgUtil from '@/utils/ImgUtil'
 import MainWindowMixin from '@/components/MainWindowMixin'
 import RcDialog from '@/components/basic/RcDialog'
 import _ from 'lodash'
@@ -855,6 +882,12 @@ export default {
       showFinishedBaitDialog: false,
       showUpdateAvailableDialog: false,
       newVersion: undefined,
+      DATA_LOCALES: DataUtil.DATA_LOCALES,
+      LOCALES_ICONS: [
+        ImgUtil.getImgUrl('cn.svg'),
+        ImgUtil.getImgUrl('us.svg'),
+        ImgUtil.getImgUrl('jp.svg'),
+      ],
     }
   },
   computed: {
@@ -864,6 +897,21 @@ export default {
       },
       set(regionIndex) {
         setRegion(['CN', 'Global'][regionIndex])
+        this.showSnackbar({
+          text: '设置成功，即将重新加载页面，请稍后...',
+          color: 'success',
+        })
+        setTimeout(() => {
+          this.startReloadPage()
+        }, 1000)
+      },
+    },
+    localeIndex: {
+      get() {
+        return DataUtil.DATA_LOCALES.indexOf(SystemInfo.dataLocale)
+      },
+      set(index) {
+        setDataLocale(DataUtil.DATA_LOCALES[index])
         this.showSnackbar({
           text: '设置成功，即将重新加载页面，请稍后...',
           color: 'success',

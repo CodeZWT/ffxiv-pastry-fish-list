@@ -1173,6 +1173,7 @@ export default {
             this.showHatCover &&
             FIX.STARLIGHT_CELEBRATION.fish.includes(fish._id),
           name: this.getItemName(fish._id),
+          names: DataUtil.getItemNames(fish._id),
           hasFishingSpot: fish.locations.length !== 0,
           // zone: this.getZoneName(fish.location),
           // fishingSpot: this.getFishingSpotsName(fish.location),
