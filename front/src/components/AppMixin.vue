@@ -951,6 +951,7 @@ export default {
         id: fish._id,
         type: 'normal',
         name: this.getItemName(fish._id),
+        names: DataUtil.getItemNames(fish._id),
         icon: this.getItemIconClass(fish._id),
         hasFishingSpot: fish.locations.length !== 0,
         fishingSpots: this.getFishingSpots(fish.locations),
@@ -1065,6 +1066,7 @@ export default {
         iconRemoteUrl: null,
         showHatCover: false,
         name: this.getItemName(fish._id),
+        names: DataUtil.getItemNames(fish._id),
         hasFishingSpot: true,
         fishingSpots: fish.locations
           .map(location => {
