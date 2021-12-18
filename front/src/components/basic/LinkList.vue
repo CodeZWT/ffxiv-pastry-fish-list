@@ -38,7 +38,7 @@
             <v-icon small>mdi-cog</v-icon>
           </v-btn>
         </div>
-        <v-list dense>
+        <v-list dense v-if="nameList.length > 0">
           <v-list-item
             v-for="(localeItem, index) in nameList"
             :key="index"
@@ -50,7 +50,6 @@
               </div>
               <div>
                 <span>{{ localeItem.name }}</span>
-                <!--                <v-badge v-show="index === defaultLinkIndex" content="默认" inline />-->
               </div>
             </v-list-item-title>
             <v-list-item-action>
@@ -198,7 +197,7 @@ export default {
       return this.links.findIndex(it => it.id === this.defaultLinkOf(this.mode))
     },
     currLocaleName() {
-      return this.names[SystemInfo.dataLocale] || this.names.en
+      return this.names[SystemInfo.dataLocale] || this.names.en || this.name
     },
     nameList() {
       if (this.names == null || Object.keys(this.names).length === 0) {

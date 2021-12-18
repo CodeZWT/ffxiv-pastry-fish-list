@@ -37,6 +37,7 @@
             :id="item.id"
             :angler-id="item.anglerFishId"
             :name="item.name"
+            :names="item.names"
             mode="fish"
           >
             <v-hover v-slot="{ hover }">

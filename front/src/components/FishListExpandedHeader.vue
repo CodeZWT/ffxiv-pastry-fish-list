@@ -40,6 +40,7 @@
                 :id="fish.id"
                 :angler-id="fish.anglerFishId"
                 :name="fish.name"
+                :names="fish.names"
                 mode="fish"
               >
                 <v-hover v-slot="{ hover }">
@@ -209,6 +210,7 @@ export default {
         toBeNotified: this.getFishToBeNotified(fish._id),
         icon: this.getItemIconClass(fish._id),
         name: this.getItemName(fish._id),
+        names: DataUtil.getItemNames(fish._id),
         patch: fish.patch,
         patchText: DataUtil.toPatchText(fish.patch),
         isFuturePatch: false, // fish.patch > DataUtil.PATCH_AVAILABLE_MAX,

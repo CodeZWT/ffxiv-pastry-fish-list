@@ -296,6 +296,7 @@ export default {
               ...fish,
               id: fishId,
               name: this.getItemName(fishId),
+              names: DataUtil.getItemNames(fishId),
               icon: this.getItemIconClass(fishId),
               points: fish.points[this.versionIndex],
               scrips: fish.scrips[this.versionIndex],

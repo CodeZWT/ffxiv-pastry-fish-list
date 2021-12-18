@@ -10,6 +10,7 @@
         <link-list
           :id="bait.baitId"
           :name="bait.baitName"
+          :names="bait.baitNames"
           :mode="isFishId(bait.baitId) ? 'fish' : 'itemV2'"
           :angler-id="toAnglerId(bait.baitId)"
         >
@@ -31,7 +32,6 @@
               <item-icon
                 :icon-url="bait.diademAnyBait ? diademAnyBaitIcon : null"
                 :icon-class="bait.baitIcon"
-                :title="toItemTitle(bait.baitName, bait.baitId, bait.diademAnyBait)"
                 small
               />
             </v-badge>
@@ -39,7 +39,6 @@
               v-else
               :icon-url="bait.diademAnyBait ? diademAnyBaitIcon : null"
               :icon-class="bait.baitIcon"
-              :title="toItemTitle(bait.baitName, bait.baitId, bait.diademAnyBait)"
               small
             />
             <div style="width: 36px" class="d-flex justify-center" title="可套娃">
