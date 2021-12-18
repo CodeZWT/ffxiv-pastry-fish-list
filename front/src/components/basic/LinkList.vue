@@ -22,7 +22,7 @@
         <div class="d-flex align-center">
           <v-subheader>{{ title }}</v-subheader>
           <v-spacer />
-          <click-helper @click.stop="emitClick" :copy-text="name">
+          <click-helper @click.stop="emitClick" :copy-text="currLocaleName">
             <v-btn text icon small :title="$t('list.item.copyHint')">
               <v-icon small>mdi-content-copy</v-icon>
             </v-btn>
@@ -40,21 +40,46 @@
         </div>
         <v-list dense>
           <v-list-item
-            v-for="(link, index) in links"
+            v-for="(localeItem, index) in nameList"
             :key="index"
-            @click="goToPage(link)"
+            @click="goToPage(localeItem)"
           >
-            <v-list-item-icon>
-              <v-img :src="link.icon" height="24" width="24" />
-            </v-list-item-icon>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex align-center">
+              <div style="min-width: 40px">
+                <v-img contain :src="localeItem.icon" height="18" width="24" />
+              </div>
               <div>
-                <span>{{ link.title }}</span>
-                <v-badge v-show="index === defaultLinkIndex" content="默认" inline />
+                <span>{{ localeItem.name }}</span>
+                <!--                <v-badge v-show="index === defaultLinkIndex" content="默认" inline />-->
               </div>
             </v-list-item-title>
+            <v-list-item-action>
+              <click-helper @click.stop="emitClick" :copy-text="localeItem.name">
+                <v-btn text icon small :title="$t('list.item.copyHint')">
+                  <v-icon small>mdi-content-copy</v-icon>
+                </v-btn>
+              </click-helper>
+            </v-list-item-action>
           </v-list-item>
         </v-list>
+
+        <div class="d-flex align-center">
+          <v-badge
+            v-for="(link, index) in links"
+            :key="index"
+            :value="index === defaultLinkIndex"
+            dot
+            overlap
+            :title="`${link.title}${index === defaultLinkIndex ? '（默认跳转）' : ''}`"
+          >
+            <v-btn @click="goToPage(link)" style="min-width: 40px" text>
+              <div>
+                <!--                <span>{{ link.title }}</span>-->
+                <v-img contain :src="link.icon" height="24" width="24" />
+              </div>
+            </v-btn>
+          </v-badge>
+        </div>
       </v-card>
     </rc-menu>
 
@@ -87,9 +112,11 @@
 </template>
 
 <script>
+import { SystemInfo } from 'Data/version'
 import { mapGetters, mapMutations } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
+import ImgUtil from '@/utils/ImgUtil'
 import RcDialog from '@/components/basic/RcDialog'
 import RcMenu from '@/components/basic/RcMenu'
 
@@ -108,6 +135,10 @@ export default {
     name: {
       type: String,
       default: '',
+    },
+    names: {
+      type: Object,
+      default: () => ({}),
     },
     mode: {
       type: String,
@@ -145,7 +176,7 @@ export default {
   },
   computed: {
     title() {
-      return DataUtil.toItemTitle({ name: this.name, id: this.id })
+      return DataUtil.toItemTitle({ name: this.currLocaleName, id: this.id })
     },
     links() {
       const fnName = this.mode + 'Fn'
@@ -165,6 +196,23 @@ export default {
     },
     defaultLinkIndex() {
       return this.links.findIndex(it => it.id === this.defaultLinkOf(this.mode))
+    },
+    currLocaleName() {
+      return this.names[SystemInfo.dataLocale] || this.names.en
+    },
+    nameList() {
+      if (this.names == null || Object.keys(this.names).length === 0) {
+        return []
+      } else {
+        const cnFlag = ImgUtil.getImgUrl('cn.svg')
+        const usFlag = ImgUtil.getImgUrl('us.svg')
+        const jpFlag = ImgUtil.getImgUrl('jp.svg')
+        return [
+          { locale: 'chs', name: this.names.chs, icon: cnFlag },
+          { locale: 'en', name: this.names.en, icon: usFlag },
+          { locale: 'ja', name: this.names.ja, icon: jpFlag },
+        ].filter(it => it.name)
+      }
     },
     ...mapGetters(['getItemName', 'defaultLinkOf']),
   },
