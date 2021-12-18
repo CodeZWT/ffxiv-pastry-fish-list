@@ -919,7 +919,18 @@ export default {
   },
 
   getItemName(id) {
-    return this.getName(this.ITEMS[this.toItemId(id)])
+    const names = itemNames[this.toItemId(id)]
+    let item
+    if (!names) {
+      item = this.ITEMS[this.toItemId(id)]
+    } else {
+      item = {
+        name_chs: names.chs,
+        name_en: names.en,
+        name_ja: names.ja,
+      }
+    }
+    return this.getName(item, SystemInfo.dataLocale)
   },
 
   getItemNames(id) {
