@@ -530,7 +530,9 @@ export default {
 
       window.electron?.ipcRenderer?.on('broadcast', (event, { type, source }) => {
         console.debug('reloadSettingData according to', source)
-        if (type === 'reloadSetting') {
+        if (type === 'reloadSystemInfo') {
+          // noop
+        } else if (type === 'reloadSetting') {
           this.boardCastReload()
         }
       })

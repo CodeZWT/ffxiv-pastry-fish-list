@@ -318,47 +318,52 @@ async function init() {
       // log.info('updateUserData', updateData.data)
       // updateUserData(updateData)
       // showReaderOnlyIfFishing = updateData.data.showReaderOnlyIfFishing
-      if (data == null) return
-      readerConfig = data.readerSetting
+      if (type === 'reloadSystemInfo') {
+        // noop
+      } else if (data != null) {
+        readerConfig = data.readerSetting
 
-      // set hotkey
-      saveHotkeySetting('mouseThrough', readerConfig.hotkey.mouseThrough || 'L')
-      saveHotkeySetting('toggleReader', readerConfig.hotkey.toggleReader || 'K')
+        // set hotkey
+        saveHotkeySetting('mouseThrough', readerConfig.hotkey.mouseThrough || 'L')
+        saveHotkeySetting('toggleReader', readerConfig.hotkey.toggleReader || 'K')
 
-      // restart machina
-      const newRegion = readerConfig.region || 'CN'
-      const newMonitorType = readerConfig.monitorType || 'RawSocket'
-      if (region !== newRegion || monitorType !== newMonitorType) {
-        region = newRegion
-        monitorType = newMonitorType
+        // restart machina
+        const newRegion = readerConfig.region || 'CN'
+        const newMonitorType = readerConfig.monitorType || 'RawSocket'
+        if (region !== newRegion || monitorType !== newMonitorType) {
+          region = newRegion
+          monitorType = newMonitorType
 
-        if (newMonitorType === 'WinPCap') {
-          exec('Get-Service -Name Npcap', { shell: 'powershell.exe' }, err => {
-            if (err) {
-              callWindowSafe(WINDOWS.readerSetting, win =>
-                win.webContents.send('installNpcapPrompt'),
-              )
-            } else {
-              const options = {
-                region: newRegion,
-                monitorType: newMonitorType,
-                opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
+          if (newMonitorType === 'WinPCap') {
+            exec('Get-Service -Name Npcap', { shell: 'powershell.exe' }, err => {
+              if (err) {
+                callWindowSafe(WINDOWS.readerSetting, win =>
+                  win.webContents.send('installNpcapPrompt'),
+                )
+              } else {
+                const options = {
+                  region: newRegion,
+                  monitorType: newMonitorType,
+                  opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
+                }
+                FishingDataReader.restart(options, () => {
+                  log.info('Machina restarted!', options)
+                })
               }
-              FishingDataReader.restart(options, () => {
-                log.info('Machina restarted!', options)
-              })
+            })
+          } else {
+            const options = {
+              region: newRegion,
+              monitorType: newMonitorType,
+              opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
             }
-          })
-        } else {
-          const options = {
-            region: newRegion,
-            monitorType: newMonitorType,
-            opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
+            FishingDataReader.restart(options, () => {
+              log.info('Machina restarted!', options)
+            })
           }
-          FishingDataReader.restart(options, () => {
-            log.info('Machina restarted!', options)
-          })
         }
+      } else {
+        return
       }
 
       Object.values(WINDOWS)

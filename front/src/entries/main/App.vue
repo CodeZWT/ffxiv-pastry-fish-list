@@ -184,7 +184,7 @@
                 <v-icon>mdi-translate</v-icon>
               </v-btn>
             </template>
-            <div>设置数据语言</div>
+            <div>设置数据文本语言</div>
           </v-tooltip>
         </template>
         <v-list>
@@ -273,7 +273,7 @@
                   <v-btn text icon>
                     <v-icon>mdi-translate</v-icon>
                   </v-btn>
-                  <div>设置数据语言</div>
+                  <div>设置数据文本语言</div>
                 </div>
               </template>
               <v-list>
@@ -943,6 +943,11 @@ export default {
       },
       set(index) {
         setDataLocale(DataUtil.DATA_LOCALES[index])
+        sendElectronEvent('broadcast', {
+          source: 'main',
+          type: 'reloadSystemInfo',
+          // data: nextState,
+        })
         this.showSnackbar({
           text: '设置成功，即将重新加载页面，请稍后...',
           color: 'success',

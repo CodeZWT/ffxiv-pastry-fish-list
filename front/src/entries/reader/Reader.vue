@@ -158,7 +158,10 @@ export default {
 
     window.electron?.ipcRenderer?.on('broadcast', (event, { type, source }) => {
       console.debug('reloadSettingData according to', source)
-      if (type === 'reloadSetting') {
+      if (type === 'reloadSystemInfo') {
+        // reloadSystemInfo()
+        window.location.reload()
+      } else if (type === 'reloadSetting') {
         this.boardCastReload()
         console.debug('loading sounds')
         this.loadingSounds().then(sounds =>

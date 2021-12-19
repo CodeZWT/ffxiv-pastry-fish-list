@@ -306,7 +306,6 @@
 
 <script>
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
-import { ITEMS as NameDict } from 'Data/translation'
 import { invokeElectronEvent, sendElectronEvent } from '@/utils/electronHelper'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import BAITS from 'Data/bait'
@@ -387,7 +386,8 @@ export default {
           const itemId = DataUtil.toItemId(id)
           return {
             id: itemId,
-            name: NameDict[itemId].name_chs,
+            // name: NameDict[itemId].name_chs,
+            name: DataUtil.getItemName(itemId),
           }
         }),
         'id'
@@ -404,10 +404,10 @@ export default {
       return []
         .concat(
           _.uniqBy(
-            Object.entries(BAITS).map(([id, name]) => {
+            Object.keys(BAITS).map(itemId => {
               return {
-                id: DataUtil.toItemId(id),
-                name: name,
+                id: DataUtil.toItemId(itemId),
+                name: DataUtil.getItemName(itemId),
               }
             }),
             'id'

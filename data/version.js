@@ -3,14 +3,19 @@ const REGION_KEY = 'RC_REGION'
 const DATA_LOCALE_KEY = 'RC_DATA_LOCALE'
 
 let region = 'Global'
-if (typeof window !== 'undefined') {
-  region = window.localStorage.getItem(REGION_KEY) || 'CN'
+let dataLocale = 'chs'
+
+const reloadSystemInfo = () => {
+  if (typeof window !== 'undefined') {
+    region = window.localStorage.getItem(REGION_KEY) || 'CN'
+  }
+
+  if (typeof window !== 'undefined') {
+    dataLocale = window.localStorage.getItem(DATA_LOCALE_KEY) || 'chs'
+  }
 }
 
-let dataLocale = 'chs'
-if (typeof window !== 'undefined') {
-  dataLocale = window.localStorage.getItem(DATA_LOCALE_KEY) || 'chs'
-}
+reloadSystemInfo()
 
 const PATCHES_CN = {
   '2.x': [2.0, 2.1, 2.2, 2.3, 2.4, 2.5],
@@ -43,6 +48,7 @@ const setDataLocale = dataLocale => {
 
 module.exports = {
   SystemInfo,
+  reloadSystemInfo,
   setRegion,
   setDataLocale,
 }
