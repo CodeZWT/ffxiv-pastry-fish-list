@@ -27,14 +27,16 @@
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
-            <div class="text-h6">Version 1.1.1-fix</div>
+            <div class="text-h6">Version 1.1.2</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/12/18 15:00</div>
+            <div class="text-subtitle-1">更新时间: 2021/12/19 20:00</div>
           </div>
         </v-alert>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修复饿猫链接。</li>
+          <li>修复6.0钓场统计数据。</li>
+          <li>更新部分鱼数据。</li>
           <li>
             增加多语言支持，支持鼠标悬停界面复制中日英的鱼以及鱼饵文本，也可以在左上角切换默认显示语言。
           </li>
