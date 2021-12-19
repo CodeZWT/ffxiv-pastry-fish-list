@@ -23991,8 +23991,8 @@ const fishGlobalAddon = {
     predators: {},
     fishEyes: false,
     snagging: false,
-    hookset: 'Precision',
-    tug: 'light',
+    hookset: 'Powerful',
+    tug: 'medium',
     checkInfo: {
       weatherRestricted: false,
       timeRestricted: false,
