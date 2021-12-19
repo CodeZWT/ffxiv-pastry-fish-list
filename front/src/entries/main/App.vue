@@ -66,15 +66,13 @@
       </v-avatar>
       <v-toolbar-title
         v-if="!isMobile"
-        style="min-width: 85px !important"
         class="ml-1 text-truncate"
         :title="$t('top.navBarTitle', { title, version })"
       >
         <span>{{ title }}</span>
       </v-toolbar-title>
-      <div>
-        <v-badge :content="version" class="px-1" />
-      </div>
+      <v-badge :content="$t('top.region.' + region)" inline color="info" />
+      <v-badge :content="version" inline />
       <v-spacer />
       <div v-if="inStarLight">
         <v-tooltip bottom>
@@ -477,10 +475,10 @@
                   dense
                 >
                   <v-btn x-small>
-                    {{ $t(`top.region.cn`) }}
+                    {{ $t(`top.region.CN`) }}
                   </v-btn>
                   <v-btn x-small>
-                    {{ $t(`top.region.global`) }}
+                    {{ $t(`top.region.Global`) }}
                   </v-btn>
                 </v-btn-toggle>
               </v-list-item-title>

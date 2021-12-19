@@ -29,8 +29,8 @@
     "keybinding": "快捷键设置",
     "screen":"屏幕设置",
     "region": {
-      "cn": "国服",
-      "global": "国际服"
+      "CN": "国服",
+      "Global": "国际服"
     }
   },
   "toolbar": {
