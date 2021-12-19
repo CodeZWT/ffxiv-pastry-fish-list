@@ -36,52 +36,13 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" class="ma-0 pa-0">
-            <v-subheader> 页面导航 </v-subheader>
-          </v-col>
-          <v-col cols="12" class="my-0 py-0">
-            <v-row class="py-0">
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPageSubList">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">mdi-timer</v-icon>钓鱼时钟
-                  </template>
-                  <template v-slot:description
-                    >「烟波钓徒」「钓场之王」 我来啦！</template
-                  >
-                </home-page-card>
-              </v-col>
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPage('WikiPage')">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">mdi-notebook</v-icon>{{ $t('top.fishWiki') }}
-                  </template>
-                  <template v-slot:description>目标全图鉴！附赠发光鱼竿哦~</template>
-                </home-page-card>
-              </v-col>
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPage('OceanFishingPage54')">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">mdi-ferry</v-icon>{{ $t('top.oceanFishing') }}
-                  </template>
-                  <template v-slot:description>「海王」们上船钓蓝鱼了！</template>
-                </home-page-card>
-              </v-col>
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPage('AquariumPage')">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">mdi-fishbowl</v-icon>{{ $t('top.aquarium') }}
-                  </template>
-                  <template v-slot:description>不在家里养点金鱼吗？</template>
-                </home-page-card>
-              </v-col>
-            </v-row>
-          </v-col>
-          <v-col cols="12" class="ma-0 pa-0">
+        </v-row>
+        <v-row>
+          <v-col cols="12" class="pa-0" style="margin: -36px 0 0 0">
             <v-subheader> 联系我们 </v-subheader>
           </v-col>
-          <v-col cols="12" class="my-0 py-0">
-            <v-card outlined class="rounded-lg">
+          <v-col cols="12" md="6" class="my-0 py-0">
+            <v-card outlined class="rounded-md">
               <v-list dense color="inner">
                 <v-list-item>
                   <v-list-item-avatar>
@@ -133,11 +94,76 @@
               </v-list>
             </v-card>
           </v-col>
+          <v-col cols="12" md="6" class="my-md-0 py-md-0">
+            <v-card outlined style="height: 298px;    overflow: hidden;">
+              <iframe
+                v-if="isDark"
+                width="100%"
+                height="330"
+                class="share_self"
+                frameborder="0"
+                scrolling="no"
+                src="https://widget.weibo.com/weiboshow/index.php?language=&width=0&height=330&fansRow=2&ptype=1&speed=0&skin=10&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,2d2d32,FAFAFA,38669b,2d2d32&dpc=1"
+              ></iframe>
+              <iframe
+                v-else
+                width="100%"
+                height="330"
+                class="share_self"
+                frameborder="0"
+                scrolling="no"
+                src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=330&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,f2f3f5,666666,0082cb,f2f3f5&dpc=1"
+              ></iframe>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" class="pa-0" style="margin: -36px 0 0 0">
+            <v-subheader>页面导航</v-subheader>
+          </v-col>
+          <v-col cols="12" class="my-0 py-0">
+            <v-row class="py-0">
+              <v-col cols="12" md="6">
+                <home-page-card @click="toPageSubList">
+                  <template v-slot:title>
+                    <v-icon class="mr-1">mdi-timer</v-icon>钓鱼时钟
+                  </template>
+                  <template v-slot:description
+                    >「烟波钓徒」「钓场之王」 我来啦！</template
+                  >
+                </home-page-card>
+              </v-col>
+              <v-col cols="12" md="6">
+                <home-page-card @click="toPage('WikiPage')">
+                  <template v-slot:title>
+                    <v-icon class="mr-1">mdi-notebook</v-icon>{{ $t('top.fishWiki') }}
+                  </template>
+                  <template v-slot:description>目标全图鉴！附赠发光鱼竿哦~</template>
+                </home-page-card>
+              </v-col>
+              <v-col cols="12" md="6">
+                <home-page-card @click="toPage('OceanFishingPage54')">
+                  <template v-slot:title>
+                    <v-icon class="mr-1">mdi-ferry</v-icon>{{ $t('top.oceanFishing') }}
+                  </template>
+                  <template v-slot:description>「海王」们上船钓蓝鱼了！</template>
+                </home-page-card>
+              </v-col>
+              <v-col cols="12" md="6">
+                <home-page-card @click="toPage('AquariumPage')">
+                  <template v-slot:title>
+                    <v-icon class="mr-1">mdi-fishbowl</v-icon>{{ $t('top.aquarium') }}
+                  </template>
+                  <template v-slot:description>不在家里养点金鱼吗？</template>
+                </home-page-card>
+              </v-col>
+            </v-row>
+          </v-col>
         </v-row>
       </v-col>
       <v-col cols="12" md="6">
         <v-row no-gutters>
-          <v-col cols="12" class="pa-0">
+          <v-col cols="12" style="margin: -12px 0 0 0">
             <v-subheader>支持鱼糕</v-subheader>
           </v-col>
           <v-col>
@@ -180,15 +206,11 @@
                     <v-icon>mdi-help-circle-outline</v-icon>
                     <template v-slot:msg>
                       <div class="text-no-wrap">
-                        <div>
-                          非实时更新，约每5分钟刷新数据。
-                        </div>
+                        <div>非实时更新，约每5分钟刷新数据。</div>
                         <div>
                           以总发电量倒序排序。当月赞助者会根据赞助方案点亮颜色，电量越高颜色越深。自选发电量以超过的最高档显示颜色。
                         </div>
-                        <div>
-                          更详细的感谢名单正在筹划中...
-                        </div>
+                        <div>更详细的感谢名单正在筹划中...</div>
                         <div class="text-decoration-line-through">
                           是的，2个年糕是我自己调试的时候给自己发了电
                         </div>
@@ -261,6 +283,9 @@ export default {
     }
   },
   computed: {
+    isDark() {
+      return this.theme.isDark
+    },
     coloredSponsors() {
       return this.sponsorsByTotalAmountDesc.map(sponsor => {
         const planIndex =
@@ -277,8 +302,8 @@ export default {
             'deep-orange accent-3',
           ][planIndex],
           planTextColor: [
-            undefined,
-            this.theme.isDark ? undefined : 'black--text',
+            this.theme.isDark ? undefined : 'grey--text text--darken-2',
+            this.theme.isDark ? undefined : 'grey--text text--darken-3',
             undefined,
             undefined,
             undefined,
