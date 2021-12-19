@@ -2,14 +2,13 @@
 import { mapMutations } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
-import FIX from 'Data/fix'
 import ImgUtil from '@/utils/ImgUtil'
 
 export default {
   name: 'MainWindowMixin',
   data() {
     return {
-      fisher: ImgUtil.getImgUrl('pastry-fish-surprise.png'),
+      fisher: ImgUtil.getImgUrl('pastry-fish-star-light.webp'),
       THEME_SETTING_MODES: DataUtil.THEME_SETTING_MODES,
       THEME_MODE_ICONS: ['mdi-weather-night', 'mdi-weather-sunny', 'mdi-brightness-auto'],
       isElectron: DevelopmentModeUtil.isElectron(),
@@ -17,21 +16,8 @@ export default {
     }
   },
   computed: {
-    showHatCover: {
-      get() {
-        return this.startLight
-      },
-      set(startLight) {
-        this.setStartLight(startLight)
-        this.showJumpingOverlay = true
-        this.startReloadPage()
-      },
-    },
-    inStartLight() {
-      return (
-        this.now >= FIX.STARLIGHT_CELEBRATION.startTime &&
-        this.now <= FIX.STARLIGHT_CELEBRATION.endTime
-      )
+    showHatCover() {
+      return true
     },
     themeModeIndex() {
       return DataUtil.THEME_SETTING_MODES.indexOf(this.themeMode)
@@ -54,7 +40,6 @@ export default {
       'setThemeMode',
       'startLoading',
       'finishLoading',
-      'setStartLight',
       'initialUserData',
       'setShowCompetitionDialog',
     ]),

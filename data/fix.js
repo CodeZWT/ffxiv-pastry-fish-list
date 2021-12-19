@@ -809,10 +809,20 @@ module.exports = {
   },
   SPEAR_REGION_TERRITORY_POINT: getData(),
   STARLIGHT_CELEBRATION: {
-    startTime: 1608616800000,
-    endTime: 1609912800000,
+    region: {
+      CN: {
+        startTime: 1640066400000,
+        endTime: 1641276000000,
+      },
+      Global: {
+        startTime: 1639641600000,
+        endTime: 1640962740000,
+      }
+    },
+    // startTime: 1640066400000,
+    // endTime: 1641276000000,
     weather: 15,
-    spots: [35, 36, 104, 90, 91, 81, 100, 105, 106, 197, 198],
+    // spots: [35, 36, 104, 90, 91, 81, 100, 105, 106, 197, 198],
     territories: [129, 128, 133, 132, 339, 340, 341, 641],
     fish: [4905, 7713, 7919, 7923, 7917, 7701],
   },

@@ -42,27 +42,6 @@
         </v-tooltip>
         <v-spacer />
         <v-toolbar-items>
-          <div v-if="inStartLight">
-            <v-tooltip left>
-              <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on">
-                  <v-switch
-                    v-model="showHatCover"
-                    inset
-                    class="theme-switch"
-                    color="pink darken-3"
-                  />
-                </div>
-              </template>
-              <div>
-                点击切换星芒节天气模式<br />
-                在星芒节期间，三大主城以及四个住宅区的天气固定为小雪。<br />
-                此开关开启时，将会以星芒节的小雪作为窗口期天气计算的条件。<br />
-                关闭时，以地图区域的默认天气转换进行计算。
-              </div>
-            </v-tooltip>
-          </div>
-
           <v-btn icon text v-if="isListPage" @click="toggleFilterPanel">
             <v-icon>mdi-filter</v-icon>
           </v-btn>
@@ -355,7 +334,6 @@ export default {
       'isSystemNotificationEnabled',
       'getFishingSpots',
       'themeMode',
-      'startLight',
       'getAchievementName',
       'getAchievementIconClass',
       'showCompetitionDialog',

@@ -38,7 +38,7 @@ const ScreenPluginOf = router => store => {
       // if (
       //   mutation.type === 'setUserData' ||
       //   mutation.type === 'setUserDataToDefault' ||
-      //   mutation.type === 'setStartLight' ||
+      //   mutation.type === 'setStarLight' ||
       //   prevState.userData.fishEyesUsed !== nextState.userData.fishEyesUsed
       // ) {
       //   const isElectron = DevelopmentModeUtil.isElectron()
@@ -321,9 +321,6 @@ export const MainModule = {
     },
     themeMode: state => {
       return state.userData.theme.mode
-    },
-    startLight: state => {
-      return state.userData.event.startLight
     },
     showOceanFishingWarningDialog: state => {
       return state.userData.oceanFishing.showWarningDialog
@@ -675,13 +672,6 @@ export const MainModule = {
     },
     finishLoading(state) {
       state.loading = false
-    },
-    setStartLight(state, startLight) {
-      state.userData = {
-        ...state.userData,
-        event: { ...state.userData.event, startLight },
-      }
-      LocalStorageUtil.storeUserData(state.userData)
     },
     setShowOceanFishingWarningDialog(state, show) {
       state.userData = {

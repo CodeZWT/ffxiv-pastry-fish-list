@@ -113,8 +113,8 @@ export default {
     fishListWeatherChangePart: {},
     extraFishListTimePart: {},
     lazyFishWindowRates: {},
-    diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
-    diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
+    diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.webp'),
+    diademLight: ImgUtil.getImgUrl('diadem-light-24x24.webp'),
     showBaitDialog: false,
     showBaitNotificationSetting: false,
     showBaitNotification: false,
@@ -321,11 +321,17 @@ export default {
     inMigrationPage() {
       return this.$route.name === 'MigrationPage'
     },
-    inStartLight() {
-      return (
-        this.now >= FIX.STARLIGHT_CELEBRATION.startTime &&
-        this.now <= FIX.STARLIGHT_CELEBRATION.endTime
-      )
+    region() {
+      return SystemInfo.region
+    },
+    starLightStart() {
+      return FIX.STARLIGHT_CELEBRATION.region[SystemInfo.region]?.startTime
+    },
+    starLightEnd() {
+      return FIX.STARLIGHT_CELEBRATION.region[SystemInfo.region]?.endTime
+    },
+    inStarLight() {
+      return this.now >= this.starLightStart && this.now <= this.starLightEnd
     },
     dark() {
       if (this.themeMode === 'AUTO') {
@@ -395,7 +401,6 @@ export default {
       'isSystemNotificationEnabled',
       'getFishingSpots',
       'themeMode',
-      'startLight',
       'getAchievementName',
       'getAchievementIconClass',
       'showCompetitionDialog',
@@ -1173,9 +1178,7 @@ export default {
           icon: this.getItemIconClass(fish._id),
           iconRemoteUrl: this.getItemIconUrl(fish._id),
           showHatCover:
-            this.inStartLight &&
-            this.showHatCover &&
-            FIX.STARLIGHT_CELEBRATION.fish.includes(fish._id),
+            this.inStarLight && FIX.STARLIGHT_CELEBRATION.fish.includes(fish._id),
           name: this.getItemName(fish._id),
           names: DataUtil.getItemNames(fish._id),
           hasFishingSpot: fish.locations.length !== 0,
@@ -1376,7 +1379,6 @@ export default {
       'setThemeMode',
       'startLoading',
       'finishLoading',
-      'setStartLight',
       'initialUserData',
       'setShowCompetitionDialog',
       'setNow',

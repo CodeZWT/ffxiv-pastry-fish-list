@@ -1,22 +1,7 @@
+import { SystemInfo } from 'Data/version'
 import { WEATHER_TYPES } from 'Data/translation'
 import DATA from 'Data/data'
-import DataUtil from '@/utils/DataUtil'
 import FIX from 'Data/fix'
-import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import _ from 'lodash'
-
-function getStartLight() {
-  // const userData = DataUtil.mergeUserData(
-  //   _.cloneDeep(DataUtil.USER_DEFAULT_DATA),
-  //   LocalStorageUtil.loadUserData()
-  // )
-  const starLightSettingPath = 'event.startLight'
-  return _.get(
-    LocalStorageUtil.loadUserData(),
-    starLightSettingPath,
-    _.get(DataUtil.USER_DEFAULT_DATA, starLightSettingPath)
-  )
-}
 
 function calculateForecastTarget(m) {
   // Based on Rougeadyn's SaintCoinach library.
@@ -58,10 +43,10 @@ export default {
   },
   weatherAt(zone, eorzeaTime) {
     const earthTime = eorzeaTime.toEarthTime()
+    // console.log('zone', zone, new Date(earthTime))
     if (
-      getStartLight() &&
-      earthTime >= FIX.STARLIGHT_CELEBRATION.startTime &&
-      earthTime <= FIX.STARLIGHT_CELEBRATION.endTime &&
+      earthTime >= FIX.STARLIGHT_CELEBRATION.region[SystemInfo.region]?.startTime &&
+      earthTime <= FIX.STARLIGHT_CELEBRATION.region[SystemInfo.region]?.endTime &&
       FIX.STARLIGHT_CELEBRATION.territories.includes(zone)
     ) {
       return FIX.STARLIGHT_CELEBRATION.weather

@@ -50,8 +50,8 @@ export default {
     isElectron: DevelopmentModeUtil.isElectron(),
     downloadProgress: 0,
     showCheckStartSetupDialog: false,
-    diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.png'),
-    diademLight: ImgUtil.getImgUrl('diadem-light-24x24.png'),
+    diademDark: ImgUtil.getImgUrl('diadem-dark-24x24.webp'),
+    diademLight: ImgUtil.getImgUrl('diadem-light-24x24.webp'),
   }),
   computed: {
     ...mapState('dialog', ['menuDialog']),

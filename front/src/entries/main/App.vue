@@ -52,6 +52,7 @@
         size="36"
         @click="onFishIconClicked"
         :style="`margin-left: ${isMobile ? 0 : -12}px; -webkit-app-region: none`"
+        tile
       >
         <v-tooltip right z-index="10">
           <template v-slot:activator="{ on, attrs }">
@@ -59,7 +60,7 @@
           </template>
           <div class="d-flex flex-column align-center">
             <v-img :src="fisher" />
-            <div>Surprise!</div>
+            <div>星芒节快乐！</div>
           </div>
         </v-tooltip>
       </v-avatar>
@@ -75,23 +76,22 @@
         <v-badge :content="version" class="px-1" />
       </div>
       <v-spacer />
-      <div v-if="inStartLight">
+      <div v-if="inStarLight">
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
-              <v-switch
-                v-model="showHatCover"
-                inset
-                class="theme-switch"
-                color="pink darken-3"
-              />
+              <v-btn icon text>
+                <v-icon>mdi-snowflake-variant</v-icon>
+              </v-btn>
             </div>
           </template>
-          <div>
-            点击切换星芒节天气模式<br />
+          <div class="text-no-wrap">
+            星芒节天气模式<br />
+            星芒节（{{ region === 'CN' ? '国服' : '国际服' }}）：
+            {{ new Date(starLightStart).toLocaleString() }} 至
+            {{ new Date(starLightEnd).toLocaleString() }}（本地时间）<br />
             在星芒节期间，三大主城以及四个住宅区的天气固定为小雪。<br />
-            此开关开启时，将会以星芒节的小雪作为窗口期天气计算的条件。<br />
-            关闭时，以地图区域的默认天气转换进行计算。
+            对应钓场的鱼将会以小雪计算窗口期。
           </div>
         </v-tooltip>
       </div>
@@ -928,6 +928,10 @@ export default {
       },
       set(regionIndex) {
         setRegion(['CN', 'Global'][regionIndex])
+        sendElectronEvent('broadcast', {
+          source: 'main',
+          type: 'reloadSystemInfo',
+        })
         this.showSnackbar({
           text: '设置成功，即将重新加载页面，请稍后...',
           color: 'success',
@@ -946,7 +950,6 @@ export default {
         sendElectronEvent('broadcast', {
           source: 'main',
           type: 'reloadSystemInfo',
-          // data: nextState,
         })
         this.showSnackbar({
           text: '设置成功，即将重新加载页面，请稍后...',

@@ -1281,7 +1281,7 @@ export default {
       mode: THEME_SETTING_MODES[0],
     },
     event: {
-      startLight: true,
+      starLight: true,
     },
     oceanFishing: {
       showWarningDialog: true,

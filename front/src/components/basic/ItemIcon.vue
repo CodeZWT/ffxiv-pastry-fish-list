@@ -20,11 +20,6 @@
       class="item-checked-icon-48"
       :style="`background: url('${checkedCover48}') no-repeat;`"
     />
-    <div
-      v-if="hat"
-      class="item-checked-icon-48"
-      :style="`background: url('${hatCover48}') no-repeat;`"
-    />
   </div>
 </template>
 
@@ -184,6 +179,7 @@ export default {
   top: 0
   left: 0
   margin: 4px 0 0 8px
+
 .item-checked-icon-48
   width: 48px
   height: 48px
