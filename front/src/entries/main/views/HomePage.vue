@@ -179,7 +179,7 @@
                   <rc-tooltip tag="span" class="fill-height">
                     <v-icon>mdi-help-circle-outline</v-icon>
                     <template v-slot:msg>
-                      <div style="min-width: 200px">
+                      <div class="text-no-wrap">
                         <div>
                           非实时更新，约每5分钟刷新数据。
                         </div>

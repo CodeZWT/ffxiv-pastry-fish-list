@@ -184,7 +184,7 @@
                 <v-icon>mdi-translate</v-icon>
               </v-btn>
             </template>
-            <div>设置数据文本语言</div>
+            <div class="text-no-wrap">设置数据文本语言</div>
           </v-tooltip>
         </template>
         <v-list>
