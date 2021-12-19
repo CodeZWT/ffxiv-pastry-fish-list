@@ -220,7 +220,7 @@
                           style="height: 40px; width: 40px; position: relative"
                           :class="
                             'd-flex justify-center align-center' +
-                              (etSection > 0 ? ' secondary' : '')
+                            (etSection > 0 ? ' secondary' : '')
                           "
                         >
                           <div
@@ -257,7 +257,7 @@
                                 style="height: 40px; width: 40px"
                                 :class="
                                   'd-flex justify-center align-center' +
-                                    (entry.cnt > 0 ? ' secondary' : '')
+                                  (entry.cnt > 0 ? ' secondary' : '')
                                 "
                                 :title="`${entry.cnt}条记录`"
                               >
@@ -274,10 +274,9 @@
               <div v-if="spotId > 0 && fishSelected > 0">
                 <v-subheader>天气分布</v-subheader>
                 <div
-                  :style="
-                    `padding-left: 60px; text-align: center; width: ${40 *
-                      (spotWeathers.length + 1)}px`
-                  "
+                  :style="`padding-left: 60px; text-align: center; width: ${
+                    40 * (spotWeathers.length + 1)
+                  }px`"
                 >
                   当前天气
                 </div>
@@ -323,7 +322,7 @@
                         style="height: 40px; width: 40px"
                         :class="
                           'd-flex justify-center align-center' +
-                            (cnt > 0 ? ' secondary' : '')
+                          (cnt > 0 ? ' secondary' : '')
                         "
                         :title="`${cnt}条记录`"
                       >
@@ -694,6 +693,7 @@
 </template>
 
 <script>
+import { Global as FishingSpotsGlobal } from 'Data/patch/fishingSpots'
 import BAITS from 'Data/bait'
 import BiteTimeChart from '@/components/BiteTimeChart'
 import Constants from 'Data/constants'
@@ -701,7 +701,6 @@ import DataUtil from '@/utils/DataUtil'
 import DateTimeInput from '@/components/basic/DateTimeInput'
 import EffectIcon from '@/components/basic/EffectIcon'
 import EnvMixin from '@/components/basic/EnvMixin'
-import FishingSpots from 'Data/fishingSpots'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PinyinMatch from 'pinyin-match'
 import PlaceNames from 'Data/placeNames'
@@ -865,7 +864,7 @@ export default {
         },
       ],
       region2Spots: _.keyBy(
-        FishingSpots.filter(it => it.id).map(region => {
+        FishingSpotsGlobal.filter(it => it.id).map(region => {
           return {
             region: region.id,
             spots: region.territories.flatMap(tt => tt.spots.map(spot => spot.id)),
