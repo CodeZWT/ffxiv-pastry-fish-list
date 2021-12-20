@@ -12,7 +12,7 @@
       <v-col cols="12" md="6">
         <v-row>
           <v-col cols="12" md="4">
-            <v-img :src="largeLogo" height="200" contain max-width="300" />
+            <v-img :src="largeLogo" height="280" contain max-width="300" />
           </v-col>
           <v-col cols="12" md="8" class="fill-height d-flex align-center">
             <v-card flat color="background">
@@ -25,20 +25,24 @@
               <v-card-text class="text-subtitle-1">
                 鱼糕致力于为各位光之渔夫提供一个便捷的数据查询场所。<br />
                 目前已经包括了钓鱼时钟，钓鱼&叉鱼笔记，出海垂钓，云冠群岛，水族馆等功能。<br />
-                <div class="d-flex align-center">
-                  <v-badge inline color="info" content="New" />
-                  增加区服切换设置，左侧菜单选择区服即可切换！
+                <div class="">
+                  <div class="d-flex align-center">
+                    <v-badge inline color="info" content="New" />
+                    <div>更新星芒节的相关支持，以及节日贺图！</div>
+                  </div>
+                  <div class="ml-11">感谢 马猴烧鱼@拉诺西亚 绘制的贺图！</div>
                 </div>
+
                 <div class="d-flex align-center">
                   <v-icon color="warning" class="mr-1">mdi-alert-outline</v-icon>
-                  开启后会显示国际服信息，注意可能剧透！
+                  开启国际服模式时，注意可能的剧透！
                 </div>
               </v-card-text>
             </v-card>
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" class="pa-0" style="margin: -36px 0 0 0">
+          <v-col cols="12" class="pa-0">
             <v-subheader> 联系我们 </v-subheader>
           </v-col>
           <v-col cols="12" md="6" class="my-0 py-0">
@@ -118,7 +122,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" class="pa-0" style="margin: -36px 0 0 0">
+          <v-col cols="12" class="pa-0">
             <v-subheader>页面导航</v-subheader>
           </v-col>
           <v-col cols="12" class="my-0 py-0">
@@ -320,7 +324,7 @@ export default {
       )
     },
     largeLogo() {
-      return ImgUtil.getImgUrl('pastry-fish-home-logo.webp')
+      return ImgUtil.getImgUrl('pastry-fish-fes-starlight.webp')
     },
     version() {
       return version
