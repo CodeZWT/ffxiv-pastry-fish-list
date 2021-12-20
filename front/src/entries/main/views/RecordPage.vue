@@ -220,7 +220,7 @@
                           style="height: 40px; width: 40px; position: relative"
                           :class="
                             'd-flex justify-center align-center' +
-                            (etSection > 0 ? ' secondary' : '')
+                              (etSection > 0 ? ' secondary' : '')
                           "
                         >
                           <div
@@ -257,7 +257,7 @@
                                 style="height: 40px; width: 40px"
                                 :class="
                                   'd-flex justify-center align-center' +
-                                  (entry.cnt > 0 ? ' secondary' : '')
+                                    (entry.cnt > 0 ? ' secondary' : '')
                                 "
                                 :title="`${entry.cnt}条记录`"
                               >
@@ -274,9 +274,10 @@
               <div v-if="spotId > 0 && fishSelected > 0">
                 <v-subheader>天气分布</v-subheader>
                 <div
-                  :style="`padding-left: 60px; text-align: center; width: ${
-                    40 * (spotWeathers.length + 1)
-                  }px`"
+                  :style="
+                    `padding-left: 60px; text-align: center; width: ${40 *
+                      (spotWeathers.length + 1)}px`
+                  "
                 >
                   当前天气
                 </div>
@@ -322,7 +323,7 @@
                         style="height: 40px; width: 40px"
                         :class="
                           'd-flex justify-center align-center' +
-                          (cnt > 0 ? ' secondary' : '')
+                            (cnt > 0 ? ' secondary' : '')
                         "
                         :title="`${cnt}条记录`"
                       >
