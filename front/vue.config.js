@@ -199,23 +199,23 @@ module.exports = {
     },
   },
   chainWebpack: config => {
-    if (process.env.NODE_ENV === 'production') {
-      config.externals({
-        lodash: {
-          commonjs: 'lodash',
-          commonjs2: 'lodash',
-          amd: 'lodash',
-          root: '_', // indicates global variable
-        },
-        vue: 'Vue',
-        konva: 'konva',
-        'vue-konva': 'VueKonva',
-        echarts: 'echarts',
-        '@thewakingsands/kit-tooltip': 'CafeKitTooltip',
-        luxon: 'luxon',
-        dexie: 'Dexie',
-      })
-    }
+    // if (process.env.NODE_ENV === 'production') {
+    //   config.externals({
+    //     lodash: {
+    //       commonjs: 'lodash',
+    //       commonjs2: 'lodash',
+    //       amd: 'lodash',
+    //       root: '_', // indicates global variable
+    //     },
+    //     vue: 'Vue',
+    //     konva: 'konva',
+    //     'vue-konva': 'VueKonva',
+    //     echarts: 'echarts',
+    //     '@thewakingsands/kit-tooltip': 'CafeKitTooltip',
+    //     luxon: 'luxon',
+    //     dexie: 'Dexie',
+    //   })
+    // }
 
     config.output
       .libraryTarget('umd')

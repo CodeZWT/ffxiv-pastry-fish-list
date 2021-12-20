@@ -1,4 +1,4 @@
-// import 'vuetify/dist/vuetify.min.css'
+import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import Vuetify from 'vuetify/lib/framework'
