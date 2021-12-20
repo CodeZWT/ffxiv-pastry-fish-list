@@ -1,6 +1,6 @@
 export default {
   getImgUrl(filename) {
-    return `https://cdn.jsdelivr.net/gh/ricecake404/images@1.1.2.2/img/${filename}`
+    return `https://cdn.jsdelivr.net/gh/ricecake404/images@1.1.2.1/img/${filename}`
   },
   getAquariumImgUrl(filename) {
     return `https://ricecake500.gitee.io/pastry-fish-static-files/aquarium/${filename}`
