@@ -30,13 +30,14 @@
             <v-spacer />
             <div class="text-subtitle-1">更新时间: 2021/12/20 22:20</div>
           </div>
-          <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
-          <div class="text-h6 my-1">鱼糕</div>
-          <ul>
-            <li>更新星芒节贺图！</li>
-            <li>感谢 马猴烧鱼@拉诺西亚 绘制的贺图！。</li>
-          </ul>
         </v-alert>
+        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>更新星芒节贺图！</li>
+          <li>感谢 马猴烧鱼@拉诺西亚 绘制的贺图！</li>
+        </ul>
+        <v-divider />
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
