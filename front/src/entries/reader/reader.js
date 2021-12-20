@@ -12,9 +12,9 @@ initTooltip()
 Settings.defaultLocale = 'zh-CN'
 
 Vue.config.productionTip = false
-if (process.env.NODE_ENV === 'development') {
-  Vue.use(VueKonva) // no need to set plugin if import by CND
-}
+// if (process.env.NODE_ENV === 'development') {
+Vue.use(VueKonva) // no need to set plugin if import by CND
+// }
 
 new Vue({
   router,
