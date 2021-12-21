@@ -1657,7 +1657,7 @@ module.exports = {
   },
   30280: { ja: 'ディアデム・ガガンボ', en: 'Diadem Crane Fly', chs: '云冠大蚊' },
   30281: { ja: 'ディアデム・ホバーワーム', en: 'Diadem Hoverworm', chs: '云冠浮游虫' },
-  30432: { ja: '罪撒き', en: 'The Sinsteeped', chs: '散罪' },
+  30432: { ja: '罪撒き', en: 'The Sinsteeped', chs: '散罪鱼' },
   30433: { ja: 'マンイーター', en: 'Sweetheart', chs: '食人鳄' },
   30434: { ja: 'ヒモウオ', en: 'Giant Taimen', chs: '哲罗鲑' },
   30435: { ja: 'ラウニスク', en: 'Leannisg', chs: '阔面鱼' },
