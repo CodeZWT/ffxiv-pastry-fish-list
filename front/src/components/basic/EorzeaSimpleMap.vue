@@ -426,10 +426,10 @@ export default {
     },
   },
   data: () => ({
-    fishMarker: ImgUtil.getImgUrl('fishingSpot.png'),
-    markerRange: ImgUtil.getImgUrl('markerRange.png'),
-    defaultMap: ImgUtil.getMapUrl('default.00.webp'),
-    aetheryteMarker: ImgUtil.getImgUrl('PlaceName.png'),
+    fishMarker: ImgUtil.getImgUrl('fishingSpot.webp'),
+    markerRange: ImgUtil.getImgUrl('markerRange.webp'),
+    defaultMap: ImgUtil.getMapUrl('default.00.webp', ImgUtil.CATEGORY.MAP),
+    aetheryteMarker: ImgUtil.getImgUrl('PlaceName.webp'),
     stage: undefined,
     mapOptions: [0, 1, 2, 3],
     defaultMapImage: null,
@@ -573,8 +573,8 @@ export default {
         this.markerRangeImage != null
       )
     },
-    fishingSpotNames() {
-      return this.fishingSpots.map(it => it.name)
+    fishingSpotIds() {
+      return this.fishingSpots.map(it => it._id)
     },
     ...mapState(['aetheryte']),
   },
@@ -587,15 +587,15 @@ export default {
     mapImageUrl(url) {
       this.loadMapImage(url)
     },
-    fishingSpotNames(fishingSpotNames, oldFishingSpotNames) {
-      if (!_.isEqual(oldFishingSpotNames, fishingSpotNames)) {
-        this.loadFishingSpotRangeHelper(fishingSpotNames)
+    fishingSpotIds(fishingSpotIds, oldFishingSpotIds) {
+      if (!_.isEqual(oldFishingSpotIds, fishingSpotIds)) {
+        this.loadFishingSpotRangeHelper(fishingSpotIds)
       }
     },
   },
   created() {
     this.loadMapImage(this.mapImageUrl)
-    this.loadFishingSpotRangeHelper(this.fishingSpots.map(it => it.name))
+    this.loadFishingSpotRangeHelper(this.fishingSpotIds)
     this.loadImageToProp(this.defaultMap, 'defaultMapImage')
     this.loadImageToProp(this.fishMarker, 'fishingSpotImage')
     this.loadImageToProp(this.markerRange, 'markerRangeImage')
@@ -662,12 +662,12 @@ export default {
       this.mapImageLoaded = false
       this.loadImageToProp(url, 'mapImage').then(() => (this.mapImageLoaded = true))
     },
-    loadFishingSpotRangeHelper(fishingSpotNames) {
+    loadFishingSpotRangeHelper(spotIds) {
       this.fishingSpotRangeHelperLoaded = false
       Promise.all(
-        fishingSpotNames.map((fishingSpotName, index) =>
+        spotIds.map((spotId, index) =>
           this.loadImageToProp(
-            this.getFishingSpotRangeHelper(fishingSpotName),
+            this.getFishingSpotRangeHelper(spotId),
             `fishingSpotRangeHelperImages[${index}]`
           )
         )
@@ -689,15 +689,13 @@ export default {
         })
       })
     },
-    getFishingSpotRangeHelper(fishingSpotName) {
+    getFishingSpotRangeHelper(spotId) {
       const imageName =
-        this.showFishingRangeHelper && AVAILABLE_HELP.has(fishingSpotName)
-          ? fishingSpotName
-          : 'default'
+        this.showFishingRangeHelper && AVAILABLE_HELP.has(spotId) ? spotId : 'default'
       if (this.showFishingRangeHelper && imageName === 'default') {
-        console.warn(fishingSpotName + ' range helper is missing.')
+        console.warn(spotId + ' range helper is missing.')
       }
-      return ImgUtil.getImgUrl(imageName + '.png')
+      return ImgUtil.getImgUrl(imageName + '.webp', ImgUtil.CATEGORY.MAP_RANGE_INDICATOR)
     },
     resize() {
       this.throttledResizeFn()

@@ -83,7 +83,7 @@ export default {
     isElectron: DevelopmentModeUtil.isElectron(),
     systemThemeMode: 'DARK',
     THEME_SETTING_MODES: DataUtil.THEME_SETTING_MODES,
-    achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
+    achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.webp'),
     showJumpingOverlay: false,
     now: Date.now(),
     version,

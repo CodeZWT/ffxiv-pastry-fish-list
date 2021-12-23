@@ -423,7 +423,7 @@ export default {
         {
           type: 'achievement',
           id: 'point-tip',
-          iconUrl: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
+          iconUrl: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.webp'),
           name: '高分鱼',
         },
         ...(this.voyage?.targets

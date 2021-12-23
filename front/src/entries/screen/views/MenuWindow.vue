@@ -13,7 +13,7 @@
     <div style="height: 64px; width: 64px" class="d-flex align-center justify-center">
       <v-btn elevation="2" fab outlined @click="showWindowMenu = true">
         <v-img
-          src="https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/pastry-fish.png"
+          src="https://rcstatic.traveleorzea.com/pastry-fish-static-files/img/logo/pastry-fish.webp"
           width="38"
           height="38"
           contain

@@ -20,7 +20,7 @@
                 <span>增加功能菜单可以通过鼠标点击渔捞图标</span>
                 <img
                   style="height: 24px; width: 24px"
-                  src="https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/pastry-fish.png"
+                  src="https://rcstatic.traveleorzea.com/pastry-fish-static-files/img/logo/pastry-fish.webp"
                 /><span>或使用快捷键访问。（具体请查看键位设置）</span>
               </div>
             </div>

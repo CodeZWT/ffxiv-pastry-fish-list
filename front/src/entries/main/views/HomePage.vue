@@ -324,7 +324,10 @@ export default {
       )
     },
     largeLogo() {
-      return 'https://s4.ax1x.com/2021/12/20/TuaVqx.png'
+      return ImgUtil.getImgUrl(
+        'pastry-fish-fes-starlight.webp',
+        ImgUtil.CATEGORY.HOME_LOGO
+      )
     },
     version() {
       return version

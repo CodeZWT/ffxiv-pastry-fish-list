@@ -260,7 +260,7 @@ export default {
         { title: '海钓航班时间表', icon: 'mdi-calendar' },
       ],
       pageSection: 0,
-      achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.png'),
+      achievementScore40: ImgUtil.getImgUrl('ocean-fishing-score-achievement-40x40.webp'),
       filter: { voyageN: 12 },
       lazyNow: this.now,
       currentVoyageLastUpdate: 0,

@@ -275,10 +275,10 @@ export default {
 .spear-icon
   width: 20px
   height: 20px
-  background: url('https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/fishing-notebook.png') -64px -28px
+  background: url('https://rcstatic.traveleorzea.com/pastry-fish-static-files/img/misc/fishing-notebook.webp') -64px -28px
 
 .fishing-icon
   width: 20px
   height: 20px
-  background: url('https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/fishing-notebook.png') -84px -28px
+  background: url('https://rcstatic.traveleorzea.com/pastry-fish-static-files/img/misc/fishing-notebook.webp') -84px -28px
 </style>

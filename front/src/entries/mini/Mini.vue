@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       version: version,
-      fisher: ImgUtil.getImgUrl('pastry-fish.png'),
+      fisher: ImgUtil.getImgUrl('pastry-fish.webp'),
       listFishCnt: [
         {
           type: DataUtil.COUNT_DOWN_TYPE[DataUtil.FISHING],

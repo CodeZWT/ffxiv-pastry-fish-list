@@ -12893,7 +12893,7 @@ module.exports = {
       id: 2759,
       name_chs: '推荐冲分',
       description: '在1次出海垂钓中获得20,000以上渔分。',
-      iconLocal: 'ocean-fishing-score-achievement-40x40.png',
+      iconLocal: 'ocean-fishing-score-achievement-40x40.webp',
       nonTipOptions: true,
     },
   },

@@ -11,7 +11,7 @@ export default {
   props: ['spotData'],
   data() {
     return {
-      scripsIcon: ImgUtil.getImgUrl('skybuilders-scrips-065073-36x36.png'),
+      scripsIcon: ImgUtil.getImgUrl('skybuilders-scrips-065073-36x36.webp'),
     }
   },
   methods: {

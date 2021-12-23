@@ -222,9 +222,9 @@ export default {
     return {
       regionTerritorySpots: regionTerritorySpots,
       tipMaps: [
-        ImgUtil.getImgUrl('diadem-tip-map-grade2.png'),
-        ImgUtil.getImgUrl('diadem-tip-map-grade3.png'),
-        ImgUtil.getImgUrl('diadem-tip-map-grade4.png'),
+        ImgUtil.getImgUrl('diadem-tip-map-grade2.webp'),
+        ImgUtil.getImgUrl('diadem-tip-map-grade3.webp'),
+        ImgUtil.getImgUrl('diadem-tip-map-grade4.webp'),
       ],
       tabIndex: 0,
       isElectron: DevelopmentModeUtil.isElectron(),
@@ -232,7 +232,7 @@ export default {
   },
   computed: {
     diademAnyBaitIcon() {
-      return ImgUtil.getImgUrl('diadem-any-bait.png')
+      return ImgUtil.getImgUrl('diadem-any-bait.webp')
     },
     currentVersionMapData() {
       return {

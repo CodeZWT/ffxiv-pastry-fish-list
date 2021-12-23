@@ -137,7 +137,7 @@ export const MainModule = {
     },
     getItemIconUrl: state => id => {
       const iconId = state.items[DataUtil.toItemId(id)]?.icon ?? 1100
-      // const localImg = require(`../assert/${iconId}.png`)
+      // const localImg = require(`../assert/${iconId}.webp`)
       // if (localImg) {
       //   return localImg
       // } else {

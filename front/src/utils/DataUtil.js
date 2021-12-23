@@ -208,7 +208,7 @@ export default {
   LINKS: {
     PASTRY_FISH: {
       id: 'PASTRY_FISH',
-      icon: 'https://cdn.jsdelivr.net/gh/ricecake404/images@main/img/pastry-fish.png',
+      icon: ImgUtil.getImgUrl('pastry-fish.webp', 'logo'),
       title: '钓鱼笔记',
       inner: true,
       spotFn: toInnerSpotLink,
@@ -914,8 +914,8 @@ export default {
   },
 
   getDiademItemIconUrl(id) {
-    // console.log(id, id === 29717 ? ImgUtil.getImgUrl('diadem-any-bait.png') : null)
-    return id === 29717 ? ImgUtil.getImgUrl('diadem-any-bait.png') : null
+    // console.log(id, id === 29717 ? ImgUtil.getImgUrl('diadem-any-bait.webp') : null)
+    return id === 29717 ? ImgUtil.getImgUrl('diadem-any-bait.webp') : null
   },
 
   getItemName(id) {

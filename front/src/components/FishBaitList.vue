@@ -189,7 +189,7 @@ export default {
       return this.baitUniqueType !== 'NOT_UNIQUE'
     },
     diademAnyBaitIcon() {
-      return ImgUtil.getImgUrl('diadem-any-bait.png')
+      return ImgUtil.getImgUrl('diadem-any-bait.webp')
     },
   },
   methods: {
