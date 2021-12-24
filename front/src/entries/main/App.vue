@@ -913,9 +913,9 @@ export default {
       newVersion: undefined,
       DATA_LOCALES: DataUtil.DATA_LOCALES,
       LOCALES_ICONS: [
-        ImgUtil.getImgUrl('cn.svg'),
-        ImgUtil.getImgUrl('us.svg'),
-        ImgUtil.getImgUrl('jp.svg'),
+        ImgUtil.getImgUrl('cn.svg', ImgUtil.CATEGORY.LANG),
+        ImgUtil.getImgUrl('us.svg', ImgUtil.CATEGORY.LANG),
+        ImgUtil.getImgUrl('jp.svg', ImgUtil.CATEGORY.LANG),
       ],
     }
   },
