@@ -549,16 +549,6 @@
                   </v-list-item-content>
                 </v-list-item>
               </click-helper>
-              <click-helper @click="showHelpDialog = true">
-                <v-list-item @click="noOp">
-                  <v-list-item-icon>
-                    <v-icon>mdi-help-circle</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title>{{ $t('top.help') }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </click-helper>
               <v-list-item @click="showPatchNoteDialog = true">
                 <v-list-item-icon>
                   <v-icon>mdi-tag</v-icon>
