@@ -203,9 +203,9 @@ export default {
       if (this.names == null || Object.keys(this.names).length === 0) {
         return []
       } else {
-        const cnFlag = ImgUtil.getImgUrl('cn.svg')
-        const usFlag = ImgUtil.getImgUrl('us.svg')
-        const jpFlag = ImgUtil.getImgUrl('jp.svg')
+        const cnFlag = ImgUtil.getImgUrl('cn.svg', ImgUtil.CATEGORY.LANG)
+        const usFlag = ImgUtil.getImgUrl('us.svg', ImgUtil.CATEGORY.LANG)
+        const jpFlag = ImgUtil.getImgUrl('jp.svg', ImgUtil.CATEGORY.LANG)
         return [
           { locale: 'chs', name: this.names.chs, icon: cnFlag },
           { locale: 'en', name: this.names.en, icon: usFlag },
