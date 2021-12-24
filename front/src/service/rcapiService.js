@@ -7,7 +7,8 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 const host = DevelopmentModeUtil.isTest()
   ? 'https://rcapi.traveleorzea.com' //'http://localhost:3100'
   : 'https://rcapi.traveleorzea.com'
-const DATA_HOST = 'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files'
+// const DATA_HOST = 'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files'
+const DATA_HOST = 'https://rcstatic.traveleorzea.com/pastry-fish-statistics-files'
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
 export const TEMP_RC_ACCESS_TOKEN_KEY = 'TEMP_RC_ACCESS_TOKEN'
 export const RC_USER_PROFILE_KEY = 'RC_USER_PROFILE'
@@ -204,8 +205,8 @@ export default {
     })
   },
   async getSpotRecordCount(spotId, type = 'record-count') {
-    const version = await this.getDataFilesVersion()
-    return fetch(`${DATA_HOST}@${version}/${type}/${spotId}.data`, {
+    // const version = await this.getDataFilesVersion()
+    return fetch(`${DATA_HOST}/${type}/${spotId}.data`, {
       method: 'GET',
     }).then(async resp => {
       if (resp.ok) {
@@ -220,8 +221,8 @@ export default {
     })
   },
   async getSpotBiteInterval(spotId) {
-    const version = await this.getDataFilesVersion()
-    return fetch(`${DATA_HOST}@${version}/bite-interval/${spotId}.data`, {
+    // const version = await this.getDataFilesVersion()
+    return fetch(`${DATA_HOST}/bite-interval/${spotId}.data`, {
       method: 'GET',
     }).then(async resp => {
       if (resp.ok) {
