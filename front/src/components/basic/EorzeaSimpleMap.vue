@@ -55,7 +55,7 @@
               <v-btn
                 @click="toggleLayer('markerRangeLayer')"
                 icon
-                title="隐藏/显示 游戏内钓场提示（范围圈）"
+                title="隐藏/显示 游戏地图图标（大水晶和范围圈）"
               >
                 <v-icon>mdi-map-marker-radius</v-icon>
               </v-btn>
@@ -76,11 +76,6 @@
           <v-layer>
             <v-image :config="defaultMapConfig"></v-image>
             <v-image :config="mapConfig"></v-image>
-            <v-image
-              v-for="(config, index) in aetheryteMakerConfigs"
-              :config="config"
-              :key="`marker${index}`"
-            ></v-image>
           </v-layer>
           <v-layer ref="rangeHelperLayer">
             <v-image
@@ -91,6 +86,11 @@
             ></v-image>
           </v-layer>
           <v-layer ref="markerRangeLayer">
+            <v-image
+              v-for="(config, index) in aetheryteMakerConfigs"
+              :config="config"
+              :key="`marker${index}`"
+            ></v-image>
             <v-image
               v-for="(markerRangeConfig, index) in markerRangeConfigs"
               :config="markerRangeConfig"
