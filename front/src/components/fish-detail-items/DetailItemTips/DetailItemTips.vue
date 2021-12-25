@@ -13,7 +13,7 @@
         <div v-if="!hasTips(fish.id)" class="text-center">
           暂无攻略
         </div>
-        <v-row v-else no-gutters>
+        <v-row v-else no-gutters style="margin: 0 -20px -16px -20px">
           <v-col cols="12">
             <tip7 :id="fish.id" />
           </v-col>
