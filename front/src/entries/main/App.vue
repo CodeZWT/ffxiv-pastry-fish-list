@@ -71,10 +71,12 @@
       >
         <span>{{ title }}</span>
       </v-toolbar-title>
-      <v-badge :content="$t('top.region.' + region)" inline color="info" />
-      <v-badge :content="version" inline />
+      <template v-if="!isMobile">
+        <v-badge :content="$t('top.region.' + region)" inline color="info" />
+        <v-badge :content="version" inline />
+      </template>
       <v-spacer />
-      <div v-if="inStarLight">
+      <div v-if="inStarLight && !isMobile">
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
