@@ -1,0 +1,4 @@
+[submodule "static-files"]
+	path = assets/cdn/pastry-fish-static-files
+	url = https://e.coding.net/ricecake302/pastry-fish/pastry-fish-static-files.git
+	branch = master
