@@ -15,9 +15,10 @@
       <div
         :class="{
           'detail-header': inPane,
-          'detail-header--web': inPane && !isElectron,
-          'detail-header--electron': inPane && isElectron && !original,
-          'detail-header--electron-original': inPane && isElectron && original,
+          'detail-header--web-desktop': inPane && !isElectron && !isMobile,
+          'detail-header--web-mobile': inPane && !isElectron && isMobile,
+          'detail-header--electron-desktop': inPane && isElectron && !isMobile,
+          'detail-header--electron-mobile': inPane && isElectron && isMobile,
         }"
       >
         <fish-detail-content
@@ -48,7 +49,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
 import FIX from 'Data/fix'
 import FishDetailContent from '@/components/FishDetailContent'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
@@ -56,6 +57,7 @@ import placeNames from 'Data/placeNames'
 
 export default {
   name: 'FishDetail',
+  mixins: [EnvMixin],
   components: { FishListExpandedHeader, FishDetailContent },
   props: {
     showSpotButton: {
@@ -82,11 +84,6 @@ export default {
       type: Boolean,
       default: false,
     },
-  },
-  data() {
-    return {
-      isElectron: DevelopmentModeUtil.isElectron(),
-    }
   },
   computed: {
     ...mapState(['window']),
@@ -139,6 +136,7 @@ export default {
 
 $detail-header-height: 104px
 $wrapper-detail: $detail-header-height + $button-height
+$wrapper-detail-mobile: $detail-header-height
 
 .inner
   width: 100%
@@ -148,9 +146,13 @@ $wrapper-detail: $detail-header-height + $button-height
   overflow-scrolling: auto
   overflow-y: scroll
   &--web
-    height: calc(100vh - #{ $wrapper-web + $wrapper-detail })
+    &-desktop
+      height: calc(100vh - #{ $wrapper-web + $wrapper-detail })
+    &-mobile
+      height: calc(100vh - #{ $wrapper-web + $wrapper-detail-mobile })
   &--electron
-    height: calc(100% - #{ $wrapper-detail })
-  &--electron-original
-    height: calc(100vh - #{ $wrapper-desktop + $wrapper-detail })
+    &-desktop
+      height: calc(100vh - #{ $wrapper-desktop + $wrapper-detail })
+    &-mobile
+      height: calc(100vh - #{ $wrapper-desktop + $wrapper-detail-mobile })
 </style>
