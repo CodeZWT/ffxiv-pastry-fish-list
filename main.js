@@ -344,7 +344,8 @@ async function init() {
                 const options = {
                   region: newRegion,
                   monitorType: newMonitorType,
-                  opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
+                  opcodeUrl: 'https://pastry-fish-static-1304006624.file.myqcloud.com/opcodes/opcodes.min.json'
+                  // opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
                 }
                 FishingDataReader.restart(options, () => {
                   log.info('Machina restarted!', options)
@@ -355,7 +356,8 @@ async function init() {
             const options = {
               region: newRegion,
               monitorType: newMonitorType,
-              opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
+              opcodeUrl: 'https://pastry-fish-static-1304006624.file.myqcloud.com/opcodes/opcodes.min.json'
+              // opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
             }
             FishingDataReader.restart(options, () => {
               log.info('Machina restarted!', options)
@@ -437,13 +439,13 @@ async function init() {
     .on('updateMainConfig', (event, config) => {
       mainWindowConfig = config
     })
-    .on('finishLoading', (event, { userData, readerSetting, opcodeVersion }) => {
+    .on('finishLoading', (event, { userData, readerSetting }) => {
       // if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
       //   return loadingForReloadingPage.close()
       // }
       if (loadingFinished) return
       log.info('in finishLoading')
-      remoteOpcodeVersion = opcodeVersion
+      // remoteOpcodeVersion = opcodeVersion
       showUpdateDialogIfNecessary()
       loadingFinished = true
       readerConfig = readerSetting
@@ -460,7 +462,8 @@ async function init() {
       startReaderOnce({
         region: readerConfig.region,
         monitorType: readerConfig.monitorType,
-        opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`
+        opcodeUrl: 'https://pastry-fish-static-1304006624.file.myqcloud.com/opcodes/opcodes.min.json'
+        // opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`
       })
 
       callWindowSafe(WINDOWS.main, win => {
