@@ -24,20 +24,24 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
+        <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
-            <div class="text-h6">Version 1.1.2-fix</div>
+            <div class="text-h6">Version 1.1.3</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/12/20 22:20</div>
+            <div class="text-subtitle-1">更新时间: 2021/12/25 23:00</div>
           </div>
         </v-alert>
-        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新星芒节贺图.感谢 马猴烧鱼@拉诺西亚 绘制的贺图！</li>
           <li>更新6.0钓场范围提示图，感谢 轩辕十四 @ 沃仙曦染 测量绘制的范围图！</li>
           <li>更新台支持，感谢 美依礼芽@延夏 的大力协助！</li>
           <li>修复手机网页版的部分显示问题</li>
+        </ul>
+        <div class="text-h6 my-1">渔捞</div>
+        <ul>
+          <li>更新国际服6.01支持</li>
         </ul>
         <v-divider />
 
