@@ -619,7 +619,7 @@
       @change="handleSearch"
     />
 
-    <v-footer app style="font-size: small; max-height: 31px">
+    <v-footer app style="font-size: small; max-height: 31px" :padless="isMobile">
       <div class="d-flex" style="width: 100%">
         <template v-if="!isMobile || isElectron">
           <div
