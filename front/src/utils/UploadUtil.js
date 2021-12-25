@@ -71,7 +71,7 @@ const toUploadData = records => {
       catchAndRelease: record.catchAndRelease,
       fishEyes: record.fishEyes,
       fishersIntuition: record.fishersIntuition,
-      recordPatch: record.patch ?? 5.35,
+      recordPatch: record.patch ?? 5.57,
       tug: ['light', 'medium', 'heavy'].indexOf(record.tug),
       isStrictMode: record.isStrictMode,
       oceanFishingTime: DataUtil.isOceanFishingSpot(spotId)

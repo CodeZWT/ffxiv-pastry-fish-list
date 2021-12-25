@@ -35,13 +35,14 @@ function playerSetupOf(struct, region = 'CN') {
     5.57: { fish: 1451, spear: 1611 },
     5.58: { fish: 1451, spear: 1611 },
     6: { fish: 1512, spear: 1692 },
+    6.01: { fish: 1512, spear: 1692 },
   }
 
   const CN_FISH_RECORD_OFFSET = PATCH_OFFSET[5.58].fish
   const CN_SPEAR_RECORD_OFFSET = PATCH_OFFSET[5.58].spear
 
-  const GLOBAL_FISH_RECORD_OFFSET = PATCH_OFFSET[6].fish
-  const GLOBAL_SPEAR_RECORD_OFFSET = PATCH_OFFSET[6].spear
+  const GLOBAL_FISH_RECORD_OFFSET = PATCH_OFFSET[6.01].fish
+  const GLOBAL_SPEAR_RECORD_OFFSET = PATCH_OFFSET[6.01].spear
   const fishRecordsOffset = region === 'CN' ? CN_FISH_RECORD_OFFSET : GLOBAL_FISH_RECORD_OFFSET
   const spearRecordsOffset = region === 'CN' ? CN_SPEAR_RECORD_OFFSET : GLOBAL_SPEAR_RECORD_OFFSET
 
