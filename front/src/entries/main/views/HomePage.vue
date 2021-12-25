@@ -99,7 +99,7 @@
             </v-card>
           </v-col>
           <v-col cols="12" md="6" class="my-md-0 py-md-0">
-            <v-card outlined style="height: 298px;    overflow: hidden;">
+            <v-card outlined style="height: 298px; overflow: hidden">
               <iframe
                 v-if="isDark"
                 width="100%"

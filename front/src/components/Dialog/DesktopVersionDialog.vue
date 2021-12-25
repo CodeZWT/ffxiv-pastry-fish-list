@@ -86,9 +86,9 @@ export default {
   },
   data() {
     return {
-      keep: ImgUtil.getImgUrl('keep.jpg'),
-      stillKeep: ImgUtil.getImgUrl('still-keep.jpg'),
-      stillRun: ImgUtil.getImgUrl('still-run.jpg'),
+      keep: ImgUtil.getImgUrl('keep.webp'),
+      stillKeep: ImgUtil.getImgUrl('still-keep.webp'),
+      stillRun: ImgUtil.getImgUrl('still-run.webp'),
     }
   },
 }

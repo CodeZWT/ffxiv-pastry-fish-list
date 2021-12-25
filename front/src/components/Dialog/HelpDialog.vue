@@ -145,7 +145,6 @@
 <script>
 import ClickHelper from '@/components/basic/ClickHelper'
 import EnvMixin from '@/components/basic/EnvMixin'
-import ImgUtil from '@/utils/ImgUtil'
 import RcDialog from '@/components/basic/RcDialog'
 
 export default {
@@ -163,11 +162,11 @@ export default {
   },
   computed: {
     helpImages() {
-      const images = []
-      for (let i = 1; i <= 5; i++) {
-        images.push(ImgUtil.getImgUrl(`help-${i}.jpg`))
-      }
-      return images
+      // const images = []
+      // for (let i = 1; i <= 5; i++) {
+      //   images.push(ImgUtil.getImgUrl(`help-${i}.jpg`))
+      // }
+      return [null, null, null, null, null]
     },
   },
 }

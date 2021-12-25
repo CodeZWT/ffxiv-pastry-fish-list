@@ -15,11 +15,11 @@
       :class="coverClass"
       :style="`background: url('${cover}') no-repeat;`"
     />
-    <div
-      v-if="checked"
-      class="item-checked-icon-48"
-      :style="`background: url('${checkedCover48}') no-repeat;`"
-    />
+    <!--    <div-->
+    <!--      v-if="checked"-->
+    <!--      class="item-checked-icon-48"-->
+    <!--      :style="`background: url('${checkedCover48}') no-repeat;`"-->
+    <!--    />-->
   </div>
 </template>
 
@@ -64,8 +64,8 @@ export default {
       itemCover48: ImgUtil.getImgUrl('item-icon-cover-48x48.webp'),
       itemCover96: ImgUtil.getImgUrl('item-icon-cover-96x96.webp'),
       achievementFrame48: ImgUtil.getImgUrl('achievement-icon-frame-48x48.webp'),
-      checkedCover48: ImgUtil.getImgUrl('item-icon-checked-48x48.webp'),
-      hatCover48: ImgUtil.getImgUrl('item-cover-hat-48x48.webp'),
+      // checkedCover48: ImgUtil.getImgUrl('item-icon-checked-48x48.webp'),
+      // hatCover48: ImgUtil.getImgUrl('item-cover-hat-48x48.webp'),
     }
   },
   computed: {

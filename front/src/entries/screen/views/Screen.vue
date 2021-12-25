@@ -95,7 +95,6 @@
       :in-migration-page="inMigrationPage"
       @confirm="onConfirmPatchNote"
     />
-    <help-dialog v-model="showHelpDialog" />
     <rc-dialog
       v-model="showAboutDialog"
       :fullscreen="isMobile"

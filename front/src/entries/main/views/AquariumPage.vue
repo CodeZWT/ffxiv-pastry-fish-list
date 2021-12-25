@@ -238,7 +238,7 @@ export default {
   props: ['original'],
   data() {
     return {
-      aquariumSettingImg: ImgUtil.getImgUrl('aquarium-setting.jpg'),
+      aquariumSettingImg: ImgUtil.getImgUrl('aquarium-setting.webp'),
       isElectron: DevelopmentModeUtil.isElectron(),
       sizeIndicesToShow: Object.keys(AQUARIUM_FISH_SIZE).map(it => it - 1),
       waterIndicesToShow: Object.keys(AQUARIUM_WATER).map(it => it - 1),
