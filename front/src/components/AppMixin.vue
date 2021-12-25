@@ -659,22 +659,28 @@ export default {
         ?.then(setting => (this.lazyWindowSetting = setting))
     },
     finishReloadPage() {
-      rcapiService
-        .getOpcodeFileVersion()
-        .then(version => {
-          this.sendElectronEvent('finishLoading', {
-            userData: this.userData,
-            readerSetting: this.readerSetting,
-            opcodeVersion: version,
-          })
-        })
-        .catch(() => {
-          this.sendElectronEvent('finishLoading', {
-            userData: this.userData,
-            readerSetting: this.readerSetting,
-            opcodeVersion: 'latest',
-          })
-        })
+      // rcapiService
+      //   .getOpcodeFileVersion()
+      //   .then(version => {
+      //     this.sendElectronEvent('finishLoading', {
+      //       userData: this.userData,
+      //       readerSetting: this.readerSetting,
+      //       opcodeVersion: version,
+      //     })
+      //   })
+      //   .catch(() => {
+      //     this.sendElectronEvent('finishLoading', {
+      //       userData: this.userData,
+      //       readerSetting: this.readerSetting,
+      //       opcodeVersion: 'latest',
+      //     })
+      //   })
+
+      this.sendElectronEvent('finishLoading', {
+        userData: this.userData,
+        readerSetting: this.readerSetting,
+        // opcodeVersion: version,
+      })
     },
     bindHotkeys() {
       hotkeys('/', event => {

@@ -298,6 +298,7 @@
 import { OCEAN_FISHING_TIPS } from 'Data/oceanFishing'
 import { mapGetters } from 'vuex'
 import AchievementTip from '@/components/OceanFishing54/OceanFishingVoyage/AchievementTip'
+import DataUtil from '@/utils/DataUtil'
 import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
 import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
@@ -411,13 +412,13 @@ export default {
         {
           type: 'item',
           id: 'fish-list',
-          icon: 'bg-000024',
+          icon: DataUtil.iconIdToClass(24),
           name: '鱼列表',
         },
         {
           type: 'item',
           id: 'fish-tip',
-          icon: 'bg-060034',
+          icon: DataUtil.iconIdToClass(60034),
           name: '稀有鱼',
         },
         {

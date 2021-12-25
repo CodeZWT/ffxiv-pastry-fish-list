@@ -40,18 +40,23 @@
                             <v-badge inline content="< 10s" color="transparent"></v-badge>
                           </span>
                           <v-icon small>mdi-chevron-right</v-icon>
-                          <span><item-icon icon-class="bg-029716" small/></span>
+                          <span
+                            ><item-icon :icon-class="iconIdToClass(29716)" small
+                          /></span>
                           <span class="d-flex flex-column" style="margin: 0 10px">
                             <v-badge inline content="!!!" color="warning"></v-badge>
                           </span>
                           <v-icon small>mdi-chevron-right</v-icon>
-                          <span><item-icon icon-class="bg-028459"/></span>
+                          <span><item-icon :icon-class="iconIdToClass(28459)"/></span>
                           996 <v-icon>mdi-plus-circle</v-icon>
                         </div>
 
                         <div class="d-flex align-center">
                           <div style="min-width: 113px" class="d-flex align-center">
-                            <weather-icon icon-class="bg-060290" title="灵飞电" />
+                            <weather-icon
+                              :icon-class="iconIdToClass(60290)"
+                              title="灵飞电"
+                            />
                             <span style="margin: 0 35px 0 4px">时也可</span>
                           </div>
                           <v-icon>mdi-subdirectory-arrow-right</v-icon>
@@ -60,7 +65,7 @@
                             <v-badge inline content="> 30s" color="transparent"></v-badge>
                           </span>
                           <v-icon small>mdi-chevron-right</v-icon>
-                          <span><item-icon icon-class="bg-029749"/></span>
+                          <span><item-icon :icon-class="iconIdToClass(29749)"/></span>
                           1078 <v-icon>mdi-plus-circle</v-icon>
                         </div>
 
@@ -76,18 +81,23 @@
                             <v-badge inline content="< 10s" color="transparent"></v-badge>
                           </span>
                           <v-icon small>mdi-chevron-right</v-icon>
-                          <span><item-icon icon-class="bg-029716" small/></span>
+                          <span
+                            ><item-icon :icon-class="iconIdToClass(29716)" small
+                          /></span>
                           <span class="d-flex flex-column">
                             <v-badge inline content="!!" color="error"></v-badge>
                             <v-badge inline content="> 20s" color="transparent"></v-badge>
                           </span>
                           <v-icon small>mdi-chevron-right</v-icon>
-                          <span><item-icon icon-class="bg-029054"/></span>
+                          <span><item-icon :icon-class="iconIdToClass(29054)"/></span>
                           911 <v-icon>mdi-plus-circle</v-icon>
                         </div>
                         <div class="d-flex align-center">
                           <div style="min-width: 113px" class="d-flex align-center">
-                            <weather-icon icon-class="bg-060291" title="灵罡风" />
+                            <weather-icon
+                              :icon-class="iconIdToClass(60291)"
+                              title="灵罡风"
+                            />
                             <span style="margin: 0 35px 0 4px">时也可</span>
                           </div>
                           <v-icon>mdi-subdirectory-arrow-right</v-icon>
@@ -96,7 +106,7 @@
                             <v-badge inline content="> 30s" color="transparent"></v-badge>
                           </span>
                           <v-icon small>mdi-chevron-right</v-icon>
-                          <span><item-icon icon-class="bg-029747"/></span>
+                          <span><item-icon :icon-class="iconIdToClass(29747)"/></span>
                           982 <v-icon>mdi-plus-circle</v-icon>
                         </div>
                         <v-subheader class="px-0">注：</v-subheader>
@@ -124,19 +134,19 @@
                             </div>
                             <div class="d-flex align-center">
                               <div data-ck-item-id="30278">
-                                <item-icon icon-class="bg-027020" small />
+                                <item-icon :icon-class="iconIdToClass(27020)" small />
                               </div>
                               <div data-ck-item-id="30279">
-                                <item-icon icon-class="bg-027025" small />
+                                <item-icon :icon-class="iconIdToClass(27025)" small />
                               </div>
                               <div data-ck-item-id="30280">
-                                <item-icon icon-class="bg-027002" small />
+                                <item-icon :icon-class="iconIdToClass(27002)" small />
                               </div>
                               <div data-ck-item-id="30281">
-                                <item-icon icon-class="bg-027022" small />
+                                <item-icon :icon-class="iconIdToClass(27022)" small />
                               </div>
                               <div data-ck-item-id="29717">
-                                <item-icon icon-class="bg-027051" small />
+                                <item-icon :icon-class="iconIdToClass(27051)" small />
                               </div>
                             </div>
                           </li>
@@ -337,6 +347,7 @@ export default {
     ]),
   },
   methods: {
+    iconIdToClass: DataUtil.iconIdToClass,
     toBiteTimeText(min, max) {
       if (min == null && max == null) {
         return ''

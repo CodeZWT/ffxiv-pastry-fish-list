@@ -142,9 +142,9 @@ export default {
       fishId: fishId,
       fishName: DataUtil.getItemName(fishId) ?? '未知',
       fishIcon: missed
-        ? 'bg-060034'
+        ? DataUtil.iconIdToClass(60034)
         : cancelled
-        ? 'bg-060027'
+        ? DataUtil.iconIdToClass(60027)
         : DataUtil.getItemIconClass(fishId, 60027),
     }
   },

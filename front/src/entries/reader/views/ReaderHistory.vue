@@ -439,9 +439,9 @@ export default {
           fish: {
             ...DataUtil.FISH_DATA[record.fishId],
             icon: record.missed
-              ? 'bg-060034'
+              ? DataUtil.iconIdToClass(60034)
               : record.cancelled
-              ? 'bg-060027'
+              ? DataUtil.iconIdToClass(60027)
               : DataUtil.getItemIconClass(record.fishId, 60027),
             name: DataUtil.getItemName(record.fishId),
             size: (record.size / 10).toFixed(1) + 'Im',

@@ -313,7 +313,7 @@
           数据同步为鱼糕桌面版功能，左侧可下载桌面版。
         </v-card-subtitle>
         <v-card-text v-if="syncStatus === 'not-start'">
-          <item-icon icon-class="bg-000024" class="float-left" />
+          <item-icon :icon-class="iconIdToClass(24)" class="float-left" />
           <div>
             同步游戏内钓鱼笔记数据，当前已完成数据将会被
             <span class="font-weight-bold error--text"> 完全覆盖 </span>
@@ -791,6 +791,7 @@ export default {
       })
   },
   methods: {
+    iconIdToClass: DataUtil.iconIdToClass,
     scrollToTop() {
       document
         .getElementById('wiki-right-content')

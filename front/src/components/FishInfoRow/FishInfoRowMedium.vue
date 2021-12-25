@@ -133,7 +133,7 @@
                 <v-tooltip v-if="isTimeCheckSkipped" bottom color="secondary">
                   <template v-slot:activator="{ on, attrs }">
                     <div v-bind="attrs" v-on="on">
-                      <effect-icon icon-class="bg-011103" />
+                      <effect-icon :icon-class="iconIdToClass(11103)" />
                     </div>
                   </template>
                   <div>时间条件在鱼眼模式下忽略</div>
@@ -294,6 +294,7 @@
 
 <script>
 import ClickHelper from '@/components/basic/ClickHelper'
+import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import FishBaitList from '@/components/FishBaitList'
 import FishingSpotColumn from '@/components/FishingSpotColumn'
@@ -332,6 +333,9 @@ export default {
     buffAndBaitColClass() {
       return 'col-5'
     },
+  },
+  methods: {
+    iconIdToClass: DataUtil.iconIdToClass,
   },
 }
 </script>

@@ -17,7 +17,7 @@
     </template>
     <div style="max-width: 300px">
       <div class="mb-1">
-        <item-icon icon-class="bg-001112" small class="float-left" />
+        <item-icon :icon-class="iconIdToClass(1112)" small class="float-left" />
         <div>
           鱼眼技能在
           <strong>5.4</strong>
@@ -39,6 +39,7 @@
 
 <script>
 import { SystemInfo } from 'Data/version'
+import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import ToggleButton from '@/components/basic/ToggleButton'
 
@@ -59,6 +60,9 @@ export default {
     isGlobal() {
       return SystemInfo.region === 'Global'
     },
+  },
+  methods: {
+    iconIdToClass: DataUtil.iconIdToClass,
   },
 }
 </script>

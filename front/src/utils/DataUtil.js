@@ -1036,10 +1036,10 @@ export default {
   INTERVAL_DAY: CONSTANTS.INTERVAL_DAY,
 
   GIG_ICON: {
-    small: 'bg-060671',
-    normal: 'bg-060672',
-    large: 'bg-060673',
-    all: 'bg-001121',
+    small: ImgUtil.iconIdToClass(60671),
+    normal: ImgUtil.iconIdToClass(60672),
+    large: ImgUtil.iconIdToClass(60673),
+    all: ImgUtil.iconIdToClass(1121),
   },
 
   GIG_DICT: ['', 'small', 'normal', 'large', 'all'],

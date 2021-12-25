@@ -56,7 +56,7 @@
           <v-tooltip v-if="isTimeCheckSkipped" bottom color="secondary">
             <template v-slot:activator="{ on, attrs }">
               <div v-bind="attrs" v-on="on">
-                <effect-icon icon-class="bg-011103" />
+                <effect-icon :icon-class="iconIdToClass(11103)" />
               </div>
             </template>
             <div>
@@ -95,6 +95,9 @@ export default {
       return DataUtil.skipTimeCheckOf(this.fish, this.fishEyesUsed)
     },
     ...mapGetters(['fishEyesUsed']),
+  },
+  methods: {
+    iconIdToClass: DataUtil.iconIdToClass,
   },
 }
 </script>
