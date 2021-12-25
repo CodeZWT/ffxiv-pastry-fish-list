@@ -1093,7 +1093,6 @@ export default {
 </script>
 
 <style>
-@import '~Assets/css/fish_icons.css';
 @import '~Assets/css/keys.css';
 
 @font-face {

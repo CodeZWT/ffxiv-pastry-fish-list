@@ -100,7 +100,6 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../../../../assets/css/fish_icons.css'
 @import '../../../../assets/css/keys.css'
 
 @font-face

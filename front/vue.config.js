@@ -199,6 +199,29 @@ module.exports = {
     },
   },
   chainWebpack: config => {
+    if (process.env.VUE_APP_ELECTRON !== 'true') {
+      config.externals([
+        function(context, request, callback) {
+          if (
+            /(misc|home-logo|logo|item|lang|map|map-range-indicator).*\.(webp|png|jpe?g|svg)$/.test(
+              request
+            )
+          ) {
+            return callback(null, 'skipLocalImage ' + request)
+          }
+
+          callback()
+        },
+        function(context, request, callback) {
+          if (/fish_icons_local.css$/.test(request)) {
+            return callback(null, 'skipLocalCss ' + request)
+          }
+
+          callback()
+        },
+      ])
+    }
+
     // if (process.env.NODE_ENV === 'production') {
     //   config.externals({
     //     lodash: {
@@ -258,6 +281,26 @@ module.exports = {
           return `<template><div>${md.render(source)}</div></template>`
         },
       })
+
+    // if (process.env.VUE_APP_ELECTRON !== 'true') {
+    //   // console.log('exclude cdn images for web')
+    //   config.module
+    //     .rule('images')
+    //     .exclude.add(
+    //       /(misc|home-logo|logo|item|lang|map|map-range-indicator).*\.(webp|png|jpe?g)$/
+    //     )
+    //     .end()
+    //
+    //   config.module
+    //     .rule('svg')
+    //     .exclude.add(/(misc|home-logo|logo|item|lang|map|map-range-indicator).*\.svg$/)
+    //     .end()
+    //
+    //   // config.module
+    //   //   .rule('css')
+    //   //   .exclude.add(/fish_icons_local\.css$/)
+    //   //   .end()
+    // }
 
     config.resolve.alias
       .set('Data', path.join(__dirname, '../data'))

@@ -1,3 +1,5 @@
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+
 const URL_REGION = 'CN'
 const BASE_URL = {
   CN: {
@@ -23,7 +25,12 @@ export default {
     MAP_RANGE_INDICATOR: 'map-range-indicator',
   },
   getImgUrl(filename, category = 'misc') {
-    return `https://${BASE_URL[URL_REGION].imageRoot}/${category}/${filename}`
+    if (DevelopmentModeUtil.isElectron()) {
+      // return `https://${BASE_URL[URL_REGION].imageRoot}/${category}/${filename}`
+      return require(`Assets/cdn/pastry-fish-static-files/img/${category}/${filename}`)
+    } else {
+      return `https://${BASE_URL[URL_REGION].imageRoot}/${category}/${filename}`
+    }
   },
   getAquariumImgUrl(filename) {
     return `https://ricecake500.gitee.io/pastry-fish-static-files/aquarium/${filename}`
@@ -47,5 +54,5 @@ function toRealIconId(iconId, hr = false) {
 }
 
 function iconIdToClass(iconId) {
-  return `bg-${toRealIconId(iconId)}`
+  return `bg-${toRealIconId(iconId)}${DevelopmentModeUtil.isElectron() ? '-local' : ''}`
 }
