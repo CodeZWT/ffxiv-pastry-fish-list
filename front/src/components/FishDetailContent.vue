@@ -129,6 +129,7 @@ export default {
         fishEyesIcon: DataUtil.iconIdToClass(DataUtil.ICON_FISH_EYES),
         // fishEyesText: DataUtil.secondsToMinutesString(fish.fishEyes),
         fishEyesSeconds: fish.fishEyes,
+        hasAnyPredators: hasPredators || hasShadowPredators,
         hasShadowPredators: hasShadowPredators,
         shadowPredators: this.shadowPredators,
         hasPredators: hasPredators,
@@ -178,12 +179,14 @@ export default {
         isCompleted: this.getFishCompleted(fish._id),
         addBuffSuffix: hasPredators && DataUtil.isAllAvailableFish(fish),
         hasTips: true, // DataUtil.hasTips(fish._id),
-        size: {
-          id: fishSize,
-          icon: ImgUtil.getImgUrl(`${fishSize}.webp`),
-          text: this.$t('size.' + fishSize),
-          sizeFactor: fishSize === 'small' ? 0.5 : fishSize === 'average' ? 0.8 : 1,
-        },
+        size: isSpear
+          ? {
+              id: fishSize,
+              icon: ImgUtil.getImgUrl(`${fishSize}.webp`),
+              text: this.$t('size.' + fishSize),
+              sizeFactor: fishSize === 'small' ? 0.5 : fishSize === 'average' ? 0.8 : 1,
+            }
+          : {},
         gig: fish.gig
           ? {
               id: fish.gig,

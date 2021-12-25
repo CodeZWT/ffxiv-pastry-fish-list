@@ -20,7 +20,6 @@
       <v-progress-linear
         :value="countDownRemainPercentage"
         height="25"
-        rounded
         :color="fishingColor"
       >
         <template v-slot="{ value }">
@@ -52,7 +51,7 @@
       "
       style="height: 100%"
     >
-      <v-progress-linear :value="100" height="25" rounded :color="fishingColor">
+      <v-progress-linear :value="100" height="25" :color="fishingColor">
         <template>
           <strong>{{ $t(fish.countDownTypeName) }}</strong>
         </template>
@@ -64,7 +63,7 @@
     </div>
   </div>
   <div v-else>
-    <v-progress-linear :value="100" height="25" rounded :color="fishingColor">
+    <v-progress-linear :value="100" height="25" :color="fishingColor">
       <template>
         <strong>{{ $t('detail.countDown.loading') }}</strong>
       </template>

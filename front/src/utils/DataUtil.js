@@ -1427,7 +1427,7 @@ export default {
     DetailItemRequirements: false,
     DetailItemBuffAndBaits: false,
     DetailItemFishWindowTable: 'hasCountDown',
-    DetailItemPredators: 'hasPredators',
+    DetailItemPredators: 'hasAnyPredators',
     DetailItemTips: 'hasTips',
     DetailItemAquarium: 'aquarium',
     DetailItemQuest: 'hasTasks',

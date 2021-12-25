@@ -12,7 +12,6 @@
           $emit('show-spot', { spotId: $event, mode: isSpear ? 'spear' : 'normal' })
         "
       />
-      <v-divider />
       <div
         :class="{
           'detail-header': inPane,
@@ -139,7 +138,7 @@ export default {
 @import "~@/styles/RcVariables"
 
 $detail-header-height: 104px
-$wrapper-detail: $detail-header-height + $divider-height + $button-height
+$wrapper-detail: $detail-header-height + $button-height
 
 .inner
   width: 100%
