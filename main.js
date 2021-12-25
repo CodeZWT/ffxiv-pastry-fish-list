@@ -36,6 +36,8 @@ const SETUP_EXE_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
 
+const OPCODE_URL = 'https://pastry-fish-static-1304006624.file.myqcloud.com/opcodes/opcodes.min.json'
+
 const WINDOWS = {}
 let tray, configStore, windowSetting, hotkeySetting, region, monitorType
 let intervalHandle
@@ -344,7 +346,7 @@ async function init() {
                 const options = {
                   region: newRegion,
                   monitorType: newMonitorType,
-                  opcodeUrl: 'https://pastry-fish-static-1304006624.file.myqcloud.com/opcodes/opcodes.min.json'
+                  opcodeUrl: OPCODE_URL
                   // opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
                 }
                 FishingDataReader.restart(options, () => {
@@ -356,7 +358,7 @@ async function init() {
             const options = {
               region: newRegion,
               monitorType: newMonitorType,
-              opcodeUrl: 'https://pastry-fish-static-1304006624.file.myqcloud.com/opcodes/opcodes.min.json'
+              opcodeUrl: OPCODE_URL
               // opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`,
             }
             FishingDataReader.restart(options, () => {
@@ -462,7 +464,7 @@ async function init() {
       startReaderOnce({
         region: readerConfig.region,
         monitorType: readerConfig.monitorType,
-        opcodeUrl: 'https://pastry-fish-static-1304006624.file.myqcloud.com/opcodes/opcodes.min.json'
+        opcodeUrl: OPCODE_URL
         // opcodeUrl: `https://cdn.jsdelivr.net/gh/RicecakeFC/FFXIVOpcodes@${remoteOpcodeVersion}/opcodes.min.json`
       })
 
