@@ -26,14 +26,10 @@
 </template>
 
 <script>
-import * as echarts from 'echarts'
 import ItemIcon from '@/components/basic/ItemIcon'
 import UploadUtil from '@/utils/UploadUtil'
 import _ from 'lodash'
-import themes from '@/components/echart-theme/theme'
-
-echarts.registerTheme('dark', themes.dark)
-echarts.registerTheme('light', themes.light)
+import echarts from '@/plugins/echarts'
 
 export default {
   name: 'BiteTimeChart',

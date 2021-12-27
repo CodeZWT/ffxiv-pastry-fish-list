@@ -47,7 +47,8 @@
 </template>
 
 <script>
-import * as echarts from 'echarts'
+import echarts from '@/plugins/echarts'
+
 import BAITS from 'Data/bait'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
@@ -55,10 +56,8 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import UploadUtil from '@/utils/UploadUtil'
 import _ from 'lodash'
 import themes from '@/components/echart-theme/theme'
-
 echarts.registerTheme('dark', themes.dark)
 echarts.registerTheme('light', themes.light)
-
 export default {
   name: 'BiteIntervalChart',
   components: { ItemIcon },
@@ -354,7 +353,7 @@ export default {
     combineBaitOption() {
       return {
         title: {
-          text: '咬钩时间分布',
+          text: 'Waterfall Chart',
         },
         tooltip: {
           trigger: 'item',

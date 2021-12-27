@@ -31,7 +31,7 @@
     "core-js": "^3.6.5",
     "detect-browser": "^5.2.0",
     "dexie": "^3.0.3",
-    "echarts": "^5.1.2",
+    "echarts": "^5.2.2",
     "flat": "^5.0.2",
     "hotkeys-js": "^3.8.1",
     "howler": "^2.2.0",

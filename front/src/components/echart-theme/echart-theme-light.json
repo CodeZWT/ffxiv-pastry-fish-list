@@ -123,53 +123,41 @@
   },
   "map": {
     "itemStyle": {
-      "normal": {
-        "areaColor": "#eeeeee",
-        "borderColor": "#aaaaaa",
-        "borderWidth": 0.5
-      },
-      "emphasis": {
+      "areaColor": "#eeeeee",
+      "borderColor": "#aaaaaa",
+      "borderWidth": 0.5
+    },
+    "label": {
+      "color": "#ffffff"
+    },
+    "emphasis": {
+      "itemStyle": {
         "areaColor": "rgba(63,177,227,0.25)",
         "borderColor": "#3fb1e3",
         "borderWidth": 1
-      }
-    },
-    "label": {
-      "normal": {
-        "textStyle": {
-          "color": "#ffffff"
-        }
       },
-      "emphasis": {
-        "textStyle": {
-          "color": "#3fb1e3"
-        }
+      "label": {
+        "color": "#3fb1e3"
       }
     }
   },
   "geo": {
     "itemStyle": {
-      "normal": {
-        "areaColor": "#eeeeee",
-        "borderColor": "#aaaaaa",
-        "borderWidth": 0.5
-      },
-      "emphasis": {
+      "areaColor": "#eeeeee",
+      "borderColor": "#aaaaaa",
+      "borderWidth": 0.5
+    },
+    "label": {
+      "color": "#ffffff"
+    },
+    "emphasis": {
+      "itemStyle": {
         "areaColor": "rgba(63,177,227,0.25)",
         "borderColor": "#3fb1e3",
         "borderWidth": 1
-      }
-    },
-    "label": {
-      "normal": {
-        "textStyle": {
-          "color": "#ffffff"
-        }
       },
-      "emphasis": {
-        "textStyle": {
-          "color": "#3fb1e3"
-        }
+      "label": {
+        "color": "#3fb1e3"
       }
     }
   },
@@ -188,15 +176,13 @@
     },
     "axisLabel": {
       "show": true,
-      "textStyle": {
-        "color": "#999999"
-      }
+      "color": "#999999"
     },
     "splitLine": {
       "show": true,
       "lineStyle": {
         "color": [
-          "#eeeeee"
+          "#d3d3d3"
         ]
       }
     },
@@ -225,15 +211,13 @@
     },
     "axisLabel": {
       "show": true,
-      "textStyle": {
-        "color": "#999999"
-      }
+      "color": "#999999"
     },
     "splitLine": {
       "show": true,
       "lineStyle": {
         "color": [
-          "#eeeeee"
+          "#d3d3d3"
         ]
       }
     },
@@ -262,15 +246,13 @@
     },
     "axisLabel": {
       "show": true,
-      "textStyle": {
-        "color": "#999999"
-      }
+      "color": "#999999"
     },
     "splitLine": {
       "show": true,
       "lineStyle": {
         "color": [
-          "#eeeeee"
+          "#d3d3d3"
         ]
       }
     },
@@ -299,15 +281,13 @@
     },
     "axisLabel": {
       "show": true,
-      "textStyle": {
-        "color": "#999999"
-      }
+      "color": "#999999"
     },
     "splitLine": {
       "show": true,
       "lineStyle": {
         "color": [
-          "#eeeeee"
+          "#d3d3d3"
         ]
       }
     },
@@ -323,10 +303,10 @@
   },
   "toolbox": {
     "iconStyle": {
-      "normal": {
-        "borderColor": "#999999"
-      },
-      "emphasis": {
+      "borderColor": "#999999"
+    },
+    "emphasis": {
+      "iconStyle": {
         "borderColor": "#666666"
       }
     }
@@ -354,40 +334,32 @@
       "width": 1
     },
     "itemStyle": {
-      "normal": {
-        "color": "#626c91",
-        "borderWidth": 1
-      },
-      "emphasis": {
-        "color": "#626c91"
-      }
+      "color": "#626c91",
+      "borderWidth": 1
     },
     "controlStyle": {
-      "normal": {
-        "color": "#626c91",
-        "borderColor": "#626c91",
-        "borderWidth": 0.5
-      },
-      "emphasis": {
-        "color": "#626c91",
-        "borderColor": "#626c91",
-        "borderWidth": 0.5
-      }
+      "color": "#626c91",
+      "borderColor": "#626c91",
+      "borderWidth": 0.5
     },
     "checkpointStyle": {
       "color": "#3fb1e3",
       "borderColor": "#3fb1e3"
     },
     "label": {
-      "normal": {
-        "textStyle": {
-          "color": "#626c91"
-        }
+      "color": "#626c91"
+    },
+    "emphasis": {
+      "itemStyle": {
+        "color": "#626c91"
       },
-      "emphasis": {
-        "textStyle": {
-          "color": "#626c91"
-        }
+      "controlStyle": {
+        "color": "#626c91",
+        "borderColor": "#626c91",
+        "borderWidth": 0.5
+      },
+      "label": {
+        "color": "#626c91"
       }
     }
   },
