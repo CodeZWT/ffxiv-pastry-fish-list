@@ -3,7 +3,7 @@ import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loade
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import Vuetify from 'vuetify/lib/framework'
+import Vuetify from 'vuetify/lib'
 import settings from '@/themes'
 
 if (DevelopmentModeUtil.isElectron()) {
