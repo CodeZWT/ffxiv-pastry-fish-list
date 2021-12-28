@@ -40,10 +40,10 @@
             </v-tooltip>
           </div>
           <v-btn @click="showSetting" x-small text>
-            <v-icon>mdi-cog</v-icon>
+            <v-icon>{{ mdiCog }}</v-icon>
           </v-btn>
           <v-btn @click.stop="handleCloseWindow" x-small text>
-            <v-icon>mdi-window-close</v-icon>
+            <v-icon>{{ mdiWindowClose }}</v-icon>
           </v-btn>
         </div>
       </v-system-bar>
@@ -57,6 +57,7 @@
 
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mdiCog, mdiWindowClose } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaTime from '@/utils/Time'
 import READER_ICON from 'Assets/reader.png'
@@ -77,6 +78,8 @@ export default {
     },
   },
   data: () => ({
+    mdiCog,
+    mdiWindowClose,
     readerIcon: READER_ICON,
     settingIcon: SETTING_ICON,
   }),

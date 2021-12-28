@@ -27,13 +27,10 @@
         </v-tooltip>
       </div>
       <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-cog</v-icon>
+        <v-icon>{{ mdiCog }}</v-icon>
       </v-btn>
-      <!--      <v-btn @click="minimize" x-small text style="-webkit-app-region: none">-->
-      <!--        <v-icon>mdi-window-minimize</v-icon>-->
-      <!--      </v-btn>-->
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-window-close</v-icon>
+        <v-icon>{{ mdiWindowClose }}</v-icon>
       </v-btn>
     </v-system-bar>
     <v-system-bar app v-else-if="showSettingBar">
@@ -41,7 +38,7 @@
       <span class="ml-1">渔捞设置</span>
       <v-spacer />
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-close</v-icon>
+        <v-icon>{{ mdiClose }}</v-icon>
       </v-btn>
     </v-system-bar>
     <v-system-bar app v-else-if="showHistoryBar">
@@ -49,10 +46,10 @@
       <span class="ml-1">历史记录</span>
       <v-spacer />
       <v-btn @click="toggleShowConfig" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-cog</v-icon>
+        <v-icon>{{ mdiCog }}</v-icon>
       </v-btn>
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-close</v-icon>
+        <v-icon>{{ mdiClose }}</v-icon>
       </v-btn>
     </v-system-bar>
     <v-system-bar app v-else-if="showSpotStatisticsBar">
@@ -60,7 +57,7 @@
       <span class="ml-1">钓场统计</span>
       <v-spacer />
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-close</v-icon>
+        <v-icon>{{ mdiClose }}</v-icon>
       </v-btn>
     </v-system-bar>
     <v-main>
@@ -74,6 +71,7 @@
 import '@thewakingsands/axis-font-icons'
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mdiClose, mdiCog, mdiWindowClose } from '@mdi/js'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaTime from '@/utils/Time'
@@ -87,6 +85,9 @@ export default {
   name: 'Reader',
   components: { ResizeIndicator },
   data: () => ({
+    mdiCog,
+    mdiWindowClose,
+    mdiClose,
     showHistoryConfig: false,
     now: Date.now(),
     closeMode: 'HIDE',

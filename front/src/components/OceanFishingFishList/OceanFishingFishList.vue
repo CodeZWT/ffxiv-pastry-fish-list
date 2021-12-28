@@ -70,7 +70,7 @@
           <v-badge
             v-if="item.isBaitUnique"
             :color="item.baitUniqueType === 'UNIQUE' ? 'primary' : 'grey'"
-            icon="mdi-lock"
+            :icon="mdiLock"
             offset-x="12"
             offset-y="12"
             :title="
@@ -172,6 +172,7 @@
 <script>
 import { OCEAN_FISHING_WEATHER } from 'Data/oceanFishing'
 import { mapGetters, mapMutations } from 'vuex'
+import { mdiLock } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import FishBiteTimeList from '@/components/FishBiteTimeList'
@@ -210,6 +211,7 @@ export default {
   },
   data() {
     return {
+      mdiLock,
       TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
       currentWeather: 0,
       currentShift: this.shift,

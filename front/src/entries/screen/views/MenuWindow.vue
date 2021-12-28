@@ -18,7 +18,6 @@
           height="38"
           contain
         ></v-img>
-        <!--        <v-icon large>mdi-cat</v-icon>-->
       </v-btn>
     </div>
   </screen-window>

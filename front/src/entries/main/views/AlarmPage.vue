@@ -49,7 +49,7 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" v-on="on" block color="error" class="rounded-t-0">
-                <v-icon>mdi-playlist-remove</v-icon>
+                <v-icon>{{ mdiPlaylistRemove }}</v-icon>
                 <span>{{ $t('list.toBeNotifiedIKDRoute.clearAll') }}</span>
                 <span>（共{{ voyages.length }}条）</span>
               </v-btn>
@@ -104,6 +104,7 @@
 <script>
 import { INTERVAL_HOUR } from 'Data/constants'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mdiPlaylistRemove } from '@mdi/js'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import FishDetail from '@/components/FishDetail'
 import FishFilterList from '@/components/basic/FishFilterList'
@@ -151,6 +152,7 @@ export default {
     'now',
   ],
   data: () => ({
+    mdiPlaylistRemove,
     showClearConfirmDialog: false,
     isElectron: DevelopmentModeUtil.isElectron(),
     openPanelIndex: undefined,

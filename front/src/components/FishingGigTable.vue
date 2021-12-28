@@ -27,9 +27,9 @@
             @mouseout="onCellHoverEnd(index)"
             class="text-center"
           >
-            <v-icon v-show="spotFish.gig === 'all' || spotFish.gig === gig"
-              >mdi-fish</v-icon
-            >
+            <v-icon v-show="spotFish.gig === 'all' || spotFish.gig === gig">{{
+              mdiFish
+            }}</v-icon>
           </td>
         </tr>
       </tbody>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { mdiFish } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 
@@ -49,6 +50,7 @@ export default {
   },
   data() {
     return {
+      mdiFish,
       GIGS: Object.keys(DataUtil.GIG_ICON).filter(it => it !== 'all'),
       GIG_ICON: DataUtil.GIG_ICON,
       currentCol: -1,

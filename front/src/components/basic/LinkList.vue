@@ -24,7 +24,7 @@
           <v-spacer />
           <click-helper @click.stop="emitClick" :copy-text="currLocaleName">
             <v-btn text icon small :title="$t('list.item.copyHint')">
-              <v-icon small>mdi-content-copy</v-icon>
+              <v-icon small>{{ mdiContentCopy }}</v-icon>
             </v-btn>
           </click-helper>
           <v-btn
@@ -35,7 +35,7 @@
             class="mr-1"
             title="设置默认跳转"
           >
-            <v-icon small>mdi-cog</v-icon>
+            <v-icon small>{{ mdiCog }}</v-icon>
           </v-btn>
         </div>
         <v-list dense v-if="nameList.length > 0">
@@ -55,7 +55,7 @@
             <v-list-item-action>
               <click-helper @click.stop="emitClick" :copy-text="localeItem.name">
                 <v-btn text icon small :title="$t('list.item.copyHint')">
-                  <v-icon small>mdi-content-copy</v-icon>
+                  <v-icon small>{{ mdiContentCopy }}</v-icon>
                 </v-btn>
               </click-helper>
             </v-list-item-action>
@@ -84,9 +84,7 @@
 
     <rc-dialog v-model="showConfigDialog" max-width="300">
       <v-card>
-        <v-card-title>
-          设置默认跳转
-        </v-card-title>
+        <v-card-title> 设置默认跳转 </v-card-title>
         <v-card-text>
           <v-list dense>
             <v-list-item-group color="primary" :value="defaultLinkIndex">
@@ -113,6 +111,7 @@
 <script>
 import { SystemInfo } from 'Data/version'
 import { mapGetters, mapMutations } from 'vuex'
+import { mdiCog, mdiContentCopy } from '@mdi/js'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
@@ -170,6 +169,8 @@ export default {
   },
   data() {
     return {
+      mdiContentCopy,
+      mdiCog,
       showConfigDialog: false,
     }
   },

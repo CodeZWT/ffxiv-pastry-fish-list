@@ -1,5 +1,6 @@
 <script>
 import { mapMutations } from 'vuex'
+import { mdiBrightnessAuto, mdiWeatherNight, mdiWeatherSunny } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import ImgUtil from '@/utils/ImgUtil'
@@ -10,7 +11,7 @@ export default {
     return {
       fisher: ImgUtil.getImgUrl('pastry-fish-star-light.webp', ImgUtil.CATEGORY.LOGO),
       THEME_SETTING_MODES: DataUtil.THEME_SETTING_MODES,
-      THEME_MODE_ICONS: ['mdi-weather-night', 'mdi-weather-sunny', 'mdi-brightness-auto'],
+      THEME_MODE_ICONS: [mdiWeatherNight, mdiWeatherSunny, mdiBrightnessAuto],
       isElectron: DevelopmentModeUtil.isElectron(),
       showMapMenu: false,
     }

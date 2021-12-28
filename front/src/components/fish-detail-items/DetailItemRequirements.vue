@@ -15,9 +15,7 @@
               type="weather"
             />
           </div>
-          <v-icon v-if="fish.previousWeatherSet.length > 0">
-            mdi-arrow-right
-          </v-icon>
+          <v-icon v-if="fish.previousWeatherSet.length > 0"> {{ mdiArrowRight }} </v-icon>
           <div
             v-for="(weather, index) in fish.weatherSetDetail"
             :key="`curr-${index}`"
@@ -59,14 +57,10 @@
                 <effect-icon :icon-class="iconIdToClass(11103)" />
               </div>
             </template>
-            <div>
-              时间条件在鱼眼模式下忽略
-            </div>
+            <div>时间条件在鱼眼模式下忽略</div>
           </v-tooltip>
         </div>
-        <div v-else-if="fish.checkInfo && fish.checkInfo.timeRestricted">
-          有时间限制
-        </div>
+        <div v-else-if="fish.checkInfo && fish.checkInfo.timeRestricted">有时间限制</div>
         <div v-else>
           {{ $t('none') }}
         </div>
@@ -77,6 +71,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { mdiArrowRight } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import WeatherIcon from '@/components/basic/WeatherIcon'
@@ -89,6 +84,11 @@ export default {
       type: Object,
       default: undefined,
     },
+  },
+  data() {
+    return {
+      mdiArrowRight,
+    }
   },
   computed: {
     isTimeCheckSkipped() {

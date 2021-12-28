@@ -21,7 +21,7 @@
             <v-badge
               v-if="firstBaitUnique"
               :color="baitUniqueType === 'UNIQUE' ? 'primary' : 'grey'"
-              icon="mdi-lock"
+              :icon="mdiLock"
               offset-x="12"
               offset-y="12"
               left
@@ -42,13 +42,13 @@
               small
             />
             <div style="width: 36px" class="d-flex justify-center" title="可套娃">
-              <v-icon v-if="bait.biteSelf" small>mdi-refresh</v-icon>
+              <v-icon v-if="bait.biteSelf" small>{{ mdiRefresh }}</v-icon>
             </div>
           </div>
         </link-list>
 
         <div v-if="!simple" style="display: flex; align-items: center">
-          <v-icon small>mdi-arrow-right</v-icon>
+          <v-icon small>{{ mdiArrowRight }}</v-icon>
         </div>
         <div
           class="d-flex flex-column align-center"
@@ -60,11 +60,17 @@
                 TUG_ICON_COLOR[bait.tugIcon]
               }`
             "
-            style="width: 100%; height: 16px;"
+            style="width: 100%; height: 16px"
           >
             <div
               v-show="bait.tug != null"
-              style="width: 100%; font-size: 12px; line-height: 1; text-align: center; padding-right: 0"
+              style="
+                width: 100%;
+                font-size: 12px;
+                line-height: 1;
+                text-align: center;
+                padding-right: 0;
+              "
             >
               {{ bait.tugIcon }}
             </div>
@@ -86,7 +92,6 @@
       </div>
     </div>
     <template v-if="target">
-      <!--      <v-icon v-if="!simple" small>mdi-arrow-right</v-icon>-->
       <item-icon :icon-class="target.icon" :title="target.name" />
       <template v-if="!hideQuantity && target.requiredCnt">
         <span class="mx-1">X</span>
@@ -112,15 +117,11 @@
     >
       <template v-slot:activator="{ on }">
         <v-btn text icon v-on="on">
-          <v-icon>
-            mdi-dots-vertical-circle-outline
-          </v-icon>
+          <v-icon>{{ mdiDotsVerticalCircleOutline }}</v-icon>
         </v-btn>
       </template>
       <v-card>
-        <v-card-title>
-          可行钓法
-        </v-card-title>
+        <v-card-title> 可行钓法 </v-card-title>
         <v-card-text>
           <div
             v-for="(catchPath, index) in target.availableBaitList"
@@ -143,6 +144,7 @@
 
 <script>
 import * as fishDict from 'Data/fish'
+import { mdiArrowRight, mdiDotsVerticalCircleOutline, mdiLock, mdiRefresh } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
@@ -182,6 +184,10 @@ export default {
     },
   },
   data: () => ({
+    mdiDotsVerticalCircleOutline,
+    mdiArrowRight,
+    mdiRefresh,
+    mdiLock,
     TUG_ICON_COLOR: DataUtil.TUG_ICON_COLOR,
   }),
   computed: {

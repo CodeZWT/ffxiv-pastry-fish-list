@@ -9,8 +9,8 @@
           <toggle-button
             :value="fish.pinned"
             @input="setPinned($event)"
-            checked-icon="mdi-pin"
-            unchecked-icon="mdi-pin-outline"
+            :checked-icon="mdiPin"
+            :unchecked-icon="mdiPinOutline"
             :checked-title="$t('actions.pin.checked')"
             :unchecked-title="$t('actions.pin.unchecked')"
           />
@@ -53,7 +53,7 @@
           <div class="d-flex align-center">
             <click-helper @click.stop :copy-text="fish.name">
               <v-btn text icon :title="$t('list.item.copyHint')">
-                <v-icon>mdi-content-copy</v-icon>
+                <v-icon>{{ mdiContentCopy }}</v-icon>
               </v-btn>
             </click-helper>
             <toggle-button
@@ -61,12 +61,12 @@
               :value="fish.toBeNotified"
               :title="$t('list.item.notificationHint')"
               @input="setToBeNotified($event)"
-              checked-icon="mdi-bell"
-              unchecked-icon="mdi-bell-outline"
+              :checked-icon="mdiBell"
+              :unchecked-icon="mdiBellOutline"
             />
             <div v-if="fish.hasTasks" class="mr-2">
               <v-icon title="含有任务及其他信息（默认在此窗口最下方）">
-                mdi-alert-circle-outline
+                {{ mdiAlertCircleOutline }}
               </v-icon>
             </div>
             <div
@@ -76,11 +76,11 @@
               "
               class="mr-2"
             >
-              <v-icon :title="fish.folklore.name">mdi-book-open-variant</v-icon>
+              <v-icon :title="fish.folklore.name">{{ mdiBookOpenVariant }}</v-icon>
             </div>
             <div v-if="fish.aquarium" class="mr-2">
               <v-icon :title="`[${fish.aquarium.size}] ${fish.aquarium.water}`">
-                mdi-fishbowl
+                {{ mdiFishbowl }}
               </v-icon>
             </div>
             <div v-if="fish.collectable">
@@ -90,7 +90,7 @@
         </div>
         <v-spacer />
         <v-btn v-if="showClose" @click="$emit('close')" plain icon>
-          <v-icon dark>mdi-close</v-icon>
+          <v-icon dark>{{ mdiClose }}</v-icon>
         </v-btn>
       </div>
     </v-col>
@@ -114,9 +114,9 @@
             @click="showSpot(fishingSpotToShow)"
             title="点击显示钓场"
           >
-            <v-icon left>mdi-notebook</v-icon>
+            <v-icon left>{{ mdiNotebook }}</v-icon>
             {{ fishingSpotToShow.fishingSpotName }}
-            <v-icon right v-if="fishingSpotsInMenu.length > 0">mdi-menu-down</v-icon>
+            <v-icon right v-if="fishingSpotsInMenu.length > 0">{{ mdiMenuDown }}</v-icon>
           </v-btn>
         </template>
 
@@ -137,6 +137,22 @@
 </template>
 
 <script>
+import {
+  mdiAlertCircleOutline,
+  mdiBell,
+  mdiBellOutline,
+  mdiBookOpenVariant,
+  mdiCheckboxBlankOutline,
+  mdiCheckboxMarked,
+  mdiClose,
+  mdiContentCopy,
+  mdiFishbowl,
+  mdiMenuDown,
+  mdiNotebook,
+  mdiPin,
+  mdiPinOutline,
+} from '@mdi/js'
+
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
@@ -177,6 +193,19 @@ export default {
     },
   },
   data: () => ({
+    mdiPinOutline,
+    mdiPin,
+    mdiFishbowl,
+    mdiClose,
+    mdiNotebook,
+    mdiMenuDown,
+    mdiBookOpenVariant,
+    mdiAlertCircleOutline,
+    mdiBell,
+    mdiCheckboxBlankOutline,
+    mdiCheckboxMarked,
+    mdiContentCopy,
+    mdiBellOutline,
     weatherChangeTrigger: 0,
   }),
   computed: {

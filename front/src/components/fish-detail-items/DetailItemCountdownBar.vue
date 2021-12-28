@@ -26,7 +26,7 @@
           <v-tooltip top color="secondary">
             <template v-slot:activator="{ on, attrs }">
               <div v-bind="attrs" v-on="on" class="d-flex align-center">
-                <v-icon size="20">mdi-alarm</v-icon>
+                <v-icon size="20">{{ mdiAlarm }}</v-icon>
                 <strong>
                   {{ $t(fish.countDownTypeName, { interval: countDownTimeText }) }}
                   ({{ value }}%)
@@ -58,7 +58,7 @@
       </v-progress-linear>
     </div>
     <div v-else class="d-flex justify-center">
-      <v-icon small color="warning">mdi-alert-outline</v-icon>
+      <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
       <span class="warning--text">开荒中</span>
     </div>
   </div>
@@ -73,6 +73,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { mdiAlarm, mdiAlertOutline } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import _ from 'lodash'
@@ -87,6 +88,8 @@ export default {
     },
   },
   data: () => ({
+    mdiAlarm,
+    mdiAlertOutline,
     FISHING: DataUtil.FISHING,
     WAITING: DataUtil.WAITING,
     loading: true,

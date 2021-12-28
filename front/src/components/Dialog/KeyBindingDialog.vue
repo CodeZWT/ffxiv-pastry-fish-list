@@ -16,7 +16,7 @@
                 <td>
                   <rc-tooltip message="修改">
                     <v-btn icon text @click="editHotkey(item, key)"
-                      ><v-icon small>mdi-pencil</v-icon></v-btn
+                      ><v-icon small>{{ mdiPencil }}</v-icon></v-btn
                     >
                   </rc-tooltip>
                 </td>
@@ -68,6 +68,7 @@
 <script>
 import { HiddenItems } from '@/entries/screen/store/keybinding'
 import { mapMutations, mapState } from 'vuex'
+import { mdiPencil } from '@mdi/js'
 import RcDialog from '@/components/basic/RcDialog'
 import RcTooltip from '@/components/basic/RcTooltip'
 
@@ -86,6 +87,7 @@ export default {
   },
   data() {
     return {
+      mdiPencil,
       showEditDialog: false,
       currentControlKeys: [],
       currentMainKey: '',

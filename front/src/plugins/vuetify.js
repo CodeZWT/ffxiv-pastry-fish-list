@@ -1,4 +1,4 @@
-import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
+// import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import Vue from 'vue'
@@ -97,5 +97,8 @@ export default new Vuetify({
   },
   lang: {
     t: (key, ...params) => i18n.t(key, params),
+  },
+  icons: {
+    iconfont: 'mdiSvg',
   },
 })

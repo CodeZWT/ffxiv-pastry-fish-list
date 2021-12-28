@@ -9,13 +9,11 @@
         <rc-dialog width="500">
           <template v-slot:activator="{ on, attrs }">
             <v-btn v-bind="attrs" v-on="on" text icon>
-              <v-icon>mdi-information</v-icon>
+              <v-icon>{{ mdiInformation }}</v-icon>
             </v-btn>
           </template>
           <v-card>
-            <v-card-title>
-              其他说明
-            </v-card-title>
+            <v-card-title> 其他说明 </v-card-title>
             <v-card-text>
               <div v-html="tip.extra"></div>
             </v-card-text>
@@ -35,7 +33,9 @@
 </template>
 
 <script>
+import { mdiInformation } from '@mdi/js'
 import RcDialog from '@/components/basic/RcDialog'
+
 export default {
   name: 'OceanFishingBlueFishTip',
   components: { RcDialog },
@@ -49,6 +49,11 @@ export default {
       type: Object,
       default: undefined,
     },
+  },
+  data() {
+    return {
+      mdiInformation,
+    }
   },
 }
 </script>

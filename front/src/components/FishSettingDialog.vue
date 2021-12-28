@@ -107,7 +107,7 @@
                     @click="requestSystemNotification"
                   >
                     <v-avatar left>
-                      <v-icon>mdi-alert</v-icon>
+                      <v-icon>{{ mdiAlert }}</v-icon>
                     </v-avatar>
                     {{
                       $t(
@@ -123,7 +123,7 @@
                     text-color="white"
                   >
                     <v-avatar left>
-                      <v-icon>mdi-alert</v-icon>
+                      <v-icon>{{ mdiAlert }}</v-icon>
                     </v-avatar>
                     {{
                       $t('setting.dialog.notification.message.notificationIsDeniedHint')
@@ -168,7 +168,7 @@
                           max="20"
                           step="1"
                           type="number"
-                          prepend-icon="mdi-alarm-note"
+                          :prepend-icon="mdiAlarmNote"
                           :error-messages="errors"
                           required
                         />
@@ -188,7 +188,7 @@
                         @click="playSound(setting.sound)"
                         :disabled="!sounds[setting.sound].player"
                       >
-                        <v-icon>mdi-play</v-icon>
+                        <v-icon>{{ mdiPlay }}</v-icon>
                       </v-btn>
                     </v-col>
                   </v-row>
@@ -222,7 +222,7 @@
                           max="14"
                           step="1"
                           type="number"
-                          prepend-icon="mdi-alarm-note"
+                          :prepend-icon="mdiAlarmNote"
                           :error-messages="errors"
                           required
                         />
@@ -242,7 +242,7 @@
                         @click="playSound(setting.sound)"
                         :disabled="!sounds[setting.sound].player"
                       >
-                        <v-icon>mdi-play</v-icon>
+                        <v-icon>{{ mdiPlay }}</v-icon>
                       </v-btn>
                     </v-col>
                   </v-row>
@@ -361,6 +361,7 @@ import {
 } from 'vee-validate'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import { max_value, min_value, required } from 'vee-validate/dist/rules'
+import { mdiAlarmNote, mdiAlert, mdiBellOutline, mdiPlay } from '@mdi/js'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
@@ -408,6 +409,10 @@ export default {
     },
   },
   data: () => ({
+    mdiPlay,
+    mdiAlarmNote,
+    mdiAlert,
+    mdiBellOutline,
     NOTIFICATION_SOUNDS: DataUtil.NOTIFICATION_SOUNDS,
     lazyOpacity: undefined,
     lazyZoomFactor: undefined,

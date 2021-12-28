@@ -39,16 +39,16 @@
                             <v-badge inline content="!" color="success"></v-badge>
                             <v-badge inline content="< 10s" color="transparent"></v-badge>
                           </span>
-                          <v-icon small>mdi-chevron-right</v-icon>
+                          <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span
                             ><item-icon :icon-class="iconIdToClass(29716)" small
                           /></span>
                           <span class="d-flex flex-column" style="margin: 0 10px">
                             <v-badge inline content="!!!" color="warning"></v-badge>
                           </span>
-                          <v-icon small>mdi-chevron-right</v-icon>
+                          <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span><item-icon :icon-class="iconIdToClass(28459)"/></span>
-                          996 <v-icon>mdi-plus-circle</v-icon>
+                          996 <v-icon>{{ mdiPlusCircle }}</v-icon>
                         </div>
 
                         <div class="d-flex align-center">
@@ -59,14 +59,14 @@
                             />
                             <span style="margin: 0 35px 0 4px">时也可</span>
                           </div>
-                          <v-icon>mdi-subdirectory-arrow-right</v-icon>
+                          <v-icon>{{ mdiSubdirectoryArrowRight }}</v-icon>
                           <span class="d-flex flex-column">
                             <v-badge inline content="!!!" color="warning"></v-badge>
                             <v-badge inline content="> 30s" color="transparent"></v-badge>
                           </span>
-                          <v-icon small>mdi-chevron-right</v-icon>
+                          <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span><item-icon :icon-class="iconIdToClass(29749)"/></span>
-                          1078 <v-icon>mdi-plus-circle</v-icon>
+                          1078 <v-icon>{{ mdiPlusCircle }}</v-icon>
                         </div>
 
                         <v-subheader class="px-0">旋风云海</v-subheader>
@@ -80,7 +80,7 @@
                             <v-badge inline content="!" color="success"></v-badge>
                             <v-badge inline content="< 10s" color="transparent"></v-badge>
                           </span>
-                          <v-icon small>mdi-chevron-right</v-icon>
+                          <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span
                             ><item-icon :icon-class="iconIdToClass(29716)" small
                           /></span>
@@ -88,9 +88,9 @@
                             <v-badge inline content="!!" color="error"></v-badge>
                             <v-badge inline content="> 20s" color="transparent"></v-badge>
                           </span>
-                          <v-icon small>mdi-chevron-right</v-icon>
+                          <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span><item-icon :icon-class="iconIdToClass(29054)"/></span>
-                          911 <v-icon>mdi-plus-circle</v-icon>
+                          911 <v-icon>{{ mdiPlusCircle }}</v-icon>
                         </div>
                         <div class="d-flex align-center">
                           <div style="min-width: 113px" class="d-flex align-center">
@@ -100,14 +100,14 @@
                             />
                             <span style="margin: 0 35px 0 4px">时也可</span>
                           </div>
-                          <v-icon>mdi-subdirectory-arrow-right</v-icon>
+                          <v-icon>{{ mdiSubdirectoryArrowRight }}</v-icon>
                           <span class="d-flex flex-column">
                             <v-badge inline content="!!!" color="warning"></v-badge>
                             <v-badge inline content="> 30s" color="transparent"></v-badge>
                           </span>
-                          <v-icon small>mdi-chevron-right</v-icon>
+                          <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span><item-icon :icon-class="iconIdToClass(29747)"/></span>
-                          982 <v-icon>mdi-plus-circle</v-icon>
+                          982 <v-icon>{{ mdiPlusCircle }}</v-icon>
                         </div>
                         <v-subheader class="px-0">注：</v-subheader>
                         <ul>
@@ -211,6 +211,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+import { mdiChevronRight, mdiPlusCircle, mdiSubdirectoryArrowRight } from '@mdi/js'
 import DIADEM from 'Data/diadem'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
@@ -230,6 +231,9 @@ export default {
   props: ['original'],
   data() {
     return {
+      mdiChevronRight,
+      mdiPlusCircle,
+      mdiSubdirectoryArrowRight,
       regionTerritorySpots: regionTerritorySpots,
       tipMaps: [
         ImgUtil.getImgUrl('diadem-tip-map-grade2.webp'),

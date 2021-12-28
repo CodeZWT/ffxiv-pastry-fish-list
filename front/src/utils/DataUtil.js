@@ -4,6 +4,13 @@ import { Howl } from 'howler'
 import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
 import { SystemInfo } from 'Data/version'
 import { detect } from 'detect-browser'
+import {
+  mdiBell,
+  mdiFormatListText,
+  mdiWeatherNight,
+  mdiWeatherSunny,
+  mdiWeatherSunset,
+} from '@mdi/js'
 import CONSTANTS, { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import DATA from 'Data/data'
 import DATA_CN, { LIVING_LEGENDS } from 'Data/translation'
@@ -746,12 +753,7 @@ export default {
   },
 
   timeId2TimeIcon(timeId) {
-    const timeTextList = [
-      null,
-      'mdi-weather-sunny',
-      'mdi-weather-sunset',
-      'mdi-weather-night',
-    ]
+    const timeTextList = [null, mdiWeatherSunny, mdiWeatherSunset, mdiWeatherNight]
     return timeTextList[timeId]
   },
 
@@ -979,7 +981,7 @@ export default {
   isOceanFishingNormalSpot: isOceanFishingNormalSpot,
   isOceanFishingCurrentSpot: isOceanFishingCurrentSpot,
   shift2Icon(shift) {
-    const shiftIconDict = ['mdi-weather-sunny', 'mdi-weather-sunset', 'mdi-weather-night']
+    const shiftIconDict = [mdiWeatherSunny, mdiWeatherSunset, mdiWeatherNight]
     return shiftIconDict[shift]
   },
   assembleAquarium(aquarium, fishData) {
@@ -1451,9 +1453,8 @@ export default {
   TAB_INDEX_TO_BE_NOTIFIED: 1,
 
   TABS: [
-    // { icon: 'mdi-pin', title: 'list.pinTitle' },
-    { icon: 'mdi-format-list-text', title: 'list.normalTitle' },
-    { icon: 'mdi-bell', title: 'list.toBeNotifiedTitle' },
+    { icon: mdiFormatListText, title: 'list.normalTitle' },
+    { icon: mdiBell, title: 'list.toBeNotifiedTitle' },
   ],
 
   NOTIFICATION_SOUNDS: NOTIFICATION_SOUNDS,

@@ -7,7 +7,7 @@
           <v-list>
             <v-list-item @click="showMainSetting">
               <v-list-item-icon>
-                <v-icon>mdi-cog</v-icon>
+                <v-icon>{{ mdiCog }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title> 主界面{{ $t('top.uiConfig') }} </v-list-item-title>
@@ -15,7 +15,7 @@
             </v-list-item>
             <v-list-item @click="showReaderSetting">
               <v-list-item-icon>
-                <v-icon>mdi-fish</v-icon>
+                <v-icon>{{ mdiFish }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title> 渔捞{{ $t('top.uiConfig') }} </v-list-item-title>
@@ -23,7 +23,7 @@
             </v-list-item>
             <v-list-item @click="showKeybindingDialog = true">
               <v-list-item-icon>
-                <v-icon>mdi-keyboard</v-icon>
+                <v-icon>{{ mdiKeyboard }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>
@@ -33,7 +33,7 @@
             </v-list-item>
             <v-list-item @click="showScreenSettingDialog = true">
               <v-list-item-icon>
-                <v-icon>mdi-monitor</v-icon>
+                <v-icon>{{ mdiMonitor }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>
@@ -44,7 +44,7 @@
 
             <v-list-item @click="showPatchNote">
               <v-list-item-icon>
-                <v-icon>mdi-tag</v-icon>
+                <v-icon>{{ mdiTag }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>{{ $t('top.patchNote') }}</v-list-item-title>
@@ -53,7 +53,7 @@
 
             <v-list-item @click="showAboutDialog">
               <v-list-item-icon>
-                <v-icon>mdi-information</v-icon>
+                <v-icon>{{ mdiInformation }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>{{ $t('top.about') }}</v-list-item-title>
@@ -75,6 +75,7 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import { mdiCog, mdiFish, mdiInformation, mdiKeyboard, mdiMonitor, mdiTag } from '@mdi/js'
 import KeyBindingDialog from '@/components/Dialog/KeyBindingDialog'
 import RcDialog from '@/components/basic/RcDialog'
 import ScreenSettingDialog from '@/components/Dialog/ScreenSettingDialog'
@@ -90,6 +91,12 @@ export default {
   },
   data() {
     return {
+      mdiCog,
+      mdiFish,
+      mdiKeyboard,
+      mdiMonitor,
+      mdiTag,
+      mdiInformation,
       showKeybindingDialog: false,
     }
   },

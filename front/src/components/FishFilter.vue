@@ -23,11 +23,11 @@
                       <div class="mr-2 ml-4">{{ version }}</div>
                       <v-btn text small @click="checkAll(version)">
                         全选
-                        <v-icon>mdi-check-all</v-icon>
+                        <v-icon>{{ mdiCheckAll }}</v-icon>
                       </v-btn>
                       <v-btn text small @click="uncheckAll(version)">
                         清空
-                        <v-icon>mdi-close</v-icon>
+                        <v-icon>{{ mdiClose }}</v-icon>
                       </v-btn>
                     </div>
                     <v-btn-toggle
@@ -62,19 +62,6 @@
                       {{ $t(`filter.bigFish.${type}`) }}
                     </v-btn>
                   </v-btn-toggle>
-                  <!--                  <v-tooltip bottom>-->
-                  <!--                    <template v-slot:activator="{ on, attrs }">-->
-                  <!--                      <v-icon v-bind="attrs" v-on="on" class="mx-1">-->
-                  <!--                        mdi-help-circle-outline-->
-                  <!--                      </v-icon>-->
-                  <!--                    </template>-->
-                  <!--                    <div>-->
-                  <!--                      默认列表中不包括没有时间与天气限制的普通鱼。（当前版本的鱼除外，仍会显示）-->
-                  <!--                    </div>-->
-                  <!--                    <div>-->
-                  <!--                      请直接搜索，或进入图鉴页面查看。也可以使用固定功能可以将鱼显示在固定列表中。-->
-                  <!--                    </div>-->
-                  <!--                  </v-tooltip>-->
                 </v-col>
                 <v-col :cols="isMobile ? 12 : 6">
                   <div class="subtitle-2 ml-2">
@@ -178,6 +165,7 @@
 
 <script>
 import { SystemInfo } from 'Data/version'
+import { mdiCheckAll, mdiClose } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import mapValues from 'lodash/mapValues'
 
@@ -206,6 +194,8 @@ export default {
   },
   data() {
     return {
+      mdiCheckAll,
+      mdiClose,
       patches: PATCHES,
       exVersion: Object.keys(PATCHES),
       patchSelectedIndices: mapValues(PATCHES, () => []),

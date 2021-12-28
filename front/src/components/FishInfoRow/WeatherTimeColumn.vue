@@ -40,7 +40,7 @@
             />
           </div>
           <v-icon v-if="fish.previousWeatherSet.length > 0" small>
-            mdi-arrow-right
+            {{ mdiArrowRight }}
           </v-icon>
           <div
             v-for="weather in fish.weatherSetDetail"
@@ -82,6 +82,7 @@
 <script>
 import { SystemInfo } from 'Data/version'
 import { mapGetters } from 'vuex'
+import { mdiArrowRight, mdiHelpCircle, mdiInformation } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import RcTooltip from '@/components/basic/RcTooltip'
@@ -96,6 +97,13 @@ export default {
       default: () => ({}),
     },
   },
+  data() {
+    return {
+      mdiArrowRight,
+      mdiHelpCircle,
+      mdiInformation,
+    }
+  },
   computed: {
     ...mapGetters(['fishEyesUsed']),
     isTimeCheckSkipped() {
@@ -106,7 +114,7 @@ export default {
         case 33244:
           return {
             time: {
-              icon: 'mdi-help-circle',
+              icon: mdiHelpCircle,
               comment:
                 '根据咬钩报告，长吻帆蜥鱼窗口期拓展至ET 2:01，更多的拓展空间请自行探索。同时也欢迎汇报范围外的数据。',
             },
@@ -114,7 +122,7 @@ export default {
         case 4906:
           return {
             all: {
-              icon: 'mdi-information',
+              icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
                   fish: '鹦鹉螺',
@@ -127,7 +135,7 @@ export default {
         case 4918:
           return {
             all: {
-              icon: 'mdi-information',
+              icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
                   fish: '腔棘鱼',
@@ -140,7 +148,7 @@ export default {
         case 52004903:
           return {
             all: {
-              icon: 'mdi-information',
+              icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
                   fish: '银鲨',
@@ -154,7 +162,7 @@ export default {
         case 8763:
           return {
             all: {
-              icon: 'mdi-information',
+              icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
                   fish: '杀手库诺',
@@ -167,7 +175,7 @@ export default {
         case 8775:
           return {
             all: {
-              icon: 'mdi-information',
+              icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
                   fish: '波太郎',
@@ -180,7 +188,7 @@ export default {
         case 24992:
           return {
             all: {
-              icon: 'mdi-information',
+              icon: mdiInformation,
               comment:
                 '胸脊鲨只有时间限制，左侧显示的倒计时根据雕塑家窗口期进行“转换”。<br />' +
                 '转换指：无论雕塑家是12-16ET或16-18ET或12-18ET，胸脊鲨的窗口期视为当天的16-18ET。<br />' +
@@ -191,7 +199,7 @@ export default {
         case 24994:
           return {
             all: {
-              icon: 'mdi-information',
+              icon: mdiInformation,
               comment:
                 '七彩天主没有天气与时间限制，左侧显示的倒计时根据绿彩鱼窗口期进行“拓展”。<br />' +
                 '拓展指：若绿彩鱼当天的窗口期为8-16ET，则向前拓展，变为0-16ET。<br />' +
@@ -205,7 +213,7 @@ export default {
         case 24203:
           return {
             all: {
-              icon: 'mdi-information',
+              icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
                   fish: '蓝彩鱼',
@@ -218,7 +226,7 @@ export default {
         case 23056:
           return {
             all: {
-              icon: 'mdi-information',
+              icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
                   fish: '橙彩鱼',
@@ -231,7 +239,7 @@ export default {
         case 33240:
           return {
             all: {
-              icon: 'mdi-information',
+              icon: mdiInformation,
               comment:
                 '自走鱼偶只有时间限制，左侧显示的倒计时根据变影鱼窗口期进行“拓展”。<br />' +
                 '拓展指：自走鱼偶的窗口期视为可钓上变影鱼的当天10-16ET。<br />' +

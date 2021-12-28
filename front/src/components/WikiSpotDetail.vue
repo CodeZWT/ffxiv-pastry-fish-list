@@ -9,7 +9,7 @@
         icon
         style="position: absolute; right: 0"
       >
-        <v-icon>mdi-close</v-icon>
+        <v-icon>{{ mdiClose }}</v-icon>
       </v-btn>
     </div>
     <v-divider />
@@ -28,7 +28,7 @@
       <template v-if="mode === 'normal'">
         <v-col cols="12" class="my-1">
           <v-btn block tile color="primary" @click="showAboutChartDialog = true">
-            <v-icon>mdi-information</v-icon>
+            <v-icon>{{ mdiInformation }}</v-icon>
             关于数据统计图
           </v-btn>
         </v-col>
@@ -147,7 +147,7 @@
                   </div>
                   <click-helper @click.stop :copy-text="currentMapInfo.name">
                     <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
-                      <v-icon>mdi-content-copy</v-icon>
+                      <v-icon>{{ mdiContentCopy }}</v-icon>
                     </v-btn>
                   </click-helper>
                   <!--                    {{ currentMapInfo }}-->
@@ -180,6 +180,8 @@
 </template>
 
 <script>
+import { mdiClose, mdiContentCopy, mdiInformation } from '@mdi/js'
+
 import DataUtil from '@/utils/DataUtil'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import rcapiService from '@/service/rcapiService'
@@ -242,6 +244,9 @@ export default {
   },
   data() {
     return {
+      mdiInformation,
+      mdiContentCopy,
+      mdiClose,
       showAboutChartDialog: false,
       spotRecordCountCache: {},
       spotBiteIntervalCache: {},

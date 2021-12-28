@@ -8,7 +8,7 @@
               <v-menu v-model="showSpotMenu" offset-x top>
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn icon text v-bind="attrs" v-on="on">
-                    <v-icon>mdi-view-list</v-icon>
+                    <v-icon>{{ mdiViewList }}</v-icon>
                   </v-btn>
                 </template>
                 <v-list>
@@ -82,7 +82,7 @@
             </div>
             <click-helper @click.stop :copy-text="currentSpot.fishingSpotName">
               <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
-                <v-icon>mdi-content-copy</v-icon>
+                <v-icon>{{ mdiContentCopy }}</v-icon>
               </v-btn>
             </click-helper>
           </div>
@@ -114,6 +114,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import { mdiContentCopy, mdiViewList } from '@mdi/js'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
@@ -141,6 +142,8 @@ export default {
     },
   },
   data: vm => ({
+    mdiViewList,
+    mdiContentCopy,
     currentSpotIndex: 0,
     lazyExpansionValue: vm.expanded ? 0 : undefined,
     showSpotMenu: false,

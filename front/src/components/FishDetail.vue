@@ -38,7 +38,7 @@
     <template v-else>
       <div class="d-flex fill-height align-center justify-center">
         <div class="d-flex align-center">
-          <v-icon x-large>mdi-fish</v-icon>
+          <v-icon x-large>{{ mdiFish }}</v-icon>
           <div>请选择鱼以显示详情</div>
         </div>
       </div>
@@ -48,6 +48,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+import { mdiFish } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import FIX from 'Data/fix'
@@ -84,6 +85,11 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      mdiFish,
+    }
   },
   computed: {
     ...mapState(['window']),

@@ -11,7 +11,7 @@
       <rc-text-field
         :value="value"
         :label="label"
-        prepend-icon="mdi-calendar"
+        :prepend-icon="mdiCalendar"
         readonly
         v-bind="attrs"
         v-on="on"
@@ -29,6 +29,7 @@
 
 <script>
 import { DateTime } from 'luxon'
+import { mdiCalendar } from '@mdi/js'
 import RcTextField from '@/components/basic/RcTextField'
 
 export default {
@@ -46,6 +47,7 @@ export default {
   },
   data() {
     return {
+      mdiCalendar,
       menu: false,
     }
   },

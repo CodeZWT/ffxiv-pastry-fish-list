@@ -367,7 +367,7 @@
             <v-row>
               <v-col cols="12">
                 <v-btn @click="refresh">
-                  <v-icon>mdi-refresh</v-icon>
+                  <v-icon>{{ mdiRefresh }}</v-icon>
                 </v-btn>
               </v-col>
               <v-col cols="12">
@@ -400,9 +400,9 @@
                   </template>
                   <template v-slot:item.finished="{ item }">
                     <div class="d-flex align-center">
-                      <v-icon v-if="item.finished" color="primary"
-                        >mdi-check-decagram</v-icon
-                      >
+                      <v-icon v-if="item.finished" color="primary">{{
+                        mdiCheckDecagram
+                      }}</v-icon>
                     </div>
                   </template>
                 </v-data-table>
@@ -642,7 +642,7 @@
                   </template>
                   <template v-slot:item.isStrictMode="{ item }">
                     <div class="d-flex align-center">
-                      <v-icon v-if="item.isStrictMode">mdi-flag</v-icon>
+                      <v-icon v-if="item.isStrictMode">{{ mdiFlag }}</v-icon>
                     </div>
                   </template>
                   <template v-slot:item.actions="{ item }">
@@ -655,9 +655,7 @@
                       :title="item.isStrictMode ? '取消严格标记' : '添加严格标记'"
                     >
                       <v-icon>
-                        {{
-                          item.isStrictMode ? 'mdi-flag-remove-outline' : 'mdi-flag-plus'
-                        }}
+                        {{ item.isStrictMode ? mdiFlagRemoveOutline : mdiFlagPlus }}
                       </v-icon>
                     </v-btn>
                     <v-btn
@@ -667,7 +665,7 @@
                       color="error"
                       @click="handleTryDelete(item)"
                     >
-                      <v-icon>mdi-delete</v-icon>
+                      <v-icon>{{ mdiDelete }}</v-icon>
                     </v-btn>
                   </template>
                 </v-data-table>
@@ -695,6 +693,14 @@
 
 <script>
 import { Global as FishingSpotsGlobal } from 'Data/patch/fishingSpots'
+import {
+  mdiCheckDecagram,
+  mdiDelete,
+  mdiFlag,
+  mdiFlagPlus,
+  mdiFlagRemoveOutline,
+  mdiRefresh,
+} from '@mdi/js'
 import BAITS from 'Data/bait'
 import BiteTimeChart from '@/components/BiteTimeChart'
 import Constants from 'Data/constants'
@@ -734,6 +740,12 @@ export default {
   },
   data() {
     return {
+      mdiRefresh,
+      mdiCheckDecagram,
+      mdiFlag,
+      mdiFlagRemoveOutline,
+      mdiFlagPlus,
+      mdiDelete,
       showDeleteAlert: false,
       recordToRemove: undefined,
       currentUserId: undefined,

@@ -9,7 +9,7 @@
       type="info"
       elevation="2"
       class="rounded-0"
-      icon="mdi-format-list-checks"
+      :icon="mdiFormatListChecks"
       color="secondary"
     >
       <div class="d-flex align-center my-1">
@@ -17,7 +17,7 @@
         <v-spacer />
         <v-btn text outlined @click="goTo(task)">
           查看任务详细
-          <v-icon right>mdi-link-variant</v-icon>
+          <v-icon right>{{ mdiLinkVariant }}</v-icon>
         </v-btn>
       </div>
 
@@ -54,27 +54,14 @@
       </div>
     </v-alert>
   </div>
-  <!--  <v-expansion-panels hover flat tile>-->
-  <!--    <v-expansion-panel class="system">-->
-  <!--      <v-expansion-panel-header class="system">-->
-  <!--        <div style="display: flex; justify-content: center">-->
-  <!--          <div>-->
-  <!--            <v-icon>mdi-fishbowl</v-icon>-->
-  <!--            {{ $t('setting.dialog.detailArrangement.itemNames.DetailItemAquarium') }}-->
-  <!--          </div>-->
-  <!--        </div>-->
-  <!--      </v-expansion-panel-header>-->
-  <!--      <v-expansion-panel-content>-->
-  <!--        <fish-aquarium :fish="fish.aquarium" class="mt-2" />-->
-  <!--      </v-expansion-panel-content>-->
-  <!--    </v-expansion-panel>-->
-  <!--  </v-expansion-panels>-->
 </template>
 
 <script>
+import { mdiFormatListChecks, mdiLinkVariant } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import LinkList from '@/components/basic/LinkList'
+
 export default {
   name: 'DetailItemQuest',
   components: { LinkList, ItemIcon },
@@ -89,6 +76,8 @@ export default {
     // },
   },
   data: () => ({
+    mdiLinkVariant,
+    mdiFormatListChecks,
     // lazyExpansionValue: vm.expanded ? 0 : undefined,
   }),
   methods: {

@@ -30,8 +30,8 @@
               <toggle-button
                 :value="hasAlarm(voyage.id)"
                 @input="setAlarm(voyage.id, $event)"
-                checked-icon="mdi-bell"
-                unchecked-icon="mdi-bell-outline"
+                :checked-icon="mdiBell"
+                :unchecked-icon="mdiBellOutline"
                 :checked-title="$t('actions.toBeNotifiedLocked.checked')"
                 :unchecked-title="$t('actions.toBeNotifiedLocked.unchecked')"
               />
@@ -80,7 +80,7 @@
                 :key="index"
                 class="d-flex align-center"
               >
-                <v-icon v-if="index !== 0" color="grey">mdi-arrow-right</v-icon>
+                <v-icon v-if="index !== 0" color="grey">{{ mdiArrowRight }}</v-icon>
                 <div class="mx-1 d-flex align-center">
                   <span>{{ location.name }}</span>
                   <v-icon :title="location.hint">{{ location.icon }}</v-icon>
@@ -95,6 +95,7 @@
 </template>
 
 <script>
+import { mdiArrowRight, mdiBell, mdiBellOutline } from '@mdi/js'
 import ItemIcon from '@/components/basic/ItemIcon'
 import OceanFishingTimeTableContentMixin from '@/components/OceanFishing54/OceanFishingTimeTable/OceanFishingTimeTableContentMixin'
 import ToggleButton from '@/components/basic/ToggleButton'
@@ -107,6 +108,13 @@ export default {
     voyages: { type: Array, default: () => [] },
     showCurrentRouteIndicator: { type: Boolean, default: false },
     currentVoyageIndex: { type: Number, default: -1 },
+  },
+  data() {
+    return {
+      mdiBell,
+      mdiBellOutline,
+      mdiArrowRight,
+    }
   },
 }
 </script>

@@ -11,14 +11,21 @@
       <slot name="description">description</slot>
     </v-card-subtitle>
     <v-icon style="position: absolute; right: 4px; bottom: 4px" large>
-      mdi-arrow-right-circle-outline
+      {{ mdiArrowRightCircleOutline }}
     </v-icon>
   </v-card>
 </template>
 
 <script>
+import { mdiArrowRightCircleOutline } from '@mdi/js'
+
 export default {
   name: 'HomePageCard',
+  data() {
+    return {
+      mdiArrowRightCircleOutline,
+    }
+  },
 }
 </script>
 

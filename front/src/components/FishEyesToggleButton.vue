@@ -5,8 +5,8 @@
         <toggle-button
           :value="value"
           @input="$emit('input')"
-          checked-icon="mdi-eye"
-          unchecked-icon="mdi-eye-off"
+          :checked-icon="mdiEye"
+          :unchecked-icon="mdiEyeOff"
           checked-title="点击关闭鱼眼模式"
           unchecked-title="点击开启鱼眼模式"
         />
@@ -39,6 +39,7 @@
 
 <script>
 import { SystemInfo } from 'Data/version'
+import { mdiEye, mdiEyeOff } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import ToggleButton from '@/components/basic/ToggleButton'
@@ -55,6 +56,12 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      mdiEye,
+      mdiEyeOff,
+    }
   },
   computed: {
     isGlobal() {

@@ -16,7 +16,7 @@
             <v-expansion-panel-header class="system">
               <div style="display: flex; justify-content: center">
                 <div>
-                  <v-icon>mdi-information</v-icon>
+                  <v-icon>{{ mdiInformation }}</v-icon>
                   说明
                 </div>
               </div>
@@ -221,6 +221,7 @@
 import { AQUARIUMS, AQUARIUM_FISH_SIZE, AQUARIUM_WATER } from 'Data/fix'
 import { CN_PATCH_VERSION } from 'Data/constants'
 import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
+import { mdiInformation } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import FishAquarium from '@/components/FishAquarium'
@@ -238,6 +239,7 @@ export default {
   props: ['original'],
   data() {
     return {
+      mdiInformation,
       aquariumSettingImg: ImgUtil.getImgUrl('aquarium-setting.webp'),
       isElectron: DevelopmentModeUtil.isElectron(),
       sizeIndicesToShow: Object.keys(AQUARIUM_FISH_SIZE).map(it => it - 1),

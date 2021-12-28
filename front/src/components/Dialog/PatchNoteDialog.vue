@@ -134,7 +134,10 @@
           <li>修正感谢名单排序错误</li>
           <li>爱发电支持自选金额发电</li>
           <li>
-            为所有根据以小钓大或鱼识前置鱼有所调整的鱼增加说明（鼠标悬停<v-icon>mdi-information</v-icon>查看）
+            为所有根据以小钓大或鱼识前置鱼有所调整的鱼增加说明（鼠标悬停<v-icon>{{
+              mdiInformation
+            }}</v-icon
+            >查看）
           </li>
           <li>
             增加海钓闹钟，在海钓航班处可以选择添加航班闹钟。闹钟列表与设置也增加了相应的内容
@@ -175,6 +178,7 @@
 </template>
 
 <script>
+import { mdiInformation } from '@mdi/js'
 import PatchNoteHistory from '@/components/Dialog/PatchNoteHistory'
 import RcDialog from '@/components/basic/RcDialog'
 
@@ -194,6 +198,11 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      mdiInformation,
+    }
   },
   methods: {
     onConfirmPatchNote() {

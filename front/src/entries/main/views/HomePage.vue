@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="d-flex align-center">
-                  <v-icon color="warning" class="mr-1">mdi-alert-outline</v-icon>
+                  <v-icon color="warning" class="mr-1">{{ mdiAlertOutline }}</v-icon>
                   开启国际服模式时，注意可能的剧透！
                 </div>
               </v-card-text>
@@ -50,18 +50,18 @@
               <v-list dense color="inner">
                 <v-list-item>
                   <v-list-item-avatar>
-                    <v-icon>mdi-account</v-icon>
+                    <v-icon>{{ mdiAccount }}</v-icon>
                   </v-list-item-avatar>
                   <v-list-item-title> 红豆年糕 @ 海猫茶屋 </v-list-item-title>
                 </v-list-item>
                 <v-list-item @click="openQQ">
                   <v-list-item-avatar>
-                    <v-icon>mdi-qqchat</v-icon>
+                    <v-icon>{{ mdiQqchat }}</v-icon>
                   </v-list-item-avatar>
                   <v-list-item-title> 鱼糕检修部（1153646847） </v-list-item-title>
                   <!--                <v-list-item-action>-->
                   <!--                  <rc-tooltip>-->
-                  <!--                    <v-icon>mdi-qrcode</v-icon>-->
+                  <!--{{                    <vIcon>mdiQrcode</vIcon>}}-->
                   <!--                    <template v-slot:msg>-->
                   <!--                      qrcode-->
                   <!--                    </template>-->
@@ -71,12 +71,12 @@
                 <v-list-item @click="openQQGuild">
                   <v-list-item-avatar>
                     <!--                    <span style="font-size: x-large">#</span>-->
-                    <v-icon>mdi-qqchat</v-icon>
+                    <v-icon>{{ mdiQqchat }}</v-icon>
                   </v-list-item-avatar>
                   <v-list-item-title>FF14 捕鱼人研究会</v-list-item-title>
                   <!--                <v-list-item-action>-->
                   <!--                  <rc-tooltip>-->
-                  <!--                    <v-icon>mdi-qrcode</v-icon>-->
+                  <!--{{                    <vIcon>mdiQrcode</vIcon>}}-->
                   <!--                    <template v-slot:msg>-->
                   <!--                      qrcode-->
                   <!--                    </template>-->
@@ -85,13 +85,13 @@
                 </v-list-item>
                 <v-list-item @click="openWeibo('7546879530')">
                   <v-list-item-avatar>
-                    <v-icon>mdi-sina-weibo</v-icon>
+                    <v-icon>{{ mdiSinaWeibo }}</v-icon>
                   </v-list-item-avatar>
                   <v-list-item-title>红豆年糕找不到</v-list-item-title>
                 </v-list-item>
                 <v-list-item @click="openWeibo('7245459345')">
                   <v-list-item-avatar>
-                    <v-icon>mdi-sina-weibo</v-icon>
+                    <v-icon>{{ mdiSinaWeibo }}</v-icon>
                   </v-list-item-avatar>
                   <v-list-item-title>光之渔夫bot（合作）</v-list-item-title>
                 </v-list-item>
@@ -130,7 +130,8 @@
               <v-col cols="12" md="6">
                 <home-page-card @click="toPageSubList">
                   <template v-slot:title>
-                    <v-icon class="mr-1">mdi-timer</v-icon>钓鱼时钟
+                    <v-icon class="mr-1">{{ mdiTimer }}</v-icon
+                    >钓鱼时钟
                   </template>
                   <template v-slot:description
                     >「烟波钓徒」「钓场之王」 我来啦！</template
@@ -140,7 +141,8 @@
               <v-col cols="12" md="6">
                 <home-page-card @click="toPage('WikiPage')">
                   <template v-slot:title>
-                    <v-icon class="mr-1">mdi-notebook</v-icon>{{ $t('top.fishWiki') }}
+                    <v-icon class="mr-1">{{ mdiNotebook }}</v-icon
+                    >{{ $t('top.fishWiki') }}
                   </template>
                   <template v-slot:description>目标全图鉴！附赠发光鱼竿哦~</template>
                 </home-page-card>
@@ -148,7 +150,8 @@
               <v-col cols="12" md="6">
                 <home-page-card @click="toPage('OceanFishingPage54')">
                   <template v-slot:title>
-                    <v-icon class="mr-1">mdi-ferry</v-icon>{{ $t('top.oceanFishing') }}
+                    <v-icon class="mr-1">{{ mdiFerry }}</v-icon
+                    >{{ $t('top.oceanFishing') }}
                   </template>
                   <template v-slot:description>「海王」们上船钓蓝鱼了！</template>
                 </home-page-card>
@@ -156,7 +159,8 @@
               <v-col cols="12" md="6">
                 <home-page-card @click="toPage('AquariumPage')">
                   <template v-slot:title>
-                    <v-icon class="mr-1">mdi-fishbowl</v-icon>{{ $t('top.aquarium') }}
+                    <v-icon class="mr-1">{{ mdiFishbowl }}</v-icon
+                    >{{ $t('top.aquarium') }}
                   </template>
                   <template v-slot:description>不在家里养点金鱼吗？</template>
                 </home-page-card>
@@ -194,7 +198,7 @@
               <v-spacer />
               <rc-tooltip bottom>
                 <v-btn large icon @click="showAfdianQRCode = true">
-                  <v-icon large> mdi-qrcode </v-icon>
+                  <v-icon large> {{ mdiQrcode }} </v-icon>
                 </v-btn>
                 <template v-slot:msg> 点击显示爱发电二维码 </template>
               </rc-tooltip>
@@ -207,7 +211,7 @@
                   <span>感谢名单</span>
                   <v-spacer />
                   <rc-tooltip tag="span" class="fill-height">
-                    <v-icon>mdi-help-circle-outline</v-icon>
+                    <v-icon>{{ mdiHelpCircleOutline }}</v-icon>
                     <template v-slot:msg>
                       <div class="text-no-wrap">
                         <div>非实时更新，约每5分钟刷新数据。</div>
@@ -253,6 +257,18 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import {
+  mdiAccount,
+  mdiAlertOutline,
+  mdiFerry,
+  mdiFishbowl,
+  mdiHelpCircleOutline,
+  mdiNotebook,
+  mdiQqchat,
+  mdiQrcode,
+  mdiSinaWeibo,
+  mdiTimer,
+} from '@mdi/js'
 import { version } from '@/../package.json'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import HomePageCard from '@/components/HomePageCard'
@@ -281,6 +297,16 @@ export default {
   },
   data() {
     return {
+      mdiAlertOutline,
+      mdiAccount,
+      mdiQqchat,
+      mdiSinaWeibo,
+      mdiTimer,
+      mdiNotebook,
+      mdiFerry,
+      mdiFishbowl,
+      mdiQrcode,
+      mdiHelpCircleOutline,
       showAfdianQRCode: false,
       sponsors: [],
       isElectron: DevelopmentModeUtil.isElectron(),

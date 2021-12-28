@@ -18,7 +18,7 @@
           <rc-dialog v-model="explanationDialog" width="500">
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" v-on="on" text>
-                <v-icon left>mdi-information</v-icon>
+                <v-icon left>{{ mdiInformation }}</v-icon>
                 作者说明
               </v-btn>
             </template>
@@ -53,7 +53,7 @@
               <div style="position: absolute; right: 0; top:0">
                 <v-tooltip top color="secondary">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-icon v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
+                    <v-icon v-bind="attrs" v-on="on">{{ mdiHelpCircleOutline }}</v-icon>
                   </template>
                   <div>
                     {{ $t('pastryFishTip.title') }}
@@ -101,72 +101,12 @@
             <v-divider />
           </v-row>
         </div>
-        <!--        <v-row>-->
-        <!--          <v-col cols="6">-->
-        <!--            <div class="text-subtitle-2" style="font-weight: bold">-->
-        <!--              时间与天气-->
-        <!--              <v-tooltip top color="secondary">-->
-        <!--                <template v-slot:activator="{ on, attrs }">-->
-        <!--                  <v-icon small v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>-->
-        <!--                </template>-->
-        <!--                <div>-->
-        <!--                  鱼糕注：-->
-        <!--                  <div>-->
-        <!--                    数据与鱼糕可能会有所出入，请自行判断，并尊重作者的工作，谢谢！-->
-        <!--                  </div>-->
-        <!--                </div>-->
-        <!--              </v-tooltip>-->
-        <!--            </div>-->
-        <!--            <div class="text&#45;&#45;primary">-->
-        <!--              {{ tip.weatherTime }}-->
-        <!--            </div>-->
-        <!--          </v-col>-->
-        <!--          <v-col cols="6">-->
-        <!--            <div class="text-subtitle-2" style="font-weight: bold">-->
-        <!--              参考钓法-->
-        <!--              <span v-if="tip.trickWithStar" class="orangered">(*)</span>-->
-        <!--            </div>-->
-
-        <!--            <div class="text&#45;&#45;primary">-->
-        <!--              {{ tip.trick }}-->
-        <!--            </div>-->
-        <!--          </v-col>-->
-        <!--        </v-row>-->
-        <!--        <v-row>-->
-        <!--          <v-col cols="6">-->
-        <!--            <div class="text-subtitle-2" style="font-weight: bold">-->
-        <!--              数据可视化-->
-        <!--              <v-tooltip top color="secondary">-->
-        <!--                <template v-slot:activator="{ on, attrs }">-->
-        <!--                  <v-icon small v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>-->
-        <!--                </template>-->
-        <!--                <div>-->
-        <!--                  <div>-->
-        <!--                    黑色数据来自作者：真实但存在样本单一-->
-        <!--                  </div>-->
-        <!--                  <div>-->
-        <!--                    <span class="orangered">红色数据</span-->
-        <!--                    >来自饿猫以及钓友：可能存在记录错误但样本多样-->
-        <!--                  </div>-->
-        <!--                  <div>-->
-        <!--                    （详细说明请点击“作者说明”查看）-->
-        <!--                  </div>-->
-        <!--                </div>-->
-        <!--              </v-tooltip>-->
-        <!--            </div>-->
-        <!--            <div class="text&#45;&#45;primary" v-html="tip.data"></div>-->
-        <!--          </v-col>-->
-        <!--          <v-col cols="6">-->
-        <!--            <div class="text-subtitle-2" style="font-weight: bold">其他</div>-->
-        <!--            <div class="text&#45;&#45;primary" v-html="tip.comment"></div>-->
-        <!--          </v-col>-->
-        <!--        </v-row>-->
-        <!--        <div v-html="tip.wholeHtml"></div>-->
       </v-card-text>
     </v-card>
   </div>
 </template>
 <script>
+import { mdiHelpCircleOutline, mdiInformation } from '@mdi/js'
 import RcDialog from '@/components/basic/RcDialog'
 import tip1 from 'Data/tip1'
 
@@ -175,6 +115,8 @@ export default {
   components: { RcDialog },
   props: ['id'],
   data: () => ({
+    mdiInformation,
+    mdiHelpCircleOutline,
     explanationDialog: false,
   }),
   // created() {

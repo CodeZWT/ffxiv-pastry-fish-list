@@ -50,7 +50,7 @@
           style="position: absolute; right: 8px"
         >
           <v-btn text icon small title="复制宏">
-            <v-icon small>mdi-content-copy</v-icon>
+            <v-icon small>{{ mdiContentCopy }}</v-icon>
           </v-btn>
         </click-helper>
         <pre class="tip-macro">{{ toText(tip[achievementId][location.id]) }}</pre>
@@ -61,6 +61,7 @@
 
 <script>
 import { OCEAN_FISHING_TIPS } from 'Data/oceanFishing'
+import { mdiContentCopy } from '@mdi/js'
 import ClickHelper from '@/components/basic/ClickHelper'
 import FishTip from '@/components/OceanFishing54/OceanFishingVoyage/FishTip'
 
@@ -87,6 +88,7 @@ export default {
   },
   data() {
     return {
+      mdiContentCopy,
       oceanFishTipReference: OCEAN_FISHING_TIPS.tip3,
       tip: OCEAN_FISHING_TIPS.tip3.achievementTip,
     }

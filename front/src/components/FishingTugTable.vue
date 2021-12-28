@@ -27,7 +27,7 @@
             @mouseout="onCellHoverEnd(index)"
             class="text-center"
           >
-            <v-icon v-show="spotFish.tug === tug">mdi-fish</v-icon>
+            <v-icon v-show="spotFish.tug === tug">{{ mdiFish }}</v-icon>
           </td>
         </tr>
       </tbody>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { mdiFish } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import _ from 'lodash'
@@ -48,6 +49,7 @@ export default {
   },
   data() {
     return {
+      mdiFish,
       TUGS: Object.keys(DataUtil.TUG_ICON),
       currentCol: -1,
     }

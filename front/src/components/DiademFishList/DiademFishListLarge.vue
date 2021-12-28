@@ -51,7 +51,7 @@
                   <div class="d-flex">
                     <click-helper @click.stop :copy-text="fish.name">
                       <v-btn text icon small :title="$t('list.item.copyHint')">
-                        <v-icon small>mdi-content-copy</v-icon>
+                        <v-icon small>{{ mdiContentCopy }}</v-icon>
                       </v-btn>
                     </click-helper>
                   </div>
@@ -87,7 +87,7 @@
               <div class="d-flex align-center justify-end">
                 <div class="text-subtitle-1 mr-1">{{ fish.points }}</div>
                 <div>
-                  <v-icon>mdi-plus-circle</v-icon>
+                  <v-icon>{{ mdiPlusCircle }}</v-icon>
                 </div>
               </div>
             </td>
@@ -97,7 +97,7 @@
                 <v-tooltip v-if="fish.doubleHookTip" right color="secondary">
                   <template v-slot:activator="{ on, attrs }">
                     <v-icon small v-bind="attrs" v-on="on">
-                      mdi-help-circle-outline
+                      {{ mdiHelpCircleOutline }}
                     </v-icon>
                   </template>
                   <div>{{ fish.doubleHookTip }}</div>
@@ -169,6 +169,7 @@
 </template>
 
 <script>
+import { mdiContentCopy, mdiHelpCircleOutline, mdiPlusCircle } from '@mdi/js'
 import DiademFishListMixin from '@/components/DiademFishList/DiademFishListMixin'
 import EffectIcon from '@/components/basic/EffectIcon'
 import LinkList from '@/components/basic/LinkList'
@@ -178,6 +179,13 @@ export default {
   name: 'DiademFishListLarge',
   components: { EffectIcon, WeatherIcon, LinkList },
   mixins: [DiademFishListMixin],
+  data() {
+    return {
+      mdiContentCopy,
+      mdiPlusCircle,
+      mdiHelpCircleOutline,
+    }
+  },
 }
 </script>
 

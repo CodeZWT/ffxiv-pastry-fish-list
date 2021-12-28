@@ -34,8 +34,8 @@
                 v-if="type === 'normal'"
                 :value="transformedFishPart.pinned"
                 @input="setPinned($event)"
-                checked-icon="mdi-pin"
-                unchecked-icon="mdi-pin-outline"
+                :checked-icon="mdiPin"
+                :unchecked-icon="mdiPinOutline"
                 :checked-title="$t('actions.pin.checked')"
                 :unchecked-title="$t('actions.pin.unchecked')"
               />
@@ -43,8 +43,8 @@
                 v-if="type === 'notification'"
                 :value="transformedFishPart.toBeNotifiedLocked"
                 @input="setToBeNotifiedLocked($event)"
-                checked-icon="mdi-lock"
-                unchecked-icon="mdi-lock-open-variant"
+                :checked-icon="mdiLock"
+                :unchecked-icon="mdiLockOpenVariant"
                 :checked-title="$t('actions.toBeNotifiedLocked.checked')"
                 :unchecked-title="$t('actions.toBeNotifiedLocked.unchecked')"
               />
@@ -104,8 +104,8 @@
                 :value="transformedFishPart.toBeNotified"
                 :title="transformedFishPart.notificationHint"
                 @input="setToBeNotified($event)"
-                checked-icon="mdi-bell"
-                unchecked-icon="mdi-bell-outline"
+                :checked-icon="mdiBell"
+                :unchecked-icon="mdiBellOutline"
                 small
               />
               <!-- fish tips link -->
@@ -116,7 +116,7 @@
                 :title="$t('list.item.tipHint')"
                 @click.stop="onFishClicked(['DetailItemTips'])"
               >
-                <v-icon small>mdi-book</v-icon>
+                <v-icon small>{{ mdiBook }}</v-icon>
               </v-btn>
             </div>
           </div>
@@ -259,7 +259,7 @@
               />
             </template>
             <div v-if="fish.checking" title="开荒中一切数据仅供参考" class="ml-1">
-              <v-icon small color="warning">mdi-alert-outline</v-icon>
+              <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
               <span class="warning--text">开荒中</span>
             </div>
           </div>
@@ -298,6 +298,16 @@
 </template>
 
 <script>
+import {
+  mdiAlertOutline,
+  mdiBell,
+  mdiBellOutline,
+  mdiBook,
+  mdiLock,
+  mdiLockOpenVariant,
+  mdiPin,
+  mdiPinOutline,
+} from '@mdi/js'
 import EffectIcon from '@/components/basic/EffectIcon'
 import FishBaitList from '@/components/FishBaitList'
 import FishingSpotColumn from '@/components/FishingSpotColumn'
@@ -317,6 +327,18 @@ export default {
     ToggleButton,
   },
   mixins: [fishInfoRowMixin],
+  data() {
+    return {
+      mdiPin,
+      mdiPinOutline,
+      mdiLock,
+      mdiLockOpenVariant,
+      mdiBell,
+      mdiBellOutline,
+      mdiBook,
+      mdiAlertOutline,
+    }
+  },
 }
 </script>
 

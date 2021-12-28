@@ -21,7 +21,9 @@
                 {{ $t('importExport.dialog.self.export') }}
                 <v-tooltip right>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-icon small dark v-bind="attrs" v-on="on">mdi-information</v-icon>
+                    <v-icon small dark v-bind="attrs" v-on="on">{{
+                      mdiInformation
+                    }}</v-icon>
                   </template>
                   <span>{{ $t('importExport.dialog.self.exportHint') }}</span>
                 </v-tooltip>
@@ -30,7 +32,9 @@
                 {{ $t('importExport.dialog.self.import') }}
                 <v-tooltip right>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-icon small dark v-bind="attrs" v-on="on">mdi-information</v-icon>
+                    <v-icon small dark v-bind="attrs" v-on="on">{{
+                      mdiInformation
+                    }}</v-icon>
                   </template>
                   <span>{{ $t('importExport.dialog.self.importHint') }}</span>
                 </v-tooltip>
@@ -41,7 +45,7 @@
               <v-tab-item>
                 <rc-textarea v-model="selfTextToExport" ref="selfExportTextArea" />
                 <v-btn class="mr-4" color="primary" @click="exportData">
-                  <v-icon>mdi-content-copy</v-icon>
+                  <v-icon>{{ mdiContentCopy }}</v-icon>
                   {{ $t('importExport.dialog.copy') }}
                 </v-btn>
               </v-tab-item>
@@ -76,7 +80,9 @@
                 {{ $t('importExport.dialog.other.fishTracker.exportToFishTracker') }}
                 <v-tooltip right>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-icon small dark v-bind="attrs" v-on="on">mdi-information</v-icon>
+                    <v-icon small dark v-bind="attrs" v-on="on">{{
+                      mdiInformation
+                    }}</v-icon>
                   </template>
                   <span>{{
                     $t('importExport.dialog.other.fishTracker.exportToFishTrackerHint')
@@ -87,7 +93,9 @@
                 {{ $t('importExport.dialog.other.fishTracker.importFromFishTracker') }}
                 <v-tooltip right>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-icon small dark v-bind="attrs" v-on="on">mdi-information</v-icon>
+                    <v-icon small dark v-bind="attrs" v-on="on">{{
+                      mdiInformation
+                    }}</v-icon>
                   </template>
                   <span>{{
                     $t('importExport.dialog.other.fishTracker.importFromFishTrackerHint')
@@ -104,7 +112,7 @@
                 />
                 <click-helper @click="exportDataToFishTracker">
                   <v-btn class="mr-4" color="primary">
-                    <v-icon>mdi-content-copy</v-icon>
+                    <v-icon>{{ mdiContentCopy }}</v-icon>
                     {{ $t('importExport.dialog.copy') }}
                   </v-btn>
                 </click-helper>
@@ -142,6 +150,8 @@
 </template>
 
 <script>
+import { mdiContentCopy, mdiInformation } from '@mdi/js'
+
 import { mapMutations, mapState } from 'vuex'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import ClickHelper from '@/components/basic/ClickHelper'
@@ -163,6 +173,8 @@ export default {
     },
   },
   data: () => ({
+    mdiContentCopy,
+    mdiInformation,
     selfTab: null,
     fishTrackerTab: null,
     selfTextToExport: null,

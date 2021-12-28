@@ -52,7 +52,7 @@
                   ></v-badge>
                   <click-helper @click.stop :copy-text="fish.name">
                     <v-btn text icon small :title="$t('list.item.copyHint')">
-                      <v-icon small>mdi-content-copy</v-icon>
+                      <v-icon small>{{ mdiContentCopy }}</v-icon>
                     </v-btn>
                   </click-helper>
                 </div>
@@ -123,7 +123,7 @@
                     <v-col class="d-flex align-center justify-end">
                       <div class="mr-1">{{ fish.points }}</div>
                       <div>
-                        <v-icon small>mdi-plus-circle</v-icon>
+                        <v-icon small>{{ mdiPlusCircle }}</v-icon>
                       </div>
                     </v-col>
                   </v-row>
@@ -141,6 +141,7 @@
 </template>
 
 <script>
+import { mdiContentCopy, mdiPlusCircle } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import DiademFishListMixin from '@/components/DiademFishList/DiademFishListMixin'
 import EffectIcon from '@/components/basic/EffectIcon'
@@ -150,6 +151,12 @@ export default {
   name: 'DiademFishListSmall',
   components: { EffectIcon, WeatherIcon },
   mixins: [DiademFishListMixin],
+  data() {
+    return {
+      mdiContentCopy,
+      mdiPlusCircle,
+    }
+  },
   methods: {
     toSimpleName(name) {
       if (DataUtil.hasChineseCharacter(name)) {

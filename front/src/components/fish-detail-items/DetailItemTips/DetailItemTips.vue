@@ -4,15 +4,13 @@
       <v-expansion-panel-header class="system">
         <div style="display: flex; justify-content: center">
           <div>
-            <v-icon>mdi-book</v-icon>
+            <v-icon>{{ mdiBook }}</v-icon>
             查看攻略
           </div>
         </div>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
-        <div v-if="!hasTips(fish.id)" class="text-center">
-          暂无攻略
-        </div>
+        <div v-if="!hasTips(fish.id)" class="text-center">暂无攻略</div>
         <v-row v-else no-gutters style="margin: 0 -20px -16px -20px">
           <v-col cols="12">
             <tip7 :id="fish.id" />
@@ -43,6 +41,7 @@
 
 <script>
 import { BIG_FISH } from 'Data/translation'
+import { mdiBook } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 
 export default {
@@ -67,6 +66,7 @@ export default {
     },
   },
   data: vm => ({
+    mdiBook,
     lazyExpansionValue: vm.expanded ? 0 : undefined,
   }),
   watch: {

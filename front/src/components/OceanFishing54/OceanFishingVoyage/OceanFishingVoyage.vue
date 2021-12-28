@@ -265,31 +265,6 @@
           />
         </v-col>
       </v-row>
-      <!--      <v-row>-->
-      <!--        <v-col>-->
-      <!--          <v-expansion-panels accordion>-->
-      <!--            <v-expansion-panel>-->
-      <!--              <v-expansion-panel-header>-->
-      <!--                <div class="d-flex align-center">-->
-      <!--                  {{ currentTip.name }}宏-->
-      <!--                  <click-helper @click.stop :copy-text="achievementMacro[currentTip.id]">-->
-      <!--                    <v-btn text icon small :title="$t('list.item.copyHint')">-->
-      <!--                      <v-icon small>mdi-content-copy</v-icon>-->
-      <!--                    </v-btn>-->
-      <!--                  </click-helper>-->
-      <!--                </div>-->
-      <!--              </v-expansion-panel-header>-->
-      <!--              <v-expansion-panel-content>-->
-      <!--                <v-card outlined class="mt-2">-->
-      <!--                  <v-card-text>-->
-      <!--                    <pre class="tip-macro">{{ achievementMacro[currentTip.id] }}</pre>-->
-      <!--                  </v-card-text>-->
-      <!--                </v-card>-->
-      <!--              </v-expansion-panel-content>-->
-      <!--            </v-expansion-panel>-->
-      <!--          </v-expansion-panels>-->
-      <!--        </v-col>-->
-      <!--      </v-row>-->
     </div>
   </div>
 </template>

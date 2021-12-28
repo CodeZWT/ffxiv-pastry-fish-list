@@ -9,7 +9,7 @@
             style="cursor: pointer"
           >
             <span>
-              <v-icon x-large>mdi-arrow-expand-all</v-icon>
+              <v-icon x-large>{{ mdiArrowExpandAll }}</v-icon>
               点击查看大图
             </span>
           </div>
@@ -55,7 +55,9 @@
 </template>
 
 <script>
+import { mdiArrowExpandAll } from '@mdi/js'
 import RcDialog from '@/components/basic/RcDialog'
+
 export default {
   name: 'ImgViewer',
   components: { RcDialog },
@@ -79,6 +81,7 @@ export default {
   },
   data() {
     return {
+      mdiArrowExpandAll,
       showExpandedDialog: false,
     }
   },

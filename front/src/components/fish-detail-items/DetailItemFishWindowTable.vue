@@ -4,7 +4,7 @@
       <v-expansion-panel-header class="system">
         <div style="display: flex; justify-content: center">
           <div>
-            <v-icon>mdi-calendar</v-icon>
+            <v-icon>{{ mdiCalendar }}</v-icon>
             {{ $t('countDown.fishWindowBtn') }}
           </div>
         </div>
@@ -16,7 +16,7 @@
           class="d-flex justify-center align-center"
         >
           <div class="d-flex align-center">
-            <v-icon x-large>mdi-table-search</v-icon>
+            <v-icon x-large>{{ mdiTableSearch }}</v-icon>
             <span>加载中...</span>
           </div>
         </div>
@@ -54,6 +54,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+import { mdiCalendar, mdiTableSearch } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import FishWindow from '@/utils/FishWindow'
 
@@ -74,6 +75,8 @@ export default {
     },
   },
   data: vm => ({
+    mdiCalendar,
+    mdiTableSearch,
     lazyExpansionValue: vm.expanded ? 0 : undefined,
     recordsCntToShow: FishWindow.FISH_WINDOW_FORECAST_N,
     lazyFishWindows: [],

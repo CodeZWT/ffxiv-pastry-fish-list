@@ -8,7 +8,7 @@
       <v-card-text class="fill-height d-flex align-center text-h6 justify-center">
         <div v-if="migrateSuccess" class="d-flex align-center">
           <div>
-            <v-icon color="primary" x-large class="mr-1">mdi-database-check</v-icon>
+            <v-icon color="primary" x-large class="mr-1">{{ mdiDatabaseCheck }}</v-icon>
             数据迁移成功！<br />
             桌面及手机网页版用户请更新收藏夹中的站点地址： <br />
             <div>https://ricecake.traveleorzea.com</div>
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div v-else class="d-flex align-center">
-          <v-icon color="error" x-large class="mr-1">mdi-database-remove</v-icon>
+          <v-icon color="error" x-large class="mr-1">{{ mdiDatabaseRemove }}</v-icon>
           <div>
             数据迁移失败，请尝试手动从旧站导出，并导入新站，以完成迁移。<br />
             或直接联系：<br />
@@ -70,6 +70,7 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import { mdiDatabaseCheck, mdiDatabaseRemove } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import RcDialog from '@/components/basic/RcDialog'
 
@@ -77,6 +78,8 @@ export default {
   name: 'MigrationPage.vue',
   components: { RcDialog },
   data: () => ({
+    mdiDatabaseCheck,
+    mdiDatabaseRemove,
     migrationStep: 'waiting',
     migrateSuccess: undefined,
     hasBothData: false,

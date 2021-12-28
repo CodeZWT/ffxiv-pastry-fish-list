@@ -11,7 +11,7 @@
   >
     <template v-slot:header-buttons>
       <v-btn @click="toggleSetting" x-small text>
-        <v-icon>mdi-cog</v-icon>
+        <v-icon>{{ mdiCog }}</v-icon>
       </v-btn>
     </template>
     <reader-history :lazyTransformedFishDict="lazyTransformedFishDict" />
@@ -20,6 +20,7 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import { mdiCog } from '@mdi/js'
 import ReaderHistory from '@/entries/reader/views/ReaderHistory'
 import ScreenWindow from '@/components/basic/screen/ScreenWindow'
 import WindowMixin from '@/components/basic/screen/WindowMixin'
@@ -29,6 +30,11 @@ export default {
   mixins: [WindowMixin],
   components: { ScreenWindow, ReaderHistory },
   props: ['lazyTransformedFishDict'],
+  data() {
+    return {
+      mdiCog,
+    }
+  },
   computed: {
     ...mapState('readerHistory', ['showConfig']),
   },

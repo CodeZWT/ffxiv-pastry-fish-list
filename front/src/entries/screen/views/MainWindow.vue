@@ -14,7 +14,7 @@
   >
     <template v-slot:header-buttons>
       <v-btn @click="showSetting" x-small text>
-        <v-icon>mdi-cog</v-icon>
+        <v-icon>{{ mdiCog }}</v-icon>
       </v-btn>
     </template>
 
@@ -35,7 +35,7 @@
               v-on="{ ...tooltip }"
               @click="showMapMenu = !showMapMenu"
             >
-              <v-icon>mdi-map</v-icon>
+              <v-icon>{{ mdiMap }}</v-icon>
             </v-btn>
           </template>
           <div>点击选择钓场</div>
@@ -43,7 +43,7 @@
         <v-spacer />
         <v-toolbar-items>
           <v-btn icon text v-if="isListPage" @click="toggleFilterPanel">
-            <v-icon>mdi-filter</v-icon>
+            <v-icon>{{ mdiFilter }}</v-icon>
           </v-btn>
 
           <fish-eyes-toggle-button
@@ -58,7 +58,7 @@
             v-if="(isListPage || isWikiPage) && !isMobile"
             @click="showBaitDialog = true"
           >
-            <v-icon>mdi-hook</v-icon>
+            <v-icon>{{ mdiHook }}</v-icon>
           </v-btn>
 
           <v-tooltip left v-if="!isWikiPage">
@@ -70,7 +70,7 @@
                 v-on="{ ...tooltip }"
                 @click="setShowSearchDialog(true)"
               >
-                <v-icon>mdi-magnify</v-icon>
+                <v-icon>{{ mdiMagnify }}</v-icon>
               </v-btn>
             </template>
             <div>按<kbd>/</kbd>键直接搜索</div>
@@ -81,7 +81,7 @@
               <v-tooltip left>
                 <template v-slot:activator="{ on: tooltip }">
                   <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                    <v-icon> mdi-theme-light-dark</v-icon>
+                    <v-icon> {{ mdiThemeLightDark }}</v-icon>
                   </v-btn>
                 </template>
                 <div>设置颜色模式</div>
@@ -122,7 +122,7 @@
             <v-tooltip left>
               <template v-slot:activator="{ on: tooltip }">
                 <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                  <v-icon>mdi-dots-vertical</v-icon>
+                  <v-icon>{{ mdiDotsVertical }}</v-icon>
                 </v-btn>
               </template>
               <div>更多</div>
@@ -131,7 +131,7 @@
           <v-list>
             <v-list-item @click="showBaitDialog = true">
               <v-btn icon text v-if="isListPage || isWikiPage">
-                <v-icon>mdi-hook</v-icon>
+                <v-icon>{{ mdiHook }}</v-icon>
               </v-btn>
               <div>打开鱼饵筛选</div>
             </v-list-item>
@@ -140,7 +140,7 @@
                 <template v-slot:activator="{ on: menu, attrs }">
                   <div v-bind="attrs" v-on="{ ...menu }" class="d-flex align-center">
                     <v-btn text icon>
-                      <v-icon>mdi-theme-light-dark</v-icon>
+                      <v-icon>{{ mdiThemeLightDark }}</v-icon>
                     </v-btn>
                     <div>设置颜色模式</div>
                   </div>
@@ -255,6 +255,15 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+import {
+  mdiCog,
+  mdiDotsVertical,
+  mdiFilter,
+  mdiHook,
+  mdiMagnify,
+  mdiMap,
+  mdiThemeLightDark,
+} from '@mdi/js'
 import AquariumPage from '@/entries/main/views/AquariumPage'
 import CompetitionPage from '@/entries/main/views/CompetitionPage'
 import DiademPage from '@/entries/main/views/DiademPage'
@@ -297,6 +306,17 @@ export default {
     'selectedFish',
     'filteredFishIdSet',
   ],
+  data() {
+    return {
+      mdiCog,
+      mdiMap,
+      mdiFilter,
+      mdiHook,
+      mdiMagnify,
+      mdiThemeLightDark,
+      mdiDotsVertical,
+    }
+  },
   computed: {
     page() {
       return this.subPage

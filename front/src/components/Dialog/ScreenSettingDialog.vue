@@ -14,7 +14,7 @@
               {{ '显示器' + (index + 1) }}
             </v-list-item-title>
             <v-list-item-action>
-              <v-icon v-if="displayId === targetDisplayId">mdi-check</v-icon>
+              <v-icon v-if="displayId === targetDisplayId">{{ mdiCheck }}</v-icon>
             </v-list-item-action>
           </v-list-item>
         </v-list>
@@ -50,6 +50,7 @@
 <script>
 import { invokeElectronEvent, sendElectronEvent } from '@/utils/electronHelper'
 import { mapMutations, mapState } from 'vuex'
+import { mdiCheck } from '@mdi/js'
 import RcDialog from '@/components/basic/RcDialog'
 
 export default {
@@ -57,6 +58,7 @@ export default {
   components: { RcDialog },
   data() {
     return {
+      mdiCheck,
       displayIds: [],
       targetDisplayId: undefined,
       opacityWindows: [

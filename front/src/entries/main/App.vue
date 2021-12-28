@@ -8,39 +8,39 @@
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
       <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-cog</v-icon>
+        <v-icon>{{ mdiCog }}</v-icon>
       </v-btn>
       <toggle-button
         :value="alwaysOnTop"
         @input="toggleAlwaysOnTop"
-        checked-icon="mdi-pin"
-        unchecked-icon="mdi-pin-outline"
+        :checked-icon="mdiPin"
+        :unchecked-icon="mdiPinOutline"
         :checked-title="$t('actions.pinTop.checked')"
         :unchecked-title="$t('actions.pinTop.unchecked')"
         small
         style="-webkit-app-region: none"
       />
       <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-window-minimize</v-icon>
+        <v-icon>{{ mdiWindowMinimize }}</v-icon>
       </v-btn>
       <toggle-button
         :value="maximized"
         @input="maximizeOrRestore"
-        checked-icon="mdi-window-restore"
-        unchecked-icon="mdi-window-maximize"
+        :checked-icon="mdiWindowRestore"
+        :unchecked-icon="mdiWindowMaximize"
         :checked-title="$t('actions.maximize.restore')"
         :unchecked-title="$t('actions.maximize.maximize')"
         small
         style="-webkit-app-region: none"
       />
       <!--      <v-btn @click="maximize" x-small text style="-webkit-app-region: none">-->
-      <!--        <v-icon>mdi-window-maximize</v-icon>-->
+      <!--{        <vIcon>mdiWindowMaximize</vIcon{>}}-->
       <!--      </v-btn>-->
       <!--      <v-btn @click="unmaximize" x-small text style="-webkit-app-region: none">-->
-      <!--        <v-icon>mdi-window-maximize</v-icon>-->
+      <!--{        <vIcon>mdiWindowMaximize</vIcon{>}}-->
       <!--      </v-btn>-->
       <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>mdi-window-close</v-icon>
+        <v-icon>{{ mdiWindowClose }}</v-icon>
       </v-btn>
     </v-system-bar>
     <v-app-bar height="56px" app class="fish-app-bar" dense color="system">
@@ -81,7 +81,7 @@
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
               <v-btn icon text>
-                <v-icon>mdi-snowflake-variant</v-icon>
+                <v-icon>{{ mdiSnowflakeVariant }}</v-icon>
               </v-btn>
             </div>
           </template>
@@ -97,7 +97,7 @@
       </div>
 
       <v-btn icon text v-if="isListPage" @click="toggleFilterPanel">
-        <v-icon>mdi-filter</v-icon>
+        <v-icon>{{ mdiFilter }}</v-icon>
       </v-btn>
 
       <fish-eyes-toggle-button
@@ -112,7 +112,7 @@
         v-if="(isListPage || isWikiPage) && !isMobile"
         @click="showBaitDialog = true"
       >
-        <v-icon>mdi-hook</v-icon>
+        <v-icon>{{ mdiHook }}</v-icon>
       </v-btn>
 
       <v-btn
@@ -122,14 +122,14 @@
         @click="showMapMenu = !showMapMenu"
         title="点击选择钓场"
       >
-        <v-icon>mdi-map</v-icon>
+        <v-icon>{{ mdiMap }}</v-icon>
       </v-btn>
 
       <v-tooltip bottom v-if="!isWikiPage || !isMobile">
         <template v-slot:activator="{ on, attrs }">
           <div v-bind="attrs" v-on="on">
             <v-btn icon text @click="setShowSearchDialog(true)">
-              <v-icon>mdi-magnify</v-icon>
+              <v-icon>{{ mdiMagnify }}</v-icon>
             </v-btn>
           </div>
         </template>
@@ -141,7 +141,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on: tooltip }">
               <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                <v-icon> mdi-theme-light-dark</v-icon>
+                <v-icon> {{ mdiThemeLightDark }}</v-icon>
               </v-btn>
             </template>
             <div>设置颜色模式</div>
@@ -181,7 +181,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on: tooltip }">
               <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                <v-icon>mdi-translate</v-icon>
+                <v-icon>{{ mdiTranslate }}</v-icon>
               </v-btn>
             </template>
             <div class="text-no-wrap">设置数据文本语言</div>
@@ -207,7 +207,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on: tooltip }">
               <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                <v-icon>mdi-dots-vertical</v-icon>
+                <v-icon>{{ mdiDotsVertical }}</v-icon>
               </v-btn>
             </template>
             <div>更多</div>
@@ -216,13 +216,13 @@
         <v-list>
           <v-list-item @click="showBaitDialog = true">
             <v-btn v-if="isWikiPage" icon text @click="setShowSearchDialog(true)">
-              <v-icon>mdi-magnify</v-icon>
+              <v-icon>{{ mdiMagnify }}</v-icon>
             </v-btn>
             <div>搜索 <kbd>/</kbd></div>
           </v-list-item>
           <v-list-item @click="showBaitDialog = true">
             <v-btn icon text v-if="isListPage || isWikiPage">
-              <v-icon>mdi-hook</v-icon>
+              <v-icon>{{ mdiHook }}</v-icon>
             </v-btn>
             <div>打开鱼饵筛选</div>
           </v-list-item>
@@ -231,7 +231,7 @@
               <template v-slot:activator="{ on: menu, attrs }">
                 <div v-bind="attrs" v-on="{ ...menu }" class="d-flex align-center">
                   <v-btn text icon>
-                    <v-icon>mdi-theme-light-dark</v-icon>
+                    <v-icon>{{ mdiThemeLightDark }}</v-icon>
                   </v-btn>
                   <div>设置颜色模式</div>
                 </div>
@@ -271,7 +271,7 @@
               <template v-slot:activator="{ on: menu, attrs }">
                 <div v-bind="attrs" v-on="{ ...menu }" class="d-flex align-center">
                   <v-btn text icon>
-                    <v-icon>mdi-translate</v-icon>
+                    <v-icon>{{ mdiTranslate }}</v-icon>
                   </v-btn>
                   <div>设置数据文本语言</div>
                 </div>
@@ -327,7 +327,7 @@
         <v-list dense>
           <v-list-item @click="toPage('HomePage')" link>
             <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
+              <v-icon>{{ mdiHome }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.home') }}</v-list-item-title>
@@ -371,7 +371,7 @@
           </v-list-item>
           <v-list-item @click="toPage('WikiPage')" link>
             <v-list-item-icon>
-              <v-icon>mdi-notebook</v-icon>
+              <v-icon>{{ mdiNotebook }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.fishWiki') }}</v-list-item-title>
@@ -379,7 +379,7 @@
           </v-list-item>
           <!--          <v-list-item @click="toPage('OceanFishingPage')" link>-->
           <!--            <v-list-item-icon>-->
-          <!--              <v-icon>mdi-ferry</v-icon>-->
+          <!--{              <vIcon>mdiFerry</vIcon{>}}-->
           <!--            </v-list-item-icon>-->
           <!--            <v-list-item-content>-->
           <!--              <v-list-item-title>{{ $t('top.oceanFishing') }}</v-list-item-title>-->
@@ -387,7 +387,7 @@
           <!--          </v-list-item>-->
           <v-list-item @click="toPage('OceanFishingPage54')" link>
             <v-list-item-icon>
-              <v-icon>mdi-ferry</v-icon>
+              <v-icon>{{ mdiFerry }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>
@@ -409,7 +409,7 @@
           </v-list-item>
           <v-list-item @click="toPage('AquariumPage')" link>
             <v-list-item-icon>
-              <v-icon>mdi-fishbowl</v-icon>
+              <v-icon>{{ mdiFishbowl }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.aquarium') }}</v-list-item-title>
@@ -418,7 +418,7 @@
 
           <v-list-item v-if="isRoseMode" @click="toPage('RecordPage')">
             <v-list-item-icon>
-              <v-icon>mdi-chart-bar</v-icon>
+              <v-icon>{{ mdiChartBar }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{
@@ -429,7 +429,7 @@
 
           <v-list-item v-if="isRoseMode" @click="showRoseDialog = true" link>
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <v-icon>{{ mdiAccount }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>
@@ -438,7 +438,7 @@
 
           <v-list-item @click="toCompetitionPage" link>
             <v-list-item-icon>
-              <v-icon>mdi-trophy</v-icon>
+              <v-icon>{{ mdiTrophy }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>
@@ -449,7 +449,7 @@
 
           <v-list-item v-if="!isElectron" @click="toDownloadPage" link>
             <v-list-item-icon>
-              <v-icon>mdi-desktop-mac-dashboard</v-icon>
+              <v-icon>{{ mdiDesktopMacDashboard }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.desktopVersion') }}</v-list-item-title>
@@ -457,7 +457,7 @@
           </v-list-item>
           <v-list-item v-else @click="toWebsite" link>
             <v-list-item-icon>
-              <v-icon>mdi-web</v-icon>
+              <v-icon>{{ mdiWeb }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.website') }}</v-list-item-title>
@@ -466,7 +466,7 @@
 
           <v-list-item>
             <v-list-item-icon>
-              <v-icon>mdi-earth</v-icon>
+              <v-icon>{{ mdiEarth }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>
@@ -490,7 +490,7 @@
           <v-list-item v-if="isElectron" @click="openReader" link>
             <v-list-item-icon>
               <new-feature-mark :id="ReaderTimerFeatureId">
-                <v-icon>mdi-fish</v-icon>
+                <v-icon>{{ mdiFish }}</v-icon>
               </new-feature-mark>
             </v-list-item-icon>
             <v-list-item-content>
@@ -525,7 +525,7 @@
           <v-list nav dense>
             <v-spacer />
             <v-divider />
-            <v-list-group prepend-icon="mdi-cog" active-class="white--text">
+            <v-list-group :prepend-icon="mdiCog" active-class="white--text">
               <template v-slot:activator>
                 <v-list-item-content>
                   <v-list-item-title>{{ $t('top.setting') }}</v-list-item-title>
@@ -535,7 +535,7 @@
 
               <v-list-item @click="setShowImportExportDialog(true)">
                 <v-list-item-icon>
-                  <v-icon>mdi-database</v-icon>
+                  <v-icon>{{ mdiDatabase }}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title>{{ $t('top.menu') }}</v-list-item-title>
@@ -544,7 +544,7 @@
               <click-helper @click="showSetting">
                 <v-list-item @click="noOp">
                   <v-list-item-icon>
-                    <v-icon>mdi-tune</v-icon>
+                    <v-icon>{{ mdiTune }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>{{ $t('top.uiConfig') }}</v-list-item-title>
@@ -553,7 +553,7 @@
               </click-helper>
               <v-list-item @click="showPatchNoteDialog = true">
                 <v-list-item-icon>
-                  <v-icon>mdi-tag</v-icon>
+                  <v-icon>{{ mdiTag }}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title>{{ $t('top.patchNote') }}</v-list-item-title>
@@ -561,7 +561,7 @@
               </v-list-item>
               <v-list-item @click="showAboutDialog = true">
                 <v-list-item-icon>
-                  <v-icon>mdi-information</v-icon>
+                  <v-icon>{{ mdiInformation }}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title>{{ $t('top.about') }}</v-list-item-title>
@@ -632,7 +632,7 @@
               {{ $t('footer.author') }}
             </span>
             <span>
-              <v-icon small>mdi-qqchat</v-icon>
+              <v-icon small>{{ mdiQqchat }}</v-icon>
               1153646847
             </span>
             <span v-if="isMobile">
@@ -722,15 +722,16 @@
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
           <div>
-            <v-icon small>mdi-qqchat</v-icon>
+            <v-icon small>{{ mdiQqchat }}</v-icon>
             群: 1153646847
           </div>
           <div>
-            <v-icon small>mdi-sina-weibo</v-icon>
+            <v-icon small>{{ mdiSinaWeibo }}</v-icon>
             红豆年糕找不到
           </div>
           <div>
-            合作： <v-icon small>mdi-sina-weibo</v-icon>
+            合作：
+            <v-icon small>{{ mdiSinaWeibo }}</v-icon>
             光之渔夫bot
           </div>
           <div>欢迎使用本站</div>
@@ -876,6 +877,41 @@
 </template>
 
 <script>
+import {
+  mdiAccount,
+  mdiChartBar,
+  mdiCog,
+  mdiDatabase,
+  mdiDesktopMacDashboard,
+  mdiDotsVertical,
+  mdiEarth,
+  mdiFerry,
+  mdiFilter,
+  mdiFish,
+  mdiFishbowl,
+  mdiHome,
+  mdiHook,
+  mdiInformation,
+  mdiMagnify,
+  mdiMap,
+  mdiNotebook,
+  mdiPin,
+  mdiPinOutline,
+  mdiQqchat,
+  mdiSinaWeibo,
+  mdiSnowflakeVariant,
+  mdiTag,
+  mdiThemeLightDark,
+  mdiTranslate,
+  mdiTrophy,
+  mdiTune,
+  mdiWeb,
+  mdiWindowClose,
+  mdiWindowMaximize,
+  mdiWindowMinimize,
+  mdiWindowRestore,
+} from '@mdi/js'
+
 import '@thewakingsands/axis-font-icons'
 import { MainFeatures } from 'Data/newFeatures'
 import { SystemInfo, setDataLocale, setRegion } from 'Data/version'
@@ -895,6 +931,38 @@ export default {
   mixins: [AppMixin, MainWindowMixin, AlarmMixin],
   data() {
     return {
+      mdiAccount,
+      mdiChartBar,
+      mdiCog,
+      mdiDatabase,
+      mdiDesktopMacDashboard,
+      mdiDotsVertical,
+      mdiEarth,
+      mdiFerry,
+      mdiFilter,
+      mdiFish,
+      mdiFishbowl,
+      mdiHome,
+      mdiHook,
+      mdiInformation,
+      mdiMagnify,
+      mdiMap,
+      mdiNotebook,
+      mdiPin,
+      mdiPinOutline,
+      mdiQqchat,
+      mdiSinaWeibo,
+      mdiSnowflakeVariant,
+      mdiTag,
+      mdiThemeLightDark,
+      mdiTranslate,
+      mdiTrophy,
+      mdiTune,
+      mdiWeb,
+      mdiWindowClose,
+      mdiWindowMaximize,
+      mdiWindowMinimize,
+      mdiWindowRestore,
       // rightPaneFullScreen: window.innerWidth < 1080,
       showDownloadDialog: false,
       DesktopDownloadFeatureId: MainFeatures.DesktopDownload,

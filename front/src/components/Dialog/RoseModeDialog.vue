@@ -182,7 +182,7 @@
       <v-card-text v-else-if="mode === 'LoginSuccess'">
         <div class="d-flex flex-column align-center">
           <div class="my-2">
-            <v-icon>mdi-check-circle</v-icon>
+            <v-icon>{{ mdiCheckCircle }}</v-icon>
             <span class="ml-1 subtitle-1">登录成功</span>
           </div>
           <template v-if="isElectron">
@@ -194,7 +194,7 @@
                   <template v-slot:activator="{ on, attrs }">
                     <div v-bind="attrs" v-on="on">
                       <v-btn @click="refreshUploadStatus">
-                        <v-icon>mdi-refresh</v-icon>
+                        <v-icon>{{ mdiRefresh }}</v-icon>
                         刷新
                       </v-btn>
                     </div>
@@ -227,6 +227,7 @@ import {
 } from 'vee-validate'
 import { email, max, required } from 'vee-validate/dist/rules'
 import { mapGetters, mapMutations } from 'vuex'
+import { mdiCheckCircle, mdiRefresh } from '@mdi/js'
 import EnvMixin from '@/components/basic/EnvMixin'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import RcDialog from '@/components/basic/RcDialog'
@@ -285,6 +286,8 @@ export default {
   },
   data() {
     return {
+      mdiCheckCircle,
+      mdiRefresh,
       code: undefined,
       nickname: undefined,
       password: undefined,

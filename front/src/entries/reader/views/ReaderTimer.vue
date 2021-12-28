@@ -5,19 +5,13 @@
       <!--      <v-alert outlined type="warning" border="left">-->
       <!--        更新国服5.41后，渔捞与同步功能不可用，请耐心等待自动更新。-->
       <!--      </v-alert>-->
-      <!--      <v-banner v-if="showBanner" two-line>-->
-      <!--        <v-avatar slot="icon" color="warning" size="40">-->
-      <!--          <v-icon icon="mdi-lock" color="white">-->
-      <!--            mdi-alert-->
-      <!--          </v-icon>-->
-      <!--        </v-avatar>-->
 
       <v-col cols="12" class="d-flex align-center" style="min-height: 32px">
         <div style="min-width: 100px">
           咬钩计时
           <span :title="isStrictMode ? '严格模式下禁用' : '迷你模式'">
             <v-btn small text icon @click="toggleMiniMode(true)" :disabled="isStrictMode">
-              <v-icon small>mdi-dock-window</v-icon>
+              <v-icon small>{{ mdiDockWindow }}</v-icon>
             </v-btn>
           </span>
         </div>
@@ -100,13 +94,13 @@
         <v-spacer />
 
         <v-btn v-if="showJumpBtn" @click="showSpotPage" title="显示当前钓场图鉴" icon>
-          <v-icon>mdi-notebook</v-icon>
+          <v-icon>{{ mdiNotebook }}</v-icon>
         </v-btn>
         <v-btn @click="showSpotStatistics" title="显示钓场统计" icon>
-          <v-icon>mdi-chart-box</v-icon>
+          <v-icon>{{ mdiChartBox }}</v-icon>
         </v-btn>
         <v-btn @click="showHistory" title="显示历史记录" icon>
-          <v-icon>mdi-history</v-icon>
+          <v-icon>{{ mdiHistory }}</v-icon>
         </v-btn>
       </v-col>
 
@@ -134,7 +128,7 @@
           title="退出迷你模式"
           style="-webkit-app-region: none"
         >
-          <v-icon small color="white">mdi-arrow-expand</v-icon>
+          <v-icon small color="white">{{ mdiArrowExpand }}</v-icon>
         </v-btn>
       </v-col>
       <v-col cols="12" v-if="isOceanFishing">
@@ -206,6 +200,13 @@ import { ReaderFeatures } from 'Data/newFeatures'
 import { SERVER_ID_NAMES } from 'Data/diadem'
 import { WEATHER_TYPES } from 'Data/translation'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import {
+  mdiArrowExpand,
+  mdiChartBox,
+  mdiDockWindow,
+  mdiHistory,
+  mdiNotebook,
+} from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
@@ -226,6 +227,11 @@ export default {
   components: { RcDialog, EffectIcon, ItemIcon },
   data() {
     return {
+      mdiDockWindow,
+      mdiNotebook,
+      mdiChartBox,
+      mdiHistory,
+      mdiArrowExpand,
       mode: 'normal',
       dataStatus: {
         effects: [],

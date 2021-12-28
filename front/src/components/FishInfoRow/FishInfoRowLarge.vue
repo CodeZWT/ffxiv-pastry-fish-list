@@ -40,8 +40,8 @@
                     v-if="type === 'normal'"
                     :value="transformedFishPart.pinned"
                     @input="setPinned($event)"
-                    checked-icon="mdi-pin"
-                    unchecked-icon="mdi-pin-outline"
+                    :checked-icon="mdiPin"
+                    :unchecked-icon="mdiPinOutline"
                     :checked-title="$t('actions.pin.checked')"
                     :unchecked-title="$t('actions.pin.unchecked')"
                   />
@@ -49,8 +49,8 @@
                     v-if="type === 'notification'"
                     :value="transformedFishPart.toBeNotifiedLocked"
                     @input="setToBeNotifiedLocked($event)"
-                    checked-icon="mdi-lock"
-                    unchecked-icon="mdi-lock-open-variant"
+                    :checked-icon="mdiLock"
+                    :unchecked-icon="mdiLockOpenVariant"
                     :checked-title="$t('actions.toBeNotifiedLocked.checked')"
                     :unchecked-title="$t('actions.toBeNotifiedLocked.unchecked')"
                   />
@@ -123,7 +123,7 @@
                       title="点击查看任务及其他信息"
                       @click.stop="onFishClicked(['DetailItemQuest'], fish._id)"
                     >
-                      mdi-alert-circle-outline
+                      {{ mdiAlertCircleOutline }}
                     </v-icon>
                   </div>
                   <div
@@ -134,15 +134,15 @@
                     class="mr-1"
                     style="margin-top: -4px"
                   >
-                    <v-icon small :title="fish.folklore.name"
-                      >mdi-book-open-variant</v-icon
-                    >
+                    <v-icon small :title="fish.folklore.name">{{
+                      mdiBookOpenVariant
+                    }}</v-icon>
                   </div>
                   <div v-if="fish.aquarium" class="mr-1" style="margin-top: -2px">
                     <v-icon
                       small
                       :title="`[${fish.aquarium.size}] ${fish.aquarium.water}`"
-                      >mdi-fishbowl</v-icon
+                      >{{ mdiFishbowl }}</v-icon
                     >
                   </div>
                   <div v-if="fish.collectable">
@@ -191,7 +191,7 @@
                 title="开荒中一切数据仅供参考"
                 class="ml-1"
               >
-                <v-icon small color="warning">mdi-alert-outline</v-icon>
+                <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
                 <span class="warning--text">开荒中</span>
               </div>
               <div
@@ -288,7 +288,7 @@
                 </div>
               </div>
               <div v-if="fish.checkInfo && fish.checkInfo.bestCatchPathUnknown">
-                <v-icon small color="warning">mdi-alert-outline</v-icon>
+                <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
                 <span class="warning--text">开荒中</span>
               </div>
               <div v-else-if="isSpearFish" class="d-flex align-center">
@@ -380,14 +380,14 @@
                   <!--                  <toggle-button-->
                   <!--                    :value="transformedFishPart.pinned"-->
                   <!--                    @input="setPinned($event)"-->
-                  <!--                    checked-icon="mdi-pin"-->
-                  <!--                    unchecked-icon="mdi-pin-outline"-->
+                  <!--{{                    checkedIcon="mdiPin"}}-->
+                  <!--{{                    uncheckedIcon="mdiPinOutline"}}-->
                   <!--                    small-->
                   <!--                  />-->
                   <!-- copy name -->
                   <click-helper @click.stop :copy-text="fish.name">
                     <v-btn text icon small :title="$t('list.item.copyHint')">
-                      <v-icon small>mdi-content-copy</v-icon>
+                      <v-icon small>{{ mdiContentCopy }}</v-icon>
                     </v-btn>
                   </click-helper>
                   <!-- alarm -->
@@ -396,8 +396,8 @@
                     :value="transformedFishPart.toBeNotified"
                     :title="transformedFishPart.notificationHint"
                     @input="setToBeNotified($event)"
-                    checked-icon="mdi-bell"
-                    unchecked-icon="mdi-bell-outline"
+                    :checked-icon="mdiBell"
+                    :unchecked-icon="mdiBellOutline"
                     small
                   />
                   <!-- fish tips link -->
@@ -408,7 +408,7 @@
                     :title="$t('list.item.tipHint')"
                     @click.stop="onFishClicked(['DetailItemTips'])"
                   >
-                    <v-icon small>mdi-book</v-icon>
+                    <v-icon small>{{ mdiBook }}</v-icon>
                   </v-btn>
                 </div>
               </v-col>
@@ -421,18 +421,18 @@
                     style="padding: 0 1px"
                     @click.stop="onFishClicked(['DetailItemFishWindowTable'])"
                   >
-                    <v-icon small> mdi-calendar </v-icon>
+                    <v-icon small> {{ mdiCalendar }} </v-icon>
                   </v-btn>
                 </div>
               </v-col>
               <v-col :class="locationColClass">
                 <div v-if="!hideSpotColumn" class="d-flex">
                   <v-btn text small icon @click.stop="onFishClicked(['DetailItemMap'])">
-                    <v-icon small> mdi-map </v-icon>
+                    <v-icon small> {{ mdiMap }} </v-icon>
                   </v-btn>
                   <click-helper @click.stop :copy-text="fishingSpotName">
                     <v-btn text icon small :title="$t('list.item.copyHint')">
-                      <v-icon small>mdi-content-copy</v-icon>
+                      <v-icon small>{{ mdiContentCopy }}</v-icon>
                     </v-btn>
                   </click-helper>
                 </div>
@@ -446,6 +446,22 @@
 </template>
 
 <script>
+import {
+  mdiAlertCircleOutline,
+  mdiAlertOutline,
+  mdiBell,
+  mdiBellOutline,
+  mdiBook,
+  mdiBookOpenVariant,
+  mdiCalendar,
+  mdiContentCopy,
+  mdiFishbowl,
+  mdiLock,
+  mdiLockOpenVariant,
+  mdiMap,
+  mdiPin,
+  mdiPinOutline,
+} from '@mdi/js'
 import ClickHelper from '@/components/basic/ClickHelper'
 import EffectIcon from '@/components/basic/EffectIcon'
 import FishBaitList from '@/components/FishBaitList'
@@ -469,6 +485,24 @@ export default {
     ToggleButton,
   },
   mixins: [fishInfoRowMixin],
+  data() {
+    return {
+      mdiAlertCircleOutline,
+      mdiAlertOutline,
+      mdiBell,
+      mdiBellOutline,
+      mdiBook,
+      mdiBookOpenVariant,
+      mdiCalendar,
+      mdiContentCopy,
+      mdiFishbowl,
+      mdiLock,
+      mdiLockOpenVariant,
+      mdiMap,
+      mdiPin,
+      mdiPinOutline,
+    }
+  },
   computed: {
     fishColClass() {
       return this.hideSpotColumn

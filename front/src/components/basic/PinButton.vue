@@ -3,17 +3,19 @@
     <v-hover v-slot:default="{ hover }" open-delay="200">
       <div v-if="value">
         <div :class="{ 'triangle-pinned': !hover, 'triangle-pinned-hover': hover }" />
-        <v-icon class="icon-pinned" color="white" small>mdi-pin</v-icon>
+        <v-icon class="icon-pinned" color="white" small>{{ mdiPin }}</v-icon>
       </div>
       <div v-else>
         <div :class="{ 'triangle-unpinned': !hover, 'triangle-unpinned-hover': hover }" />
-        <v-icon class="icon-unpinned" small>mdi-pin-outline</v-icon>
+        <v-icon class="icon-unpinned" small>{{ mdiPinOutline }}</v-icon>
       </div>
     </v-hover>
   </div>
 </template>
 
 <script>
+import { mdiPin, mdiPinOutline } from '@mdi/js'
+
 export default {
   name: 'PinButton',
   props: {
@@ -21,6 +23,12 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      mdiPin,
+      mdiPinOutline,
+    }
   },
   methods: {
     toggleValue() {

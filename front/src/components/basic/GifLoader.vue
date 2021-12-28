@@ -4,7 +4,7 @@
       <div style="position: relative" @click="showGif = true">
         <v-overlay v-if="hover" absolute>
           <div class="fill-height d-flex align-center">
-            <v-icon x-large>mdi-play-circle</v-icon>
+            <v-icon x-large>{{ mdiPlayCircle }}</v-icon>
           </div>
         </v-overlay>
         <v-img :src="coverSrc" :height="height" :width="width" :contain="contain">
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import { mdiPlayCircle } from '@mdi/js'
+
 export default {
   name: 'GifLoader',
   props: {
@@ -64,6 +66,7 @@ export default {
   },
   data() {
     return {
+      mdiPlayCircle,
       showGif: false,
     }
   },

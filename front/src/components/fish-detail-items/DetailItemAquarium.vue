@@ -4,7 +4,7 @@
       <v-expansion-panel-header class="system">
         <div style="display: flex; justify-content: center">
           <div>
-            <v-icon>mdi-fishbowl</v-icon>
+            <v-icon>{{ mdiFishbowl }}</v-icon>
             {{ $t('setting.dialog.detailArrangement.itemNames.DetailItemAquarium') }}
           </div>
         </div>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mdiFishbowl } from '@mdi/js'
 import EnvMixin from '@/components/basic/EnvMixin'
 import FishAquarium from '@/components/FishAquarium'
 
@@ -35,6 +36,7 @@ export default {
     },
   },
   data: vm => ({
+    mdiFishbowl,
     lazyExpansionValue: vm.expanded ? 0 : undefined,
   }),
 }

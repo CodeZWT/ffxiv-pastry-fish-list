@@ -11,7 +11,7 @@
       <rc-text-field
         v-model="value"
         :label="label"
-        prepend-icon="mdi-timer"
+        :prepend-icon="mdiTimer"
         readonly
         v-bind="attrs"
         v-on="on"
@@ -23,7 +23,9 @@
 </template>
 
 <script>
+import { mdiTimer } from '@mdi/js'
 import RcTextField from '@/components/basic/RcTextField'
+
 export default {
   name: 'TimeInput',
   components: { RcTextField },
@@ -39,6 +41,7 @@ export default {
   },
   data() {
     return {
+      mdiTimer,
       menu: false,
     }
   },

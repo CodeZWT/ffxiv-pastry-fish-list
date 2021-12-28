@@ -36,7 +36,7 @@
       <rc-dialog v-model="showClearConfirmDialog" max-width="330">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" block color="error" class="rounded-t-0">
-            <v-icon>mdi-playlist-remove</v-icon>
+            <v-icon>{{ mdiPlaylistRemove }}</v-icon>
             <span>{{ $t('list.toBeNotified.clearAll') }}</span>
             <span>（共{{ flattenFishList.length }}条）</span>
           </v-btn>
@@ -67,6 +67,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+import { mdiPlaylistRemove } from '@mdi/js'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import FishListItem from '@/components/FishListItem'
@@ -123,6 +124,7 @@ export default {
     },
   },
   data: () => ({
+    mdiPlaylistRemove,
     openPanelIndex: undefined,
     showClearConfirmDialog: false,
     showN: 50,

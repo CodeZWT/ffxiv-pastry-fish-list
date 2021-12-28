@@ -243,7 +243,7 @@
                             @click="showFileViewer(tug)"
                             :title="lazySetting.timer.sound[tug].customPath"
                           >
-                            <v-icon>mdi-file-music-outline</v-icon>
+                            <v-icon>{{ mdiFileMusicOutline }}</v-icon>
                             <div class="text-truncate" style="max-width: 170px">
                               {{
                                 toDisplayFileName(
@@ -267,7 +267,7 @@
                     >
                     </v-slider>
                     <v-btn icon text @click="ringBell(tug)">
-                      <v-icon>mdi-play</v-icon>
+                      <v-icon>{{ mdiPlay }}</v-icon>
                     </v-btn>
                   </div>
                 </div>
@@ -367,9 +367,7 @@
         </div>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="$emit('input', false)" block>
-          关闭
-        </v-btn>
+        <v-btn @click="$emit('input', false)" block> 关闭 </v-btn>
       </v-card-actions>
     </v-card>
   </rc-dialog>
@@ -378,6 +376,7 @@
 <script>
 import { MONITOR_TYPES, REGIONS } from 'Data/constants'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mdiFileMusicOutline, mdiPlay } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import RcDialog from '@/components/basic/RcDialog'
@@ -399,6 +398,8 @@ export default {
   },
   data() {
     return {
+      mdiFileMusicOutline,
+      mdiPlay,
       lazySetting: {},
       // lazyWindowSetting: {
       //   timer: {},

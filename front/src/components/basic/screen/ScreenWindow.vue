@@ -48,7 +48,7 @@
           <div class="dr-drag-cancel">
             <slot name="header-buttons"> </slot>
             <v-btn @click.stop="handleCloseWindow" x-small text>
-              <v-icon>mdi-window-close</v-icon>
+              <v-icon>{{ mdiWindowClose }}</v-icon>
             </v-btn>
           </div>
         </v-system-bar>
@@ -70,6 +70,7 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import { mdiWindowClose } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaTime from '@/utils/Time'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
@@ -139,6 +140,7 @@ export default {
   },
   data() {
     return {
+      mdiWindowClose,
       active: false,
     }
   },

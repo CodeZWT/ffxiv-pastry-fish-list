@@ -61,7 +61,7 @@
             @click="showExpandedDialog = true"
             style="z-index: 5"
           >
-            <v-icon> mdi-arrow-expand-all </v-icon>
+            <v-icon> {{ mdiArrowExpandAll }} </v-icon>
           </v-chip>
         </div>
       </v-card>
@@ -99,10 +99,10 @@
 </template>
 
 <script>
+import { mdiArrowExpandAll } from '@mdi/js'
 import GifLoader from '@/components/basic/GifLoader'
 import ItemIcon from '@/components/basic/ItemIcon'
 import RcDialog from '@/components/basic/RcDialog'
-
 export default {
   name: 'FishAquarium',
   components: { RcDialog, ItemIcon, GifLoader },
@@ -118,6 +118,7 @@ export default {
   },
   data() {
     return {
+      mdiArrowExpandAll: mdiArrowExpandAll,
       currentIndex: 0,
       showExpandedDialog: false,
       imageSizeNormal: { w: 892, h: 363 },

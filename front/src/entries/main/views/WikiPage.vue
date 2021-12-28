@@ -16,7 +16,7 @@
         <v-sheet class="pa-1 primary">
           <div class="d-flex align-center">
             <v-btn text icon @click="type = undefined">
-              <v-icon> mdi-home </v-icon>
+              <v-icon> {{ mdiHome }} </v-icon>
             </v-btn>
             <rc-text-field
               v-model="searchText"
@@ -26,14 +26,6 @@
               hide-details
               clearable
             ></rc-text-field>
-            <!-- expand all button -->
-            <!--            <v-btn icon text class="ml-1" @click="expandAll">-->
-            <!--              <v-icon>mdi-arrow-expand-vertical</v-icon>-->
-            <!--            </v-btn>-->
-            <!-- setting button -->
-            <!--            <v-btn v-if="type === 'fish' || type === 'spot'" @click="toggleSettingMode" icon>-->
-            <!--              <v-icon>mdi-cog</v-icon>-->
-            <!--            </v-btn>-->
           </div>
         </v-sheet>
         <div class="d-flex align-center px-1">
@@ -47,13 +39,13 @@
           >
             <new-feature-mark id="WikiBulkButton-V.0.6.6-1">
               <v-icon v-if="!showBulkCompleteCheckbox" small>
-                mdi-checkbox-multiple-blank-outline
+                {{ mdiCheckboxMultipleBlankOutline }}
               </v-icon>
-              <v-icon v-else small>mdi-checkbox-multiple-marked</v-icon>
+              <v-icon v-else small>{{ mdiCheckboxMultipleMarked }}</v-icon>
             </new-feature-mark>
           </v-btn>
           <v-btn small icon text class="ml-2" @click="collapseAll">
-            <v-icon small>mdi-arrow-collapse-vertical</v-icon>
+            <v-icon small>{{ mdiArrowCollapseVertical }}</v-icon>
           </v-btn>
           <v-spacer />
           <v-btn-toggle
@@ -108,7 +100,7 @@
           >
             <template v-if="!showBulkCompleteCheckbox" v-slot:prepend="{ selected }">
               <v-icon>
-                {{ selected ? 'mdi-check' : '' }}
+                {{ selected ? mdiCheck : '' }}
               </v-icon>
             </template>
           </v-treeview>
@@ -131,7 +123,7 @@
           >
             <template v-if="!showBulkCompleteCheckbox" v-slot:prepend="{ selected }">
               <v-icon>
-                {{ selected ? 'mdi-check' : '' }}
+                {{ selected ? mdiCheck : '' }}
               </v-icon>
             </template>
           </v-treeview>
@@ -163,7 +155,7 @@
             <div class="text-subtitle-2">鼠标悬停成就数字可查看说明</div>
             <div v-if="isMobile" class="text-subtitle-2">
               点击上方
-              <v-icon small>mdi-map</v-icon>
+              <v-icon small>{{ mdiMap }}</v-icon>
               按钮显示钓场选择菜单
             </div>
             <v-divider />
@@ -237,14 +229,11 @@
               block
               class="mt-2"
             >
-              <v-icon left>mdi-sync</v-icon>
+              <v-icon left>{{ mdiSync }}</v-icon>
               同步游戏数据
             </v-btn>
           </v-sheet>
         </div>
-        <!--        <div class="d-flex justify-center align-center" style="width: 100%; height: 100%">-->
-        <!--          <v-icon size="200">mdi-book-open-page-variant</v-icon>-->
-        <!--        </div>-->
       </div>
       <div v-else-if="type === 'territory'" class="grid-content">
         <!--  show territory view  -->
@@ -340,8 +329,8 @@
               </v-expansion-panel-header>
               <v-expansion-panel-content>
                 <div>
-                  若登录游戏后仍未同步成功，请打开左侧<v-icon small>mdi-fish</v-icon
-                  >渔捞，点击右上角<v-icon small>mdi-cog</v-icon
+                  若登录游戏后仍未同步成功，请打开左侧<v-icon small>{{ mdiFish }}</v-icon
+                  >渔捞，点击右上角<v-icon small>{{ mdiCog }}</v-icon
                   >进入设置，按照黄字提示操作。
                 </div>
               </v-expansion-panel-content>
@@ -349,7 +338,7 @@
           </v-expansion-panels>
         </v-card-text>
         <v-card-text v-if="syncStatus === 'finished'">
-          <v-icon>mdi-check-circle</v-icon>
+          <v-icon>{{ mdiCheckCircle }}</v-icon>
           <span class="ml-2"> 同步完成，请点击关闭退出同步对话框。 </span>
         </v-card-text>
         <v-card-actions class="d-flex justify-end">
@@ -380,6 +369,18 @@
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
+import {
+  mdiArrowCollapseVertical,
+  mdiCheck,
+  mdiCheckCircle,
+  mdiCheckboxMultipleBlankOutline,
+  mdiCheckboxMultipleMarked,
+  mdiCog,
+  mdiFish,
+  mdiHome,
+  mdiMap,
+  mdiSync,
+} from '@mdi/js'
 import AchievementProgress from '@/components/AchievementProgress'
 import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
@@ -429,6 +430,16 @@ export default {
     'toggleMapMenu',
   ],
   data: vm => ({
+    mdiCheck,
+    mdiHome,
+    mdiCheckboxMultipleBlankOutline,
+    mdiCheckboxMultipleMarked,
+    mdiArrowCollapseVertical,
+    mdiMap,
+    mdiSync,
+    mdiFish,
+    mdiCog,
+    mdiCheckCircle,
     CN_PATCH_VERSION: CN_PATCH_VERSION,
     GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
     achievementInfo: {

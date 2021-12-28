@@ -15,16 +15,12 @@
         <ul>
           <li>
             关注作者微博
-            <a href="https://weibo.com/u/7546879530" target="_blank">
-              @红豆年糕找不到
-            </a>
+            <a href="https://weibo.com/u/7546879530" target="_blank"> @红豆年糕找不到 </a>
             帮助鱼糕进行爱发电认证
           </li>
           <li>
             在
-            <a href="https://afdian.net/@ricecake404" target="_blank">
-              爱发电
-            </a>
+            <a href="https://afdian.net/@ricecake404" target="_blank"> 爱发电 </a>
             为鱼糕充电！
           </li>
         </ul>
@@ -83,9 +79,7 @@
     </v-alert>
     <div class="text-h6 my-1">鱼糕桌面版</div>
     <ul>
-      <li>
-        基于0.9.9更新，在各个界面保持了0.9.9风格的前提下，包括了1.0.0中功能相关更新
-      </li>
+      <li>基于0.9.9更新，在各个界面保持了0.9.9风格的前提下，包括了1.0.0中功能相关更新</li>
     </ul>
     <div class="text-h6 my-1">鱼糕</div>
     <ul>
@@ -146,9 +140,7 @@
           )}”中配置显示的屏幕。`
         }}
       </li>
-      <li>
-        主界面可以在多屏幕间自由拖动，其他窗口只会显示在“屏幕设置”配置的屏幕中。
-      </li>
+      <li>主界面可以在多屏幕间自由拖动，其他窗口只会显示在“屏幕设置”配置的屏幕中。</li>
     </ul>
 
     <v-alert color="secondary" outlined class="mt-4">
@@ -179,9 +171,7 @@
       <li>修正鱼饵概率图中脱钩数据未正确筛选的问题</li>
       <li>增加将固定列表中的鱼同时显示在默认列表中的选项</li>
       <li>增加闹钟锁定功能，设置后标记已完成不会自动删除闹钟</li>
-      <li>
-        修正晨曦旗鱼条件，天气条件修正为：晴朗 转 阴云，薄雾，微风，其他条件不变
-      </li>
+      <li>修正晨曦旗鱼条件，天气条件修正为：晴朗 转 阴云，薄雾，微风，其他条件不变</li>
     </ul>
     <div class="text-h6 my-1">鱼糕桌面版</div>
     <ul>
@@ -543,7 +533,7 @@
       <li>更新部分鱼数据</li>
       <li>
         增加任务相关信息支持：海川鱼神、爆钓艾欧泽亚、天钢系列任务。在相关鱼会有
-        <v-icon> mdi-alert-circle-outline</v-icon>
+        <v-icon>{{ mdiAlertCircleOutline }}</v-icon>
         标记，点击可在详细页面显示任务信息。
       </li>
       <li>更新第四期伊修加德重建页面部分内容。</li>
@@ -846,7 +836,7 @@
       </div>
     </v-alert>
     <div class="text-h6 my-1">鱼糕</div>
-    <v-alert outlined type="success" border="left" icon="mdi-ferry">
+    <v-alert outlined type="success" border="left" :icon="mdiFerry">
       <ul>
         <li>增加了5.4海钓新页面，游戏正式更新后，旧海钓页面将会删除</li>
         <li>更新海钓页面部分内容的排版</li>
@@ -979,7 +969,7 @@
     <ul>
       <li>
         增加水族馆
-        <v-icon>mdi-fishbowl</v-icon>
+        <v-icon>{{ mdiFishbowl }}</v-icon>
       </li>
       <li>增加列表页面水族馆支持</li>
     </ul>
@@ -1135,7 +1125,7 @@
     <div class="text-h6 my-1">渔捞 - 钓鱼辅助</div>
     <div class="text-subtitle-1 text-center">
       （点击桌面版左侧侧边栏
-      <v-icon>mdi-fish</v-icon>
+      <v-icon>{{ mdiFish }}</v-icon>
       开启）
     </div>
     <div class="text-subtitle-2 error--text">
@@ -1144,7 +1134,7 @@
     <ul>
       <li>
         支持自动标记已完成（可在渔捞右上
-        <v-icon small>mdi-cog</v-icon>
+        <v-icon small>{{ mdiCog }}</v-icon>
         设置中配置是否开启）
       </li>
       <li>
@@ -1189,7 +1179,7 @@
     <ul>
       <li>
         点击左侧
-        <v-icon>mdi-desktop-mac-dashboard</v-icon>
+        <v-icon>{{ mdiDesktopMacDashboard }}</v-icon>
         下载桌面版
       </li>
       <li>支持自动更新</li>
@@ -1208,7 +1198,7 @@
       <li>增加鱼饵筛选功能，在筛选界面中可以开启鱼饵筛选。</li>
       <li>
         增加鱼饵查询小工具，点击右上角
-        <v-icon>mdi-hook</v-icon>
+        <v-icon>{{ mdiHook }}</v-icon>
         按钮即可使用。
         <ul>
           <li>可以筛选，查找鱼饵，以查看鱼饵的使用情况。</li>
@@ -1398,7 +1388,7 @@
     <ul>
       <li>
         增加海钓时间表。点击左侧图标
-        <v-icon small>mdi-ferry</v-icon>
+        <v-icon small>{{ mdiFerry }}</v-icon>
         即可查看。
         <div>之后会增加更多海钓相关功能，敬请期待~</div>
       </li>
@@ -1418,7 +1408,7 @@
         增加攻略支持：（感谢攻略作者的授权与支持！）
         <div>
           在详情界面或直接点击
-          <v-icon small>mdi-book</v-icon>
+          <v-icon small>{{ mdiBook }}</v-icon>
           按钮即可查看。
         </div>
         <ul>
@@ -1744,12 +1734,30 @@
 
 <script>
 import { OCEAN_FISHING_TIPS } from 'Data/oceanFishing'
+import {
+  mdiAlertCircleOutline,
+  mdiBook,
+  mdiCog,
+  mdiDesktopMacDashboard,
+  mdiFerry,
+  mdiFish,
+  mdiFishbowl,
+  mdiHook,
+} from '@mdi/js'
 import DIADEM from 'Data/diadem'
 
 export default {
   name: 'PatchNoteHistory',
   data() {
     return {
+      mdiAlertCircleOutline,
+      mdiFerry,
+      mdiFishbowl,
+      mdiFish,
+      mdiCog,
+      mdiDesktopMacDashboard,
+      mdiHook,
+      mdiBook,
       oceanFishTipReference: OCEAN_FISHING_TIPS.tip1,
       diademTips: DIADEM.SIMPLE_TIPS,
     }

@@ -10,6 +10,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import { mdiCheckboxBlankOutline, mdiCheckboxMarked } from '@mdi/js'
 import ClickHelper from '@/components/basic/ClickHelper'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
 
@@ -27,11 +28,11 @@ export default {
     },
     checkedIcon: {
       type: String,
-      default: 'mdi-checkbox-marked',
+      default: mdiCheckboxMarked,
     },
     uncheckedIcon: {
       type: String,
-      default: 'mdi-checkbox-blank-outline',
+      default: mdiCheckboxBlankOutline,
     },
     small: {
       type: Boolean,

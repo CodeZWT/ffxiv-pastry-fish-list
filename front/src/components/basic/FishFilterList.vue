@@ -31,16 +31,16 @@
             <div v-if="baitFilterEnabledComputed">
               <div class="d-flex align-center">
                 <v-btn text small class="mx-1" @click="selectAllBaits()">
-                  <v-icon left> mdi-check-all </v-icon>
+                  <v-icon left> {{ mdiCheckAll }} </v-icon>
                   选择所有
                 </v-btn>
                 <v-btn text small class="mx-1" @click="clearAllBaits">
-                  <v-icon left> mdi-close </v-icon>
+                  <v-icon left> {{ mdiClose }} </v-icon>
                   清除所有
                 </v-btn>
                 <v-tooltip right>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-icon v-on="on" v-bind="attrs"> mdi-help-circle-outline </v-icon>
+                    <v-icon v-on="on" v-bind="attrs"> {{ mdiHelpCircleOutline }} </v-icon>
                   </template>
                   <div>
                     <div>{{ $t('baitSearch.dialog.hint1') }}</div>
@@ -109,7 +109,7 @@
         <div style="width: 100%">
           <v-banner v-if="showBanner" two-line>
             <v-avatar slot="icon" color="primary" size="40">
-              <v-icon icon="mdi-lock" color="white"> mdi-information </v-icon>
+              <v-icon color="white"> {{ mdiInformation }} </v-icon>
             </v-avatar>
 
             <div>
@@ -181,7 +181,7 @@
                       <template v-slot:empty>
                         <span>
                           {{ $t('list.pinned.empty.prefix') }}
-                          <v-icon small class="mx-1">mdi-pin-outline</v-icon>
+                          <v-icon small class="mx-1">{{ mdiPinOutline }}</v-icon>
                           {{ $t('list.pinned.empty.suffix') }}
                         </span>
                       </template>
@@ -240,12 +240,12 @@
                   <div class="d-flex flex-column align-center">
                     <span>
                       {{ $t('list.toBeNotified.empty.prefix') }}
-                      <v-icon small class="mx-1">mdi-bell-outline</v-icon>
+                      <v-icon small class="mx-1">{{ mdiBellOutline }}</v-icon>
                       {{ $t('list.toBeNotified.empty.suffix') }}
                     </span>
                     <span>
                       {{ $t('list.toBeNotified.empty.helpPrefix') }}
-                      <v-icon small class="mx-1">mdi-cog</v-icon>
+                      <v-icon small class="mx-1">{{ mdiCog }}</v-icon>
                       {{ $t('list.toBeNotified.empty.helpSuffix') }}
                     </span>
                   </div>
@@ -264,7 +264,7 @@
         :style="`right: ${rightPercentage}%; bottom: ${bottomOffset}px`"
         @click="backToTop"
       >
-        <v-icon>mdi-chevron-up</v-icon>
+        <v-icon>{{ mdiChevronUp }}</v-icon>
       </v-btn>
     </v-fab-transition>
   </v-container>
@@ -272,6 +272,17 @@
 
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import {
+  mdiBellOutline,
+  mdiCheckAll,
+  mdiChevronUp,
+  mdiClose,
+  mdiCog,
+  mdiHelpCircleOutline,
+  mdiInformation,
+  mdiLock,
+  mdiPinOutline,
+} from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import FIX from 'Data/fix'
@@ -302,6 +313,15 @@ export default {
     'showRightPane',
   ],
   data: () => ({
+    mdiCheckAll,
+    mdiClose,
+    mdiHelpCircleOutline,
+    mdiLock,
+    mdiInformation,
+    mdiPinOutline,
+    mdiBellOutline,
+    mdiCog,
+    mdiChevronUp,
     isElectron: DevelopmentModeUtil.isElectron(),
     selectedBaitIdIndices: [],
     allBaits: FIX.BAITS,

@@ -106,15 +106,15 @@
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
           <div>
-            <v-icon small>mdi-qqchat</v-icon>
+            <v-icon small>{{ mdiQqchat }}</v-icon>
             群: 1153646847
           </div>
           <div>
-            <v-icon small>mdi-sina-weibo</v-icon>
+            <v-icon small>{{ mdiSinaWeibo }}</v-icon>
             红豆年糕找不到
           </div>
           <div>
-            合作： <v-icon small>mdi-sina-weibo</v-icon>
+            合作： <v-icon small>{{ mdiSinaWeibo }}</v-icon>
             光之渔夫bot
           </div>
           <div>欢迎使用本站</div>
@@ -262,6 +262,7 @@
 <script>
 import { INTERVAL_MINUTE } from 'Data/constants'
 import { mapMutations, mapState } from 'vuex'
+import { mdiQqchat, mdiSinaWeibo } from '@mdi/js'
 import AppMixin from '@/components/AppMixin'
 import DataUtil from '@/utils/DataUtil'
 import FishDetailWindow from '@/entries/screen/views/FishDetailWindow'
@@ -298,6 +299,8 @@ export default {
     ReaderTimerMiniWindow,
   },
   data: () => ({
+    mdiQqchat,
+    mdiSinaWeibo,
     showSideBar: true,
     miniSideBar: true,
     isFishing: false,

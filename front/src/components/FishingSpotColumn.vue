@@ -25,7 +25,7 @@
         <v-menu v-model="showSpotMenu" offset-x>
           <template v-slot:activator="{ on, attrs }">
             <v-btn small icon text v-bind="attrs" v-on="on" @click.stop="">
-              <v-icon small>mdi-view-list</v-icon>
+              <v-icon small>{{ mdiViewList }}</v-icon>
             </v-btn>
           </template>
           <v-simple-table fixed-header color="secondary">
@@ -64,6 +64,7 @@
 </template>
 
 <script>
+import { mdiViewList } from '@mdi/js'
 import LinkList from '@/components/basic/LinkList'
 
 export default {
@@ -85,6 +86,7 @@ export default {
   },
   data() {
     return {
+      mdiViewList,
       showSpotMenu: false,
     }
   },

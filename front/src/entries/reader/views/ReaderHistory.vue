@@ -14,7 +14,10 @@
                 读取数据中 {{ exportPercentage }}
               </template>
               <template v-else-if="exporting && generating">生成文件中</template>
-              <template v-else> <v-icon>mdi-file-table</v-icon>导出至文件</template>
+              <template v-else>
+                <v-icon>{{ mdiFileTable }}</v-icon
+                >导出至文件</template
+              >
             </v-btn>
             <v-btn
               icon
@@ -24,7 +27,7 @@
               title="点击查看如何使用导出文件"
             >
               <new-feature-mark id="ExportHelp-V.0.6.6-1">
-                <v-icon>mdi-help-circle</v-icon>
+                <v-icon>{{ mdiHelpCircle }}</v-icon>
               </new-feature-mark>
             </v-btn>
             <v-spacer />
@@ -34,7 +37,8 @@
               @click="showClearConfirmDialog = true"
               color="error"
             >
-              <v-icon>mdi-file-remove</v-icon>清空记录
+              <v-icon>{{ mdiFileRemove }}</v-icon
+              >清空记录
             </v-btn>
           </v-row>
           <v-row no-gutters>
@@ -229,7 +233,7 @@
                     v-ripple
                     @click="removeRecord(record)"
                   >
-                    <v-icon x-small>mdi-close</v-icon>
+                    <v-icon x-small>{{ mdiClose }}</v-icon>
                   </v-chip>
                 </v-row>
               </v-list-item-content>
@@ -247,7 +251,7 @@
                     small
                     :color="record.isStrictMode ? 'deep-purple darken-1' : ''"
                   >
-                    mdi-arrow-up-bold
+                    {{ mdiArrowUpBold }}
                   </v-icon>
                   <template v-slot:msg>
                     {{ record.isStrictMode ? '严格模式已上传' : '已上传' }}
@@ -259,7 +263,7 @@
                     small
                     :color="record.isStrictMode ? 'deep-purple darken-1' : ''"
                   >
-                    mdi-arrow-up-bold-outline
+                    {{ mdiArrowUpBoldOutline }}
                   </v-icon>
                   <template v-slot:msg>
                     {{ record.isStrictMode ? '严格模式等待上传' : '等待上传' }}
@@ -308,6 +312,14 @@
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
 import { invokeElectronEvent, sendElectronEvent } from '@/utils/electronHelper'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import {
+  mdiArrowUpBold,
+  mdiArrowUpBoldOutline,
+  mdiClose,
+  mdiFileRemove,
+  mdiFileTable,
+  mdiHelpCircle,
+} from '@mdi/js'
 import BAITS from 'Data/bait'
 import COMMON from 'Data/common'
 import DATA from 'Data/data'
@@ -328,7 +340,6 @@ import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
 import db from '@/plugins/db'
-// import TEST from 'Data/test'
 
 const INITIAL_LOADING_CNT = 100
 const LOAD_MORE_CNT = 100
@@ -346,6 +357,12 @@ export default {
   },
   data() {
     return {
+      mdiFileTable,
+      mdiHelpCircle,
+      mdiFileRemove,
+      mdiClose,
+      mdiArrowUpBold,
+      mdiArrowUpBoldOutline,
       recordsFilterSpotId: undefined,
       recordsFilterFishId: undefined,
       recordsFilterBaitId: undefined,

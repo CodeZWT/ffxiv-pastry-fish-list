@@ -153,7 +153,7 @@
                     />
                   </div>
                   <v-icon v-if="fish.previousWeatherSet.length > 0" small>
-                    mdi-arrow-right
+                    {{ mdiArrowRight }}
                   </v-icon>
                   <div
                     v-for="weather in fish.weatherSetDetail"
@@ -253,8 +253,8 @@
                   <toggle-button
                     :value="transformedFishPart.pinned"
                     @input="setPinned($event)"
-                    checked-icon="mdi-pin"
-                    unchecked-icon="mdi-pin-outline"
+                    :checked-icon="mdiPin"
+                    :unchecked-icon="mdiPinOutline"
                     small
                     :checked-title="$t('actions.pin.checked')"
                     :unchecked-title="$t('actions.pin.unchecked')"
@@ -262,7 +262,7 @@
                   <!-- copy name -->
                   <click-helper @click.stop :copy-text="fish.name">
                     <v-btn text icon small :title="$t('list.item.copyHint')">
-                      <v-icon small>mdi-content-copy</v-icon>
+                      <v-icon small>{{ mdiContentCopy }}</v-icon>
                     </v-btn>
                   </click-helper>
                   <!-- alarm -->
@@ -271,8 +271,8 @@
                     :value="transformedFishPart.toBeNotified"
                     :title="transformedFishPart.notificationHint"
                     @input="setToBeNotified($event)"
-                    checked-icon="mdi-bell"
-                    unchecked-icon="mdi-bell-outline"
+                    :checked-icon="mdiBell"
+                    :unchecked-icon="mdiBellOutline"
                     small
                   />
                 </div>
@@ -280,7 +280,7 @@
               <v-col :class="locationColClass">
                 <div v-if="!inPredator && !hideSpotColumn" class="d-flex">
                   <v-btn text small icon @click.stop="onFishClicked(['DetailItemMap'])">
-                    <v-icon small> mdi-map </v-icon>
+                    <v-icon small> {{ mdiMap }} </v-icon>
                   </v-btn>
                 </div>
               </v-col>
@@ -293,6 +293,14 @@
 </template>
 
 <script>
+import {
+  mdiArrowRight,
+  mdiBell,
+  mdiContentCopy,
+  mdiMap,
+  mdiPin,
+  mdiPinOutline,
+} from '@mdi/js'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
@@ -317,6 +325,16 @@ export default {
     ToggleButton,
   },
   mixins: [fishInfoRowMixin],
+  data() {
+    return {
+      mdiPin,
+      mdiPinOutline,
+      mdiBell,
+      mdiArrowRight,
+      mdiContentCopy,
+      mdiMap,
+    }
+  },
   computed: {
     fishColClass() {
       return 'col-4'

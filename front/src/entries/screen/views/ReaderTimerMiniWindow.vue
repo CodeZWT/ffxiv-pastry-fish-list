@@ -21,7 +21,7 @@
           class="my-3 mx-1"
           color="error"
         >
-          <v-icon>mdi-close</v-icon>
+          <v-icon>{{ mdiClose }}</v-icon>
         </v-btn>
       </div>
     </template>
@@ -31,6 +31,7 @@
 <script>
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mdiClose } from '@mdi/js'
 import READER_ICON from 'Assets/reader.png'
 import ReaderTimer from '@/entries/reader/views/ReaderTimer'
 import ReaderTimerMixin from '@/entries/screen/views/ReaderTimerMixin'
@@ -53,6 +54,7 @@ export default {
     },
   },
   data: () => ({
+    mdiClose,
     readerIcon: READER_ICON,
     settingIcon: SETTING_ICON,
     CN_PATCH_VERSION: CN_PATCH_VERSION,

@@ -3,7 +3,7 @@
     v-if="fish.checkInfo && fish.checkInfo.bestCatchPathUnknown"
     class="d-flex justify-center align-center"
   >
-    <v-icon small color="warning">mdi-alert-outline</v-icon>
+    <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
     <span class="warning--text">开荒中</span>
   </div>
   <div v-else class="d-flex justify-center align-center">
@@ -75,6 +75,7 @@
 
 <script>
 import { SystemInfo } from 'Data/version'
+import { mdiAlertOutline } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import FishBaitList from '@/components/FishBaitList'
@@ -88,6 +89,11 @@ export default {
       type: Object,
       default: undefined,
     },
+  },
+  data() {
+    return {
+      mdiAlertOutline: mdiAlertOutline,
+    }
   },
   computed: {
     isSpearFish() {

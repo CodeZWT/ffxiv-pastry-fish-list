@@ -17,7 +17,7 @@
               <v-list>
                 <!--                  <v-list-item @click="addFishList">-->
                 <!--                    <v-list-item-icon>-->
-                <!--                      <v-icon>mdi-format-list-text</v-icon>-->
+                <!--{{                      <vIcon>mdiFormatListText</vIcon>}}-->
                 <!--                    </v-list-item-icon>-->
                 <!--                    <v-list-item-content>-->
                 <!--                      <v-list-item-title>{{-->
@@ -27,7 +27,7 @@
                 <!--                  </v-list-item>-->
                 <!--                  <v-list-item @click="addNotificationList">-->
                 <!--                    <v-list-item-icon>-->
-                <!--                      <v-icon>mdi-bell</v-icon>-->
+                <!--{{                      <vIcon>mdiBell</vIcon>}}-->
                 <!--                    </v-list-item-icon>-->
                 <!--                    <v-list-item-content>-->
                 <!--                      <v-list-item-title>{{-->
@@ -37,7 +37,7 @@
                 <!--                  </v-list-item>-->
                 <!--                  <v-list-item @click="addWiki">-->
                 <!--                    <v-list-item-icon>-->
-                <!--                      <v-icon>mdi-notebook</v-icon>-->
+                <!--{{                      <vIcon>mdiNotebook</vIcon>}}-->
                 <!--                    </v-list-item-icon>-->
                 <!--                    <v-list-item-content>-->
                 <!--                      <v-list-item-title>{{-->
@@ -47,7 +47,7 @@
                 <!--                  </v-list-item>-->
                 <!--                  <v-list-item @click="addOceanFishing">-->
                 <!--                    <v-list-item-icon>-->
-                <!--                      <v-icon>mdi-ferry</v-icon>-->
+                <!--{{                      <vIcon>mdiFerry</vIcon>}}-->
                 <!--                    </v-list-item-icon>-->
                 <!--                    <v-list-item-content>-->
                 <!--                      <v-list-item-title>{{-->
@@ -71,7 +71,7 @@
                 <!--                  </v-list-item>-->
                 <!--                  <v-list-item @click="addAquarium">-->
                 <!--                    <v-list-item-icon>-->
-                <!--                      <v-icon>mdi-fishbowl</v-icon>-->
+                <!--{{                      <vIcon>mdiFishbowl</vIcon>}}-->
                 <!--                    </v-list-item-icon>-->
                 <!--                    <v-list-item-content>-->
                 <!--                      <v-list-item-title>{{-->
@@ -81,7 +81,7 @@
                 <!--                  </v-list-item>-->
                 <!--                  <v-list-item @click="addCompetition">-->
                 <!--                    <v-list-item-icon>-->
-                <!--                      <v-icon>mdi-trophy</v-icon>-->
+                <!--{{                      <vIcon>mdiTrophy</vIcon>}}-->
                 <!--                    </v-list-item-icon>-->
                 <!--                    <v-list-item-content>-->
                 <!--                      <v-list-item-title>{{ $t('top.competition') }}</v-list-item-title>-->
@@ -89,7 +89,7 @@
                 <!--                  </v-list-item>-->
                 <v-list-item @click="showExtraMainWindow()">
                   <v-list-item-icon>
-                    <v-icon>mdi-desktop-mac-dashboard</v-icon>
+                    <v-icon>{{ mdiDesktopMacDashboard }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title> 鱼糕 </v-list-item-title>
@@ -100,7 +100,7 @@
               <v-list>
                 <v-list-item @click="showGlobalSettingDialog = true">
                   <v-list-item-icon>
-                    <v-icon>mdi-cog</v-icon>
+                    <v-icon>{{ mdiCog }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>{{
@@ -111,7 +111,7 @@
 
                 <v-list-item @click="setShowImportExportDialog(true)">
                   <v-list-item-icon>
-                    <v-icon>mdi-database</v-icon>
+                    <v-icon>{{ mdiDatabase }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title> {{ $t('top.menu') }}</v-list-item-title>
@@ -147,7 +147,7 @@
                 </v-list-item>
                 <v-list-item @click="exit">
                   <v-list-item-icon>
-                    <v-icon class="error--text">mdi-close</v-icon>
+                    <v-icon class="error--text">{{ mdiClose }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content class="error--text">
                     <v-list-item-title> 退出鱼糕 </v-list-item-title>
@@ -160,7 +160,7 @@
               <v-list>
                 <v-list-item @click="addReaderTimer">
                   <v-list-item-icon>
-                    <v-icon>mdi-timer</v-icon>
+                    <v-icon>{{ mdiTimer }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>计时器</v-list-item-title></v-list-item-content
@@ -168,7 +168,7 @@
                 </v-list-item>
                 <v-list-item @click="addReaderTimerMini">
                   <v-list-item-icon>
-                    <v-icon>mdi-timer</v-icon>
+                    <v-icon>{{ mdiTimer }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>迷你计时器</v-list-item-title></v-list-item-content
@@ -176,7 +176,7 @@
                 </v-list-item>
                 <v-list-item @click="addReaderHistory">
                   <v-list-item-icon>
-                    <v-icon>mdi-history</v-icon>
+                    <v-icon>{{ mdiHistory }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title
@@ -186,7 +186,7 @@
                 </v-list-item>
                 <v-list-item @click="addReaderSpotStatistics">
                   <v-list-item-icon>
-                    <v-icon>mdi-map</v-icon>
+                    <v-icon>{{ mdiMap }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title
@@ -216,6 +216,15 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
+import {
+  mdiClose,
+  mdiCog,
+  mdiDatabase,
+  mdiDesktopMacDashboard,
+  mdiHistory,
+  mdiMap,
+  mdiTimer,
+} from '@mdi/js'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import { version } from '../../../../package.json'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
@@ -240,6 +249,13 @@ export default {
     },
   },
   data: () => ({
+    mdiDesktopMacDashboard,
+    mdiCog,
+    mdiDatabase,
+    mdiClose,
+    mdiTimer,
+    mdiHistory,
+    mdiMap,
     showGlobalSettingDialog: false,
     isElectron: DevelopmentModeUtil.isElectron(),
     downloadProgress: 0,

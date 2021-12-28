@@ -37,7 +37,7 @@
               style="min-width: 48px"
               title="重置地图状态"
             >
-              <v-icon>mdi-arrow-collapse</v-icon>
+              <v-icon>{{ mdiArrowCollapse }}</v-icon>
             </v-btn>
             <v-btn-toggle
               v-model="mapOptions"
@@ -50,24 +50,24 @@
                 icon
                 title="隐藏/显示 钓场范围提示（紫色标记）"
               >
-                <v-icon>mdi-waves</v-icon>
+                <v-icon>{{ mdiWaves }}</v-icon>
               </v-btn>
               <v-btn
                 @click="toggleLayer('markerRangeLayer')"
                 icon
                 title="隐藏/显示 游戏地图图标（大水晶和范围圈）"
               >
-                <v-icon>mdi-map-marker-radius</v-icon>
+                <v-icon>{{ mdiMapMarkerRadius }}</v-icon>
               </v-btn>
               <v-btn @click="toggleLayer('textLayer')" icon title="隐藏/显示 钓场名称">
-                <v-icon>mdi-format-text</v-icon>
+                <v-icon>{{ mdiFormatText }}</v-icon>
               </v-btn>
               <v-btn
                 @click="toggleMapLock"
                 icon
                 title="取消/启用 地图锁（取消后可鼠标移动以及滚轮缩放地图）"
               >
-                <v-icon>mdi-lock</v-icon>
+                <v-icon>{{ mdiLock }}</v-icon>
               </v-btn>
             </v-btn-toggle>
           </div>
@@ -128,12 +128,18 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import {
+  mdiArrowCollapse,
+  mdiFormatText,
+  mdiLock,
+  mdiMapMarkerRadius,
+  mdiWaves,
+} from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import ImgUtil from '@/utils/ImgUtil'
 import _ from 'lodash'
 import copy from 'copy-to-clipboard'
-// import Konva from 'konva'
 
 const TEXT_PADDING = 50
 const TEXT_AETHERYTE_FONT = 90
@@ -186,6 +192,11 @@ export default {
     },
   },
   data: () => ({
+    mdiArrowCollapse,
+    mdiWaves,
+    mdiMapMarkerRadius,
+    mdiFormatText,
+    mdiLock,
     fishMarker: ImgUtil.getImgUrl('fishingSpot.webp'),
     markerRange: ImgUtil.getImgUrl('markerRange.webp'),
     defaultMap: ImgUtil.getMapUrl('default.00.webp', ImgUtil.CATEGORY.MAP),

@@ -10,22 +10,18 @@
         <div class="d-flex">
           <div>
             <div>谈清若风柔@神拳痕</div>
-            <div>
-              更新时间：2021/04/06
-            </div>
+            <div>更新时间：2021/04/06</div>
           </div>
           <v-spacer />
           <rc-dialog v-model="explanationDialog" width="500">
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" v-on="on" text>
-                <v-icon left>mdi-information</v-icon>
+                <v-icon left>{{ mdiInformation }}</v-icon>
                 作者说明
               </v-btn>
             </template>
             <v-card class="fishing-tip2">
-              <v-card-title>
-                关于本篇攻略的一些补充说明
-              </v-card-title>
+              <v-card-title> 关于本篇攻略的一些补充说明 </v-card-title>
               <v-card-text>
                 <ol>
                   <li>
@@ -65,16 +61,16 @@
               时间与天气
               <v-tooltip top color="secondary">
                 <template v-slot:activator="{ on, attrs }">
-                  <v-icon small v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
+                  <v-icon small v-bind="attrs" v-on="on">{{
+                    mdiHelpCircleOutline
+                  }}</v-icon>
                 </template>
                 <div>
                   {{ $t('pastryFishTip.title') }}
                   <div>
                     {{ $t('pastryFishTip.content') }}
                   </div>
-                  <div>
-                    部分数据已在作者授权下更新，原贴将会在之后更新。
-                  </div>
+                  <div>部分数据已在作者授权下更新，原贴将会在之后更新。</div>
                 </div>
               </v-tooltip>
             </div>
@@ -86,19 +82,17 @@
               数据可视化
               <v-tooltip top color="secondary">
                 <template v-slot:activator="{ on, attrs }">
-                  <v-icon small v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
+                  <v-icon small v-bind="attrs" v-on="on">{{
+                    mdiHelpCircleOutline
+                  }}</v-icon>
                 </template>
                 <div>
-                  <div>
-                    黑色数据来自作者：真实但存在样本单一
-                  </div>
+                  <div>黑色数据来自作者：真实但存在样本单一</div>
                   <div>
                     <span class="orangered">红色数据</span
                     >来自饿猫以及钓友：可能存在记录错误但样本多样
                   </div>
-                  <div>
-                    （详细说明请点击“作者说明”查看）
-                  </div>
+                  <div>（详细说明请点击“作者说明”查看）</div>
                 </div>
               </v-tooltip>
             </div>
@@ -138,6 +132,7 @@
   </div>
 </template>
 <script>
+import { mdiHelpCircleOutline, mdiInformation } from '@mdi/js'
 import RcDialog from '@/components/basic/RcDialog'
 import tip2 from 'Data/tip2'
 
@@ -146,6 +141,8 @@ export default {
   components: { RcDialog },
   props: ['id'],
   data: () => ({
+    mdiInformation,
+    mdiHelpCircleOutline,
     explanationDialog: false,
   }),
   // created() {

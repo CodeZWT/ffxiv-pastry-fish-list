@@ -126,9 +126,7 @@
             ></v-text-field>
           </v-card-text>
           <v-card-text class="d-flex align-center">
-            <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">
-              切换渔捞显示
-            </div>
+            <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">切换渔捞显示</div>
             <div class="mr-2">
               <kbd class="text-subtitle-1">Alt</kbd>+
               <kbd class="text-subtitle-1">Shift</kbd>+
@@ -232,7 +230,7 @@
                         @click="showFileViewer(tug)"
                         :title="lazySetting.timer.sound[tug].customPath"
                       >
-                        <v-icon>mdi-file-music-outline</v-icon>
+                        <v-icon>{{ mdiFileMusicOutline }}</v-icon>
                         <div class="text-truncate" style="max-width: 170px">
                           {{
                             toDisplayFileName(lazySetting.timer.sound[tug].customPath) ||
@@ -255,7 +253,7 @@
                 >
                 </v-slider>
                 <v-btn icon text @click="ringBell(tug)">
-                  <v-icon>mdi-play</v-icon>
+                  <v-icon>{{ mdiPlay }}</v-icon>
                 </v-btn>
               </div>
             </div>
@@ -358,6 +356,7 @@
 <script>
 import { MONITOR_TYPES, REGIONS } from 'Data/constants'
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mdiFileMusicOutline, mdiPlay } from '@mdi/js'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
@@ -377,6 +376,8 @@ export default {
   },
   data() {
     return {
+      mdiFileMusicOutline,
+      mdiPlay,
       lazySetting: {},
       lazyWindowSetting: {
         timer: {},
