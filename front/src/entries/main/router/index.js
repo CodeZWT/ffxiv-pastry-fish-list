@@ -14,11 +14,11 @@ const routes = [
         '../views/HomePage'
       ),
     meta: {
-      title: '鱼糕 - 钓鱼时钟',
+      title: '鱼糕',
       metaTags: [
         {
           property: 'og:title',
-          content: '鱼糕 - 钓鱼时钟',
+          content: '鱼糕',
         },
       ],
     },
