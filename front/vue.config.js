@@ -95,6 +95,7 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
       // 提取出来的通用 chunk 和 vendor chunk。
       chunks: [
         'chunk-vendors-1',
+        'chunk-vendors-2',
         'chunk-vendors-other',
         'chunk-data-fish',
         'chunk-data-oceanfishing',
@@ -119,6 +120,11 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
           name: 'chunk-vendors-1',
           test: /[\\/]node_modules[\\/](howler|sortablejs|vee-validate|vuedraggable|clipboard)[\\/]/,
           priority: 10,
+        },
+        vendorsGroup2: {
+          name: 'chunk-vendors-2',
+          test: /[\\/]node_modules[\\/](echarts|zrender)[\\/]/,
+          priority: 9,
         },
         vendorsGroupOther: {
           name: 'chunk-vendors-other',
