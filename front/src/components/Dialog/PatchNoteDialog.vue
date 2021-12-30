@@ -179,12 +179,14 @@
 
 <script>
 import { mdiInformation } from '@mdi/js'
-import PatchNoteHistory from '@/components/Dialog/PatchNoteHistory'
 import RcDialog from '@/components/basic/RcDialog'
 
 export default {
   name: 'PatchNoteDialog',
-  components: { PatchNoteHistory, RcDialog },
+  components: {
+    PatchNoteHistory: () => import('@/components/Dialog/PatchNoteHistory'),
+    RcDialog,
+  },
   model: {
     prop: 'showPatchNoteDialog',
     event: 'input',

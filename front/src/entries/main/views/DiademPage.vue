@@ -212,7 +212,6 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import { mdiChevronRight, mdiPlusCircle, mdiSubdirectoryArrowRight } from '@mdi/js'
-import DIADEM from 'Data/diadem'
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import DiademFishList from '@/components/DiademFishList/DiademFishList'
@@ -222,6 +221,7 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 import WeatherIcon from '@/components/basic/WeatherIcon'
 import _ from 'lodash'
+import dataLoader from '@/utils/dataLoader'
 import regionTerritorySpots from 'Data/fishingSpots'
 
 export default {
@@ -242,6 +242,7 @@ export default {
       ],
       tabIndex: 0,
       isElectron: DevelopmentModeUtil.isElectron(),
+      DIADEM: undefined,
     }
   },
   computed: {
@@ -268,7 +269,7 @@ export default {
       return [2, 3, 4][this.versionIndex]
     },
     simpleTip() {
-      return DIADEM.SIMPLE_TIPS[this.versionIndex]
+      return this.DIADEM?.SIMPLE_TIPS[this.versionIndex] ?? {}
     },
     tipMap() {
       return this.tipMaps[this.versionIndex]
@@ -284,58 +285,60 @@ export default {
       }
     },
     diademSpots() {
-      return _.sortBy(
-        this.regionTerritorySpots
-          .find(it => it.id === null)
-          .territories[0].spots.filter(spot => this.versionSpots.includes(spot.id)),
-        'id'
-      ).map(spot => {
-        const fishingSpot = this.getFishingSpot(spot.id)
-        return {
-          ...spot,
-          fishingSpot,
-          fishingSpotName: this.getFishingSpotsName(spot.id),
-          fishingSpotId: spot.id,
-          fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
-          fishList: spot.fishList.map(fishId => {
-            const fish = DIADEM.FISH[fishId]
-            const bestCatchPath = fish.bestCatchPathGroup
-              ? fish.bestCatchPathGroup[spot.id].bestCatchPath
-              : fish.bestCatchPath
-            const bestCatchPathExtra = fish.bestCatchPathGroup
-              ? fish.bestCatchPathGroup[spot.id].bestCatchPathExtra
-              : fish.bestCatchPathExtra
-            const weatherSet = fish?.weatherSet ?? []
+      return !this.DIADEM
+        ? []
+        : _.sortBy(
+            this.regionTerritorySpots
+              .find(it => it.id === null)
+              .territories[0].spots.filter(spot => this.versionSpots.includes(spot.id)),
+            'id'
+          ).map(spot => {
+            const fishingSpot = this.getFishingSpot(spot.id)
             return {
-              ...fish,
-              id: fishId,
-              name: this.getItemName(fishId),
-              names: DataUtil.getItemNames(fishId),
-              icon: this.getItemIconClass(fishId),
-              points: fish.points[this.versionIndex],
-              scrips: fish.scrips[this.versionIndex],
-              hasWeatherConstraint: weatherSet.length > 0,
-              weatherSetDetail: this.getWeather(weatherSet),
-              baits: this.getBaits(fish, bestCatchPath, DIADEM.FISH, true),
-              baitsExtra:
-                bestCatchPathExtra.length > 0
-                  ? this.getBaits(fish, bestCatchPathExtra, DIADEM.FISH, true)
-                  : [],
-              biteTimeText: this.toBiteTimeText(fish.biteMin, fish.biteMax),
-              hasPredators: fish.predators && Object.keys(fish.predators).length > 0,
-              predators: Object.entries(fish.predators).map(([itemId, cnt]) => {
+              ...spot,
+              fishingSpot,
+              fishingSpotName: this.getFishingSpotsName(spot.id),
+              fishingSpotId: spot.id,
+              fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
+              fishList: spot.fishList.map(fishId => {
+                const fish = this.DIADEM.FISH[fishId]
+                const bestCatchPath = fish.bestCatchPathGroup
+                  ? fish.bestCatchPathGroup[spot.id].bestCatchPath
+                  : fish.bestCatchPath
+                const bestCatchPathExtra = fish.bestCatchPathGroup
+                  ? fish.bestCatchPathGroup[spot.id].bestCatchPathExtra
+                  : fish.bestCatchPathExtra
+                const weatherSet = fish?.weatherSet ?? []
                 return {
-                  id: itemId,
-                  icon: this.getItemIconClass(itemId),
-                  name: this.getItemName(itemId),
-                  requiredCnt: cnt,
+                  ...fish,
+                  id: fishId,
+                  name: this.getItemName(fishId),
+                  names: DataUtil.getItemNames(fishId),
+                  icon: this.getItemIconClass(fishId),
+                  points: fish.points[this.versionIndex],
+                  scrips: fish.scrips[this.versionIndex],
+                  hasWeatherConstraint: weatherSet.length > 0,
+                  weatherSetDetail: this.getWeather(weatherSet),
+                  baits: this.getBaits(fish, bestCatchPath, this.DIADEM.FISH, true),
+                  baitsExtra:
+                    bestCatchPathExtra.length > 0
+                      ? this.getBaits(fish, bestCatchPathExtra, this.DIADEM.FISH, true)
+                      : [],
+                  biteTimeText: this.toBiteTimeText(fish.biteMin, fish.biteMax),
+                  hasPredators: fish.predators && Object.keys(fish.predators).length > 0,
+                  predators: Object.entries(fish.predators).map(([itemId, cnt]) => {
+                    return {
+                      id: itemId,
+                      icon: this.getItemIconClass(itemId),
+                      name: this.getItemName(itemId),
+                      requiredCnt: cnt,
+                    }
+                  }),
+                  predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
                 }
               }),
-              predatorsIcon: DataUtil.iconIdToClass(DataUtil.ICON_PREDATORS),
             }
-          }),
-        }
-      })
+          })
     },
     spotPanels() {
       return this.isMobile ? [] : this.diademSpots.map((it, index) => index).slice(3)
@@ -349,6 +352,9 @@ export default {
       'getWeather',
       'getBaits',
     ]),
+  },
+  async mounted() {
+    this.DIADEM = await dataLoader.DIADEM()
   },
   methods: {
     iconIdToClass: DataUtil.iconIdToClass,

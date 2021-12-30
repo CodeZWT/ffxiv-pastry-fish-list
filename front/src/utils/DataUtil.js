@@ -1,7 +1,5 @@
-import { FISH as DIADEM_FISH } from 'Data/diadem'
 import { DateTime, FixedOffsetZone } from 'luxon'
 import { Howl } from 'howler'
-import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
 import { SystemInfo } from 'Data/version'
 import { detect } from 'detect-browser'
 import {
@@ -951,26 +949,19 @@ export default {
       : ''
   },
 
-  getFishPatch(fishId) {
-    return (
-      this.FISH_DATA[fishId]?.patch ||
-      OCEAN_FISHING_FISH[fishId]?.patch ||
-      DIADEM_FISH[fishId]?.patch
-    )
-  },
-
-  getFishType(fishId) {
-    const normalOrSpearFish = this.FISH_DATA[fishId]
-    if (normalOrSpearFish) {
-      return normalOrSpearFish.gig == null ? 'spear' : 'normal'
-    } else {
-      return OCEAN_FISHING_FISH[fishId]
-        ? 'ocean'
-        : DIADEM_FISH[fishId]
-        ? 'diadem'
-        : 'normal'
-    }
-  },
+  //
+  // getFishType(fishId) {
+  //   const normalOrSpearFish = this.FISH_DATA[fishId]
+  //   if (normalOrSpearFish) {
+  //     return normalOrSpearFish.gig == null ? 'spear' : 'normal'
+  //   } else {
+  //     return OCEAN_FISHING_FISH[fishId]
+  //       ? 'ocean'
+  //       : DIADEM_FISH[fishId]
+  //       ? 'diadem'
+  //       : 'normal'
+  //   }
+  // },
 
   isDiademSpot(id) {
     return id > 10000

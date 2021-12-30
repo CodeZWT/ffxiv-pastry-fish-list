@@ -1,9 +1,11 @@
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
+import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
 import { STATUS } from 'Data/common'
 import { WEATHER_TYPES } from 'Data/translation'
 import DATA from 'Data/data'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaTime from '@/utils/Time'
+import FISH from 'Data/fish'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
 import PLACE_NAMES from 'Data/placeNames'
@@ -11,10 +13,11 @@ import SPOT_FISH_DICT from 'Data/spotFishDict'
 import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
-
+import dataLoader from '@/utils/dataLoader'
 import rcapiService, { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 
-const toUploadData = records => {
+const toUploadData = async records => {
+  const { FISH: DIADEM_FISH } = await dataLoader.DIADEM()
   return records.map(record => {
     const spotId = record.spotId
     const et = new EorzeaTime(EorzeaTime.toEorzeaTime(record.startTime))
@@ -49,7 +52,7 @@ const toUploadData = records => {
       fish: record.fishId ?? -1,
       hq: record.hq,
       size: record.size > 0 ? +(record.size / 10).toFixed(1) : -1,
-      fishPatch: DataUtil.getFishPatch(record.fishId),
+      fishPatch: getFishPatch(record.fishId, DIADEM_FISH),
       missed: record.missed,
       cancelled: record.cancelled,
       bait: record.baitId ?? -1,
@@ -82,6 +85,12 @@ const toUploadData = records => {
 
 const UPLOAD_LIMIT = 100
 
+const getFishPatch = (fishId, DIADEM_FISH) => {
+  return (
+    FISH[fishId]?.patch || OCEAN_FISHING_FISH[fishId]?.patch || DIADEM_FISH[fishId]?.patch
+  )
+}
+
 export default {
   isLogin() {
     return !!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)
@@ -100,7 +109,7 @@ export default {
       .toArray()
     if (recordsToUpload.length > 0) {
       console.debug('Start uploading #', recordsToUpload.length)
-      rcapiService.uploadRecords(toUploadData(recordsToUpload)).then(result => {
+      rcapiService.uploadRecords(await toUploadData(recordsToUpload)).then(result => {
         console.debug('Uploaded #', result.length)
         if (result.length > 0) {
           db.records.bulkGet(result).then(recordsUploaded => {

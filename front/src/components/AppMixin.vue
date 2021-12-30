@@ -40,7 +40,6 @@ import RoseModeDialog from '@/components/Dialog/RoseModeDialog'
 import ToggleButton from '@/components/basic/ToggleButton'
 import UpdateAvailableDialog from '@/components/Dialog/UpdateAvailableDialog'
 import UpdateDialog from '@/components/Dialog/UpdateDialog'
-import UploadUtil from '@/utils/UploadUtil'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import _ from 'lodash'
 import hotkeys from 'hotkeys-js'
@@ -531,7 +530,9 @@ export default {
         this.setZoomFactor(windowSetting.main.zoomFactor)
       }
 
-      setInterval(() => UploadUtil.sendUploadRecord(db), INTERVAL_MINUTE)
+      import('@/utils/UploadUtil').then(({ default: UploadUtil }) => {
+        setInterval(() => UploadUtil.sendUploadRecord(db), INTERVAL_MINUTE)
+      })
 
       window.electron?.ipcRenderer?.on('broadcast', (event, { type, source }) => {
         console.debug('reloadSettingData according to', source)
