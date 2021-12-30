@@ -368,6 +368,7 @@
 <script>
 import { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
 import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
+import { flow, groupBy, mapValues } from 'lodash/fp'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import {
   mdiArrowCollapseVertical,
@@ -581,17 +582,18 @@ export default {
     fishCaughtCnt() {
       return this.allCompletedFishOfCurrentPatch.length
     },
+    fishList() {
+      return Object.values(this.allFish)
+        .filter(it => it.type !== 'test')
+        .map(it => ({ ...it, _id: DataUtil.toItemId(it._id) }))
+    },
     counts() {
       // const globalNormalFish = 16
       // const globalBigFish = 11
-      const podSpearFishDict = _.chain(
-        Object.values(this.allFish)
-          .filter(it => it.type !== 'test')
-          .map(it => ({ ...it, _id: DataUtil.toItemId(it._id) }))
-      )
-        .groupBy(it => it._id)
-        .mapValues(it => it[0])
-        .value()
+      const podSpearFishDict = flow(
+        groupBy(it => it._id),
+        mapValues(it => it[0])
+      )(this.fishList)
       const podSpearFish = Object.values(podSpearFishDict)
       const oceanFish = Object.values(OCEAN_FISHING_FISH)
 

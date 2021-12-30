@@ -1,7 +1,12 @@
-import _ from 'lodash'
+import { flow, groupBy, mapValues, uniq } from 'lodash/fp'
+import CORE from './OceanFishingCore'
 
 function getLS2Voyage() {
-  return _.chain(
+  return flow(
+    uniq,
+    groupBy('locationShift'),
+    mapValues(it => it.map(it => it.voyage))
+  )(
     CORE.VOYAGE_TYPES.flatMap(voyage => {
       return CORE.VOYAGE_LOCATIONS[CORE.voyageToLocation(voyage)].map(
         (location, index) => {
@@ -16,10 +21,6 @@ function getLS2Voyage() {
       )
     })
   )
-    .uniq()
-    .groupBy('locationShift')
-    .mapValues(it => it.map(it => it.voyage))
-    .value()
 }
 
 const LOCATION_SHIFT_VOYAGE = getLS2Voyage()
@@ -29,16 +30,16 @@ function allTargets() {
     return { locationShift: index, blueFish: tip.blueFish }
   }).filter(it => it.blueFish !== null)
 
-  const achievementId2Voyages = _.chain(
+  const achievementId2Voyages = flow(
+    groupBy('achievement'),
+    mapValues(it => it.map(it => it.voyage))
+  )(
     CORE.VOYAGE_TIPS.flatMap((tip, index) => {
       return tip.achievements.map(achievement => {
         return { achievement, voyage: index }
       })
     })
   )
-    .groupBy('achievement')
-    .mapValues(it => it.map(it => it.voyage))
-    .value()
 
   const achievementSet = new Set(CORE.VOYAGE_TIPS.flatMap(it => it.achievements))
   // TODO add location all & 3 shift options
@@ -76,8 +77,6 @@ function allTargets() {
     }),
   ]
 }
-
-import CORE from './OceanFishingCore'
 
 export default {
   ...CORE,

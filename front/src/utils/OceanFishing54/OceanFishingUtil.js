@@ -1,7 +1,12 @@
+import { flow, groupBy, mapValues, uniq } from 'lodash/fp'
 import _ from 'lodash'
 
 function getLS2Voyage() {
-  return _.chain(
+  return flow(
+    uniq,
+    groupBy('locationShift'),
+    mapValues(it => it.map(it => it.voyage))
+  )(
     Object.values(CORE.ROUTES).flatMap(route =>
       route.spotList.map((spotId, index) => ({
         voyage: route.routeId,
@@ -9,10 +14,6 @@ function getLS2Voyage() {
       }))
     )
   )
-    .uniq()
-    .groupBy('locationShift')
-    .mapValues(it => it.map(it => it.voyage))
-    .value()
 }
 
 const LOCATION_SHIFT_VOYAGE = getLS2Voyage()
@@ -35,7 +36,10 @@ function allTargets() {
       .filter(it => it.blueFish > 0)
   )
 
-  const achievementId2Voyages = _.chain(
+  const achievementId2Voyages = flow(
+    groupBy('achievement'),
+    mapValues(it => it.map(it => it.voyage))
+  )(
     routeList.flatMap(route =>
       route.achievements.map(achievement => ({
         achievement,
@@ -43,9 +47,6 @@ function allTargets() {
       }))
     )
   )
-    .groupBy('achievement')
-    .mapValues(it => it.map(it => it.voyage))
-    .value()
 
   const achievementSet = new Set(routeList.flatMap(it => it.achievements))
   // TODO add location all & 3 shift options

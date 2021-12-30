@@ -248,9 +248,7 @@
                           <td>{{ totalCnt }}条</td>
                         </tr>
                         <tr>
-                          <td>
-                            概率
-                          </td>
+                          <td>概率</td>
                           <td>
                             {{ `${cnt} / ${totalCnt} ≈ ${percentage.toFixed(2)}% ≈` }}
                             <v-progress-circular
@@ -306,9 +304,7 @@
                           <td>{{ totalCnt }}条</td>
                         </tr>
                         <tr>
-                          <td>
-                            概率
-                          </td>
+                          <td>概率</td>
                           <td>
                             {{ `${cnt} / ${totalCnt} ≈ ${percentage.toFixed(2)}% ≈` }}
                             <v-progress-circular
@@ -362,6 +358,7 @@
 </template>
 
 <script>
+import { filter, flow, groupBy, mapValues } from 'lodash/fp'
 import Constants from 'Data/constants'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
@@ -581,32 +578,27 @@ export default {
           }
         })
 
-      const baitFishCnt = _(filteredRecords)
-        .chain()
-        .filter(({ fish, bait }) => fish > 0 && bait > 0 && fishIdList.includes(fish))
-        .groupBy(({ bait }) => bait)
-        .mapValues(records => {
-          return _(records)
-            .chain()
-            .groupBy(({ fish }) => fish)
-            .mapValues(baitRec => _.sumBy(baitRec, ({ quantity }) => +quantity))
-            .value()
-        })
-        .value()
-      const unknownFishCnt = _(filteredRecords)
-        .chain()
-        .filter(({ fish, bait }) => fish === -1 && bait > 0)
-        .groupBy(({ bait }) => bait)
-        .mapValues(records => {
-          return _(records)
-            .chain()
-            .groupBy(({ tug }) => {
-              return this.TUGS[tug]
-            })
-            .mapValues(baitRec => _.sumBy(baitRec, ({ quantity }) => +quantity))
-            .value()
-        })
-        .value()
+      const baitFishCnt = flow(
+        filter(({ fish, bait }) => fish > 0 && bait > 0 && fishIdList.includes(fish)),
+        groupBy(({ bait }) => bait),
+        mapValues(records =>
+          flow(
+            groupBy(({ fish }) => fish),
+            mapValues(baitRec => _.sumBy(baitRec, ({ quantity }) => +quantity))
+          )(records)
+        )
+      )(filteredRecords)
+
+      const unknownFishCnt = flow(
+        filter(({ fish, bait }) => fish === -1 && bait > 0),
+        groupBy(({ bait }) => bait),
+        mapValues(records =>
+          flow(
+            groupBy(({ tug }) => this.TUGS[tug]),
+            mapValues(baitRec => _.sumBy(baitRec, ({ quantity }) => +quantity))
+          )(records)
+        )
+      )(filteredRecords)
       const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
         const tugCntDict = unknownFishCnt[bait] ?? {}
         const totalCnt =

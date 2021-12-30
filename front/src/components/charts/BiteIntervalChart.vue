@@ -39,9 +39,7 @@
           <div id="bite-interval-chart" style="width: 800px; height: 400px"></div>
         </div>
       </v-col>
-      <v-col cols="12" v-show="records.length === 0">
-        暂无咬钩时长数据
-      </v-col>
+      <v-col cols="12" v-show="records.length === 0"> 暂无咬钩时长数据 </v-col>
     </v-row>
   </v-container>
 </template>
@@ -49,15 +47,14 @@
 <script>
 import echarts from '@/plugins/echarts'
 
+import { filter, flow, groupBy, mapValues } from 'lodash/fp'
 import BAITS from 'Data/bait'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import ItemIcon from '@/components/basic/ItemIcon'
 import UploadUtil from '@/utils/UploadUtil'
 import _ from 'lodash'
-import themes from '@/components/echart-theme/theme'
-echarts.registerTheme('dark', themes.dark)
-echarts.registerTheme('light', themes.light)
+
 export default {
   name: 'BiteIntervalChart',
   components: { ItemIcon },
@@ -150,37 +147,35 @@ export default {
         return BAITS[bait] != null || fishIds.includes(+bait)
       }
       const records = this.records
-      const biteTimes = _(records)
-        .chain()
-        .filter(
+
+      const biteTimes = flow(
+        filter(
           ({ fish, bait, chum }) => fish > 0 && bait > 0 && !!chum === this.chumBiteTime
-        )
-        .filter(filterBaitOrSpotFish)
-        .groupBy(({ bait }) => bait)
-        .mapValues(records => {
-          return _(records)
-            .chain()
-            .groupBy(({ fish }) => UploadUtil.toFish(fish).fishName)
-            .mapValues(baitRec => [
+        ),
+        filter(filterBaitOrSpotFish),
+        groupBy(({ bait }) => bait),
+        mapValues(records =>
+          flow(
+            groupBy(({ fish }) => UploadUtil.toFish(fish).fishName),
+            mapValues(baitRec => [
               _.minBy(baitRec, 'biteIntervalMin')?.biteIntervalMin,
               _.maxBy(baitRec, 'biteIntervalMax')?.biteIntervalMax,
             ])
-            .value()
-        })
-        .value()
-
-      const allBaitBiteTimes = _(records)
-        .chain()
-        .filter(
-          ({ fish, bait, chum }) => fish > 0 && bait > 0 && !!chum === this.chumBiteTime
+          )(records)
         )
-        .filter(filterBaitOrSpotFish)
-        .groupBy(({ fish }) => UploadUtil.toFish(fish).fishName)
-        .mapValues(baitRec => [
+      )(records)
+
+      const allBaitBiteTimes = flow(
+        filter(
+          ({ fish, bait, chum }) => fish > 0 && bait > 0 && !!chum === this.chumBiteTime
+        ),
+        filter(filterBaitOrSpotFish),
+        groupBy(({ fish }) => UploadUtil.toFish(fish).fishName),
+        mapValues(baitRec => [
           _.minBy(baitRec, 'biteIntervalMin')?.biteIntervalMin,
           _.maxBy(baitRec, 'biteIntervalMax')?.biteIntervalMax,
         ])
-        .value()
+      )(records)
 
       const fishList = _.reverse(
         fishIds.map(fishId => {

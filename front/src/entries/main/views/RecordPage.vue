@@ -693,6 +693,7 @@
 
 <script>
 import { Global as FishingSpotsGlobal } from 'Data/patch/fishingSpots'
+import { filter, flow, groupBy, mapValues } from 'lodash/fp'
 import {
   mdiCheckDecagram,
   mdiDelete,
@@ -984,25 +985,25 @@ export default {
       const showStrict = filters.includes('strict')
       const showNormal = filters.includes('normal')
       const records = this.spotRecords[0] // [data, totalCnt]
-      return _(records)
-        .chain()
-        .filter(
+      return flow(
+        filter(
           ({ fish, bait, biteInterval, chum }) =>
             fish > 0 &&
             bait > 0 &&
             biteInterval > 0 &&
             biteInterval < 70 &&
             chum === this.chumBiteTime
-        )
-        .filter(({ isStrictMode }) => {
-          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
-        })
-        .groupBy(({ fish }) => UploadUtil.toFish(fish).fishName)
-        .mapValues(baitRec => [
+        ),
+        filter(
+          ({ isStrictMode }) =>
+            (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        ),
+        groupBy(({ fish }) => UploadUtil.toFish(fish).fishName),
+        mapValues(baitRec => [
           _.minBy(baitRec, 'biteInterval')?.biteInterval,
           _.maxBy(baitRec, 'biteInterval')?.biteInterval,
         ])
-        .value()
+      )(records)
     },
     spotWeathers() {
       return _.uniq((SPOT_WEATHER[this.spotId] ?? []).filter(it => it > 0))
@@ -1026,27 +1027,28 @@ export default {
       const showStrict = filters.includes('strict')
       const showNormal = filters.includes('normal')
       const records = this.spotRecords[0] // [data, totalCnt]
-      return _(records)
-        .chain()
-        .filter(
+
+      return flow(
+        filter(
           ({ fish, prevWeather, weather }) =>
             fish > 0 && prevWeather > 0 && weather > 0 && fish === this.fishSelected
-        )
-        .filter(({ isStrictMode }) => {
-          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
-        })
-        .groupBy(({ prevWeather, weather }) => prevWeather + '-' + weather)
-        .mapValues(records => records.length)
-        .value()
+        ),
+        filter(
+          ({ isStrictMode }) =>
+            (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        ),
+        groupBy(({ prevWeather, weather }) => prevWeather + '-' + weather),
+        mapValues(records => records.length)
+      )(records)
     },
     etBiteCountsDict() {
       const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
       const showStrict = filters.includes('strict')
       const showNormal = filters.includes('normal')
       const records = this.spotRecords[0] // [data, totalCnt]
-      return _(records)
-        .chain()
-        .filter(
+
+      return flow(
+        filter(
           ({ fish, etHour, etMinute }) =>
             fish > 0 &&
             etHour >= 0 &&
@@ -1054,13 +1056,14 @@ export default {
             etMinute >= 0 &&
             etMinute <= 59 &&
             fish === this.fishSelected
-        )
-        .filter(({ isStrictMode }) => {
-          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
-        })
-        .groupBy(({ etHour, etMinute }) => etHour * 60 + Math.floor(etMinute / 30) * 30)
-        .mapValues(records => records.length)
-        .value()
+        ),
+        filter(
+          ({ isStrictMode }) =>
+            (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        ),
+        groupBy(({ etHour, etMinute }) => etHour * 60 + Math.floor(etMinute / 30) * 30),
+        mapValues(records => records.length)
+      )(records)
     },
     etBiteCounts() {
       const all = this.etCountsOf(0, 24, 1)
@@ -1079,31 +1082,31 @@ export default {
       const showStrict = filters.includes('strict')
       const showNormal = filters.includes('normal')
       const records = this.spotRecords[0] // [data, totalCnt]
-      return _(records)
-        .chain()
-        .filter(
+
+      return flow(
+        filter(
           ({ fish, bait, biteInterval, chum }) =>
             fish > 0 &&
             bait > 0 &&
             biteInterval > 0 &&
             biteInterval < 70 &&
             chum === this.chumBiteTime
-        )
-        .filter(({ isStrictMode }) => {
-          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
-        })
-        .groupBy(({ bait }) => bait)
-        .mapValues(records => {
-          return _(records)
-            .chain()
-            .groupBy(({ fish }) => UploadUtil.toFish(fish).fishName)
-            .mapValues(baitRec => [
+        ),
+        filter(
+          ({ isStrictMode }) =>
+            (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        ),
+        groupBy(({ bait }) => bait),
+        mapValues(records => {
+          return flow(
+            groupBy(({ fish }) => UploadUtil.toFish(fish).fishName),
+            mapValues(baitRec => [
               _.minBy(baitRec, 'biteInterval')?.biteInterval,
               _.maxBy(baitRec, 'biteInterval')?.biteInterval,
             ])
-            .value()
+          )(records)
         })
-        .value()
+      )(records)
     },
     baitOfSpot() {
       const filters = this.modeFilters.map(i => this.modeFilterOptions[i])
@@ -1112,57 +1115,49 @@ export default {
       const records = this.spotRecords[0] // [data, totalCnt]
       const fishIdList = UploadUtil.fishListOfSpot(this.spotId)
       //.concat(['light', 'medium', 'heavy'])
-      const baitFishCnt = _(records)
-        .chain()
-        .filter(({ fish, bait }) => fish > 0 && bait > 0 && fishIdList.includes(fish))
-        .filter(({ isStrictMode }) => {
-          return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
-        })
-        .groupBy(({ bait }) => bait)
-        .mapValues(records => {
-          return _(records)
-            .chain()
-            .groupBy(({ fish }) => fish)
-            .mapValues(baitRec => baitRec.length)
-            .value()
-        })
-        .value()
 
-      const cancelledFish = _(records)
-        .chain()
-        .filter(({ fish, bait, cancelled }) => fish === -1 && cancelled && bait > 0)
-        .filter(({ isStrictMode }) => {
+      const baitFishCnt = flow(
+        filter(({ fish, bait }) => fish > 0 && bait > 0 && fishIdList.includes(fish)),
+        filter(({ isStrictMode }) => {
           return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        }),
+        groupBy(({ bait }) => bait),
+        mapValues(records => {
+          return flow(
+            groupBy(({ fish }) => fish),
+            mapValues(baitRec => baitRec.length)
+          )(records)
         })
-        .groupBy(({ bait }) => bait)
-        .mapValues(records => {
-          return _(records)
-            .chain()
-            .groupBy(({ tug }) => {
-              return this.TUGS[tug]
-            })
-            .mapValues(baitRec => baitRec.length)
-            .value()
-        })
-        .value()
+      )(records)
 
-      const missedFish = _(records)
-        .chain()
-        .filter(({ fish, bait, missed }) => fish === -1 && missed && bait > 0)
-        .filter(({ isStrictMode }) => {
+      const cancelledFish = flow(
+        filter(({ fish, bait, cancelled }) => fish === -1 && cancelled && bait > 0),
+        filter(
+          ({ isStrictMode }) =>
+            (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        ),
+        groupBy(({ bait }) => bait),
+        mapValues(records => {
+          return flow(
+            groupBy(({ tug }) => this.TUGS[tug]),
+            mapValues(baitRec => baitRec.length)
+          )(records)
+        })
+      )(records)
+
+      const missedFish = flow(
+        filter(({ fish, bait, missed }) => fish === -1 && missed && bait > 0),
+        filter(({ isStrictMode }) => {
           return (isStrictMode && showStrict) || (!isStrictMode && showNormal)
+        }),
+        groupBy(({ bait }) => bait),
+        mapValues(records => {
+          return flow(
+            groupBy(({ tug }) => this.TUGS[tug]),
+            mapValues(baitRec => baitRec.length)
+          )(records)
         })
-        .groupBy(({ bait }) => bait)
-        .mapValues(records => {
-          return _(records)
-            .chain()
-            .groupBy(({ tug }) => {
-              return this.TUGS[tug]
-            })
-            .mapValues(baitRec => baitRec.length)
-            .value()
-        })
-        .value()
+      )(records)
 
       const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
         const missedTugCntDict = missedFish[bait] ?? {}
@@ -1355,13 +1350,12 @@ export default {
           this.loadingRecords = false
         })
     },
-    async getUserSpotStats() {
+    getUserSpotStats: async function() {
       this.loadingUserSpotStats = true
       const spots = await rcapiService.getUserSpotStats()
-      const userSpot = _(spots)
-        .chain()
-        .groupBy('spot')
-        .mapValues(records => {
+      const userSpot = flow(
+        groupBy('spot'),
+        mapValues(records => {
           return {
             spot: UploadUtil.toSpot(records?.[0]?.spot),
             strict: records.find(it => it.isStrictMode)?.count ?? 0,
@@ -1369,17 +1363,16 @@ export default {
             total: _.sumBy(records, 'count'),
           }
         })
-        .value()
+      )(spots)
       this.loadingUserSpotStats = false
       this.userSpotStats = Object.values(userSpot)
     },
     async getTotalSpotStats() {
       this.loadingTotalSpotStats = true
       const spots = await rcapiService.getTotalSpotStats()
-      const userSpot = _(spots)
-        .chain()
-        .groupBy('spot')
-        .mapValues(records => {
+      const userSpot = flow(
+        groupBy('spot'),
+        mapValues(records => {
           const strict = records.find(it => it.isStrictMode)?.count ?? 0
           return {
             spot: UploadUtil.toSpot(records?.[0]?.spot),
@@ -1389,7 +1382,7 @@ export default {
             finished: strict >= 1000,
           }
         })
-        .value()
+      )(spots)
       this.loadingTotalSpotStats = false
       this.totalSpotStats = Object.values(userSpot)
     },
