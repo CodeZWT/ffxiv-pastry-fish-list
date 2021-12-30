@@ -12,7 +12,6 @@ import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
 
-import db from '@/plugins/db'
 import rcapiService, { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 
 const toUploadData = records => {
@@ -87,7 +86,7 @@ export default {
   isLogin() {
     return !!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)
   },
-  async sendUploadRecord() {
+  async sendUploadRecord(db) {
     if (!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)) {
       console.debug('upload skipped')
       return
@@ -120,7 +119,7 @@ export default {
       console.debug('No records to upload')
     }
   },
-  async getUploadStatus() {
+  async getUploadStatus(db) {
     const recordsToUpload = await db.records
       .filter(record => record.uploadEnabled)
       .toArray()

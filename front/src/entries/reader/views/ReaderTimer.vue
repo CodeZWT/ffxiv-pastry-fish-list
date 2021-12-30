@@ -215,7 +215,6 @@ import RcDialog from '@/components/basic/RcDialog'
 import RecordValidator from '@/utils/RecordValidator'
 import STATUS from 'Data/patch/status'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
-import db from '@/plugins/db'
 import rcapiService from '@/service/rcapiService'
 
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * DataUtil.INTERVAL_MINUTE
@@ -508,7 +507,8 @@ export default {
     //   }
     // },
   },
-  created() {
+  async created() {
+    this.db = (await import('@/plugins/db')).default
     this.mode =
       window.process?.argv?.find(it => it.indexOf('--mode') === 0)?.split('=')?.[1] ??
       'normal'
@@ -531,7 +531,7 @@ export default {
           data
         )
         // console.log('store in reader', data)
-        db.records.put(data).catch(error => console.error('storeError', error))
+        this.db.records.put(data).catch(error => console.error('storeError', error))
       })
       ?.on('fishCaught', (event, data) => {
         const fishId = data?.fishId
@@ -546,7 +546,7 @@ export default {
   },
   methods: {
     // async markLastRecordNotStrict() {
-    //   let table = db.records.orderBy('startTime').reverse()
+    //   let table = this.db.records.orderBy('startTime').reverse()
     //   const records = await table
     //     .filter(record => record.fishId === -1 && record.canceled === true)
     //     .limit(1)
@@ -554,7 +554,7 @@ export default {
     //   if (records.length > 0) {
     //     const record = records[0]
     //     record.isStrictMode = false
-    //     db.records.put(record).catch(error => console.error('storeError', error))
+    //     this.db.records.put(record).catch(error => console.error('storeError', error))
     //   }
     // },
     closeStrictMode() {

@@ -361,21 +361,15 @@ import { sendElectronEvent } from '@/utils/electronHelper'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import _ from 'lodash'
-import db from '@/plugins/db'
 import last from 'lodash/last'
 import set from 'lodash/set'
 
 export default {
   name: 'ReaderSetting',
   mixins: [EnvMixin],
-  props: {
-    now: {
-      type: Number,
-      default: undefined,
-    },
-  },
   data() {
     return {
+      db: undefined,
       mdiFileMusicOutline,
       mdiPlay,
       lazySetting: {},
@@ -448,6 +442,7 @@ export default {
     // },
   },
   async created() {
+    this.db = (await import('@/plugins/db')).default
     this.lazySetting = this.readerSetting
     this.lazyWindowSetting = await this.getWindowSetting()
     window.electron?.ipcRenderer
@@ -500,7 +495,7 @@ export default {
     showFileViewer(type) {
       window.electron?.ipcRenderer?.invoke('showOpenSoundFileDialog').then(result => {
         if (!result.cancelled) {
-          db.sounds
+          this.db.sounds
             .put({
               id: `${type}-custom`,
               base64: result.base64,
@@ -521,7 +516,7 @@ export default {
       DataUtil.ringBell(this.lazySetting.timer.sound, tugType, this.sounds)
     },
     loadingSounds() {
-      return DataUtil.loadingSounds(db)
+      return DataUtil.loadingSounds(this.db)
     },
     ...mapMutations(['setSounds', 'updateReaderSetting']),
   },

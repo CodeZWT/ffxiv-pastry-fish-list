@@ -300,6 +300,7 @@ export default {
       nextSendTime: 0,
       now: Date.now(),
       uploadStatus: '-/-',
+      db: undefined,
     }
   },
   computed: {
@@ -322,7 +323,10 @@ export default {
       }
     },
   },
-  created() {
+  async mounted() {
+    if (this.isElectron) {
+      this.db = (await import('@/plugins/db')).default
+    }
     setInterval(() => (this.now = Date.now()), 500)
   },
   methods: {
@@ -469,8 +473,10 @@ export default {
       })
     },
     async refreshUploadStatus() {
-      const { total, uploaded } = await UploadUtil.getUploadStatus()
-      this.uploadStatus = `${uploaded} / ${total}`
+      if (this.isElectron) {
+        const { total, uploaded } = await UploadUtil.getUploadStatus(this.db)
+        this.uploadStatus = `${uploaded} / ${total}`
+      }
     },
     ...mapMutations(['setRoseMode', 'showSnackbar', 'setReaderSetting']),
   },

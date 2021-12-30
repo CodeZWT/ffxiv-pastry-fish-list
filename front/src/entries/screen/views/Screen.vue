@@ -279,7 +279,6 @@ import ReaderTimerWindow from '@/entries/screen/views/ReaderTimerWindow'
 import RecordValidator from '@/utils/RecordValidator'
 import UploadUtil from '@/utils/UploadUtil'
 import _ from 'lodash'
-import db from '@/plugins/db'
 import rcapiService from '@/service/rcapiService'
 
 export default {
@@ -307,6 +306,7 @@ export default {
     showFinishedBaitDialog: false,
     showUpdateAvailableDialog: false,
     newVersion: undefined,
+    db: undefined,
   }),
   computed: {
     ...mapState('flag', ['flags']),
@@ -335,7 +335,7 @@ export default {
     // TODO postLogin
     // TODO postLogout
     console.debug(process.env.commit_hash)
-    const db = (await import('@/plugins/db')).default
+    const db = (this.db = (await import('@/plugins/db')).default)
     this.resetUploadSettingIfNecessary(db)
     // const windowSetting = await this.getWindowSetting()
     // if (windowSetting) {
@@ -343,7 +343,7 @@ export default {
     //   this.setZoomFactor(windowSetting.main.zoomFactor)
     // }
 
-    setInterval(UploadUtil.sendUploadRecord, INTERVAL_MINUTE)
+    setInterval(() => UploadUtil.sendUploadRecord(db), INTERVAL_MINUTE)
     window.electron?.ipcRenderer
       // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
       ?.on('showUpdateDialog', (event, newVersion) => {

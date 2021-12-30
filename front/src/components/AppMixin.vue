@@ -531,7 +531,7 @@ export default {
         this.setZoomFactor(windowSetting.main.zoomFactor)
       }
 
-      setInterval(UploadUtil.sendUploadRecord, INTERVAL_MINUTE)
+      setInterval(() => UploadUtil.sendUploadRecord(db), INTERVAL_MINUTE)
 
       window.electron?.ipcRenderer?.on('broadcast', (event, { type, source }) => {
         console.debug('reloadSettingData according to', source)

@@ -79,7 +79,6 @@ import READER_ICON from 'Assets/reader.png'
 import ResizeIndicator from '@/components/basic/ResizeIndicator'
 import SETTING_ICON from 'Assets/setting.png'
 import WindowUtil from './util/WindowUtil'
-import db from '@/plugins/db'
 
 export default {
   name: 'Reader',
@@ -96,6 +95,7 @@ export default {
     CN_PATCH_VERSION: CN_PATCH_VERSION,
     GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
     systemThemeMode: 'DARK',
+    db: undefined,
   }),
   computed: {
     systemBarColor() {
@@ -144,6 +144,8 @@ export default {
     ]),
   },
   async created() {
+    this.db = (await import('@/plugins/db')).default
+
     this.closeMode =
       window.process?.argv
         ?.find(it => it.indexOf('--close-mode') === 0)
@@ -180,7 +182,7 @@ export default {
       this.systemThemeMode = e.matches ? 'DARK' : 'LIGHT'
     })
   },
-  mounted() {
+  async mounted() {
     // trigger fishing data manually
     setTimeout(() => sendElectronEvent('getFishingData'), 2000)
   },
@@ -214,7 +216,7 @@ export default {
       }
     },
     loadingSounds() {
-      return DataUtil.loadingSounds(db)
+      return DataUtil.loadingSounds(this.db)
     },
     ...mapMutations('readerHistory', ['setStates']),
     ...mapMutations(['setSounds', 'boardCastReload', 'setStrictMode']),

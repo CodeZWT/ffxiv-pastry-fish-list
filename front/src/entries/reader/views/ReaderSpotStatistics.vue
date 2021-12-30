@@ -41,7 +41,6 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import FishTimelineTable from '@/entries/reader/components/FishTimelineTable'
-import db from '@/plugins/db'
 
 export default {
   name: 'ReaderSpotStatistics',
@@ -156,6 +155,8 @@ export default {
     },
   },
   async created() {
+    this.db = (await import('@/plugins/db')).default
+
     window.electron?.ipcRenderer
       ?.on('fishingData', (event, data) => {
         this.dataStatus = {
@@ -182,7 +183,7 @@ export default {
   methods: {
     async loadRecord(spotId) {
       if (spotId > -1) {
-        this.rawRecords = await db.records
+        this.rawRecords = await this.db.records
           .where('spotId')
           .equals(spotId)
           .toArray()

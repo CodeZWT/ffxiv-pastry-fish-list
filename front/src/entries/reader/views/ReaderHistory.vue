@@ -339,7 +339,6 @@ import SPOT_FISH_DICT from 'Data/spotFishDict'
 import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
-import db from '@/plugins/db'
 
 const INITIAL_LOADING_CNT = 100
 const LOAD_MORE_CNT = 100
@@ -579,7 +578,7 @@ export default {
       const index = this.rawRecords.findIndex(it => it.id === record.id)
       if (index > -1) {
         this.rawRecords.splice(index, 1)
-        db.records.delete(record.id)
+        this.db.records.delete(record.id)
         this.dbRecordsCnt--
         this.sendElectronEvent('reloadRecords')
       }
@@ -590,6 +589,7 @@ export default {
       )
     },
     async init() {
+      this.db = (await import('@/plugins/db')).default
       this.rawRecords = await this.loadRecord(0, this.loadingCnt, this.showIgnoredRecord)
       // this.dbLoadedCnt = this.rawRecords.length
       // console.log(this.toUploadData(this.rawRecords))
@@ -628,15 +628,15 @@ export default {
           // }
         }
 
-        this.dbRecordsCnt = await db.records.where(whereConfig).count()
-        result = await db.records
+        this.dbRecordsCnt = await this.db.records.where(whereConfig).count()
+        result = await this.db.records
           .where(whereConfig)
           .offset(offset)
           .limit(limit)
           .reverse()
           .sortBy('startTime')
       } else {
-        let table = db.records.orderBy('startTime').reverse()
+        let table = this.db.records.orderBy('startTime').reverse()
         if (!showIgnoredRecord) {
           table = table.filter(record => !record.cancelled)
         }
@@ -645,9 +645,9 @@ export default {
           .limit(limit)
           .toArray()
         // if (showIgnoredRecord) {
-        this.dbRecordsCnt = await db.records.count()
+        this.dbRecordsCnt = await this.db.records.count()
         // } else {
-        //   this.dbRecordsCnt = await db.records.where({ cancelled: false }).count()
+        //   this.dbRecordsCnt = await this.db.records.where({ cancelled: false }).count()
         // }
       }
 
@@ -668,7 +668,7 @@ export default {
     clearHistory() {
       this.deleting = true
       this.showClearConfirmDialog = false
-      db.records
+      this.db.records
         .clear()
         .then(() => {
           this.init()
@@ -685,7 +685,7 @@ export default {
       if (!this.exporting) {
         this.exporting = true
 
-        this.totalExportCount = await db.records.count()
+        this.totalExportCount = await this.db.records.count()
         console.debug('[export] start export', this.totalExportCount, 'records')
         let allData = []
         const batchCnt = 100
@@ -694,7 +694,7 @@ export default {
             `[export] exporting: ${i} to ${Math.min(i + batchCnt, this.totalExportCount) -
               1}`
           )
-          const batchData = await db.records
+          const batchData = await this.db.records
             .offset(i)
             .limit(batchCnt)
             .toArray()
