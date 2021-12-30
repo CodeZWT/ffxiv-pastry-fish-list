@@ -83,7 +83,6 @@ export const MainModule = {
     weatherTypes: DATA_CN.WEATHER_TYPES,
     zones: DATA_CN.ZONES,
     bigFish: DATA_CN.BIG_FISH,
-    newPatchFish: DATA_CN.NEW_PATCH_FISH,
     folklore: DATA_CN.FOLKLORE,
     showSearchDialog: false,
     showImportExportDialog: false,

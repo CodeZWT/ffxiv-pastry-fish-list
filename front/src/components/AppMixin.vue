@@ -364,7 +364,6 @@ export default {
       'bigFish',
       'sounds',
       'showImportExportDialog',
-      'newPatchFish',
       'folklore',
       'weatherRates',
       'baitIdsForNotification',
