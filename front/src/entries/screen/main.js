@@ -1,4 +1,4 @@
-import * as CafeKitTooltip from '@thewakingsands/kit-tooltip'
+// import * as CafeKitTooltip from '@thewakingsands/kit-tooltip'
 import { Settings } from 'luxon'
 import App from './App.vue'
 import Vue from 'vue'
@@ -10,7 +10,7 @@ import store from './store'
 import vuetify from '@/plugins/vuetify'
 
 Vue.use(VueObserveVisibility)
-CafeKitTooltip.initTooltip()
+// CafeKitTooltip.initTooltip()
 Settings.defaultLocale = 'zh-CN'
 
 Vue.config.productionTip = false

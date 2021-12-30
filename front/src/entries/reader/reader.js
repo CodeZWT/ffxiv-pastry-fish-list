@@ -1,5 +1,5 @@
 import { Settings } from 'luxon'
-import { initTooltip } from '@thewakingsands/kit-tooltip'
+// import { initTooltip } from '@thewakingsands/kit-tooltip'
 import Reader from './Reader.vue'
 import Vue from 'vue'
 import VueKonva from 'vue-konva'
@@ -8,7 +8,7 @@ import router from './router'
 import store from './store'
 import vuetify from '@/plugins/vuetify'
 
-initTooltip()
+// initTooltip()
 Settings.defaultLocale = 'zh-CN'
 
 Vue.config.productionTip = false
