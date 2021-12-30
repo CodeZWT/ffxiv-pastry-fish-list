@@ -348,7 +348,7 @@ export default {
     combineBaitOption() {
       return {
         title: {
-          text: 'Waterfall Chart',
+          text: '咬钩时间分布',
         },
         tooltip: {
           trigger: 'item',
