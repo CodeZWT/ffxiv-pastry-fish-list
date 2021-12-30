@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col cols="12">
-        <template v-if="records.length > 0">
+        <template v-if="uniqRecords.length > 0">
           <div class="d-flex align-center">
             <div class="pl-2">
               <v-switch inset label="条件筛选" v-model="enableFilters" />
@@ -424,6 +424,22 @@ export default {
     }
   },
   computed: {
+    uniqRecords() {
+      return _.uniqBy(this.records, r =>
+        [
+          r.weather,
+          r.prevWeather,
+          r.etHour,
+          r.etMinuteEnd,
+          r.etMinuteStart,
+          r.fish,
+          r.bait,
+          r.snagging,
+          r.tug,
+          r.fishersIntuition,
+        ].join('$')
+      )
+    },
     oceanFishingTimeIcons() {
       return ALL_OCEAN_FISHING_TIME.map(i => DataUtil.shift2Icon(i))
     },
@@ -443,7 +459,7 @@ export default {
       return !this.isOceanFishingSpot
     },
     recordTotal() {
-      return _.sumBy(this.records, ({ quantity }) => +quantity)
+      return _.sumBy(this.uniqRecords, ({ quantity }) => +quantity)
     },
     dataMetaShort() {
       return `※ 共 ${this.recordTotal} 条数据`
@@ -523,15 +539,15 @@ export default {
       return this.enableFilters ? this.weatherFilter : this.spotWeathers.map(it => it.id)
     },
     // spotId() {
-    //   if (this.records.length > 0) {
-    //     return this.records[0].spot
+    //   if (this.uniqRecords.length > 0) {
+    //     return this.uniqRecords[0].spot
     //   } else {
     //     return -1
     //   }
     // },
     baitOfSpot() {
       const fishIdList = UploadUtil.fishListOfSpot(this.spotId)
-      const filteredRecords = this.records
+      const filteredRecords = this.uniqRecords
         .filter(({ fishersIntuition }) => {
           if (this.fishersIntuitionFilter.length === 2) {
             return true
