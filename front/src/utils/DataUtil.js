@@ -236,7 +236,7 @@ export default {
     },
     GARLAND: {
       id: 'GARLAND',
-      icon: 'http://garlandtools.org/favicon.png',
+      icon: 'https://ffxiv.cyanclay.xyz/favicon.png',
       title: 'Garland 数据',
       itemV2Fn: toGarlandItemLink,
       fishFn: toGarlandItemLink,
