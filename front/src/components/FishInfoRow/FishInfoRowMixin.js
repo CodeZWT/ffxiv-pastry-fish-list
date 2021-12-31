@@ -9,6 +9,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    currentSpotId: {
+      type: Number,
+      default: undefined,
+    },
     fishTimePart: {
       type: Object,
       default: undefined,

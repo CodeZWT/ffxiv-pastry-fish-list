@@ -103,6 +103,7 @@
           :fish-ids="currentFishIdList"
           :fish-list-time-part="fishListTimePart"
           :fish-list-weather-change-part="fishListWeatherChangePart"
+          :current-spot-id="currentSpotId"
           hide-spot-column
           hide-predators
           :is-mobile="isMobile"
@@ -221,7 +222,7 @@ export default {
   props: {
     currentSpotId: {
       type: Number,
-      default: -1,
+      default: undefined,
     },
     mode: {
       type: String,

@@ -17,6 +17,7 @@
           :color="listItemColors[index]"
           :position="toPos(index)"
           :hide-spot-column="hideSpotColumn"
+          :current-spot-id="currentSpotId"
           :show-divider="showFishDivider"
           :type="type"
           :is-mobile="isMobile"
@@ -78,6 +79,10 @@ export default {
   name: 'fish-list',
   components: { RcDialog, ClickHelper, FishListItem },
   props: {
+    currentSpotId: {
+      type: Number,
+      default: undefined,
+    },
     fishDict: {
       type: Object,
       default: () => ({}),

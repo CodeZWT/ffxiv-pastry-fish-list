@@ -2,6 +2,7 @@
   <component
     :is="component"
     :fish="fish"
+    :current-spot-id="currentSpotId"
     :fishTimePart="fishTimePart"
     :predators="predators"
     :inPredator="inPredator"
@@ -35,6 +36,7 @@ export default {
     'type',
     'isMobile',
     'isIntersecting',
+    'currentSpotId',
   ],
   name: 'FishInfoRow',
   components: { FishInfoRowSmall, FishInfoRowMedium, FishInfoRowLarge },

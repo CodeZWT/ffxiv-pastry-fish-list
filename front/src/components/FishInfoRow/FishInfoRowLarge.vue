@@ -91,6 +91,7 @@
               <div :class="inPredator ? 'ml-4' : 'ml-1'">
                 <link-list
                   :id="fish.id"
+                  :spot-id="currentSpotId"
                   :angler-id="fish.anglerFishId"
                   :name="fish.name"
                   :names="fish.names"

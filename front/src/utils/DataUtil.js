@@ -154,8 +154,8 @@ function toInnerSpotLink({ id, mode }) {
   return { name: 'WikiPage', query: { spotId: id, mode } }
 }
 
-function toInnerFishLink({ id }) {
-  return { name: 'WikiPage', query: { fishId: id } }
+function toInnerFishLink({ id, spotId }) {
+  return { name: 'WikiPage', query: { spotId: spotId, fishId: id } }
 }
 
 const TIP3_FISH_IDS = [16744, 17589]

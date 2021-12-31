@@ -7,6 +7,7 @@
   >
     <fish-info-row
       :fish="fish"
+      :current-spot-id="currentSpotId"
       :fish-time-part="fishTimePart"
       :predators="[]"
       :in-predator="fish.isPredator"
@@ -31,6 +32,10 @@ export default {
   props: {
     fish: {
       type: Object,
+      default: undefined,
+    },
+    currentSpotId: {
+      type: Number,
       default: undefined,
     },
     fishTimePart: {

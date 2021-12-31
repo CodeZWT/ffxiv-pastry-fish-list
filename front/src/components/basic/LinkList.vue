@@ -126,6 +126,10 @@ export default {
       type: Number,
       default: undefined,
     },
+    spotId: {
+      type: Number,
+      default: undefined,
+    },
     anglerId: {
       type: Number,
       default: undefined,
@@ -190,6 +194,7 @@ export default {
               id: DataUtil.toItemId(this.id),
               name: this.name,
               mode: this.spotMode,
+              spotId: this.spotId,
             }),
           }
         })
@@ -227,7 +232,12 @@ export default {
     goToPage(link) {
       this.emitClick(link.inner)
       if (link.inner) {
-        this.$router.push(link.url)
+        if (
+          (link.url.query.spotId ?? -1) !== (this.$route.query.spotId ?? -1) ||
+          (link.url.query.fishId ?? -1) !== (this.$route.query.fishId ?? -1)
+        ) {
+          this.$router.push(link.url)
+        }
       } else {
         window.open(link.url)
       }
