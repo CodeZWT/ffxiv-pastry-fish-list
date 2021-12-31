@@ -25,12 +25,9 @@
               <v-card-text class="text-subtitle-1">
                 鱼糕致力于为各位光之渔夫提供一个便捷的数据查询场所。<br />
                 目前已经包括了钓鱼时钟，钓鱼&叉鱼笔记，出海垂钓，云冠群岛，水族馆等功能。<br />
-                <div class="">
-                  <div class="d-flex align-center">
-                    <v-badge inline color="info" content="New" />
-                    <div>更新星芒节的相关支持，以及节日贺图！</div>
-                  </div>
-                  <div class="ml-11">感谢 马猴烧鱼@拉诺西亚 绘制的贺图！</div>
+                <div class="d-flex align-center">
+                  <v-badge inline color="info" content="New" />
+                  <div>更新钓鱼笔记中链接支持，现在鱼也可以设置跳转鱼糕内部页面。</div>
                 </div>
 
                 <div class="d-flex align-center">
@@ -182,10 +179,7 @@
 
           <v-col cols="12" @click="openWeibo('7546879530')" style="cursor: pointer">
             <v-alert border="left" colored-border color="secondary" class="mb-2">
-              <div>关注作者微博 @红豆年糕找不到 帮助鱼糕进行爱发电认证</div>
-              <div class="text-subtitle-2 grey--text">
-                爱发电创作者需认证后即可发布动态、显示主页图片
-              </div>
+              <div>关注作者微博 @红豆年糕找不到</div>
             </v-alert>
           </v-col>
           <v-col cols="12" class="d-flex">
@@ -227,7 +221,7 @@
                   </rc-tooltip>
                 </div>
               </v-card-title>
-              <v-card-text style="overflow-y: auto; max-height: 530px">
+              <v-card-text style="overflow-y: auto; max-height: 560px">
                 <v-chip
                   v-for="sponsor in coloredSponsors"
                   :key="sponsor.userId"
