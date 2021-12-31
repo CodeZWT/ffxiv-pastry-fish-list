@@ -475,6 +475,7 @@ export default {
     CN_PATCH_VERSION: CN_PATCH_VERSION,
     GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
     currentFishIds: [],
+    spearSpots: [],
     achievementInfo: {
       iCatchThat: { name: '专研钓鱼笔记' },
       goBigOrGoHome: { name: '愿者上钩' },
@@ -775,6 +776,12 @@ export default {
     ]),
   },
   watch: {
+    currentSpotId(currentSpotId) {
+      if (currentSpotId > 0) {
+        this.mode = this.typeOfSpot(currentSpotId)
+        this.$router.push({ name: 'WikiPage', query: { spotId: currentSpotId } })
+      }
+    },
     type(type) {
       if (type === 'fish') {
         this.scrollToTop()
@@ -825,25 +832,23 @@ export default {
     '$route.query': {
       handler(query) {
         console.debug('watch query', query)
-        if ((query.spotId == null || query.mode == null) && query.fishId != null) {
+        if (query.spotId == null && query.fishId != null) {
           this.showSpotWithFish(query.fishId)
         } else {
-          this.showSpot(query.spotId, query.mode, query.fishId)
+          this.showSpot(query.spotId, query.fishId)
         }
-        // this.mode = query.mode ?? 'normal'
-        // this.currentSpotId = +(query.spotId ?? -1)
-        // this.type = this.currentSpotId !== -1 ? 'spot' : undefined
       },
       immediate: true,
     },
   },
   created() {
     console.debug('nav with query', this.$route.query)
-    // this.mode = this.$route.query.mode ?? 'normal'
-    // this.currentSpotId = +(this.$route.query.spotId ?? -1)
-    // this.type = this.currentSpotId !== -1 ? 'spot' : undefined
     this.openedItems = this.normalOpenedItems
     this.spearOpenedItems = this.spearNormalOpenedItems
+    this.spearSpots = FIX.SPEAR_REGION_TERRITORY_POINT.flatMap(it =>
+      it.territories.flatMap(t => t.spots.map(s => s.id))
+    )
+
     this.debouncedSearchTextUpdater = _.debounce(text => {
       const t = text == null ? '' : text
       this.updateOpenItems(t, this.lazySearchText)
@@ -867,6 +872,9 @@ export default {
     this.onWindowResize()
   },
   methods: {
+    typeOfSpot(spotId) {
+      return this.spearSpots.includes(+spotId) ? 'spear' : 'normal'
+    },
     resizeInternal() {
       // resizePaneInfos
       // this.rightPaneSize = resizePaneInfos[1].size
@@ -890,11 +898,10 @@ export default {
       this.type = 'spot'
       this.showRightPane = false
     },
-    showSpot(spotId, mode, fishId) {
+    showSpot(spotId, fishId) {
       if (DataUtil.isDiademSpot(spotId)) {
         return
       } else if (spotId > 0) {
-        this.mode = mode ?? 'normal'
         this.currentSpotId = +(spotId ?? -1)
         this.currentFishId = +(fishId ?? -1)
         this.type =
@@ -923,8 +930,6 @@ export default {
       }
 
       let spotId = undefined
-      let mode = undefined
-
       let wikiIds = undefined
 
       if (!showSpotFish) {
@@ -937,10 +942,10 @@ export default {
         const assembledFish = this.lazyTransformedFishDict[fishIdNumber]
         const spots = assembledFish.fishingSpots
         spotId = spots[0].fishingSpotId
-        mode = assembledFish.type
+        // mode = assembledFish.type
         this.$router.replace({
           name: 'WikiPage',
-          query: { spotId, mode, fishId: fishIdNumber },
+          query: { spotId, fishId: fishIdNumber },
         })
       } else {
         // case 2
@@ -1110,7 +1115,7 @@ export default {
         this.currentFishId = fishId
         this.$router.push({
           name: 'WikiPage',
-          query: { spotId: this.currentSpotId, mode: this.mode, fishId },
+          query: { spotId: this.currentSpotId, fishId },
         })
       }
     },
