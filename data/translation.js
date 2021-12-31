@@ -11861,6 +11861,16 @@ module.exports = {
       icon: 60292,
       name_chs: '幻海流',
     },
+    148: {
+      _id: 148,
+      icon: 60222,
+      name_chs: 'Moon Dust',
+    },
+    149: {
+      _id: 149,
+      icon: 60223,
+      name_chs: 'Astromagnetic Storm',
+    },
   },
   AETHERYTE: [
     {
