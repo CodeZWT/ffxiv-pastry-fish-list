@@ -145,7 +145,7 @@
     >
       <div
         :style="`flex: 1 1 ${mainPaneFlexPercentage}%; overflow: auto`"
-        v-show="!rightPaneFullScreen || !showRightPane"
+        v-show="!rightPaneFullScreen || type === 'spot'"
         ref="fishPageScrollTarget"
       >
         <div
@@ -273,20 +273,44 @@
             @fish-selected="onFishClicked($event)"
           />
         </div>
+        <div
+          :class="{
+            'grid-content': true,
+            'grid-content--web': !isElectron,
+          }"
+          v-else-if="type === 'fishGroupSelection'"
+        >
+          <v-sheet>
+            <div class="text-h6">
+              该鱼由于不同钓场的条件不同请先选择一组钓场
+            </div>
+            <v-divider />
+            <v-list>
+              <v-list-item
+                v-for="fish in currentFishList"
+                :key="fish._id"
+                @click="toFishPageOfFishLocationPage(fish._id)"
+              >
+                <item-icon :icon-class="fish.icon"></item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>
+                    {{ fish.name }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle>
+                    {{ fish.fishingSpots.map(it => it.fishingSpotName).join('，') }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-sheet>
+        </div>
       </div>
-      <!--      <div-->
-      <!--        v-else-if="type === 'fish' && !isOceanFishingSpot"-->
-      <!--        :class="{-->
-      <!--          'grid-content': true,-->
-      <!--          'grid-content&#45;&#45;web': !isElectron,-->
-      <!--        }"-->
-      <!--      ></div>-->
 
       <div
         :class="{
           'detail-part': true,
         }"
-        v-if="type === 'fish' && !isOceanFishingSpot && showRightPane"
+        v-if="type === 'fish' && !isOceanFishingSpot"
       >
         <fish-detail
           ref="wikiFishDetail"
@@ -450,6 +474,7 @@ export default {
     mdiCheckCircle,
     CN_PATCH_VERSION: CN_PATCH_VERSION,
     GLOBAL_PATCH_VERSION: GLOBAL_PATCH_VERSION,
+    currentFishIds: [],
     achievementInfo: {
       iCatchThat: { name: '专研钓鱼笔记' },
       goBigOrGoHome: { name: '愿者上钩' },
@@ -493,6 +518,11 @@ export default {
     rightPaneFullScreen: false,
   }),
   computed: {
+    currentFishList() {
+      return this.currentFishIds.map(fishId => {
+        return this.lazyTransformedFishDict[fishId]
+      })
+    },
     rightPanePercentage() {
       return Math.min(0.9, this.rightPanePercentageV2 + 0.1)
     },
@@ -795,7 +825,11 @@ export default {
     '$route.query': {
       handler(query) {
         console.debug('watch query', query)
-        this.showSpot(query.spotId, query.mode)
+        if ((query.spotId == null || query.mode == null) && query.fishId != null) {
+          this.showSpotWithFish(query.fishId)
+        } else {
+          this.showSpot(query.spotId, query.mode, query.fishId)
+        }
         // this.mode = query.mode ?? 'normal'
         // this.currentSpotId = +(query.spotId ?? -1)
         // this.type = this.currentSpotId !== -1 ? 'spot' : undefined
@@ -856,13 +890,62 @@ export default {
       this.type = 'spot'
       this.showRightPane = false
     },
-    showSpot(spotId, mode) {
+    showSpot(spotId, mode, fishId) {
       if (DataUtil.isDiademSpot(spotId)) {
         return
       } else if (spotId > 0) {
         this.mode = mode ?? 'normal'
         this.currentSpotId = +(spotId ?? -1)
-        this.type = this.currentSpotId !== -1 ? 'spot' : undefined
+        this.currentFishId = +(fishId ?? -1)
+        this.type =
+          this.currentSpotId !== -1
+            ? this.currentFishId !== -1
+              ? 'fish'
+              : 'spot'
+            : undefined
+      }
+    },
+    showSpotWithFish(fishIdParam) {
+      // case 1: 12345 -> 12345
+      // case 2: 12345 -> 12345 -> [1110123456, 1120123456]
+      // case 3: 111012345
+
+      const fishIdNumber = +(fishIdParam ?? -1)
+      if (fishIdNumber === -1) {
+        return
+      }
+      const itemId = DataUtil.toItemId(fishIdNumber)
+      let showSpotFish = false
+      if (itemId !== fishIdNumber) {
+        // redirect with locationFishId
+        // case 3
+        showSpotFish = true
+      }
+
+      let spotId = undefined
+      let mode = undefined
+
+      let wikiIds = undefined
+
+      if (!showSpotFish) {
+        wikiIds = DataUtil.FISH_ID_TO_WIKI_IDS[fishIdNumber]
+        showSpotFish = wikiIds == null
+      }
+
+      if (showSpotFish) {
+        // case 1, case 3
+        const assembledFish = this.lazyTransformedFishDict[fishIdNumber]
+        const spots = assembledFish.fishingSpots
+        spotId = spots[0].fishingSpotId
+        mode = assembledFish.type
+        this.$router.replace({
+          name: 'WikiPage',
+          query: { spotId, mode, fishId: fishIdNumber },
+        })
+      } else {
+        // case 2
+        this.type = 'fishGroupSelection'
+        this.currentFishIds = _.uniq(wikiIds.map(wikiId => +wikiId.split('-')[3]))
       }
     },
     clearCurrentStatus(mode) {
@@ -1021,9 +1104,18 @@ export default {
     },
     onFishClicked({ fishId, components }) {
       this.type = 'fish'
-      this.currentFishId = fishId
       this.forceShowComponents = components
       this.showRightPane = true
+      if (this.currentFishId !== fishId) {
+        this.currentFishId = fishId
+        this.$router.push({
+          name: 'WikiPage',
+          query: { spotId: this.currentSpotId, mode: this.mode, fishId },
+        })
+      }
+    },
+    toFishPageOfFishLocationPage(fishId) {
+      this.$router.push({ name: 'WikiPage', query: { fishId } })
     },
     onMapCardResized() {
       setTimeout(() => this.$refs.simpleMap?.resize(), 300)
