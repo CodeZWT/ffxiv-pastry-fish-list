@@ -154,6 +154,10 @@ function toInnerSpotLink({ id, mode }) {
   return { name: 'WikiPage', query: { spotId: id, mode } }
 }
 
+function toInnerFishLink({ id }) {
+  return { name: 'WikiPage', query: { fishId: id } }
+}
+
 const TIP3_FISH_IDS = [16744, 17589]
 const TIP5_FISH_IDS = [17591, 12753, 12810]
 
@@ -216,6 +220,7 @@ export default {
       icon: ImgUtil.getImgUrl('pastry-fish.webp', 'logo'),
       title: '钓鱼笔记',
       inner: true,
+      fishFn: toInnerFishLink,
       spotFn: toInnerSpotLink,
     },
     ANGLER: {
@@ -1284,7 +1289,7 @@ export default {
     link: {
       default: {
         itemV2: 'HUIJI',
-        fish: 'ANGLER',
+        fish: 'PASTRY_FISH',
         spot: 'PASTRY_FISH',
       },
     },

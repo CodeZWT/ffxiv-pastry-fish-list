@@ -222,7 +222,7 @@ export default {
       if (fishingSpotId != null) {
         this.$router.push({
           name: 'WikiPage',
-          query: { spotId: fishingSpotId, mode: 'normal' },
+          query: { spotId: fishingSpotId },
         })
         this.dialog = false
       }
@@ -231,7 +231,7 @@ export default {
       if (spearGatheringPointId != null) {
         this.$router.push({
           name: 'WikiPage',
-          query: { spotId: spearGatheringPointId, mode: 'spear' },
+          query: { spotId: spearGatheringPointId },
         })
         this.dialog = false
       }

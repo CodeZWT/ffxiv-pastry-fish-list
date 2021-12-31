@@ -145,7 +145,7 @@
     >
       <div
         :style="`flex: 1 1 ${mainPaneFlexPercentage}%; overflow: auto`"
-        v-show="!rightPaneFullScreen || type === 'spot'"
+        v-show="!rightPaneFullScreen || type !== 'fish'"
         ref="fishPageScrollTarget"
       >
         <div
@@ -282,7 +282,7 @@
         >
           <v-sheet>
             <div class="text-h6">
-              该鱼由于不同钓场的条件不同请先选择一组钓场
+              由于不同钓场的天气或钓法不同，此鱼有多个钓场分组，请选择一组钓场显示对应内容。
             </div>
             <v-divider />
             <v-list>
@@ -515,7 +515,6 @@ export default {
     isElectron: DevelopmentModeUtil.isElectron(),
     showSyncDialog: false,
     syncStatus: 'not-start',
-    showRightPane: false,
     rightPaneFullScreen: false,
   }),
   computed: {
@@ -530,14 +529,6 @@ export default {
     mainPaneFlexPercentage() {
       return Math.floor((100 * (1 - this.rightPanePercentage)) / this.rightPanePercentage)
     },
-    // showRightPane: {
-    //   get() {
-    //     return this.showFishPageRightPane
-    //   },
-    //   set(show) {
-    //     this.setShowFishPageRightPane(show)
-    //   },
-    // },
     currentRegionTerritorySpots() {
       return this.mode === 'normal'
         ? this.regionTerritorySpots
@@ -776,12 +767,18 @@ export default {
     ]),
   },
   watch: {
-    currentSpotId(currentSpotId) {
-      if (currentSpotId > 0) {
-        this.mode = this.typeOfSpot(currentSpotId)
-        this.$router.push({ name: 'WikiPage', query: { spotId: currentSpotId } })
-      }
+    '$route.query': {
+      handler(query) {
+        console.debug('watch query', query)
+        if (!query.spotId && query.fishId) {
+          this.showSpotWithFish(query.fishId)
+        } else {
+          this.showSpot(query.spotId, query.fishId)
+        }
+      },
+      immediate: true,
     },
+
     type(type) {
       if (type === 'fish') {
         this.scrollToTop()
@@ -796,49 +793,7 @@ export default {
           name: 'root',
           children: this.regionTerritorySpots,
         })
-        // this.updateCompletedSpot(this.allCompletedFishOfCurrentVersion)
       }
-    },
-    // completedSpots(newSpots, oldSpots) {
-    //   console.debug('not used')
-    //   // console.log(newSpots, oldSpots)
-    //   const removed = _.difference(oldSpots, newSpots).map(
-    //     it => +it.substring('spot-'.length)
-    //   )
-    //   const added = _.difference(newSpots, oldSpots).map(
-    //     it => +it.substring('spot-'.length)
-    //   )
-    //   if (removed.length > 0) {
-    //     _.uniq(removed.flatMap(it => this.spotDict[it].fishList)).forEach(it => {
-    //       this.setFishCompleted({ fishId: it, completed: false })
-    //     })
-    //   } else if (added.length > 0) {
-    //     _.uniq(added.flatMap(it => this.spotDict[it].fishList)).forEach(it => {
-    //       this.setFishCompleted({ fishId: it, completed: true })
-    //     })
-    //   }
-    // },
-    currentFishId(fishId) {
-      if (fishId > 0 && !this.isOceanFishingSpot) {
-        // this.isDetailFishWindowOpen = true
-        this.$emit('fish-selected', { fishId })
-      }
-    },
-    // isDetailFishWindowOpen(isOpen) {
-    //   if (!isOpen) {
-    //     this.currentFishId = -1
-    //   }
-    // },
-    '$route.query': {
-      handler(query) {
-        console.debug('watch query', query)
-        if (query.spotId == null && query.fishId != null) {
-          this.showSpotWithFish(query.fishId)
-        } else {
-          this.showSpot(query.spotId, query.fishId)
-        }
-      },
-      immediate: true,
     },
   },
   created() {
@@ -867,9 +822,36 @@ export default {
       })
   },
   mounted() {
-    this.showRightPane = false
     this.throttledResizeFn = _.throttle(this.resizeInternal, 100)
     this.onWindowResize()
+    this.$watch(
+      function() {
+        return JSON.stringify([this.currentSpotId, this.currentFishId])
+      },
+      function(val) {
+        // console.log(val)
+        const [spotId, fishId] = JSON.parse(val)
+        if (
+          spotId === +(this.$route.query.spotId ?? -1) &&
+          fishId === +(this.$route.query.fishId ?? -1)
+        ) {
+          return
+        }
+        if (spotId > 0) {
+          if (fishId > 0) {
+            if (!this.isOceanFishingSpot) {
+              this.$emit('fish-selected', { fishId: fishId })
+            }
+            this.$router.push({
+              name: 'WikiPage',
+              query: { spotId: spotId > 0 ? spotId : undefined, fishId: fishId },
+            })
+          } else {
+            this.$router.push({ name: 'WikiPage', query: { spotId } })
+          }
+        }
+      }
+    )
   },
   methods: {
     typeOfSpot(spotId) {
@@ -896,7 +878,6 @@ export default {
     closeFishDetailPage() {
       this.currentFishId = -1
       this.type = 'spot'
-      this.showRightPane = false
     },
     showSpot(spotId, fishId) {
       if (DataUtil.isDiademSpot(spotId)) {
@@ -950,6 +931,8 @@ export default {
       } else {
         // case 2
         this.type = 'fishGroupSelection'
+        this.currentSpotId = -1
+        this.currentFishId = -1
         this.currentFishIds = _.uniq(wikiIds.map(wikiId => +wikiId.split('-')[3]))
       }
     },
@@ -991,8 +974,6 @@ export default {
       })
     },
     updateCompleted(oldSpotFishIds, newSpotFishIds) {
-      // const oldSpotFishIds = this.normalCompletedSpotFishIds
-
       if (_.isEqual(_.sortBy(oldSpotFishIds), _.sortBy(newSpotFishIds))) {
         return
       }
@@ -1110,40 +1091,13 @@ export default {
     onFishClicked({ fishId, components }) {
       this.type = 'fish'
       this.forceShowComponents = components
-      this.showRightPane = true
       if (this.currentFishId !== fishId) {
         this.currentFishId = fishId
-        this.$router.push({
-          name: 'WikiPage',
-          query: { spotId: this.currentSpotId, fishId },
-        })
       }
     },
     toFishPageOfFishLocationPage(fishId) {
       this.$router.push({ name: 'WikiPage', query: { fishId } })
     },
-    onMapCardResized() {
-      setTimeout(() => this.$refs.simpleMap?.resize(), 300)
-    },
-    toggleSettingMode() {
-      this.isSettingMode = !this.isSettingMode
-    },
-    // updateCompletedSpot(allCompletedFish) {
-    //   console.debug('not used')
-    //   const completedSpots = []
-    //   Object.values(this.spotDict).forEach(spot => {
-    //     if (
-    //       spot.fishList.length > 0 &&
-    //       spot.fishList.every(fishId => allCompletedFish.includes(fishId))
-    //     ) {
-    //       completedSpots.push('spot-' + spot.spotId)
-    //     }
-    //   })
-    //   // console.log(_.isEqual(this.completedSpots, completedSpots))
-    //   if (!_.isEqual(_.sortBy(this.completedSpots), _.sortBy(completedSpots))) {
-    //     this.completedSpots = completedSpots
-    //   }
-    // },
     onMenuItemActive(items) {
       const targetOpenedItems =
         this.mode === 'normal' ? this.openedItems : this.spearOpenedItems
@@ -1164,12 +1118,18 @@ export default {
       }
       switch (this.type) {
         case 'region':
+          this.currentTerritoryId = -1
+          this.currentSpotId = -1
+          this.currentFishId = -1
           break
         case 'territory':
           this.currentTerritoryId = +parts[1]
+          this.currentSpotId = -1
+          this.currentFishId = -1
           break
         case 'spot':
           this.currentSpotId = +parts[1]
+          this.currentFishId = -1
           break
         case 'fish':
           this.currentSpotId = +parts[1]
@@ -1218,7 +1178,8 @@ export default {
       this.$refs.spearSpotMenu?.updateAll(false)
     },
     assembleSpot(spotId) {
-      if (this.mode === 'normal') {
+      const mode = this.typeOfSpot(this.currentSpotId)
+      if (mode === 'normal') {
         const spot = this.getFishingSpot(spotId)
         return {
           ...spot,
