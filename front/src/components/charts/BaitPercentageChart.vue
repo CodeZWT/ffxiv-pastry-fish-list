@@ -358,6 +358,7 @@
 </template>
 
 <script>
+import { STARLIGHT_CELEBRATION } from 'Data/fix'
 import { filter, flow, groupBy, mapValues } from 'lodash/fp'
 import Constants from 'Data/constants'
 import DataUtil from '@/utils/DataUtil'
@@ -660,7 +661,11 @@ export default {
       }
     },
     spotWeathers() {
-      return _.uniq((SPOT_WEATHER[this.spotId] ?? []).filter(it => it > 0))
+      return _.uniq(
+        (SPOT_WEATHER[this.spotId] ?? [])
+          .concat(STARLIGHT_CELEBRATION.spots.includes(this.spotId) ? [15] : [])
+          .filter(it => it > 0)
+      )
         .sort()
         .map(weatherId => UploadUtil.toWeather(weatherId))
     },
