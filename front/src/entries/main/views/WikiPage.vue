@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex">
+  <div v-resize="onWindowResize" class="d-flex">
     <v-navigation-drawer
       v-if="showMapMenu || !isMobile"
       :value="showMapMenu || !isMobile"
@@ -132,6 +132,7 @@
     </v-navigation-drawer>
     <div
       :class="{
+        'd-flex': true,
         'wiki-content': true,
         'wiki-content--pc-web': !isMobile && !isElectron,
         'wiki-content--pc-electron': !isMobile && isElectron && !original,
@@ -143,147 +144,153 @@
       id="wiki-right-content"
     >
       <div
-        v-if="
-          !type || type === 'region' || (type === 'territory' && isOceanFishingTerritory)
-        "
-        class="fill-height d-flex flex-column align-content-space-between grid-content"
+        :style="`flex: 1 1 ${mainPaneFlexPercentage}%; overflow: auto`"
+        v-show="!rightPaneFullScreen || !showRightPane"
+        ref="fishPageScrollTarget"
       >
-        <!--  show empty / region view  -->
-        <div>
-          <v-sheet outlined class="pa-4">
-            <div class="text-h5">成就计数</div>
-            <div class="text-subtitle-2">鼠标悬停成就数字可查看说明</div>
-            <div v-if="isMobile" class="text-subtitle-2">
-              点击上方
-              <v-icon small>{{ mdiMap }}</v-icon>
-              按钮显示钓场选择菜单
-            </div>
-            <v-divider />
-            <v-subheader v-if="achievementInfo.iCatchThat.cn">
-              {{
-                `${achievementInfo.iCatchThat.name}（${CN_PATCH_VERSION}最大值${achievementInfo.iCatchThat.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.iCatchThat.total}）`
-              }}
-            </v-subheader>
-            <v-subheader v-else>
-              {{ achievementInfo.iCatchThat.name }}
-            </v-subheader>
-            <v-row>
-              <v-col>
-                <achievement-progress
-                  :value="counts.iCatchThat.record"
-                  :total="counts.iCatchThat.total"
-                  :ticks="counts.iCatchThat.ticks"
-                />
-              </v-col>
-            </v-row>
-            <v-subheader>{{ achievementInfo.goBigOrGoHome.name }}</v-subheader>
-            <v-row>
-              <v-col>
-                <achievement-progress
-                  :value="counts.goBigOrGoHome.record"
-                  :total="counts.goBigOrGoHome.total"
-                  :ticks="counts.goBigOrGoHome.ticks"
-                />
-              </v-col>
-            </v-row>
-            <v-subheader v-if="achievementInfo.goBigFarFromHome.cn">
-              {{
-                `${achievementInfo.goBigFarFromHome.name}（${CN_PATCH_VERSION}最大值${achievementInfo.goBigFarFromHome.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.goBigFarFromHome.total}）`
-              }}
-            </v-subheader>
-            <v-subheader v-else>
-              {{ achievementInfo.goBigFarFromHome.name }}
-            </v-subheader>
-            <v-row>
-              <v-col>
-                <achievement-progress
-                  :value="counts.goBigFarFromHome.record"
-                  :total="counts.goBigFarFromHome.total"
-                  :ticks="counts.goBigFarFromHome.ticks"
-                />
-              </v-col>
-            </v-row>
+        <div
+          v-if="
+            !type ||
+              type === 'region' ||
+              (type === 'territory' && isOceanFishingTerritory)
+          "
+          class="fill-height d-flex flex-column align-content-space-between grid-content"
+        >
+          <!--  show empty / region view  -->
+          <div>
+            <v-sheet outlined class="pa-4">
+              <div class="text-h5">成就计数</div>
+              <div class="text-subtitle-2">鼠标悬停成就数字可查看说明</div>
+              <div v-if="isMobile" class="text-subtitle-2">
+                点击上方
+                <v-icon small>{{ mdiMap }}</v-icon>
+                按钮显示钓场选择菜单
+              </div>
+              <v-divider />
+              <v-subheader v-if="achievementInfo.iCatchThat.cn">
+                {{
+                  `${achievementInfo.iCatchThat.name}（${CN_PATCH_VERSION}最大值${achievementInfo.iCatchThat.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.iCatchThat.total}）`
+                }}
+              </v-subheader>
+              <v-subheader v-else>
+                {{ achievementInfo.iCatchThat.name }}
+              </v-subheader>
+              <v-row>
+                <v-col>
+                  <achievement-progress
+                    :value="counts.iCatchThat.record"
+                    :total="counts.iCatchThat.total"
+                    :ticks="counts.iCatchThat.ticks"
+                  />
+                </v-col>
+              </v-row>
+              <v-subheader>{{ achievementInfo.goBigOrGoHome.name }}</v-subheader>
+              <v-row>
+                <v-col>
+                  <achievement-progress
+                    :value="counts.goBigOrGoHome.record"
+                    :total="counts.goBigOrGoHome.total"
+                    :ticks="counts.goBigOrGoHome.ticks"
+                  />
+                </v-col>
+              </v-row>
+              <v-subheader v-if="achievementInfo.goBigFarFromHome.cn">
+                {{
+                  `${achievementInfo.goBigFarFromHome.name}（${CN_PATCH_VERSION}最大值${achievementInfo.goBigFarFromHome.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.goBigFarFromHome.total}）`
+                }}
+              </v-subheader>
+              <v-subheader v-else>
+                {{ achievementInfo.goBigFarFromHome.name }}
+              </v-subheader>
+              <v-row>
+                <v-col>
+                  <achievement-progress
+                    :value="counts.goBigFarFromHome.record"
+                    :total="counts.goBigFarFromHome.total"
+                    :ticks="counts.goBigFarFromHome.ticks"
+                  />
+                </v-col>
+              </v-row>
 
-            <v-subheader v-if="achievementInfo.noRiverWideEnough.cn">
-              {{
-                `${achievementInfo.noRiverWideEnough.name}（${CN_PATCH_VERSION}最大值${achievementInfo.noRiverWideEnough.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.noRiverWideEnough.total}）`
-              }}
-            </v-subheader>
-            <v-subheader v-else>
-              {{ achievementInfo.noRiverWideEnough.name }}
-            </v-subheader>
-            <v-row>
-              <v-col>
-                <achievement-progress
-                  :value="counts.noRiverWideEnough.record"
-                  :total="counts.noRiverWideEnough.total"
-                  :ticks="counts.noRiverWideEnough.ticks"
-                />
-              </v-col>
-            </v-row>
-            <!-- TODO recover this -->
-            <v-btn
-              v-if="isElectron"
-              color="primary"
-              @click="showSyncDialog = true"
-              block
-              class="mt-2"
-            >
-              <v-icon left>{{ mdiSync }}</v-icon>
-              同步游戏数据
-            </v-btn>
-          </v-sheet>
+              <v-subheader v-if="achievementInfo.noRiverWideEnough.cn">
+                {{
+                  `${achievementInfo.noRiverWideEnough.name}（${CN_PATCH_VERSION}最大值${achievementInfo.noRiverWideEnough.cn}，${GLOBAL_PATCH_VERSION}最大值${counts.noRiverWideEnough.total}）`
+                }}
+              </v-subheader>
+              <v-subheader v-else>
+                {{ achievementInfo.noRiverWideEnough.name }}
+              </v-subheader>
+              <v-row>
+                <v-col>
+                  <achievement-progress
+                    :value="counts.noRiverWideEnough.record"
+                    :total="counts.noRiverWideEnough.total"
+                    :ticks="counts.noRiverWideEnough.ticks"
+                  />
+                </v-col>
+              </v-row>
+              <!-- TODO recover this -->
+              <v-btn
+                v-if="isElectron"
+                color="primary"
+                @click="showSyncDialog = true"
+                block
+                class="mt-2"
+              >
+                <v-icon left>{{ mdiSync }}</v-icon>
+                同步游戏数据
+              </v-btn>
+            </v-sheet>
+          </div>
+        </div>
+        <div v-else-if="type === 'territory'" class="grid-content">
+          <!--  show territory view  -->
+          <eorzea-simple-map
+            ref="simpleMap"
+            :id="currentMapInfo.mapFileId"
+            :size-factor="currentMapInfo.size_factor"
+            :fishing-spots="currentSpotList"
+            :show-fishing-range-helper="mode === 'normal'"
+          />
+        </div>
+        <div
+          v-else-if="type === 'spot' || type === 'fish'"
+          :class="{
+            'grid-content': true,
+            'grid-content--web': !isElectron,
+          }"
+        >
+          <!--  show spot view  -->
+          <wiki-spot-detail
+            :mode="mode"
+            :is-mobile="isMobile"
+            :is-electron="isElectron"
+            :current-spot-id="currentSpotId"
+            :current-map-info="currentMapInfo"
+            :lazy-transformed-fish-dict="lazyTransformedFishDict"
+            :fish-list-time-part="fishListTimePart"
+            :fish-list-weather-change-part="fishListWeatherChangePart"
+            @fish-selected="onFishClicked($event)"
+          />
         </div>
       </div>
-      <div v-else-if="type === 'territory'" class="grid-content">
-        <!--  show territory view  -->
-        <eorzea-simple-map
-          ref="simpleMap"
-          :id="currentMapInfo.mapFileId"
-          :size-factor="currentMapInfo.size_factor"
-          :fishing-spots="currentSpotList"
-          :show-fishing-range-helper="mode === 'normal'"
-        />
-      </div>
-      <div
-        v-else-if="type === 'spot'"
-        :class="{
-          'grid-content': true,
-          'grid-content--web': !isElectron,
-        }"
-      >
-        <!--  show spot view  -->
-        <wiki-spot-detail
-          :mode="mode"
-          :is-mobile="isMobile"
-          :is-electron="isElectron"
-          :current-spot-id="currentSpotId"
-          :current-map-info="currentMapInfo"
-          :lazy-transformed-fish-dict="lazyTransformedFishDict"
-          :fish-list-time-part="fishListTimePart"
-          :fish-list-weather-change-part="fishListWeatherChangePart"
-          @fish-selected="onFishClicked($event)"
-        />
-      </div>
       <!--      <div-->
-      <!--        v-else-if="type === 'spot' && isOceanFishingSpot"-->
+      <!--        v-else-if="type === 'fish' && !isOceanFishingSpot"-->
       <!--        :class="{-->
       <!--          'grid-content': true,-->
       <!--          'grid-content&#45;&#45;web': !isElectron,-->
       <!--        }"-->
-      <!--      >-->
-      <!--        <ocean-fishing-fish-list :fish-list="currentFishList" class="ml-2" />-->
-      <!--      </div>-->
+      <!--      ></div>-->
+
       <div
-        v-else-if="type === 'fish' && !isOceanFishingSpot"
         :class="{
-          'grid-content': true,
-          'grid-content--web': !isElectron,
+          'detail-part': true,
         }"
+        v-if="type === 'fish' && !isOceanFishingSpot && showRightPane"
       >
         <fish-detail
+          ref="wikiFishDetail"
           :fish="currentFish"
-          :now="now"
           :forceShowComponents="forceShowComponents"
           :show-fishing-range-helper="mode === 'normal'"
           show-close
@@ -482,8 +489,24 @@ export default {
     isElectron: DevelopmentModeUtil.isElectron(),
     showSyncDialog: false,
     syncStatus: 'not-start',
+    showRightPane: false,
+    rightPaneFullScreen: false,
   }),
   computed: {
+    rightPanePercentage() {
+      return Math.min(0.9, this.rightPanePercentageV2 + 0.1)
+    },
+    mainPaneFlexPercentage() {
+      return Math.floor((100 * (1 - this.rightPanePercentage)) / this.rightPanePercentage)
+    },
+    // showRightPane: {
+    //   get() {
+    //     return this.showFishPageRightPane
+    //   },
+    //   set(show) {
+    //     this.setShowFishPageRightPane(show)
+    //   },
+    // },
     currentRegionTerritorySpots() {
       return this.mode === 'normal'
         ? this.regionTerritorySpots
@@ -718,6 +741,7 @@ export default {
       'getFishCompleted',
       'allCompletedFish',
       'isRoseMode',
+      'rightPanePercentageV2',
     ]),
   },
   watch: {
@@ -763,11 +787,11 @@ export default {
         this.$emit('fish-selected', { fishId })
       }
     },
-    isDetailFishWindowOpen(isOpen) {
-      if (!isOpen) {
-        this.currentFishId = -1
-      }
-    },
+    // isDetailFishWindowOpen(isOpen) {
+    //   if (!isOpen) {
+    //     this.currentFishId = -1
+    //   }
+    // },
     '$route.query': {
       handler(query) {
         console.debug('watch query', query)
@@ -803,7 +827,24 @@ export default {
         }
       })
   },
+  mounted() {
+    this.showRightPane = false
+    this.throttledResizeFn = _.throttle(this.resizeInternal, 100)
+    this.onWindowResize()
+  },
   methods: {
+    resizeInternal() {
+      // resizePaneInfos
+      // this.rightPaneSize = resizePaneInfos[1].size
+      this.$refs.wikiFishDetail?.resize()
+    },
+    onWindowResize() {
+      this.rightPaneFullScreen =
+        window.innerWidth < this.$vuetify.breakpoint.thresholds.md
+      setTimeout(() => {
+        this.throttledResizeFn()
+      }, 500)
+    },
     iconIdToClass: DataUtil.iconIdToClass,
     scrollToTop() {
       document
@@ -813,6 +854,7 @@ export default {
     closeFishDetailPage() {
       this.currentFishId = -1
       this.type = 'spot'
+      this.showRightPane = false
     },
     showSpot(spotId, mode) {
       if (DataUtil.isDiademSpot(spotId)) {
@@ -981,6 +1023,7 @@ export default {
       this.type = 'fish'
       this.currentFishId = fishId
       this.forceShowComponents = components
+      this.showRightPane = true
     },
     onMapCardResized() {
       setTimeout(() => this.$refs.simpleMap?.resize(), 300)
@@ -1150,6 +1193,7 @@ $wrapper-wiki-menu: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
       height: calc(100vh - #{ $wrapper-wiki-menu })
 
 .wiki-content
+  display: flex
   overflow-y: auto
   width: 100%
   height: 100%
@@ -1174,4 +1218,10 @@ $wrapper-wiki-menu: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
   &--pc
     width: 20vw
     min-width: 250px
+
+.detail-part
+  overflow-y: auto
+  flex: 0 1 100%
+  overflow-x: hidden
+  padding-left: 4px
 </style>
