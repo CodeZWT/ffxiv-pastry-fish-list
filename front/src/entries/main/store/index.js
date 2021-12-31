@@ -12,8 +12,8 @@ import CONSTANTS from 'Data/constants'
 import DATA from 'Data/data'
 import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
+import FISH from 'Data/fish'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
-import PatchFish from 'Data/patch/fish'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
@@ -74,7 +74,7 @@ export const MainModule = {
   state: {
     window: 'main',
     now: Date.now(),
-    fish: PatchFish.getData(),
+    fish: FISH,
     fishingSpots: DataUtil.FISHING_SPOTS,
     spearFishingSports: DATA.SPEARFISHING_SPOTS,
     items: DataUtil.ITEMS,
