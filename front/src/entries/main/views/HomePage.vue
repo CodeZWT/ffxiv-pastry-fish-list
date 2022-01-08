@@ -40,6 +40,54 @@
         </v-row>
         <v-row>
           <v-col cols="12" class="pa-0">
+            <v-subheader>页面导航</v-subheader>
+          </v-col>
+          <v-col cols="12" class="my-0 py-0">
+            <v-row class="py-0">
+              <v-col cols="12" md="6">
+                <home-page-card @click="toPageSubList">
+                  <template v-slot:title>
+                    <v-icon class="mr-1">{{ mdiTimer }}</v-icon
+                    >钓鱼时钟
+                  </template>
+                  <template v-slot:description
+                    >「烟波钓徒」「钓场之王」 我来啦！</template
+                  >
+                </home-page-card>
+              </v-col>
+              <v-col cols="12" md="6">
+                <home-page-card @click="toPage('WikiPage')">
+                  <template v-slot:title>
+                    <v-icon class="mr-1">{{ mdiNotebook }}</v-icon
+                    >{{ $t('top.fishWiki') }}
+                  </template>
+                  <template v-slot:description>目标全图鉴！附赠发光鱼竿哦~</template>
+                </home-page-card>
+              </v-col>
+              <v-col cols="12" md="6">
+                <home-page-card @click="toPage('OceanFishingPage54')">
+                  <template v-slot:title>
+                    <v-icon class="mr-1">{{ mdiFerry }}</v-icon
+                    >{{ $t('top.oceanFishing') }}
+                  </template>
+                  <template v-slot:description>「海王」们上船钓蓝鱼了！</template>
+                </home-page-card>
+              </v-col>
+              <v-col cols="12" md="6">
+                <home-page-card @click="toFAQ">
+                  <template v-slot:title>
+                    <v-icon class="mr-1">{{ mdiHammerWrench }}</v-icon
+                    >{{ $t('top.faq') }}
+                  </template>
+                  <template v-slot:description>如有问题请先看看维修手册~</template>
+                </home-page-card>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col cols="12" class="pa-0">
             <v-subheader> 联系我们 </v-subheader>
           </v-col>
           <v-col cols="12" md="6" class="my-0 py-0">
@@ -116,53 +164,6 @@
                 src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=330&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,f2f3f5,666666,0082cb,f2f3f5&dpc=1"
               ></iframe>
             </v-card>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" class="pa-0">
-            <v-subheader>页面导航</v-subheader>
-          </v-col>
-          <v-col cols="12" class="my-0 py-0">
-            <v-row class="py-0">
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPageSubList">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiTimer }}</v-icon
-                    >钓鱼时钟
-                  </template>
-                  <template v-slot:description
-                    >「烟波钓徒」「钓场之王」 我来啦！</template
-                  >
-                </home-page-card>
-              </v-col>
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPage('WikiPage')">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiNotebook }}</v-icon
-                    >{{ $t('top.fishWiki') }}
-                  </template>
-                  <template v-slot:description>目标全图鉴！附赠发光鱼竿哦~</template>
-                </home-page-card>
-              </v-col>
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPage('OceanFishingPage54')">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiFerry }}</v-icon
-                    >{{ $t('top.oceanFishing') }}
-                  </template>
-                  <template v-slot:description>「海王」们上船钓蓝鱼了！</template>
-                </home-page-card>
-              </v-col>
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPage('AquariumPage')">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiFishbowl }}</v-icon
-                    >{{ $t('top.aquarium') }}
-                  </template>
-                  <template v-slot:description>不在家里养点金鱼吗？</template>
-                </home-page-card>
-              </v-col>
-            </v-row>
           </v-col>
         </v-row>
       </v-col>
@@ -255,7 +256,7 @@ import {
   mdiAccount,
   mdiAlertOutline,
   mdiFerry,
-  mdiFishbowl,
+  mdiHammerWrench,
   mdiHelpCircleOutline,
   mdiNotebook,
   mdiQqchat,
@@ -267,6 +268,7 @@ import { version } from '@/../package.json'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import HomePageCard from '@/components/HomePageCard'
 import ImgUtil from '@/utils/ImgUtil'
+import LINK from 'Data/link'
 import RcTooltip from '@/components/basic/RcTooltip'
 import orderBy from 'lodash/orderBy'
 import rcapiService from '@/service/rcapiService'
@@ -298,7 +300,7 @@ export default {
       mdiTimer,
       mdiNotebook,
       mdiFerry,
-      mdiFishbowl,
+      mdiHammerWrench,
       mdiQrcode,
       mdiHelpCircleOutline,
       showAfdianQRCode: false,
@@ -364,6 +366,9 @@ export default {
     ...mapMutations(['setActiveTab']),
     toPage(routeName) {
       this.$router.push({ name: routeName })
+    },
+    toFAQ() {
+      window.open(LINK.FAQ)
     },
     toPageSubList() {
       this.toPage('ListPage')

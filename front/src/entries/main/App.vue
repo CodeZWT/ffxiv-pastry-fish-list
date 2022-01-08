@@ -559,6 +559,14 @@
                   <v-list-item-title>{{ $t('top.patchNote') }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
+              <v-list-item @click="toFAQ">
+                <v-list-item-icon>
+                  <v-icon>{{ mdiHammerWrench }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ $t('top.faq') }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
               <v-list-item @click="showAboutDialog = true">
                 <v-list-item-icon>
                   <v-icon>{{ mdiInformation }}</v-icon>
@@ -889,6 +897,7 @@ import {
   mdiFilter,
   mdiFish,
   mdiFishbowl,
+  mdiHammerWrench,
   mdiHome,
   mdiHook,
   mdiInformation,
@@ -920,6 +929,7 @@ import AlarmMixin from '@/mixins/AlarmMixin'
 import AppMixin from '@/components/AppMixin'
 import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
+import LINK from 'Data/link'
 import MainWindowMixin from '@/components/MainWindowMixin'
 import RcDialog from '@/components/basic/RcDialog'
 import _ from 'lodash'
@@ -954,6 +964,7 @@ export default {
       mdiSinaWeibo,
       mdiSnowflakeVariant,
       mdiTag,
+      mdiHammerWrench,
       mdiThemeLightDark,
       mdiTranslate,
       mdiTrophy,
@@ -1114,6 +1125,9 @@ export default {
       })
   },
   methods: {
+    toFAQ() {
+      window.open(LINK.FAQ)
+    },
     showUpdateDialog() {
       this.showCheckStartSetupDialog = true
     },
