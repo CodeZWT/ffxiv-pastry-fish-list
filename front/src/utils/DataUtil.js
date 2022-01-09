@@ -994,7 +994,7 @@ export default {
         ...(aquarium.size === 1
           ? [
               {
-                gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}-s.gif`),
+                gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}-s.webp`),
                 cover: ImgUtil.getImgUrl(
                   `${aquarium.id}-s-cover.webp`,
                   ImgUtil.CATEGORY.AQUARIUM
@@ -1003,7 +1003,7 @@ export default {
             ]
           : []),
         {
-          gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}.gif`),
+          gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}.webp`),
           cover: ImgUtil.getImgUrl(
             `${aquarium.id}-cover.webp`,
             ImgUtil.CATEGORY.AQUARIUM

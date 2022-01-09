@@ -34,7 +34,7 @@ export default {
     }
   },
   getAquariumImgUrl(filename) {
-    return `https://ricecake500.gitee.io/pastry-fish-static-files/aquarium/${filename}`
+    return `https://${BASE_URL[URL_REGION].imageRoot}/aquarium/detail/${filename}`
   },
   getIconUrl(iconId, hr = false) {
     return `https://${BASE_URL[URL_REGION].icon}/${toRealIconId(iconId, hr)}.webp`
