@@ -1010,12 +1010,7 @@ export default {
           ),
         },
       ],
-      available:
-        aquarium.patch === this.PATCH_AVAILABLE_MAX
-          ? 1
-          : aquarium.patch > this.PATCH_AVAILABLE_MAX
-          ? 2
-          : 0,
+      available: aquarium.patch === 6 ? 1 : aquarium.patch > 6 ? 2 : 0,
     }
   },
 

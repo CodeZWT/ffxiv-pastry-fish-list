@@ -219,7 +219,6 @@
 
 <script>
 import { AQUARIUMS, AQUARIUM_FISH_SIZE, AQUARIUM_WATER } from 'Data/fix'
-import { CN_PATCH_VERSION } from 'Data/constants'
 import { OCEAN_FISHING_FISH } from 'Data/oceanFishing'
 import { mdiInformation } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
@@ -248,7 +247,7 @@ export default {
       fishPatchIndicesToShow: PATCHES_MIN.map((_, index) => index),
       allSizes: AQUARIUM_FISH_SIZE,
       allWater: AQUARIUM_WATER,
-      AVAILABLE_TYPES: ['普通', CN_PATCH_VERSION + '新增', '未来版本'],
+      AVAILABLE_TYPES: ['普通', '6.0新增', '未来版本'],
       availableIndicesFilter: [0, 1, 2],
       fishId: undefined,
     }

@@ -817,7 +817,7 @@ module.exports = {
       Global: {
         startTime: 1639641600000,
         endTime: 1640962740000,
-      }
+      },
     },
     // startTime: 1640066400000,
     // endTime: 1641276000000,
@@ -2190,6 +2190,12 @@ module.exports = {
       size: 2,
       patch: 5.2,
     },
+    20045: {
+      id: 20045,
+      aquariumWater: 1,
+      size: 2,
+      patch: 6,
+    },
     20048: {
       id: 20048,
       aquariumWater: 2,
@@ -2448,6 +2454,12 @@ module.exports = {
       size: 2,
       patch: 5.2,
     },
+    27422: {
+      id: 27422,
+      aquariumWater: 2,
+      size: 2,
+      patch: 6,
+    },
     27423: {
       id: 27423,
       aquariumWater: 2,
@@ -2484,6 +2496,12 @@ module.exports = {
       size: 2,
       patch: 5.2,
     },
+    27468: {
+      id: 27468,
+      aquariumWater: 1,
+      size: 1,
+      patch: 6,
+    },
     27474: {
       id: 27474,
       aquariumWater: 1,
@@ -2495,6 +2513,12 @@ module.exports = {
       aquariumWater: 1,
       size: 1,
       patch: 5.2,
+    },
+    27483: {
+      id: 27483,
+      aquariumWater: 1,
+      size: 1,
+      patch: 6,
     },
     27486: {
       id: 27486,
@@ -2537,6 +2561,12 @@ module.exports = {
       aquariumWater: 1,
       size: 2,
       patch: 5.2,
+    },
+    27532: {
+      id: 27532,
+      aquariumWater: 1,
+      size: 3,
+      patch: 6,
     },
     27534: {
       id: 27534,
@@ -2592,6 +2622,12 @@ module.exports = {
       size: 2,
       patch: 5.5,
     },
+    27577: {
+      id: 27577,
+      aquariumWater: 1,
+      size: 2,
+      patch: 6,
+    },
     27579: {
       id: 27579,
       aquariumWater: 1,
@@ -2604,6 +2640,12 @@ module.exports = {
       size: 1,
       patch: 5.5,
     },
+    28926: {
+      id: 28926,
+      aquariumWater: 1,
+      size: 2,
+      patch: 6,
+    },
     28940: {
       id: 28940,
       aquariumWater: 2,
@@ -2615,6 +2657,12 @@ module.exports = {
       aquariumWater: 2,
       size: 2,
       patch: 5.4,
+    },
+    29755: {
+      id: 29755,
+      aquariumWater: 2,
+      size: 2,
+      patch: 6,
     },
     29782: {
       id: 29782,
@@ -2652,6 +2700,12 @@ module.exports = {
       size: 3,
       patch: 5.5,
     },
+    32049: {
+      id: 32049,
+      aquariumWater: 1,
+      size: 1,
+      patch: 6,
+    },
     32052: {
       id: 32052,
       aquariumWater: 1,
@@ -2663,6 +2717,12 @@ module.exports = {
       aquariumWater: 2,
       size: 1,
       patch: 5.5,
+    },
+    33244: {
+      id: 33244,
+      aquariumWater: 2,
+      size: 4,
+      patch: 6,
     },
   },
   ACHIEVEMENT: {
