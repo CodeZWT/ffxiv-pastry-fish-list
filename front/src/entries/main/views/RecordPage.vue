@@ -9,358 +9,334 @@
     }"
   >
     <v-tabs v-model="tabIndex" grow>
-      <v-tab>钓场</v-tab>
-      <v-tab>个人</v-tab>
+      <!--      <v-tab>钓场</v-tab>-->
       <v-tab>所有</v-tab>
+      <v-tab>个人</v-tab>
     </v-tabs>
     <v-tabs-items v-model="tabIndex">
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text>
-            <rc-autocomplete
-              ref="search"
-              v-model="spotId"
-              :items="spotsForSearch"
-              item-value="id"
-              item-text="name"
-              label="请输入钓场"
-              clearable
-              solo
-              :filter="searchFilterOptions"
-            >
-              <template v-slot:item="data">
-                <div class="d-flex">
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <div>
-                        {{ data.item.name }}
-                      </div>
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </div>
-              </template>
-            </rc-autocomplete>
-            <template v-if="spotId > 0">
-              <div class="ma-4 d-flex align-center">
-                <v-subheader>模式筛选</v-subheader>
-                <v-btn-toggle
-                  v-model="modeFilters"
-                  rounded
-                  dense
-                  mandatory
-                  multiple
-                  active-class="primary"
-                >
-                  <v-btn small v-for="filter in modeFilterOptions" :key="filter">
-                    {{ $t('upload.mode.' + filter) }}
-                  </v-btn>
-                </v-btn-toggle>
-              </div>
-              <v-subheader>※ 杆型下方的百分比为未提竿或脱钩数据的占比</v-subheader>
-              <div>
-                <div class="d-flex">
-                  <div style="width: 48px"></div>
-                  <div
-                    v-for="fish in baitOfSpot.fishList"
-                    :key="fish.fishId"
-                    style="margin-top: 22px"
-                    :title="toItemTitle({ name: fish.fishName, id: fish.fishId })"
-                  >
-                    <item-icon :icon-class="fish.fishIcon" />
-                  </div>
-                  <v-card outlined rounded>
-                    <div style="text-align: center">脱钩</div>
-                    <div class="d-flex align-center">
-                      <div
-                        v-for="tug in TUGS"
-                        :key="tug"
-                        style="width: 48px"
-                        class="d-flex align-center justify-center"
-                      >
-                        <v-avatar :color="tugColor[tug]" size="40">
-                          <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
-                        </v-avatar>
-                      </div>
-                    </div>
-                  </v-card>
-                  <v-card outlined rounded>
-                    <div style="text-align: center">未提钩</div>
-                    <div class="d-flex align-center">
-                      <div
-                        v-for="tug in TUGS"
-                        :key="tug"
-                        style="width: 48px"
-                        class="d-flex align-center justify-center"
-                      >
-                        <v-avatar :color="tugColor[tug]" size="40">
-                          <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
-                        </v-avatar>
-                      </div>
-                    </div>
-                  </v-card>
-                </div>
-                <div
-                  v-for="{
-                    bait,
-                    fishCntList,
-                    missedTugCntList,
-                    cancelledTugCntList,
-                    totalCnt,
-                  } in baitOfSpot.baitFishCntList"
-                  :key="bait.baitId"
-                  class="d-flex"
-                >
-                  <item-icon
-                    :icon-class="bait.baitIcon"
-                    :title="bait.baitName + '#' + bait.baitId"
-                  />
-                  <div
-                    v-for="{ fish, cnt, percentage, tugColor } in fishCntList"
-                    :key="bait.baitId + '-' + fish.fishId"
-                  >
-                    <div
-                      v-if="cnt > 0"
-                      style="position: relative"
-                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
-                    >
-                      <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />
-                      <v-progress-circular
-                        :value="percentage"
-                        rotate="-90"
-                        style="position: absolute; top: 6px; left: 8px"
-                        :color="`${tugColor} ${theme.isDark ? 'lighten-2' : 'darken-1'}`"
-                      >
-                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">
-                          {{ percentage.toFixed(0) }}
-                        </div>
-                      </v-progress-circular>
-                    </div>
-                    <div v-else style="width: 48px"></div>
-                  </div>
+      <!--      <v-tab-item>-->
+      <!--        <v-card flat>-->
+      <!--          <v-card-text>-->
+      <!--            <rc-autocomplete-->
+      <!--              ref="search"-->
+      <!--              v-model="spotId"-->
+      <!--              :items="spotsForSearch"-->
+      <!--              item-value="id"-->
+      <!--              item-text="name"-->
+      <!--              label="请输入钓场"-->
+      <!--              clearable-->
+      <!--              solo-->
+      <!--              :filter="searchFilterOptions"-->
+      <!--            >-->
+      <!--              <template v-slot:item="data">-->
+      <!--                <div class="d-flex">-->
+      <!--                  <v-list-item-content>-->
+      <!--                    <v-list-item-title>-->
+      <!--                      <div>-->
+      <!--                        {{ data.item.name }}-->
+      <!--                      </div>-->
+      <!--                    </v-list-item-title>-->
+      <!--                  </v-list-item-content>-->
+      <!--                </div>-->
+      <!--              </template>-->
+      <!--            </rc-autocomplete>-->
+      <!--            <template v-if="spotId > 0">-->
+      <!--              <div class="ma-4 d-flex align-center">-->
+      <!--                <v-subheader>模式筛选</v-subheader>-->
+      <!--                <v-btn-toggle-->
+      <!--                  v-model="modeFilters"-->
+      <!--                  rounded-->
+      <!--                  dense-->
+      <!--                  mandatory-->
+      <!--                  multiple-->
+      <!--                  active-class="primary"-->
+      <!--                >-->
+      <!--                  <v-btn small v-for="filter in modeFilterOptions" :key="filter">-->
+      <!--                    {{ $t('upload.mode.' + filter) }}-->
+      <!--                  </v-btn>-->
+      <!--                </v-btn-toggle>-->
+      <!--              </div>-->
+      <!--              <v-subheader>※ 杆型下方的百分比为未提竿或脱钩数据的占比</v-subheader>-->
+      <!--              <div>-->
+      <!--                <div class="d-flex">-->
+      <!--                  <div style="width: 48px"></div>-->
+      <!--                  <div-->
+      <!--                    v-for="fish in baitOfSpot.fishList"-->
+      <!--                    :key="fish.fishId"-->
+      <!--                    style="margin-top: 22px"-->
+      <!--                    :title="toItemTitle({ name: fish.fishName, id: fish.fishId })"-->
+      <!--                  >-->
+      <!--                    <item-icon :icon-class="fish.fishIcon" />-->
+      <!--                  </div>-->
+      <!--                  <v-card outlined rounded>-->
+      <!--                    <div style="text-align: center">脱钩</div>-->
+      <!--                    <div class="d-flex align-center">-->
+      <!--                      <div-->
+      <!--                        v-for="tug in TUGS"-->
+      <!--                        :key="tug"-->
+      <!--                        style="width: 48px"-->
+      <!--                        class="d-flex align-center justify-center"-->
+      <!--                      >-->
+      <!--                        <v-avatar :color="tugColor[tug]" size="40">-->
+      <!--                          <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>-->
+      <!--                        </v-avatar>-->
+      <!--                      </div>-->
+      <!--                    </div>-->
+      <!--                  </v-card>-->
+      <!--                  <v-card outlined rounded>-->
+      <!--                    <div style="text-align: center">未提钩</div>-->
+      <!--                    <div class="d-flex align-center">-->
+      <!--                      <div-->
+      <!--                        v-for="tug in TUGS"-->
+      <!--                        :key="tug"-->
+      <!--                        style="width: 48px"-->
+      <!--                        class="d-flex align-center justify-center"-->
+      <!--                      >-->
+      <!--                        <v-avatar :color="tugColor[tug]" size="40">-->
+      <!--                          <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>-->
+      <!--                        </v-avatar>-->
+      <!--                      </div>-->
+      <!--                    </div>-->
+      <!--                  </v-card>-->
+      <!--                </div>-->
+      <!--                <div-->
+      <!--                  v-for="{-->
+      <!--                    bait,-->
+      <!--                    fishCntList,-->
+      <!--                    missedTugCntList,-->
+      <!--                    cancelledTugCntList,-->
+      <!--                    totalCnt,-->
+      <!--                  } in baitOfSpot.baitFishCntList"-->
+      <!--                  :key="bait.baitId"-->
+      <!--                  class="d-flex"-->
+      <!--                >-->
+      <!--                  <item-icon-->
+      <!--                    :icon-class="bait.baitIcon"-->
+      <!--                    :title="bait.baitName + '#' + bait.baitId"-->
+      <!--                  />-->
+      <!--                  <div-->
+      <!--                    v-for="{ fish, cnt, percentage, tugColor } in fishCntList"-->
+      <!--                    :key="bait.baitId + '-' + fish.fishId"-->
+      <!--                  >-->
+      <!--                    <div-->
+      <!--                      v-if="cnt > 0"-->
+      <!--                      style="position: relative"-->
+      <!--                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"-->
+      <!--                    >-->
+      <!--                      <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />-->
+      <!--                      <v-progress-circular-->
+      <!--                        :value="percentage"-->
+      <!--                        rotate="-90"-->
+      <!--                        style="position: absolute; top: 6px; left: 8px"-->
+      <!--                        :color="`${tugColor} ${theme.isDark ? 'lighten-2' : 'darken-1'}`"-->
+      <!--                      >-->
+      <!--                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">-->
+      <!--                          {{ percentage.toFixed(0) }}-->
+      <!--                        </div>-->
+      <!--                      </v-progress-circular>-->
+      <!--                    </div>-->
+      <!--                    <div v-else style="width: 48px"></div>-->
+      <!--                  </div>-->
 
-                  <div
-                    v-for="{ tug, cnt, percentage, tugColor } in missedTugCntList"
-                    :key="`${bait.baitId}-${tug}-missed`"
-                  >
-                    <div
-                      v-if="cnt > 0"
-                      style="position: relative; width: 48px"
-                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
-                    >
-                      <v-progress-circular
-                        :value="percentage"
-                        rotate="-90"
-                        style="position: absolute; top: 6px; left: 8px"
-                        :color="tugColor + ' lighten-2'"
-                      >
-                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">
-                          {{ percentage.toFixed(0) }}
-                        </div>
-                      </v-progress-circular>
-                    </div>
-                    <div v-else style="width: 48px"></div>
-                  </div>
+      <!--                  <div-->
+      <!--                    v-for="{ tug, cnt, percentage, tugColor } in missedTugCntList"-->
+      <!--                    :key="`${bait.baitId}-${tug}-missed`"-->
+      <!--                  >-->
+      <!--                    <div-->
+      <!--                      v-if="cnt > 0"-->
+      <!--                      style="position: relative; width: 48px"-->
+      <!--                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"-->
+      <!--                    >-->
+      <!--                      <v-progress-circular-->
+      <!--                        :value="percentage"-->
+      <!--                        rotate="-90"-->
+      <!--                        style="position: absolute; top: 6px; left: 8px"-->
+      <!--                        :color="tugColor + ' lighten-2'"-->
+      <!--                      >-->
+      <!--                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">-->
+      <!--                          {{ percentage.toFixed(0) }}-->
+      <!--                        </div>-->
+      <!--                      </v-progress-circular>-->
+      <!--                    </div>-->
+      <!--                    <div v-else style="width: 48px"></div>-->
+      <!--                  </div>-->
 
-                  <div
-                    v-for="{ tug, cnt, percentage, tugColor } in cancelledTugCntList"
-                    :key="`${bait.baitId}-${tug}-cancelled`"
-                  >
-                    <div
-                      v-if="cnt > 0"
-                      style="position: relative; width: 48px"
-                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"
-                    >
-                      <v-progress-circular
-                        :value="percentage"
-                        rotate="-90"
-                        style="position: absolute; top: 6px; left: 8px"
-                        :color="tugColor + ' lighten-2'"
-                      >
-                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">
-                          {{ percentage.toFixed(0) }}
-                        </div>
-                      </v-progress-circular>
-                    </div>
-                    <div v-else style="width: 48px"></div>
-                  </div>
-                </div>
-              </div>
-            </template>
-            <div v-if="spotId > 0">
-              <v-switch v-model="chumBiteTime" label="撒饵" inset />
-              <bite-time-chart :data="biteTimeChartData" />
-            </div>
-            <div v-if="spotId > 0">
-              <v-select
-                v-model="fishSelected"
-                :items="spotFishList"
-                item-text="fishName"
-                item-value="fishId"
-                label="选择鱼"
-              ></v-select>
-              <div v-if="spotId > 0 && fishSelected > 0">
-                <v-subheader>时间分布</v-subheader>
-                <div
-                  v-for="(daySection, i) in etBiteCounts"
-                  :key="'daySection-' + i"
-                  class="d-flex align-center"
-                >
-                  <div v-for="(etSection, j) in daySection" :key="`etSession-${i}-${j}`">
-                    <v-menu
-                      open-on-hover
-                      open-delay="300"
-                      close-deplay="300"
-                      right
-                      offset-x
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <div
-                          v-bind="attrs"
-                          v-on="on"
-                          style="height: 40px; width: 40px; position: relative"
-                          :class="
-                            'd-flex justify-center align-center' +
-                              (etSection > 0 ? ' secondary' : '')
-                          "
-                        >
-                          <div
-                            style="
-                              position: absolute;
-                              top: 0;
-                              left: 0;
-                              font-size: xx-small;
-                              line-height: 14px;
-                            "
-                          >
-                            {{ i * 8 + j }}
-                          </div>
-                          <div style="font-size: x-large">
-                            {{ etSection }}
-                          </div>
-                        </div>
-                      </template>
-                      <v-card>
-                        <v-card-title>
-                          详情（ET {{ i * 8 + j }}时 共{{ etSection }}条记录）
-                        </v-card-title>
-                        <v-card-text>
-                          <div class="d-flex flex-wrap">
-                            <div
-                              v-for="(entry, idx) in etBiteDetailOf(i * 8 + j, 1, 0.5)"
-                              :key="'detail' + idx"
-                              class="d-flex flex-column align-center"
-                            >
-                              <div>
-                                {{ entry.time }}
-                              </div>
-                              <div
-                                style="height: 40px; width: 40px"
-                                :class="
-                                  'd-flex justify-center align-center' +
-                                    (entry.cnt > 0 ? ' secondary' : '')
-                                "
-                                :title="`${entry.cnt}条记录`"
-                              >
-                                <div style="font-size: x-large">{{ entry.cnt }}</div>
-                              </div>
-                            </div>
-                          </div>
-                        </v-card-text>
-                      </v-card>
-                    </v-menu>
-                  </div>
-                </div>
-              </div>
-              <div v-if="spotId > 0 && fishSelected > 0">
-                <v-subheader>天气分布</v-subheader>
-                <div
-                  :style="
-                    `padding-left: 60px; text-align: center; width: ${40 *
-                      (spotWeathers.length + 1)}px`
-                  "
-                >
-                  当前天气
-                </div>
-                <div class="d-flex align-center">
-                  <div style="height: 40px; width: 60px" />
-                  <div
-                    v-for="(weather, i) in spotWeathers"
-                    :key="'th-weather-' + i"
-                    class="d-flex"
-                  >
-                    <div
-                      style="height: 40px; width: 40px"
-                      class="d-flex justify-center align-center"
-                    >
-                      <weather-icon
-                        :icon-class="weather.icon"
-                        :title="weather.name"
-                        type="weather"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex">
-                  <div style="width: 20px" class="d-flex align-center">
-                    <div>前置天气</div>
-                  </div>
-                  <div>
-                    <div
-                      v-for="(weatherRow, i) in weatherBiteCounts"
-                      :key="'weather-' + i"
-                      class="d-flex"
-                    >
-                      <div style="height: 40px; width: 40px">
-                        <weather-icon
-                          :icon-class="spotWeathers[i].icon"
-                          :title="spotWeathers[i].name"
-                          type="weather"
-                        />
-                      </div>
-                      <div
-                        v-for="(cnt, j) in weatherRow"
-                        :key="'weather-' + i + '-' + j"
-                        style="height: 40px; width: 40px"
-                        :class="
-                          'd-flex justify-center align-center' +
-                            (cnt > 0 ? ' secondary' : '')
-                        "
-                        :title="`${cnt}条记录`"
-                      >
-                        <div style="font-size: x-large">{{ cnt }}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-tab-item>
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text>
-            <div v-if="!isLogin">
-              <div>未登录</div>
-              <div>按 <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>y</kbd> 以登录</div>
-              <div>若同时打开了桌面版，请暂时关闭桌面版以防止快捷键冲突</div>
-            </div>
-            <v-data-table
-              :headers="userSpotStatsHeaders"
-              :items="userSpotStats"
-              multi-sort
-              class="elevation-1"
-              :loading="loadingUserSpotStats"
-            >
-              <template v-slot:item.spot="{ item }">
-                <div class="d-flex align-center">
-                  <div>{{ item.spot.spotName }}</div>
-                </div>
-              </template>
-            </v-data-table>
-          </v-card-text>
-        </v-card>
-      </v-tab-item>
+      <!--                  <div-->
+      <!--                    v-for="{ tug, cnt, percentage, tugColor } in cancelledTugCntList"-->
+      <!--                    :key="`${bait.baitId}-${tug}-cancelled`"-->
+      <!--                  >-->
+      <!--                    <div-->
+      <!--                      v-if="cnt > 0"-->
+      <!--                      style="position: relative; width: 48px"-->
+      <!--                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"-->
+      <!--                    >-->
+      <!--                      <v-progress-circular-->
+      <!--                        :value="percentage"-->
+      <!--                        rotate="-90"-->
+      <!--                        style="position: absolute; top: 6px; left: 8px"-->
+      <!--                        :color="tugColor + ' lighten-2'"-->
+      <!--                      >-->
+      <!--                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">-->
+      <!--                          {{ percentage.toFixed(0) }}-->
+      <!--                        </div>-->
+      <!--                      </v-progress-circular>-->
+      <!--                    </div>-->
+      <!--                    <div v-else style="width: 48px"></div>-->
+      <!--                  </div>-->
+      <!--                </div>-->
+      <!--              </div>-->
+      <!--            </template>-->
+      <!--            <div v-if="spotId > 0">-->
+      <!--              <v-switch v-model="chumBiteTime" label="撒饵" inset />-->
+      <!--              <bite-time-chart :data="biteTimeChartData" />-->
+      <!--            </div>-->
+      <!--            <div v-if="spotId > 0">-->
+      <!--              <v-select-->
+      <!--                v-model="fishSelected"-->
+      <!--                :items="spotFishList"-->
+      <!--                item-text="fishName"-->
+      <!--                item-value="fishId"-->
+      <!--                label="选择鱼"-->
+      <!--              ></v-select>-->
+      <!--              <div v-if="spotId > 0 && fishSelected > 0">-->
+      <!--                <v-subheader>时间分布</v-subheader>-->
+      <!--                <div-->
+      <!--                  v-for="(daySection, i) in etBiteCounts"-->
+      <!--                  :key="'daySection-' + i"-->
+      <!--                  class="d-flex align-center"-->
+      <!--                >-->
+      <!--                  <div v-for="(etSection, j) in daySection" :key="`etSession-${i}-${j}`">-->
+      <!--                    <v-menu-->
+      <!--                      open-on-hover-->
+      <!--                      open-delay="300"-->
+      <!--                      close-deplay="300"-->
+      <!--                      right-->
+      <!--                      offset-x-->
+      <!--                    >-->
+      <!--                      <template v-slot:activator="{ on, attrs }">-->
+      <!--                        <div-->
+      <!--                          v-bind="attrs"-->
+      <!--                          v-on="on"-->
+      <!--                          style="height: 40px; width: 40px; position: relative"-->
+      <!--                          :class="-->
+      <!--                            'd-flex justify-center align-center' +-->
+      <!--                              (etSection > 0 ? ' secondary' : '')-->
+      <!--                          "-->
+      <!--                        >-->
+      <!--                          <div-->
+      <!--                            style="-->
+      <!--                              position: absolute;-->
+      <!--                              top: 0;-->
+      <!--                              left: 0;-->
+      <!--                              font-size: xx-small;-->
+      <!--                              line-height: 14px;-->
+      <!--                            "-->
+      <!--                          >-->
+      <!--                            {{ i * 8 + j }}-->
+      <!--                          </div>-->
+      <!--                          <div style="font-size: x-large">-->
+      <!--                            {{ etSection }}-->
+      <!--                          </div>-->
+      <!--                        </div>-->
+      <!--                      </template>-->
+      <!--                      <v-card>-->
+      <!--                        <v-card-title>-->
+      <!--                          详情（ET {{ i * 8 + j }}时 共{{ etSection }}条记录）-->
+      <!--                        </v-card-title>-->
+      <!--                        <v-card-text>-->
+      <!--                          <div class="d-flex flex-wrap">-->
+      <!--                            <div-->
+      <!--                              v-for="(entry, idx) in etBiteDetailOf(i * 8 + j, 1, 0.5)"-->
+      <!--                              :key="'detail' + idx"-->
+      <!--                              class="d-flex flex-column align-center"-->
+      <!--                            >-->
+      <!--                              <div>-->
+      <!--                                {{ entry.time }}-->
+      <!--                              </div>-->
+      <!--                              <div-->
+      <!--                                style="height: 40px; width: 40px"-->
+      <!--                                :class="-->
+      <!--                                  'd-flex justify-center align-center' +-->
+      <!--                                    (entry.cnt > 0 ? ' secondary' : '')-->
+      <!--                                "-->
+      <!--                                :title="`${entry.cnt}条记录`"-->
+      <!--                              >-->
+      <!--                                <div style="font-size: x-large">{{ entry.cnt }}</div>-->
+      <!--                              </div>-->
+      <!--                            </div>-->
+      <!--                          </div>-->
+      <!--                        </v-card-text>-->
+      <!--                      </v-card>-->
+      <!--                    </v-menu>-->
+      <!--                  </div>-->
+      <!--                </div>-->
+      <!--              </div>-->
+      <!--              <div v-if="spotId > 0 && fishSelected > 0">-->
+      <!--                <v-subheader>天气分布</v-subheader>-->
+      <!--                <div-->
+      <!--                  :style="-->
+      <!--                    `padding-left: 60px; text-align: center; width: ${40 *-->
+      <!--                      (spotWeathers.length + 1)}px`-->
+      <!--                  "-->
+      <!--                >-->
+      <!--                  当前天气-->
+      <!--                </div>-->
+      <!--                <div class="d-flex align-center">-->
+      <!--                  <div style="height: 40px; width: 60px" />-->
+      <!--                  <div-->
+      <!--                    v-for="(weather, i) in spotWeathers"-->
+      <!--                    :key="'th-weather-' + i"-->
+      <!--                    class="d-flex"-->
+      <!--                  >-->
+      <!--                    <div-->
+      <!--                      style="height: 40px; width: 40px"-->
+      <!--                      class="d-flex justify-center align-center"-->
+      <!--                    >-->
+      <!--                      <weather-icon-->
+      <!--                        :icon-class="weather.icon"-->
+      <!--                        :title="weather.name"-->
+      <!--                        type="weather"-->
+      <!--                      />-->
+      <!--                    </div>-->
+      <!--                  </div>-->
+      <!--                </div>-->
+      <!--                <div class="d-flex">-->
+      <!--                  <div style="width: 20px" class="d-flex align-center">-->
+      <!--                    <div>前置天气</div>-->
+      <!--                  </div>-->
+      <!--                  <div>-->
+      <!--                    <div-->
+      <!--                      v-for="(weatherRow, i) in weatherBiteCounts"-->
+      <!--                      :key="'weather-' + i"-->
+      <!--                      class="d-flex"-->
+      <!--                    >-->
+      <!--                      <div style="height: 40px; width: 40px">-->
+      <!--                        <weather-icon-->
+      <!--                          :icon-class="spotWeathers[i].icon"-->
+      <!--                          :title="spotWeathers[i].name"-->
+      <!--                          type="weather"-->
+      <!--                        />-->
+      <!--                      </div>-->
+      <!--                      <div-->
+      <!--                        v-for="(cnt, j) in weatherRow"-->
+      <!--                        :key="'weather-' + i + '-' + j"-->
+      <!--                        style="height: 40px; width: 40px"-->
+      <!--                        :class="-->
+      <!--                          'd-flex justify-center align-center' +-->
+      <!--                            (cnt > 0 ? ' secondary' : '')-->
+      <!--                        "-->
+      <!--                        :title="`${cnt}条记录`"-->
+      <!--                      >-->
+      <!--                        <div style="font-size: x-large">{{ cnt }}</div>-->
+      <!--                      </div>-->
+      <!--                    </div>-->
+      <!--                  </div>-->
+      <!--                </div>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--          </v-card-text>-->
+      <!--        </v-card>-->
+      <!--      </v-tab-item>-->
       <v-tab-item>
         <v-card flat>
           <v-card-text>
@@ -674,6 +650,30 @@
           </v-card-text>
         </v-card>
       </v-tab-item>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>
+            <div v-if="!isLogin">
+              <div>未登录</div>
+              <div>按 <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>y</kbd> 以登录</div>
+              <div>若同时打开了桌面版，请暂时关闭桌面版以防止快捷键冲突</div>
+            </div>
+            <v-data-table
+              :headers="userSpotStatsHeaders"
+              :items="userSpotStats"
+              multi-sort
+              class="elevation-1"
+              :loading="loadingUserSpotStats"
+            >
+              <template v-slot:item.spot="{ item }">
+                <div class="d-flex align-center">
+                  <div>{{ item.spot.spotName }}</div>
+                </div>
+              </template>
+            </v-data-table>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
     </v-tabs-items>
     <rc-dialog v-model="showDeleteAlert" max-width="600">
       <v-card>
@@ -703,7 +703,6 @@ import {
   mdiRefresh,
 } from '@mdi/js'
 import BAITS from 'Data/bait'
-import BiteTimeChart from '@/components/BiteTimeChart'
 import Constants from 'Data/constants'
 import DataUtil from '@/utils/DataUtil'
 import DateTimeInput from '@/components/basic/DateTimeInput'
@@ -717,7 +716,6 @@ import RcDialog from '@/components/basic/RcDialog'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import SPOT_WEATHER from 'Data/spotWeather'
 import UploadUtil from '@/utils/UploadUtil'
-import WeatherIcon from '@/components/basic/WeatherIcon'
 import _ from 'lodash'
 import rcapiService from '@/service/rcapiService'
 
@@ -727,9 +725,7 @@ export default {
     RcAutocomplete,
     RcDialog,
     EffectIcon,
-    WeatherIcon,
     DateTimeInput,
-    BiteTimeChart,
     ItemIcon,
   },
   mixins: [EnvMixin],
