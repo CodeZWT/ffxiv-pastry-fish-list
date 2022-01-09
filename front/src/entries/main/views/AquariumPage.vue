@@ -230,7 +230,7 @@ import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
 
-const PATCHES_MIN = [2, 3, 4, 5]
+const PATCHES_MIN = [2, 3, 4, 5, 6]
 export default {
   name: 'AquariumPage',
   mixins: [PageMixin],
