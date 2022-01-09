@@ -25,14 +25,14 @@
               <v-card-text class="text-subtitle-1">
                 鱼糕致力于为各位光之渔夫提供一个便捷的数据查询场所。<br />
                 目前已经包括了钓鱼时钟，钓鱼&叉鱼笔记，出海垂钓，云冠群岛，水族馆等功能。<br />
-                <div class="d-flex align-center">
+                <div class="d-flex align-center mt-2">
                   <v-badge inline color="info" content="New" />
-                  <div>更新钓鱼笔记中链接支持，现在鱼也可以设置跳转鱼糕内部页面。</div>
-                </div>
-
-                <div class="d-flex align-center">
-                  <v-icon color="warning" class="mr-1">{{ mdiAlertOutline }}</v-icon>
-                  开启国际服模式时，注意可能的剧透！
+                  <div>
+                    <div>
+                      点击下方页面导航中的“维修手册”自助修复各类错误。
+                    </div>
+                    <div>更新6.0新加入鱼缸的鱼的水族馆资料。</div>
+                  </div>
                 </div>
               </v-card-text>
             </v-card>
