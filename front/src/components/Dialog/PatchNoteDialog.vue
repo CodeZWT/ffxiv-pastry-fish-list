@@ -28,16 +28,18 @@
           <div class="d-flex align-center">
             <div class="text-h6">Version 1.1.3-fix</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/12/31 20:18</div>
-            <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
+            <div class="text-subtitle-1">更新时间: 2021/1/9 16:45</div>
           </div>
         </v-alert>
+        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
+          <li>增加维修手册链接（主页及侧边栏）</li>
           <li>更新钓鱼笔记，在窗口较大时在右侧显示鱼的详情</li>
           <li>
             更新钓鱼笔记跳转支持，现在可以选择跳转鱼糕笔记内的鱼页面。同时支持从其他网站跳转的链接。
           </li>
+          <li>更新水族馆6.0鱼</li>
           <li>钓鱼笔记支持浏览器的前进后退以及刷新功能。</li>
           <li>修复统计数据部分钓场重复计算的问题。</li>
           <li>修复统计数据未正确统计星芒节天气数据的问题。</li>
