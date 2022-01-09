@@ -24,14 +24,14 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
+        <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
-            <div class="text-h6">Version 1.1.3-fix</div>
+            <div class="text-h6">Version 1.1.4</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/1/9 16:45</div>
+            <div class="text-subtitle-1">更新时间: 2021/1/9 18:20</div>
           </div>
         </v-alert>
-        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>增加维修手册链接（主页及侧边栏）</li>
