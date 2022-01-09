@@ -995,13 +995,19 @@ export default {
           ? [
               {
                 gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}-s.gif`),
-                cover: ImgUtil.getAquariumImgUrl(`${aquarium.id}-s-cover.jpg`),
+                cover: ImgUtil.getImgUrl(
+                  `${aquarium.id}-s-cover.webp`,
+                  ImgUtil.CATEGORY.AQUARIUM
+                ),
               },
             ]
           : []),
         {
           gif: ImgUtil.getAquariumImgUrl(`${aquarium.id}.gif`),
-          cover: ImgUtil.getAquariumImgUrl(`${aquarium.id}-cover.jpg`),
+          cover: ImgUtil.getImgUrl(
+            `${aquarium.id}-cover.webp`,
+            ImgUtil.CATEGORY.AQUARIUM
+          ),
         },
       ],
       available:

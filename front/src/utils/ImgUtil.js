@@ -23,6 +23,7 @@ export default {
     LANG: 'lang',
     MAP: 'map',
     MAP_RANGE_INDICATOR: 'map-range-indicator',
+    AQUARIUM: 'aquarium',
   },
   getImgUrl(filename, category = 'misc') {
     if (DevelopmentModeUtil.isElectron()) {
