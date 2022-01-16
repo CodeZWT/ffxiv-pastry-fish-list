@@ -762,7 +762,7 @@ export default {
               鱼: DataUtil.getItemName(record.fishId) ?? '未知',
               HQ: record.hq ? '是' : '否',
               '长度（星寸）': record.size > 0 ? (record.size / 10).toFixed(1) : '',
-              鱼版本: DataUtil.toPatchText(DataUtil.getFishPatch(record.fishId)),
+              鱼版本: DataUtil.toPatchText(UploadUtil.getFishPatch(record.fishId)),
               脱钩: record.missed ? '是' : '否',
               未提钩: record.cancelled ? '是' : '否',
               鱼饵: DataUtil.getItemName(record.baitId),

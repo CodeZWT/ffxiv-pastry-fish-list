@@ -180,6 +180,7 @@ const handleShowExportFileDialog = () => {
 
 const handleExportHistory = data => {
   const csv = new ObjectsToCsv(data)
+  log.info('export data cnt: ', data && data.length)
   csv
     .toString()
     .then(str => {
@@ -643,6 +644,11 @@ async function init() {
     callWindowSafe(WINDOWS.readerTimer, win =>
       win.webContents.openDevTools({
         mode: 'undocked',
+      })
+    )
+    callWindowSafe(WINDOWS.readerHistory, win =>
+      win.webContents.openDevTools({
+        mode: 'right',
       })
     )
   })

@@ -16,6 +16,12 @@ import _ from 'lodash'
 import dataLoader from '@/utils/dataLoader'
 import rcapiService, { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 
+const getFishPatch = (fishId, DIADEM_FISH) => {
+  return (
+    FISH[fishId]?.patch || OCEAN_FISHING_FISH[fishId]?.patch || DIADEM_FISH[fishId]?.patch
+  )
+}
+
 const toUploadData = async records => {
   const { FISH: DIADEM_FISH } = await dataLoader.DIADEM()
   return records.map(record => {
@@ -85,12 +91,6 @@ const toUploadData = async records => {
 
 const UPLOAD_LIMIT = 100
 
-const getFishPatch = (fishId, DIADEM_FISH) => {
-  return (
-    FISH[fishId]?.patch || OCEAN_FISHING_FISH[fishId]?.patch || DIADEM_FISH[fishId]?.patch
-  )
-}
-
 export default {
   isLogin() {
     return !!LocalStorageUtil.get(RC_ACCESS_TOKEN_KEY)
@@ -137,6 +137,7 @@ export default {
       uploaded: recordsToUpload.filter(({ uploaded }) => uploaded).length,
     }
   },
+  getFishPatch: getFishPatch,
   toBait(baitIdInput) {
     const baitId = +baitIdInput
     return {
