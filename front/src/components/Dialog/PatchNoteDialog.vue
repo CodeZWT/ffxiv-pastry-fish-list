@@ -27,6 +27,20 @@
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
+            <div class="text-h6">Version 1.1.5</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/1/16 12:20</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
+        <ul>
+          <li>更新新年&降神节贺图，感谢 马猴烧鱼@拉诺西亚 绘制的贺图！</li>
+          <li>修复导出文件空白的问题</li>
+        </ul>
+        <v-divider />
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
             <div class="text-h6">Version 1.1.4</div>
             <v-spacer />
             <div class="text-subtitle-1">更新时间: 2021/1/9 18:20</div>
