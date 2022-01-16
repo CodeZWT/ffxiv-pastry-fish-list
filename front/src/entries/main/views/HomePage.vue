@@ -11,10 +11,12 @@
     <v-row>
       <v-col cols="12" md="6">
         <v-row>
-          <v-col cols="12" md="4">
-            <v-img :src="largeLogo" height="280" contain max-width="300" />
+          <v-col cols="12" md="5" class="pa-0">
+            <rc-tooltip bottom message="别锤了~">
+              <v-img :src="largeLogo" height="300" contain max-width="400" />
+            </rc-tooltip>
           </v-col>
-          <v-col cols="12" md="8" class="fill-height d-flex align-center">
+          <v-col cols="12" md="7" class="fill-height d-flex align-center">
             <v-card flat color="background">
               <v-card-title class="text-h4">
                 欢迎来到鱼糕！
@@ -28,11 +30,12 @@
                 <div class="d-flex align-center mt-2">
                   <v-badge inline color="info" content="New" />
                   <div>
-                    <div>
-                      点击下方页面导航中的“维修手册”自助修复各类错误。
-                    </div>
-                    <div>更新6.0新加入鱼缸的鱼的水族馆资料。</div>
+                    更新降神节贺图，感谢 马猴烧鱼@拉诺西亚 绘制的贺图！
                   </div>
+                </div>
+                <div class="d-flex align-center mt-2">
+                  <v-badge inline color="warning" content="Fix" />
+                  <div>修复文件导出空白的问题。</div>
                 </div>
               </v-card-text>
             </v-card>
@@ -347,7 +350,7 @@ export default {
     },
     largeLogo() {
       return ImgUtil.getImgUrl(
-        'pastry-fish-fes-starlight.webp',
+        'pastry-fish-fes-heavensturn.webp',
         ImgUtil.CATEGORY.HOME_LOGO
       )
     },

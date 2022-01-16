@@ -60,7 +60,7 @@
           </template>
           <div class="d-flex flex-column align-center">
             <v-img :src="fisher" />
-            <div>星芒节快乐！</div>
+            <div>提前降神节快乐！</div>
           </div>
         </v-tooltip>
       </v-avatar>
