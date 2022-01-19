@@ -60,7 +60,7 @@
           </template>
           <div class="d-flex flex-column align-center">
             <v-img :src="fisher" />
-            <div>提前降神节快乐！</div>
+            <div>{{ $t('toolbar.easterEgg.description') }}</div>
           </div>
         </v-tooltip>
       </v-avatar>
@@ -96,10 +96,15 @@
         </v-tooltip>
       </div>
 
-      <v-btn icon text v-if="isListPage" @click="toggleFilterPanel">
-        <v-icon>{{ mdiFilter }}</v-icon>
-      </v-btn>
-
+      <rc-tooltip
+        v-if="isListPage"
+        :message="$t('toolbar.filterSwitch.description')"
+        bottom
+      >
+        <v-btn icon text @click="toggleFilterPanel">
+          <v-icon>{{ mdiFilter }}</v-icon>
+        </v-btn>
+      </rc-tooltip>
       <fish-eyes-toggle-button
         v-if="!isMobile && (isListPage || isWikiPage)"
         :value="fishEyesUsed"

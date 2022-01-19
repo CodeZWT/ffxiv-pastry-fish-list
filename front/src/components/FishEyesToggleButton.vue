@@ -7,11 +7,15 @@
           @input="$emit('input')"
           :checked-icon="mdiEye"
           :unchecked-icon="mdiEyeOff"
-          checked-title="点击关闭鱼眼模式"
-          unchecked-title="点击开启鱼眼模式"
+          :checked-title="$t('toolbar.fishEyes.checkedTitle')"
+          :unchecked-title="$t('toolbar.fishEyes.uncheckedTitle')"
         />
         <div v-if="showTitle">
-          {{ value ? '点击关闭鱼眼模式' : '点击开启鱼眼模式' }}
+          {{
+            value
+              ? $t('toolbar.fishEyes.checkedTitle')
+              : $t('toolbar.fishEyes.uncheckedTitle')
+          }}
         </div>
       </div>
     </template>

@@ -39,6 +39,16 @@
       "DARK": "深色",
       "LIGHT": "浅色",
       "AUTO": "自动"
+    },
+    "easterEgg": {
+      "description": "提前降神节快乐！"
+    },
+    "filterSwitch": {
+      "description": "显示/隐藏筛选界面"
+    },
+    "fishEyes": {
+      "checkedTitle": "点击关闭鱼眼模式",
+      "uncheckedTitle": "点击开启鱼眼模式"
     }
   },
   "countDown": {

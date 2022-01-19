@@ -1450,7 +1450,7 @@ export default {
   TAB_INDEX_TO_BE_NOTIFIED: 1,
 
   TABS: [
-    { icon: mdiFormatListText, title: 'list.normalTitle' },
+    { icon: mdiFormatListText, title: 'listPage.title' },
     { icon: mdiBell, title: 'list.toBeNotifiedTitle' },
   ],
 

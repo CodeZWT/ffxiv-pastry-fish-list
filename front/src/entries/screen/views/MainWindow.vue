@@ -373,7 +373,7 @@ export default {
         case 'ListPage':
           title =
             this.activeTabIndex === 0
-              ? this.$t('list.normalTitle')
+              ? this.$t('listPage.title')
               : this.$t('list.toBeNotifiedTitle')
           break
         case 'WikiPage':
