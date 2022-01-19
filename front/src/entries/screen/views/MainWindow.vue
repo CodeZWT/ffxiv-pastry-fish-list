@@ -377,10 +377,10 @@ export default {
               : this.$t('list.toBeNotifiedTitle')
           break
         case 'WikiPage':
-          title = this.$t('top.fishWiki')
+          title = this.$t('wikiPage.title')
           break
         case 'OceanFishingPage54':
-          title = this.$t('top.oceanFishing')
+          title = this.$t('oceanFishingPage.title')
           break
         case 'RecordPage':
           title = this.$t('top.record')

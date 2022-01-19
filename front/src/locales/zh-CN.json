@@ -482,5 +482,37 @@
       "en": "英",
       "ja": "日"
     }
+  },
+  "homePage": {
+    "welcome": "欢迎来到鱼糕！",
+    "description": "鱼糕致力于为各位光之渔夫提供一个便捷的数据查询场所。<br />目前已经包括了钓鱼时钟，钓鱼&叉鱼笔记，出海垂钓，云冠群岛，水族馆等功能。",
+    "section": {
+      "nav": "页面导航",
+      "contact": "联系我们",
+      "support": "支持鱼糕"
+    },
+    "support": {
+      "description": "如果您喜欢鱼糕带来的功能，可以考虑以下方式支持鱼糕！\uD83C\uDF89",
+      "sponsorList": "感谢名单"
+    }
+  },
+  "listPage": {
+    "title": "钓鱼时钟",
+    "description": "「烟波钓徒」「钓场之王」 我来啦！"
+  },
+  "wikiPage": {
+    "title": "钓鱼笔记",
+    "description": "目标全图鉴！附赠发光鱼竿哦~"
+  },
+  "oceanFishingPage": {
+    "title": "出海垂钓",
+    "description": "「海王」们上船钓蓝鱼了！"
+  },
+  "faqPage": {
+    "title": "维修手册",
+    "description": "如有问题请先看看维修手册~"
+  },
+  "contact": {
+    "author": "红豆年糕 @ 海猫茶屋"
   }
 }

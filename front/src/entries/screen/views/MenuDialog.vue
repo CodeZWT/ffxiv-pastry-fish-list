@@ -41,7 +41,7 @@
                 <!--                    </v-list-item-icon>-->
                 <!--                    <v-list-item-content>-->
                 <!--                      <v-list-item-title>{{-->
-                <!--                        $t('top.fishWiki')-->
+                <!--                        $t('wikiPage.title')-->
                 <!--                      }}</v-list-item-title></v-list-item-content-->
                 <!--                    >-->
                 <!--                  </v-list-item>-->
@@ -51,7 +51,7 @@
                 <!--                    </v-list-item-icon>-->
                 <!--                    <v-list-item-content>-->
                 <!--                      <v-list-item-title>{{-->
-                <!--                        $t('top.oceanFishing')-->
+                <!--                        $t('oceanFishingPage.title')-->
                 <!--                      }}</v-list-item-title></v-list-item-content-->
                 <!--                    >-->
                 <!--                  </v-list-item>-->

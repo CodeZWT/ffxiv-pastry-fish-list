@@ -19,19 +19,16 @@
           <v-col cols="12" md="7" class="fill-height d-flex align-center">
             <v-card flat color="background">
               <v-card-title class="text-h4">
-                欢迎来到鱼糕！
+                {{ $t('homePage.welcome') }}
                 <v-btn rounded color="primary" depressed @click="showPatchNote">
                   <span class="subtitle-1">{{ version }}</span>
                 </v-btn>
               </v-card-title>
               <v-card-text class="text-subtitle-1">
-                鱼糕致力于为各位光之渔夫提供一个便捷的数据查询场所。<br />
-                目前已经包括了钓鱼时钟，钓鱼&叉鱼笔记，出海垂钓，云冠群岛，水族馆等功能。<br />
+                <div v-html="$t('homePage.description')"></div>
                 <div class="d-flex align-center mt-2">
                   <v-badge inline color="info" content="New" />
-                  <div>
-                    更新降神节贺图，感谢 马猴烧鱼@拉诺西亚 绘制的贺图！
-                  </div>
+                  <div>更新降神节贺图，感谢 马猴烧鱼@拉诺西亚 绘制的贺图！</div>
                 </div>
                 <div class="d-flex align-center mt-2">
                   <v-badge inline color="warning" content="Fix" />
@@ -43,46 +40,48 @@
         </v-row>
         <v-row>
           <v-col cols="12" class="pa-0">
-            <v-subheader>页面导航</v-subheader>
+            <v-subheader>{{ $t('homePage.section.nav') }}</v-subheader>
           </v-col>
           <v-col cols="12" class="my-0 py-0">
             <v-row class="py-0">
               <v-col cols="12" md="6">
                 <home-page-card @click="toPageSubList">
                   <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiTimer }}</v-icon
-                    >钓鱼时钟
+                    <v-icon class="mr-1">{{ mdiTimer }}</v-icon>
+                    {{ $t('listPage.title') }}
                   </template>
-                  <template v-slot:description
-                    >「烟波钓徒」「钓场之王」 我来啦！</template
-                  >
+                  <template v-slot:description>
+                    {{ $t('listPage.description') }}
+                  </template>
                 </home-page-card>
               </v-col>
               <v-col cols="12" md="6">
                 <home-page-card @click="toPage('WikiPage')">
                   <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiNotebook }}</v-icon
-                    >{{ $t('top.fishWiki') }}
+                    <v-icon class="mr-1">{{ mdiNotebook }}</v-icon>
+                    {{ $t('wikiPage.title') }}
                   </template>
-                  <template v-slot:description>目标全图鉴！附赠发光鱼竿哦~</template>
+                  <template v-slot:description>{{ $t('wikiPage.description') }}</template>
                 </home-page-card>
               </v-col>
               <v-col cols="12" md="6">
                 <home-page-card @click="toPage('OceanFishingPage54')">
                   <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiFerry }}</v-icon
-                    >{{ $t('top.oceanFishing') }}
+                    <v-icon class="mr-1">{{ mdiFerry }}</v-icon>
+                    {{ $t('oceanFishingPage.title') }}
                   </template>
-                  <template v-slot:description>「海王」们上船钓蓝鱼了！</template>
+                  <template v-slot:description>
+                    {{ $t('oceanFishingPage.description') }}
+                  </template>
                 </home-page-card>
               </v-col>
               <v-col cols="12" md="6">
                 <home-page-card @click="toFAQ">
                   <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiHammerWrench }}</v-icon
-                    >{{ $t('top.faq') }}
+                    <v-icon class="mr-1">{{ mdiHammerWrench }}</v-icon>
+                    {{ $t('faqPage.title') }}
                   </template>
-                  <template v-slot:description>如有问题请先看看维修手册~</template>
+                  <template v-slot:description>{{ $t('faqPage.description') }}</template>
                 </home-page-card>
               </v-col>
             </v-row>
@@ -91,7 +90,7 @@
 
         <v-row>
           <v-col cols="12" class="pa-0">
-            <v-subheader> 联系我们 </v-subheader>
+            <v-subheader>{{ $t('homePage.section.nav.contact') }}</v-subheader>
           </v-col>
           <v-col cols="12" md="6" class="my-0 py-0">
             <v-card outlined class="rounded-md">
@@ -100,7 +99,7 @@
                   <v-list-item-avatar>
                     <v-icon>{{ mdiAccount }}</v-icon>
                   </v-list-item-avatar>
-                  <v-list-item-title> 红豆年糕 @ 海猫茶屋 </v-list-item-title>
+                  <v-list-item-title>{{ $t('contact.author') }}</v-list-item-title>
                 </v-list-item>
                 <v-list-item @click="openQQ">
                   <v-list-item-avatar>
@@ -173,11 +172,11 @@
       <v-col cols="12" md="6">
         <v-row no-gutters>
           <v-col cols="12" style="margin: -12px 0 0 0">
-            <v-subheader>支持鱼糕</v-subheader>
+            <v-subheader>{{ $t('homePage.section.support') }}</v-subheader>
           </v-col>
           <v-col>
             <v-alert border="left" colored-border color="secondary" class="mb-2">
-              <div>如果您喜欢鱼糕带来的功能，可以考虑以下方式支持鱼糕！🎉</div>
+              <div>{{ $t('homePage.support.description') }}</div>
             </v-alert>
           </v-col>
 
@@ -196,7 +195,7 @@
               <v-spacer />
               <rc-tooltip bottom>
                 <v-btn large icon @click="showAfdianQRCode = true">
-                  <v-icon large> {{ mdiQrcode }} </v-icon>
+                  <v-icon large> {{ mdiQrcode }}</v-icon>
                 </v-btn>
                 <template v-slot:msg> 点击显示爱发电二维码 </template>
               </rc-tooltip>
@@ -206,7 +205,7 @@
             <v-card outlined>
               <v-card-title>
                 <div class="d-flex align-center" style="width: 100%">
-                  <span>感谢名单</span>
+                  <span>{{ $t('homePage.support.sponsorList') }}</span>
                   <v-spacer />
                   <rc-tooltip tag="span" class="fill-height">
                     <v-icon>{{ mdiHelpCircleOutline }}</v-icon>

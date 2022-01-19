@@ -194,7 +194,7 @@
                   </v-row>
                 </div>
                 <v-divider />
-                <v-subheader>{{ $t('top.oceanFishing') }}</v-subheader>
+                <v-subheader>{{ $t('oceanFishingPage.title') }}</v-subheader>
                 <div
                   v-for="setting in lazyNotificationSetting.IKDRouteSettings"
                   :key="'IKDRouteSettings' + setting.key"

@@ -374,7 +374,7 @@
               <v-icon>{{ mdiNotebook }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{ $t('top.fishWiki') }}</v-list-item-title>
+              <v-list-item-title>{{ $t('wikiPage.title') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <!--          <v-list-item @click="toPage('OceanFishingPage')" link>-->
@@ -382,7 +382,7 @@
           <!--{              <vIcon>mdiFerry</vIcon{>}}-->
           <!--            </v-list-item-icon>-->
           <!--            <v-list-item-content>-->
-          <!--              <v-list-item-title>{{ $t('top.oceanFishing') }}</v-list-item-title>-->
+          <!--              <v-list-item-title>{{ $t('oceanFishingPage.title') }}</v-list-item-title>-->
           <!--            </v-list-item-content>-->
           <!--          </v-list-item>-->
           <v-list-item @click="toPage('OceanFishingPage54')" link>
@@ -391,7 +391,7 @@
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>
-                {{ $t('top.oceanFishing') }}
+                {{ $t('oceanFishingPage.title') }}
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -564,7 +564,7 @@
                   <v-icon>{{ mdiHammerWrench }}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title>{{ $t('top.faq') }}</v-list-item-title>
+                  <v-list-item-title>{{ $t('faqPage.title') }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item @click="showAboutDialog = true">
