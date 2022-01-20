@@ -174,7 +174,7 @@
                 :items="filteredList"
                 item-value="id"
                 item-text="name"
-                label="$t('aquariumPage.search.placeholder')"
+                :label="$t('aquariumPage.search.placeholder')"
                 clearable
                 solo
                 :filter="filterOptions"
