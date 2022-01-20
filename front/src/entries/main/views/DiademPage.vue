@@ -12,37 +12,39 @@
       <v-col cols="12">
         <v-card>
           <v-card-title>
-            <div>云冠群岛</div>
+            <div>{{ $t('diademPage.title') }}</div>
           </v-card-title>
           <v-card-text>
             <v-row>
               <v-col :cols="isMobile ? 12 : 8">
                 <div>
-                  <v-tabs v-model="tabIndex">
-                    <!--                    <v-tab>第二期重建</v-tab>-->
-                    <!--                    <v-tab>第三期重建</v-tab>-->
-                    <v-tab>第四期重建</v-tab>
-                  </v-tabs>
                   <v-card color="system">
+                    <v-tabs v-model="tabIndex">
+                      <!--                    <v-tab>第二期重建</v-tab>-->
+                      <!--                    <v-tab>第三期重建</v-tab>-->
+                      <v-tab>{{ $t('diademPage.round') }}</v-tab>
+                    </v-tabs>
                     <v-card-title>{{ simpleTip.title }}</v-card-title>
                     <v-card-text>
                       <div v-if="simpleTip.content" v-html="simpleTip.content" />
                       <div v-else>
-                        <v-subheader class="px-0">摇风云海</v-subheader>
+                        <v-subheader class="px-0"
+                          >{{ $t('diademPage.tip.spot1') }}
+                        </v-subheader>
                         <div class="d-flex align-center">
                           <item-icon
                             :icon-url="diademAnyBaitIcon"
                             small
-                            title="云冠气球虫、云冠红气球虫、云冠大蚊、云冠浮游虫和万能拟饵皆可"
+                            title="$t('diademPage.tip.bait')"
                           />
                           <span class="d-flex flex-column">
                             <v-badge inline content="!" color="success"></v-badge>
                             <v-badge inline content="< 10s" color="transparent"></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
-                          <span
-                            ><item-icon :icon-class="iconIdToClass(29716)" small
-                          /></span>
+                          <span>
+                            <item-icon :icon-class="iconIdToClass(29716)" small />
+                          </span>
                           <span class="d-flex flex-column" style="margin: 0 10px">
                             <v-badge inline content="!!!" color="warning"></v-badge>
                           </span>
@@ -55,9 +57,11 @@
                           <div style="min-width: 113px" class="d-flex align-center">
                             <weather-icon
                               :icon-class="iconIdToClass(60290)"
-                              title="灵飞电"
+                              title="$t('diademPage.tip.weather1')"
                             />
-                            <span style="margin: 0 35px 0 4px">时也可</span>
+                            <span style="margin: 0 35px 0 4px">
+                              {{ $t('diademPage.tip.or') }}
+                            </span>
                           </div>
                           <v-icon>{{ mdiSubdirectoryArrowRight }}</v-icon>
                           <span class="d-flex flex-column">
@@ -66,15 +70,18 @@
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span><item-icon :icon-class="iconIdToClass(29749)"/></span>
-                          1078 <v-icon>{{ mdiPlusCircle }}</v-icon>
+                          1078
+                          <v-icon>{{ mdiPlusCircle }}</v-icon>
                         </div>
 
-                        <v-subheader class="px-0">旋风云海</v-subheader>
+                        <v-subheader class="px-0"
+                          >{{ $t('diademPage.tip.spot2') }}
+                        </v-subheader>
                         <div class="d-flex align-center">
                           <item-icon
                             :icon-url="diademAnyBaitIcon"
                             small
-                            title="云冠气球虫、云冠红气球虫、云冠大蚊、云冠浮游虫和万能拟饵皆可"
+                            title="$t('diademPage.tip.bait')"
                           />
                           <span class="d-flex flex-column">
                             <v-badge inline content="!" color="success"></v-badge>
@@ -96,9 +103,11 @@
                           <div style="min-width: 113px" class="d-flex align-center">
                             <weather-icon
                               :icon-class="iconIdToClass(60291)"
-                              title="灵罡风"
+                              title="$t('diademPage.tip.weather2')"
                             />
-                            <span style="margin: 0 35px 0 4px">时也可</span>
+                            <span style="margin: 0 35px 0 4px">
+                              {{ $t('diademPage.tip.or') }}
+                            </span>
                           </div>
                           <v-icon>{{ mdiSubdirectoryArrowRight }}</v-icon>
                           <span class="d-flex flex-column">
@@ -107,30 +116,37 @@
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span><item-icon :icon-class="iconIdToClass(29747)"/></span>
-                          982 <v-icon>{{ mdiPlusCircle }}</v-icon>
+                          982
+                          <v-icon>{{ mdiPlusCircle }}</v-icon>
                         </div>
-                        <v-subheader class="px-0">注：</v-subheader>
+                        <v-subheader class="px-0"
+                          >{{ $t('diademPage.tip.note.title') }}
+                        </v-subheader>
                         <ul>
                           <li>
-                            冲分无双提获得力要求，冲成就可去狂风云海，2300获得力双提3条
+                            {{ $t('diademPage.tip.note.gather') }}
                           </li>
                           <li>
-                            万能拟饵上钩时间相对较长。
+                            {{ $t('diademPage.tip.note.baitTip1') }}
                             <div class="text--secondary">
-                              “鱼对拟饵的警惕性比活饵要高，所以上钩的时间可能会相对长一些。”----新手指南
+                              {{ $t('diademPage.tip.note.baitTip2') }}
                             </div>
                           </li>
                           <li>
                             <div class="d-flex align-center flex-wrap">
-                              <span> 此处以及云冠群岛页面中所有标注 </span>
-                              <div>
-                                <item-icon
-                                  :icon-url="diademAnyBaitIcon"
-                                  small
-                                  title="云冠气球虫、云冠红气球虫、云冠大蚊、云冠浮游虫和万能拟饵皆可"
-                                />
-                              </div>
-                              <span> 的鱼均可使用任意云冠鱼饵以及万能拟饵</span>
+                              <i18n
+                                path="diademPage.tip.note.baitTip3"
+                                tag="span"
+                                class="d-inline-flex align-center"
+                              >
+                                <span place="icon">
+                                  <item-icon
+                                    :icon-url="diademAnyBaitIcon"
+                                    small
+                                    title="$t('diademPage.tip.bait')"
+                                  />
+                                </span>
+                              </i18n>
                             </div>
                             <div class="d-flex align-center">
                               <div data-ck-item-id="30278">
@@ -159,7 +175,7 @@
                     <v-card-text v-html="simpleTip.spotTip" />
                     <v-divider />
                     <v-card-text v-if="simpleTip.references">
-                      <div>参考资料：</div>
+                      <div>{{ $t('diademPage.tip.reference.title') }}</div>
                       <div
                         v-for="(reference, index) in simpleTip.references"
                         :key="index"

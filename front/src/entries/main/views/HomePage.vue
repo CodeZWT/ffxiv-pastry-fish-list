@@ -90,7 +90,7 @@
 
         <v-row>
           <v-col cols="12" class="pa-0">
-            <v-subheader>{{ $t('homePage.section.nav.contact') }}</v-subheader>
+            <v-subheader>{{ $t('homePage.section.contact') }}</v-subheader>
           </v-col>
           <v-col cols="12" md="6" class="my-0 py-0">
             <v-card outlined class="rounded-md">

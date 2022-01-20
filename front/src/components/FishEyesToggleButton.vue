@@ -10,33 +10,24 @@
           :checked-title="$t('toolbar.fishEyes.checkedTitle')"
           :unchecked-title="$t('toolbar.fishEyes.uncheckedTitle')"
         />
-        <div v-if="showTitle">
-          {{
-            value
-              ? $t('toolbar.fishEyes.checkedTitle')
-              : $t('toolbar.fishEyes.uncheckedTitle')
-          }}
-        </div>
+        <template v-if="showTitle">
+          <div v-if="value">
+            {{ $t('toolbar.fishEyes.checkedTitle') }}
+          </div>
+          <div v-else>{{ $t('toolbar.fishEyes.uncheckedTitle') }}</div>
+        </template>
       </div>
     </template>
     <div style="max-width: 300px">
       <div class="mb-1">
         <item-icon :icon-class="iconIdToClass(1112)" small class="float-left" />
         <div>
-          鱼眼技能在
-          <strong>5.4</strong>
-          版本的效果更新为，无视时间条件，持续时间60s，消耗GP550。
-          <span>
-            {{
-              isGlobal
-                ? '对出海垂钓/钓场之皇/暗影篇之后(包括5.X)的鱼'
-                : '对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼'
-            }}
-          </span>
-          <span class="font-weight-bold">无效</span>。
+          <div>{{ $t('toolbar.fishEyes.description.skill') }}</div>
+          <div v-if="isGlobal">{{ $t('toolbar.fishEyes.description.rangeCN') }}</div>
+          <div v-else>{{ $t('toolbar.fishEyes.description.rangeGlobal') }}</div>
+          <div>{{ $t('toolbar.fishEyes.description.calculation') }}</div>
         </div>
       </div>
-      <div>鱼糕在开启鱼眼功能后，对可用范围内的鱼会无视时间要求进行计算。</div>
     </div>
   </v-tooltip>
 </template>
