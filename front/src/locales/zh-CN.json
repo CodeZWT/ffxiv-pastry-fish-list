@@ -512,6 +512,7 @@
     "fishShadow": {
       "introduction": "",
       "location": "前置鱼位置",
+      "precondition": "此处为鱼影，需要刺相应个数的前置鱼才能触发，触发后在小地图上会有鱼影位置提示。",
       "predators": "前置鱼",
       "title": "鱼影"
     },
@@ -617,6 +618,11 @@
   },
   "wikiPage": {
     "description": "目标全图鉴！附赠发光鱼竿哦~",
+    "stats": {
+      "about": {
+        "btn": "关于数据统计图"
+      }
+    },
     "title": "钓鱼笔记"
   }
 }

@@ -29,8 +29,8 @@
         <v-col cols="12" class="my-1">
           <v-btn block tile color="primary" @click="showAboutChartDialog = true">
             <v-icon>{{ mdiInformation }}</v-icon>
-            关于数据统计图
-          </v-btn>
+              {{ $t('wikiPage.stats.about.btn') }} 
+            </v-btn>
         </v-col>
         <v-col cols="12" class="my-1">
           <bait-percentage-chart
@@ -62,7 +62,7 @@
               {{ $t('spearTip.fishShadow.title') }}
             </v-card-title>
             <v-card-text>
-              此处为鱼影，需要刺相应个数的前置鱼才能触发，触发后在小地图上会有鱼影位置提示。
+              {{ $t('spearTip.fishShadow.precondition') }} 
             </v-card-text>
             <v-card-subtitle>
               {{ $t('spearTip.fishShadow.location') }}
