@@ -21,6 +21,38 @@
       "unchecked": "点击锁定（标记已完成时保留闹钟）"
     }
   },
+  "aquariumPage": {
+    "filter": {
+      "future": "未来版本",
+      "new": "6.0新增",
+      "normal": "普通"
+    },
+    "note": {
+      "author": "轩辕十四@沃仙曦染",
+      "box1": "1级水族箱",
+      "explanation": {
+        "box2": "2级水族箱",
+        "box3": "3级水族箱",
+        "box4": "4级水族箱",
+        "boxCapacity": "总容量",
+        "boxFishQuantity": "容纳鱼个数",
+        "fishPatch": "鱼版本",
+        "fishSize": "鱼尺寸",
+        "fishSizeNumber": "占用容量",
+        "line1": "水族箱可切换环境，分为淡水与海水2种，分别对应淡水与海水鱼。",
+        "line2": "水族箱以尺寸分共有1、2、3、4级水族箱4种。",
+        "line3": "各级水族箱分别可容纳不同个数的鱼，且鱼占用的容量总和也有限制。",
+        "line4": "观赏鱼以尺寸分为S、M、L、XL四种，分别占用水族箱容量1，2，4，7格",
+        "updateStatus": "更新状态",
+        "waterType": "水"
+      },
+      "source": "此页面所有鱼图片均由{author}提供，感谢大佬的支持！",
+      "title": "说明"
+    },
+    "search": {
+      "placeholder": "输入鱼名称搜索：珊瑚蝶或shd"
+    }
+  },
   "baitSearch": {
     "dialog": {
       "baitBell": "鱼饵完成提醒",
@@ -30,7 +62,6 @@
       "placeholder": "输入鱼饵搜索：天钢之球 或 tgzq"
     }
   },
-  "can-kao-zi-liao": "参考资料：",
   "chart": {
     "fishersIntuition": {
       "no": "否",
@@ -41,8 +72,6 @@
       "yes": "是"
     }
   },
-  "chong-fen-wu-shuang-ti-huo-de-li-yao-qiu-chong-cheng-jiu-ke-qu-kuang-feng-yun-hai-2300-huo-de-li-shuang-ti-3-tiao": "冲分无双提获得力要求，冲成就可去狂风云海，2300获得力双提3条",
-  "ci-chu-yi-ji-yun-guan-qun-dao-ye-mian-zhong-suo-you-biao-zhu": "此处以及云冠群岛页面中所有标注",
   "contact": {
     "author": "红豆年糕 @ 海猫茶屋"
   },
@@ -190,7 +219,6 @@
     "hasPredators": "只在鱼影中出现",
     "isPredator": "{requiredCnt}个触发鱼影"
   },
-  "greater-than-min": "> {0}",
   "homePage": {
     "description": "鱼糕致力于为各位光之渔夫提供一个便捷的数据查询场所。<br />目前已经包括了钓鱼时钟，钓鱼&叉鱼笔记，出海垂钓，云冠群岛，水族馆等功能。",
     "section": {
@@ -252,9 +280,6 @@
       "toggleReaderTimerMini": "打开/关闭迷你计时器"
     }
   },
-  "less-than-max": "< {0}",
-  "ling-fei-dian": "灵飞电",
-  "ling-gang-feng": "灵罡风",
   "list": {
     "item": {
       "copyHint": "复制名称",
@@ -455,8 +480,6 @@
       "required": "不能为空"
     }
   },
-  "shi-ye-ke": "时也可",
-  "shi-ye-ke-0": "时也可",
   "size": {
     "average": "中型鱼",
     "big": "大型鱼",
@@ -493,10 +516,11 @@
     "fishEyes": {
       "checkedTitle": "点击关闭鱼眼模式",
       "description": {
-        "skill": "鱼眼技能的效果：无视时间条件，持续时间60s，消耗GP550。",
+        "calculation": "鱼糕在开启鱼眼功能后，对可用范围内的鱼会无视时间要求进行计算。",
+        "content": "",
         "rangeCN": "对出海垂钓/钓场之皇/暗影篇之后（包括5.X）的鱼无效。",
         "rangeGlobal": "对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼无效。",
-        "calculation": "鱼糕在开启鱼眼功能后，对可用范围内的鱼会无视时间要求进行计算。"
+        "skill": "鱼眼技能的效果：无视时间条件，持续时间60s，消耗GP550。"
       },
       "uncheckedTitle": "点击开启鱼眼模式"
     },
@@ -561,7 +585,6 @@
       "strict": "严格"
     }
   },
-  "wan-neng-ni-er-shang-gou-shi-jian-xiang-dui-jiao-chang": "万能拟饵上钩时间相对较长。",
   "wiki": {
     "mode": {
       "normal": "钓鱼",
@@ -572,7 +595,5 @@
   "wikiPage": {
     "description": "目标全图鉴！附赠发光鱼竿哦~",
     "title": "钓鱼笔记"
-  },
-  "xuan-feng-yun-hai": "旋风云海",
-  "yu-dui-ni-er-de-jing-ti-xing-bi-huo-er-yao-gao-suo-yi-shang-gou-de-shi-jian-ke-neng-hui-xiang-dui-chang-yi-xie-xin-shou-zhi-nan": "“鱼对拟饵的警惕性比活饵要高，所以上钩的时间可能会相对长一些。”----新手指南"
+  }
 }

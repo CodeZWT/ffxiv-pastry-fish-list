@@ -1,50 +1,79 @@
 {
   "actions": {
     "completed": {
-      "checked": "",
-      "unchecked": ""
+      "checked": "点击取消已完成",
+      "unchecked": "点击标记已完成"
     },
     "maximize": {
-      "maximize": "",
-      "restore": ""
+      "maximize": "最大化",
+      "restore": "向下还原"
     },
     "pin": {
-      "checked": "",
-      "unchecked": ""
+      "checked": "点击取消固定",
+      "unchecked": "点击固定"
     },
     "pinTop": {
-      "checked": "",
-      "unchecked": ""
+      "checked": "点击取消固定",
+      "unchecked": "点击固定窗口在最上层"
     },
     "toBeNotifiedLocked": {
-      "checked": "",
-      "unchecked": ""
+      "checked": "点击取消锁定（标记已完成时自动取消闹钟）",
+      "unchecked": "点击锁定（标记已完成时保留闹钟）"
+    }
+  },
+  "aquariumPage": {
+    "filter": {
+      "future": "未来版本",
+      "new": "6.0新增",
+      "normal": "普通"
+    },
+    "note": {
+      "author": "轩辕十四@沃仙曦染",
+      "box1": "1级水族箱",
+      "explanation": {
+        "box2": "2级水族箱",
+        "box3": "3级水族箱",
+        "box4": "4级水族箱",
+        "boxCapacity": "总容量",
+        "boxFishQuantity": "容纳鱼个数",
+        "fishPatch": "鱼版本",
+        "fishSize": "鱼尺寸",
+        "fishSizeNumber": "占用容量",
+        "line1": "水族箱可切换环境，分为淡水与海水2种，分别对应淡水与海水鱼。",
+        "line2": "水族箱以尺寸分共有1、2、3、4级水族箱4种。",
+        "line3": "各级水族箱分别可容纳不同个数的鱼，且鱼占用的容量总和也有限制。",
+        "line4": "观赏鱼以尺寸分为S、M、L、XL四种，分别占用水族箱容量1，2，4，7格",
+        "updateStatus": "更新状态",
+        "waterType": "水"
+      },
+      "source": "此页面所有鱼图片均由{author}提供，感谢大佬的支持！",
+      "title": "说明"
+    },
+    "search": {
+      "placeholder": "输入鱼名称搜索：珊瑚蝶或shd"
     }
   },
   "baitSearch": {
     "dialog": {
-      "baitBell": "",
-      "baitList": "",
-      "hint1": "",
-      "hint2": "",
-      "placeholder": ""
+      "baitBell": "鱼饵完成提醒",
+      "baitList": "查看鱼饵使用情况",
+      "hint1": "此处只显示并筛选默认列表，固定列表不在范围内。",
+      "hint2": "前置鱼的鱼饵也计入最终鱼的鱼饵，例：云海蝴蝶螺的鱼饵为金属亮片与巨型大蚊。",
+      "placeholder": "输入鱼饵搜索：天钢之球 或 tgzq"
     }
   },
-  "can-kao-zi-liao": "",
   "chart": {
     "fishersIntuition": {
-      "no": "",
-      "yes": ""
+      "no": "否",
+      "yes": "是"
     },
     "snagging": {
-      "no": "",
-      "yes": ""
+      "no": "否",
+      "yes": "是"
     }
   },
-  "chong-fen-wu-shuang-ti-huo-de-li-yao-qiu-chong-cheng-jiu-ke-qu-kuang-feng-yun-hai-2300-huo-de-li-shuang-ti-3-tiao": "",
-  "ci-chu-yi-ji-yun-guan-qun-dao-ye-mian-zhong-suo-you-biao-zhu": "",
   "contact": {
-    "author": ""
+    "author": "红豆年糕 @ 海猫茶屋"
   },
   "countDown": {
     "allAvailable": "全天可钓",
@@ -60,69 +89,68 @@
     "today": "今天",
     "tomorrow": "明天"
   },
-  "de-yu-jun-ke-shi-yong-ren-yi-yun-guan-yu-er-yi-ji-wan-neng-ni-er": "",
   "detail": {
     "adjust": {
       "actHint": "若使用ACT，请在悬浮窗配置页面勾选“锁定悬浮窗”后，调整侧边栏大小。",
       "quit": "退出调整模式"
     },
     "baits": {
-      "title": ""
+      "title": "鱼饵/以小钓大"
     },
     "buff": {
-      "title": ""
+      "title": "需要状态"
     },
     "buffAndBaits": {
-      "title": "需要状态 | 鱼饵/以小钓大"
+      "title": ""
     },
     "countDown": {
       "loading": "计算中..."
     },
     "fishSize": {
-      "title": ""
+      "title": "鱼尺寸"
     },
     "gigSize": {
-      "title": ""
+      "title": "渔叉尖"
     },
     "map": {
       "loading": "地图加载中..."
     },
     "predators": {
-      "title": "前置鱼"
+      "title": "捕鱼人之识前置鱼"
     },
     "requirements": {
       "time": "时间",
       "weather": "天气"
     },
     "shadowPredators": {
-      "title": ""
+      "title": "鱼影前置鱼"
     }
   },
   "diademPage": {
-    "round": "",
+    "round": "第四期重建",
     "tip": {
-      "bait": "",
+      "bait": "云冠气球虫、云冠红气球虫、云冠大蚊、云冠浮游虫和万能拟饵皆可",
       "note": {
-        "baitTip1": "",
-        "baitTip2": "",
-        "baitTip3": "",
-        "gather": "",
-        "title": ""
+        "baitTip1": "万能拟饵上钩时间相对较长。",
+        "baitTip2": "“鱼对拟饵的警惕性比活饵要高，所以上钩的时间可能会相对长一些。”----新手指南",
+        "baitTip3": "此处以及云冠群岛页面中所有标注{icon}的鱼均可使用任意云冠鱼饵以及万能拟饵",
+        "gather": "冲分无双提获得力要求，冲成就可去狂风云海，2300获得力双提3条。",
+        "title": "注："
       },
-      "or": "",
+      "or": "时也可",
       "reference": {
-        "title": ""
+        "title": "参考资料："
       },
-      "spot1": "",
-      "spot2": "",
-      "weather1": "",
-      "weather2": ""
+      "spot1": "摇风云海",
+      "spot2": "旋风云海",
+      "weather1": "灵飞电",
+      "weather2": "灵罡风"
     },
-    "title": ""
+    "title": "云冠群岛"
   },
   "faqPage": {
-    "description": "",
-    "title": ""
+    "description": "如有问题请先看看维修手册~",
+    "title": "维修手册"
   },
   "filter": {
     "bigFish": {
@@ -132,7 +160,7 @@
       "title": "鱼种类"
     },
     "fishConstraint": {
-      "CHECKING": "",
+      "CHECKING": "开荒中",
       "NOT_RESTRICTED": "常驻",
       "RESTRICTED": "时间/天气限制",
       "title": "条件限制"
@@ -153,16 +181,16 @@
     },
     "sorter": {
       "COUNTDOWN": "窗口期",
-      "ID": "",
-      "QUANTITY": "",
+      "ID": "默认",
+      "QUANTITY": "剩余鱼条数",
       "RATE": "稀有度",
       "title": "排序"
     }
   },
   "footer": {
-    "author": "",
+    "author": "红豆年糕@海猫茶屋",
     "contact": "群：1153646847 红豆年糕@海猫茶屋",
-    "ffRights": "FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved."
+    "ffRights": "FINAL FANTASY XIV © 2010 - 2021 SQUARE ENIX CO., LTD. All Rights Reserved."
   },
   "general": {
     "dialog": {
@@ -191,19 +219,18 @@
     "hasPredators": "只在鱼影中出现",
     "isPredator": "{requiredCnt}个触发鱼影"
   },
-  "greater-than-min": "",
   "homePage": {
-    "description": "",
+    "description": "鱼糕致力于为各位光之渔夫提供一个便捷的数据查询场所。<br />目前已经包括了钓鱼时钟，钓鱼&叉鱼笔记，出海垂钓，云冠群岛，水族馆等功能。",
     "section": {
-      "contact": "",
-      "nav": "",
-      "support": ""
+      "contact": "联系我们",
+      "nav": "页面导航",
+      "support": "支持鱼糕"
     },
     "support": {
-      "description": "",
-      "sponsorList": ""
+      "description": "如果您喜欢鱼糕带来的功能，可以考虑以下方式支持鱼糕！🎉",
+      "sponsorList": "感谢名单"
     },
-    "welcome": ""
+    "welcome": "欢迎来到鱼糕！"
   },
   "importExport": {
     "dialog": {
@@ -212,8 +239,8 @@
       "message": {
         "copySuccess": "复制成功",
         "importError": "导入失败，请检查导入文件格式！",
-        "importSuccess": "导入成功",
-        "resetSuccess": "配置重置成功"
+        "importSuccess": "导入成功，页面将会重新载入，请稍等...",
+        "resetSuccess": "配置重置成功，页面将会重新载入，请稍等..."
       },
       "other": {
         "fishTracker": {
@@ -243,19 +270,16 @@
   },
   "keybinding": {
     "item": {
-      "showSearch": "",
-      "toggleGlobalClickThrough": "",
-      "toggleMain": "",
-      "toggleMenu": "",
-      "toggleReaderHistory": "",
-      "toggleReaderSpotStatistics": "",
-      "toggleReaderTimer": "",
-      "toggleReaderTimerMini": ""
+      "showSearch": "打开搜索",
+      "toggleGlobalClickThrough": "打开/关闭鼠标穿透",
+      "toggleMain": "打开/关闭主界面",
+      "toggleMenu": "打开/关闭功能菜单",
+      "toggleReaderHistory": "打开/关闭本地历史记录",
+      "toggleReaderSpotStatistics": "打开/关闭本地钓场统计",
+      "toggleReaderTimer": "打开/关闭计时器",
+      "toggleReaderTimerMini": "打开/关闭迷你计时器"
     }
   },
-  "less-than-max": "",
-  "ling-fei-dian": "",
-  "ling-gang-feng": "",
   "list": {
     "item": {
       "copyHint": "复制名称",
@@ -287,9 +311,9 @@
       }
     },
     "tip": {
-      "fishCountdownReferTo": "",
-      "fisherIntuitionTip": "",
-      "moochTip": ""
+      "fishCountdownReferTo": "{fish}没有天气与时间限制，左侧显示的倒计时实际为{preconditionFish}的窗口期。",
+      "fisherIntuitionTip": "小提示：这意味着在任意时刻触发了捕鱼人之识都有机会钓上{fish}。",
+      "moochTip": "小提示：这意味着当钓上{moochFish}后随时可以以小钓大钓{fish}。"
     },
     "toBeNotified": {
       "clearAll": "清空闹钟列表",
@@ -298,51 +322,51 @@
         "title": "是否确认清空闹钟列表？"
       },
       "empty": {
-        "helpPrefix": "请点击右上角的",
+        "helpPrefix": "请点击左下角的",
         "helpSuffix": "按钮，选择 \"设置\" 后，在设置页面对闹钟进行的详细配置。",
         "prefix": "当前闹钟列表为空，请点击每行鱼的",
         "suffix": "按钮将鱼添加至闹钟列表。"
       }
     },
     "toBeNotifiedIKDRoute": {
-      "clearAll": "",
+      "clearAll": "清空海钓航班闹钟列表",
       "dialog": {
-        "confirm": "",
-        "title": ""
+        "confirm": "清空",
+        "title": "是否确认清空海钓航班闹钟列表？"
       },
       "empty": {
-        "prefix": ""
+        "prefix": "当前海钓闹钟列表为空，请前往海钓页面的时间表添加闹钟。"
       }
     },
     "toBeNotifiedTitle": "闹钟列表"
   },
   "listPage": {
-    "description": "",
-    "title": ""
+    "description": "「烟波钓徒」「钓场之王」 我来啦！",
+    "title": "钓鱼时钟"
   },
   "loadingMore": "加载更多",
   "loadingMoreWithRemainingCnt": "加载更多（剩余{remainingCnt}条未显示）",
   "locale": {
     "title": {
-      "chs": "",
-      "en": "",
-      "ja": ""
+      "chs": "中",
+      "en": "英",
+      "ja": "日"
     }
   },
   "none": "无",
   "notification": {
     "IKDRouteAlarm": {
-      "IKDRoute-end": "",
-      "IKDRoute-start": "",
-      "body": ""
+      "IKDRoute-end": "距截至还有{minutes}分钟",
+      "IKDRoute-start": "距离开始还有{minutes}分钟",
+      "body": "{time}: {text}"
     },
     "fishAlarm": {
-      "Fish-fishing": "",
-      "Fish-waiting": "",
+      "Fish-fishing": "进入CD",
+      "Fish-waiting": "距开始还有{minutes}分钟",
       "body": "{type}({count}): {fishList}",
-      "fishing": "进入CD",
-      "title": "有鱼准备脱钩了！(共{count}条)",
-      "waiting": "距开始还有{minutes}分钟"
+      "fishing": "",
+      "title": "{text}(共{count}条)",
+      "waiting": ""
     }
   },
   "oceanFishing": {
@@ -354,21 +378,21 @@
     "targetFilterPlaceholder": "例：石骨鱼 或 sgy"
   },
   "oceanFishingPage": {
-    "description": "",
-    "title": ""
+    "description": "「海王」们上船钓蓝鱼了！",
+    "title": "出海垂钓"
   },
   "pastryFishTip": {
     "content": "数据与鱼糕可能会有所出入，请自行判断，并尊重作者的工作，谢谢！",
     "title": "鱼糕注："
   },
   "readerTimer": {
-    "baitTip": "",
-    "fishEyesTip": "",
-    "identicalCastTip": "",
-    "lastRecordCancelledTip": "",
-    "statusTip": "",
-    "surfaceScaleTip": "",
-    "wrongHooksetTip": ""
+    "baitTip": "切换任意鱼饵以读取数据",
+    "fishEyesTip": "严格模式下请不要使用鱼眼",
+    "identicalCastTip": "严格模式下请不要使用专一垂钓",
+    "lastRecordCancelledTip": "严格模式下 请不要 不提钩\n\n请在数据统计-所有页面中标记为非严格模式（10分钟上传一次，非实时）。",
+    "statusTip": "切换职业以获取获得力相关信息",
+    "surfaceScaleTip": "严格模式下请不要使用拍击水面",
+    "wrongHooksetTip": "严格模式下 请不要 在耐心I或II状态下\n- 使用普通提钩\n- 使用双重提钩\n- 对轻杆使用强力精准提钩\n- 对中杆使用精准提钩"
   },
   "search": {
     "btn": "搜索鱼",
@@ -387,13 +411,13 @@
         "enabled": "显示",
         "expand": "展开界面",
         "itemNames": {
-          "DetailItemAquarium": "",
+          "DetailItemAquarium": "水族箱",
           "DetailItemBuffAndBaits": "需要状态及鱼饵",
           "DetailItemCountdownBar": "倒计时条",
           "DetailItemFishWindowTable": "窗口期详情表",
           "DetailItemMap": "地图",
           "DetailItemPredators": "前置鱼列表",
-          "DetailItemQuest": "",
+          "DetailItemQuest": "任务及其他信息",
           "DetailItemRequirements": "天气时间要求",
           "DetailItemTips": "攻略"
         },
@@ -401,20 +425,20 @@
       },
       "notification": {
         "IKDRoute": {
-          "end": "",
-          "start": ""
+          "end": "海钓登记结束闹钟（15分）",
+          "start": "海钓登记开始闹钟（整点）"
         },
         "before": "提前",
         "enabled": {
-          "fishing": "窗口期开始闹钟",
-          "waiting": "窗口期准备闹钟"
-        },
-        "fish": {
           "fishing": "",
           "waiting": ""
         },
+        "fish": {
+          "fishing": "窗口期开始闹钟",
+          "waiting": "窗口期准备闹钟"
+        },
         "message": {
-          "notificationIsDeniedHint": "通知已被禁用，点击地址栏左侧图标重新授权。",
+          "notificationIsDeniedHint": "通知已被禁用，点击地址栏左侧或右侧图标重新授权（因浏览器而异）。",
           "notificationIsNotSelectedHint": "未获取通知权限，点击此处重新设置通知权限。",
           "requestNotificationPermissionDenied": "禁用了通知，点击地址栏左侧图标重新授权。",
           "requestNotificationPermissionNotSelected": "未授权通知，点击地址栏左侧图标重新授权。",
@@ -423,7 +447,7 @@
         "systemNotification": {
           "disabled": "未启用",
           "enabled": "已启用",
-          "test": "",
+          "test": "系统通知测试",
           "title": "系统通知"
         },
         "title": "闹钟",
@@ -431,14 +455,14 @@
         "volume": "音量"
       },
       "opacity": {
-        "hint": "无法拖动请在ACT中锁定悬浮窗，也可直接点击或输入",
+        "hint": "",
         "slider": "透明度",
         "title": "页面透明度"
       },
       "rightPanePercentageV2": {
-        "comment": "",
-        "slider": "",
-        "title": ""
+        "comment": "详细界面在整体界面较小时全屏显示，扩大主界面可在右侧显示详细界面",
+        "slider": "右侧详细界面占比",
+        "title": "默认列表页面"
       },
       "showFilter": {
         "hide": "隐藏",
@@ -446,8 +470,8 @@
         "title": "显示/隐藏列表筛选界面"
       },
       "zoom": {
-        "slider": "",
-        "title": ""
+        "slider": "缩放比例",
+        "title": "页面缩放"
       }
     },
     "error": {
@@ -456,26 +480,24 @@
       "required": "不能为空"
     }
   },
-  "shi-ye-ke": "",
-  "shi-ye-ke-0": "",
   "size": {
-    "average": "",
-    "big": "",
-    "small": ""
+    "average": "中型鱼",
+    "big": "大型鱼",
+    "small": "小型鱼"
   },
   "spearTip": {
     "fishShadow": {
       "introduction": "",
-      "location": "",
-      "predators": "",
-      "title": ""
+      "location": "前置鱼位置",
+      "predators": "前置鱼",
+      "title": "鱼影"
     },
-    "hasPredators": "",
-    "hasShadowPredators": "",
-    "isPredator": "",
+    "hasPredators": "需要触发鱼识",
+    "hasShadowPredators": "只在鱼影中出现",
+    "isPredator": "{requiredCnt}个触发鱼影",
     "predator": {
-      "INTUITION": "",
-      "SHADOW": ""
+      "INTUITION": "鱼识前置",
+      "SHADOW": "鱼影前置"
     }
   },
   "time": {
@@ -486,19 +508,21 @@
   },
   "toolbar": {
     "easterEgg": {
-      "description": ""
+      "description": "提前降神节快乐！"
     },
     "filterSwitch": {
-      "description": ""
+      "description": "显示/隐藏筛选界面"
     },
     "fishEyes": {
-      "checkedTitle": "",
+      "checkedTitle": "点击关闭鱼眼模式",
       "description": {
+        "calculation": "鱼糕在开启鱼眼功能后，对可用范围内的鱼会无视时间要求进行计算。",
         "content": "",
-        "rangeCN": "",
-        "rangeGlobal": ""
+        "rangeCN": "对出海垂钓/钓场之皇/暗影篇之后（包括5.X）的鱼无效。",
+        "rangeGlobal": "对出海垂钓/钓场之皇/红莲篇之后(包括4.X)的鱼无效。",
+        "skill": "鱼眼技能的效果：无视时间条件，持续时间60s，消耗GP550。"
       },
-      "uncheckedTitle": ""
+      "uncheckedTitle": "点击开启鱼眼模式"
     },
     "theme": {
       "AUTO": "自动",
@@ -508,60 +532,59 @@
   },
   "top": {
     "about": "关于",
-    "aquarium": "",
-    "collapseHint": "点击切换网页大小(ACT用)",
-    "competition": "",
-    "desktopVersion": "",
+    "aquarium": "水族馆",
+    "collapseHint": "点击切换悬浮窗模式",
+    "competition": "光之渔夫钓鱼大赛",
+    "desktopVersion": "桌面版下载",
     "diadem": "云冠群岛",
-    "downloaded": "",
-    "downloading": "",
-    "faq": "",
+    "downloaded": "更新下载完成",
+    "downloading": "更新下载中",
+    "faq": "维修手册",
     "fishList": "钓鱼时钟",
-    "fishReader": "",
+    "fishReader": "渔捞",
     "fishWiki": "钓鱼笔记",
     "help": "帮助",
-    "home": "",
-    "keybinding": "",
+    "home": "主页",
+    "keybinding": "快捷键设置",
     "menu": "导入/导出",
-    "moreInfo": "",
+    "moreInfo": "更新信息",
     "navBarTitle": "{title} Ver. {version}",
-    "oceanFishing": "海钓",
+    "oceanFishing": "出海垂钓",
     "patchNote": "更新笔记",
-    "record": "",
+    "record": "数据统计",
     "region": {
-      "CN": "",
-      "Global": ""
+      "CN": "国服",
+      "Global": "国际服"
     },
-    "roseMode": "",
-    "screen": "",
-    "setting": "设置",
+    "roseMode": "上传模式",
+    "screen": "屏幕设置",
+    "setting": "选项",
     "systemBarTitle": "鱼糕",
     "testSuffix": " 测试版",
     "uiConfig": "设置",
-    "update": "",
-    "website": ""
+    "update": "更新",
+    "website": "前往网页版"
   },
   "tug": {
-    "default": "",
+    "default": "未知杆",
     "heavy": "鱼王杆",
     "light": "轻杆",
     "medium": "中杆"
   },
   "tugShort": {
-    "heavy": "",
-    "light": "",
-    "medium": ""
+    "heavy": "重",
+    "light": "轻",
+    "medium": "中"
   },
   "tugTable": {
     "tugFish": "杆型 \\ 鱼"
   },
   "upload": {
     "mode": {
-      "normal": "",
-      "strict": ""
+      "normal": "普通",
+      "strict": "严格"
     }
   },
-  "wan-neng-ni-er-shang-gou-shi-jian-xiang-dui-jiao-chang": "",
   "wiki": {
     "mode": {
       "normal": "钓鱼",
@@ -570,9 +593,7 @@
     "searchTitle": "例：红龙/hl，红玉海/hyh"
   },
   "wikiPage": {
-    "description": "",
-    "title": ""
-  },
-  "xuan-feng-yun-hai": "",
-  "yu-dui-ni-er-de-jing-ti-xing-bi-huo-er-yao-gao-suo-yi-shang-gou-de-shi-jian-ke-neng-hui-xiang-dui-chang-yi-xie-xin-shou-zhi-nan": ""
+    "description": "目标全图鉴！附赠发光鱼竿哦~",
+    "title": "钓鱼笔记"
+  }
 }

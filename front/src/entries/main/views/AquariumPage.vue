@@ -17,23 +17,21 @@
               <div style="display: flex; justify-content: center">
                 <div>
                   <v-icon>{{ mdiInformation }}</v-icon>
-                  说明
+                  {{ $t('aquariumPage.note.title') }}
                 </div>
               </div>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-row>
                 <v-col :cols="isMobile ? 12 : 10">
-                  <div style="text-align: center" class="text-subtitle-1">
-                    此页面所有鱼图片均由
-                    <span class="font-weight-bold">轩辕十四@沃仙曦染</span>
-                    提供，感谢大佬的支持！
-                  </div>
+                  <i18n path="aquariumPage.note.source" tag="div" style="text-align: center" class="text-subtitle-1">
+                    <span place="author" class="font-weight-bold">{{ $t('aquariumPage.note.author') }}</span>
+                  </i18n>
                   <div>
-                    <div>水族箱可切换环境，分为淡水与海水2种，分别对应淡水与海水鱼。</div>
-                    <div>水族箱以尺寸分共有1、2、3、4级水族箱4种。</div>
+                    <div>{{ $t('aquariumPage.note.explanation.line1') }}</div>
+                    <div>{{ $t('aquariumPage.note.explanation.line2') }}</div>
                     <div>
-                      各级水族箱分别可容纳不同个数的鱼，且鱼占用的容量总和也有限制。
+                      {{ $t('aquariumPage.note.explanation.line3') }}
                     </div>
                     <v-simple-table>
                       <colgroup>
@@ -46,22 +44,22 @@
                       <thead>
                         <tr>
                           <th></th>
-                          <th>1级水族箱</th>
-                          <th>2级水族箱</th>
-                          <th>3级水族箱</th>
-                          <th>4级水族箱</th>
+                          <th>{{ $t('aquariumPage.note.box1') }}</th>
+                          <th>{{ $t('aquariumPage.note.explanation.box2') }}</th>
+                          <th>{{ $t('aquariumPage.note.explanation.box3') }}</th>
+                          <th>{{ $t('aquariumPage.note.explanation.box4') }}</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>容纳鱼个数</td>
+                          <td>{{ $t('aquariumPage.note.explanation.boxFishQuantity') }}</td>
                           <td>1</td>
                           <td>2</td>
                           <td>3</td>
                           <td>4</td>
                         </tr>
                         <tr>
-                          <th>总容量</th>
+                          <th>{{ $t('aquariumPage.note.explanation.boxCapacity') }}</th>
                           <td>1</td>
                           <td>2</td>
                           <td>4</td>
@@ -70,7 +68,7 @@
                       </tbody>
                     </v-simple-table>
                     <div>
-                      观赏鱼以尺寸分为S、M、L、XL四种，分别占用水族箱容量1，2，4，7格
+                      {{ $t('aquariumPage.note.explanation.line4') }}
                     </div>
 
                     <v-simple-table>
@@ -92,7 +90,7 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <th>占用容量</th>
+                          <th>{{ $t('aquariumPage.note.explanation.fishSizeNumber') }}</th>
                           <td>1</td>
                           <td>2</td>
                           <td>4</td>
@@ -112,7 +110,7 @@
         <v-card-text>
           <v-row>
             <v-col>
-              <v-subheader>鱼尺寸</v-subheader>
+              <v-subheader>{{ $t('aquariumPage.note.explanation.fishSize') }}</v-subheader>
               <v-btn-toggle
                 v-model="sizeIndicesToShow"
                 rounded
@@ -126,7 +124,7 @@
               </v-btn-toggle>
             </v-col>
             <v-col>
-              <v-subheader>水</v-subheader>
+              <v-subheader>{{ $t('aquariumPage.note.explanation.waterType') }}</v-subheader>
               <v-btn-toggle
                 v-model="waterIndicesToShow"
                 rounded
@@ -140,7 +138,7 @@
               </v-btn-toggle>
             </v-col>
             <v-col>
-              <v-subheader>鱼版本</v-subheader>
+              <v-subheader>{{ $t('aquariumPage.note.explanation.fishPatch') }}</v-subheader>
               <v-btn-toggle
                 v-model="fishPatchIndicesToShow"
                 rounded
@@ -154,7 +152,7 @@
               </v-btn-toggle>
             </v-col>
             <v-col>
-              <v-subheader>更新状态</v-subheader>
+              <v-subheader>{{ $t('aquariumPage.note.explanation.updateStatus') }}</v-subheader>
               <v-btn-toggle
                 v-model="availableIndicesFilter"
                 rounded
@@ -176,7 +174,7 @@
                 :items="filteredList"
                 item-value="id"
                 item-text="name"
-                label="输入鱼名称搜索：珊瑚蝶或shd"
+                label="$t('aquariumPage.search.placeholder')"
                 clearable
                 solo
                 :filter="filterOptions"
@@ -247,7 +245,7 @@ export default {
       fishPatchIndicesToShow: PATCHES_MIN.map((_, index) => index),
       allSizes: AQUARIUM_FISH_SIZE,
       allWater: AQUARIUM_WATER,
-      AVAILABLE_TYPES: ['普通', '6.0新增', '未来版本'],
+      AVAILABLE_TYPES: [this.$t('aquariumPage.filter.normal'), this.$t('aquariumPage.filter.new'), this.$t('aquariumPage.filter.future')],
       availableIndicesFilter: [0, 1, 2],
       fishId: undefined,
     }
