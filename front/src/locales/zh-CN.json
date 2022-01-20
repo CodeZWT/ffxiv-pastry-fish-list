@@ -72,6 +72,11 @@
       "yes": "是"
     }
   },
+  "common": {
+    "game": {
+      "collectable": "收藏品"
+    }
+  },
   "contact": {
     "author": "红豆年糕 @ 海猫茶屋"
   },
@@ -268,6 +273,13 @@
       "title": "导入/导出"
     }
   },
+  "investigation": {
+    "disclaimer": "开荒中一切数据仅供参考",
+    "investigating": "开荒中",
+    "special": {
+      "fish-33244": "根据咬钩报告，长吻帆蜥鱼窗口期拓展至ET 2:01，更多的拓展空间请自行探索。同时也欢迎汇报范围外的数据。"
+    }
+  },
   "keybinding": {
     "item": {
       "showSearch": "打开搜索",
@@ -284,19 +296,30 @@
     "item": {
       "copyHint": "复制名称",
       "countDown": {
-        "fishShadowHint": "可持续至捕鱼人之识状态消失"
+        "fishShadowHint": "可持续至捕鱼人之识状态消失",
+        "tip": {
+          "24992": "胸脊鲨只有时间限制，左侧显示的倒计时根据雕塑家窗口期进行“转换”。\n转换指：无论雕塑家是12-16ET或16-18ET或12-18ET，胸脊鲨的窗口期视为当天的16-18ET。\n理由是无论在何种情况下钓上雕塑家都可在16-18ET时间段内触发捕鱼人之识尝试钓上胸脊鲨。\n小提示：这意味着只要在16-18ET触发捕鱼人之识就有机会钓上胸脊鲨，详细操作请见攻略。",
+          "24994": "七彩天主没有天气与时间限制，左侧显示的倒计时根据绿彩鱼窗口期进行“拓展”。\n拓展指：若绿彩鱼当天的窗口期为8-16ET，则向前拓展，变为0-16ET。\n理由是总能在0-4ET和4-8ET分别尝试钓蓝彩鱼和橙彩鱼。\n",
+          "24994FishEyes": "国际服开启鱼眼时，将直接同步显示绿彩鱼CD。",
+          "33240": "自走鱼偶只有时间限制，左侧显示的倒计时根据变影鱼窗口期进行“拓展”。\n拓展指：自走鱼偶的窗口期视为可钓上变影鱼的当天10-16ET。\n小提示：这意味着只要在10-16ET触发捕鱼人之识就有机会钓上自走鱼偶。"
+        }
       },
+      "fishEyesTip": "时间条件在鱼眼模式下忽略",
       "fishWindowTable": {
         "interval": "持续时间",
         "nextInterval": "休眠期",
         "startTime": "开始时间"
       },
+      "inFuturePatch": "未实装",
       "linkHint": "跳转至饥饿的猫",
       "noConstraint": "无",
       "notificationHint": "点击添加闹钟",
       "notificationHintOff": "点击取消闹钟",
       "rateHint": "窗口期时间占比",
-      "tipHint": "显示攻略"
+      "showTask": "点击查看任务及其他信息",
+      "timeConstraint": "有时间限制",
+      "tipHint": "显示攻略",
+      "weatherConstraint": "有天气限制"
     },
     "loading": "数据加载中...",
     "normal": {
@@ -316,7 +339,7 @@
       "moochTip": "小提示：这意味着当钓上{moochFish}后随时可以以小钓大钓{fish}。"
     },
     "toBeNotified": {
-      "clearAll": "清空闹钟列表",
+      "clearAll": "清空闹钟列表（共{count}条）",
       "dialog": {
         "confirm": "清空",
         "title": "是否确认清空闹钟列表？"

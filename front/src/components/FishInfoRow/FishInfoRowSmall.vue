@@ -175,7 +175,6 @@
               <i
                 class="xiv square-a"
                 v-if="fish.baitsExtra.length > 0"
-                title="一种可能情况A"
               />
               <fish-bait-list
                 :baits="fish.baits"
@@ -184,15 +183,6 @@
                 hide-target
               />
             </div>
-            <template v-if="fish.baitsExtra.length > 0">
-              <div class="d-flex align-center">
-                <i class="xiv square-b" title="另一种可能情况B" />
-                <fish-bait-list
-                  :baits="fish.baitsExtra"
-                  @fish-clicked="onFishClicked(undefined, $event)"
-                />
-              </div>
-            </template>
           </div>
         </template>
         <template v-else>
@@ -215,8 +205,8 @@
       </v-col>
       <v-col cols="5">
         <div v-if="!transformedFishTimePart.hasCountDown" class="text-subtitle-2 ml-2">
-          <div v-if="fish.checkInfo.timeRestricted">有时间限制</div>
-          <div v-if="fish.checkInfo.weatherRestricted">有天气限制</div>
+          <div v-if="fish.checkInfo.timeRestricted">{{ $t('list.item.timeConstraint') }}</div>
+          <div v-if="fish.checkInfo.weatherRestricted">{{ $t('list.item.weatherConstraint') }}</div>
           <div
             v-if="
               !fish.hasTimeConstraint &&
@@ -258,9 +248,9 @@
                 style="margin-left: 2px"
               />
             </template>
-            <div v-if="fish.checking" title="开荒中一切数据仅供参考" class="ml-1">
+            <div v-if="fish.checking" :title="$t('investigation.disclaimer')" class="ml-1">
               <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
-              <span class="warning--text">开荒中</span>
+              <span class="warning--text">{{ $t('investigation.investigating') }}</span>
             </div>
           </div>
           <!--  2nd: next count down / interval & fishing window rate -->

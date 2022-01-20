@@ -20,7 +20,7 @@
       </template>
       <v-card>
         <div class="d-flex align-center">
-          <v-subheader>{{ title }}</v-subheader>
+          <v-subheader @click.ctrl="copyItemId">{{ title }}</v-subheader>
           <v-spacer />
           <click-helper @click.stop="emitClick" :copy-text="currLocaleName">
             <v-btn text icon small :title="$t('list.item.copyHint')">
@@ -117,6 +117,7 @@ import DataUtil from '@/utils/DataUtil'
 import ImgUtil from '@/utils/ImgUtil'
 import RcDialog from '@/components/basic/RcDialog'
 import RcMenu from '@/components/basic/RcMenu'
+import copy from 'copy-to-clipboard'
 
 export default {
   name: 'LinkList',
@@ -222,6 +223,9 @@ export default {
     ...mapGetters(['getItemName', 'defaultLinkOf']),
   },
   methods: {
+    copyItemId() {
+      copy(DataUtil.toItemId(this.id))
+    },
     onSettingBtnClick() {
       this.showConfigDialog = true
       this.emitClick()

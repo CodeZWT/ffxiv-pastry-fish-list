@@ -57,7 +57,7 @@
                 <effect-icon :icon-class="iconIdToClass(11103)" />
               </div>
             </template>
-            <div>时间条件在鱼眼模式下忽略</div>
+            <div>{{ $t('list.item.fishEyesTip') }}</div>
           </v-tooltip>
         </div>
         <div v-else-if="fish.checkInfo && fish.checkInfo.timeRestricted">有时间限制</div>

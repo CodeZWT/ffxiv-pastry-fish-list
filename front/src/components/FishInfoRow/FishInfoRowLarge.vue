@@ -115,13 +115,13 @@
                     bordered
                     :color="fish.isFuturePatch ? 'grey' : 'primary'"
                     :content="fish.patchText"
-                    :title="fish.isFuturePatch ? '未实装' : ''"
+                    :title="fish.isFuturePatch ? $t('list.item.inFuturePatch') : ''"
                     class="mr-1"
                   ></v-badge>
                   <div v-if="fish.hasTasks" class="mr-1">
                     <v-icon
                       small
-                      title="点击查看任务及其他信息"
+                      title="$t('list.item.showTask')"
                       @click.stop="onFishClicked(['DetailItemQuest'], fish._id)"
                     >
                       {{ mdiAlertCircleOutline }}
@@ -147,7 +147,7 @@
                     >
                   </div>
                   <div v-if="fish.collectable">
-                    <i class="xiv collectables" title="收藏品" />
+                    <i class="xiv collectables" title="$t('common.game.collectable')" />
                   </div>
                 </div>
               </div>
@@ -189,11 +189,11 @@
                   fish.checking &&
                     (fish.checkInfo.timeRestricted || fish.checkInfo.weatherRestricted)
                 "
-                title="开荒中一切数据仅供参考"
+                title="$t('investigation.disclaimer')"
                 class="ml-1"
               >
                 <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
-                <span class="warning--text">开荒中</span>
+                <span class="warning--text">{{ $t('investigation.investigating') }}</span>
               </div>
               <div
                 v-if="
@@ -290,7 +290,7 @@
               </div>
               <div v-if="fish.checkInfo && fish.checkInfo.bestCatchPathUnknown">
                 <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
-                <span class="warning--text">开荒中</span>
+                <span class="warning--text">{{$t('investigation.investigating')}}</span>
               </div>
               <div v-else-if="isSpearFish" class="d-flex align-center">
                 <template v-if="isEndWalker">
@@ -337,7 +337,6 @@
                   <i
                     class="xiv square-a"
                     v-if="fish.baitsExtra.length > 0"
-                    title="一种可能情况A"
                   />
                   <fish-bait-list
                     :baits="fish.baits"
@@ -345,7 +344,7 @@
                     :target="fish"
                   />
                 </div>
-                <template v-if="fish.baitsExtra.length > 0">
+                <!-- <template v-if="fish.baitsExtra.length > 0">
                   <div class="d-flex align-center">
                     <i class="xiv square-b" title="另一种可能情况B" />
                     <fish-bait-list
@@ -353,7 +352,7 @@
                       @fish-clicked="onFishClicked(undefined, $event)"
                     />
                   </div>
-                </template>
+                </template> -->
               </div>
             </template>
             <template v-else>

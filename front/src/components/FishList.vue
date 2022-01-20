@@ -38,8 +38,9 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" block color="error" class="rounded-t-0">
             <v-icon>{{ mdiPlaylistRemove }}</v-icon>
-            <span>{{ $t('list.toBeNotified.clearAll') }}</span>
-            <span>（共{{ flattenFishList.length }}条）</span>
+            <span>
+              {{ $t('list.toBeNotified.clearAll', { count: flattenFishList.length }) }}
+            </span>
           </v-btn>
         </template>
 

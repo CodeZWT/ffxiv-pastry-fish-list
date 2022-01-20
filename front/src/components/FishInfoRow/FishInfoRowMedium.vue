@@ -136,7 +136,7 @@
                       <effect-icon :icon-class="iconIdToClass(11103)" />
                     </div>
                   </template>
-                  <div>时间条件在鱼眼模式下忽略</div>
+                  <div>{{ $t('list.item.fishEyesTip') }}</div>
                 </v-tooltip>
               </div>
               <div class="d-flex" v-if="fish.hasWeatherConstraint">
@@ -217,16 +217,9 @@
                   <i
                     class="xiv square-a"
                     v-if="fish.baitsExtra.length > 0"
-                    title="一种可能情况A"
                   />
                   <fish-bait-list :baits="fish.baits" :target="fish" />
                 </div>
-                <template v-if="fish.baitsExtra.length > 0">
-                  <div class="d-flex align-center">
-                    <i class="xiv square-b" title="另一种可能情况B" />
-                    <fish-bait-list :baits="fish.baitsExtra" :target="fish" />
-                  </div>
-                </template>
               </div>
             </div>
           </v-col>

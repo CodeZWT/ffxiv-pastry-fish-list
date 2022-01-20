@@ -22,10 +22,12 @@
               <effect-icon :icon-class="iconIdToClass(11103)" />
             </div>
           </template>
-          <div>时间条件在鱼眼模式下忽略</div>
+          <div>{{ $t('list.item.fishEyesTip') }}</div>
         </v-tooltip>
       </div>
-      <div v-else-if="fish.checkInfo.timeRestricted">有时间限制</div>
+      <div v-else-if="fish.checkInfo.timeRestricted">
+        {{ $t('list.item.timeConstraint') }}
+      </div>
       <div class="d-flex" v-if="fish.hasWeatherConstraint">
         <div style="display: flex">
           <div
@@ -55,7 +57,9 @@
           </div>
         </div>
       </div>
-      <div v-else-if="fish.checkInfo.weatherRestricted">有天气限制</div>
+      <div v-else-if="fish.checkInfo.weatherRestricted">
+        {{ $t('list.item.weatherConstraint') }}
+      </div>
       <div
         v-if="
           !fish.hasTimeConstraint &&
@@ -72,7 +76,7 @@
       <rc-tooltip top color="secondary" max-width="300">
         <v-icon>{{ mark.all.icon }}</v-icon>
         <template v-slot:msg>
-          <div v-html="mark.all.comment"></div>
+          <div class="text-pre-line" v-text="mark.all.comment"></div>
         </template>
       </rc-tooltip>
     </div>
@@ -115,8 +119,7 @@ export default {
           return {
             time: {
               icon: mdiHelpCircle,
-              comment:
-                '根据咬钩报告，长吻帆蜥鱼窗口期拓展至ET 2:01，更多的拓展空间请自行探索。同时也欢迎汇报范围外的数据。',
+              comment: this.$t('investigation.special.fish-33244'),
             },
           }
         case 4906:
@@ -125,11 +128,14 @@ export default {
               icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
-                  fish: '鹦鹉螺',
-                  preconditionFish: '满月沙丁鱼',
+                  fish: DataUtil.getItemName(4906),
+                  preconditionFish: DataUtil.getItemName(4898),
                 }) +
-                '<br />' +
-                this.$t('list.tip.moochTip', { fish: '鹦鹉螺', moochFish: '满月沙丁鱼' }),
+                '\n' +
+                this.$t('list.tip.moochTip', {
+                  fish: DataUtil.getItemName(4906),
+                  moochFish: DataUtil.getItemName(4898),
+                }),
             },
           }
         case 4918:
@@ -138,11 +144,14 @@ export default {
               icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
-                  fish: '腔棘鱼',
-                  preconditionFish: '满月沙丁鱼',
+                  fish: DataUtil.getItemName(4918),
+                  preconditionFish: DataUtil.getItemName(4898),
                 }) +
-                '<br />' +
-                this.$t('list.tip.moochTip', { fish: '腔棘鱼', moochFish: '满月沙丁鱼' }),
+                '\n' +
+                this.$t('list.tip.moochTip', {
+                  fish: DataUtil.getItemName(4918),
+                  moochFish: DataUtil.getItemName(4898),
+                }),
             },
           }
         case 52004903:
@@ -151,11 +160,14 @@ export default {
               icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
-                  fish: '银鲨',
-                  preconditionFish: '满月沙丁鱼',
+                  fish: DataUtil.getItemName(4903),
+                  preconditionFish: DataUtil.getItemName(4898),
                 }) +
-                '<br />' +
-                this.$t('list.tip.moochTip', { fish: '银鲨', moochFish: '满月沙丁鱼' }),
+                '\n' +
+                this.$t('list.tip.moochTip', {
+                  fish: DataUtil.getItemName(4903),
+                  moochFish: DataUtil.getItemName(4898),
+                }),
             },
           }
 
@@ -165,11 +177,13 @@ export default {
               icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
-                  fish: '杀手库诺',
-                  preconditionFish: '加诺',
+                  fish: DataUtil.getItemName(8763),
+                  preconditionFish: DataUtil.getItemName(8762),
                 }) +
-                '<br />' +
-                this.$t('list.tip.fisherIntuitionTip', { fish: '杀手库诺' }),
+                '\n' +
+                this.$t('list.tip.fisherIntuitionTip', {
+                  fish: DataUtil.getItemName(8763),
+                }),
             },
           }
         case 8775:
@@ -178,22 +192,20 @@ export default {
               icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
-                  fish: '波太郎',
-                  preconditionFish: '大泷太郎',
+                  fish: DataUtil.getItemName(8775),
+                  preconditionFish: DataUtil.getItemName(8774),
                 }) +
-                '<br />' +
-                this.$t('list.tip.fisherIntuitionTip', { fish: '波太郎' }),
+                '\n' +
+                this.$t('list.tip.fisherIntuitionTip', {
+                  fish: DataUtil.getItemName(8775),
+                }),
             },
           }
         case 24992:
           return {
             all: {
               icon: mdiInformation,
-              comment:
-                '胸脊鲨只有时间限制，左侧显示的倒计时根据雕塑家窗口期进行“转换”。<br />' +
-                '转换指：无论雕塑家是12-16ET或16-18ET或12-18ET，胸脊鲨的窗口期视为当天的16-18ET。<br />' +
-                '理由是无论在何种情况下钓上雕塑家都可在16-18ET时间段内触发捕鱼人之识尝试钓上胸脊鲨。<br />' +
-                '小提示：这意味着只要在16-18ET触发捕鱼人之识就有机会钓上胸脊鲨，详细操作请见攻略。',
+              comment: this.$t('list.item.countDown.tip.24992'),
             },
           }
         case 24994:
@@ -201,13 +213,13 @@ export default {
             all: {
               icon: mdiInformation,
               comment:
-                '七彩天主没有天气与时间限制，左侧显示的倒计时根据绿彩鱼窗口期进行“拓展”。<br />' +
-                '拓展指：若绿彩鱼当天的窗口期为8-16ET，则向前拓展，变为0-16ET。<br />' +
-                '理由是总能在0-4ET和4-8ET分别尝试钓蓝彩鱼和橙彩鱼。<br />' +
+                this.$t('list.item.countDown.tip.24994') +
                 (SystemInfo.region === 'Global'
-                  ? '国际服开启鱼眼时，将直接同步显示绿彩鱼CD。<br />'
+                  ? this.$t('list.item.countDown.tip.24994FishEyes') + '\n'
                   : '') +
-                this.$t('list.tip.fisherIntuitionTip', { fish: '七彩天主' }),
+                this.$t('list.tip.fisherIntuitionTip', {
+                  fish: DataUtil.getItemName(24994),
+                }),
             },
           }
         case 24203:
@@ -216,11 +228,14 @@ export default {
               icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
-                  fish: '蓝彩鱼',
-                  preconditionFish: '紫彩鱼',
+                  fish: DataUtil.getItemName(24203),
+                  preconditionFish: DataUtil.getItemName(21177),
                 }) +
-                '<br />' +
-                this.$t('list.tip.moochTip', { fish: '蓝彩鱼', moochFish: '紫彩鱼' }),
+                '\n' +
+                this.$t('list.tip.moochTip', {
+                  fish: DataUtil.getItemName(24203),
+                  moochFish: DataUtil.getItemName(21177),
+                }),
             },
           }
         case 23056:
@@ -229,21 +244,21 @@ export default {
               icon: mdiInformation,
               comment:
                 this.$t('list.tip.fishCountdownReferTo', {
-                  fish: '橙彩鱼',
-                  preconditionFish: '红彩鱼',
+                  fish: DataUtil.getItemName(23056),
+                  preconditionFish: DataUtil.getItemName(22397),
                 }) +
-                '<br />' +
-                this.$t('list.tip.moochTip', { fish: '橙彩鱼', moochFish: '红彩鱼' }),
+                '\n' +
+                this.$t('list.tip.moochTip', {
+                  fish: DataUtil.getItemName(23056),
+                  moochFish: DataUtil.getItemName(22397),
+                }),
             },
           }
         case 33240:
           return {
             all: {
               icon: mdiInformation,
-              comment:
-                '自走鱼偶只有时间限制，左侧显示的倒计时根据变影鱼窗口期进行“拓展”。<br />' +
-                '拓展指：自走鱼偶的窗口期视为可钓上变影鱼的当天10-16ET。<br />' +
-                '小提示：这意味着只要在10-16ET触发捕鱼人之识就有机会钓上自走鱼偶。',
+              comment: this.$t('list.item.countDown.tip.33240'),
             },
           }
         default:
