@@ -100,15 +100,15 @@
             <v-card outlined class="rounded-md">
               <v-list dense color="inner">
                 <v-list-item>
-                  <v-list-item-avatar>
-                    <v-icon class="contact-icon">{{ mdiAccount }}</v-icon>
-                  </v-list-item-avatar>
+                  <v-list-item-icon>
+                    <v-icon>{{ mdiAccount }}</v-icon>
+                  </v-list-item-icon>
                   <v-list-item-title> {{ $t('contact.author') }}</v-list-item-title>
                 </v-list-item>
                 <v-list-item @click="openQQ">
-                  <v-list-item-avatar>
-                    <v-icon class="contact-icon">{{ mdiQqchat }}</v-icon>
-                  </v-list-item-avatar>
+                  <v-list-item-icon>
+                    <v-icon>{{ mdiQqchat }}</v-icon>
+                  </v-list-item-icon>
                   <v-list-item-title> 鱼糕检修部（1153646847） </v-list-item-title>
                   <!--                <v-list-item-action>-->
                   <!--                  <rc-tooltip>-->
@@ -120,10 +120,10 @@
                   <!--                </v-list-item-action>-->
                 </v-list-item>
                 <v-list-item @click="openQQGuild">
-                  <v-list-item-avatar>
+                  <v-list-item-icon>
                     <!--                    <span style="font-size: x-large">#</span>-->
-                    <v-icon class="contact-icon">{{ mdiQqchat }}</v-icon>
-                  </v-list-item-avatar>
+                    <v-icon>{{ mdiQqchat }}</v-icon>
+                  </v-list-item-icon>
                   <v-list-item-title>FF14 捕鱼人研究会</v-list-item-title>
                   <!--                <v-list-item-action>-->
                   <!--                  <rc-tooltip>-->
@@ -135,15 +135,15 @@
                   <!--                </v-list-item-action>-->
                 </v-list-item>
                 <v-list-item @click="openWeibo('7546879530')">
-                  <v-list-item-avatar>
-                    <v-icon class="contact-icon">{{ mdiSinaWeibo }}</v-icon>
-                  </v-list-item-avatar>
+                  <v-list-item-icon>
+                    <v-icon>{{ mdiSinaWeibo }}</v-icon>
+                  </v-list-item-icon>
                   <v-list-item-title>红豆年糕找不到</v-list-item-title>
                 </v-list-item>
                 <v-list-item @click="openWeibo('7245459345')">
-                  <v-list-item-avatar>
-                    <v-icon class="contact-icon">{{ mdiSinaWeibo }}</v-icon>
-                  </v-list-item-avatar>
+                  <v-list-item-icon>
+                    <v-icon>{{ mdiSinaWeibo }}</v-icon>
+                  </v-list-item-icon>
                   <v-list-item-title>光之渔夫bot（合作）</v-list-item-title>
                 </v-list-item>
               </v-list>
@@ -417,8 +417,4 @@ export default {
     max-height: calc(100% - #{ $toolbar-height })
   &--electron-original
     max-height: calc(100vh - #{ $wrapper-desktop })
-
-.contact-icon
-  height: 32px
-  width: 32px
 </style>
