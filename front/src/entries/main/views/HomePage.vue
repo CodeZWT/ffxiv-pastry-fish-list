@@ -12,9 +12,13 @@
       <v-col cols="12" md="6">
         <v-row>
           <v-col cols="12" md="5" class="pa-0">
-            <rc-tooltip bottom message="别锤了~">
-              <v-img :src="largeLogo" height="300" contain max-width="400" />
-            </rc-tooltip>
+            <v-img
+              :src="largeLogo"
+              height="300"
+              contain
+              max-width="400"
+              title="把我锤瘦一点，谢谢！"
+            />
           </v-col>
           <v-col cols="12" md="7" class="fill-height d-flex align-center">
             <v-card flat color="background">
