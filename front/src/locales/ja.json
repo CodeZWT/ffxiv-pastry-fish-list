@@ -587,6 +587,7 @@
     },
     "locale": {
       "data": "",
+      "region": "",
       "ui": ""
     },
     "quickSetting": "",

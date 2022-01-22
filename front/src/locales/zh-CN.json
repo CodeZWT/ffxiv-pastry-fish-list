@@ -453,10 +453,10 @@
   "loadingMoreWithRemainingCnt": "加载更多（剩余{remainingCnt}条未显示）",
   "locale": {
     "title": {
-      "chs": "中",
-      "en": "英",
-      "ja": "日",
-      "zh-CN": "中"
+      "chs": "中 ZH",
+      "en": "英 EN",
+      "ja": "日 JA",
+      "zh-CN": "中 ZH"
     }
   },
   "none": "无",
@@ -587,6 +587,7 @@
     },
     "locale": {
       "data": "数据语言（Data）",
+      "region": "数据版本",
       "ui": "界面语言（UI）"
     },
     "quickSetting": "快速设置",

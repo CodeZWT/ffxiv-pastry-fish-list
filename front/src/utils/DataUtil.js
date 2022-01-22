@@ -83,6 +83,7 @@ const BAIT_FISH_SORTER_TYPES = ['QUANTITY', 'ID']
 const THEME_SETTING_MODES = ['DARK', 'LIGHT', 'AUTO']
 const DATA_LOCALES = ['chs', 'en', 'ja']
 const UI_LOCALES = ['zh-CN', 'en', 'ja']
+const REGIONS = ['CN', 'Global']
 
 function hasChineseCharacter(text) {
   return text.match('[\u4e00-\u9fff]+')
@@ -1425,6 +1426,7 @@ export default {
   THEME_SETTING_MODES: THEME_SETTING_MODES,
   DATA_LOCALES: DATA_LOCALES,
   UI_LOCALES: UI_LOCALES,
+  REGIONS: REGIONS,
 
   DETAIL_ITEM_DISPLAY_CONSTRAINTS: {
     DetailItemMap: 'hasFishingSpot',

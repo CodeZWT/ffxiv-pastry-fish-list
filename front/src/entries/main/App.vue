@@ -220,7 +220,6 @@
                   >
                     <v-btn
                       elevation="0"
-                      x-large
                       left
                       :color="mode === theme ? 'primary' : undefined"
                       @click="theme = mode"
@@ -238,19 +237,19 @@
 
           <v-divider />
 
-          <v-subheader>{{ $t('setting.locale.data') }}</v-subheader>
+          <v-subheader>{{ $t('setting.locale.ui') }}</v-subheader>
           <v-list-item>
             <v-list-item-content>
               <v-row class="d-flex px-2">
-                <div v-for="(locale, index) in DATA_LOCALES" :key="locale" class="ma-1">
+                <div v-for="(locale, index) in UI_LOCALES" :key="locale" class="ma-1">
                   <v-btn
                     elevation="0"
-                    x-large
                     left
-                    :color="locale === dataLocale ? 'primary' : undefined"
-                    @click="dataLocale = locale"
+                    :color="locale === uiLocale ? 'primary' : undefined"
+                    @click="uiLocale = locale"
+                    :disabled="locale !== 'zh-CN'"
                   >
-                    <div style="min-width: 40px">
+                    <div style="min-width: 24px" class="mr-1">
                       <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
                     </div>
                     <div>{{ $t(`locale.title.${locale}`) }}</div>
@@ -262,20 +261,38 @@
 
           <v-divider />
 
-          <v-subheader>{{ $t('setting.locale.ui') }}</v-subheader>
+          <v-subheader>{{ $t('setting.locale.region') }}</v-subheader>
           <v-list-item>
             <v-list-item-content>
               <v-row class="d-flex px-2">
-                <div v-for="(locale, index) in UI_LOCALES" :key="locale" class="ma-1">
+                <div v-for="r in REGIONS" :key="r" class="ma-1">
                   <v-btn
                     elevation="0"
-                    x-large
                     left
-                    :color="locale === uiLocale ? 'primary' : undefined"
-                    @click="uiLocale = locale"
-                    :disabled="locale !== 'zh-CN'"
+                    :color="r === region ? 'primary' : undefined"
+                    @click="region = r"
                   >
-                    <div style="min-width: 40px">
+                    <div>{{ $t(`top.region.${r}`) }}</div>
+                  </v-btn>
+                </div>
+              </v-row>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-divider />
+
+          <v-subheader>{{ $t('setting.locale.data') }}</v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <v-row class="d-flex px-2">
+                <div v-for="(locale, index) in DATA_LOCALES" :key="locale" class="ma-1">
+                  <v-btn
+                    elevation="0"
+                    left
+                    :color="locale === dataLocale ? 'primary' : undefined"
+                    @click="dataLocale = locale"
+                  >
+                    <div style="min-width: 24px" class="mr-1">
                       <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
                     </div>
                     <div>{{ $t(`locale.title.${locale}`) }}</div>
@@ -433,29 +450,6 @@
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.website') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>{{ mdiEarth }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                <v-btn-toggle
-                  v-model="regionIndex"
-                  mandatory
-                  active-class="primary"
-                  dense
-                >
-                  <v-btn x-small>
-                    {{ $t(`top.region.CN`) }}
-                  </v-btn>
-                  <v-btn x-small>
-                    {{ $t(`top.region.Global`) }}
-                  </v-btn>
-                </v-btn-toggle>
-              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
@@ -960,31 +954,13 @@ export default {
         ImgUtil.getImgUrl('us.svg', ImgUtil.CATEGORY.LANG),
         ImgUtil.getImgUrl('jp.svg', ImgUtil.CATEGORY.LANG),
       ],
+      REGIONS: DataUtil.REGIONS,
       showQuickSetting: true,
     }
   },
   computed: {
     siteRegion() {
       return process.env.VUE_APP_SITE_REGION
-    },
-    regionIndex: {
-      get() {
-        return ['CN', 'Global'].indexOf(SystemInfo.region)
-      },
-      set(regionIndex) {
-        setRegion(['CN', 'Global'][regionIndex])
-        sendElectronEvent('broadcast', {
-          source: 'main',
-          type: 'reloadSystemInfo',
-        })
-        this.showSnackbar({
-          text: this.$t('common.ui.reloadAfterSetting'),
-          color: 'success',
-        })
-        setTimeout(() => {
-          this.startReloadPage()
-        }, 1000)
-      },
     },
     dataLocale: {
       get() {
@@ -1024,8 +1000,24 @@ export default {
         }, 1000)
       },
     },
-    region() {
-      return SystemInfo.region
+    region: {
+      get() {
+        return SystemInfo.region
+      },
+      set(region) {
+        setRegion(region)
+        sendElectronEvent('broadcast', {
+          source: 'main',
+          type: 'reloadSystemInfo',
+        })
+        this.showSnackbar({
+          text: this.$t('common.ui.reloadAfterSetting'),
+          color: 'success',
+        })
+        setTimeout(() => {
+          this.startReloadPage()
+        }, 1000)
+      },
     },
     isMobile() {
       return this.$vuetify.breakpoint.mobile
