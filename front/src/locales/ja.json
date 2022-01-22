@@ -508,7 +508,8 @@
       "placeholder": "",
       "spot": "",
       "title": ""
-    }
+    },
+    "shortcut": ""
   },
   "setting": {
     "dialog": {
@@ -590,6 +591,7 @@
       "region": "",
       "ui": ""
     },
+    "openSetting": "",
     "quickSetting": "",
     "theme": {
       "hint": "",

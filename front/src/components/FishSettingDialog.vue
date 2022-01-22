@@ -7,11 +7,8 @@
   >
     <v-card>
       <v-card-title>
-        {{ $t('top.setting') }}
+        {{ $t('top.uiConfig') }}
       </v-card-title>
-      <v-card-subtitle>
-        {{ $t('top.setting') }}
-      </v-card-subtitle>
       <v-card-text class="py-0">
         <validation-observer ref="observer" v-slot="">
           <form>

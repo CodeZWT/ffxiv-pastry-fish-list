@@ -10,7 +10,12 @@
     :disabled="disabled"
   >
     <template v-slot:activator="{ on, attrs }">
-      <div v-on="on" v-bind="attrs" style="width: fit-content; height: fit-content">
+      <div
+        v-on="on"
+        v-bind="attrs"
+        style="width: fit-content; height: fit-content"
+        :class="className"
+      >
         <slot></slot>
       </div>
     </template>
@@ -24,6 +29,9 @@
 export default {
   name: 'RcTooltip',
   props: {
+    className: {
+      default: undefined,
+    },
     maxWidth: {
       type: [Number, String],
       default: 'auto',

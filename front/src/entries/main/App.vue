@@ -43,7 +43,7 @@
         <v-icon>{{ mdiWindowClose }}</v-icon>
       </v-btn>
     </v-system-bar>
-    <v-app-bar height="56px" app class="fish-app-bar" dense color="system" clipped-right>
+    <v-app-bar height="56px" app class="fish-app-bar" dense color="system">
       <v-app-bar-nav-icon v-if="isMobile" @click.stop="showNavi">
         <v-img v-if="!isMobile" :src="fisher" height="42" width="42" />
       </v-app-bar-nav-icon>
@@ -138,7 +138,10 @@
             </v-btn>
           </div>
         </template>
-        <div>按<kbd>/</kbd>键直接搜索</div>
+        <div>{{ $t('search.shortcut') }}</div>
+        <i18n path="">
+          <kbd>/</kbd>
+        </i18n>
       </v-tooltip>
 
       <v-menu v-if="isMobile" offset-y left>
@@ -195,115 +198,6 @@
 
     <v-main>
       <v-navigation-drawer
-        v-model="showQuickSetting"
-        absolute
-        floating
-        bottom
-        right
-        clipped
-        color="system"
-      >
-        <v-list subheader>
-          <v-subheader>{{ $t('setting.theme.title') }}</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-row class="d-flex px-2">
-                <div
-                  v-for="(mode, index) in THEME_SETTING_MODES"
-                  :key="mode"
-                  class="ma-1"
-                >
-                  <rc-tooltip
-                    :disabled="mode !== 'AUTO'"
-                    :message="$t('setting.theme.hint')"
-                    bottom
-                  >
-                    <v-btn
-                      elevation="0"
-                      left
-                      :color="mode === theme ? 'primary' : undefined"
-                      @click="theme = mode"
-                    >
-                      <v-icon>
-                        {{ THEME_MODE_ICONS[index] }}
-                      </v-icon>
-                      {{ $t(`toolbar.theme.${mode}`) }}
-                    </v-btn>
-                  </rc-tooltip>
-                </div>
-              </v-row>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-divider />
-
-          <v-subheader>{{ $t('setting.locale.ui') }}</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-row class="d-flex px-2">
-                <div v-for="(locale, index) in UI_LOCALES" :key="locale" class="ma-1">
-                  <v-btn
-                    elevation="0"
-                    left
-                    :color="locale === uiLocale ? 'primary' : undefined"
-                    @click="uiLocale = locale"
-                    :disabled="locale !== 'zh-CN'"
-                  >
-                    <div style="min-width: 24px" class="mr-1">
-                      <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
-                    </div>
-                    <div>{{ $t(`locale.title.${locale}`) }}</div>
-                  </v-btn>
-                </div>
-              </v-row>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-divider />
-
-          <v-subheader>{{ $t('setting.locale.region') }}</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-row class="d-flex px-2">
-                <div v-for="r in REGIONS" :key="r" class="ma-1">
-                  <v-btn
-                    elevation="0"
-                    left
-                    :color="r === region ? 'primary' : undefined"
-                    @click="region = r"
-                  >
-                    <div>{{ $t(`top.region.${r}`) }}</div>
-                  </v-btn>
-                </div>
-              </v-row>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-divider />
-
-          <v-subheader>{{ $t('setting.locale.data') }}</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-row class="d-flex px-2">
-                <div v-for="(locale, index) in DATA_LOCALES" :key="locale" class="ma-1">
-                  <v-btn
-                    elevation="0"
-                    left
-                    :color="locale === dataLocale ? 'primary' : undefined"
-                    @click="dataLocale = locale"
-                  >
-                    <div style="min-width: 24px" class="mr-1">
-                      <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
-                    </div>
-                    <div>{{ $t(`locale.title.${locale}`) }}</div>
-                  </v-btn>
-                </div>
-              </v-row>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-      <v-navigation-drawer
         v-model="drawer"
         :mini-variant.sync="mini"
         :bottom="isMobile"
@@ -311,7 +205,7 @@
         :fixed="isMobile"
         color="system"
         :expand-on-hover="!isMobile"
-        style="z-index: 10"
+        style="z-index: 5"
       >
         <v-list dense>
           <v-list-item @click="toPage('HomePage')" link>
@@ -579,6 +473,136 @@
       <!--        </v-row>-->
       <!--      </v-container>-->
     </v-main>
+
+    <v-navigation-drawer
+      v-model="showQuickSetting"
+      absolute
+      temporary
+      bottom
+      right
+      color="system"
+      width="360"
+      class="setting-panel"
+    >
+      <v-container>
+        <v-row no-gutters>
+          <v-col cols="12" class="d-flex">
+            <p class="text-h6">{{ $t('setting.quickSetting') }}</p>
+            <v-spacer />
+            <v-btn icon plain color="label" @click="toggleQuickSetting">
+              <v-icon>{{ mdiClose }}</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col cols="12">
+            <v-btn block x-large outlined color="info" @click="showSetting"
+              >{{ $t('setting.openSetting') }}
+            </v-btn>
+          </v-col>
+        </v-row>
+
+        <v-list subheader>
+          <v-subheader>{{ $t('setting.theme.title') }}</v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <div class="d-flex flex-wrap setting-panel-row">
+                <rc-tooltip
+                  :disabled="mode !== 'AUTO'"
+                  :message="$t('setting.theme.hint')"
+                  bottom
+                  v-for="(mode, index) in THEME_SETTING_MODES"
+                  :key="mode"
+                  :className="index === 0 ? 'flex-fill' : 'ml-2 flex-fill'"
+                  style="flex-grow: 1"
+                >
+                  <v-btn
+                    elevation="0"
+                    left
+                    :color="mode === theme ? 'primary' : undefined"
+                    @click="theme = mode"
+                    block
+                  >
+                    <v-icon>
+                      {{ THEME_MODE_ICONS[index] }}
+                    </v-icon>
+                    {{ $t(`toolbar.theme.${mode}`) }}
+                  </v-btn>
+                </rc-tooltip>
+              </div>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-divider />
+
+          <v-subheader>{{ $t('setting.locale.ui') }}</v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <div class="d-flex flex-wrap setting-panel-row">
+                <v-btn
+                  v-for="(locale, index) in UI_LOCALES"
+                  :key="locale"
+                  :class="'flex-fill ' + (index === 0 ? '' : 'ml-1')"
+                  left
+                  elevation="0"
+                  :color="locale === uiLocale ? 'primary' : undefined"
+                  @click="uiLocale = locale"
+                  :disabled="locale !== 'zh-CN'"
+                >
+                  <div style="min-width: 24px" class="mr-1">
+                    <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
+                  </div>
+                  <div>{{ $t(`locale.title.${locale}`) }}</div>
+                </v-btn>
+              </div>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-divider />
+
+          <v-subheader>{{ $t('setting.locale.region') }}</v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <div class="d-flex flex-wrap setting-panel-row">
+                <v-btn
+                  v-for="(r, index) in REGIONS"
+                  :key="r"
+                  :class="index === 0 ? 'flex-fill' : 'ml-2 flex-fill'"
+                  left
+                  elevation="0"
+                  :color="r === region ? 'primary' : undefined"
+                  @click="region = r"
+                >
+                  <div>{{ $t(`top.region.${r}`) }}</div>
+                </v-btn>
+              </div>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-divider />
+
+          <v-subheader>{{ $t('setting.locale.data') }}</v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <div class="d-flex flex-wrap setting-panel-row">
+                <v-btn
+                  v-for="(locale, index) in DATA_LOCALES"
+                  :key="locale"
+                  :class="'flex-fill ' + (index === 0 ? '' : 'ml-1')"
+                  left
+                  elevation="0"
+                  :color="locale === dataLocale ? 'primary' : undefined"
+                  @click="dataLocale = locale"
+                >
+                  <div style="min-width: 24px" class="mr-1">
+                    <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
+                  </div>
+                  <div>{{ $t(`locale.title.${locale}`) }}</div>
+                </v-btn>
+              </div>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-container>
+    </v-navigation-drawer>
 
     <fish-search
       v-model="showSearch"
@@ -852,6 +876,7 @@
 import {
   mdiAccount,
   mdiChartBar,
+  mdiClose,
   mdiCog,
   mdiDatabase,
   mdiDesktopMacDashboard,
@@ -906,6 +931,7 @@ export default {
   mixins: [AppMixin, MainWindowMixin, AlarmMixin],
   data() {
     return {
+      mdiClose,
       mdiAccount,
       mdiChartBar,
       mdiCog,
@@ -955,7 +981,7 @@ export default {
         ImgUtil.getImgUrl('jp.svg', ImgUtil.CATEGORY.LANG),
       ],
       REGIONS: DataUtil.REGIONS,
-      showQuickSetting: true,
+      showQuickSetting: false,
     }
   },
   computed: {
@@ -1249,5 +1275,21 @@ body {
 
 .v-system-bar {
   -webkit-app-region: drag;
+}
+
+.setting-panel .container .v-subheader {
+  padding: 0;
+}
+
+.setting-panel .v-list-item {
+  padding: 0;
+}
+
+.setting-panel .v-list-item .v-list-item__content {
+  padding: 0;
+}
+
+.setting-panel-row {
+  margin: 0 0 12px 0;
 }
 </style>

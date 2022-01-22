@@ -23,6 +23,7 @@ export default {
         waiting: '#2d2d32',
         waitingSecondary: '#272727',
         predatorCnt: '#b68738',
+        label: '#e8eaed',
       },
       light: {
         primary: '#82C79D',
@@ -44,6 +45,7 @@ export default {
         waiting: '#F1E6D3',
         waitingSecondary: '#faf3dd',
         predatorCnt: '#e2a548',
+        label: '#202124',
       },
     },
   },

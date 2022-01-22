@@ -736,6 +736,7 @@ export default {
       this.setFeatureViewed('Competition-V.0.8.3-2')
     },
     showSetting() {
+      this.showQuickSetting = false
       this.showSettingDialog = true
     },
     toggleAlwaysOnTop() {

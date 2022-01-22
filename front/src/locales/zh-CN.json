@@ -453,10 +453,10 @@
   "loadingMoreWithRemainingCnt": "加载更多（剩余{remainingCnt}条未显示）",
   "locale": {
     "title": {
-      "chs": "中 ZH",
-      "en": "英 EN",
-      "ja": "日 JA",
-      "zh-CN": "中 ZH"
+      "chs": "中文",
+      "en": "English",
+      "ja": "日本語",
+      "zh-CN": "中文"
     }
   },
   "none": "无",
@@ -508,7 +508,8 @@
       "placeholder": "输入鱼或钓场搜索：七彩天主 或 qctz；七彩沟 或 qcg",
       "spot": "{spots}，以及另{remaining}个钓场",
       "title": "搜索鱼"
-    }
+    },
+    "shortcut": "按{0}键直接搜索"
   },
   "setting": {
     "dialog": {
@@ -586,11 +587,12 @@
       "required": "不能为空"
     },
     "locale": {
-      "data": "数据语言（Data）",
+      "data": "数据语言（Data Languages）",
       "region": "数据版本",
-      "ui": "界面语言（UI）"
+      "ui": "界面语言（UI Languages）"
     },
-    "quickSetting": "快速设置",
+    "openSetting": "查看所有设置",
+    "quickSetting": "快捷设置",
     "theme": {
       "hint": "WINDOWS10: 设置 -> 颜色 -> 选择颜色",
       "title": "主题"
