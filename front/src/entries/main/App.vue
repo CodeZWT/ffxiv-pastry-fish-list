@@ -43,7 +43,7 @@
         <v-icon>{{ mdiWindowClose }}</v-icon>
       </v-btn>
     </v-system-bar>
-    <v-app-bar height="56px" app class="fish-app-bar" dense color="system">
+    <v-app-bar height="56px" app class="fish-app-bar" dense color="system" clipped-right>
       <v-app-bar-nav-icon v-if="isMobile" @click.stop="showNavi">
         <v-img v-if="!isMobile" :src="fisher" height="42" width="42" />
       </v-app-bar-nav-icon>
@@ -141,72 +141,6 @@
         <div>按<kbd>/</kbd>键直接搜索</div>
       </v-tooltip>
 
-      <v-menu offset-y v-if="!isMobile">
-        <template v-slot:activator="{ on: menu, attrs }">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on: tooltip }">
-              <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                <v-icon> {{ mdiThemeLightDark }}</v-icon>
-              </v-btn>
-            </template>
-            <div>设置颜色模式</div>
-          </v-tooltip>
-        </template>
-        <v-list>
-          <v-list-item-group color="primary" :value="themeModeIndex">
-            <v-tooltip
-              v-for="(mode, index) in THEME_SETTING_MODES"
-              :key="index"
-              bottom
-              :disabled="mode !== 'AUTO'"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on">
-                  <v-list-item @click="selectThemeMode(index)">
-                    <v-list-item-icon>
-                      <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title>
-                        <div class="d-flex align-center">
-                          <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
-                        </div>
-                      </v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </div>
-              </template>
-              <div>WINDOWS10: 设置 -> 颜色 -> 选择颜色</div>
-            </v-tooltip>
-          </v-list-item-group>
-        </v-list>
-      </v-menu>
-      <v-menu offset-y v-if="!isMobile">
-        <template v-slot:activator="{ on: menu, attrs }">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on: tooltip }">
-              <v-btn icon text v-bind="attrs" v-on="{ ...tooltip, ...menu }">
-                <v-icon>{{ mdiTranslate }}</v-icon>
-              </v-btn>
-            </template>
-            <div class="text-no-wrap">设置数据文本语言</div>
-          </v-tooltip>
-        </template>
-        <v-list>
-          <v-list-item-group color="primary" :value="localeIndex">
-            <div v-for="(locale, index) in DATA_LOCALES" :key="index">
-              <v-list-item @click="localeIndex = index">
-                <v-list-item-title class="d-flex align-center">
-                  <div style="min-width: 40px">
-                    <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
-                  </div>
-                  <div>{{ $t(`locale.title.${locale}`) }}</div>
-                </v-list-item-title>
-              </v-list-item>
-            </div>
-          </v-list-item-group>
-        </v-list>
-      </v-menu>
       <v-menu v-if="isMobile" offset-y left>
         <template v-slot:activator="{ on: menu, attrs }">
           <v-tooltip bottom>
@@ -230,46 +164,6 @@
               <v-icon>{{ mdiHook }}</v-icon>
             </v-btn>
             <div>打开鱼饵筛选</div>
-          </v-list-item>
-          <v-list-item>
-            <v-menu offset-x left top>
-              <template v-slot:activator="{ on: menu, attrs }">
-                <div v-bind="attrs" v-on="{ ...menu }" class="d-flex align-center">
-                  <v-btn text icon>
-                    <v-icon>{{ mdiThemeLightDark }}</v-icon>
-                  </v-btn>
-                  <div>设置颜色模式</div>
-                </div>
-              </template>
-              <v-list>
-                <v-list-item-group color="primary" :value="themeModeIndex">
-                  <v-tooltip
-                    v-for="(mode, index) in THEME_SETTING_MODES"
-                    :key="index"
-                    bottom
-                    :disabled="mode !== 'AUTO'"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <div v-bind="attrs" v-on="on">
-                        <v-list-item @click="selectThemeMode(index)">
-                          <v-list-item-icon>
-                            <v-icon>{{ THEME_MODE_ICONS[index] }}</v-icon>
-                          </v-list-item-icon>
-                          <v-list-item-content>
-                            <v-list-item-title>
-                              <div class="d-flex align-center">
-                                <div>{{ $t(`toolbar.theme.${mode}`) }}</div>
-                              </div>
-                            </v-list-item-title>
-                          </v-list-item-content>
-                        </v-list-item>
-                      </div>
-                    </template>
-                    <div>WINDOWS10: 设置 -> 颜色 -> 选择颜色</div>
-                  </v-tooltip>
-                </v-list-item-group>
-              </v-list>
-            </v-menu>
           </v-list-item>
           <v-list-item>
             <v-menu offset-x left top>
@@ -312,6 +206,12 @@
         </v-list>
       </v-menu>
 
+      <rc-tooltip :message="$t('setting.quickSetting')">
+        <v-btn icon text @click="toggleQuickSetting">
+          <v-icon>{{ mdiCog }}</v-icon>
+        </v-btn>
+      </rc-tooltip>
+
       <v-sheet class="d-flex flex-column ml-1 transparent" v-if="!isElectron">
         <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
         <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
@@ -319,6 +219,97 @@
     </v-app-bar>
 
     <v-main>
+      <v-navigation-drawer
+        v-model="showQuickSetting"
+        absolute
+        floating
+        bottom
+        right
+        clipped
+        color="system"
+      >
+        <v-list subheader>
+          <v-subheader>{{ $t('setting.theme.title') }}</v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <v-row class="d-flex px-2">
+                <div
+                  v-for="(mode, index) in THEME_SETTING_MODES"
+                  :key="mode"
+                  class="ma-1"
+                >
+                  <rc-tooltip
+                    :disabled="mode !== 'AUTO'"
+                    :message="$t('setting.theme.hint')"
+                    bottom
+                  >
+                    <v-btn
+                      elevation="0"
+                      x-large
+                      left
+                      :color="mode === theme ? 'primary' : undefined"
+                      @click="theme = mode"
+                    >
+                      <v-icon>
+                        {{ THEME_MODE_ICONS[index] }}
+                      </v-icon>
+                      {{ $t(`toolbar.theme.${mode}`) }}
+                    </v-btn>
+                  </rc-tooltip>
+                </div>
+              </v-row>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-divider />
+
+          <v-subheader>{{ $t('setting.locale.data') }}</v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <v-row class="d-flex px-2">
+                <div v-for="(locale, index) in DATA_LOCALES" :key="locale" class="ma-1">
+                  <v-btn
+                    elevation="0"
+                    x-large
+                    left
+                    :color="locale === dataLocale ? 'primary' : undefined"
+                    @click="dataLocale = locale"
+                  >
+                    <div style="min-width: 40px">
+                      <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
+                    </div>
+                    <div>{{ $t(`locale.title.${locale}`) }}</div>
+                  </v-btn>
+                </div>
+              </v-row>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-divider />
+
+          <v-subheader>{{ $t('setting.locale.ui') }}</v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <v-row class="d-flex px-2">
+                <div v-for="(locale, index) in DATA_LOCALES" :key="locale" class="ma-1">
+                  <v-btn
+                    elevation="0"
+                    x-large
+                    left
+                    :color="locale === dataLocale ? 'primary' : undefined"
+                    @click="dataLocale = locale"
+                  >
+                    <div style="min-width: 40px">
+                      <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
+                    </div>
+                    <div>{{ $t(`locale.title.${locale}`) }}</div>
+                  </v-btn>
+                </div>
+              </v-row>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
       <v-navigation-drawer
         v-model="drawer"
         :mini-variant.sync="mini"
@@ -494,9 +485,7 @@
 
           <v-list-item v-if="isElectron" @click="openReader" link>
             <v-list-item-icon>
-              <new-feature-mark :id="ReaderTimerFeatureId">
-                <v-icon>{{ mdiFish }}</v-icon>
-              </new-feature-mark>
+              <v-icon>{{ mdiFish }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ $t('top.fishReader') }}</v-list-item-title>
@@ -994,6 +983,7 @@ export default {
         ImgUtil.getImgUrl('us.svg', ImgUtil.CATEGORY.LANG),
         ImgUtil.getImgUrl('jp.svg', ImgUtil.CATEGORY.LANG),
       ],
+      showQuickSetting: true,
     }
   },
   computed: {
@@ -1019,12 +1009,12 @@ export default {
         }, 1000)
       },
     },
-    localeIndex: {
+    dataLocale: {
       get() {
-        return DataUtil.DATA_LOCALES.indexOf(SystemInfo.dataLocale)
+        return SystemInfo.dataLocale
       },
-      set(index) {
-        setDataLocale(DataUtil.DATA_LOCALES[index])
+      set(dataLocale) {
+        setDataLocale(dataLocale)
         sendElectronEvent('broadcast', {
           source: 'main',
           type: 'reloadSystemInfo',
@@ -1134,6 +1124,9 @@ export default {
       })
   },
   methods: {
+    toggleQuickSetting() {
+      this.showQuickSetting = !this.showQuickSetting
+    },
     toFAQ() {
       window.open(LINK.FAQ)
     },

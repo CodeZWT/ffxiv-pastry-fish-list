@@ -7,6 +7,7 @@
     :tag="tag"
     :color="color"
     :max-width="maxWidth"
+    :disabled="disabled"
   >
     <template v-slot:activator="{ on, attrs }">
       <div v-on="on" v-bind="attrs" style="width: fit-content; height: fit-content">
@@ -54,6 +55,10 @@ export default {
     color: {
       type: String,
       default: 'default',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

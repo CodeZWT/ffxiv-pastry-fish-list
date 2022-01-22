@@ -512,6 +512,15 @@
       "maxValue": "不能大于{max}",
       "minValue": "不能小于{min}",
       "required": "不能为空"
+    },
+    "quickSetting": "快速设置",
+    "theme": {
+      "title": "主题",
+      "hint": "WINDOWS10: 设置 -> 颜色 -> 选择颜色"
+    },
+    "locale": {
+      "data": "数据语言",
+      "ui": "界面语言"
     }
   },
   "size": {

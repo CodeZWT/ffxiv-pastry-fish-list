@@ -23,6 +23,14 @@ export default {
     themeModeIndex() {
       return DataUtil.THEME_SETTING_MODES.indexOf(this.themeMode)
     },
+    theme: {
+      get() {
+        return this.themeMode
+      },
+      set(theme) {
+        this.setThemeMode(theme)
+      },
+    },
   },
   methods: {
     ...mapMutations([
@@ -60,9 +68,6 @@ export default {
       setTimeout(() => {
         this.startReloadPage()
       }, 1000)
-    },
-    selectThemeMode(index) {
-      this.setThemeMode(DataUtil.THEME_SETTING_MODES[index])
     },
   },
 }
