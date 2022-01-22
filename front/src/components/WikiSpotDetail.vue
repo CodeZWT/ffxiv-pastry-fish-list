@@ -29,8 +29,8 @@
         <v-col cols="12" class="my-1">
           <v-btn block tile color="primary" @click="showAboutChartDialog = true">
             <v-icon>{{ mdiInformation }}</v-icon>
-              {{ $t('wikiPage.stats.about.btn') }} 
-            </v-btn>
+            {{ $t('wikiPage.stats.about.btn') }}
+          </v-btn>
         </v-col>
         <v-col cols="12" class="my-1">
           <bait-percentage-chart
@@ -62,7 +62,7 @@
               {{ $t('spearTip.fishShadow.title') }}
             </v-card-title>
             <v-card-text>
-              {{ $t('spearTip.fishShadow.precondition') }} 
+              {{ $t('spearTip.fishShadow.precondition') }}
             </v-card-text>
             <v-card-subtitle>
               {{ $t('spearTip.fishShadow.location') }}

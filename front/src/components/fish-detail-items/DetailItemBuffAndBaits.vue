@@ -4,7 +4,7 @@
     class="d-flex justify-center align-center"
   >
     <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
-    <span class="warning--text">开荒中</span>
+    <span class="warning--text">{{ $t('investigation.investigating') }}</span>
   </div>
   <div v-else class="d-flex justify-center align-center">
     <v-row no-gutters>
@@ -18,7 +18,7 @@
             </div>
           </div>
         </div>
-        <div v-if="fish.hasShadowPredators">需要触发鱼影</div>
+        <div v-if="fish.hasShadowPredators">{{ $t('list.item.fishShadow') }}</div>
         <div v-if="fish.hasSnagging">
           <effect-icon :icon-class="fish.snaggingIcon" data-ck-action-name="钓组" />
         </div>
@@ -39,19 +39,8 @@
         </div>
         <div v-if="fish.type === 'normal'" class="d-flex">
           <div class="d-flex align-center">
-            <i
-              class="xiv square-a"
-              v-if="fish.baitsExtra.length > 0"
-              title="一种可能情况A"
-            />
             <fish-bait-list :baits="fish.baits" :target="fish" />
           </div>
-          <template v-if="fish.baitsExtra.length > 0">
-            <div class="d-flex align-center">
-              <i class="xiv square-b" title="另一种可能情况B" />
-              <fish-bait-list :baits="fish.baitsExtra" :target="fish" />
-            </div>
-          </template>
         </div>
         <div v-else class="d-flex flex-column align-center">
           <template v-if="isEndWalker">

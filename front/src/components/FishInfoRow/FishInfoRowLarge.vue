@@ -180,7 +180,7 @@
                 <effect-icon
                   v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
                   :icon-class="fish.predatorsIcon"
-                  :title="$t('list.item.countDown.fishShadowHint')"
+                  :title="$t('list.item.countDown.fisherIntuitionHint')"
                   style="margin-left: 2px"
                 />
               </template>
@@ -290,7 +290,7 @@
               </div>
               <div v-if="fish.checkInfo && fish.checkInfo.bestCatchPathUnknown">
                 <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
-                <span class="warning--text">{{$t('investigation.investigating')}}</span>
+                <span class="warning--text">{{ $t('investigation.investigating') }}</span>
               </div>
               <div v-else-if="isSpearFish" class="d-flex align-center">
                 <template v-if="isEndWalker">
@@ -334,10 +334,7 @@
               </div>
               <div v-else class="d-flex align-center">
                 <div class="d-flex align-center">
-                  <i
-                    class="xiv square-a"
-                    v-if="fish.baitsExtra.length > 0"
-                  />
+                  <i class="xiv square-a" v-if="fish.baitsExtra.length > 0" />
                   <fish-bait-list
                     :baits="fish.baits"
                     @fish-clicked="onFishClicked(undefined, $event)"

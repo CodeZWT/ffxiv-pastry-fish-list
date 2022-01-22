@@ -17,7 +17,7 @@
         >
           <div class="d-flex align-center">
             <v-icon x-large>{{ mdiTableSearch }}</v-icon>
-            <span>加载中...</span>
+            <span>{{ $t('common.ui.loading') }}</span>
           </div>
         </div>
         <v-simple-table dense class="system" v-else>

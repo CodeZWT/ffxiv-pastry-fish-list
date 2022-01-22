@@ -46,10 +46,7 @@
                 </v-list>
               </v-menu>
             </div>
-            <div
-              class="text-subtitle-1"
-              :title="currentSpot.fishingSpotName + '#' + currentSpot.fishingSpotId"
-            >
+            <div class="text-subtitle-1" :title="toSpotTitle(currentSpot)">
               <link-list
                 :id="currentSpot.fishingSpotId"
                 :angler-id="currentSpot.fishingSpot.anglerLocationId"
@@ -178,6 +175,7 @@ export default {
     },
   },
   methods: {
+    toSpotTitle: DataUtil.toSpotTitle,
     onWindowResize() {
       this.mapWidth = this.$refs.simpleMap?.containerWidth ?? 512
     },

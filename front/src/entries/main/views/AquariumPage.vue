@@ -24,8 +24,15 @@
             <v-expansion-panel-content>
               <v-row>
                 <v-col :cols="isMobile ? 12 : 10">
-                  <i18n path="aquariumPage.note.source" tag="div" style="text-align: center" class="text-subtitle-1">
-                    <span place="author" class="font-weight-bold">{{ $t('aquariumPage.note.author') }}</span>
+                  <i18n
+                    path="aquariumPage.note.source"
+                    tag="div"
+                    style="text-align: center"
+                    class="text-subtitle-1"
+                  >
+                    <span place="author" class="font-weight-bold">{{
+                      $t('aquariumPage.note.author')
+                    }}</span>
                   </i18n>
                   <div>
                     <div>{{ $t('aquariumPage.note.explanation.line1') }}</div>
@@ -52,7 +59,9 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td>{{ $t('aquariumPage.note.explanation.boxFishQuantity') }}</td>
+                          <td>
+                            {{ $t('aquariumPage.note.explanation.boxFishQuantity') }}
+                          </td>
                           <td>1</td>
                           <td>2</td>
                           <td>3</td>
@@ -90,7 +99,9 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <th>{{ $t('aquariumPage.note.explanation.fishSizeNumber') }}</th>
+                          <th>
+                            {{ $t('aquariumPage.note.explanation.fishSizeNumber') }}
+                          </th>
                           <td>1</td>
                           <td>2</td>
                           <td>4</td>
@@ -110,7 +121,9 @@
         <v-card-text>
           <v-row>
             <v-col>
-              <v-subheader>{{ $t('aquariumPage.note.explanation.fishSize') }}</v-subheader>
+              <v-subheader>{{
+                $t('aquariumPage.note.explanation.fishSize')
+              }}</v-subheader>
               <v-btn-toggle
                 v-model="sizeIndicesToShow"
                 rounded
@@ -124,7 +137,9 @@
               </v-btn-toggle>
             </v-col>
             <v-col>
-              <v-subheader>{{ $t('aquariumPage.note.explanation.waterType') }}</v-subheader>
+              <v-subheader>{{
+                $t('aquariumPage.note.explanation.waterType')
+              }}</v-subheader>
               <v-btn-toggle
                 v-model="waterIndicesToShow"
                 rounded
@@ -138,7 +153,9 @@
               </v-btn-toggle>
             </v-col>
             <v-col>
-              <v-subheader>{{ $t('aquariumPage.note.explanation.fishPatch') }}</v-subheader>
+              <v-subheader>{{
+                $t('aquariumPage.note.explanation.fishPatch')
+              }}</v-subheader>
               <v-btn-toggle
                 v-model="fishPatchIndicesToShow"
                 rounded
@@ -152,7 +169,9 @@
               </v-btn-toggle>
             </v-col>
             <v-col>
-              <v-subheader>{{ $t('aquariumPage.note.explanation.updateStatus') }}</v-subheader>
+              <v-subheader>{{
+                $t('aquariumPage.note.explanation.updateStatus')
+              }}</v-subheader>
               <v-btn-toggle
                 v-model="availableIndicesFilter"
                 rounded
@@ -245,7 +264,11 @@ export default {
       fishPatchIndicesToShow: PATCHES_MIN.map((_, index) => index),
       allSizes: AQUARIUM_FISH_SIZE,
       allWater: AQUARIUM_WATER,
-      AVAILABLE_TYPES: [this.$t('aquariumPage.filter.normal'), this.$t('aquariumPage.filter.new'), this.$t('aquariumPage.filter.future')],
+      AVAILABLE_TYPES: [
+        this.$t('aquariumPage.filter.normal'),
+        this.$t('aquariumPage.filter.new'),
+        this.$t('aquariumPage.filter.future'),
+      ],
       availableIndicesFilter: [0, 1, 2],
       fishId: undefined,
     }

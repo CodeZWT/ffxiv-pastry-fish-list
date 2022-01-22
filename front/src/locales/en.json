@@ -75,6 +75,10 @@
   "common": {
     "game": {
       "collectable": ""
+    },
+    "ui": {
+      "brackets": "",
+      "loading": ""
     }
   },
   "contact": {
@@ -296,7 +300,7 @@
     "item": {
       "copyHint": "",
       "countDown": {
-        "fishShadowHint": "",
+        "fisherIntuitionHint": "",
         "tip": {
           "24992": "",
           "24994": "",
@@ -305,6 +309,7 @@
         }
       },
       "fishEyesTip": "",
+      "fishShadow": "",
       "fishWindowTable": {
         "interval": "",
         "nextInterval": "",
@@ -522,6 +527,16 @@
     "predator": {
       "INTUITION": "",
       "SHADOW": ""
+    }
+  },
+  "task": {
+    "detail": {
+      "checkTaskDetail": "",
+      "comment": "",
+      "requirement": "",
+      "rewardTitle": "",
+      "taskTitle": "",
+      "title": ""
     }
   },
   "time": {

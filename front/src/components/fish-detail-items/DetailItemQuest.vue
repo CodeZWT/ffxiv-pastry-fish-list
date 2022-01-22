@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-subheader>任务及其他信息</v-subheader>
+    <v-subheader>{{ $t('task.detail.title') }}</v-subheader>
     <v-alert
       v-for="task in fish.tasks"
       :key="task.id"
@@ -13,22 +13,35 @@
       color="secondary"
     >
       <div class="d-flex align-center my-1">
-        <span>任务：{{ task.name }}</span>
+        <span>{{ $t('task.detail.taskTitle', [task.name]) }}</span>
         <v-spacer />
         <v-btn text outlined @click="goTo(task)">
-          查看任务详细
+          {{ $t('task.detail.checkTaskDetail') }}
           <v-icon right>{{ mdiLinkVariant }}</v-icon>
         </v-btn>
       </div>
 
-      <div v-if="task.title" class="my-1">称号：{{ task.title }}</div>
-      <div v-if="task.comment" class="my-1">备注： <span v-html="task.comment" /></div>
+      <div v-if="task.title" class="my-1">
+        {{ $t('task.detail.rewardTitle', [task.title]) }}
+      </div>
+      <div v-if="task.comment" class="my-1">
+        {{ $t('task.detail.comment') }} <span v-html="task.comment" />
+      </div>
       <div class="my-1">
-        所有需求鱼
-        <template v-if="task.requireCollectable">
-          (<i title="收藏品" class="xiv collectables" />收藏品)
-        </template>
-        <span>：</span>
+        <i18n path="task.detail.requirement">
+          <template v-if="task.requireCollectable">
+            <i18n place="collectable" path="common.ui.brackets">
+              <span
+                ><i title="$t('common.game.collectable')" class="xiv collectables" />{{
+                  $t('common.game.collectable')
+                }}</span
+              >
+            </i18n>
+          </template>
+          <template v-else>
+            <span place="collectable"></span>
+          </template>
+        </i18n>
       </div>
       <div class="d-flex align-center my-1 flex-wrap">
         <div v-for="item in task.items" :key="item.id" class="d-flex align-center">

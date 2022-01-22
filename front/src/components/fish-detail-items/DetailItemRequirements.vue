@@ -33,7 +33,7 @@
         v-else-if="fish.checkInfo && fish.checkInfo.weatherRestricted"
         class="text-center"
       >
-        有天气限制
+        {{ $t('list.item.weatherConstraint') }}
       </div>
       <div class="d-flex justify-center" v-else>
         {{ $t('none') }}
@@ -60,7 +60,9 @@
             <div>{{ $t('list.item.fishEyesTip') }}</div>
           </v-tooltip>
         </div>
-        <div v-else-if="fish.checkInfo && fish.checkInfo.timeRestricted">有时间限制</div>
+        <div v-else-if="fish.checkInfo && fish.checkInfo.timeRestricted">
+          {{ $t('list.item.timeConstraint') }}
+        </div>
         <div v-else>
           {{ $t('none') }}
         </div>

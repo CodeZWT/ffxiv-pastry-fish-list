@@ -172,10 +172,7 @@
           </div>
           <div v-else class="d-flex">
             <div class="d-flex align-center">
-              <i
-                class="xiv square-a"
-                v-if="fish.baitsExtra.length > 0"
-              />
+              <i class="xiv square-a" v-if="fish.baitsExtra.length > 0" />
               <fish-bait-list
                 :baits="fish.baits"
                 @fish-clicked="onFishClicked(undefined, $event)"
@@ -205,8 +202,12 @@
       </v-col>
       <v-col cols="5">
         <div v-if="!transformedFishTimePart.hasCountDown" class="text-subtitle-2 ml-2">
-          <div v-if="fish.checkInfo.timeRestricted">{{ $t('list.item.timeConstraint') }}</div>
-          <div v-if="fish.checkInfo.weatherRestricted">{{ $t('list.item.weatherConstraint') }}</div>
+          <div v-if="fish.checkInfo.timeRestricted">
+            {{ $t('list.item.timeConstraint') }}
+          </div>
+          <div v-if="fish.checkInfo.weatherRestricted">
+            {{ $t('list.item.weatherConstraint') }}
+          </div>
           <div
             v-if="
               !fish.hasTimeConstraint &&
@@ -244,11 +245,15 @@
               <effect-icon
                 v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
                 :icon-class="fish.predatorsIcon"
-                :title="$t('list.item.countDown.fishShadowHint')"
+                :title="$t('list.item.countDown.fisherIntuitionHint')"
                 style="margin-left: 2px"
               />
             </template>
-            <div v-if="fish.checking" :title="$t('investigation.disclaimer')" class="ml-1">
+            <div
+              v-if="fish.checking"
+              :title="$t('investigation.disclaimer')"
+              class="ml-1"
+            >
               <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
               <span class="warning--text">{{ $t('investigation.investigating') }}</span>
             </div>

@@ -75,6 +75,10 @@
   "common": {
     "game": {
       "collectable": "收藏品"
+    },
+    "ui": {
+      "brackets": "（{0}）",
+      "loading": "加载中..."
     }
   },
   "contact": {
@@ -296,7 +300,7 @@
     "item": {
       "copyHint": "复制名称",
       "countDown": {
-        "fishShadowHint": "可持续至捕鱼人之识状态消失",
+        "fisherIntuitionHint": "可持续至捕鱼人之识状态消失",
         "tip": {
           "24992": "胸脊鲨只有时间限制，左侧显示的倒计时根据雕塑家窗口期进行“转换”。\n转换指：无论雕塑家是12-16ET或16-18ET或12-18ET，胸脊鲨的窗口期视为当天的16-18ET。\n理由是无论在何种情况下钓上雕塑家都可在16-18ET时间段内触发捕鱼人之识尝试钓上胸脊鲨。\n小提示：这意味着只要在16-18ET触发捕鱼人之识就有机会钓上胸脊鲨，详细操作请见攻略。",
           "24994": "七彩天主没有天气与时间限制，左侧显示的倒计时根据绿彩鱼窗口期进行“拓展”。\n拓展指：若绿彩鱼当天的窗口期为8-16ET，则向前拓展，变为0-16ET。\n理由是总能在0-4ET和4-8ET分别尝试钓蓝彩鱼和橙彩鱼。\n",
@@ -305,6 +309,7 @@
         }
       },
       "fishEyesTip": "时间条件在鱼眼模式下忽略",
+      "fishShadow": "需要触发鱼影",
       "fishWindowTable": {
         "interval": "持续时间",
         "nextInterval": "休眠期",
@@ -522,6 +527,16 @@
     "predator": {
       "INTUITION": "鱼识前置",
       "SHADOW": "鱼影前置"
+    }
+  },
+  "task": {
+    "detail": {
+      "checkTaskDetail": "查看任务详细",
+      "comment": "备注：",
+      "requirement": "所有需求鱼{collectable}：",
+      "rewardTitle": "称号：{0}",
+      "taskTitle": "任务：{0}",
+      "title": "任务及其他信息"
     }
   },
   "time": {

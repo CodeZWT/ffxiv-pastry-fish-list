@@ -34,7 +34,7 @@
                 <effect-icon
                   v-if="fish.addBuffSuffix"
                   :icon-class="fish.predatorsIcon"
-                  :title="$t('list.item.countDown.fishShadowHint')"
+                  :title="$t('list.item.countDown.fisherIntuitionHint')"
                   style="margin-left: 2px"
                 />
               </div>

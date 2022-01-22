@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%" @click="onFishClicked()">
-    <v-hover v-slot="{ hover }" open-delay="200" close-deplay="500">
+    <v-hover v-slot="{ hover }" open-delay="200" close-delay="500">
       <div style="position: relative">
         <v-row
           no-gutters
@@ -80,7 +80,7 @@
               </div>
               <effect-icon
                 v-if="fish.addBuffSuffix && transformedFishTimePart.isFishing"
-                :title="$t('list.item.countDown.fishShadowHint')"
+                :title="$t('list.item.countDown.fisherIntuitionHint')"
                 :icon-class="fish.predatorsIcon"
                 style="margin-left: 2px"
               />
@@ -214,10 +214,7 @@
               </div>
               <div v-else class="d-flex">
                 <div class="d-flex align-center">
-                  <i
-                    class="xiv square-a"
-                    v-if="fish.baitsExtra.length > 0"
-                  />
+                  <i class="xiv square-a" v-if="fish.baitsExtra.length > 0" />
                   <fish-bait-list :baits="fish.baits" :target="fish" />
                 </div>
               </div>

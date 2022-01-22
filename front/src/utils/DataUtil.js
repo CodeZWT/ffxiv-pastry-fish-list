@@ -779,6 +779,10 @@ export default {
     return spotId * 1000000 + itemId
   },
 
+  toSpotTitle(spot) {
+    return spot.fishingSpotName + ' # ' + spot.fishingSpotId
+  },
+
   hasChineseCharacter: hasChineseCharacter,
 
   TIP3_FISH_IDS: TIP3_FISH_IDS,
