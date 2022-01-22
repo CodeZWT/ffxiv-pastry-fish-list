@@ -511,7 +511,7 @@
                   bottom
                   v-for="(mode, index) in THEME_SETTING_MODES"
                   :key="mode"
-                  :className="index === 0 ? 'flex-fill' : 'ml-2 flex-fill'"
+                  :className="index === 0 ? 'flex-fill' : 'ml-1 flex-fill'"
                   style="flex-grow: 1"
                 >
                   <v-btn
@@ -565,7 +565,7 @@
                 <v-btn
                   v-for="(r, index) in REGIONS"
                   :key="r"
-                  :class="index === 0 ? 'flex-fill' : 'ml-2 flex-fill'"
+                  :class="index === 0 ? 'flex-fill' : 'ml-1 flex-fill'"
                   left
                   elevation="0"
                   :color="r === region ? 'primary' : undefined"
