@@ -22,12 +22,10 @@
                     <div class="d-flex align-center">
                       <div class="mr-2 ml-4">{{ version }}</div>
                       <v-btn text small @click="checkAll(version)">
-                        全选
-                        <v-icon>{{ mdiCheckAll }}</v-icon>
+                        {{ $t('common.ui.selectAll') }} <v-icon>{{ mdiCheckAll }}</v-icon>
                       </v-btn>
                       <v-btn text small @click="uncheckAll(version)">
-                        清空
-                        <v-icon>{{ mdiClose }}</v-icon>
+                        {{ $t('common.ui.clearAll') }} <v-icon>{{ mdiClose }}</v-icon>
                       </v-btn>
                     </div>
                     <v-btn-toggle

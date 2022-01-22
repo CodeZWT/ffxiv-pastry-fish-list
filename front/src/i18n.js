@@ -1,3 +1,4 @@
+import { SystemInfo } from 'Data/version'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 
@@ -17,7 +18,7 @@ function loadLocaleMessages() {
 }
 
 export default new VueI18n({
-  locale: process.env.VUE_APP_I18N_LOCALE || 'en',
+  locale: SystemInfo.uiLocale,
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
   messages: loadLocaleMessages(),
 })

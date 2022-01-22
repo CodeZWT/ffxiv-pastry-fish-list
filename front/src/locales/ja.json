@@ -1,4 +1,73 @@
 {
+  "$vuetify": {
+    "badge": "バッジ",
+    "calendar": {
+      "moreEvents": "さらに{0}"
+    },
+    "carousel": {
+      "ariaLabel": {
+        "delimiter": "カルーセルのスライド {0}件目 / {1}件"
+      },
+      "next": "次のビジュアル",
+      "prev": "前のビジュアル"
+    },
+    "close": "閉じる",
+    "dataFooter": {
+      "firstPage": "最初のページ",
+      "itemsPerPageAll": "すべて",
+      "itemsPerPageText": "1ページあたりの件数：",
+      "lastPage": "最後のページ",
+      "nextPage": "次のページ",
+      "pageText": "{0}-{1} 件目 / {2}件",
+      "prevPage": "前のページ"
+    },
+    "dataIterator": {
+      "loadingText": "項目をロード中です...",
+      "noResultsText": "検索結果が見つかりません。"
+    },
+    "dataTable": {
+      "ariaLabel": {
+        "activateAscending": "昇順のソートのためには有効にしてください。",
+        "activateDescending": "降順の並び替えのためには有効にしてください。",
+        "activateNone": "ソートを削除するには有効にしてください。",
+        "sortAscending": "昇順の並び替え。",
+        "sortDescending": "降順の並び替え。",
+        "sortNone": "ソートされていません。"
+      },
+      "itemsPerPageText": "1ページあたりの行数：",
+      "sortBy": "ソート方式"
+    },
+    "datePicker": {
+      "itemsSelected": "{0}日付選択",
+      "nextMonthAriaLabel": "来月",
+      "nextYearAriaLabel": "来年",
+      "prevMonthAriaLabel": "前月",
+      "prevYearAriaLabel": "前年"
+    },
+    "fileInput": {
+      "counter": "{0} ファイル",
+      "counterSize": "{0} ファイル (合計 {1})"
+    },
+    "noDataText": "データはありません。",
+    "pagination": {
+      "ariaLabel": {
+        "currentPage": "現在のページ、ページ {0}",
+        "next": "次のページ",
+        "page": "{0}ページ目に移動",
+        "previous": "前のページ",
+        "wrapper": "ページネーションナビゲーション"
+      }
+    },
+    "rating": {
+      "ariaLabel": {
+        "icon": "評価 {1} のうち {0}"
+      }
+    },
+    "timePicker": {
+      "am": "AM",
+      "pm": "PM"
+    }
+  },
   "actions": {
     "completed": {
       "checked": "",
@@ -80,6 +149,7 @@
       "brackets": "",
       "clearAll": "",
       "loading": "",
+      "reloadAfterSetting": "",
       "selectAll": ""
     }
   },
@@ -385,7 +455,8 @@
     "title": {
       "chs": "",
       "en": "",
-      "ja": ""
+      "ja": "",
+      "zh-CN": ""
     }
   },
   "none": "",
@@ -513,6 +584,15 @@
       "maxValue": "",
       "minValue": "",
       "required": ""
+    },
+    "locale": {
+      "data": "",
+      "ui": ""
+    },
+    "quickSetting": "",
+    "theme": {
+      "hint": "",
+      "title": ""
     }
   },
   "size": {

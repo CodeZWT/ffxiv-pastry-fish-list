@@ -165,37 +165,6 @@
             </v-btn>
             <div>打开鱼饵筛选</div>
           </v-list-item>
-          <v-list-item>
-            <v-menu offset-x left top>
-              <template v-slot:activator="{ on: menu, attrs }">
-                <div v-bind="attrs" v-on="{ ...menu }" class="d-flex align-center">
-                  <v-btn text icon>
-                    <v-icon>{{ mdiTranslate }}</v-icon>
-                  </v-btn>
-                  <div>设置数据文本语言</div>
-                </div>
-              </template>
-              <v-list>
-                <v-list-item-group color="primary" :value="localeIndex">
-                  <div v-for="(locale, index) in DATA_LOCALES" :key="index">
-                    <v-list-item @click="localeIndex = index">
-                      <v-list-item-title class="d-flex align-center">
-                        <div style="min-width: 40px">
-                          <v-img
-                            contain
-                            :src="LOCALES_ICONS[index]"
-                            height="18"
-                            width="24"
-                          />
-                        </div>
-                        <div>{{ $t(`locale.title.${locale}`) }}</div>
-                      </v-list-item-title>
-                    </v-list-item>
-                  </div>
-                </v-list-item-group>
-              </v-list>
-            </v-menu>
-          </v-list-item>
           <v-list-item v-if="isListPage || isWikiPage" @click="toggleFishEyesUsed">
             <fish-eyes-toggle-button
               :value="fishEyesUsed"
@@ -203,10 +172,16 @@
               @input="toggleFishEyesUsed"
             />
           </v-list-item>
+          <v-list-item @click="toggleQuickSetting">
+            <v-btn icon text>
+              <v-icon>{{ mdiCog }}</v-icon>
+            </v-btn>
+            <div>{{ $t('setting.quickSetting') }}</div>
+          </v-list-item>
         </v-list>
       </v-menu>
 
-      <rc-tooltip :message="$t('setting.quickSetting')">
+      <rc-tooltip v-if="!isMobile" :message="$t('setting.quickSetting')">
         <v-btn icon text @click="toggleQuickSetting">
           <v-icon>{{ mdiCog }}</v-icon>
         </v-btn>
@@ -291,13 +266,14 @@
           <v-list-item>
             <v-list-item-content>
               <v-row class="d-flex px-2">
-                <div v-for="(locale, index) in DATA_LOCALES" :key="locale" class="ma-1">
+                <div v-for="(locale, index) in UI_LOCALES" :key="locale" class="ma-1">
                   <v-btn
                     elevation="0"
                     x-large
                     left
-                    :color="locale === dataLocale ? 'primary' : undefined"
-                    @click="dataLocale = locale"
+                    :color="locale === uiLocale ? 'primary' : undefined"
+                    @click="uiLocale = locale"
+                    :disabled="locale !== 'zh-CN'"
                   >
                     <div style="min-width: 40px">
                       <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
@@ -917,7 +893,7 @@ import {
 
 import '@thewakingsands/axis-font-icons'
 import { MainFeatures } from 'Data/newFeatures'
-import { SystemInfo, setDataLocale, setRegion } from 'Data/version'
+import { SystemInfo, setDataLocale, setRegion, setUILocale } from 'Data/version'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import AlarmMixin from '@/mixins/AlarmMixin'
 import AppMixin from '@/components/AppMixin'
@@ -978,6 +954,7 @@ export default {
       showUpdateAvailableDialog: false,
       newVersion: undefined,
       DATA_LOCALES: DataUtil.DATA_LOCALES,
+      UI_LOCALES: DataUtil.UI_LOCALES,
       LOCALES_ICONS: [
         ImgUtil.getImgUrl('cn.svg', ImgUtil.CATEGORY.LANG),
         ImgUtil.getImgUrl('us.svg', ImgUtil.CATEGORY.LANG),
@@ -1001,7 +978,7 @@ export default {
           type: 'reloadSystemInfo',
         })
         this.showSnackbar({
-          text: '设置成功，即将重新加载页面，请稍后...',
+          text: this.$t('common.ui.reloadAfterSetting'),
           color: 'success',
         })
         setTimeout(() => {
@@ -1020,7 +997,26 @@ export default {
           type: 'reloadSystemInfo',
         })
         this.showSnackbar({
-          text: '设置成功，即将重新加载页面，请稍后...',
+          text: this.$t('common.ui.reloadAfterSetting'),
+          color: 'success',
+        })
+        setTimeout(() => {
+          this.startReloadPage()
+        }, 1000)
+      },
+    },
+    uiLocale: {
+      get() {
+        return SystemInfo.uiLocale
+      },
+      set(locale) {
+        setUILocale(locale)
+        sendElectronEvent('broadcast', {
+          source: 'main',
+          type: 'reloadSystemInfo',
+        })
+        this.showSnackbar({
+          text: this.$t('common.ui.reloadAfterSetting'),
           color: 'success',
         })
         setTimeout(() => {

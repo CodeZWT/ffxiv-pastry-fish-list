@@ -1,17 +1,17 @@
 const { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } = require('./constants')
 const REGION_KEY = 'RC_REGION'
 const DATA_LOCALE_KEY = 'RC_DATA_LOCALE'
+const UI_LOCALE_KEY = 'RC_UI_LOCALE'
 
 let region = 'Global'
 let dataLocale = 'chs'
+let uiLocale = process.env.VUE_APP_I18N_LOCALE
 
 const reloadSystemInfo = () => {
   if (typeof window !== 'undefined') {
     region = window.localStorage.getItem(REGION_KEY) || 'CN'
-  }
-
-  if (typeof window !== 'undefined') {
     dataLocale = window.localStorage.getItem(DATA_LOCALE_KEY) || 'chs'
+    uiLocale = window.localStorage.getItem(UI_LOCALE_KEY) || process.env.VUE_APP_I18N_LOCALE
   }
 }
 
@@ -33,7 +33,8 @@ const SystemInfo = {
   patch: region === 'CN' ? CN_PATCH_VERSION : GLOBAL_PATCH_VERSION,
   patches: region === 'CN' ? PATCHES_CN : PATCHES_GLOBAL,
   fishEyesMaxPatchExclude: region === 'CN' ? 4 : 5,
-  dataLocale: dataLocale
+  dataLocale: dataLocale,
+  uiLocale: uiLocale
 }
 
 const setRegion = region => {
@@ -46,9 +47,15 @@ const setDataLocale = dataLocale => {
   window.localStorage.setItem(DATA_LOCALE_KEY, dataLocale)
 }
 
+const setUILocale = locale => {
+  SystemInfo.uiLocale = locale
+  window.localStorage.setItem(UI_LOCALE_KEY, locale)
+}
+
 module.exports = {
   SystemInfo,
   reloadSystemInfo,
   setRegion,
   setDataLocale,
+  setUILocale,
 }
