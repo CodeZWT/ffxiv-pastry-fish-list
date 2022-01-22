@@ -11,7 +11,7 @@
     <v-row>
       <v-col cols="12" md="6">
         <v-row>
-          <v-col cols="12" md="5" class="pa-0">
+          <v-col cols="12" lg="5" class="pa-0 d-flex justify-center">
             <v-img
               :src="largeLogo"
               height="300"
@@ -20,7 +20,7 @@
               title="把我锤瘦一点，谢谢！"
             />
           </v-col>
-          <v-col cols="12" md="7" class="fill-height d-flex align-center">
+          <v-col cols="12" lg="7" class="fill-height d-flex align-center">
             <v-card flat color="background">
               <v-card-title class="text-h4">
                 {{ $t('homePage.welcome') }}
