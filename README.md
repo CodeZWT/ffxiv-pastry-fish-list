@@ -1,7 +1,14 @@
-# fish-list
+# pastry-fish
 
-## Project setup
+## Update submodule
+This project has a submodule dependency. First, init & update submodule:
 ```
+git submodule update --init
+```
+
+## Front Project setup
+```
+cd front
 yarn install
 ```
 
