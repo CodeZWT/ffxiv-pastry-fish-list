@@ -78,7 +78,9 @@
     },
     "ui": {
       "brackets": "（{0}）",
-      "loading": "加载中..."
+      "clearAll": "清除所有",
+      "loading": "加载中...",
+      "selectAll": "选择所有"
     }
   },
   "contact": {
@@ -162,6 +164,9 @@
     "title": "维修手册"
   },
   "filter": {
+    "bait": {
+      "switch": "启用鱼饵筛选"
+    },
     "bigFish": {
       "LIVING_LEGENDS": "鱼皇",
       "NORMAL": "普通鱼",
@@ -338,6 +343,7 @@
         "suffix": "按钮将鱼添加至固定列表。"
       }
     },
+    "showPinInNormal": "同时在默认列表中显示",
     "tip": {
       "fishCountdownReferTo": "{fish}没有天气与时间限制，左侧显示的倒计时实际为{preconditionFish}的窗口期。",
       "fisherIntuitionTip": "小提示：这意味着在任意时刻触发了捕鱼人之识都有机会钓上{fish}。",

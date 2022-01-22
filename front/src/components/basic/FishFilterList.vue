@@ -25,18 +25,18 @@
             <!--                    fish baits-->
             <!--                    <div>{{ selectedBaitIdIndices }}</div>-->
             <div class="d-flex align-center">
-              <div class="text-subtitle-2 ml-1 mr-3">启用鱼饵筛选</div>
+              <div class="text-subtitle-2 ml-1 mr-3">{{ $t('filter.bait.switch') }}</div>
               <v-switch v-model="baitFilterEnabledComputed" inset />
             </div>
             <div v-if="baitFilterEnabledComputed">
               <div class="d-flex align-center">
                 <v-btn text small class="mx-1" @click="selectAllBaits()">
                   <v-icon left> {{ mdiCheckAll }} </v-icon>
-                  选择所有
+                  {{ $t('common.ui.selectAll') }}
                 </v-btn>
                 <v-btn text small class="mx-1" @click="clearAllBaits">
                   <v-icon left> {{ mdiClose }} </v-icon>
-                  清除所有
+                  {{ $t('common.ui.clearAll') }}
                 </v-btn>
                 <v-tooltip right>
                   <template v-slot:activator="{ on, attrs }">
@@ -61,8 +61,7 @@
                         @click="baitFilterInputted = true"
                       >
                         <item-icon :icon-class="getItemIconClass(baitId)" small />
-                        {{ getItemName(baitId) }}
-                        ({{ fishIds.length }})
+                        <span v-text="`${getItemName(baitId)}(${fishIds.length})`" />
                       </v-chip>
                     </template>
                     <v-card>
@@ -87,19 +86,6 @@
                     </v-card>
                   </v-menu>
                 </template>
-
-                <!--                        <v-chip-->
-                <!--                          v-for="(fishIds, baitId) in bait2Fish"-->
-                <!--                          :key="baitId"-->
-                <!--                          active-class="primary&#45;&#45;text"-->
-                <!--                          outlined-->
-                <!--                          class="ma-1"-->
-                <!--                        >-->
-                <!--                          &lt;!&ndash;                        <div :class="getItemIconClass(baitId)" />&ndash;&gt;-->
-                <!--                          <item-icon :icon-class="getItemIconClass(baitId)" small />-->
-                <!--                          {{ getItemName(baitId) }}-->
-                <!--                          ({{ fishIds.length }})-->
-                <!--                        </v-chip>-->
               </v-chip-group>
             </div>
           </div>
@@ -107,42 +93,7 @@
       </div>
       <div :class="{ 'main-area': true, 'show-filter': showFilter }">
         <div style="width: 100%">
-          <v-banner v-if="showBanner" two-line>
-            <v-avatar slot="icon" color="primary" size="40">
-              <v-icon color="white"> {{ mdiInformation }} </v-icon>
-            </v-avatar>
-
-            <div>
-              <div>
-                欢迎使用鱼糕钓鱼时钟，如有任何问题，首先尝试刷新<kbd>F5</kbd>或强制刷新页面<kbd>Ctrl</kbd>+<kbd>F5</kbd>。
-              </div>
-              <div>
-                点击每列鱼可以打开右侧详细界面。其他功能如钓鱼笔记，云冠群岛，出海垂钓内容请通过左边的侧边栏访问。
-              </div>
-              <div>本站与其他钓鱼时钟的导入、导出功能在侧边栏的“设置”中。</div>
-              <!--                      <div>-->
-              <!--                        若使用桌面版，可直接同步游戏内图鉴，左侧导航栏进入“钓鱼笔记”页面，选择“同步游戏数据”。-->
-              <!--                      </div>-->
-              <v-btn outlined color="primary" block class="mt-1" @click="onDismiss">
-                不再显示
-              </v-btn>
-            </div>
-
-            <!--                    <template v-slot:actions>-->
-            <!--                      <click-helper @click="onDismiss">-->
-            <!--                        <v-btn text color="primary"> 不再显示 </v-btn>-->
-            <!--                      </click-helper>-->
-            <!--                    </template>-->
-          </v-banner>
           <v-tabs-items v-model="activeTabIndex" touchless>
-            <!--                    <v-tab-item-->
-            <!--                      key="pin"-->
-            <!--                      class="list-wrapper"-->
-            <!--                      :transition="false"-->
-            <!--                      :reverse-transition="false"-->
-            <!--                    >-->
-            <!--                      -->
-            <!--                    </v-tab-item>-->
             <v-tab-item
               key="normal"
               class="list-wrapper"
@@ -157,13 +108,13 @@
                 <v-expansion-panel>
                   <v-expansion-panel-header>
                     <div class="d-flex align-center">
-                      <div>固定列表</div>
+                      <div>{{ $t('list.pinTitle') }}</div>
                       <v-spacer />
                       <div class="mr-2">
                         <v-switch
                           v-model="showPinnedInNormalList"
                           inset
-                          label="同时在默认列表中显示"
+                          :label="$t('list.showPinInNormal')"
                           @click.stop
                         />
                       </div>
@@ -196,7 +147,9 @@
                 class="my-2 rounded-lg"
               >
                 <v-expansion-panel>
-                  <v-expansion-panel-header>默认列表</v-expansion-panel-header>
+                  <v-expansion-panel-header>{{
+                    $t('list.normalTitle')
+                  }}</v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <fish-list
                       :fish-dict="lazyTransformedFishDict"

@@ -78,7 +78,9 @@
     },
     "ui": {
       "brackets": "",
-      "loading": ""
+      "clearAll": "",
+      "loading": "",
+      "selectAll": ""
     }
   },
   "contact": {
@@ -162,6 +164,9 @@
     "title": ""
   },
   "filter": {
+    "bait": {
+      "switch": ""
+    },
     "bigFish": {
       "LIVING_LEGENDS": "",
       "NORMAL": "",
@@ -331,6 +336,7 @@
       "empty": ""
     },
     "normalTitle": "",
+    "pinList": "",
     "pinTitle": "",
     "pinned": {
       "empty": {
@@ -338,6 +344,7 @@
         "suffix": ""
       }
     },
+    "showPinInNormal": "",
     "tip": {
       "fishCountdownReferTo": "",
       "fisherIntuitionTip": "",
