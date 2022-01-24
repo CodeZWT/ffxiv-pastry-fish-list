@@ -7,8 +7,11 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 const host = DevelopmentModeUtil.isTest()
   ? 'https://rcapi.traveleorzea.com' //'http://localhost:3100'
   : 'https://rcapi.traveleorzea.com'
-// const DATA_HOST = 'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files'
-const DATA_HOST = 'https://rcstatic.traveleorzea.com/pastry-fish-statistics-files'
+// const DATA_HOST =
+const DATA_HOST =
+  DevelopmentModeUtil.siteRegion === 'CN'
+    ? 'https://rcstatic.traveleorzea.com/pastry-fish-statistics-files'
+    : 'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files@main'
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
 export const TEMP_RC_ACCESS_TOKEN_KEY = 'TEMP_RC_ACCESS_TOKEN'
 export const RC_USER_PROFILE_KEY = 'RC_USER_PROFILE'
