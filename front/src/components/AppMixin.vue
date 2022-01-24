@@ -476,11 +476,11 @@ export default {
   },
   async created() {
     switch (window.location.host) {
-      case 'fish.ricecake302.com':
-        this.migrationSource = 'main'
-        this.showMigrationDialog = true
-        console.debug('migration match', this.migrationSource)
-        break
+      // case 'fish.ricecake302.com':
+      //   this.migrationSource = 'main'
+      //   this.showMigrationDialog = true
+      //   console.debug('migration match', this.migrationSource)
+      //   break
       case 'ricecake500.gitee.io':
         this.migrationSource = 'sub'
         console.debug('migration match', this.migrationSource)

@@ -829,7 +829,7 @@
     <desktop-version-dialog v-model="showDownloadDialog" />
     <rose-mode-dialog v-model="showRoseDialog" />
     <!--    <competition-dialog v-model="showCompetitionDialogComputed" />-->
-
+    <region-notification-dialog v-if="siteRegion === 'Global'" />
     <v-snackbar
       :timeout="snackbar.timeout"
       v-model="snackbar.show"
@@ -932,12 +932,13 @@ import ImgUtil from '@/utils/ImgUtil'
 import LINK from 'Data/link'
 import MainWindowMixin from '@/components/MainWindowMixin'
 import RcDialog from '@/components/basic/RcDialog'
+import RegionNotificationDialog from '@/components/Dialog/RegionNotificationDialog'
 import _ from 'lodash'
 import beianIcon from 'Assets/beian-icon.png'
 
 export default {
   name: 'App',
-  components: { RcDialog },
+  components: { RegionNotificationDialog, RcDialog },
   mixins: [AppMixin, MainWindowMixin, AlarmMixin],
   data() {
     return {
@@ -991,6 +992,9 @@ export default {
     }
   },
   computed: {
+    siteRegion() {
+      return process.env.VUE_APP_SITE_REGION
+    },
     regionIndex: {
       get() {
         return ['CN', 'Global'].indexOf(SystemInfo.region)

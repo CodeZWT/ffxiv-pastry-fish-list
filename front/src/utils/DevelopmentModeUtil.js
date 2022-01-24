@@ -7,5 +7,8 @@ export default {
   },
   useLocalFile() {
     return process.env.VUE_APP_USE_LOCAL_FILE === 'true'
-  }
+  },
+  siteRegion() {
+    return process.env.VUE_APP_SITE_REGION
+  },
 }

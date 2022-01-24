@@ -2,6 +2,7 @@ import { AlarmModule } from '@/entries/main/store/alarm'
 import { DialogModule } from '@/entries/screen/store/dialog'
 import { FlagModule } from '@/entries/screen/store/oneTimeFlag'
 import { KeybindingModule } from '@/entries/screen/store/keybinding'
+import { LocalSettingModule } from '@/entries/main/store/localSetting'
 import {
   loadBaitFilterUserData,
   loadReaderUserData,
@@ -16,6 +17,7 @@ import FISH from 'Data/fish'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
 import _ from 'lodash'
 import router from '@/entries/main/router'
 
@@ -69,8 +71,19 @@ const ScreenPluginOf = router => store => {
   })
 }
 
+const vuexLocal = new VuexPersistence({
+  key: 'RC_LOCAL_SETTING',
+  storage: window.localStorage,
+  filter: mutation => {
+    return mutation.type === 'localSetting/setSetting'
+  },
+  reducer: state => {
+    return { localSetting: state.localSetting }
+  },
+})
+
 export const MainModule = {
-  plugins: [ScreenPluginOf(router)],
+  plugins: [ScreenPluginOf(router), vuexLocal.plugin],
   state: {
     window: 'main',
     now: Date.now(),
@@ -705,6 +718,7 @@ export const MainModule = {
     dialog: DialogModule,
     flag: FlagModule,
     alarm: AlarmModule,
+    localSetting: LocalSettingModule,
   },
 }
 
