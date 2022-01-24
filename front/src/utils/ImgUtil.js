@@ -1,49 +1,40 @@
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 
-const URL_REGION = 'CN'
 const BASE_URL = {
-  CN: {
-    imageRoot: 'rcstatic.traveleorzea.com/pastry-fish-static-files/img',
-    map: 'rcstatic.traveleorzea.com/pastry-fish-static-files/img/map',
-    icon: 'rcstatic.traveleorzea.com/pastry-fish-static-files/img/item',
-  },
-  Global: {
-    imageRoot: 'cdn.jsdelivr.net/gh/ricecake404/images@1.1.2.1/img',
-    map: 'cdn.jsdelivr.net/gh/ricecake404/images@1.0.6.map.2/map',
-    icon: 'cdn.jsdelivr.net/gh/ricecake404/images@main/icon',
-  },
+  imageRoot: 'rcstatic.traveleorzea.com/pastry-fish-static-files/img',
 }
 
-export default {
-  CATEGORY: {
-    MISC: 'misc',
-    HOME_LOGO: 'home-logo',
-    LOGO: 'logo',
-    ITEM: 'item',
-    LANG: 'lang',
-    MAP: 'map',
-    MAP_RANGE_INDICATOR: 'map-range-indicator',
-    AQUARIUM: 'aquarium',
-  },
+const CATEGORY = {
+  MISC: 'misc',
+  HOME_LOGO: 'home-logo',
+  LOGO: 'logo',
+  ITEM: 'item',
+  LANG: 'lang',
+  MAP: 'map',
+  MAP_RANGE_INDICATOR: 'map-range-indicator',
+  AQUARIUM: 'aquarium',
+}
+
+const util = {
+  CATEGORY: CATEGORY,
   getImgUrl(filename, category = 'misc') {
     if (DevelopmentModeUtil.useLocalFile()) {
-      // return `https://${BASE_URL[URL_REGION].imageRoot}/${category}/${filename}`
       return require(`Assets/cdn/pastry-fish-static-files/img/${category}/${filename}`)
     } else {
-      return `https://${BASE_URL[URL_REGION].imageRoot}/${category}/${filename}`
+      return `https://${BASE_URL.imageRoot}/${category}/${filename}`
     }
   },
   getAquariumImgUrl(filename) {
-    return `https://${BASE_URL[URL_REGION].imageRoot}/aquarium/detail/${filename}`
+    return util.getImgUrl('detail/' + filename, CATEGORY.AQUARIUM)
   },
   getIconUrl(iconId, hr = false) {
-    return `https://${BASE_URL[URL_REGION].icon}/${toRealIconId(iconId, hr)}.webp`
+    return util.getImgUrl(`${toRealIconId(iconId, hr)}.webp`, CATEGORY.ITEM)
+  },
+  getMapUrl(filename) {
+    return util.getImgUrl(filename, CATEGORY.MAP)
   },
   getCompetitionImgUrl(filename) {
     return `https://ricecake500.gitee.io/pastry-fish-static-files/img/${filename}`
-  },
-  getMapUrl(filename) {
-    return `https://${BASE_URL[URL_REGION].map}/${filename}`
   },
   iconIdToClass: iconIdToClass,
 }
@@ -57,3 +48,5 @@ function toRealIconId(iconId, hr = false) {
 function iconIdToClass(iconId) {
   return `bg-${toRealIconId(iconId)}${DevelopmentModeUtil.useLocalFile() ? '-local' : ''}`
 }
+
+export default util
