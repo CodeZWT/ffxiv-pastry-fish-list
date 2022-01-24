@@ -111,21 +111,23 @@
         @input="toggleFishEyesUsed"
       />
 
-      <v-btn
-        icon
-        text
-        v-if="(isListPage || isWikiPage) && !isMobile"
-        @click="showBaitDialog = true"
-      >
-        <v-icon>{{ mdiHook }}</v-icon>
-      </v-btn>
+      <rc-tooltip :message="$t('baitSearch.dialogBtn')" bottom>
+        <v-btn
+          icon
+          text
+          v-if="(isListPage || isWikiPage) && !isMobile"
+          @click="showBaitDialog = true"
+        >
+          <v-icon>{{ mdiHook }}</v-icon>
+        </v-btn>
+      </rc-tooltip>
 
       <v-btn
         v-if="isWikiPage && isMobile"
         icon
         text
         @click="showMapMenu = !showMapMenu"
-        title="点击选择钓场"
+        :title="$t('wikiPage.navBtn')"
       >
         <v-icon>{{ mdiMap }}</v-icon>
       </v-btn>
@@ -138,11 +140,16 @@
             </v-btn>
           </div>
         </template>
-        <div>{{ $t('search.shortcut') }}</div>
-        <i18n path="">
+        <i18n path="search.shortcut">
           <kbd>/</kbd>
         </i18n>
       </v-tooltip>
+
+      <rc-tooltip v-if="!isMobile" :message="$t('setting.quickSetting')" bottom>
+        <v-btn icon text @click="toggleQuickSetting">
+          <v-icon>{{ mdiCog }}</v-icon>
+        </v-btn>
+      </rc-tooltip>
 
       <v-menu v-if="isMobile" offset-y left>
         <template v-slot:activator="{ on: menu, attrs }">
@@ -152,7 +159,7 @@
                 <v-icon>{{ mdiDotsVertical }}</v-icon>
               </v-btn>
             </template>
-            <div>更多</div>
+            <div>{{ $t('common.ui.more') }}</div>
           </v-tooltip>
         </template>
         <v-list>
@@ -160,13 +167,15 @@
             <v-btn v-if="isWikiPage" icon text @click="setShowSearchDialog(true)">
               <v-icon>{{ mdiMagnify }}</v-icon>
             </v-btn>
-            <div>搜索 <kbd>/</kbd></div>
+            <i18n path="search.shortcut">
+              <kbd>/</kbd>
+            </i18n>
           </v-list-item>
           <v-list-item @click="showBaitDialog = true">
             <v-btn icon text v-if="isListPage || isWikiPage">
               <v-icon>{{ mdiHook }}</v-icon>
             </v-btn>
-            <div>打开鱼饵筛选</div>
+            <div>{{ $t('baitSearch.dialogBtn') }}</div>
           </v-list-item>
           <v-list-item v-if="isListPage || isWikiPage" @click="toggleFishEyesUsed">
             <fish-eyes-toggle-button
@@ -183,12 +192,6 @@
           </v-list-item>
         </v-list>
       </v-menu>
-
-      <rc-tooltip v-if="!isMobile" :message="$t('setting.quickSetting')">
-        <v-btn icon text @click="toggleQuickSetting">
-          <v-icon>{{ mdiCog }}</v-icon>
-        </v-btn>
-      </rc-tooltip>
 
       <v-sheet class="d-flex flex-column ml-1 transparent" v-if="!isElectron">
         <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
@@ -545,7 +548,7 @@
                   elevation="0"
                   :color="locale === uiLocale ? 'primary' : undefined"
                   @click="uiLocale = locale"
-                  :disabled="locale !== 'zh-CN'"
+                  :disabled="locale === 'ja'"
                 >
                   <div style="min-width: 24px" class="mr-1">
                     <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
@@ -714,7 +717,7 @@
       scrollable
     >
       <v-card>
-        <v-card-title>关于</v-card-title>
+        <v-card-title>{{ $t('top.about') }}</v-card-title>
         <v-card-text class="contact-area">
           <div>ID：红豆年糕 @ 海猫茶屋</div>
           <div>

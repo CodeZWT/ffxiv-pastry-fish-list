@@ -129,7 +129,8 @@
       "hint1": "",
       "hint2": "",
       "placeholder": ""
-    }
+    },
+    "dialogBtn": ""
   },
   "chart": {
     "fishersIntuition": {
@@ -149,6 +150,7 @@
       "brackets": "",
       "clearAll": "",
       "loading": "",
+      "more": "",
       "reloadAfterSetting": "",
       "selectAll": ""
     }
@@ -723,6 +725,7 @@
   },
   "wikiPage": {
     "description": "",
+    "navBtn": "",
     "stats": {
       "about": {
         "btn": ""

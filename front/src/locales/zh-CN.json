@@ -129,7 +129,8 @@
       "hint1": "此处只显示并筛选默认列表，固定列表不在范围内。",
       "hint2": "前置鱼的鱼饵也计入最终鱼的鱼饵，例：云海蝴蝶螺的鱼饵为金属亮片与巨型大蚊。",
       "placeholder": "输入鱼饵搜索：天钢之球 或 tgzq"
-    }
+    },
+    "dialogBtn": "鱼饵筛选"
   },
   "chart": {
     "fishersIntuition": {
@@ -149,6 +150,7 @@
       "brackets": "（{0}）",
       "clearAll": "清空",
       "loading": "加载中...",
+      "more": "更多",
       "reloadAfterSetting": "设置成功，即将重新加载页面，请稍后...",
       "selectAll": "全选"
     }
@@ -274,7 +276,7 @@
   "footer": {
     "author": "红豆年糕@海猫茶屋",
     "contact": "群：1153646847 红豆年糕@海猫茶屋",
-    "ffRights": "FINAL FANTASY XIV © 2010 - 2021 SQUARE ENIX CO., LTD. All Rights Reserved."
+    "ffRights": "FINAL FANTASY XIV © 2010 - 2022 SQUARE ENIX CO., LTD. All Rights Reserved."
   },
   "general": {
     "dialog": {
@@ -723,6 +725,7 @@
   },
   "wikiPage": {
     "description": "目标全图鉴！附赠发光鱼竿哦~",
+    "navBtn": "点击选择钓场",
     "stats": {
       "about": {
         "btn": "关于数据统计图"
