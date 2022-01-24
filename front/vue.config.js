@@ -216,7 +216,7 @@ module.exports = {
     },
   },
   chainWebpack: config => {
-    if (process.env.VUE_APP_ELECTRON !== 'true') {
+    if (process.env.VUE_APP_USE_LOCAL_FILE !== 'true') {
       config.externals([
         function(context, request, callback) {
           if (

@@ -26,7 +26,7 @@ export default {
     AQUARIUM: 'aquarium',
   },
   getImgUrl(filename, category = 'misc') {
-    if (DevelopmentModeUtil.isElectron()) {
+    if (DevelopmentModeUtil.useLocalFile()) {
       // return `https://${BASE_URL[URL_REGION].imageRoot}/${category}/${filename}`
       return require(`Assets/cdn/pastry-fish-static-files/img/${category}/${filename}`)
     } else {
@@ -55,5 +55,5 @@ function toRealIconId(iconId, hr = false) {
 }
 
 function iconIdToClass(iconId) {
-  return `bg-${toRealIconId(iconId)}${DevelopmentModeUtil.isElectron() ? '-local' : ''}`
+  return `bg-${toRealIconId(iconId)}${DevelopmentModeUtil.useLocalFile() ? '-local' : ''}`
 }

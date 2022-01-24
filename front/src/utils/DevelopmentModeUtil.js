@@ -5,4 +5,7 @@ export default {
   isElectron() {
     return process.env.VUE_APP_ELECTRON === 'true'
   },
+  useLocalFile() {
+    return process.env.VUE_APP_USE_LOCAL_FILE === 'true'
+  }
 }
