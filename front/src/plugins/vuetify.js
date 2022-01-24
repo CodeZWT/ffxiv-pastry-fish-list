@@ -6,7 +6,7 @@ import VueI18n from 'vue-i18n'
 import Vuetify from 'vuetify/lib'
 import settings from '@/themes'
 
-if (DevelopmentModeUtil.isElectron()) {
+if (DevelopmentModeUtil.useLocalFile()) {
   import('Assets/css/fish_icons_local.css')
 } else {
   import('Assets/css/fish_icons.css')
