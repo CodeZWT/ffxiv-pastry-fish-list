@@ -72,8 +72,12 @@
         <span>{{ title }}</span>
       </v-toolbar-title>
       <template v-if="!isMobile">
-        <v-badge :content="$t('top.region.' + region)" inline color="info" />
-        <v-badge :content="version" inline />
+        <rc-tooltip :message="$t('setting.locale.regionHint')" bottom>
+          <v-badge :content="$t('top.region.' + region)" inline color="info" />
+        </rc-tooltip>
+        <div>
+          <v-badge :content="version" inline />
+        </div>
       </template>
       <v-spacer />
       <div v-if="inStarLight && !isMobile">
@@ -307,10 +311,10 @@
               <v-icon>{{ mdiChartBar }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{
-                $t('top.record')
-              }}</v-list-item-title></v-list-item-content
-            >
+              <v-list-item-title>
+                {{ $t('top.record') }}
+              </v-list-item-title>
+            </v-list-item-content>
           </v-list-item>
 
           <v-list-item v-if="isRoseMode" @click="showRoseDialog = true" link>
@@ -332,6 +336,19 @@
           </v-list-item>
 
           <v-divider class="mx-2" />
+
+          <v-list-item @click="() => {}" link>
+            <v-list-item-icon>
+              <v-icon>{{ mdiEarth }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                数据切换移至右上角
+                <v-icon small>{{ mdiCog }}</v-icon>
+                中
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
           <v-list-item v-if="!isElectron" @click="toDownloadPage" link>
             <v-list-item-icon>
@@ -536,30 +553,30 @@
 
           <v-divider />
 
-          <v-subheader>{{ $t('setting.locale.ui') }}</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <div class="d-flex flex-wrap setting-panel-row">
-                <v-btn
-                  v-for="(locale, index) in UI_LOCALES"
-                  :key="locale"
-                  :class="'flex-fill ' + (index === 0 ? '' : 'ml-1')"
-                  left
-                  elevation="0"
-                  :color="locale === uiLocale ? 'primary' : undefined"
-                  @click="uiLocale = locale"
-                  :disabled="locale === 'ja'"
-                >
-                  <div style="min-width: 24px" class="mr-1">
-                    <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
-                  </div>
-                  <div>{{ $t(`locale.title.${locale}`) }}</div>
-                </v-btn>
-              </div>
-            </v-list-item-content>
-          </v-list-item>
+          <!--          <v-subheader>{{ $t('setting.locale.ui') }}</v-subheader>-->
+          <!--          <v-list-item>-->
+          <!--            <v-list-item-content>-->
+          <!--              <div class="d-flex flex-wrap setting-panel-row">-->
+          <!--                <v-btn-->
+          <!--                  v-for="(locale, index) in UI_LOCALES"-->
+          <!--                  :key="locale"-->
+          <!--                  :class="'flex-fill ' + (index === 0 ? '' : 'ml-1')"-->
+          <!--                  left-->
+          <!--                  elevation="0"-->
+          <!--                  :color="locale === uiLocale ? 'primary' : undefined"-->
+          <!--                  @click="uiLocale = locale"-->
+          <!--                  :disabled="locale === 'ja'"-->
+          <!--                >-->
+          <!--                  <div style="min-width: 24px" class="mr-1">-->
+          <!--                    <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />-->
+          <!--                  </div>-->
+          <!--                  <div>{{ $t(`locale.title.${locale}`) }}</div>-->
+          <!--                </v-btn>-->
+          <!--              </div>-->
+          <!--            </v-list-item-content>-->
+          <!--          </v-list-item>-->
 
-          <v-divider />
+          <!--          <v-divider />-->
 
           <v-subheader>{{ $t('setting.locale.region') }}</v-subheader>
           <v-list-item>
@@ -924,13 +941,14 @@ import ImgUtil from '@/utils/ImgUtil'
 import LINK from 'Data/link'
 import MainWindowMixin from '@/components/MainWindowMixin'
 import RcDialog from '@/components/basic/RcDialog'
+import RcTooltip from '@/components/basic/RcTooltip'
 import RegionNotificationDialog from '@/components/Dialog/RegionNotificationDialog'
 import _ from 'lodash'
 import beianIcon from 'Assets/beian-icon.png'
 
 export default {
   name: 'App',
-  components: { RegionNotificationDialog, RcDialog },
+  components: { RcTooltip, RegionNotificationDialog, RcDialog },
   mixins: [AppMixin, MainWindowMixin, AlarmMixin],
   data() {
     return {

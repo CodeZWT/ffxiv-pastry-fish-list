@@ -591,7 +591,8 @@
     "locale": {
       "data": "数据语言（Data Languages）",
       "region": "数据版本",
-      "ui": "界面语言（UI Languages）"
+      "ui": "界面语言（UI Languages）",
+      "regionHint": "点击右上角齿轮图标切换数据版本（国服/国际服）"
     },
     "openSetting": "查看所有设置",
     "quickSetting": "快捷设置",
@@ -639,7 +640,7 @@
   },
   "toolbar": {
     "easterEgg": {
-      "description": "提前降神节快乐！"
+      "description": "降神节快乐！"
     },
     "filterSwitch": {
       "description": "显示/隐藏筛选界面"

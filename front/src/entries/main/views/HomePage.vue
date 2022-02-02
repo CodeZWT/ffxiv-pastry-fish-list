@@ -12,13 +12,7 @@
       <v-col cols="12" md="6">
         <v-row>
           <v-col cols="12" lg="5" class="pa-0 d-flex justify-center">
-            <v-img
-              :src="largeLogo"
-              height="300"
-              contain
-              max-width="400"
-              title="把我锤瘦一点，谢谢！"
-            />
+            <v-img :src="largeLogo" height="300" contain max-width="400" />
           </v-col>
           <v-col cols="12" lg="7" class="fill-height d-flex align-center">
             <v-card flat color="background">
