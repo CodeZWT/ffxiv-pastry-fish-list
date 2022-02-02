@@ -28,33 +28,23 @@
       <div v-else-if="fish.checkInfo.timeRestricted">
         {{ $t('list.item.timeConstraint') }}
       </div>
-      <div class="d-flex" v-if="fish.hasWeatherConstraint">
-        <div style="display: flex">
-          <div
-            v-for="(weather, index) in fish.previousWeatherSetDetail"
-            :key="index"
-            class="zoom-in-predator"
-          >
-            <weather-icon
-              :icon-class="weather.icon"
-              :title="weather.name"
-              type="weather"
-            />
-          </div>
-          <v-icon v-if="fish.previousWeatherSet.length > 0" small>
-            {{ mdiArrowRight }}
-          </v-icon>
-          <div
-            v-for="weather in fish.weatherSetDetail"
-            :key="weather.name"
-            class="zoom-in-predator"
-          >
-            <weather-icon
-              :icon-class="weather.icon"
-              :title="weather.name"
-              type="weather"
-            />
-          </div>
+      <div class="d-flex align-center" v-if="fish.hasWeatherConstraint">
+        <div
+          v-for="(weather, index) in fish.previousWeatherSetDetail"
+          :key="index"
+          class="zoom-in-predator"
+        >
+          <weather-icon :icon-class="weather.icon" :title="weather.name" type="weather" />
+        </div>
+        <v-icon v-if="fish.previousWeatherSet.length > 0" small>
+          {{ mdiArrowRight }}
+        </v-icon>
+        <div
+          v-for="weather in fish.weatherSetDetail"
+          :key="weather.name"
+          class="zoom-in-predator"
+        >
+          <weather-icon :icon-class="weather.icon" :title="weather.name" type="weather" />
         </div>
       </div>
       <div v-else-if="fish.checkInfo.weatherRestricted">
