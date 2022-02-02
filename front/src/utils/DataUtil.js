@@ -742,13 +742,14 @@ export default {
     return result
   },
 
-  tugToHookset(tug, hookset) {
+  tugToHookset(tug, hookset, fishId) {
     if (tug === 'light') {
       return 'Precision'
     } else if (tug === 'medium') {
       return 'Powerful'
     } else {
-      return hookset
+      const isBigFish = DATA_CN.BIG_FISH.includes(fishId)
+      return hookset ?? (isBigFish ? hookset : 'Powerful')
     }
   },
 

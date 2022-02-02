@@ -210,7 +210,7 @@ export const MainModule = {
       if (bestCatchPath == null || bestCatchPath.length < 1) return []
       const fishDict = customizeFishDict ?? state.fish
       const baitId = bestCatchPath[bestCatchPath.length - 1]
-      const hookset = DataUtil.tugToHookset(fish.tug, fish.hookset)
+      const hookset = DataUtil.tugToHookset(fish.tug, fish.hookset, fish._id)
       const optionalIndices = fish.optional ?? []
       const lastBait = {
         tug: fish.tug,
@@ -233,7 +233,11 @@ export const MainModule = {
             return lastBait
           } else {
             const baitFish = fishDict[arr[index + 1]]
-            const hookset = DataUtil.tugToHookset(baitFish.tug, baitFish.hookset)
+            const hookset = DataUtil.tugToHookset(
+              baitFish.tug,
+              baitFish.hookset,
+              baitFish._id
+            )
             return {
               tug: baitFish.tug,
               tugIcon: DataUtil.TUG_ICON[baitFish.tug],

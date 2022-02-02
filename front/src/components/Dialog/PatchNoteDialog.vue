@@ -32,6 +32,17 @@
             <div class="text-subtitle-1">更新时间: 2021/1/16 12:20</div>
           </div>
         </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>
+            更新部分鱼数据
+            <ul>
+              <li>乌兹刀背鱼·天极：0 - 3:20 修正为 1 - 3:20</li>
+              <li>翻车鱼修正为全天可钓</li>
+              <li>增加部分普通鱼的提钩类型数据</li>
+            </ul>
+          </li>
+        </ul>
         <div class="text-h6 my-1">鱼糕桌面版</div>
         <ul>
           <li>更新新年&降神节贺图，感谢 马猴烧鱼@拉诺西亚 绘制的贺图！</li>
