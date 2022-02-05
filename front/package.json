@@ -5,8 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve:global": "vue-cli-service serve --mode ",
-    "serve:electron": "vue-cli-service serve --mode electronlocal",
-    "build": "vue-cli-service build --dest ../front-web-dist",
+    "serve:electron": "vue-cli-service serve --mode electronlocalserver",
     "lint": "vue-cli-service lint",
     "build:electron": "vue-cli-service build --mode electron --dest ../front-electron-dist",
     "build:traveleorzea": "vue-cli-service build --mode traveleorzea --dest ../front-web-dist",

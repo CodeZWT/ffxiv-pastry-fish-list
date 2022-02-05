@@ -29,6 +29,8 @@ const md = new MarkdownIt()
 //   title: '列表v2',
 // },
 
+console.log('Site region:', process.env.VUE_APP_SITE_REGION)
+
 let pages, optimization
 if (process.env.VUE_APP_ELECTRON === 'true') {
   console.log('build for electron')

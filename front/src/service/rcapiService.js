@@ -9,9 +9,9 @@ const host = DevelopmentModeUtil.isTest()
   : 'https://rcapi.traveleorzea.com'
 // const DATA_HOST =
 const DATA_HOST =
-  DevelopmentModeUtil.siteRegion === 'CN'
-    ? 'https://rcstatic.traveleorzea.com/pastry-fish-statistics-files'
-    : 'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files@main'
+  DevelopmentModeUtil.siteRegion() === 'Global'
+    ? 'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files@main'
+    : 'https://rcstatic.traveleorzea.com/pastry-fish-statistics-files'
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
 export const TEMP_RC_ACCESS_TOKEN_KEY = 'TEMP_RC_ACCESS_TOKEN'
 export const RC_USER_PROFILE_KEY = 'RC_USER_PROFILE'

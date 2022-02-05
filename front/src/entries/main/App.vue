@@ -937,6 +937,7 @@ import { sendElectronEvent } from '@/utils/electronHelper'
 import AlarmMixin from '@/mixins/AlarmMixin'
 import AppMixin from '@/components/AppMixin'
 import DataUtil from '@/utils/DataUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import ImgUtil from '@/utils/ImgUtil'
 import LINK from 'Data/link'
 import MainWindowMixin from '@/components/MainWindowMixin'
@@ -1007,7 +1008,7 @@ export default {
   },
   computed: {
     siteRegion() {
-      return process.env.VUE_APP_SITE_REGION
+      return DevelopmentModeUtil.siteRegion()
     },
     dataLocale: {
       get() {
