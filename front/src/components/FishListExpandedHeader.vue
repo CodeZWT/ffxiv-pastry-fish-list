@@ -38,6 +38,7 @@
                       hover ? 'info--text text-decoration-underline' : ''
                     }`
                   "
+                  style="cursor: pointer"
                 >
                   {{ fish.name }}
                 </div>

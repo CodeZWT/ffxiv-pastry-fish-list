@@ -22,29 +22,27 @@
           :filter="filterOptions"
         >
           <template v-slot:item="data">
-            <click-helper>
-              <div class="d-flex">
-                <v-list-item-avatar>
-                  <raw-item-icon
-                    v-if="data.item.type === 'fish'"
-                    :icon-class="data.item.icon"
-                  />
-                  <div v-else class="d-flex align-center">
-                    <div :class="data.item.icon"></div>
+            <div class="d-flex">
+              <v-list-item-avatar>
+                <raw-item-icon
+                  v-if="data.item.type === 'fish'"
+                  :icon-class="data.item.icon"
+                />
+                <div v-else class="d-flex align-center">
+                  <div :class="data.item.icon"></div>
+                </div>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>
+                  <div>
+                    {{ data.item.name }}
                   </div>
-                </v-list-item-avatar>
-                <v-list-item-content>
-                  <v-list-item-title>
-                    <div>
-                      {{ data.item.name }}
-                    </div>
-                    <div v-if="data.item.type === 'fish'" style="font-size: small">
-                      {{ data.item.spotNamesSimple }}
-                    </div>
-                  </v-list-item-title>
-                </v-list-item-content>
-              </div>
-            </click-helper>
+                  <div v-if="data.item.type === 'fish'" style="font-size: small">
+                    {{ data.item.spotNamesSimple }}
+                  </div>
+                </v-list-item-title>
+              </v-list-item-content>
+            </div>
           </template>
         </rc-autocomplete>
       </v-card-title>

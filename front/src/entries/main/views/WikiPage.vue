@@ -99,8 +99,8 @@
             @update:active="onMenuItemActive"
           >
             <template v-if="!showBulkCompleteCheckbox" v-slot:prepend="{ selected }">
-              <v-icon>
-                {{ selected ? mdiCheck : '' }}
+              <v-icon v-if="selected">
+                {{ mdiCheck }}
               </v-icon>
             </template>
           </v-treeview>
@@ -1284,4 +1284,7 @@ $wrapper-wiki-menu: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
   flex: 0 1 100%
   overflow-x: hidden
   padding-left: 4px
+
+::v-deep .v-treeview-node
+  cursor: pointer !important
 </style>
