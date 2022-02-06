@@ -3,6 +3,7 @@ const LocalSettingModule = {
   state: {
     settings: {
       showSiteRegionDialog: true,
+      hardwareAcceleration: true,
     },
   },
   getters: {

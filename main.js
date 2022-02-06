@@ -68,6 +68,7 @@ const DEFAULT_HOTKEY_SETTING = {
   toggleReader: 'K',
 }
 const DEFAULT_WINDOW_SETTING = {
+  hardwareAcceleration: true,
   main: {
     pos: { x: 100, y: 100 },
     size: { w: 1080, h: 768 },
@@ -105,10 +106,11 @@ const DEFAULT_WINDOW_SETTING = {
     opacity: 0.95,
     zoomFactor: 1,
   },
+
 }
 function initSetting(configStore, key, defaultVal) {
   const setting = configStore.get(key)
-  if (!setting) {
+  if (setting == null) {
     configStore.set(key, defaultVal)
     log.info('Initialize user config in', app.getPath('userData'), 'of', key)
   } else {
@@ -219,9 +221,6 @@ async function init() {
       })
   }
 
-  configStore = new Store()
-  initSetting(configStore, 'windowSetting', DEFAULT_WINDOW_SETTING)
-  windowSetting = configStore.get('windowSetting')
   initSetting(configStore, 'hotkeySetting', DEFAULT_HOTKEY_SETTING)
   hotkeySetting = configStore.get('hotkeySetting')
 
@@ -441,6 +440,7 @@ async function init() {
     })
     .on('updateMainConfig', (event, config) => {
       mainWindowConfig = config
+      saveWindowSetting('hardwareAcceleration', config.hardwareAcceleration)
     })
     .on('finishLoading', (event, { userData, readerSetting }) => {
       // if (loadingForReloadingPage != null && !loadingForReloadingPage.isDestroyed()) {
@@ -1456,6 +1456,14 @@ if (!gotTheLock) {
     log.info('Focus main window when try to open 2nd instance')
     showAndFocusMain()
   })
+
+  configStore = new Store()
+  initSetting(configStore, 'windowSetting', DEFAULT_WINDOW_SETTING)
+  windowSetting = configStore.get('windowSetting')
+  if (!windowSetting.hardwareAcceleration) {
+    app.disableHardwareAcceleration()
+  }
+  log.info("Hardware Acceleration", windowSetting.hardwareAcceleration ? "enabled" : "disabled");
 
   app
     .whenReady()

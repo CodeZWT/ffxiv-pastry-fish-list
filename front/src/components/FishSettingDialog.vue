@@ -12,7 +12,7 @@
       <v-card-text class="py-0">
         <validation-observer ref="observer" v-slot="">
           <form>
-            <v-row>
+            <v-row no-gutters>
               <v-col cols="12" v-if="isElectron">
                 <div>
                   <v-radio-group
@@ -58,7 +58,18 @@
                     {{ Math.floor(value * 100) }}%
                   </template>
                 </v-slider>
-                <v-divider />
+              </v-col>
+              <v-col cols="12" v-if="isElectron">
+                <div class="d-flex align-center">
+                  <div class="v-label mr-2">
+                    硬件加速
+                  </div>
+                  <v-switch v-model="lazyHardwareAcceleration" dense />
+                </div>
+                <div class="text-subtitle-2 mb-4" style="margin-top: -16px;">
+                  ※ 关闭硬件加速可以解决一些显示问题。
+                  改变硬件加速选项后需要重启鱼糕才能生效。
+                </div>
               </v-col>
               <v-col cols="12">
                 <div class="text-subtitle-1">
@@ -422,6 +433,7 @@ export default {
     lazyShowFilter: true,
     lazyMainWindowCloseMode: undefined,
     lazyRightPanePercentage: 0.3,
+    lazyHardwareAcceleration: true,
   }),
   computed: {
     showSettingDialog: {
@@ -443,6 +455,7 @@ export default {
       'mainWindowCloseMode',
       'rightPanePercentageV2',
     ]),
+    ...mapState('localSetting', ['settings']),
   },
   watch: {
     showSettingDialog(showSettingDialog) {
@@ -472,6 +485,7 @@ export default {
       this.lazyShowFilter = this.showFilter
       this.lazyMainWindowCloseMode = this.mainWindowCloseMode
       this.lazyRightPanePercentage = this.rightPanePercentageV2
+      this.lazyHardwareAcceleration = this.settings.hardwareAcceleration
     },
     playSound(key) {
       this.sounds[key]?.player?.volume(this.lazyNotificationSetting.volume).play()
@@ -486,8 +500,13 @@ export default {
     },
     apply() {
       this.setMainWindowCloseMode(this.lazyMainWindowCloseMode)
+      this.setLocalSetting({
+        key: 'hardwareAcceleration',
+        value: this.lazyHardwareAcceleration,
+      })
       sendElectronEvent('updateMainConfig', {
         closeMode: this.lazyMainWindowCloseMode,
+        hardwareAcceleration: this.lazyHardwareAcceleration,
       })
       this.setShowFilter(this.lazyShowFilter)
       this.setOpacity(this.lazyOpacity)
@@ -570,6 +589,9 @@ export default {
       'setShowFilter',
       'setRightPanePercentageV2',
     ]),
+    ...mapMutations('localSetting', {
+      setLocalSetting: 'setSetting',
+    }),
   },
 }
 </script>
