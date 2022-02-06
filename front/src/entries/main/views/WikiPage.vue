@@ -511,13 +511,15 @@ export default {
     root: undefined,
     searchResults: { text: '', nodeIds: [] },
     forceShowComponents: undefined,
-    mode: 'normal',
     isElectron: DevelopmentModeUtil.isElectron(),
     showSyncDialog: false,
     syncStatus: 'not-start',
     rightPaneFullScreen: false,
   }),
   computed: {
+    mode() {
+      return this.typeOfSpot(this.currentSpotId)
+    },
     currentFishList() {
       return this.currentFishIds.map(fishId => {
         return this.lazyTransformedFishDict[fishId]
