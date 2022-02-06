@@ -1134,6 +1134,9 @@ export default {
         sendElectronEvent('listCntUpdated', listFishCnt)
       }
     },
+    $route() {
+      this.showSearch = false
+    },
   },
   mounted() {
     window.electron?.ipcRenderer?.on('showSpotPage', (event, spotId) => {
