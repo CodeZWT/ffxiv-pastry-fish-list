@@ -571,7 +571,7 @@ export default {
       }
       switch (this.type) {
         case 'territory':
-          return this.territoryDict[`${this.mode}-${this.currentTerritoryId}`].map(
+          return this.territoryDict[`${this.menuMode}-${this.currentTerritoryId}`].map(
             this.assembleSpot
           )
         case 'fish':
