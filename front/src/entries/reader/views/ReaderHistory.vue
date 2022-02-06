@@ -339,6 +339,7 @@ import SPOT_FISH_DICT from 'Data/spotFishDict'
 import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
+import dataLoader from '@/utils/dataLoader'
 
 const INITIAL_LOADING_CNT = 100
 const LOAD_MORE_CNT = 100
@@ -699,7 +700,8 @@ export default {
             .limit(batchCnt)
             .toArray()
           this.exportedRecordCount = i
-          allData.splice(0, 0, ...this.toExportData(batchData))
+          const batchExportData = await this.toExportData(batchData)
+          allData = batchExportData.concat(allData)
         }
         const max = Date.now()
         allData = _.sortBy(allData, it => max - it.timestamp)
@@ -718,8 +720,10 @@ export default {
     },
     isDiademSpot: DataUtil.isDiademSpot,
     isOceanFishingSpot: DataUtil.isOceanFishingSpot,
-    toExportData(records) {
+    async toExportData(records) {
       // console.log(JSON.stringify(records))
+      const { FISH: DIADEM_FISH } = await dataLoader.DIADEM()
+
       return records
         .map(record => {
           try {
@@ -762,7 +766,9 @@ export default {
               鱼: DataUtil.getItemName(record.fishId) ?? '未知',
               HQ: record.hq ? '是' : '否',
               '长度（星寸）': record.size > 0 ? (record.size / 10).toFixed(1) : '',
-              鱼版本: DataUtil.toPatchText(UploadUtil.getFishPatch(record.fishId)),
+              鱼版本: DataUtil.toPatchText(
+                UploadUtil.getFishPatch(record.fishId, DIADEM_FISH)
+              ),
               脱钩: record.missed ? '是' : '否',
               未提钩: record.cancelled ? '是' : '否',
               鱼饵: DataUtil.getItemName(record.baitId),

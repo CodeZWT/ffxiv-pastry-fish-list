@@ -17,6 +17,7 @@ import dataLoader from '@/utils/dataLoader'
 import rcapiService, { RC_ACCESS_TOKEN_KEY } from '@/service/rcapiService'
 
 const getFishPatch = (fishId, DIADEM_FISH) => {
+  if (fishId <= 0) return undefined
   return (
     FISH[fishId]?.patch || OCEAN_FISHING_FISH[fishId]?.patch || DIADEM_FISH[fishId]?.patch
   )
