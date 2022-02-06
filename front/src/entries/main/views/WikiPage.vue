@@ -49,7 +49,7 @@
           </v-btn>
           <v-spacer />
           <v-btn-toggle
-            v-model="mode"
+            v-model="menuMode"
             color="primary"
             class="my-1"
             mandatory
@@ -60,7 +60,7 @@
               :value="mode.value"
               v-for="(mode, index) in modes"
               :key="index"
-              @click="clearCurrentStatus(mode)"
+              @click="clearCurrentStatus(mode.value)"
             >
               <div class="d-flex align-center">
                 <div :class="mode.icon"></div>
@@ -82,7 +82,7 @@
           }"
         >
           <v-treeview
-            v-show="mode === 'normal'"
+            v-show="menuMode === 'normal'"
             ref="normalSpotMenu"
             v-model="normalCompletedSpotFishIds"
             :items="regionTerritorySpots"
@@ -105,7 +105,7 @@
             </template>
           </v-treeview>
           <v-treeview
-            v-show="mode === 'spear'"
+            v-show="menuMode === 'spear'"
             ref="spearSpotMenu"
             v-model="spearCompletedSpotFishIds"
             :items="spearRegionTerritorySpots"
@@ -262,6 +262,7 @@
         >
           <!--  show spot view  -->
           <wiki-spot-detail
+            v-if="mode"
             :mode="mode"
             :is-mobile="isMobile"
             :is-electron="isElectron"
@@ -493,14 +494,18 @@ export default {
     currentFishId: -1,
     // completedSpots: [],
     // regionTerritorySpots: [],
+    allOpened: false,
     openedItems: [],
-    normalOpenedItems: [],
-    searchOpenedItems: [],
+    // lastOpenedItems: [],
+    // normalOpenedItems: [],
+    // searchOpenedItems: [],
     spearOpenedItems: [],
-    spearNormalOpenedItems: [],
-    spearSearchOpenedItems: [],
+    // spearNormalOpenedItems: [],
+    // spearSearchOpenedItems: [],
     spotDict: {},
     territoryDict: {},
+    normalSearchNames: [],
+    spearSearchNames: [],
     isSettingMode: false,
     searching: false,
     lazySearchText: '',
@@ -515,11 +520,12 @@ export default {
     showSyncDialog: false,
     syncStatus: 'not-start',
     rightPaneFullScreen: false,
+    regionTerritorySpots: [],
+    spearRegionTerritorySpots: [],
+    menuMode: 'normal',
+    mode: undefined,
   }),
   computed: {
-    mode() {
-      return this.typeOfSpot(this.currentSpotId)
-    },
     currentFishList() {
       return this.currentFishIds.map(fishId => {
         return this.lazyTransformedFishDict[fishId]
@@ -530,17 +536,6 @@ export default {
     },
     mainPaneFlexPercentage() {
       return Math.floor((100 * (1 - this.rightPanePercentage)) / this.rightPanePercentage)
-    },
-    currentRegionTerritorySpots() {
-      return this.mode === 'normal'
-        ? this.regionTerritorySpots
-        : this.spearRegionTerritorySpots
-    },
-    regionTerritorySpots() {
-      return this.loadWikiDataOfType('normal')
-    },
-    spearRegionTerritorySpots() {
-      return this.loadWikiDataOfType('spear')
     },
     isOceanFishingTerritory() {
       return [3444, 3445, 3446, 3447, 3641, 3642, 3643].includes(this.currentTerritoryId)
@@ -769,6 +764,22 @@ export default {
     ]),
   },
   watch: {
+    currentSpotId: {
+      handler(currentSpotId) {
+        if (currentSpotId > 0) {
+          this.mode = this.typeOfSpot(currentSpotId)
+        }
+      },
+      immediate: true,
+    },
+    mode: {
+      handler(mode) {
+        if (mode) {
+          this.menuMode = mode
+        }
+      },
+      immediate: true,
+    },
     '$route.query': {
       handler(query) {
         console.debug('watch query', query)
@@ -780,7 +791,6 @@ export default {
       },
       immediate: true,
     },
-
     type(type) {
       if (type === 'fish') {
         this.scrollToTop()
@@ -799,9 +809,12 @@ export default {
     },
   },
   created() {
+    this.regionTerritorySpots = this.loadWikiDataOfType('normal')
+    this.spearRegionTerritorySpots = this.loadWikiDataOfType('spear')
+
     console.debug('nav with query', this.$route.query)
-    this.openedItems = this.normalOpenedItems
-    this.spearOpenedItems = this.spearNormalOpenedItems
+    this.openedItems = []
+    this.spearOpenedItems = []
     this.spearSpots = FIX.SPEAR_REGION_TERRITORY_POINT.flatMap(it =>
       it.territories.flatMap(t => t.spots.map(s => s.id))
     )
@@ -939,15 +952,16 @@ export default {
       }
     },
     clearCurrentStatus(mode) {
-      if (mode !== this.mode) {
+      if (mode !== this.menuMode) {
+        this.mode = mode
         this.type = undefined
         this.currentTerritoryId = -1
         this.currentSpotId = -1
         this.currentFishId = -1
-        this.openedItems = this.normalOpenedItems = []
-        this.searchOpenedItems = []
-        this.spearOpenedItems = this.spearNormalOpenedItems = []
-        this.spearSearchOpenedItems = []
+        this.openedItems = []
+        this.spearOpenedItems = []
+        this.allOpened = false
+        this.searchText = ''
       }
     },
     getSpotsOfType(type) {
@@ -992,6 +1006,13 @@ export default {
         this.batchSetFishCompleted({ fishIds: added, completed: true })
       }
     },
+    cacheSearchNames(type, name) {
+      if (type === 'normal') {
+        this.normalSearchNames.push(name)
+      } else {
+        this.spearSearchNames.push(name)
+      }
+    },
     loadWikiDataOfType(type) {
       if (
         this.lazyTransformedFishDict &&
@@ -1001,18 +1022,24 @@ export default {
           .filter(region => region.id != null)
           .map(region => {
             // output += `region,${region.id},${placeNames[region.id]}\n`
+            const regionName = placeNames[region.id]
+            this.cacheSearchNames(type, regionName)
+
             return {
               id: 'region-' + region.id,
-              name: placeNames[region.id],
+              name: regionName,
               // TODO: arrange region & territory according to order
               children: region.territories.map(territory => {
                 // output += `territory,${territory.id},${placeNames[territory.id]}\n`
                 this.territoryDict[`${type}-${territory.id}`] = territory.spots.map(
                   spot => spot.id
                 )
+                const territoryName = placeNames[territory.id]
+                this.cacheSearchNames(type, territoryName)
+
                 return {
                   id: 'territory-' + territory.id,
-                  name: placeNames[territory.id],
+                  name: territoryName,
                   children: territory.spots.map(spot => {
                     // output += `spot,${spot.id},${this.getFishingSpotsName(spot.id)}\n`
                     // console.log(Object.keys(this.lazyTransformedFishDict))
@@ -1031,18 +1058,22 @@ export default {
                       // filter future version fish out
                       fishList,
                     }
+                    const spotName =
+                      type === 'normal'
+                        ? this.getFishingSpotsName(spot.id)
+                        : placeNames[FIX.SPEAR_FISH_GATHERING_POINTS[spot.id].placeNameId]
+                    this.cacheSearchNames(type, spotName)
+
                     return {
                       id: 'spot-' + spot.id,
-                      name:
-                        type === 'normal'
-                          ? this.getFishingSpotsName(spot.id)
-                          : placeNames[
-                              FIX.SPEAR_FISH_GATHERING_POINTS[spot.id].placeNameId
-                            ],
+                      name: spotName,
                       children: fishList.map(fishId => {
+                        const fishName = this.lazyTransformedFishDict[fishId].name
+                        this.cacheSearchNames(type, fishName)
+
                         return {
                           id: 'spot-' + spot.id + '-fish-' + fishId,
-                          name: this.lazyTransformedFishDict[fishId].name,
+                          name: fishName,
                         }
                       }),
                     }
@@ -1067,27 +1098,18 @@ export default {
           ?.filter(it => it != null) ?? []
       )
     },
-    updateOpenItems(search, oldSearch) {
-      if (search === '' && oldSearch !== '') {
-        const activeNodes = this.getPathNodesOf(this.activeItem)
+    updateOpenItems(search) {
+      let matchCnt = 0
+      if (search) {
+        let searchRange =
+          this.menuMode === 'normal' ? this.normalSearchNames : this.spearSearchNames
+        matchCnt = searchRange.filter(text => this.match(search, text)).length
+      }
 
-        if (this.mode === 'normal') {
-          this.openedItems = _.uniq([...this.normalOpenedItems, ...activeNodes])
-          this.searchOpenedItems = []
-        } else {
-          this.spearOpenedItems = _.uniq([...this.spearNormalOpenedItems, ...activeNodes])
-          this.spearSearchOpenedItems = []
-        }
-        this.searching = false
-      } else if (search !== '' && oldSearch === '') {
-        if (this.mode === 'normal') {
-          this.normalOpenedItems = this.openedItems
-          this.openedItems = this.searchOpenedItems
-        } else {
-          this.spearNormalOpenedItems = this.spearOpenedItems
-          this.spearOpenedItems = this.spearSearchOpenedItems
-        }
-        this.searching = true
+      if (search && matchCnt > 0 && matchCnt <= 5) {
+        this.expandAll()
+      } else {
+        this.collapseAll()
       }
     },
     onFishClicked({ fishId, components }) {
@@ -1102,7 +1124,7 @@ export default {
     },
     onMenuItemActive(items) {
       const targetOpenedItems =
-        this.mode === 'normal' ? this.openedItems : this.spearOpenedItems
+        this.menuMode === 'normal' ? this.openedItems : this.spearOpenedItems
       if (items.length === 0) {
         if (this.preActiveItem != null) {
           targetOpenedItems.splice(targetOpenedItems.indexOf(this.preActiveItem), 1)
@@ -1155,21 +1177,14 @@ export default {
     },
     spotMenuSearchFn(item, searchText, textKey) {
       const itemText = item[textKey]
-      let result
+      return this.match(searchText, itemText)
+    },
+    match(search, text) {
       if (this.$i18n.locale === 'zh-CN') {
-        result = PinyinMatch.match(itemText ?? '', searchText) !== false
+        return PinyinMatch.match(text ?? '', search) !== false
       } else {
-        result = itemText.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+        return text.toLowerCase().indexOf(search.toLowerCase()) > -1
       }
-
-      // [TODO-TREE-PATH-AUTO-OPEN]
-      // const nodeIds = result ? [item.id] : []
-      // if (this.searchResults.text === searchText) {
-      //   this.searchResults = { text: searchText, nodeIds: [...this.searchResults.nodeIds, ...nodeIds] }
-      // } else {
-      //   this.searchResults = { text: searchText, nodeIds: nodeIds }
-      // }
-      return result
     },
     expandAll() {
       this.$refs.normalSpotMenu?.updateAll(true)
@@ -1180,7 +1195,7 @@ export default {
       this.$refs.spearSpotMenu?.updateAll(false)
     },
     assembleSpot(spotId) {
-      const mode = this.typeOfSpot(this.currentSpotId)
+      const mode = this.typeOfSpot(spotId)
       if (mode === 'normal') {
         const spot = this.getFishingSpot(spotId)
         return {
