@@ -25,12 +25,8 @@
               <v-card-text class="text-subtitle-1">
                 <div v-html="$t('homePage.description')"></div>
                 <div class="d-flex align-center mt-2">
-                  <v-badge inline color="info" content="New" />
-                  <div>更新降神节贺图，感谢 马猴烧鱼@拉诺西亚 绘制的贺图！</div>
-                </div>
-                <div class="d-flex align-center mt-2">
                   <v-badge inline color="warning" content="Fix" />
-                  <div>修复文件导出空白的问题。</div>
+                  <div>修复钓鱼笔记页面统计数据无法显示的问题</div>
                 </div>
               </v-card-text>
             </v-card>

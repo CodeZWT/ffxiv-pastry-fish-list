@@ -68,7 +68,7 @@
                 </div>
                 <div class="text-subtitle-2 mb-4" style="margin-top: -16px;">
                   ※ 关闭硬件加速可以解决一些显示问题。
-                  改变硬件加速选项后需要重启鱼糕才能生效。
+                  改变硬件加速选项后，需要点击下方应用按钮并重启鱼糕才能生效。
                 </div>
               </v-col>
               <v-col cols="12">
