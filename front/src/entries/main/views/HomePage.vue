@@ -144,24 +144,24 @@
             </v-card>
           </v-col>
           <v-col cols="12" md="6" class="my-md-0 py-md-0">
-            <v-card outlined style="height: 298px; overflow: hidden">
+            <v-card outlined style="height: 250px; overflow: hidden">
               <iframe
                 v-if="isDark"
                 width="100%"
-                height="330"
+                height="275"
                 class="share_self"
                 frameborder="0"
                 scrolling="no"
-                src="https://widget.weibo.com/weiboshow/index.php?language=&width=0&height=330&fansRow=2&ptype=1&speed=0&skin=10&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,2d2d32,FAFAFA,38669b,2d2d32&dpc=1"
+                src="https://widget.weibo.com/weiboshow/index.php?language=&width=0&height=275&fansRow=2&ptype=1&speed=0&skin=10&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,2d2d32,FAFAFA,38669b,2d2d32&dpc=1"
               ></iframe>
               <iframe
                 v-else
                 width="100%"
-                height="330"
+                height="275"
                 class="share_self"
                 frameborder="0"
                 scrolling="no"
-                src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=330&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,f2f3f5,666666,0082cb,f2f3f5&dpc=1"
+                src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=275&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,f2f3f5,666666,0082cb,f2f3f5&dpc=1"
               ></iframe>
             </v-card>
           </v-col>
@@ -222,7 +222,7 @@
                   </rc-tooltip>
                 </div>
               </v-card-title>
-              <v-card-text style="overflow-y: auto; max-height: 560px">
+              <v-card-text style="overflow-y: auto; max-height: 566px">
                 <v-chip
                   v-for="sponsor in coloredSponsors"
                   :key="sponsor.userId"
