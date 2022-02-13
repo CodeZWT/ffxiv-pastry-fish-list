@@ -28,6 +28,10 @@
                   <v-badge inline color="warning" content="Fix" />
                   <div>修复钓鱼笔记页面统计数据无法显示的问题</div>
                 </div>
+                <div class="d-flex align-center mt-2">
+                  <v-badge inline color="primary" content="New" />
+                  <div>更新恋人节贺图，感谢 马猴烧鱼@拉诺西亚 绘制的贺图！</div>
+                </div>
               </v-card-text>
             </v-card>
           </v-col>
@@ -343,7 +347,7 @@ export default {
     },
     largeLogo() {
       return ImgUtil.getImgUrl(
-        'pastry-fish-fes-heavensturn.webp',
+        'pastry-fish-fes-valentione.webp',
         ImgUtil.CATEGORY.HOME_LOGO
       )
     },
