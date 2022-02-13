@@ -55,7 +55,7 @@
                           v-for="rank in competition.ranks"
                           :key="rank.name"
                         >
-                          <v-icon :color="rank.color" x-large>fa fa-medal</v-icon>
+                          <v-icon :color="rank.color" x-large>{{ mdiMedal }}</v-icon>
                           <div class="ml-2" style="font-size: x-large">
                             {{ rank.name }}
                           </div>
@@ -91,6 +91,7 @@
 
 <script>
 import { competitions } from 'Data/competition'
+import { mdiMedal } from '@mdi/js'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import ImgViewer from '@/components/basic/ImgViewer'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
@@ -102,6 +103,7 @@ export default {
   props: ['original'],
   data() {
     return {
+      mdiMedal,
       tab: null,
       competitionImageCrrIdx: competitions.map(() => 0),
       isElectron: DevelopmentModeUtil.isElectron(),
