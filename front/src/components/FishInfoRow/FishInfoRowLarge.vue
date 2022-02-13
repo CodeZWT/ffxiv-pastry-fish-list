@@ -147,7 +147,7 @@
                     >
                   </div>
                   <div v-if="fish.collectable">
-                    <i class="xiv collectables" title="$t('common.game.collectable')" />
+                    <i class="xiv collectables" :title="$t('common.game.collectable')" />
                   </div>
                 </div>
               </div>

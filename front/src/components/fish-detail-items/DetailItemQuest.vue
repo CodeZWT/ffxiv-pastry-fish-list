@@ -31,11 +31,10 @@
         <i18n path="task.detail.requirement">
           <template v-if="task.requireCollectable">
             <i18n place="collectable" path="common.ui.brackets">
-              <span
-                ><i title="$t('common.game.collectable')" class="xiv collectables" />{{
-                  $t('common.game.collectable')
-                }}</span
-              >
+              <span>
+                <i :title="$t('common.game.collectable')" class="xiv collectables" />
+                {{ $t('common.game.collectable') }}
+              </span>
             </i18n>
           </template>
           <template v-else>
