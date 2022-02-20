@@ -238,6 +238,7 @@ import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 import WeatherIcon from '@/components/basic/WeatherIcon'
 import _ from 'lodash'
 import dataLoader from '@/utils/dataLoader'
+import placeNames from 'Data/locale/placeNames'
 import regionTerritorySpots from 'Data/fishingSpots'
 
 export default {
@@ -300,6 +301,9 @@ export default {
           return [10017, 10018, 10019, 10020, 10021, 10022, 10023, 10024, 10025]
       }
     },
+    spotWithOldRoundFish() {
+      return [10015, 10016, 10024, 10025]
+    },
     diademSpots() {
       return !this.DIADEM
         ? []
@@ -313,7 +317,11 @@ export default {
             return {
               ...spot,
               fishingSpot,
-              fishingSpotName: this.getFishingSpotsName(spot.id),
+              fishingSpotName: `${DataUtil.getName(placeNames[fishingSpot.placeNameId])}${
+                this.spotWithOldRoundFish.includes(spot.id)
+                  ? this.$t('diademPage.oldSpot')
+                  : ''
+              }`,
               fishingSpotId: spot.id,
               fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
               fishList: spot.fishList.map(fishId => {

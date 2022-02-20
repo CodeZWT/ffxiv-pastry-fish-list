@@ -3,7 +3,7 @@
     <v-card outlined class="mt-2">
       <v-card-title>
         <div class="d-flex justify-center">
-          <div>{{ location.name }}</div>
+          <div>{{ location.mainName }}</div>
           <v-icon>{{ location.icon }}</v-icon>
         </div>
       </v-card-title>
@@ -18,7 +18,7 @@
     <v-card outlined color="info" class="mt-2">
       <v-card-title>
         <div class="d-flex justify-center">
-          <div>{{ location.name }}幻海流</div>
+          <div>{{ location.subName }}</div>
           <v-icon>{{ location.icon }}</v-icon>
         </div>
       </v-card-title>

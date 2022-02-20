@@ -37,7 +37,7 @@
           <v-expansion-panel-header>
             <div class="d-flex my-4" style="width: 100%">
               <div class="text-h6">
-                {{ currentFishingSpot && currentFishingSpot.name }}
+                {{ currentFishingSpot && currentFishingSpot.mainName }}
               </div>
               <v-icon>{{ currentFishingSpot && currentFishingSpot.icon }}</v-icon>
             </div>
@@ -54,7 +54,9 @@
         <v-expansion-panel>
           <v-expansion-panel-header>
             <div class="d-flex my-4" style="width: 100%">
-              <div class="text-h6">{{ currentFishingSpotSpectralCurrentName }}</div>
+              <div class="text-h6">
+                {{ currentFishingSpot && currentFishingSpot.subName }}
+              </div>
               <v-icon>{{ currentFishingSpot && currentFishingSpot.icon }}</v-icon>
             </div>
           </v-expansion-panel-header>
@@ -89,7 +91,7 @@
               <v-card outlined class="mt-2">
                 <v-card-title>
                   <div class="d-flex justify-center">
-                    <div>{{ location.name }}</div>
+                    <div>{{ location.mainName }}</div>
                     <v-icon>{{ location.icon }}</v-icon>
                   </div>
                 </v-card-title>
@@ -130,7 +132,7 @@
               <v-card outlined color="info" class="mt-2">
                 <v-card-title>
                   <div class="d-flex justify-center">
-                    <div>{{ location.name }}幻海流</div>
+                    <div>{{ location.subName }}</div>
                     <v-icon>{{ location.icon }}</v-icon>
                   </div>
                 </v-card-title>

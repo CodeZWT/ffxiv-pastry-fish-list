@@ -666,7 +666,9 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPE
         spotId: spotId,
         fishingSpots: fishingSpots,
         weatherSet: spot.weatherSet,
-        locationName: spot.spotMainNameText,
+        locationName: spot.placeName,
+        locationMainName: spot.spotMainPlaceName,
+        locationSubName: spot.spotSubPlaceName,
         shift: shiftIndex,
         locationHint: SHIFTS[shiftIndex],
         blueFish: route.blueFish[i] ? route.blueFish[i] : null,
@@ -678,6 +680,7 @@ function voyagesWithTipOf(time = Date.now(), voyageN = 10, targets = VOYAGE_TYPE
       voyageTip: { achievements: route.achievements },
       locationTips: locationTips,
       shift: {
+        routeId: route.routeId,
         type: timeList[0] - 1,
         name: route.name_chs,
       },

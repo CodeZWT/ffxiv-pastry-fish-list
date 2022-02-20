@@ -2,8 +2,10 @@ import { OCEAN_FISHING_BONUS } from 'Data/oceanFishing'
 import { mapGetters } from 'vuex'
 import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
+import IKDRoute from 'Data/locale/IKDRoute'
 import ImgUtil from '@/utils/ImgUtil'
 import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
+import placeNames from 'Data/locale/placeNames'
 
 export default {
   name: 'IKDRouteMixin',
@@ -46,7 +48,7 @@ export default {
             day: DataUtil.formatDateTime(voyageWithTip.time, 'MM-dd'),
             time: DataUtil.formatDateTime(voyageWithTip.time, 'HH:mm'),
             shiftIcon: DataUtil.shift2Icon(voyageWithTip.shift.type),
-            name: voyageWithTip.shift.name,
+            name: DataUtil.getName(IKDRoute[voyageWithTip.shift.routeId]),
             targets: targets,
             typeMission: voyageWithTip.typeMission,
             starMission: voyageWithTip.starMission,
@@ -56,7 +58,9 @@ export default {
               spectralCurrentId: it.fishingSpots.spectralCurrent,
               weatherSet: it.weatherSet,
               shift: it.shift,
-              name: it.locationName,
+              name: DataUtil.getName(placeNames[it.locationName]),
+              mainName: DataUtil.getName(placeNames[it.locationMainName]),
+              subName: DataUtil.getName(placeNames[it.locationSubName]),
               icon: DataUtil.shift2Icon(it.shift),
               hint: it.locationHint,
             })),
