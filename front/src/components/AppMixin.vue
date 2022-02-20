@@ -43,7 +43,7 @@ import UpdateDialog from '@/components/Dialog/UpdateDialog'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import _ from 'lodash'
 import hotkeys from 'hotkeys-js'
-import placeNames from 'Data/placeNames'
+import placeNames from 'Data/locale/placeNames'
 import rcapiService from '@/service/rcapiService'
 import regionTerritorySpots from 'Data/fishingSpots'
 import spearFishSize from 'Data/spearFishSize'
@@ -830,7 +830,7 @@ export default {
             fish.locations.map(location => {
               return {
                 key: JSON.stringify(
-                  this.weatherRates[this.fishingSpots[location]?.territory_id]
+                  this.weatherRates[this.fishingSpots[location]?.territoryTypeId]
                     ?.weather_rates
                 ),
                 location: location,
@@ -1089,9 +1089,9 @@ export default {
             const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[location]
             return {
               locationId: location,
-              zone: placeNames[gatheringPoint.territoryPlaceNameId],
+              zone: DataUtil.getName(placeNames[gatheringPoint.territoryPlaceNameId]),
               fishingSpot: gatheringPoint,
-              fishingSpotName: DataUtil.getName(gatheringPoint),
+              fishingSpotName: DataUtil.getName(placeNames[gatheringPoint.placeNameId]),
               fishingSpotId: location,
               fishSpotPositionText: DataUtil.toPositionText(gatheringPoint),
             }

@@ -202,7 +202,7 @@ import LinkList from '@/components/basic/LinkList'
 import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 import _ from 'lodash'
-import placeNames from 'Data/placeNames'
+import placeNames from 'Data/locale/placeNames'
 
 export default {
   name: 'WikiSpotDetail',
@@ -366,8 +366,8 @@ export default {
         const spot = this.getFishingSpot(spotId)
         return {
           ...spot,
-          name: DataUtil.getName(spot),
-          zone: placeNames[spot.territoryId],
+          name: DataUtil.getName(placeNames[spot.placeNameId]),
+          zone: DataUtil.getName(placeNames[spot.territoryTypePlaceNameId]),
         }
       } else {
         const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[spotId]
@@ -377,8 +377,8 @@ export default {
         // })
         return {
           ...gatheringPoint,
-          name: DataUtil.getName(gatheringPoint),
-          zone: placeNames[gatheringPoint.regionPlaceNameId],
+          name: DataUtil.getName(placeNames[gatheringPoint.placeNameId]),
+          zone: DataUtil.getName(placeNames[gatheringPoint.territoryTypePlaceNameId]),
         }
       }
     },

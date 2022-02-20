@@ -140,6 +140,7 @@ import EnvMixin from '@/components/basic/EnvMixin'
 import ImgUtil from '@/utils/ImgUtil'
 import _ from 'lodash'
 import copy from 'copy-to-clipboard'
+import placeNames from 'Data/locale/placeNames'
 
 const TEXT_PADDING = 50
 const TEXT_AETHERYTE_FONT = 90
@@ -319,7 +320,8 @@ export default {
     aetheryteMakerTextConfigs() {
       return (
         this.aetheryte[this.id]?.map(it => {
-          const text = DataUtil.getName(it)
+          console.log(it.placeNameId)
+          const text = DataUtil.getName(placeNames[it.placeNameId])
           return this.computeSafeTextConfig(text, it.x, it.y, {
             fontSize: TEXT_AETHERYTE_FONT,
             preventDefault: false,

@@ -322,7 +322,6 @@ import {
 } from '@mdi/js'
 import BAITS from 'Data/bait'
 import COMMON from 'Data/common'
-import DATA from 'Data/data'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import EnvMixin from '@/components/basic/EnvMixin'
@@ -330,7 +329,7 @@ import EorzeaTime from '@/utils/Time'
 import FishDict from 'Data/fish'
 import ItemIcon from '@/components/basic/ItemIcon'
 import NewFeatureMark from '@/components/basic/NewFeatureMark'
-import PLACE_NAMES from 'Data/placeNames'
+import PLACE_NAMES from 'Data/locale/placeNames'
 import PinyinMatch from 'pinyin-match'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
@@ -644,8 +643,7 @@ export default {
         result = await table
           .offset(offset)
           .limit(limit)
-          .toArray()
-        // if (showIgnoredRecord) {
+          .toArray() // if (showIgnoredRecord) {
         this.dbRecordsCnt = await this.db.records.count()
         // } else {
         //   this.dbRecordsCnt = await this.db.records.where({ cancelled: false }).count()
@@ -753,15 +751,16 @@ export default {
               ),
               地区:
                 spotId > 0
-                  ? PLACE_NAMES[
-                      DATA.WEATHER_RATES[DataUtil.FISHING_SPOTS[spotId]?.territory_id]
-                        ?.zone_id ??
-                        (this.isDiademSpot(spotId)
-                          ? DIADEM_ZONE
-                          : this.isOceanFishingSpot(spotId)
-                          ? OCEAN_FISHING_ZONE
-                          : 0)
-                    ]
+                  ? DataUtil.getName(
+                      PLACE_NAMES[
+                        DataUtil.FISHING_SPOTS[spotId]?.regionPlaceNameId ??
+                          (this.isDiademSpot(spotId)
+                            ? DIADEM_ZONE
+                            : this.isOceanFishingSpot(spotId)
+                            ? OCEAN_FISHING_ZONE
+                            : 0)
+                      ]
+                    )
                   : '',
               鱼: DataUtil.getItemName(record.fishId) ?? '未知',
               HQ: record.hq ? '是' : '否',

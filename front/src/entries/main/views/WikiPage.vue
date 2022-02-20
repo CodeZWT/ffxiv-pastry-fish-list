@@ -435,7 +435,7 @@ import TreeModel from 'tree-model'
 import WikiSpotDetail from '@/components/WikiSpotDetail'
 import _ from 'lodash'
 import normSpots from 'Data/fishingSpots'
-import placeNames from 'Data/placeNames'
+import placeNames from 'Data/locale/placeNames'
 
 export default {
   name: 'WikiPage',
@@ -1023,7 +1023,7 @@ export default {
           .filter(region => region.id != null)
           .map(region => {
             // output += `region,${region.id},${placeNames[region.id]}\n`
-            const regionName = placeNames[region.id]
+            const regionName = DataUtil.getName(placeNames[region.id])
             this.cacheSearchNames(type, regionName)
 
             return {
@@ -1035,7 +1035,7 @@ export default {
                 this.territoryDict[`${type}-${territory.id}`] = territory.spots.map(
                   spot => spot.id
                 )
-                const territoryName = placeNames[territory.id]
+                const territoryName = DataUtil.getName(placeNames[territory.id])
                 this.cacheSearchNames(type, territoryName)
 
                 return {
@@ -1062,7 +1062,11 @@ export default {
                     const spotName =
                       type === 'normal'
                         ? this.getFishingSpotsName(spot.id)
-                        : placeNames[FIX.SPEAR_FISH_GATHERING_POINTS[spot.id].placeNameId]
+                        : DataUtil.getName(
+                            placeNames[
+                              FIX.SPEAR_FISH_GATHERING_POINTS[spot.id].placeNameId
+                            ]
+                          )
                     this.cacheSearchNames(type, spotName)
 
                     return {
@@ -1201,8 +1205,8 @@ export default {
         const spot = this.getFishingSpot(spotId)
         return {
           ...spot,
-          name: DataUtil.getName(spot),
-          zone: placeNames[spot.territoryId],
+          name: DataUtil.getName(placeNames[spot.placeNameId]),
+          zone: DataUtil.getName(placeNames[spot.territoryTypePlaceNameId]),
         }
       } else {
         const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[spotId]
@@ -1212,8 +1216,8 @@ export default {
         // })
         return {
           ...gatheringPoint,
-          name: DataUtil.getName(gatheringPoint),
-          zone: placeNames[gatheringPoint.regionPlaceNameId],
+          name: DataUtil.getName(placeNames[gatheringPoint.placeNameId]),
+          zone: DataUtil.getName(placeNames[gatheringPoint.territoryTypePlaceNameId]),
         }
       }
     },

@@ -54,7 +54,7 @@ import EnvMixin from '@/components/basic/EnvMixin'
 import FIX from 'Data/fix'
 import FishDetailContent from '@/components/FishDetailContent'
 import FishListExpandedHeader from '@/components/FishListExpandedHeader'
-import placeNames from 'Data/placeNames'
+import placeNames from 'Data/locale/placeNames'
 
 export default {
   name: 'FishDetail',
@@ -119,9 +119,9 @@ export default {
         ? this.fish.locations.map(location => {
             const gatheringPoint = FIX.SPEAR_FISH_GATHERING_POINTS[location]
             return {
-              zone: placeNames[gatheringPoint.territoryPlaceNameId],
+              zone: DataUtil.getName(placeNames[gatheringPoint.territoryPlaceNameId]),
               fishingSpot: gatheringPoint,
-              fishingSpotName: DataUtil.getName(gatheringPoint),
+              fishingSpotName: DataUtil.getName(placeNames[gatheringPoint.placeNameId]),
               fishingSpotId: location,
               fishSpotPositionText: DataUtil.toPositionText(gatheringPoint),
             }

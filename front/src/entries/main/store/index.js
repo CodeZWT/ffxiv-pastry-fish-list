@@ -19,6 +19,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
 import _ from 'lodash'
+import placeNames from 'Data/locale/placeNames'
 import router from '@/entries/main/router'
 
 Vue.use(Vuex)
@@ -175,16 +176,17 @@ export const MainModule = {
     getZoneName: state => id => {
       const fishingSpot = state.fishingSpots[id]
       if (fishingSpot) {
-        return DataUtil.getName(
-          state.zones[state.weatherRates[fishingSpot.territory_id]?.zone_id]
-        )
+        return DataUtil.getName(placeNames[fishingSpot.territoryTypePlaceNameId])
       } else {
         return ''
       }
     },
     getFishingSpotsName: state => id => {
       if (id != null) {
-        return state.fishingSpots[id] && DataUtil.getName(state.fishingSpots[id])
+        return (
+          state.fishingSpots[id] &&
+          DataUtil.getName(placeNames[state.fishingSpots[id].placeNameId])
+        )
       } else {
         return ''
       }
@@ -258,7 +260,7 @@ export const MainModule = {
     getZoneId: state => id => {
       const fishingSpot = state.fishingSpots[id]
       if (fishingSpot) {
-        return this.weatherRates[fishingSpot.territory_id].zone_id
+        return this.weatherRates[fishingSpot.territoryTypeId].zone_id
       }
     },
     getWeather: state => weatherSet => {

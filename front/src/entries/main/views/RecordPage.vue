@@ -934,7 +934,7 @@ export default {
       })
     },
     regionFilterOptions() {
-      return this.regionIds.map(it => PlaceNames[it])
+      return this.regionIds.map(it => DataUtil.getName(PlaceNames[it]))
     },
     headers() {
       if (this.isFixedOwnRecordMode) {

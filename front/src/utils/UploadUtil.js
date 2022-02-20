@@ -8,7 +8,7 @@ import EorzeaTime from '@/utils/Time'
 import FISH from 'Data/fish'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
-import PLACE_NAMES from 'Data/placeNames'
+import PLACE_NAMES from 'Data/locale/placeNames'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
@@ -49,7 +49,8 @@ const toUploadData = async records => {
       spot: spotId,
       zone:
         spotId > 0
-          ? DATA.WEATHER_RATES[DataUtil.FISHING_SPOTS[spotId]?.territory_id]?.zone_id ??
+          ? DATA.WEATHER_RATES[DataUtil.FISHING_SPOTS[spotId]?.territoryTypeId]
+              ?.zone_id ??
             (DataUtil.isDiademSpot(spotId)
               ? DIADEM_ZONE
               : DataUtil.isOceanFishingSpot(spotId)
@@ -219,15 +220,16 @@ export default {
       ...this.toSpot(record.spot),
       zoneName:
         record.spot > 0
-          ? PLACE_NAMES[
-              DATA.WEATHER_RATES[DataUtil.FISHING_SPOTS[record.spot]?.territory_id]
-                ?.zone_id ??
-                (DataUtil.isDiademSpot(record.spot)
-                  ? DIADEM_ZONE
-                  : DataUtil.isOceanFishingSpot(record.spot)
-                  ? OCEAN_FISHING_ZONE
-                  : 0)
-            ]
+          ? DataUtil.getName(
+              PLACE_NAMES[
+                DataUtil.FISHING_SPOTS[record.spot]?.territoryTypePlaceNameId ??
+                  (DataUtil.isDiademSpot(record.spot)
+                    ? DIADEM_ZONE
+                    : DataUtil.isOceanFishingSpot(record.spot)
+                    ? OCEAN_FISHING_ZONE
+                    : 0)
+              ]
+            )
           : '',
       hookset: UploadUtil.toHookset(record.hookset),
       tug: ['light', 'medium', 'heavy'][record.tug],

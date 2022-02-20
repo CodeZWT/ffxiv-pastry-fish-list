@@ -274,7 +274,9 @@ export default {
       multiLanguageItem &&
       (multiLanguageItem['name_' + locale]
         ? multiLanguageItem['name_' + locale]
-        : multiLanguageItem['name_' + SystemInfo.dataSubLocale])
+        : multiLanguageItem['name_' + SystemInfo.dataSubLocale]
+        ? multiLanguageItem['name_' + SystemInfo.dataSubLocale]
+        : multiLanguageItem['name_chs'])
     )
   },
 
@@ -673,7 +675,7 @@ export default {
     // but all fish is split to multi fish in that case
     return FishWindow.getNextNFishWindows(
       fish._id,
-      fishingSpots?.[fish.locations[0]]?.territory_id,
+      fishingSpots?.[fish.locations[0]]?.territoryTypeId,
       new EorzeaTime(EorzeaTime.toEorzeaTime(now)),
       skipTimeCheck ? 0 : fish.startHour,
       skipTimeCheck ? 24 : fish.endHour,

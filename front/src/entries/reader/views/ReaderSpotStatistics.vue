@@ -41,6 +41,7 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import FishTimelineTable from '@/entries/reader/components/FishTimelineTable'
+import placeNames from 'Data/locale/placeNames'
 
 export default {
   name: 'ReaderSpotStatistics',
@@ -102,7 +103,7 @@ export default {
         spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name_chs: '未检测到钓场' }
       return {
         ...spot,
-        name: DataUtil.getName(spot),
+        name: DataUtil.getName(placeNames[spot.placeNameId]),
       }
     },
     dataForChart() {
