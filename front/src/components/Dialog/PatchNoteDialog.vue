@@ -24,24 +24,20 @@
         <!--        <v-alert outlined type="warning" border="left">-->
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
-        <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
-            <div class="text-h6">Version 1.1.7</div>
+            <div class="text-h6">Version 1.1.6-fix</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2021/02/20 12:10</div>
+            <div class="text-subtitle-1">更新时间: 2021/02/20 22:10</div>
           </div>
         </v-alert>
+        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>修复刺鱼鱼识及鱼影条件在搜索与笔记页面没有正常显示的问题</li>
+          <li>增加钓场多语言支持</li>
+          <li>增加多语言备选语言支持，当仍未有新版本翻译时，可设置备用显示的语言</li>
           <li>更新贺图</li>
-        </ul>
-        <div class="text-h6 my-1">鱼糕桌面版</div>
-        <ul>
-          <li>
-            支持关闭硬件加速（可以帮助解决一部分由于游戏未锁帧导致的显示问题，应用设置后请重启鱼糕）
-          </li>
         </ul>
         <v-divider />
 

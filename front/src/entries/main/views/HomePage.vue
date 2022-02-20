@@ -30,6 +30,10 @@
                 </div>
                 <div class="d-flex align-center mt-2">
                   <v-badge inline color="primary" content="New" />
+                  <div>增加钓场多语言支持</div>
+                </div>
+                <div class="d-flex align-center mt-2">
+                  <v-badge inline color="primary" content="New" />
                   <div>更新恋人节贺图，感谢 马猴烧鱼@拉诺西亚 绘制的贺图！</div>
                 </div>
               </v-card-text>
