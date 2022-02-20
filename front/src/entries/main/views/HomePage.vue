@@ -89,8 +89,91 @@
                 </v-col>
               </v-row>
             </v-col>
+
+            <v-col cols="12" class="pa-0">
+              <v-subheader>{{ $t('homePage.section.contact') }}</v-subheader>
+            </v-col>
+            <v-col cols="12" class="my-0 py-0">
+              <v-card outlined class="rounded-md">
+                <v-list dense color="inner">
+                  <v-list-item>
+                    <v-list-item-icon>
+                      <v-icon>{{ mdiAccount }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title> {{ $t('contact.author') }}</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="openQQ">
+                    <v-list-item-icon>
+                      <v-icon>{{ mdiQqchat }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title> 鱼糕检修部（1153646847） </v-list-item-title>
+                    <!--                <v-list-item-action>-->
+                    <!--                  <rc-tooltip>-->
+                    <!--{{                    <vIcon>mdiQrcode</vIcon>}}-->
+                    <!--                    <template v-slot:msg>-->
+                    <!--                      qrcode-->
+                    <!--                    </template>-->
+                    <!--                  </rc-tooltip>-->
+                    <!--                </v-list-item-action>-->
+                  </v-list-item>
+                  <v-list-item @click="openQQGuild">
+                    <v-list-item-icon>
+                      <!--                    <span style="font-size: x-large">#</span>-->
+                      <v-icon>{{ mdiQqchat }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>FF14 捕鱼人研究会</v-list-item-title>
+                    <!--                <v-list-item-action>-->
+                    <!--                  <rc-tooltip>-->
+                    <!--{{                    <vIcon>mdiQrcode</vIcon>}}-->
+                    <!--                    <template v-slot:msg>-->
+                    <!--                      qrcode-->
+                    <!--                    </template>-->
+                    <!--                  </rc-tooltip>-->
+                    <!--                </v-list-item-action>-->
+                  </v-list-item>
+                  <v-list-item @click="openWeibo('7546879530')">
+                    <v-list-item-icon>
+                      <v-icon>{{ mdiSinaWeibo }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>红豆年糕找不到</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="openWeibo('7245459345')">
+                    <v-list-item-icon>
+                      <v-icon>{{ mdiSinaWeibo }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>光之渔夫bot（合作）</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-card>
+            </v-col>
           </v-col>
+
           <v-col cols="12" md="6" class="pa-0">
+            <v-col cols="12" class="pa-0">
+              <v-subheader>{{ $t('homePage.section.weibo') }}</v-subheader>
+            </v-col>
+            <v-col cols="12" class="my-md-0 py-md-0">
+              <v-card outlined style="height: 404px; overflow: hidden">
+                <iframe
+                  v-if="isDark"
+                  width="100%"
+                  height="435"
+                  class="share_self"
+                  frameborder="0"
+                  scrolling="no"
+                  src="https://widget.weibo.com/weiboshow/index.php?language=&width=0&height=435&fansRow=2&ptype=1&speed=0&skin=10&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,2d2d32,FAFAFA,38669b,2d2d32&dpc=1"
+                ></iframe>
+                <iframe
+                  v-else
+                  width="100%"
+                  height="435"
+                  class="share_self"
+                  frameborder="0"
+                  scrolling="no"
+                  src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=435&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,f2f3f5,666666,0082cb,f2f3f5&dpc=1"
+                ></iframe>
+              </v-card>
+            </v-col>
             <v-col cols="12" class="pa-0">
               <v-subheader>{{ $t('homePage.section.link') }}</v-subheader>
             </v-col>
@@ -108,105 +191,29 @@
             </v-col>
           </v-col>
         </v-row>
-
-        <v-row>
-          <v-col cols="12" class="pa-0">
-            <v-subheader>{{ $t('homePage.section.contact') }}</v-subheader>
-          </v-col>
-          <v-col cols="12" md="6" class="my-0 py-0">
-            <v-card outlined class="rounded-md">
-              <v-list dense color="inner">
-                <v-list-item>
-                  <v-list-item-icon>
-                    <v-icon>{{ mdiAccount }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title> {{ $t('contact.author') }}</v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="openQQ">
-                  <v-list-item-icon>
-                    <v-icon>{{ mdiQqchat }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title> 鱼糕检修部（1153646847） </v-list-item-title>
-                  <!--                <v-list-item-action>-->
-                  <!--                  <rc-tooltip>-->
-                  <!--{{                    <vIcon>mdiQrcode</vIcon>}}-->
-                  <!--                    <template v-slot:msg>-->
-                  <!--                      qrcode-->
-                  <!--                    </template>-->
-                  <!--                  </rc-tooltip>-->
-                  <!--                </v-list-item-action>-->
-                </v-list-item>
-                <v-list-item @click="openQQGuild">
-                  <v-list-item-icon>
-                    <!--                    <span style="font-size: x-large">#</span>-->
-                    <v-icon>{{ mdiQqchat }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title>FF14 捕鱼人研究会</v-list-item-title>
-                  <!--                <v-list-item-action>-->
-                  <!--                  <rc-tooltip>-->
-                  <!--{{                    <vIcon>mdiQrcode</vIcon>}}-->
-                  <!--                    <template v-slot:msg>-->
-                  <!--                      qrcode-->
-                  <!--                    </template>-->
-                  <!--                  </rc-tooltip>-->
-                  <!--                </v-list-item-action>-->
-                </v-list-item>
-                <v-list-item @click="openWeibo('7546879530')">
-                  <v-list-item-icon>
-                    <v-icon>{{ mdiSinaWeibo }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title>红豆年糕找不到</v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="openWeibo('7245459345')">
-                  <v-list-item-icon>
-                    <v-icon>{{ mdiSinaWeibo }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title>光之渔夫bot（合作）</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-card>
-          </v-col>
-          <v-col cols="12" md="6" class="my-md-0 py-md-0">
-            <v-card outlined style="height: 250px; overflow: hidden">
-              <iframe
-                v-if="isDark"
-                width="100%"
-                height="275"
-                class="share_self"
-                frameborder="0"
-                scrolling="no"
-                src="https://widget.weibo.com/weiboshow/index.php?language=&width=0&height=275&fansRow=2&ptype=1&speed=0&skin=10&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,2d2d32,FAFAFA,38669b,2d2d32&dpc=1"
-              ></iframe>
-              <iframe
-                v-else
-                width="100%"
-                height="275"
-                class="share_self"
-                frameborder="0"
-                scrolling="no"
-                src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=275&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=7546879530&verifier=586d174c&colors=d6f3f7,f2f3f5,666666,0082cb,f2f3f5&dpc=1"
-              ></iframe>
-            </v-card>
-          </v-col>
-        </v-row>
       </v-col>
       <v-col cols="12" md="6">
-        <v-row no-gutters>
-          <v-col cols="12" style="margin: -12px 0 0 0">
+        <v-row>
+          <v-col cols="12" class="pa-0">
             <v-subheader>{{ $t('homePage.section.support') }}</v-subheader>
           </v-col>
-          <v-col>
+          <v-col class="my-0 py-0">
             <v-alert border="left" colored-border color="secondary" class="mb-2">
               <div>{{ $t('homePage.support.description') }}</div>
             </v-alert>
           </v-col>
 
-          <v-col cols="12" @click="openWeibo('7546879530')" style="cursor: pointer">
+          <v-col
+            cols="12"
+            class="my-0 py-0"
+            @click="openWeibo('7546879530')"
+            style="cursor: pointer"
+          >
             <v-alert border="left" colored-border color="secondary" class="mb-2">
               <div>关注作者微博 @红豆年糕找不到</div>
             </v-alert>
           </v-col>
-          <v-col cols="12" class="d-flex">
+          <v-col cols="12" class="d-flex my-0 py-0">
             <v-row no-gutters class="d-flex align-center">
               <div style="width: calc(100% - 50px)">
                 <v-btn block x-large @click="openAfdian" color="#946ce6">
@@ -222,7 +229,7 @@
               </rc-tooltip>
             </v-row>
           </v-col>
-          <v-col cols="12" class="mt-2">
+          <v-col cols="12" class="mt-2 mb-0 py-0">
             <v-card outlined>
               <v-card-title>
                 <div class="d-flex align-center" style="width: 100%">
