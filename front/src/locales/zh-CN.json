@@ -592,6 +592,7 @@
     },
     "locale": {
       "data": "数据语言（Data Languages）",
+      "dataSub": "备选数据语言（Sub Data Languages）",
       "region": "数据版本",
       "ui": "界面语言（UI Languages）",
       "regionHint": "点击右上角齿轮图标切换数据版本（国服/国际服）"

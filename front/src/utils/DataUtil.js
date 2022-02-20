@@ -82,6 +82,7 @@ const BAIT_FISH_SORTER_TYPES = ['QUANTITY', 'ID']
 
 const THEME_SETTING_MODES = ['DARK', 'LIGHT', 'AUTO']
 const DATA_LOCALES = ['chs', 'en', 'ja']
+const DATA_SUB_LOCALES = ['en', 'ja']
 const UI_LOCALES = ['zh-CN', 'en', 'ja']
 const REGIONS = ['CN', 'Global']
 
@@ -268,12 +269,12 @@ export default {
     // return `${this.XIV_API_HOST}/i/${path}/${icon}.png`
   },
   iconIdToClass: ImgUtil.iconIdToClass,
-  getName(multiLanguageItem, locale = 'chs') {
+  getName(multiLanguageItem, locale = SystemInfo.dataLocale) {
     return (
       multiLanguageItem &&
       (multiLanguageItem['name_' + locale]
         ? multiLanguageItem['name_' + locale]
-        : multiLanguageItem['name_en'])
+        : multiLanguageItem['name_' + SystemInfo.dataSubLocale])
     )
   },
 
@@ -1434,6 +1435,7 @@ export default {
 
   THEME_SETTING_MODES: THEME_SETTING_MODES,
   DATA_LOCALES: DATA_LOCALES,
+  DATA_SUB_LOCALES: DATA_SUB_LOCALES,
   UI_LOCALES: UI_LOCALES,
   REGIONS: REGIONS,
 

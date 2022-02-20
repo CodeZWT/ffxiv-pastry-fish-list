@@ -204,7 +204,11 @@ export default {
       return this.links.findIndex(it => it.id === this.defaultLinkOf(this.mode))
     },
     currLocaleName() {
-      return this.names[SystemInfo.dataLocale] || this.names.en || this.name
+      return (
+        this.names[SystemInfo.dataLocale] ||
+        this.names[SystemInfo.dataSubLocale] ||
+        this.name
+      )
     },
     nameList() {
       if (this.names == null || Object.keys(this.names).length === 0) {

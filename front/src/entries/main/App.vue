@@ -620,6 +620,33 @@
               </div>
             </v-list-item-content>
           </v-list-item>
+
+          <v-subheader>{{ $t('setting.locale.dataSub') }}</v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <div class="d-flex flex-wrap setting-panel-row">
+                <v-btn
+                  v-for="(locale, index) in DATA_SUB_LOCALES"
+                  :key="locale"
+                  :class="'flex-fill ' + (index === 0 ? '' : 'ml-1')"
+                  left
+                  elevation="0"
+                  :color="locale === dataSubLocale ? 'primary' : undefined"
+                  @click="dataSubLocale = locale"
+                >
+                  <div style="min-width: 24px" class="mr-1">
+                    <v-img
+                      contain
+                      :src="SUB_LOCALES_ICONS[index]"
+                      height="18"
+                      width="24"
+                    />
+                  </div>
+                  <div>{{ $t(`locale.title.${locale}`) }}</div>
+                </v-btn>
+              </div>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
       </v-container>
     </v-navigation-drawer>
@@ -932,7 +959,13 @@ import {
 
 import '@thewakingsands/axis-font-icons'
 import { MainFeatures } from 'Data/newFeatures'
-import { SystemInfo, setDataLocale, setRegion, setUILocale } from 'Data/version'
+import {
+  SystemInfo,
+  setDataLocale,
+  setDataSubLocale,
+  setRegion,
+  setUILocale,
+} from 'Data/version'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import AlarmMixin from '@/mixins/AlarmMixin'
 import AppMixin from '@/components/AppMixin'
@@ -996,9 +1029,14 @@ export default {
       showUpdateAvailableDialog: false,
       newVersion: undefined,
       DATA_LOCALES: DataUtil.DATA_LOCALES,
+      DATA_SUB_LOCALES: DataUtil.DATA_SUB_LOCALES,
       UI_LOCALES: DataUtil.UI_LOCALES,
       LOCALES_ICONS: [
         ImgUtil.getImgUrl('cn.svg', ImgUtil.CATEGORY.LANG),
+        ImgUtil.getImgUrl('us.svg', ImgUtil.CATEGORY.LANG),
+        ImgUtil.getImgUrl('jp.svg', ImgUtil.CATEGORY.LANG),
+      ],
+      SUB_LOCALES_ICONS: [
         ImgUtil.getImgUrl('us.svg', ImgUtil.CATEGORY.LANG),
         ImgUtil.getImgUrl('jp.svg', ImgUtil.CATEGORY.LANG),
       ],
@@ -1016,17 +1054,16 @@ export default {
       },
       set(dataLocale) {
         setDataLocale(dataLocale)
-        sendElectronEvent('broadcast', {
-          source: 'main',
-          type: 'reloadSystemInfo',
-        })
-        this.showSnackbar({
-          text: this.$t('common.ui.reloadAfterSetting'),
-          color: 'success',
-        })
-        setTimeout(() => {
-          this.startReloadPage()
-        }, 1000)
+        this.broadcastSystemInfoChanges()
+      },
+    },
+    dataSubLocale: {
+      get() {
+        return SystemInfo.dataSubLocale
+      },
+      set(dataLocale) {
+        setDataSubLocale(dataLocale)
+        this.broadcastSystemInfoChanges()
       },
     },
     uiLocale: {
@@ -1035,17 +1072,7 @@ export default {
       },
       set(locale) {
         setUILocale(locale)
-        sendElectronEvent('broadcast', {
-          source: 'main',
-          type: 'reloadSystemInfo',
-        })
-        this.showSnackbar({
-          text: this.$t('common.ui.reloadAfterSetting'),
-          color: 'success',
-        })
-        setTimeout(() => {
-          this.startReloadPage()
-        }, 1000)
+        this.broadcastSystemInfoChanges()
       },
     },
     region: {
@@ -1163,6 +1190,19 @@ export default {
       })
   },
   methods: {
+    broadcastSystemInfoChanges() {
+      sendElectronEvent('broadcast', {
+        source: 'main',
+        type: 'reloadSystemInfo',
+      })
+      this.showSnackbar({
+        text: this.$t('common.ui.reloadAfterSetting'),
+        color: 'success',
+      })
+      setTimeout(() => {
+        this.startReloadPage()
+      }, 1000)
+    },
     toggleQuickSetting() {
       this.showQuickSetting = !this.showQuickSetting
     },
