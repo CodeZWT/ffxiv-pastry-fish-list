@@ -37,52 +37,75 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" class="pa-0">
-            <v-subheader>{{ $t('homePage.section.nav') }}</v-subheader>
+          <v-col cols="12" md="6" class="pa-0">
+            <v-col cols="12" class="pa-0">
+              <v-subheader>{{ $t('homePage.section.nav') }}</v-subheader>
+            </v-col>
+            <v-col cols="12" class="my-0 py-0">
+              <v-row class="py-0">
+                <v-col cols="12" md="6">
+                  <home-page-card @click="toPageSubList">
+                    <template v-slot:title>
+                      <v-icon class="mr-1">{{ mdiTimer }}</v-icon>
+                      {{ $t('listPage.title') }}
+                    </template>
+                    <template v-slot:description>
+                      {{ $t('listPage.description') }}
+                    </template>
+                  </home-page-card>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <home-page-card @click="toPage('WikiPage')">
+                    <template v-slot:title>
+                      <v-icon class="mr-1">{{ mdiNotebook }}</v-icon>
+                      {{ $t('wikiPage.title') }}
+                    </template>
+                    <template v-slot:description>{{
+                      $t('wikiPage.description')
+                    }}</template>
+                  </home-page-card>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <home-page-card @click="toPage('OceanFishingPage54')">
+                    <template v-slot:title>
+                      <v-icon class="mr-1">{{ mdiFerry }}</v-icon>
+                      {{ $t('oceanFishingPage.title') }}
+                    </template>
+                    <template v-slot:description>
+                      {{ $t('oceanFishingPage.description') }}
+                    </template>
+                  </home-page-card>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <home-page-card @click="toFAQ">
+                    <template v-slot:title>
+                      <v-icon class="mr-1">{{ mdiHammerWrench }}</v-icon>
+                      {{ $t('faqPage.title') }}
+                    </template>
+                    <template v-slot:description>{{
+                      $t('faqPage.description')
+                    }}</template>
+                  </home-page-card>
+                </v-col>
+              </v-row>
+            </v-col>
           </v-col>
-          <v-col cols="12" class="my-0 py-0">
-            <v-row class="py-0">
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPageSubList">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiTimer }}</v-icon>
-                    {{ $t('listPage.title') }}
-                  </template>
-                  <template v-slot:description>
-                    {{ $t('listPage.description') }}
-                  </template>
-                </home-page-card>
-              </v-col>
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPage('WikiPage')">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiNotebook }}</v-icon>
-                    {{ $t('wikiPage.title') }}
-                  </template>
-                  <template v-slot:description>{{ $t('wikiPage.description') }}</template>
-                </home-page-card>
-              </v-col>
-              <v-col cols="12" md="6">
-                <home-page-card @click="toPage('OceanFishingPage54')">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiFerry }}</v-icon>
-                    {{ $t('oceanFishingPage.title') }}
-                  </template>
-                  <template v-slot:description>
-                    {{ $t('oceanFishingPage.description') }}
-                  </template>
-                </home-page-card>
-              </v-col>
-              <v-col cols="12" md="6">
-                <home-page-card @click="toFAQ">
-                  <template v-slot:title>
-                    <v-icon class="mr-1">{{ mdiHammerWrench }}</v-icon>
-                    {{ $t('faqPage.title') }}
-                  </template>
-                  <template v-slot:description>{{ $t('faqPage.description') }}</template>
-                </home-page-card>
-              </v-col>
-            </v-row>
+          <v-col cols="12" md="6" class="pa-0">
+            <v-col cols="12" class="pa-0">
+              <v-subheader>{{ $t('homePage.section.link') }}</v-subheader>
+            </v-col>
+            <v-col cols="12" class="my-0 py-0">
+              <v-card outlined class="rounded-md">
+                <v-list dense color="inner">
+                  <v-list-item @click="openLink('http://www.ffxiv.co')">
+                    <v-list-item-icon>
+                      <v-icon>{{ mdiLink }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>飞艇坪 - 最终幻想14网址导航</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-card>
+            </v-col>
           </v-col>
         </v-row>
 
@@ -258,6 +281,7 @@ import {
   mdiFerry,
   mdiHammerWrench,
   mdiHelpCircleOutline,
+  mdiLink,
   mdiNotebook,
   mdiQqchat,
   mdiQrcode,
@@ -303,6 +327,7 @@ export default {
       mdiHammerWrench,
       mdiQrcode,
       mdiHelpCircleOutline,
+      mdiLink,
       showAfdianQRCode: false,
       sponsors: [],
       isElectron: DevelopmentModeUtil.isElectron(),
@@ -387,6 +412,9 @@ export default {
     },
     openAfdian() {
       window.open('https://afdian.net/@ricecake404')
+    },
+    openLink(link) {
+      window.open(link)
     },
     showPatchNote() {
       this.setShowDialog({ dialog: 'patchNoteDialog', show: true })
