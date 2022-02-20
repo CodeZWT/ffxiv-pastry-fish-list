@@ -4,27 +4,28 @@
       <v-expansion-panel-header class="system">
         <div style="display: flex; justify-content: center">
           <div>
-            <v-icon>{{ mdiFishbowl }}</v-icon>
-            {{ $t('setting.dialog.detailArrangement.itemNames.DetailItemAquarium') }}
+            <v-icon>{{ mdiBookshelf }}</v-icon>
+            {{
+              $t('setting.dialog.detailArrangement.itemNames.DetailItemFishDescription')
+            }}
           </div>
         </div>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
-        <fish-aquarium :fish="fish.aquarium" class="mt-2" :is-mobile="isMobile" />
+        {{ description }}
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
 </template>
 
 <script>
-import { mdiFishbowl } from '@mdi/js'
+import { mdiBookshelf } from '@mdi/js'
 import EnvMixin from '@/components/basic/EnvMixin'
-import FishAquarium from '@/components/FishAquarium'
+import garlandService from '@/service/garlandService'
 
 export default {
-  name: 'DetailItemAquarium',
+  name: 'DetailItemFishDescription',
   mixins: [EnvMixin],
-  components: { FishAquarium },
   props: {
     fish: {
       type: Object,
@@ -36,10 +37,14 @@ export default {
     },
   },
   data: vm => ({
-    mdiFishbowl,
+    mdiBookshelf,
     lazyExpansionValue: vm.expanded ? 0 : undefined,
+    description: 'test',
   }),
-  created() {},
+  async mounted() {
+    const fish = garlandService.getItem(this.fish._id)
+    this.description = JSON.stringify(fish)
+  },
 }
 </script>
 

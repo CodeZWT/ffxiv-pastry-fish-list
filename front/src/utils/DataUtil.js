@@ -1303,6 +1303,13 @@ export default {
           enabled: true,
           order: 8,
         },
+        {
+          name: 'DetailItemFishDescription',
+          expandedEnabled: true,
+          expanded: true,
+          enabled: true,
+          order: 9,
+        },
       ],
     },
     theme: {

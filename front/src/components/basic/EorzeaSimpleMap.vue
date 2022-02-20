@@ -320,7 +320,6 @@ export default {
     aetheryteMakerTextConfigs() {
       return (
         this.aetheryte[this.id]?.map(it => {
-          console.log(it.placeNameId)
           const text = DataUtil.getName(placeNames[it.placeNameId])
           return this.computeSafeTextConfig(text, it.x, it.y, {
             fontSize: TEXT_AETHERYTE_FONT,

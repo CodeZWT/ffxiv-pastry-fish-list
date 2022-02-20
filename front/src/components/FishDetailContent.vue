@@ -33,6 +33,8 @@ export default {
   name: 'FishDetailContent',
 
   components: {
+    DetailItemFishDescription: () =>
+      import('@/components/fish-detail-items/DetailItemFishDescription'),
     DetailItemAquarium: () => import('@/components/fish-detail-items/DetailItemAquarium'),
     DetailItemBuffAndBaits: () =>
       import('@/components/fish-detail-items/DetailItemBuffAndBaits'),
