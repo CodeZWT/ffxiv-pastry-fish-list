@@ -77,7 +77,6 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
-import DATA_CN from 'Data/translation'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import FIX from 'Data/fix'
@@ -86,6 +85,7 @@ import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
+import placeNames from 'Data/locale/placeNames'
 
 export default {
   name: 'FishSearch',
@@ -156,13 +156,13 @@ export default {
       return this.spotSearchData.concat(this.fishSearchData)
     },
     spotSearchData() {
-      return Object.values(DATA_CN.FISHING_SPOTS)
+      return Object.values(DataUtil.FISHING_SPOTS)
         .filter(it => it._id > 0 && DataUtil.getName(it))
         .map(it => {
           return {
             type: 'fishing-spot',
             id: 'fishing-spot#' + it._id,
-            name: DataUtil.getName(it),
+            name: DataUtil.getName(placeNames[it.placeNameId]),
             icon: 'fishing-icon',
           }
         })
@@ -171,7 +171,7 @@ export default {
             return {
               type: 'spear-gathering-point',
               id: 'spear-gathering-point#' + it._id,
-              name: DataUtil.getName(it),
+              name: DataUtil.getName(placeNames[it.placeNameId]),
               icon: 'spear-icon',
             }
           })
