@@ -319,6 +319,7 @@
           :forceShowComponents="forceShowComponents"
           :show-fishing-range-helper="mode === 'normal'"
           show-close
+          hide-map
           @close="closeFishDetailPage"
         />
       </div>
