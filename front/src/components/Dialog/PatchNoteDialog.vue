@@ -27,6 +27,26 @@
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
+            <div class="text-h6">Version 1.1.7</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2021/02/20 12:10</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>修复刺鱼鱼识及鱼影条件在搜索与笔记页面没有正常显示的问题</li>
+          <li>更新贺图</li>
+        </ul>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
+        <ul>
+          <li>
+            支持关闭硬件加速（可以帮助解决一部分由于游戏未锁帧导致的显示问题，应用设置后请重启鱼糕）
+          </li>
+        </ul>
+        <v-divider />
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
             <div class="text-h6">Version 1.1.6</div>
             <v-spacer />
             <div class="text-subtitle-1">更新时间: 2021/02/06 20:27</div>

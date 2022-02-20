@@ -26,7 +26,7 @@
                 <div v-html="$t('homePage.description')"></div>
                 <div class="d-flex align-center mt-2">
                   <v-badge inline color="warning" content="Fix" />
-                  <div>修复钓鱼笔记页面统计数据无法显示的问题</div>
+                  <div>修复刺鱼鱼识及鱼影条件在搜索与笔记页面没有正常显示的问题</div>
                 </div>
                 <div class="d-flex align-center mt-2">
                   <v-badge inline color="primary" content="New" />
