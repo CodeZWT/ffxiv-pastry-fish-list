@@ -284,7 +284,9 @@ export default {
             shadowPredators: fish.shadowPredators
               ? DataUtil.getPredators(
                   { predators: fish.shadowPredators },
-                  this.lazyTransformedFishDict
+                  this.lazyTransformedFishDict,
+                  this.fishListTimePart,
+                  this.fishListWeatherChangePart
                 )
               : [],
           },

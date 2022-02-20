@@ -510,6 +510,14 @@ export default {
             fishListTimePart,
             fishListWeatherChangePart
           ),
+          shadowPredators: fish.shadowPredators
+            ? this.getPredators(
+                { predators: fish.shadowPredators },
+                fishDict,
+                fishListTimePart,
+                fishListWeatherChangePart
+              )
+            : [],
         },
       }
     } else {
