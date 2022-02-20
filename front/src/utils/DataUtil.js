@@ -24,6 +24,7 @@ import _ from 'lodash'
 import flatten from 'flat'
 import i18n from '@/i18n'
 import itemNames from 'Data/locale/item'
+import placeNames from 'Data/locale/placeNames'
 
 const NOTIFICATION_SOUNDS = [
   { key: 'mute', name_chs: '静音', filename: null },
@@ -278,6 +279,17 @@ export default {
         ? multiLanguageItem['name_' + SystemInfo.dataSubLocale]
         : multiLanguageItem['name_chs'])
     )
+  },
+  getPlaceName(placeNameId) {
+    return this.getName(placeNames[placeNameId])
+  },
+  getPlaceNames(placeNameId) {
+    const names = placeNames[placeNameId]
+    const ret = {}
+    Object.keys(names).forEach(nameKey => {
+      ret[nameKey.split('_')[1]] = names[nameKey]
+    })
+    return ret
   },
 
   getCountDownTypeName(countDown) {

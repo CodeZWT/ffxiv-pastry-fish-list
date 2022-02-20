@@ -1091,7 +1091,8 @@ export default {
               locationId: location,
               zone: DataUtil.getName(placeNames[gatheringPoint.territoryPlaceNameId]),
               fishingSpot: gatheringPoint,
-              fishingSpotName: DataUtil.getName(placeNames[gatheringPoint.placeNameId]),
+              fishingSpotName: DataUtil.getPlaceName(gatheringPoint.placeNameId),
+              fishingSpotNames: DataUtil.getPlaceNames(gatheringPoint.placeNameId),
               fishingSpotId: location,
               fishSpotPositionText: DataUtil.toPositionText(gatheringPoint),
             }

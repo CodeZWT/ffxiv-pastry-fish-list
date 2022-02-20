@@ -4,6 +4,7 @@
       :id="firstLocation.fishingSpotId"
       :angler-id="firstLocation.fishingSpot.anglerLocationId"
       :name="firstLocation.fishingSpotName"
+      :names="firstLocation.fishingSpotNames"
       mode="spot"
       :spot-mode="type"
     >
@@ -37,6 +38,7 @@
                       :id="spot.fishingSpotId"
                       :angler-id="spot.fishingSpot.anglerLocationId"
                       :name="spot.fishingSpotName"
+                      :names="spot.fishingSpotNames"
                       mode="spot"
                       :spot-mode="type"
                       @click="showSpotMenu = false"

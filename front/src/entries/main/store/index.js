@@ -191,13 +191,27 @@ export const MainModule = {
         return ''
       }
     },
+    getFishingSpotsNames: state => id => {
+      if (id != null) {
+        const names =
+          state.fishingSpots[id] && placeNames[state.fishingSpots[id].placeNameId]
+        return {
+          chs: names.name_chs,
+          en: names.name_en,
+          ja: names.name_ja,
+        }
+      } else {
+        return {}
+      }
+    },
     getFishingSpots: (_, getters) => locations =>
       locations.map(location => {
         const fishingSpot = getters.getFishingSpot(location)
         return {
           zone: getters.getZoneName(location),
           fishingSpot: fishingSpot,
-          fishingSpotName: getters.getFishingSpotsName(location),
+          fishingSpotName: DataUtil.getPlaceName(fishingSpot.placeNameId),
+          fishingSpotNames: DataUtil.getPlaceNames(fishingSpot.placeNameId),
           fishingSpotId: location,
           fishSpotPositionText: DataUtil.toPositionText(fishingSpot),
         }
