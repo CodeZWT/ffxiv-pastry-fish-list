@@ -207,6 +207,11 @@
     },
     "shadowPredators": {
       "title": "鱼影前置鱼"
+    },
+    "description": {
+      "item": "物品描述：",
+      "fishGuide": "图鉴简介：",
+      "ilvl": "品级："
     }
   },
   "diademPage": {
@@ -532,7 +537,7 @@
           "DetailItemQuest": "任务及其他信息",
           "DetailItemRequirements": "天气时间要求",
           "DetailItemTips": "攻略",
-          "DetailItemFishDescription": "简介"
+          "DetailItemFishDescription": "资料"
         },
         "title": "详细视图布局设置（直接拖动）"
       },
