@@ -1267,7 +1267,7 @@ export default {
 }
 
 .v-application .chs-font {
-  font-family: 'Ma Shan Zheng', cursive !important;
+  font-family: 'KaiTi', cursive !important;
 }
 
 .v-application .ja-font {
