@@ -34,7 +34,7 @@
               <v-hover v-slot="{ hover }">
                 <div
                   :class="
-                    `text-h5 chs-font ${
+                    `text-h5 ${locale}-font ${
                       hover ? 'info--text text-decoration-underline' : ''
                     }`
                   "
@@ -154,6 +154,7 @@ import {
   mdiPinOutline,
 } from '@mdi/js'
 
+import { SystemInfo } from 'Data/version'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
@@ -208,6 +209,7 @@ export default {
     mdiContentCopy,
     mdiBellOutline,
     weatherChangeTrigger: 0,
+    locale: SystemInfo.dataLocale,
   }),
   computed: {
     fishingSpotToShow() {
