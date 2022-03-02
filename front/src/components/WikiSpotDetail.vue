@@ -1,7 +1,9 @@
 <template>
   <div style="width: 100%">
     <div class="py-1 d-flex inner" style="width: 100%; position: relative">
-      <h2 style="width: 100%; text-align: center">{{ currentMapInfo.name }}</h2>
+      <h2 style="width: 100%; text-align: center" :class="`text-h5 ${locale}-font`">
+        {{ currentMapInfo.name }}
+      </h2>
       <v-btn
         v-if="showClose"
         @click="$emit('close')"
@@ -251,6 +253,7 @@ export default {
       showAboutChartDialog: false,
       spotRecordCountCache: {},
       spotBiteIntervalCache: {},
+      locale: SystemInfo.dataLocale,
     }
   },
   computed: {

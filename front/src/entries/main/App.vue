@@ -1266,6 +1266,18 @@ export default {
   font-display: swap;
 }
 
+.v-application .chs-font {
+  font-family: 'Ma Shan Zheng', cursive !important;
+}
+
+.v-application .ja-font {
+  font-family: 'Yuji Syuku', cursive !important;
+}
+
+.v-application .en-font {
+  font-family: 'Courgette', cursive !important;
+}
+
 .cafekit.ck-popup {
   z-index: 9999 !important;
 }
