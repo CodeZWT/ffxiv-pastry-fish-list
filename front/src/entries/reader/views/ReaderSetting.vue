@@ -3,27 +3,10 @@
     <v-card-text class="wrapper">
       <v-row no-gutters>
         <v-alert outlined type="warning" border="left">
-          若渔捞以及自动同步图鉴功能没有效果，可按照以下步骤排查。
-          <ul>
-            <li>
-              切换下方的检测方式为Npcap，注意第一次需要安装额外的软件，并且在国际服使用加速器时很可能无效。
-            </li>
-            <li>
-              检查有无非系统自带防火墙或杀毒软件（如360、火绒）。建议先关闭后尝试，若可行再尝试加入信任区。
-            </li>
-            <li>如切换过国际服国服模式或检测模式请尝试重启</li>
-            <li>
-              如国服游戏窗口只显示“最终”而未显示“最终幻想XIV”，
-              <ul>
-                <li>
-                  查看 控制面板 - 更改日期、时间或数字格式 - 管理 - 更改系统区域设置 -
-                  取消勾选“使用Unicode UTF-8提供全球语言支持”
-                </li>
-                <li>若是其他语言系统可以尝试安装中文包</li>
-              </ul>
-            </li>
-            <li>安装报错可以尝试重新下载安装包</li>
-          </ul>
+          若渔捞以及自动同步图鉴功能没有效果，可尝试切换下方的检测方式为Npcap，注意第一次需要安装额外的软件，并且在国际服使用加速器时很可能无效。<br />
+          其他问题请点击查看<a :href="faqLink" target="_blank">
+            维修手册
+          </a>
         </v-alert>
         <v-col cols="12" class="d-flex align-center my-1">
           <div :class="themeClass + ' v-label text-subtitle-1 mr-4'">区服</div>
@@ -360,6 +343,7 @@ import { mdiFileMusicOutline, mdiPlay } from '@mdi/js'
 import { sendElectronEvent } from '@/utils/electronHelper'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
+import LINK from 'Data/link'
 import _ from 'lodash'
 import last from 'lodash/last'
 import set from 'lodash/set'
@@ -383,6 +367,7 @@ export default {
       tugSettingTypes: ['default', ...DataUtil.TUG_TYPES],
       showInstallNpcapPrompt: false,
       installing: false,
+      faqLink: LINK.FAQ,
     }
   },
   computed: {
