@@ -198,7 +198,6 @@
 <script>
 import { ReaderFeatures } from 'Data/newFeatures'
 import { SERVER_ID_NAMES } from 'Data/diadem'
-import { WEATHER_TYPES } from 'Data/translation'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import {
   mdiArrowExpand,
@@ -214,6 +213,7 @@ import ItemIcon from '@/components/basic/ItemIcon'
 import RcDialog from '@/components/basic/RcDialog'
 import RecordValidator from '@/utils/RecordValidator'
 import STATUS from 'Data/patch/status'
+import WEATHER_NAMES from 'Data/locale/weather'
 import WindowUtil from '@/entries/reader/util/WindowUtil'
 import rcapiService from '@/service/rcapiService'
 
@@ -447,12 +447,7 @@ export default {
       return this.dataStatus?.previousWeather
     },
     weatherText() {
-      // {
-      //   name: DataUtil.getName(state.weatherTypes[id]),
-      //     icon: DataUtil.iconIdToClass(state.weatherTypes[id].icon),
-      // }
-      // console.log(WEATHER_TYPES[this.weather])
-      return this.weather && DataUtil.getName(WEATHER_TYPES[this.weather])
+      return this.weather && DataUtil.getName(WEATHER_NAMES[this.weather])
     },
     serverName() {
       return (

@@ -18,6 +18,7 @@ import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
+import WEATHER_NAMES from 'Data/locale/weather'
 import _ from 'lodash'
 import placeNames from 'Data/locale/placeNames'
 import router from '@/entries/main/router'
@@ -280,7 +281,7 @@ export const MainModule = {
     getWeather: state => weatherSet => {
       return weatherSet.map(id => {
         return {
-          name: DataUtil.getName(state.weatherTypes[id]),
+          name: DataUtil.getName(WEATHER_NAMES[id]),
           icon: DataUtil.iconIdToClass(state.weatherTypes[id].icon),
         }
       })

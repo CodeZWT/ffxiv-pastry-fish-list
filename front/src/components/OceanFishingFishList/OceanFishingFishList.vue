@@ -178,6 +178,7 @@ import EffectIcon from '@/components/basic/EffectIcon'
 import FishBiteTimeList from '@/components/FishBiteTimeList'
 import ItemIcon from '@/components/basic/ItemIcon'
 import ToggleButton from '@/components/basic/ToggleButton'
+import WEATHER_NAMES from 'Data/locale/weather'
 import WeatherIcon from '@/components/basic/WeatherIcon'
 
 export default {
@@ -224,7 +225,7 @@ export default {
           const weather = OCEAN_FISHING_WEATHER[weatherId]
           return {
             id: weather._id,
-            name: DataUtil.getName(weather),
+            name: DataUtil.getName(WEATHER_NAMES[weatherId]),
             icon: DataUtil.iconIdToClass(weather.icon),
           }
         })

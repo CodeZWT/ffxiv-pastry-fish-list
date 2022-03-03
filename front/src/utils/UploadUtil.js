@@ -11,6 +11,7 @@ import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
 import PLACE_NAMES from 'Data/locale/placeNames'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
 import UploadUtil from '@/utils/UploadUtil'
+import WEATHER_NAMES from 'Data/locale/weather'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
 import dataLoader from '@/utils/dataLoader'
@@ -182,7 +183,7 @@ export default {
     const weather = WEATHER_TYPES[weatherId]
     return {
       id: weatherId,
-      name: DataUtil.getName(weather),
+      name: DataUtil.getName(WEATHER_NAMES[weatherId]),
       icon: DataUtil.iconIdToClass(weather.icon),
     }
   },
