@@ -110,6 +110,7 @@ function startMachina(options, callback = () => {}) {
 }
 exports.start = startMachina
 exports.onUpdate = onUpdate
+exports.onOpcodeMeta = onOpcodeMeta
 exports.stop = stopMachina
 
 function stopMachina(callback = () => {}) {
@@ -170,8 +171,23 @@ let updateCallback = data => {
   log.debug('sending data', data)
 }
 
+let opcodeMetaCallback = data => {
+  log.debug('opcode meta returned', data)
+}
+
+let opcodeRegion
+let opcodePatchVersion
+
 function init() {
   Machina.setMaxListeners(0)
+
+  Machina.on('raw', packet => {
+    if (packet.version && packet.type == null) {
+      opcodeRegion = packet.region
+      opcodePatchVersion = +packet.version
+      opcodeMetaCallback(packet)
+    }
+  })
 
   Machina.on('any', packet => {
     if (packet && filterPacketSessionID(packet)) {
@@ -191,6 +207,10 @@ function testOpcode(packet) {
 
 function onUpdate(callback) {
   updateCallback = callback
+}
+
+function onOpcodeMeta(callback) {
+  opcodeMetaCallback = callback
 }
 
 // Add machina to firewall stuffs
@@ -491,7 +511,7 @@ function applyCurrentStatusOnStart(record, status) {
   record.mooch = status.mooch
   record.spotId = status.spotId
   record.pastryFishVersion = PASTRY_FISH_VERSION
-  record.patch = region === 'CN' ? CN_PATCH_VERSION : GLOBAL_PATCH_VERSION
+  record.patch = opcodePatchVersion || (region === 'CN' ? CN_PATCH_VERSION : GLOBAL_PATCH_VERSION)
   record.region = region
   record.weatherDetected = status.weather
   record.prevWeatherDetected = status.previousWeather
