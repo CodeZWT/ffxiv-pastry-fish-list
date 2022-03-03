@@ -42,44 +42,53 @@
           <v-list-item
             v-for="(localeItem, index) in nameList"
             :key="index"
-            @click="goToPage(localeItem)"
+            @click.stop="copyText(localeItem.name)"
           >
             <v-list-item-title class="d-flex align-center">
               <div style="min-width: 40px">
                 <v-img contain :src="localeItem.icon" height="18" width="24" />
               </div>
               <div>
-                <span :class="`${localeItem.locale}-font text-h5`">{{
-                  localeItem.name
-                }}</span>
+                <span :class="`${localeItem.locale}-font text-h5`">
+                  {{ localeItem.name }}
+                </span>
               </div>
             </v-list-item-title>
             <v-list-item-action>
-              <click-helper @click.stop="emitClick" :copy-text="localeItem.name">
-                <v-btn text icon small :title="$t('list.item.copyHint')">
-                  <v-icon small>{{ mdiContentCopy }}</v-icon>
-                </v-btn>
-              </click-helper>
+              <!--              <click-helper @click.stop="emitClick" :copy-text="localeItem.name">-->
+              <v-btn text icon small :title="$t('list.item.copyHint')">
+                <v-icon small>{{ mdiContentCopy }}</v-icon>
+              </v-btn>
+              <!--              </click-helper>-->
             </v-list-item-action>
           </v-list-item>
         </v-list>
 
         <div class="d-flex align-center">
-          <v-badge
+          <!--          <v-badge-->
+          <!--            v-for="(link, index) in links"-->
+          <!--            :key="index"-->
+          <!--            :value="index === defaultLinkIndex"-->
+          <!--            dot-->
+          <!--            overlap-->
+          <!--            :title="`${link.title}${index === defaultLinkIndex ? '（默认跳转）' : ''}`"-->
+          <!--          >-->
+          <v-btn
             v-for="(link, index) in links"
             :key="index"
-            :value="index === defaultLinkIndex"
-            dot
-            overlap
             :title="`${link.title}${index === defaultLinkIndex ? '（默认跳转）' : ''}`"
+            @click="goToPage(link)"
+            style="flex: 1 0 auto"
+            :color="index === defaultLinkIndex ? 'primary' : ''"
+            class="rounded-0"
+            elevation="0"
           >
-            <v-btn @click="goToPage(link)" style="min-width: 40px" text>
-              <div>
-                <!--                <span>{{ link.title }}</span>-->
-                <v-img contain :src="link.icon" height="24" width="24" />
-              </div>
-            </v-btn>
-          </v-badge>
+            <div>
+              <!--                <span>{{ link.title }}</span>-->
+              <v-img contain :src="link.icon" height="24" width="24" />
+            </div>
+          </v-btn>
+          <!--          </v-badge>-->
         </div>
       </v-card>
     </rc-menu>
@@ -232,6 +241,14 @@ export default {
     copyItemId() {
       copy(DataUtil.toItemId(this.id))
     },
+    copyText(text) {
+      copy(text)
+      this.showSnackbar({
+        text: this.$t('importExport.dialog.message.copySuccess'),
+        color: 'success',
+      })
+      this.emitClick()
+    },
     onSettingBtnClick() {
       this.showConfigDialog = true
       this.emitClick()
@@ -259,7 +276,7 @@ export default {
     goToDefaultPage() {
       this.goToPage(this.links.find(it => it.id === this.defaultLinkOf(this.mode)))
     },
-    ...mapMutations(['setLinkDefault']),
+    ...mapMutations(['setLinkDefault', 'showSnackbar']),
   },
 }
 </script>
