@@ -347,7 +347,7 @@
                 </v-btn>
               </v-col>
               <v-col cols="12">
-                <div class="d-flex align-center">
+                <div class="d-flex align-center overflow-auto">
                   <v-subheader>区域</v-subheader>
                   <v-btn-toggle
                     v-model="regionFilter"
@@ -709,8 +709,8 @@ import DateTimeInput from '@/components/basic/DateTimeInput'
 import EffectIcon from '@/components/basic/EffectIcon'
 import EnvMixin from '@/components/basic/EnvMixin'
 import ItemIcon from '@/components/basic/ItemIcon'
+import PLACE_NAMES from 'Data/locale/placeNames'
 import PinyinMatch from 'pinyin-match'
-import PlaceNames from 'Data/placeNames'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
@@ -934,7 +934,7 @@ export default {
       })
     },
     regionFilterOptions() {
-      return this.regionIds.map(it => DataUtil.getName(PlaceNames[it]))
+      return this.regionIds.map(it => DataUtil.getName(PLACE_NAMES[it]))
     },
     headers() {
       if (this.isFixedOwnRecordMode) {

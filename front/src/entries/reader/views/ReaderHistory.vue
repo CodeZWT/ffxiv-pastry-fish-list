@@ -757,7 +757,7 @@ export default {
                 spotId > 0
                   ? DataUtil.getName(
                       PLACE_NAMES[
-                        DataUtil.FISHING_SPOTS[spotId]?.zonePlaceNameId ||
+                        DataUtil.FISHING_SPOTS[spotId]?.territoryTypePlaceNameId ||
                           (this.isDiademSpot(spotId)
                             ? DIADEM_ZONE
                             : this.isOceanFishingSpot(spotId)

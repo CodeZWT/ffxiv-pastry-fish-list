@@ -174,9 +174,10 @@ export default {
     const spotId = +(spot || 0)
     return {
       spotId: spotId,
-      spotName: DataUtil.getName(
-        spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name_chs: '' }
-      ),
+      spotName:
+        spotId > 0
+          ? DataUtil.getName(PLACE_NAMES[DataUtil.FISHING_SPOTS[spotId]?.placeNameId])
+          : '',
     }
   },
   toWeather(weatherId) {
@@ -223,7 +224,7 @@ export default {
         record.spot > 0
           ? DataUtil.getName(
               PLACE_NAMES[
-                DataUtil.FISHING_SPOTS[record.spot]?.territoryTypePlaceNameId ??
+                DataUtil.FISHING_SPOTS[record.spot]?.territoryTypePlaceNameId ||
                   (DataUtil.isDiademSpot(record.spot)
                     ? DIADEM_ZONE
                     : DataUtil.isOceanFishingSpot(record.spot)
