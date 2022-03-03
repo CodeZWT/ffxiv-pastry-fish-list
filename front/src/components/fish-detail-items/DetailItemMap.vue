@@ -51,6 +51,7 @@
                 :id="currentSpot.fishingSpotId"
                 :angler-id="currentSpot.fishingSpot.anglerLocationId"
                 :name="currentSpot.fishingSpotName"
+                :names="currentSpot.fishingSpotNames"
                 mode="spot"
                 :spot-mode="fish.type"
                 :disabled="showSpotLink"
