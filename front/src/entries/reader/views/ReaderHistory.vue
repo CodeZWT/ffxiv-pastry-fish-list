@@ -541,12 +541,10 @@ export default {
       })
       ?.on('exportHistoryFailedWithBusyFile', () => {
         this.showExportError = true
-
         this.showSnackbar({
           text: '导出失败，文件已打开。',
           color: 'error',
         })
-
         this.generating = false
       })
   },
@@ -567,6 +565,7 @@ export default {
   },
   methods: {
     ...mapMutations('readerHistory', ['setStates']),
+    ...mapMutations(['showSnackbar']),
     searchFilterOptions(item, searchText, itemText) {
       if (this.$i18n.locale === 'zh-CN') {
         return PinyinMatch.match(itemText, searchText) !== false
@@ -705,6 +704,10 @@ export default {
         allData = _.sortBy(allData, it => max - it.timestamp)
         console.debug('[export] read data finished')
         this.generating = true
+        this.showSnackbar({
+          text: '请选择导出地址。',
+          color: 'info',
+        })
         invokeElectronEvent('showExportFileDialog', null, async continueExport => {
           this.exporting = false
           if (continueExport) {
@@ -746,14 +749,15 @@ export default {
                     : Weather.weatherAtSpot(spotId, et)
                   : undefined
               ),
-              钓场: DataUtil.getName(
-                spotId > 0 ? DataUtil.FISHING_SPOTS[spotId] : { name_chs: '' }
-              ),
+              钓场:
+                spotId > 0
+                  ? DataUtil.getPlaceName(DataUtil.FISHING_SPOTS[spotId]?.placeNameId)
+                  : '',
               地区:
                 spotId > 0
                   ? DataUtil.getName(
                       PLACE_NAMES[
-                        DataUtil.FISHING_SPOTS[spotId]?.regionPlaceNameId ??
+                        DataUtil.FISHING_SPOTS[spotId]?.zonePlaceNameId ||
                           (this.isDiademSpot(spotId)
                             ? DIADEM_ZONE
                             : this.isOceanFishingSpot(spotId)

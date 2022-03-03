@@ -1079,6 +1079,11 @@ module.exports = {
     name_en: 'The Gold Saucer',
     name_ja: 'ゴールドソーサー',
   },
+  1647: {
+    name_chs: '云冠群岛',
+    name_en: 'The Diadem',
+    name_ja: 'ディアデム諸島',
+  },
   2000: {
     name_chs: '龙堡参天高地',
     name_en: 'The Dravanian Forelands',

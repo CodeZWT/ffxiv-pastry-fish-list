@@ -21,6 +21,12 @@ export default new Vuex.Store({
     userData: loadUserData(),
     viewedFeatures: LocalStorageUtil.loadViewedFeatures(CONSTANTS.FEATURE_GROUP_READER),
     readerTimerMiniMode: false,
+    snackbar: {
+      show: false,
+      text: '',
+      color: '',
+      timeout: 2000,
+    },
   },
   getters: {
     isRoseMode: state => {
@@ -47,6 +53,14 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    showSnackbar(state, snackBarSetting) {
+      state.snackbar = {
+        show: true,
+        text: snackBarSetting.text,
+        color: snackBarSetting.color,
+        timeout: snackBarSetting.timeout ?? 2000,
+      }
+    },
     boardCastReload(state) {
       state.userData = loadUserData()
       state.readerSetting = loadReaderUserData()

@@ -64,6 +64,15 @@
       <router-view class="reader-wrapper" />
       <resize-indicator />
     </v-main>
+    <v-snackbar
+      :timeout="snackbar.timeout"
+      v-model="snackbar.show"
+      :color="snackbar.color"
+      centered
+      elevation="24"
+    >
+      <div class="text-center">{{ snackbar.text }}</div>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -133,7 +142,7 @@ export default {
     earthTime() {
       return DataUtil.formatDateTime(this.now, 'HH:mm')
     },
-    ...mapState(['sounds', 'readerTimerMiniMode']),
+    ...mapState(['sounds', 'readerTimerMiniMode', 'snackbar']),
     ...mapState('readerHistory', ['showConfig']),
     ...mapGetters([
       'readerRegion',
