@@ -1267,15 +1267,15 @@ export default {
 }
 
 .v-application .chs-font {
-  font-family: 'KaiTi', cursive !important;
+  font-family: 'KaiTi', serif !important;
 }
 
 .v-application .ja-font {
-  font-family: 'Yuji Syuku', cursive !important;
+  font-family: 'Yuji Syuku', serif !important;
 }
 
 .v-application .en-font {
-  font-family: 'Courgette', cursive !important;
+  font-family: 'Cormorant Upright', serif !important;
 }
 
 .cafekit.ck-popup {

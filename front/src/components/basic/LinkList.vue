@@ -49,7 +49,7 @@
                 <v-img contain :src="localeItem.icon" height="18" width="24" />
               </div>
               <div>
-                <span :class="`${localeItem.locale}-font text-h6`">{{
+                <span :class="`${localeItem.locale}-font text-h5`">{{
                   localeItem.name
                 }}</span>
               </div>
