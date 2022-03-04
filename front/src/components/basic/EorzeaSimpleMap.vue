@@ -25,7 +25,7 @@
               left: 50%;
               top: 4px;
               position: absolute;
-              z-index: 10;
+              z-index: 1;
               margin-left: -120px;
             "
           >
