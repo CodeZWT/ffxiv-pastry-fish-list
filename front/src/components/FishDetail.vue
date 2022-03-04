@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper inner">
     <template v-if="fish">
-      <div style="position: sticky; top: 0; z-index: 5" class="inner">
+      <div style="position: sticky; top: 0; z-index: 2" class="inner">
         <fish-list-expanded-header
           :value="fish"
           :fishing-spots="fishingSpots"
