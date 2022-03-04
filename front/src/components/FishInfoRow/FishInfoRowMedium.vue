@@ -286,6 +286,7 @@
 import {
   mdiArrowRight,
   mdiBell,
+  mdiBellOutline,
   mdiContentCopy,
   mdiMap,
   mdiPin,
@@ -320,6 +321,7 @@ export default {
       mdiPin,
       mdiPinOutline,
       mdiBell,
+      mdiBellOutline,
       mdiArrowRight,
       mdiContentCopy,
       mdiMap,
