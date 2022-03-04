@@ -30,10 +30,11 @@ const remote = require("@electron/remote/main")
 const { Unhandled } = require('./server/mainSetupV2/unhandled')
 remote.initialize()
 
+// Page: https://seafile.cyanclay.xyz/library/22c28585-af23-47da-883f-e2c2a6f177f6/PastryFish/
 const COMMIT_HASH_DOWNLOAD_LINK =
-  'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
+  'https://seafile.cyanclay.xyz/f/d0a048d99ad1498d9d4f/?dl=1'
 const SETUP_EXE_DOWNLOAD_LINK =
-  'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
+  'https://seafile.cyanclay.xyz/f/cbb8b0514aab4a7586dd/?dl=1'
 log.transports.console.level = 'silly'
 
 const OPCODE_URL = 'https://pastry-fish-static-1304006624.file.myqcloud.com/opcodes/opcodes.min.json'
