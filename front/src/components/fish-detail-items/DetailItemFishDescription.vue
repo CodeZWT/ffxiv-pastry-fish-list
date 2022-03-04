@@ -72,8 +72,9 @@ export default {
   mounted() {},
   watch: {
     'fish._id': {
-      handler: async function(id) {
+      handler: async function(itemSpotId) {
         try {
+          const id = DataUtil.toItemId(itemSpotId)
           this.loading = true
           const resp = await garlandService.getItem(id)
           this.description = DataUtil.getName(toMultiLangDescription(resp))

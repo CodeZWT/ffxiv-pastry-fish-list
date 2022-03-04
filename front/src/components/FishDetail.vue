@@ -1,39 +1,32 @@
 <template>
-  <div class="inner">
+  <div class="wrapper inner">
     <template v-if="fish">
-      <fish-list-expanded-header
-        :value="fish"
-        :fishing-spots="fishingSpots"
-        :fish-time-part="fishTimePart"
-        :show-close="showClose"
-        :show-spot-button="showSpotButton"
-        @close="$emit('close')"
-        @show-spot="
-          $emit('show-spot', { spotId: $event, mode: isSpear ? 'spear' : 'normal' })
-        "
-      />
-      <div
-        :class="{
-          'detail-header': inPane,
-          'detail-header--web-desktop': inPane && !isElectron && !isMobile,
-          'detail-header--web-mobile': inPane && !isElectron && isMobile,
-          'detail-header--electron-desktop': inPane && isElectron && !isMobile,
-          'detail-header--electron-mobile': inPane && isElectron && isMobile,
-        }"
-      >
-        <fish-detail-content
-          ref="detailContent"
+      <div style="position: sticky; top: 0; z-index: 5" class="inner">
+        <fish-list-expanded-header
           :value="fish"
           :fishing-spots="fishingSpots"
           :fish-time-part="fishTimePart"
-          :fish-weather-change-part="fishWeatherChangePart"
-          :predators="predators"
-          :shadow-predators="shadowPredators"
-          :forceShowComponents="forceShowComponents"
-          :hide-map="hideMap"
-          @close-dialog="$emit('close-dialog')"
-        ></fish-detail-content>
+          :show-close="showClose"
+          :show-spot-button="showSpotButton"
+          @close="$emit('close')"
+          @show-spot="
+            $emit('show-spot', { spotId: $event, mode: isSpear ? 'spear' : 'normal' })
+          "
+        />
+        <v-divider />
       </div>
+      <fish-detail-content
+        ref="detailContent"
+        :value="fish"
+        :fishing-spots="fishingSpots"
+        :fish-time-part="fishTimePart"
+        :fish-weather-change-part="fishWeatherChangePart"
+        :predators="predators"
+        :shadow-predators="shadowPredators"
+        :forceShowComponents="forceShowComponents"
+        :hide-map="hideMap"
+        @close-dialog="$emit('close-dialog')"
+      ></fish-detail-content>
     </template>
     <template v-else>
       <div class="d-flex fill-height align-center justify-center">
@@ -139,26 +132,8 @@ export default {
 
 <style lang="sass" scoped>
 @import "~@/styles/RcVariables"
-
-$detail-header-height: 104px
-$wrapper-detail: $detail-header-height + $button-height
-$wrapper-detail-mobile: $detail-header-height
-
-.inner
-  width: 100%
-  height: 100%
-
-.detail-header
-  overflow-scrolling: auto
-  overflow-y: scroll
-  &--web
-    &-desktop
-      height: calc(100vh - #{ $wrapper-web + $wrapper-detail })
-    &-mobile
-      height: calc(100vh - #{ $wrapper-web + $wrapper-detail-mobile })
-  &--electron
-    &-desktop
-      height: calc(100vh - #{ $wrapper-desktop + $wrapper-detail })
-    &-mobile
-      height: calc(100vh - #{ $wrapper-desktop + $wrapper-detail-mobile })
+.wrapper
+  position: relative
+  height: auto
+  min-height: 100%
 </style>

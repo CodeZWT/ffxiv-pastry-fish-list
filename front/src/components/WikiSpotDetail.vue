@@ -114,7 +114,7 @@
       </v-col>
 
       <!-- map -->
-      <v-col v-if="!isOceanFishingSpot" cols="12" class="my-1">
+      <v-col v-if="!isOceanFishingSpot" cols="12" class="mt-1">
         <v-expansion-panels hover flat tile :value="0">
           <v-expansion-panel class="systemSecondary">
             <v-expansion-panel-header class="systemSecondary">

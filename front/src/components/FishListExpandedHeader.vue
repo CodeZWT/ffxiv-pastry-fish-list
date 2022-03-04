@@ -65,7 +65,8 @@
               :checked-icon="mdiBell"
               :unchecked-icon="mdiBellOutline"
             />
-            <div v-if="fish.hasTasks" class="mr-2">
+            <v-spacer />
+            <div v-if="fish.hasTasks" class="ml-2">
               <v-icon title="含有任务及其他信息（默认在此窗口最下方）">
                 {{ mdiAlertCircleOutline }}
               </v-icon>
@@ -75,16 +76,16 @@
               :data-ck-item-id="
                 toItemIdIfExisted(fish.folklore.itemId, fish.folklore.name)
               "
-              class="mr-2"
+              class="ml-2"
             >
               <v-icon :title="fish.folklore.name">{{ mdiBookOpenVariant }}</v-icon>
             </div>
-            <div v-if="fish.aquarium" class="mr-2">
+            <div v-if="fish.aquarium" class="ml-2" style="padding-top: 2px">
               <v-icon :title="`[${fish.aquarium.size}] ${fish.aquarium.water}`">
                 {{ mdiFishbowl }}
               </v-icon>
             </div>
-            <div v-if="fish.collectable">
+            <div v-if="fish.collectable" class="ml-2">
               <i class="xiv collectables" style="font-size: 22px" title="收藏品" />
             </div>
           </div>

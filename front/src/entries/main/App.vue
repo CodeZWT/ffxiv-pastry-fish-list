@@ -662,86 +662,64 @@
       @change="handleSearch"
     />
 
-    <v-footer app style="font-size: small; max-height: 31px" :padless="isMobile">
-      <div class="d-flex" style="width: 100%">
-        <template v-if="!isMobile || isElectron">
-          <div
-            class="text-truncate mr-2"
-            :title="$t('footer.contact')"
-            @click="showAboutDialog = true"
-            style="cursor: pointer"
-          >
-            <span v-if="!isMobile">
-              {{ $t('footer.author') }}
-            </span>
-            <span>
-              <v-icon small>{{ mdiQqchat }}</v-icon>
-              1153646847
-            </span>
-            <span v-if="isMobile">
-              {{ $t('footer.author') }}
-            </span>
+    <v-footer app style="font-size: small; max-height: 31px" class="px-1">
+      <div class="d-flex align-center" style="width: 100%">
+        <template v-if="isMobile">
+          <div class="d-flex align-center justify-space-between" style="width: 100%">
+            <a target="_blank" href="https://beian.miit.gov.cn" class="beian-link">
+              黔ICP备2020011894号-1
+            </a>
+            <v-img v-if="!isMobile" :src="beianIcon" />
+            <a
+              target="_blank"
+              href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52270102000276"
+              class="beian-link"
+            >
+              黔公网安备 52270102000276号
+            </a>
           </div>
-          <v-spacer />
         </template>
-        <template v-if="!isElectron">
-          <div class="d-flex">
-            <div class="mx-1" style="min-width: 150px">
-              <a
-                target="_blank"
-                href="https://beian.miit.gov.cn"
-                style="
-                  display: inline-block;
-                  text-decoration: none;
-                  height: 20px;
-                  line-height: 20px;
-                "
-              >
-                <p
-                  style="
-                    float: left;
-                    height: 20px;
-                    line-height: 20px;
-                    margin: 0px 0px 0px 5px;
-                    color: #939393;
-                  "
-                >
-                  黔ICP备2020011894号-1
-                </p>
-              </a>
+        <template v-else>
+          <template v-if="!isMobile || isElectron">
+            <div
+              class="text-truncate mr-2"
+              :title="$t('footer.contact')"
+              @click="showAboutDialog = true"
+              style="cursor: pointer"
+            >
+              <span v-if="!isMobile">
+                {{ $t('footer.author') }}
+              </span>
+              <span>
+                <v-icon small>{{ mdiQqchat }}</v-icon>
+                1153646847
+              </span>
+              <span v-if="isMobile">
+                {{ $t('footer.author') }}
+              </span>
             </div>
-            <div class="mx-1" style="min-width: 200px">
+            <v-spacer />
+          </template>
+          <template v-if="!isElectron">
+            <div class="d-flex align-center justify-space-between">
+              <a target="_blank" href="https://beian.miit.gov.cn">
+                黔ICP备2020011894号-1
+              </a>
+              <v-img v-if="!isMobile" :src="beianIcon" />
               <a
                 target="_blank"
                 href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52270102000276"
-                style="
-                  display: inline-block;
-                  text-decoration: none;
-                  height: 20px;
-                  line-height: 20px;
-                "
               >
-                <img v-if="!isMobile" :src="beianIcon" style="float: left" />
-                <p
-                  style="
-                    float: left;
-                    height: 20px;
-                    line-height: 20px;
-                    margin: 0px 0px 0px 5px;
-                    color: #939393;
-                  "
-                >
-                  黔公网安备 52270102000276号
-                </p>
+                黔公网安备 52270102000276号
               </a>
             </div>
-          </div>
-        </template>
-        <template v-if="!isMobile">
-          <v-spacer />
-          <div class="text-truncate" :title="$t('footer.ffRights')">
-            {{ $t('footer.ffRights') }}
-          </div>
+          </template>
+          <template v-if="!isMobile">
+            <v-spacer />
+            <div class="text-truncate" :title="$t('footer.ffRights')">
+              {{ $t('footer.ffRights') }}
+            </div>
+          </template>
         </template>
       </div>
       <resize-indicator />
@@ -1368,5 +1346,10 @@ body {
 
 .setting-panel-row {
   margin: 0 0 12px 0;
+}
+
+.v-application .beian-link {
+  color: #757575;
+  text-decoration: none;
 }
 </style>

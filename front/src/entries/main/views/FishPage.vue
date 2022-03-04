@@ -40,7 +40,14 @@
         @close="spotId = -1"
       />
     </div>
-    <div class="detail-part" v-if="showRightPane">
+    <div
+      v-if="showRightPane"
+      :class="{
+        'detail-part': true,
+        'detail-part--web': !isElectron,
+        'detail-part--desktop': isElectron,
+      }"
+    >
       <fish-detail
         ref="fishDetail"
         :fish="selectedFish"
@@ -244,4 +251,8 @@ export default {
 .detail-part
   overflow-y: auto
   flex: 0 1 100%
+  &--web
+    height: calc(100vh - #{$toolbar-height + $footer-height})
+  &--desktop
+    height: calc(100vh - #{$wrapper-desktop})
 </style>

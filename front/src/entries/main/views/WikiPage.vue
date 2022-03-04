@@ -321,6 +321,7 @@
           show-close
           hide-map
           @close="closeFishDetailPage"
+          in-pane
         />
       </div>
     </div>
@@ -1246,7 +1247,7 @@ export default {
 
 .grid-content
   overflow-x: hidden
-  padding-left: 4px
+  //padding-left: 4px
   overflow-y: auto
   &--web
     height: 100%
@@ -1300,10 +1301,9 @@ $wrapper-wiki-menu: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
     min-width: 250px
 
 .detail-part
+  //overflow-x: hidden
   overflow-y: auto
   flex: 0 1 100%
-  overflow-x: hidden
-  padding-left: 4px
 
 ::v-deep .v-treeview-node
   cursor: pointer !important

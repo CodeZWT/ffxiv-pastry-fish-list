@@ -1,10 +1,10 @@
 <template>
-  <v-row no-gutters style="width: 100%">
+  <v-row no-gutters style="width: 100%; margin-top: -4px">
     <template v-for="component in sortedDetailComponents">
       <v-col
         v-if="component.enabled && (!component.constraint || fish[component.constraint])"
         cols="12"
-        class="my-2"
+        class="mt-2"
         :key="component.name"
       >
         <component

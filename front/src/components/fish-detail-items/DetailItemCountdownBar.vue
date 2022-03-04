@@ -16,7 +16,7 @@
         </template>
       </v-progress-linear>
     </div>
-    <div v-else-if="fish.countDownType === FISHING" style="height: 100%">
+    <div v-else-if="fish.countDownType === FISHING">
       <v-progress-linear
         :value="countDownRemainPercentage"
         height="25"
@@ -49,7 +49,6 @@
         !fish.checkInfo ||
           (!fish.checkInfo.timeRestricted && !fish.checkInfo.weatherRestricted)
       "
-      style="height: 100%"
     >
       <v-progress-linear :value="100" height="25" :color="fishingColor">
         <template>
