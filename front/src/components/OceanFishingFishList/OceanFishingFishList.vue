@@ -20,7 +20,7 @@
       :headers="oceanFishingHeaders"
       :items="transformFishList"
       :items-per-page="20"
-      class="elevation-4 mt-2"
+      class="mt-2"
       hide-default-footer
       multi-sort
       :dense="dense"
