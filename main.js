@@ -32,9 +32,9 @@ remote.initialize()
 
 // Page: https://seafile.cyanclay.xyz/library/22c28585-af23-47da-883f-e2c2a6f177f6/PastryFish/
 const COMMIT_HASH_DOWNLOAD_LINK =
-  'https://seafile.cyanclay.xyz/f/d0a048d99ad1498d9d4f/?dl=1'
+  'https://pastry-fish-static-1304006624.file.myqcloud.com/pastry-fish-commit-hash/COMMITHASH'
 const SETUP_EXE_DOWNLOAD_LINK =
-  'https://seafile.cyanclay.xyz/f/cbb8b0514aab4a7586dd/?dl=1'
+  'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-app/PastryFishSetup.exe?version=latest'
 log.transports.console.level = 'silly'
 
 const OPCODE_URL = 'https://pastry-fish-static-1304006624.file.myqcloud.com/opcodes/opcodes.min.json'

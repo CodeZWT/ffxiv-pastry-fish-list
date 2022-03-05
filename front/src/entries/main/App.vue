@@ -1004,7 +1004,7 @@ export default {
       beianIcon: beianIcon,
       showCheckStartSetupDialog: false,
       showFinishedBaitDialog: false,
-      showUpdateAvailableDialog: false,
+      showUpdateAvailableDialog: true,
       newVersion: undefined,
       DATA_LOCALES: DataUtil.DATA_LOCALES,
       DATA_SUB_LOCALES: DataUtil.DATA_SUB_LOCALES,

@@ -222,7 +222,7 @@ module.exports = {
       config.externals([
         function(context, request, callback) {
           if (
-            /(misc|home-logo|logo|item|lang|map|map-range-indicator).*\.(webp|png|jpe?g|svg)$/.test(
+            /(misc|home-logo|logo|item|lang|map|map-range-indicator|aquarium).*\.(webp|png|jpe?g|svg)$/.test(
               request
             )
           ) {

@@ -27,6 +27,25 @@
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
+            <div class="text-h6">Version 1.1.8</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2022/03/05 11:10</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
+        <ul>
+          <li>尝试修复下载问题</li>
+          <li>
+            服务商自3/5日起添加了每日总下载量的限制，下载人数过多后会下载失败，若下载失败请尝试手动下载。手动下载地址与自动下载不同，因此不会受到下载量的限制。
+          </li>
+          <li>
+            缩小了安装文件的大小。
+          </li>
+        </ul>
+        <v-divider />
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
             <div class="text-h6">Version 1.1.7</div>
             <v-spacer />
             <div class="text-subtitle-1">更新时间: 2022/03/04 16:10</div>
