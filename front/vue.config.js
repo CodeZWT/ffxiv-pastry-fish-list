@@ -218,8 +218,9 @@ module.exports = {
     },
   },
   chainWebpack: config => {
+    let ext
     if (process.env.VUE_APP_USE_LOCAL_FILE !== 'true') {
-      config.externals([
+      ext = [
         function(context, request, callback) {
           if (
             /(misc|home-logo|logo|item|lang|map|map-range-indicator|aquarium).*\.(webp|png|jpe?g|svg)$/.test(
@@ -231,14 +232,23 @@ module.exports = {
 
           callback()
         },
+      ]
+    }
+    if (
+      process.env.VUE_APP_USE_LOCAL_FILE !== 'true' &&
+      process.env.VUE_APP_ELECTRON !== 'true'
+    ) {
+      ext = ext.concat([
         function(context, request, callback) {
           if (/fish_icons_local.css$/.test(request)) {
             return callback(null, 'skipLocalCss ' + request)
           }
-
           callback()
         },
       ])
+    }
+    if (ext) {
+      config.externals(ext)
     }
 
     // if (process.env.NODE_ENV === 'production') {
