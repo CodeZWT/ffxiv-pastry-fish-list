@@ -12,7 +12,7 @@ jobs:
       - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.CODING_STATIC_FILES }}
-        - run submodule update --init
+          run: git submodule update --init
 
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
