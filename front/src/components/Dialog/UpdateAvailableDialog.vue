@@ -74,6 +74,7 @@ export default {
     },
     handleGoToDownloadPage() {
       window.open('https://ricecake302.coding.net/s/b9ae2dd4-64e2-4412-acdd-d40ab55f85c3')
+      this.$emit('input', false)
     },
     handleDownloadUpdate() {
       this.sendElectronEvent('downloadUpdate')
