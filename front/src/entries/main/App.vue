@@ -1158,7 +1158,6 @@ export default {
       // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
       // ref https://gitee.com/api/v5/repos/ricecake500/pastry-fish-desktop/releases/latest
       ?.on('showUpdateDialog', (event, releaseInfo) => {
-        console.log('releaseInfo', releaseInfo)
         this.showUpdateAvailableDialog = true
         this.releaseInfo = releaseInfo
       })
