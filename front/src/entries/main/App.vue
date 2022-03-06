@@ -828,7 +828,10 @@
       @update="startUpdate"
       @skip="skipUpdate"
     />
-    <update-available-dialog v-model="showUpdateAvailableDialog" :hash="newVersion" />
+    <update-available-dialog
+      v-model="showUpdateAvailableDialog"
+      :release-info="releaseInfo"
+    />
     <import-export-dialog v-model="showImportExport" />
     <bait-dialog
       v-model="showBaitDialog"
@@ -1005,7 +1008,7 @@ export default {
       showCheckStartSetupDialog: false,
       showFinishedBaitDialog: false,
       showUpdateAvailableDialog: false,
-      newVersion: undefined,
+      releaseInfo: {},
       DATA_LOCALES: DataUtil.DATA_LOCALES,
       DATA_SUB_LOCALES: DataUtil.DATA_SUB_LOCALES,
       UI_LOCALES: DataUtil.UI_LOCALES,
@@ -1153,9 +1156,11 @@ export default {
   created() {
     window.electron?.ipcRenderer
       // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
-      ?.on('showUpdateDialog', (event, newVersion) => {
+      // ref https://gitee.com/api/v5/repos/ricecake500/pastry-fish-desktop/releases/latest
+      ?.on('showUpdateDialog', (event, releaseInfo) => {
+        console.log('releaseInfo', releaseInfo)
         this.showUpdateAvailableDialog = true
-        this.newVersion = newVersion
+        this.releaseInfo = releaseInfo
       })
       ?.on('setupDownload', (event, data) => {
         if (this.downloadProgress < 100) {

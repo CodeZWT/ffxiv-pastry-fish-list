@@ -28,9 +28,10 @@ const contextMenu = require('electron-context-menu')
 const cloneDeep = require('lodash/cloneDeep')
 const remote = require("@electron/remote/main")
 const { Unhandled } = require('./server/mainSetupV2/unhandled')
+const releaseHandler = require('./server/mainSetupV2/releaseHandler')
 remote.initialize()
 
-// Page: https://seafile.cyanclay.xyz/library/22c28585-af23-47da-883f-e2c2a6f177f6/PastryFish/
+// Page: https://gitee.com/ricecake500/pastry-fish-desktop/releases
 const COMMIT_HASH_DOWNLOAD_LINK =
   'https://ricecake302-generic.pkg.coding.net/pastry-fish/desktop-version/COMMITHASH?version=latest'
 const SETUP_EXE_DOWNLOAD_LINK =
@@ -62,6 +63,7 @@ let hideBySwitch = false,
 let isFishing = false
 let remoteOpcodeVersion = 'latest'
 let unhandled
+let downloadLink
 
 contextMenu()
 const DEFAULT_HOTKEY_SETTING = {
@@ -556,7 +558,7 @@ async function init() {
     //   callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
     // })
     .on('downloadUpdate', event => {
-      downloadUpdates()
+      downloadUpdates(downloadLink)
     })
 
   const upload = async (accessToken, records) => {
@@ -663,7 +665,7 @@ async function init() {
   await createAndShowLoadingWindow()
   // await createMiniWin(WINDOWS.main)
   // updateIfNeeded()
-  showUpdateDialogIfNecessary()
+  // showUpdateDialogIfNecessary()
   // intervalHandle = setInterval(
   //   () => showUpdateDialogIfNecessary(),
   //   isDev ? CONSTANTS.INTERVAL_MINUTE : CONSTANTS.INTERVAL_MINUTE * 10
@@ -1228,20 +1230,8 @@ function toggleSpotStatistics() {
   })
 }
 
-async function downloadCommitHash() {
-  return download(COMMIT_HASH_DOWNLOAD_LINK)
-    .on('error', err => log.error('Error in download commit hash:', err))
-    .then(data => {
-      return data.toString(FILE_ENCODING)
-    })
-    .catch(() => {
-      // do nothing
-      return undefined
-    })
-}
-
-async function downloadSetupFile(onDownloadProgress, onFinished) {
-  return download(SETUP_EXE_DOWNLOAD_LINK, SETUP_PATH)
+async function downloadSetupFile(downloadLink, onDownloadProgress, onFinished) {
+  return download(downloadLink, SETUP_PATH)
     .on('downloadProgress', progress => {
       try {
         // Report download progress
@@ -1282,10 +1272,17 @@ const getLocalVersion = () => {
 const newVersionAvailable = async () => {
   log.info('Checking updates...')
   const localCommitHash = getLocalVersion()
-  const remoteCommitHash = await downloadCommitHash()
+  const release = await releaseHandler.getRelease().catch(e => {
+    log.error('Get release info error:', e)
+    return undefined
+  })
+  if (!release) return undefined
+  const downloadInfo = release.assets.find(it => it.name === 'PastryFishSetup.exe')
+  downloadLink = downloadInfo && downloadInfo.browser_download_url
+  const remoteCommitHash = release.name
   log.info('Remote commit hash:', remoteCommitHash)
   if (localCommitHash !== remoteCommitHash && remoteCommitHash != null) {
-    return remoteCommitHash
+    return release
   } else {
     return undefined
   }
@@ -1296,15 +1293,17 @@ const showUpdateDialogIfNecessary = async () => {
     log.info('skip update')
     return
   }
-  const newVersion = await newVersionAvailable()
-  if (newVersion != null) {
+  const release = await newVersionAvailable()
+  if (release != null) {
     callWindowSafe(WINDOWS.main, win => {
-      win.webContents.send('showUpdateDialog', newVersion)
+      win.webContents.send('showUpdateDialog', release)
     })
   }
 }
 
-const downloadUpdates = async () => {
+const downloadUpdates = async (downloadLink) => {
+  if (!downloadLink) return
+  log.info('Start download from: ', downloadLink)
   // clearInterval(intervalHandle)
   updateDownloading = true
   const throttled = throttle(
@@ -1322,7 +1321,7 @@ const downloadUpdates = async () => {
     500,
     { leading: true, trailing: false }
   )
-  await downloadSetupFile(throttled, () => {
+  await downloadSetupFile(downloadLink, throttled, () => {
     try {
       log.info('download setup finished')
       updateDownloading = false

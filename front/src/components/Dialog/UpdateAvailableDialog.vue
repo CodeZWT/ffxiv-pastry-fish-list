@@ -1,36 +1,20 @@
 <template>
-  <rc-dialog :value="show" @input="$emit('input', $event)" max-width="500">
+  <rc-dialog :value="show" @input="$emit('input', $event)" max-width="500" scrollable>
     <v-card>
-      <v-card-title>鱼糕 当前版本 {{ version }}</v-card-title>
+      <v-card-title>鱼糕更新</v-card-title>
+      <v-card-subtitle>
+        更新时间：{{ new Date(releaseInfo.created_at).toLocaleString() }}
+      </v-card-subtitle>
       <v-card-text>
-        <v-alert outlined type="warning" border="left">
-          自动更新有每日总下载量的限制，下载人数过多后会下载失败，若下载失败请尝试手动下载。
-        </v-alert>
-        <template v-if="updateInfo.version">
-          <div class="text-h6">最新版本 {{ updateInfo.version }}</div>
-          <div class="text-subtitle-1">更新时间: {{ updateInfo.updateTime }}</div>
-          <div class="text-subtitle-1">更新内容:</div>
-
-          <div v-for="note in updateInfo.notes" :key="note.title">
-            <div class="text-h5 text-center my-1">{{ note.title }}</div>
-            <ul>
-              <li v-for="item in note.items" :key="item.value">
-                {{ item.value }}
-                <ul v-if="item.type === 'list'">
-                  <li v-for="subItem in item.items" :key="subItem.value">
-                    {{ subItem.value }}
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </template>
-        <template v-else>检测到更新</template>
+        <!--        <v-alert outlined type="warning" border="left">-->
+        <!--          若自动更新失败请尝试手动下载-->
+        <!--        </v-alert>-->
+        <div class="markdown-body" v-html="downloadInfo"></div>
       </v-card-text>
 
       <v-card-actions class="d-flex justify-center">
+        <!--        <v-btn @click="handleDownloadUpdate" color="primary">自动更新</v-btn>-->
         <v-btn @click="handleGoToDownloadPage" color="info">手动下载更新</v-btn>
-        <v-btn @click="handleDownloadUpdate" color="primary">下载更新</v-btn>
         <v-btn @click="handleSkipUpdate">忽略更新</v-btn>
       </v-card-actions>
     </v-card>
@@ -38,9 +22,9 @@
 </template>
 
 <script>
+import * as MarkdownIt from 'markdown-it'
 import { version } from '../../../package.json'
 import RcDialog from '@/components/basic/RcDialog'
-import rcapiService from '@/service/rcapiService'
 
 export default {
   name: 'UpdateAvailableDialog',
@@ -53,23 +37,33 @@ export default {
       type: Boolean,
       default: false,
     },
-    hash: {
-      type: String,
-      default: undefined,
+    releaseInfo: {
+      type: Object,
+      default: () => ({}),
     },
+    // hash: {
+    //   type: String,
+    //   default: undefined,
+    // },
   },
   data() {
     return {
       version: version,
-      updateInfo: {},
+      md: new MarkdownIt(),
+      downloadInfo: '',
     }
   },
   watch: {
+    releaseInfo(releaseInfo) {
+      if (releaseInfo) {
+        this.downloadInfo = this.md.render(releaseInfo.body)
+      }
+    },
     show(show) {
       if (show) {
-        rcapiService.getPatchInfo(this.hash).then(info => {
-          this.updateInfo = JSON.parse(info.content)
-        })
+        // rcapiService.getPatchInfo(this.hash).then(info => {
+        //   this.updateInfo = JSON.parse(info.content)
+        // })
       }
     },
   },
@@ -92,4 +86,18 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
+</style>
