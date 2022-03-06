@@ -3,18 +3,21 @@ name: Github Pages CI
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: webfactory/ssh-agent@v0.5.4
+      - uses: kielabokkie/ssh-key-and-known-hosts-action@v1
         with:
           ssh-private-key: ${{ secrets.CODING_STATIC_FILES }}
-
-      - name: submodule
-        run: git submodule update --init
+          ssh-host: e.coding.net
+      
+      - run: |
+          git submodule update --init
 
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
@@ -27,7 +30,7 @@ jobs:
         run: |
           cd front
           yarn install
-          yarn build:traveleorzeaglobal
+          yarn build:traveleorzeagithub
           cd ..
 
       - name: deploy

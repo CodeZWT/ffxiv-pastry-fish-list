@@ -10,6 +10,7 @@
     "build:electron": "vue-cli-service build --mode electron --dest ../front-electron-dist",
     "build:traveleorzea": "vue-cli-service build --mode traveleorzea --dest ../front-web-dist",
     "build:traveleorzeaglobal": "vue-cli-service build --mode traveleorzeaglobal --dest ../front-web-dist",
+    "build:traveleorzeagithub": "vue-cli-service build --mode traveleorzeagithub --dest ../front-web-dist",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
     "inspect": "vue-cli-service inspect",
     "lint:fix": "vue-cli-service lint --fix"
