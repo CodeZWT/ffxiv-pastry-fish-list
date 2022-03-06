@@ -41,7 +41,7 @@ const OPCODE_URL = 'https://pastry-fish-static-1304006624.file.myqcloud.com/opco
 
 const WINDOWS = {}
 let tray, configStore, windowSetting, hotkeySetting, region, monitorType
-let intervalHandle
+// let intervalHandle
 let uploadIntervalHandle
 let enableMouseThrough = false
 // let showReaderOnlyIfFishing = false
@@ -556,7 +556,7 @@ async function init() {
     //   callWindowSafe(WINDOWS.main, win => win.webContents.send('reloadUserData'))
     // })
     .on('downloadUpdate', event => {
-      downloadUpdates(intervalHandle)
+      downloadUpdates()
     })
 
   const upload = async (accessToken, records) => {
@@ -663,10 +663,11 @@ async function init() {
   await createAndShowLoadingWindow()
   // await createMiniWin(WINDOWS.main)
   // updateIfNeeded()
-  intervalHandle = setInterval(
-    () => showUpdateDialogIfNecessary(),
-    isDev ? CONSTANTS.INTERVAL_MINUTE : CONSTANTS.INTERVAL_MINUTE * 10
-  )
+  showUpdateDialogIfNecessary()
+  // intervalHandle = setInterval(
+  //   () => showUpdateDialogIfNecessary(),
+  //   isDev ? CONSTANTS.INTERVAL_MINUTE : CONSTANTS.INTERVAL_MINUTE * 10
+  // )
 
   // uploadIfNeeded()
   uploadIntervalHandle = setInterval(() => uploadIfNeeded(), CONSTANTS.INTERVAL_MINUTE)
@@ -1303,8 +1304,8 @@ const showUpdateDialogIfNecessary = async () => {
   }
 }
 
-const downloadUpdates = async intervalHandle => {
-  clearInterval(intervalHandle)
+const downloadUpdates = async () => {
+  // clearInterval(intervalHandle)
   updateDownloading = true
   const throttled = throttle(
     progress => {
@@ -1333,58 +1334,10 @@ const downloadUpdates = async intervalHandle => {
   })
 }
 
-async function updateIfNeeded(intervalHandle) {
-  if (skipUpdate || updateDownloaded || updateDownloading) {
-    log.info('Update check skipped')
-    if (skipUpdate) {
-      callWindowSafe(WINDOWS.main, win => {
-        win.setProgressBar(0)
-      })
-    }
-    return
-  }
-
-  log.info('Checking updates...')
-  const localCommitHash = getLocalVersion()
-  const remoteCommitHash = await downloadCommitHash()
-  log.info('Remote commit hash:', remoteCommitHash)
-  if (localCommitHash !== remoteCommitHash && remoteCommitHash != null) {
-    clearInterval(intervalHandle)
-    log.info('New Version Detected!')
-    updateDownloading = true
-    const throttled = throttle(
-      progress => {
-        try {
-          log.info('progress', progress.percent)
-          callWindowSafe(WINDOWS.main, win => {
-            win.webContents.send('setupDownload', progress)
-            win.setProgressBar(progress.percent)
-          })
-        } catch (e) {
-          log.error('Try set download progress failed.', e)
-        }
-      },
-      500,
-      { leading: true, trailing: false }
-    )
-    await downloadSetupFile(throttled, () => {
-      try {
-        log.info('download setup finished')
-        updateDownloading = false
-        updateDownloaded = true
-        callWindowSafe(WINDOWS.main, win => win.webContents.send('checkStartSetup'))
-      } catch (e) {
-        log.error('Try open update dialog failed.', e)
-      }
-    })
-  } else {
-    log.info('No Update. Wait 10 minutes to check...')
-  }
-}
 
 function quitAndSetup() {
   try {
-    clearInterval(intervalHandle)
+    // clearInterval(intervalHandle)
     clearInterval(uploadIntervalHandle)
     FishingDataReader.stop(() => {
       const installerPath = isDev
@@ -1403,7 +1356,7 @@ function quitAndSetup() {
 
 function quit() {
   try {
-    clearInterval(intervalHandle)
+    // clearInterval(intervalHandle)
     clearInterval(uploadIntervalHandle)
     FishingDataReader.stop(() => {
       log.info('quit by close')
