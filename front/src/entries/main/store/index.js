@@ -578,14 +578,6 @@ export const MainModule = {
         [routeId],
         toBeNotified
       )
-      if (!toBeNotified) {
-        state.userData = updateUserDataStateRecords(
-          state.userData,
-          'toBeNotifiedIKDLockedRoutes',
-          [routeId],
-          false
-        )
-      }
     },
 
     setFishToBeNotifiedLocked(state, { fishId, toBeNotifiedLocked }) {

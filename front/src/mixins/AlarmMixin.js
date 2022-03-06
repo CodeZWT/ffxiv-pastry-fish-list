@@ -89,7 +89,7 @@ export default {
 
       if (this.routesStartTime < shiftNow) {
         // console.log('refresh cache')
-        this.routes = OceanFishingUtil.voyagesWithTipOf(now, 24)
+        this.routes = OceanFishingUtil.voyagesWithTipOf(now, 30)
         // .filter(
         // it => it.time > now
         // )
@@ -118,9 +118,6 @@ export default {
               alarmId,
               routeId,
               () => {
-                if (targetRoutes.length < 2) {
-                  console.warn('targetRoutes', targetRoutes)
-                }
                 const first =
                   targetRoutes[0].time +
                   (setting.offset - setting.before) * DataUtil.INTERVAL_MINUTE
