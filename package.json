@@ -68,7 +68,8 @@
       "!front",
       "!front-web-dist",
       "!setup",
-      "!assets"
+      "!assets",
+      "assets/icon256.png"
     ],
     "win": {
       "requestedExecutionLevel": "highestAvailable",
