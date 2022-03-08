@@ -125,12 +125,12 @@ module.exports = {
     name_ja: '幻海流',
   },
   148: {
-    name_chs: '',
+    name_chs: '月尘',
     name_en: 'Moon Dust',
     name_ja: '月砂塵',
   },
   149: {
-    name_chs: '',
+    name_chs: '磁暴',
     name_en: 'Astromagnetic Storm',
     name_ja: '磁気嵐',
   },
