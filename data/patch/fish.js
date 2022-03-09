@@ -12777,7 +12777,6 @@ const fishCN = {
 const fishGlobalAddon = {
   35604: {
     _id: 35604,
-    fishEyes: false,
     anglerFishId: 3640,
     bait: 36590,
     locations: [255],
@@ -12789,7 +12788,6 @@ const fishGlobalAddon = {
   },
   35605: {
     _id: 35605,
-    fishEyes: false,
     anglerFishId: 3641,
     bait: 36592,
     locations: [263],
@@ -12801,7 +12799,6 @@ const fishGlobalAddon = {
   },
   35606: {
     _id: 35606,
-    fishEyes: false,
     anglerFishId: 3642,
     bait: 36590,
     locations: [270, 271],
@@ -12813,7 +12810,6 @@ const fishGlobalAddon = {
   },
   35607: {
     _id: 35607,
-    fishEyes: false,
     anglerFishId: 3643,
     bait: 36590,
     locations: [277],
@@ -12825,7 +12821,6 @@ const fishGlobalAddon = {
   },
   36385: {
     _id: 36385,
-    fishEyes: false,
     anglerFishId: 3460,
     bait: 36592,
     locations: [252],
@@ -12837,7 +12832,6 @@ const fishGlobalAddon = {
   },
   36386: {
     _id: 36386,
-    fishEyes: false,
     anglerFishId: 3461,
     bait: 36592,
     locations: [252],
@@ -12849,7 +12843,6 @@ const fishGlobalAddon = {
   },
   36387: {
     _id: 36387,
-    fishEyes: false,
     anglerFishId: 3462,
     bait: 36592,
     locations: [252],
@@ -12861,7 +12854,6 @@ const fishGlobalAddon = {
   },
   36388: {
     _id: 36388,
-    fishEyes: false,
     anglerFishId: 3463,
     bait: 36592,
     locations: [252],
@@ -12873,7 +12865,6 @@ const fishGlobalAddon = {
   },
   36389: {
     _id: 36389,
-    fishEyes: false,
     anglerFishId: 3464,
     bait: 36592,
     locations: [252],
@@ -12885,7 +12876,6 @@ const fishGlobalAddon = {
   },
   36390: {
     _id: 36390,
-    fishEyes: false,
     anglerFishId: 3465,
     bait: 36590,
     locations: [253, 254],
@@ -12897,7 +12887,6 @@ const fishGlobalAddon = {
   },
   36392: {
     _id: 36392,
-    fishEyes: false,
     anglerFishId: 3466,
     bait: 36590,
     locations: [253],
@@ -12909,7 +12898,6 @@ const fishGlobalAddon = {
   },
   36393: {
     _id: 36393,
-    fishEyes: false,
     anglerFishId: 3467,
     bait: 36590,
     locations: [253],
@@ -12921,7 +12909,6 @@ const fishGlobalAddon = {
   },
   36394: {
     _id: 36394,
-    fishEyes: false,
     anglerFishId: 3468,
     bait: 36590,
     locations: [253],
@@ -12933,7 +12920,6 @@ const fishGlobalAddon = {
   },
   36395: {
     _id: 36395,
-    fishEyes: false,
     anglerFishId: 3469,
     bait: 36590,
     locations: [254],
@@ -12945,7 +12931,6 @@ const fishGlobalAddon = {
   },
   36396: {
     _id: 36396,
-    fishEyes: false,
     anglerFishId: 3470,
     bait: 36590,
     locations: [254],
@@ -12957,7 +12942,6 @@ const fishGlobalAddon = {
   },
   36397: {
     _id: 36397,
-    fishEyes: false,
     anglerFishId: 3471,
     bait: 36590,
     locations: [255, 256, 257, 258, 259],
@@ -12969,7 +12953,6 @@ const fishGlobalAddon = {
   },
   36398: {
     _id: 36398,
-    fishEyes: false,
     anglerFishId: 3472,
     bait: 36590,
     locations: [256, 257, 258, 259],
@@ -12981,7 +12964,6 @@ const fishGlobalAddon = {
   },
   36399: {
     _id: 36399,
-    fishEyes: false,
     anglerFishId: 3473,
     bait: 36590,
     locations: [255],
@@ -12993,7 +12975,6 @@ const fishGlobalAddon = {
   },
   36400: {
     _id: 36400,
-    fishEyes: false,
     anglerFishId: 3474,
     bait: 36590,
     locations: [255],
@@ -13005,7 +12986,6 @@ const fishGlobalAddon = {
   },
   36402: {
     _id: 36402,
-    fishEyes: false,
     anglerFishId: 3475,
     bait: 36590,
     locations: [255],
@@ -13017,7 +12997,6 @@ const fishGlobalAddon = {
   },
   36403: {
     _id: 36403,
-    fishEyes: false,
     anglerFishId: 3476,
     bait: 36590,
     locations: [256],
@@ -13029,7 +13008,6 @@ const fishGlobalAddon = {
   },
   36404: {
     _id: 36404,
-    fishEyes: false,
     anglerFishId: 3477,
     bait: 36590,
     locations: [256],
@@ -13041,7 +13019,6 @@ const fishGlobalAddon = {
   },
   36405: {
     _id: 36405,
-    fishEyes: false,
     anglerFishId: 3478,
     bait: 36590,
     locations: [256],
@@ -13053,7 +13030,6 @@ const fishGlobalAddon = {
   },
   36407: {
     _id: 36407,
-    fishEyes: false,
     anglerFishId: 3479,
     bait: 36590,
     locations: [257],
@@ -13065,7 +13041,6 @@ const fishGlobalAddon = {
   },
   36408: {
     _id: 36408,
-    fishEyes: false,
     anglerFishId: 3480,
     bait: 36590,
     locations: [257],
@@ -13077,7 +13052,6 @@ const fishGlobalAddon = {
   },
   36409: {
     _id: 36409,
-    fishEyes: false,
     anglerFishId: 3481,
     bait: 36590,
     locations: [258],
@@ -13089,7 +13063,6 @@ const fishGlobalAddon = {
   },
   36410: {
     _id: 36410,
-    fishEyes: false,
     anglerFishId: 3482,
     bait: 36590,
     locations: [258],
@@ -13101,7 +13074,6 @@ const fishGlobalAddon = {
   },
   36411: {
     _id: 36411,
-    fishEyes: false,
     anglerFishId: 3483,
     bait: 36590,
     locations: [258],
@@ -13113,7 +13085,6 @@ const fishGlobalAddon = {
   },
   36412: {
     _id: 36412,
-    fishEyes: false,
     anglerFishId: 3484,
     bait: 36590,
     locations: [259],
@@ -13125,7 +13096,6 @@ const fishGlobalAddon = {
   },
   36414: {
     _id: 36414,
-    fishEyes: false,
     anglerFishId: 3485,
     bait: 36590,
     locations: [259],
@@ -13137,7 +13107,6 @@ const fishGlobalAddon = {
   },
   36415: {
     _id: 36415,
-    fishEyes: false,
     anglerFishId: 3486,
     bait: 36590,
     locations: [260],
@@ -13149,7 +13118,6 @@ const fishGlobalAddon = {
   },
   36417: {
     _id: 36417,
-    fishEyes: false,
     anglerFishId: 3487,
     bait: 36590,
     locations: [260],
@@ -13161,7 +13129,6 @@ const fishGlobalAddon = {
   },
   36418: {
     _id: 36418,
-    fishEyes: false,
     anglerFishId: 3488,
     bait: 36590,
     locations: [260],
@@ -13173,7 +13140,6 @@ const fishGlobalAddon = {
   },
   36419: {
     _id: 36419,
-    fishEyes: false,
     anglerFishId: 3489,
     bait: 36590,
     locations: [260],
@@ -13185,7 +13151,6 @@ const fishGlobalAddon = {
   },
   36420: {
     _id: 36420,
-    fishEyes: false,
     anglerFishId: 3490,
     bait: 36592,
     locations: [261, 262, 263],
@@ -13197,7 +13162,6 @@ const fishGlobalAddon = {
   },
   36421: {
     _id: 36421,
-    fishEyes: false,
     anglerFishId: 3491,
     bait: 36592,
     locations: [261, 262, 263],
@@ -13209,7 +13173,6 @@ const fishGlobalAddon = {
   },
   36422: {
     _id: 36422,
-    fishEyes: false,
     anglerFishId: 3492,
     bait: 36592,
     locations: [261],
@@ -13221,7 +13184,6 @@ const fishGlobalAddon = {
   },
   36423: {
     _id: 36423,
-    fishEyes: false,
     anglerFishId: 3493,
     bait: 36592,
     locations: [261],
@@ -13233,7 +13195,6 @@ const fishGlobalAddon = {
   },
   36425: {
     _id: 36425,
-    fishEyes: false,
     anglerFishId: 3494,
     bait: 36592,
     locations: [262],
@@ -13245,7 +13206,6 @@ const fishGlobalAddon = {
   },
   36426: {
     _id: 36426,
-    fishEyes: false,
     anglerFishId: 3495,
     bait: 36592,
     locations: [262],
@@ -13257,7 +13217,6 @@ const fishGlobalAddon = {
   },
   36427: {
     _id: 36427,
-    fishEyes: false,
     anglerFishId: 3496,
     bait: 36592,
     locations: [262],
@@ -13269,7 +13228,6 @@ const fishGlobalAddon = {
   },
   36430: {
     _id: 36430,
-    fishEyes: false,
     anglerFishId: 3497,
     bait: 36592,
     locations: [263],
@@ -13281,7 +13239,6 @@ const fishGlobalAddon = {
   },
   36431: {
     _id: 36431,
-    fishEyes: false,
     anglerFishId: 3498,
     bait: 36590,
     locations: [264],
@@ -13293,7 +13250,6 @@ const fishGlobalAddon = {
   },
   36432: {
     _id: 36432,
-    fishEyes: false,
     anglerFishId: 3499,
     bait: 36590,
     locations: [264],
@@ -13305,7 +13261,6 @@ const fishGlobalAddon = {
   },
   36434: {
     _id: 36434,
-    fishEyes: false,
     anglerFishId: 3500,
     bait: 36590,
     locations: [264],
@@ -13317,7 +13272,6 @@ const fishGlobalAddon = {
   },
   36435: {
     _id: 36435,
-    fishEyes: false,
     anglerFishId: 3501,
     bait: 36590,
     locations: [264],
@@ -13329,7 +13283,6 @@ const fishGlobalAddon = {
   },
   36436: {
     _id: 36436,
-    fishEyes: false,
     anglerFishId: 3502,
     bait: 36590,
     locations: [265, 266, 267, 268],
@@ -13341,7 +13294,6 @@ const fishGlobalAddon = {
   },
   36438: {
     _id: 36438,
-    fishEyes: false,
     anglerFishId: 3503,
     bait: 36590,
     locations: [265, 266],
@@ -13353,7 +13305,6 @@ const fishGlobalAddon = {
   },
   36439: {
     _id: 36439,
-    fishEyes: false,
     anglerFishId: 3504,
     bait: 36590,
     locations: [265],
@@ -13365,7 +13316,6 @@ const fishGlobalAddon = {
   },
   36440: {
     _id: 36440,
-    fishEyes: false,
     anglerFishId: 3505,
     bait: 36590,
     locations: [265],
@@ -13377,7 +13327,6 @@ const fishGlobalAddon = {
   },
   36441: {
     _id: 36441,
-    fishEyes: false,
     anglerFishId: 3506,
     bait: 36590,
     locations: [266],
@@ -13389,7 +13338,6 @@ const fishGlobalAddon = {
   },
   36442: {
     _id: 36442,
-    fishEyes: false,
     anglerFishId: 3507,
     bait: 36590,
     locations: [266],
@@ -13401,7 +13349,6 @@ const fishGlobalAddon = {
   },
   36443: {
     _id: 36443,
-    fishEyes: false,
     anglerFishId: 3508,
     bait: 36590,
     locations: [267, 268],
@@ -13413,7 +13360,6 @@ const fishGlobalAddon = {
   },
   36444: {
     _id: 36444,
-    fishEyes: false,
     anglerFishId: 3509,
     bait: 36590,
     locations: [267],
@@ -13425,7 +13371,6 @@ const fishGlobalAddon = {
   },
   36446: {
     _id: 36446,
-    fishEyes: false,
     anglerFishId: 3510,
     bait: 36590,
     locations: [267],
@@ -13437,7 +13382,6 @@ const fishGlobalAddon = {
   },
   36447: {
     _id: 36447,
-    fishEyes: false,
     anglerFishId: 3511,
     bait: 36590,
     locations: [268],
@@ -13449,7 +13393,6 @@ const fishGlobalAddon = {
   },
   36448: {
     _id: 36448,
-    fishEyes: false,
     anglerFishId: 3512,
     bait: 36590,
     locations: [268],
@@ -13461,7 +13404,6 @@ const fishGlobalAddon = {
   },
   36449: {
     _id: 36449,
-    fishEyes: false,
     anglerFishId: 3513,
     bait: 36590,
     locations: [268],
@@ -13473,7 +13415,6 @@ const fishGlobalAddon = {
   },
   36450: {
     _id: 36450,
-    fishEyes: false,
     anglerFishId: 3514,
     bait: 36592,
     locations: [269],
@@ -13485,7 +13426,6 @@ const fishGlobalAddon = {
   },
   36451: {
     _id: 36451,
-    fishEyes: false,
     anglerFishId: 3515,
     bait: 36593,
     locations: [269],
@@ -13497,7 +13437,6 @@ const fishGlobalAddon = {
   },
   36452: {
     _id: 36452,
-    fishEyes: false,
     anglerFishId: 3516,
     bait: 36592,
     locations: [269],
@@ -13509,7 +13448,6 @@ const fishGlobalAddon = {
   },
   36453: {
     _id: 36453,
-    fishEyes: false,
     anglerFishId: 3517,
     bait: 36593,
     locations: [269],
@@ -13521,7 +13459,6 @@ const fishGlobalAddon = {
   },
   36454: {
     _id: 36454,
-    fishEyes: false,
     anglerFishId: 3518,
     bait: 36593,
     locations: [269],
@@ -13533,7 +13470,6 @@ const fishGlobalAddon = {
   },
   36456: {
     _id: 36456,
-    fishEyes: false,
     anglerFishId: 3519,
     bait: 36590,
     locations: [270, 271],
@@ -13545,7 +13481,6 @@ const fishGlobalAddon = {
   },
   36457: {
     _id: 36457,
-    fishEyes: false,
     anglerFishId: 3520,
     bait: 36590,
     locations: [270],
@@ -13557,7 +13492,6 @@ const fishGlobalAddon = {
   },
   36458: {
     _id: 36458,
-    fishEyes: false,
     anglerFishId: 3521,
     bait: 36590,
     locations: [270],
@@ -13569,7 +13503,6 @@ const fishGlobalAddon = {
   },
   36459: {
     _id: 36459,
-    fishEyes: false,
     anglerFishId: 3522,
     bait: 36590,
     locations: [270],
@@ -13581,7 +13514,6 @@ const fishGlobalAddon = {
   },
   36460: {
     _id: 36460,
-    fishEyes: false,
     anglerFishId: 3523,
     bait: 36590,
     locations: [271],
@@ -13593,7 +13525,6 @@ const fishGlobalAddon = {
   },
   36461: {
     _id: 36461,
-    fishEyes: false,
     anglerFishId: 3524,
     bait: 36590,
     locations: [271],
@@ -13605,7 +13536,6 @@ const fishGlobalAddon = {
   },
   36462: {
     _id: 36462,
-    fishEyes: false,
     anglerFishId: 3525,
     bait: 36590,
     locations: [271],
@@ -13617,7 +13547,6 @@ const fishGlobalAddon = {
   },
   36463: {
     _id: 36463,
-    fishEyes: false,
     anglerFishId: 3526,
     bait: 36590,
     locations: [272],
@@ -13629,7 +13558,6 @@ const fishGlobalAddon = {
   },
   36465: {
     _id: 36465,
-    fishEyes: false,
     anglerFishId: 3527,
     bait: 36590,
     locations: [272],
@@ -13641,7 +13569,6 @@ const fishGlobalAddon = {
   },
   36466: {
     _id: 36466,
-    fishEyes: false,
     anglerFishId: 3528,
     bait: 36590,
     locations: [272],
@@ -13653,7 +13580,6 @@ const fishGlobalAddon = {
   },
   36467: {
     _id: 36467,
-    fishEyes: false,
     anglerFishId: 3529,
     bait: 36590,
     locations: [272],
@@ -13665,7 +13591,6 @@ const fishGlobalAddon = {
   },
   36468: {
     _id: 36468,
-    fishEyes: false,
     anglerFishId: 3530,
     bait: 36594,
     locations: [273, 274],
@@ -13677,7 +13602,6 @@ const fishGlobalAddon = {
   },
   36470: {
     _id: 36470,
-    fishEyes: false,
     anglerFishId: 3531,
     bait: 36594,
     locations: [273, 274],
@@ -13689,7 +13613,6 @@ const fishGlobalAddon = {
   },
   36471: {
     _id: 36471,
-    fishEyes: false,
     anglerFishId: 3532,
     bait: 36594,
     locations: [273],
@@ -13701,7 +13624,6 @@ const fishGlobalAddon = {
   },
   36472: {
     _id: 36472,
-    fishEyes: false,
     anglerFishId: 3533,
     bait: 36594,
     locations: [273],
@@ -13713,7 +13635,6 @@ const fishGlobalAddon = {
   },
   36473: {
     _id: 36473,
-    fishEyes: false,
     anglerFishId: 3534,
     bait: 36594,
     locations: [274],
@@ -13725,7 +13646,6 @@ const fishGlobalAddon = {
   },
   36475: {
     _id: 36475,
-    fishEyes: false,
     anglerFishId: 3535,
     bait: 36594,
     locations: [274],
@@ -13737,7 +13657,6 @@ const fishGlobalAddon = {
   },
   36476: {
     _id: 36476,
-    fishEyes: false,
     anglerFishId: 3536,
     bait: 36590,
     locations: [275, 276, 277],
@@ -13749,7 +13668,6 @@ const fishGlobalAddon = {
   },
   36477: {
     _id: 36477,
-    fishEyes: false,
     anglerFishId: 3537,
     bait: 36590,
     locations: [275, 276, 277],
@@ -13761,7 +13679,6 @@ const fishGlobalAddon = {
   },
   36478: {
     _id: 36478,
-    fishEyes: false,
     anglerFishId: 3538,
     bait: 36590,
     locations: [275],
@@ -13773,7 +13690,6 @@ const fishGlobalAddon = {
   },
   36479: {
     _id: 36479,
-    fishEyes: false,
     anglerFishId: 3539,
     bait: 36590,
     locations: [275],
@@ -13785,7 +13701,6 @@ const fishGlobalAddon = {
   },
   36480: {
     _id: 36480,
-    fishEyes: false,
     anglerFishId: 3540,
     bait: 36590,
     locations: [275],
@@ -13797,7 +13712,6 @@ const fishGlobalAddon = {
   },
   36481: {
     _id: 36481,
-    fishEyes: false,
     anglerFishId: 3541,
     bait: 36590,
     locations: [276],
@@ -13809,7 +13723,6 @@ const fishGlobalAddon = {
   },
   36484: {
     _id: 36484,
-    fishEyes: false,
     anglerFishId: 3542,
     bait: 36590,
     locations: [277],
@@ -13821,7 +13734,6 @@ const fishGlobalAddon = {
   },
   36485: {
     _id: 36485,
-    fishEyes: false,
     anglerFishId: 3543,
     bait: 36590,
     locations: [276],
@@ -13833,7 +13745,6 @@ const fishGlobalAddon = {
   },
   36487: {
     _id: 36487,
-    fishEyes: false,
     anglerFishId: 3544,
     bait: 36594,
     locations: [278, 279, 280],
@@ -13845,7 +13756,6 @@ const fishGlobalAddon = {
   },
   36488: {
     _id: 36488,
-    fishEyes: false,
     anglerFishId: 3545,
     bait: 36594,
     locations: [278, 279, 280],
@@ -13857,7 +13767,6 @@ const fishGlobalAddon = {
   },
   36489: {
     _id: 36489,
-    fishEyes: false,
     anglerFishId: 3546,
     bait: 36594,
     locations: [278],
@@ -13869,7 +13778,6 @@ const fishGlobalAddon = {
   },
   36491: {
     _id: 36491,
-    fishEyes: false,
     anglerFishId: 3547,
     bait: 36594,
     locations: [278],
@@ -13881,7 +13789,6 @@ const fishGlobalAddon = {
   },
   36492: {
     _id: 36492,
-    fishEyes: false,
     anglerFishId: 3548,
     bait: 36594,
     locations: [279],
@@ -13893,7 +13800,6 @@ const fishGlobalAddon = {
   },
   36494: {
     _id: 36494,
-    fishEyes: false,
     anglerFishId: 3549,
     bait: 36594,
     locations: [279],
@@ -13905,7 +13811,6 @@ const fishGlobalAddon = {
   },
   36495: {
     _id: 36495,
-    fishEyes: false,
     anglerFishId: 3550,
     bait: 36594,
     locations: [280],
@@ -13917,7 +13822,6 @@ const fishGlobalAddon = {
   },
   36496: {
     _id: 36496,
-    fishEyes: false,
     anglerFishId: 3551,
     bait: 36594,
     locations: [280],
@@ -13929,7 +13833,6 @@ const fishGlobalAddon = {
   },
   36497: {
     _id: 36497,
-    fishEyes: false,
     anglerFishId: 3552,
     bait: 36594,
     locations: [280],
@@ -13941,7 +13844,6 @@ const fishGlobalAddon = {
   },
   36499: {
     _id: 36499,
-    fishEyes: false,
     anglerFishId: 3553,
     bait: 36590,
     locations: [281, 282],
@@ -13953,7 +13855,6 @@ const fishGlobalAddon = {
   },
   36501: {
     _id: 36501,
-    fishEyes: false,
     anglerFishId: 3554,
     bait: 36590,
     locations: [281],
@@ -13965,7 +13866,6 @@ const fishGlobalAddon = {
   },
   36502: {
     _id: 36502,
-    fishEyes: false,
     anglerFishId: 3555,
     bait: 36590,
     locations: [281],
@@ -13977,7 +13877,6 @@ const fishGlobalAddon = {
   },
   36503: {
     _id: 36503,
-    fishEyes: false,
     anglerFishId: 3556,
     bait: 36590,
     locations: [281, 282],
@@ -13989,7 +13888,6 @@ const fishGlobalAddon = {
   },
   36505: {
     _id: 36505,
-    fishEyes: false,
     anglerFishId: 3557,
     bait: 36590,
     locations: [282],
@@ -14001,7 +13899,6 @@ const fishGlobalAddon = {
   },
   36506: {
     _id: 36506,
-    fishEyes: false,
     anglerFishId: 3558,
     bait: 36596,
     locations: [283, 284, 285],
@@ -14013,7 +13910,6 @@ const fishGlobalAddon = {
   },
   36507: {
     _id: 36507,
-    fishEyes: false,
     anglerFishId: 3559,
     bait: 36596,
     locations: [283, 284, 285],
@@ -14025,7 +13921,6 @@ const fishGlobalAddon = {
   },
   36508: {
     _id: 36508,
-    fishEyes: false,
     anglerFishId: 3560,
     bait: 36596,
     locations: [284, 285],
@@ -14037,7 +13932,6 @@ const fishGlobalAddon = {
   },
   36509: {
     _id: 36509,
-    fishEyes: false,
     anglerFishId: 3561,
     bait: 36596,
     locations: [283],
@@ -14049,7 +13943,6 @@ const fishGlobalAddon = {
   },
   36510: {
     _id: 36510,
-    fishEyes: false,
     anglerFishId: 3562,
     bait: 36596,
     locations: [283],
@@ -14061,7 +13954,6 @@ const fishGlobalAddon = {
   },
   36511: {
     _id: 36511,
-    fishEyes: false,
     anglerFishId: 3563,
     bait: 36596,
     locations: [283],
@@ -14073,7 +13965,6 @@ const fishGlobalAddon = {
   },
   36512: {
     _id: 36512,
-    fishEyes: false,
     anglerFishId: 3564,
     bait: 36596,
     locations: [283],
@@ -14085,7 +13976,6 @@ const fishGlobalAddon = {
   },
   36513: {
     _id: 36513,
-    fishEyes: false,
     anglerFishId: 3565,
     bait: 36597,
     locations: [283],
@@ -14097,7 +13987,6 @@ const fishGlobalAddon = {
   },
   36514: {
     _id: 36514,
-    fishEyes: false,
     anglerFishId: 3566,
     bait: 36596,
     locations: [284],
@@ -14109,7 +13998,6 @@ const fishGlobalAddon = {
   },
   36515: {
     _id: 36515,
-    fishEyes: false,
     anglerFishId: 3567,
     bait: 36596,
     locations: [284],
@@ -14121,7 +14009,6 @@ const fishGlobalAddon = {
   },
   36516: {
     _id: 36516,
-    fishEyes: false,
     anglerFishId: 3568,
     bait: 36596,
     locations: [284],
@@ -14133,7 +14020,6 @@ const fishGlobalAddon = {
   },
   36517: {
     _id: 36517,
-    fishEyes: false,
     anglerFishId: 3569,
     bait: 36597,
     locations: [284],
@@ -14145,7 +14031,6 @@ const fishGlobalAddon = {
   },
   36518: {
     _id: 36518,
-    fishEyes: false,
     anglerFishId: 3570,
     bait: 36596,
     locations: [285],
@@ -14157,7 +14042,6 @@ const fishGlobalAddon = {
   },
   36519: {
     _id: 36519,
-    fishEyes: false,
     anglerFishId: 3571,
     bait: 36596,
     locations: [285],
@@ -14169,7 +14053,6 @@ const fishGlobalAddon = {
   },
   36520: {
     _id: 36520,
-    fishEyes: false,
     anglerFishId: 3572,
     bait: 36596,
     locations: [285],
@@ -14181,7 +14064,6 @@ const fishGlobalAddon = {
   },
   36521: {
     _id: 36521,
-    fishEyes: false,
     anglerFishId: 3573,
     bait: 36596,
     locations: [285],
@@ -14193,7 +14075,6 @@ const fishGlobalAddon = {
   },
   36522: {
     _id: 36522,
-    name_chs: 'Thavnairian Cucumber',
     locations: [889],
     gig: 0,
     size: 'small',
@@ -14206,7 +14087,6 @@ const fishGlobalAddon = {
   },
   36523: {
     _id: 36523,
-    name_chs: 'Spiny King Crab',
     locations: [889],
     gig: 0,
     size: 'small',
@@ -14219,7 +14099,6 @@ const fishGlobalAddon = {
   },
   36524: {
     _id: 36524,
-    name_chs: 'Thavnairian Eel',
     locations: [889],
     gig: 0,
     size: 'average',
@@ -14232,7 +14111,6 @@ const fishGlobalAddon = {
   },
   36525: {
     _id: 36525,
-    name_chs: 'Gilled Topknot',
     locations: [889, 900],
     gig: 0,
     size: 'average',
@@ -14245,7 +14123,6 @@ const fishGlobalAddon = {
   },
   36526: {
     _id: 36526,
-    name_chs: 'Purusa Fish',
     locations: [889],
     gig: 0,
     size: 'big',
@@ -14258,7 +14135,6 @@ const fishGlobalAddon = {
   },
   36527: {
     _id: 36527,
-    name_chs: 'Giantsgall Jaw',
     locations: [889],
     gig: 0,
     size: 'big',
@@ -14271,7 +14147,6 @@ const fishGlobalAddon = {
   },
   36528: {
     _id: 36528,
-    name_chs: 'Akyaali Sardine',
     locations: [893],
     gig: 0,
     size: 'small',
@@ -14284,7 +14159,6 @@ const fishGlobalAddon = {
   },
   36529: {
     _id: 36529,
-    name_chs: 'Spicy Pickle',
     locations: [893],
     gig: 0,
     size: 'small',
@@ -14297,7 +14171,6 @@ const fishGlobalAddon = {
   },
   36530: {
     _id: 36530,
-    name_chs: 'Mayavahana',
     locations: [893],
     gig: 0,
     size: 'average',
@@ -14310,7 +14183,6 @@ const fishGlobalAddon = {
   },
   36531: {
     _id: 36531,
-    name_chs: 'Hedonfish',
     locations: [893],
     gig: 0,
     size: 'average',
@@ -14323,7 +14195,6 @@ const fishGlobalAddon = {
   },
   36532: {
     _id: 36532,
-    name_chs: 'Satrap Trapfish',
     locations: [893],
     gig: 0,
     size: 'big',
@@ -14336,7 +14207,6 @@ const fishGlobalAddon = {
   },
   36533: {
     _id: 36533,
-    name_chs: 'Blue Marlin',
     locations: [893],
     gig: 0,
     size: 'big',
@@ -14349,7 +14219,6 @@ const fishGlobalAddon = {
   },
   36534: {
     _id: 36534,
-    name_chs: "Satrap's Whisper",
     locations: [894],
     gig: 0,
     size: 'small',
@@ -14362,7 +14231,6 @@ const fishGlobalAddon = {
   },
   36535: {
     _id: 36535,
-    name_chs: 'Tebqeyiq Smelt',
     locations: [900],
     gig: 0,
     size: 'small',
@@ -14377,7 +14245,6 @@ const fishGlobalAddon = {
   },
   36536: {
     _id: 36536,
-    name_chs: 'Shallows Cod',
     locations: [894, 900],
     gig: 0,
     size: 'average',
@@ -14390,7 +14257,6 @@ const fishGlobalAddon = {
   },
   36537: {
     _id: 36537,
-    name_chs: 'Meyhane Reveler',
     locations: [894, 900],
     gig: 0,
     size: 'small',
@@ -14403,7 +14269,6 @@ const fishGlobalAddon = {
   },
   36538: {
     _id: 36538,
-    name_chs: "Daemir's Alloy",
     locations: [894],
     gig: 0,
     size: 'big',
@@ -14416,7 +14281,6 @@ const fishGlobalAddon = {
   },
   36539: {
     _id: 36539,
-    name_chs: 'Rasa Fish',
     locations: [894],
     gig: 0,
     size: 'average',
@@ -14429,7 +14293,6 @@ const fishGlobalAddon = {
   },
   36540: {
     _id: 36540,
-    name_chs: "Agama's Palm",
     locations: [895],
     gig: 0,
     size: 'small',
@@ -14442,7 +14305,6 @@ const fishGlobalAddon = {
   },
   36541: {
     _id: 36541,
-    name_chs: 'Rummy-nosed Tetra',
     locations: [895],
     gig: 0,
     size: 'small',
@@ -14455,7 +14317,6 @@ const fishGlobalAddon = {
   },
   36542: {
     _id: 36542,
-    name_chs: 'Monksblade',
     locations: [895],
     gig: 0,
     size: 'average',
@@ -14468,7 +14329,6 @@ const fishGlobalAddon = {
   },
   36543: {
     _id: 36543,
-    name_chs: 'Atamra Cichlid',
     locations: [895],
     gig: 0,
     size: 'average',
@@ -14481,7 +14341,6 @@ const fishGlobalAddon = {
   },
   36544: {
     _id: 36544,
-    name_chs: 'Root of Maya',
     locations: [895],
     gig: 0,
     size: 'big',
@@ -14494,7 +14353,6 @@ const fishGlobalAddon = {
   },
   36545: {
     _id: 36545,
-    name_chs: 'Floral Snakehead',
     locations: [895],
     gig: 0,
     size: 'big',
@@ -14507,7 +14365,6 @@ const fishGlobalAddon = {
   },
   36546: {
     _id: 36546,
-    name_chs: 'Xiphactinus',
     locations: [900],
     gig: 0,
     size: 'big',
@@ -14522,7 +14379,6 @@ const fishGlobalAddon = {
   },
   36547: {
     _id: 36547,
-    name_chs: 'Dusky Shark',
     locations: [894, 900],
     gig: 0,
     size: 'big',
@@ -14535,7 +14391,6 @@ const fishGlobalAddon = {
   },
   36548: {
     _id: 36548,
-    name_chs: 'Coffer Shell',
     locations: [890],
     gig: 0,
     size: 'small',
@@ -14548,7 +14403,6 @@ const fishGlobalAddon = {
   },
   36549: {
     _id: 36549,
-    name_chs: 'Onihige',
     locations: [890],
     gig: 0,
     size: 'small',
@@ -14561,7 +14415,6 @@ const fishGlobalAddon = {
   },
   36550: {
     _id: 36550,
-    name_chs: 'Onokoro Carp',
     locations: [890],
     gig: 0,
     size: 'average',
@@ -14574,7 +14427,6 @@ const fishGlobalAddon = {
   },
   36551: {
     _id: 36551,
-    name_chs: 'Ruby-spotted Crab',
     locations: [890, 899],
     gig: 0,
     size: 'average',
@@ -14587,7 +14439,6 @@ const fishGlobalAddon = {
   },
   36552: {
     _id: 36552,
-    name_chs: 'Marrow-eater',
     locations: [890],
     gig: 0,
     size: 'big',
@@ -14600,7 +14451,6 @@ const fishGlobalAddon = {
   },
   36553: {
     _id: 36553,
-    name_chs: 'Cloudy Catshark',
     locations: [890],
     gig: 0,
     size: 'big',
@@ -14613,7 +14463,6 @@ const fishGlobalAddon = {
   },
   36554: {
     _id: 36554,
-    name_chs: 'Red Gurnard',
     locations: [891],
     gig: 0,
     size: 'small',
@@ -14626,7 +14475,6 @@ const fishGlobalAddon = {
   },
   36555: {
     _id: 36555,
-    name_chs: 'Dream Pickle',
     locations: [891, 899],
     gig: 0,
     size: 'small',
@@ -14639,7 +14487,6 @@ const fishGlobalAddon = {
   },
   36556: {
     _id: 36556,
-    name_chs: 'Ruby Haddock',
     locations: [891],
     gig: 0,
     size: 'average',
@@ -14652,7 +14499,6 @@ const fishGlobalAddon = {
   },
   36557: {
     _id: 36557,
-    name_chs: 'Crown Fish',
     locations: [891, 899],
     gig: 0,
     size: 'average',
@@ -14665,7 +14511,6 @@ const fishGlobalAddon = {
   },
   36558: {
     _id: 36558,
-    name_chs: 'Sword of Isari ',
     locations: [891],
     gig: 0,
     size: 'big',
@@ -14678,7 +14523,6 @@ const fishGlobalAddon = {
   },
   36559: {
     _id: 36559,
-    name_chs: 'Blue Shark',
     locations: [891, 899],
     gig: 0,
     size: 'big',
@@ -14691,7 +14535,6 @@ const fishGlobalAddon = {
   },
   36560: {
     _id: 36560,
-    name_chs: 'Barb of Exile',
     locations: [892],
     gig: 0,
     size: 'small',
@@ -14704,7 +14547,6 @@ const fishGlobalAddon = {
   },
   36561: {
     _id: 36561,
-    name_chs: 'Smooth Lumpfish',
     locations: [892],
     gig: 0,
     size: 'small',
@@ -14717,7 +14559,6 @@ const fishGlobalAddon = {
   },
   36562: {
     _id: 36562,
-    name_chs: "Hells' Cap",
     locations: [892],
     gig: 0,
     size: 'average',
@@ -14730,7 +14571,6 @@ const fishGlobalAddon = {
   },
   36563: {
     _id: 36563,
-    name_chs: 'Keeled Fugu',
     locations: [892],
     gig: 0,
     size: 'average',
@@ -14743,7 +14583,6 @@ const fishGlobalAddon = {
   },
   36564: {
     _id: 36564,
-    name_chs: 'Eastern Seerfish',
     locations: [892],
     gig: 0,
     size: 'big',
@@ -14756,7 +14595,6 @@ const fishGlobalAddon = {
   },
   36565: {
     _id: 36565,
-    name_chs: 'False Fusilier',
     locations: [892],
     gig: 0,
     size: 'big',
@@ -14769,7 +14607,6 @@ const fishGlobalAddon = {
   },
   36566: {
     _id: 36566,
-    name_chs: 'Skipping Stone',
     locations: [896],
     gig: 0,
     size: 'small',
@@ -14782,7 +14619,6 @@ const fishGlobalAddon = {
   },
   36567: {
     _id: 36567,
-    name_chs: 'Red-spotted Blenny',
     locations: [896],
     gig: 0,
     size: 'small',
@@ -14795,7 +14631,6 @@ const fishGlobalAddon = {
   },
   36568: {
     _id: 36568,
-    name_chs: 'Othardian Wrasse',
     locations: [892],
     gig: 0,
     size: 'average',
@@ -14808,7 +14643,6 @@ const fishGlobalAddon = {
   },
   36569: {
     _id: 36569,
-    name_chs: 'Grey Mullet',
     locations: [896],
     gig: 0,
     size: 'average',
@@ -14821,7 +14655,6 @@ const fishGlobalAddon = {
   },
   36570: {
     _id: 36570,
-    name_chs: 'Prayer Cushion',
     locations: [896],
     gig: 0,
     size: 'big',
@@ -14834,7 +14667,6 @@ const fishGlobalAddon = {
   },
   36571: {
     _id: 36571,
-    name_chs: 'Deepbody Boarfish',
     locations: [896],
     gig: 0,
     size: 'average',
@@ -14847,7 +14679,6 @@ const fishGlobalAddon = {
   },
   36572: {
     _id: 36572,
-    name_chs: 'Jointed Razorfish',
     locations: [897],
     gig: 0,
     size: 'small',
@@ -14860,7 +14691,6 @@ const fishGlobalAddon = {
   },
   36573: {
     _id: 36573,
-    name_chs: 'Pipefish',
     locations: [899],
     gig: 0,
     size: 'small',
@@ -14875,7 +14705,6 @@ const fishGlobalAddon = {
   },
   36574: {
     _id: 36574,
-    name_chs: 'Righteye Flounder',
     locations: [897],
     gig: 0,
     size: 'average',
@@ -14888,7 +14717,6 @@ const fishGlobalAddon = {
   },
   36575: {
     _id: 36575,
-    name_chs: 'Mini Yasha',
     locations: [897],
     gig: 0,
     size: 'small',
@@ -14901,7 +14729,6 @@ const fishGlobalAddon = {
   },
   36576: {
     _id: 36576,
-    name_chs: 'Sawshark',
     locations: [897],
     gig: 0,
     size: 'big',
@@ -14914,7 +14741,6 @@ const fishGlobalAddon = {
   },
   36577: {
     _id: 36577,
-    name_chs: 'Othardian Lumpsucker',
     locations: [897],
     gig: 0,
     size: 'average',
@@ -14927,7 +14753,6 @@ const fishGlobalAddon = {
   },
   36578: {
     _id: 36578,
-    name_chs: "Shogun's Kabuto",
     locations: [899],
     gig: 0,
     size: 'big',
@@ -14942,7 +14767,6 @@ const fishGlobalAddon = {
   },
   36579: {
     _id: 36579,
-    name_chs: 'Bluefin Trevally',
     locations: [897],
     gig: 0,
     size: 'big',
@@ -14955,7 +14779,6 @@ const fishGlobalAddon = {
   },
   36580: {
     _id: 36580,
-    name_chs: 'Kitefin Shark',
     locations: [896],
     gig: 0,
     size: 'big',
@@ -14968,7 +14791,6 @@ const fishGlobalAddon = {
   },
   36581: {
     _id: 36581,
-    name_chs: 'Uzumaki',
     locations: [896],
     gig: 0,
     size: 'big',
@@ -14981,7 +14803,6 @@ const fishGlobalAddon = {
   },
   36582: {
     _id: 36582,
-    name_chs: 'Natron Puffer',
     locations: [898],
     gig: 0,
     size: 'small',
@@ -14994,7 +14815,6 @@ const fishGlobalAddon = {
   },
   36583: {
     _id: 36583,
-    name_chs: 'Diamond Dagger',
     locations: [898],
     gig: 0,
     size: 'small',
@@ -15007,7 +14827,6 @@ const fishGlobalAddon = {
   },
   36584: {
     _id: 36584,
-    name_chs: 'Queenly Fan',
     locations: [898],
     gig: 0,
     size: 'average',
@@ -15020,7 +14839,6 @@ const fishGlobalAddon = {
   },
   36585: {
     _id: 36585,
-    name_chs: 'Pale Panther',
     locations: [898],
     gig: 0,
     size: 'average',
@@ -15033,7 +14851,6 @@ const fishGlobalAddon = {
   },
   36586: {
     _id: 36586,
-    name_chs: 'Saltsquid',
     locations: [898],
     gig: 0,
     size: 'big',
@@ -15046,7 +14863,6 @@ const fishGlobalAddon = {
   },
   36587: {
     _id: 36587,
-    name_chs: 'Platinum Hammerhead',
     locations: [898],
     gig: 0,
     size: 'big',
