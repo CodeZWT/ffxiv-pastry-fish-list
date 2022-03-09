@@ -1,4 +1,4 @@
-const host = 'https://garlandtools.cn/api/get.php'
+const host = `${process.env.VUE_APP_GARLAND_HOST}/api/get.php`
 export default {
   async getItem(itemId) {
     if (!itemId) {
