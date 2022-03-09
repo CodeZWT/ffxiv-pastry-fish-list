@@ -1,3 +1,10 @@
+// check info example
+//     checkInfo: {
+//       weatherRestricted: false,
+//       timeRestricted: false,
+//       bestCatchPathUnknown: false,
+//     },
+
 module.exports = {
   4776: {
     id: 4776,
@@ -14847,11 +14854,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   35605: {
     id: 35605,
@@ -14868,11 +14870,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   35606: {
     id: 35606,
@@ -14889,11 +14886,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   35607: {
     id: 35607,
@@ -14910,11 +14902,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36385: {
     id: 36385,
@@ -14931,11 +14918,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36386: {
     id: 36386,
@@ -14952,11 +14934,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36387: {
     id: 36387,
@@ -14973,11 +14950,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36388: {
     id: 36388,
@@ -14994,11 +14966,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36389: {
     id: 36389,
@@ -15015,11 +14982,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36390: {
     id: 36390,
@@ -15036,11 +14998,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36392: {
     id: 36392,
@@ -15057,11 +15014,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36393: {
     id: 36393,
@@ -15078,11 +15030,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36394: {
     id: 36394,
@@ -15099,11 +15046,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36395: {
     id: 36395,
@@ -15120,11 +15062,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36396: {
     id: 36396,
@@ -15141,11 +15078,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36397: {
     id: 36397,
@@ -15162,11 +15094,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36398: {
     id: 36398,
@@ -15191,11 +15118,6 @@ module.exports = {
       [36590, 36412],
       [36591, 36412],
     ],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36399: {
     id: 36399,
@@ -15212,11 +15134,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36400: {
     id: 36400,
@@ -15233,11 +15150,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36402: {
     id: 36402,
@@ -15254,11 +15166,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36403: {
     id: 36403,
@@ -15275,11 +15182,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36404: {
     id: 36404,
@@ -15296,11 +15198,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36405: {
     id: 36405,
@@ -15317,11 +15214,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36407: {
     id: 36407,
@@ -15338,11 +15230,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36408: {
     id: 36408,
@@ -15359,11 +15246,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36409: {
     id: 36409,
@@ -15380,11 +15262,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36410: {
     id: 36410,
@@ -15401,11 +15278,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36411: {
     id: 36411,
@@ -15422,11 +15294,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36412: {
     id: 36412,
@@ -15443,11 +15310,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36414: {
     id: 36414,
@@ -15468,11 +15330,6 @@ module.exports = {
       [36590, 36412],
       [36591, 36412],
     ],
-    checkInfo: {
-      weatherRestricted: true,
-      timeRestricted: true,
-      bestCatchPathUnknown: false,
-    },
   },
   36415: {
     id: 36415,
@@ -15489,11 +15346,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36417: {
     id: 36417,
@@ -15510,11 +15362,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36418: {
     id: 36418,
@@ -15531,11 +15378,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36419: {
     id: 36419,
@@ -15552,11 +15394,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36420: {
     id: 36420,
@@ -15573,11 +15410,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36421: {
     id: 36421,
@@ -15594,11 +15426,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36422: {
     id: 36422,
@@ -15615,11 +15442,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36423: {
     id: 36423,
@@ -15636,11 +15458,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36425: {
     id: 36425,
@@ -15657,11 +15474,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593], [36592, 36426], [36593, 36426]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36426: {
     id: 36426,
@@ -15678,11 +15490,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36593],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36427: {
     id: 36427,
@@ -15699,11 +15506,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593], [36592, 36426], [36593, 36426]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36430: {
     id: 36430,
@@ -15720,11 +15522,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36431: {
     id: 36431,
@@ -15741,11 +15538,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36432: {
     id: 36432,
@@ -15762,11 +15554,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36434: {
     id: 36434,
@@ -15783,11 +15570,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36435: {
     id: 36435,
@@ -15804,11 +15586,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36436: {
     id: 36436,
@@ -15825,11 +15602,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36438: {
     id: 36438,
@@ -15846,11 +15618,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36439: {
     id: 36439,
@@ -15867,11 +15634,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36440: {
     id: 36440,
@@ -15888,11 +15650,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: true,
-      timeRestricted: true,
-      bestCatchPathUnknown: false,
-    },
   },
   36441: {
     id: 36441,
@@ -15909,11 +15666,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36442: {
     id: 36442,
@@ -15930,11 +15682,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36443: {
     id: 36443,
@@ -15951,11 +15698,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36444: {
     id: 36444,
@@ -15972,11 +15714,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36446: {
     id: 36446,
@@ -15993,11 +15730,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36447: {
     id: 36447,
@@ -16014,11 +15746,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36448: {
     id: 36448,
@@ -16035,11 +15762,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36449: {
     id: 36449,
@@ -16056,11 +15778,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36450: {
     id: 36450,
@@ -16077,11 +15794,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36451: {
     id: 36451,
@@ -16097,11 +15809,6 @@ module.exports = {
     biteSelf: false,
     predators: {},
     bestCatchPath: [36593],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36452: {
     id: 36452,
@@ -16118,11 +15825,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36592],
     catchPathList: [[36592], [36593], [36593, 36451]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36453: {
     id: 36453,
@@ -16139,11 +15841,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36593],
     catchPathList: [[36593], [36593, 36451]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36454: {
     id: 36454,
@@ -16159,11 +15856,6 @@ module.exports = {
     biteSelf: false,
     predators: {},
     bestCatchPath: [36593, 36451],
-    checkInfo: {
-      weatherRestricted: true,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36456: {
     id: 36456,
@@ -16180,11 +15872,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36457: {
     id: 36457,
@@ -16201,11 +15888,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36458: {
     id: 36458,
@@ -16222,11 +15904,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36459: {
     id: 36459,
@@ -16243,11 +15920,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36460: {
     id: 36460,
@@ -16264,11 +15936,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36461: {
     id: 36461,
@@ -16285,11 +15952,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36462: {
     id: 36462,
@@ -16306,11 +15968,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36463: {
     id: 36463,
@@ -16327,11 +15984,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36465: {
     id: 36465,
@@ -16348,11 +16000,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36466: {
     id: 36466,
@@ -16369,11 +16016,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36467: {
     id: 36467,
@@ -16390,11 +16032,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36468: {
     id: 36468,
@@ -16411,11 +16048,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595], [36594, 36470], [36595, 36470]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36470: {
     id: 36470,
@@ -16432,11 +16064,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36471: {
     id: 36471,
@@ -16453,11 +16080,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36472: {
     id: 36472,
@@ -16477,11 +16099,6 @@ module.exports = {
       [36594, 36470],
       [36595, 36470],
     ],
-    checkInfo: {
-      weatherRestricted: true,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36473: {
     id: 36473,
@@ -16498,11 +16115,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36595, 36470],
     catchPathList: [[36594], [36595], [36594, 36470], [36595, 36470]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36475: {
     id: 36475,
@@ -16519,11 +16131,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36476: {
     id: 36476,
@@ -16540,11 +16147,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36477: {
     id: 36477,
@@ -16561,11 +16163,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36478: {
     id: 36478,
@@ -16582,11 +16179,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36479: {
     id: 36479,
@@ -16612,11 +16204,6 @@ module.exports = {
       [36590, 36478],
       [36591, 36478],
     ],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36480: {
     id: 36480,
@@ -16638,11 +16225,6 @@ module.exports = {
       [36590, 36478],
       [36591, 36478],
     ],
-    checkInfo: {
-      weatherRestricted: true,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36481: {
     id: 36481,
@@ -16659,11 +16241,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36484: {
     id: 36484,
@@ -16680,11 +16257,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36485: {
     id: 36485,
@@ -16701,11 +16273,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36487: {
     id: 36487,
@@ -16722,11 +16289,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36488: {
     id: 36488,
@@ -16743,11 +16305,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36489: {
     id: 36489,
@@ -16764,11 +16321,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36491: {
     id: 36491,
@@ -16785,11 +16337,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36492: {
     id: 36492,
@@ -16806,11 +16353,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36494: {
     id: 36494,
@@ -16827,11 +16369,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36495: {
     id: 36495,
@@ -16848,11 +16385,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36496: {
     id: 36496,
@@ -16869,11 +16401,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36497: {
     id: 36497,
@@ -16890,11 +16417,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36594],
     catchPathList: [[36594], [36595]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36499: {
     id: 36499,
@@ -16911,11 +16433,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36501: {
     id: 36501,
@@ -16932,11 +16449,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36502: {
     id: 36502,
@@ -16953,11 +16465,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36503: {
     id: 36503,
@@ -16974,11 +16481,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36588], [36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36505: {
     id: 36505,
@@ -16995,11 +16497,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36590],
     catchPathList: [[36589], [36590], [36591]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36506: {
     id: 36506,
@@ -17016,11 +16513,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36596],
     catchPathList: [[36596], [36597]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36507: {
     id: 36507,
@@ -17037,11 +16529,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36596],
     catchPathList: [[36596], [36597]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36508: {
     id: 36508,
@@ -17058,11 +16545,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36596],
     catchPathList: [[36596], [36597], [36596, 36518], [36597, 36518]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36509: {
     id: 36509,
@@ -17079,11 +16561,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36596],
     catchPathList: [[36596], [36597]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36510: {
     id: 36510,
@@ -17100,11 +16577,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36596],
     catchPathList: [[36596], [36597]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36511: {
     id: 36511,
@@ -17121,11 +16593,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36596],
     catchPathList: [[36596], [36597]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36512: {
     id: 36512,
@@ -17141,11 +16608,6 @@ module.exports = {
     biteSelf: false,
     predators: {},
     bestCatchPath: [36596],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36513: {
     id: 36513,
@@ -17161,11 +16623,6 @@ module.exports = {
     biteSelf: false,
     predators: {},
     bestCatchPath: [36597],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36514: {
     id: 36514,
@@ -17182,11 +16639,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36596],
     catchPathList: [[36596], [36597]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36515: {
     id: 36515,
@@ -17203,11 +16655,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36596],
     catchPathList: [[36596], [36597]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36516: {
     id: 36516,
@@ -17223,11 +16670,6 @@ module.exports = {
     biteSelf: false,
     predators: {},
     bestCatchPath: [36596],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36517: {
     id: 36517,
@@ -17243,11 +16685,6 @@ module.exports = {
     biteSelf: false,
     predators: {},
     bestCatchPath: [36597],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36518: {
     id: 36518,
@@ -17264,11 +16701,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36596],
     catchPathList: [[36596], [36597]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36519: {
     id: 36519,
@@ -17285,11 +16717,6 @@ module.exports = {
     predators: {},
     bestCatchPath: [36596],
     catchPathList: [[36596], [36597]],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36520: {
     id: 36520,
@@ -17309,11 +16736,6 @@ module.exports = {
       [36596, 36518],
       [36597, 36518],
     ],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36521: {
     id: 36521,
@@ -17333,11 +16755,6 @@ module.exports = {
       [36596, 36518],
       [36597, 36518],
     ],
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: true,
-      bestCatchPathUnknown: false,
-    },
   },
   36522: {
     id: 36522,
@@ -17349,11 +16766,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36523: {
     id: 36523,
@@ -17365,11 +16777,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36524: {
     id: 36524,
@@ -17381,11 +16788,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36525: {
     id: 36525,
@@ -17397,11 +16799,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36526: {
     id: 36526,
@@ -17413,11 +16810,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36527: {
     id: 36527,
@@ -17429,11 +16821,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36528: {
     id: 36528,
@@ -17445,11 +16832,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36529: {
     id: 36529,
@@ -17461,11 +16843,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36530: {
     id: 36530,
@@ -17477,11 +16854,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36531: {
     id: 36531,
@@ -17493,11 +16865,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36532: {
     id: 36532,
@@ -17509,11 +16876,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36533: {
     id: 36533,
@@ -17525,11 +16887,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36534: {
     id: 36534,
@@ -17541,11 +16898,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36535: {
     id: 36535,
@@ -17560,11 +16912,6 @@ module.exports = {
       36546: 2,
       36547: 3,
     },
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36536: {
     id: 36536,
@@ -17576,11 +16923,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36537: {
     id: 36537,
@@ -17592,11 +16934,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36538: {
     id: 36538,
@@ -17608,11 +16945,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36539: {
     id: 36539,
@@ -17624,11 +16956,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36540: {
     id: 36540,
@@ -17640,11 +16967,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36541: {
     id: 36541,
@@ -17656,11 +16978,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36542: {
     id: 36542,
@@ -17672,11 +16989,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36543: {
     id: 36543,
@@ -17688,11 +17000,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36544: {
     id: 36544,
@@ -17704,11 +17011,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36545: {
     id: 36545,
@@ -17720,11 +17022,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36546: {
     id: 36546,
@@ -17736,11 +17033,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36547: {
     id: 36547,
@@ -17752,11 +17044,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36548: {
     id: 36548,
@@ -17768,11 +17055,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36549: {
     id: 36549,
@@ -17784,11 +17066,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36550: {
     id: 36550,
@@ -17800,11 +17077,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36551: {
     id: 36551,
@@ -17816,11 +17088,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36552: {
     id: 36552,
@@ -17832,11 +17099,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36553: {
     id: 36553,
@@ -17848,11 +17110,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36554: {
     id: 36554,
@@ -17864,11 +17121,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36555: {
     id: 36555,
@@ -17880,11 +17132,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36556: {
     id: 36556,
@@ -17896,11 +17143,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36557: {
     id: 36557,
@@ -17912,11 +17154,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36558: {
     id: 36558,
@@ -17928,11 +17165,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36559: {
     id: 36559,
@@ -17944,11 +17176,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36560: {
     id: 36560,
@@ -17960,11 +17187,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36561: {
     id: 36561,
@@ -17976,11 +17198,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36562: {
     id: 36562,
@@ -17992,11 +17209,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36563: {
     id: 36563,
@@ -18008,11 +17220,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36564: {
     id: 36564,
@@ -18024,11 +17231,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36565: {
     id: 36565,
@@ -18040,11 +17242,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36566: {
     id: 36566,
@@ -18056,11 +17253,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36567: {
     id: 36567,
@@ -18072,11 +17264,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36568: {
     id: 36568,
@@ -18088,11 +17275,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36569: {
     id: 36569,
@@ -18104,11 +17286,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36570: {
     id: 36570,
@@ -18120,11 +17297,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36571: {
     id: 36571,
@@ -18136,11 +17308,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36572: {
     id: 36572,
@@ -18152,11 +17319,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36573: {
     id: 36573,
@@ -18168,11 +17330,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36574: {
     id: 36574,
@@ -18184,11 +17341,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36575: {
     id: 36575,
@@ -18200,11 +17352,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36576: {
     id: 36576,
@@ -18216,11 +17363,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36577: {
     id: 36577,
@@ -18232,11 +17374,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36578: {
     id: 36578,
@@ -18248,11 +17385,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36579: {
     id: 36579,
@@ -18264,11 +17396,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36580: {
     id: 36580,
@@ -18280,11 +17407,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36581: {
     id: 36581,
@@ -18296,11 +17418,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36582: {
     id: 36582,
@@ -18312,11 +17429,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36583: {
     id: 36583,
@@ -18328,11 +17440,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36584: {
     id: 36584,
@@ -18344,11 +17451,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36585: {
     id: 36585,
@@ -18360,11 +17462,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36586: {
     id: 36586,
@@ -18376,11 +17473,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   36587: {
     id: 36587,
@@ -18392,11 +17484,6 @@ module.exports = {
     endHourText: '24',
     biteSelf: false,
     predators: {},
-    checkInfo: {
-      weatherRestricted: false,
-      timeRestricted: false,
-      bestCatchPathUnknown: false,
-    },
   },
   2004952: {
     id: 2004952,
