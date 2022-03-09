@@ -63,7 +63,6 @@
 </template>
 
 <script>
-import { SystemInfo } from 'Data/version'
 import { mdiAlertOutline } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
@@ -89,7 +88,7 @@ export default {
       return this.fish.type === 'spear'
     },
     isEndWalker() {
-      return SystemInfo.region === 'Global'
+      return true
     },
   },
   methods: {

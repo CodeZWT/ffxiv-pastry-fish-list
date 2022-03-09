@@ -1,4 +1,3 @@
-import { SystemInfo } from 'Data/version'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
 import _ from 'lodash'
@@ -64,7 +63,7 @@ export default {
       return this.fish.type === 'spear'
     },
     isEndWalker() {
-      return SystemInfo.region === 'Global'
+      return true
     },
     transformedFishPart() {
       const toBeNotified = this.getFishToBeNotified(this.fish.id)
