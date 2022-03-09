@@ -2,21 +2,19 @@ const { SystemInfo } = require("../version");
 const fishCN = {
   4776: {
     _id: 4776,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 1,
     bait: 2585,
-    locations: [36, 35, 44],
+    locations: [35, 36, 44],
     patch: 2,
     collectable: false,
   },
   4869: {
     _id: 4869,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 4,
     bait: 2585,
-    locations: [36, 35, 37, 38, 44, 45, 51, 108, 156, 60, 62, 65, 102, 74],
+    locations: [35, 36, 37, 38, 44, 45, 51, 60, 62, 65, 74, 102, 108, 156],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -25,31 +23,28 @@ const fishCN = {
   },
   4870: {
     _id: 4870,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 5,
     bait: 2585,
-    locations: [36, 35, 37, 49, 59, 102, 70, 71, 69],
+    locations: [35, 36, 37, 49, 59, 69, 70, 71, 102],
     patch: 2,
     collectable: false,
   },
   4871: {
     _id: 4871,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 8,
     bait: 2585,
-    locations: [36, 35, 37, 38, 107],
+    locations: [35, 36, 37, 38, 107],
     patch: 2,
     collectable: false,
   },
   4872: {
     _id: 4872,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 12,
     bait: 2587,
-    locations: [36, 35, 37, 38, 44, 45, 46, 62],
+    locations: [35, 36, 37, 38, 44, 45, 46, 62],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -58,7 +53,6 @@ const fishCN = {
   },
   4873: {
     _id: 4873,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 14,
     bait: 2589,
@@ -68,11 +62,10 @@ const fishCN = {
   },
   4874: {
     _id: 4874,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 15,
     bait: 2587,
-    locations: [36, 35, 37, 38, 45, 46, 53, 107, 59, 64, 104, 70],
+    locations: [35, 36, 37, 38, 45, 46, 53, 59, 64, 70, 104, 107],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -84,7 +77,6 @@ const fishCN = {
   },
   4875: {
     _id: 4875,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 18,
     bait: 2606,
@@ -94,47 +86,42 @@ const fishCN = {
   },
   4876: {
     _id: 4876,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 20,
     bait: 2587,
-    locations: [36, 35, 37, 51],
+    locations: [35, 36, 37, 51],
     patch: 2,
     collectable: false,
   },
   4877: {
     _id: 4877,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 22,
     bait: 2628,
-    locations: [44, 45, 47, 49, 46, 59],
+    locations: [44, 45, 46, 47, 49, 59],
     patch: 2,
     collectable: false,
   },
   4878: {
     _id: 4878,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 26,
     bait: 2628,
-    locations: [44, 45, 47, 49, 46, 48, 59, 70, 69],
+    locations: [44, 45, 46, 47, 48, 49, 59, 69, 70],
     patch: 2,
     collectable: false,
   },
   4879: {
     _id: 4879,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 30,
     bait: 2591,
-    locations: [45, 47, 49, 46, 59, 60, 70, 69],
+    locations: [45, 46, 47, 49, 59, 60, 69, 70],
     patch: 2,
     collectable: false,
   },
   4880: {
     _id: 4880,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 32,
     bait: 2591,
@@ -144,17 +131,15 @@ const fishCN = {
   },
   4881: {
     _id: 4881,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 35,
     bait: 2591,
-    locations: [47, 49, 46, 59, 60, 64, 70, 69],
+    locations: [46, 47, 49, 59, 60, 64, 69, 70],
     patch: 2,
     collectable: false,
   },
   4882: {
     _id: 4882,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 38,
     bait: 2628,
@@ -164,7 +149,6 @@ const fishCN = {
   },
   4883: {
     _id: 4883,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 40,
     bait: 2616,
@@ -174,7 +158,6 @@ const fishCN = {
   },
   4884: {
     _id: 4884,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 43,
     bait: 2591,
@@ -184,17 +167,15 @@ const fishCN = {
   },
   4886: {
     _id: 4886,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 49,
     bait: 2606,
-    locations: [48, 52, 107, 108, 156, 104, 71],
+    locations: [48, 52, 71, 104, 107, 108, 156],
     patch: 2,
     collectable: false,
   },
   4887: {
     _id: 4887,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 54,
     bait: 2619,
@@ -204,11 +185,10 @@ const fishCN = {
   },
   4888: {
     _id: 4888,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 58,
     bait: 4874,
-    locations: [38, 53, 107, 64],
+    locations: [38, 53, 64, 107],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -217,7 +197,6 @@ const fishCN = {
   },
   4889: {
     _id: 4889,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 61,
     bait: 2619,
@@ -227,7 +206,6 @@ const fishCN = {
   },
   4890: {
     _id: 4890,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 62,
     bait: 2613,
@@ -237,7 +215,6 @@ const fishCN = {
   },
   4891: {
     _id: 4891,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 65,
     bait: 2619,
@@ -247,7 +224,6 @@ const fishCN = {
   },
   4892: {
     _id: 4892,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 67,
     bait: 2598,
@@ -257,7 +233,6 @@ const fishCN = {
   },
   4893: {
     _id: 4893,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 70,
     bait: 2616,
@@ -267,7 +242,6 @@ const fishCN = {
   },
   4894: {
     _id: 4894,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 72,
     bait: 2598,
@@ -277,27 +251,24 @@ const fishCN = {
   },
   4895: {
     _id: 4895,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 75,
     bait: 2596,
-    locations: [52, 104, 69],
+    locations: [52, 69, 104],
     patch: 2,
     collectable: false,
   },
   4896: {
     _id: 4896,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 77,
     bait: 2596,
-    locations: [52, 53, 107, 104],
+    locations: [52, 53, 104, 107],
     patch: 2,
     collectable: false,
   },
   4897: {
     _id: 4897,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 81,
     bait: 2606,
@@ -307,11 +278,10 @@ const fishCN = {
   },
   4898: {
     _id: 4898,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 83,
     bait: 2596,
-    locations: [51, 52, 62, 101, 63, 104],
+    locations: [51, 52, 62, 63, 101, 104],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -323,7 +293,6 @@ const fishCN = {
   },
   4899: {
     _id: 4899,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 85,
     bait: 2619,
@@ -333,17 +302,15 @@ const fishCN = {
   },
   4900: {
     _id: 4900,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 88,
     bait: 2598,
-    locations: [53, 61, 101, 74],
+    locations: [53, 61, 74, 101],
     patch: 2,
     collectable: false,
   },
   4901: {
     _id: 4901,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 93,
     bait: 2619,
@@ -353,21 +320,19 @@ const fishCN = {
   },
   4902: {
     _id: 4902,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 97,
     bait: 2619,
-    locations: [53, 107, 61],
+    locations: [53, 61, 107],
     patch: 2,
     collectable: false,
   },
   4904: {
     _id: 4904,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 116,
     bait: 4869,
-    locations: [108, 156, 60, 62, 65, 102, 74],
+    locations: [60, 62, 65, 74, 102, 108, 156],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -376,11 +341,10 @@ const fishCN = {
   },
   4905: {
     _id: 4905,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 117,
     bait: 2601,
-    locations: [90, 81],
+    locations: [81, 90],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -392,11 +356,10 @@ const fishCN = {
   },
   4906: {
     _id: 4906,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 124,
     bait: 4898,
-    locations: [101, 63, 104],
+    locations: [63, 101, 104],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -405,7 +368,6 @@ const fishCN = {
   },
   4907: {
     _id: 4907,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 129,
     bait: 2628,
@@ -415,41 +377,37 @@ const fishCN = {
   },
   4908: {
     _id: 4908,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 133,
     bait: 2628,
-    locations: [65, 63],
+    locations: [63, 65],
     patch: 2,
     collectable: false,
   },
   4909: {
     _id: 4909,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 138,
     bait: 2628,
-    locations: [65, 63, 74],
+    locations: [63, 65, 74],
     patch: 2,
     collectable: false,
   },
   4910: {
     _id: 4910,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 143,
     bait: 2628,
-    locations: [101, 63, 74],
+    locations: [63, 74, 101],
     patch: 2,
     collectable: false,
   },
   4911: {
     _id: 4911,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 149,
     bait: 2606,
-    locations: [108, 102, 71, 69],
+    locations: [69, 71, 102, 108],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -458,7 +416,6 @@ const fishCN = {
   },
   4912: {
     _id: 4912,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 152,
     bait: 4904,
@@ -468,7 +425,6 @@ const fishCN = {
   },
   4913: {
     _id: 4913,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 155,
     bait: 2606,
@@ -481,7 +437,6 @@ const fishCN = {
   },
   4914: {
     _id: 4914,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 156,
     bait: 2606,
@@ -491,7 +446,6 @@ const fishCN = {
   },
   4915: {
     _id: 4915,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 159,
     bait: 2628,
@@ -504,7 +458,6 @@ const fishCN = {
   },
   4916: {
     _id: 4916,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 160,
     bait: 2606,
@@ -514,7 +467,6 @@ const fishCN = {
   },
   4917: {
     _id: 4917,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 165,
     bait: 4888,
@@ -524,7 +476,6 @@ const fishCN = {
   },
   4918: {
     _id: 4918,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 166,
     bait: 4898,
@@ -540,11 +491,10 @@ const fishCN = {
   },
   4919: {
     _id: 4919,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 169,
     bait: 4904,
-    locations: [108, 156, 65],
+    locations: [65, 108, 156],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -553,17 +503,15 @@ const fishCN = {
   },
   4920: {
     _id: 4920,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 170,
     bait: 4888,
-    locations: [107, 64],
+    locations: [64, 107],
     patch: 2,
     collectable: false,
   },
   4921: {
     _id: 4921,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 171,
     bait: 4872,
@@ -573,7 +521,6 @@ const fishCN = {
   },
   4922: {
     _id: 4922,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 172,
     bait: 4904,
@@ -583,17 +530,15 @@ const fishCN = {
   },
   4923: {
     _id: 4923,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 179,
     bait: 4904,
-    locations: [108, 156, 65],
+    locations: [65, 108, 156],
     patch: 2,
     collectable: false,
   },
   4924: {
     _id: 4924,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 180,
     bait: 4904,
@@ -609,17 +554,15 @@ const fishCN = {
   },
   4925: {
     _id: 4925,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 2,
     bait: 2586,
-    locations: [39, 40, 43, 90, 91, 81, 100, 2, 73],
+    locations: [2, 39, 40, 43, 73, 81, 90, 91, 100],
     patch: 2,
     collectable: false,
   },
   4926: {
     _id: 4926,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3,
     bait: 2586,
@@ -629,11 +572,10 @@ const fishCN = {
   },
   4927: {
     _id: 4927,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 6,
     bait: 2586,
-    locations: [2, 6, 19, 26, 31, 28, 30],
+    locations: [2, 6, 19, 26, 28, 30, 31],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -642,7 +584,6 @@ const fishCN = {
   },
   4928: {
     _id: 4928,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 7,
     bait: 2586,
@@ -652,17 +593,15 @@ const fishCN = {
   },
   4929: {
     _id: 4929,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 9,
     bait: 2586,
-    locations: [97, 3, 6, 10, 16, 72, 75, 76, 96, 77, 89, 24],
+    locations: [3, 6, 10, 16, 24, 72, 75, 76, 77, 89, 96, 97],
     patch: 2,
     collectable: false,
   },
   4930: {
     _id: 4930,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 11,
     bait: 2588,
@@ -672,27 +611,24 @@ const fishCN = {
   },
   4931: {
     _id: 4931,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 13,
     bait: 2588,
-    locations: [41, 42, 43, 50, 72, 75, 76, 96, 78, 79],
+    locations: [41, 42, 43, 50, 72, 75, 76, 78, 79, 96],
     patch: 2,
     collectable: false,
   },
   4932: {
     _id: 4932,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 16,
     bait: 2588,
-    locations: [90, 91, 81, 100, 2, 3, 6, 105],
+    locations: [2, 3, 6, 81, 90, 91, 100, 105],
     patch: 2,
     collectable: false,
   },
   4933: {
     _id: 4933,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 17,
     bait: 2588,
@@ -702,17 +638,15 @@ const fishCN = {
   },
   4934: {
     _id: 4934,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 19,
     bait: 2588,
-    locations: [40, 41, 43, 90, 91, 81, 100, 2, 3, 72],
+    locations: [2, 3, 40, 41, 43, 72, 81, 90, 91, 100],
     patch: 2,
     collectable: false,
   },
   4935: {
     _id: 4935,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 21,
     bait: 2623,
@@ -722,61 +656,55 @@ const fishCN = {
   },
   4936: {
     _id: 4936,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 23,
     bait: 2590,
-    locations: [41, 43, 90, 91, 81, 100, 2, 3, 6, 8, 18, 19, 72, 75, 76, 96, 77, 26],
+    locations: [2, 3, 6, 8, 18, 19, 26, 41, 43, 72, 75, 76, 77, 81, 90, 91, 96, 100],
     patch: 2,
     collectable: false,
   },
   4938: {
     _id: 4938,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 25,
     bait: 2597,
-    locations: [97, 103, 31],
+    locations: [31, 97, 103],
     patch: 2,
     collectable: false,
   },
   4939: {
     _id: 4939,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 27,
     bait: 2592,
-    locations: [5, 92, 73, 77, 78, 79],
+    locations: [5, 73, 77, 78, 79, 92],
     patch: 2,
     collectable: false,
   },
   4940: {
     _id: 4940,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 28,
     bait: 2618,
-    locations: [8, 7, 11, 13, 14, 12, 18, 19, 26, 30, 33],
+    locations: [7, 8, 11, 12, 13, 14, 18, 19, 26, 30, 33],
     patch: 2,
     collectable: false,
   },
   4941: {
     _id: 4941,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 29,
     bait: 2590,
-    locations: [42, 66, 67, 98, 6, 8, 10, 7, 11, 18],
+    locations: [6, 7, 8, 10, 11, 18, 42, 66, 67, 98],
     patch: 2,
     collectable: false,
   },
   4942: {
     _id: 4942,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 31,
     bait: 2592,
-    locations: [4, 5, 92, 8, 11, 13, 15, 17, 19, 105, 25, 24],
+    locations: [4, 5, 8, 11, 13, 15, 17, 19, 24, 25, 92, 105],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -785,37 +713,33 @@ const fishCN = {
   },
   4943: {
     _id: 4943,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 33,
     bait: 2592,
-    locations: [50, 66, 98, 11, 13, 14, 19, 73, 78, 79, 106],
+    locations: [11, 13, 14, 19, 50, 66, 73, 78, 79, 98, 106],
     patch: 2,
     collectable: false,
   },
   4944: {
     _id: 4944,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 34,
     bait: 2592,
-    locations: [50, 97, 10, 73, 77, 78, 79],
+    locations: [10, 50, 73, 77, 78, 79, 97],
     patch: 2,
     collectable: false,
   },
   4945: {
     _id: 4945,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 36,
     bait: 2592,
-    locations: [54, 6, 11, 14, 12, 19, 105],
+    locations: [6, 11, 12, 14, 19, 54, 105],
     patch: 2,
     collectable: false,
   },
   4946: {
     _id: 4946,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 37,
     bait: 2611,
@@ -825,21 +749,19 @@ const fishCN = {
   },
   4947: {
     _id: 4947,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 39,
     bait: 2614,
-    locations: [50, 90, 91, 81, 100, 3, 10, 84],
+    locations: [3, 10, 50, 81, 84, 90, 91, 100],
     patch: 2,
     collectable: false,
   },
   4948: {
     _id: 4948,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 41,
     bait: 2594,
-    locations: [42, 50, 55, 56, 57, 67, 7, 14, 72, 73, 83, 85, 106],
+    locations: [7, 14, 42, 50, 55, 56, 57, 67, 72, 73, 83, 85, 106],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -851,27 +773,24 @@ const fishCN = {
   },
   4949: {
     _id: 4949,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 42,
     bait: 2611,
-    locations: [67, 8, 18],
+    locations: [8, 18, 67],
     patch: 2,
     collectable: false,
   },
   4950: {
     _id: 4950,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 44,
     bait: 2599,
-    locations: [57, 5, 92, 13, 14, 15, 21, 73, 77, 78, 79, 84, 93],
+    locations: [5, 13, 14, 15, 21, 57, 73, 77, 78, 79, 84, 92, 93],
     patch: 2,
     collectable: false,
   },
   4951: {
     _id: 4951,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 46,
     bait: 2594,
@@ -881,37 +800,33 @@ const fishCN = {
   },
   4953: {
     _id: 4953,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 48,
     bait: 2594,
-    locations: [66, 67, 98, 68, 155],
+    locations: [66, 67, 68, 98, 155],
     patch: 2,
     collectable: false,
   },
   4954: {
     _id: 4954,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 50,
     bait: 2594,
-    locations: [66, 98, 68, 155, 10, 20, 21],
+    locations: [10, 20, 21, 66, 68, 98, 155],
     patch: 2,
     collectable: false,
   },
   4955: {
     _id: 4955,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 51,
     bait: 2614,
-    locations: [66, 67, 99, 80, 83, 85],
+    locations: [66, 67, 80, 83, 85, 99],
     patch: 2,
     collectable: false,
   },
   4956: {
     _id: 4956,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 52,
     bait: 2610,
@@ -921,7 +836,6 @@ const fishCN = {
   },
   4957: {
     _id: 4957,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 53,
     bait: 2626,
@@ -931,7 +845,6 @@ const fishCN = {
   },
   4958: {
     _id: 4958,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 55,
     bait: 2594,
@@ -941,17 +854,15 @@ const fishCN = {
   },
   4959: {
     _id: 4959,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 56,
     bait: 2614,
-    locations: [66, 67, 10, 15, 75, 76, 96, 77, 80, 83, 106, 25],
+    locations: [10, 15, 25, 66, 67, 75, 76, 77, 80, 83, 96, 106],
     patch: 2,
     collectable: false,
   },
   4960: {
     _id: 4960,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 59,
     bait: 2595,
@@ -961,7 +872,6 @@ const fishCN = {
   },
   4961: {
     _id: 4961,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 60,
     bait: 2611,
@@ -971,7 +881,6 @@ const fishCN = {
   },
   4962: {
     _id: 4962,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 63,
     bait: 2595,
@@ -981,7 +890,6 @@ const fishCN = {
   },
   4964: {
     _id: 4964,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 66,
     bait: 4942,
@@ -991,7 +899,6 @@ const fishCN = {
   },
   4965: {
     _id: 4965,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 68,
     bait: 4948,
@@ -1001,7 +908,6 @@ const fishCN = {
   },
   4966: {
     _id: 4966,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 69,
     bait: 2610,
@@ -1011,17 +917,15 @@ const fishCN = {
   },
   4967: {
     _id: 4967,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 71,
     bait: 2595,
-    locations: [7, 13, 12, 15, 80, 82],
+    locations: [7, 12, 13, 15, 80, 82],
     patch: 2,
     collectable: false,
   },
   4968: {
     _id: 4968,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 73,
     bait: 2597,
@@ -1031,7 +935,6 @@ const fishCN = {
   },
   4969: {
     _id: 4969,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 76,
     bait: 2615,
@@ -1041,17 +944,15 @@ const fishCN = {
   },
   4970: {
     _id: 4970,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 78,
     bait: 2610,
-    locations: [50, 57, 103, 95, 88],
+    locations: [50, 57, 88, 95, 103],
     patch: 2,
     collectable: false,
   },
   4971: {
     _id: 4971,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 79,
     bait: 2597,
@@ -1061,7 +962,6 @@ const fishCN = {
   },
   4972: {
     _id: 4972,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 80,
     bait: 2597,
@@ -1071,27 +971,24 @@ const fishCN = {
   },
   4973: {
     _id: 4973,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 82,
     bait: 2627,
-    locations: [68, 155, 4, 15, 17, 21, 105, 82, 93],
+    locations: [4, 15, 17, 21, 68, 82, 93, 105, 155],
     patch: 2,
     collectable: false,
   },
   4974: {
     _id: 4974,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 84,
     bait: 2599,
-    locations: [54, 55, 56, 58, 68, 155, 4, 12, 16, 17, 20, 80, 25],
+    locations: [4, 12, 16, 17, 20, 25, 54, 55, 56, 58, 68, 80, 155],
     patch: 2,
     collectable: false,
   },
   4976: {
     _id: 4976,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 87,
     bait: 2623,
@@ -1101,7 +998,6 @@ const fishCN = {
   },
   4977: {
     _id: 4977,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 89,
     bait: 27591,
@@ -1111,11 +1007,10 @@ const fishCN = {
   },
   4978: {
     _id: 4978,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 90,
     bait: 2599,
-    locations: [57, 58, 68, 155, 92, 15, 21, 103, 95, 89, 88, 106, 22, 93, 23, 24, 94],
+    locations: [15, 21, 22, 23, 24, 57, 58, 68, 88, 89, 92, 93, 94, 95, 103, 106, 155],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -1124,17 +1019,15 @@ const fishCN = {
   },
   4979: {
     _id: 4979,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 91,
     bait: 2599,
-    locations: [58, 5, 84, 85],
+    locations: [5, 58, 84, 85],
     patch: 2,
     collectable: false,
   },
   4980: {
     _id: 4980,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 94,
     bait: 27591,
@@ -1144,27 +1037,24 @@ const fishCN = {
   },
   4981: {
     _id: 4981,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 95,
     bait: 2599,
-    locations: [56, 68, 99, 155, 9, 89, 26, 28, 29, 25, 93, 23, 94],
+    locations: [9, 23, 25, 26, 28, 29, 56, 68, 89, 93, 94, 99, 155],
     patch: 2,
     collectable: false,
   },
   4982: {
     _id: 4982,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 98,
     bait: 2627,
-    locations: [9, 11, 13, 14, 12, 17],
+    locations: [9, 11, 12, 13, 14, 17],
     patch: 2,
     collectable: false,
   },
   4983: {
     _id: 4983,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 99,
     bait: 2599,
@@ -1174,17 +1064,15 @@ const fishCN = {
   },
   4984: {
     _id: 4984,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 101,
     bait: 2599,
-    locations: [20, 85, 89, 31],
+    locations: [20, 31, 85, 89],
     patch: 2,
     collectable: false,
   },
   4985: {
     _id: 4985,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 103,
     bait: 2599,
@@ -1194,17 +1082,15 @@ const fishCN = {
   },
   4986: {
     _id: 4986,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 104,
     bait: 2620,
-    locations: [26, 28, 30, 29, 33],
+    locations: [26, 28, 29, 30, 33],
     patch: 2,
     collectable: false,
   },
   4987: {
     _id: 4987,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 105,
     bait: 2599,
@@ -1214,57 +1100,51 @@ const fishCN = {
   },
   4988: {
     _id: 4988,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 108,
     bait: 2626,
-    locations: [68, 99, 155, 28],
+    locations: [28, 68, 99, 155],
     patch: 2,
     collectable: false,
   },
   4989: {
     _id: 4989,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 109,
     bait: 2601,
-    locations: [99, 95, 82, 84, 89, 88, 22, 25, 23, 94],
+    locations: [22, 23, 25, 82, 84, 88, 89, 94, 95, 99],
     patch: 2,
     collectable: false,
   },
   4990: {
     _id: 4990,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 112,
     bait: 2601,
-    locations: [55, 56, 20, 82],
+    locations: [20, 55, 56, 82],
     patch: 2,
     collectable: false,
   },
   4992: {
     _id: 4992,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 114,
     bait: 4948,
-    locations: [67, 7],
+    locations: [7, 67],
     patch: 2,
     collectable: false,
   },
   4993: {
     _id: 4993,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 115,
     bait: 2601,
-    locations: [58, 82, 89, 25, 93, 23],
+    locations: [23, 25, 58, 82, 89, 93],
     patch: 2,
     collectable: false,
   },
   4994: {
     _id: 4994,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 118,
     bait: 2627,
@@ -1274,11 +1154,10 @@ const fishCN = {
   },
   4995: {
     _id: 4995,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 119,
     bait: 2626,
-    locations: [66, 9, 89, 29],
+    locations: [9, 29, 66, 89],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -1287,7 +1166,6 @@ const fishCN = {
   },
   4996: {
     _id: 4996,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 121,
     bait: 2624,
@@ -1297,17 +1175,15 @@ const fishCN = {
   },
   4997: {
     _id: 4997,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 122,
     bait: 2624,
-    locations: [28, 32, 29],
+    locations: [28, 29, 32],
     patch: 2,
     collectable: false,
   },
   4998: {
     _id: 4998,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 123,
     bait: 2626,
@@ -1317,7 +1193,6 @@ const fishCN = {
   },
   4999: {
     _id: 4999,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 125,
     bait: 2618,
@@ -1327,7 +1202,6 @@ const fishCN = {
   },
   5000: {
     _id: 5000,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 127,
     bait: 4978,
@@ -1337,7 +1211,6 @@ const fishCN = {
   },
   5001: {
     _id: 5001,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 128,
     bait: 2618,
@@ -1347,11 +1220,10 @@ const fishCN = {
   },
   5002: {
     _id: 5002,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 130,
     bait: 4978,
-    locations: [21, 103, 22, 23, 24, 94],
+    locations: [21, 22, 23, 24, 94, 103],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -1360,47 +1232,42 @@ const fishCN = {
   },
   5003: {
     _id: 5003,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 131,
     bait: 2601,
-    locations: [57, 95, 88, 22, 24],
+    locations: [22, 24, 57, 88, 95],
     patch: 2,
     collectable: false,
   },
   5004: {
     _id: 5004,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 135,
     bait: 4978,
-    locations: [95, 88, 24],
+    locations: [24, 88, 95],
     patch: 2,
     collectable: false,
   },
   5005: {
     _id: 5005,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 136,
     bait: 4978,
-    locations: [103, 89, 93],
+    locations: [89, 93, 103],
     patch: 2,
     collectable: false,
   },
   5006: {
     _id: 5006,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 139,
     bait: 2624,
-    locations: [95, 88, 22, 93, 23, 24, 94],
+    locations: [22, 23, 24, 88, 93, 94, 95],
     patch: 2,
     collectable: false,
   },
   5007: {
     _id: 5007,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 140,
     bait: 2603,
@@ -1416,7 +1283,6 @@ const fishCN = {
   },
   5008: {
     _id: 5008,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 141,
     bait: 2603,
@@ -1429,7 +1295,6 @@ const fishCN = {
   },
   5010: {
     _id: 5010,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 145,
     bait: 4937,
@@ -1439,11 +1304,10 @@ const fishCN = {
   },
   5011: {
     _id: 5011,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 146,
     bait: 4978,
-    locations: [58, 21, 88, 106, 22, 23, 94],
+    locations: [21, 22, 23, 58, 88, 94, 106],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -1455,7 +1319,6 @@ const fishCN = {
   },
   5012: {
     _id: 5012,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 150,
     bait: 4978,
@@ -1465,7 +1328,6 @@ const fishCN = {
   },
   5013: {
     _id: 5013,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 151,
     bait: 2607,
@@ -1475,7 +1337,6 @@ const fishCN = {
   },
   5014: {
     _id: 5014,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 153,
     bait: 4927,
@@ -1485,7 +1346,6 @@ const fishCN = {
   },
   5015: {
     _id: 5015,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 154,
     bait: 4995,
@@ -1495,7 +1355,6 @@ const fishCN = {
   },
   5016: {
     _id: 5016,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 157,
     bait: 2626,
@@ -1508,7 +1367,6 @@ const fishCN = {
   },
   5017: {
     _id: 5017,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 158,
     bait: 2607,
@@ -1521,7 +1379,6 @@ const fishCN = {
   },
   5018: {
     _id: 5018,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 161,
     bait: 4995,
@@ -1531,7 +1388,6 @@ const fishCN = {
   },
   5019: {
     _id: 5019,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 162,
     bait: 5011,
@@ -1541,7 +1397,6 @@ const fishCN = {
   },
   5020: {
     _id: 5020,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 163,
     bait: 4978,
@@ -1551,7 +1406,6 @@ const fishCN = {
   },
   5021: {
     _id: 5021,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 167,
     bait: 2625,
@@ -1564,7 +1418,6 @@ const fishCN = {
   },
   5022: {
     _id: 5022,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 173,
     bait: 4995,
@@ -1577,7 +1430,6 @@ const fishCN = {
   },
   5023: {
     _id: 5023,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 174,
     bait: 2607,
@@ -1593,7 +1445,6 @@ const fishCN = {
   },
   5024: {
     _id: 5024,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 175,
     bait: 5011,
@@ -1603,7 +1454,6 @@ const fishCN = {
   },
   5025: {
     _id: 5025,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 176,
     bait: 4937,
@@ -1613,7 +1463,6 @@ const fishCN = {
   },
   5026: {
     _id: 5026,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 177,
     bait: 5011,
@@ -1623,7 +1472,6 @@ const fishCN = {
   },
   5027: {
     _id: 5027,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 178,
     bait: 2607,
@@ -1636,7 +1484,6 @@ const fishCN = {
   },
   5028: {
     _id: 5028,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 181,
     bait: 2627,
@@ -1646,7 +1493,6 @@ const fishCN = {
   },
   5029: {
     _id: 5029,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 182,
     bait: 2627,
@@ -1656,7 +1502,6 @@ const fishCN = {
   },
   5030: {
     _id: 5030,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 183,
     bait: 5011,
@@ -1666,7 +1511,6 @@ const fishCN = {
   },
   5031: {
     _id: 5031,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 184,
     bait: 5011,
@@ -1679,7 +1523,6 @@ const fishCN = {
   },
   5032: {
     _id: 5032,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 92,
     bait: 2604,
@@ -1689,7 +1532,6 @@ const fishCN = {
   },
   5033: {
     _id: 5033,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 96,
     bait: 2600,
@@ -1699,7 +1541,6 @@ const fishCN = {
   },
   5034: {
     _id: 5034,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 100,
     bait: 2604,
@@ -1709,7 +1550,6 @@ const fishCN = {
   },
   5035: {
     _id: 5035,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 102,
     bait: 2600,
@@ -1722,7 +1562,6 @@ const fishCN = {
   },
   5036: {
     _id: 5036,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 106,
     bait: 2602,
@@ -1732,7 +1571,6 @@ const fishCN = {
   },
   5037: {
     _id: 5037,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 110,
     bait: 5035,
@@ -1742,31 +1580,28 @@ const fishCN = {
   },
   5038: {
     _id: 5038,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 126,
     bait: 2605,
-    locations: [34, 27],
+    locations: [27, 34],
     patch: 2,
     collectable: false,
   },
   5039: {
     _id: 5039,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 132,
     bait: 2605,
-    locations: [34, 27],
+    locations: [27, 34],
     patch: 2,
     collectable: false,
   },
   5040: {
     _id: 5040,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 134,
     bait: 2605,
-    locations: [34, 27],
+    locations: [27, 34],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -1775,27 +1610,24 @@ const fishCN = {
   },
   5041: {
     _id: 5041,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 137,
     bait: 5040,
-    locations: [34, 27],
+    locations: [27, 34],
     patch: 2,
     collectable: false,
   },
   5042: {
     _id: 5042,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 142,
     bait: 2605,
-    locations: [34, 27],
+    locations: [27, 34],
     patch: 2,
     collectable: false,
   },
   5043: {
     _id: 5043,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 147,
     bait: 4977,
@@ -1805,7 +1637,6 @@ const fishCN = {
   },
   5044: {
     _id: 5044,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 148,
     bait: 5040,
@@ -1815,7 +1646,6 @@ const fishCN = {
   },
   5045: {
     _id: 5045,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 164,
     bait: 5035,
@@ -1825,7 +1655,6 @@ const fishCN = {
   },
   5046: {
     _id: 5046,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 168,
     bait: 5044,
@@ -1835,7 +1664,6 @@ const fishCN = {
   },
   5460: {
     _id: 5460,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 10,
     bait: 2587,
@@ -1845,7 +1673,6 @@ const fishCN = {
   },
   5461: {
     _id: 5461,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 57,
     bait: 2613,
@@ -1855,31 +1682,28 @@ const fishCN = {
   },
   5462: {
     _id: 5462,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 107,
     bait: 2598,
-    locations: [53, 107, 62, 65, 101, 63, 102],
+    locations: [53, 62, 63, 65, 101, 102, 107],
     patch: 2,
     collectable: false,
   },
   5466: {
     _id: 5466,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 120,
     bait: 2621,
-    locations: [65, 101, 63, 102, 74],
+    locations: [63, 65, 74, 101, 102],
     patch: 2,
     collectable: false,
   },
   5544: {
     _id: 5544,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 74,
     bait: 2610,
-    locations: [97, 31, 32, 29, 22, 93, 23, 94, 129],
+    locations: [22, 23, 29, 31, 32, 93, 94, 97, 129],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -1888,7 +1712,6 @@ const fishCN = {
   },
   6185: {
     _id: 6185,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 185,
     bait: 2628,
@@ -1898,7 +1721,6 @@ const fishCN = {
   },
   6191: {
     _id: 6191,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 186,
     bait: 2624,
@@ -1908,7 +1730,6 @@ const fishCN = {
   },
   7678: {
     _id: 7678,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 201,
     bait: 2591,
@@ -1921,7 +1742,6 @@ const fishCN = {
   },
   7679: {
     _id: 7679,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 202,
     bait: 2586,
@@ -1934,7 +1754,6 @@ const fishCN = {
   },
   7680: {
     _id: 7680,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 203,
     bait: 2589,
@@ -1947,7 +1766,6 @@ const fishCN = {
   },
   7681: {
     _id: 7681,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 204,
     bait: 2586,
@@ -1960,7 +1778,6 @@ const fishCN = {
   },
   7682: {
     _id: 7682,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 205,
     bait: 2594,
@@ -1973,7 +1790,6 @@ const fishCN = {
   },
   7683: {
     _id: 7683,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 206,
     bait: 4942,
@@ -1986,7 +1802,6 @@ const fishCN = {
   },
   7684: {
     _id: 7684,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 207,
     bait: 4904,
@@ -1999,7 +1814,6 @@ const fishCN = {
   },
   7685: {
     _id: 7685,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 208,
     bait: 2587,
@@ -2015,7 +1829,6 @@ const fishCN = {
   },
   7686: {
     _id: 7686,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 209,
     bait: 4869,
@@ -2028,7 +1841,6 @@ const fishCN = {
   },
   7687: {
     _id: 7687,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 210,
     bait: 2606,
@@ -2041,7 +1853,6 @@ const fishCN = {
   },
   7688: {
     _id: 7688,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 211,
     bait: 2588,
@@ -2054,7 +1865,6 @@ const fishCN = {
   },
   7689: {
     _id: 7689,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 212,
     bait: 2614,
@@ -2067,7 +1877,6 @@ const fishCN = {
   },
   7690: {
     _id: 7690,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 213,
     bait: 2628,
@@ -2083,7 +1892,6 @@ const fishCN = {
   },
   7691: {
     _id: 7691,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 214,
     bait: 2589,
@@ -2096,7 +1904,6 @@ const fishCN = {
   },
   7692: {
     _id: 7692,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 215,
     bait: 2588,
@@ -2109,7 +1916,6 @@ const fishCN = {
   },
   7693: {
     _id: 7693,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 216,
     bait: 2628,
@@ -2125,7 +1931,6 @@ const fishCN = {
   },
   7694: {
     _id: 7694,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 217,
     bait: 4927,
@@ -2138,7 +1943,6 @@ const fishCN = {
   },
   7695: {
     _id: 7695,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 218,
     bait: 2623,
@@ -2151,7 +1955,6 @@ const fishCN = {
   },
   7696: {
     _id: 7696,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 219,
     bait: 2588,
@@ -2164,7 +1967,6 @@ const fishCN = {
   },
   7697: {
     _id: 7697,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 220,
     bait: 2626,
@@ -2177,7 +1979,6 @@ const fishCN = {
   },
   7698: {
     _id: 7698,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 221,
     bait: 2588,
@@ -2190,7 +1991,6 @@ const fishCN = {
   },
   7699: {
     _id: 7699,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 222,
     bait: 2611,
@@ -2206,7 +2006,6 @@ const fishCN = {
   },
   7700: {
     _id: 7700,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 223,
     bait: 2594,
@@ -2219,7 +2018,6 @@ const fishCN = {
   },
   7701: {
     _id: 7701,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 224,
     bait: 2614,
@@ -2232,7 +2030,6 @@ const fishCN = {
   },
   7702: {
     _id: 7702,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 225,
     bait: 2592,
@@ -2245,7 +2042,6 @@ const fishCN = {
   },
   7703: {
     _id: 7703,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 226,
     bait: 2590,
@@ -2258,7 +2054,6 @@ const fishCN = {
   },
   7704: {
     _id: 7704,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 227,
     bait: 2597,
@@ -2271,7 +2066,6 @@ const fishCN = {
   },
   7705: {
     _id: 7705,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 228,
     bait: 4927,
@@ -2284,7 +2078,6 @@ const fishCN = {
   },
   7706: {
     _id: 7706,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 229,
     bait: 2594,
@@ -2297,7 +2090,6 @@ const fishCN = {
   },
   7707: {
     _id: 7707,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 230,
     bait: 4874,
@@ -2310,7 +2102,6 @@ const fishCN = {
   },
   7708: {
     _id: 7708,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 231,
     bait: 2590,
@@ -2323,7 +2114,6 @@ const fishCN = {
   },
   7709: {
     _id: 7709,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 232,
     bait: 2617,
@@ -2339,7 +2129,6 @@ const fishCN = {
   },
   7710: {
     _id: 7710,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 233,
     bait: 2596,
@@ -2352,7 +2141,6 @@ const fishCN = {
   },
   7711: {
     _id: 7711,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 234,
     bait: 2619,
@@ -2365,7 +2153,6 @@ const fishCN = {
   },
   7712: {
     _id: 7712,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 235,
     bait: 2589,
@@ -2378,7 +2165,6 @@ const fishCN = {
   },
   7713: {
     _id: 7713,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 236,
     bait: 2601,
@@ -2391,7 +2177,6 @@ const fishCN = {
   },
   7714: {
     _id: 7714,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 237,
     bait: 2594,
@@ -2404,7 +2189,6 @@ const fishCN = {
   },
   7902: {
     _id: 7902,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 238,
     bait: 2597,
@@ -2420,7 +2204,6 @@ const fishCN = {
   },
   7903: {
     _id: 7903,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 239,
     bait: 2591,
@@ -2433,7 +2216,6 @@ const fishCN = {
   },
   7904: {
     _id: 7904,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 240,
     bait: 2614,
@@ -2446,7 +2228,6 @@ const fishCN = {
   },
   7905: {
     _id: 7905,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 241,
     bait: 4995,
@@ -2459,7 +2240,6 @@ const fishCN = {
   },
   7906: {
     _id: 7906,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 242,
     bait: 2606,
@@ -2472,7 +2252,6 @@ const fishCN = {
   },
   7907: {
     _id: 7907,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 243,
     bait: 2594,
@@ -2485,7 +2264,6 @@ const fishCN = {
   },
   7908: {
     _id: 7908,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 244,
     bait: 2594,
@@ -2498,7 +2276,6 @@ const fishCN = {
   },
   7909: {
     _id: 7909,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 245,
     bait: 2613,
@@ -2511,7 +2288,6 @@ const fishCN = {
   },
   7910: {
     _id: 7910,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 246,
     bait: 2606,
@@ -2524,7 +2300,6 @@ const fishCN = {
   },
   7911: {
     _id: 7911,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 247,
     bait: 4948,
@@ -2537,7 +2312,6 @@ const fishCN = {
   },
   7912: {
     _id: 7912,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 248,
     bait: 4948,
@@ -2550,7 +2324,6 @@ const fishCN = {
   },
   7913: {
     _id: 7913,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 249,
     bait: 2595,
@@ -2563,7 +2336,6 @@ const fishCN = {
   },
   7914: {
     _id: 7914,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 250,
     bait: 2597,
@@ -2576,7 +2348,6 @@ const fishCN = {
   },
   7915: {
     _id: 7915,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 251,
     bait: 4898,
@@ -2589,7 +2360,6 @@ const fishCN = {
   },
   7916: {
     _id: 7916,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 252,
     bait: 2594,
@@ -2602,7 +2372,6 @@ const fishCN = {
   },
   7917: {
     _id: 7917,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 253,
     bait: 4898,
@@ -2615,7 +2384,6 @@ const fishCN = {
   },
   7918: {
     _id: 7918,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 254,
     bait: 2599,
@@ -2628,7 +2396,6 @@ const fishCN = {
   },
   7919: {
     _id: 7919,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 255,
     bait: 2607,
@@ -2641,7 +2408,6 @@ const fishCN = {
   },
   7920: {
     _id: 7920,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 256,
     bait: 2597,
@@ -2654,7 +2420,6 @@ const fishCN = {
   },
   7921: {
     _id: 7921,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 257,
     bait: 2617,
@@ -2667,7 +2432,6 @@ const fishCN = {
   },
   7922: {
     _id: 7922,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 258,
     bait: 4978,
@@ -2680,7 +2444,6 @@ const fishCN = {
   },
   7923: {
     _id: 7923,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 259,
     bait: 4942,
@@ -2693,7 +2456,6 @@ const fishCN = {
   },
   7924: {
     _id: 7924,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 260,
     bait: 2598,
@@ -2709,7 +2471,6 @@ const fishCN = {
   },
   7925: {
     _id: 7925,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 261,
     bait: 2599,
@@ -2722,7 +2483,6 @@ const fishCN = {
   },
   7926: {
     _id: 7926,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 262,
     bait: 2619,
@@ -2735,7 +2495,6 @@ const fishCN = {
   },
   7927: {
     _id: 7927,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 263,
     bait: 2626,
@@ -2748,7 +2507,6 @@ const fishCN = {
   },
   7928: {
     _id: 7928,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 264,
     bait: 2603,
@@ -2761,7 +2519,6 @@ const fishCN = {
   },
   7929: {
     _id: 7929,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 265,
     bait: 2620,
@@ -2774,7 +2531,6 @@ const fishCN = {
   },
   7930: {
     _id: 7930,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 266,
     bait: 5035,
@@ -2787,7 +2543,6 @@ const fishCN = {
   },
   7931: {
     _id: 7931,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 267,
     bait: 5035,
@@ -2800,7 +2555,6 @@ const fishCN = {
   },
   7932: {
     _id: 7932,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 268,
     bait: 2623,
@@ -2813,7 +2567,6 @@ const fishCN = {
   },
   7933: {
     _id: 7933,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 269,
     bait: 2603,
@@ -2826,7 +2579,6 @@ const fishCN = {
   },
   7934: {
     _id: 7934,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 270,
     bait: 2599,
@@ -2839,7 +2591,6 @@ const fishCN = {
   },
   7935: {
     _id: 7935,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 271,
     bait: 4978,
@@ -2852,7 +2603,6 @@ const fishCN = {
   },
   7936: {
     _id: 7936,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 272,
     bait: 2607,
@@ -2865,7 +2615,6 @@ const fishCN = {
   },
   7937: {
     _id: 7937,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 273,
     bait: 2601,
@@ -2878,7 +2627,6 @@ const fishCN = {
   },
   7938: {
     _id: 7938,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 274,
     bait: 2618,
@@ -2891,7 +2639,6 @@ const fishCN = {
   },
   7939: {
     _id: 7939,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 275,
     bait: 2599,
@@ -2904,7 +2651,6 @@ const fishCN = {
   },
   7940: {
     _id: 7940,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 276,
     bait: 4948,
@@ -2920,7 +2666,6 @@ const fishCN = {
   },
   7941: {
     _id: 7941,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 277,
     bait: 4872,
@@ -2936,7 +2681,6 @@ const fishCN = {
   },
   7942: {
     _id: 7942,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 278,
     bait: 2601,
@@ -2949,7 +2693,6 @@ const fishCN = {
   },
   7943: {
     _id: 7943,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 279,
     bait: 4995,
@@ -2965,7 +2708,6 @@ const fishCN = {
   },
   7944: {
     _id: 7944,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 280,
     bait: 2623,
@@ -2978,7 +2720,6 @@ const fishCN = {
   },
   7945: {
     _id: 7945,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 281,
     bait: 4937,
@@ -2991,7 +2732,6 @@ const fishCN = {
   },
   7946: {
     _id: 7946,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 282,
     bait: 4937,
@@ -3004,7 +2744,6 @@ const fishCN = {
   },
   7947: {
     _id: 7947,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 283,
     bait: 2624,
@@ -3017,7 +2756,6 @@ const fishCN = {
   },
   7948: {
     _id: 7948,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 284,
     bait: 4898,
@@ -3030,7 +2768,6 @@ const fishCN = {
   },
   7949: {
     _id: 7949,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 285,
     bait: 5040,
@@ -3043,7 +2780,6 @@ const fishCN = {
   },
   7950: {
     _id: 7950,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 286,
     bait: 4919,
@@ -3056,7 +2792,6 @@ const fishCN = {
   },
   7951: {
     _id: 7951,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 287,
     bait: 2603,
@@ -3069,7 +2804,6 @@ const fishCN = {
   },
   8752: {
     _id: 8752,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 288,
     bait: 4978,
@@ -3083,7 +2817,6 @@ const fishCN = {
   },
   8753: {
     _id: 8753,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 289,
     bait: 4888,
@@ -3096,7 +2829,6 @@ const fishCN = {
   },
   8754: {
     _id: 8754,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 290,
     bait: 2606,
@@ -3110,7 +2842,6 @@ const fishCN = {
   },
   8755: {
     _id: 8755,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 291,
     bait: 4898,
@@ -3123,7 +2854,6 @@ const fishCN = {
   },
   8756: {
     _id: 8756,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 292,
     bait: 4898,
@@ -3136,7 +2866,6 @@ const fishCN = {
   },
   8757: {
     _id: 8757,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 293,
     bait: 4904,
@@ -3149,7 +2878,6 @@ const fishCN = {
   },
   8758: {
     _id: 8758,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 294,
     bait: 2603,
@@ -3162,7 +2890,6 @@ const fishCN = {
   },
   8759: {
     _id: 8759,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 295,
     bait: 2603,
@@ -3175,7 +2902,6 @@ const fishCN = {
   },
   8760: {
     _id: 8760,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 296,
     bait: 2625,
@@ -3189,7 +2915,6 @@ const fishCN = {
   },
   8761: {
     _id: 8761,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 297,
     bait: 5002,
@@ -3202,7 +2927,6 @@ const fishCN = {
   },
   8762: {
     _id: 8762,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 298,
     bait: 5011,
@@ -3218,7 +2942,6 @@ const fishCN = {
   },
   8763: {
     _id: 8763,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 299,
     bait: 5002,
@@ -3232,7 +2955,6 @@ const fishCN = {
   },
   8764: {
     _id: 8764,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 300,
     bait: 4904,
@@ -3246,7 +2968,6 @@ const fishCN = {
   },
   8765: {
     _id: 8765,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 301,
     bait: 5002,
@@ -3259,7 +2980,6 @@ const fishCN = {
   },
   8766: {
     _id: 8766,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 302,
     bait: 4978,
@@ -3272,7 +2992,6 @@ const fishCN = {
   },
   8767: {
     _id: 8767,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 303,
     bait: 4978,
@@ -3285,7 +3004,6 @@ const fishCN = {
   },
   8768: {
     _id: 8768,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 304,
     bait: 5035,
@@ -3298,7 +3016,6 @@ const fishCN = {
   },
   8769: {
     _id: 8769,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 305,
     bait: 4937,
@@ -3312,7 +3029,6 @@ const fishCN = {
   },
   8770: {
     _id: 8770,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 306,
     bait: 2607,
@@ -3325,7 +3041,6 @@ const fishCN = {
   },
   8771: {
     _id: 8771,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 307,
     bait: 5040,
@@ -3338,7 +3053,6 @@ const fishCN = {
   },
   8772: {
     _id: 8772,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 308,
     bait: 8771,
@@ -3351,7 +3065,6 @@ const fishCN = {
   },
   8773: {
     _id: 8773,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 309,
     bait: 4995,
@@ -3364,7 +3077,6 @@ const fishCN = {
   },
   8774: {
     _id: 8774,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 310,
     bait: 2603,
@@ -3380,7 +3092,6 @@ const fishCN = {
   },
   8775: {
     _id: 8775,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 311,
     bait: 2624,
@@ -3394,7 +3105,6 @@ const fishCN = {
   },
   8776: {
     _id: 8776,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 312,
     bait: 4978,
@@ -3410,7 +3120,6 @@ const fishCN = {
   },
   10123: {
     _id: 10123,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 313,
     bait: 2619,
@@ -3423,7 +3132,6 @@ const fishCN = {
   },
   12713: {
     _id: 12713,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 314,
     bait: 12706,
@@ -3436,7 +3144,6 @@ const fishCN = {
   },
   12714: {
     _id: 12714,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 315,
     bait: 2609,
@@ -3446,7 +3153,6 @@ const fishCN = {
   },
   12715: {
     _id: 12715,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 316,
     bait: 12705,
@@ -3459,7 +3165,6 @@ const fishCN = {
   },
   12716: {
     _id: 12716,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 317,
     bait: 12712,
@@ -3472,7 +3177,6 @@ const fishCN = {
   },
   12718: {
     _id: 12718,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 318,
     bait: 12704,
@@ -3482,7 +3186,6 @@ const fishCN = {
   },
   12719: {
     _id: 12719,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 319,
     bait: 12715,
@@ -3492,7 +3195,6 @@ const fishCN = {
   },
   12720: {
     _id: 12720,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 320,
     bait: 12704,
@@ -3502,7 +3204,6 @@ const fishCN = {
   },
   12721: {
     _id: 12721,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 321,
     bait: 12706,
@@ -3518,7 +3219,6 @@ const fishCN = {
   },
   12722: {
     _id: 12722,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 322,
     bait: 12704,
@@ -3531,7 +3231,6 @@ const fishCN = {
   },
   12723: {
     _id: 12723,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 323,
     bait: 12708,
@@ -3544,7 +3243,6 @@ const fishCN = {
   },
   12724: {
     _id: 12724,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 324,
     bait: 12708,
@@ -3557,7 +3255,6 @@ const fishCN = {
   },
   12725: {
     _id: 12725,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 325,
     bait: 12704,
@@ -3567,7 +3264,6 @@ const fishCN = {
   },
   12726: {
     _id: 12726,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 326,
     bait: 4937,
@@ -3580,7 +3276,6 @@ const fishCN = {
   },
   12727: {
     _id: 12727,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 327,
     bait: 12711,
@@ -3593,7 +3288,6 @@ const fishCN = {
   },
   12728: {
     _id: 12728,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 328,
     bait: 12704,
@@ -3603,7 +3297,6 @@ const fishCN = {
   },
   12729: {
     _id: 12729,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 329,
     bait: 12707,
@@ -3613,11 +3306,10 @@ const fishCN = {
   },
   12730: {
     _id: 12730,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 330,
     bait: 12707,
-    locations: [135, 136, 126, 128],
+    locations: [126, 128, 135, 136],
     patch: 3,
     folklore: null,
     collectable: false,
@@ -3626,17 +3318,15 @@ const fishCN = {
   },
   12731: {
     _id: 12731,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 331,
     bait: 12704,
-    locations: [135, 136, 129, 131],
+    locations: [129, 131, 135, 136],
     patch: 3,
     collectable: false,
   },
   12732: {
     _id: 12732,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 332,
     bait: 12708,
@@ -3646,7 +3336,6 @@ const fishCN = {
   },
   12733: {
     _id: 12733,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 333,
     bait: 12704,
@@ -3659,7 +3348,6 @@ const fishCN = {
   },
   12734: {
     _id: 12734,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 334,
     bait: 12708,
@@ -3669,7 +3357,6 @@ const fishCN = {
   },
   12735: {
     _id: 12735,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 335,
     bait: 12708,
@@ -3679,7 +3366,6 @@ const fishCN = {
   },
   12736: {
     _id: 12736,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 336,
     bait: 12708,
@@ -3689,7 +3375,6 @@ const fishCN = {
   },
   12737: {
     _id: 12737,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 337,
     bait: 12704,
@@ -3699,7 +3384,6 @@ const fishCN = {
   },
   12738: {
     _id: 12738,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 338,
     bait: 12706,
@@ -3709,7 +3393,6 @@ const fishCN = {
   },
   12739: {
     _id: 12739,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 339,
     bait: 12711,
@@ -3725,7 +3408,6 @@ const fishCN = {
   },
   12740: {
     _id: 12740,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 340,
     bait: 12707,
@@ -3738,7 +3420,6 @@ const fishCN = {
   },
   12741: {
     _id: 12741,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 341,
     bait: 12706,
@@ -3754,7 +3435,6 @@ const fishCN = {
   },
   12742: {
     _id: 12742,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 342,
     bait: 12704,
@@ -3770,7 +3450,6 @@ const fishCN = {
   },
   12743: {
     _id: 12743,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 343,
     bait: 12704,
@@ -3786,7 +3465,6 @@ const fishCN = {
   },
   12744: {
     _id: 12744,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 344,
     bait: 12708,
@@ -3796,7 +3474,6 @@ const fishCN = {
   },
   12745: {
     _id: 12745,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 345,
     bait: 12709,
@@ -3806,7 +3483,6 @@ const fishCN = {
   },
   12746: {
     _id: 12746,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 346,
     bait: 12708,
@@ -3819,7 +3495,6 @@ const fishCN = {
   },
   12747: {
     _id: 12747,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 347,
     bait: 12705,
@@ -3829,7 +3504,6 @@ const fishCN = {
   },
   12748: {
     _id: 12748,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 348,
     bait: 4937,
@@ -3839,7 +3513,6 @@ const fishCN = {
   },
   12749: {
     _id: 12749,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 349,
     bait: 12707,
@@ -3855,7 +3528,6 @@ const fishCN = {
   },
   12750: {
     _id: 12750,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 350,
     bait: 12705,
@@ -3865,7 +3537,6 @@ const fishCN = {
   },
   12751: {
     _id: 12751,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 351,
     bait: 12711,
@@ -3878,7 +3549,6 @@ const fishCN = {
   },
   12752: {
     _id: 12752,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 352,
     bait: 12711,
@@ -3888,11 +3558,10 @@ const fishCN = {
   },
   12753: {
     _id: 12753,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 353,
     bait: 12708,
-    locations: [138, 139, 145, 132, 133, 134],
+    locations: [132, 133, 134, 138, 139, 145],
     patch: 3,
     folklore: null,
     collectable: false,
@@ -3901,7 +3570,6 @@ const fishCN = {
   },
   12755: {
     _id: 12755,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 355,
     bait: 12709,
@@ -3911,7 +3579,6 @@ const fishCN = {
   },
   12756: {
     _id: 12756,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 356,
     bait: 12706,
@@ -3921,11 +3588,10 @@ const fishCN = {
   },
   12757: {
     _id: 12757,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 357,
     bait: 12704,
-    locations: [135, 136, 125, 126, 127, 128],
+    locations: [125, 126, 127, 128, 135, 136],
     patch: 3,
     folklore: null,
     collectable: false,
@@ -3934,7 +3600,6 @@ const fishCN = {
   },
   12758: {
     _id: 12758,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 358,
     bait: 12706,
@@ -3944,7 +3609,6 @@ const fishCN = {
   },
   12759: {
     _id: 12759,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 359,
     bait: 12709,
@@ -3954,7 +3618,6 @@ const fishCN = {
   },
   12760: {
     _id: 12760,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 360,
     bait: 12708,
@@ -3964,7 +3627,6 @@ const fishCN = {
   },
   12761: {
     _id: 12761,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 361,
     bait: 12722,
@@ -3977,7 +3639,6 @@ const fishCN = {
   },
   12762: {
     _id: 12762,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 362,
     bait: 12705,
@@ -3990,7 +3651,6 @@ const fishCN = {
   },
   12763: {
     _id: 12763,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 363,
     bait: 12711,
@@ -4003,7 +3663,6 @@ const fishCN = {
   },
   12764: {
     _id: 12764,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 364,
     bait: 12706,
@@ -4013,7 +3672,6 @@ const fishCN = {
   },
   12765: {
     _id: 12765,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 365,
     bait: 12711,
@@ -4026,7 +3684,6 @@ const fishCN = {
   },
   12766: {
     _id: 12766,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 366,
     bait: 12724,
@@ -4039,7 +3696,6 @@ const fishCN = {
   },
   12767: {
     _id: 12767,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 367,
     bait: 12705,
@@ -4052,7 +3708,6 @@ const fishCN = {
   },
   12768: {
     _id: 12768,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 368,
     bait: 12711,
@@ -4068,7 +3723,6 @@ const fishCN = {
   },
   12769: {
     _id: 12769,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 369,
     bait: 12711,
@@ -4078,7 +3732,6 @@ const fishCN = {
   },
   12770: {
     _id: 12770,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 370,
     bait: 12712,
@@ -4088,7 +3741,6 @@ const fishCN = {
   },
   12771: {
     _id: 12771,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 371,
     bait: 12708,
@@ -4098,7 +3750,6 @@ const fishCN = {
   },
   12772: {
     _id: 12772,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 372,
     bait: 12709,
@@ -4108,7 +3759,6 @@ const fishCN = {
   },
   12773: {
     _id: 12773,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 373,
     bait: 12710,
@@ -4118,7 +3768,6 @@ const fishCN = {
   },
   12774: {
     _id: 12774,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 374,
     bait: 12711,
@@ -4131,7 +3780,6 @@ const fishCN = {
   },
   12775: {
     _id: 12775,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 375,
     bait: 12776,
@@ -4141,7 +3789,6 @@ const fishCN = {
   },
   12776: {
     _id: 12776,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 376,
     bait: 12710,
@@ -4154,7 +3801,6 @@ const fishCN = {
   },
   12777: {
     _id: 12777,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 377,
     bait: 12705,
@@ -4167,7 +3813,6 @@ const fishCN = {
   },
   12778: {
     _id: 12778,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 378,
     bait: 12710,
@@ -4177,7 +3822,6 @@ const fishCN = {
   },
   12779: {
     _id: 12779,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 379,
     bait: 12707,
@@ -4187,7 +3831,6 @@ const fishCN = {
   },
   12780: {
     _id: 12780,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 380,
     bait: 12706,
@@ -4200,7 +3843,6 @@ const fishCN = {
   },
   12781: {
     _id: 12781,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 381,
     bait: 12711,
@@ -4210,7 +3852,6 @@ const fishCN = {
   },
   12782: {
     _id: 12782,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 382,
     bait: 12706,
@@ -4220,7 +3861,6 @@ const fishCN = {
   },
   12783: {
     _id: 12783,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 383,
     bait: 12705,
@@ -4230,7 +3870,6 @@ const fishCN = {
   },
   12784: {
     _id: 12784,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 384,
     bait: 12805,
@@ -4243,7 +3882,6 @@ const fishCN = {
   },
   12785: {
     _id: 12785,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 385,
     bait: 12712,
@@ -4253,7 +3891,6 @@ const fishCN = {
   },
   12786: {
     _id: 12786,
-    fishEyes: 300,
     dataMissing: true,
     anglerFishId: 386,
     bait: 12754,
@@ -4266,7 +3903,6 @@ const fishCN = {
   },
   12788: {
     _id: 12788,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 388,
     bait: 12776,
@@ -4276,7 +3912,6 @@ const fishCN = {
   },
   12789: {
     _id: 12789,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 389,
     bait: 12708,
@@ -4289,7 +3924,6 @@ const fishCN = {
   },
   12790: {
     _id: 12790,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 390,
     bait: 12707,
@@ -4299,7 +3933,6 @@ const fishCN = {
   },
   12791: {
     _id: 12791,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 391,
     bait: 12706,
@@ -4309,7 +3942,6 @@ const fishCN = {
   },
   12792: {
     _id: 12792,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 392,
     bait: 12706,
@@ -4322,7 +3954,6 @@ const fishCN = {
   },
   12793: {
     _id: 12793,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 393,
     bait: 12712,
@@ -4332,7 +3963,6 @@ const fishCN = {
   },
   12794: {
     _id: 12794,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 394,
     bait: 12708,
@@ -4342,7 +3972,6 @@ const fishCN = {
   },
   12795: {
     _id: 12795,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 395,
     bait: 12708,
@@ -4352,7 +3981,6 @@ const fishCN = {
   },
   12796: {
     _id: 12796,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 396,
     bait: 12711,
@@ -4365,7 +3993,6 @@ const fishCN = {
   },
   12797: {
     _id: 12797,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 397,
     bait: 12712,
@@ -4375,7 +4002,6 @@ const fishCN = {
   },
   12798: {
     _id: 12798,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 398,
     bait: 12712,
@@ -4385,7 +4011,6 @@ const fishCN = {
   },
   12799: {
     _id: 12799,
-    fishEyes: 120,
     dataMissing: true,
     anglerFishId: 399,
     bait: 12716,
@@ -4398,7 +4023,6 @@ const fishCN = {
   },
   12800: {
     _id: 12800,
-    fishEyes: 180,
     dataMissing: true,
     anglerFishId: 400,
     bait: 12754,
@@ -4411,7 +4035,6 @@ const fishCN = {
   },
   12801: {
     _id: 12801,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 401,
     bait: 12776,
@@ -4421,7 +4044,6 @@ const fishCN = {
   },
   12803: {
     _id: 12803,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 403,
     bait: 12711,
@@ -4437,7 +4059,6 @@ const fishCN = {
   },
   12804: {
     _id: 12804,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 404,
     bait: 12757,
@@ -4450,11 +4071,10 @@ const fishCN = {
   },
   12805: {
     _id: 12805,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 405,
     bait: 12712,
-    locations: [145, 133, 134],
+    locations: [133, 134, 145],
     patch: 3,
     folklore: null,
     collectable: false,
@@ -4463,7 +4083,6 @@ const fishCN = {
   },
   12806: {
     _id: 12806,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 406,
     bait: 12712,
@@ -4473,7 +4092,6 @@ const fishCN = {
   },
   12807: {
     _id: 12807,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 407,
     bait: 12710,
@@ -4483,7 +4101,6 @@ const fishCN = {
   },
   12808: {
     _id: 12808,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 408,
     bait: 12708,
@@ -4493,7 +4110,6 @@ const fishCN = {
   },
   12809: {
     _id: 12809,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 409,
     bait: 12705,
@@ -4503,7 +4119,6 @@ const fishCN = {
   },
   12810: {
     _id: 12810,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 410,
     bait: 12712,
@@ -4516,7 +4131,6 @@ const fishCN = {
   },
   12811: {
     _id: 12811,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 411,
     bait: 12707,
@@ -4526,7 +4140,6 @@ const fishCN = {
   },
   12812: {
     _id: 12812,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 412,
     bait: 12710,
@@ -4539,17 +4152,15 @@ const fishCN = {
   },
   12813: {
     _id: 12813,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 413,
     bait: 12712,
-    locations: [145, 134],
+    locations: [134, 145],
     patch: 3,
     collectable: false,
   },
   12814: {
     _id: 12814,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 414,
     bait: 12712,
@@ -4562,7 +4173,6 @@ const fishCN = {
   },
   12815: {
     _id: 12815,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 415,
     bait: 12776,
@@ -4575,7 +4185,6 @@ const fishCN = {
   },
   12816: {
     _id: 12816,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 416,
     bait: 12776,
@@ -4588,7 +4197,6 @@ const fishCN = {
   },
   12817: {
     _id: 12817,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 417,
     bait: 12715,
@@ -4598,17 +4206,15 @@ const fishCN = {
   },
   12818: {
     _id: 12818,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 418,
     bait: 12707,
-    locations: [136, 143, 126, 127],
+    locations: [126, 127, 136, 143],
     patch: 3,
     collectable: false,
   },
   12819: {
     _id: 12819,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 419,
     bait: 12707,
@@ -4618,7 +4224,6 @@ const fishCN = {
   },
   12820: {
     _id: 12820,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 420,
     bait: 12754,
@@ -4628,7 +4233,6 @@ const fishCN = {
   },
   12821: {
     _id: 12821,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 421,
     bait: 12712,
@@ -4641,7 +4245,6 @@ const fishCN = {
   },
   12822: {
     _id: 12822,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 422,
     bait: 12712,
@@ -4651,7 +4254,6 @@ const fishCN = {
   },
   12823: {
     _id: 12823,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 423,
     bait: 12711,
@@ -4661,7 +4263,6 @@ const fishCN = {
   },
   12824: {
     _id: 12824,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 424,
     bait: 12707,
@@ -4671,7 +4272,6 @@ const fishCN = {
   },
   12825: {
     _id: 12825,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 425,
     bait: 12805,
@@ -4684,7 +4284,6 @@ const fishCN = {
   },
   12826: {
     _id: 12826,
-    fishEyes: 120,
     dataMissing: true,
     anglerFishId: 426,
     bait: 12754,
@@ -4697,7 +4296,6 @@ const fishCN = {
   },
   12827: {
     _id: 12827,
-    fishEyes: 150,
     dataMissing: true,
     anglerFishId: 427,
     bait: 12776,
@@ -4710,7 +4308,6 @@ const fishCN = {
   },
   12828: {
     _id: 12828,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 428,
     bait: 12722,
@@ -4723,7 +4320,6 @@ const fishCN = {
   },
   12829: {
     _id: 12829,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 429,
     bait: 12711,
@@ -4736,7 +4332,6 @@ const fishCN = {
   },
   12830: {
     _id: 12830,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 430,
     bait: 12711,
@@ -4749,7 +4344,6 @@ const fishCN = {
   },
   12831: {
     _id: 12831,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 431,
     bait: 12730,
@@ -4762,7 +4356,6 @@ const fishCN = {
   },
   12832: {
     _id: 12832,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 432,
     bait: 12754,
@@ -4775,7 +4368,6 @@ const fishCN = {
   },
   12833: {
     _id: 12833,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 433,
     bait: 12708,
@@ -4788,7 +4380,6 @@ const fishCN = {
   },
   12834: {
     _id: 12834,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 434,
     bait: 12712,
@@ -4801,7 +4392,6 @@ const fishCN = {
   },
   12835: {
     _id: 12835,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 435,
     bait: 12712,
@@ -4814,7 +4404,6 @@ const fishCN = {
   },
   12836: {
     _id: 12836,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 436,
     bait: 12711,
@@ -4827,7 +4416,6 @@ const fishCN = {
   },
   12837: {
     _id: 12837,
-    fishEyes: 150,
     dataMissing: true,
     anglerFishId: 437,
     bait: 12711,
@@ -4840,7 +4428,6 @@ const fishCN = {
   },
   13727: {
     _id: 13727,
-    fishEyes: 120,
     dataMissing: true,
     anglerFishId: 438,
     bait: 12710,
@@ -4853,7 +4440,6 @@ const fishCN = {
   },
   13728: {
     _id: 13728,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 439,
     bait: 12711,
@@ -4866,7 +4452,6 @@ const fishCN = {
   },
   13729: {
     _id: 13729,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 440,
     bait: 12711,
@@ -4879,7 +4464,6 @@ const fishCN = {
   },
   13730: {
     _id: 13730,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 441,
     bait: 12712,
@@ -4892,7 +4476,6 @@ const fishCN = {
   },
   13731: {
     _id: 13731,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 442,
     bait: 12712,
@@ -4905,7 +4488,6 @@ const fishCN = {
   },
   13732: {
     _id: 13732,
-    fishEyes: 150,
     dataMissing: true,
     anglerFishId: 443,
     bait: 12711,
@@ -4918,7 +4500,6 @@ const fishCN = {
   },
   14211: {
     _id: 14211,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 451,
     bait: 12711,
@@ -4931,7 +4512,6 @@ const fishCN = {
   },
   14212: {
     _id: 14212,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 452,
     bait: 12705,
@@ -4944,7 +4524,6 @@ const fishCN = {
   },
   14213: {
     _id: 14213,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 453,
     bait: 12712,
@@ -4957,7 +4536,6 @@ const fishCN = {
   },
   14214: {
     _id: 14214,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 454,
     bait: 12712,
@@ -4967,7 +4545,6 @@ const fishCN = {
   },
   14215: {
     _id: 14215,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 455,
     bait: 12709,
@@ -4980,7 +4557,6 @@ const fishCN = {
   },
   14216: {
     _id: 14216,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 456,
     bait: 12711,
@@ -4993,7 +4569,6 @@ const fishCN = {
   },
   14217: {
     _id: 14217,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 457,
     bait: 12711,
@@ -5006,7 +4581,6 @@ const fishCN = {
   },
   14218: {
     _id: 14218,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 458,
     bait: 12710,
@@ -5019,7 +4593,6 @@ const fishCN = {
   },
   14219: {
     _id: 14219,
-    fishEyes: 180,
     dataMissing: true,
     anglerFishId: 459,
     bait: 12711,
@@ -5032,7 +4605,6 @@ const fishCN = {
   },
   14220: {
     _id: 14220,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 460,
     bait: 12711,
@@ -5045,7 +4617,6 @@ const fishCN = {
   },
   15439: {
     _id: 15439,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 461,
     bait: 12711,
@@ -5058,7 +4629,6 @@ const fishCN = {
   },
   15626: {
     _id: 15626,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 462,
     bait: 12711,
@@ -5071,7 +4641,6 @@ const fishCN = {
   },
   15627: {
     _id: 15627,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 463,
     bait: 12711,
@@ -5084,7 +4653,6 @@ const fishCN = {
   },
   15628: {
     _id: 15628,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 464,
     bait: 12711,
@@ -5097,7 +4665,6 @@ const fishCN = {
   },
   15629: {
     _id: 15629,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 465,
     bait: 12711,
@@ -5110,7 +4677,6 @@ const fishCN = {
   },
   15630: {
     _id: 15630,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 466,
     bait: 12711,
@@ -5123,7 +4689,6 @@ const fishCN = {
   },
   15631: {
     _id: 15631,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 467,
     bait: 12754,
@@ -5136,7 +4701,6 @@ const fishCN = {
   },
   15632: {
     _id: 15632,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 468,
     bait: 12780,
@@ -5149,7 +4713,6 @@ const fishCN = {
   },
   15633: {
     _id: 15633,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 469,
     bait: 12711,
@@ -5162,7 +4725,6 @@ const fishCN = {
   },
   15634: {
     _id: 15634,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 470,
     bait: 12712,
@@ -5175,7 +4737,6 @@ const fishCN = {
   },
   15635: {
     _id: 15635,
-    fishEyes: 360,
     dataMissing: true,
     anglerFishId: 471,
     bait: 12711,
@@ -5188,7 +4749,6 @@ const fishCN = {
   },
   15636: {
     _id: 15636,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 472,
     bait: 12712,
@@ -5201,7 +4761,6 @@ const fishCN = {
   },
   15637: {
     _id: 15637,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 473,
     bait: 12776,
@@ -5214,7 +4773,6 @@ const fishCN = {
   },
   15638: {
     _id: 15638,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 474,
     bait: 12777,
@@ -5227,7 +4785,6 @@ const fishCN = {
   },
   16742: {
     _id: 16742,
-    fishEyes: 140,
     dataMissing: true,
     anglerFishId: 475,
     bait: 12805,
@@ -5240,7 +4797,6 @@ const fishCN = {
   },
   16743: {
     _id: 16743,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 476,
     bait: 12753,
@@ -5253,7 +4809,6 @@ const fishCN = {
   },
   16744: {
     _id: 16744,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 477,
     bait: 12776,
@@ -5266,7 +4821,6 @@ const fishCN = {
   },
   16745: {
     _id: 16745,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 478,
     bait: 12724,
@@ -5279,7 +4833,6 @@ const fishCN = {
   },
   16746: {
     _id: 16746,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 479,
     bait: 12715,
@@ -5292,7 +4845,6 @@ const fishCN = {
   },
   16747: {
     _id: 16747,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 480,
     bait: 12711,
@@ -5305,7 +4857,6 @@ const fishCN = {
   },
   16748: {
     _id: 16748,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 481,
     bait: 12757,
@@ -5318,7 +4869,6 @@ const fishCN = {
   },
   16749: {
     _id: 16749,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 482,
     bait: 12711,
@@ -5331,7 +4881,6 @@ const fishCN = {
   },
   16750: {
     _id: 16750,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 483,
     bait: 12712,
@@ -5344,7 +4893,6 @@ const fishCN = {
   },
   16751: {
     _id: 16751,
-    fishEyes: 140,
     dataMissing: true,
     anglerFishId: 484,
     bait: 12709,
@@ -5357,7 +4905,6 @@ const fishCN = {
   },
   16752: {
     _id: 16752,
-    fishEyes: 140,
     dataMissing: true,
     anglerFishId: 485,
     bait: 12776,
@@ -5370,7 +4917,6 @@ const fishCN = {
   },
   16753: {
     _id: 16753,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 486,
     bait: 12777,
@@ -5383,7 +4929,6 @@ const fishCN = {
   },
   16754: {
     _id: 16754,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 487,
     bait: 12780,
@@ -5396,7 +4941,6 @@ const fishCN = {
   },
   16756: {
     _id: 16756,
-    fishEyes: 140,
     dataMissing: true,
     anglerFishId: 488,
     bait: 12715,
@@ -5409,7 +4953,6 @@ const fishCN = {
   },
   17562: {
     _id: 17562,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 506,
     bait: 12704,
@@ -5419,7 +4962,6 @@ const fishCN = {
   },
   17563: {
     _id: 17563,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 507,
     bait: 12704,
@@ -5429,7 +4971,6 @@ const fishCN = {
   },
   17564: {
     _id: 17564,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 508,
     bait: 12707,
@@ -5439,7 +4980,6 @@ const fishCN = {
   },
   17565: {
     _id: 17565,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 509,
     bait: 12707,
@@ -5449,7 +4989,6 @@ const fishCN = {
   },
   17566: {
     _id: 17566,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 510,
     bait: 12711,
@@ -5459,7 +4998,6 @@ const fishCN = {
   },
   17577: {
     _id: 17577,
-    fishEyes: 180,
     dataMissing: true,
     anglerFishId: 489,
     bait: 12711,
@@ -5472,7 +5010,6 @@ const fishCN = {
   },
   17578: {
     _id: 17578,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 490,
     bait: 12711,
@@ -5485,7 +5022,6 @@ const fishCN = {
   },
   17579: {
     _id: 17579,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 491,
     bait: 12730,
@@ -5501,7 +5037,6 @@ const fishCN = {
   },
   17580: {
     _id: 17580,
-    fishEyes: 180,
     dataMissing: true,
     anglerFishId: 492,
     bait: 12710,
@@ -5514,7 +5049,6 @@ const fishCN = {
   },
   17581: {
     _id: 17581,
-    fishEyes: 180,
     dataMissing: true,
     anglerFishId: 493,
     bait: 12805,
@@ -5527,7 +5061,6 @@ const fishCN = {
   },
   17582: {
     _id: 17582,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 494,
     bait: 12722,
@@ -5540,7 +5073,6 @@ const fishCN = {
   },
   17583: {
     _id: 17583,
-    fishEyes: 300,
     dataMissing: true,
     anglerFishId: 495,
     bait: 12754,
@@ -5553,7 +5085,6 @@ const fishCN = {
   },
   17584: {
     _id: 17584,
-    fishEyes: 300,
     dataMissing: true,
     anglerFishId: 496,
     bait: 12754,
@@ -5566,7 +5097,6 @@ const fishCN = {
   },
   17585: {
     _id: 17585,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 497,
     bait: 12757,
@@ -5579,7 +5109,6 @@ const fishCN = {
   },
   17586: {
     _id: 17586,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 498,
     bait: 12711,
@@ -5592,7 +5121,6 @@ const fishCN = {
   },
   17587: {
     _id: 17587,
-    fishEyes: 80,
     dataMissing: true,
     anglerFishId: 499,
     bait: 12712,
@@ -5605,7 +5133,6 @@ const fishCN = {
   },
   17588: {
     _id: 17588,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 500,
     bait: 12754,
@@ -5619,7 +5146,6 @@ const fishCN = {
   },
   17589: {
     _id: 17589,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 501,
     bait: 12776,
@@ -5633,7 +5159,6 @@ const fishCN = {
   },
   17590: {
     _id: 17590,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 502,
     bait: 12757,
@@ -5650,7 +5175,6 @@ const fishCN = {
   },
   17591: {
     _id: 17591,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 503,
     bait: 12712,
@@ -5664,7 +5188,6 @@ const fishCN = {
   },
   17592: {
     _id: 17592,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 504,
     bait: 12715,
@@ -5678,7 +5201,6 @@ const fishCN = {
   },
   17593: {
     _id: 17593,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 505,
     bait: 12805,
@@ -5692,7 +5214,6 @@ const fishCN = {
   },
   20018: {
     _id: 20018,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 618,
     bait: 20112,
@@ -5708,7 +5229,6 @@ const fishCN = {
   },
   20019: {
     _id: 20019,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 619,
     bait: 20619,
@@ -5718,7 +5238,6 @@ const fishCN = {
   },
   20020: {
     _id: 20020,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 572,
     bait: 20614,
@@ -5734,7 +5253,6 @@ const fishCN = {
   },
   20021: {
     _id: 20021,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 620,
     bait: 20619,
@@ -5750,7 +5268,6 @@ const fishCN = {
   },
   20022: {
     _id: 20022,
-    fishEyes: 180,
     dataMissing: true,
     anglerFishId: 621,
     bait: 20676,
@@ -5763,7 +5280,6 @@ const fishCN = {
   },
   20023: {
     _id: 20023,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 573,
     bait: 20615,
@@ -5773,7 +5289,6 @@ const fishCN = {
   },
   20024: {
     _id: 20024,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 622,
     bait: 20675,
@@ -5786,7 +5301,6 @@ const fishCN = {
   },
   20025: {
     _id: 20025,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 608,
     bait: 20616,
@@ -5799,7 +5313,6 @@ const fishCN = {
   },
   20026: {
     _id: 20026,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 512,
     bait: 20619,
@@ -5809,7 +5322,6 @@ const fishCN = {
   },
   20027: {
     _id: 20027,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 592,
     bait: 20615,
@@ -5822,7 +5334,6 @@ const fishCN = {
   },
   20028: {
     _id: 20028,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 593,
     bait: 20615,
@@ -5832,7 +5343,6 @@ const fishCN = {
   },
   20029: {
     _id: 20029,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 513,
     bait: 20613,
@@ -5842,7 +5352,6 @@ const fishCN = {
   },
   20030: {
     _id: 20030,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 623,
     bait: 20675,
@@ -5855,7 +5364,6 @@ const fishCN = {
   },
   20031: {
     _id: 20031,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 582,
     bait: 20615,
@@ -5865,7 +5373,6 @@ const fishCN = {
   },
   20032: {
     _id: 20032,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 563,
     bait: 20618,
@@ -5875,7 +5382,6 @@ const fishCN = {
   },
   20033: {
     _id: 20033,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 528,
     bait: 20613,
@@ -5885,7 +5391,6 @@ const fishCN = {
   },
   20034: {
     _id: 20034,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 609,
     bait: 20676,
@@ -5898,7 +5403,6 @@ const fishCN = {
   },
   20035: {
     _id: 20035,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 624,
     bait: 20616,
@@ -5908,7 +5412,6 @@ const fishCN = {
   },
   20037: {
     _id: 20037,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 546,
     bait: 20617,
@@ -5918,7 +5421,6 @@ const fishCN = {
   },
   20038: {
     _id: 20038,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 610,
     bait: 20112,
@@ -5928,7 +5430,6 @@ const fishCN = {
   },
   20039: {
     _id: 20039,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 611,
     bait: 20616,
@@ -5938,7 +5439,6 @@ const fishCN = {
   },
   20040: {
     _id: 20040,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 625,
     bait: 20025,
@@ -5951,7 +5451,6 @@ const fishCN = {
   },
   20041: {
     _id: 20041,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 626,
     bait: 20025,
@@ -5961,7 +5460,6 @@ const fishCN = {
   },
   20042: {
     _id: 20042,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 514,
     bait: 20613,
@@ -5971,7 +5469,6 @@ const fishCN = {
   },
   20043: {
     _id: 20043,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 627,
     bait: 20619,
@@ -5984,7 +5481,6 @@ const fishCN = {
   },
   20044: {
     _id: 20044,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 594,
     bait: 20615,
@@ -5994,7 +5490,6 @@ const fishCN = {
   },
   20045: {
     _id: 20045,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 515,
     bait: 20613,
@@ -6004,7 +5499,6 @@ const fishCN = {
   },
   20046: {
     _id: 20046,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 564,
     bait: 20614,
@@ -6014,7 +5508,6 @@ const fishCN = {
   },
   20047: {
     _id: 20047,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 529,
     bait: 20613,
@@ -6024,7 +5517,6 @@ const fishCN = {
   },
   20048: {
     _id: 20048,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 628,
     bait: 20676,
@@ -6040,7 +5532,6 @@ const fishCN = {
   },
   20049: {
     _id: 20049,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 516,
     bait: 20619,
@@ -6050,7 +5541,6 @@ const fishCN = {
   },
   20050: {
     _id: 20050,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 547,
     bait: 20619,
@@ -6060,7 +5550,6 @@ const fishCN = {
   },
   20051: {
     _id: 20051,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 629,
     bait: 20675,
@@ -6076,7 +5565,6 @@ const fishCN = {
   },
   20052: {
     _id: 20052,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 598,
     bait: 20619,
@@ -6086,7 +5574,6 @@ const fishCN = {
   },
   20053: {
     _id: 20053,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 599,
     bait: 20619,
@@ -6096,7 +5583,6 @@ const fishCN = {
   },
   20054: {
     _id: 20054,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 630,
     bait: 20112,
@@ -6112,7 +5598,6 @@ const fishCN = {
   },
   20055: {
     _id: 20055,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 517,
     bait: 20613,
@@ -6122,7 +5607,6 @@ const fishCN = {
   },
   20056: {
     _id: 20056,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 531,
     bait: 20615,
@@ -6135,7 +5619,6 @@ const fishCN = {
   },
   20059: {
     _id: 20059,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 533,
     bait: 20056,
@@ -6145,7 +5628,6 @@ const fishCN = {
   },
   20060: {
     _id: 20060,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 548,
     bait: 20615,
@@ -6155,7 +5637,6 @@ const fishCN = {
   },
   20061: {
     _id: 20061,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 566,
     bait: 20056,
@@ -6165,7 +5646,6 @@ const fishCN = {
   },
   20062: {
     _id: 20062,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 519,
     bait: 20613,
@@ -6175,7 +5655,6 @@ const fishCN = {
   },
   20063: {
     _id: 20063,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 534,
     bait: 20614,
@@ -6185,7 +5664,6 @@ const fishCN = {
   },
   20064: {
     _id: 20064,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 520,
     bait: 20614,
@@ -6198,7 +5676,6 @@ const fishCN = {
   },
   20065: {
     _id: 20065,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 521,
     bait: 20619,
@@ -6208,7 +5685,6 @@ const fishCN = {
   },
   20066: {
     _id: 20066,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 549,
     bait: 20613,
@@ -6218,7 +5694,6 @@ const fishCN = {
   },
   20067: {
     _id: 20067,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 550,
     bait: 20614,
@@ -6228,7 +5703,6 @@ const fishCN = {
   },
   20068: {
     _id: 20068,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 567,
     bait: 20614,
@@ -6238,7 +5712,6 @@ const fishCN = {
   },
   20069: {
     _id: 20069,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 551,
     bait: 20614,
@@ -6248,7 +5721,6 @@ const fishCN = {
   },
   20070: {
     _id: 20070,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 522,
     bait: 20614,
@@ -6258,7 +5730,6 @@ const fishCN = {
   },
   20071: {
     _id: 20071,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 552,
     bait: 20619,
@@ -6268,7 +5739,6 @@ const fishCN = {
   },
   20072: {
     _id: 20072,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 523,
     bait: 20619,
@@ -6278,7 +5748,6 @@ const fishCN = {
   },
   20073: {
     _id: 20073,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 612,
     bait: 20619,
@@ -6288,7 +5757,6 @@ const fishCN = {
   },
   20074: {
     _id: 20074,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 631,
     bait: 20675,
@@ -6301,7 +5769,6 @@ const fishCN = {
   },
   20075: {
     _id: 20075,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 613,
     bait: 20619,
@@ -6311,7 +5778,6 @@ const fishCN = {
   },
   20076: {
     _id: 20076,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 600,
     bait: 20615,
@@ -6324,7 +5790,6 @@ const fishCN = {
   },
   20077: {
     _id: 20077,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 601,
     bait: 20615,
@@ -6334,7 +5799,6 @@ const fishCN = {
   },
   20078: {
     _id: 20078,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 614,
     bait: 20619,
@@ -6344,7 +5808,6 @@ const fishCN = {
   },
   20079: {
     _id: 20079,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 602,
     bait: 20675,
@@ -6354,7 +5817,6 @@ const fishCN = {
   },
   20080: {
     _id: 20080,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 583,
     bait: 20615,
@@ -6364,7 +5826,6 @@ const fishCN = {
   },
   20081: {
     _id: 20081,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 553,
     bait: 20619,
@@ -6374,7 +5835,6 @@ const fishCN = {
   },
   20082: {
     _id: 20082,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 524,
     bait: 20613,
@@ -6384,7 +5844,6 @@ const fishCN = {
   },
   20083: {
     _id: 20083,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 525,
     bait: 20619,
@@ -6394,7 +5853,6 @@ const fishCN = {
   },
   20084: {
     _id: 20084,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 535,
     bait: 20613,
@@ -6407,7 +5865,6 @@ const fishCN = {
   },
   20085: {
     _id: 20085,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 536,
     bait: 20613,
@@ -6420,7 +5877,6 @@ const fishCN = {
   },
   20086: {
     _id: 20086,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 537,
     bait: 20613,
@@ -6433,7 +5889,6 @@ const fishCN = {
   },
   20087: {
     _id: 20087,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 526,
     bait: 20614,
@@ -6443,7 +5898,6 @@ const fishCN = {
   },
   20088: {
     _id: 20088,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 568,
     bait: 20613,
@@ -6453,7 +5907,6 @@ const fishCN = {
   },
   20089: {
     _id: 20089,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 554,
     bait: 20613,
@@ -6463,7 +5916,6 @@ const fishCN = {
   },
   20090: {
     _id: 20090,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 527,
     bait: 20613,
@@ -6473,7 +5925,6 @@ const fishCN = {
   },
   20091: {
     _id: 20091,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 538,
     bait: 20613,
@@ -6483,17 +5934,15 @@ const fishCN = {
   },
   20092: {
     _id: 20092,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 539,
     bait: 20617,
-    locations: [158, 159, 160, 161, 157, 197],
+    locations: [157, 158, 159, 160, 161, 197],
     patch: 4,
     collectable: false,
   },
   20093: {
     _id: 20093,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 540,
     bait: 20617,
@@ -6503,7 +5952,6 @@ const fishCN = {
   },
   20094: {
     _id: 20094,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 541,
     bait: 20617,
@@ -6513,7 +5961,6 @@ const fishCN = {
   },
   20095: {
     _id: 20095,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 542,
     bait: 20617,
@@ -6523,7 +5970,6 @@ const fishCN = {
   },
   20096: {
     _id: 20096,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 543,
     bait: 20617,
@@ -6533,7 +5979,6 @@ const fishCN = {
   },
   20097: {
     _id: 20097,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 544,
     bait: 20617,
@@ -6543,7 +5988,6 @@ const fishCN = {
   },
   20098: {
     _id: 20098,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 555,
     bait: 20676,
@@ -6553,7 +5997,6 @@ const fishCN = {
   },
   20099: {
     _id: 20099,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 556,
     bait: 20112,
@@ -6563,7 +6006,6 @@ const fishCN = {
   },
   20100: {
     _id: 20100,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 632,
     bait: 20676,
@@ -6579,7 +6021,6 @@ const fishCN = {
   },
   20101: {
     _id: 20101,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 557,
     bait: 20112,
@@ -6589,7 +6030,6 @@ const fishCN = {
   },
   20102: {
     _id: 20102,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 558,
     bait: 20112,
@@ -6599,7 +6039,6 @@ const fishCN = {
   },
   20103: {
     _id: 20103,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 634,
     bait: 20112,
@@ -6609,7 +6048,6 @@ const fishCN = {
   },
   20104: {
     _id: 20104,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 603,
     bait: 20112,
@@ -6622,7 +6060,6 @@ const fishCN = {
   },
   20105: {
     _id: 20105,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 604,
     bait: 20112,
@@ -6635,7 +6072,6 @@ const fishCN = {
   },
   20106: {
     _id: 20106,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 559,
     bait: 20618,
@@ -6645,7 +6081,6 @@ const fishCN = {
   },
   20107: {
     _id: 20107,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 560,
     bait: 20617,
@@ -6655,7 +6090,6 @@ const fishCN = {
   },
   20108: {
     _id: 20108,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 561,
     bait: 20617,
@@ -6665,7 +6099,6 @@ const fishCN = {
   },
   20109: {
     _id: 20109,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 615,
     bait: 20112,
@@ -6675,17 +6108,15 @@ const fishCN = {
   },
   20110: {
     _id: 20110,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 605,
     bait: 20112,
-    locations: [160, 157, 197],
+    locations: [157, 160, 197],
     patch: 4,
     collectable: false,
   },
   20111: {
     _id: 20111,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 575,
     bait: 20614,
@@ -6695,11 +6126,10 @@ const fishCN = {
   },
   20112: {
     _id: 20112,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 545,
     bait: 20617,
-    locations: [159, 160, 162, 164, 157, 197],
+    locations: [157, 159, 160, 162, 164, 197],
     patch: 4,
     folklore: null,
     collectable: false,
@@ -6708,7 +6138,6 @@ const fishCN = {
   },
   20113: {
     _id: 20113,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 562,
     bait: 20112,
@@ -6718,7 +6147,6 @@ const fishCN = {
   },
   20114: {
     _id: 20114,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 606,
     bait: 20619,
@@ -6731,7 +6159,6 @@ const fishCN = {
   },
   20115: {
     _id: 20115,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 595,
     bait: 20615,
@@ -6741,7 +6168,6 @@ const fishCN = {
   },
   20116: {
     _id: 20116,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 596,
     bait: 20619,
@@ -6751,7 +6177,6 @@ const fishCN = {
   },
   20117: {
     _id: 20117,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 597,
     bait: 20615,
@@ -6761,7 +6186,6 @@ const fishCN = {
   },
   20118: {
     _id: 20118,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 569,
     bait: 20614,
@@ -6771,17 +6195,15 @@ const fishCN = {
   },
   20119: {
     _id: 20119,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 616,
     bait: 20619,
-    locations: [172, 173, 174, 171],
+    locations: [171, 172, 173, 174],
     patch: 4,
     collectable: false,
   },
   20120: {
     _id: 20120,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 570,
     bait: 20619,
@@ -6794,7 +6216,6 @@ const fishCN = {
   },
   20121: {
     _id: 20121,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 633,
     bait: 20615,
@@ -6804,7 +6225,6 @@ const fishCN = {
   },
   20122: {
     _id: 20122,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 617,
     bait: 20615,
@@ -6817,17 +6237,15 @@ const fishCN = {
   },
   20123: {
     _id: 20123,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 571,
     bait: 20614,
-    locations: [165, 166, 172, 173, 174, 169, 171, 170, 198],
+    locations: [165, 166, 169, 170, 171, 172, 173, 174, 198],
     patch: 4,
     collectable: false,
   },
   20124: {
     _id: 20124,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 584,
     bait: 20615,
@@ -6837,7 +6255,6 @@ const fishCN = {
   },
   20125: {
     _id: 20125,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 585,
     bait: 20614,
@@ -6847,7 +6264,6 @@ const fishCN = {
   },
   20127: {
     _id: 20127,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 577,
     bait: 20614,
@@ -6860,7 +6276,6 @@ const fishCN = {
   },
   20128: {
     _id: 20128,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 578,
     bait: 20615,
@@ -6873,7 +6288,6 @@ const fishCN = {
   },
   20129: {
     _id: 20129,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 586,
     bait: 20615,
@@ -6883,7 +6297,6 @@ const fishCN = {
   },
   20130: {
     _id: 20130,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 579,
     bait: 20615,
@@ -6893,7 +6306,6 @@ const fishCN = {
   },
   20131: {
     _id: 20131,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 587,
     bait: 20615,
@@ -6903,7 +6315,6 @@ const fishCN = {
   },
   20133: {
     _id: 20133,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 588,
     bait: 20127,
@@ -6913,7 +6324,6 @@ const fishCN = {
   },
   20134: {
     _id: 20134,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 589,
     bait: 20615,
@@ -6923,7 +6333,6 @@ const fishCN = {
   },
   20135: {
     _id: 20135,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 590,
     bait: 20615,
@@ -6933,7 +6342,6 @@ const fishCN = {
   },
   20136: {
     _id: 20136,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 530,
     bait: 20613,
@@ -6943,7 +6351,6 @@ const fishCN = {
   },
   20137: {
     _id: 20137,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 565,
     bait: 20614,
@@ -6953,7 +6360,6 @@ const fishCN = {
   },
   20138: {
     _id: 20138,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 581,
     bait: 20619,
@@ -6963,7 +6369,6 @@ const fishCN = {
   },
   20140: {
     _id: 20140,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 591,
     bait: 20619,
@@ -6973,7 +6378,6 @@ const fishCN = {
   },
   20141: {
     _id: 20141,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 607,
     bait: 20619,
@@ -6986,7 +6390,6 @@ const fishCN = {
   },
   20142: {
     _id: 20142,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 635,
     bait: 20675,
@@ -6999,7 +6402,6 @@ const fishCN = {
   },
   20143: {
     _id: 20143,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 637,
     bait: 4904,
@@ -7012,7 +6414,6 @@ const fishCN = {
   },
   20144: {
     _id: 20144,
-    name_chs: '旋螺',
     spearFishingId: 20000,
     locations: [464, 465],
     gig: 4,
@@ -7024,7 +6425,6 @@ const fishCN = {
   },
   20145: {
     _id: 20145,
-    name_chs: '黑箱鲀',
     spearFishingId: 20001,
     locations: [464, 467],
     gig: 2,
@@ -7036,7 +6436,6 @@ const fishCN = {
   },
   20146: {
     _id: 20146,
-    name_chs: '飞鳐',
     spearFishingId: 20002,
     locations: [465],
     gig: 3,
@@ -7048,7 +6447,6 @@ const fishCN = {
   },
   20147: {
     _id: 20147,
-    name_chs: '王鱼',
     spearFishingId: 20003,
     locations: [466, 467],
     gig: 4,
@@ -7060,7 +6458,6 @@ const fishCN = {
   },
   20148: {
     _id: 20148,
-    name_chs: '雪花蛇鳝',
     spearFishingId: 20004,
     locations: [468],
     gig: 2,
@@ -7072,7 +6469,6 @@ const fishCN = {
   },
   20149: {
     _id: 20149,
-    name_chs: '跳虾虎',
     spearFishingId: 20005,
     locations: [469],
     gig: 4,
@@ -7084,7 +6480,6 @@ const fishCN = {
   },
   20150: {
     _id: 20150,
-    name_chs: '光鳞鱼',
     spearFishingId: 20006,
     locations: [469],
     gig: 3,
@@ -7096,7 +6491,6 @@ const fishCN = {
   },
   20151: {
     _id: 20151,
-    name_chs: '星点东方鲀',
     spearFishingId: 20007,
     locations: [470, 471],
     gig: 2,
@@ -7108,7 +6502,6 @@ const fishCN = {
   },
   20152: {
     _id: 20152,
-    name_chs: '花鳗鲡',
     spearFishingId: 20008,
     locations: [470],
     gig: 3,
@@ -7120,7 +6513,6 @@ const fishCN = {
   },
   20153: {
     _id: 20153,
-    name_chs: '寄居虫',
     spearFishingId: 20009,
     locations: [471],
     gig: 4,
@@ -7132,7 +6524,6 @@ const fishCN = {
   },
   20154: {
     _id: 20154,
-    name_chs: '高脚蟹',
     spearFishingId: 20010,
     locations: [464],
     gig: 3,
@@ -7144,7 +6535,6 @@ const fishCN = {
   },
   20155: {
     _id: 20155,
-    name_chs: '海天狗',
     spearFishingId: 20011,
     locations: [465, 466],
     gig: 2,
@@ -7156,7 +6546,6 @@ const fishCN = {
   },
   20156: {
     _id: 20156,
-    name_chs: '黑头巾',
     spearFishingId: 20012,
     locations: [466, 468],
     gig: 3,
@@ -7168,7 +6557,6 @@ const fishCN = {
   },
   20157: {
     _id: 20157,
-    name_chs: '虎斑鲨',
     spearFishingId: 20013,
     locations: [467],
     gig: 3,
@@ -7180,7 +6568,6 @@ const fishCN = {
   },
   20158: {
     _id: 20158,
-    name_chs: '骨螺',
     spearFishingId: 20014,
     locations: [468],
     gig: 4,
@@ -7192,7 +6579,6 @@ const fishCN = {
   },
   20159: {
     _id: 20159,
-    name_chs: '渔鱼',
     spearFishingId: 20015,
     locations: [469],
     gig: 2,
@@ -7204,7 +6590,6 @@ const fishCN = {
   },
   20160: {
     _id: 20160,
-    name_chs: '奥萨德螺',
     spearFishingId: 20016,
     locations: [470],
     gig: 1,
@@ -7216,7 +6601,6 @@ const fishCN = {
   },
   20161: {
     _id: 20161,
-    name_chs: '无须鱼',
     spearFishingId: 20017,
     locations: [471],
     gig: 3,
@@ -7228,7 +6612,6 @@ const fishCN = {
   },
   20162: {
     _id: 20162,
-    name_chs: '烛光鱼',
     spearFishingId: 20018,
     locations: [464],
     gig: 1,
@@ -7240,7 +6623,6 @@ const fishCN = {
   },
   20163: {
     _id: 20163,
-    name_chs: '丝鲹',
     spearFishingId: 20019,
     locations: [464],
     gig: 2,
@@ -7252,7 +6634,6 @@ const fishCN = {
   },
   20164: {
     _id: 20164,
-    name_chs: '狆鳗',
     spearFishingId: 20020,
     locations: [465],
     gig: 1,
@@ -7264,7 +6645,6 @@ const fishCN = {
   },
   20165: {
     _id: 20165,
-    name_chs: '海参',
     spearFishingId: 20021,
     locations: [466, 530],
     gig: 1,
@@ -7276,7 +6656,6 @@ const fishCN = {
   },
   20166: {
     _id: 20166,
-    name_chs: '鞍带石斑鱼',
     spearFishingId: 20022,
     locations: [467],
     gig: 3,
@@ -7288,7 +6667,6 @@ const fishCN = {
   },
   20167: {
     _id: 20167,
-    name_chs: '毒鲉',
     spearFishingId: 20023,
     locations: [468],
     gig: 2,
@@ -7300,7 +6678,6 @@ const fishCN = {
   },
   20168: {
     _id: 20168,
-    name_chs: '赤备',
     spearFishingId: 20024,
     locations: [470],
     gig: 4,
@@ -7312,7 +6689,6 @@ const fishCN = {
   },
   20169: {
     _id: 20169,
-    name_chs: '黑鲢',
     spearFishingId: 20025,
     locations: [470],
     gig: 3,
@@ -7324,7 +6700,6 @@ const fishCN = {
   },
   20170: {
     _id: 20170,
-    name_chs: '古钱贝',
     spearFishingId: 20026,
     locations: [471],
     gig: 1,
@@ -7336,7 +6711,6 @@ const fishCN = {
   },
   20171: {
     _id: 20171,
-    name_chs: '食死鱼',
     spearFishingId: 20027,
     locations: [464, 530],
     gig: 3,
@@ -7348,7 +6722,6 @@ const fishCN = {
   },
   20172: {
     _id: 20172,
-    name_chs: '浪人鲹',
     spearFishingId: 20028,
     locations: [465],
     gig: 3,
@@ -7360,7 +6733,6 @@ const fishCN = {
   },
   20173: {
     _id: 20173,
-    name_chs: '褐石斑鱼',
     spearFishingId: 20029,
     locations: [466],
     gig: 3,
@@ -7372,7 +6744,6 @@ const fishCN = {
   },
   20174: {
     _id: 20174,
-    name_chs: '蝾螺',
     spearFishingId: 20030,
     locations: [467, 480, 530],
     gig: 1,
@@ -7384,7 +6755,6 @@ const fishCN = {
   },
   20175: {
     _id: 20175,
-    name_chs: '红玉海星',
     spearFishingId: 20031,
     locations: [468],
     gig: 1,
@@ -7396,7 +6766,6 @@ const fishCN = {
   },
   20176: {
     _id: 20176,
-    name_chs: '藻屑蟹',
     spearFishingId: 20032,
     locations: [469],
     gig: 1,
@@ -7408,7 +6777,6 @@ const fishCN = {
   },
   20177: {
     _id: 20177,
-    name_chs: '泥仙人',
     spearFishingId: 20033,
     locations: [470],
     gig: 2,
@@ -7420,7 +6788,6 @@ const fishCN = {
   },
   20178: {
     _id: 20178,
-    name_chs: '修仙空棘鱼',
     spearFishingId: 20034,
     locations: [471],
     gig: 3,
@@ -7432,7 +6799,6 @@ const fishCN = {
   },
   20179: {
     _id: 20179,
-    name_chs: '白乌贼',
     spearFishingId: 20035,
     locations: [465, 480],
     gig: 2,
@@ -7444,7 +6810,6 @@ const fishCN = {
   },
   20180: {
     _id: 20180,
-    name_chs: '类鲹',
     spearFishingId: 20036,
     locations: [466],
     gig: 2,
@@ -7456,7 +6821,6 @@ const fishCN = {
   },
   20181: {
     _id: 20181,
-    name_chs: '楚蟹',
     spearFishingId: 20037,
     locations: [467],
     gig: 2,
@@ -7468,7 +6832,6 @@ const fishCN = {
   },
   20182: {
     _id: 20182,
-    name_chs: '红眼鲈',
     spearFishingId: 20038,
     locations: [468],
     gig: 3,
@@ -7480,7 +6843,6 @@ const fishCN = {
   },
   20183: {
     _id: 20183,
-    name_chs: '斜方鱊',
     spearFishingId: 20039,
     locations: [469],
     gig: 2,
@@ -7492,7 +6854,6 @@ const fishCN = {
   },
   20184: {
     _id: 20184,
-    name_chs: '半寿鱼',
     spearFishingId: 20040,
     locations: [469],
     gig: 3,
@@ -7504,7 +6865,6 @@ const fishCN = {
   },
   20185: {
     _id: 20185,
-    name_chs: '蛇头鱼',
     spearFishingId: 20041,
     locations: [471],
     gig: 2,
@@ -7516,7 +6876,6 @@ const fishCN = {
   },
   20186: {
     _id: 20186,
-    name_chs: '红衣',
     spearFishingId: 20042,
     locations: [472],
     gig: 2,
@@ -7528,7 +6887,6 @@ const fishCN = {
   },
   20187: {
     _id: 20187,
-    name_chs: '斑节虾',
     spearFishingId: 20043,
     locations: [473],
     gig: 4,
@@ -7540,7 +6898,6 @@ const fishCN = {
   },
   20188: {
     _id: 20188,
-    name_chs: '天狗团扇',
     spearFishingId: 20044,
     locations: [473],
     gig: 2,
@@ -7552,7 +6909,6 @@ const fishCN = {
   },
   20189: {
     _id: 20189,
-    name_chs: '星轮螺',
     spearFishingId: 20045,
     locations: [474],
     gig: 4,
@@ -7564,7 +6920,6 @@ const fishCN = {
   },
   20190: {
     _id: 20190,
-    name_chs: '青鱼',
     spearFishingId: 20046,
     locations: [474],
     gig: 3,
@@ -7576,7 +6931,6 @@ const fishCN = {
   },
   20191: {
     _id: 20191,
-    name_chs: '菜蛙',
     spearFishingId: 20047,
     locations: [475],
     gig: 1,
@@ -7588,7 +6942,6 @@ const fishCN = {
   },
   20192: {
     _id: 20192,
-    name_chs: '斩马鱼',
     spearFishingId: 20048,
     locations: [475],
     gig: 3,
@@ -7600,7 +6953,6 @@ const fishCN = {
   },
   20193: {
     _id: 20193,
-    name_chs: '红鳍',
     spearFishingId: 20049,
     locations: [476],
     gig: 2,
@@ -7612,7 +6964,6 @@ const fishCN = {
   },
   20194: {
     _id: 20194,
-    name_chs: '月轮',
     spearFishingId: 20050,
     locations: [477],
     gig: 4,
@@ -7624,7 +6975,6 @@ const fishCN = {
   },
   20195: {
     _id: 20195,
-    name_chs: '白骨舌鱼',
     spearFishingId: 20051,
     locations: [477, 478],
     gig: 3,
@@ -7636,7 +6986,6 @@ const fishCN = {
   },
   20196: {
     _id: 20196,
-    name_chs: '盐鲨',
     spearFishingId: 20052,
     locations: [478],
     gig: 2,
@@ -7648,7 +6997,6 @@ const fishCN = {
   },
   20197: {
     _id: 20197,
-    name_chs: '皇家披风',
     spearFishingId: 20053,
     locations: [479],
     gig: 3,
@@ -7660,7 +7008,6 @@ const fishCN = {
   },
   20198: {
     _id: 20198,
-    name_chs: '矶灯笼',
     spearFishingId: 20054,
     locations: [472],
     gig: 4,
@@ -7672,7 +7019,6 @@ const fishCN = {
   },
   20199: {
     _id: 20199,
-    name_chs: '黄尾鰤',
     spearFishingId: 20055,
     locations: [472],
     gig: 3,
@@ -7684,7 +7030,6 @@ const fishCN = {
   },
   20200: {
     _id: 20200,
-    name_chs: '樱鲑',
     spearFishingId: 20056,
     locations: [473],
     gig: 3,
@@ -7696,7 +7041,6 @@ const fishCN = {
   },
   20201: {
     _id: 20201,
-    name_chs: '温泉花蟹',
     spearFishingId: 20057,
     locations: [474],
     gig: 2,
@@ -7708,7 +7052,6 @@ const fishCN = {
   },
   20202: {
     _id: 20202,
-    name_chs: '朵塔儿鮈',
     spearFishingId: 20058,
     locations: [475],
     gig: 2,
@@ -7720,7 +7063,6 @@ const fishCN = {
   },
   20203: {
     _id: 20203,
-    name_chs: '河蚬',
     spearFishingId: 20059,
     locations: [476],
     gig: 1,
@@ -7732,7 +7074,6 @@ const fishCN = {
   },
   20204: {
     _id: 20204,
-    name_chs: '草鲨',
     spearFishingId: 20060,
     locations: [476],
     gig: 3,
@@ -7744,7 +7085,6 @@ const fishCN = {
   },
   20205: {
     _id: 20205,
-    name_chs: '台风虾',
     spearFishingId: 20061,
     locations: [477],
     gig: 2,
@@ -7756,7 +7096,6 @@ const fishCN = {
   },
   20206: {
     _id: 20206,
-    name_chs: '岩牡蛎',
     spearFishingId: 20062,
     locations: [478],
     gig: 4,
@@ -7768,7 +7107,6 @@ const fishCN = {
   },
   20207: {
     _id: 20207,
-    name_chs: '盐湖胆',
     spearFishingId: 20063,
     locations: [479],
     gig: 4,
@@ -7780,7 +7118,6 @@ const fishCN = {
   },
   20208: {
     _id: 20208,
-    name_chs: '刻木蟹',
     spearFishingId: 20064,
     locations: [479],
     gig: 2,
@@ -7792,7 +7129,6 @@ const fishCN = {
   },
   20209: {
     _id: 20209,
-    name_chs: '刺足龙虾',
     spearFishingId: 20065,
     locations: [472, 480, 530],
     gig: 2,
@@ -7804,7 +7140,6 @@ const fishCN = {
   },
   20210: {
     _id: 20210,
-    name_chs: '箕作鲨',
     spearFishingId: 20066,
     locations: [480],
     gig: 3,
@@ -7818,7 +7153,6 @@ const fishCN = {
   },
   20211: {
     _id: 20211,
-    name_chs: '多玛金鱼',
     spearFishingId: 20067,
     locations: [473, 481],
     gig: 1,
@@ -7830,7 +7164,6 @@ const fishCN = {
   },
   20212: {
     _id: 20212,
-    name_chs: '逆龙',
     spearFishingId: 20068,
     locations: [474, 481],
     gig: 1,
@@ -7842,7 +7175,6 @@ const fishCN = {
   },
   20213: {
     _id: 20213,
-    name_chs: '太阳神使者',
     spearFishingId: 20069,
     locations: [475, 476],
     gig: 4,
@@ -7854,7 +7186,6 @@ const fishCN = {
   },
   20214: {
     _id: 20214,
-    name_chs: '盐螺',
     spearFishingId: 20070,
     locations: [477, 483],
     gig: 1,
@@ -7866,7 +7197,6 @@ const fishCN = {
   },
   20215: {
     _id: 20215,
-    name_chs: '白鲸',
     spearFishingId: 20071,
     locations: [478],
     gig: 3,
@@ -7878,7 +7208,6 @@ const fishCN = {
   },
   20216: {
     _id: 20216,
-    name_chs: '巨型税官',
     spearFishingId: 20072,
     locations: [479],
     gig: 3,
@@ -7890,7 +7219,6 @@ const fishCN = {
   },
   20217: {
     _id: 20217,
-    name_chs: '圆翅燕鱼',
     spearFishingId: 20073,
     locations: [472, 480],
     gig: 1,
@@ -7902,7 +7230,6 @@ const fishCN = {
   },
   20218: {
     _id: 20218,
-    name_chs: '河鲷',
     spearFishingId: 20074,
     locations: [473],
     gig: 2,
@@ -7914,7 +7241,6 @@ const fishCN = {
   },
   20219: {
     _id: 20219,
-    name_chs: '绳鱼',
     spearFishingId: 20075,
     locations: [474, 481],
     gig: 3,
@@ -7926,7 +7252,6 @@ const fishCN = {
   },
   20220: {
     _id: 20220,
-    name_chs: '飞天鱼',
     spearFishingId: 20076,
     locations: [481],
     gig: 2,
@@ -7940,7 +7265,6 @@ const fishCN = {
   },
   20221: {
     _id: 20221,
-    name_chs: '月神使者',
     spearFishingId: 20077,
     locations: [475, 482],
     gig: 2,
@@ -7952,7 +7276,6 @@ const fishCN = {
   },
   20222: {
     _id: 20222,
-    name_chs: '瞪亲刺鱼',
     spearFishingId: 20078,
     locations: [476, 482],
     gig: 3,
@@ -7964,7 +7287,6 @@ const fishCN = {
   },
   20223: {
     _id: 20223,
-    name_chs: '阿巴拉提亚皮皮拉鱼',
     spearFishingId: 20079,
     locations: [477, 483],
     gig: 2,
@@ -7976,7 +7298,6 @@ const fishCN = {
   },
   20224: {
     _id: 20224,
-    name_chs: '白钢泥鳅',
     spearFishingId: 20080,
     locations: [478, 483],
     gig: 1,
@@ -7988,7 +7309,6 @@ const fishCN = {
   },
   20225: {
     _id: 20225,
-    name_chs: '象牙鳎',
     spearFishingId: 20081,
     locations: [479, 483],
     gig: 2,
@@ -8000,7 +7320,6 @@ const fishCN = {
   },
   20226: {
     _id: 20226,
-    name_chs: '条石鲷',
     spearFishingId: 20082,
     locations: [472, 530],
     gig: 3,
@@ -8012,7 +7331,6 @@ const fishCN = {
   },
   20227: {
     _id: 20227,
-    name_chs: '千牙龙',
     spearFishingId: 20083,
     locations: [480],
     gig: 3,
@@ -8026,7 +7344,6 @@ const fishCN = {
   },
   20228: {
     _id: 20228,
-    name_chs: '鱼龙',
     spearFishingId: 20084,
     locations: [473, 481],
     gig: 3,
@@ -8038,7 +7355,6 @@ const fishCN = {
   },
   20229: {
     _id: 20229,
-    name_chs: '八角鱼',
     spearFishingId: 20085,
     locations: [474],
     gig: 2,
@@ -8050,7 +7366,6 @@ const fishCN = {
   },
   20230: {
     _id: 20230,
-    name_chs: '方士鱼',
     spearFishingId: 20086,
     locations: [481],
     gig: 2,
@@ -8064,7 +7379,6 @@ const fishCN = {
   },
   20231: {
     _id: 20231,
-    name_chs: '焰鱼',
     spearFishingId: 20087,
     locations: [475, 482],
     gig: 3,
@@ -8076,7 +7390,6 @@ const fishCN = {
   },
   20232: {
     _id: 20232,
-    name_chs: '不忠蛇',
     spearFishingId: 20088,
     locations: [476, 482],
     gig: 2,
@@ -8088,7 +7401,6 @@ const fishCN = {
   },
   20233: {
     _id: 20233,
-    name_chs: '永恒眼',
     spearFishingId: 20089,
     locations: [482],
     gig: 1,
@@ -8102,7 +7414,6 @@ const fishCN = {
   },
   20234: {
     _id: 20234,
-    name_chs: '名马魂',
     spearFishingId: 20090,
     locations: [482],
     gig: 1,
@@ -8116,7 +7427,6 @@ const fishCN = {
   },
   20235: {
     _id: 20235,
-    name_chs: '泛洪金枪鱼',
     spearFishingId: 20091,
     locations: [477],
     gig: 3,
@@ -8128,7 +7438,6 @@ const fishCN = {
   },
   20236: {
     _id: 20236,
-    name_chs: '佣兵蟹',
     spearFishingId: 20092,
     locations: [478],
     gig: 2,
@@ -8140,7 +7449,6 @@ const fishCN = {
   },
   20237: {
     _id: 20237,
-    name_chs: '不死鱼',
     spearFishingId: 20093,
     locations: [479],
     gig: 1,
@@ -8152,7 +7460,6 @@ const fishCN = {
   },
   20238: {
     _id: 20238,
-    name_chs: '丝绸翻车鱼',
     spearFishingId: 20094,
     locations: [483],
     gig: 3,
@@ -8166,7 +7473,6 @@ const fishCN = {
   },
   20239: {
     _id: 20239,
-    name_chs: '沧龙',
     spearFishingId: 20095,
     locations: [483],
     gig: 3,
@@ -8180,7 +7486,6 @@ const fishCN = {
   },
   20524: {
     _id: 20524,
-    fishEyes: false,
     dataMissing: false,
     anglerFishId: 636,
     bait: 4904,
@@ -8193,7 +7498,6 @@ const fishCN = {
   },
   20528: {
     _id: 20528,
-    name_chs: '龙之孙',
     spearFishingId: 20096,
     locations: [480],
     gig: 4,
@@ -8207,7 +7511,6 @@ const fishCN = {
   },
   20785: {
     _id: 20785,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 742,
     bait: 20613,
@@ -8220,7 +7523,6 @@ const fishCN = {
   },
   20786: {
     _id: 20786,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 743,
     bait: 20617,
@@ -8233,7 +7535,6 @@ const fishCN = {
   },
   20787: {
     _id: 20787,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 744,
     bait: 20614,
@@ -8246,7 +7547,6 @@ const fishCN = {
   },
   20788: {
     _id: 20788,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 745,
     bait: 20614,
@@ -8259,7 +7559,6 @@ const fishCN = {
   },
   20789: {
     _id: 20789,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 746,
     bait: 20615,
@@ -8272,7 +7571,6 @@ const fishCN = {
   },
   21174: {
     _id: 21174,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 735,
     bait: 20619,
@@ -8285,7 +7583,6 @@ const fishCN = {
   },
   21175: {
     _id: 21175,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 736,
     bait: 20619,
@@ -8301,7 +7598,6 @@ const fishCN = {
   },
   21176: {
     _id: 21176,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 737,
     bait: 20676,
@@ -8317,7 +7613,6 @@ const fishCN = {
   },
   21177: {
     _id: 21177,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 738,
     bait: 20675,
@@ -8333,7 +7628,6 @@ const fishCN = {
   },
   21178: {
     _id: 21178,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 739,
     bait: 20675,
@@ -8349,7 +7643,6 @@ const fishCN = {
   },
   21179: {
     _id: 21179,
-    name_chs: '一文字',
     spearFishingId: 20097,
     locations: [472],
     gig: 3,
@@ -8361,7 +7654,6 @@ const fishCN = {
   },
   21180: {
     _id: 21180,
-    name_chs: '滑溜狮子鱼',
     spearFishingId: 20098,
     locations: [530],
     gig: 2,
@@ -8375,7 +7667,6 @@ const fishCN = {
   },
   22389: {
     _id: 22389,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 747,
     bait: 20675,
@@ -8391,7 +7682,6 @@ const fishCN = {
   },
   22390: {
     _id: 22390,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 748,
     bait: 20676,
@@ -8404,7 +7694,6 @@ const fishCN = {
   },
   22391: {
     _id: 22391,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 749,
     bait: 20619,
@@ -8417,7 +7706,6 @@ const fishCN = {
   },
   22392: {
     _id: 22392,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 750,
     bait: 20064,
@@ -8430,7 +7718,6 @@ const fishCN = {
   },
   22393: {
     _id: 22393,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 751,
     bait: 20112,
@@ -8443,7 +7730,6 @@ const fishCN = {
   },
   22394: {
     _id: 22394,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 752,
     bait: 20025,
@@ -8456,7 +7742,6 @@ const fishCN = {
   },
   22395: {
     _id: 22395,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 753,
     bait: 20614,
@@ -8469,7 +7754,6 @@ const fishCN = {
   },
   22396: {
     _id: 22396,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 754,
     bait: 20112,
@@ -8482,7 +7766,6 @@ const fishCN = {
   },
   22397: {
     _id: 22397,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 755,
     bait: 20675,
@@ -8498,7 +7781,6 @@ const fishCN = {
   },
   22398: {
     _id: 22398,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 756,
     bait: 20127,
@@ -8514,7 +7796,6 @@ const fishCN = {
   },
   23054: {
     _id: 23054,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 757,
     bait: 20112,
@@ -8524,7 +7805,6 @@ const fishCN = {
   },
   23055: {
     _id: 23055,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 758,
     bait: 22397,
@@ -8537,7 +7817,6 @@ const fishCN = {
   },
   23056: {
     _id: 23056,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 759,
     bait: 22397,
@@ -8550,7 +7829,6 @@ const fishCN = {
   },
   23057: {
     _id: 23057,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 760,
     bait: 20056,
@@ -8563,7 +7841,6 @@ const fishCN = {
   },
   23058: {
     _id: 23058,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 761,
     bait: 20675,
@@ -8576,7 +7853,6 @@ const fishCN = {
   },
   23059: {
     _id: 23059,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 762,
     bait: 20619,
@@ -8592,7 +7868,6 @@ const fishCN = {
   },
   23060: {
     _id: 23060,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 763,
     bait: 20619,
@@ -8605,7 +7880,6 @@ const fishCN = {
   },
   23061: {
     _id: 23061,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 764,
     bait: 20056,
@@ -8618,7 +7892,6 @@ const fishCN = {
   },
   23062: {
     _id: 23062,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 765,
     bait: 20025,
@@ -8631,7 +7904,6 @@ const fishCN = {
   },
   23063: {
     _id: 23063,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 766,
     bait: 20112,
@@ -8644,7 +7916,6 @@ const fishCN = {
   },
   23064: {
     _id: 23064,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 767,
     bait: 20676,
@@ -8657,7 +7928,6 @@ const fishCN = {
   },
   23065: {
     _id: 23065,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 768,
     bait: 20676,
@@ -8670,7 +7940,6 @@ const fishCN = {
   },
   23066: {
     _id: 23066,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 769,
     bait: 20112,
@@ -8683,7 +7952,6 @@ const fishCN = {
   },
   23067: {
     _id: 23067,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 770,
     bait: 20675,
@@ -8696,7 +7964,6 @@ const fishCN = {
   },
   23068: {
     _id: 23068,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 771,
     bait: 20675,
@@ -8709,7 +7976,6 @@ const fishCN = {
   },
   23069: {
     _id: 23069,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 772,
     bait: 20675,
@@ -8722,7 +7988,6 @@ const fishCN = {
   },
   23070: {
     _id: 23070,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 773,
     bait: 20675,
@@ -8735,7 +8000,6 @@ const fishCN = {
   },
   23071: {
     _id: 23071,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 774,
     bait: 20613,
@@ -8745,7 +8009,6 @@ const fishCN = {
   },
   23072: {
     _id: 23072,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 775,
     bait: 20613,
@@ -8755,7 +8018,6 @@ const fishCN = {
   },
   23073: {
     _id: 23073,
-    fishEyes: false,
     anglerFishId: 776,
     locations: [116],
     patch: 4.3,
@@ -8763,7 +8025,6 @@ const fishCN = {
   },
   23074: {
     _id: 23074,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 777,
     bait: 20617,
@@ -8773,7 +8034,6 @@ const fishCN = {
   },
   23075: {
     _id: 23075,
-    fishEyes: false,
     anglerFishId: 778,
     locations: [131],
     patch: 4.3,
@@ -8781,7 +8041,6 @@ const fishCN = {
   },
   24203: {
     _id: 24203,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 806,
     bait: 21177,
@@ -8794,7 +8053,6 @@ const fishCN = {
   },
   24204: {
     _id: 24204,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 807,
     bait: 20675,
@@ -8807,7 +8065,6 @@ const fishCN = {
   },
   24205: {
     _id: 24205,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 808,
     bait: 20056,
@@ -8820,7 +8077,6 @@ const fishCN = {
   },
   24206: {
     _id: 24206,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 809,
     bait: 20064,
@@ -8833,7 +8089,6 @@ const fishCN = {
   },
   24207: {
     _id: 24207,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 810,
     bait: 20675,
@@ -8846,7 +8101,6 @@ const fishCN = {
   },
   24208: {
     _id: 24208,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 811,
     bait: 20675,
@@ -8859,7 +8113,6 @@ const fishCN = {
   },
   24209: {
     _id: 24209,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 812,
     bait: 20619,
@@ -8872,7 +8125,6 @@ const fishCN = {
   },
   24210: {
     _id: 24210,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 813,
     bait: 20613,
@@ -8885,7 +8137,6 @@ const fishCN = {
   },
   24211: {
     _id: 24211,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 814,
     bait: 20619,
@@ -8898,7 +8149,6 @@ const fishCN = {
   },
   24212: {
     _id: 24212,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 815,
     bait: 20619,
@@ -8911,7 +8161,6 @@ const fishCN = {
   },
   24213: {
     _id: 24213,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 816,
     bait: 20614,
@@ -8924,7 +8173,6 @@ const fishCN = {
   },
   24214: {
     _id: 24214,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 817,
     bait: 20676,
@@ -8937,7 +8185,6 @@ const fishCN = {
   },
   24215: {
     _id: 24215,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 818,
     bait: 20112,
@@ -8950,7 +8197,6 @@ const fishCN = {
   },
   24216: {
     _id: 24216,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 819,
     bait: 20675,
@@ -8963,7 +8209,6 @@ const fishCN = {
   },
   24217: {
     _id: 24217,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 820,
     bait: 20127,
@@ -8976,7 +8221,6 @@ const fishCN = {
   },
   24218: {
     _id: 24218,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 821,
     bait: 20619,
@@ -8989,7 +8233,6 @@ const fishCN = {
   },
   24557: {
     _id: 24557,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 835,
     bait: 12704,
@@ -8999,7 +8242,6 @@ const fishCN = {
   },
   24558: {
     _id: 24558,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 836,
     bait: 20617,
@@ -9009,7 +8251,6 @@ const fishCN = {
   },
   24559: {
     _id: 24559,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 837,
     bait: 20613,
@@ -9019,7 +8260,6 @@ const fishCN = {
   },
   24560: {
     _id: 24560,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 838,
     bait: 20618,
@@ -9029,7 +8269,6 @@ const fishCN = {
   },
   24561: {
     _id: 24561,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 839,
     bait: 20614,
@@ -9039,7 +8278,6 @@ const fishCN = {
   },
   24881: {
     _id: 24881,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 822,
     bait: 20619,
@@ -9052,7 +8290,6 @@ const fishCN = {
   },
   24882: {
     _id: 24882,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 823,
     bait: 20112,
@@ -9065,7 +8302,6 @@ const fishCN = {
   },
   24883: {
     _id: 24883,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 824,
     bait: 20676,
@@ -9078,7 +8314,6 @@ const fishCN = {
   },
   24884: {
     _id: 24884,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 825,
     bait: 20617,
@@ -9091,7 +8326,6 @@ const fishCN = {
   },
   24885: {
     _id: 24885,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 826,
     bait: 20614,
@@ -9104,7 +8338,6 @@ const fishCN = {
   },
   24886: {
     _id: 24886,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 827,
     bait: 20619,
@@ -9117,7 +8350,6 @@ const fishCN = {
   },
   24887: {
     _id: 24887,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 828,
     bait: 20675,
@@ -9130,7 +8362,6 @@ const fishCN = {
   },
   24888: {
     _id: 24888,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 829,
     bait: 20675,
@@ -9143,7 +8374,6 @@ const fishCN = {
   },
   24889: {
     _id: 24889,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 830,
     bait: 20675,
@@ -9156,7 +8386,6 @@ const fishCN = {
   },
   24890: {
     _id: 24890,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 831,
     bait: 20619,
@@ -9169,7 +8398,6 @@ const fishCN = {
   },
   24891: {
     _id: 24891,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 832,
     bait: 20619,
@@ -9182,7 +8410,6 @@ const fishCN = {
   },
   24892: {
     _id: 24892,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 833,
     bait: 20615,
@@ -9195,7 +8422,6 @@ const fishCN = {
   },
   24893: {
     _id: 24893,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 834,
     bait: 20127,
@@ -9208,7 +8434,6 @@ const fishCN = {
   },
   24990: {
     _id: 24990,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 840,
     bait: 24207,
@@ -9224,7 +8449,6 @@ const fishCN = {
   },
   24991: {
     _id: 24991,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 841,
     bait: 20619,
@@ -9238,7 +8462,6 @@ const fishCN = {
   },
   24992: {
     _id: 24992,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 842,
     bait: 20025,
@@ -9252,7 +8475,6 @@ const fishCN = {
   },
   24993: {
     _id: 24993,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 843,
     bait: 24214,
@@ -9265,7 +8487,6 @@ const fishCN = {
   },
   24994: {
     _id: 24994,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 844,
     bait: 20675,
@@ -9282,7 +8503,6 @@ const fishCN = {
   },
   24995: {
     _id: 24995,
-    fishEyes: false,
     dataMissing: null,
     anglerFishId: 845,
     bait: 20675,
@@ -9298,7 +8518,6 @@ const fishCN = {
   },
   26746: {
     _id: 26746,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3001,
     bait: 27582,
@@ -9311,7 +8530,6 @@ const fishCN = {
   },
   26747: {
     _id: 26747,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3002,
     bait: 27583,
@@ -9324,7 +8542,6 @@ const fishCN = {
   },
   26748: {
     _id: 26748,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3003,
     bait: 27582,
@@ -9337,7 +8554,6 @@ const fishCN = {
   },
   26749: {
     _id: 26749,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3004,
     bait: 27584,
@@ -9350,7 +8566,6 @@ const fishCN = {
   },
   27410: {
     _id: 27410,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3007,
     bait: 27582,
@@ -9363,7 +8578,6 @@ const fishCN = {
   },
   27411: {
     _id: 27411,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3008,
     bait: 27585,
@@ -9376,7 +8590,6 @@ const fishCN = {
   },
   27412: {
     _id: 27412,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3009,
     bait: 27587,
@@ -9389,7 +8602,6 @@ const fishCN = {
   },
   27413: {
     _id: 27413,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3010,
     bait: 27587,
@@ -9402,7 +8614,6 @@ const fishCN = {
   },
   27414: {
     _id: 27414,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3011,
     bait: 27585,
@@ -9415,7 +8626,6 @@ const fishCN = {
   },
   27415: {
     _id: 27415,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3012,
     bait: 27585,
@@ -9431,7 +8641,6 @@ const fishCN = {
   },
   27416: {
     _id: 27416,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3013,
     bait: 27589,
@@ -9444,7 +8653,6 @@ const fishCN = {
   },
   27417: {
     _id: 27417,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3014,
     bait: 27585,
@@ -9457,7 +8665,6 @@ const fishCN = {
   },
   27418: {
     _id: 27418,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3015,
     bait: 27591,
@@ -9470,7 +8677,6 @@ const fishCN = {
   },
   27419: {
     _id: 27419,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3016,
     bait: 27588,
@@ -9483,7 +8689,6 @@ const fishCN = {
   },
   27420: {
     _id: 27420,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3017,
     bait: 27588,
@@ -9496,7 +8701,6 @@ const fishCN = {
   },
   27421: {
     _id: 27421,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3018,
     bait: 27583,
@@ -9509,7 +8713,6 @@ const fishCN = {
   },
   27422: {
     _id: 27422,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3019,
     bait: 27583,
@@ -9522,7 +8725,6 @@ const fishCN = {
   },
   27423: {
     _id: 27423,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3020,
     bait: 27590,
@@ -9538,7 +8740,6 @@ const fishCN = {
   },
   27424: {
     _id: 27424,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3021,
     bait: 27590,
@@ -9554,7 +8755,6 @@ const fishCN = {
   },
   27425: {
     _id: 27425,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3022,
     bait: 27587,
@@ -9567,7 +8767,6 @@ const fishCN = {
   },
   27426: {
     _id: 27426,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3023,
     bait: 27589,
@@ -9580,7 +8779,6 @@ const fishCN = {
   },
   27427: {
     _id: 27427,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3024,
     bait: 27587,
@@ -9593,7 +8791,6 @@ const fishCN = {
   },
   27428: {
     _id: 27428,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3025,
     bait: 27589,
@@ -9606,7 +8803,6 @@ const fishCN = {
   },
   27429: {
     _id: 27429,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3026,
     bait: 27587,
@@ -9619,7 +8815,6 @@ const fishCN = {
   },
   27430: {
     _id: 27430,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3027,
     bait: 27585,
@@ -9635,7 +8830,6 @@ const fishCN = {
   },
   27431: {
     _id: 27431,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3028,
     bait: 27587,
@@ -9648,7 +8842,6 @@ const fishCN = {
   },
   27432: {
     _id: 27432,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3029,
     bait: 27589,
@@ -9661,7 +8854,6 @@ const fishCN = {
   },
   27433: {
     _id: 27433,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3030,
     bait: 27587,
@@ -9674,7 +8866,6 @@ const fishCN = {
   },
   27434: {
     _id: 27434,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3031,
     bait: 27589,
@@ -9687,7 +8878,6 @@ const fishCN = {
   },
   27435: {
     _id: 27435,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3032,
     bait: 27589,
@@ -9700,7 +8890,6 @@ const fishCN = {
   },
   27436: {
     _id: 27436,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3033,
     bait: 27587,
@@ -9713,7 +8902,6 @@ const fishCN = {
   },
   27437: {
     _id: 27437,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3034,
     bait: 27587,
@@ -9729,7 +8917,6 @@ const fishCN = {
   },
   27438: {
     _id: 27438,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3035,
     bait: 27585,
@@ -9742,7 +8929,6 @@ const fishCN = {
   },
   27439: {
     _id: 27439,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3036,
     bait: 27582,
@@ -9755,7 +8941,6 @@ const fishCN = {
   },
   27440: {
     _id: 27440,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3037,
     bait: 28634,
@@ -9768,7 +8953,6 @@ const fishCN = {
   },
   27441: {
     _id: 27441,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3038,
     bait: 27587,
@@ -9781,7 +8965,6 @@ const fishCN = {
   },
   27442: {
     _id: 27442,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3039,
     bait: 27587,
@@ -9794,7 +8977,6 @@ const fishCN = {
   },
   27443: {
     _id: 27443,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3040,
     bait: 27587,
@@ -9807,7 +8989,6 @@ const fishCN = {
   },
   27444: {
     _id: 27444,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3041,
     bait: 27587,
@@ -9820,7 +9001,6 @@ const fishCN = {
   },
   27445: {
     _id: 27445,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3042,
     bait: 27585,
@@ -9833,7 +9013,6 @@ const fishCN = {
   },
   27446: {
     _id: 27446,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3043,
     bait: 27590,
@@ -9846,7 +9025,6 @@ const fishCN = {
   },
   27447: {
     _id: 27447,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3044,
     bait: 27588,
@@ -9859,7 +9037,6 @@ const fishCN = {
   },
   27448: {
     _id: 27448,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3045,
     bait: 27590,
@@ -9872,7 +9049,6 @@ const fishCN = {
   },
   27449: {
     _id: 27449,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3046,
     bait: 27588,
@@ -9885,7 +9061,6 @@ const fishCN = {
   },
   27450: {
     _id: 27450,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3047,
     bait: 27588,
@@ -9898,7 +9073,6 @@ const fishCN = {
   },
   27451: {
     _id: 27451,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3048,
     bait: 27588,
@@ -9911,7 +9085,6 @@ const fishCN = {
   },
   27452: {
     _id: 27452,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3049,
     bait: 27590,
@@ -9924,7 +9097,6 @@ const fishCN = {
   },
   27453: {
     _id: 27453,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3050,
     bait: 27588,
@@ -9937,7 +9109,6 @@ const fishCN = {
   },
   27454: {
     _id: 27454,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3051,
     bait: 27457,
@@ -9953,7 +9124,6 @@ const fishCN = {
   },
   27455: {
     _id: 27455,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3052,
     bait: 27588,
@@ -9966,7 +9136,6 @@ const fishCN = {
   },
   27456: {
     _id: 27456,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3053,
     bait: 27457,
@@ -9979,7 +9148,6 @@ const fishCN = {
   },
   27457: {
     _id: 27457,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3054,
     bait: 27588,
@@ -9992,7 +9160,6 @@ const fishCN = {
   },
   27458: {
     _id: 27458,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3055,
     bait: 27584,
@@ -10005,11 +9172,10 @@ const fishCN = {
   },
   27459: {
     _id: 27459,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3056,
     bait: 27584,
-    locations: [215, 217, 216],
+    locations: [215, 216, 217],
     patch: 5,
     folklore: null,
     collectable: false,
@@ -10018,7 +9184,6 @@ const fishCN = {
   },
   27460: {
     _id: 27460,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3057,
     bait: 27586,
@@ -10031,7 +9196,6 @@ const fishCN = {
   },
   27461: {
     _id: 27461,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3058,
     bait: 27584,
@@ -10044,7 +9208,6 @@ const fishCN = {
   },
   27462: {
     _id: 27462,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3059,
     bait: 27584,
@@ -10057,7 +9220,6 @@ const fishCN = {
   },
   27463: {
     _id: 27463,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3060,
     bait: 27584,
@@ -10070,7 +9232,6 @@ const fishCN = {
   },
   27464: {
     _id: 27464,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3061,
     bait: 27586,
@@ -10083,7 +9244,6 @@ const fishCN = {
   },
   27465: {
     _id: 27465,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3062,
     bait: 27586,
@@ -10096,7 +9256,6 @@ const fishCN = {
   },
   27466: {
     _id: 27466,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3063,
     bait: 27461,
@@ -10109,7 +9268,6 @@ const fishCN = {
   },
   27467: {
     _id: 27467,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3064,
     bait: 27461,
@@ -10122,7 +9280,6 @@ const fishCN = {
   },
   27468: {
     _id: 27468,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3065,
     bait: 27585,
@@ -10135,7 +9292,6 @@ const fishCN = {
   },
   27469: {
     _id: 27469,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3066,
     bait: 27585,
@@ -10148,11 +9304,10 @@ const fishCN = {
   },
   27470: {
     _id: 27470,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3067,
     bait: 27582,
-    locations: [218, 219, 220, 221, 223, 224, 222],
+    locations: [218, 219, 220, 221, 222, 223, 224],
     patch: 5,
     folklore: null,
     collectable: false,
@@ -10161,7 +9316,6 @@ const fishCN = {
   },
   27471: {
     _id: 27471,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3068,
     bait: 27582,
@@ -10174,7 +9328,6 @@ const fishCN = {
   },
   27472: {
     _id: 27472,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3069,
     bait: 27585,
@@ -10187,7 +9340,6 @@ const fishCN = {
   },
   27473: {
     _id: 27473,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3070,
     bait: 27585,
@@ -10200,7 +9352,6 @@ const fishCN = {
   },
   27474: {
     _id: 27474,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3071,
     bait: 27589,
@@ -10216,7 +9367,6 @@ const fishCN = {
   },
   27475: {
     _id: 27475,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3072,
     bait: 27587,
@@ -10229,7 +9379,6 @@ const fishCN = {
   },
   27476: {
     _id: 27476,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3073,
     bait: 27585,
@@ -10242,7 +9391,6 @@ const fishCN = {
   },
   27477: {
     _id: 27477,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3074,
     bait: 27589,
@@ -10255,7 +9403,6 @@ const fishCN = {
   },
   27478: {
     _id: 27478,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3075,
     bait: 27587,
@@ -10268,7 +9415,6 @@ const fishCN = {
   },
   27479: {
     _id: 27479,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3076,
     bait: 27582,
@@ -10281,7 +9427,6 @@ const fishCN = {
   },
   27480: {
     _id: 27480,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3077,
     bait: 27585,
@@ -10294,7 +9439,6 @@ const fishCN = {
   },
   27481: {
     _id: 27481,
-    fishEyes: true,
     dataMissing: true,
     anglerFishId: 3078,
     bait: 27589,
@@ -10310,7 +9454,6 @@ const fishCN = {
   },
   27482: {
     _id: 27482,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3079,
     bait: 27582,
@@ -10323,7 +9466,6 @@ const fishCN = {
   },
   27483: {
     _id: 27483,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3080,
     bait: 27587,
@@ -10336,7 +9478,6 @@ const fishCN = {
   },
   27484: {
     _id: 27484,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3081,
     bait: 27589,
@@ -10349,7 +9490,6 @@ const fishCN = {
   },
   27485: {
     _id: 27485,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3082,
     bait: 27587,
@@ -10362,7 +9502,6 @@ const fishCN = {
   },
   27486: {
     _id: 27486,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3083,
     bait: 27582,
@@ -10375,7 +9514,6 @@ const fishCN = {
   },
   27487: {
     _id: 27487,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3084,
     bait: 27589,
@@ -10388,7 +9526,6 @@ const fishCN = {
   },
   27488: {
     _id: 27488,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3085,
     bait: 27587,
@@ -10401,7 +9538,6 @@ const fishCN = {
   },
   27489: {
     _id: 27489,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3086,
     bait: 27587,
@@ -10414,7 +9550,6 @@ const fishCN = {
   },
   27490: {
     _id: 27490,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3087,
     bait: 27587,
@@ -10430,7 +9565,6 @@ const fishCN = {
   },
   27491: {
     _id: 27491,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3088,
     bait: 27490,
@@ -10443,7 +9577,6 @@ const fishCN = {
   },
   27492: {
     _id: 27492,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3089,
     bait: 27587,
@@ -10456,7 +9589,6 @@ const fishCN = {
   },
   27493: {
     _id: 27493,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3090,
     bait: 27587,
@@ -10469,7 +9601,6 @@ const fishCN = {
   },
   27494: {
     _id: 27494,
-    fishEyes: 240,
     dataMissing: true,
     anglerFishId: 3091,
     bait: 27589,
@@ -10485,7 +9616,6 @@ const fishCN = {
   },
   27495: {
     _id: 27495,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3092,
     bait: 27590,
@@ -10498,7 +9628,6 @@ const fishCN = {
   },
   27496: {
     _id: 27496,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3093,
     bait: 27588,
@@ -10511,7 +9640,6 @@ const fishCN = {
   },
   27497: {
     _id: 27497,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3094,
     bait: 27583,
@@ -10524,7 +9652,6 @@ const fishCN = {
   },
   27498: {
     _id: 27498,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3095,
     bait: 27590,
@@ -10537,7 +9664,6 @@ const fishCN = {
   },
   27499: {
     _id: 27499,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3096,
     bait: 27583,
@@ -10550,7 +9676,6 @@ const fishCN = {
   },
   27500: {
     _id: 27500,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3097,
     bait: 27588,
@@ -10563,7 +9688,6 @@ const fishCN = {
   },
   27501: {
     _id: 27501,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3098,
     bait: 27590,
@@ -10576,7 +9700,6 @@ const fishCN = {
   },
   27502: {
     _id: 27502,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3099,
     bait: 27590,
@@ -10589,7 +9712,6 @@ const fishCN = {
   },
   27503: {
     _id: 27503,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3100,
     bait: 27588,
@@ -10605,7 +9727,6 @@ const fishCN = {
   },
   27504: {
     _id: 27504,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3101,
     bait: 27588,
@@ -10618,7 +9739,6 @@ const fishCN = {
   },
   27505: {
     _id: 27505,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3102,
     bait: 27590,
@@ -10631,7 +9751,6 @@ const fishCN = {
   },
   27506: {
     _id: 27506,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3103,
     bait: 27590,
@@ -10644,7 +9763,6 @@ const fishCN = {
   },
   27507: {
     _id: 27507,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3104,
     bait: 27506,
@@ -10657,7 +9775,6 @@ const fishCN = {
   },
   27508: {
     _id: 27508,
-    fishEyes: true,
     dataMissing: true,
     anglerFishId: 3105,
     bait: 27506,
@@ -10670,7 +9787,6 @@ const fishCN = {
   },
   27509: {
     _id: 27509,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3106,
     bait: 27588,
@@ -10683,7 +9799,6 @@ const fishCN = {
   },
   27510: {
     _id: 27510,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3107,
     bait: 27590,
@@ -10696,7 +9811,6 @@ const fishCN = {
   },
   27511: {
     _id: 27511,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3108,
     bait: 27588,
@@ -10709,7 +9823,6 @@ const fishCN = {
   },
   27512: {
     _id: 27512,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3109,
     bait: 27590,
@@ -10722,7 +9835,6 @@ const fishCN = {
   },
   27513: {
     _id: 27513,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3110,
     bait: 27588,
@@ -10735,7 +9847,6 @@ const fishCN = {
   },
   27514: {
     _id: 27514,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3111,
     bait: 27588,
@@ -10748,7 +9859,6 @@ const fishCN = {
   },
   27515: {
     _id: 27515,
-    fishEyes: false,
     dataMissing: null,
     anglerFishId: 3112,
     bait: 27590,
@@ -10761,7 +9871,6 @@ const fishCN = {
   },
   27516: {
     _id: 27516,
-    name_chs: '银灰鲤',
     spearFishingId: 20099,
     locations: [636],
     gig: 4,
@@ -10773,7 +9882,6 @@ const fishCN = {
   },
   27517: {
     _id: 27517,
-    name_chs: '丁香虾虎',
     spearFishingId: 20100,
     locations: [635],
     gig: 1,
@@ -10785,7 +9893,6 @@ const fishCN = {
   },
   27518: {
     _id: 27518,
-    name_chs: '紫鬼鱼',
     spearFishingId: 20101,
     locations: [635, 645],
     gig: 1,
@@ -10797,7 +9904,6 @@ const fishCN = {
   },
   27519: {
     _id: 27519,
-    name_chs: '湖虱',
     spearFishingId: 20108,
     locations: [635, 645],
     gig: 2,
@@ -10809,7 +9915,6 @@ const fishCN = {
   },
   27520: {
     _id: 27520,
-    name_chs: '镜核',
     spearFishingId: 20102,
     locations: [635],
     gig: 4,
@@ -10821,7 +9926,6 @@ const fishCN = {
   },
   27521: {
     _id: 27521,
-    name_chs: '酱紫章鱼',
     spearFishingId: 20109,
     locations: [635],
     gig: 3,
@@ -10833,7 +9937,6 @@ const fishCN = {
   },
   27522: {
     _id: 27522,
-    name_chs: '菁灵枪鱼',
     spearFishingId: 20103,
     locations: [635],
     gig: 3,
@@ -10845,7 +9948,6 @@ const fishCN = {
   },
   27523: {
     _id: 27523,
-    name_chs: '暗影鲤',
     spearFishingId: 20110,
     locations: [636, 645],
     gig: 1,
@@ -10857,7 +9959,6 @@ const fishCN = {
   },
   27524: {
     _id: 27524,
-    name_chs: '湖蓟',
     spearFishingId: 20111,
     locations: [636],
     gig: 2,
@@ -10869,7 +9970,6 @@ const fishCN = {
   },
   27525: {
     _id: 27525,
-    name_chs: '白金鲷鱼',
     spearFishingId: 20112,
     locations: [636, 645],
     gig: 2,
@@ -10881,7 +9981,6 @@ const fishCN = {
   },
   27526: {
     _id: 27526,
-    name_chs: '狱卒鱼',
     spearFishingId: 20116,
     locations: [636],
     gig: 3,
@@ -10893,7 +9992,6 @@ const fishCN = {
   },
   27527: {
     _id: 27527,
-    name_chs: '茄子鱼',
     spearFishingId: 20113,
     locations: [636],
     gig: 3,
@@ -10905,7 +10003,6 @@ const fishCN = {
   },
   27528: {
     _id: 27528,
-    name_chs: '空吻鱼',
     spearFishingId: 20104,
     locations: [637],
     gig: 1,
@@ -10917,7 +10014,6 @@ const fishCN = {
   },
   27529: {
     _id: 27529,
-    name_chs: '堇色蛤蜊',
     spearFishingId: 20105,
     locations: [637],
     gig: 1,
@@ -10929,7 +10025,6 @@ const fishCN = {
   },
   27530: {
     _id: 27530,
-    name_chs: '萎鳃丽鱼',
     spearFishingId: 20114,
     locations: [637],
     gig: 2,
@@ -10941,7 +10036,6 @@ const fishCN = {
   },
   27531: {
     _id: 27531,
-    name_chs: '贵族鱼',
     spearFishingId: 20115,
     locations: [637],
     gig: 2,
@@ -10953,7 +10047,6 @@ const fishCN = {
   },
   27532: {
     _id: 27532,
-    name_chs: '雾眼鱼',
     spearFishingId: 20117,
     locations: [637],
     gig: 3,
@@ -10965,7 +10058,6 @@ const fishCN = {
   },
   27533: {
     _id: 27533,
-    name_chs: '雷克兰德鳕鱼',
     spearFishingId: 20106,
     locations: [637],
     gig: 4,
@@ -10977,7 +10069,6 @@ const fishCN = {
   },
   27534: {
     _id: 27534,
-    name_chs: '迷你俾斯麦鱼',
     spearFishingId: 20154,
     locations: [645],
     gig: 3,
@@ -10991,7 +10082,6 @@ const fishCN = {
   },
   27535: {
     _id: 27535,
-    name_chs: '沟鳞鱼',
     spearFishingId: 20160,
     locations: [645],
     gig: 3,
@@ -11005,7 +10095,6 @@ const fishCN = {
   },
   27536: {
     _id: 27536,
-    name_chs: '大眼鱼',
     spearFishingId: 20107,
     locations: [642],
     gig: 4,
@@ -11017,7 +10106,6 @@ const fishCN = {
   },
   27537: {
     _id: 27537,
-    name_chs: '杰娜娜的泪珠',
     spearFishingId: 20118,
     locations: [638],
     gig: 4,
@@ -11029,7 +10117,6 @@ const fishCN = {
   },
   27538: {
     _id: 27538,
-    name_chs: '雏菊包头巾',
     spearFishingId: 20120,
     locations: [638],
     gig: 1,
@@ -11041,7 +10128,6 @@ const fishCN = {
   },
   27539: {
     _id: 27539,
-    name_chs: '海蓝钝口螈',
     spearFishingId: 20119,
     locations: [638],
     gig: 2,
@@ -11053,7 +10139,6 @@ const fishCN = {
   },
   27540: {
     _id: 27540,
-    name_chs: '小小爱神',
     spearFishingId: 20121,
     locations: [638],
     gig: 2,
@@ -11065,7 +10150,6 @@ const fishCN = {
   },
   27541: {
     _id: 27541,
-    name_chs: '皮亚雷鱼',
     spearFishingId: 20122,
     locations: [638],
     gig: 3,
@@ -11077,7 +10161,6 @@ const fishCN = {
   },
   27542: {
     _id: 27542,
-    name_chs: '孚布特多鳍鱼',
     spearFishingId: 20126,
     locations: [638],
     gig: 3,
@@ -11089,7 +10172,6 @@ const fishCN = {
   },
   27543: {
     _id: 27543,
-    name_chs: '孔雀鱼',
     spearFishingId: 20127,
     locations: [639],
     gig: 1,
@@ -11101,7 +10183,6 @@ const fishCN = {
   },
   27544: {
     _id: 27544,
-    name_chs: '锔瓷燕鱼',
     spearFishingId: 20123,
     locations: [639],
     gig: 1,
@@ -11113,7 +10194,6 @@ const fishCN = {
   },
   27545: {
     _id: 27545,
-    name_chs: '花芯鱼',
     spearFishingId: 20128,
     locations: [639],
     gig: 2,
@@ -11125,7 +10205,6 @@ const fishCN = {
   },
   27546: {
     _id: 27546,
-    name_chs: '镜像鱼',
     spearFishingId: 20124,
     locations: [639],
     gig: 4,
@@ -11137,7 +10216,6 @@ const fishCN = {
   },
   27547: {
     _id: 27547,
-    name_chs: '玻璃鳗',
     spearFishingId: 20125,
     locations: [639],
     gig: 3,
@@ -11149,7 +10227,6 @@ const fishCN = {
   },
   27548: {
     _id: 27548,
-    name_chs: '孚布特火蜥蜴',
     spearFishingId: 20129,
     locations: [639],
     gig: 3,
@@ -11161,7 +10238,6 @@ const fishCN = {
   },
   27549: {
     _id: 27549,
-    name_chs: '庭园跳鱼',
     spearFishingId: 20130,
     locations: [640],
     gig: 1,
@@ -11173,7 +10249,6 @@ const fishCN = {
   },
   27550: {
     _id: 27550,
-    name_chs: '时髦鱼',
     spearFishingId: 20131,
     locations: [640, 646],
     gig: 1,
@@ -11185,7 +10260,6 @@ const fishCN = {
   },
   27551: {
     _id: 27551,
-    name_chs: '绍尔迪雅红宝石',
     spearFishingId: 20142,
     locations: [640],
     gig: 2,
@@ -11197,7 +10271,6 @@ const fishCN = {
   },
   27552: {
     _id: 27552,
-    name_chs: '伪仙子',
     spearFishingId: 20132,
     locations: [640],
     gig: 2,
@@ -11209,7 +10282,6 @@ const fishCN = {
   },
   27553: {
     _id: 27553,
-    name_chs: '猎人矢',
     spearFishingId: 20133,
     locations: [640],
     gig: 3,
@@ -11221,7 +10293,6 @@ const fishCN = {
   },
   27554: {
     _id: 27554,
-    name_chs: '水妖吞噬者',
     spearFishingId: 20134,
     locations: [640],
     gig: 4,
@@ -11233,7 +10304,6 @@ const fishCN = {
   },
   27555: {
     _id: 27555,
-    name_chs: '天堂蟹',
     spearFishingId: 20135,
     locations: [641, 646],
     gig: 1,
@@ -11245,7 +10315,6 @@ const fishCN = {
   },
   27556: {
     _id: 27556,
-    name_chs: '圣法斯里克的怒发',
     spearFishingId: 20136,
     locations: [641],
     gig: 1,
@@ -11257,7 +10326,6 @@ const fishCN = {
   },
   27557: {
     _id: 27557,
-    name_chs: '女王的礼服',
     spearFishingId: 20137,
     locations: [641],
     gig: 2,
@@ -11269,7 +10337,6 @@ const fishCN = {
   },
   27558: {
     _id: 27558,
-    name_chs: '开花凯尔派',
     spearFishingId: 20143,
     locations: [641],
     gig: 2,
@@ -11281,7 +10348,6 @@ const fishCN = {
   },
   27559: {
     _id: 27559,
-    name_chs: '食尸鬼鱼',
     spearFishingId: 20144,
     locations: [641, 646],
     gig: 3,
@@ -11293,7 +10359,6 @@ const fishCN = {
   },
   27560: {
     _id: 27560,
-    name_chs: '柠檬黄鱼',
     spearFishingId: 20145,
     locations: [641],
     gig: 4,
@@ -11305,7 +10370,6 @@ const fishCN = {
   },
   27561: {
     _id: 27561,
-    name_chs: '多恩之角',
     spearFishingId: 20146,
     locations: [642],
     gig: 1,
@@ -11317,7 +10381,6 @@ const fishCN = {
   },
   27562: {
     _id: 27562,
-    name_chs: '水花',
     spearFishingId: 20148,
     locations: [642],
     gig: 1,
@@ -11329,7 +10392,6 @@ const fishCN = {
   },
   27563: {
     _id: 27563,
-    name_chs: '小丑鱼',
     spearFishingId: 20149,
     locations: [642],
     gig: 2,
@@ -11341,7 +10403,6 @@ const fishCN = {
   },
   27564: {
     _id: 27564,
-    name_chs: '蓝电鱼',
     spearFishingId: 20150,
     locations: [642, 646],
     gig: 3,
@@ -11353,7 +10414,6 @@ const fishCN = {
   },
   27565: {
     _id: 27565,
-    name_chs: '秋意落叶',
     spearFishingId: 20151,
     locations: [642],
     gig: 3,
@@ -11365,7 +10425,6 @@ const fishCN = {
   },
   27566: {
     _id: 27566,
-    name_chs: '大琉璃龙睛',
     spearFishingId: 20161,
     locations: [646],
     gig: 2,
@@ -11379,7 +10438,6 @@ const fishCN = {
   },
   27567: {
     _id: 27567,
-    name_chs: '古代仙子',
     spearFishingId: 20155,
     locations: [646],
     gig: 2,
@@ -11393,7 +10451,6 @@ const fishCN = {
   },
   27568: {
     _id: 27568,
-    name_chs: '踝陆蟹',
     spearFishingId: 20138,
     locations: [643],
     gig: 1,
@@ -11405,7 +10462,6 @@ const fishCN = {
   },
   27569: {
     _id: 27569,
-    name_chs: '大树之鳞',
     spearFishingId: 20139,
     locations: [643],
     gig: 1,
@@ -11417,7 +10473,6 @@ const fishCN = {
   },
   27570: {
     _id: 27570,
-    name_chs: '隆卡琵琶鱼',
     spearFishingId: 20140,
     locations: [643, 696, 697],
     gig: 4,
@@ -11429,7 +10484,6 @@ const fishCN = {
   },
   27571: {
     _id: 27571,
-    name_chs: '暴食蟹',
     spearFishingId: 20141,
     locations: [643, 647],
     gig: 2,
@@ -11441,7 +10495,6 @@ const fishCN = {
   },
   27572: {
     _id: 27572,
-    name_chs: '加托尔的汗水',
     spearFishingId: 20156,
     locations: [643],
     gig: 3,
@@ -11453,7 +10506,6 @@ const fishCN = {
   },
   27573: {
     _id: 27573,
-    name_chs: '钻石骨舌鱼',
     spearFishingId: 20162,
     locations: [643, 647],
     gig: 3,
@@ -11465,7 +10517,6 @@ const fishCN = {
   },
   27574: {
     _id: 27574,
-    name_chs: '隐者风帽',
     spearFishingId: 20152,
     locations: [644, 696, 697],
     gig: 4,
@@ -11477,7 +10528,6 @@ const fishCN = {
   },
   27575: {
     _id: 27575,
-    name_chs: '隐者蟹',
     spearFishingId: 20157,
     locations: [644],
     gig: 1,
@@ -11489,7 +10539,6 @@ const fishCN = {
   },
   27576: {
     _id: 27576,
-    name_chs: '巨型水虎鱼',
     spearFishingId: 20153,
     locations: [644, 647],
     gig: 2,
@@ -11501,7 +10550,6 @@ const fishCN = {
   },
   27577: {
     _id: 27577,
-    name_chs: '永暗鲈',
     spearFishingId: 20147,
     locations: [644],
     gig: 2,
@@ -11513,7 +10561,6 @@ const fishCN = {
   },
   27578: {
     _id: 27578,
-    name_chs: '洛查特尔巨骨舌鱼',
     spearFishingId: 20158,
     locations: [644],
     gig: 3,
@@ -11525,7 +10572,6 @@ const fishCN = {
   },
   27579: {
     _id: 27579,
-    name_chs: '安帕的使者',
     spearFishingId: 20163,
     locations: [644, 647],
     gig: 3,
@@ -11537,7 +10583,6 @@ const fishCN = {
   },
   27580: {
     _id: 27580,
-    name_chs: '维斯之耳',
     spearFishingId: 20164,
     locations: [647],
     gig: 1,
@@ -11551,7 +10596,6 @@ const fishCN = {
   },
   27581: {
     _id: 27581,
-    name_chs: '拉凯提卡虾虎',
     spearFishingId: 20159,
     locations: [647],
     gig: 1,
@@ -11565,7 +10609,6 @@ const fishCN = {
   },
   28065: {
     _id: 28065,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3179,
     bait: 27589,
@@ -11578,7 +10621,6 @@ const fishCN = {
   },
   28066: {
     _id: 28066,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3180,
     bait: 27590,
@@ -11591,7 +10633,6 @@ const fishCN = {
   },
   28067: {
     _id: 28067,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3181,
     bait: 27589,
@@ -11604,7 +10645,6 @@ const fishCN = {
   },
   28068: {
     _id: 28068,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3182,
     bait: 27585,
@@ -11617,7 +10657,6 @@ const fishCN = {
   },
   28069: {
     _id: 28069,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3183,
     bait: 27460,
@@ -11630,7 +10669,6 @@ const fishCN = {
   },
   28070: {
     _id: 28070,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3184,
     bait: 27589,
@@ -11643,7 +10681,6 @@ const fishCN = {
   },
   28071: {
     _id: 28071,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3185,
     bait: 27491,
@@ -11656,7 +10693,6 @@ const fishCN = {
   },
   28072: {
     _id: 28072,
-    fishEyes: 60,
     dataMissing: true,
     anglerFishId: 3186,
     bait: 27590,
@@ -11669,7 +10705,6 @@ const fishCN = {
   },
   28189: {
     _id: 28189,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3187,
     bait: 28634,
@@ -11682,7 +10717,6 @@ const fishCN = {
   },
   28190: {
     _id: 28190,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3188,
     bait: 28634,
@@ -11695,7 +10729,6 @@ const fishCN = {
   },
   28191: {
     _id: 28191,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3189,
     bait: 28634,
@@ -11708,7 +10741,6 @@ const fishCN = {
   },
   28192: {
     _id: 28192,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3190,
     bait: 28634,
@@ -11721,7 +10753,6 @@ const fishCN = {
   },
   28193: {
     _id: 28193,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3191,
     bait: 28634,
@@ -11734,7 +10765,6 @@ const fishCN = {
   },
   28719: {
     _id: 28719,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3192,
     bait: 27590,
@@ -11747,7 +10777,6 @@ const fishCN = {
   },
   28925: {
     _id: 28925,
-    fishEyes: false,
     dataMissing: null,
     anglerFishId: 3193,
     bait: 27589,
@@ -11760,7 +10789,6 @@ const fishCN = {
   },
   28926: {
     _id: 28926,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3194,
     bait: 27589,
@@ -11773,7 +10801,6 @@ const fishCN = {
   },
   28927: {
     _id: 28927,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3195,
     bait: 27461,
@@ -11786,7 +10813,6 @@ const fishCN = {
   },
   28928: {
     _id: 28928,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3196,
     bait: 27585,
@@ -11799,7 +10825,6 @@ const fishCN = {
   },
   28929: {
     _id: 28929,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3197,
     bait: 27587,
@@ -11812,7 +10837,6 @@ const fishCN = {
   },
   28930: {
     _id: 28930,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3198,
     bait: 27590,
@@ -11825,7 +10849,6 @@ const fishCN = {
   },
   29673: {
     _id: 29673,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3299,
     bait: 30136,
@@ -11835,7 +10858,6 @@ const fishCN = {
   },
   29678: {
     _id: 29678,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3300,
     bait: 30136,
@@ -11845,7 +10867,6 @@ const fishCN = {
   },
   30432: {
     _id: 30432,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3301,
     bait: 27582,
@@ -11858,7 +10879,6 @@ const fishCN = {
   },
   30433: {
     _id: 30433,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3302,
     bait: 27589,
@@ -11871,7 +10891,6 @@ const fishCN = {
   },
   30434: {
     _id: 30434,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3303,
     bait: 27589,
@@ -11884,7 +10903,6 @@ const fishCN = {
   },
   30435: {
     _id: 30435,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3304,
     bait: 27585,
@@ -11897,7 +10915,6 @@ const fishCN = {
   },
   30436: {
     _id: 30436,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3305,
     bait: 27589,
@@ -11910,7 +10927,6 @@ const fishCN = {
   },
   30437: {
     _id: 30437,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3306,
     bait: 27589,
@@ -11923,7 +10939,6 @@ const fishCN = {
   },
   30438: {
     _id: 30438,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3307,
     bait: 27590,
@@ -11936,7 +10951,6 @@ const fishCN = {
   },
   30439: {
     _id: 30439,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3308,
     bait: 27590,
@@ -11949,7 +10963,6 @@ const fishCN = {
   },
   30487: {
     _id: 30487,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3310,
     bait: 27590,
@@ -11962,7 +10975,6 @@ const fishCN = {
   },
   30488: {
     _id: 30488,
-    fishEyes: false,
     dataMissing: {
       weatherRestricted: false,
       timeRestricted: false,
@@ -11978,7 +10990,6 @@ const fishCN = {
   },
   30489: {
     _id: 30489,
-    fishEyes: false,
     dataMissing: {
       weatherRestricted: false,
       timeRestricted: false,
@@ -11994,7 +11005,6 @@ const fishCN = {
   },
   30490: {
     _id: 30490,
-    fishEyes: false,
     dataMissing: {
       weatherRestricted: false,
       timeRestricted: false,
@@ -12010,7 +11020,6 @@ const fishCN = {
   },
   30491: {
     _id: 30491,
-    fishEyes: false,
     dataMissing: {
       weatherRestricted: false,
       timeRestricted: false,
@@ -12026,7 +11035,6 @@ const fishCN = {
   },
   30492: {
     _id: 30492,
-    fishEyes: false,
     dataMissing: {
       weatherRestricted: false,
       timeRestricted: false,
@@ -12042,7 +11050,6 @@ const fishCN = {
   },
   30593: {
     _id: 30593,
-    fishEyes: false,
     dataMissing: true,
     anglerFishId: 3309,
     bait: 27587,
@@ -12055,7 +11062,6 @@ const fishCN = {
   },
   31129: {
     _id: 31129,
-    fishEyes: false,
     dataMissing: {
       weatherRestricted: false,
       timeRestricted: false,
@@ -12071,7 +11077,6 @@ const fishCN = {
   },
   31134: {
     _id: 31134,
-    fishEyes: false,
     dataMissing: {
       weatherRestricted: false,
       timeRestricted: false,
@@ -12091,7 +11096,6 @@ const fishCN = {
     patch: 5.45,
     folklore: null,
     collectable: true,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3436,
@@ -12102,7 +11106,6 @@ const fishCN = {
     patch: 5.45,
     folklore: null,
     collectable: true,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3437,
@@ -12114,7 +11117,6 @@ const fishCN = {
     anglerFishId: 3344,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: null,
@@ -12126,7 +11128,6 @@ const fishCN = {
     anglerFishId: 3345,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: null,
@@ -12138,7 +11139,6 @@ const fishCN = {
     anglerFishId: 3346,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: null,
@@ -12150,7 +11150,6 @@ const fishCN = {
     anglerFishId: 3347,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: null,
@@ -12162,7 +11161,6 @@ const fishCN = {
     anglerFishId: 3348,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: null,
@@ -12174,7 +11172,6 @@ const fishCN = {
     anglerFishId: 3349,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: null,
@@ -12185,7 +11182,6 @@ const fishCN = {
     patch: 5.5,
     folklore: null,
     collectable: true,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3449,
@@ -12196,7 +11192,6 @@ const fishCN = {
     patch: 5.5,
     folklore: null,
     collectable: true,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3450,
@@ -12207,7 +11202,6 @@ const fishCN = {
     patch: 5.5,
     folklore: null,
     collectable: true,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3451,
@@ -12218,7 +11212,6 @@ const fishCN = {
     patch: 5.5,
     folklore: null,
     collectable: true,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3452,
@@ -12229,7 +11222,6 @@ const fishCN = {
     patch: 5.5,
     folklore: null,
     collectable: true,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3453,
@@ -12241,7 +11233,6 @@ const fishCN = {
     patch: 5.55,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3454,
@@ -12253,7 +11244,6 @@ const fishCN = {
     patch: 5.55,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3455,
@@ -12265,7 +11255,6 @@ const fishCN = {
     patch: 5.55,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3456,
@@ -12277,7 +11266,6 @@ const fishCN = {
     patch: 5.55,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3457,
@@ -12289,7 +11277,6 @@ const fishCN = {
     patch: 5.55,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3458,
@@ -12301,7 +11288,6 @@ const fishCN = {
     patch: 5.55,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     anglerFishId: 3459,
@@ -12312,7 +11298,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12327,7 +11312,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12342,7 +11326,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12357,7 +11340,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12372,7 +11354,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12387,7 +11368,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12402,7 +11382,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12417,7 +11396,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12432,7 +11410,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12447,7 +11424,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12462,7 +11438,6 @@ const fishCN = {
     patch: 5.5,
     folklore: 2507,
     collectable: false,
-    fishEyes: false,
     gig: null,
     aquarium: null,
     dataMissing: {
@@ -12473,7 +11448,6 @@ const fishCN = {
   },
   2004952: {
     _id: 2004952,
-    fishEyes: false,
     anglerFishId: 47,
     locations: [2, 6],
     patch: 2,
@@ -12481,15 +11455,13 @@ const fishCN = {
   },
   4004975: {
     _id: 4004975,
-    fishEyes: false,
     anglerFishId: 86,
-    locations: [4, 92, 17, 105, 25],
+    locations: [4, 17, 25, 92, 105],
     patch: 2,
     collectable: false,
   },
   8004952: {
     _id: 8004952,
-    fishEyes: false,
     anglerFishId: 47,
     locations: [8, 11, 13],
     patch: 2,
@@ -12497,7 +11469,6 @@ const fishCN = {
   },
   19004963: {
     _id: 19004963,
-    fishEyes: false,
     anglerFishId: 64,
     locations: [19],
     patch: 2,
@@ -12505,7 +11476,6 @@ const fishCN = {
   },
   26005009: {
     _id: 26005009,
-    fishEyes: false,
     anglerFishId: 144,
     locations: [26, 28, 30],
     patch: 2,
@@ -12513,9 +11483,8 @@ const fishCN = {
   },
   31004937: {
     _id: 31004937,
-    fishEyes: false,
     anglerFishId: 24,
-    locations: [31, 28, 30, 32, 29],
+    locations: [28, 29, 30, 31, 32],
     patch: 2,
     folklore: null,
     collectable: false,
@@ -12524,7 +11493,6 @@ const fishCN = {
   },
   32005009: {
     _id: 32005009,
-    fishEyes: false,
     anglerFishId: 144,
     locations: [32],
     patch: 2,
@@ -12532,15 +11500,13 @@ const fishCN = {
   },
   36004885: {
     _id: 36004885,
-    fishEyes: false,
     anglerFishId: 45,
-    locations: [36, 35, 37, 38, 44, 45, 51, 60],
+    locations: [35, 36, 37, 38, 44, 45, 51, 60],
     patch: 2,
     collectable: false,
   },
   38004903: {
     _id: 38004903,
-    fishEyes: false,
     anglerFishId: 111,
     locations: [38, 51, 62, 74],
     patch: 2,
@@ -12548,23 +11514,20 @@ const fishCN = {
   },
   42004952: {
     _id: 42004952,
-    fishEyes: false,
     anglerFishId: 47,
-    locations: [42, 50, 14, 72, 73, 106],
+    locations: [14, 42, 50, 72, 73, 106],
     patch: 2,
     collectable: false,
   },
   46004885: {
     _id: 46004885,
-    fishEyes: false,
     anglerFishId: 45,
-    locations: [46, 59, 104, 70],
+    locations: [46, 59, 70, 104],
     patch: 2,
     collectable: false,
   },
   52004903: {
     _id: 52004903,
-    fishEyes: false,
     anglerFishId: 111,
     locations: [52],
     patch: 2,
@@ -12572,7 +11535,6 @@ const fishCN = {
   },
   55004975: {
     _id: 55004975,
-    fishEyes: false,
     anglerFishId: 86,
     locations: [55],
     patch: 2,
@@ -12580,7 +11542,6 @@ const fishCN = {
   },
   56004991: {
     _id: 56004991,
-    fishEyes: false,
     anglerFishId: 113,
     locations: [56],
     patch: 2,
@@ -12591,7 +11552,6 @@ const fishCN = {
   },
   99004991: {
     _id: 99004991,
-    fishEyes: false,
     anglerFishId: 113,
     locations: [99],
     patch: 2,
@@ -12602,7 +11562,6 @@ const fishCN = {
   },
   105004963: {
     _id: 105004963,
-    fishEyes: false,
     anglerFishId: 64,
     locations: [105],
     patch: 2,
@@ -12610,7 +11569,6 @@ const fishCN = {
   },
   109004937: {
     _id: 109004937,
-    fishEyes: false,
     anglerFishId: 24,
     locations: [109, 111, 112, 114, 115],
     patch: 2,
@@ -12621,7 +11579,6 @@ const fishCN = {
   },
   120012802: {
     _id: 120012802,
-    fishEyes: false,
     anglerFishId: 402,
     locations: [120],
     patch: 3,
@@ -12632,7 +11589,6 @@ const fishCN = {
   },
   121012754: {
     _id: 121012754,
-    fishEyes: false,
     anglerFishId: 354,
     locations: [121, 122, 123],
     patch: 3,
@@ -12643,7 +11599,6 @@ const fishCN = {
   },
   121012787: {
     _id: 121012787,
-    fishEyes: false,
     anglerFishId: 387,
     locations: [121, 123],
     patch: 3,
@@ -12651,7 +11606,6 @@ const fishCN = {
   },
   124012754: {
     _id: 124012754,
-    fishEyes: false,
     anglerFishId: 354,
     locations: [124],
     patch: 3,
@@ -12662,7 +11616,6 @@ const fishCN = {
   },
   124012787: {
     _id: 124012787,
-    fishEyes: false,
     anglerFishId: 387,
     locations: [124],
     patch: 3,
@@ -12670,7 +11623,6 @@ const fishCN = {
   },
   135012802: {
     _id: 135012802,
-    fishEyes: false,
     anglerFishId: 402,
     locations: [135],
     patch: 3,
@@ -12681,7 +11633,6 @@ const fishCN = {
   },
   175020036: {
     _id: 175020036,
-    fishEyes: false,
     anglerFishId: 574,
     locations: [175],
     patch: 4,
@@ -12692,7 +11643,6 @@ const fishCN = {
   },
   175020126: {
     _id: 175020126,
-    fishEyes: false,
     anglerFishId: 576,
     bait: 20127,
     locations: [175, 178],
@@ -12701,7 +11651,6 @@ const fishCN = {
   },
   175020132: {
     _id: 175020132,
-    fishEyes: false,
     anglerFishId: 580,
     locations: [175],
     patch: 4,
@@ -12709,7 +11658,6 @@ const fishCN = {
   },
   180020126: {
     _id: 180020126,
-    fishEyes: false,
     anglerFishId: 576,
     locations: [180],
     patch: 4,
@@ -12717,7 +11665,6 @@ const fishCN = {
   },
   180020132: {
     _id: 180020132,
-    fishEyes: false,
     anglerFishId: 580,
     locations: [180],
     patch: 4,
@@ -12725,7 +11672,6 @@ const fishCN = {
   },
   182020057: {
     _id: 182020057,
-    fishEyes: false,
     anglerFishId: 532,
     locations: [182],
     patch: 4,
@@ -12733,7 +11679,6 @@ const fishCN = {
   },
   182020058: {
     _id: 182020058,
-    fishEyes: false,
     anglerFishId: 518,
     locations: [182, 186],
     patch: 4,
@@ -12744,7 +11689,6 @@ const fishCN = {
   },
   184020057: {
     _id: 184020057,
-    fishEyes: false,
     anglerFishId: 532,
     locations: [184, 188],
     patch: 4,
@@ -12752,7 +11696,6 @@ const fishCN = {
   },
   185020058: {
     _id: 185020058,
-    fishEyes: false,
     anglerFishId: 518,
     locations: [185],
     patch: 4,
@@ -12763,7 +11706,6 @@ const fishCN = {
   },
   198020036: {
     _id: 198020036,
-    fishEyes: false,
     anglerFishId: 574,
     locations: [198],
     patch: 4,
