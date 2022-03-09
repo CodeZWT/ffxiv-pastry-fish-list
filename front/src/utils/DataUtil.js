@@ -9,7 +9,7 @@ import {
   mdiWeatherSunny,
   mdiWeatherSunset,
 } from '@mdi/js'
-import CONSTANTS, { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } from 'Data/constants'
+import CONSTANTS from 'Data/constants'
 import DATA from 'Data/data'
 import DATA_CN, { LIVING_LEGENDS } from 'Data/translation'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
@@ -85,7 +85,6 @@ const THEME_SETTING_MODES = ['DARK', 'LIGHT', 'AUTO']
 const DATA_LOCALES = ['chs', 'en', 'ja']
 const DATA_SUB_LOCALES = ['en', 'ja']
 const UI_LOCALES = ['zh-CN', 'en', 'ja']
-const REGIONS = ['CN', 'Global']
 
 function hasChineseCharacter(text) {
   return text.match('[\u4e00-\u9fff]+')
@@ -1126,8 +1125,8 @@ export default {
     WAITING: ['#2d2d32', '#272727'],
   },
 
-  PATCH_MAX: GLOBAL_PATCH_VERSION,
-  PATCH_AVAILABLE_MAX: CN_PATCH_VERSION,
+  PATCH_MAX: CONSTANTS.GLOBAL_PATCH_VERSION,
+  PATCH_AVAILABLE_MAX: CONSTANTS.CN_PATCH_VERSION,
   XIV_API_HOST: 'https://cafemaker.wakingsands.com', //'https://xivapi.com',
 
   COMPLETE_FILTER_TYPES: COMPLETE_FILTER_TYPES,
@@ -1458,8 +1457,9 @@ export default {
   DATA_LOCALES: DATA_LOCALES,
   DATA_SUB_LOCALES: DATA_SUB_LOCALES,
   UI_LOCALES: UI_LOCALES,
-  REGIONS: REGIONS,
-
+  REGIONS: CONSTANTS.REGIONS,
+  REGIONS_VERSION: [CONSTANTS.CN_PATCH_VERSION, CONSTANTS.GLOBAL_PATCH_VERSION],
+  toPatchStr: patch => (_.isInteger(patch) ? patch.toFixed(1) : patch.toFixed(2)),
   DETAIL_ITEM_DISPLAY_CONSTRAINTS: {
     DetailItemMap: 'hasFishingSpot',
     DetailItemCountdownBar: false,

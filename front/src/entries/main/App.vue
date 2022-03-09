@@ -591,7 +591,9 @@
                   :color="r === region ? 'primary' : undefined"
                   @click="region = r"
                 >
-                  <div>{{ $t(`top.region.${r}`) }}</div>
+                  <div>
+                    {{ $t(`top.region.${r}`) }} {{ toPatchStr(REGIONS_VERSION[index]) }}
+                  </div>
                 </v-btn>
               </div>
             </v-list-item-content>
@@ -1022,6 +1024,7 @@ export default {
         ImgUtil.getImgUrl('jp.svg', ImgUtil.CATEGORY.LANG),
       ],
       REGIONS: DataUtil.REGIONS,
+      REGIONS_VERSION: DataUtil.REGIONS_VERSION,
       showQuickSetting: false,
     }
   },
@@ -1170,6 +1173,7 @@ export default {
       })
   },
   methods: {
+    toPatchStr: DataUtil.toPatchStr,
     broadcastSystemInfoChanges() {
       sendElectronEvent('broadcast', {
         source: 'main',
