@@ -15462,7 +15462,7 @@ module.exports = {
     hookset: 'Powerful',
     biteSelf: false,
     predators: {},
-    bestCatchPath: [36590, 36412],
+    bestCatchPath: [36591, 36412],
     catchPathList: [
       [36589, 36412],
       [36590, 36412],
@@ -15676,7 +15676,7 @@ module.exports = {
     hookset: 'Powerful',
     biteSelf: true,
     predators: {},
-    bestCatchPath: [36592],
+    bestCatchPath: [36593],
     catchPathList: [[36592], [36593]],
     checkInfo: {
       weatherRestricted: false,
@@ -16472,7 +16472,7 @@ module.exports = {
     hookset: 'Powerful',
     biteSelf: false,
     predators: {},
-    bestCatchPath: [36594, 36470],
+    bestCatchPath:  [36595, 36470],
     catchPathList: [
       [36594, 36470],
       [36595, 36470],
@@ -16496,7 +16496,7 @@ module.exports = {
     hookset: 'Powerful',
     biteSelf: false,
     predators: {},
-    bestCatchPath: [36594],
+    bestCatchPath: [36595, 36470],
     catchPathList: [[36594], [36595], [36594, 36470], [36595, 36470]],
     checkInfo: {
       weatherRestricted: false,
@@ -16631,7 +16631,7 @@ module.exports = {
     hookset: 'Powerful',
     biteSelf: false,
     predators: {},
-    bestCatchPath: [36590, 36478],
+    bestCatchPath: [36591, 36478],
     catchPathList: [
       [36588, 36478],
       [36589, 36478],
@@ -17328,7 +17328,7 @@ module.exports = {
     hookset: 'Powerful',
     biteSelf: false,
     predators: {},
-    bestCatchPath: [36596, 36518],
+    bestCatchPath: [36597, 36518],
     catchPathList: [
       [36596, 36518],
       [36597, 36518],
