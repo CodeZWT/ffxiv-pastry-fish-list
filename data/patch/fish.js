@@ -1,5 +1,7 @@
 const { SystemInfo } = require("../version");
-const fishCN = {
+const knowledge = require("./fishKnowledge")
+const { keyBy } = require("Data/patch/utils");
+const fishGameDataCN = {
   4776: {
     _id: 4776,
     dataMissing: true,
@@ -13813,8 +13815,35 @@ const fishCN = {
     aquarium: null,
   },
 }
+const fishGameDataGlobalAddon = {}
+const combineKnowledge = (gameData) => {
+  return keyBy(Object.values(gameData).map(data => {
+    const k = knowledge[data._id]
+    return Object.assign({}, data, {
+      _id: k.id,
+      previousWeatherSet: k.prevWeathers,
+      weatherSet: k.weathers,
+      startHour: k.startHour,
+      startHourText: k.startHourText,
+      endHour: k.endHour,
+      endHourText: k.endHourText,
+      snagging: k.snagging,
+      tug: k.tug,
+      hookset: k.hookset,
+      biteSelf: k.biteSelf,
+      predators: k.predators,
+      predatorOrder: k.predatorsOrder,
+      bestCatchPath: k.bestCatchPath,
+      catchPathList: k.catchPathList,
+      checkInfo: k.checkInfo,
+    })
+  }), '_id')
+}
 
-const fishGlobalAddon = {}
+const fishCN = combineKnowledge(fishGameDataCN)
+
+const fishGlobalAddon = combineKnowledge(fishGameDataGlobalAddon)
+
 const fishGlobal = Object.assign({}, fishCN, fishGlobalAddon)
 
 module.exports = {

@@ -1178,9 +1178,6 @@ const fishParameterCN = [
   { _Key: 1175, Item: 32905, IsInLog: false },
   { _Key: 1176, Item: 32906, IsInLog: false },
   { _Key: 1177, Item: 32907, IsInLog: false },
-]
-
-const fishParameterGlobal = [
   {
     _Key: 0,
     Item: 0,
@@ -7652,6 +7649,8 @@ const fishParameterGlobal = [
     IsInLog: false,
   },
 ]
+
+const fishParameterGlobal = fishParameterCN
 
 module.exports = {
   CN: fishParameterCN,
