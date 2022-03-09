@@ -1250,17 +1250,17 @@ export default {
   font-display: swap;
 }
 
-.v-application .chs-font {
-  font-family: 'KaiTi', serif !important;
-}
+/*.v-application .chs-font {*/
+/*  font-family: 'KaiTi', serif !important;*/
+/*}*/
 
-.v-application .ja-font {
-  font-family: 'Yuji Syuku', serif !important;
-}
+/*.v-application .ja-font {*/
+/*  font-family: 'Yuji Syuku', serif !important;*/
+/*}*/
 
-.v-application .en-font {
-  font-family: 'Cormorant Upright', serif !important;
-}
+/*.v-application .en-font {*/
+/*  font-family: 'Cormorant Upright', serif !important;*/
+/*}*/
 
 .cafekit.ck-popup {
   z-index: 9999 !important;
