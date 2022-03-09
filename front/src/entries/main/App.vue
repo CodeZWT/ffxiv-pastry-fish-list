@@ -1146,17 +1146,15 @@ export default {
       this.showSearch = false
     },
   },
-  mounted() {
-    window.electron?.ipcRenderer?.on('showSpotPage', (event, spotId) => {
-      if (!window.location.hash.startsWith('#/wiki')) {
-        this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
-      }
-    })
-  },
   created() {
     window.electron?.ipcRenderer
       // ?.on('getUploadRecords', UploadUtil.sendUploadRecord)
       // ref https://gitee.com/api/v5/repos/ricecake500/pastry-fish-desktop/releases/latest
+      ?.on('showSpotPage', (event, spotId) => {
+        if (!window.location.hash.startsWith('#/wiki')) {
+          this.$router.push({ name: 'WikiPage', query: { spotId, mode: 'normal' } })
+        }
+      })
       ?.on('showUpdateDialog', (event, releaseInfo) => {
         this.showUpdateAvailableDialog = true
         this.releaseInfo = releaseInfo

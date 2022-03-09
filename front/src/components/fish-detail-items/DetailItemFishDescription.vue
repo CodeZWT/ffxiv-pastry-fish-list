@@ -45,7 +45,10 @@
 import { mdiBookshelf } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
-import garlandService, { toMultiLangDescription, toMultiLangFishGuide } from '@/service/garlandService'
+import garlandService, {
+  toMultiLangDescription,
+  toMultiLangFishGuide,
+} from '@/service/garlandService'
 
 export default {
   name: 'DetailItemFishDescription',

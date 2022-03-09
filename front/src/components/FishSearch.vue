@@ -178,6 +178,7 @@ export default {
         )
     },
     fishSearchData() {
+      if (Object.keys(this.fishDict).length === 0) return []
       return this.fishData.map(it => {
         const fishingSpots = this.fishDict[it._id].fishingSpots
         let spotText = fishingSpots
