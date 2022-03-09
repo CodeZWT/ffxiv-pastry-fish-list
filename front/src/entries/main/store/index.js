@@ -96,7 +96,6 @@ export const MainModule = {
     achievements: DATA_CN.OCEAN_FISHING_ACHIEVEMENTS,
     weatherRates: DATA.WEATHER_RATES,
     weatherTypes: DATA_CN.WEATHER_TYPES,
-    zones: DATA_CN.ZONES,
     bigFish: DATA_CN.BIG_FISH,
     folklore: DATA_CN.FOLKLORE,
     showSearchDialog: false,

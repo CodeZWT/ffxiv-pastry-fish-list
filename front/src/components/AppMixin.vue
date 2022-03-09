@@ -362,7 +362,6 @@ export default {
       'fish',
       'items',
       'fishingSpots',
-      'zones',
       'bigFish',
       'sounds',
       'showImportExportDialog',

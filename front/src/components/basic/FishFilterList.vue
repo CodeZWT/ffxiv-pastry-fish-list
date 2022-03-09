@@ -286,7 +286,6 @@ export default {
       allFish: 'fish',
       items: 'items',
       fishingSpots: 'fishingSpots',
-      zones: 'zones',
       bigFish: 'bigFish',
       sounds: 'sounds',
       showFishPageRightPane: 'showFishPageRightPane',
