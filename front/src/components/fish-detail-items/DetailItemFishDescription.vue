@@ -45,7 +45,7 @@
 import { mdiBookshelf } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
-import garlandService, { toMultiLangDescription } from '@/service/garlandService'
+import garlandService, { toMultiLangDescription, toMultiLangFishGuide } from '@/service/garlandService'
 
 export default {
   name: 'DetailItemFishDescription',
@@ -78,7 +78,7 @@ export default {
           this.loading = true
           const resp = await garlandService.getItem(id)
           this.description = DataUtil.getName(toMultiLangDescription(resp))
-          this.fishGuide = resp?.item?.fish?.guide ?? ''
+          this.fishGuide = DataUtil.getName(toMultiLangFishGuide(resp))
           this.ilvl = resp?.item?.ilvl ?? ''
           this.link = id ? DataUtil.toGarlandItemLink({ id }) : ''
           this.loading = false

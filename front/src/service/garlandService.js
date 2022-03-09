@@ -21,3 +21,11 @@ export const toMultiLangDescription = ret => {
     name_ja: ret?.item?.ja?.description ?? '',
   }
 }
+
+export const toMultiLangFishGuide = ret => {
+  return {
+    name_chs: ret?.item?.fish?.guide ?? '',
+    name_en: ret?.item?.fish?.en?.guide ?? '',
+    name_ja: ret?.item?.fish?.ja?.guide ?? '',
+  }
+}
