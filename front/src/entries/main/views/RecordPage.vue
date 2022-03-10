@@ -736,6 +736,15 @@ export default {
     },
   },
   data() {
+    const region2Spots = _.keyBy(
+      FishingSpotsGlobal.filter(it => it.id).map(region => {
+        return {
+          region: region.id,
+          spots: region.territories.flatMap(tt => tt.spots.map(spot => spot.id)),
+        }
+      }),
+      'region'
+    )
     return {
       mdiRefresh,
       mdiCheckDecagram,
@@ -873,16 +882,8 @@ export default {
           value: 'finished',
         },
       ],
-      region2Spots: _.keyBy(
-        FishingSpotsGlobal.filter(it => it.id).map(region => {
-          return {
-            region: region.id,
-            spots: region.territories.flatMap(tt => tt.spots.map(spot => spot.id)),
-          }
-        }),
-        'region'
-      ),
-      regionFilter: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      region2Spots: region2Spots,
+      regionFilter: [...Array(Object.keys(region2Spots).length).keys()],
     }
   },
   watch: {
