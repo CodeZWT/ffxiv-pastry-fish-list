@@ -143,8 +143,8 @@ export default {
     },
     dataOfSpot() {
       const fishIds = UploadUtil.fishListOfSpot(this.spotId)
-      const filterBaitOrSpotFish = ({ bait }) => {
-        return isBait(bait) != null || fishIds.includes(+bait)
+      const filterBaitOrSpotFish = ({ bait: baitOrFishItemId }) => {
+        return isBait(baitOrFishItemId) != null || fishIds.includes(+baitOrFishItemId)
       }
       const records = this.records
 
