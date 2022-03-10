@@ -25,9 +25,10 @@
           </div>
           <v-subheader>以下是问答环节：</v-subheader>
           <stats-explanation />
-          <v-btn color="primary" block outlined @click="showApplyDialog = true">
-            我已经认真读完了以上内容，申请成为志愿者
-          </v-btn>
+          <!--          <v-btn color="primary" block outlined @click="showApplyDialog = true">-->
+          <!--            我已经认真读完了以上内容，申请成为志愿者-->
+          <!--          </v-btn>-->
+          <!--  stats-explanation.md (暗号:钓鱼数据测试)  -->
         </v-card-text>
         <v-divider />
         <v-card-actions>
