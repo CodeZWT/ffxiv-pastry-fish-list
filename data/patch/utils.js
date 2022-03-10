@@ -33,7 +33,11 @@ const combineTerritory = (data, dataGlobalAddon) => {
   return Object.values(dict)
 }
 
+const toItemId = locItemIdOrItemId => +locItemIdOrItemId % 1000000
+
+
 module.exports = {
   combineRegion,
   keyBy,
+  toItemId,
 }

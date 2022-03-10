@@ -168,6 +168,7 @@ import RawItemIcon from '@/components/basic/RawItemIcon'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
 import _ from 'lodash'
+import { BAIT_IDS } from "Data/bait";
 
 export default {
   name: 'BaitDialog',
@@ -240,7 +241,7 @@ export default {
           }
         }
       )
-      const baitList = FIX.BAITS.map(
+      const baitList = BAIT_IDS.map(
         baitId => remainingBaitDict[baitId] ?? { baitId, fishIds: [] }
       )
 
@@ -255,7 +256,7 @@ export default {
         .map(it => this.assembleBait(it))
     },
     baitsForSearch() {
-      return FIX.BAITS.map(baitId => {
+      return BAIT_IDS.map(baitId => {
         return {
           id: baitId,
           name: this.getItemName(baitId),

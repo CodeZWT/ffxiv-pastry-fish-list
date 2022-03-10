@@ -1,3 +1,4 @@
+import { AQUARIUM_FISH_SIZE, AQUARIUM_WATER } from 'Data/fix'
 import { DateTime, FixedOffsetZone } from 'luxon'
 import { Howl } from 'howler'
 import { SystemInfo } from 'Data/version'
@@ -9,14 +10,14 @@ import {
   mdiWeatherSunny,
   mdiWeatherSunset,
 } from '@mdi/js'
+import { toItemId } from 'Data/patch/utils'
 import CONSTANTS from 'Data/constants'
 import DATA from 'Data/data'
 import DATA_CN, { LIVING_LEGENDS } from 'Data/translation'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EorzeaTime from '@/utils/Time'
 import FISH from 'Data/fish'
-import FIX, { AQUARIUM_FISH_SIZE, AQUARIUM_WATER } from 'Data/fix'
 import FishWindow from '@/utils/FishWindow'
+import ITEMS from 'Data/item'
 import ImgUtil from '@/utils/ImgUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 import TimeFormatter from '@/utils/TimeFormatter'
@@ -97,15 +98,6 @@ function isAllAvailableFish(fish) {
     fish.startHour === 0 &&
     fish.endHour === 24
   )
-}
-
-function toItemId(fishLocationId) {
-  const idNum = +fishLocationId
-  if (idNum >= 1000001) {
-    return idNum % 1000000
-  } else {
-    return idNum
-  }
 }
 
 function toComparableVersion(version) {
@@ -1498,7 +1490,7 @@ export default {
   READER_SOUNDS: READER_SOUNDS,
 
   FISH_DATA: FISH,
-  ITEMS: _.merge(DATA_CN.ITEMS, DevelopmentModeUtil.isTest() ? FIX.TEST_ITEMS : {}),
+  ITEMS: ITEMS,
   FISHING_SPOTS: _.merge(DATA.FISHING_SPOTS, DATA_CN.FISHING_SPOTS),
   FISH_ID_TO_WIKI_IDS: generateFishId2WikiId(FISH),
 }

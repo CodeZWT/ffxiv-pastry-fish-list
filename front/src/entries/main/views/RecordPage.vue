@@ -376,9 +376,9 @@
                   </template>
                   <template v-slot:item.finished="{ item }">
                     <div class="d-flex align-center">
-                      <v-icon v-if="item.finished" color="primary">{{
-                        mdiCheckDecagram
-                      }}</v-icon>
+                      <v-icon v-if="item.finished" color="primary"
+                        >{{ mdiCheckDecagram }}
+                      </v-icon>
                     </div>
                   </template>
                 </v-data-table>
@@ -677,7 +677,7 @@
     </v-tabs-items>
     <rc-dialog v-model="showDeleteAlert" max-width="600">
       <v-card>
-        <v-card-title> 删除确认 </v-card-title>
+        <v-card-title> 删除确认</v-card-title>
         <v-card-text>
           是否确认删除本条记录？建议只删除错误数据（如异常的咬钩时长，不可能的鱼饵）。
           对于严格模式下由于技能或未提钩造成的数据，请使用清除严格标记功能。
@@ -692,6 +692,7 @@
 </template>
 
 <script>
+import { BAIT_IDS } from 'Data/bait'
 import { Global as FishingSpotsGlobal } from 'Data/patch/fishingSpots'
 import { filter, flow, groupBy, mapValues } from 'lodash/fp'
 import {
@@ -702,7 +703,6 @@ import {
   mdiFlagRemoveOutline,
   mdiRefresh,
 } from '@mdi/js'
-import BAITS from 'Data/bait'
 import Constants from 'Data/constants'
 import DataUtil from '@/utils/DataUtil'
 import DateTimeInput from '@/components/basic/DateTimeInput'
@@ -1248,15 +1248,12 @@ export default {
     baitForSearch() {
       return [{ id: -1, name: '未知' }]
         .concat(
-          _.uniqBy(
-            Object.entries(BAITS).map(([id, name]) => {
-              return {
-                id: DataUtil.toItemId(id),
-                name: name,
-              }
-            }),
-            'id'
-          )
+          BAIT_IDS.map(id => {
+            return {
+              id: id,
+              name: DataUtil.getItemName(id),
+            }
+          })
         )
         .concat(this.fishOptions)
     },

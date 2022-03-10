@@ -309,36 +309,29 @@
 </template>
 
 <script>
-import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
-import { invokeElectronEvent, sendElectronEvent } from '@/utils/electronHelper'
-import { mapGetters, mapMutations, mapState } from 'vuex'
-import {
-  mdiArrowUpBold,
-  mdiArrowUpBoldOutline,
-  mdiClose,
-  mdiFileRemove,
-  mdiFileTable,
-  mdiHelpCircle,
-} from '@mdi/js'
-import BAITS from 'Data/bait'
-import COMMON from 'Data/common'
-import DataUtil from '@/utils/DataUtil'
-import EffectIcon from '@/components/basic/EffectIcon'
-import EnvMixin from '@/components/basic/EnvMixin'
-import EorzeaTime from '@/utils/Time'
-import FishDict from 'Data/fish'
-import ItemIcon from '@/components/basic/ItemIcon'
-import NewFeatureMark from '@/components/basic/NewFeatureMark'
-import PLACE_NAMES from 'Data/locale/placeNames'
-import PinyinMatch from 'pinyin-match'
-import RcAutocomplete from '@/components/basic/RcAutocomplete'
-import RcDialog from '@/components/basic/RcDialog'
-import RcTooltip from '@/components/basic/RcTooltip'
-import SPOT_FISH_DICT from 'Data/spotFishDict'
-import UploadUtil from '@/utils/UploadUtil'
-import Weather from '@/utils/Weather'
-import _ from 'lodash'
-import dataLoader from '@/utils/dataLoader'
+import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from "Data/constants";
+import { invokeElectronEvent, sendElectronEvent } from "@/utils/electronHelper";
+import { mapGetters, mapMutations, mapState } from "vuex";
+import { mdiArrowUpBold, mdiArrowUpBoldOutline, mdiClose, mdiFileRemove, mdiFileTable, mdiHelpCircle } from "@mdi/js";
+import { BAIT_IDS } from "Data/bait";
+import COMMON from "Data/common";
+import DataUtil from "@/utils/DataUtil";
+import EffectIcon from "@/components/basic/EffectIcon";
+import EnvMixin from "@/components/basic/EnvMixin";
+import EorzeaTime from "@/utils/Time";
+import FishDict from "Data/fish";
+import ItemIcon from "@/components/basic/ItemIcon";
+import NewFeatureMark from "@/components/basic/NewFeatureMark";
+import PLACE_NAMES from "Data/locale/placeNames";
+import PinyinMatch from "pinyin-match";
+import RcAutocomplete from "@/components/basic/RcAutocomplete";
+import RcDialog from "@/components/basic/RcDialog";
+import RcTooltip from "@/components/basic/RcTooltip";
+import SPOT_FISH_DICT from "Data/spotFishDict";
+import UploadUtil from "@/utils/UploadUtil";
+import Weather from "@/utils/Weather";
+import _ from "lodash";
+import dataLoader from "@/utils/dataLoader";
 
 const INITIAL_LOADING_CNT = 100
 const LOAD_MORE_CNT = 100
@@ -420,7 +413,7 @@ export default {
       return []
         .concat(
           _.uniqBy(
-            Object.keys(BAITS).map(itemId => {
+            BAIT_IDS.map(itemId => {
               return {
                 id: DataUtil.toItemId(itemId),
                 name: DataUtil.getItemName(itemId),

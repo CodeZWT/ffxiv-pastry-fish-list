@@ -45,15 +45,15 @@
 </template>
 
 <script>
-import echarts from '@/plugins/echarts'
+import echarts from "@/plugins/echarts";
 
-import { filter, flow, groupBy, mapValues } from 'lodash/fp'
-import BAITS from 'Data/bait'
-import DataUtil from '@/utils/DataUtil'
-import EnvMixin from '@/components/basic/EnvMixin'
-import ItemIcon from '@/components/basic/ItemIcon'
-import UploadUtil from '@/utils/UploadUtil'
-import _ from 'lodash'
+import { filter, flow, groupBy, mapValues } from "lodash/fp";
+import { isBait } from "Data/bait";
+import DataUtil from "@/utils/DataUtil";
+import EnvMixin from "@/components/basic/EnvMixin";
+import ItemIcon from "@/components/basic/ItemIcon";
+import UploadUtil from "@/utils/UploadUtil";
+import _ from "lodash";
 
 export default {
   name: 'BiteIntervalChart',
@@ -144,7 +144,7 @@ export default {
     dataOfSpot() {
       const fishIds = UploadUtil.fishListOfSpot(this.spotId)
       const filterBaitOrSpotFish = ({ bait }) => {
-        return BAITS[bait] != null || fishIds.includes(+bait)
+        return isBait(bait) != null || fishIds.includes(+bait)
       }
       const records = this.records
 
