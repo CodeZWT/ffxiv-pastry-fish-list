@@ -45,15 +45,15 @@
 </template>
 
 <script>
-import echarts from "@/plugins/echarts";
+import echarts from '@/plugins/echarts'
 
-import { filter, flow, groupBy, mapValues } from "lodash/fp";
-import { isBait } from "Data/bait";
-import DataUtil from "@/utils/DataUtil";
-import EnvMixin from "@/components/basic/EnvMixin";
-import ItemIcon from "@/components/basic/ItemIcon";
-import UploadUtil from "@/utils/UploadUtil";
-import _ from "lodash";
+import { filter, flow, groupBy, mapValues } from 'lodash/fp'
+import { isBait } from 'Data/bait'
+import DataUtil from '@/utils/DataUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
+import ItemIcon from '@/components/basic/ItemIcon'
+import UploadUtil from '@/utils/UploadUtil'
+import _ from 'lodash'
 
 export default {
   name: 'BiteIntervalChart',

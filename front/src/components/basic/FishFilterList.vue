@@ -224,7 +224,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from "vuex";
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import {
   mdiBellOutline,
   mdiCheckAll,
@@ -234,16 +234,15 @@ import {
   mdiHelpCircleOutline,
   mdiInformation,
   mdiLock,
-  mdiPinOutline
-} from "@mdi/js";
-import DataUtil from "@/utils/DataUtil";
-import DevelopmentModeUtil from "@/utils/DevelopmentModeUtil";
-import { BAIT_IDS } from "Data/bait";
-import FishFilter from "@/components/FishFilter";
-import FishList from "@/components/FishList";
-import ItemIcon from "@/components/basic/ItemIcon";
-import PageMixin from "@/components/OceanFishingFishList/PageMixin";
-import _ from "lodash";
+  mdiPinOutline,
+} from '@mdi/js'
+import DataUtil from '@/utils/DataUtil'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
+import FishFilter from '@/components/FishFilter'
+import FishList from '@/components/FishList'
+import ItemIcon from '@/components/basic/ItemIcon'
+import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import _ from 'lodash'
 
 export default {
   name: 'FishFilterList',

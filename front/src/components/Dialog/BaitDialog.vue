@@ -158,17 +158,16 @@
 </template>
 
 <script>
+import { BAIT_IDS } from 'Data/bait'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
-import FIX from 'Data/fix'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
 import _ from 'lodash'
-import { BAIT_IDS } from "Data/bait";
 
 export default {
   name: 'BaitDialog',
