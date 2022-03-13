@@ -1,17 +1,10 @@
 import * as cjson from 'compressed-json'
 import { INTERVAL_MINUTE, UPLOAD_LIMIT } from 'Data/constants'
 import { decode, decodeAsync } from '@msgpack/msgpack'
-import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
-const host = DevelopmentModeUtil.isTest()
-  ? 'https://rcapi.traveleorzea.com' //'http://localhost:3100'
-  : 'https://rcapi.traveleorzea.com'
-// const DATA_HOST =
-const DATA_HOST =
-  DevelopmentModeUtil.siteRegion() === 'Global'
-    ? 'https://cdn.jsdelivr.net/gh/ricecake404/pastry-fish-static-files@main'
-    : 'https://rcstatic.traveleorzea.com/pastry-fish-statistics-files'
+const host = process.env.VUE_APP_RC_SERVER_HOST
+const DATA_HOST = process.env.VUE_APP_RC_STATIC_HOST
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
 export const TEMP_RC_ACCESS_TOKEN_KEY = 'TEMP_RC_ACCESS_TOKEN'
 export const RC_USER_PROFILE_KEY = 'RC_USER_PROFILE'

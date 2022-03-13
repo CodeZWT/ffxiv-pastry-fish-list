@@ -125,14 +125,14 @@ function toHuijiWikiItemLink({ name }) {
   return `https://ff14.huijiwiki.com/wiki/%E7%89%A9%E5%93%81:${encodeURI(name)}`
 }
 
-const GARLAND_BASE_URL = 'https://ffxiv.cyanclay.xyz/db'
+const GARLAND_BASE_URL = process.env.VUE_APP_GARLAND_HOST
 
 function toGarlandItemLink({ id }) {
-  return `${GARLAND_BASE_URL}/#item/${id}`
+  return `${GARLAND_BASE_URL}/db/#item/${id}`
 }
 
 function toGarlandSpotLink({ id }) {
-  return `${GARLAND_BASE_URL}/#fishing/${id}`
+  return `${GARLAND_BASE_URL}/db/#fishing/${id}`
 }
 
 const TEAMCRAFT_BASE_URL = 'https://ffxivteamcraft.com/db/zh'
@@ -234,7 +234,7 @@ export default {
     },
     GARLAND: {
       id: 'GARLAND',
-      icon: 'https://ffxiv.cyanclay.xyz/favicon.png',
+      icon: `${process.env.VUE_APP_GARLAND_HOST}/favicon.png`,
       title: 'Garland 数据',
       itemV2Fn: toGarlandItemLink,
       fishFn: toGarlandItemLink,
@@ -250,7 +250,7 @@ export default {
     },
   },
   itemIconUrlOf(iconId) {
-    return `https://ffxiv.cyanclay.xyz/files/icons/item/t/${iconId}.png`
+    return `${process.env.VUE_APP_GARLAND_HOST}/files/icons/item/t/${iconId}.png`
   },
   iconIdToUrl(iconId) {
     if (iconId == null) return ''

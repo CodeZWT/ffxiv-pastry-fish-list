@@ -772,7 +772,7 @@
                   </a>
                 </li>
                 <li>
-                  <a @click="goTo('https://ffxiv.cyanclay.xyz/db/')">Garland 数据</a>
+                  <a @click="goTo(GARLAND_HOST)">Garland 数据</a>
                 </li>
                 <li><a @click="goTo('https://cn.ff14angler.com/')">饥饿的猫</a></li>
                 <li>
@@ -969,6 +969,7 @@ export default {
   mixins: [AppMixin, MainWindowMixin, AlarmMixin],
   data() {
     return {
+      GARLAND_HOST: process.env.VUE_APP_GARLAND_HOST,
       mdiClose,
       mdiAccount,
       mdiChartBar,
