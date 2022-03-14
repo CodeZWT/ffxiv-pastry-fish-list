@@ -2,26 +2,23 @@
   <div>
     <rc-tooltip v-if="!isMobile" :message="$t('setting.announcement')" bottom>
       <v-btn icon text @click="forceShow = true">
-        <v-icon>{{ bellIcon }}</v-icon>
+        <v-icon>{{ messageIcon }}</v-icon>
       </v-btn>
     </rc-tooltip>
 
     <rc-dialog
       v-if="currAnnouncement"
       :value="show"
-      @input="$emit('input', $event)"
+      @input="handleClose"
       max-width="600"
       scrollable
-      persistent
+      :persistent="hasUnreadAnnouncement"
     >
       <v-card>
         <v-card-title>{{ currAnnouncement.title }}</v-card-title>
         <v-card-subtitle>
           {{ new Date(currAnnouncement.updatedAt).toLocaleString() }}
         </v-card-subtitle>
-        <v-subheader v-if="currAnnouncement.description">
-          {{ currAnnouncement.description }}
-        </v-subheader>
         <v-card-text>
           <div class="markdown-body" v-html="currAnnouncementContent"></div>
         </v-card-text>
@@ -38,7 +35,7 @@
 <script>
 import * as MarkdownIt from 'markdown-it'
 import { mapMutations, mapState } from 'vuex'
-import { mdiBellBadge, mdiBellOutline } from '@mdi/js'
+import { mdiMessageBadge, mdiMessageOutline } from '@mdi/js'
 import EnvMixin from '@/components/basic/EnvMixin'
 import RcDialog from '@/components/basic/RcDialog'
 import RcTooltip from '@/components/basic/RcTooltip'
@@ -56,8 +53,8 @@ export default {
   },
   data() {
     return {
-      mdiBellOutline,
-      mdiBellBadge,
+      mdiMessageBadge,
+      mdiMessageOutline,
       forceShow: false,
       md: new MarkdownIt(),
       currAnnouncementIndex: -1,
@@ -65,8 +62,8 @@ export default {
   },
   computed: {
     ...mapState('announcement', ['announcements']),
-    bellIcon() {
-      return this.hasUnreadAnnouncement ? mdiBellBadge : mdiBellOutline
+    messageIcon() {
+      return this.hasUnreadAnnouncement ? mdiMessageBadge : mdiMessageOutline
     },
     hasUnreadAnnouncement() {
       return this.announcements[this.currAnnouncementIndex]?.unread
@@ -88,26 +85,34 @@ export default {
     },
   },
   async created() {
-    const annoInfoList = await rcapiService.getAnnouncementList()
-    if (annoInfoList.length > 0) {
-      const annoList = []
-      for await (const annoInfo of annoInfoList) {
-        const anno = await rcapiService.getAnnouncement(annoInfo.id)
-        annoList.push(anno)
-      }
-      this.updateAnnouncements(annoList)
-      // TODO implement announcement list panel
-      if (annoList.length > 0) {
-        this.currAnnouncementIndex = 0
-      }
-    }
+    this.fetchAnnouncement()
+    setInterval(() => this.fetchAnnouncement(), 10 * 60 * 1000)
   },
   methods: {
     ...mapMutations('announcement', ['updateAnnouncements', 'confirmRead']),
     onConfirmRead() {
-      this.forceShow = false
+      this.handleClose()
       if (this.currAnnouncementId) {
         this.confirmRead(this.currAnnouncementId)
+      }
+    },
+    handleClose() {
+      this.forceShow = false
+    },
+    async fetchAnnouncement() {
+      console.debug('[Announcement] Checking Announcement')
+      const annoInfoList = await rcapiService.getAnnouncementList()
+      if (annoInfoList.length > 0) {
+        const annoList = []
+        for await (const annoInfo of annoInfoList) {
+          const anno = await rcapiService.getAnnouncement(annoInfo.id)
+          annoList.push(anno)
+        }
+        this.updateAnnouncements(annoList)
+        // TODO implement announcement list panel
+        if (annoList.length > 0) {
+          this.currAnnouncementIndex = 0
+        }
       }
     },
   },
