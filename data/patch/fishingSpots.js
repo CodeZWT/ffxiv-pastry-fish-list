@@ -1,5 +1,5 @@
 const { SystemInfo } = require('../version')
-const { combineRegion } = require('Data/patch/utils')
+const { combineRegion } = require('./utils')
 const spotCN = [
   {
     id: 22,

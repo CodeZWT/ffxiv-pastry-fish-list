@@ -1,6 +1,6 @@
 const { SystemInfo } = require("../version");
 const knowledge = require("./fishKnowledge")
-const { keyBy } = require("Data/patch/utils");
+const { keyBy } = require("./utils");
 const fishGameDataCN = {
   4776: {
     _id: 4776,
