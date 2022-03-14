@@ -149,6 +149,8 @@
         </i18n>
       </v-tooltip>
 
+      <main-announcement />
+
       <rc-tooltip v-if="!isMobile" :message="$t('setting.quickSetting')" bottom>
         <v-btn icon text @click="toggleQuickSetting">
           <v-icon>{{ mdiCog }}</v-icon>
@@ -956,6 +958,7 @@ import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import ImgUtil from '@/utils/ImgUtil'
 import LINK from 'Data/link'
+import MainAnnouncement from '@/components/main/MainAnnouncement'
 import MainWindowMixin from '@/components/MainWindowMixin'
 import RcDialog from '@/components/basic/RcDialog'
 import RcTooltip from '@/components/basic/RcTooltip'
@@ -965,7 +968,7 @@ import beianIcon from 'Assets/beian-icon.png'
 
 export default {
   name: 'App',
-  components: { RcTooltip, RegionNotificationDialog, RcDialog },
+  components: { MainAnnouncement, RcTooltip, RegionNotificationDialog, RcDialog },
   mixins: [AppMixin, MainWindowMixin, AlarmMixin],
   data() {
     return {

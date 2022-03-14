@@ -1,4 +1,5 @@
 import { AlarmModule } from '@/entries/main/store/alarm'
+import { AnnouncementModule } from '@/entries/main/store/announcement'
 import { DialogModule } from '@/entries/screen/store/dialog'
 import { FlagModule } from '@/entries/screen/store/oneTimeFlag'
 import { KeybindingModule } from '@/entries/screen/store/keybinding'
@@ -84,8 +85,19 @@ const vuexLocal = new VuexPersistence({
   },
 })
 
+const announcementStorage = new VuexPersistence({
+  key: 'RC_ANNOUNCEMENT',
+  storage: window.localStorage,
+  filter: mutation => {
+    return mutation.type.startsWith('announcement/')
+  },
+  reducer: state => {
+    return { announcement: state.announcement }
+  },
+})
+
 export const MainModule = {
-  plugins: [ScreenPluginOf(router), vuexLocal.plugin],
+  plugins: [ScreenPluginOf(router), vuexLocal.plugin, announcementStorage.plugin],
   state: {
     window: 'main',
     now: Date.now(),
@@ -731,6 +743,7 @@ export const MainModule = {
     flag: FlagModule,
     alarm: AlarmModule,
     localSetting: LocalSettingModule,
+    announcement: AnnouncementModule,
   },
 }
 

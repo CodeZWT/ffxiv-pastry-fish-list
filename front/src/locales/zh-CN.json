@@ -152,7 +152,13 @@
       "loading": "加载中...",
       "more": "更多",
       "reloadAfterSetting": "设置成功，即将重新加载页面，请稍后...",
-      "selectAll": "全选"
+      "selectAll": "全选",
+      "dialog": {
+        "apply": "应用",
+        "cancel": "取消",
+        "close": "关闭",
+        "confirm": "确认"
+      }
     }
   },
   "contact": {
@@ -606,6 +612,7 @@
     },
     "openSetting": "查看所有设置",
     "quickSetting": "快捷设置",
+    "announcement": "通知",
     "theme": {
       "hint": "WINDOWS10: 设置 -> 颜色 -> 选择颜色",
       "title": "主题"

@@ -3,7 +3,7 @@ import { INTERVAL_MINUTE, UPLOAD_LIMIT } from 'Data/constants'
 import { decode, decodeAsync } from '@msgpack/msgpack'
 import LocalStorageUtil from '@/utils/LocalStorageUtil'
 
-const host = process.env.VUE_APP_RC_SERVER_HOST
+const host = process.env.VUE_APP_RC_SERVER_HOST //'http://localhost:3100'
 const DATA_HOST = process.env.VUE_APP_RC_STATIC_HOST
 export const RC_ACCESS_TOKEN_KEY = 'RC_ACCESS_TOKEN'
 export const TEMP_RC_ACCESS_TOKEN_KEY = 'TEMP_RC_ACCESS_TOKEN'
@@ -319,6 +319,30 @@ export default {
 
   async getSponsors() {
     const response = await fetch(`${host}/afdian/sponsors`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'GET',
+    })
+    if (response.ok) {
+      return await response.json()
+    }
+  },
+
+  async getAnnouncementList() {
+    const response = await fetch(`${host}/wiki/announcements`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'GET',
+    })
+    if (response.ok) {
+      return await response.json()
+    }
+  },
+
+  async getAnnouncement(id) {
+    const response = await fetch(`${host}/wiki/announcements/${id}`, {
       headers: {
         'content-type': 'application/json',
       },
