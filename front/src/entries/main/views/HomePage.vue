@@ -374,10 +374,7 @@ export default {
       )
     },
     largeLogo() {
-      return ImgUtil.getImgUrl(
-        'pastry-fish-fes-valentione.webp',
-        ImgUtil.CATEGORY.HOME_LOGO
-      )
+      return ImgUtil.getImgUrl('pastry-fish-home-logo.webp', ImgUtil.CATEGORY.HOME_LOGO)
     },
     version() {
       return version
