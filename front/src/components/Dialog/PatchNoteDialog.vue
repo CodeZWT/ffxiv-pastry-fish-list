@@ -27,6 +27,23 @@
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
+            <div class="text-h6">Version 1.2.0</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2022/03/15 10:00</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>更新国服6.0数据支持（！！！注意可能的剧透！！！）</li>
+          <li>
+            PS：点击右上角齿轮图标可以打开快捷设置，切换国际服国服可以显示对应数据（目前国服6.0与国际服6.08并没有区别）
+          </li>
+          <li>增加通知系统，每次启动鱼糕时若有新通知将会弹窗显示。</li>
+        </ul>
+        <v-divider />
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
             <div class="text-h6">Version 1.1.10</div>
             <v-spacer />
             <div class="text-subtitle-1">更新时间: 2022/03/06 16:50</div>

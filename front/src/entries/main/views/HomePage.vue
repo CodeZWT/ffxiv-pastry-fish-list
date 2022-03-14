@@ -25,16 +25,8 @@
               <v-card-text class="text-subtitle-1">
                 <div v-html="$t('homePage.description')"></div>
                 <div class="d-flex align-center mt-2">
-                  <v-badge inline color="warning" content="Fix" />
-                  <div>修复刺鱼鱼识及鱼影条件在搜索与笔记页面没有正常显示的问题</div>
-                </div>
-                <div class="d-flex align-center mt-2">
-                  <v-badge inline color="primary" content="New" />
-                  <div>鱼详情中增加资料功能</div>
-                </div>
-                <div class="d-flex align-center mt-2">
-                  <v-badge inline color="primary" content="New" />
-                  <div>增加钓场多语言支持</div>
+                  <v-badge inline color="warning" content="New" />
+                  <div>更新国服6.0数据支持（！！！注意可能的剧透！！！）</div>
                 </div>
               </v-card-text>
             </v-card>
