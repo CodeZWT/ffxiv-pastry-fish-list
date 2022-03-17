@@ -320,7 +320,6 @@ import {
   mdiFileTable,
   mdiHelpCircle,
 } from '@mdi/js'
-import COMMON from 'Data/common'
 import DataUtil from '@/utils/DataUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
 import EnvMixin from '@/components/basic/EnvMixin'
@@ -334,6 +333,7 @@ import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
 import RcTooltip from '@/components/basic/RcTooltip'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
+import STATUS from 'Data/patch/status'
 import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
@@ -475,7 +475,7 @@ export default {
               DataUtil.HOOKSET_ICON[_.capitalize(record.hookset)]
             ),
           },
-          effects: Object.values(COMMON.STATUS)
+          effects: Object.values(STATUS)
             .filter(status => record[status.key])
             .filter(
               status =>

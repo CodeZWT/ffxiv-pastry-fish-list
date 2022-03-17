@@ -21,7 +21,7 @@
         </div>
         <div class="d-flex align-center">
           <div v-for="effect in effects" :key="effect.id">
-            <effect-icon :icon-class="effect.icon" :title="effect.name" />
+            <effect-icon :icon-url="effect.icon" :title="effect.name" />
           </div>
         </div>
       </v-col>
@@ -209,6 +209,7 @@ import {
 import DataUtil from '@/utils/DataUtil'
 import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EffectIcon from '@/components/basic/EffectIcon'
+import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import RcDialog from '@/components/basic/RcDialog'
 import RecordValidator from '@/utils/RecordValidator'
@@ -348,15 +349,25 @@ export default {
     },
     effects() {
       return (this.dataStatus?.effects ?? [])
-        .map(it => this.status[it])
-        .filter(it => it != null)
-        .map(effect => {
-          return {
-            id: effect.id,
-            name: DataUtil.getName(effect),
-            icon: DataUtil.iconIdToClass(effect.icon),
+        .map(([statusId, stack]) => {
+          const effect = this.status[statusId]
+          if (effect) {
+            let icon = effect.icon
+            // angler's art stack
+            if (effect.id === 2778) {
+              icon += stack - 1
+            }
+            return {
+              id: effect.id,
+              name: DataUtil.getName(effect),
+              icon: ImgUtil.getIconUrl(icon, true),
+              stack: stack,
+            }
+          } else {
+            return null
           }
         })
+        .filter(it => it)
     },
     playerStatus() {
       return {
@@ -513,7 +524,7 @@ export default {
       ?.on('fishingData', (event, data) => {
         this.dataStatus = {
           ...data.status,
-          effects: Array.from(data.status && data.status.effects),
+          effects: Array.from(data.status && data.status.effects.entries()),
         }
         this.dataCurrentRecord = data.currentRecord
         this.dataPrevRecord = data.prevRecord

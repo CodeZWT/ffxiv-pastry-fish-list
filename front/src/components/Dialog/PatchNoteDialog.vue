@@ -35,6 +35,7 @@
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新鱼眼模式范围</li>
+          <li>更新[large]为[大尺寸]</li>
         </ul>
         <v-divider />
 

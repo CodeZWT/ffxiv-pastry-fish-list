@@ -153,6 +153,7 @@ exports.onPlayerSetup = callback => {
 const {
   mockEvents,
 } = require('./readerTest')
+const statusEffectListOf = require("./customDataReader/statusEffectList");
 let mockIndex = 0
 exports.nextTestEvent = () => {
   if (mockIndex < mockEvents.length) {
@@ -301,7 +302,7 @@ onFFXIVEvent('effect', packet => {
   log.debug('in effect', packet.type)
   const effectId = action2Effect[packet.actionId]
   if (effectId) {
-    status.effects.add(effectId)
+    status.effects.set(effectId, 0)
   }
 })
 
@@ -344,7 +345,7 @@ onFFXIVEvent(
     initZoneLastTime = Date.now()
     log.debug('server id', packet.serverID)
     status.serverId = packet.serverID
-    status.effects = new Set()
+    status.effects = new Map()
     if (packet.zoneID && TERRITORY_TYPES[packet.zoneID]) {
       status.zoneId = TERRITORY_TYPES[packet.zoneID].placeName
       log.debug('initZone', status.zoneId)
@@ -369,7 +370,7 @@ function resetIKDStatus() {
 }
 
 onFFXIVEventWithFilter('actorControl', null, 20, null, packet => {
-  status.effects.add(packet.param1)
+  status.effects.set(packet.param1, 0)
 })
 
 onFFXIVEventWithFilter('actorControl', null, 21, null, packet => {
@@ -389,15 +390,17 @@ const effectToDetect = new Set([
   850, // Gathering Fortune Up -> Patient I&II
   764, // Inefficient Hooking -> Patient I&II
   765, // Catch and Release -> Patient II
+  2778, // Angler's Art	Able to execute certain actions.
   568, // Fisher's Intuition
 ])
 
 // update all status according to statusEffectList
 onFFXIVEvent('statusEffectList', packet => {
-  packet.effects
-    .map(it => it.unknown1)
-    .filter(effectId => effectToDetect.has(effectId))
-    .forEach(effectId => status.effects.add(effectId))
+  statusEffectListOf(packet)
+    .effects
+    .filter(it => effectToDetect.has(it.effectID))
+    .forEach(it => status.effects.set(it.effectID, it.stack))
+  console.log('effects', status.effects);
 })
 
 onFFXIVEventSubType('fishingBaitMsg', packet => {
@@ -448,7 +451,7 @@ function saveCurrentRecord() {
 function resetStatus() {
   log.info('reset status')
   status = {
-    effects: new Set(),
+    effects: new Map(),
     isFishing: undefined,
     baitId: undefined,
     spotId: undefined,
@@ -1228,7 +1231,7 @@ onFFXIVEvent('playerStats', packet => {
   status.gathering = packet.gathering
   status.perception = packet.perception
   status.gp = packet.gp
-  status.effects = new Set()
+  status.effects = new Map()
 })
 
 onFFXIVEvent('clientTrigger', packet => {
