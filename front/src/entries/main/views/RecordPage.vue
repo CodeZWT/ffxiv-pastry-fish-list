@@ -553,7 +553,7 @@
                         <span v-else-if="record.cancelled">{{ '未知鱼' }}</span>
                         <span v-else>
                           {{ record.fishName || '未知鱼' }}
-                          <i class="xiv hq" v-if="record.hq"></i>
+                          <span v-if="record.hq">[{{ $t('fish.largeSize') }}]</span>
                         </span>
                         <div class="text-subtitle-2 d-flex">
                           <div

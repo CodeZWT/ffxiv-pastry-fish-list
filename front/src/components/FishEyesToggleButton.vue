@@ -23,8 +23,8 @@
         <item-icon :icon-class="iconIdToClass(1112)" small class="float-left" />
         <div>
           <div>{{ $t('toolbar.fishEyes.description.skill') }}</div>
-          <div v-if="isGlobal">{{ $t('toolbar.fishEyes.description.rangeCN') }}</div>
-          <div v-else>{{ $t('toolbar.fishEyes.description.rangeGlobal') }}</div>
+          <div v-if="isGlobal">{{ $t('toolbar.fishEyes.description.rangeGlobal') }}</div>
+          <div v-else>{{ $t('toolbar.fishEyes.description.rangeCN') }}</div>
           <div>{{ $t('toolbar.fishEyes.description.calculation') }}</div>
         </div>
       </div>

@@ -184,8 +184,7 @@
                       <span v-else>
                         {{ record.fish.name || '未知鱼' }}
                         <template v-if="record.hq">
-                          <i class="xiv hq" v-if="readerRegion === 'CN'"></i>
-                          <span v-else>[Large]</span>
+                          [{{ $t('fish.largeSize') }}]
                         </template>
                       </span>
                       <div class="text-subtitle-2 d-flex">
