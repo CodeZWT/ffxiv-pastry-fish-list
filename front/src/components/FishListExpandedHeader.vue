@@ -34,7 +34,7 @@
               <v-hover v-slot="{ hover }">
                 <div
                   :class="
-                    `text-h5 ${locale}-font ${
+                    `text-h6 ${locale}-font ${
                       hover ? 'info--text text-decoration-underline' : ''
                     }`
                   "
