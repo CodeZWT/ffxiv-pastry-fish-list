@@ -11451,7 +11451,7 @@ const fishGameDataCN = {
   35604: {
     _id: 35604,
     anglerFishId: 3640,
-    bait: 36590,
+    bait: 36588,
     locations: [255],
     patch: 6,
     folklore: null,
@@ -11473,7 +11473,7 @@ const fishGameDataCN = {
   35606: {
     _id: 35606,
     anglerFishId: 3642,
-    bait: 36590,
+    bait: 36589,
     locations: [270, 271],
     patch: 6,
     folklore: null,

@@ -14852,7 +14852,7 @@ module.exports = {
     hookset: 'Precision',
     biteSelf: false,
     predators: {},
-    bestCatchPath: [36590],
+    bestCatchPath: [36588],
     catchPathList: [[36588], [36589], [36590], [36591]],
   },
   35605: {
@@ -14884,7 +14884,7 @@ module.exports = {
     hookset: 'Precision',
     biteSelf: false,
     predators: {},
-    bestCatchPath: [36590],
+    bestCatchPath: [36589],
     catchPathList: [[36588], [36589], [36590], [36591]],
   },
   35607: {
