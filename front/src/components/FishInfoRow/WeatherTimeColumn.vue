@@ -74,7 +74,6 @@
 </template>
 
 <script>
-import { SystemInfo } from 'Data/version'
 import { mapGetters } from 'vuex'
 import { mdiArrowRight, mdiHelpCircle, mdiInformation } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
@@ -204,9 +203,6 @@ export default {
               icon: mdiInformation,
               comment:
                 this.$t('list.item.countDown.tip.24994') +
-                (SystemInfo.region === 'Global'
-                  ? this.$t('list.item.countDown.tip.24994FishEyes') + '\n'
-                  : '') +
                 this.$t('list.tip.fisherIntuitionTip', {
                   fish: DataUtil.getItemName(24994),
                 }),

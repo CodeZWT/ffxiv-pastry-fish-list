@@ -52,9 +52,6 @@
           />
         </v-col>
       </template>
-      <template v-else-if="!isGlobal">
-        <fish-gig-table :value="currentFishList" />
-      </template>
 
       <!-- fish shadow predators list -->
       <v-col v-if="showSpotPredators" cols="12" class="my-1">
@@ -197,7 +194,6 @@ import BiteIntervalChart from '@/components/charts/BiteIntervalChart'
 import ClickHelper from '@/components/basic/ClickHelper'
 import DetailItemMap from '@/components/fish-detail-items/DetailItemMap'
 import FIX from 'Data/fix'
-import FishGigTable from '@/components/FishingGigTable'
 import FishList from '@/components/FishList'
 import FishingSpots from 'Data/fishingSpots'
 import LinkList from '@/components/basic/LinkList'
@@ -211,7 +207,6 @@ export default {
   mixins: [PageMixin],
   components: {
     AboutChartDialog,
-    FishGigTable,
     DetailItemMap,
     ClickHelper,
     LinkList,
@@ -258,9 +253,6 @@ export default {
   },
   computed: {
     ...mapGetters(['getFishingSpot', 'readChartTip']),
-    isGlobal() {
-      return SystemInfo.region === 'Global'
-    },
     currentSpotList() {
       return [this.assembleSpot(this.currentSpotId)]
     },

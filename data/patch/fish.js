@@ -7648,7 +7648,7 @@ const fishGameDataCN = {
     spearFishingId: 20097,
     locations: [472],
     gig: 3,
-    requiredCnt: 10,
+    requiredCnt: 7,
     anglerFishId: 740,
     patch: 4.1,
     collectable: false,
@@ -7664,7 +7664,7 @@ const fishGameDataCN = {
     patch: 4.1,
     collectable: false,
     shadowPredators: {
-      21179: 10,
+      21179: 7,
     },
   },
   22389: {
@@ -10041,7 +10041,7 @@ const fishGameDataCN = {
     spearFishingId: 20115,
     locations: [637],
     gig: 2,
-    requiredCnt: 10,
+    requiredCnt: 7,
     anglerFishId: 3128,
     patch: 5,
     collectable: false,
@@ -10079,7 +10079,7 @@ const fishGameDataCN = {
     patch: 5,
     collectable: true,
     shadowPredators: {
-      27531: 10,
+      27531: 7,
     },
   },
   27535: {
@@ -10092,7 +10092,7 @@ const fishGameDataCN = {
     patch: 5,
     collectable: true,
     shadowPredators: {
-      27531: 10,
+      27531: 7,
     },
   },
   27536: {
@@ -10265,7 +10265,7 @@ const fishGameDataCN = {
     spearFishingId: 20142,
     locations: [640],
     gig: 2,
-    requiredCnt: 10,
+    requiredCnt: 7,
     anglerFishId: 3148,
     patch: 5,
     collectable: false,
@@ -10435,7 +10435,7 @@ const fishGameDataCN = {
     patch: 5,
     collectable: true,
     shadowPredators: {
-      27551: 10,
+      27551: 7,
     },
   },
   27567: {
@@ -10448,7 +10448,7 @@ const fishGameDataCN = {
     patch: 5,
     collectable: true,
     shadowPredators: {
-      27551: 10,
+      27551: 7,
     },
   },
   27568: {
@@ -10467,7 +10467,7 @@ const fishGameDataCN = {
     spearFishingId: 20139,
     locations: [643],
     gig: 1,
-    requiredCnt: 10,
+    requiredCnt: 7,
     anglerFishId: 3166,
     patch: 5,
     collectable: false,
@@ -10593,7 +10593,7 @@ const fishGameDataCN = {
     patch: 5,
     collectable: true,
     shadowPredators: {
-      27569: 10,
+      27569: 7,
     },
   },
   27581: {
@@ -10606,7 +10606,7 @@ const fishGameDataCN = {
     patch: 5,
     collectable: true,
     shadowPredators: {
-      27569: 10,
+      27569: 7,
     },
   },
   28065: {

@@ -1062,7 +1062,11 @@ export default {
       }
     },
     getRequiredCntOfFish(fish, cnt) {
-      if (fish.patch < 6 && SystemInfo.region === 'Global' && cnt === 10) {
+      if (fish.patch < 6 && cnt === 10) {
+        console.debug(
+          'fish should update fish shadow required cnt from 10 to 7, fish: ',
+          fish._id
+        )
         return 7
       }
       return cnt ?? 0
