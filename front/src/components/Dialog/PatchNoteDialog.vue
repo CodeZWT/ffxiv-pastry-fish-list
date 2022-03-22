@@ -27,14 +27,19 @@
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
-            <div class="text-h6">Version 1.2.0-fix</div>
+            <div class="text-h6">Version 1.2.1</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2022/03/17 10:00</div>
+            <div class="text-subtitle-1">更新时间: 2022/03/22 20:00</div>
           </div>
         </v-alert>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
           <li>更新鱼眼模式范围</li>
+          <li>更新鱼影数据</li>
+          <li>更新一些数据</li>
+        </ul>
+        <div class="text-h6 my-1">渔捞</div>
+        <ul>
           <li>更新[large]为[大尺寸]</li>
         </ul>
         <v-divider />

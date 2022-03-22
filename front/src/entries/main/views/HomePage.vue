@@ -25,8 +25,8 @@
               <v-card-text class="text-subtitle-1">
                 <div v-html="$t('homePage.description')"></div>
                 <div class="d-flex align-center mt-2">
-                  <v-badge inline color="warning" content="New" />
-                  <div>更新国服6.0数据支持（！！！注意可能的剧透！！！）</div>
+                  <v-badge inline color="warning" content="Fix" />
+                  <div>修复一些数据</div>
                 </div>
               </v-card-text>
             </v-card>
