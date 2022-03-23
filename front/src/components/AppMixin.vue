@@ -961,6 +961,19 @@ export default {
         fish.biteTimeMax ??
         OCEAN_FISHING_BITE_TIME[fish._id]?.all?.[1]
 
+      const tripleHook = fish.doubleHook.map(doubleHookCnt => {
+        switch (doubleHookCnt) {
+          case 2:
+            return 3
+          case 3:
+            return 5
+          case 4:
+            return 7
+          default:
+            return doubleHookCnt
+        }
+      })
+
       return {
         ...fish,
         id: fish._id,
@@ -1025,6 +1038,7 @@ export default {
           quantity: fish.star,
           text: _.repeat('★', fish.star),
         },
+        tripleHook: tripleHook,
       }
     },
     getRealNotAvailableWeatherSet(fishId) {

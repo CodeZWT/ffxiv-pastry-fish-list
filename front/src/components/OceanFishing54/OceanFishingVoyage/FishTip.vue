@@ -55,7 +55,7 @@
         <div
           v-if="!simple && showPointTip"
           style="position: absolute; top: 0; right: 0"
-          title="渔分 x 双提个数"
+          title="渔分 x 双提/三提个数"
         >
           <v-chip
             label
@@ -63,13 +63,14 @@
             color="primary"
             outlined
           >
-            {{ fish.points }} x {{ fish.doubleHook.join(',') }}
+            {{ fish.points }} x {{ fish.doubleHook.join('-') }} /
+            {{ fish.tripleHook.join('-') }}
           </v-chip>
         </div>
         <div
           v-if="!simple && !showPointTip && showMissionTip && fish.doubleHook[0] > 1"
           style="position: absolute; top: 0; right: 0"
-          title="双提个数"
+          title="双提/三提个数"
         >
           <v-chip
             label
@@ -77,13 +78,13 @@
             color="primary"
             outlined
           >
-            {{ fish.doubleHook.join(',') }}
+            {{ fish.doubleHook.join('-') }} / {{ fish.tripleHook.join('-') }}
           </v-chip>
         </div>
         <div
           v-else-if="!simple && showAchievementTip"
           style="position: absolute; top: 0; right: 0"
-          title="双提个数"
+          title="双提/三提个数"
         >
           <v-chip
             label
@@ -91,7 +92,7 @@
             color="primary"
             outlined
           >
-            {{ fish.doubleHook.join(',') }}
+            {{ fish.doubleHook.join('-') }} / {{ fish.tripleHook.join('-') }}
           </v-chip>
         </div>
         <div
@@ -172,7 +173,7 @@
           <div
             v-if="!simple && predator.doubleHook[0] > 1"
             style="position: absolute; top: 0; right: 0"
-            title="双提个数"
+            title="双提/三提个数"
           >
             <v-chip
               label
@@ -180,7 +181,7 @@
               color="primary"
               outlined
             >
-              {{ predator.doubleHook.join(',') }}
+              {{ predator.doubleHook.join('-') }} / {{ predator.tripleHook.join('-') }}
             </v-chip>
           </div>
           <!--          <div-->

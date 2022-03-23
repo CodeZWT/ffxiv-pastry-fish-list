@@ -40,7 +40,7 @@
             :small="dense"
           />
           <div>
-            <div :title="`${item.name}#${item.id}`">{{ item.name }}</div>
+            <div :title="`${item.name} # ${item.id}`">{{ item.name }}</div>
             <div>{{ item.star.text }}</div>
           </div>
         </div>
@@ -116,6 +116,12 @@
           />
           <item-icon v-if="item.hooksetIcon" :icon-class="item.hooksetIcon" small />
         </div>
+      </template>
+      <template v-slot:item.doubleHook="{ item }">
+        {{ item.doubleHook.join(' - ') }}
+      </template>
+      <template v-slot:item.tripleHook="{ item }">
+        {{ item.tripleHook.join(' - ') }}
       </template>
       <template v-slot:item.biteTimeForSort="{ item }">
         <fish-bite-time-list :item="item" />
@@ -292,13 +298,20 @@ export default {
           value: 'doubleHook',
           width: '5%',
         },
+        {
+          text: '三提',
+          align: 'center',
+          sortable: true,
+          value: 'tripleHook',
+          width: '5%',
+        },
         this.restrictColumnHeader,
         {
           text: '分类',
           align: 'center',
           sortable: true,
           value: 'bonusId',
-          width: '10%',
+          width: '5%',
         },
       ]
     },
