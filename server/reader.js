@@ -299,7 +299,7 @@ const action2Effect = {
   4596: 1804, // Identical Cast
 }
 onFFXIVEvent('effect', packet => {
-  log.debug('in effect', packet.type)
+  // log.debug('in effect', packet.type)
   const effectId = action2Effect[packet.actionId]
   if (effectId) {
     status.effects.set(effectId, 0)
@@ -400,7 +400,7 @@ onFFXIVEvent('statusEffectList', packet => {
     .effects
     .filter(it => effectToDetect.has(it.effectID))
     .forEach(it => status.effects.set(it.effectID, it.stack))
-  console.log('effects', status.effects);
+  // console.log('effects', status.effects);
 })
 
 onFFXIVEventSubType('fishingBaitMsg', packet => {
@@ -1241,7 +1241,11 @@ onFFXIVEvent('clientTrigger', packet => {
     // triple hook 21
     // mooch II 15
     // currentRecord.doubleHook = packet.param1 === 16
-    currentRecord.hookset = getHooksetFromParam1(packet.param1)
+    let hookset = getHooksetFromParam1(packet.param1)
+    if (hookset) {
+      console.debug('set hookset', hookset)
+      currentRecord.hookset = hookset
+    }
   }
 })
 
@@ -1258,7 +1262,7 @@ function getHooksetFromParam1(param1) {
     case 21:
       return 'triple'
     default:
-      log.info('new hookset detect', param1)
-      return 'normal'
+      // log.debug('other action', param1)
+      return ''
   }
 }
