@@ -25,6 +25,21 @@
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 1.2.2</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2022/03/23 12:22</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">渔捞</div>
+        <ul>
+          <li>修复渔捞显示问题</li>
+          <li>渔捞显示捕鱼人之计状态</li>
+        </ul>
+        <v-divider />
+
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
             <div class="text-h6">Version 1.2.1</div>
