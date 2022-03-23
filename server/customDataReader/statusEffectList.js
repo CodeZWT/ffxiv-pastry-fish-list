@@ -10,16 +10,19 @@ const statusEffectListOf = struct => {
   struct.currentTP = MachinaModels.getUint16(struct.data, 16)
   struct.effects = []
   for (let i = 0; i < 30; i++) {
-    // console.log(
-    //   MachinaModels.getUint16(struct.data, 18 + i * 12),
-    //   MachinaModels.getUint16(struct.data, 20 + i * 12),
-    //   struct.data[22 + i * 12],
-    //   struct.data[23 + i * 12],
-    //   struct.data[24 + i * 12],
-    //   struct.data[25 + i * 12],
-    //   MachinaModels.getUint16(struct.data, 22 + i * 12),
-    //   MachinaModels.getUint16(struct.data, 24 + i * 12)
-    // )
+    // if (MachinaModels.getUint16(struct.data, 20 + i * 12) === 2778) {
+    //   console.log(
+    //     //   MachinaModels.getUint16(struct.data, 18 + i * 12),
+    //     //   MachinaModels.getUint16(struct.data, 20 + i * 12),
+    //     MachinaModels.getUint16(struct.data, 20 + i * 12),
+    //     struct.data[22 + i * 12],
+    //     struct.data[23 + i * 12],
+    //     //   struct.data[24 + i * 12],
+    //     //   struct.data[25 + i * 12],
+    //     //   MachinaModels.getUint16(struct.data, 22 + i * 12),
+    //     //   MachinaModels.getUint16(struct.data, 24 + i * 12)
+    //   )
+    // }
     struct.effects.push({
       effectID: MachinaModels.getUint16(struct.data, 20 + i * 12),
       stack: struct.data[22 + i * 12],

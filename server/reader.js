@@ -299,10 +299,10 @@ const action2Effect = {
   4596: 1804, // Identical Cast
 }
 onFFXIVEvent('effect', packet => {
-  // log.debug('in effect', packet.type)
+  // log.debug('in effect', packet)
   const effectId = action2Effect[packet.actionId]
-  if (effectId) {
-    status.effects.set(effectId, 0)
+  if (effectId && !status.effects.has(effectId)) {
+    status.effects.set(effectId, 1);
   }
 })
 
@@ -370,11 +370,18 @@ function resetIKDStatus() {
 }
 
 onFFXIVEventWithFilter('actorControl', null, 20, null, packet => {
-  status.effects.set(packet.param1, 0)
+  const effectId = packet.param1
+  if (effectToDetect[effectId] && !status.effects.has(effectId)) {
+      status.effects.set(effectId, 1)
+  }
 })
 
 onFFXIVEventWithFilter('actorControl', null, 21, null, packet => {
-  status.effects.delete(packet.param1)
+  const effectId = packet.param1
+  if (status.effects.has(effectId)) {
+    // console.log('remove effect', effectId)
+    status.effects.delete(effectId)
+  }
 })
 
 // status.csv
@@ -396,10 +403,12 @@ const effectToDetect = new Set([
 
 // update all status according to statusEffectList
 onFFXIVEvent('statusEffectList', packet => {
+  let newEffects = new Map()
   statusEffectListOf(packet)
     .effects
     .filter(it => effectToDetect.has(it.effectID))
-    .forEach(it => status.effects.set(it.effectID, it.stack))
+    .forEach(it => newEffects.set(it.effectID, it.stack))
+  status.effects = newEffects
   // console.log('effects', status.effects);
 })
 

@@ -354,7 +354,7 @@ export default {
           if (effect) {
             let icon = effect.icon
             // angler's art stack
-            if (effect.id === 2778) {
+            if (effect.id === 2778 && stack > 0) {
               icon += stack - 1
             }
             return {
