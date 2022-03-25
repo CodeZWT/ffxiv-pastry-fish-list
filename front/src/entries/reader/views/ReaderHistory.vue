@@ -310,6 +310,7 @@
 <script>
 import { BAIT_IDS } from 'Data/bait'
 import { DIADEM_ZONE, OCEAN_FISHING_ZONE } from 'Data/constants'
+import { Global as STATUS } from 'Data/patch/status'
 import { invokeElectronEvent, sendElectronEvent } from '@/utils/electronHelper'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import {
@@ -333,7 +334,6 @@ import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
 import RcTooltip from '@/components/basic/RcTooltip'
 import SPOT_FISH_DICT from 'Data/spotFishDict'
-import STATUS from 'Data/patch/status'
 import UploadUtil from '@/utils/UploadUtil'
 import Weather from '@/utils/Weather'
 import _ from 'lodash'
@@ -493,7 +493,6 @@ export default {
           },
         }
       })
-
       const maxBiteInterval = _.max(records.map(it => it.biteInterval))
       let intervalMax = 60
       if (maxBiteInterval != null) {
