@@ -1363,3 +1363,7 @@ body {
   text-decoration: none;
 }
 </style>
+
+<style lang="scss">
+@import '~@/styles/markdown.scss';
+</style>
