@@ -58,7 +58,7 @@ const statusCN = {
     id: 2778,
     icon: 17167,
     name_chs: '捕鱼人之计',
-    key: 'AnglersArt',
+    key: 'anglersArt',
   },
 }
 const statusGlobal = statusCN

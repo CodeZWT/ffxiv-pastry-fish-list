@@ -41,6 +41,7 @@
 <script>
 import DataUtil from '@/utils/DataUtil'
 import FishTimelineTable from '@/entries/reader/components/FishTimelineTable'
+import STATUS from 'Data/patch/status'
 import placeNames from 'Data/locale/placeNames'
 
 export default {
@@ -85,8 +86,19 @@ export default {
     selectedSpotId() {
       return this.dataStatus?.spotId
     },
+    status() {
+      return this.readerRegion === 'CN' ? STATUS.CN : STATUS.Global
+    },
+    effects() {
+      return (this.dataStatus?.effects ?? [])
+        .map(([statusId]) => {
+          const effect = this.status[statusId]
+          return effect && effect.id
+        })
+        .filter(it => it)
+    },
     chum() {
-      return !!this.dataStatus?.effects?.find(effect => effect === 763)
+      return !!this.effects.find(effect => effect === 763)
     },
     currentSpotRecords() {
       return this.rawRecords.map(record => {
@@ -162,7 +174,7 @@ export default {
       ?.on('fishingData', (event, data) => {
         this.dataStatus = {
           ...data.status,
-          effects: Array.from(data.status && data.status.effects),
+          effects: Array.from(data.status && data.status.effects.entries()),
         }
         this.dataCurrentRecord = data.currentRecord
       })

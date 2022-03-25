@@ -206,7 +206,7 @@
                     </div>
                   </v-col>
                   <v-col cols="3" class="d-flex align-center flex-wrap">
-                    <div v-for="effect in record.effects" :key="effect.ID">
+                    <div v-for="effect in record.effects" :key="effect.id">
                       <effect-icon :icon-class="effect.icon" :title="effect.name" />
                     </div>
                   </v-col>
