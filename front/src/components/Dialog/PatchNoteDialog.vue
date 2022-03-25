@@ -28,6 +28,20 @@
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
+            <div class="text-h6">Version 1.2.3</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2022/03/25 13:22</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕桌面版</div>
+        <ul>
+          <li>修复加载过慢以及白屏问题</li>
+          <li>修复钓场统计未正确检测撒饵状态的问题</li>
+        </ul>
+        <v-divider />
+
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
             <div class="text-h6">Version 1.2.2</div>
             <v-spacer />
             <div class="text-subtitle-1">更新时间: 2022/03/23 12:22</div>
