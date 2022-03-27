@@ -157,7 +157,12 @@ export default {
     },
     spotSearchData() {
       return Object.values(DataUtil.FISHING_SPOTS)
-        .filter(it => it._id > 0 && DataUtil.getName(it))
+        .filter(
+          it =>
+            it._id > 0 &&
+            !DataUtil.isOceanFishingSpot(it._id) &&
+            !DataUtil.isDiademSpot(it._id)
+        )
         .map(it => {
           return {
             type: 'fishing-spot',
@@ -176,6 +181,7 @@ export default {
             }
           })
         )
+        .filter(it => it.name)
     },
     fishSearchData() {
       if (Object.keys(this.fishDict).length === 0) return []
