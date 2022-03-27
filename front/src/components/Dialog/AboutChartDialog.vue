@@ -14,10 +14,19 @@
           <div>
             <v-subheader>首先，请注意：</v-subheader>
             <div class="error--text font-weight-bold my-2" style="font-size: x-large">
-              图中均是统计数据，出现不在范围内的数据很正常
+              图中均是 统计数据 ，出现不在范围内的数据很正常
             </div>
             <div class="error--text font-weight-bold my-2" style="font-size: x-large">
-              目前数据优先覆盖了5.X的钓场，查看数据前请注意右上角标记的数据量
+              查看数据前请注意右上角标记的 数据量
+            </div>
+            <div class="error--text font-weight-bold my-2" style="font-size: x-large">
+              ！不要看统计数据最小/最大是xx.x秒就直接判断！
+            </div>
+            <div class="error--text font-weight-bold my-2" style="font-size: x-large">
+              ！不要看统计数据最小/最大是xx.x秒就直接判断！
+            </div>
+            <div class="error--text font-weight-bold my-2" style="font-size: x-large">
+              ！不要看统计数据最小/最大是xx.x秒就直接判断！
             </div>
             <div class="error--text font-weight-bold my-2" style="font-size: x-large">
               请仔细阅读下方的QA说明
