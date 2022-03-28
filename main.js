@@ -1412,7 +1412,11 @@ if (!gotTheLock) {
 
   configStore = new Store()
   initSetting(configStore, 'windowSetting', DEFAULT_WINDOW_SETTING)
-  windowSetting = configStore.get('windowSetting')
+  let storedSetting = configStore.get('windowSetting')
+  windowSetting = storedSetting || DEFAULT_WINDOW_SETTING
+  if (!storedSetting) {
+    log.error('Fetch stored setting failed, set with default value')
+  }
   if (!windowSetting.hardwareAcceleration) {
     app.disableHardwareAcceleration()
   }
