@@ -170,14 +170,6 @@
         </template>
         <v-list>
           <v-list-item @click="showBaitDialog = true">
-            <v-btn v-if="isWikiPage" icon text @click="setShowSearchDialog(true)">
-              <v-icon>{{ mdiMagnify }}</v-icon>
-            </v-btn>
-            <i18n path="search.shortcut">
-              <kbd>/</kbd>
-            </i18n>
-          </v-list-item>
-          <v-list-item @click="showBaitDialog = true">
             <v-btn icon text v-if="isListPage || isWikiPage">
               <v-icon>{{ mdiHook }}</v-icon>
             </v-btn>
