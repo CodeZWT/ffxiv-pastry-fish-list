@@ -4545,6 +4545,7 @@ const fishGameDataCN = {
     locations: [134],
     patch: 3.15,
     collectable: false,
+    folklore: 2501,
   },
   14215: {
     _id: 14215,
@@ -7805,6 +7806,7 @@ const fishGameDataCN = {
     locations: [159],
     patch: 4.3,
     collectable: false,
+    folklore: 2505,
   },
   23055: {
     _id: 23055,
