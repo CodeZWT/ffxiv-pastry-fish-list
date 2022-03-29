@@ -35,7 +35,7 @@
                           <item-icon
                             :icon-url="diademAnyBaitIcon"
                             small
-                            title="$t('diademPage.tip.bait')"
+                            :title="$t('diademPage.tip.bait')"
                           />
                           <span class="d-flex flex-column">
                             <v-badge inline content="!" color="success"></v-badge>
@@ -81,7 +81,7 @@
                           <item-icon
                             :icon-url="diademAnyBaitIcon"
                             small
-                            title="$t('diademPage.tip.bait')"
+                            :title="$t('diademPage.tip.bait')"
                           />
                           <span class="d-flex flex-column">
                             <v-badge inline content="!" color="success"></v-badge>
@@ -143,7 +143,7 @@
                                   <item-icon
                                     :icon-url="diademAnyBaitIcon"
                                     small
-                                    title="$t('diademPage.tip.bait')"
+                                    :title="$t('diademPage.tip.bait')"
                                   />
                                 </span>
                               </i18n>
