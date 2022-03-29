@@ -4262,6 +4262,7 @@ const fishGameDataCN = {
     locations: [113],
     patch: 3,
     collectable: false,
+    folklore: 2500,
   },
   12824: {
     _id: 12824,
