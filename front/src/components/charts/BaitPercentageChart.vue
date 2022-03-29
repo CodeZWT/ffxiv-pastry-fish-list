@@ -12,10 +12,9 @@
               >{{ isMobile ? dataMetaShort : dataMeta }}
             </v-subheader>
           </div>
-          <v-subheader v-if="!enableFilters"
-            >※
-            当前显示范围包括了所有时间天气下的数据，未区分有无鱼识及钓组。打开条件筛选以设置条件。</v-subheader
-          >
+          <v-subheader>
+            ※ 隐藏了不足100条记录的鱼饵数据行，打开条件筛选时以及以小钓大数据不受限制。
+          </v-subheader>
           <template v-if="enableFilters">
             <div class="d-flex flex-wrap align-center">
               <template v-if="showTimeRangeFilter">
@@ -345,6 +344,10 @@
               </div>
             </div>
           </div>
+          <v-subheader v-if="!enableFilters">
+            ※
+            当前显示范围包括了所有时间天气下的数据，未区分有无鱼识及钓组。打开条件筛选以设置条件。
+          </v-subheader>
           <v-subheader
             >※
             显示的数字为鱼在使用对应鱼饵时的统计概率，鼠标悬停查看具体数据。</v-subheader
@@ -360,6 +363,7 @@
 <script>
 import { STARLIGHT_CELEBRATION } from 'Data/fix'
 import { filter, flow, groupBy, mapValues } from 'lodash/fp'
+import { isBait } from 'Data/bait'
 import Constants from 'Data/constants'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
@@ -616,41 +620,45 @@ export default {
           )(records)
         )
       )(filteredRecords)
-      const baitFishCntList = Object.entries(baitFishCnt).map(([bait, fishCntDict]) => {
-        const tugCntDict = unknownFishCnt[bait] ?? {}
-        const totalCnt =
-          _.sum(Object.values(fishCntDict)) + _.sum(Object.values(tugCntDict))
+      const baitFishCntList = Object.entries(baitFishCnt)
+        .map(([bait, fishCntDict]) => {
+          const tugCntDict = unknownFishCnt[bait] ?? {}
+          const totalCnt =
+            _.sum(Object.values(fishCntDict)) + _.sum(Object.values(tugCntDict))
 
-        return {
-          bait: UploadUtil.toBait(bait),
-          fishCntList: fishIdList.map(fishId => {
-            const fishInfo =
-              this.fishDict[fishId] ??
-              this.fishDict[
-                Object.keys(this.fishDict).find(id => DataUtil.toItemId(id) === fishId)
-              ]
-            const cnt = fishCntDict[fishId] ?? 0
-            return {
-              fish: UploadUtil.toFish(fishId),
-              cnt: cnt,
-              percentage: (cnt / totalCnt) * 100,
-              tugColor: this.tugColor[
-                fishInfo?.baits?.[fishInfo?.baits?.length - 1 ?? 0]?.tug
-              ],
-            }
-          }),
-          tugCntList: Constants.TUGS.map(tug => {
-            const cnt = tugCntDict[tug] ?? 0
-            return {
-              tug: tug,
-              cnt: cnt,
-              percentage: (cnt / totalCnt) * 100,
-              tugColor: this.tugColor[tug],
-            }
-          }),
-          totalCnt: totalCnt,
-        }
-      })
+          return {
+            bait: UploadUtil.toBait(bait),
+            fishCntList: fishIdList.map(fishId => {
+              const fishInfo =
+                this.fishDict[fishId] ??
+                this.fishDict[
+                  Object.keys(this.fishDict).find(id => DataUtil.toItemId(id) === fishId)
+                ]
+              const cnt = fishCntDict[fishId] ?? 0
+              return {
+                fish: UploadUtil.toFish(fishId),
+                cnt: cnt,
+                percentage: (cnt / totalCnt) * 100,
+                tugColor: this.tugColor[
+                  fishInfo?.baits?.[fishInfo?.baits?.length - 1 ?? 0]?.tug
+                ],
+              }
+            }),
+            tugCntList: Constants.TUGS.map(tug => {
+              const cnt = tugCntDict[tug] ?? 0
+              return {
+                tug: tug,
+                cnt: cnt,
+                percentage: (cnt / totalCnt) * 100,
+                tugColor: this.tugColor[tug],
+              }
+            }),
+            totalCnt: totalCnt,
+          }
+        })
+        .filter(({ bait: { baitId }, totalCnt }) => {
+          return this.enableFilters || !isBait(baitId) || totalCnt > 100
+        })
 
       return {
         fishList: fishIdList.map(fishId => UploadUtil.toFish(fishId)),
