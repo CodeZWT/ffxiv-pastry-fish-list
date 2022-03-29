@@ -115,13 +115,12 @@
         @input="toggleFishEyesUsed"
       />
 
-      <rc-tooltip :message="$t('baitSearch.dialogBtn')" bottom>
-        <v-btn
-          icon
-          text
-          v-if="(isListPage || isWikiPage) && !isMobile"
-          @click="showBaitDialog = true"
-        >
+      <rc-tooltip
+        v-if="(isListPage || isWikiPage) && !isMobile"
+        :message="$t('baitSearch.dialogBtn')"
+        bottom
+      >
+        <v-btn icon text @click="showBaitDialog = true">
           <v-icon>{{ mdiHook }}</v-icon>
         </v-btn>
       </rc-tooltip>
@@ -169,11 +168,11 @@
           </v-tooltip>
         </template>
         <v-list>
-          <v-list-item @click="showBaitDialog = true">
-            <v-btn icon text v-if="isListPage || isWikiPage">
+          <v-list-item v-if="isListPage || isWikiPage" @click="showBaitDialog = true">
+            <v-btn icon text>
               <v-icon>{{ mdiHook }}</v-icon>
+              <div>{{ $t('baitSearch.dialogBtn') }}</div>
             </v-btn>
-            <div>{{ $t('baitSearch.dialogBtn') }}</div>
           </v-list-item>
           <v-list-item v-if="isListPage || isWikiPage" @click="toggleFishEyesUsed">
             <fish-eyes-toggle-button
