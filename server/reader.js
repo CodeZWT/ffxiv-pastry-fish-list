@@ -638,6 +638,12 @@ const actionTimeline = {
   7361: { id: 7361, type: 'fishing', subType: 'bakucho_landing_hq' },
   7362: { id: 7362, type: 'fishing_chair', subType: 'bakucho_landing_nq' },
   7363: { id: 7363, type: 'fishing_chair', subType: 'bakucho_landing_hq' },
+  8052: { id: 8052, type: 'fishing', subType: 'triple_hooking' }, // 三提
+  8053: { id: 8053, type: 'fishing_chair', subType: 'triple_hooking' },
+  8054: { id: 8054, type: 'fishing_chair', subType: 'triple_hooking_big' },
+  8055: { id: 8055, type: "fishing", subType: "bigsize" },
+  8056: { id: 8056, type: "fishing", subType: "gp_recovery" },
+  8057: { id: 8057, type: "fishing", subType: "ignore_condition_swim" },
 }
 function getHookset(hookset) {
   switch (hookset) {
