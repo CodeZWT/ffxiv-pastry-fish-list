@@ -11912,7 +11912,8 @@ module.exports = {
       id: 69696,
       name_chs: '命悬一线的副教授的论文',
       items: [35604, 35605, 35606, 35849, 35607, 35850],
-      requireCollectable: true,
+      collectableItems: [35604, 35605, 35606, 35607],
+      requireCollectable: false,
       comment: `需要 <strong style="color: darkorange">完成</strong> 此任务。<br />
         小提示1：这意味着没有完成任务时，对应钓场未来会少一条鱼王的干扰鱼。<br />
         小提示2：<a href="${GARLAND_HOST}/db/#item/35849" target="_blank">光明岛鲑鱼</a>

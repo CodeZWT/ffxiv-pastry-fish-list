@@ -114,6 +114,7 @@ export default {
                 names: DataUtil.getItemNames(itemId),
                 anglerFishId: this.allFish[itemId]?.anglerFishId,
                 isInLog: DataUtil.isFishInLog(itemId),
+                collectable: task.collectableItems.includes(itemId),
               }
             }),
           }

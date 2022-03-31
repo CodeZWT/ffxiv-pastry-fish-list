@@ -61,8 +61,10 @@
                 :class="
                   `text-subtitle-1 ${hover ? 'info--text text-decoration-underline' : ''}`
                 "
+                :title="item.collectable ? $t('common.game.collectable') : ''"
               >
                 {{ item.name }}
+                <i v-if="item.collectable" class="xiv collectables"></i>
               </div>
             </v-hover>
           </link-list>
