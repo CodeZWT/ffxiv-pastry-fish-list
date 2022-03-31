@@ -1,4 +1,7 @@
 const { getData } = require("./patch/spearRegionTerritoryPoint");
+
+const GARLAND_HOST = process.env.VUE_APP_GARLAND_HOST
+
 module.exports = {
   TEST_FISH: {
     999998: {
@@ -11897,11 +11900,24 @@ module.exports = {
     68775: {
       id: 68775,
       name_chs: '孤独的捕鱼人',
-      items: [26746, 26747, 26748, 26749],
+      items: [26746, 26747, 26748, 26750, 26749, 26751],
       requireCollectable: false,
-      comment:
-        '需要 <strong style="color: darkorange">完成</strong> 此任务。<br />' +
-        '小提示：这意味着没有完成任务时，对应钓场会少一条鱼王的干扰鱼。',
+      comment: `需要 <strong style="color: darkorange">完成</strong> 此任务。<br />
+        小提示1：这意味着没有完成任务时，对应钓场会少一条鱼王的干扰鱼。<br /> 
+        小提示2：<a href="${GARLAND_HOST}/db/#item/26750" target="_blank">棉布鳟</a>
+        以及<a href="${GARLAND_HOST}/db/#item/26751" target="_blank">普洛斯彼罗鳗</a>
+        为非图鉴鱼。`,
+    },
+    69696: {
+      id: 69696,
+      name_chs: '命悬一线的副教授的论文',
+      items: [35604, 35605, 35606, 35849, 35607, 35850],
+      requireCollectable: true,
+      comment: `需要 <strong style="color: darkorange">完成</strong> 此任务。<br />
+        小提示1：这意味着没有完成任务时，对应钓场未来会少一条鱼王的干扰鱼。<br />
+        小提示2：<a href="${GARLAND_HOST}/db/#item/35849" target="_blank">光明岛鲑鱼</a>
+        以及<a href="${GARLAND_HOST}/db/#item/35850" target="_blank">挽歌幸存者</a>
+        为非图鉴鱼。`,
     },
   },
 }

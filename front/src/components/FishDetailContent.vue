@@ -112,7 +112,8 @@ export default {
                 icon: this.getItemIconClass(itemId),
                 name: this.getItemName(itemId),
                 names: DataUtil.getItemNames(itemId),
-                anglerFishId: this.allFish[itemId].anglerFishId,
+                anglerFishId: this.allFish[itemId]?.anglerFishId,
+                isInLog: DataUtil.isFishInLog(itemId),
               }
             }),
           }

@@ -16,6 +16,7 @@ import DATA from 'Data/data'
 import DATA_CN, { LIVING_LEGENDS } from 'Data/translation'
 import EorzeaTime from '@/utils/Time'
 import FISH from 'Data/fish'
+import FISH_PARAMETER from 'Data/fishParameter'
 import FishWindow from '@/utils/FishWindow'
 import ITEMS from 'Data/item'
 import ImgUtil from '@/utils/ImgUtil'
@@ -962,7 +963,9 @@ export default {
   getItemNames(id) {
     return itemNames[this.toItemId(id)]
   },
-
+  isFishInLog(id) {
+    return !!FISH_PARAMETER.find(it => it.Item === this.toItemId(id))?.IsInLog
+  },
   isFishId(id) {
     return !!this.FISH_DATA[id]
   },

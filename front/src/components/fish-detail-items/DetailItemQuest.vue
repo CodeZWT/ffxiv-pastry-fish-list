@@ -45,7 +45,11 @@
       <div class="d-flex align-center my-1 flex-wrap">
         <div v-for="item in task.items" :key="item.id" class="d-flex align-center">
           <item-icon :icon-class="item.icon" :title="item.name" />
+          <div v-if="!item.isInLog" class="text-subtitle-1">
+            {{ item.name }}
+          </div>
           <link-list
+            v-else
             :id="item.id"
             :angler-id="item.anglerFishId"
             :name="item.name"
