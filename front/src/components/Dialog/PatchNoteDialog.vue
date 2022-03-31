@@ -25,6 +25,22 @@
         <!--          更新国服5.57后，渔捞与同步功能不可用，请耐心等待通知，届时直接重启鱼糕即可。-->
         <!--        </v-alert>-->
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
+        <v-alert color="secondary" outlined class="mt-4">
+          <div class="d-flex align-center">
+            <div class="text-h6">Version 1.2.3-fix</div>
+            <v-spacer />
+            <div class="text-subtitle-1">更新时间: 2022/03/31 23:50</div>
+          </div>
+        </v-alert>
+        <div class="text-h6 my-1">鱼糕</div>
+        <ul>
+          <li>增加魔法大学相关任务鱼的信息</li>
+        </ul>
+        <div class="text-h6 my-1">渔捞</div>
+        <ul>
+          <li>三重提钩脱钩显示为未知鱼的问题</li>
+        </ul>
+        <v-divider />
 
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
