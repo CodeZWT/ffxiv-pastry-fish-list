@@ -67,7 +67,10 @@
               {{ $t('spearTip.fishShadow.location') }}
             </v-card-subtitle>
             <v-card-text>
-              <detail-item-map :fish="currentSpotPredators[0]" />
+              <detail-item-map
+                :fish="currentSpotPredators[0]"
+                :show-fishing-range-helper="mode === 'normal'"
+              />
             </v-card-text>
             <v-card-subtitle>
               {{ $t('spearTip.fishShadow.predators') }}
