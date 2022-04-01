@@ -87,6 +87,8 @@ if (process.env.VUE_APP_ELECTRON === 'true') {
       template:
         process.env.NODE_ENV === 'development'
           ? 'public/index.dev.html'
+          : process.env.VUE_APP_SITE_REGION === 'Global'
+          ? 'public/index.global.html'
           : 'public/index.html',
       // 在 dist/index.html 的输出
       filename: 'index.html',
