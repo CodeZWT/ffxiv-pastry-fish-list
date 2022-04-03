@@ -22,9 +22,7 @@
             <strong>统计数据</strong>
             ，尤其当数据量较小时，出现不在范围内的数据是普遍情况。
           </div>
-          <div class="text-subtitle-2 emphasis--text">
-            ※ 请注意每行最后的总记录数。
-          </div>
+          <div class="text-subtitle-2 emphasis--text">※ 请注意每行最后的总记录数。</div>
           <template v-if="enableFilters">
             <div class="d-flex flex-wrap align-center">
               <template v-if="showTimeRangeFilter">
@@ -170,6 +168,12 @@
               </div>
             </div>
           </template>
+          <div>
+            <v-radio-group v-model="missedType" label="脱钩数据类型" row>
+              <v-radio label="脱钩占总数比" value="TOTAL"></v-radio>
+              <v-radio label="杆型脱钩率" value="TUG"></v-radio>
+            </v-radio-group>
+          </div>
           <div style="width: 100%; overflow-x: scroll">
             <div
               class="d-flex flex-column align-center"
@@ -187,7 +191,7 @@
                 </div>
                 <v-card outlined rounded>
                   <div style="text-align: center" class="subheader--text">
-                    脱钩占总数比
+                    {{ missedType === 'TOTAL' ? '脱钩占总数比' : '杆型脱钩率' }}
                   </div>
                   <div class="d-flex align-center">
                     <div
@@ -218,6 +222,7 @@
                   fishCntList,
                   tugCntList,
                   totalCnt,
+                  tugTotalDict,
                 } in baitOfSpot.baitFishCntList"
                 :key="bait.baitId"
                 class="d-flex"
@@ -284,7 +289,7 @@
                 </div>
 
                 <div
-                  v-for="{ tug, cnt, percentage, tugColor } in tugCntList"
+                  v-for="{ tug, cnt, percentage, tugPercentage, tugColor } in tugCntList"
                   :key="bait.baitId + '-' + tug"
                 >
                   <rc-tooltip v-if="cnt > 0">
@@ -296,7 +301,11 @@
                         :color="tugColor + ' lighten-2'"
                       >
                         <div :style="percentage === 100 ? 'font-size: x-small' : ''">
-                          {{ percentage.toFixed(0) }}
+                          {{
+                            (missedType === 'TOTAL' ? percentage : tugPercentage).toFixed(
+                              0
+                            )
+                          }}
                         </div>
                       </v-progress-circular>
                     </div>
@@ -310,16 +319,27 @@
                           <td>{{ $t('tug.' + tug) + '脱钩' }}</td>
                           <td>{{ cnt }}条</td>
                         </tr>
-                        <tr>
+                        <tr v-if="missedType === 'TOTAL'">
                           <td>总共</td>
                           <td>{{ totalCnt }}条</td>
+                        </tr>
+                        <tr v-else>
+                          <td>{{ $t('tug.' + tug) }}总共</td>
+                          <td>{{ tugTotalDict[tug] }}条</td>
                         </tr>
                         <tr>
                           <td>概率</td>
                           <td>
-                            {{ `${cnt} / ${totalCnt} ≈ ${percentage.toFixed(2)}% ≈` }}
+                            {{
+                              `${cnt} / ${
+                                missedType === 'TOTAL' ? totalCnt : tugTotalDict[tug]
+                              } ≈ ${(missedType === 'TOTAL'
+                                ? percentage
+                                : tugPercentage
+                              ).toFixed(2)}% ≈`
+                            }}
                             <v-progress-circular
-                              :value="percentage"
+                              :value="missedType === 'TOTAL' ? percentage : tugPercentage"
                               rotate="-90"
                               :color="
                                 `${tugColor} ${theme.isDark ? 'lighten-2' : 'darken-1'}`
@@ -328,7 +348,12 @@
                               <div
                                 :style="percentage === 100 ? 'font-size: x-small' : ''"
                               >
-                                {{ percentage.toFixed(0) }}
+                                {{
+                                  (missedType === 'TOTAL'
+                                    ? percentage
+                                    : tugPercentage
+                                  ).toFixed(0)
+                                }}
                               </div>
                             </v-progress-circular>
                           </td>
@@ -359,16 +384,13 @@
 
           <div class="text-subtitle-2 subheader--text">
             <div>
-              ※
-              当前显示范围包括了所有时间天气下的数据，未区分有无鱼识及钓组。打开条件筛选以设置条件。
+              ※ 当前显示范围包括了所有时间天气下的数据，未区分有无鱼识及钓组。
+              打开条件筛选以设置条件。
             </div>
+            <div>※ 显示的数字为鱼在使用对应鱼饵时的统计概率，鼠标悬停查看具体数据。</div>
             <div>
-              ※ 显示的数字为鱼在使用对应鱼饵时的统计概率，鼠标悬停查看具体数据。
-            </div>
-            <div>
-              ※ “轻、中、重”下方为脱钩占
-              <strong>总数据</strong>
-              百分比（例：轻杆脱竿数/总记录数），“总”下方为总记录数。
+              ※ “轻、中、重”下方为脱钩占总数据百分比（例：轻杆脱竿数/总记录数），
+              也可切换显示杆型脱钩率（例：轻杆脱竿数/轻杆总记录数）。“总”下方为总记录数。
             </div>
           </div>
         </template>
@@ -429,6 +451,7 @@ export default {
       RECORD_MIN_QUANTITY: 50,
       TUGS: Constants.TUGS,
       tugColor: Constants.TUG_COLOR,
+      missedType: 'TOTAL',
       prevWeatherFilter: [],
       weatherFilter: [],
       enableFilters: false,
@@ -644,7 +667,15 @@ export default {
           const tugCntDict = unknownFishCnt[bait] ?? {}
           const totalCnt =
             _.sum(Object.values(fishCntDict)) + _.sum(Object.values(tugCntDict))
-
+          const tugTotalDict = {}
+          Constants.TUGS.forEach(tug => {
+            tugTotalDict[tug] =
+              _.sum(
+                fishIdList
+                  .filter(fishId => this.fishDict[fishId].tug === tug)
+                  .map(fishId => fishCntDict[fishId])
+              ) + tugCntDict[tug] ?? 0
+          })
           return {
             bait: UploadUtil.toBait(bait),
             fishCntList: fishIdList.map(fishId => {
@@ -669,9 +700,11 @@ export default {
                 tug: tug,
                 cnt: cnt,
                 percentage: (cnt / totalCnt) * 100,
+                tugPercentage: (cnt / tugTotalDict[tug]) * 100,
                 tugColor: this.tugColor[tug],
               }
             }),
+            tugTotalDict: tugTotalDict,
             totalCnt: totalCnt,
           }
         })
