@@ -12,18 +12,18 @@
           <tr>
             <td class="d-flex align-center justify-center">
               <i class="xiv collectables" style="font-size: 22px" title="收藏品" />
-              所需收藏价值
+              <span class="ml-1">所需收藏价值</span>
             </td>
             <td>
               <div class="d-flex align-center justify-center">
-                <v-img :src="scriptIconUrl" height="20" width="20" contain />
-                <span>工票</span>
+                <v-img :src="scriptIconUrl" max-height="20" max-width="20" />
+                <span class="ml-1">工票</span>
               </div>
             </td>
             <td>
               <div class="d-flex align-center justify-center">
-                <v-img :src="expIconUrl" height="20" width="20" contain />
-                <span>经验值</span>
+                <v-img :src="expIconUrl" max-height="20" max-width="20" />
+                <span class="ml-1">经验值</span>
               </div>
             </td>
           </tr>
