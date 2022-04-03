@@ -1287,6 +1287,13 @@ export default {
           enabled: true,
           order: 9,
         },
+        {
+          name: 'DetailItemMasterpiece',
+          expandedEnabled: false,
+          expanded: false,
+          enabled: true,
+          order: 10,
+        },
       ],
     },
     theme: {

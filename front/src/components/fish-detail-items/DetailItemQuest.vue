@@ -6,10 +6,8 @@
       :key="task.id"
       border="top"
       colored-border
-      type="info"
       elevation="2"
       class="rounded-0"
-      :icon="mdiFormatListChecks"
       color="secondary"
     >
       <div class="d-flex align-center my-1">

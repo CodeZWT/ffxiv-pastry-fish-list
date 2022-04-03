@@ -542,7 +542,8 @@
           "DetailItemQuest": "任务及其他信息",
           "DetailItemRequirements": "天气时间要求",
           "DetailItemTips": "攻略",
-          "DetailItemFishDescription": "资料"
+          "DetailItemFishDescription": "资料",
+          "DetailItemMasterpiece": "罗薇娜商会"
         },
         "title": "详细视图布局设置（直接拖动）"
       },
@@ -646,6 +647,11 @@
       "rewardTitle": "称号：{0}",
       "taskTitle": "任务：{0}",
       "title": "任务及其他信息"
+    }
+  },
+  "script": {
+    "detail": {
+
     }
   },
   "time": {

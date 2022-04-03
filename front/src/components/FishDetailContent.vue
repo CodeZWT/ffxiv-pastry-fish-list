@@ -13,6 +13,8 @@
           :fish-weather-change-part="fishWeatherChangePart"
           :expanded="component.expanded"
           :show-fishing-range-helper="fish.type === 'normal'"
+          :loading="loading"
+          :itemExtra="itemExtra"
           @close-dialog="$emit('close-dialog')"
         />
       </v-col>
@@ -23,16 +25,18 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import DataUtil from '@/utils/DataUtil'
-
 import FIX from 'Data/fix'
 import ImgUtil from '@/utils/ImgUtil'
 import _ from 'lodash'
+import garlandService from '@/service/garlandService'
 import spearFishSize from 'Data/spearFishSize'
 
 export default {
   name: 'FishDetailContent',
 
   components: {
+    DetailItemMasterpiece: () =>
+      import('@/components/fish-detail-items/DetailItemMasterpiece'),
     DetailItemFishDescription: () =>
       import('@/components/fish-detail-items/DetailItemFishDescription'),
     DetailItemAquarium: () => import('@/components/fish-detail-items/DetailItemAquarium'),
@@ -92,6 +96,12 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      loading: true,
+      itemExtra: undefined,
+    }
+  },
   computed: {
     fish() {
       const fish = this.value
@@ -114,7 +124,7 @@ export default {
                 names: DataUtil.getItemNames(itemId),
                 anglerFishId: this.allFish[itemId]?.anglerFishId,
                 isInLog: DataUtil.isFishInLog(itemId),
-                collectable: task.collectableItems.includes(itemId),
+                collectable: !!task.collectableItems?.includes(itemId),
               }
             }),
           }
@@ -244,7 +254,21 @@ export default {
       'getItemIconClass',
     ]),
   },
-
+  watch: {
+    'fish._id': {
+      handler: async function(itemSpotId) {
+        try {
+          const id = DataUtil.toItemId(itemSpotId)
+          this.loading = true
+          this.itemExtra = await garlandService.getItem(id)
+          this.loading = false
+        } catch (e) {
+          console.error('fish garland get data error', itemSpotId)
+        }
+      },
+      immediate: true,
+    },
+  },
   methods: {
     resize() {
       this.$refs.simpleMap?.resize()

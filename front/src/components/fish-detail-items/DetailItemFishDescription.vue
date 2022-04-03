@@ -43,12 +43,9 @@
 
 <script>
 import { mdiBookshelf } from '@mdi/js'
+import { toMultiLangDescription, toMultiLangFishGuide } from '@/service/garlandService'
 import DataUtil from '@/utils/DataUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
-import garlandService, {
-  toMultiLangDescription,
-  toMultiLangFishGuide,
-} from '@/service/garlandService'
 
 export default {
   name: 'DetailItemFishDescription',
@@ -62,6 +59,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    itemExtra: {
+      type: Object,
+      default: undefined,
+    },
+    loading: {
+      type: Boolean,
+      default: true,
+    },
   },
   data: vm => ({
     mdiBookshelf,
@@ -70,26 +75,16 @@ export default {
     fishGuide: '',
     ilvl: '',
     link: '',
-    loading: true,
   }),
-  mounted() {},
   watch: {
-    'fish._id': {
-      handler: async function(itemSpotId) {
-        try {
-          const id = DataUtil.toItemId(itemSpotId)
-          this.loading = true
-          const resp = await garlandService.getItem(id)
+    itemExtra: {
+      handler: function(resp) {
+        if (resp) {
+          const id = resp.item.id
           this.description = DataUtil.getName(toMultiLangDescription(resp))
           this.fishGuide = DataUtil.getName(toMultiLangFishGuide(resp))
           this.ilvl = resp?.item?.ilvl ?? ''
           this.link = id ? DataUtil.toGarlandItemLink({ id }) : ''
-          this.loading = false
-        } catch (e) {
-          this.description = ''
-          this.fishGuide = ''
-          this.ilvl = ''
-          this.link = ''
         }
       },
       immediate: true,
