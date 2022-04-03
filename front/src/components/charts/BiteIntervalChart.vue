@@ -28,15 +28,24 @@
             </v-checkbox>
           </div>
         </div>
-        <div style="overflow-x: scroll; width: 100%; position: relative">
-          <v-overlay
-            absolute
-            :value="enableBaitFilter && baitSelected.length === 0"
-            style="width: 800px"
-          >
-            选择至少一个鱼饵以显示数据
-          </v-overlay>
-          <div id="bite-interval-chart" style="width: 800px; height: 400px"></div>
+
+        <div class="text-subtitle-2 subheader--text">
+          <div>
+            ※ 统计图中均是 <strong>统计数据</strong> ，出现不在范围内的数据属于正常情况。
+          </div>
+          <div class="emphasis--text">
+            ※ <strong>不能</strong> 直接将统计数据中的最小/最大值作为判断鱼的依据。
+          </div>
+          <div style="overflow-x: scroll; width: 100%; position: relative">
+            <v-overlay
+              absolute
+              :value="enableBaitFilter && baitSelected.length === 0"
+              style="width: 800px"
+            >
+              选择至少一个鱼饵以显示数据
+            </v-overlay>
+            <div id="bite-interval-chart" style="width: 800px; height: 400px"></div>
+          </div>
         </div>
       </v-col>
       <v-col cols="12" v-show="records.length === 0"> 暂无咬钩时长数据 </v-col>
@@ -84,6 +93,7 @@ export default {
   },
   data() {
     return {
+      RECORD_MIN_QUANTITY: 50,
       baitSelected: [],
       enableBaitFilter: false,
       chart: undefined,
@@ -150,7 +160,11 @@ export default {
 
       const biteTimes = flow(
         filter(
-          ({ fish, bait, chum }) => fish > 0 && bait > 0 && !!chum === this.chumBiteTime
+          ({ fish, bait, chum, quantity }) =>
+            fish > 0 &&
+            bait > 0 &&
+            !!chum === this.chumBiteTime &&
+            (quantity > this.RECORD_MIN_QUANTITY || !isBait(bait))
         ),
         filter(filterBaitOrSpotFish),
         groupBy(({ bait }) => bait),
@@ -167,7 +181,11 @@ export default {
 
       const allBaitBiteTimes = flow(
         filter(
-          ({ fish, bait, chum }) => fish > 0 && bait > 0 && !!chum === this.chumBiteTime
+          ({ fish, bait, chum, quantity }) =>
+            fish > 0 &&
+            bait > 0 &&
+            !!chum === this.chumBiteTime &&
+            (quantity > this.RECORD_MIN_QUANTITY || !isBait(bait))
         ),
         filter(filterBaitOrSpotFish),
         groupBy(({ fish }) => UploadUtil.toFish(fish).fishName),

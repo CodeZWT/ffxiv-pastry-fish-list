@@ -12,9 +12,19 @@
               >{{ isMobile ? dataMetaShort : dataMeta }}
             </v-subheader>
           </div>
-          <v-subheader>
-            ※ 隐藏了不足100条记录的鱼饵数据行，打开条件筛选时以及以小钓大数据不受限制。
-          </v-subheader>
+          <div class="text-subtitle-2 subheader--text">
+            ※ 隐藏了不足{{
+              RECORD_MIN_QUANTITY
+            }}条记录的鱼饵数据行，打开条件筛选时以及以小钓大数据不受限制。
+          </div>
+          <div class="text-subtitle-2 subheader--text">
+            ※ 统计图中均是
+            <strong>统计数据</strong>
+            ，尤其当数据量较小时，出现不在范围内的数据是普遍情况。
+          </div>
+          <div class="text-subtitle-2 emphasis--text">
+            ※ 请注意每行最后的总记录数。
+          </div>
           <template v-if="enableFilters">
             <div class="d-flex flex-wrap align-center">
               <template v-if="showTimeRangeFilter">
@@ -176,7 +186,9 @@
                   <item-icon :icon-class="fish.fishIcon" />
                 </div>
                 <v-card outlined rounded>
-                  <div style="text-align: center">脱钩</div>
+                  <div style="text-align: center" class="subheader--text">
+                    脱钩占总数比
+                  </div>
                   <div class="d-flex align-center">
                     <div
                       v-for="tug in TUGS"
@@ -185,7 +197,7 @@
                       class="d-flex align-center justify-center"
                     >
                       <v-avatar :color="tugColor[tug]" size="40">
-                        <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>
+                        <span class="text-h6 tug-label">{{ $t('tugShort.' + tug) }}</span>
                       </v-avatar>
                     </div>
                   </div>
@@ -196,7 +208,7 @@
                   title="总记录数"
                 >
                   <v-avatar color="blue-grey darken-3" size="40">
-                    <span class="text-h6">总</span>
+                    <span class="text-h6 tug-label">总</span>
                   </v-avatar>
                 </div>
               </div>
@@ -331,7 +343,7 @@
                     style="height: 48px; width: 48px"
                     :class="'d-flex justify-center align-center'"
                   >
-                    <div style="font-size: large">{{ abbrNum(totalCnt, 1) }}</div>
+                    <div class="text-h6 subheader--text">{{ abbrNum(totalCnt, 1) }}</div>
                   </div>
                   <template v-slot:msg>
                     <tr>
@@ -344,15 +356,21 @@
               </div>
             </div>
           </div>
-          <v-subheader v-if="!enableFilters">
-            ※
-            当前显示范围包括了所有时间天气下的数据，未区分有无鱼识及钓组。打开条件筛选以设置条件。
-          </v-subheader>
-          <v-subheader
-            >※
-            显示的数字为鱼在使用对应鱼饵时的统计概率，鼠标悬停查看具体数据。</v-subheader
-          >
-          <v-subheader>※ “轻、中、重”下方为脱钩数据，“总”下方为总记录数。</v-subheader>
+
+          <div class="text-subtitle-2 subheader--text">
+            <div>
+              ※
+              当前显示范围包括了所有时间天气下的数据，未区分有无鱼识及钓组。打开条件筛选以设置条件。
+            </div>
+            <div>
+              ※ 显示的数字为鱼在使用对应鱼饵时的统计概率，鼠标悬停查看具体数据。
+            </div>
+            <div>
+              ※ “轻、中、重”下方为脱钩占
+              <strong>总数据</strong>
+              百分比（例：轻杆脱竿数/总记录数），“总”下方为总记录数。
+            </div>
+          </div>
         </template>
         <template v-else>暂无鱼饵概率数据</template>
       </v-col>
@@ -408,6 +426,7 @@ export default {
   },
   data() {
     return {
+      RECORD_MIN_QUANTITY: 50,
       TUGS: Constants.TUGS,
       tugColor: Constants.TUG_COLOR,
       prevWeatherFilter: [],
@@ -657,7 +676,9 @@ export default {
           }
         })
         .filter(({ bait: { baitId }, totalCnt }) => {
-          return this.enableFilters || !isBait(baitId) || totalCnt > 100
+          return (
+            this.enableFilters || !isBait(baitId) || totalCnt > this.RECORD_MIN_QUANTITY
+          )
         })
 
       return {
@@ -730,4 +751,7 @@ export default {
 <style lang="sass" scoped>
 tr td:nth-child(2)
   text-align: right
+
+::v-deep .tug-label
+  color: #e8eaed
 </style>

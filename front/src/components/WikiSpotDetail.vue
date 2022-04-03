@@ -1,6 +1,6 @@
 <template>
-  <div style="width: 100%">
-    <div class="py-1 d-flex inner" style="width: 100%; position: relative">
+  <div style="width: 100%" class="inner">
+    <div class="py-1 d-flex" style="width: 100%; position: relative">
       <h2 style="width: 100%; text-align: center" :class="`text-h5 ${locale}-font`">
         {{ currentMapInfo.name }}
       </h2>
@@ -17,7 +17,6 @@
     <v-divider />
     <v-row
       :class="{
-        inner: true,
         'spot-detail': true,
         'spot-detail--pc-web': !isMobile && !isElectron,
         'spot-detail--pc-electron': !isMobile && isElectron,
@@ -26,10 +25,11 @@
       }"
       v-if="currentSpotId"
       no-gutters
+      style="padding: 0 4px"
     >
       <template v-if="mode === 'normal'">
         <v-col cols="12" class="my-1">
-          <v-btn block tile color="primary" @click="showAboutChartDialog = true">
+          <v-btn block color="primary" @click="showAboutChartDialog = true">
             <v-icon>{{ mdiInformation }}</v-icon>
             {{ $t('wikiPage.stats.about.btn') }}
           </v-btn>
@@ -41,6 +41,7 @@
             :fish-dict="lazyTransformedFishDict"
             :updatedTime="baitCountRecordUpdatedTime"
           />
+          <v-divider />
         </v-col>
         <v-col v-if="!isOceanFishingSpot" cols="12" class="my-1">
           <bite-interval-chart
@@ -50,6 +51,7 @@
             :updated-time="biteIntervalRecordsUpdatedTime"
             :is-mobile="isMobile"
           />
+          <v-divider />
         </v-col>
       </template>
 
@@ -111,6 +113,7 @@
           :is-mobile="isMobile"
           @fish-selected="onFishClicked($event)"
         />
+        <v-divider />
       </v-col>
 
       <!-- map -->
