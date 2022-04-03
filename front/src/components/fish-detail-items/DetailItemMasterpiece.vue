@@ -6,7 +6,8 @@
       </div>
       <div>{{ lvl }}</div>
     </v-subheader>
-    <v-simple-table dense class="pt-2 inner">
+    <v-skeleton-loader v-if="loading" type="table-row-divider@3" class="mx-1" />
+    <v-simple-table v-else dense class="pt-2 inner">
       <template>
         <thead>
           <tr>
@@ -67,8 +68,9 @@ export default {
   computed: {
     lvl() {
       const mp = this.itemExtra?.item?.masterpiece
-      let s = '等级 '
+      let s = ''
       if (mp) {
+        s += '等级 '
         if (mp.lvl.length === 2) {
           if (mp.lvl[0] === mp.lvl[1]) {
             s += mp.lvl[0]
