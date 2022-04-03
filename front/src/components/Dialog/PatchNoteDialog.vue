@@ -34,7 +34,9 @@
         </v-alert>
         <div class="text-h6 my-1">鱼糕</div>
         <ul>
+          <li>修复刺鱼错误使用鱼眼的问题</li>
           <li>增加魔法大学相关任务鱼的信息</li>
+          <li>更新统计数据说明</li>
         </ul>
         <div class="text-h6 my-1">渔捞</div>
         <ul>
