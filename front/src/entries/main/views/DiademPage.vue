@@ -42,7 +42,7 @@
                             <v-badge
                               inline
                               content="< 10s"
-                              color="transparent subheader--text"
+                              color="transparent label--text"
                             ></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
@@ -73,7 +73,7 @@
                             <v-badge
                               inline
                               content="> 30s"
-                              color="transparent subheader--text"
+                              color="transparent label--text"
                             ></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
@@ -96,7 +96,7 @@
                             <v-badge
                               inline
                               content="< 10s"
-                              color="transparent subheader--text"
+                              color="transparent label--text"
                             ></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
@@ -108,7 +108,7 @@
                             <v-badge
                               inline
                               content="> 20s"
-                              color="transparent subheader--text"
+                              color="transparent label--text"
                             ></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
@@ -131,7 +131,7 @@
                             <v-badge
                               inline
                               content="> 30s"
-                              color="transparent subheader--text"
+                              color="transparent label--text"
                             ></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
