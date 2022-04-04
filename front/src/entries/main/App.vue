@@ -191,8 +191,12 @@
       </v-menu>
 
       <v-sheet class="d-flex flex-column ml-1 transparent" v-if="!isElectron">
-        <div><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
-        <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
+        <div class="subheader--text">
+          <i class="xiv local-time-chs mr-1"></i>{{ earthTime }}
+        </div>
+        <div class="subheader--text">
+          <i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}
+        </div>
       </v-sheet>
     </v-app-bar>
 
@@ -544,9 +548,10 @@
                   <v-btn
                     elevation="0"
                     left
-                    :color="mode === theme ? 'primary' : undefined"
+                    :color="mode === theme ? 'primary' : 'default'"
                     @click="theme = mode"
                     block
+                    class="subheader--text"
                   >
                     <v-icon>
                       {{ THEME_MODE_ICONS[index] }}
@@ -597,6 +602,7 @@
                   elevation="0"
                   :color="r === region ? 'primary' : undefined"
                   @click="region = r"
+                  class="subheader--text"
                 >
                   <div>
                     {{ $t(`top.region.${r}`) }} {{ toPatchStr(REGIONS_VERSION[index]) }}
@@ -620,6 +626,7 @@
                   elevation="0"
                   :color="locale === dataLocale ? 'primary' : undefined"
                   @click="dataLocale = locale"
+                  class="subheader--text"
                 >
                   <div style="min-width: 24px" class="mr-1">
                     <v-img contain :src="LOCALES_ICONS[index]" height="18" width="24" />
@@ -642,6 +649,7 @@
                   elevation="0"
                   :color="locale === dataSubLocale ? 'primary' : undefined"
                   @click="dataSubLocale = locale"
+                  class="subheader--text"
                 >
                   <div style="min-width: 24px" class="mr-1">
                     <v-img
