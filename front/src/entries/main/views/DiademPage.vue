@@ -39,7 +39,11 @@
                           />
                           <span class="d-flex flex-column">
                             <v-badge inline content="!" color="success"></v-badge>
-                            <v-badge inline content="< 10s" color="transparent"></v-badge>
+                            <v-badge
+                              inline
+                              content="< 10s"
+                              color="transparent subheader--text"
+                            ></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span>
@@ -66,7 +70,11 @@
                           <v-icon>{{ mdiSubdirectoryArrowRight }}</v-icon>
                           <span class="d-flex flex-column">
                             <v-badge inline content="!!!" color="warning"></v-badge>
-                            <v-badge inline content="> 30s" color="transparent"></v-badge>
+                            <v-badge
+                              inline
+                              content="> 30s"
+                              color="transparent subheader--text"
+                            ></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span><item-icon :icon-class="iconIdToClass(29749)"/></span>
@@ -85,7 +93,11 @@
                           />
                           <span class="d-flex flex-column">
                             <v-badge inline content="!" color="success"></v-badge>
-                            <v-badge inline content="< 10s" color="transparent"></v-badge>
+                            <v-badge
+                              inline
+                              content="< 10s"
+                              color="transparent subheader--text"
+                            ></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span
@@ -93,7 +105,11 @@
                           /></span>
                           <span class="d-flex flex-column">
                             <v-badge inline content="!!" color="error"></v-badge>
-                            <v-badge inline content="> 20s" color="transparent"></v-badge>
+                            <v-badge
+                              inline
+                              content="> 20s"
+                              color="transparent subheader--text"
+                            ></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span><item-icon :icon-class="iconIdToClass(29054)"/></span>
@@ -112,7 +128,11 @@
                           <v-icon>{{ mdiSubdirectoryArrowRight }}</v-icon>
                           <span class="d-flex flex-column">
                             <v-badge inline content="!!!" color="warning"></v-badge>
-                            <v-badge inline content="> 30s" color="transparent"></v-badge>
+                            <v-badge
+                              inline
+                              content="> 30s"
+                              color="transparent subheader--text"
+                            ></v-badge>
                           </span>
                           <v-icon small>{{ mdiChevronRight }}</v-icon>
                           <span><item-icon :icon-class="iconIdToClass(29747)"/></span>
