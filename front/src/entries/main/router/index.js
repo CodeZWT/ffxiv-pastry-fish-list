@@ -73,11 +73,11 @@ const routes = [
         '../views/UsagePage'
       ),
     meta: {
-      title: '鱼糕 - 杂项',
+      title: '鱼糕 - 工票',
       metaTags: [
         {
           property: 'og:title',
-          content: '鱼糕 - 杂项',
+          content: '鱼糕 - 工票',
         },
       ],
     },
