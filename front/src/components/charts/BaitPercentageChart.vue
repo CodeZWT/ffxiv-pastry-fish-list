@@ -448,6 +448,9 @@ export default {
   },
   data() {
     return {
+      simpleFishDict: _.keyBy(Object.values(this.fishDict), it =>
+        DataUtil.toItemId(it._id)
+      ),
       RECORD_MIN_QUANTITY: 50,
       TUGS: Constants.TUGS,
       tugColor: Constants.TUG_COLOR,
@@ -662,6 +665,7 @@ export default {
           )(records)
         )
       )(filteredRecords)
+
       const baitFishCntList = Object.entries(baitFishCnt)
         .map(([bait, fishCntDict]) => {
           const tugCntDict = unknownFishCnt[bait] ?? {}
@@ -672,18 +676,14 @@ export default {
             tugTotalDict[tug] =
               _.sum(
                 fishIdList
-                  .filter(fishId => this.fishDict[fishId].tug === tug)
+                  .filter(fishId => this.simpleFishDict[fishId].tug === tug)
                   .map(fishId => fishCntDict[fishId])
               ) + tugCntDict[tug] ?? 0
           })
           return {
             bait: UploadUtil.toBait(bait),
             fishCntList: fishIdList.map(fishId => {
-              const fishInfo =
-                this.fishDict[fishId] ??
-                this.fishDict[
-                  Object.keys(this.fishDict).find(id => DataUtil.toItemId(id) === fishId)
-                ]
+              const fishInfo = this.simpleFishDict[fishId]
               const cnt = fishCntDict[fishId] ?? 0
               return {
                 fish: UploadUtil.toFish(fishId),
