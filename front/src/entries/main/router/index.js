@@ -65,6 +65,24 @@ const routes = [
     },
   },
   {
+    path: '/usage',
+    name: 'UsagePage',
+    component: () =>
+      import(
+        /* webpackChunkName: "usage" */
+        '../views/UsagePage'
+      ),
+    meta: {
+      title: '鱼糕 - 杂项',
+      metaTags: [
+        {
+          property: 'og:title',
+          content: '鱼糕 - 杂项',
+        },
+      ],
+    },
+  },
+  {
     path: '/wiki',
     name: 'WikiPage',
     component: () =>

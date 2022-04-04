@@ -252,6 +252,19 @@
               <v-list-item-title>{{ $t(TABS[1].title) }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item @click="toPage('UsagePage')" link>
+            <v-list-item-icon>
+              <v-icon>{{ mdiInformation }}</v-icon>
+            </v-list-item-icon>
+            <rc-tooltip>
+              <v-list-item-content>
+                <v-list-item-title>{{ $t('usagePage.title') }}</v-list-item-title>
+              </v-list-item-content>
+              <template v-slot:msg>
+                {{ $t('usagePage.description') }}
+              </template>
+            </rc-tooltip>
+          </v-list-item>
           <v-list-item @click="toPage('WikiPage')" link>
             <v-list-item-icon>
               <v-icon>{{ mdiNotebook }}</v-icon>
@@ -260,6 +273,7 @@
               <v-list-item-title>{{ $t('wikiPage.title') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
           <!--          <v-list-item @click="toPage('OceanFishingPage')" link>-->
           <!--            <v-list-item-icon>-->
           <!--{              <vIcon>mdiFerry</vIcon{>}}-->
@@ -898,6 +912,7 @@
 <script>
 import {
   mdiAccount,
+  mdiCashMultiple,
   mdiChartBar,
   mdiClose,
   mdiCog,
@@ -982,6 +997,7 @@ export default {
       mdiMagnify,
       mdiMap,
       mdiNotebook,
+      mdiCashMultiple,
       mdiPin,
       mdiPinOutline,
       mdiQqchat,
