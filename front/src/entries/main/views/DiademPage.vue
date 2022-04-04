@@ -1,13 +1,5 @@
 <template>
-  <v-container
-    fluid
-    :class="{
-      'detail-wrapper': true,
-      'detail-wrapper--web': !isElectron,
-      'detail-wrapper--electron': isElectron && !original,
-      'detail-wrapper--electron-original': isElectron && original,
-    }"
-  >
+  <page-template>
     <v-row>
       <v-col cols="12">
         <v-card>
@@ -16,204 +8,192 @@
           </v-card-title>
           <v-card-text>
             <v-row>
-              <v-col :cols="isMobile ? 12 : 8">
-                <div>
-                  <v-card color="system">
-                    <v-tabs v-model="tabIndex">
-                      <!--                    <v-tab>第二期重建</v-tab>-->
-                      <!--                    <v-tab>第三期重建</v-tab>-->
-                      <v-tab>{{ $t('diademPage.round') }}</v-tab>
-                    </v-tabs>
-                    <v-card-title>{{ simpleTip.title }}</v-card-title>
-                    <v-card-text>
-                      <div v-if="simpleTip.content" v-html="simpleTip.content" />
-                      <div v-else>
-                        <v-subheader class="px-0"
-                          >{{ $t('diademPage.tip.spot1') }}
-                        </v-subheader>
-                        <div class="d-flex align-center">
-                          <item-icon
-                            :icon-url="diademAnyBaitIcon"
-                            small
-                            :title="$t('diademPage.tip.bait')"
-                          />
-                          <span class="d-flex flex-column">
-                            <v-badge inline content="!" color="success"></v-badge>
-                            <v-badge
-                              inline
-                              content="< 10s"
-                              color="transparent label--text"
-                            ></v-badge>
-                          </span>
-                          <v-icon small>{{ mdiChevronRight }}</v-icon>
-                          <span>
-                            <item-icon :icon-class="iconIdToClass(29716)" small />
-                          </span>
-                          <span class="d-flex flex-column" style="margin: 0 10px">
-                            <v-badge inline content="!!!" color="warning"></v-badge>
-                          </span>
-                          <v-icon small>{{ mdiChevronRight }}</v-icon>
-                          <span><item-icon :icon-class="iconIdToClass(28459)"/></span>
-                          996 <v-icon>{{ mdiPlusCircle }}</v-icon>
-                        </div>
-
-                        <div class="d-flex align-center">
-                          <div style="min-width: 113px" class="d-flex align-center">
-                            <weather-icon
-                              :icon-class="iconIdToClass(60290)"
-                              title="$t('diademPage.tip.weather1')"
-                            />
-                            <span style="margin: 0 35px 0 4px">
-                              {{ $t('diademPage.tip.or') }}
-                            </span>
-                          </div>
-                          <v-icon>{{ mdiSubdirectoryArrowRight }}</v-icon>
-                          <span class="d-flex flex-column">
-                            <v-badge inline content="!!!" color="warning"></v-badge>
-                            <v-badge
-                              inline
-                              content="> 30s"
-                              color="transparent label--text"
-                            ></v-badge>
-                          </span>
-                          <v-icon small>{{ mdiChevronRight }}</v-icon>
-                          <span><item-icon :icon-class="iconIdToClass(29749)"/></span>
-                          1078
-                          <v-icon>{{ mdiPlusCircle }}</v-icon>
-                        </div>
-
-                        <v-subheader class="px-0"
-                          >{{ $t('diademPage.tip.spot2') }}
-                        </v-subheader>
-                        <div class="d-flex align-center">
-                          <item-icon
-                            :icon-url="diademAnyBaitIcon"
-                            small
-                            :title="$t('diademPage.tip.bait')"
-                          />
-                          <span class="d-flex flex-column">
-                            <v-badge inline content="!" color="success"></v-badge>
-                            <v-badge
-                              inline
-                              content="< 10s"
-                              color="transparent label--text"
-                            ></v-badge>
-                          </span>
-                          <v-icon small>{{ mdiChevronRight }}</v-icon>
-                          <span
-                            ><item-icon :icon-class="iconIdToClass(29716)" small
-                          /></span>
-                          <span class="d-flex flex-column">
-                            <v-badge inline content="!!" color="error"></v-badge>
-                            <v-badge
-                              inline
-                              content="> 20s"
-                              color="transparent label--text"
-                            ></v-badge>
-                          </span>
-                          <v-icon small>{{ mdiChevronRight }}</v-icon>
-                          <span><item-icon :icon-class="iconIdToClass(29054)"/></span>
-                          911 <v-icon>{{ mdiPlusCircle }}</v-icon>
-                        </div>
-                        <div class="d-flex align-center">
-                          <div style="min-width: 113px" class="d-flex align-center">
-                            <weather-icon
-                              :icon-class="iconIdToClass(60291)"
-                              title="$t('diademPage.tip.weather2')"
-                            />
-                            <span style="margin: 0 35px 0 4px">
-                              {{ $t('diademPage.tip.or') }}
-                            </span>
-                          </div>
-                          <v-icon>{{ mdiSubdirectoryArrowRight }}</v-icon>
-                          <span class="d-flex flex-column">
-                            <v-badge inline content="!!!" color="warning"></v-badge>
-                            <v-badge
-                              inline
-                              content="> 30s"
-                              color="transparent label--text"
-                            ></v-badge>
-                          </span>
-                          <v-icon small>{{ mdiChevronRight }}</v-icon>
-                          <span><item-icon :icon-class="iconIdToClass(29747)"/></span>
-                          982
-                          <v-icon>{{ mdiPlusCircle }}</v-icon>
-                        </div>
-                        <v-subheader class="px-0"
-                          >{{ $t('diademPage.tip.note.title') }}
-                        </v-subheader>
-                        <ul>
-                          <li>
-                            {{ $t('diademPage.tip.note.gather') }}
-                          </li>
-                          <li>
-                            {{ $t('diademPage.tip.note.baitTip1') }}
-                            <div class="text--secondary">
-                              {{ $t('diademPage.tip.note.baitTip2') }}
-                            </div>
-                          </li>
-                          <li>
-                            <div class="d-flex align-center flex-wrap">
-                              <i18n
-                                path="diademPage.tip.note.baitTip3"
-                                tag="span"
-                                class="d-inline-flex align-center"
-                              >
-                                <span place="icon">
-                                  <item-icon
-                                    :icon-url="diademAnyBaitIcon"
-                                    small
-                                    :title="$t('diademPage.tip.bait')"
-                                  />
-                                </span>
-                              </i18n>
-                            </div>
-                            <div class="d-flex align-center">
-                              <div data-ck-item-id="30278">
-                                <item-icon :icon-class="iconIdToClass(27020)" small />
-                              </div>
-                              <div data-ck-item-id="30279">
-                                <item-icon :icon-class="iconIdToClass(27025)" small />
-                              </div>
-                              <div data-ck-item-id="30280">
-                                <item-icon :icon-class="iconIdToClass(27002)" small />
-                              </div>
-                              <div data-ck-item-id="30281">
-                                <item-icon :icon-class="iconIdToClass(27022)" small />
-                              </div>
-                              <div data-ck-item-id="29717">
-                                <item-icon :icon-class="iconIdToClass(27051)" small />
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
+              <v-col :cols="isMobile ? 12 : 8" class="pa-0">
+                <v-card color="system" elevation="0">
+                  <v-card-title>{{ simpleTip.title }}</v-card-title>
+                  <v-card-text>
+                    <div v-if="simpleTip.content" v-html="simpleTip.content" />
+                    <div v-else>
+                      <v-subheader class="px-0"
+                        >{{ $t('diademPage.tip.spot1') }}
+                      </v-subheader>
+                      <div class="d-flex align-center">
+                        <item-icon
+                          :icon-url="diademAnyBaitIcon"
+                          small
+                          :title="$t('diademPage.tip.bait')"
+                        />
+                        <span class="d-flex flex-column">
+                          <v-badge inline content="!" color="success"></v-badge>
+                          <v-badge
+                            inline
+                            content="< 10s"
+                            color="transparent label--text"
+                          ></v-badge>
+                        </span>
+                        <v-icon small>{{ mdiChevronRight }}</v-icon>
+                        <span>
+                          <item-icon :icon-class="iconIdToClass(29716)" small />
+                        </span>
+                        <span class="d-flex flex-column" style="margin: 0 10px">
+                          <v-badge inline content="!!!" color="warning"></v-badge>
+                        </span>
+                        <v-icon small>{{ mdiChevronRight }}</v-icon>
+                        <span><item-icon :icon-class="iconIdToClass(28459)"/></span>
+                        996 <v-icon>{{ mdiPlusCircle }}</v-icon>
                       </div>
-                    </v-card-text>
-                    <v-divider />
-                    <v-card-text v-if="simpleTip.baitTip" v-html="simpleTip.baitTip" />
-                    <v-divider />
-                    <v-card-text v-html="simpleTip.spotTip" />
-                    <v-divider />
-                    <v-card-text v-if="simpleTip.references">
-                      <div>{{ $t('diademPage.tip.reference.title') }}</div>
-                      <div
-                        v-for="(reference, index) in simpleTip.references"
-                        :key="index"
-                      >
-                        <div class="text-subtitle-1">
-                          <a :href="reference.link" target="_blank">
-                            {{ reference.title }}
-                          </a>
+
+                      <div class="d-flex align-center">
+                        <div style="min-width: 113px" class="d-flex align-center">
+                          <weather-icon
+                            :icon-class="iconIdToClass(60290)"
+                            title="$t('diademPage.tip.weather1')"
+                          />
+                          <span style="margin: 0 35px 0 4px">
+                            {{ $t('diademPage.tip.or') }}
+                          </span>
                         </div>
-                        <div>
-                          {{ reference.author }}
-                        </div>
+                        <v-icon>{{ mdiSubdirectoryArrowRight }}</v-icon>
+                        <span class="d-flex flex-column">
+                          <v-badge inline content="!!!" color="warning"></v-badge>
+                          <v-badge
+                            inline
+                            content="> 30s"
+                            color="transparent label--text"
+                          ></v-badge>
+                        </span>
+                        <v-icon small>{{ mdiChevronRight }}</v-icon>
+                        <span><item-icon :icon-class="iconIdToClass(29749)"/></span>
+                        1078
+                        <v-icon>{{ mdiPlusCircle }}</v-icon>
                       </div>
-                    </v-card-text>
-                  </v-card>
-                </div>
+
+                      <v-subheader class="px-0"
+                        >{{ $t('diademPage.tip.spot2') }}
+                      </v-subheader>
+                      <div class="d-flex align-center">
+                        <item-icon
+                          :icon-url="diademAnyBaitIcon"
+                          small
+                          :title="$t('diademPage.tip.bait')"
+                        />
+                        <span class="d-flex flex-column">
+                          <v-badge inline content="!" color="success"></v-badge>
+                          <v-badge
+                            inline
+                            content="< 10s"
+                            color="transparent label--text"
+                          ></v-badge>
+                        </span>
+                        <v-icon small>{{ mdiChevronRight }}</v-icon>
+                        <span><item-icon :icon-class="iconIdToClass(29716)" small/></span>
+                        <span class="d-flex flex-column">
+                          <v-badge inline content="!!" color="error"></v-badge>
+                          <v-badge
+                            inline
+                            content="> 20s"
+                            color="transparent label--text"
+                          ></v-badge>
+                        </span>
+                        <v-icon small>{{ mdiChevronRight }}</v-icon>
+                        <span><item-icon :icon-class="iconIdToClass(29054)"/></span>
+                        911 <v-icon>{{ mdiPlusCircle }}</v-icon>
+                      </div>
+                      <div class="d-flex align-center">
+                        <div style="min-width: 113px" class="d-flex align-center">
+                          <weather-icon
+                            :icon-class="iconIdToClass(60291)"
+                            title="$t('diademPage.tip.weather2')"
+                          />
+                          <span style="margin: 0 35px 0 4px">
+                            {{ $t('diademPage.tip.or') }}
+                          </span>
+                        </div>
+                        <v-icon>{{ mdiSubdirectoryArrowRight }}</v-icon>
+                        <span class="d-flex flex-column">
+                          <v-badge inline content="!!!" color="warning"></v-badge>
+                          <v-badge
+                            inline
+                            content="> 30s"
+                            color="transparent label--text"
+                          ></v-badge>
+                        </span>
+                        <v-icon small>{{ mdiChevronRight }}</v-icon>
+                        <span><item-icon :icon-class="iconIdToClass(29747)"/></span>
+                        982
+                        <v-icon>{{ mdiPlusCircle }}</v-icon>
+                      </div>
+                      <v-subheader class="px-0"
+                        >{{ $t('diademPage.tip.note.title') }}
+                      </v-subheader>
+                      <ul>
+                        <li>
+                          {{ $t('diademPage.tip.note.gather') }}
+                        </li>
+                        <li>
+                          {{ $t('diademPage.tip.note.baitTip1') }}
+                          <div class="text--secondary">
+                            {{ $t('diademPage.tip.note.baitTip2') }}
+                          </div>
+                        </li>
+                        <li>
+                          <div class="d-flex align-center flex-wrap">
+                            <i18n
+                              path="diademPage.tip.note.baitTip3"
+                              tag="span"
+                              class="d-inline-flex align-center"
+                            >
+                              <span place="icon">
+                                <item-icon
+                                  :icon-url="diademAnyBaitIcon"
+                                  small
+                                  :title="$t('diademPage.tip.bait')"
+                                />
+                              </span>
+                            </i18n>
+                          </div>
+                          <div class="d-flex align-center">
+                            <div data-ck-item-id="30278">
+                              <item-icon :icon-class="iconIdToClass(27020)" small />
+                            </div>
+                            <div data-ck-item-id="30279">
+                              <item-icon :icon-class="iconIdToClass(27025)" small />
+                            </div>
+                            <div data-ck-item-id="30280">
+                              <item-icon :icon-class="iconIdToClass(27002)" small />
+                            </div>
+                            <div data-ck-item-id="30281">
+                              <item-icon :icon-class="iconIdToClass(27022)" small />
+                            </div>
+                            <div data-ck-item-id="29717">
+                              <item-icon :icon-class="iconIdToClass(27051)" small />
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </v-card-text>
+                  <v-divider />
+                  <v-card-text v-if="simpleTip.baitTip" v-html="simpleTip.baitTip" />
+                  <v-divider />
+                  <v-card-text v-html="simpleTip.spotTip" />
+                  <v-divider />
+                  <v-card-text v-if="simpleTip.references">
+                    <div>{{ $t('diademPage.tip.reference.title') }}</div>
+                    <div v-for="(reference, index) in simpleTip.references" :key="index">
+                      <div class="text-subtitle-1">
+                        <a :href="reference.link" target="_blank">
+                          {{ reference.title }}
+                        </a>
+                      </div>
+                      <div>
+                        {{ reference.author }}
+                      </div>
+                    </div>
+                  </v-card-text>
+                </v-card>
               </v-col>
-              <v-col :cols="isMobile ? 12 : 4">
+              <v-col :cols="isMobile ? 12 : 4" class="py-0">
                 <v-img v-if="tipMap" :src="tipMap" />
                 <template v-else>
                   <eorzea-simple-map
@@ -242,7 +222,7 @@
         </v-expansion-panels>
       </v-col>
     </v-row>
-  </v-container>
+  </page-template>
 </template>
 
 <script>
@@ -255,6 +235,7 @@ import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import PageTemplate from '@/entries/main/views/PageTemplate'
 import WeatherIcon from '@/components/basic/WeatherIcon'
 import _ from 'lodash'
 import dataLoader from '@/utils/dataLoader'
@@ -264,7 +245,7 @@ import regionTerritorySpots from 'Data/fishingSpots'
 export default {
   name: 'DiademPage',
   mixins: [PageMixin],
-  components: { WeatherIcon, ItemIcon, EorzeaSimpleMap, DiademFishList },
+  components: { PageTemplate, WeatherIcon, ItemIcon, EorzeaSimpleMap, DiademFishList },
   props: ['original'],
   data() {
     return {
@@ -419,20 +400,6 @@ export default {
 
 <style lang="sass" scoped>
 @import "~@/styles/RcVariables"
-
-.detail-wrapper
-  width: 100%
-  overflow-scrolling: auto
-  overflow-x: hidden
-  overflow-y: auto
-
-  &--web
-    height: 100%
-    max-height: calc(100vh - #{ $wrapper-web })
-  &--electron
-    max-height: calc(100% - #{ $toolbar-height })
-  &--electron-original
-    max-height: calc(100vh - #{ $wrapper-desktop })
 
 .red
   color: orangered !important

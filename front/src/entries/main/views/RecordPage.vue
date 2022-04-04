@@ -1,694 +1,688 @@
 <template>
-  <v-container
-    fluid
-    :class="{
-      'detail-wrapper': true,
-      'detail-wrapper--web': !isElectron,
-      'detail-wrapper--electron': isElectron && !original,
-      'detail-wrapper--electron-original': isElectron && original,
-    }"
-  >
-    <v-tabs v-model="tabIndex" grow>
-      <!--      <v-tab>钓场</v-tab>-->
-      <v-tab>所有</v-tab>
-      <v-tab>个人</v-tab>
-    </v-tabs>
-    <v-tabs-items v-model="tabIndex">
-      <!--      <v-tab-item>-->
-      <!--        <v-card flat>-->
-      <!--          <v-card-text>-->
-      <!--            <rc-autocomplete-->
-      <!--              ref="search"-->
-      <!--              v-model="spotId"-->
-      <!--              :items="spotsForSearch"-->
-      <!--              item-value="id"-->
-      <!--              item-text="name"-->
-      <!--              label="请输入钓场"-->
-      <!--              clearable-->
-      <!--              solo-->
-      <!--              :filter="searchFilterOptions"-->
-      <!--            >-->
-      <!--              <template v-slot:item="data">-->
-      <!--                <div class="d-flex">-->
-      <!--                  <v-list-item-content>-->
-      <!--                    <v-list-item-title>-->
-      <!--                      <div>-->
-      <!--                        {{ data.item.name }}-->
-      <!--                      </div>-->
-      <!--                    </v-list-item-title>-->
-      <!--                  </v-list-item-content>-->
-      <!--                </div>-->
-      <!--              </template>-->
-      <!--            </rc-autocomplete>-->
-      <!--            <template v-if="spotId > 0">-->
-      <!--              <div class="ma-4 d-flex align-center">-->
-      <!--                <v-subheader>模式筛选</v-subheader>-->
-      <!--                <v-btn-toggle-->
-      <!--                  v-model="modeFilters"-->
-      <!--                  rounded-->
-      <!--                  dense-->
-      <!--                  mandatory-->
-      <!--                  multiple-->
-      <!--                  active-class="primary"-->
-      <!--                >-->
-      <!--                  <v-btn small v-for="filter in modeFilterOptions" :key="filter">-->
-      <!--                    {{ $t('upload.mode.' + filter) }}-->
-      <!--                  </v-btn>-->
-      <!--                </v-btn-toggle>-->
-      <!--              </div>-->
-      <!--              <v-subheader>※ 杆型下方的百分比为未提竿或脱钩数据的占比</v-subheader>-->
-      <!--              <div>-->
-      <!--                <div class="d-flex">-->
-      <!--                  <div style="width: 48px"></div>-->
-      <!--                  <div-->
-      <!--                    v-for="fish in baitOfSpot.fishList"-->
-      <!--                    :key="fish.fishId"-->
-      <!--                    style="margin-top: 22px"-->
-      <!--                    :title="toItemTitle({ name: fish.fishName, id: fish.fishId })"-->
-      <!--                  >-->
-      <!--                    <item-icon :icon-class="fish.fishIcon" />-->
-      <!--                  </div>-->
-      <!--                  <v-card outlined rounded>-->
-      <!--                    <div style="text-align: center">脱钩</div>-->
-      <!--                    <div class="d-flex align-center">-->
-      <!--                      <div-->
-      <!--                        v-for="tug in TUGS"-->
-      <!--                        :key="tug"-->
-      <!--                        style="width: 48px"-->
-      <!--                        class="d-flex align-center justify-center"-->
-      <!--                      >-->
-      <!--                        <v-avatar :color="tugColor[tug]" size="40">-->
-      <!--                          <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>-->
-      <!--                        </v-avatar>-->
-      <!--                      </div>-->
-      <!--                    </div>-->
-      <!--                  </v-card>-->
-      <!--                  <v-card outlined rounded>-->
-      <!--                    <div style="text-align: center">未提钩</div>-->
-      <!--                    <div class="d-flex align-center">-->
-      <!--                      <div-->
-      <!--                        v-for="tug in TUGS"-->
-      <!--                        :key="tug"-->
-      <!--                        style="width: 48px"-->
-      <!--                        class="d-flex align-center justify-center"-->
-      <!--                      >-->
-      <!--                        <v-avatar :color="tugColor[tug]" size="40">-->
-      <!--                          <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>-->
-      <!--                        </v-avatar>-->
-      <!--                      </div>-->
-      <!--                    </div>-->
-      <!--                  </v-card>-->
-      <!--                </div>-->
-      <!--                <div-->
-      <!--                  v-for="{-->
-      <!--                    bait,-->
-      <!--                    fishCntList,-->
-      <!--                    missedTugCntList,-->
-      <!--                    cancelledTugCntList,-->
-      <!--                    totalCnt,-->
-      <!--                  } in baitOfSpot.baitFishCntList"-->
-      <!--                  :key="bait.baitId"-->
-      <!--                  class="d-flex"-->
-      <!--                >-->
-      <!--                  <item-icon-->
-      <!--                    :icon-class="bait.baitIcon"-->
-      <!--                    :title="bait.baitName + '#' + bait.baitId"-->
-      <!--                  />-->
-      <!--                  <div-->
-      <!--                    v-for="{ fish, cnt, percentage, tugColor } in fishCntList"-->
-      <!--                    :key="bait.baitId + '-' + fish.fishId"-->
-      <!--                  >-->
-      <!--                    <div-->
-      <!--                      v-if="cnt > 0"-->
-      <!--                      style="position: relative"-->
-      <!--                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"-->
-      <!--                    >-->
-      <!--                      <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />-->
-      <!--                      <v-progress-circular-->
-      <!--                        :value="percentage"-->
-      <!--                        rotate="-90"-->
-      <!--                        style="position: absolute; top: 6px; left: 8px"-->
-      <!--                        :color="`${tugColor} ${theme.isDark ? 'lighten-2' : 'darken-1'}`"-->
-      <!--                      >-->
-      <!--                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">-->
-      <!--                          {{ percentage.toFixed(0) }}-->
-      <!--                        </div>-->
-      <!--                      </v-progress-circular>-->
-      <!--                    </div>-->
-      <!--                    <div v-else style="width: 48px"></div>-->
-      <!--                  </div>-->
+  <page-template>
+    <v-container fluid class="pa-0">
+      <v-tabs v-model="tabIndex" grow>
+        <!--      <v-tab>钓场</v-tab>-->
+        <v-tab>所有</v-tab>
+        <v-tab>个人</v-tab>
+      </v-tabs>
+      <v-tabs-items v-model="tabIndex">
+        <!--      <v-tab-item>-->
+        <!--        <v-card flat>-->
+        <!--          <v-card-text>-->
+        <!--            <rc-autocomplete-->
+        <!--              ref="search"-->
+        <!--              v-model="spotId"-->
+        <!--              :items="spotsForSearch"-->
+        <!--              item-value="id"-->
+        <!--              item-text="name"-->
+        <!--              label="请输入钓场"-->
+        <!--              clearable-->
+        <!--              solo-->
+        <!--              :filter="searchFilterOptions"-->
+        <!--            >-->
+        <!--              <template v-slot:item="data">-->
+        <!--                <div class="d-flex">-->
+        <!--                  <v-list-item-content>-->
+        <!--                    <v-list-item-title>-->
+        <!--                      <div>-->
+        <!--                        {{ data.item.name }}-->
+        <!--                      </div>-->
+        <!--                    </v-list-item-title>-->
+        <!--                  </v-list-item-content>-->
+        <!--                </div>-->
+        <!--              </template>-->
+        <!--            </rc-autocomplete>-->
+        <!--            <template v-if="spotId > 0">-->
+        <!--              <div class="ma-4 d-flex align-center">-->
+        <!--                <v-subheader>模式筛选</v-subheader>-->
+        <!--                <v-btn-toggle-->
+        <!--                  v-model="modeFilters"-->
+        <!--                  rounded-->
+        <!--                  dense-->
+        <!--                  mandatory-->
+        <!--                  multiple-->
+        <!--                  active-class="primary"-->
+        <!--                >-->
+        <!--                  <v-btn small v-for="filter in modeFilterOptions" :key="filter">-->
+        <!--                    {{ $t('upload.mode.' + filter) }}-->
+        <!--                  </v-btn>-->
+        <!--                </v-btn-toggle>-->
+        <!--              </div>-->
+        <!--              <v-subheader>※ 杆型下方的百分比为未提竿或脱钩数据的占比</v-subheader>-->
+        <!--              <div>-->
+        <!--                <div class="d-flex">-->
+        <!--                  <div style="width: 48px"></div>-->
+        <!--                  <div-->
+        <!--                    v-for="fish in baitOfSpot.fishList"-->
+        <!--                    :key="fish.fishId"-->
+        <!--                    style="margin-top: 22px"-->
+        <!--                    :title="toItemTitle({ name: fish.fishName, id: fish.fishId })"-->
+        <!--                  >-->
+        <!--                    <item-icon :icon-class="fish.fishIcon" />-->
+        <!--                  </div>-->
+        <!--                  <v-card outlined rounded>-->
+        <!--                    <div style="text-align: center">脱钩</div>-->
+        <!--                    <div class="d-flex align-center">-->
+        <!--                      <div-->
+        <!--                        v-for="tug in TUGS"-->
+        <!--                        :key="tug"-->
+        <!--                        style="width: 48px"-->
+        <!--                        class="d-flex align-center justify-center"-->
+        <!--                      >-->
+        <!--                        <v-avatar :color="tugColor[tug]" size="40">-->
+        <!--                          <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>-->
+        <!--                        </v-avatar>-->
+        <!--                      </div>-->
+        <!--                    </div>-->
+        <!--                  </v-card>-->
+        <!--                  <v-card outlined rounded>-->
+        <!--                    <div style="text-align: center">未提钩</div>-->
+        <!--                    <div class="d-flex align-center">-->
+        <!--                      <div-->
+        <!--                        v-for="tug in TUGS"-->
+        <!--                        :key="tug"-->
+        <!--                        style="width: 48px"-->
+        <!--                        class="d-flex align-center justify-center"-->
+        <!--                      >-->
+        <!--                        <v-avatar :color="tugColor[tug]" size="40">-->
+        <!--                          <span class="text-h6">{{ $t('tugShort.' + tug) }}</span>-->
+        <!--                        </v-avatar>-->
+        <!--                      </div>-->
+        <!--                    </div>-->
+        <!--                  </v-card>-->
+        <!--                </div>-->
+        <!--                <div-->
+        <!--                  v-for="{-->
+        <!--                    bait,-->
+        <!--                    fishCntList,-->
+        <!--                    missedTugCntList,-->
+        <!--                    cancelledTugCntList,-->
+        <!--                    totalCnt,-->
+        <!--                  } in baitOfSpot.baitFishCntList"-->
+        <!--                  :key="bait.baitId"-->
+        <!--                  class="d-flex"-->
+        <!--                >-->
+        <!--                  <item-icon-->
+        <!--                    :icon-class="bait.baitIcon"-->
+        <!--                    :title="bait.baitName + '#' + bait.baitId"-->
+        <!--                  />-->
+        <!--                  <div-->
+        <!--                    v-for="{ fish, cnt, percentage, tugColor } in fishCntList"-->
+        <!--                    :key="bait.baitId + '-' + fish.fishId"-->
+        <!--                  >-->
+        <!--                    <div-->
+        <!--                      v-if="cnt > 0"-->
+        <!--                      style="position: relative"-->
+        <!--                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"-->
+        <!--                    >-->
+        <!--                      <item-icon :icon-class="fish.fishIcon" style="opacity: 0.5" />-->
+        <!--                      <v-progress-circular-->
+        <!--                        :value="percentage"-->
+        <!--                        rotate="-90"-->
+        <!--                        style="position: absolute; top: 6px; left: 8px"-->
+        <!--                        :color="`${tugColor} ${theme.isDark ? 'lighten-2' : 'darken-1'}`"-->
+        <!--                      >-->
+        <!--                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">-->
+        <!--                          {{ percentage.toFixed(0) }}-->
+        <!--                        </div>-->
+        <!--                      </v-progress-circular>-->
+        <!--                    </div>-->
+        <!--                    <div v-else style="width: 48px"></div>-->
+        <!--                  </div>-->
 
-      <!--                  <div-->
-      <!--                    v-for="{ tug, cnt, percentage, tugColor } in missedTugCntList"-->
-      <!--                    :key="`${bait.baitId}-${tug}-missed`"-->
-      <!--                  >-->
-      <!--                    <div-->
-      <!--                      v-if="cnt > 0"-->
-      <!--                      style="position: relative; width: 48px"-->
-      <!--                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"-->
-      <!--                    >-->
-      <!--                      <v-progress-circular-->
-      <!--                        :value="percentage"-->
-      <!--                        rotate="-90"-->
-      <!--                        style="position: absolute; top: 6px; left: 8px"-->
-      <!--                        :color="tugColor + ' lighten-2'"-->
-      <!--                      >-->
-      <!--                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">-->
-      <!--                          {{ percentage.toFixed(0) }}-->
-      <!--                        </div>-->
-      <!--                      </v-progress-circular>-->
-      <!--                    </div>-->
-      <!--                    <div v-else style="width: 48px"></div>-->
-      <!--                  </div>-->
+        <!--                  <div-->
+        <!--                    v-for="{ tug, cnt, percentage, tugColor } in missedTugCntList"-->
+        <!--                    :key="`${bait.baitId}-${tug}-missed`"-->
+        <!--                  >-->
+        <!--                    <div-->
+        <!--                      v-if="cnt > 0"-->
+        <!--                      style="position: relative; width: 48px"-->
+        <!--                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"-->
+        <!--                    >-->
+        <!--                      <v-progress-circular-->
+        <!--                        :value="percentage"-->
+        <!--                        rotate="-90"-->
+        <!--                        style="position: absolute; top: 6px; left: 8px"-->
+        <!--                        :color="tugColor + ' lighten-2'"-->
+        <!--                      >-->
+        <!--                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">-->
+        <!--                          {{ percentage.toFixed(0) }}-->
+        <!--                        </div>-->
+        <!--                      </v-progress-circular>-->
+        <!--                    </div>-->
+        <!--                    <div v-else style="width: 48px"></div>-->
+        <!--                  </div>-->
 
-      <!--                  <div-->
-      <!--                    v-for="{ tug, cnt, percentage, tugColor } in cancelledTugCntList"-->
-      <!--                    :key="`${bait.baitId}-${tug}-cancelled`"-->
-      <!--                  >-->
-      <!--                    <div-->
-      <!--                      v-if="cnt > 0"-->
-      <!--                      style="position: relative; width: 48px"-->
-      <!--                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"-->
-      <!--                    >-->
-      <!--                      <v-progress-circular-->
-      <!--                        :value="percentage"-->
-      <!--                        rotate="-90"-->
-      <!--                        style="position: absolute; top: 6px; left: 8px"-->
-      <!--                        :color="tugColor + ' lighten-2'"-->
-      <!--                      >-->
-      <!--                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">-->
-      <!--                          {{ percentage.toFixed(0) }}-->
-      <!--                        </div>-->
-      <!--                      </v-progress-circular>-->
-      <!--                    </div>-->
-      <!--                    <div v-else style="width: 48px"></div>-->
-      <!--                  </div>-->
-      <!--                </div>-->
-      <!--              </div>-->
-      <!--            </template>-->
-      <!--            <div v-if="spotId > 0">-->
-      <!--              <v-switch v-model="chumBiteTime" label="撒饵" inset />-->
-      <!--              <bite-time-chart :data="biteTimeChartData" />-->
-      <!--            </div>-->
-      <!--            <div v-if="spotId > 0">-->
-      <!--              <v-select-->
-      <!--                v-model="fishSelected"-->
-      <!--                :items="spotFishList"-->
-      <!--                item-text="fishName"-->
-      <!--                item-value="fishId"-->
-      <!--                label="选择鱼"-->
-      <!--              ></v-select>-->
-      <!--              <div v-if="spotId > 0 && fishSelected > 0">-->
-      <!--                <v-subheader>时间分布</v-subheader>-->
-      <!--                <div-->
-      <!--                  v-for="(daySection, i) in etBiteCounts"-->
-      <!--                  :key="'daySection-' + i"-->
-      <!--                  class="d-flex align-center"-->
-      <!--                >-->
-      <!--                  <div v-for="(etSection, j) in daySection" :key="`etSession-${i}-${j}`">-->
-      <!--                    <v-menu-->
-      <!--                      open-on-hover-->
-      <!--                      open-delay="300"-->
-      <!--                      close-deplay="300"-->
-      <!--                      right-->
-      <!--                      offset-x-->
-      <!--                    >-->
-      <!--                      <template v-slot:activator="{ on, attrs }">-->
-      <!--                        <div-->
-      <!--                          v-bind="attrs"-->
-      <!--                          v-on="on"-->
-      <!--                          style="height: 40px; width: 40px; position: relative"-->
-      <!--                          :class="-->
-      <!--                            'd-flex justify-center align-center' +-->
-      <!--                              (etSection > 0 ? ' secondary' : '')-->
-      <!--                          "-->
-      <!--                        >-->
-      <!--                          <div-->
-      <!--                            style="-->
-      <!--                              position: absolute;-->
-      <!--                              top: 0;-->
-      <!--                              left: 0;-->
-      <!--                              font-size: xx-small;-->
-      <!--                              line-height: 14px;-->
-      <!--                            "-->
-      <!--                          >-->
-      <!--                            {{ i * 8 + j }}-->
-      <!--                          </div>-->
-      <!--                          <div style="font-size: x-large">-->
-      <!--                            {{ etSection }}-->
-      <!--                          </div>-->
-      <!--                        </div>-->
-      <!--                      </template>-->
-      <!--                      <v-card>-->
-      <!--                        <v-card-title>-->
-      <!--                          详情（ET {{ i * 8 + j }}时 共{{ etSection }}条记录）-->
-      <!--                        </v-card-title>-->
-      <!--                        <v-card-text>-->
-      <!--                          <div class="d-flex flex-wrap">-->
-      <!--                            <div-->
-      <!--                              v-for="(entry, idx) in etBiteDetailOf(i * 8 + j, 1, 0.5)"-->
-      <!--                              :key="'detail' + idx"-->
-      <!--                              class="d-flex flex-column align-center"-->
-      <!--                            >-->
-      <!--                              <div>-->
-      <!--                                {{ entry.time }}-->
-      <!--                              </div>-->
-      <!--                              <div-->
-      <!--                                style="height: 40px; width: 40px"-->
-      <!--                                :class="-->
-      <!--                                  'd-flex justify-center align-center' +-->
-      <!--                                    (entry.cnt > 0 ? ' secondary' : '')-->
-      <!--                                "-->
-      <!--                                :title="`${entry.cnt}条记录`"-->
-      <!--                              >-->
-      <!--                                <div style="font-size: x-large">{{ entry.cnt }}</div>-->
-      <!--                              </div>-->
-      <!--                            </div>-->
-      <!--                          </div>-->
-      <!--                        </v-card-text>-->
-      <!--                      </v-card>-->
-      <!--                    </v-menu>-->
-      <!--                  </div>-->
-      <!--                </div>-->
-      <!--              </div>-->
-      <!--              <div v-if="spotId > 0 && fishSelected > 0">-->
-      <!--                <v-subheader>天气分布</v-subheader>-->
-      <!--                <div-->
-      <!--                  :style="-->
-      <!--                    `padding-left: 60px; text-align: center; width: ${40 *-->
-      <!--                      (spotWeathers.length + 1)}px`-->
-      <!--                  "-->
-      <!--                >-->
-      <!--                  当前天气-->
-      <!--                </div>-->
-      <!--                <div class="d-flex align-center">-->
-      <!--                  <div style="height: 40px; width: 60px" />-->
-      <!--                  <div-->
-      <!--                    v-for="(weather, i) in spotWeathers"-->
-      <!--                    :key="'th-weather-' + i"-->
-      <!--                    class="d-flex"-->
-      <!--                  >-->
-      <!--                    <div-->
-      <!--                      style="height: 40px; width: 40px"-->
-      <!--                      class="d-flex justify-center align-center"-->
-      <!--                    >-->
-      <!--                      <weather-icon-->
-      <!--                        :icon-class="weather.icon"-->
-      <!--                        :title="weather.name"-->
-      <!--                        type="weather"-->
-      <!--                      />-->
-      <!--                    </div>-->
-      <!--                  </div>-->
-      <!--                </div>-->
-      <!--                <div class="d-flex">-->
-      <!--                  <div style="width: 20px" class="d-flex align-center">-->
-      <!--                    <div>前置天气</div>-->
-      <!--                  </div>-->
-      <!--                  <div>-->
-      <!--                    <div-->
-      <!--                      v-for="(weatherRow, i) in weatherBiteCounts"-->
-      <!--                      :key="'weather-' + i"-->
-      <!--                      class="d-flex"-->
-      <!--                    >-->
-      <!--                      <div style="height: 40px; width: 40px">-->
-      <!--                        <weather-icon-->
-      <!--                          :icon-class="spotWeathers[i].icon"-->
-      <!--                          :title="spotWeathers[i].name"-->
-      <!--                          type="weather"-->
-      <!--                        />-->
-      <!--                      </div>-->
-      <!--                      <div-->
-      <!--                        v-for="(cnt, j) in weatherRow"-->
-      <!--                        :key="'weather-' + i + '-' + j"-->
-      <!--                        style="height: 40px; width: 40px"-->
-      <!--                        :class="-->
-      <!--                          'd-flex justify-center align-center' +-->
-      <!--                            (cnt > 0 ? ' secondary' : '')-->
-      <!--                        "-->
-      <!--                        :title="`${cnt}条记录`"-->
-      <!--                      >-->
-      <!--                        <div style="font-size: x-large">{{ cnt }}</div>-->
-      <!--                      </div>-->
-      <!--                    </div>-->
-      <!--                  </div>-->
-      <!--                </div>-->
-      <!--              </div>-->
-      <!--            </div>-->
-      <!--          </v-card-text>-->
-      <!--        </v-card>-->
-      <!--      </v-tab-item>-->
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text>
-            <v-row>
-              <v-col cols="12">
-                <v-btn @click="refresh">
-                  <v-icon>{{ mdiRefresh }}</v-icon>
-                </v-btn>
-              </v-col>
-              <v-col cols="12">
-                <div class="d-flex align-center overflow-auto">
-                  <v-subheader>区域</v-subheader>
-                  <v-btn-toggle
-                    v-model="regionFilter"
-                    rounded
-                    dense
-                    mandatory
-                    multiple
-                    active-class="primary"
-                  >
-                    <v-btn small v-for="filter in regionFilterOptions" :key="filter">
-                      {{ filter }}
-                    </v-btn>
-                  </v-btn-toggle>
-                </div>
-                <v-data-table
-                  :headers="userSpotStatsHeaders"
-                  :items="filteredSpots"
-                  multi-sort
-                  class="elevation-1"
-                  :loading="loadingTotalSpotStats"
-                >
-                  <template v-slot:item.spot="{ item }">
-                    <div class="d-flex align-center">
-                      <div>{{ item.spot.spotName }}</div>
-                    </div>
-                  </template>
-                  <template v-slot:item.finished="{ item }">
-                    <div class="d-flex align-center">
-                      <v-icon v-if="item.finished" color="primary"
-                        >{{ mdiCheckDecagram }}
-                      </v-icon>
-                    </div>
-                  </template>
-                </v-data-table>
-              </v-col>
-              <v-col cols="6">
-                <date-time-input
-                  v-model="recordsStartMillis"
-                  date-label="开始日期"
-                  time-label="开始时间"
-                />
-              </v-col>
-              <v-col cols="6">
-                <date-time-input
-                  v-model="recordsEndMillis"
-                  date-label="结束日期"
-                  time-label="结束时间"
-                />
-              </v-col>
-              <v-col cols="12">
-                <v-row no-gutters class="d-flex align-center">
-                  <v-col>
-                    <div class="d-flex align-center">
-                      <v-subheader>模式筛选</v-subheader>
-                      <v-btn-toggle
-                        v-model="recordsStrictModeFilter"
-                        rounded
-                        dense
-                        mandatory
-                        multiple
-                        active-class="primary"
-                      >
-                        <v-btn small v-for="filter in modeFilterOptions" :key="filter">
-                          {{ $t('upload.mode.' + filter) }}
-                        </v-btn>
-                      </v-btn-toggle>
-                    </div>
-                  </v-col>
-                  <v-col v-if="isLogin">
-                    <v-switch
-                      v-model="recordsFilterSelf"
-                      label="只显示自己的数据"
-                      inset
-                    />
-                  </v-col>
-                </v-row>
-              </v-col>
-              <v-col cols="12">
-                <v-row>
-                  <v-col>
-                    <rc-autocomplete
-                      ref="search"
-                      v-model="recordsFilterSpotId"
-                      :items="spotsForSearch"
-                      item-value="id"
-                      item-text="name"
-                      label="请输入钓场"
-                      clearable
-                      solo
-                      :filter="searchFilterOptions"
-                    >
-                      <template v-slot:item="data">
-                        <div class="d-flex">
-                          <v-list-item-content>
-                            <v-list-item-title>
-                              <div>
-                                {{ data.item.name }}
-                              </div>
-                            </v-list-item-title>
-                          </v-list-item-content>
-                        </div>
-                      </template>
-                    </rc-autocomplete>
-                  </v-col>
-                  <v-col>
-                    <rc-autocomplete
-                      ref="search"
-                      v-model="recordsFilterFishId"
-                      :items="fishForSearch"
-                      item-value="id"
-                      item-text="name"
-                      label="请输入鱼"
-                      clearable
-                      solo
-                      :filter="searchFilterOptions"
-                    >
-                      <template v-slot:item="data">
-                        <div class="d-flex">
-                          <v-list-item-content>
-                            <v-list-item-title>
-                              <div>
-                                {{ data.item.name }}
-                              </div>
-                            </v-list-item-title>
-                          </v-list-item-content>
-                        </div>
-                      </template>
-                    </rc-autocomplete>
-                  </v-col>
-                  <v-col>
-                    <rc-autocomplete
-                      ref="search"
-                      v-model="recordsFilterBaitId"
-                      :items="baitForSearch"
-                      item-value="id"
-                      item-text="name"
-                      label="请输入鱼饵"
-                      clearable
-                      solo
-                      :filter="searchFilterOptions"
-                    >
-                      <template v-slot:item="data">
-                        <div class="d-flex">
-                          <v-list-item-content>
-                            <v-list-item-title>
-                              <div>
-                                {{ data.item.name }}
-                              </div>
-                            </v-list-item-title>
-                          </v-list-item-content>
-                        </div>
-                      </template>
-                    </rc-autocomplete>
-                  </v-col>
-                </v-row>
-              </v-col>
-              <v-col v-if="isLogin" cols="12">
-                <v-switch v-model="isFixedOwnRecordMode" label="修正上传数据" inset />
-              </v-col>
-              <v-col cols="12">
-                <v-data-table
-                  :headers="headers"
-                  :items="records"
-                  multi-sort
-                  class="elevation-1"
-                  :loading="loadingRecords"
-                  :server-items-length="totalRecords"
-                  :options.sync="options"
-                  :footer-props="{ itemsPerPageOptions: [20, 40, 60] }"
-                >
-                  <template v-slot:item.startTime="{ item }">
-                    <div class="d-flex align-center">
-                      <div>
-                        {{ item.startTime.toLocaleDateString() }}
-                        {{ item.startTime.toLocaleTimeString() }}
-                      </div>
-                    </div>
-                  </template>
-                  <template v-slot:item.spot="{ item }">
-                    <div class="d-flex flex-column justify-center">
-                      <div>
-                        {{ item.zoneName }}
-                      </div>
-                      <div>
-                        {{ item.spotName }}
-                      </div>
-                    </div>
-                  </template>
-                  <template v-slot:item.fish="{ item: record }">
-                    <div class="d-flex align-center">
-                      <v-badge
-                        v-if="record.quantity > 1"
-                        :content="record.quantity"
-                        overlap
-                        bottom
-                        bordered
-                      >
-                        <item-icon :icon-class="record.fishIcon" />
-                      </v-badge>
-                      <item-icon v-else :icon-class="record.fishIcon" />
-                      <div>
-                        <span v-if="record.missed">{{ '脱钩' }}</span>
-                        <span v-else-if="record.cancelled">{{ '未知鱼' }}</span>
-                        <span v-else>
-                          {{ record.fishName || '未知鱼' }}
-                          <span v-if="record.hq">[{{ $t('fish.largeSize') }}]</span>
-                        </span>
-                        <div class="text-subtitle-2 d-flex">
-                          <div
-                            v-if="record.size > 0"
-                            :class="['mr-2', record.quantity > 1 ? 'ml-2' : '']"
-                            title="星寸：人族男性士兵的大拇指宽度、成熟的罗兰莓的长度"
-                          >
-                            {{ record.size }} Im
-                          </div>
-                          <!--                  <div-->
-                          <!--                    v-if="showPlayerStatus"-->
-                          <!--                    class="text-subtitle-2"-->
-                          <!--                    title="获得力/鉴别力"-->
-                          <!--                  >-->
-                          <!--                    {{ record.playerStatus.text }}-->
-                          <!--                  </div>-->
-                        </div>
-                      </div>
-                    </div>
-                    <!--            <div class="d-flex align-center">-->
-                    <!--              <item-icon :icon-class="item.fishIcon"></item-icon>-->
-                    <!--              <div>{{ item.fishName }}</div>-->
-                    <!--            </div>-->
-                  </template>
-                  <template v-slot:item.bait="{ item }">
-                    <div class="d-flex align-center">
-                      <item-icon :icon-class="item.baitIcon"></item-icon>
-                      <div>{{ item.baitName }}</div>
-                    </div>
-                  </template>
-                  <template v-slot:item.biteInterval="{ item }">
-                    <v-progress-linear
-                      :value="item.biteIntervalPercentage"
-                      :color="item.tugColor"
-                      height="25"
+        <!--                  <div-->
+        <!--                    v-for="{ tug, cnt, percentage, tugColor } in cancelledTugCntList"-->
+        <!--                    :key="`${bait.baitId}-${tug}-cancelled`"-->
+        <!--                  >-->
+        <!--                    <div-->
+        <!--                      v-if="cnt > 0"-->
+        <!--                      style="position: relative; width: 48px"-->
+        <!--                      :title="percentage.toFixed(2) + '% [' + cnt + '/' + totalCnt + ']'"-->
+        <!--                    >-->
+        <!--                      <v-progress-circular-->
+        <!--                        :value="percentage"-->
+        <!--                        rotate="-90"-->
+        <!--                        style="position: absolute; top: 6px; left: 8px"-->
+        <!--                        :color="tugColor + ' lighten-2'"-->
+        <!--                      >-->
+        <!--                        <div :style="percentage === 100 ? 'font-size: x-small' : ''">-->
+        <!--                          {{ percentage.toFixed(0) }}-->
+        <!--                        </div>-->
+        <!--                      </v-progress-circular>-->
+        <!--                    </div>-->
+        <!--                    <div v-else style="width: 48px"></div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--            </template>-->
+        <!--            <div v-if="spotId > 0">-->
+        <!--              <v-switch v-model="chumBiteTime" label="撒饵" inset />-->
+        <!--              <bite-time-chart :data="biteTimeChartData" />-->
+        <!--            </div>-->
+        <!--            <div v-if="spotId > 0">-->
+        <!--              <v-select-->
+        <!--                v-model="fishSelected"-->
+        <!--                :items="spotFishList"-->
+        <!--                item-text="fishName"-->
+        <!--                item-value="fishId"-->
+        <!--                label="选择鱼"-->
+        <!--              ></v-select>-->
+        <!--              <div v-if="spotId > 0 && fishSelected > 0">-->
+        <!--                <v-subheader>时间分布</v-subheader>-->
+        <!--                <div-->
+        <!--                  v-for="(daySection, i) in etBiteCounts"-->
+        <!--                  :key="'daySection-' + i"-->
+        <!--                  class="d-flex align-center"-->
+        <!--                >-->
+        <!--                  <div v-for="(etSection, j) in daySection" :key="`etSession-${i}-${j}`">-->
+        <!--                    <v-menu-->
+        <!--                      open-on-hover-->
+        <!--                      open-delay="300"-->
+        <!--                      close-deplay="300"-->
+        <!--                      right-->
+        <!--                      offset-x-->
+        <!--                    >-->
+        <!--                      <template v-slot:activator="{ on, attrs }">-->
+        <!--                        <div-->
+        <!--                          v-bind="attrs"-->
+        <!--                          v-on="on"-->
+        <!--                          style="height: 40px; width: 40px; position: relative"-->
+        <!--                          :class="-->
+        <!--                            'd-flex justify-center align-center' +-->
+        <!--                              (etSection > 0 ? ' secondary' : '')-->
+        <!--                          "-->
+        <!--                        >-->
+        <!--                          <div-->
+        <!--                            style="-->
+        <!--                              position: absolute;-->
+        <!--                              top: 0;-->
+        <!--                              left: 0;-->
+        <!--                              font-size: xx-small;-->
+        <!--                              line-height: 14px;-->
+        <!--                            "-->
+        <!--                          >-->
+        <!--                            {{ i * 8 + j }}-->
+        <!--                          </div>-->
+        <!--                          <div style="font-size: x-large">-->
+        <!--                            {{ etSection }}-->
+        <!--                          </div>-->
+        <!--                        </div>-->
+        <!--                      </template>-->
+        <!--                      <v-card>-->
+        <!--                        <v-card-title>-->
+        <!--                          详情（ET {{ i * 8 + j }}时 共{{ etSection }}条记录）-->
+        <!--                        </v-card-title>-->
+        <!--                        <v-card-text>-->
+        <!--                          <div class="d-flex flex-wrap">-->
+        <!--                            <div-->
+        <!--                              v-for="(entry, idx) in etBiteDetailOf(i * 8 + j, 1, 0.5)"-->
+        <!--                              :key="'detail' + idx"-->
+        <!--                              class="d-flex flex-column align-center"-->
+        <!--                            >-->
+        <!--                              <div>-->
+        <!--                                {{ entry.time }}-->
+        <!--                              </div>-->
+        <!--                              <div-->
+        <!--                                style="height: 40px; width: 40px"-->
+        <!--                                :class="-->
+        <!--                                  'd-flex justify-center align-center' +-->
+        <!--                                    (entry.cnt > 0 ? ' secondary' : '')-->
+        <!--                                "-->
+        <!--                                :title="`${entry.cnt}条记录`"-->
+        <!--                              >-->
+        <!--                                <div style="font-size: x-large">{{ entry.cnt }}</div>-->
+        <!--                              </div>-->
+        <!--                            </div>-->
+        <!--                          </div>-->
+        <!--                        </v-card-text>-->
+        <!--                      </v-card>-->
+        <!--                    </v-menu>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--              <div v-if="spotId > 0 && fishSelected > 0">-->
+        <!--                <v-subheader>天气分布</v-subheader>-->
+        <!--                <div-->
+        <!--                  :style="-->
+        <!--                    `padding-left: 60px; text-align: center; width: ${40 *-->
+        <!--                      (spotWeathers.length + 1)}px`-->
+        <!--                  "-->
+        <!--                >-->
+        <!--                  当前天气-->
+        <!--                </div>-->
+        <!--                <div class="d-flex align-center">-->
+        <!--                  <div style="height: 40px; width: 60px" />-->
+        <!--                  <div-->
+        <!--                    v-for="(weather, i) in spotWeathers"-->
+        <!--                    :key="'th-weather-' + i"-->
+        <!--                    class="d-flex"-->
+        <!--                  >-->
+        <!--                    <div-->
+        <!--                      style="height: 40px; width: 40px"-->
+        <!--                      class="d-flex justify-center align-center"-->
+        <!--                    >-->
+        <!--                      <weather-icon-->
+        <!--                        :icon-class="weather.icon"-->
+        <!--                        :title="weather.name"-->
+        <!--                        type="weather"-->
+        <!--                      />-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--                <div class="d-flex">-->
+        <!--                  <div style="width: 20px" class="d-flex align-center">-->
+        <!--                    <div>前置天气</div>-->
+        <!--                  </div>-->
+        <!--                  <div>-->
+        <!--                    <div-->
+        <!--                      v-for="(weatherRow, i) in weatherBiteCounts"-->
+        <!--                      :key="'weather-' + i"-->
+        <!--                      class="d-flex"-->
+        <!--                    >-->
+        <!--                      <div style="height: 40px; width: 40px">-->
+        <!--                        <weather-icon-->
+        <!--                          :icon-class="spotWeathers[i].icon"-->
+        <!--                          :title="spotWeathers[i].name"-->
+        <!--                          type="weather"-->
+        <!--                        />-->
+        <!--                      </div>-->
+        <!--                      <div-->
+        <!--                        v-for="(cnt, j) in weatherRow"-->
+        <!--                        :key="'weather-' + i + '-' + j"-->
+        <!--                        style="height: 40px; width: 40px"-->
+        <!--                        :class="-->
+        <!--                          'd-flex justify-center align-center' +-->
+        <!--                            (cnt > 0 ? ' secondary' : '')-->
+        <!--                        "-->
+        <!--                        :title="`${cnt}条记录`"-->
+        <!--                      >-->
+        <!--                        <div style="font-size: x-large">{{ cnt }}</div>-->
+        <!--                      </div>-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </v-card-text>-->
+        <!--        </v-card>-->
+        <!--      </v-tab-item>-->
+        <v-tab-item style="height: 100%">
+          <v-card flat>
+            <v-card-text>
+              <v-row>
+                <v-col cols="12">
+                  <v-btn @click="refresh">
+                    <v-icon>{{ mdiRefresh }}</v-icon>
+                  </v-btn>
+                </v-col>
+                <v-col cols="12">
+                  <div class="d-flex align-center overflow-auto">
+                    <v-subheader>区域</v-subheader>
+                    <v-btn-toggle
+                      v-model="regionFilter"
                       rounded
+                      dense
+                      mandatory
+                      multiple
+                      active-class="primary"
                     >
-                      <template>
-                        <strong>{{ item.biteInterval }}</strong>
-                      </template>
-                    </v-progress-linear>
-                  </template>
-                  <template v-slot:item.effects="{ item }">
-                    <div class="d-flex align-center">
-                      <div v-for="effect in item.effects" :key="effect.id">
-                        <effect-icon :icon-class="effect.icon" :title="effect.name" />
+                      <v-btn small v-for="filter in regionFilterOptions" :key="filter">
+                        {{ filter }}
+                      </v-btn>
+                    </v-btn-toggle>
+                  </div>
+                  <v-data-table
+                    :headers="userSpotStatsHeaders"
+                    :items="filteredSpots"
+                    multi-sort
+                    class="elevation-1"
+                    :loading="loadingTotalSpotStats"
+                  >
+                    <template v-slot:item.spot="{ item }">
+                      <div class="d-flex align-center">
+                        <div>{{ item.spot.spotName }}</div>
                       </div>
-                    </div>
-                  </template>
-                  <template v-slot:item.userId="{ item }">
-                    <div class="d-flex align-center">
-                      {{ item.userNickname }}
-                    </div>
-                  </template>
-                  <template v-slot:item.hookset="{ item }">
-                    <item-icon :icon-class="item.hookset.icon" small type="action" />
-                  </template>
-                  <template v-slot:item.userId="{ item }">
-                    <div class="d-flex align-center">
-                      {{ item.userNickname }}
-                    </div>
-                  </template>
-                  <template v-slot:item.isStrictMode="{ item }">
-                    <div class="d-flex align-center">
-                      <v-icon v-if="item.isStrictMode">{{ mdiFlag }}</v-icon>
-                    </div>
-                  </template>
-                  <template v-slot:item.actions="{ item }">
-                    <v-btn
-                      v-if="item.userId === currentUserId"
-                      icon
-                      text
-                      color="deep-purple darken-1"
-                      @click="throttledToggleRecordStrictMode(item)"
-                      :title="item.isStrictMode ? '取消严格标记' : '添加严格标记'"
-                    >
-                      <v-icon>
-                        {{ item.isStrictMode ? mdiFlagRemoveOutline : mdiFlagPlus }}
-                      </v-icon>
-                    </v-btn>
-                    <v-btn
-                      v-if="item.userId === currentUserId"
-                      icon
-                      text
-                      color="error"
-                      @click="handleTryDelete(item)"
-                    >
-                      <v-icon>{{ mdiDelete }}</v-icon>
-                    </v-btn>
-                  </template>
-                </v-data-table>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
-      </v-tab-item>
-      <v-tab-item>
-        <v-card flat>
+                    </template>
+                    <template v-slot:item.finished="{ item }">
+                      <div class="d-flex align-center">
+                        <v-icon v-if="item.finished" color="primary"
+                          >{{ mdiCheckDecagram }}
+                        </v-icon>
+                      </div>
+                    </template>
+                  </v-data-table>
+                </v-col>
+                <v-col cols="6">
+                  <date-time-input
+                    v-model="recordsStartMillis"
+                    date-label="开始日期"
+                    time-label="开始时间"
+                  />
+                </v-col>
+                <v-col cols="6">
+                  <date-time-input
+                    v-model="recordsEndMillis"
+                    date-label="结束日期"
+                    time-label="结束时间"
+                  />
+                </v-col>
+                <v-col cols="12">
+                  <v-row no-gutters class="d-flex align-center">
+                    <v-col>
+                      <div class="d-flex align-center">
+                        <v-subheader>模式筛选</v-subheader>
+                        <v-btn-toggle
+                          v-model="recordsStrictModeFilter"
+                          rounded
+                          dense
+                          mandatory
+                          multiple
+                          active-class="primary"
+                        >
+                          <v-btn small v-for="filter in modeFilterOptions" :key="filter">
+                            {{ $t('upload.mode.' + filter) }}
+                          </v-btn>
+                        </v-btn-toggle>
+                      </div>
+                    </v-col>
+                    <v-col v-if="isLogin">
+                      <v-switch
+                        v-model="recordsFilterSelf"
+                        label="只显示自己的数据"
+                        inset
+                      />
+                    </v-col>
+                  </v-row>
+                </v-col>
+                <v-col cols="12">
+                  <v-row>
+                    <v-col>
+                      <rc-autocomplete
+                        ref="search"
+                        v-model="recordsFilterSpotId"
+                        :items="spotsForSearch"
+                        item-value="id"
+                        item-text="name"
+                        label="请输入钓场"
+                        clearable
+                        solo
+                        :filter="searchFilterOptions"
+                      >
+                        <template v-slot:item="data">
+                          <div class="d-flex">
+                            <v-list-item-content>
+                              <v-list-item-title>
+                                <div>
+                                  {{ data.item.name }}
+                                </div>
+                              </v-list-item-title>
+                            </v-list-item-content>
+                          </div>
+                        </template>
+                      </rc-autocomplete>
+                    </v-col>
+                    <v-col>
+                      <rc-autocomplete
+                        ref="search"
+                        v-model="recordsFilterFishId"
+                        :items="fishForSearch"
+                        item-value="id"
+                        item-text="name"
+                        label="请输入鱼"
+                        clearable
+                        solo
+                        :filter="searchFilterOptions"
+                      >
+                        <template v-slot:item="data">
+                          <div class="d-flex">
+                            <v-list-item-content>
+                              <v-list-item-title>
+                                <div>
+                                  {{ data.item.name }}
+                                </div>
+                              </v-list-item-title>
+                            </v-list-item-content>
+                          </div>
+                        </template>
+                      </rc-autocomplete>
+                    </v-col>
+                    <v-col>
+                      <rc-autocomplete
+                        ref="search"
+                        v-model="recordsFilterBaitId"
+                        :items="baitForSearch"
+                        item-value="id"
+                        item-text="name"
+                        label="请输入鱼饵"
+                        clearable
+                        solo
+                        :filter="searchFilterOptions"
+                      >
+                        <template v-slot:item="data">
+                          <div class="d-flex">
+                            <v-list-item-content>
+                              <v-list-item-title>
+                                <div>
+                                  {{ data.item.name }}
+                                </div>
+                              </v-list-item-title>
+                            </v-list-item-content>
+                          </div>
+                        </template>
+                      </rc-autocomplete>
+                    </v-col>
+                  </v-row>
+                </v-col>
+                <v-col v-if="isLogin" cols="12">
+                  <v-switch v-model="isFixedOwnRecordMode" label="修正上传数据" inset />
+                </v-col>
+                <v-col cols="12">
+                  <v-data-table
+                    :headers="headers"
+                    :items="records"
+                    multi-sort
+                    class="elevation-1"
+                    :loading="loadingRecords"
+                    :server-items-length="totalRecords"
+                    :options.sync="options"
+                    :footer-props="{ itemsPerPageOptions: [20, 40, 60] }"
+                  >
+                    <template v-slot:item.startTime="{ item }">
+                      <div class="d-flex align-center">
+                        <div>
+                          {{ item.startTime.toLocaleDateString() }}
+                          {{ item.startTime.toLocaleTimeString() }}
+                        </div>
+                      </div>
+                    </template>
+                    <template v-slot:item.spot="{ item }">
+                      <div class="d-flex flex-column justify-center">
+                        <div>
+                          {{ item.zoneName }}
+                        </div>
+                        <div>
+                          {{ item.spotName }}
+                        </div>
+                      </div>
+                    </template>
+                    <template v-slot:item.fish="{ item: record }">
+                      <div class="d-flex align-center">
+                        <v-badge
+                          v-if="record.quantity > 1"
+                          :content="record.quantity"
+                          overlap
+                          bottom
+                          bordered
+                        >
+                          <item-icon :icon-class="record.fishIcon" />
+                        </v-badge>
+                        <item-icon v-else :icon-class="record.fishIcon" />
+                        <div>
+                          <span v-if="record.missed">{{ '脱钩' }}</span>
+                          <span v-else-if="record.cancelled">{{ '未知鱼' }}</span>
+                          <span v-else>
+                            {{ record.fishName || '未知鱼' }}
+                            <span v-if="record.hq">[{{ $t('fish.largeSize') }}]</span>
+                          </span>
+                          <div class="text-subtitle-2 d-flex">
+                            <div
+                              v-if="record.size > 0"
+                              :class="['mr-2', record.quantity > 1 ? 'ml-2' : '']"
+                              title="星寸：人族男性士兵的大拇指宽度、成熟的罗兰莓的长度"
+                            >
+                              {{ record.size }} Im
+                            </div>
+                            <!--                  <div-->
+                            <!--                    v-if="showPlayerStatus"-->
+                            <!--                    class="text-subtitle-2"-->
+                            <!--                    title="获得力/鉴别力"-->
+                            <!--                  >-->
+                            <!--                    {{ record.playerStatus.text }}-->
+                            <!--                  </div>-->
+                          </div>
+                        </div>
+                      </div>
+                      <!--            <div class="d-flex align-center">-->
+                      <!--              <item-icon :icon-class="item.fishIcon"></item-icon>-->
+                      <!--              <div>{{ item.fishName }}</div>-->
+                      <!--            </div>-->
+                    </template>
+                    <template v-slot:item.bait="{ item }">
+                      <div class="d-flex align-center">
+                        <item-icon :icon-class="item.baitIcon"></item-icon>
+                        <div>{{ item.baitName }}</div>
+                      </div>
+                    </template>
+                    <template v-slot:item.biteInterval="{ item }">
+                      <v-progress-linear
+                        :value="item.biteIntervalPercentage"
+                        :color="item.tugColor"
+                        height="25"
+                        rounded
+                      >
+                        <template>
+                          <strong>{{ item.biteInterval }}</strong>
+                        </template>
+                      </v-progress-linear>
+                    </template>
+                    <template v-slot:item.effects="{ item }">
+                      <div class="d-flex align-center">
+                        <div v-for="effect in item.effects" :key="effect.id">
+                          <effect-icon :icon-class="effect.icon" :title="effect.name" />
+                        </div>
+                      </div>
+                    </template>
+                    <template v-slot:item.userId="{ item }">
+                      <div class="d-flex align-center">
+                        {{ item.userNickname }}
+                      </div>
+                    </template>
+                    <template v-slot:item.hookset="{ item }">
+                      <item-icon :icon-class="item.hookset.icon" small type="action" />
+                    </template>
+                    <template v-slot:item.userId="{ item }">
+                      <div class="d-flex align-center">
+                        {{ item.userNickname }}
+                      </div>
+                    </template>
+                    <template v-slot:item.isStrictMode="{ item }">
+                      <div class="d-flex align-center">
+                        <v-icon v-if="item.isStrictMode">{{ mdiFlag }}</v-icon>
+                      </div>
+                    </template>
+                    <template v-slot:item.actions="{ item }">
+                      <v-btn
+                        v-if="item.userId === currentUserId"
+                        icon
+                        text
+                        color="deep-purple darken-1"
+                        @click="throttledToggleRecordStrictMode(item)"
+                        :title="item.isStrictMode ? '取消严格标记' : '添加严格标记'"
+                      >
+                        <v-icon>
+                          {{ item.isStrictMode ? mdiFlagRemoveOutline : mdiFlagPlus }}
+                        </v-icon>
+                      </v-btn>
+                      <v-btn
+                        v-if="item.userId === currentUserId"
+                        icon
+                        text
+                        color="error"
+                        @click="handleTryDelete(item)"
+                      >
+                        <v-icon>{{ mdiDelete }}</v-icon>
+                      </v-btn>
+                    </template>
+                  </v-data-table>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <div v-if="!isLogin">
+                <div>未登录</div>
+                <div>按 <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>y</kbd> 以登录</div>
+                <div>若同时打开了桌面版，请暂时关闭桌面版以防止快捷键冲突</div>
+              </div>
+              <v-data-table
+                :headers="userSpotStatsHeaders"
+                :items="userSpotStats"
+                multi-sort
+                class="elevation-1"
+                :loading="loadingUserSpotStats"
+              >
+                <template v-slot:item.spot="{ item }">
+                  <div class="d-flex align-center">
+                    <div>{{ item.spot.spotName }}</div>
+                  </div>
+                </template>
+              </v-data-table>
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+      </v-tabs-items>
+      <rc-dialog v-model="showDeleteAlert" max-width="600">
+        <v-card>
+          <v-card-title> 删除确认</v-card-title>
           <v-card-text>
-            <div v-if="!isLogin">
-              <div>未登录</div>
-              <div>按 <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>y</kbd> 以登录</div>
-              <div>若同时打开了桌面版，请暂时关闭桌面版以防止快捷键冲突</div>
-            </div>
-            <v-data-table
-              :headers="userSpotStatsHeaders"
-              :items="userSpotStats"
-              multi-sort
-              class="elevation-1"
-              :loading="loadingUserSpotStats"
-            >
-              <template v-slot:item.spot="{ item }">
-                <div class="d-flex align-center">
-                  <div>{{ item.spot.spotName }}</div>
-                </div>
-              </template>
-            </v-data-table>
+            是否确认删除本条记录？建议只删除错误数据（如异常的咬钩时长，不可能的鱼饵）。
+            对于严格模式下由于技能或未提钩造成的数据，请使用清除严格标记功能。
           </v-card-text>
+          <v-card-actions class="d-flex justify-end">
+            <v-btn color="error" @click="handleConfirmDelete">删除</v-btn>
+            <v-btn @click="showDeleteAlert = false">取消</v-btn>
+          </v-card-actions>
         </v-card>
-      </v-tab-item>
-    </v-tabs-items>
-    <rc-dialog v-model="showDeleteAlert" max-width="600">
-      <v-card>
-        <v-card-title> 删除确认</v-card-title>
-        <v-card-text>
-          是否确认删除本条记录？建议只删除错误数据（如异常的咬钩时长，不可能的鱼饵）。
-          对于严格模式下由于技能或未提钩造成的数据，请使用清除严格标记功能。
-        </v-card-text>
-        <v-card-actions class="d-flex justify-end">
-          <v-btn color="error" @click="handleConfirmDelete">删除</v-btn>
-          <v-btn @click="showDeleteAlert = false">取消</v-btn>
-        </v-card-actions>
-      </v-card>
-    </rc-dialog>
-  </v-container>
+      </rc-dialog>
+    </v-container>
+  </page-template>
 </template>
 
 <script>
@@ -710,6 +704,7 @@ import EffectIcon from '@/components/basic/EffectIcon'
 import EnvMixin from '@/components/basic/EnvMixin'
 import ItemIcon from '@/components/basic/ItemIcon'
 import PLACE_NAMES from 'Data/locale/placeNames'
+import PageTemplate from '@/entries/main/views/PageTemplate'
 import PinyinMatch from 'pinyin-match'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
 import RcDialog from '@/components/basic/RcDialog'
@@ -722,6 +717,7 @@ import rcapiService from '@/service/rcapiService'
 export default {
   name: 'RecordPage',
   components: {
+    PageTemplate,
     RcAutocomplete,
     RcDialog,
     EffectIcon,
@@ -1383,22 +1379,3 @@ export default {
   },
 }
 </script>
-
-<style lang="sass" scoped>
-@import "~@/styles/RcVariables"
-.detail-wrapper
-  width: 100%
-  height: 100%
-  overflow-scrolling: auto
-  overflow-y: scroll
-  overflow-x: hidden
-
-  &--web
-    max-height: calc(100vh - #{ $wrapper-web })
-
-  &--electron
-    max-height: calc(100% - #{ $toolbar-height})
-
-  &--electron-original
-    max-height: calc(100vh - #{ $wrapper-desktop })
-</style>

@@ -130,23 +130,19 @@
         </v-card-text>
       </div>
     </v-navigation-drawer>
-    <div
-      :class="{
-        'd-flex': true,
-        'wiki-content': true,
-        'wiki-content--pc-web': !isMobile && !isElectron,
-        'wiki-content--pc-electron': !isMobile && isElectron && !original,
-        'wiki-content--pc-electron-original': !isMobile && isElectron && original,
-        'wiki-content--mobile-web': isMobile && !isElectron,
-        'wiki-content--mobile-electron': isMobile && isElectron && !original,
-        'wiki-content--mobile-electron-original': isMobile && isElectron && original,
-      }"
-      id="wiki-right-content"
-    >
+    <div id="wiki-right-content" style="height: 100%; width: 100%; display: flex">
       <div
         :style="`flex: 1 1 ${mainPaneFlexPercentage}%; overflow: auto`"
         v-show="!rightPaneFullScreen || type !== 'fish'"
         ref="fishPageScrollTarget"
+        :class="{
+          'd-flex': true,
+          'wiki-content': true,
+          'wiki-content--pc-web': !isMobile && !isElectron,
+          'wiki-content--pc-electron': !isMobile && isElectron,
+          'wiki-content--mobile-web': isMobile && !isElectron,
+          'wiki-content--mobile-electron': isMobile && isElectron,
+        }"
       >
         <div
           v-if="
@@ -305,13 +301,22 @@
             </v-list>
           </v-sheet>
         </div>
+
+        <v-spacer />
+        <rc-footer :columns="showRightPane ? 2 : 3" />
       </div>
 
       <div
         :class="{
           'detail-part': true,
+          'd-flex': true,
+          'wiki-content': true,
+          'wiki-content--pc-web': !isMobile && !isElectron,
+          'wiki-content--pc-electron': !isMobile && isElectron,
+          'wiki-content--mobile-web': isMobile && !isElectron,
+          'wiki-content--mobile-electron': isMobile && isElectron,
         }"
-        v-if="type === 'fish' && !isOceanFishingSpot"
+        v-if="showRightPane"
       >
         <fish-detail
           ref="wikiFishDetail"
@@ -430,6 +435,7 @@ import NewFeatureMark from '@/components/basic/NewFeatureMark'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 import PinyinMatch from 'pinyin-match'
 import RcDialog from '@/components/basic/RcDialog'
+import RcFooter from '@/components/RcFooter'
 import RcTextField from '@/components/basic/RcTextField'
 import SPEAR_FISHING_ITEM from 'Data/spearFishingItem'
 import TreeModel from 'tree-model'
@@ -442,6 +448,7 @@ export default {
   name: 'WikiPage',
   mixins: [PageMixin],
   components: {
+    RcFooter,
     WikiSpotDetail,
     RcTextField,
     RcDialog,
@@ -528,6 +535,9 @@ export default {
     mode: undefined,
   }),
   computed: {
+    showRightPane() {
+      return this.type === 'fish' && !this.isOceanFishingSpot
+    },
     currentFishList() {
       return this.currentFishIds.map(fishId => {
         return this.lazyTransformedFishDict[fishId]
@@ -1246,9 +1256,9 @@ export default {
   background: url('https://rcstatic.traveleorzea.com/pastry-fish-static-files/img/misc/fishing-notebook.webp') -84px -28px
 
 .grid-content
-  overflow-x: hidden
+  //overflow-x: hidden
   //padding-left: 4px
-  overflow-y: auto
+  //overflow-y: auto
   &--web
     height: 100%
     width: 100%
@@ -1278,21 +1288,18 @@ $wrapper-wiki-menu: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
   overflow-y: auto
   width: 100%
   height: 100%
+  flex-direction: column
 
   &--mobile
     &-web
       max-height: calc(100vh - #{ $wrapper-web })
     &-electron
-      max-height: calc(100% - #{ $toolbar-height })
-    &-electron-original
       max-height: calc(100vh - #{ $wrapper-desktop })
 
   &--pc
     &-web
       max-height: calc(100vh - #{ $wrapper-web })
     &-electron
-      max-height: calc(100% - #{ $toolbar-height })
-    &-electron-original
       max-height: calc(100vh - #{ $wrapper-desktop })
 
 .nav-bar

@@ -1,14 +1,5 @@
 <template>
-  <v-container
-    fluid
-    :class="{
-      'pa-0': true,
-      'detail-wrapper': true,
-      'detail-wrapper--web': !isElectron,
-      'detail-wrapper--electron': isElectron && !original,
-      'detail-wrapper--electron-original': isElectron && original,
-    }"
-  >
+  <page-template>
     <v-tabs v-model="pageSection" centered icons-and-text grow>
       <v-tabs-slider></v-tabs-slider>
       <v-tab v-for="(section, index) in pageSections" :key="index">
@@ -180,7 +171,7 @@
         </v-card-actions>
       </v-card>
     </rc-dialog>
-  </v-container>
+  </page-template>
 </template>
 
 <script>
@@ -196,6 +187,7 @@ import OceanFishingTimeTable from '@/components/OceanFishing54/OceanFishingTimeT
 import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
 import OceanFishingVoyage from '@/components/OceanFishing54/OceanFishingVoyage/OceanFishingVoyage'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import PageTemplate from '@/entries/main/views/PageTemplate'
 import RcDialog from '@/components/basic/RcDialog'
 
 // https://ngabbs.com/read.php?tid=20553241
@@ -205,7 +197,13 @@ const MINUTE = 60000
 export default {
   name: 'OceanFishingPage54',
   mixins: [PageMixin, IKDRouteMixin],
-  components: { RcDialog, ItemIcon, OceanFishingVoyage, OceanFishingTimeTable },
+  components: {
+    PageTemplate,
+    RcDialog,
+    ItemIcon,
+    OceanFishingVoyage,
+    OceanFishingTimeTable,
+  },
   props: ['now', 'lazyTransformedFishDict', 'original'],
   data() {
     return {
@@ -361,19 +359,3 @@ export default {
   },
 }
 </script>
-<style lang="sass" scoped>
-@import "~@/styles/RcVariables"
-
-.detail-wrapper
-  width: 100%
-  overflow-scrolling: auto
-  overflow-x: hidden
-  overflow-y: auto
-
-  &--web
-    max-height: calc(100vh - #{ $wrapper-web })
-  &--electron
-    max-height: calc(100% - #{ $toolbar-height })
-  &--electron-original
-    max-height: calc(100vh - #{ $wrapper-desktop })
-</style>

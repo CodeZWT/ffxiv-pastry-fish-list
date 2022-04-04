@@ -496,13 +496,6 @@
           :original="true"
         />
       </div>
-      <!--      <v-container class="py-0">-->
-      <!--        <v-row>-->
-      <!--          <v-col class="d-flex flex-row justify-end">-->
-      <!--            <span>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</span>-->
-      <!--          </v-col>-->
-      <!--        </v-row>-->
-      <!--      </v-container>-->
     </v-main>
 
     <v-navigation-drawer
@@ -678,69 +671,6 @@
       :now="now"
       @change="handleSearch"
     />
-
-    <v-footer app style="font-size: small; max-height: 31px" class="px-1">
-      <div class="d-flex align-center" style="width: 100%">
-        <template v-if="isMobile">
-          <div class="d-flex align-center justify-space-between" style="width: 100%">
-            <a target="_blank" href="https://beian.miit.gov.cn" class="beian-link">
-              黔ICP备2020011894号-1
-            </a>
-            <v-img v-if="!isMobile" :src="beianIcon" />
-            <a
-              target="_blank"
-              href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52270102000276"
-              class="beian-link"
-            >
-              黔公网安备 52270102000276号
-            </a>
-          </div>
-        </template>
-        <template v-else>
-          <template v-if="!isMobile || isElectron">
-            <div
-              class="text-truncate mr-2"
-              :title="$t('footer.contact')"
-              @click="showAboutDialog = true"
-              style="cursor: pointer"
-            >
-              <span v-if="!isMobile">
-                {{ $t('footer.author') }}
-              </span>
-              <span>
-                <v-icon small>{{ mdiQqchat }}</v-icon>
-                1153646847
-              </span>
-              <span v-if="isMobile">
-                {{ $t('footer.author') }}
-              </span>
-            </div>
-            <v-spacer />
-          </template>
-          <template v-if="!isElectron">
-            <div class="d-flex align-center justify-space-between">
-              <a target="_blank" href="https://beian.miit.gov.cn">
-                黔ICP备2020011894号-1
-              </a>
-              <v-img v-if="!isMobile" :src="beianIcon" />
-              <a
-                target="_blank"
-                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52270102000276"
-              >
-                黔公网安备 52270102000276号
-              </a>
-            </div>
-          </template>
-          <template v-if="!isMobile">
-            <v-spacer />
-            <div class="text-truncate" :title="$t('footer.ffRights')">
-              {{ $t('footer.ffRights') }}
-            </div>
-          </template>
-        </template>
-      </div>
-      <resize-indicator />
-    </v-footer>
 
     <fish-setting-dialog v-model="showSettingDialog" />
     <patch-note-dialog
@@ -978,7 +908,6 @@ import RcDialog from '@/components/basic/RcDialog'
 import RcTooltip from '@/components/basic/RcTooltip'
 import RegionNotificationDialog from '@/components/Dialog/RegionNotificationDialog'
 import _ from 'lodash'
-import beianIcon from 'Assets/beian-icon.png'
 
 export default {
   name: 'App',
@@ -1025,7 +954,6 @@ export default {
       // rightPaneFullScreen: window.innerWidth < 1080,
       showDownloadDialog: false,
       DesktopDownloadFeatureId: MainFeatures.DesktopDownload,
-      beianIcon: beianIcon,
       showCheckStartSetupDialog: false,
       showFinishedBaitDialog: false,
       showUpdateAvailableDialog: false,

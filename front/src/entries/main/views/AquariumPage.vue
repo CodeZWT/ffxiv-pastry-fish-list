@@ -1,14 +1,5 @@
 <template>
-  <v-container
-    fluid
-    :class="{
-      'px-0': true,
-      'detail-wrapper': true,
-      'detail-wrapper--web': !isElectron,
-      'detail-wrapper--electron': isElectron && !original,
-      'detail-wrapper--electron-original': isElectron && original,
-    }"
-  >
+  <page-template>
     <v-row>
       <v-card style="width: 100%" class="mx-2">
         <v-expansion-panels hover flat>
@@ -231,7 +222,7 @@
         </v-lazy>
       </v-col>
     </v-row>
-  </v-container>
+  </page-template>
 </template>
 
 <script>
@@ -243,6 +234,7 @@ import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import FishAquarium from '@/components/FishAquarium'
 import ImgUtil from '@/utils/ImgUtil'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
+import PageTemplate from '@/entries/main/views/PageTemplate'
 import PinyinMatch from 'pinyin-match'
 import RawItemIcon from '@/components/basic/RawItemIcon'
 import RcAutocomplete from '@/components/basic/RcAutocomplete'
@@ -251,7 +243,7 @@ const PATCHES_MIN = [2, 3, 4, 5, 6]
 export default {
   name: 'AquariumPage',
   mixins: [PageMixin],
-  components: { RcAutocomplete, RawItemIcon, FishAquarium },
+  components: { PageTemplate, RcAutocomplete, RawItemIcon, FishAquarium },
   props: ['original'],
   data() {
     return {
@@ -319,21 +311,3 @@ export default {
   },
 }
 </script>
-
-<style lang="sass" scoped>
-@import "~@/styles/RcVariables"
-
-.detail-wrapper
-  width: 100%
-  overflow-scrolling: auto
-  overflow-x: hidden
-
-  &--web
-    height: 100%
-    overflow-y: scroll
-    max-height: calc(100vh - #{ $wrapper-web })
-  &--electron
-    max-height: calc(100% - #{ $toolbar-height })
-  &--electron-original
-    max-height: calc(100vh - #{ $wrapper-desktop })
-</style>

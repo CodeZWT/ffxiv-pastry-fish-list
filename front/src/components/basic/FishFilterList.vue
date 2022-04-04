@@ -494,9 +494,9 @@ export default {
 
 .filter-list-container
   padding-top: 0
-  overflow-y: auto
-  &--desktop
-    height: calc(100% - #{ $toolbar-height })
+  //overflow-y: auto
+  //&--desktop
+  //  height: calc(100% - #{ $toolbar-height })
 
 
 .list-wrapper::v-deep

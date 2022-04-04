@@ -1,117 +1,115 @@
 <template>
-  <v-container
-    :class="{
-      'detail-wrapper': true,
-      'detail-wrapper--web': !isElectron,
-      'detail-wrapper--electron': isElectron,
-    }"
-  >
-    <v-tabs v-model="tabIndex" grow>
-      <v-tab>{{
-        $t('setting.dialog.detailArrangement.itemNames.DetailItemMasterpiece')
-      }}</v-tab>
-    </v-tabs>
-    <v-tabs-items v-model="tabIndex">
-      <v-tab-item>
-        <v-data-table
-          :headers="headers"
-          :items="entries"
-          multi-sort
-          class="elevation-1"
-          :items-per-page="-1"
-          :sort-by="sortBy"
-          :sort-desc="sortDesc"
-          item-key="itemId"
-          :expanded.sync="expanded"
-          @click:row="handleClickRow"
-          mobile-breakpoint="0"
-        >
-          <template v-slot:item.itemId="{ item: { fish, itemIconClass } }">
-            <div class="d-flex align-center">
-              <div v-if="isMobile">
-                {{ fish.name }}
-              </div>
-              <link-list
-                v-else
-                :id="fish.id"
-                :angler-id="fish.anglerFishId"
-                :name="fish.name"
-                :names="fish.names"
-                mode="fish"
-              >
-                <v-hover v-slot="{ hover }">
-                  <div class="d-flex align-center">
-                    <item-icon :icon-class="itemIconClass"> </item-icon>
-                    <div
-                      :class="`${hover ? 'text-decoration-underline' : ''}`"
-                      style="cursor: pointer"
-                    >
-                      {{ fish.name }}
-                    </div>
-                  </div>
-                </v-hover>
-              </link-list>
-            </div>
-          </template>
-          <template v-slot:item.level="{ item }">
-            <div class="d-flex align-center">
-              <div>{{ item.levelText }}</div>
-            </div>
-          </template>
-          <template v-slot:item.collectability="{ item }">
-            <div class="d-flex align-center">
-              <div>{{ item.collectabilityText }}</div>
-            </div>
-          </template>
-          <template v-slot:item.scripRewardSort="{ item }">
-            <div class="d-flex align-center">
-              <div class="mr-1">{{ item.scripReward }}</div>
-              <v-img :src="item.currencyIconUrl" max-height="20" max-width="20"></v-img>
-            </div>
-          </template>
-          <template v-slot:item.expReward="{ item }">
-            <div class="d-flex align-center">
+  <page-template>
+    <v-container fluid>
+      <v-tabs v-model="tabIndex" grow>
+        <v-tab>{{
+          $t('setting.dialog.detailArrangement.itemNames.DetailItemMasterpiece')
+        }}</v-tab>
+      </v-tabs>
+      <v-tabs-items v-model="tabIndex">
+        <v-tab-item>
+          <v-data-table
+            :headers="headers"
+            :items="entries"
+            multi-sort
+            class="elevation-1"
+            :items-per-page="-1"
+            :sort-by="sortBy"
+            :sort-desc="sortDesc"
+            item-key="itemId"
+            :expanded.sync="expanded"
+            @click:row="handleClickRow"
+            mobile-breakpoint="0"
+          >
+            <template v-slot:item.itemId="{ item: { fish, itemIconClass } }">
               <div class="d-flex align-center">
-                <div class="mr-1">{{ item.expReward }}</div>
-                <v-img
-                  v-if="!isMobile"
-                  :src="item.expIconUrl"
-                  max-height="20"
-                  max-width="20"
-                ></v-img>
+                <div v-if="isMobile">
+                  {{ fish.name }}
+                </div>
+                <link-list
+                  v-else
+                  :id="fish.id"
+                  :angler-id="fish.anglerFishId"
+                  :name="fish.name"
+                  :names="fish.names"
+                  mode="fish"
+                >
+                  <v-hover v-slot="{ hover }">
+                    <div class="d-flex align-center">
+                      <item-icon :icon-class="itemIconClass"> </item-icon>
+                      <div
+                        :class="`${hover ? 'text-decoration-underline' : ''}`"
+                        style="cursor: pointer"
+                      >
+                        {{ fish.name }}
+                      </div>
+                    </div>
+                  </v-hover>
+                </link-list>
               </div>
-            </div>
-          </template>
-
-          <template v-slot:expanded-item="{ item }">
-            <td :colspan="2"></td>
-
-            <td>
-              <div>{{ item.lowCollectability }} ~ {{ item.midCollectability - 1 }}</div>
-              <div>{{ item.midCollectability }} ~ {{ item.highCollectability - 1 }}</div>
-              <div>{{ item.highCollectability }} ~</div>
-            </td>
-
-            <td>
-              <div>{{ item.lowScripReward }}</div>
-              <div>{{ item.midScripReward }}</div>
-              <div>{{ item.highScripReward }}</div>
-            </td>
-
-            <td>
-              <div>
-                {{ item.lowExpReward.toLocaleString() }}
+            </template>
+            <template v-slot:item.level="{ item }">
+              <div class="d-flex align-center">
+                <div>{{ item.levelText }}</div>
               </div>
-              <div>
-                {{ item.midExpReward.toLocaleString() }}
+            </template>
+            <template v-slot:item.collectability="{ item }">
+              <div class="d-flex align-center">
+                <div>{{ item.collectabilityText }}</div>
               </div>
-              <div>{{ item.highExpReward.toLocaleString() }}</div>
-            </td>
-          </template>
-        </v-data-table>
-      </v-tab-item>
-    </v-tabs-items>
-  </v-container>
+            </template>
+            <template v-slot:item.scripRewardSort="{ item }">
+              <div class="d-flex align-center">
+                <div class="mr-1">{{ item.scripReward }}</div>
+                <v-img :src="item.currencyIconUrl" max-height="20" max-width="20"></v-img>
+              </div>
+            </template>
+            <template v-slot:item.expReward="{ item }">
+              <div class="d-flex align-center">
+                <div class="d-flex align-center">
+                  <div class="mr-1">{{ item.expReward }}</div>
+                  <v-img
+                    v-if="!isMobile"
+                    :src="item.expIconUrl"
+                    max-height="20"
+                    max-width="20"
+                  ></v-img>
+                </div>
+              </div>
+            </template>
+
+            <template v-slot:expanded-item="{ item }">
+              <td :colspan="2"></td>
+
+              <td>
+                <div>{{ item.lowCollectability }} ~ {{ item.midCollectability - 1 }}</div>
+                <div>
+                  {{ item.midCollectability }} ~ {{ item.highCollectability - 1 }}
+                </div>
+                <div>{{ item.highCollectability }} ~</div>
+              </td>
+
+              <td>
+                <div>{{ item.lowScripReward }}</div>
+                <div>{{ item.midScripReward }}</div>
+                <div>{{ item.highScripReward }}</div>
+              </td>
+
+              <td>
+                <div>
+                  {{ item.lowExpReward.toLocaleString() }}
+                </div>
+                <div>
+                  {{ item.midExpReward.toLocaleString() }}
+                </div>
+                <div>{{ item.highExpReward.toLocaleString() }}</div>
+              </td>
+            </template>
+          </v-data-table>
+        </v-tab-item>
+      </v-tabs-items>
+    </v-container>
+  </page-template>
 </template>
 
 <script>
@@ -121,11 +119,12 @@ import EnvMixin from '@/components/basic/EnvMixin'
 import ImgUtil from '@/utils/ImgUtil'
 import ItemIcon from '@/components/basic/ItemIcon'
 import LinkList from '@/components/basic/LinkList'
+import PageTemplate from '@/entries/main/views/PageTemplate'
 import _ from 'lodash'
 
 export default {
   name: 'UsagePage',
-  components: { ItemIcon, LinkList },
+  components: { PageTemplate, ItemIcon, LinkList },
   mixins: [EnvMixin],
   props: {
     lazyTransformedFishDict: {

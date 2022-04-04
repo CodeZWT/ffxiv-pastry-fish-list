@@ -85,6 +85,8 @@
         @fish-selected="onFishSelected"
         @close="spotId = -1"
       />
+      <v-spacer />
+      <rc-footer :columns="showRightPane ? 3 : 4" />
     </div>
     <div class="detail-part" v-if="showRightPane">
       <fish-detail
@@ -115,12 +117,14 @@ import OceanFishingTimeTableContentSmall from '@/components/OceanFishing54/Ocean
 import OceanFishingUtil from '@/utils/OceanFishing54/OceanFishingUtil'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 import RcDialog from '@/components/basic/RcDialog'
+import RcFooter from '@/components/RcFooter'
 import WikiSpotDetail from '@/components/WikiSpotDetail'
 import _ from 'lodash'
 
 export default {
   name: 'AlarmPage',
   components: {
+    RcFooter,
     RcDialog,
     OceanFishingTimeTableContentLarge,
     OceanFishingTimeTableContentSmall,
@@ -323,10 +327,15 @@ export default {
 
 .list-part
   overflow-y: auto
+  display: flex
+  flex-direction: column
+
   &--web
-    height: calc(100vh - #{$toolbar-height + $footer-height})
+    min-height: calc(100vh - #{$toolbar-height + $footer-height})
+    max-height: calc(100vh - #{$toolbar-height + $footer-height})
   &--desktop
-    height: calc(100vh - #{$wrapper-desktop})
+    min-height: calc(100vh - #{$wrapper-desktop})
+    max-height: calc(100vh - #{$wrapper-desktop})
 
 .show-divider
   border-right: 1px solid gray

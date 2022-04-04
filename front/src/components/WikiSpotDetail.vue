@@ -18,10 +18,10 @@
     <v-row
       :class="{
         'spot-detail': true,
-        'spot-detail--pc-web': !isMobile && !isElectron,
-        'spot-detail--pc-electron': !isMobile && isElectron,
-        'spot-detail--mobile-web': isMobile && !isElectron,
-        'spot-detail--mobile-electron': isMobile && isElectron,
+        // 'spot-detail--pc-web': !isMobile && !isElectron,
+        // 'spot-detail--pc-electron': !isMobile && isElectron,
+        // 'spot-detail--mobile-web': isMobile && !isElectron,
+        // 'spot-detail--mobile-electron': isMobile && isElectron,
       }"
       v-if="currentSpotId"
       no-gutters
@@ -393,16 +393,16 @@ export default {
 $wrapper-wiki-menu: $spot-detail-title-height + $divider-height
 
 .spot-detail
-  overflow-y: auto
-  &--pc
-    &-web
-      height: calc(100vh - #{ $wrapper-web + $wrapper-wiki-menu })
-    &-electron
-      height: calc(100vh - #{ $wrapper-desktop + $wrapper-wiki-menu })
-
-  &--mobile
-    &-web
-      height: calc(100vh - #{ $wrapper-web + $wrapper-wiki-menu })
-    &-electron
-      height: calc(100vh - #{ $wrapper-desktop + $wrapper-wiki-menu })
+  //overflow-y: auto
+  //&--pc
+  //  &-web
+  //    height: calc(100vh - #{ $wrapper-web + $wrapper-wiki-menu })
+  //  &-electron
+  //    height: calc(100vh - #{ $wrapper-desktop + $wrapper-wiki-menu })
+  //
+  //&--mobile
+  //  &-web
+  //    height: calc(100vh - #{ $wrapper-web + $wrapper-wiki-menu })
+  //  &-electron
+  //    height: calc(100vh - #{ $wrapper-desktop + $wrapper-wiki-menu })
 </style>
