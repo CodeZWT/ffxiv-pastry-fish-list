@@ -348,19 +348,6 @@
 
           <v-divider class="mx-2" />
 
-          <v-list-item @click="() => {}" link>
-            <v-list-item-icon>
-              <v-icon>{{ mdiEarth }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                数据切换移至右上角
-                <v-icon small>{{ mdiCog }}</v-icon>
-                中
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
           <v-list-item v-if="!isElectron" @click="toDownloadPage" link>
             <v-list-item-icon>
               <v-icon>{{ mdiDesktopMacDashboard }}</v-icon>
