@@ -1,11 +1,12 @@
 <template>
-  <div v-resize="onWindowResize" class="d-flex">
+  <div v-resize="onWindowResize">
     <v-navigation-drawer
       v-if="showMapMenu || !isMobile"
       :value="showMapMenu || !isMobile"
       @input="showMapMenu = $event"
       :fixed="isMobile"
       :class="{
+        'nav-bar': true,
         'nav-bar--pc': !isMobile,
       }"
       :temporary="isMobile"
@@ -130,10 +131,10 @@
         </v-card-text>
       </div>
     </v-navigation-drawer>
-    <div style="height: 100%; width: 100%; display: flex">
+    <div style="overflow: hidden">
       <div
         id="wiki-right-content"
-        :style="`max-width: ${showRightPane ? 100 - mainPaneFlexPercent : 100}%`"
+        :style="`float: left; width: ${showRightPane ? mainPanePercent : 100}%;`"
         v-show="!rightPaneFullScreen || type !== 'fish'"
         ref="fishPageScrollTarget"
         :class="{
@@ -306,6 +307,7 @@
         <rc-footer :columns="showRightPane ? 2 : 3" />
       </div>
       <div
+        style="overflow: hidden"
         :class="{
           'wiki-content': true,
           'wiki-content--pc-web': !isMobile && !isElectron,
@@ -314,7 +316,6 @@
           'wiki-content--mobile-electron': isMobile && isElectron,
         }"
         v-if="showRightPane"
-        :style="`max-width: ${rightPaneFullScreen ? 100 : mainPaneFlexPercent}%`"
       >
         <fish-detail
           ref="wikiFishDetail"
@@ -533,8 +534,8 @@ export default {
     mode: undefined,
   }),
   computed: {
-    mainPaneFlexPercent() {
-      return this.rightPanePercentageV2 * 100
+    mainPanePercent() {
+      return 100 - this.rightPanePercentageV2 * 100
     },
     showRightPane() {
       return this.type === 'fish' && !this.isOceanFishingSpot
@@ -1287,7 +1288,6 @@ $wrapper-wiki-menu: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
 .wiki-content
   display: flex
   overflow-y: auto
-  width: 100%
   height: 100%
   flex-direction: column
 
@@ -1304,6 +1304,7 @@ $wrapper-wiki-menu: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
       max-height: calc(100vh - #{ $wrapper-desktop })
 
 .nav-bar
+  float: left
   &--pc
     width: 20vw
     min-width: 250px

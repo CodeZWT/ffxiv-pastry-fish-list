@@ -7,7 +7,7 @@
         'list-part--desktop': isElectron,
         'show-divider': showRightPane,
       }"
-      :style="`max-width: ${showRightPane ? 100 - mainPaneFlexPercent : 100}%`"
+      :style="`float: left; width: ${showRightPane ? mainPanePercent : 100}%`"
       v-show="!rightPaneFullScreen || !showRightPane"
       ref="fishPageScrollTarget"
     >
@@ -42,10 +42,7 @@
       <v-spacer />
       <rc-footer :columns="showRightPane ? 3 : 4" />
     </div>
-    <div
-      v-if="showRightPane"
-      :style="`max-width: ${rightPaneFullScreen ? 100 : mainPaneFlexPercent}%`"
-    >
+    <div v-if="showRightPane" style="overflow: hidden">
       <fish-detail
         ref="fishDetail"
         :fish="selectedFish"
@@ -115,8 +112,8 @@ export default {
     wikiSpotMode: 'normal',
   }),
   computed: {
-    mainPaneFlexPercent() {
-      return this.rightPanePercentageV2 * 100
+    mainPanePercent() {
+      return 100 - this.rightPanePercentageV2 * 100
     },
     showRightPane: {
       get() {
@@ -154,7 +151,7 @@ export default {
     ]),
   },
   watch: {
-    mainPaneFlexPercentage() {
+    mainPanePercent() {
       this.showRightPane = false
     },
   },
