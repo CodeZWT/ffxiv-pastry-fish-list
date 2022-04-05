@@ -40,6 +40,6 @@ export default {
     max-height: calc(100vh - #{ $wrapper-web })
 
   &--electron
-    min-height: calc(100% - #{ $wrapper-desktop })
-    max-height: calc(100% - #{ $wrapper-desktop })
+    min-height: calc(100vh - #{ $wrapper-desktop })
+    max-height: calc(100vh - #{ $wrapper-desktop })
 </style>
