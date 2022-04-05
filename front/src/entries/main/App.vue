@@ -258,7 +258,10 @@
           </v-list-item>
           <v-list-item @click="toPage('UsagePage')" link>
             <v-list-item-icon>
-              <v-icon>{{ mdiInformation }}</v-icon>
+              <i
+                class="xiv collectables label--text"
+                style="font-size: 24px; margin: -6px -1px 0 1px"
+              />
             </v-list-item-icon>
             <rc-tooltip>
               <v-list-item-content>
