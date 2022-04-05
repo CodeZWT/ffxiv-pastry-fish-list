@@ -123,6 +123,7 @@ import {
   mdiSinaWeibo,
 } from '@mdi/js'
 import EnvMixin from '@/components/basic/EnvMixin'
+import LINK from 'Data/link'
 import beianIcon from 'Assets/beian-icon.png'
 
 export default {
@@ -155,18 +156,16 @@ export default {
   },
   methods: {
     openQQ() {
-      window.open('https://jq.qq.com/?_wv=1027&k=E9LABNxT')
+      window.open(LINK.QQ)
     },
     openQQGuild() {
-      window.open(
-        'https://qun.qq.com/qqweb/qunpro/share?_wv=3&_wwv=128&inviteCode=hCvFG&from=246610&biz=ka'
-      )
+      window.open(LINK.QQGuild)
     },
     openWeibo(uid) {
       window.open(`https://weibo.com/u/${uid}`)
     },
     openAfdian() {
-      window.open('https://afdian.net/@ricecake404')
+      window.open(LINK.AFDian)
     },
     openLink(link) {
       window.open(link)
@@ -180,7 +179,7 @@ export default {
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   padding-left: 16px !important;
 }
 </style>

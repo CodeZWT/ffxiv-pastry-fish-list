@@ -18,8 +18,8 @@
                 <v-card-text class="text-subtitle-1">
                   <div v-html="$t('homePage.description')"></div>
                   <div class="d-flex align-center mt-2">
-                    <v-badge inline color="warning" content="Fix" />
-                    <div>修复一些数据</div>
+                    <v-badge inline color="warning" content="New" />
+                    <div>增加罗威纳商会相关数据与页面</div>
                   </div>
                 </v-card-text>
               </v-card>
@@ -78,63 +78,6 @@
                   </v-col>
                 </v-row>
               </v-col>
-
-              <!--            <v-col cols="12" class="pa-0">-->
-              <!--              <v-subheader>{{ $t('homePage.section.contact') }}</v-subheader>-->
-              <!--            </v-col>-->
-              <!--            <v-col cols="12" class="my-0 py-0">-->
-              <!--              <v-card outlined class="rounded-md">-->
-              <!--                <v-list dense color="inner">-->
-              <!--                  <v-list-item>-->
-              <!--                    <v-list-item-icon>-->
-              <!--                      <v-icon>{{ mdiAccount }}</v-icon>-->
-              <!--                    </v-list-item-icon>-->
-              <!--                    <v-list-item-title> {{ $t('contact.author') }}</v-list-item-title>-->
-              <!--                  </v-list-item>-->
-              <!--                  <v-list-item @click="openQQ">-->
-              <!--                    <v-list-item-icon>-->
-              <!--                      <v-icon>{{ mdiQqchat }}</v-icon>-->
-              <!--                    </v-list-item-icon>-->
-              <!--                    <v-list-item-title> 鱼糕检修部（1153646847） </v-list-item-title>-->
-              <!--                    &lt;!&ndash;                <v-list-item-action>&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                  <rc-tooltip>&ndash;&gt;-->
-              <!--                    &lt;!&ndash;{{                    <vIcon>mdiQrcode</vIcon>}}&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                    <template v-slot:msg>&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                      qrcode&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                    </template>&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                  </rc-tooltip>&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                </v-list-item-action>&ndash;&gt;-->
-              <!--                  </v-list-item>-->
-              <!--                  <v-list-item @click="openQQGuild">-->
-              <!--                    <v-list-item-icon>-->
-              <!--                      &lt;!&ndash;                    <span style="font-size: x-large">#</span>&ndash;&gt;-->
-              <!--                      <v-icon>{{ mdiQqchat }}</v-icon>-->
-              <!--                    </v-list-item-icon>-->
-              <!--                    <v-list-item-title>FF14 捕鱼人研究会</v-list-item-title>-->
-              <!--                    &lt;!&ndash;                <v-list-item-action>&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                  <rc-tooltip>&ndash;&gt;-->
-              <!--                    &lt;!&ndash;{{                    <vIcon>mdiQrcode</vIcon>}}&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                    <template v-slot:msg>&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                      qrcode&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                    </template>&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                  </rc-tooltip>&ndash;&gt;-->
-              <!--                    &lt;!&ndash;                </v-list-item-action>&ndash;&gt;-->
-              <!--                  </v-list-item>-->
-              <!--                  <v-list-item @click="openWeibo('7546879530')">-->
-              <!--                    <v-list-item-icon>-->
-              <!--                      <v-icon>{{ mdiSinaWeibo }}</v-icon>-->
-              <!--                    </v-list-item-icon>-->
-              <!--                    <v-list-item-title>红豆年糕找不到</v-list-item-title>-->
-              <!--                  </v-list-item>-->
-              <!--                  <v-list-item @click="openWeibo('7245459345')">-->
-              <!--                    <v-list-item-icon>-->
-              <!--                      <v-icon>{{ mdiSinaWeibo }}</v-icon>-->
-              <!--                    </v-list-item-icon>-->
-              <!--                    <v-list-item-title>光之渔夫bot（合作）</v-list-item-title>-->
-              <!--                  </v-list-item>-->
-              <!--                </v-list>-->
-              <!--              </v-card>-->
-              <!--            </v-col>-->
             </v-col>
 
             <v-col cols="12" class="pa-0">
@@ -163,21 +106,6 @@
                   ></iframe>
                 </v-card>
               </v-col>
-              <!--            <v-col cols="12" class="pa-0">-->
-              <!--              <v-subheader>{{ $t('homePage.section.link') }}</v-subheader>-->
-              <!--            </v-col>-->
-              <!--            <v-col cols="12" class="my-0 py-0">-->
-              <!--              <v-card outlined class="rounded-md">-->
-              <!--                <v-list dense color="inner">-->
-              <!--                  <v-list-item @click="openLink('http://www.ffxiv.co')">-->
-              <!--                    <v-list-item-icon>-->
-              <!--                      <v-icon>{{ mdiLink }}</v-icon>-->
-              <!--                    </v-list-item-icon>-->
-              <!--                    <v-list-item-title>飞艇坪 - 最终幻想14网址导航</v-list-item-title>-->
-              <!--                  </v-list-item>-->
-              <!--                </v-list>-->
-              <!--              </v-card>-->
-              <!--            </v-col>-->
             </v-col>
           </v-row>
         </v-col>
@@ -191,17 +119,6 @@
                 <div>{{ $t('homePage.support.description') }}</div>
               </v-alert>
             </v-col>
-
-            <!--          <v-col-->
-            <!--            cols="12"-->
-            <!--            class="my-0 py-0"-->
-            <!--            @click="openWeibo('7546879530')"-->
-            <!--            style="cursor: pointer"-->
-            <!--          >-->
-            <!--            <v-alert border="left" colored-border color="secondary" class="mb-2">-->
-            <!--              <div>关注作者微博 @红豆年糕找不到</div>-->
-            <!--            </v-alert>-->
-            <!--          </v-col>-->
             <v-col cols="12" class="d-flex my-0 py-0">
               <v-row no-gutters class="d-flex align-center">
                 <div style="width: calc(100% - 50px)">
@@ -394,19 +311,8 @@ export default {
       this.toPage('ListPage')
       this.setActiveTab(0)
     },
-    openQQ() {
-      window.open('https://jq.qq.com/?_wv=1027&k=E9LABNxT')
-    },
-    openQQGuild() {
-      window.open(
-        'https://qun.qq.com/qqweb/qunpro/share?_wv=3&_wwv=128&inviteCode=hCvFG&from=246610&biz=ka'
-      )
-    },
-    openWeibo(uid) {
-      window.open(`https://weibo.com/u/${uid}`)
-    },
     openAfdian() {
-      window.open('https://afdian.net/@ricecake404')
+      window.open(LINK.AFDian)
     },
     openLink(link) {
       window.open(link)
@@ -417,21 +323,3 @@ export default {
   },
 }
 </script>
-
-<style lang="sass" scoped>
-@import "~@/styles/RcVariables"
-
-.detail-wrapper
-  width: 100%
-  overflow-scrolling: auto
-  overflow-x: hidden
-  overflow-y: auto
-
-  &--web
-    height: 100%
-    max-height: calc(100vh - #{ $wrapper-web })
-  &--electron
-    max-height: calc(100% - #{ $toolbar-height })
-  &--electron-original
-    max-height: calc(100vh - #{ $wrapper-desktop })
-</style>
