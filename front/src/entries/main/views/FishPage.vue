@@ -7,7 +7,7 @@
         'list-part--desktop': isElectron,
         'show-divider': showRightPane,
       }"
-      :style="`flex: 1 1 ${mainPaneFlexPercentage}%`"
+      :style="`max-width: ${showRightPane ? 100 - mainPaneFlexPercent : 100}%`"
       v-show="!rightPaneFullScreen || !showRightPane"
       ref="fishPageScrollTarget"
     >
@@ -44,11 +44,7 @@
     </div>
     <div
       v-if="showRightPane"
-      :class="{
-        'detail-part': true,
-        'detail-part--web': !isElectron,
-        'detail-part--desktop': isElectron,
-      }"
+      :style="`max-width: ${rightPaneFullScreen ? 100 : mainPaneFlexPercent}%`"
     >
       <fish-detail
         ref="fishDetail"
@@ -119,10 +115,8 @@ export default {
     wikiSpotMode: 'normal',
   }),
   computed: {
-    mainPaneFlexPercentage() {
-      return Math.floor(
-        (100 * (1 - this.rightPanePercentageV2)) / this.rightPanePercentageV2
-      )
+    mainPaneFlexPercent() {
+      return this.rightPanePercentageV2 * 100
     },
     showRightPane: {
       get() {
@@ -244,8 +238,6 @@ export default {
 
 .list-part
   overflow-y: auto
-  display: flex
-  flex-direction: column
   &--web
     min-height: calc(100vh - #{$toolbar-height + $footer-height})
     max-height: calc(100vh - #{$toolbar-height + $footer-height})
@@ -255,14 +247,4 @@ export default {
 
 .show-divider
   border-right: 1px solid gray
-
-.detail-part
-  overflow-y: auto
-  flex: 0 1 100%
-  &--web
-    min-height: calc(100vh - #{$toolbar-height + $footer-height})
-    max-height: calc(100vh - #{$toolbar-height + $footer-height})
-  &--desktop
-    min-height: calc(100vh - #{$wrapper-desktop})
-    max-height: calc(100vh - #{$wrapper-desktop})
 </style>

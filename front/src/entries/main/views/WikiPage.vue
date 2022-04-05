@@ -133,7 +133,7 @@
     <div style="height: 100%; width: 100%; display: flex">
       <div
         id="wiki-right-content"
-        :style="`flex: 1 1 ${mainPaneFlexPercentage}%`"
+        :style="`max-width: ${showRightPane ? 100 - mainPaneFlexPercent : 100}%`"
         v-show="!rightPaneFullScreen || type !== 'fish'"
         ref="fishPageScrollTarget"
         :class="{
@@ -305,10 +305,8 @@
         <v-spacer />
         <rc-footer :columns="showRightPane ? 2 : 3" />
       </div>
-
       <div
         :class="{
-          'detail-part': true,
           'wiki-content': true,
           'wiki-content--pc-web': !isMobile && !isElectron,
           'wiki-content--pc-electron': !isMobile && isElectron,
@@ -316,6 +314,7 @@
           'wiki-content--mobile-electron': isMobile && isElectron,
         }"
         v-if="showRightPane"
+        :style="`max-width: ${rightPaneFullScreen ? 100 : mainPaneFlexPercent}%`"
       >
         <fish-detail
           ref="wikiFishDetail"
@@ -534,6 +533,9 @@ export default {
     mode: undefined,
   }),
   computed: {
+    mainPaneFlexPercent() {
+      return this.rightPanePercentageV2 * 100
+    },
     showRightPane() {
       return this.type === 'fish' && !this.isOceanFishingSpot
     },
@@ -542,12 +544,12 @@ export default {
         return this.lazyTransformedFishDict[fishId]
       })
     },
-    rightPanePercentage() {
-      return Math.min(0.9, this.rightPanePercentageV2 + 0.1)
-    },
-    mainPaneFlexPercentage() {
-      return Math.floor((100 * (1 - this.rightPanePercentage)) / this.rightPanePercentage)
-    },
+    // rightPanePercentage() {
+    //   return Math.min(0.9, this.rightPanePercentageV2 + 0.1)
+    // },
+    // mainPaneFlexPercentage() {
+    //   return Math.floor((100 * (1 - this.rightPanePercentage)) / this.rightPanePercentage)
+    // },
     isOceanFishingTerritory() {
       return [3444, 3445, 3446, 3447, 3641, 3642, 3643].includes(this.currentTerritoryId)
     },
@@ -1308,8 +1310,8 @@ $wrapper-wiki-menu: $spot-menu-search-height + $spot-menu-toolbar-height + $divi
 
 .detail-part
   //overflow-x: hidden
-  overflow-y: auto
-  flex: 0 1 100%
+  //overflow-y: auto
+  //flex: 0 1 100%
 
 ::v-deep .v-treeview-node
   cursor: pointer !important

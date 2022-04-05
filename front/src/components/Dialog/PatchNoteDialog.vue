@@ -27,9 +27,9 @@
         <!--        <v-subheader> 仅在网页版随时更新，改动将记入下一版本。</v-subheader>-->
         <v-alert color="secondary" outlined class="mt-4">
           <div class="d-flex align-center">
-            <div class="text-h6">Version 1.2.3-fix</div>
+            <div class="text-h6">Version 1.2.4</div>
             <v-spacer />
-            <div class="text-subtitle-1">更新时间: 2022/03/31 23:50</div>
+            <div class="text-subtitle-1">更新时间: 2022/04/05 16:50</div>
           </div>
         </v-alert>
         <div class="text-h6 my-1">鱼糕</div>

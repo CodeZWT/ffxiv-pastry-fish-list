@@ -1,5 +1,12 @@
 <template>
-  <div class="wrapper inner">
+  <div
+    :class="{
+      inner: true,
+      'detail-part': true,
+      'detail-part--web': !isElectron,
+      'detail-part--desktop': isElectron,
+    }"
+  >
     <template v-if="fish">
       <div style="position: sticky; top: 0; z-index: 2" class="inner">
         <fish-list-expanded-header
@@ -132,8 +139,16 @@ export default {
 
 <style lang="sass" scoped>
 @import "~@/styles/RcVariables"
-.wrapper
+.detail-part
   position: relative
+  overflow-y: auto
   height: auto
   min-height: 100%
+
+  &--web
+    min-height: calc(100vh - #{$toolbar-height + $footer-height})
+    max-height: calc(100vh - #{$toolbar-height + $footer-height})
+  &--desktop
+    min-height: calc(100vh - #{$wrapper-desktop})
+    max-height: calc(100vh - #{$wrapper-desktop})
 </style>

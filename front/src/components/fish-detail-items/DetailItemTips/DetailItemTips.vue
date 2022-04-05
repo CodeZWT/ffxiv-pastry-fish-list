@@ -11,29 +11,15 @@
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <div v-if="!hasTips(fish.id)" class="text-center">暂无攻略</div>
-        <v-row v-else no-gutters style="margin: 0 -20px -16px -20px">
-          <v-col cols="12">
-            <tip7 :id="fish.id" />
-          </v-col>
-          <v-col cols="12">
-            <tip5 :id="fish.id" />
-          </v-col>
-          <v-col cols="12">
-            <tip3 :id="fish.id" />
-          </v-col>
-          <v-col cols="12">
-            <tip2 :id="fish.id" />
-          </v-col>
-          <v-col cols="12">
-            <tip1 :id="fish.id" />
-          </v-col>
-          <v-col cols="12">
-            <tip4 :id="fish.id" />
-          </v-col>
-          <v-col cols="12">
-            <tip6 :id="fish.id" />
-          </v-col>
-        </v-row>
+        <div v-else style="margin: 0 -20px 0 -20px">
+          <tip7 :id="fish.id" />
+          <tip5 :id="fish.id" />
+          <tip3 :id="fish.id" />
+          <tip2 :id="fish.id" />
+          <tip1 :id="fish.id" />
+          <tip4 :id="fish.id" />
+          <tip6 :id="fish.id" />
+        </div>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
