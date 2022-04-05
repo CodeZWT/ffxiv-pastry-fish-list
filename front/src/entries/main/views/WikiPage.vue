@@ -130,13 +130,13 @@
         </v-card-text>
       </div>
     </v-navigation-drawer>
-    <div id="wiki-right-content" style="height: 100%; width: 100%; display: flex">
+    <div style="height: 100%; width: 100%; display: flex">
       <div
-        :style="`flex: 1 1 ${mainPaneFlexPercentage}%; overflow: auto`"
+        id="wiki-right-content"
+        :style="`flex: 1 1 ${mainPaneFlexPercentage}%`"
         v-show="!rightPaneFullScreen || type !== 'fish'"
         ref="fishPageScrollTarget"
         :class="{
-          'd-flex': true,
           'wiki-content': true,
           'wiki-content--pc-web': !isMobile && !isElectron,
           'wiki-content--pc-electron': !isMobile && isElectron,
@@ -309,7 +309,6 @@
       <div
         :class="{
           'detail-part': true,
-          'd-flex': true,
           'wiki-content': true,
           'wiki-content--pc-web': !isMobile && !isElectron,
           'wiki-content--pc-electron': !isMobile && isElectron,
