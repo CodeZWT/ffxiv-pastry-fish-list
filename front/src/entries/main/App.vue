@@ -54,7 +54,7 @@
         :style="`margin-left: ${isMobile ? 0 : -12}px; -webkit-app-region: none`"
         tile
       >
-        <v-tooltip right z-index="10">
+        <v-tooltip right z-index="10" disabled>
           <template v-slot:activator="{ on, attrs }">
             <v-img v-on="on" v-bind="attrs" :src="fisher" />
           </template>
