@@ -507,11 +507,3 @@ export default {
   },
 }
 </script>
-
-<style lang="sass" scoped>
-//@import "~@/styles/RcVariables"
-//.wrapper
-//  height: calc(100vh - #{ $top-bars-padding-reader }) // - 52px
-//  overflow-y: scroll
-//  overflow-x: hidden
-</style>

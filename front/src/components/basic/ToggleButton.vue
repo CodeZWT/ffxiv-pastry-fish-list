@@ -1,22 +1,20 @@
 <template>
-  <click-helper @click.stop="toggleValue">
-    <v-btn icon text :small="small" :title="value ? checkedTitle : uncheckedTitle">
-      <new-feature-mark :id="featureId">
-        <v-icon :small="small">{{ value ? checkedIcon : uncheckedIcon }}</v-icon>
-      </new-feature-mark>
-    </v-btn>
-  </click-helper>
+  <v-btn
+    text
+    :x-small="small"
+    :title="value ? checkedTitle : uncheckedTitle"
+    @click.stop="toggleValue"
+  >
+    <v-icon :small="small">{{ value ? checkedIcon : uncheckedIcon }}</v-icon>
+  </v-btn>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 import { mdiCheckboxBlankOutline, mdiCheckboxMarked } from '@mdi/js'
-import ClickHelper from '@/components/basic/ClickHelper'
-import NewFeatureMark from '@/components/basic/NewFeatureMark'
 
 export default {
   name: 'ToggleButton',
-  components: { NewFeatureMark, ClickHelper },
   props: {
     featureId: {
       type: String,

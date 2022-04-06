@@ -26,38 +26,74 @@
           <div>切换严格模式</div>
         </v-tooltip>
       </div>
-      <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
-        <v-icon>{{ mdiCog }}</v-icon>
+      <v-btn
+        @click="showSetting"
+        x-small
+        text
+        class="system-btn"
+        style="-webkit-app-region: none"
+      >
+        <v-icon small>{{ mdiCog }}</v-icon>
       </v-btn>
-      <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>{{ mdiWindowClose }}</v-icon>
+      <v-btn
+        @click="close"
+        x-small
+        text
+        class="system-btn"
+        style="-webkit-app-region: none"
+      >
+        <v-icon small>{{ mdiWindowClose }}</v-icon>
       </v-btn>
     </v-system-bar>
     <v-system-bar app v-else-if="showSettingBar">
       <v-img :src="settingIcon" max-height="20" max-width="20" />
       <span class="ml-1">渔捞设置</span>
       <v-spacer />
-      <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>{{ mdiClose }}</v-icon>
+      <v-btn
+        @click="close"
+        x-small
+        text
+        class="system-btn"
+        style="-webkit-app-region: none"
+      >
+        <v-icon small>{{ mdiClose }}</v-icon>
       </v-btn>
     </v-system-bar>
     <v-system-bar app v-else-if="showHistoryBar">
       <v-img :src="readerIcon" max-height="20" max-width="20" />
       <span class="ml-1">历史记录</span>
       <v-spacer />
-      <v-btn @click="toggleShowConfig" x-small text style="-webkit-app-region: none">
-        <v-icon>{{ mdiCog }}</v-icon>
+      <v-btn
+        @click="toggleShowConfig"
+        x-small
+        text
+        class="system-btn"
+        style="-webkit-app-region: none"
+      >
+        <v-icon small>{{ mdiCog }}</v-icon>
       </v-btn>
-      <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>{{ mdiClose }}</v-icon>
+      <v-btn
+        @click="close"
+        x-small
+        text
+        class="system-btn"
+        style="-webkit-app-region: none"
+      >
+        <v-icon small>{{ mdiClose }}</v-icon>
       </v-btn>
     </v-system-bar>
     <v-system-bar app v-else-if="showSpotStatisticsBar">
       <v-img :src="readerIcon" max-height="20" max-width="20" />
       <span class="ml-1">钓场统计</span>
       <v-spacer />
-      <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>{{ mdiClose }}</v-icon>
+      <v-btn
+        @click="close"
+        x-small
+        text
+        class="system-btn"
+        style="-webkit-app-region: none"
+      >
+        <v-icon small>{{ mdiClose }}</v-icon>
       </v-btn>
     </v-system-bar>
     <v-main>
@@ -283,4 +319,10 @@ body::-webkit-scrollbar {
 .reader-wrapper
   overflow-y: auto
   height: calc(100vh - #{ $system-bar-height })
+</style>
+
+<style lang="scss" scoped>
+.system-btn::v-deep .v-icon {
+  margin-right: 0;
+}
 </style>

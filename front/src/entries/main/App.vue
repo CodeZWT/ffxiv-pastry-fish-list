@@ -7,8 +7,14 @@
       <div class="mr-1"><i class="xiv local-time-chs mr-1"></i>{{ earthTime }}</div>
       <div><i class="xiv eorzea-time-chs mr-1"></i>{{ eorzeaTime }}</div>
       <v-spacer></v-spacer>
-      <v-btn @click="showSetting" x-small text style="-webkit-app-region: none">
-        <v-icon>{{ mdiCog }}</v-icon>
+      <v-btn
+        @click="showSetting"
+        x-small
+        text
+        class="system-btn"
+        style="-webkit-app-region: none"
+      >
+        <v-icon small>{{ mdiCog }}</v-icon>
       </v-btn>
       <toggle-button
         :value="alwaysOnTop"
@@ -18,10 +24,17 @@
         :checked-title="$t('actions.pinTop.checked')"
         :unchecked-title="$t('actions.pinTop.unchecked')"
         small
+        class="system-btn"
         style="-webkit-app-region: none"
       />
-      <v-btn @click="minimize" x-small text style="-webkit-app-region: none">
-        <v-icon>{{ mdiWindowMinimize }}</v-icon>
+      <v-btn
+        @click="minimize"
+        x-small
+        text
+        class="system-btn"
+        style="-webkit-app-region: none"
+      >
+        <v-icon small>{{ mdiWindowMinimize }}</v-icon>
       </v-btn>
       <toggle-button
         :value="maximized"
@@ -31,6 +44,7 @@
         :checked-title="$t('actions.maximize.restore')"
         :unchecked-title="$t('actions.maximize.maximize')"
         small
+        class="system-btn"
         style="-webkit-app-region: none"
       />
       <!--      <v-btn @click="maximize" x-small text style="-webkit-app-region: none">-->
@@ -39,8 +53,14 @@
       <!--      <v-btn @click="unmaximize" x-small text style="-webkit-app-region: none">-->
       <!--{        <vIcon>mdiWindowMaximize</vIcon{>}}-->
       <!--      </v-btn>-->
-      <v-btn @click="close" x-small text style="-webkit-app-region: none">
-        <v-icon>{{ mdiWindowClose }}</v-icon>
+      <v-btn
+        @click="close"
+        x-small
+        text
+        style="-webkit-app-region: none"
+        class="system-btn"
+      >
+        <v-icon small>{{ mdiWindowClose }}</v-icon>
       </v-btn>
     </v-system-bar>
     <v-app-bar height="56px" app class="fish-app-bar" dense color="system">
@@ -1305,4 +1325,10 @@ body {
 
 <style lang="scss">
 @import '~@/styles/markdown.scss';
+</style>
+
+<style lang="scss" scoped>
+.system-btn::v-deep .v-icon {
+  margin-right: 0;
+}
 </style>

@@ -1761,7 +1761,6 @@ const collectablesShopCN = [
     ExpRatioHigh: 135,
   },
 ].map(it => {
-  console.log(it.Item, GarlandCollectInfoDict[it.Item])
   const xpList = (GarlandCollectInfoDict[it.Item] &&
     GarlandCollectInfoDict[it.Item].xp) || [0, 0, 0]
   return Object.assign(it, {
