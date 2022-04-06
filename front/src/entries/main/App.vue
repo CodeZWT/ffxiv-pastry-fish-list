@@ -516,9 +516,8 @@
 
     <v-navigation-drawer
       v-model="showQuickSetting"
-      absolute
+      fixed
       temporary
-      bottom
       right
       color="system"
       width="360"
