@@ -22,7 +22,7 @@
             mobile-breakpoint="0"
           >
             <template v-slot:item.itemId="{ item: { fish, itemIconClass } }">
-              <div class="d-flex align-center">
+              <div class="d-flex align-center" style="min-width: 60px">
                 <div v-if="isMobile">
                   {{ fish.name }}
                 </div>
@@ -49,12 +49,12 @@
               </div>
             </template>
             <template v-slot:item.level="{ item }">
-              <div class="d-flex align-center">
+              <div class="d-flex align-center" style="min-width: 40px">
                 <div>{{ item.levelText }}</div>
               </div>
             </template>
             <template v-slot:item.collectability="{ item }">
-              <div class="d-flex align-center">
+              <div class="d-flex align-center" style="min-width: 50px">
                 <div>{{ item.collectabilityText }}</div>
               </div>
             </template>
@@ -79,9 +79,9 @@
             </template>
 
             <template v-slot:expanded-item="{ item }">
-              <td :colspan="2"></td>
+              <td :colspan="isMobile ? 1 : 2"></td>
 
-              <td>
+              <td :colspan="isMobile ? 2 : 1">
                 <div>{{ item.lowCollectability }} ~ {{ item.midCollectability - 1 }}</div>
                 <div>
                   {{ item.midCollectability }} ~ {{ item.highCollectability - 1 }}
