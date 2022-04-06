@@ -256,6 +256,14 @@
               <v-list-item-title>{{ $t(TABS[1].title) }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item @click="toPage('WikiPage')" link>
+            <v-list-item-icon>
+              <v-icon>{{ mdiNotebook }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('wikiPage.title') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
           <v-list-item @click="toPage('UsagePage')" link>
             <v-list-item-icon>
               <i
@@ -271,14 +279,6 @@
                 {{ $t('usagePage.description') }}
               </template>
             </rc-tooltip>
-          </v-list-item>
-          <v-list-item @click="toPage('WikiPage')" link>
-            <v-list-item-icon>
-              <v-icon>{{ mdiNotebook }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ $t('wikiPage.title') }}</v-list-item-title>
-            </v-list-item-content>
           </v-list-item>
 
           <!--          <v-list-item @click="toPage('OceanFishingPage')" link>-->
@@ -320,26 +320,6 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item v-if="isRoseMode" @click="toPage('RecordPage')">
-            <v-list-item-icon>
-              <v-icon>{{ mdiChartBar }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ $t('top.record') }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-list-item v-if="isRoseMode" @click="showRoseDialog = true" link>
-            <v-list-item-icon>
-              <v-icon>{{ mdiAccount }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
           <v-list-item @click="toCompetitionPage" link>
             <v-list-item-icon>
               <v-icon>{{ mdiTrophy }}</v-icon>
@@ -351,6 +331,29 @@
 
           <v-divider class="mx-2" />
 
+          <template v-if="isRoseMode">
+            <v-list-item @click="toPage('RecordPage')">
+              <v-list-item-icon>
+                <v-icon>{{ mdiChartBar }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ $t('top.record') }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item @click="showRoseDialog = true" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiAccount }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ $t('top.roseMode') }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider class="mx-2" />
+          </template>
+
           <v-list-item v-if="!isElectron" @click="toDownloadPage" link>
             <v-list-item-icon>
               <v-icon>{{ mdiDesktopMacDashboard }}</v-icon>
@@ -359,23 +362,26 @@
               <v-list-item-title>{{ $t('top.desktopVersion') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item v-else @click="toWebsite" link>
-            <v-list-item-icon>
-              <v-icon>{{ mdiWeb }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ $t('top.website') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
 
-          <v-list-item v-if="isElectron" @click="openReader" link>
-            <v-list-item-icon>
-              <v-icon>{{ mdiFish }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ $t('top.fishReader') }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <template v-else>
+            <v-list-item @click="openReader" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiFish }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ $t('top.fishReader') }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item @click="toWebsite" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiWeb }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ $t('top.website') }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </template>
+
           <v-list-item
             v-if="isElectron && downloadProgress > 0"
             link
