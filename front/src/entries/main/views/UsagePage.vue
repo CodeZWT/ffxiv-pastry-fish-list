@@ -1,6 +1,6 @@
 <template>
   <page-template>
-    <v-container fluid>
+    <v-container>
       <v-tabs v-model="tabIndex" grow>
         <v-tab>{{
           $t('setting.dialog.detailArrangement.itemNames.DetailItemMasterpiece')

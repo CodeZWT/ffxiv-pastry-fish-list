@@ -1,7 +1,7 @@
 <template>
   <v-footer
     class="text-subtitle-2 inner mt-10"
-    style="border-top: 1px #494949 solid !important;"
+    style="border-top: 1px #494949 solid !important; min-height: fit-content"
   >
     <v-row class="d-flex justify-center text-center" no-gutters>
       <v-col cols="12" :md="columnCols">
