@@ -233,21 +233,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "~@/styles/RcVariables"
-.detail-wrapper
-  padding: 0 !important
-  width: 100%
-  height: 100%
-  overflow-scrolling: auto
-  overflow-y: scroll
-  overflow-x: hidden
-
-  &--web
-    max-height: calc(100vh - #{ $wrapper-web })
-
-  &--electron
-    max-height: calc(100% - #{ $toolbar-height})
-
 .v-data-table::v-deep
   tr
     cursor: pointer
