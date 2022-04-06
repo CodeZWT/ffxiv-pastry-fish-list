@@ -18,8 +18,12 @@
                 <v-card-text class="text-subtitle-1">
                   <div v-html="$t('homePage.description')"></div>
                   <div class="d-flex align-center mt-2">
-                    <v-badge inline color="warning" content="New" />
+                    <v-badge inline color="primary" content="New" />
                     <div>增加收藏品罗威纳商会相关数据与页面</div>
+                  </div>
+                  <div class="d-flex align-center mt-2">
+                    <v-badge inline color="primary" content="New" />
+                    <div>页面布局改版</div>
                   </div>
                 </v-card-text>
               </v-card>
