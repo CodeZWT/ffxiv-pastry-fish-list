@@ -72,12 +72,22 @@
             <div>{{ $t('faqPage.title') }}</div>
           </v-col>
           <v-col
+            v-if="region === 'CN'"
             cols="12"
             class="link-item"
             @click="openLink('https://fish.ricecake302.com')"
           >
             <v-icon class="pr-1">{{ mdiEarth }}</v-icon>
             <div>{{ '国际站点' }}</div>
+          </v-col>
+          <v-col
+            v-else
+            cols="12"
+            class="link-item"
+            @click="openLink('https://ricecake.traveleorzea.com')"
+          >
+            <v-icon class="pr-1">{{ mdiEarth }}</v-icon>
+            <div>{{ '国内站点' }}</div>
           </v-col>
         </v-row>
       </v-col>
@@ -122,6 +132,7 @@ import {
   mdiQqchat,
   mdiSinaWeibo,
 } from '@mdi/js'
+import DevelopmentModeUtil from '@/utils/DevelopmentModeUtil'
 import EnvMixin from '@/components/basic/EnvMixin'
 import LINK from 'Data/link'
 import beianIcon from 'Assets/beian-icon.png'
@@ -138,6 +149,7 @@ export default {
   data() {
     return {
       GARLAND_URL: process.env.VUE_APP_GARLAND_HOST,
+      region: DevelopmentModeUtil.siteRegion(),
       beianIcon,
       showAboutDialog: false,
       mdiQqchat,
