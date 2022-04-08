@@ -134,7 +134,13 @@
     <div style="overflow: hidden">
       <div
         id="wiki-right-content"
-        :style="`float: left; width: ${showRightPane ? mainPanePercent : 100}%;`"
+        :style="
+          `
+          float: left;
+          max-width: ${showRightPane ? mainPanePercent : 100}%;
+          min-width: ${showRightPane ? mainPanePercent : 100}%;
+          `
+        "
         v-show="!rightPaneFullScreen || type !== 'fish'"
         ref="fishPageScrollTarget"
         :class="{

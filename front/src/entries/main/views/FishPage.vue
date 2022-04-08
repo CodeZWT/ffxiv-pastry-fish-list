@@ -7,7 +7,13 @@
         'list-part--desktop': isElectron,
         'show-divider': showRightPane,
       }"
-      :style="`float: left; width: ${showRightPane ? mainPanePercent : 100}%`"
+      :style="
+        `
+        float: left;
+        min-width: ${showRightPane ? mainPanePercent : 100}%
+        max-width: ${showRightPane ? mainPanePercent : 100}%
+        `
+      "
       v-show="!rightPaneFullScreen || !showRightPane"
       ref="fishPageScrollTarget"
     >
