@@ -205,7 +205,9 @@
                 </v-tooltip>
               </v-sheet>
             </div>
-            <div class="my-1">* 上传功能更新前的数据忽略</div>
+            <div class="my-1">
+              * 第一次注册后请重启鱼糕，注册前的数据不在此处显示也不会上传
+            </div>
           </template>
         </div>
         <v-btn block @click="close" class="mt-4">关闭</v-btn>
