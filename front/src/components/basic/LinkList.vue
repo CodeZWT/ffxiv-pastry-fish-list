@@ -4,6 +4,7 @@
       :disabled="disabled"
       open-on-hover
       offset-x
+      offset-y
       nudge-right="4"
       open-delay="300"
       close-delay="300"
