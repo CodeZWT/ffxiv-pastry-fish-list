@@ -1,6 +1,7 @@
 <template>
   <v-btn
     text
+    :icon="icon"
     :x-small="small"
     :title="value ? checkedTitle : uncheckedTitle"
     @click.stop="toggleValue"
@@ -16,6 +17,10 @@ import { mdiCheckboxBlankOutline, mdiCheckboxMarked } from '@mdi/js'
 export default {
   name: 'ToggleButton',
   props: {
+    icon: {
+      type: Boolean,
+      default: true,
+    },
     featureId: {
       type: String,
       default: undefined,
