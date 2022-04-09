@@ -24,6 +24,7 @@
       hide-default-footer
       multi-sort
       :dense="dense"
+      :mobile-breakpoint="0"
     >
       <template v-slot:item.name="{ item }">
         <div class="d-flex align-center">
@@ -127,7 +128,7 @@
         <fish-bite-time-list :item="item" />
       </template>
       <template v-slot:item.notAvailableWeatherSet="{ item }">
-        <div class="d-flex align-center justify-center">
+        <div class="d-flex align-center justify-center" style="min-width: 120px">
           <div v-if="!item.hasWeatherConstraint && !item.hasRealWeatherConstraint">
             无要求
           </div>
