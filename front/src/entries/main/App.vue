@@ -24,7 +24,7 @@
         :checked-title="$t('actions.pinTop.checked')"
         :unchecked-title="$t('actions.pinTop.unchecked')"
         small
-        icon
+        :icon="false"
         class="system-btn"
         style="-webkit-app-region: none"
       />
@@ -45,7 +45,7 @@
         :checked-title="$t('actions.maximize.restore')"
         :unchecked-title="$t('actions.maximize.maximize')"
         small
-        icon
+        :icon="false"
         class="system-btn"
         style="-webkit-app-region: none"
       />

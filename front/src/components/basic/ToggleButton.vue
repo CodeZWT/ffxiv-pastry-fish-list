@@ -2,7 +2,8 @@
   <v-btn
     text
     :icon="icon"
-    :x-small="small"
+    :small="icon && small"
+    :x-small="!icon && small"
     :title="value ? checkedTitle : uncheckedTitle"
     @click.stop="toggleValue"
   >
