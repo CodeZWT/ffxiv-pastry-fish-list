@@ -193,8 +193,8 @@
           <v-list-item v-if="isListPage || isWikiPage" @click="showBaitDialog = true">
             <v-btn icon text>
               <v-icon>{{ mdiHook }}</v-icon>
-              <div>{{ $t('baitSearch.dialogBtn') }}</div>
             </v-btn>
+            <div>{{ $t('baitSearch.dialogBtn') }}</div>
           </v-list-item>
           <v-list-item v-if="isListPage || isWikiPage" @click="toggleFishEyesUsed">
             <fish-eyes-toggle-button
