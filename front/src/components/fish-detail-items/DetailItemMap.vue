@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column align-center">
+  <div class="d-flex flex-column align-center" style="background-color: #1e1e1e">
     <v-expansion-panels hover flat tile v-model="lazyExpansionValue">
       <v-expansion-panel>
         <v-expansion-panel-header>
@@ -158,6 +158,7 @@ export default {
     ...mapGetters(['getFishingSpot']),
   },
   created() {
+    this.onWindowResize()
     this.lazyExpansionValue = this.expanded ? 0 : undefined
   },
   watch: {
@@ -172,7 +173,10 @@ export default {
   methods: {
     toSpotTitle: DataUtil.toSpotTitle,
     onWindowResize() {
-      this.mapWidth = this.$refs.simpleMap?.containerWidth ?? 512
+      console.log('on resize')
+      setTimeout(() => {
+        this.mapWidth = this.$refs.simpleMap?.containerWidth ?? 512
+      }, 1000)
     },
     listLinkClicked(inner) {
       this.showSpotMenu = false

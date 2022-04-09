@@ -1,10 +1,9 @@
 <template>
-  <v-row no-gutters style="width: 100%; margin-top: -4px">
+  <v-row no-gutters style="width: 100%; ">
     <template v-for="component in sortedDetailComponents">
       <v-col
         v-if="component.enabled && (!component.constraint || fish[component.constraint])"
         cols="12"
-        class="mt-2"
         :key="component.name"
       >
         <component
@@ -17,6 +16,7 @@
           :itemExtra="itemExtra"
           @close-dialog="$emit('close-dialog')"
         />
+        <v-divider :key="component.name + '-divider'" />
       </v-col>
     </template>
   </v-row>

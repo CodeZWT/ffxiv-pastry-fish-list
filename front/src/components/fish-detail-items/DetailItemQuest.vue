@@ -1,13 +1,12 @@
 <template>
-  <div>
+  <div style="background-color: #1e1e1e">
     <v-subheader>{{ $t('task.detail.title') }}</v-subheader>
     <v-alert
       v-for="task in fish.tasks"
       :key="task.id"
       border="top"
       colored-border
-      elevation="2"
-      class="rounded-0"
+      class="rounded-0 mb-0"
       color="secondary"
     >
       <div class="d-flex align-center my-1">

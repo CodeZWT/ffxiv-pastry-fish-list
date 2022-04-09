@@ -1,6 +1,6 @@
 <template>
   <div class="fishing-tip2">
-    <v-card v-if="tip" outlined>
+    <v-card v-if="tip" outlined tile>
       <v-card-subtitle>
         <div class="text-subtitle-1">
           <a href="https://ngabbs.com/read.php?tid=23672580" target="_blank">

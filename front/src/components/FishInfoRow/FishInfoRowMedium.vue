@@ -9,7 +9,7 @@
         >
           <v-col :class="fishColClass">
             <div
-              class="d-flex fill-height align-center flex-row px-1"
+              class="d-flex fill-height align-center flex-row pr-2"
               style="min-height: 56px"
             >
               <div class="d-flex flex-column">

@@ -1,7 +1,7 @@
 <template>
   <v-expansion-panels hover flat tile v-model="lazyExpansionValue">
-    <v-expansion-panel class="system">
-      <v-expansion-panel-header class="system">
+    <v-expansion-panel>
+      <v-expansion-panel-header>
         <div style="display: flex; justify-content: center">
           <div>
             <v-icon>{{ mdiCalendar }}</v-icon>
@@ -20,7 +20,7 @@
             <span>{{ $t('common.ui.loading') }}</span>
           </div>
         </div>
-        <v-simple-table dense class="system" v-else>
+        <v-simple-table dense v-else>
           <template v-slot:default>
             <thead>
               <tr>
@@ -177,4 +177,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="sass">
+::v-deep
+  .v-expansion-panel-content__wrap
+    padding-left: 16px
+    padding-right: 16px
+</style>

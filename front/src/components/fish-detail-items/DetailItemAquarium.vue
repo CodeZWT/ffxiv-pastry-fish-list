@@ -43,4 +43,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="sass">
+::v-deep
+  .v-expansion-panel-content__wrap
+    padding-left: 16px
+    padding-right: 16px
+</style>

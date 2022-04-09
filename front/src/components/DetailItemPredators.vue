@@ -1,14 +1,15 @@
 <template>
-  <v-row column style="width: 100%" no-gutters>
+  <v-row column style="width: 100%; background-color: #1e1e1e" no-gutters>
     <template v-if="fish.hasShadowPredators">
-      <div class="pl-2 subheader--text">
+      <v-subheader>
         {{ $t('detail.shadowPredators.title') }}
-      </div>
+      </v-subheader>
       <v-col cols="12">
         <div
           v-for="(predator, index) in fish.shadowPredators"
           :key="predator._id"
           style="position: relative"
+          class="px-4"
         >
           <v-divider v-if="index > 0" style="border-color: grey" />
           <fish-info-row
@@ -22,14 +23,15 @@
       </v-col>
     </template>
     <template v-if="fish.hasPredators">
-      <div class="pl-2 subheader--text">
+      <v-subheader>
         {{ $t('detail.predators.title') }}
-      </div>
+      </v-subheader>
       <v-col cols="12">
         <div
           v-for="(predator, index) in fish.predators"
           :key="predator._id"
           style="position: relative"
+          class="px-4"
         >
           <v-divider v-if="index > 0" style="border-color: grey" />
           <fish-info-row

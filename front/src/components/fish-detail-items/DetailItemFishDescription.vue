@@ -96,4 +96,9 @@ export default {
 <style scoped lang="sass">
 .emphasis
   font-weight: bold
+
+::v-deep
+  .v-expansion-panel-content__wrap
+    padding-left: 16px
+    padding-right: 16px
 </style>

@@ -1,29 +1,36 @@
 <template>
   <div
     v-if="fish.checkInfo && fish.checkInfo.bestCatchPathUnknown"
-    class="d-flex justify-center align-center"
+    class="d-flex justify-center align-center py-1"
+    style="background-color: #1e1e1e"
   >
     <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
     <span class="warning--text">{{ $t('investigation.investigating') }}</span>
   </div>
-  <div v-else class="d-flex justify-center align-center">
+  <div
+    v-else
+    class="d-flex justify-center align-center py-1"
+    style="background-color: #1e1e1e"
+  >
     <v-row no-gutters>
       <v-col cols="6" class="d-flex flex-column align-center">
         <div class="d-flex justify-center">{{ $t('detail.buff.title') }}</div>
-        <div v-if="fish.hasPredators">
-          <div class="d-flex flex-column align-center">
-            <effect-icon :icon-class="fish.predatorsIcon" />
-            <div>
-              {{ fish.fishersIntuitionText }}
+        <div class="d-flex align-center fill-height">
+          <div v-if="fish.hasPredators">
+            <div class="d-flex flex-column align-center">
+              <effect-icon :icon-class="fish.predatorsIcon" />
+              <div>
+                {{ fish.fishersIntuitionText }}
+              </div>
             </div>
           </div>
-        </div>
-        <div v-if="fish.hasShadowPredators">{{ $t('list.item.fishShadow') }}</div>
-        <div v-if="fish.hasSnagging">
-          <effect-icon :icon-class="fish.snaggingIcon" data-ck-action-name="钓组" />
-        </div>
-        <div v-if="!fish.hasPredators && !fish.hasSnagging && !fish.hasShadowPredators">
-          {{ $t('none') }}
+          <div v-if="fish.hasShadowPredators">{{ $t('list.item.fishShadow') }}</div>
+          <div v-if="fish.hasSnagging">
+            <effect-icon :icon-class="fish.snaggingIcon" data-ck-action-name="钓组" />
+          </div>
+          <div v-if="!fish.hasPredators && !fish.hasSnagging && !fish.hasShadowPredators">
+            {{ $t('none') }}
+          </div>
         </div>
       </v-col>
 

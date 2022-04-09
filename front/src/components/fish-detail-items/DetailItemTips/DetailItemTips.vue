@@ -5,13 +5,13 @@
         <div style="display: flex; justify-content: center">
           <div>
             <v-icon>{{ mdiBook }}</v-icon>
-            查看攻略
+            攻略
           </div>
         </div>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <div v-if="!hasTips(fish.id)" class="text-center">暂无攻略</div>
-        <div v-else style="margin: 0 -20px 0 -20px">
+        <div v-else style="margin: 0 -24px 0 -24px">
           <tip7 :id="fish.id" />
           <tip5 :id="fish.id" />
           <tip3 :id="fish.id" />

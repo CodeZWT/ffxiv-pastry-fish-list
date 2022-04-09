@@ -1,47 +1,51 @@
 <template>
-  <v-row no-gutters>
-    <v-col cols="6">
+  <v-row no-gutters style="background-color: #1e1e1e" class="py-1">
+    <v-col cols="6" class="d-flex flex-column align-center">
       <div class="d-flex justify-center">{{ $t('detail.requirements.weather') }}</div>
-      <div class="d-flex justify-center" v-if="fish.hasWeatherConstraint">
-        <div style="display: flex">
-          <div
-            v-for="(weather, index) in fish.previousWeatherSetDetail"
-            :key="`prev-${index}`"
-            :title="weather.name"
-          >
-            <weather-icon
-              :icon-class="weather.icon"
+      <div class="d-flex align-center fill-height">
+        <div class="d-flex justify-center" v-if="fish.hasWeatherConstraint">
+          <div style="display: flex">
+            <div
+              v-for="(weather, index) in fish.previousWeatherSetDetail"
+              :key="`prev-${index}`"
               :title="weather.name"
-              type="weather"
-            />
-          </div>
-          <v-icon v-if="fish.previousWeatherSet.length > 0"> {{ mdiArrowRight }} </v-icon>
-          <div
-            v-for="(weather, index) in fish.weatherSetDetail"
-            :key="`curr-${index}`"
-            :title="weather.name"
-          >
-            <weather-icon
-              :icon-class="weather.icon"
+            >
+              <weather-icon
+                :icon-class="weather.icon"
+                :title="weather.name"
+                type="weather"
+              />
+            </div>
+            <v-icon v-if="fish.previousWeatherSet.length > 0">
+              {{ mdiArrowRight }}
+            </v-icon>
+            <div
+              v-for="(weather, index) in fish.weatherSetDetail"
+              :key="`curr-${index}`"
               :title="weather.name"
-              type="weather"
-            />
+            >
+              <weather-icon
+                :icon-class="weather.icon"
+                :title="weather.name"
+                type="weather"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        v-else-if="fish.checkInfo && fish.checkInfo.weatherRestricted"
-        class="text-center"
-      >
-        {{ $t('list.item.weatherConstraint') }}
-      </div>
-      <div class="d-flex justify-center" v-else>
-        {{ $t('none') }}
+        <div
+          v-else-if="fish.checkInfo && fish.checkInfo.weatherRestricted"
+          class="text-center"
+        >
+          {{ $t('list.item.weatherConstraint') }}
+        </div>
+        <div class="d-flex justify-center" v-else>
+          {{ $t('none') }}
+        </div>
       </div>
     </v-col>
-    <v-col cols="6">
+    <v-col cols="6" class="d-flex flex-column align-center">
       <div class="d-flex justify-center">{{ $t('detail.requirements.time') }}</div>
-      <div class="d-flex justify-center">
+      <div class="d-flex align-center fill-height">
         <div v-if="fish.hasTimeConstraint" class="d-flex align-center">
           <div
             :class="{

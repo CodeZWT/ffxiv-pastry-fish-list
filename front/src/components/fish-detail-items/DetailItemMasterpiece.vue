@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!loading && itemExtra.item.masterpiece">
+  <div v-if="!loading && itemExtra.item.masterpiece" style="background-color: #1e1e1e">
     <v-subheader class="d-flex justify-space-between">
       <div>
         {{ $t('setting.dialog.detailArrangement.itemNames.DetailItemMasterpiece') }}
@@ -7,7 +7,7 @@
       <div>{{ lvl }}</div>
     </v-subheader>
     <v-skeleton-loader v-if="loading" type="table-row-divider@3" class="mx-1" />
-    <v-simple-table v-else dense class="pt-2 inner">
+    <v-simple-table v-else dense class="pt-2" style="background-color: #1e1e1e">
       <template>
         <thead>
           <tr>
@@ -40,7 +40,6 @@
         </tbody>
       </template>
     </v-simple-table>
-    <v-divider />
   </div>
 </template>
 

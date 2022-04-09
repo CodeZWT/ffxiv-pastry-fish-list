@@ -1,72 +1,74 @@
 <template>
-  <div v-if="!loading">
-    <div v-if="fish.countDownType === WAITING">
-      <v-progress-linear height="25" :color="fishingColor">
-        <template>
-          <v-tooltip top color="secondary">
-            <template v-slot:activator="{ on, attrs }">
-              <div v-bind="attrs" v-on="on" class="d-flex align-center">
-                <strong>{{
-                  $t(fish.countDownTypeName, { interval: countDownTimeText })
-                }}</strong>
-              </div>
-            </template>
-            <span>{{ fish.countDownTimePointText }}</span>
-          </v-tooltip>
-        </template>
-      </v-progress-linear>
-    </div>
-    <div v-else-if="fish.countDownType === FISHING">
-      <v-progress-linear
-        :value="countDownRemainPercentage"
-        height="25"
-        :color="fishingColor"
+  <div style="background-color: #1e1e1e" class="py-1">
+    <div v-if="!loading">
+      <div v-if="fish.countDownType === WAITING">
+        <v-progress-linear height="25" :color="fishingColor">
+          <template>
+            <v-tooltip top color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on" class="d-flex align-center">
+                  <strong>{{
+                    $t(fish.countDownTypeName, { interval: countDownTimeText })
+                  }}</strong>
+                </div>
+              </template>
+              <span>{{ fish.countDownTimePointText }}</span>
+            </v-tooltip>
+          </template>
+        </v-progress-linear>
+      </div>
+      <div v-else-if="fish.countDownType === FISHING">
+        <v-progress-linear
+          :value="countDownRemainPercentage"
+          height="25"
+          :color="fishingColor"
+        >
+          <template v-slot="{ value }">
+            <v-tooltip top color="secondary">
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on" class="d-flex align-center">
+                  <v-icon size="20">{{ mdiAlarm }}</v-icon>
+                  <strong>
+                    {{ $t(fish.countDownTypeName, { interval: countDownTimeText }) }}
+                    ({{ value }}%)
+                  </strong>
+                  <effect-icon
+                    v-if="fish.addBuffSuffix"
+                    :icon-class="fish.predatorsIcon"
+                    :title="$t('list.item.countDown.fisherIntuitionHint')"
+                    style="margin-left: 2px"
+                  />
+                </div>
+              </template>
+              <span>{{ fish.countDownTimePointText }}</span>
+            </v-tooltip>
+          </template>
+        </v-progress-linear>
+      </div>
+      <div
+        v-else-if="
+          !fish.checkInfo ||
+            (!fish.checkInfo.timeRestricted && !fish.checkInfo.weatherRestricted)
+        "
       >
-        <template v-slot="{ value }">
-          <v-tooltip top color="secondary">
-            <template v-slot:activator="{ on, attrs }">
-              <div v-bind="attrs" v-on="on" class="d-flex align-center">
-                <v-icon size="20">{{ mdiAlarm }}</v-icon>
-                <strong>
-                  {{ $t(fish.countDownTypeName, { interval: countDownTimeText }) }}
-                  ({{ value }}%)
-                </strong>
-                <effect-icon
-                  v-if="fish.addBuffSuffix"
-                  :icon-class="fish.predatorsIcon"
-                  :title="$t('list.item.countDown.fisherIntuitionHint')"
-                  style="margin-left: 2px"
-                />
-              </div>
-            </template>
-            <span>{{ fish.countDownTimePointText }}</span>
-          </v-tooltip>
-        </template>
-      </v-progress-linear>
+        <v-progress-linear :value="100" height="25" :color="fishingColor">
+          <template>
+            <strong>{{ $t(fish.countDownTypeName) }}</strong>
+          </template>
+        </v-progress-linear>
+      </div>
+      <div v-else class="d-flex justify-center">
+        <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
+        <span class="warning--text">开荒中</span>
+      </div>
     </div>
-    <div
-      v-else-if="
-        !fish.checkInfo ||
-          (!fish.checkInfo.timeRestricted && !fish.checkInfo.weatherRestricted)
-      "
-    >
+    <div v-else>
       <v-progress-linear :value="100" height="25" :color="fishingColor">
         <template>
-          <strong>{{ $t(fish.countDownTypeName) }}</strong>
+          <strong>{{ $t('detail.countDown.loading') }}</strong>
         </template>
       </v-progress-linear>
     </div>
-    <div v-else class="d-flex justify-center">
-      <v-icon small color="warning">{{ mdiAlertOutline }}</v-icon>
-      <span class="warning--text">开荒中</span>
-    </div>
-  </div>
-  <div v-else>
-    <v-progress-linear :value="100" height="25" :color="fishingColor">
-      <template>
-        <strong>{{ $t('detail.countDown.loading') }}</strong>
-      </template>
-    </v-progress-linear>
   </div>
 </template>
 
