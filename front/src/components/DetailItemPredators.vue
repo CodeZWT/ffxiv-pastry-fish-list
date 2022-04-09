@@ -1,9 +1,9 @@
 <template>
   <v-row column style="width: 100%" no-gutters>
     <template v-if="fish.hasShadowPredators">
-      <v-subheader>
+      <div class="pl-2 subheader--text">
         {{ $t('detail.shadowPredators.title') }}
-      </v-subheader>
+      </div>
       <v-col cols="12">
         <div
           v-for="(predator, index) in fish.shadowPredators"
@@ -22,9 +22,9 @@
       </v-col>
     </template>
     <template v-if="fish.hasPredators">
-      <v-subheader>
+      <div class="pl-2 subheader--text">
         {{ $t('detail.predators.title') }}
-      </v-subheader>
+      </div>
       <v-col cols="12">
         <div
           v-for="(predator, index) in fish.predators"
