@@ -1,5 +1,5 @@
 <template>
-  <div v-resize="onWindowResize">
+  <div v-resize="onWindowResize" class="fill-height">
     <v-navigation-drawer
       v-if="showMapMenu || !isMobile"
       :value="showMapMenu || !isMobile"
@@ -131,7 +131,7 @@
         </v-card-text>
       </div>
     </v-navigation-drawer>
-    <div style="overflow: hidden">
+    <div class="overflow-hidden fill-height">
       <div
         id="wiki-right-content"
         :style="
