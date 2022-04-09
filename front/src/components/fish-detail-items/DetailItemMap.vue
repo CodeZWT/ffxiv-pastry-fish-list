@@ -1,8 +1,8 @@
 <template>
   <div class="d-flex flex-column align-center">
     <v-expansion-panels hover flat tile v-model="lazyExpansionValue">
-      <v-expansion-panel class="systemSecondary">
-        <v-expansion-panel-header class="systemSecondary">
+      <v-expansion-panel>
+        <v-expansion-panel-header>
           <div style="display: flex; align-items: center; justify-content: center">
             <div v-if="multiple">
               <v-menu v-model="showSpotMenu" offset-x top>
@@ -78,11 +78,6 @@
             <div class="text-subtitle-1 ml-2">
               ({{ currentSpot.fishSpotPositionText }})
             </div>
-            <click-helper @click.stop :copy-text="currentSpot.fishingSpotName">
-              <v-btn class="my-2" text icon :title="$t('list.item.copyHint')">
-                <v-icon>{{ mdiContentCopy }}</v-icon>
-              </v-btn>
-            </click-helper>
           </div>
         </v-expansion-panel-header>
       </v-expansion-panel>
@@ -113,14 +108,13 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import { mdiContentCopy, mdiViewList } from '@mdi/js'
-import ClickHelper from '@/components/basic/ClickHelper'
 import DataUtil from '@/utils/DataUtil'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
 import LinkList from '@/components/basic/LinkList'
 
 export default {
   name: 'DetailItemMap',
-  components: { LinkList, ClickHelper, EorzeaSimpleMap },
+  components: { LinkList, EorzeaSimpleMap },
   props: {
     fish: {
       type: Object,

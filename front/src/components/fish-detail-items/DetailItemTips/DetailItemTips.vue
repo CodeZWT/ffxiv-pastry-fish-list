@@ -1,7 +1,7 @@
 <template>
   <v-expansion-panels hover flat tile v-model="lazyExpansionValue">
-    <v-expansion-panel class="system">
-      <v-expansion-panel-header class="system">
+    <v-expansion-panel>
+      <v-expansion-panel-header>
         <div style="display: flex; justify-content: center">
           <div>
             <v-icon>{{ mdiBook }}</v-icon>
