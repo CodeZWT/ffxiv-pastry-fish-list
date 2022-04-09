@@ -14,8 +14,6 @@
           </template>
         </v-radio>
       </v-radio-group>
-      <v-spacer />
-      <v-switch v-model="enableSimpleMode" label="简化模式" inset />
     </div>
     <div v-if="currentTip.id === 'fish-list'">
       <v-tabs v-model="currentLocationIndex" centered icons-and-text grow show-arrows>
@@ -81,6 +79,9 @@
     </div>
     <div v-else-if="currentTip.id === 'fish-tip'">
       <v-row>
+        <v-col cols="12">
+          <v-switch v-model="enableSimpleMode" label="简化模式" inset />
+        </v-col>
         <v-col
           v-for="(location, index) in currentLocations"
           :key="index"
@@ -161,6 +162,9 @@
     </div>
     <div v-else-if="currentTip.id === 'point-tip'">
       <v-row>
+        <v-col cols="12">
+          <v-switch v-model="enableSimpleMode" label="简化模式" inset />
+        </v-col>
         <v-col cols="12">
           <v-expansion-panels accordion v-model="missionOpenStatus" multiple>
             <v-expansion-panel>
