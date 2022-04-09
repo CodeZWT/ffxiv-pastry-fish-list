@@ -1839,13 +1839,6 @@ const spotCN = [
             fishList: [12834, 12814],
             order: 0,
           },
-          { id: 246, fishList: [], order: 0 },
-          { id: 247, fishList: [], order: 0 },
-          {
-            id: 248,
-            fishList: [],
-            order: 0,
-          },
           { id: 10000, fishList: [20123, 20119], order: 0 },
           {
             id: 10001,
