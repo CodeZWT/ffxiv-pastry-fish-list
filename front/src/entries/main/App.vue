@@ -225,7 +225,6 @@
     <v-main>
       <v-navigation-drawer
         v-model="drawer"
-        :mini-variant.sync="mini"
         :bottom="isMobile"
         :absolute="!isMobile"
         :fixed="isMobile"

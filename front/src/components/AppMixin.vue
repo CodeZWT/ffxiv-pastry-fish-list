@@ -97,7 +97,6 @@ export default {
       vm.$t('top.systemBarTitle') +
       (DevelopmentModeUtil.isTest() ? vm.$t('top.testSuffix') : ''),
     drawer: true,
-    mini: true,
     lazySourceFishList: [],
     lazyTransformedFishList: [],
     lazyTransformedFishDict: {},
@@ -417,7 +416,6 @@ export default {
     isMobile: {
       handler(isMobile) {
         if (isMobile) {
-          this.mini = false
           this.drawer = false
         } else {
           this.drawer = true
@@ -1375,9 +1373,6 @@ export default {
           }
         },
       })
-    },
-    toggleNavMini() {
-      this.mini = !this.mini
     },
     showNavi() {
       if (this.isMobile) {
