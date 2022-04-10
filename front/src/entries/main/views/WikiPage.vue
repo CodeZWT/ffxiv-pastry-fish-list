@@ -131,18 +131,11 @@
         </v-card-text>
       </div>
     </v-navigation-drawer>
-    <div class="overflow-hidden">
+    <div class="overflow-hidden d-flex">
       <div
         id="wiki-right-content"
-        :style="
-          `
-          float: left;
-          max-width: ${showRightPane ? mainPanePercent : 100}%;
-          min-width: ${showRightPane ? mainPanePercent : 100}%;
-          `
-        "
-        v-show="!rightPaneFullScreen || type !== 'fish'"
         ref="fishPageScrollTarget"
+        v-show="!rightPaneFullScreen || type !== 'fish'"
         :class="{
           'wiki-content': true,
           'wiki-content--pc-web': !isElectron,
@@ -150,6 +143,7 @@
           'd-flex': true,
           'flex-column': true,
         }"
+        :style="`flex-basis: ${showRightPane ? mainPanePercent : 100}%`"
       >
         <template
           v-if="
@@ -306,13 +300,16 @@
         </div>
       </div>
       <div
-        style="overflow: hidden"
+        v-if="showRightPane"
         :class="{
           'wiki-content': true,
           'wiki-content--pc-web': !isElectron,
           'wiki-content--pc-electron': isElectron,
         }"
-        v-if="showRightPane"
+        :style="{
+          'flex-basis': `${rightPaneFullScreen ? 100 : 100 - mainPanePercent}%`,
+          'max-width': `${rightPaneFullScreen ? 100 : 100 - mainPanePercent}%`,
+        }"
       >
         <fish-detail
           ref="wikiFishDetail"

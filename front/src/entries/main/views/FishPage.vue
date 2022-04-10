@@ -1,21 +1,15 @@
 <template>
   <div v-resize="onWindowResize" class="d-flex">
     <div
+      ref="fishPageScrollTarget"
+      v-show="!rightPaneFullScreen || !showRightPane"
       :class="{
         'list-part': true,
         'list-part--web': !isElectron,
         'list-part--desktop': isElectron,
         'show-divider': showRightPane,
       }"
-      :style="
-        `
-        float: left;
-        min-width: ${showRightPane ? mainPanePercent : 100}%
-        max-width: ${showRightPane ? mainPanePercent : 100}%
-        `
-      "
-      v-show="!rightPaneFullScreen || !showRightPane"
-      ref="fishPageScrollTarget"
+      :style="`flex-basis: ${showRightPane ? mainPanePercent : 100}%`"
     >
       <fish-filter-list
         v-if="spotId === -1"
@@ -48,7 +42,13 @@
       <v-spacer />
       <rc-footer :columns="showRightPane ? 3 : 4" />
     </div>
-    <div v-if="showRightPane" style="overflow: hidden">
+    <div
+      v-if="showRightPane"
+      :style="{
+        'flex-basis': `${rightPaneFullScreen ? 100 : 100 - mainPanePercent}%`,
+        'max-width': `${rightPaneFullScreen ? 100 : 100 - mainPanePercent}%`,
+      }"
+    >
       <fish-detail
         ref="fishDetail"
         :fish="selectedFish"
