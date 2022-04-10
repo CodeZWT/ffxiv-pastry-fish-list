@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%; height: 100%; position: relative" class="eorzea-simple-map">
+  <div :class="fullWidth ? 'fill-width-map' : 'fill-height-map'">
     <v-overlay :value="!allImageLoaded" absolute opacity="1" color="background">
       <div class="d-flex flex-column align-center">
         <v-progress-circular
@@ -14,8 +14,7 @@
       <div
         ref="container"
         v-resize="resize"
-        style="width: 100%; height: 100%"
-        class="map-container"
+        style="position: absolute; top: 0; right: 0; left: 0; bottom: 0"
       >
         <v-scale-transition origin="center center">
           <div
@@ -151,22 +150,10 @@ export default {
   name: 'EorzeaSimpleMap',
   mixins: [EnvMixin],
   props: {
-    // x: {
-    //   type: Number,
-    //   default: undefined,
-    // },
-    // y: {
-    //   type: Number,
-    //   default: undefined,
-    // },
-    // markerRadius: {
-    //   type: Number,
-    //   default: 300,
-    // },
-    // fishingSpotName: {
-    //   type: String,
-    //   default: undefined,
-    // },
+    fullWidth: {
+      type: Boolean,
+      default: true,
+    },
     fishingSpots: {
       type: Array,
       default: () => [],
@@ -209,8 +196,8 @@ export default {
     fishingSpotImage: null,
     markerRangeImage: null,
     aetheryteImage: null,
-    containerWidth: 760,
-    containerHeight: 760,
+    containerWidth: 400,
+    containerHeight: 400,
     mapImageLoaded: false,
     fishingSpotRangeHelperLoaded: false,
     throttledResizeFn: undefined,
@@ -560,4 +547,16 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.fill-width-map {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+.fill-height-map {
+  height: 100%;
+  padding-left: 100%;
+  position: relative;
+}
+</style>

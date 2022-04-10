@@ -173,7 +173,6 @@ export default {
   methods: {
     toSpotTitle: DataUtil.toSpotTitle,
     onWindowResize() {
-      console.log('on resize')
       setTimeout(() => {
         this.mapWidth = this.$refs.simpleMap?.containerWidth ?? 512
       }, 1000)
