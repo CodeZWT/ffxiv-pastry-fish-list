@@ -87,34 +87,70 @@
     <!--      style="width: 100%; height: 512px"-->
     <!--      class="d-flex justify-center mt-4"-->
     <!--    >-->
-    <v-row
-      v-if="lazyExpansionValue === 0"
-      v-resize="onWindowResize"
-      :style="`width: 100%; height: 100%; max-width: 512px; max-height: ${mapWidth}px`"
-      no-gutters
-    >
-      <eorzea-simple-map
-        ref="simpleMap"
-        :id="currentSpot.fishingSpot.mapFileId"
-        :size-factor="currentSpot.fishingSpot.size_factor"
-        :fishing-spots="fishingSpotsForMap"
-        :show-fishing-range-helper="showFishingRangeHelper"
-      />
-    </v-row>
+    <template v-if="lazyExpansionValue === 0">
+      <div v-if="tip" class="px-4">
+        <div>
+          <strong>迷路指南：</strong>{{ tip.tip }}
+          <v-btn
+            @click="showTipDialog = true"
+            left
+            small
+            tile
+            color="info"
+            style="display: inline"
+          >
+            <v-icon small>{{ mdiImageArea }}</v-icon>
+            显示钓场位置截图</v-btn
+          >
+        </div>
+      </div>
+      <v-row
+        v-resize="onWindowResize"
+        :style="`width: 100%; height: 100%; max-width: 512px; max-height: ${mapWidth}px`"
+        no-gutters
+      >
+        <eorzea-simple-map
+          ref="simpleMap"
+          :id="currentSpot.fishingSpot.mapFileId"
+          :size-factor="currentSpot.fishingSpot.size_factor"
+          :fishing-spots="fishingSpotsForMap"
+          :show-fishing-range-helper="showFishingRangeHelper"
+        />
+      </v-row>
+    </template>
+    <v-dialog v-model="showTipDialog" scrollable>
+      <v-card>
+        <v-card-title>
+          钓场位置截图
+        </v-card-title>
+        <v-card-text>
+          <v-img v-if="tip" contain height="100%" :src="tip.screenShootUrl" />
+        </v-card-text>
+        <v-card-actions>
+          <v-btn block color="primary" @click="showTipDialog = false">
+            {{ $t('common.ui.dialog.close') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <!--    </div>-->
   </div>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import { mdiContentCopy, mdiViewList } from '@mdi/js'
+import { mdiContentCopy, mdiImageArea, mdiViewList } from '@mdi/js'
 import DataUtil from '@/utils/DataUtil'
+import EnvMixin from '@/components/basic/EnvMixin'
 import EorzeaSimpleMap from '@/components/basic/EorzeaSimpleMap'
+import ImgUtil from '@/utils/ImgUtil'
 import LinkList from '@/components/basic/LinkList'
+import spotTip from 'Data/spotTip'
 
 export default {
   name: 'DetailItemMap',
   components: { LinkList, EorzeaSimpleMap },
+  mixins: [EnvMixin],
   props: {
     fish: {
       type: Object,
@@ -134,14 +170,28 @@ export default {
     },
   },
   data: vm => ({
+    showTipDialog: false,
+    mdiImageArea,
     mdiViewList,
     mdiContentCopy,
     currentSpotIndex: 0,
     lazyExpansionValue: vm.expanded ? 0 : undefined,
     showSpotMenu: false,
     mapWidth: 512,
+    tips: spotTip,
   }),
   computed: {
+    tip() {
+      const tip = this.tips[this.currentSpot.fishingSpotId]
+      if (tip) {
+        return {
+          tip: tip.tip,
+          screenShootUrl: ImgUtil.getImgUrl(tip.screenShot),
+        }
+      } else {
+        return undefined
+      }
+    },
     fishingSpots() {
       return this.fish.fishingSpots
     },
