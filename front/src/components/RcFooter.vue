@@ -13,17 +13,17 @@
             <v-icon class="pr-1">{{ mdiIdentifier }}</v-icon>
             <div>{{ $t('footer.author') }}</div>
           </v-col>
-          <v-col cols="12" class="link-item" @click="openQQ">
+          <v-col cols="12" class="link-item">
             <v-icon class="pr-1">{{ mdiQqchat }}</v-icon>
-            <div>1153646847</div>
+            <div @click="openQQ">1153646847</div>
           </v-col>
-          <v-col cols="12" class="link-item" @click="openWeibo('7546879530')">
+          <v-col cols="12" class="link-item">
             <v-icon class="pr-1">{{ mdiSinaWeibo }}</v-icon>
-            <div>红豆年糕找不到</div>
+            <div @click="openWeibo('7546879530')">红豆年糕找不到</div>
           </v-col>
-          <v-col cols="12" class="link-item" @click="openQQGuild">
+          <v-col cols="12" class="link-item">
             <v-icon class="pr-1">{{ mdiQqchat }}</v-icon>
-            <div>频道：FF14 捕鱼人研究会</div>
+            <div @click="openQQGuild">频道：FF14 捕鱼人研究会</div>
           </v-col>
         </v-row>
       </v-col>
@@ -32,17 +32,19 @@
           <v-subheader>
             友情链接
           </v-subheader>
-          <v-col cols="12" class="link-item" @click="openWeibo('7245459345')">
+          <v-col cols="12" class="link-item">
             <v-icon class="pr-1">{{ mdiSinaWeibo }}</v-icon>
-            <div>光之渔夫bot</div>
+            <div @click="openWeibo('7245459345')">光之渔夫bot</div>
           </v-col>
-          <v-col cols="12" class="link-item" @click="openLink(GARLAND_URL + '/db/')">
+          <v-col cols="12" class="link-item">
             <v-icon class="pr-1">{{ mdiLink }}</v-icon>
-            <div>Garland/花环国服数据站</div>
+            <div @click="openLink(GARLAND_URL + '/db/')">Garland/花环国服数据站</div>
           </v-col>
-          <v-col cols="12" class="link-item" @click="openLink('http://www.ffxiv.co')">
+          <v-col cols="12" class="link-item">
             <v-icon class="pr-1">{{ mdiLink }}</v-icon>
-            <div>飞艇坪 - 最终幻想14网址导航</div>
+            <div @click="openLink('http://www.ffxiv.co')">
+              飞艇坪 - 最终幻想14网址导航
+            </div>
           </v-col>
         </v-row>
       </v-col>
@@ -51,43 +53,35 @@
           <v-subheader>
             站点信息
           </v-subheader>
-          <v-col
-            cols="12"
-            class="link-item"
-            @click="openLink('https://github.com/ricecake404/ffxiv-pastry-fish-list')"
-          >
+          <v-col cols="12" class="link-item">
             <v-icon class="pr-1">{{ mdiGithub }}</v-icon>
-            <div>FFXIV Pastry Fish List</div>
+            <div
+              @click="openLink('https://github.com/ricecake404/ffxiv-pastry-fish-list')"
+            >
+              FFXIV Pastry Fish List
+            </div>
           </v-col>
-          <v-col
-            cols="12"
-            class="link-item"
-            @click="
-              openLink(
-                'https://ricecake302.coding.net/s/569c25c7-3f53-4678-baaa-95641a4d27f3'
-              )
-            "
-          >
+          <v-col cols="12" class="link-item">
             <v-icon class="pr-1">{{ mdiHammerWrench }}</v-icon>
-            <div>{{ $t('faqPage.title') }}</div>
+            <div
+              @click="
+                openLink(
+                  'https://ricecake302.coding.net/s/569c25c7-3f53-4678-baaa-95641a4d27f3'
+                )
+              "
+            >
+              {{ $t('faqPage.title') }}
+            </div>
           </v-col>
-          <v-col
-            v-if="region === 'CN'"
-            cols="12"
-            class="link-item"
-            @click="openLink('https://fish.ricecake302.com')"
-          >
+          <v-col v-if="region === 'CN'" cols="12" class="link-item">
             <v-icon class="pr-1">{{ mdiEarth }}</v-icon>
-            <div>{{ '国际站点' }}</div>
+            <div @click="openLink('https://fish.ricecake302.com')">{{ '国际站点' }}</div>
           </v-col>
-          <v-col
-            v-else
-            cols="12"
-            class="link-item"
-            @click="openLink('https://ricecake.traveleorzea.com')"
-          >
+          <v-col v-else cols="12" class="link-item">
             <v-icon class="pr-1">{{ mdiEarth }}</v-icon>
-            <div>{{ '国内站点' }}</div>
+            <div @click="openLink('https://ricecake.traveleorzea.com')">
+              {{ '国内站点' }}
+            </div>
           </v-col>
         </v-row>
       </v-col>
@@ -188,10 +182,13 @@ export default {
 
 <style scoped lang="scss">
 .link-item::v-deep {
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding-left: 16px !important;
+
+  div {
+    cursor: pointer;
+  }
 }
 </style>
