@@ -12,6 +12,7 @@ const CATEGORY = {
   LANG: 'lang',
   MAP: 'map',
   MAP_RANGE_INDICATOR: 'map-range-indicator',
+  MAP_SPOT_TIP: 'map-spot-tip',
   AQUARIUM: 'aquarium',
 }
 

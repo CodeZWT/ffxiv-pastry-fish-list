@@ -156,15 +156,11 @@
                       <v-icon>{{ mdiContentCopy }}</v-icon>
                     </v-btn>
                   </click-helper>
-                  <!--                    {{ currentMapInfo }}-->
                 </div>
-
-                <!--                <div v-if="showSpotPredators" class="text-center">-->
-                <!--                  此处为鱼影，需要刺前置鱼触发，详情见地图下方说明。-->
-                <!--                </div>-->
               </div>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
+              <map-spot-tip :spot="currentSpotId" />
               <div style="width: 100%; height: 512px" class="d-flex justify-center mt-4">
                 <div style="width: 100%; max-width: 512px">
                   <eorzea-simple-map
@@ -203,6 +199,7 @@ import FIX from 'Data/fix'
 import FishList from '@/components/FishList'
 import FishingSpots from 'Data/fishingSpots'
 import LinkList from '@/components/basic/LinkList'
+import MapSpotTip from '@/components/MapSpotTip'
 import OceanFishingFishList from '@/components/OceanFishingFishList/OceanFishingFishList'
 import PageMixin from '@/components/OceanFishingFishList/PageMixin'
 import _ from 'lodash'
@@ -212,6 +209,7 @@ export default {
   name: 'WikiSpotDetail',
   mixins: [PageMixin],
   components: {
+    MapSpotTip,
     AboutChartDialog,
     DetailItemMap,
     ClickHelper,
