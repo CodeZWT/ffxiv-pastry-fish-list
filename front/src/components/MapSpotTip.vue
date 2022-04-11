@@ -1,7 +1,7 @@
 <template>
   <div v-if="tip">
     <div>
-      <strong>迷路指南：</strong>{{ tip.tip }}
+      <strong>迷路指南：</strong><span v-html="tip.tip" />
       <v-btn
         @click="showTipDialog = true"
         left
@@ -54,7 +54,7 @@ export default {
       const tip = spotTip[this.spot]
       if (tip) {
         return {
-          tip: tip.tip.replaceAll(/[\r\n\s]/g, ''),
+          tip: tip.tip.replaceAll(/[\r\n]/g, ''),
           screenShootUrl: ImgUtil.getImgUrl(
             tip.screenShot ?? `spot-${this.spot}.webp`,
             ImgUtil.CATEGORY.MAP_SPOT_TIP
