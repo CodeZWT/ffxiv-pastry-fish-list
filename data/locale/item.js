@@ -2565,4 +2565,12 @@ module.exports = {
     en: 'Lunar Lamenter',
     ja: 'ラメントサバイバー',
   },
+  36679: { chs: '', en: 'Aetherolectric Guitarfish', ja: 'エレキギターフィッシュ' },
+  36680: { chs: '', en: 'Jumbo Snook', ja: 'ジャンボスヌーク' },
+  36681: { chs: '', en: 'Earful', ja: 'イアフルサンフィッシュ' },
+  36682: { chs: '', en: 'Hippo Frog', ja: 'ヒッポフロッグ' },
+  36683: { chs: '', en: 'Rimepike', ja: 'フリジッドガー' },
+  36684: { chs: '', en: 'Foun Ahlm', ja: 'フォン・アールム' },
+  36685: { chs: '', en: 'Forbiddingway', ja: 'フォービディングウェイ' },
+  36686: { chs: '', en: 'Thavnairian Calamari', ja: 'サベネアンカラマリ' },
 }

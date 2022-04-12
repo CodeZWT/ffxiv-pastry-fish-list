@@ -13818,35 +13818,153 @@ const fishGameDataCN = {
     aquarium: null,
   },
 }
-const fishGameDataGlobalAddon = {}
-const combineKnowledge = (gameData) => {
-  return keyBy(Object.values(gameData).map(data => {
-    const k = knowledge[data._id]
-    return Object.assign({}, data, {
-      _id: k.id,
-      previousWeatherSet: k.prevWeathers,
-      weatherSet: k.weathers,
-      startHour: k.startHour,
-      startHourText: k.startHourText,
-      endHour: k.endHour,
-      endHourText: k.endHourText,
-      snagging: k.snagging,
-      tug: k.tug,
-      hookset: k.hookset,
-      biteSelf: k.biteSelf,
-      predators: k.predators,
-      predatorOrder: k.predatorsOrder,
-      bestCatchPath: k.bestCatchPath,
-      catchPathList: k.catchPathList,
-      checkInfo: k.checkInfo,
-    })
-  }), '_id')
+const fishGameDataGlobalAddon = {
+  36679: {
+    _id: 36679,
+    anglerFishId: 3646,
+    locations: [252],
+    patch: 6.1,
+    folklore: 2509,
+    collectable: null,
+    snagging: null,
+    gig: null,
+    aquarium: null,
+    dataMissing: {
+      weatherRestricted: false,
+      timeRestricted: true,
+    },
+  },
+
+  36680: {
+    _id: 36680,
+    anglerFishId: 3647,
+    locations: [255],
+    patch: 6.1,
+    folklore: 2509,
+    collectable: null,
+    gig: null,
+    aquarium: null,
+    dataMissing: {
+      weatherRestricted: true,
+      timeRestricted: true,
+    },
+  },
+  36681: {
+    _id: 36681,
+    anglerFishId: 3648,
+    locations: [260],
+    patch: 6.1,
+    folklore: 2509,
+    collectable: null,
+    gig: null,
+    aquarium: null,
+    dataMissing: {
+      weatherRestricted: false,
+      timeRestricted: true,
+    },
+  },
+  36682: {
+    _id: 36682,
+    anglerFishId: 3649,
+    locations: [264],
+    patch: 6.1,
+    folklore: 2509,
+    collectable: null,
+    gig: null,
+    aquarium: null,
+    dataMissing: {
+      weatherRestricted: true,
+      timeRestricted: false,
+    },
+  },
+  36683: {
+    _id: 36683,
+    anglerFishId: 3650,
+    locations: [270],
+    patch: 6.1,
+    folklore: 2509,
+    collectable: null,
+    gig: null,
+    aquarium: null,
+    dataMissing: {
+      weatherRestricted: true,
+      timeRestricted: false,
+    },
+  },
+  36684: {
+    _id: 36684,
+    anglerFishId: 3651,
+    locations: [279],
+    patch: 6.1,
+    folklore: 2511,
+    collectable: null,
+    gig: null,
+    aquarium: null,
+    dataMissing: {
+      weatherRestricted: true,
+      timeRestricted: true,
+    },
+  },
+  36685: {
+    _id: 36685,
+    anglerFishId: 3652,
+    locations: [283],
+    patch: 6.1,
+    folklore: 2511,
+    collectable: null,
+    gig: null,
+    aquarium: null,
+    dataMissing: {
+      weatherRestricted: true,
+      timeRestricted: true,
+    },
+  },
+  36686: {
+    _id: 36686,
+    anglerFishId: 3653,
+    locations: [269],
+    patch: 6.1,
+    folklore: 2509,
+    collectable: null,
+    gig: null,
+    aquarium: null,
+    dataMissing: {
+      weatherRestricted: false,
+      timeRestricted: false,
+    },
+  },
+}
+const combineKnowledge = gameData => {
+  return keyBy(
+    Object.values(gameData).map(data => {
+      const k = knowledge[data._id]
+      return Object.assign({}, data, {
+        _id: k.id,
+        previousWeatherSet: k.prevWeathers,
+        weatherSet: k.weathers,
+        startHour: k.startHour,
+        startHourText: k.startHourText,
+        endHour: k.endHour,
+        endHourText: k.endHourText,
+        snagging: k.snagging,
+        tug: k.tug,
+        hookset: k.hookset,
+        biteSelf: k.biteSelf,
+        predators: k.predators,
+        predatorOrder: k.predatorsOrder,
+        bestCatchPath: k.bestCatchPath,
+        catchPathList: k.catchPathList,
+        checkInfo: k.checkInfo,
+      })
+    }),
+    '_id'
+  )
 }
 
 const fishCN = combineKnowledge(fishGameDataCN)
 
 const fishGlobalAddon = combineKnowledge(fishGameDataGlobalAddon)
-
+console.log(fishCN, fishGlobalAddon);
 const fishGlobal = Object.assign({}, fishCN, fishGlobalAddon)
 
 module.exports = {

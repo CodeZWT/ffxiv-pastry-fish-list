@@ -29,6 +29,7 @@ const PATCHES_CN = {
 }
 
 const PATCHES_GLOBAL = Object.assign({}, PATCHES_CN, {
+  '6.x': [6.0, 6.1],
 })
 
 const SystemInfo = {
