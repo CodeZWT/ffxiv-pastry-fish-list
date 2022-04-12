@@ -16,6 +16,7 @@ const { version: PASTRY_FISH_VERSION } = require('../package.json')
 const { CN_PATCH_VERSION, GLOBAL_PATCH_VERSION } = require('../data/constants')
 
 const playerSetupOf = require('./customDataReader/playerSetup')
+const MachinaModels = require('node-machina-ffxiv/models/_MachinaModels')
 
 const INTERVAL_MINUTE = 60000
 const DIADEM_WEATHER_COUNTDOWN_TOTAL = 10 * INTERVAL_MINUTE
@@ -201,10 +202,37 @@ function init() {
 }
 
 function testOpcode(packet) {
-  if (packet.data[0] === 2 && packet.data.length === 8) {
-    console.log('weatherChange opcode:', packet.opcode)
-  }
+  // if (packet.type==='unknown' && packet.data.length === 32) {
+  //   let s =''
+  //   for (let i = 0; i < 32; i+=2) {
+  //     s+= MachinaModels.getUint16(packet.data, i) + ','
+  //   }
+  //   console.log('------------------------')
+  //   console.log('guess', s);
+  //   console.log('opcode:', packet.opcode)
+  //   console.log('data:', packet.data)
+  //   console.log('fish data',packet.data[12], packet.data[13],);
+  //   console.log('fish',MachinaModels.getUint16(packet.data, 12));
+  //   console.log('size integer',MachinaModels.getUint32(packet.data, 16));
+  //   console.log('size fraction',MachinaModels.getUint16(packet.data, 20));
+  //   console.log('++++++++++++++++++++++++')
+  // }
 }
+
+const onSpearFishCaught = (packet, hq) => {
+  const fishId = MachinaModels.getUint16(packet.data, 12)
+  // console.log('------------------------')
+  // console.log('opcode:', packet.opcode)
+  // console.log('data:', packet.data)
+  // console.log('spear fish caught', fishId, hq);
+  // console.log('size integer',MachinaModels.getUint32(packet.data, 16));
+  // console.log('size fraction',MachinaModels.getUint16(packet.data, 20));
+  // console.log('------------------------')
+  fishCaughtCallback({ fishId, hq })
+}
+
+// onFFXIVEventOfUnknown(763, (packet) => onSpearFishCaught(packet, false))
+onFFXIVEventOfUnknown(602, (packet) => onSpearFishCaught(packet, true))
 
 function onUpdate(callback) {
   updateCallback = callback
@@ -249,11 +277,6 @@ function onFFXIVEventOfUnknown(opcode, callback) {
   ffxivEvent.on('ffxivEvent', packet => {
     if (packet && packet.type === 'unknown' && packet.opcode === opcode) {
       callback(packet)
-      updateCallback({
-        status,
-        currentRecord,
-        prevRecord,
-      })
     }
   })
 }
